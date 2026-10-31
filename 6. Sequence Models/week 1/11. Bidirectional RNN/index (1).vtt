@@ -1,0 +1,303 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.270 --> 00:00:04.990
+By now, you've seen most of the key building blocks of RNNs.
+
+00:00:04.990 --> 00:00:10.190
+But there are just two more ideas that let you build much more powerful models.
+
+00:00:10.190 --> 00:00:15.190
+One is bidirectional RNNs, which lets you at a point in time to take information from
+
+00:00:15.190 --> 00:00:17.470
+both earlier and later in the sequence.
+
+00:00:17.470 --> 00:00:19.870
+So we'll talk about that in this video.
+
+00:00:19.870 --> 00:00:24.030
+And the second is deep RNNs, which you see in the next video.
+
+00:00:24.030 --> 00:00:27.250
+So let's start with bidirectional RNNs.
+
+00:00:27.250 --> 00:00:31.650
+So to motivate bidirectional RNNs, let's look at this network, which you've seen a
+
+00:00:31.650 --> 00:00:35.850
+few times before in the context of named entity recognition.
+
+00:00:35.850 --> 00:00:40.130
+And one of the problems of this network is that to figure out whether the third word
+
+00:00:40.130 --> 00:00:46.090
+Teddy is a part of a person's name is not enough to just look at the first part of
+
+00:00:46.090 --> 00:00:47.090
+the sentence.
+
+00:00:47.090 --> 00:00:53.770
+So to tell if Y3 should be 0 or 1, you need more information than just the first three
+
+00:00:53.770 --> 00:00:57.570
+words, because the first three words doesn't tell you if they're talking about
+
+00:00:57.570 --> 00:01:03.850
+Teddy Bears or talking about the former US President Teddy Roosevelt.
+
+00:01:03.850 --> 00:01:09.250
+So this is a unidirectional or four directional only RNN.
+
+00:01:09.250 --> 00:01:16.250
+And this comment I just made is true, whether these cells are standard RNN
+
+00:01:16.250 --> 00:01:22.490
+blocks or whether they're GRU units or whether they're LSTM blocks.
+
+00:01:22.570 --> 00:01:27.170
+But all of these blocks are in a forward only direction.
+
+00:01:27.170 --> 00:01:33.570
+So what a bidirectional RNN does, or a BRNN, is fix this issue.
+
+00:01:33.570 --> 00:01:36.450
+So a bidirectional RNN works as follows.
+
+00:01:36.450 --> 00:01:43.330
+And I'm going to use a simplified four inputs, or maybe a four-word sentence.
+
+00:01:43.330 --> 00:01:48.010
+So we have four inputs, X1 through X4.
+
+00:01:48.010 --> 00:01:53.930
+So this network's hidden layer will have a forward recurring component.
+
+00:01:53.930 --> 00:02:07.860
+So I'm going to call this A1, A2, A3, and A4.
+
+00:02:07.860 --> 00:02:12.980
+And I'm going to draw a right arrow over that to denote this is the forward
+
+00:02:12.980 --> 00:02:15.460
+recurrent component.
+
+00:02:15.460 --> 00:02:21.260
+And so they'll be connected as follows.
+
+00:02:21.340 --> 00:02:35.760
+And so each of these four recurrent units inputs the current X and then feeds in to
+
+00:02:35.760 --> 00:02:46.600
+help predict Y hat 1, Y hat 2, Y hat 3, and Y hat 4.
+
+00:02:46.600 --> 00:02:48.240
+So far I haven't done anything.
+
+00:02:48.240 --> 00:02:53.320
+Basically, we've drawn the RNN from the previous slide, but with the arrows
+
+00:02:53.320 --> 00:02:56.440
+placed in slightly funny positions.
+
+00:02:56.520 --> 00:03:02.360
+But I drew the arrows in these slightly funny positions because what we're going to do is
+
+00:03:02.360 --> 00:03:04.600
+add a backward recurrent layer.
+
+00:03:04.600 --> 00:03:12.400
+So we'll have A1, left arrow to denote this is a backward connection, and then A2,
+
+00:03:12.400 --> 00:03:21.120
+backwards, A3, backwards, and A4, backwards.
+
+00:03:21.120 --> 00:03:24.080
+So the left arrow denotes that this is a backward connection.
+
+00:03:24.080 --> 00:03:30.680
+And so we're then going to connect the network up as follows.
+
+00:03:30.680 --> 00:03:39.840
+And these A backward connections will be connected to each other going backward in time.
+
+00:03:39.840 --> 00:03:46.720
+So notice that this network defines a cyclic graph.
+
+00:03:46.720 --> 00:03:51.800
+And so given an input sequence, X1 through X4, the forward sequence will first
+
+00:03:51.800 --> 00:03:57.240
+compute A4 at 1, then use that to compute A4 at 2, then A4 at 3, then A4 at 4.
+
+00:03:57.240 --> 00:04:02.000
+Whereas the backward sequence would start by computing A backward 4 and then go
+
+00:04:02.000 --> 00:04:04.000
+back and compute A backward 3.
+
+00:04:04.000 --> 00:04:06.600
+And notice you're computing network activations.
+
+00:04:06.600 --> 00:04:08.640
+This is not back prop, this is forward prop.
+
+00:04:08.640 --> 00:04:13.760
+But the forward prop goes as partially, but the forward prop has part of the
+
+00:04:13.760 --> 00:04:17.240
+computation going from left to right and part of the computation going from
+
+00:04:17.240 --> 00:04:19.040
+right to left in this diagram.
+
+00:04:19.120 --> 00:04:22.960
+But having computed A backward 3, you can then use those activations, compute A
+
+00:04:22.960 --> 00:04:25.360
+backward 2 and then A backward 1.
+
+00:04:25.360 --> 00:04:30.600
+And then finally, having computed all your hidden activations, you can then make your
+
+00:04:30.600 --> 00:04:32.520
+predictions.
+
+00:04:32.520 --> 00:04:38.880
+And so, for example, to make the predictions, your network would have something like Y
+
+00:04:38.880 --> 00:04:48.800
+hat at time t is an activation function applied to WY with both the forward
+
+00:04:48.880 --> 00:05:01.430
+activation at time t and the backward activation at time t being fed in to make
+
+00:05:01.430 --> 00:05:03.630
+that prediction at time t.
+
+00:05:05.030 --> 00:05:10.870
+So if you look at the prediction at time set 3, for example, then information from
+
+00:05:10.870 --> 00:05:16.670
+X1 can flow through here, forward 1 to forward 2.
+
+00:05:16.750 --> 00:05:22.070
+That also takes in the information here to forward 3 to Y hat 3.
+
+00:05:22.070 --> 00:05:27.110
+So information from X1, X2, X3 are all taken into account.
+
+00:05:27.110 --> 00:05:35.070
+Whereas information from X4 can flow through a backward 4 to a backward 3 to Y3.
+
+00:05:35.070 --> 00:05:41.670
+So this allows the prediction at time 3 to take its input, both information from
+
+00:05:41.670 --> 00:05:45.910
+the pass as well as information from the present, which goes into both the
+
+00:05:45.910 --> 00:05:52.160
+forward and the backward things at this step, as well as information from the future.
+
+00:05:52.160 --> 00:06:03.680
+So in particular, given a phrase like he said, Teddy Roosevelt dot dot dot, to predict
+
+00:06:03.680 --> 00:06:08.200
+whether Teddy is a part of a person's name, you'd be able to take into account
+
+00:06:08.200 --> 00:06:13.160
+information from the past and from the future.
+
+00:06:13.160 --> 00:06:17.320
+So this is the bi-directional recurrent neural network.
+
+00:06:17.320 --> 00:06:23.200
+And these blocks here can be not just the standard RNN block, but they can also be
+
+00:06:23.200 --> 00:06:26.200
+G-R-U blocks or LSTM blocks.
+
+00:06:26.200 --> 00:06:30.200
+In fact, for a lot of NLP problems, for a lot of texts of natural language
+
+00:06:30.200 --> 00:06:38.520
+processing problems, a bi-directional RNN with a LSTM appears to be commonly used.
+
+00:06:38.520 --> 00:06:43.040
+So if you have an NLP problem and you have a complete sentence,
+
+00:06:43.040 --> 00:06:47.520
+you're trying to label things in the sentence, a bi-directional RNN with LSTM
+
+00:06:47.520 --> 00:06:53.320
+blocks, both forward and backward, would be a pretty reasonable first thing to try.
+
+00:06:53.320 --> 00:06:56.480
+So that's it for the bi-directional RNN.
+
+00:06:56.480 --> 00:07:01.800
+And this is a modification they can make to the basic RNN architecture or the
+
+00:07:01.800 --> 00:07:03.640
+G-R-U or the LSTM.
+
+00:07:03.640 --> 00:07:08.360
+And by making this change, you can have a model that uses RNN or G-R-U or LSTM
+
+00:07:08.360 --> 00:07:11.840
+and is able to make predictions anywhere, even in the middle of the sequence,
+
+00:07:11.840 --> 00:07:16.720
+by taking into account information potentially from the entire sequence.
+
+00:07:16.720 --> 00:07:21.360
+The disadvantage of the bi-directional RNN is that you do need the entire
+
+00:07:21.360 --> 00:07:24.640
+sequence of data before you can make predictions anywhere.
+
+00:07:24.640 --> 00:07:29.000
+So for example, if you're building a speech recognition system, then the
+
+00:07:29.000 --> 00:07:32.800
+B-RNN will let you take into account the entire speech utterance.
+
+00:07:32.800 --> 00:07:36.480
+But if you use this straightforward implementation, you need to wait for
+
+00:07:36.480 --> 00:07:41.000
+the person to stop talking to get the entire utterance before you can
+
+00:07:41.000 --> 00:07:44.360
+actually process it and make a speech recognition prediction.
+
+00:07:44.360 --> 00:07:47.720
+So for real-time speech recognition applications, there's somewhat more
+
+00:07:47.720 --> 00:07:53.320
+complex models as well, rather than just using the standard bi-directional RNN
+
+00:07:53.320 --> 00:07:54.760
+as you're seeing here.
+
+00:07:54.760 --> 00:07:58.480
+But for a lot of natural language processing applications where you can get
+
+00:07:58.480 --> 00:08:02.960
+the entire sentence all at the same time, the standard B-RNN algorithm
+
+00:08:02.960 --> 00:08:04.600
+is actually very effective.
+
+00:08:04.600 --> 00:08:06.360
+So that's it for B-RNNs.
+
+00:08:06.360 --> 00:08:09.920
+In the next and final video for this week, let's talk about how to take
+
+00:08:09.920 --> 00:08:14.640
+all of these ideas, RNNs, LSTMs, or GRUs, and the bi-directional versions
+
+00:08:14.640 --> 00:08:16.800
+and construct deep versions of them.

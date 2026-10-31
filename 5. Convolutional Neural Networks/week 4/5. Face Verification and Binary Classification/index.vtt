@@ -1,0 +1,222 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.680
+The triplet loss is one good way to learn the parameters of a conf net for phase recognition.
+
+00:00:05.680 --> 00:00:08.520
+There's another way to learn these parameters.
+
+00:00:08.520 --> 00:00:14.080
+Let me show you how phase recognition can also be posed as a straight binary classification
+
+00:00:14.080 --> 00:00:15.080
+problem.
+
+00:00:15.080 --> 00:00:19.440
+Another way to train a neural network is to take this pair of neural networks, to
+
+00:00:19.440 --> 00:00:26.360
+take this Siamese network, and have them both compute these embeddings, maybe 128
+
+00:00:26.360 --> 00:00:29.060
+dimensional embeddings, maybe even higher dimensional.
+
+00:00:29.060 --> 00:00:36.680
+And then have these be input to a logistic regression unit to then just make a prediction
+
+00:00:36.680 --> 00:00:43.880
+where the target output will be 1 if both of these are the same persons and 0 if both
+
+00:00:43.880 --> 00:00:46.640
+of these are different persons.
+
+00:00:46.640 --> 00:00:53.380
+So this is a way to treat phase recognition just as a binary classification problem.
+
+00:00:53.380 --> 00:00:58.980
+And this is an alternative to the triplet loss for training a system like this.
+
+00:00:58.980 --> 00:01:03.500
+Now what does this final logistic regression unit actually do?
+
+00:01:03.500 --> 00:01:10.980
+The output y hat will be, let's say a sigmoid function applied to some set of features.
+
+00:01:10.980 --> 00:01:17.860
+But rather than just feeding in these encodings, what you can do is take the differences between
+
+00:01:17.860 --> 00:01:18.860
+the encodings.
+
+00:01:18.860 --> 00:01:21.020
+So let me show you what I mean.
+
+00:01:21.020 --> 00:01:30.600
+Let's say I write a sum over k equals 1 to 128 of let's say the absolute value taken
+
+00:01:30.600 --> 00:01:35.860
+element wise between the two different encodings.
+
+00:01:35.860 --> 00:01:40.060
+So let me just finish writing this out and then we'll see what this means.
+
+00:01:40.060 --> 00:01:46.100
+So in this notation, f of xi is the encoding of the image xi.
+
+00:01:46.100 --> 00:01:52.460
+And this subscript k means to just select out the kth component of this vector.
+
+00:01:52.460 --> 00:01:59.880
+So this is taking the element wise difference in absolute values between these two encodings.
+
+00:01:59.880 --> 00:02:05.700
+And what you might do is think of these 128 numbers as features that you then feed into
+
+00:02:05.700 --> 00:02:07.540
+logistic regression.
+
+00:02:07.540 --> 00:02:12.980
+And your final logistic regression can have additional parameters wi and b, similar to
+
+00:02:12.980 --> 00:02:16.300
+a normal logistic regression unit.
+
+00:02:16.300 --> 00:02:23.100
+And you would train an appropriate weighting on these 128 features in order to predict
+
+00:02:23.100 --> 00:02:28.460
+whether or not these two images are of the same person or of different persons.
+
+00:02:28.460 --> 00:02:34.500
+So this would be one pretty reasonable way to learn to predict 0 or 1, whether these
+
+00:02:34.500 --> 00:02:37.660
+are the same person or different persons.
+
+00:02:37.660 --> 00:02:42.900
+And there are a few other variations on how you can compute this formula that I had
+
+00:02:42.900 --> 00:02:44.540
+underlined in green.
+
+00:02:44.540 --> 00:02:55.020
+For example, another formula could be this, k minus f of xj, k squared divided by f of
+
+00:02:55.020 --> 00:03:00.580
+xi plus f of xj, k.
+
+00:03:00.580 --> 00:03:03.100
+This is sometimes called the chi-squared formula.
+
+00:03:03.100 --> 00:03:05.940
+This is the Greek alphabet chi.
+
+00:03:05.940 --> 00:03:09.180
+And this is sometimes called the chi-squared similarity.
+
+00:03:09.180 --> 00:03:12.140
+And this and other variations are explored.
+
+00:03:12.140 --> 00:03:16.700
+And this and other variations are explored in this deep-face paper, which I had referenced
+
+00:03:16.700 --> 00:03:17.700
+earlier as well.
+
+00:03:17.700 --> 00:03:23.820
+But so in this learning formulation, the input is a pair of images.
+
+00:03:23.820 --> 00:03:31.020
+So this is really your training input x, and the output y is either 0 or 1, depending on
+
+00:03:31.020 --> 00:03:36.020
+whether you're inputting a pair of similar or dissimilar images.
+
+00:03:36.020 --> 00:03:39.100
+And same as before, you're training a Siamese network.
+
+00:03:39.100 --> 00:03:43.980
+So that means that this neural network up here has parameters that are the same, or they're
+
+00:03:43.980 --> 00:03:49.020
+really tied to the parameters in this lower neural network.
+
+00:03:49.020 --> 00:03:51.740
+And this system can work pretty well as well.
+
+00:03:51.740 --> 00:03:56.900
+Lastly, I just want to mention one computational trick that can help you deployment
+
+00:03:56.900 --> 00:04:01.780
+significantly, which is that if this is the new image, so this is an employee walking
+
+00:04:01.780 --> 00:04:07.020
+in hoping that the turnstile, the doorway, will open for them, and if this is from your
+
+00:04:07.020 --> 00:04:14.100
+database image, then instead of having to compute this set of features, then instead
+
+00:04:14.100 --> 00:04:18.860
+of having to compute this embedding every single time, what you can do is actually
+
+00:04:18.860 --> 00:04:21.020
+pre-compute that.
+
+00:04:21.020 --> 00:04:27.180
+So when the new employee walks in, what you can do is use this upper conf net to compute
+
+00:04:27.180 --> 00:04:34.020
+that encoding, and use it to then compare it to your pre-computed encoding, and then use
+
+00:04:34.020 --> 00:04:36.960
+that to make a prediction y hat.
+
+00:04:36.960 --> 00:04:43.140
+So because you don't need to store the raw images, and also because if you have a very
+
+00:04:43.140 --> 00:04:48.980
+large database of employees, you don't need to compute these encodings every single time
+
+00:04:48.980 --> 00:04:54.180
+for every employee in your database, this idea of pre-computing some of these encodings
+
+00:04:54.180 --> 00:04:57.180
+can save significant computation.
+
+00:04:57.180 --> 00:05:02.740
+And this type of pre-computation works for this type of Siamese network architecture, where
+
+00:05:02.740 --> 00:05:09.620
+you treat face recognition as a binary classification problem, as well as for when you were learning
+
+00:05:09.620 --> 00:05:15.260
+encodings, maybe using the triplet loss function as described in the last couple of videos.
+
+00:05:15.260 --> 00:05:20.940
+And so just to wrap up, to treat face verification as supervised learning, you create a training
+
+00:05:20.940 --> 00:05:26.340
+set of just pairs of images now, instead of triplets, pairs of images, where the target
+
+00:05:26.340 --> 00:05:33.020
+label is 1, when these are a pair of pictures of the same person, and where the target
+
+00:05:33.020 --> 00:05:40.980
+label is 0, when these are pictures of different persons, and you use different pairs to train
+
+00:05:40.980 --> 00:05:45.820
+the neural network to train the Siamese network using backpropagation.
+
+00:05:45.820 --> 00:05:51.860
+So this version that you just saw of treating face verification and by extension face recognition
+
+00:05:51.860 --> 00:05:55.820
+as a binary classification problem, this works quite well as well.
+
+00:05:55.820 --> 00:06:00.220
+And so with that, I hope that you now know what it would take to train your own face
+
+00:06:00.220 --> 00:06:04.980
+verification or your own face recognition system, one that can do one-shot learning.

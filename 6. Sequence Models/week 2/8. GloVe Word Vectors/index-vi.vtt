@@ -1,0 +1,560 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.320
+Bạn tìm hiểu về một số thuật toán để tính toán
+việc word embedding.
+
+00:00:04.320 --> 00:00:10.560
+Một thuật toán khác có động lực nhất định
+trong cộng đồng NLP là thuật toán GloVe.
+
+00:00:10.560 --> 00:00:15.240
+Điều này không được sử dụng nhiều như Word2Vec
+hoặc Skipped Grand Models, nhưng
+
+00:00:15.240 --> 00:00:19.920
+nó gây được sự hào hứng nhất định vì tôi nghĩ
+một phần là do tính đơn giản của nó.
+
+00:00:19.920 --> 00:00:20.960
+Chúng ta hãy xem xét.
+
+00:00:20.960 --> 00:00:25.120
+Thuật toán GloVe được tạo ra bởi Jeffrey
+Pennington, Richard Sosher và
+
+00:00:25.120 --> 00:00:29.280
+Chris Manning, và GloVe là viết tắt của Global
+Vectors for Word Reperformance.
+
+00:00:30.480 --> 00:00:35.960
+Vì vậy, trước đây, chúng tôi đã lấy mẫu các
+cặp từ, ngữ cảnh và từ mục tiêu
+
+00:00:35.960 --> 00:00:41.440
+bằng cách chọn hai từ xuất hiện gần nhau trong
+kho văn bản của chúng tôi.
+
+00:00:42.080 --> 00:00:44.360
+Vì vậy, những gì thuật toán GloVe làm là nó
+bắt
+
+00:00:44.360 --> 00:00:46.640
+đầu bằng cách làm cho điều đó trở nên rõ ràng.
+
+00:00:46.640 --> 00:01:00.910
+Vì vậy, hãy gọi xi, j là số lần từ i xuất hiện
+trong ngữ cảnh của j.
+
+00:01:01.470 --> 00:01:08.510
+Và ở đây tôi và j đóng vai trò của t và c.
+
+00:01:09.310 --> 00:01:14.030
+Vì vậy, bạn có thể coi xi, j là x chỉ số t, c.
+
+00:01:14.030 --> 00:01:17.990
+Nhưng bạn có thể xem qua training set của mình
+và chỉ cần đếm
+
+00:01:17.990 --> 00:01:21.950
+xem từ i xuất hiện bao nhiêu từ trong ngữ cảnh
+của một từ khác j?
+
+00:01:21.950 --> 00:01:26.030
+Từ t xuất hiện bao nhiêu lần trong ngữ cảnh
+của một từ c khác?
+
+00:01:26.750 --> 00:01:36.990
+Và tùy thuộc vào định nghĩa của ngữ cảnh và từ
+mục tiêu, bạn có thể có xi, j bằng xji.
+
+00:01:36.990 --> 00:01:40.163
+Và trên thực tế, nếu bạn đang xác định bối
+cảnh và mục tiêu
+
+00:01:40.163 --> 00:01:43.337
+theo cách chúng có xuất hiện trong phạm vi
+cộng trừ 10 từ
+
+00:01:43.337 --> 00:01:46.510
+với nhau hay không, thì đó sẽ là một mối quan
+hệ đối xứng.
+
+00:01:47.470 --> 00:01:52.910
+Mặc dù nếu lựa chọn ngữ cảnh của bạn là ngữ
+cảnh luôn là từ ngay
+
+00:01:52.910 --> 00:01:58.350
+trước từ đích, thì xij và xji có thể không đối
+xứng như thế này.
+
+00:02:00.400 --> 00:02:04.160
+Nhưng với mục đích của thuật toán GloVe, chúng
+ta có thể xác
+
+00:02:04.160 --> 00:02:07.920
+định ngữ cảnh và mục tiêu ở dạng hai từ có
+xuất hiện gần nhau
+
+00:02:07.920 --> 00:02:11.680
+hay không, chẳng hạn như trong khoảng cộng trừ
+10 từ của nhau.
+
+00:02:13.840 --> 00:02:18.720
+Vì vậy, xij là số đếm ghi lại tần suất các
+
+00:02:18.720 --> 00:02:23.600
+từ i và j xuất hiện cùng nhau hoặc gần nhau.
+
+00:02:24.720 --> 00:02:27.920
+Vì vậy, những gì mô hình GloVe làm là tối ưu
+hóa những điều sau.
+
+00:02:28.480 --> 00:02:38.900
+Chúng ta sẽ giảm thiểu sự khác biệt giữa theta
+i transpose Ej
+
+00:02:39.220 --> 00:02:45.540
+trừ log của xij bình phương.
+
+00:02:45.540 --> 00:02:48.660
+Tôi sẽ điền vào một số phần của phương trình
+này một chút.
+
+00:02:48.660 --> 00:02:53.380
+Nhưng một lần nữa, hãy coi i và j đóng vai trò
+ở hàng t và c.
+
+00:02:53.380 --> 00:02:56.500
+Vì vậy, điều này hơi giống với những gì bạn
+
+00:02:56.500 --> 00:02:59.620
+đã thấy trước đây với theta t transpose E c.
+
+00:03:00.260 --> 00:03:05.060
+Và điều bạn muốn là nó cho bạn biết hai từ đó
+có liên quan như thế nào?
+
+00:03:05.060 --> 00:03:08.500
+Từ t và c có liên quan như thế nào? Từ i và j
+có liên quan như thế nào?
+
+00:03:08.980 --> 00:03:16.100
+Được đo bằng tần suất chúng xảy ra với nhau,
+điều này bị ảnh hưởng bởi xij này.
+
+00:03:17.780 --> 00:03:23.993
+Và vì vậy điều chúng ta sắp làm là giải các
+tham số theta và
+
+00:03:23.993 --> 00:03:30.207
+E bằng cách sử dụng gradient descent để giảm
+thiểu tổng trên
+
+00:03:30.207 --> 00:03:36.420
+i bằng 1 đến 10.000 tổng trên j từ 1 đến
+10.000 của hiệu này.
+
+00:03:36.420 --> 00:03:40.060
+Vì vậy, bạn chỉ muốn tìm hiểu các vectơ sao
+cho tích bên trong của
+
+00:03:40.060 --> 00:03:43.700
+chúng là một yếu tố dự đoán tốt về tần suất
+hai từ xuất hiện cùng nhau.
+
+00:03:44.980 --> 00:03:47.220
+Bây giờ chỉ là một số chi tiết bổ sung.
+
+00:03:47.220 --> 00:03:52.580
+Nếu xij bằng 0 thì log của 0 không được xác
+định là âm vô cực.
+
+00:03:52.580 --> 00:03:55.780
+Và vì vậy điều chúng ta sẽ làm là chúng ta sẽ
+
+00:03:55.780 --> 00:03:58.980
+không tính tổng các số hạng trong đó xij bằng
+0.
+
+00:03:58.980 --> 00:04:02.820
+Và những gì chúng ta sắp làm là thêm một thời
+hạn chờ đợi.
+
+00:04:02.820 --> 00:04:06.020
+Vì vậy, đây sẽ là một thời hạn chờ đợi.
+
+00:04:09.570 --> 00:04:17.810
+Và cái này sẽ bằng 0 nếu xij bằng 0.
+
+00:04:17.810 --> 00:04:23.170
+Và chúng ta sẽ sử dụng quy ước 0 log 0 bằng 0.
+
+00:04:25.980 --> 00:04:29.180
+Vậy điều này có nghĩa là nếu xij bằng 0, thì
+
+00:04:29.180 --> 00:04:32.380
+đừng bận tâm đến việc tính tổng cặp xij đó.
+
+00:04:32.380 --> 00:04:35.180
+Vì vậy, nhật ký số 0 này không liên quan.
+
+00:04:35.180 --> 00:04:40.220
+Vì vậy, điều này có nghĩa là tổng chỉ là tổng
+của các cặp từ
+
+00:04:40.220 --> 00:04:45.260
+cùng xuất hiện ít nhất một lần trong mối quan
+hệ ngữ cảnh-đích đó.
+
+00:04:45.980 --> 00:04:50.420
+Một điều nữa mà f(xij) làm là có một số từ
+xuất hiện
+
+00:04:50.420 --> 00:04:54.860
+rất thường xuyên trong tiếng Anh, như đây là
+của a, v.v.
+
+00:04:54.860 --> 00:04:57.340
+Đôi khi chúng được gọi là từ dừng, nhưng thực
+sự có sự
+
+00:04:57.340 --> 00:04:59.820
+liên tục giữa các từ thường xuyên và không
+thường xuyên.
+
+00:04:59.820 --> 00:05:02.100
+Và sau đó cũng có một số từ không được sử dụng
+
+00:05:02.100 --> 00:05:04.380
+phổ biến như durin mà bạn thực sự vẫn muốn lưu
+ý.
+
+00:05:04.380 --> 00:05:09.420
+Nhưng không thường xuyên như những từ phổ biến
+hơn.
+
+00:05:09.420 --> 00:05:14.500
+Và do đó, hệ số chờ có thể là một hàm mang lại
+một lượng tính
+
+00:05:14.500 --> 00:05:19.580
+toán có ý nghĩa, ngay cả đối với những từ ít
+phổ biến hơn như durin,
+
+00:05:20.300 --> 00:05:24.540
+và mang lại nhiều sức nặng hơn, nhưng không
+phải là sức nặng quá
+
+00:05:24.540 --> 00:05:28.780
+lớn cho những từ như thế này, vốn xuất hiện
+rất nhiều trong ngôn ngữ.
+
+00:05:28.780 --> 00:05:32.487
+Và do đó, có nhiều phương pháp phỏng đoán khác
+nhau để chọn hàm chờ
+
+00:05:32.487 --> 00:05:36.193
+f này mà không mang lại quá nhiều trọng số cho
+những từ này cũng như
+
+00:05:36.193 --> 00:05:39.900
+không mang lại quá ít trọng lượng cho những từ
+không thường xuyên.
+
+00:05:41.940 --> 00:05:46.020
+Vì vậy, bạn có thể xem tài liệu mà tôi đã tham
+chiếu ở slide trước nếu bạn muốn
+
+00:05:46.020 --> 00:05:50.100
+biết chi tiết về cách chọn f làm phương pháp
+phỏng đoán để thực hiện điều này.
+
+00:05:52.180 --> 00:05:56.740
+Và cuối cùng, một điều buồn cười về thuật toán
+này
+
+00:05:56.740 --> 00:06:01.300
+là các hàng theta và e bây giờ hoàn toàn đối
+xứng.
+
+00:06:01.300 --> 00:06:05.620
+Vậy theta i và e j là đối xứng.
+
+00:06:06.980 --> 00:06:10.073
+Trong đó, nếu bạn nhìn vào phép toán, bạn biết
+đấy, chúng
+
+00:06:10.073 --> 00:06:13.167
+chơi gần như giống nhau và bạn có thể đảo
+ngược hoặc hoán đổi
+
+00:06:13.167 --> 00:06:16.260
+chúng và chúng thực sự đạt được cùng một mục
+tiêu tối ưu hóa.
+
+00:06:16.820 --> 00:06:21.460
+Vì vậy, một cách để huấn luyện thuật toán là
+khởi tạo theta và e, cả hai
+
+00:06:21.460 --> 00:06:26.100
+đều ngẫu nhiên thống nhất, chạy
+gradient descent để giảm thiểu mục tiêu này.
+
+00:06:26.100 --> 00:06:30.580
+Và sau đó khi bạn làm xong từng từ thì lấy giá
+trị trung bình.
+
+00:06:30.580 --> 00:06:36.100
+Vì vậy, đối với một từ w nhất định, bạn có thể
+có e cuối cùng bằng với phần
+
+00:06:36.100 --> 00:06:41.620
+embedding đã được huấn luyện thông qua quy
+trình gradient descent này cộng với theta
+
+00:06:42.580 --> 00:06:46.340
+được đào tạo thông qua quy trình
+gradient descent chia cho hai vì
+
+00:06:46.340 --> 00:06:50.100
+theta và e trong công thức cụ thể này đóng vai
+trò đối xứng không
+
+00:06:50.100 --> 00:06:53.860
+giống như các mô hình trước đó mà chúng ta đã
+thấy trong các video trước
+
+00:06:53.860 --> 00:06:56.300
+nơi theta và e thực sự đóng những vai trò khác
+
+00:06:56.300 --> 00:06:58.740
+nhau và không thể chỉ ở mức trung bình như
+vậy.
+
+00:06:59.540 --> 00:07:02.180
+Vậy là xong phần thuật toán GloVe.
+
+00:07:02.180 --> 00:07:04.460
+Tôi nghĩ một phần khó hiểu của thuật toán này
+là nếu
+
+00:07:04.460 --> 00:07:06.740
+bạn nhìn vào phương trình này, nó có vẻ quá
+đơn giản.
+
+00:07:06.740 --> 00:07:06.980
+Đúng không?
+
+00:07:06.980 --> 00:07:10.100
+Làm sao việc chỉ giảm thiểu cost function bình
+phương như thế này
+
+00:07:10.100 --> 00:07:13.220
+lại có thể cho phép bạn tìm hiểu các cách
+word embedding có ý nghĩa?
+
+00:07:13.220 --> 00:07:14.980
+Nhưng hóa ra điều này có hiệu quả.
+
+00:07:14.980 --> 00:07:19.220
+Và cách mà các nhà phát minh đạt được thuật
+toán này là họ đang xây dựng
+
+00:07:19.220 --> 00:07:23.460
+lịch sử của các thuật toán phức tạp hơn nhiều
+như mô hình ngôn ngữ thần kinh.
+
+00:07:23.540 --> 00:07:28.260
+Và sau đó, họ đến với mô hình Skip-gram
+Word2Vec.
+
+00:07:28.260 --> 00:07:31.140
+Và sau đó điều này đến sau và thực sự giúp
+
+00:07:31.140 --> 00:07:34.020
+đơn giản hóa tất cả các thuật toán trước đó.
+
+00:07:35.620 --> 00:07:41.020
+Trước khi kết thúc cuộc thảo luận của chúng ta
+về các thuật toán học cách
+
+00:07:41.020 --> 00:07:46.420
+word embedding, có thêm một thuộc tính nữa mà
+chúng ta nên thảo luận ngắn gọn,
+
+00:07:47.700 --> 00:07:52.073
+đó là chúng tôi đã bắt đầu với quan điểm
+feature hóa này như là động lực để
+
+00:07:52.073 --> 00:07:56.447
+học vectơ từ, trong đó chúng tôi đã nói, có lẽ
+thành phần đầu tiên của vectơ
+
+00:07:56.447 --> 00:08:00.820
+embedding có thể đại diện cho giới tính, thành
+phần thứ hai có thể đại diện cho
+
+00:08:00.820 --> 00:08:03.100
+nó hoàng gia như thế nào, rồi tuổi tác, rồi
+
+00:08:03.100 --> 00:08:05.380
+liệu đó có phải là một món ăn hay không, v.v.
+
+00:08:06.500 --> 00:08:10.527
+Nhưng khi bạn học cách word embedding bằng
+cách sử dụng một trong các
+
+00:08:10.527 --> 00:08:14.553
+thuật toán mà chúng ta đã thấy, chẳng hạn như
+thuật toán GloVe mà chúng ta
+
+00:08:14.553 --> 00:08:18.580
+vừa thấy ở trang trình bày trước, điều xảy ra
+là bạn không thể đảm bảo rằng
+
+00:08:18.580 --> 00:08:22.900
+rằng các thành phần riêng lẻ của phần
+embedding có thể hiểu được.
+
+00:08:22.900 --> 00:08:27.460
+Tại sao vậy? Chà, giả sử rằng có một số không
+gian trong đó trục
+
+00:08:27.460 --> 00:08:32.020
+đầu tiên là giới tính và trục thứ hai là hoàng
+gia. Điều bạn
+
+00:08:32.020 --> 00:08:36.580
+không thể làm là đảm bảo rằng trục đầu tiên
+của quá trình embedding
+
+00:08:36.580 --> 00:08:44.260
+vector được căn chỉnh theo trục ý nghĩa về
+giới tính, hoàng gia, món ăn châu Á.
+
+00:08:45.220 --> 00:08:51.780
+Và đặc biệt, thuật toán học có thể chọn đây là
+trục của chiều thứ nhất.
+
+00:08:51.780 --> 00:08:55.620
+Vì vậy, với một bối cảnh có thể của các từ,
+chiều thứ nhất có thể
+
+00:08:55.620 --> 00:08:59.460
+là trục này và chiều thứ hai có thể là thế
+này, hoặc nó thậm chí có
+
+00:08:59.460 --> 00:09:03.300
+thể không trực giao, có thể nó sẽ là chiều thứ
+hai không trực giao
+
+00:09:04.820 --> 00:09:09.140
+trục có thể là thành phần thứ hai của từ
+embedding mà bạn thực sự học.
+
+00:09:09.140 --> 00:09:14.073
+Và một cách để thấy điều này là nếu bạn hiểu
+được chỉ số
+
+00:09:14.073 --> 00:09:19.007
+dưới của đại số tuyến tính, đó là nếu có một
+ma trận khả
+
+00:09:19.007 --> 00:09:23.940
+nghịch A nào đó, thì ma trận này có thể dễ
+dàng được thay thế bằng
+
+00:09:23.940 --> 00:09:30.260
+A lần theta tôi chuyển âm Một chuyển âm nghịch
+
+00:09:30.260 --> 00:09:36.580
+đảo EJ. Bởi vì chúng tôi mở rộng điều này ra,
+
+00:09:36.580 --> 00:09:41.460
+cái này bằng theta I chuyển âm A chuyển âm A
+chuyển âm nghịch đảo
+
+00:09:41.460 --> 00:09:46.340
+nhân với EJ. Và vì vậy số hạng ở giữa bị hủy
+bỏ, còn lại theta tôi
+
+00:09:46.340 --> 00:09:51.220
+chuyển đổi EJ, giống như trước. Đừng lo lắng
+nếu bạn không làm theo
+
+00:09:51.220 --> 00:09:55.247
+đại số tuyến tính, nhưng đó là bằng chứng ngắn
+gọn cho thấy
+
+00:09:55.247 --> 00:09:59.273
+rằng với thuật toán như thế này, bạn không thể
+đảm bảo rằng
+
+00:09:59.273 --> 00:10:03.300
+trục được sử dụng để biểu thị các đối tượng sẽ
+được căn chỉnh tốt với
+
+00:10:03.300 --> 00:10:07.567
+những gì con người có thể dễ dàng giải thích
+được. Và về cơ bản, đặc
+
+00:10:07.567 --> 00:10:11.833
+điểm đầu tiên có thể là sự kết hợp giữa giới
+tính, hoàng gia, tuổi tác,
+
+00:10:11.833 --> 00:10:16.100
+thực phẩm, giá cả và kích cỡ và nó có phải là
+danh từ và hành động không?
+
+00:10:16.100 --> 00:10:19.780
+động từ và tất cả các feature khác. Vì vậy,
+rất khó để xem
+
+00:10:19.780 --> 00:10:23.460
+xét các thành phần riêng lẻ, các hàng riêng lẻ
+của ma trận
+
+00:10:23.460 --> 00:10:27.140
+embedding và gán cho con người cách giải thích
+có thể hiểu được.
+
+00:10:27.780 --> 00:10:32.313
+Nhưng bất chấp kiểu biến đổi tuyến tính này,
+phép toán hình
+
+00:10:32.313 --> 00:10:36.847
+bình hành mà chúng ta đã tính ra khi mô tả sự
+tương tự, nó
+
+00:10:36.847 --> 00:10:41.380
+vẫn hoạt động. Và vì vậy mặc dù tuyến tính có
+khả năng tùy ý này
+
+00:10:41.380 --> 00:10:46.023
+chuyển đổi các đặc điểm mà bạn học xong, phép
+toán hình bình
+
+00:10:46.023 --> 00:10:50.667
+hành để tìm ra các phép tương tự vẫn hoạt
+động. Vậy là xong
+
+00:10:50.667 --> 00:10:55.310
+việc học cách word embedding. Bây giờ bạn đã
+thấy nhiều loại
+
+00:10:55.310 --> 00:10:58.591
+các thuật toán để học các cách word embedding
+này và bạn cũng có thể sử
+
+00:10:58.591 --> 00:11:01.872
+dụng chúng nhiều hơn trong bài tập của chương
+trình tuần này. Tiếp theo,
+
+00:11:01.872 --> 00:11:05.152
+tôi muốn chỉ cho bạn cách bạn có thể sử dụng
+các thuật toán này để thực
+
+00:11:05.152 --> 00:11:08.433
+hiện classification cảm tính. Chúng ta hãy
+chuyển sang video tiếp theo.

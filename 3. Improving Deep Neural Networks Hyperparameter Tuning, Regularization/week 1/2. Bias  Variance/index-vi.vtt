@@ -1,0 +1,669 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.600
+Tôi đã nói rằng hầu như tất cả những người thực hành machine learning
+
+2
+00:00:03.600 --> 00:00:07.890
+thường hiểu sâu về độ chệch (bias) và variance (variance).
+
+3
+00:00:07.890 --> 00:00:12.330
+Độ chệch và variance là một trong những khái niệm dễ học nhưng khó mà thành thạo.
+
+4
+00:00:12.330 --> 00:00:16.155
+Thậm chí bạn nghĩ bạn đã hiểu rõ khái niệm của độ chệch và variance,
+
+5
+00:00:16.155 --> 00:00:18.805
+nhưng nó thường có điều mới lạ hơn là bạn nghĩ
+
+6
+00:00:18.805 --> 00:00:20.620
+Trong lỗi của deep learning,
+
+7
+00:00:20.620 --> 00:00:22.650
+xu hướng khác trong deep learning đó là
+
+8
+00:00:22.650 --> 00:00:26.035
+ít thảo luận hơn về những cái gọi là đánh đổi độ chệch - variance
+
+9
+00:00:26.035 --> 00:00:28.657
+Có thể bạn đã nghe qua cái gọi là đánh đổi độ chệch - variance
+
+10
+00:00:28.657 --> 00:00:31.330
+Nhưng trong lỗi deep learning, nó sẽ ít đánh đổi hơn
+
+11
+00:00:31.330 --> 00:00:32.520
+vì vậy chúng ta vẫn giải quyết độ chệch,
+
+12
+00:00:32.520 --> 00:00:33.865
+chúng ta vẫn giải quyết variance,
+
+13
+00:00:33.865 --> 00:00:37.295
+nhưng chúng ta nói ít hơn về đánh đổi độ chệch - variance
+
+14
+00:00:37.295 --> 00:00:39.795
+Cùng tìm hiểu xem nó là gì nhé.
+
+15
+00:00:39.795 --> 00:00:42.750
+Hãy xem tập dữ liệu trông như thế nào.
+
+16
+00:00:42.750 --> 00:00:44.800
+nếu bạn khớp một đường thẳng đến dữ liệu
+
+17
+00:00:44.800 --> 00:00:48.130
+có thể logistic regression sẽ khớp với dữ liệu này
+
+18
+00:00:48.130 --> 00:00:50.415
+Đây không phải là khớp quá tốt cho dữ liệu
+
+19
+00:00:50.415 --> 00:00:52.380
+và vì vậy đây là lớp của độ chệch cao,
+
+20
+00:00:52.380 --> 00:00:56.400
+những gì chúng ta nói đó là đây dưới khớp dữ liệu
+
+21
+00:00:56.400 --> 00:00:57.850
+Ngược lại,
+
+22
+00:00:57.850 --> 00:01:00.645
+nếu bạn khớp một bộ classification phức tạp đến khó tin
+
+23
+00:01:00.645 --> 00:01:02.640
+có thể neural network deep learning (deep neural network)
+
+24
+00:01:02.640 --> 00:01:05.995
+hoặc neural network với tất cả những unit ẩn ẩn (hidden units),
+
+25
+00:01:05.995 --> 00:01:10.255
+có khả năng bạn có thể khớp dữ liệu một cách hoàn hảo
+
+26
+00:01:10.255 --> 00:01:12.220
+nhưng nó không trông như khớp một cách tuyệt vời.
+
+27
+00:01:12.220 --> 00:01:17.535
+Vì vậy đây là bộ classification của variance cao và đây là overfitting dữ liệu
+
+28
+00:01:17.535 --> 00:01:19.650
+và có thể đây là một số bộ classification ở giữa
+
+29
+00:01:19.650 --> 00:01:22.070
+với độ phức tạp ở mức trung bình
+
+30
+00:01:22.070 --> 00:01:24.585
+có thể nó khớp đúng như vầy.
+
+31
+00:01:24.585 --> 00:01:27.300
+điều đó nhìn giống như có nhiều lý do khớp dữ liệu
+
+32
+00:01:27.300 --> 00:01:31.705
+vì vậy chúng ta gọi điều đó là vừa phải. Nó ở đâu đó ở giữa.
+
+33
+00:01:31.705 --> 00:01:34.260
+vì vậy trong ví dụ 2D như này
+
+34
+00:01:34.260 --> 00:01:35.610
+với chỉ 2 feature
+
+35
+00:01:35.610 --> 00:01:39.700
+x1 và x2, bạn có thể vẽ dữ liệu và hình dung về độ chệch và variance.
+
+36
+00:01:39.700 --> 00:01:41.250
+Trong vấn đề số chiều lớn,
+
+37
+00:01:41.250 --> 00:01:44.735
+bạn không thể vẽ dữ liệu và hình dung giới hạn phân .
+
+38
+00:01:44.735 --> 00:01:46.830
+Thay vào đó, đây là 1 cặp những phép đo khác nhau,
+
+39
+00:01:46.830 --> 00:01:49.750
+mà chúng ta nhìn vào, để cố gắng hiểu về độ chệch và variance.
+
+40
+00:01:49.750 --> 00:01:51.960
+Vậy nên hãy tiếp tục với ví dụ của chúng ta về classification bức tranh con mèo
+
+41
+00:01:51.960 --> 00:01:57.600
+nơi có cả ví dụ tích cực và tiêu cực,
+
+42
+00:01:57.600 --> 00:02:01.455
+hai con số quan trọng cần xem xét để hiểu độ chệch và variance sẽ là
+
+43
+00:02:01.455 --> 00:02:06.415
+lỗi training set và dev set.
+
+44
+00:02:06.415 --> 00:02:07.716
+Vì vậy, để tranh luận,
+
+45
+00:02:07.716 --> 00:02:10.290
+giả sử rằng bạn phát hiện ra những con mèo trong tranh,
+
+46
+00:02:10.290 --> 00:02:13.860
+là điều mà hầu hết mọi người đều có thể làm phải không?
+
+47
+00:02:13.860 --> 00:02:22.155
+Vì vậy, giả sử, lỗi training set của bạn là 1% và lỗi dev set của bạn là,
+
+48
+00:02:22.155 --> 00:02:23.580
+trong tranh luận,
+
+49
+00:02:23.580 --> 00:02:25.585
+giả sử là 11%.
+
+50
+00:02:25.585 --> 00:02:26.730
+Vậy trong ví dụ này,
+
+51
+00:02:26.730 --> 00:02:29.495
+bạn đang làm rất tốt trong training set,
+
+52
+00:02:29.495 --> 00:02:34.355
+nhưng bạn đang làm tương đối kém trên dev set.
+
+53
+00:02:34.355 --> 00:02:38.215
+Vì vậy, có vẻ như bạn có thể đã overfitting training set,
+
+54
+00:02:38.215 --> 00:02:40.620
+rằng bằng cách nào đó bạn không khái quát tốt,
+
+55
+00:02:40.620 --> 00:02:43.815
+cho toàn tậptập kiểm định chéo này trong dev set.
+
+56
+00:02:43.815 --> 00:02:46.440
+Và nếu bạn có một ví dụ như thế này,
+
+57
+00:02:46.440 --> 00:02:50.785
+chúng ta sẽ nói rằng ở đây có variance cao.
+
+58
+00:02:50.785 --> 00:02:54.240
+Vì vậy, bằng cách xem xét lỗi training set và lỗi dev set,
+
+59
+00:02:54.240 --> 00:02:59.730
+bạn sẽ có thể đưa ra chẩn đoán về thuật toán của mình có variance cao.
+
+60
+00:02:59.730 --> 00:03:04.435
+Bây giờ, giả sử bạn đo lỗi training set và lỗi dev set của bạn,
+
+61
+00:03:04.435 --> 00:03:06.095
+và bạn nhận được một kết quả khác.
+
+62
+00:03:06.095 --> 00:03:09.610
+Giả sử, lỗi training set của bạn là 15%.
+
+63
+00:03:09.610 --> 00:03:12.375
+Tôi đang viết lỗi tập hợp huấn luyện của bạn ở hàng trên cùng,
+
+64
+00:03:12.375 --> 00:03:15.880
+và lỗi dev set của bạn là 16%.
+
+65
+00:03:15.880 --> 00:03:22.870
+Trong trường hợp này, giả sử rằng con người gần như không mắc lỗi
+
+66
+00:03:22.870 --> 00:03:27.451
+con người có thể nhìn vào những bức ảnh này và nói được đó có phải mèo hay không,
+
+67
+00:03:27.451 --> 00:03:31.600
+thì có vẻ như thuật toán thậm chí không hoạt động tốt trên training set.
+
+68
+00:03:31.600 --> 00:03:35.380
+Vì vậy, nếu nó thậm chí không khớp với đường nối training data,
+
+69
+00:03:35.380 --> 00:03:38.220
+thì điều này dưới khớp với dữ liệu.
+
+70
+00:03:38.220 --> 00:03:40.895
+Và vì vậy thuật toán này có độ chệch cao.
+
+71
+00:03:40.895 --> 00:03:45.390
+Nhưng ngược lại, điều này thực sự khái quát ở mức độ hợp lý đối với dev set,
+
+72
+00:03:45.390 --> 00:03:49.365
+trong khi hiệu suất trong dev set chỉ kém hơn 1% so với hiệu suất trong training set.
+
+73
+00:03:49.365 --> 00:03:52.355
+Vì vậy, thuật toán này có vấn đề về bias cao,
+
+74
+00:03:52.355 --> 00:03:56.325
+bởi vì nó thậm chí không phù hợp với training set.
+
+75
+00:03:56.325 --> 00:04:01.030
+Chà, điều này tương tự như các ô ngoài cùng bên trái mà chúng ta đã có trên slide trước.
+
+76
+00:04:01.030 --> 00:04:03.329
+Bây giờ, đây là một ví dụ khác.
+
+77
+00:04:03.329 --> 00:04:06.430
+Giả sử rằng bạn có 15% lỗi training set,
+
+78
+00:04:06.430 --> 00:04:08.127
+đó là độ chêch khá cao,
+
+79
+00:04:08.127 --> 00:04:11.446
+nhưng khi bạn đánh giá dev set, nó thậm chí còn tệ hơn,
+
+80
+00:04:11.446 --> 00:04:13.450
+nó có thể là 30%.
+
+81
+00:04:13.450 --> 00:04:18.175
+Trong trường hợp này, tôi sẽ chẩn đoán thuật toán này có độ chệch cao,
+
+82
+00:04:18.175 --> 00:04:23.780
+bởi vì nó không hoạt động tốt trong training set và variance cao.
+
+83
+00:04:23.780 --> 00:04:27.950
+Vì vậy, đây thực sự là trường hợp tồi tệ nhất trong hai kiểu tập.
+
+84
+00:04:27.950 --> 00:04:29.325
+Và một ví dụ cuối cùng,
+
+85
+00:04:29.325 --> 00:04:32.605
+nếu bạn có lỗi training set 0,5,
+
+86
+00:04:32.605 --> 00:04:35.145
+và 1% lỗi dev set,
+
+87
+00:04:35.145 --> 00:04:37.130
+thì có lẽ người dùng của chúng ta khá hạnh phúc,
+
+88
+00:04:37.130 --> 00:04:39.850
+rằng bạn có bộ classification mèo chỉ có 1%,
+
+89
+00:04:39.850 --> 00:04:44.340
+đó là độ chệch thấp và variance thấp.
+
+90
+00:04:44.340 --> 00:04:47.610
+Một điều tinh tế, mà tôi sẽ chỉ đề cập ngắn gọn là
+
+91
+00:04:47.610 --> 00:04:50.955
+chúng ta sẽ chuyển sang video sau để thảo luận chi tiết,
+
+92
+00:04:50.955 --> 00:04:54.188
+về phân tích đã dự đoán được trên giả định,
+
+93
+00:04:54.188 --> 00:04:59.115
+rằng hiệu suất ở cấp độ con người bị lỗi gần như 0% hoặc
+
+94
+00:04:59.115 --> 00:05:01.749
+nói chung, đó là lỗi tối ưu,
+
+95
+00:05:01.749 --> 00:05:04.225
+đôi khi được gọi là lỗi cơ sở,
+
+96
+00:05:04.225 --> 00:05:10.355
+vì vậy cơ sở trong lỗi tối ưu là gần 0%.
+
+97
+00:05:10.355 --> 00:05:13.565
+Tôi không muốn đi vào chi tiết về vấn đề này trong video này,
+
+98
+00:05:13.565 --> 00:05:18.070
+nhưng hóa ra nếu lỗi tối ưu hoặc lỗi cơ sở cao hơn nhiều, thì
+
+99
+00:05:18.070 --> 00:05:22.360
+nó là 15%, sau đó nếu bạn nhìn vào bộ classification,
+
+100
+00:05:22.360 --> 00:05:25.460
+15% thực sự là hoàn toàn hợp lý cho training set và bạn
+
+101
+00:05:25.460 --> 00:05:30.120
+sẽ không coi đó là độ chệch cao và cũng là một variance khá thấp.
+
+102
+00:05:30.120 --> 00:05:33.440
+Vì vậy, trường hợp phân tích độ chệch và variance,
+
+103
+00:05:33.440 --> 00:05:37.460
+khi không có trình classification nào có thể làm rất tốt, chẳng hạn như
+
+104
+00:05:37.460 --> 00:05:40.833
+nếu bạn có hình ảnh thực sự mờ,
+
+105
+00:05:40.833 --> 00:05:46.081
+để ngay cả con người hay hoặc không hệ thống nào cũng có thể làm rất tốt,
+
+106
+00:05:46.081 --> 00:05:49.237
+thì có thể lỗi cơ sở cao hơn nhiều,
+
+107
+00:05:49.237 --> 00:05:52.295
+và sau đó là một số chi tiết về cách phân tích này sẽ thay đổi.
+
+108
+00:05:52.295 --> 00:05:54.725
+Nhưng bây giờ hãy bỏ qua vấn đề này,
+
+109
+00:05:54.725 --> 00:05:57.430
+hãy nhìn vào lỗi tập
+
+110
+00:05:57.430 --> 00:06:02.676
+huấn luyện của bạn, bạn có thể biết được mức độ khớp với
+
+111
+00:06:02.676 --> 00:06:04.331
+ít nhất là training data của bạn,
+
+112
+00:06:04.331 --> 00:06:06.770
+và do đó, cho bạn biết nếu bạn có một vấn đề độ chệch.
+
+113
+00:06:06.770 --> 00:06:10.190
+Và sau đó xem xét mức độ cao của lỗi,
+
+114
+00:06:10.190 --> 00:06:12.965
+khi bạn chuyển từ bộ huấn luyện sang bộ phát triển,
+
+115
+00:06:12.965 --> 00:06:17.055
+điều đó sẽ cho bạn biết vấn đề variance tồi tệ như thế nào,
+
+116
+00:06:17.055 --> 00:06:20.857
+vì vậy bạn sẽ hoàn thành tốt công việc tổng quát từ bộ huấn luyện đến bộ phát triển,
+
+117
+00:06:20.857 --> 00:06:22.645
+điều đó cho bạn hiểu về variance của mình.
+
+118
+00:06:22.645 --> 00:06:26.210
+Tất cả điều này là dưới giả định rằng lỗi cơ sở là khá
+
+119
+00:06:26.210 --> 00:06:30.235
+nhỏ và rằng training set của bạn và dev set của bạn được rút ra từ cùng một bản phân phối.
+
+120
+00:06:30.235 --> 00:06:32.210
+Nếu những giả định đó bị vi phạm,
+
+121
+00:06:32.210 --> 00:06:34.323
+có một phân tích phức tạp hơn bạn có thể làm,
+
+122
+00:06:34.323 --> 00:06:36.510
+mà chúng ta sẽ nói đến trong video sau.
+
+123
+00:06:36.510 --> 00:06:38.780
+Bây giờ, trong slide trước,
+
+124
+00:06:38.780 --> 00:06:40.849
+bạn đã thấy variance cao
+
+125
+00:06:40.849 --> 00:06:42.185
+trông giống như,
+
+126
+00:06:42.185 --> 00:06:44.920
+và tôi đoán bạn đã hiểu một lớp tốt trông như thế nào.
+
+127
+00:06:44.920 --> 00:06:48.110
+Độ chệch cao và variance cao trông như thế nào?
+
+128
+00:06:48.110 --> 00:06:50.535
+Đây là tình huống tồi tệ nhất đối với cả 2 loại tệp.
+
+129
+00:06:50.535 --> 00:06:53.415
+Vì vậy, bạn nhớ rằng, chúng ta đã nói rằng một trình classification như thế này,
+
+130
+00:06:53.415 --> 00:06:55.755
+thì trình classification của bạn có độ chệch cao,
+
+131
+00:06:55.755 --> 00:06:58.185
+bởi vì nó dưới khớp với dữ liệu.
+
+132
+00:06:58.185 --> 00:07:04.030
+Vì vậy, đây sẽ là một công cụ classification chủ yếu là tuyến tính và do đó dưới khớp với dữ liệu,
+
+133
+00:07:04.030 --> 00:07:05.570
+chúng ta đang vẽ cái này là màu tím.
+
+134
+00:07:05.570 --> 00:07:09.546
+Nhưng nếu bằng cách nào đó, trình classification của bạn thực hiện một số điều kỳ lạ,
+
+135
+00:07:09.546 --> 00:07:14.460
+thì nó thực sự cũng đang overfitting nhiều phần của dữ liệu.
+
+136
+00:07:14.460 --> 00:07:16.500
+Vì vậy, bộ classification mà tôi đã vẽ bằng màu tím,
+
+137
+00:07:16.500 --> 00:07:19.455
+có cả độ chệch cao và variance cao.
+
+138
+00:07:19.455 --> 00:07:21.300
+Nơi nó có độ chệch cao
+
+139
+00:07:21.300 --> 00:07:23.325
+phần lớn là bộ classification tuyến tính,
+
+140
+00:07:23.325 --> 00:07:24.875
+chỉ là không phù hợp.
+
+141
+00:07:24.875 --> 00:07:28.466
+Bạn biết đấy, hình dạng đường bậc hai này định dạng tốt,
+
+142
+00:07:28.466 --> 00:07:31.200
+nhưng do có quá nhiều sự linh hoạt ở giữa,
+
+143
+00:07:31.200 --> 00:07:32.995
+bằng cách nào đó nó lấy được ví dụ này,
+
+144
+00:07:32.995 --> 00:07:36.720
+và ví dụ này cũng phù hợp với hai ví dụ đó.
+
+145
+00:07:36.720 --> 00:07:40.515
+Vì vậy, bộ classification này có độ chệch cao vì nó chủ yếu là tuyến tính,
+
+146
+00:07:40.515 --> 00:07:43.620
+nhưng bạn có thể cần một hàm đường cong hoặc hàm bậc hai.
+
+147
+00:07:43.620 --> 00:07:45.115
+Và nó có variance cao,
+
+148
+00:07:45.115 --> 00:07:49.595
+bởi vì nó có quá nhiều tính linh hoạt để phù hợp với hai nhãn sai đó,
+
+149
+00:07:49.595 --> 00:07:52.475
+hoặc những ví dụ thực tiễn ở giữa.
+
+150
+00:07:52.475 --> 00:07:54.300
+Trong trường hợp điều này có vẻ giả tạo,
+
+151
+00:07:54.300 --> 00:07:57.585
+ví dụ này được mô phỏng theo hai chiều,
+
+152
+00:07:57.585 --> 00:07:59.883
+nhưng với input kích thước rất cao.
+
+153
+00:07:59.883 --> 00:08:01.795
+Bạn thực sự có được mọi thứ với
+
+154
+00:08:01.795 --> 00:08:04.800
+độ chệch cao ở một số vùng và variance cao ở một số vùng,
+
+155
+00:08:04.800 --> 00:08:07.410
+và do đó, có thể nhận được các bộ classification như thế này
+
+156
+00:08:07.410 --> 00:08:11.415
+trong các input kích thước cao có vẻ ít phức tạp hơn.
+
+157
+00:08:11.415 --> 00:08:15.690
+Vì vậy, tóm lại, bạn đã biết cách xem xét lỗi thuật toán của bạn trên
+
+158
+00:08:15.690 --> 00:08:20.550
+training set và lỗi thuật toán của bạn trên dev set mà bạn có thể thử chẩn đoán,
+
+159
+00:08:20.550 --> 00:08:23.413
+cho dù nó có vấn đề về độ chệch cao hay variance cao,
+
+160
+00:08:23.413 --> 00:08:25.420
+hoặc có thể cả hai, hoặc có thể không.
+
+161
+00:08:25.420 --> 00:08:28.995
+Và tùy thuộc vào việc thuật toán của bạn có độ chệch hay variance,
+
+162
+00:08:28.995 --> 00:08:31.765
+nó chỉ ra rằng có những thứ khác nhau mà bạn có thể thử.
+
+163
+00:08:31.765 --> 00:08:33.840
+Vì vậy, trong video tiếp theo, tôi muốn giới thiệu với các bạn,
+
+164
+00:08:33.840 --> 00:08:37.390
+cái mà tôi gọi là công thức cơ bản cho Machine learning,
+
+165
+00:08:37.390 --> 00:08:40.905
+cho phép bạn cố gắng cải thiện thuật toán của mình một cách có hệ thống hơn,
+
+166
+00:08:40.905 --> 00:08:44.370
+tùy thuộc vào việc nó có vấn đề về độ chệch cao hay variance cao hay không.
+
+167
+00:08:44.370 --> 00:08:46.110
+Nào, cùng tiếp tục trong video tiếp theo nhé!

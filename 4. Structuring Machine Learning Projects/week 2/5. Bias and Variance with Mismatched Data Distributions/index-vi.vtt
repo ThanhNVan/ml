@@ -1,0 +1,1017 @@
+WEBVTT
+
+1
+00:00:00.760 --> 00:00:01.970
+Ước tính sự thiên vị và
+
+2
+00:00:01.970 --> 00:00:06.650
+variance của thuật toán học tập của bạn thực sự giúp bạn ưu tiên những gì cần làm tiếp theo.
+
+3
+00:00:06.650 --> 00:00:11.220
+Nhưng cách bạn phân tích sự thay đổi thiên vị và variance khi training set của bạn
+
+4
+00:00:11.220 --> 00:00:14.570
+xuất phát từ một phân phối khác với bộ dev và bộ kiểm tra của bạn.
+
+5
+00:00:14.570 --> 00:00:15.140
+Để xem cách nào.
+
+6
+00:00:16.480 --> 00:00:19.650
+Hãy tiếp tục sử dụng ví dụ classification mèo
+
+7
+00:00:19.650 --> 00:00:22.880
+của chúng tôi và giả sử con người có được gần hiệu suất hoàn hảo về điều này.
+
+8
+00:00:22.880 --> 00:00:28.620
+Vì vậy, lỗi Bayes, hay lỗi tối ưu Bayes, ta biết là gần 0% về vấn đề này.
+
+9
+00:00:28.620 --> 00:00:33.530
+Vì vậy, để thực hiện phân tích lỗi bạn thường nhìn vào lỗi đào tạo và
+
+10
+00:00:33.530 --> 00:00:37.030
+cũng nhìn vào lỗi trên bộ dev.
+
+11
+00:00:37.030 --> 00:00:41.490
+Vì vậy, giả sử, trong ví dụ này rằng lỗi đào tạo của bạn là 1%,
+
+12
+00:00:41.490 --> 00:00:45.040
+và lỗi dev của bạn là 10%.
+
+13
+00:00:45.040 --> 00:00:49.725
+Nếu dữ liệu dev của bạn đến từ cùng một phân phối như training set của
+
+14
+00:00:49.725 --> 00:00:53.125
+bạn, bạn sẽ nói rằng ở đây bạn có một vấn đề variance lớn,
+
+15
+00:00:53.125 --> 00:00:56.615
+rằng thuật toán của bạn chỉ là không khái quát tốt từ training set
+
+16
+00:00:56.615 --> 00:01:01.795
+mà nó đang làm tốt trên bộ dev, mà nó đột nhiên làm tồi tệ hơn nhiều trên.
+
+17
+00:01:01.795 --> 00:01:05.335
+Nhưng trong cài đặt mà training data của bạn và dữ liệu dev của bạn đến từ
+
+18
+00:01:05.335 --> 00:01:09.658
+một bản phân phối khác, bạn không còn có thể rút ra kết luận này một cách an toàn nữa.
+
+19
+00:01:09.658 --> 00:01:13.820
+Đặc biệt, có lẽ nó đang làm tốt trên bộ dev,
+
+20
+00:01:13.820 --> 00:01:18.250
+nó chỉ là training set thực sự dễ dàng bởi vì nó là res cao,
+
+21
+00:01:18.250 --> 00:01:21.880
+hình ảnh rất rõ ràng, và có lẽ bộ dev chỉ là khó khăn hơn nhiều.
+
+22
+00:01:23.492 --> 00:01:27.610
+Vì vậy, có lẽ không có một vấn đề variance và điều này chỉ phản ánh rằng
+
+23
+00:01:27.610 --> 00:01:32.030
+bộ dev chứa hình ảnh mà là khó khăn hơn nhiều để classification chính xác.
+
+24
+00:01:33.610 --> 00:01:38.220
+Vì vậy, vấn đề với phân tích này là khi bạn đi từ lỗi đào tạo sang
+
+25
+00:01:38.220 --> 00:01:41.980
+lỗi dev, hai điều đã thay đổi tại một thời điểm.
+
+26
+00:01:41.980 --> 00:01:47.450
+Một là thuật toán đã thấy dữ liệu trong training set nhưng không có trong tập dev.
+
+27
+00:01:47.450 --> 00:01:51.080
+Hai, phân phối dữ liệu trong bộ dev là khác nhau.
+
+28
+00:01:51.080 --> 00:01:55.158
+Và bởi vì bạn đã thay đổi hai điều cùng một lúc, rất khó để biết về
+
+29
+00:01:55.158 --> 00:02:00.120
+sự gia tăng 9% của lỗi này, bao nhiêu của nó là bởi vì thuật toán không
+
+30
+00:02:00.120 --> 00:02:04.660
+nhìn thấy dữ liệu trong bộ dev, vì vậy đó là một phần variance của vấn đề.
+
+31
+00:02:04.660 --> 00:02:07.670
+Và bao nhiêu của nó, là bởi vì dữ liệu bộ dev chỉ là khác nhau.
+
+32
+00:02:09.300 --> 00:02:14.150
+Vì vậy, để trêu chọc hai hiệu ứng này, và
+
+33
+00:02:14.150 --> 00:02:17.610
+nếu bạn không hoàn toàn làm theo những gì hai hiệu ứng khác nhau là, đừng lo lắng,
+
+34
+00:02:17.610 --> 00:02:19.490
+chúng tôi sẽ đi qua nó một lần nữa trong một giây.
+
+35
+00:02:19.490 --> 00:02:23.702
+Nhưng để trêu chọc hai hiệu ứng này sẽ rất hữu ích để xác định một
+
+36
+00:02:23.702 --> 00:02:26.970
+mảnh dữ liệu mới mà chúng ta sẽ gọi là tập đào tại-dev.
+
+37
+00:02:26.970 --> 00:02:29.430
+Vì vậy, đây là một tập hợp con mới của dữ liệu,
+
+38
+00:02:29.430 --> 00:02:34.080
+mà chúng tôi khắc ra rằng nên có cùng một phân phối như training set, nhưng
+
+39
+00:02:34.080 --> 00:02:37.630
+bạn không rõ ràng đào tạo trong mạng của bạn về vấn đề này.
+
+40
+00:02:37.630 --> 00:02:38.690
+Vậy đây là những gì tôi muốn nói.
+
+41
+00:02:40.330 --> 00:02:45.220
+Trước đây chúng tôi đã thiết lập một số bộ đào tạo và
+
+42
+00:02:45.220 --> 00:02:50.920
+một số bộ dev và một số bộ kiểm tra như sau.
+
+43
+00:02:50.920 --> 00:02:53.403
+Và các bộ dev và test có cùng phân phối, nhưng
+
+44
+00:02:53.403 --> 00:02:56.710
+các bộ đào tạo sẽ có một số phân phối khác nhau.
+
+45
+00:02:56.710 --> 00:03:01.640
+Những gì chúng ta sẽ làm là ngẫu nhiên ngẫu nhiên các bộ đào tạo và sau đó khắc ra chỉ là
+
+46
+00:03:01.640 --> 00:03:09.180
+một phần của training set để được training set.
+
+47
+00:03:09.180 --> 00:03:14.830
+Vì vậy, cũng giống như các dev và test set có cùng phân phối, training set và
+
+48
+00:03:14.830 --> 00:03:18.750
+training set dev, cũng có cùng phân phối.
+
+49
+00:03:21.290 --> 00:03:24.940
+Nhưng, sự khác biệt là bây giờ bạn đào tạo neural network của bạn,
+
+50
+00:03:24.940 --> 00:03:27.920
+chỉ cần đào tạo thiết lập thích hợp.
+
+51
+00:03:27.920 --> 00:03:29.330
+Bạn sẽ không để cho neural network,
+
+52
+00:03:29.330 --> 00:03:34.660
+bạn sẽ không chạy nghĩa vụ đó trên phần đào tạo dev của dữ liệu này.
+
+53
+00:03:34.660 --> 00:03:36.290
+Để thực hiện phân tích lỗi,
+
+54
+00:03:36.290 --> 00:03:39.310
+những gì bạn nên làm bây giờ là nhìn vào lỗi của
+
+55
+00:03:39.310 --> 00:03:43.320
+trình classification của bạn trên bộ đào tạo, trên bộ đào tạo, cũng như trên bộ dev.
+
+56
+00:03:44.500 --> 00:03:51.281
+Vì vậy, hãy nói trong ví dụ này rằng lỗi đào tạo của bạn là 1%.
+
+57
+00:03:53.020 --> 00:04:00.695
+Và giả sử lỗi trên bộ đào tại-dev là 9%,
+
+58
+00:04:00.695 --> 00:04:07.910
+và lỗi trên bộ dev là 10%, giống như trước đây.
+
+59
+00:04:08.910 --> 00:04:13.460
+Những gì bạn có thể kết luận từ điều này là khi bạn đi từ
+
+60
+00:04:13.460 --> 00:04:17.680
+training data để đào tạo dữ liệu dev lỗi thực sự tăng lên rất nhiều.
+
+61
+00:04:17.680 --> 00:04:22.460
+Và chỉ có sự khác biệt giữa training data và dữ
+
+62
+00:04:22.460 --> 00:04:27.280
+liệu đào tạo - dev là neural network của bạn phải sắp xếp phần đầu tiên của việc này.
+
+63
+00:04:27.280 --> 00:04:30.610
+Nó được đào tạo một cách rõ ràng về vấn đề này, nhưng
+
+64
+00:04:30.610 --> 00:04:34.840
+nó không được đào tạo một cách rõ ràng về training data dev.
+
+65
+00:04:34.840 --> 00:04:38.320
+Vì vậy, điều này cho bạn biết rằng bạn có một vấn đề về variance.
+
+66
+00:04:40.006 --> 00:04:44.230
+Bởi vì lỗi đào tạo dev được đo trên dữ liệu đến từ cùng một
+
+67
+00:04:44.230 --> 00:04:46.290
+phân phối như training set của bạn.
+
+68
+00:04:46.290 --> 00:04:50.490
+Vì vậy, bạn biết rằng mặc dù neural network của bạn làm tốt trong một training set,
+
+69
+00:04:50.490 --> 00:04:53.980
+nó chỉ là không khái quát tốt cho dữ liệu
+
+70
+00:04:53.980 --> 00:04:58.280
+trong training set dev mà đến từ cùng một phân phối, nhưng nó chỉ là không
+
+71
+00:04:58.280 --> 00:05:02.530
+khái quát tốt cho dữ liệu từ cùng một phân phối mà nó đã không nhìn thấy trước đây.
+
+72
+00:05:04.020 --> 00:05:07.200
+Vì vậy, trong ví dụ này chúng ta có thực sự là một vấn đề variance.
+
+73
+00:05:09.680 --> 00:05:11.510
+Hãy nhìn vào một ví dụ khác.
+
+74
+00:05:11.510 --> 00:05:17.613
+Giả sử lỗi đào tạo là 1%, và lỗi đào tạo dev là 1,5%,
+
+75
+00:05:17.613 --> 00:05:21.360
+nhưng khi bạn đi đến dev thiết lập lỗi của bạn là 10%.
+
+76
+00:05:21.360 --> 00:05:24.805
+Vì vậy, bây giờ, bạn thực sự có một vấn đề variance khá thấp,
+
+77
+00:05:24.805 --> 00:05:29.798
+bởi vì khi bạn đi từ training data mà bạn đã thấy đến training data - dev
+
+78
+00:05:29.798 --> 00:05:34.579
+mà neural network đã không thấy, lỗi chỉ tăng lên một chút, nhưng
+
+79
+00:05:34.579 --> 00:05:37.550
+sau đó nó thực sự nhảy khi bạn đi đến bộ dev.
+
+80
+00:05:37.550 --> 00:05:43.100
+Vì vậy, đây là một vấn đề không khớp dữ liệu, nơi dữ liệu không khớp.
+
+81
+00:05:44.810 --> 00:05:51.840
+Vì vậy, đây là một vấn đề không phù hợp dữ liệu,
+
+82
+00:05:51.840 --> 00:05:55.838
+bởi vì thuật toán học của bạn không được đào tạo rõ ràng về dữ liệu từ
+
+83
+00:05:55.838 --> 00:06:00.610
+đào tạo dev hoặc dev, nhưng hai tập dữ liệu này đến từ các phân phối khác nhau.
+
+84
+00:06:00.610 --> 00:06:01.850
+Nhưng bất cứ thuật toán nào nó đang học,
+
+85
+00:06:01.850 --> 00:06:06.230
+nó hoạt động tốt trên đào tạo dev nhưng nó không hoạt động tốt trên dev.
+
+86
+00:06:06.230 --> 00:06:10.407
+Vì vậy, bằng cách nào đó thuật toán của bạn đã học cách làm tốt trên một phân phối
+
+87
+00:06:10.407 --> 00:06:14.462
+khác với những gì bạn thực sự quan tâm, vì vậy chúng tôi gọi đó là một vấn đề không khớp dữ liệu.
+
+88
+00:06:17.505 --> 00:06:20.112
+Hãy nhìn vào một vài ví dụ nữa.
+
+89
+00:06:20.112 --> 00:06:24.663
+Tôi sẽ viết điều này trên hàng tiếp theo kể từ khi tôi đang hết không gian trên đầu trang.
+
+90
+00:06:24.663 --> 00:06:31.326
+Vì vậy, lỗi đào tạo, lỗi Training-Dev và lỗi Dev.
+
+91
+00:06:33.618 --> 00:06:37.254
+Giả sử lỗi đào tạo là 10%,
+
+92
+00:06:37.254 --> 00:06:42.210
+lỗi đào tạo dev là 11% và lỗi dev là 12%.
+
+93
+00:06:42.210 --> 00:06:46.507
+Hãy nhớ rằng proxy cấp độ con người cho
+
+94
+00:06:46.507 --> 00:06:50.100
+lỗi Bayes là khoảng 0%.
+
+95
+00:06:50.100 --> 00:06:56.020
+Vì vậy, nếu bạn có loại hiệu suất này, bạn thực sự có một sự thiên vị,
+
+96
+00:06:56.020 --> 00:07:02.920
+một vấn đề thiên vị tránh được, bởi vì bạn đang làm tồi tệ hơn nhiều so với mức độ con người.
+
+97
+00:07:02.920 --> 00:07:05.810
+Vì vậy, đây thực sự là một thiết lập thiên vị cao.
+
+98
+00:07:07.440 --> 00:07:08.830
+Và một ví dụ cuối cùng.
+
+99
+00:07:08.830 --> 00:07:14.211
+Nếu lỗi đào tạo của bạn là 10%, lỗi đào tạo dev của bạn là 11% và
+
+100
+00:07:14.211 --> 00:07:19.706
+lỗi dev của bạn là 20%, sau đó có vẻ như điều này thực sự có hai vấn đề.
+
+101
+00:07:19.706 --> 00:07:24.070
+Thứ nhất, sự thiên vị tránh được là khá cao,
+
+102
+00:07:24.070 --> 00:07:26.940
+bởi vì bạn thậm chí không làm tốt điều đó trong tập huấn.
+
+103
+00:07:26.940 --> 00:07:31.860
+Con người nhận được gần 0% lỗi, nhưng bạn nhận được 10% lỗi trên bộ đào tạo của bạn.
+
+104
+00:07:31.860 --> 00:07:36.710
+Variance ở đây có vẻ khá nhỏ,
+
+105
+00:07:38.110 --> 00:07:43.910
+nhưng sự không phù hợp dữ liệu này khá lớn.
+
+106
+00:07:43.910 --> 00:07:48.839
+Vì vậy, đối với ví dụ này, tôi sẽ nói, bạn có một thiên vị lớn hoặc
+
+107
+00:07:48.839 --> 00:07:54.001
+vấn đề thiên vị tránh được cũng như một vấn đề không phù hợp dữ liệu.
+
+108
+00:07:56.479 --> 00:07:59.462
+Vì vậy, hãy lấy những gì chúng tôi đã làm trên slide này và
+
+109
+00:07:59.462 --> 00:08:01.710
+viết ra các nguyên tắc chung.
+
+110
+00:08:02.810 --> 00:08:09.909
+Số lượng quan trọng tôi sẽ xem xét là
+
+111
+00:08:09.909 --> 00:08:14.931
+lỗi cấp độ con người, lỗi thiết lập đào tạo
+
+112
+00:08:14.931 --> 00:08:19.620
+của bạn, lỗi thiết lập đào tạo của bạn.
+
+113
+00:08:21.630 --> 00:08:23.891
+Vì vậy, đó là phân phối tương tự như training set, nhưng
+
+114
+00:08:23.891 --> 00:08:25.880
+bạn đã không đào tạo rõ ràng về nó.
+
+115
+00:08:25.880 --> 00:08:30.798
+dev của bạn thiết lập lỗi, và tùy thuộc vào sự khác biệt giữa các lỗi này,
+
+116
+00:08:30.798 --> 00:08:35.034
+bạn có thể nhận được mức độ lớn của thiên vị tránh được, phương
+
+117
+00:08:35.034 --> 00:08:36.940
+sai, các vấn đề không khớp dữ liệu.
+
+118
+00:08:38.840 --> 00:08:40.880
+Vì vậy, hãy nói rằng lỗi mức độ của con người là 4%.
+
+119
+00:08:40.880 --> 00:08:43.573
+Lỗi đào tạo của bạn là 7%.
+
+120
+00:08:43.573 --> 00:08:46.660
+Và lỗi đào tạo dev của bạn là 10%.
+
+121
+00:08:46.660 --> 00:08:50.112
+Và lỗi dev là 12%.
+
+122
+00:08:50.112 --> 00:08:54.100
+Vì vậy, điều này cho bạn một cảm giác về sự thiên vị có thể tránh khỏi.
+
+123
+00:08:55.170 --> 00:08:58.032
+bởi vì bạn biết đấy, bạn muốn thuật toán của mình làm ít nhất là tốt hoặc
+
+124
+00:08:58.032 --> 00:09:01.420
+tiếp cận hiệu suất của con người có thể trong tập huấn.
+
+125
+00:09:01.420 --> 00:09:04.460
+Đây là một cảm giác của variance.
+
+126
+00:09:04.460 --> 00:09:08.790
+Vậy làm thế nào bạn tổng quát từ training set đến training set dev?
+
+127
+00:09:10.540 --> 00:09:15.550
+Đây là cảm giác của bạn có bao nhiêu vấn đề không phù hợp dữ liệu.
+
+128
+00:09:15.550 --> 00:09:18.180
+Và về mặt kỹ thuật, bạn cũng có thể thêm một điều nữa,
+
+129
+00:09:18.180 --> 00:09:21.410
+đó là hiệu suất test set, và chúng tôi sẽ viết lỗi kiểm tra.
+
+130
+00:09:21.410 --> 00:09:24.790
+Bạn không nên làm phát triển trên bộ thử nghiệm của bạn bởi vì bạn không muốn overfit
+
+131
+00:09:24.790 --> 00:09:25.625
+set thử nghiệm của bạn.
+
+132
+00:09:25.625 --> 00:09:31.490
+Nhưng nếu bạn cũng nhìn vào điều này, thì khoảng cách này ở đây cho bạn biết mức
+
+133
+00:09:31.490 --> 00:09:36.212
+độ overfitting cho bộ dev.
+
+134
+00:09:36.212 --> 00:09:41.460
+Vì vậy, nếu có một khoảng cách rất lớn giữa hiệu suất thiết lập dev
+
+135
+00:09:41.460 --> 00:09:45.820
+của bạn và hiệu suất thiết lập thử nghiệm của bạn, nó có nghĩa là bạn có thể overtuned để bộ dev.
+
+136
+00:09:45.820 --> 00:09:49.450
+Và vì vậy có lẽ bạn cần phải tìm một bộ dev lớn hơn, phải không?
+
+137
+00:09:49.450 --> 00:09:53.450
+Vì vậy, hãy nhớ rằng bộ dev của bạn và bộ thử nghiệm của bạn đến từ cùng một phân phối.
+
+138
+00:09:53.450 --> 00:09:57.170
+Vì vậy, cách duy nhất để có một khoảng cách rất lớn ở đây, cho nó để làm tốt hơn nhiều trên bộ dev
+
+139
+00:09:57.170 --> 00:10:01.304
+hơn so với bộ thử nghiệm, là nếu bạn bằng cách nào đó quản lý để overfit bộ dev.
+
+140
+00:10:01.304 --> 00:10:04.630
+Và nếu đó là trường hợp, những gì bạn có thể xem xét làm là quay trở lại và
+
+141
+00:10:04.630 --> 00:10:06.650
+chỉ nhận được nhiều dữ liệu bộ dev.
+
+142
+00:10:06.650 --> 00:10:08.760
+Bây giờ, tôi đã viết những con số này,
+
+143
+00:10:08.760 --> 00:10:13.830
+khi bạn đi xuống danh sách các con số, luôn luôn đi lên.
+
+144
+00:10:13.830 --> 00:10:17.650
+Dưới đây là một ví dụ về các con số không phải lúc nào cũng tăng lên,
+
+145
+00:10:17.650 --> 00:10:22.166
+có thể hiệu suất ở mức con người là 4%, lỗi đào tạo
+
+146
+00:10:22.166 --> 00:10:26.080
+là 7%, lỗi đào tạo - dev là 10%, nhưng hãy nói rằng chúng ta đi đến bộ dev.
+
+147
+00:10:26.080 --> 00:10:30.430
+Bạn thấy rằng bạn thực sự, đáng ngạc nhiên, làm tốt hơn nhiều trên bộ dev.
+
+148
+00:10:30.430 --> 00:10:34.052
+Có lẽ đây là 6%, 6% là tốt.
+
+149
+00:10:36.500 --> 00:10:41.110
+Vì vậy, bạn đã nhìn thấy các hiệu ứng như thế này, làm việc trên
+
+150
+00:10:41.110 --> 00:10:45.430
+ví dụ như một nhiệm vụ nhận dạng giọng nói, nơi training data
+
+151
+00:10:45.430 --> 00:10:48.740
+hóa ra là khó khăn hơn nhiều so với bộ dev và bộ kiểm tra của bạn.
+
+152
+00:10:48.740 --> 00:10:53.840
+Vì vậy, hai người này đã được đánh giá trên phân phối training set của bạn và
+
+153
+00:10:53.840 --> 00:10:57.960
+hai người này đã được đánh giá trên phân phối thiết lập dev/test của bạn.
+
+154
+00:10:57.960 --> 00:11:02.445
+Vì vậy, đôi khi nếu phân phối thiết lập dev/test của bạn dễ dàng hơn nhiều cho
+
+155
+00:11:02.445 --> 00:11:07.062
+bất kỳ ứng dụng nào bạn đang làm việc trên thì những con số này thực sự có thể đi xuống.
+
+156
+00:11:07.062 --> 00:11:08.768
+Vì vậy, nếu bạn thấy những điều thú vị như thế này,
+
+157
+00:11:08.768 --> 00:11:13.350
+có một công thức tổng quát hơn của phân tích này có thể hữu ích.
+
+158
+00:11:13.350 --> 00:11:15.129
+Hãy để tôi giải thích nhanh về điều đó trên slide tiếp theo.
+
+159
+00:11:17.420 --> 00:11:21.785
+Vì vậy, để tôi thúc đẩy điều này bằng cách sử dụng
+
+160
+00:11:21.785 --> 00:11:26.900
+ví dụ gương chiếu hậu được kích hoạt bài phát biểu.
+
+161
+00:11:26.900 --> 00:11:31.575
+Nó chỉ ra rằng những con số chúng tôi đã viết ra có thể được đặt vào
+
+162
+00:11:31.575 --> 00:11:36.935
+một bảng mà trên trục ngang, tôi sẽ đặt các tập dữ liệu khác nhau.
+
+163
+00:11:36.935 --> 00:11:42.119
+Vì vậy, ví dụ, bạn có thể có dữ liệu từ nhiệm vụ nhận dạng giọng nói chung của bạn.
+
+164
+00:11:43.570 --> 00:11:48.210
+Vì vậy, bạn có thể có một loạt dữ liệu mà bạn vừa thu thập được từ rất nhiều
+
+165
+00:11:48.210 --> 00:11:51.646
+vấn đề nhận dạng giọng nói mà bạn đã làm việc trên từ loa nhỏ,
+
+166
+00:11:51.646 --> 00:11:53.740
+dữ liệu bạn đã mua và vân vân.
+
+167
+00:11:53.740 --> 00:12:00.970
+Và sau đó tất cả các bạn đều có những dữ liệu bài phát biểu cụ thể,
+
+168
+00:12:00.970 --> 00:12:02.120
+được ghi lại bên trong xe.
+
+169
+00:12:04.450 --> 00:12:09.890
+Vì vậy, trên trục x này trên bàn, tôi sẽ thay đổi tập dữ liệu.
+
+170
+00:12:09.890 --> 00:12:16.250
+Trên trục khác này, tôi sẽ dán nhãn các cách khác nhau hoặc
+
+171
+00:12:16.250 --> 00:12:18.470
+thuật toán để kiểm tra dữ liệu.
+
+172
+00:12:18.470 --> 00:12:21.350
+Vì vậy, đầu tiên, có hiệu suất ở mức độ con người,
+
+173
+00:12:21.350 --> 00:12:25.980
+đó là mức độ chính xác của con người trên mỗi bộ dữ liệu này?
+
+174
+00:12:27.010 --> 00:12:31.948
+Sau đó, có lỗi trên các ví dụ mà
+
+175
+00:12:31.948 --> 00:12:36.210
+neural network của bạn đã đào tạo trên.
+
+176
+00:12:38.870 --> 00:12:43.686
+Và sau đó cuối cùng có lỗi trên các ví dụ rằng
+
+177
+00:12:43.686 --> 00:12:47.412
+neural network của bạn đã không được đào tạo.
+
+178
+00:12:50.036 --> 00:12:55.796
+Hóa ra những gì chúng ta đang gọi
+
+179
+00:12:55.796 --> 00:12:59.036
+ở mức độ con người trên trang chiếu trước đó, có con số được đưa
+
+180
+00:12:59.036 --> 00:13:03.320
+vào hộp này, đó là cách con người làm tốt với loại dữ liệu này.
+
+181
+00:13:03.320 --> 00:13:06.304
+Nói dữ liệu từ tất cả các loại công việc nhận dạng giọng nói,
+
+182
+00:13:06.304 --> 00:13:10.832
+hàng ngàn lời nói mà bạn có thể vào bộ đào tạo của mình.
+
+183
+00:13:10.832 --> 00:13:13.490
+Và ví dụ trong slide trước đó là 4% này.
+
+184
+00:13:13.490 --> 00:13:20.670
+Con số này ở đây là của chúng tôi, có lẽ là lỗi đào tạo.
+
+185
+00:13:23.320 --> 00:13:26.922
+Mà trong ví dụ trong slide trước đó là 7%
+
+186
+00:13:29.705 --> 00:13:33.430
+Đúng, nếu bạn đang học thuật toán đã nhìn thấy ví dụ này, thực hiện gradient
+
+187
+00:13:33.430 --> 00:13:37.315
+gốc trên ví dụ này, và ví dụ này đến từ phân phối training set của bạn,
+
+188
+00:13:37.315 --> 00:13:39.800
+hoặc một số phân phối nhận dạng giọng nói chung.
+
+189
+00:13:39.800 --> 00:13:43.980
+Thuật toán của bạn làm tốt như thế nào trên ví dụ nó đã được đào tạo trên?
+
+190
+00:13:45.114 --> 00:13:53.122
+Sau đó, đây là lỗi thiết lập đào tại-dev.
+
+191
+00:13:53.122 --> 00:13:58.040
+Nó thường cao hơn một chút, đó là cho dữ liệu từ phân phối này,
+
+192
+00:13:58.040 --> 00:14:02.950
+từ nhận dạng giọng nói chung, nếu thuật toán của bạn không đào tạo rõ ràng trên
+
+193
+00:14:02.950 --> 00:14:05.870
+một số ví dụ từ phân phối này, nó làm tốt như thế nào?
+
+194
+00:14:05.870 --> 00:14:08.520
+Và đó là những gì chúng tôi gọi là lỗi đào tạo dev.
+
+195
+00:14:10.700 --> 00:14:14.660
+Và sau đó nếu bạn di chuyển qua bên phải, hộp này ở đây
+
+196
+00:14:14.660 --> 00:14:19.200
+là lỗi thiết lập dev, hoặc có thể cũng là lỗi thiết lập thử nghiệm.
+
+197
+00:14:20.548 --> 00:14:25.310
+Đó là 6% trong ví dụ ngay bây giờ.
+
+198
+00:14:25.310 --> 00:14:28.260
+Và dev và kiểm tra lỗi, nó thực sự là hai số, nhưng
+
+199
+00:14:28.260 --> 00:14:30.890
+một trong hai có thể đi vào hộp này ở đây.
+
+200
+00:14:32.870 --> 00:14:37.220
+Và đây là nếu bạn có dữ liệu từ gương chiếu hậu của bạn, từ thực sự ghi lại trong
+
+201
+00:14:37.220 --> 00:14:41.270
+xe từ ứng dụng gương chiếu hậu, nhưng neural network của bạn đã
+
+202
+00:14:41.270 --> 00:14:45.350
+không thực hiện truyền lại trên ví dụ này, lỗi là gì?
+
+203
+00:14:46.940 --> 00:14:51.230
+Vì vậy, những gì chúng tôi đang làm trong phân tích trong slide trước đó là nhìn vào
+
+204
+00:14:51.230 --> 00:14:55.940
+sự khác biệt giữa hai con số này, hai con số này, và hai con số này.
+
+205
+00:14:57.380 --> 00:15:01.880
+Và khoảng cách này ở đây là thước đo của sự thiên vị có thể tránh được.
+
+206
+00:15:03.630 --> 00:15:08.020
+Khoảng cách này là thước đo variance, và
+
+207
+00:15:08.020 --> 00:15:12.580
+khoảng cách này là thước đo không phù hợp dữ liệu.
+
+208
+00:15:13.920 --> 00:15:17.540
+Và nó chỉ ra rằng nó có thể hữu ích để cũng ném
+
+209
+00:15:17.540 --> 00:15:20.010
+vào hai mục còn lại trong bảng này.
+
+210
+00:15:21.340 --> 00:15:25.270
+Và nếu nó chỉ là 6%, và
+
+211
+00:15:25.270 --> 00:15:30.146
+cách bạn nhận được con số này là bạn yêu cầu một số con người dán nhãn
+
+212
+00:15:30.146 --> 00:15:33.390
+dữ liệu bài phát biểu phản chiếu hậu của họ và chỉ cần đo lường con người tốt như thế nào trong nhiệm vụ này.
+
+213
+00:15:33.390 --> 00:15:35.180
+Và có lẽ điều này hóa ra cũng là 6%.
+
+214
+00:15:35.180 --> 00:15:39.260
+Và cách bạn làm điều đó là bạn lấy một số dữ liệu bài phát biểu phản chiếu hậu,
+
+215
+00:15:39.260 --> 00:15:42.650
+đưa nó vào tập huấn để neural network cũng học được về nó, và
+
+216
+00:15:42.650 --> 00:15:46.060
+sau đó bạn đo sai số trên tập con của dữ liệu đó.
+
+217
+00:15:46.060 --> 00:15:50.090
+Nhưng nếu đây là những gì bạn nhận được, thì, hóa ra bạn đã thực sự thực
+
+218
+00:15:50.090 --> 00:15:54.620
+hiện ở mức độ con người trên dữ liệu bài phát biểu phản chiếu hậu này, nên
+
+219
+00:15:54.620 --> 00:15:58.550
+có lẽ bạn đang thực sự làm khá tốt về việc phân phối dữ liệu đó.
+
+220
+00:15:58.550 --> 00:16:03.740
+Khi bạn thực hiện phân tích tiếp theo này, nó không phải lúc nào cũng cung cấp cho bạn một
+
+221
+00:16:03.740 --> 00:16:07.190
+con đường rõ ràng về phía trước, nhưng đôi khi nó chỉ cung cấp cho bạn những hiểu biết bổ sung là tốt.
+
+222
+00:16:07.190 --> 00:16:12.000
+Ví dụ, so sánh hai con số này trong trường hợp này cho chúng ta biết rằng đối với
+
+223
+00:16:12.000 --> 00:16:16.240
+con người, dữ liệu lời nói gương chiếu hậu thực ra khó hơn so với
+
+224
+00:16:16.240 --> 00:16:21.550
+nhận dạng lời nói chung, bởi vì con người nhận được lỗi 6%, chứ không phải lỗi 4%.
+
+225
+00:16:21.550 --> 00:16:25.840
+Nhưng sau đó nhìn vào những khác biệt này cũng có thể giúp bạn
+
+226
+00:16:25.840 --> 00:16:30.865
+hiểu được sự thiên vị và variance và các vấn đề không khớp dữ liệu ở các mức độ khác nhau.
+
+227
+00:16:30.865 --> 00:16:35.760
+Vì vậy, công thức tổng quát hơn là một cái gì đó tôi đã sử dụng một vài lần.
+
+228
+00:16:35.760 --> 00:16:41.020
+Tôi đã không sử dụng nó, nhưng đối với rất nhiều vấn đề bạn thấy rằng kiểm tra
+
+229
+00:16:41.020 --> 00:16:46.040
+tập hợp con này của mục, loại nhìn vào sự khác biệt này và sự khác biệt
+
+230
+00:16:46.040 --> 00:16:51.230
+này và sự khác biệt này, đó là đủ để chỉ bạn theo một hướng khá hứa hẹn.
+
+231
+00:16:51.230 --> 00:16:54.840
+Nhưng đôi khi điền vào toàn bộ bảng này có thể cung cấp cho bạn những hiểu biết bổ sung.
+
+232
+00:16:55.910 --> 00:17:02.535
+Cuối cùng, trước đây chúng ta đã nói rất nhiều về ý tưởng để giải quyết sự thiên vị.
+
+233
+00:17:02.535 --> 00:17:05.910
+Đã nói về các kỹ thuật về giải quyết variance, nhưng
+
+234
+00:17:05.910 --> 00:17:08.720
+làm thế nào để bạn giải quyết sự không phù hợp dữ liệu?
+
+235
+00:17:08.720 --> 00:17:12.600
+Trong đào tạo đặc biệt về dữ liệu đến từ phân phối khác nhau
+
+236
+00:17:12.600 --> 00:17:15.330
+mà dev và bộ kiểm tra của bạn có thể giúp bạn có thêm dữ liệu và
+
+237
+00:17:15.330 --> 00:17:17.760
+thực sự giúp hiệu suất học tập của thuật toán của bạn.
+
+238
+00:17:17.760 --> 00:17:20.310
+Nhưng thay vì chỉ là vấn đề thiên vị và variance,
+
+239
+00:17:20.310 --> 00:17:24.210
+bây giờ bạn có vấn đề tiềm năng mới của sự không phù hợp dữ liệu.
+
+240
+00:17:24.210 --> 00:17:28.460
+Một số cách tốt mà bạn có thể sử dụng để giải quyết sự không khớp dữ liệu là gì?
+
+241
+00:17:28.460 --> 00:17:30.690
+Tôi sẽ thành thật và nói rằng thực sự không có tuyệt vời hoặc
+
+242
+00:17:30.690 --> 00:17:34.130
+ít nhất là không có cách rất hệ thống để giải quyết sự không phù hợp dữ liệu.
+
+243
+00:17:34.130 --> 00:17:36.540
+Nhưng có một số điều bạn có thể thử có thể giúp ích.
+
+244
+00:17:36.540 --> 00:17:38.790
+Chúng ta hãy xem chúng trong video tiếp theo.
+
+245
+00:17:38.790 --> 00:17:43.200
+Vì vậy, những gì chúng ta đã thấy là bằng cách sử dụng training data có thể đến từ
+
+246
+00:17:43.200 --> 00:17:47.690
+một phân phối khác nhau như một bộ dev và test, điều này có thể cung cấp cho bạn nhiều dữ liệu hơn
+
+247
+00:17:47.690 --> 00:17:50.630
+và do đó giúp hiệu suất của thuật toán học tập của bạn.
+
+248
+00:17:50.630 --> 00:17:55.070
+Nhưng thay vì chỉ có sự thiên vị và variance là hai vấn đề tiềm năng,
+
+249
+00:17:55.070 --> 00:17:58.518
+bây giờ bạn có vấn đề tiềm năng thứ ba này, sự không phù hợp dữ liệu.
+
+250
+00:17:58.518 --> 00:18:02.200
+Vì vậy, nếu bạn thực hiện phân tích lỗi và kết luận rằng không phù hợp dữ liệu
+
+251
+00:18:02.200 --> 00:18:05.840
+là một nguồn lỗi lớn, bạn sẽ làm thế nào để giải quyết vấn đề đó?
+
+252
+00:18:05.840 --> 00:18:09.730
+Nó chỉ ra rằng tiếc là có những cách siêu hệ thống
+
+253
+00:18:09.730 --> 00:18:14.120
+để giải quyết sự không phù hợp dữ liệu, nhưng có một vài điều bạn có thể thử có thể giúp ích.
+
+254
+00:18:14.120 --> 00:18:15.820
+Chúng ta hãy xem chúng trong video tiếp theo.

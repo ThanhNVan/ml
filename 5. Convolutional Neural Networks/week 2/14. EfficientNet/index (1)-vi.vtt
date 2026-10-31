@@ -1,0 +1,318 @@
+WEBVTT
+
+1
+00:00:02.780 --> 00:00:05.800
+MobileNet v1 và v2 đã cho chúng ta
+
+2
+00:00:05.800 --> 00:00:08.050
+một cách triển khai neural network,
+
+3
+00:00:08.050 --> 00:00:10.570
+có hiệu quả hơn về mặt tính toán.
+
+4
+00:00:10.570 --> 00:00:13.315
+Nhưng có cách nào để điều chỉnh MobileNet
+
+5
+00:00:13.315 --> 00:00:15.070
+hoặc một số kiến trúc khác
+
+6
+00:00:15.070 --> 00:00:17.240
+cho thiết bị cụ thể của bạn không?
+
+7
+00:00:17.240 --> 00:00:21.340
+Có thể bạn đang triển khai
+một thuật toán thị giác máy tính cho
+
+8
+00:00:21.340 --> 00:00:23.275
+các thương hiệu điện thoại di động khác nhau với
+
+9
+00:00:23.275 --> 00:00:25.450
+lượng tài nguyên tính toán khác nhau,
+
+10
+00:00:25.450 --> 00:00:27.355
+hoặc cho các edge device khác nhau.
+
+11
+00:00:27.355 --> 00:00:29.485
+Nếu bạn tính toán nhiều hơn,
+
+12
+00:00:29.485 --> 00:00:31.720
+có thể neural network sẽ lớn hơn một chút
+
+13
+00:00:31.720 --> 00:00:33.910
+và hy vọng bạn nhận được kết quả chính xác hơn,
+
+14
+00:00:33.910 --> 00:00:36.865
+hoặc nếu bạn bị ràng buộc nhiều hơn về mặt tính toán,
+
+15
+00:00:36.865 --> 00:00:39.250
+có thể neural network sẽ nhỏ hơn một chút,
+
+16
+00:00:39.250 --> 00:00:40.625
+chạy nhanh hơn một chút,
+
+17
+00:00:40.625 --> 00:00:42.915
+nhưng đổi lại độ chính xác thấp hơn.
+
+18
+00:00:42.915 --> 00:00:45.440
+Làm thế nào để tự động mở rộng quy mô hoặc
+
+19
+00:00:45.440 --> 00:00:48.470
+giảm quy mô neural network cho một thiết bị cụ thể?
+
+20
+00:00:48.470 --> 00:00:51.595
+EfficientNet cho chúng ta một cách như vậy.
+
+21
+00:00:51.595 --> 00:00:53.135
+Giả sử chúng ta có
+
+22
+00:00:53.135 --> 00:00:56.300
+một kiến trúc neural network cơ sở,
+
+23
+00:00:56.300 --> 00:00:59.765
+trong đó, hình ảnh đầu vào có độ phân giải nhất định r,
+
+24
+00:00:59.765 --> 00:01:03.305
+và mạng mới có độ sâu nhất định d,
+
+25
+00:01:03.305 --> 00:01:07.770
+và các layer có chiều rộng nhất định w.
+
+26
+00:01:07.770 --> 00:01:10.290
+Các tác giả của tài liệu EfficientNet,
+
+27
+00:01:10.290 --> 00:01:13.885
+Mingxing Tan và cựu nghiên cứu sinh của tôi là Lê Viết Quốc
+
+28
+00:01:13.885 --> 00:01:16.100
+quan sát thấy rằng chúng ta có thể làm ba điều
+
+29
+00:01:16.100 --> 00:01:18.640
+để mở rộng hoặc thu hẹp quy mô
+
+30
+00:01:18.640 --> 00:01:21.890
+gồm sử dụng một hình ảnh có độ phân giải cao.
+
+31
+00:01:21.890 --> 00:01:24.425
+Độ phân giải hình ảnh mới r
+
+32
+00:01:24.425 --> 00:01:27.890
+Tôi không biết cách
+
+33
+00:01:27.890 --> 00:01:30.860
+biểu thị độ phân giải cao trong một video như thế này.
+
+34
+00:01:30.860 --> 00:01:33.620
+Tôi đang sử dụng màu xanh dương này để biểu thị,
+
+35
+00:01:33.620 --> 00:01:35.585
+có thể là hình ảnh có độ phân giải cao.
+
+36
+00:01:35.585 --> 00:01:39.595
+Hoặc chúng ta có thể làm cho mạng này sâu hơn nhiều.
+
+37
+00:01:39.595 --> 00:01:45.450
+Chúng ta có thể thay đổi d thành độ sâu của neural network,
+
+38
+00:01:45.450 --> 00:01:49.000
+hoặc khiến cho các layer rộng hơn.
+
+39
+00:01:49.010 --> 00:01:55.070
+Chúng ta cũng có thể thay đổi chiều rộng của các layer này.
+
+40
+00:01:55.070 --> 00:02:00.455
+Câu hỏi là, với ngân sách tính toán cụ thể đã cho,
+
+41
+00:02:00.455 --> 00:02:04.530
+lựa chọn tốt về r, d và w là gì?
+
+42
+00:02:04.530 --> 00:02:08.150
+Hoặc tùy thuộc vào tài nguyên tính toán mà bạn có,
+
+43
+00:02:08.150 --> 00:02:10.684
+bạn cũng có thể dùng compound scaling,
+
+44
+00:02:10.684 --> 00:02:13.370
+để đồng thời mở rộng quy mô hoặc
+
+45
+00:02:13.370 --> 00:02:17.265
+đồng thời giảm quy mô phân giải hình ảnh,
+
+46
+00:02:17.265 --> 00:02:19.865
+với chiều sâu và chiều rộng của neural network.
+
+47
+00:02:19.865 --> 00:02:21.725
+Bây giờ phần khó khăn là,
+
+48
+00:02:21.725 --> 00:02:24.630
+nếu bạn muốn mở rộng r, d và w,
+
+49
+00:02:24.630 --> 00:02:26.160
+tỷ lệ để thay đổi
+
+50
+00:02:26.160 --> 00:02:28.020
+từng thông số là bao nhiêu?
+
+51
+00:02:28.020 --> 00:02:29.600
+Chúng ta có nên tăng gấp đôi độ phân giải
+
+52
+00:02:29.600 --> 00:02:30.965
+và giữ nguyên độ sâu,
+
+53
+00:02:30.965 --> 00:02:33.290
+hoặc tăng gấp đôi chiều sâu,
+
+54
+00:02:33.290 --> 00:02:34.625
+còn những thông số khác thì giữ nguyên,
+
+55
+00:02:34.625 --> 00:02:36.590
+hoặc tăng 10% độ phân giải,
+
+56
+00:02:36.590 --> 00:02:37.880
+tăng 50% độ sâu,
+
+57
+00:02:37.880 --> 00:02:39.230
+và tăng 20% chiều rộng.
+
+58
+00:02:39.230 --> 00:02:43.100
+Cân bằng tốt nhất giữa r, d và w là gì
+
+59
+00:02:43.100 --> 00:02:46.205
+để tăng hoặc giảm quy mô neural network của bạn,
+
+60
+00:02:46.205 --> 00:02:48.140
+để được chất lượng tốt nhất có thể
+
+61
+00:02:48.140 --> 00:02:50.440
+trong ngân sách tính toán?
+
+62
+00:02:50.440 --> 00:02:52.910
+Nếu bạn đang tìm cách điều chỉnh
+
+63
+00:02:52.910 --> 00:02:56.225
+kiến trúc neural network cho một thiết bị cụ thể,
+
+64
+00:02:56.225 --> 00:02:57.620
+hãy xem xét một trong những
+
+65
+00:02:57.620 --> 00:02:59.885
+triển khai mã nguồn mở của EfficientNet,
+
+66
+00:02:59.885 --> 00:03:03.440
+điều đó sẽ giúp bạn lựa chọn cân bằng tốt giữa r, d và w.
+
+67
+00:03:03.440 --> 00:03:06.225
+Như vậy đó.
+
+68
+00:03:06.225 --> 00:03:08.870
+Với MobileNet, các bạn đã học cách xây dựng
+
+69
+00:03:08.870 --> 00:03:12.485
+các layer hiệu quả hơn về mặt tính toán và với EfficientNet,
+
+70
+00:03:12.485 --> 00:03:16.475
+các bạn có thể tìm thấy cách để tăng hoặc giảm quy mô
+
+71
+00:03:16.475 --> 00:03:18.635
+của các neural network này dựa trên
+
+72
+00:03:18.635 --> 00:03:21.920
+tài nguyên của thiết bị mà bạn đang làm việc.
+
+73
+00:03:21.920 --> 00:03:24.380
+Tôi hy vọng các bạn gặt hái được những kỹ năng cần thiết
+
+74
+00:03:24.380 --> 00:03:27.410
+để xây dựng neural network cho
+
+75
+00:03:27.410 --> 00:03:30.290
+thiết bị di động, thiết bị embedding và cho
+
+76
+00:03:30.290 --> 00:03:32.630
+các thiết bị khác mà tính toán
+
+77
+00:03:32.630 --> 00:03:34.650
+trong bộ nhớ bị hạn chế hơn.
+
+78
+00:03:34.650 --> 00:03:36.290
+Tôi hy vọng điều này sẽ mở ra rất nhiều
+
+79
+00:03:36.290 --> 00:03:39.840
+ứng dụng tiềm năng mà bạn có thể xây dựng.

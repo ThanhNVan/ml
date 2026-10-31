@@ -1,0 +1,315 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.140 --> 00:00:04.620
+In the previous video, you saw the logistic regression model.
+
+00:00:04.620 --> 00:00:09.740
+To train the parameters w and b of your logistic regression model, you need to define a cost
+
+00:00:09.740 --> 00:00:10.740
+function.
+
+00:00:10.740 --> 00:00:14.480
+Let's take a look at the cost function you can use to train logistic regression.
+
+00:00:14.480 --> 00:00:18.320
+To recap, this is what we had defined from the previous slide.
+
+00:00:18.320 --> 00:00:24.300
+So your output y hat is sigmoid of w transpose x plus b, where sigmoid of z is as defined
+
+00:00:24.300 --> 00:00:25.300
+here.
+
+00:00:25.300 --> 00:00:30.860
+To learn parameters for your model, you're given a training set of m training examples,
+
+00:00:30.860 --> 00:00:35.700
+and it seems natural that you want to find parameters w and b so that at least on the
+
+00:00:35.700 --> 00:00:40.380
+training set, the output you have, the predictions you have on the training set, which I'm going
+
+00:00:40.380 --> 00:00:46.040
+to write as y hat i, that that would be close to the ground truth labels yi that you
+
+00:00:46.040 --> 00:00:48.300
+got in the training set.
+
+00:00:48.300 --> 00:00:53.980
+So to fill in a little bit more detail for the equation on top, we had said that y hat
+
+00:00:53.980 --> 00:01:01.020
+is as defined at the top for a training example x, and of course for each training example,
+
+00:01:01.020 --> 00:01:06.260
+we're using these superscripts with round brackets with parentheses to index into different
+
+00:01:06.260 --> 00:01:07.940
+training examples.
+
+00:01:07.940 --> 00:01:14.780
+Your prediction on training example i, which is y hat i, is going to be obtained by taking
+
+00:01:14.780 --> 00:01:20.140
+the sigmoid function and applying it to w transpose xi, the input for the training
+
+00:01:20.140 --> 00:01:21.500
+example plus b.
+
+00:01:21.500 --> 00:01:30.300
+And you can also define zi as follows, where zi is equal to w transpose xi plus b.
+
+00:01:30.300 --> 00:01:35.780
+So throughout this course, we're going to use this notational convention that the superscript
+
+00:01:35.780 --> 00:01:45.500
+parentheses i refers to data, be it x or y or z or something else, associated with the
+
+00:01:45.500 --> 00:01:51.180
+i-th training example, associated with the i-th example.
+
+00:01:51.180 --> 00:01:54.940
+That's what the superscript i in parentheses means.
+
+00:01:54.940 --> 00:02:00.260
+Now let's see what loss function or an error function we can use to measure how well our
+
+00:02:00.260 --> 00:02:01.460
+algorithm is doing.
+
+00:02:01.460 --> 00:02:07.780
+One thing you could do is define the loss when your algorithm outputs y hat and the true
+
+00:02:07.780 --> 00:02:12.420
+label is y to be maybe the squared error or one half a squared error.
+
+00:02:12.420 --> 00:02:17.340
+It turns out that you could do this, but in logistic regression, people don't usually
+
+00:02:17.340 --> 00:02:22.500
+do this because when you come to learn the parameters, you find that the optimization
+
+00:02:22.500 --> 00:02:25.740
+problem, which we'll talk about later, becomes non-convex.
+
+00:02:25.740 --> 00:02:30.300
+So you end up with an optimization problem with multiple local optima.
+
+00:02:30.300 --> 00:02:33.500
+So gradient descent may not find a global optimum.
+
+00:02:33.500 --> 00:02:36.460
+If you didn't understand the last couple of comments, don't worry about it.
+
+00:02:36.460 --> 00:02:38.500
+We'll get to it in a later video.
+
+00:02:38.500 --> 00:02:43.940
+But the intuition to take away is that this function, L, called the loss function, is a
+
+00:02:43.940 --> 00:02:50.460
+function we'll need to define to measure how good our output y hat is when the true label
+
+00:02:50.460 --> 00:02:51.460
+is y.
+
+00:02:51.460 --> 00:02:55.940
+And squared error seems like it might be a reasonable choice, except that it makes gradient
+
+00:02:55.940 --> 00:02:58.280
+descent not work well.
+
+00:02:58.280 --> 00:03:03.100
+So in logistic regression, we will actually define a different loss function that plays
+
+00:03:03.100 --> 00:03:09.620
+a similar role as squared error, but will give us an optimization problem that is convex.
+
+00:03:09.620 --> 00:03:13.900
+And so we'll see in a later video, becomes much easier to optimize.
+
+00:03:13.900 --> 00:03:20.500
+So what we use in logistic regression is actually the following loss function, which I'm just
+
+00:03:20.500 --> 00:03:35.410
+going to write out here, is negative y log y hat plus 1 minus y log 1 minus y hat.
+
+00:03:35.410 --> 00:03:38.930
+Here's some intuition for why this loss function makes sense.
+
+00:03:38.930 --> 00:03:44.650
+Keep in mind that if we're using squared error, then you want the squared error to be as
+
+00:03:44.650 --> 00:03:46.010
+small as possible.
+
+00:03:46.010 --> 00:03:51.610
+And with this logistic regression, loss function will also want this to be as small as possible.
+
+00:03:51.610 --> 00:03:55.430
+To understand why this makes sense, let's look at the two cases.
+
+00:03:55.430 --> 00:04:03.110
+In the first case, let's say y is equal to 1, then the loss function y hat comma y is
+
+00:04:03.110 --> 00:04:05.490
+just this first term, this negative sign.
+
+00:04:05.490 --> 00:04:10.090
+So it's negative log y hat if y is equal to 1.
+
+00:04:10.090 --> 00:04:14.210
+Because if y equals 1, then the second term 1 minus y is equal to 0.
+
+00:04:14.210 --> 00:04:20.390
+So this says if y equals 1, you want negative log y hat to be as small as possible.
+
+00:04:20.390 --> 00:04:29.050
+So that means you want log y hat to be large, to be as big as possible.
+
+00:04:29.050 --> 00:04:33.510
+And that means you want y hat to be large.
+
+00:04:33.510 --> 00:04:39.030
+But because y hat is the sigmoid function, it can never be bigger than 1.
+
+00:04:39.030 --> 00:04:44.630
+So this is saying that if y is equal to 1, you want y hat to be as big as possible, but
+
+00:04:44.630 --> 00:04:46.030
+it can't ever be bigger than 1.
+
+00:04:46.030 --> 00:04:48.730
+So saying you want y hat to be close to 1 as well.
+
+00:04:48.730 --> 00:04:54.890
+The other case is if y equals 0, then this first term in the loss function is equal to
+
+00:04:54.890 --> 00:04:57.570
+0 because y is 0.
+
+00:04:57.570 --> 00:05:01.830
+And then the second term defines the loss function.
+
+00:05:01.830 --> 00:05:07.730
+So the loss becomes negative log 1 minus y hat.
+
+00:05:07.730 --> 00:05:12.090
+And so if in your learning procedure you try to make the loss function small, what
+
+00:05:12.130 --> 00:05:21.900
+this means is that you want log 1 minus y hat to be large because there's a negative sign
+
+00:05:21.900 --> 00:05:22.900
+there.
+
+00:05:22.900 --> 00:05:27.020
+And then through a similar piece of reasoning, you can conclude that this loss function is
+
+00:05:27.020 --> 00:05:31.380
+trying to make y hat as small as possible.
+
+00:05:31.380 --> 00:05:36.860
+And again, because y hat has to be between 0 and 1, this is saying that if y is equal
+
+00:05:36.860 --> 00:05:43.340
+to 0, then your loss function will push the parameters to make y hat as close to 0 as
+
+00:05:43.340 --> 00:05:44.340
+possible.
+
+00:05:44.340 --> 00:05:49.540
+Now, there are a lot of functions with roughly this effect that if y is equal to 1, you try
+
+00:05:49.540 --> 00:05:53.420
+to make y hat large, and y is equal to 0, you try to make y hat small.
+
+00:05:53.420 --> 00:05:59.780
+We just gave here in green a somewhat informal justification for this particular loss function.
+
+00:05:59.780 --> 00:06:04.900
+We'll provide an optional video later to give a more formal justification for y in
+
+00:06:04.900 --> 00:06:09.020
+logistic regression, we like to use the loss function with this particular form.
+
+00:06:09.020 --> 00:06:14.060
+Finally, the loss function was defined with respect to a single training example.
+
+00:06:14.060 --> 00:06:16.820
+It measures how well you're doing on a single training example.
+
+00:06:16.820 --> 00:06:23.300
+I'm now going to define something called the cost function, which measures how well you're
+
+00:06:23.300 --> 00:06:25.180
+doing on the entire training set.
+
+00:06:25.180 --> 00:06:32.060
+So the cost function, j, which is applied to your parameters w and b, is going to be
+
+00:06:32.060 --> 00:06:33.340
+the average.
+
+00:06:33.340 --> 00:06:43.030
+One over m of the sum of the loss function applied to each of the training examples in
+
+00:06:43.030 --> 00:06:49.150
+turn, where here y hat is of course the prediction output by your logistic regression algorithm
+
+00:06:49.150 --> 00:06:53.110
+using a particular set of parameters w and b.
+
+00:06:53.110 --> 00:07:00.190
+And so just to expand this out, this is equal to negative one over m sum from i equals
+
+00:07:00.190 --> 00:07:04.070
+one through m of the definition of the loss function above.
+
+00:07:04.070 --> 00:07:16.470
+So this is yi log y hat i plus one minus yi log one minus y hat i.
+
+00:07:16.470 --> 00:07:18.390
+I guess I can put square brackets here.
+
+00:07:18.390 --> 00:07:21.550
+So the minus sign is outside everything else.
+
+00:07:21.550 --> 00:07:27.070
+So the terminology I'm going to use is that the loss function is applied to just a single
+
+00:07:27.070 --> 00:07:29.750
+training example like so.
+
+00:07:29.750 --> 00:07:33.630
+And the cost function is the cost of your parameters.
+
+00:07:33.630 --> 00:07:38.950
+So in training your logistic regression model, we're going to try to find parameters w and
+
+00:07:38.950 --> 00:07:44.070
+b that minimize the overall cost function j written at the bottom.
+
+00:07:44.070 --> 00:07:49.710
+So you've just seen the setup for the logistic regression algorithm, the loss function for
+
+00:07:49.710 --> 00:07:54.690
+training example, and the overall cost function for the parameters of your algorithm.
+
+00:07:54.690 --> 00:08:00.110
+It turns out that logistic regression can be viewed as a very, very small neural network.
+
+00:08:00.190 --> 00:08:04.590
+In the next video, we'll go over that so you can start gaining intuition about what neural
+
+00:08:04.590 --> 00:08:05.590
+networks do.
+
+00:08:05.590 --> 00:08:11.150
+So that let's go on to the next video about how to view logistic regression as a very small
+
+00:08:11.150 --> 00:08:12.070
+neural network.

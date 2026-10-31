@@ -1,0 +1,306 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.720 --> 00:00:06.160
+The term deep learning refers to training neural networks, sometimes very large neural networks.
+
+00:00:06.160 --> 00:00:08.480
+So what exactly is a neural network?
+
+00:00:08.480 --> 00:00:13.040
+In this video, let's try to give you some of the basic intuitions.
+
+00:00:13.040 --> 00:00:16.720
+Let's start with a housing price prediction example.
+
+00:00:16.720 --> 00:00:21.600
+Let's say you have a data set with six houses, so you know the size of the houses in square
+
+00:00:21.600 --> 00:00:26.600
+feet or square meters, and you know the price of the house, and you want to fit a function
+
+00:00:26.600 --> 00:00:29.720
+to predict the price of a house as a function of its size.
+
+00:00:29.720 --> 00:00:34.240
+So if you're familiar with linear regression, you might say, well, let's fit a straight line
+
+00:00:34.240 --> 00:00:35.240
+to this data.
+
+00:00:35.240 --> 00:00:38.480
+So maybe you get a straight line like that.
+
+00:00:38.480 --> 00:00:43.320
+But to be a bit fancier, you might say, well, we know that prices can never be negative,
+
+00:00:43.320 --> 00:00:44.320
+right?
+
+00:00:44.320 --> 00:00:48.680
+So instead of a straight line fit which will eventually become negative, let's bend the
+
+00:00:48.680 --> 00:00:51.680
+curve here, so it just ends up zero here.
+
+00:00:51.680 --> 00:00:58.280
+So this thick blue line ends up being your function for predicting the price of a house
+
+00:00:58.280 --> 00:01:03.000
+as a function of its size, whereas zero here and then there's a straight line fit to the
+
+00:01:03.000 --> 00:01:04.520
+right.
+
+00:01:04.520 --> 00:01:10.440
+So you can think of this function that you've just fit to housing prices as a very simple
+
+00:01:10.440 --> 00:01:11.440
+neural network.
+
+00:01:11.440 --> 00:01:14.320
+It's almost the simplest possible neural network.
+
+00:01:14.320 --> 00:01:17.280
+Let me draw it here.
+
+00:01:17.280 --> 00:01:22.140
+We have as the input to the neural network the size of a house, which we call x.
+
+00:01:22.140 --> 00:01:32.260
+It goes into this little circle and then it outputs the price we'll call y.
+
+00:01:32.260 --> 00:01:40.540
+So this little circle, which is a single neuron in our neural network, implements this function
+
+00:01:40.540 --> 00:01:43.440
+that we drew on the left.
+
+00:01:43.440 --> 00:01:49.100
+And all that the neuron does is it inputs the size, computes this linear function,
+
+00:01:49.100 --> 00:01:53.360
+takes a max of zero and then outputs the estimated price.
+
+00:01:53.360 --> 00:01:58.360
+And by the way, in the neural network literature, you see this function a lot.
+
+00:01:58.360 --> 00:02:03.680
+This function which goes at zero at some time and then takes off as a straight line.
+
+00:02:03.680 --> 00:02:15.730
+This function is called a RELU function, which stands for Rectified Linear Unit.
+
+00:02:15.730 --> 00:02:16.730
+So R-E-L-U.
+
+00:02:16.730 --> 00:02:22.190
+And rectified just means taking a max of zero, which is why you get a function shaped like
+
+00:02:22.190 --> 00:02:23.690
+this.
+
+00:02:23.690 --> 00:02:27.910
+You don't need to worry about RELU units for now, but it's just something you see again
+
+00:02:27.910 --> 00:02:29.950
+later in this course.
+
+00:02:29.950 --> 00:02:37.850
+So if this is a single neuron, neural network, really a tiny little neural network, a larger
+
+00:02:37.850 --> 00:02:44.630
+neural network is then formed by taking many of these single neurons and stacking them together.
+
+00:02:44.630 --> 00:02:51.230
+So if you think of this neuron as being like a single Lego break, you then get a bigger
+
+00:02:51.230 --> 00:02:55.370
+neural network by stacking together many of these Lego breaks.
+
+00:02:55.370 --> 00:02:57.450
+Let's see an example.
+
+00:02:57.450 --> 00:03:03.310
+Let's say that instead of predicting the price of a house just from its size, you now have
+
+00:03:03.310 --> 00:03:04.390
+other features.
+
+00:03:04.390 --> 00:03:09.070
+You know other things about the house, such as the number of bedrooms, which we only
+
+00:03:09.070 --> 00:03:11.270
+write as pound bedrooms.
+
+00:03:11.390 --> 00:03:17.630
+You might think that one of the things that really affects the price of a house is family
+
+00:03:17.630 --> 00:03:18.630
+size.
+
+00:03:18.630 --> 00:03:23.510
+So can this house fit your family of three, your family of four, your family of five?
+
+00:03:23.510 --> 00:03:27.110
+And it's really based on the size and square feet or square meters and the number of
+
+00:03:27.110 --> 00:03:33.210
+bedrooms that determines whether or not a house can fit your family's family size.
+
+00:03:33.210 --> 00:03:37.750
+And then maybe you know the zip code in different countries.
+
+00:03:37.750 --> 00:03:42.910
+It's called the postal code of the house.
+
+00:03:42.910 --> 00:03:48.950
+And the zip code maybe is a feature that tells you walkability.
+
+00:03:48.950 --> 00:03:51.710
+So is this neighborhood highly walkable?
+
+00:03:51.710 --> 00:03:54.470
+You can just walk to the grocery store and walk to school.
+
+00:03:54.470 --> 00:03:55.470
+Do you need to drive?
+
+00:03:55.470 --> 00:03:58.350
+Some people prefer highly walkable neighborhoods.
+
+00:03:58.350 --> 00:04:06.710
+And then the zip code as well as the wealth maybe tells you, right, certainly in the
+
+00:04:06.710 --> 00:04:12.030
+United States, but some other countries as well, tells you how good is the school
+
+00:04:12.030 --> 00:04:13.030
+quality.
+
+00:04:13.030 --> 00:04:19.270
+So each of these little circles I'm drawing can be one of those relu rectified
+
+00:04:19.270 --> 00:04:22.790
+linear units or some other slightly nonlinear function.
+
+00:04:22.790 --> 00:04:26.590
+So that based on the size and number of bedrooms, you can estimate the family
+
+00:04:26.590 --> 00:04:29.430
+size, based on zip code, based on walkability, based on zip code and wealth,
+
+00:04:29.430 --> 00:04:32.150
+you can estimate the school quality.
+
+00:04:32.150 --> 00:04:35.310
+And then finally, you might think that while the way people decide how much
+
+00:04:35.310 --> 00:04:38.910
+they're willing to pay for a house is they look at the things that really matter to them,
+
+00:04:38.910 --> 00:04:44.750
+in this case, family size, walkability, and school quality, and that helps you predict
+
+00:04:44.750 --> 00:04:46.430
+the price.
+
+00:04:46.430 --> 00:04:56.870
+So in this example, X is all of these four inputs and Y is the price you're trying
+
+00:04:56.870 --> 00:04:58.070
+to predict.
+
+00:04:58.070 --> 00:05:03.390
+And so by stacking together a few of the single neurons or the simple predictors we
+
+00:05:03.390 --> 00:05:07.390
+had from the previous slide, we now have a slightly larger neural network.
+
+00:05:07.390 --> 00:05:12.510
+How the magic of a neural network is that when you implement it, you need to give it
+
+00:05:12.510 --> 00:05:20.550
+just the input X and the output Y for a number of examples in your training set,
+
+00:05:20.550 --> 00:05:25.270
+and all these things in the middle, it will figure out by itself.
+
+00:05:25.270 --> 00:05:30.870
+So what you actually implement is this, where here you have a neural network with
+
+00:05:30.870 --> 00:05:31.870
+four inputs.
+
+00:05:31.870 --> 00:05:37.910
+So the input features might be the size, number of bedrooms, the zip code or postal code,
+
+00:05:37.910 --> 00:05:40.430
+and the wealth of the neighborhood.
+
+00:05:40.430 --> 00:05:48.870
+And so given these input features, the job of the neural network will be to predict the
+
+00:05:48.870 --> 00:05:50.390
+price Y.
+
+00:05:50.390 --> 00:05:56.150
+And notice also that each of these circles, these are called hidden units in the neural
+
+00:05:56.150 --> 00:06:02.390
+network, that each of them takes its inputs, all four input features.
+
+00:06:02.390 --> 00:06:09.590
+So for example, rather than saying this first node represents family size, and family size
+
+00:06:09.590 --> 00:06:12.630
+depends only on the features X1 and X2.
+
+00:06:12.630 --> 00:06:16.830
+Instead, we're going to say, well, neural network, you decide whatever you want this
+
+00:06:16.830 --> 00:06:21.190
+node to be, and we'll give you all four input features to compute whatever you want.
+
+00:06:21.190 --> 00:06:27.190
+So we say that the layers, that is this input layer and this layer in the middle of the
+
+00:06:27.190 --> 00:06:31.710
+neural network are densely connected, because every input feature is connected to every one
+
+00:06:31.710 --> 00:06:34.030
+of these circles in the middle.
+
+00:06:34.030 --> 00:06:39.750
+And the remarkable thing about neural networks is that given enough data about X and Y, given
+
+00:06:39.750 --> 00:06:44.590
+enough training examples with both X and Y, neural networks are remarkably good at figuring
+
+00:06:44.590 --> 00:06:49.070
+out functions that accurately map from X to Y.
+
+00:06:49.070 --> 00:06:51.750
+So that's a basic neural network.
+
+00:06:51.750 --> 00:06:55.190
+It turns out that as you build out your own neural networks, you probably find them to
+
+00:06:55.190 --> 00:06:59.850
+be most useful, most powerful in supervised learning settings, meaning that you're trying
+
+00:06:59.850 --> 00:07:05.790
+to take an input X and map it to some output Y, like we just saw in the housing price prediction
+
+00:07:05.790 --> 00:07:06.790
+example.
+
+00:07:06.790 --> 00:07:12.190
+In the next video, let's go over some more examples of supervised learning and some examples
+
+00:07:12.190 --> 00:07:16.310
+of where you might find neural networks to be incredibly helpful for your applications
+
+00:07:16.310 --> 00:07:16.670
+as well.

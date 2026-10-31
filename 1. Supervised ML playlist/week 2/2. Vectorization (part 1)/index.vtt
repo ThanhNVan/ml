@@ -1,0 +1,255 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.060 --> 00:00:07.180
+In this video, you see a very useful idea called vectorization.
+
+00:00:07.180 --> 00:00:11.860
+When you're implementing a learning algorithm, using vectorization will both make your code
+
+00:00:11.860 --> 00:00:16.620
+shorter and also make it run much more efficiently.
+
+00:00:16.620 --> 00:00:20.980
+Learning how to write vectorized code will allow you to also take advantage of modern
+
+00:00:20.980 --> 00:00:26.700
+numerical linear algebra libraries, as well as maybe even GPU hardware that stands for
+
+00:00:26.700 --> 00:00:28.600
+graphics processor unit.
+
+00:00:28.600 --> 00:00:33.320
+This is hardware originally designed to speed up computer graphics on your computer, but
+
+00:00:33.320 --> 00:00:37.940
+turns out can be used when you write vectorized code to also help you execute your code much
+
+00:00:37.940 --> 00:00:38.940
+more quickly.
+
+00:00:38.940 --> 00:00:42.520
+Let's look at a concrete example of what vectorization means.
+
+00:00:42.520 --> 00:00:51.240
+Here's an example with parameters w and b, where w is a vector with three numbers, and
+
+00:00:51.240 --> 00:00:56.260
+you also have a vector of features x with also three numbers.
+
+00:00:56.260 --> 00:00:59.920
+So here n is equal to three.
+
+00:00:59.920 --> 00:01:05.620
+So notice that in linear algebra, the index or the counting starts from one.
+
+00:01:05.620 --> 00:01:10.940
+And so the first value is subscripted w1 and x1.
+
+00:01:10.940 --> 00:01:18.860
+In Python code, you can define these variables w, b and x using arrays like this.
+
+00:01:18.860 --> 00:01:24.900
+Here I'm actually using a numerical linear algebra library in Python called numpy, which
+
+00:01:24.900 --> 00:01:29.740
+is by far the most widely used numerical linear algebra library in Python and in machine
+
+00:01:29.740 --> 00:01:32.020
+learning.
+
+00:01:32.020 --> 00:01:39.340
+Because in Python, the indexing of arrays or counting in arrays starts from zero, you
+
+00:01:39.340 --> 00:01:46.820
+would access the first value of w using w squared bracket zero, the second value using
+
+00:01:46.820 --> 00:01:52.660
+w squared bracket one, and the third using w squared bracket two.
+
+00:01:52.660 --> 00:02:00.300
+So the indexing here goes from zero one to two, rather than one, two to three.
+
+00:02:00.300 --> 00:02:09.180
+Similarly, to access individual features of x, you would use x0, x1, and x2.
+
+00:02:09.180 --> 00:02:15.540
+Many programming languages, including Python, start counting from zero rather than one.
+
+00:02:15.540 --> 00:02:20.580
+Now let's look at an implementation without vectorization for computing the model's
+
+00:02:20.580 --> 00:02:21.820
+prediction.
+
+00:02:21.820 --> 00:02:28.940
+In code, it would look like this, you take each parameter w and multiply it by its associated
+
+00:02:28.940 --> 00:02:31.260
+feature.
+
+00:02:31.260 --> 00:02:33.820
+Now you could retricle like this.
+
+00:02:33.820 --> 00:02:39.740
+But what if n isn't three, but instead n is 100 or 100,000 is both inefficient for
+
+00:02:39.740 --> 00:02:44.020
+you to code and inefficient for your computer to compute.
+
+00:02:44.020 --> 00:02:49.980
+So here's another way still without using vectorization, but using a for loop.
+
+00:02:49.980 --> 00:02:58.620
+In math, you can use a summation operator to add all the products of wj and xj for j equals
+
+00:02:58.620 --> 00:03:05.260
+one through n, then outside the summation you add b at the end.
+
+00:03:05.260 --> 00:03:13.140
+So the summation goes from j equals one up to and including n for n equals three, j therefore
+
+00:03:13.140 --> 00:03:16.260
+goes from one, two to three.
+
+00:03:16.260 --> 00:03:24.300
+In code, you can initialize f to zero, then for j in range from zero to n, this actually
+
+00:03:24.300 --> 00:03:28.180
+makes j go from zero to n minus one.
+
+00:03:28.180 --> 00:03:36.180
+So from zero one to two, you can then add to f the product of wj times xj.
+
+00:03:36.180 --> 00:03:40.220
+Finally, outside the for loop, you add b.
+
+00:03:40.260 --> 00:03:45.820
+Notice that in Python, the range zero to n means that j goes from zero all the way to
+
+00:03:45.820 --> 00:03:49.780
+n minus one and does not include n itself.
+
+00:03:49.780 --> 00:03:54.660
+And more commonly, this is written range n in Python.
+
+00:03:54.660 --> 00:04:00.540
+But in this video, I added a zero here just to emphasize that it starts from zero.
+
+00:04:00.540 --> 00:04:05.660
+While this implementation is a bit better than the first one, it still doesn't use
+
+00:04:05.660 --> 00:04:09.060
+vectorization and isn't that efficient.
+
+00:04:09.060 --> 00:04:15.300
+Now let's look at how you can do this using vectorization.
+
+00:04:15.300 --> 00:04:21.460
+This is the math expression of the function f, which is the dot product of w and x plus
+
+00:04:21.460 --> 00:04:22.460
+b.
+
+00:04:22.460 --> 00:04:26.260
+And now you can implement this with a single line of code.
+
+00:04:26.260 --> 00:04:33.460
+By computing fp equals np dot dot, I said dot dot because the first dot is the p-rate
+
+00:04:33.460 --> 00:04:38.700
+and the second dot is the function or the method called dot.
+
+00:04:38.700 --> 00:04:44.020
+That is fp equals np dot dot w comma x.
+
+00:04:44.020 --> 00:04:51.540
+And this implements the mathematical dot product between the vectors w and x.
+
+00:04:51.540 --> 00:04:55.660
+And then finally, you can add b to it at the end.
+
+00:04:55.660 --> 00:05:00.780
+This numpy dot function is a vectorized implementation of the dot product operation
+
+00:05:00.780 --> 00:05:02.500
+between two vectors.
+
+00:05:02.500 --> 00:05:07.700
+And especially when n is large, this will run much faster than the two previous code
+
+00:05:07.700 --> 00:05:09.180
+examples.
+
+00:05:09.180 --> 00:05:13.780
+I want to emphasize that vectorization actually has two distinct benefits.
+
+00:05:13.780 --> 00:05:16.060
+First, it makes the code shorter.
+
+00:05:16.060 --> 00:05:17.940
+It's now just one line of code.
+
+00:05:17.940 --> 00:05:19.220
+Isn't that cool?
+
+00:05:19.220 --> 00:05:24.380
+And second, it also results in your code running much faster than either of the two
+
+00:05:24.380 --> 00:05:29.060
+previous implementations that did not use vectorization.
+
+00:05:29.060 --> 00:05:35.700
+And the reason that the vectorized implementation is much faster is behind the scenes, the
+
+00:05:35.700 --> 00:05:40.860
+numpy dot function is able to use parallel hardware in your computer.
+
+00:05:40.860 --> 00:05:45.140
+And this is true whether you're running this on a normal computer that is on a normal
+
+00:05:45.140 --> 00:05:51.500
+computer CPU, or if you are using a GPU, a graphics processor unit that's often used
+
+00:05:51.500 --> 00:05:54.380
+to accelerate machine learning jobs.
+
+00:05:54.380 --> 00:05:59.500
+And the ability of the numpy dot function to use parallel hardware makes it much more
+
+00:05:59.500 --> 00:06:07.420
+efficient than the for loop or the sequential calculation that we saw previously.
+
+00:06:07.420 --> 00:06:14.980
+Now this version is much more practical when n is large because you are not typing W0 times
+
+00:06:14.980 --> 00:06:21.020
+x0 plus W1 times x1 plus lots of additional terms like you would have had for the previous
+
+00:06:21.020 --> 00:06:22.020
+version.
+
+00:06:22.020 --> 00:06:28.060
+But while this saves a lot on the typing, it's still not that computationally efficient
+
+00:06:28.060 --> 00:06:31.980
+because it still doesn't use vectorization.
+
+00:06:31.980 --> 00:06:37.820
+So to recap, vectorization makes your code shorter, so hopefully easier to write and easier
+
+00:06:37.820 --> 00:06:39.980
+for you or others to read.
+
+00:06:39.980 --> 00:06:42.940
+And it also makes it run much faster.
+
+00:06:42.940 --> 00:06:48.100
+But what is this magic behind vectorization that mixes run so much faster?
+
+00:06:48.100 --> 00:06:51.580
+Let's take a look at what your computer is actually doing behind the scenes to make
+
+00:06:51.580 --> 00:06:53.500
+vectorized code run so much faster.

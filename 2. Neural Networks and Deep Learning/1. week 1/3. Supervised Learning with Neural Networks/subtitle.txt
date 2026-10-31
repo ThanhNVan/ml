@@ -1,0 +1,110 @@
+Có rất nhiều giả thuyết cường điệu
+về mạng nơ-ron nhân tạo. Và có lẽ một số giải thuyết là hợp lý khi nói
+rằng chúng đang làm việc hiệu quả như thế nào. Nhưng hóa ra là cho đến nay, gần như tất cả các giá trị kinh tế được
+tạo ra bởi các mạng nơ-ron nhân tạo đã được thông qua một loại học máy, được
+gọi là học có giám sát. Chúng ta hãy cùng xem nó có nghĩa
+là gì, và hãy xem qua một số ví dụ sau. Trong học có giám sát,
+bạn có một số đầu vào x và bạn muốn biết một hàm
+ánh xạ đến một số đầu ra y. Vì vậy, ví dụ, bây giờ chúng ta đã thấy
+ứng dụng dự đoán giá nhà mà ở đó bạn nhập một số đặc điểm của một
+ngôi nhà và cố gắng xuất hoặc ước tính giá y. Sau đây là một số ví dụ khác mà mạng
+nơ-ron đã được áp dụng một cách có hiệu quả. Có lẽ ứng dụng sinh lợi nhất
+của học sâu hiện nay là quảng cáo trực tuyến, có thể ứng dụng này không
+truyền cảm hứng nhất, nhưng chắc chắn là nó hái ra tiền, bằng cách nhập thông tin về
+một quảng cáo vào trang web, nó sẽ cho bạn thấy một số thông tin về
+người dùng, các mạng nơ-ron nhân tạo đang rất giỏi trong việc dự đoán liệu
+bạn có nhấp vào quảng cáo hay không. Và bằng cách cho bạn thấy và hiển thị cho người dùng quảng cáo mà
+bạn có khả năng nhấp vào nhất, đây là một ứng dụng cực kỳ sinh lợi của
+mạng nơ-ron nhân tạo tại nhiều công ty. Bởi vì khả năng hiển thị
+quảng cáomà bạn dễ nhấp vào sẽ có tác động
+trực tiếp đến kết luận của một số công ty
+quảng cáo trực tuyến rất lớn. Tầm nhìn máy tính cũng đã có những
+bước tiến lớn trong vài năm qua, chủ yếu là do học sâu. Vì vậy, bạn có thể nhập một
+hình ảnh và muốn xuất một chỉ mục, giả sử từ 1 đến 1.000 đang muốn
+cho bạn biết liệu bức ảnh này, có phải là bức nào trong
+1000 bức ảnh khác nhau. Như vậy, bạn có thể
+sử dụng nó để gắn thẻ ảnh. Tôi cho là tiến bộ gần đây trong
+nhận dạng giọng nói cũng rất thú vị, bạn có thể đưa một đoạn âm thanh
+vào mạng nơ-ron nhân tạo và nó sẽ xuất ra văn bản tương ứng. Dịch máy cũng đã có những
+bước tiến lớn nhờ học sâu, bạn có thể nhập một câu tiếng Anh vào một
+mạng nơ-ron nhân tạo và nó sẽ trực tiếp xuất ra một câu tiếng Trung. Và trong lái xe tự động, bạn có thể
+nhập vào một hình ảnh, về những gì ở phía trước xe của bạn như
+một số thông tin từ radar, vàphía trước xe của bạn như ⏎một số thông tin từ radar, và dựa vào đó, một mạng nơ-ron nhân tạo
+có thể được huấn luyện để cho bạn biết vị trí của những chiếc xe khác trên đường. Như vậy, điều này trở thành một yếu tố
+quan trọng trong các hệ thống lái xe tự động. Rất nhiều cách tạo ra giá trị thông qua
+các mạng nơ-ron nhân tạo chính là lựa chọn khôn khéo những gì nên
+là x và những gì nên là y cho vấn đề cụ thể của bạn, và sau đó đưa
+thành phần học có giám sát phù hợp này vào một hệ thống lớn hơn như
+một chiếc xe tự động chẳng hạn. Hóa ra là các loại mạng nơ-ron
+nhân tạo khác nhau thì hữu ích đối với các ứng dụng khác nhau. Ví dụ, trong ứng dụng bất động sản mà
+chúng ta đã thấy trong video trước đây, chúng ta sử dụng một kiến trúc mạng nơ-ron
+nhân tạo tiêu chuẩn phổ quát, đúng chứ? Có thể là trong bất động sản và quảng cáo
+trực tuyến thì chúng ta có thể sử dụng một mạng nơ-ron nhân tạo tương đối tiêu chuẩn,
+giống như mạng mà chúng ta đã thấy. Đối với các ứng dụng hình ảnh, chúng ta thường
+sử dụng tích chập trên các mạng nơ-ron nhân tạo, viết tắt là CNN. Và cho dữ liệu chuỗi Ví dụ, âm thanh có
+yếu tố tạm thời, đúng chứ? Âm thanh được phát ra theo thời gian, vì vậy
+âm thanh được thể hiện một cách tự nhiên nhất như là một chuỗi thời gian một chiều
+hoặc như một chuỗi tạm thời một chiều. Và vì vậy, đối với dữ liệu chuỗi,
+bạn thường sử dụng RNN, một mạng nơ-ron hồi quy. Ngôn ngữ, như tiếng Anh và tiếng Trung Quốc,
+bảng chữ cái hoặc các từ xuất hiện đồng thời. Vì vậy, ngôn ngữ cũng được trình bày một
+cách tự nhiên nhất như là dữ liệu chuỗi. Và do đó, các phiên bản RNN phức tạp
+hơn thường được sử dụng cho các ứng dụng này. Và sau đó, đối với các ứng dụng phức tạp
+hơn, như lái xe tự động, khi mà bạn có một hình ảnh, có thể gợi nhiều về
+cấu trúc mạng nơ-ron tích chập CNN và thông tin radar khá là khác biệt. Bạn có thể sẽ có một kiến trúc mạng
+nơ-ron lai tùy chỉnh nhiều hơn, hoặc phức tạp hơn. Như vậy, tôi chỉ muốn làm rõ hơn
+một chút về CNN tiêu chuẩn là gì và kiến trúc RNN là gì. Như vậy, trong các tài liệu, có thể
+bạn đã nhìn thấy hình ảnh như thế này. Đó là một mạng nơ-ron
+nhân tạo tiêu chuẩn. Bạn có thể đã nhìn thấy
+hình ảnh như thế này. Chà, đây là một ví dụ về Mạng nơ-ron
+tích chập và trong một khóa học sau này chúng ta sẽ hiểu chính xác ý nghĩa của hình ảnh này
+và làm thế nào để bạn có thể thực hiện điều này. Nhưng mạng tích chập thường
+được sử dụng cho dữ liệu hình ảnh. Và cũng có thể bạn đã nhìn thấy
+hình ảnh như thế này. Và bạn sẽ học cách triển khai điều
+này trong một khóa học sau này. Mạng nơ-ron hồi quy
+rất hiệu quả đối với loại dữ liệu chuỗi một chiều mà có
+thể có tính tạm thời như này. Bạn cũng có thể đã nghe nói về
+các ứng dụng của học máy đối với cả dữ liệu có cấu trúc
+và dữ liệu phi cấu trúc. Đây là ý nghĩa của
+các thuật ngữ đó. Dữ liệu có cấu trúc có nghĩa
+là cơ sở dữ liệu của dữ liệu. Ví dụ, trong dự đoán giá nhà đất,
+bạn có thể có cơ sở dữ liệu hoặc cột cho bạn biết kích thước
+nhà và số phòng ngủ. Như vậy, đây là dữ liệu có cấu trúc
+hoặc khi dự đoán người dùng sẽ nhấp vào quảng cáo hay không, bạn có thể có
+thông tin về người dùng, chẳng hạn như tuổi, một số thông tin về quảng cáo và sau đó
+gắn nhãn lý do bạn đang muốn dự đoán. Như vậy, đó là dữ liệu có
+cấu trúc, là mỗi đặc điểm, chẳng hạn như kích thước của
+ngôi nhà, số phòng ngủ, hoặc tuổi của người dùng,
+được xác định rất rõ ràng. Ngược lại, dữ liệu phi cấu trúc đề cập đến
+những thứ như âm thanh, âm thanh thô, hoặc hình ảnh mà có thể bạn muốn biết
+có gì trong hình ảnh hoặc văn bản đó. Ở đây, các đặc điểm có thể là
+các giá trị pixel trong ảnh hoặc các từ riêng lẻ trong
+một đoạn văn bản. Trong quá khứ, máy tính thì khó hiểu dữ liệu phi cấu
+trúc hơn rất nhiều so với dữ liệu có cấu trúc. Và thực tế loài người đã
+tiến hóa để hiểu được tín hiệu âm thanh cũng như hình ảnh. Và sau đó thì chữ viết là một
+phát minh gần đây hơn, nhưng loài người thực sự giỏi trong việc
+diễn giải dữ liệu phi cấu trúc. Và vì vậy, một trong những điều thú vị
+nhất về sự nổi lên của mạng nơ-ron là, nhờ có học sâu, nhờ có mạng nơ-ron
+nhân tạo , máy tính giờ đây đã diễn giải dữ liệu phi cấu trúc tốt hơn
+rất nhiều so với chỉ một vài năm trước đây. Và điều này tạo ra cơ hội để
+nhiều ứng dụng thú vị mới sử dụng nhận dạng giọng nói, nhận dạng hình ảnh,
+xử lý ngôn ngữ tự nhiên trên văn bản, trở nên khả thi hơn thậm chí
+chỉ hai hoặc ba năm trước. Tôi nghĩ mọi người đều sinh ra với
+lòng đồng cảm để hiểu dữ liệu không có cấu trúc, có thể bạn nghe về thành công
+của mạng nơ-ron nhân tạo trên dữ liệu phi cấu trúc nhiều hơn trên các phương tiện truyền thông, bởi vì việc mạng
+nơ-ron nhân tạo có thể nhận ra một con mèo thật là tuyệt vời. Tất cả chúng ta đều thích điều đó, và tất cả
+chúng ta đều biết điều đó có nghĩa là gì. Nhưng hóa ra rằng rất nhiều giá trị
+kinh tế ngắn hạn mà mạng nơ-ron nhân tạo đang tạo ra cũng ở những
+dữ liệu có cấu trúc, chẳng hạn như hệ thống quảng cáo tốt hơn
+nhiều, khuyến nghị lợi nhuận tốt hơn nhiều và khả năng xử lý tốt hơn nhiều các cơ sở
+dữ liệu khổng lồ mà dựa trên đó nhiều công ty phải đưa ra
+dự đoán chính xác. Vì vậy, trong khóa học này, có rất
+nhiều kỹ thuật mà chúng ta sẽ áp dụng cho cả dữ liệu có cấu trúc
+và dữ liệu phi cấu trúc. Để giải thích các thuật toán, chúng ta sẽ nói thêm một chút về
+các ví dụ sử dụng dữ liệu phi cấu trúc. Nhưng khi bạn nghĩ về các ứng dụng của
+mạng nơ-ron nhân tạo trong nhóm của bạn, tôi hy vọng bạn tìm thấy cách sử dụng chúng
+trong cả dữ liệu có cấu trúc và không cấu trúc. Như vậy, mạng nơ-ron nhân tạo đã
+làm biến đổi học có giám sát và đang tạo ra giá trị kinh tế khổng lồ. Mặc dù hóa ra là những ý tưởng kỹ thuật cơ bản đằng sau mạng nơ-ron nhân tạo đã xuất hiện quanh đây,
+đôi khi là từ nhiều thập kỷ trước. Vậy thì tại sao bây giờ chúng mới trở
+nên phổ biến và hiệu quả đến vậy? Trong video tiếp theo, chúng tôi sẽ
+nói về lý do tại sao chỉ mới gần đây thôi mạng nơ-ron nhân tạo đã trở thành một
+công cụ vô cùng mạnh mẽ mà bạn có thể sử dụng.

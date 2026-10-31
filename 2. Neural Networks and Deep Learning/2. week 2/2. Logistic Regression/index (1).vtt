@@ -1,0 +1,180 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:03.200
+In this video, we'll go over logistic regression.
+
+00:00:03.200 --> 00:00:10.600
+This is a learning algorithm that you use when the output labels Y in a supervised learning problem are all either 0 or 1,
+
+00:00:10.600 --> 00:00:13.000
+so for binary classification problems.
+
+00:00:14.000 --> 00:00:23.000
+Given an input feature vector X may be corresponding to an image that you want to recognize as either a cat picture or not a cat picture,
+
+00:00:23.200 --> 00:00:31.000
+you want an algorithm that can output a prediction which you only call Y hat, which is your estimate of Y.
+
+00:00:31.000 --> 00:00:40.000
+More formally, you want Y hat to be the probability of the chance that Y is equal to 1 given the input feature X.
+
+00:00:40.000 --> 00:00:49.000
+So in other words, if X is a picture, as we saw in the last video, you want Y hat to tell you what is the chance that this is a cat picture.
+
+00:00:50.000 --> 00:01:03.000
+So X, as we said in the previous video, is an X dimensional vector, given that the parameters of logistic regression will be W,
+
+00:01:03.000 --> 00:01:11.000
+which is also an X dimensional vector, together with B, which is just a real number.
+
+00:01:12.000 --> 00:01:20.000
+So given an input X and the parameters W and B, how do we generate the output Y hat?
+
+00:01:20.000 --> 00:01:27.000
+Well, one thing you could try that doesn't work would be to have Y hat be W transpose X plus B,
+
+00:01:27.000 --> 00:01:32.000
+you know, kind of a linear function of the input X.
+
+00:01:32.000 --> 00:01:37.000
+And in fact, this is what you use if you were doing linear regression.
+
+00:01:37.000 --> 00:01:45.000
+But this isn't a very good algorithm for binary classification because you want Y hat to be the chance that Y is equal to 1.
+
+00:01:45.000 --> 00:01:50.000
+So Y hat should really be between 0 and 1.
+
+00:01:50.000 --> 00:01:58.000
+And it's difficult to enforce that because W transpose X plus B can be much bigger than 1 or can even be negative,
+
+00:01:58.000 --> 00:02:03.000
+which doesn't make sense for a probability that you want to be between 0 and 1.
+
+00:02:03.000 --> 00:02:12.000
+So in logistic regression, our output is instead going to be Y hat equals the sigmoid function applied to this quantity.
+
+00:02:12.000 --> 00:02:14.000
+This is what the sigmoid function looks like.
+
+00:02:14.000 --> 00:02:23.000
+If on the horizontal axis I plot Z, then the function sigmoid of Z looks like this.
+
+00:02:23.000 --> 00:02:27.000
+So it goes smoothly from 0 up to 1.
+
+00:02:27.000 --> 00:02:30.000
+Let me label my axes here.
+
+00:02:30.000 --> 00:02:34.000
+This is 0. And it crosses the vertical axis at 0.5.
+
+00:02:34.000 --> 00:02:38.000
+So this is what sigmoid of Z looks like.
+
+00:02:38.000 --> 00:02:43.000
+And we're going to use Z to denote this quantity W transpose X plus B.
+
+00:02:43.000 --> 00:02:46.000
+Here's the formula for the sigmoid function.
+
+00:02:46.000 --> 00:02:52.000
+Sigmoid of Z, where Z is a real number, is 1 over 1 plus e to the negative Z.
+
+00:02:52.000 --> 00:02:54.000
+So notice a couple of things.
+
+00:02:54.000 --> 00:03:01.000
+If Z is very large, then e to the negative Z will be close to 0.
+
+00:03:01.000 --> 00:03:07.000
+So then sigmoid of Z will be approximately 1 over 1 plus something very close to 0
+
+00:03:07.000 --> 00:03:11.000
+because e to the negative of a very large number will be close to 0.
+
+00:03:11.000 --> 00:03:13.000
+So this is close to 1.
+
+00:03:13.000 --> 00:03:20.000
+And indeed, if you look on the plot on the left, if Z is very large, then sigmoid of Z is very close to 1.
+
+00:03:21.000 --> 00:03:27.000
+Conversely, if Z is very small or if it is a very large negative number,
+
+00:03:27.000 --> 00:03:39.550
+then sigmoid of Z becomes 1 over 1 plus e to the negative Z.
+
+00:03:39.550 --> 00:03:42.550
+And this becomes e to the huge number.
+
+00:03:42.550 --> 00:03:48.550
+So this becomes, you know, think of it as 1 over 1 plus a number that is very, very big.
+
+00:03:48.550 --> 00:03:56.450
+And so that's close to 0.
+
+00:03:56.450 --> 00:04:00.450
+And indeed, you see that as Z becomes a very large negative number,
+
+00:04:00.450 --> 00:04:03.450
+sigmoid of Z goes very close to 0.
+
+00:04:03.450 --> 00:04:09.450
+So when you implement logistic regression, your job is to try to learn parameters W and B
+
+00:04:09.450 --> 00:04:15.450
+so that Y hat becomes a good estimate of the chance of Y being equal to 1.
+
+00:04:15.450 --> 00:04:18.450
+Before moving on, just another note on the notation.
+
+00:04:18.450 --> 00:04:26.450
+When we program neural networks, we'll usually keep the parameter W and the parameter B separate,
+
+00:04:26.450 --> 00:04:29.450
+where here B corresponds to an interceptor.
+
+00:04:29.450 --> 00:04:34.450
+In some of the classes, you might have seen a notation that handles this differently.
+
+00:04:34.450 --> 00:04:41.450
+In some conventions, you define an extra feature called X0, and with that equal to 1.
+
+00:04:41.450 --> 00:04:53.450
+So then now X is in R of nX plus 1, and then you define Y hat to be equal to sigma of theta transpose X.
+
+00:04:53.450 --> 00:05:02.450
+In this alternative notational convention, you have a vector parameter theta, theta 0, theta 1, theta 2,
+
+00:05:02.450 --> 00:05:06.450
+down to theta nX.
+
+00:05:08.780 --> 00:05:17.780
+And so theta 0 plays a row of B, that's just a row number, and theta 1 down to theta nX plays a row of W.
+
+00:05:17.780 --> 00:05:25.780
+It turns out when you implement your neural network, it would be easier to just keep B and W as separate parameters.
+
+00:05:25.780 --> 00:05:31.780
+And so in this class, we will not use any of this notational convention that I just wrote in red.
+
+00:05:31.780 --> 00:05:35.780
+If you've not seen this notation before in other classes, don't worry about it.
+
+00:05:35.780 --> 00:05:43.780
+It's just that for those of you that have seen this notation, I wanted to mention explicitly that we're not using that notation in this course.
+
+00:05:43.780 --> 00:05:47.780
+But if you've not seen this before, it's not important and you don't need to worry about it.
+
+00:05:47.780 --> 00:05:51.780
+So you've now seen what the logistic regression model looks like.
+
+00:05:51.780 --> 00:05:56.780
+Next, to train the parameters W and B, you need to define a cost function.
+
+00:05:56.780 --> 00:05:58.780
+Let's do that in the next video.

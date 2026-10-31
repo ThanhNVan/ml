@@ -1,0 +1,618 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.480
+Vậy là bạn đã thấy các phương trình về cách
+
+00:00:02.480 --> 00:00:04.960
+triển khai định mức lô cho một lớp ẩn duy
+nhất.
+
+00:00:04.960 --> 00:00:08.560
+Hãy xem nó phù hợp như thế nào với việc đào
+tạo một mạng lưới sâu.
+
+00:00:08.560 --> 00:00:11.200
+Giả sử bạn có một neural network như thế
+này.
+
+00:00:11.200 --> 00:00:13.800
+Bạn đã từng thấy tôi nói trước đây rằng bạn có
+
+00:00:13.800 --> 00:00:16.400
+thể xem mỗi đơn vị ẩn như đang tính toán hai
+thứ.
+
+00:00:16.400 --> 00:00:21.920
+Đầu tiên, nó tính z và sau đó áp dụng
+activation function để tính a.
+
+00:00:23.280 --> 00:00:29.760
+Và vì vậy bạn có thể coi mỗi vòng tròn này đại
+diện cho một phép tính hai bước.
+
+00:00:30.960 --> 00:00:39.520
+Và tương tự cho lớp tiếp theo, đó là z2, 1 và
+a2, 1, v.v.
+
+00:00:39.520 --> 00:00:45.200
+Vì vậy, nếu bạn không áp dụng định mức lô, bạn
+sẽ
+
+00:00:45.200 --> 00:00:50.880
+có nguồn cấp dữ liệu x đầu vào vào lớp ẩn đầu
+tiên,
+
+00:00:50.880 --> 00:00:58.560
+rồi tính z1 trước tiên và điều này được điều
+chỉnh bởi các tham số w1 và b1.
+
+00:00:58.720 --> 00:01:04.960
+Và thông thường, bạn sẽ đưa z1 vào
+activation function để tính a1.
+
+00:01:04.960 --> 00:01:10.977
+Nhưng những gì chúng ta sẽ làm trong định mức
+lô là lấy giá trị
+
+00:01:10.977 --> 00:01:16.993
+z1 này và áp dụng định mức lô, đôi khi viết
+tắt là bn cho nó,
+
+00:01:16.993 --> 00:01:23.010
+và giá trị đó sẽ bị chi phối bởi các tham số
+beta1 và gamma1.
+
+00:01:23.730 --> 00:01:28.370
+Và điều này sẽ cung cấp cho bạn giá trị chuẩn
+hóa mới z1.
+
+00:01:28.370 --> 00:01:33.090
+Và sau đó bạn đưa nó vào activation function
+để
+
+00:01:33.090 --> 00:01:37.810
+nhận được a1, g1 được áp dụng cho z dấu ngã 1.
+
+00:01:38.370 --> 00:01:42.903
+Bây giờ bạn đã thực hiện tính toán cho lớp đầu
+tiên, trong đó bước
+
+00:01:42.903 --> 00:01:47.437
+định mức lô này thực sự xảy ra ở giữa quá
+trình tính toán từ z và
+
+00:01:47.437 --> 00:01:51.970
+a. Tiếp theo, bạn lấy giá trị này a1 và sử
+dụng nó để tính toán
+
+00:01:52.690 --> 00:01:57.143
+z2. Và bây giờ điều này được điều chỉnh bởi
+w2, b2. Và tương
+
+00:01:57.143 --> 00:02:01.597
+tự như những gì bạn đã làm cho lớp đầu tiên,
+bạn sẽ lấy z2 và
+
+00:02:01.597 --> 00:02:06.050
+áp dụng nó thông qua định mức lô, viết tắt là
+bn ngay bây giờ.
+
+00:02:06.690 --> 00:02:10.290
+Điều này bị chi phối bởi các tham số định mức
+lô
+
+00:02:10.290 --> 00:02:13.890
+cụ thể cho lớp tiếp theo, vì vậy beta2,
+gamma2.
+
+00:02:13.890 --> 00:02:19.917
+Và bây giờ, kết quả này cho bạn z dấu ngã 2,
+và bạn sử dụng nó để
+
+00:02:19.917 --> 00:02:25.943
+tính a2 bằng cách áp dụng activation function,
+v.v. Vì vậy, một lần
+
+00:02:25.943 --> 00:02:31.970
+nữa, loại bước định mức lô xảy ra giữa tính
+toán z và tính toán a.
+
+00:02:31.970 --> 00:02:36.743
+Và trực giác là thay vì sử dụng giá trị z
+không chuẩn hóa, bạn sẽ sử dụng giá
+
+00:02:36.743 --> 00:02:41.517
+trị z chuẩn hóa. Đó là ở lớp đầu tiên. Và lớp
+thứ hai cũng vậy, thay vì sử
+
+00:02:41.517 --> 00:02:46.290
+dụng giá trị không chuẩn hóa z2, bạn sẽ sử
+dụng giá trị trung bình và variance
+
+00:02:46.290 --> 00:02:55.570
+các giá trị được chuẩn hóa z dấu ngã 2. Vì
+vậy, các tham số mạng của bạn sẽ là w1, b1.
+
+00:02:56.210 --> 00:03:01.383
+Hóa ra chúng ta sẽ loại bỏ các tham số b,
+nhưng chúng ta sẽ biết lý do tại
+
+00:03:01.383 --> 00:03:06.557
+sao ở slide tiếp theo. Nhưng bây giờ, hãy
+tưởng tượng các tham số của bạn
+
+00:03:06.557 --> 00:03:11.730
+là w1, b1 đến wl, bl thông thường. Và chúng
+tôi đã thêm vào cái mới này
+
+00:03:11.730 --> 00:03:17.063
+mạng các tham số bổ sung beta1, gamma1, beta2,
+gamma2, v.v., bạn
+
+00:03:17.063 --> 00:03:22.397
+biết đấy, đối với mỗi lớp mà bạn đang áp dụng
+định mức lô. Để rõ
+
+00:03:22.397 --> 00:03:27.730
+ràng, hãy lưu ý rằng những bản beta này ở đây
+không có gì để
+
+00:03:27.730 --> 00:03:31.810
+thực hiện với phiên bản beta siêu tham số mà
+chúng tôi đã có để lấy đà
+
+00:03:31.810 --> 00:03:35.890
+hoặc để tính toán các mức trung bình có trọng
+số theo cấp số nhân khác
+
+00:03:35.890 --> 00:03:39.970
+nhau. Bạn biết đấy, các tác giả của bài báo
+Adam đã sử dụng phiên bản beta trong
+
+00:03:39.970 --> 00:03:43.917
+giấy để biểu thị siêu tham số đó. Các tác giả
+của bài báo định mức
+
+00:03:43.917 --> 00:03:47.863
+lô đã sử dụng beta để biểu thị thông số này.
+Nhưng đây là hai bản
+
+00:03:47.863 --> 00:03:51.810
+beta hoàn toàn khác nhau. Tôi quyết định gắn
+bó với phiên bản beta
+
+00:03:52.450 --> 00:03:57.223
+trong cả hai trường hợp, trong trường hợp bạn
+đọc các bài báo gốc,
+
+00:03:57.223 --> 00:04:01.997
+nhưng bản beta một, beta hai, v.v., định mức
+lô đó cố gắng học là
+
+00:04:01.997 --> 00:04:06.770
+một bản beta khác với bản beta siêu tham số
+được sử dụng trong đà
+
+00:04:07.730 --> 00:04:11.783
+và trong thuật toán chống đỡ Adam và RMS.
+Nhưng bây giờ đây
+
+00:04:11.783 --> 00:04:15.837
+là những tham số mới của thuật toán, bạn có
+thể sử dụng bất
+
+00:04:15.837 --> 00:04:19.890
+kỳ tối ưu hóa nào bạn muốn, chẳng hạn như
+gradient descent,
+
+00:04:19.890 --> 00:04:24.850
+để thực hiện nó. Vì vậy, ví dụ: bạn có thể
+tính toán D beta L
+
+00:04:24.850 --> 00:04:29.810
+cho một lớp nhất định, sau đó cập nhật các
+tham số beta được cập
+
+00:04:29.810 --> 00:04:34.770
+nhật dưới dạng beta trừ đi learning rate tập
+nhân với D beta L.
+
+00:04:36.210 --> 00:04:41.890
+Và bạn cũng có thể sử dụng giá trị hoặc động
+lượng của Adam hoặc RMS để cập nhật các
+
+00:04:41.890 --> 00:04:47.570
+tham số beta và gamma, chứ không chỉ
+gradient descent. Và mặc dù trong video trước,
+
+00:04:48.290 --> 00:04:52.797
+Tôi sẽ giải thích hoạt động định mức theo lô
+làm gì, tính toán giá
+
+00:04:52.797 --> 00:04:57.303
+trị trung bình và variance, trừ và chia cho
+chúng. Nếu bạn đang sử
+
+00:04:57.303 --> 00:05:01.810
+dụng khung lập trình deep learning, thông
+thường bạn sẽ không phải
+
+00:05:01.810 --> 00:05:07.530
+tự mình thực hiện bước định mức lô hoặc lớp
+định mức lô. Trong một số khung
+
+00:05:07.530 --> 00:05:13.250
+lập trình, nó có thể là một dòng mã. Vì vậy,
+ví dụ, trong khung TensorFlow,
+
+00:05:13.250 --> 00:05:16.890
+bạn có thể triển khai batch normalization với
+tình trạng rối loạn chức năng.
+
+00:05:16.890 --> 00:05:20.530
+Chúng ta sẽ nói nhiều hơn về các khung lập
+trình sau, nhưng trên thực tế, bạn có
+
+00:05:20.530 --> 00:05:24.170
+thể không cần phải tự mình triển khai tất cả
+các chi tiết này. Nhưng vẫn đáng để
+
+00:05:24.170 --> 00:05:27.810
+biết nó hoạt động như thế nào. Vì vậy bạn có
+thể có được một cuộc sống tốt hơn
+
+00:05:27.810 --> 00:05:31.330
+sự hiểu biết về những gì mã của bạn đang làm.
+Nhưng bạn biết
+
+00:05:31.330 --> 00:05:34.850
+đấy, việc triển khai định mức theo lô thường
+giống như một dòng
+
+00:05:34.850 --> 00:05:38.370
+mã trong khung deep learning. Hiện tại, chúng
+ta đã nói chuyện
+
+00:05:38.370 --> 00:05:42.103
+về định mức hàng loạt như thể bạn đang đào tạo
+trên toàn bộ trang web đào
+
+00:05:42.103 --> 00:05:45.837
+tạo của mình vào thời điểm đó, như thể bạn
+đang sử dụng phương pháp
+
+00:05:45.837 --> 00:05:49.570
+gradient descent hàng loạt. Trong thực tế,
+định mức lô thường được áp dụng với
+
+00:05:49.570 --> 00:05:54.050
+các lô nhỏ của training set của bạn. Vì vậy,
+cách bạn thực sự áp
+
+00:05:54.050 --> 00:05:58.530
+dụng định mức lô là lấy lô nhỏ đầu tiên của
+mình và tính Z1, giống
+
+00:05:58.530 --> 00:06:03.010
+như chúng ta đã làm trên slide trước bằng cách
+sử dụng tham số W1,
+
+00:06:03.730 --> 00:06:08.343
+B1. Sau đó, bạn lấy lô nhỏ công bằng này và
+tính giá trị
+
+00:06:08.343 --> 00:06:12.957
+trung bình và variance của Z1 trên lô nhỏ công
+bằng, sau đó
+
+00:06:12.957 --> 00:06:17.570
+định mức lô với phép trừ cho giá trị trung
+bình và chia cho
+
+00:06:17.570 --> 00:06:22.557
+bias chuẩn, sau đó thay đổi tỷ lệ theo beta 1,
+gamma 1 để cung cấp
+
+00:06:22.557 --> 00:06:27.543
+cho bạn Z1. Và tất cả những thứ này đều thuộc
+lô nhỏ đầu tiên, sau
+
+00:06:27.543 --> 00:06:32.530
+đó bạn áp dụng chức năng kích hoạt, bạn biết
+đấy, để nhận được A1.
+
+00:06:32.530 --> 00:06:38.130
+Ồ, sau đó bạn tính Z2 bằng cách sử dụng W2,
+B2,
+
+00:06:38.130 --> 00:06:43.730
+v.v. Vì vậy, bạn làm tất cả điều này để thực
+hiện
+
+00:06:44.370 --> 00:06:47.917
+một bước gradient descent cho lô nhỏ đầu tiên.
+Và sau đó
+
+00:06:47.917 --> 00:06:51.463
+bạn chuyển sang lô nhỏ thứ hai, X2, và bạn làm
+điều gì đó
+
+00:06:51.463 --> 00:06:55.010
+tương tự, đúng vậy, bây giờ bạn tính Z1 trên
+lô nhỏ thứ hai
+
+00:06:55.010 --> 00:06:59.970
+lô, sau đó sử dụng định mức lô để tính toán
+dấu ngã Z1. Và vì vậy, ở
+
+00:06:59.970 --> 00:07:04.930
+bước định mức lô này, bạn sẽ chuẩn hóa dấu ngã
+Z chỉ bằng cách sử
+
+00:07:04.930 --> 00:07:09.890
+dụng dữ liệu trong lô nhỏ thứ hai của mình. Vì
+vậy bước định mức lô này
+
+00:07:09.890 --> 00:07:13.890
+Dưới đây là xem xét các ví dụ trong lô nhỏ thứ
+hai của bạn, tính
+
+00:07:13.890 --> 00:07:17.890
+toán giá trị trung bình và variance của Z1 chỉ
+trên lô nhỏ đó,
+
+00:07:17.890 --> 00:07:21.890
+sau đó thay đổi tỷ lệ theo beta và gamma để có
+được dấu ngã Z,
+
+00:07:23.250 --> 00:07:27.703
+và vân vân. Và bạn làm điều này với đợt nhỏ
+thứ ba và tiếp
+
+00:07:27.703 --> 00:07:32.157
+tục luyện tập. Bây giờ, có một chi tiết về
+tham số hóa mà
+
+00:07:32.157 --> 00:07:36.610
+tôi muốn làm rõ, đó là trước đây tôi đã nói
+rằng các tham số
+
+00:07:36.610 --> 00:07:50.050
+là WL, BL cho mỗi lớp, cũng như beta L và
+gamma L. Bây giờ hãy chú ý rằng cách tính ZL
+
+00:07:50.050 --> 00:07:55.610
+như sau ZL bằng WL nhân A của L trừ một, cộng
+B
+
+00:07:55.610 --> 00:08:01.170
+của L. Nhưng định mức lô là gì thì nó sẽ diễn
+ra
+
+00:08:01.170 --> 00:08:05.223
+để xem xét lô nhỏ và chuẩn hóa ZL thành trước
+tiên có giá trị trung bình
+
+00:08:05.223 --> 00:08:09.277
+bằng 0 và variance tiêu chuẩn, sau đó chia tỷ
+lệ lại theo beta và gamma.
+
+00:08:09.277 --> 00:08:13.330
+Nhưng điều đó có nghĩa là bất kể giá trị của
+BL thực ra là bao nhiêu
+
+00:08:13.330 --> 00:08:17.410
+sắp bị trừ đi. Bởi vì trong bước chuẩn hóa
+định mức lô đó,
+
+00:08:17.410 --> 00:08:21.490
+bạn sẽ tính giá trị trung bình của ZL và trừ
+đi giá trị
+
+00:08:21.490 --> 00:08:25.570
+trung bình. Và do đó, việc thêm bất kỳ hằng số
+nào vào tất cả
+
+00:08:25.570 --> 00:08:29.250
+ví dụ trong một lô nhỏ, nó không thay đổi bất
+cứ điều gì vì bất kỳ
+
+00:08:29.250 --> 00:08:32.930
+hằng số nào bạn thêm vào sẽ bị loại bỏ bởi
+bước trừ trung bình. Vì
+
+00:08:32.930 --> 00:08:36.610
+vậy, nếu bạn đang sử dụng định mức theo lô,
+bạn thực sự có thể
+
+00:08:36.610 --> 00:08:45.570
+loại bỏ tham số đó hoặc nếu bạn muốn coi nó
+như đặt nó vĩnh viễn về 0. Vì vậy, tham
+
+00:08:45.570 --> 00:08:54.530
+số hóa trở thành ZL chỉ bằng WL nhân AL trừ
+một. Và sau đó bạn tính toán ZL chuẩn hóa.
+
+00:08:54.530 --> 00:09:01.170
+Và khi bạn tính dấu ngã Z bằng gamma ZL cộng
+
+00:09:01.170 --> 00:09:07.810
+với beta, bạn sẽ sử dụng tham số beta L này
+trong
+
+00:09:07.810 --> 00:09:10.730
+để quyết định ý nghĩa của Z dấu ngã L là gì,
+
+00:09:10.730 --> 00:09:13.650
+đó là giá trị được chuyển ở lớp tiếp theo.
+
+00:09:15.170 --> 00:09:20.263
+Vì vậy, chỉ để tóm tắt lại, bởi vì định mức lô
+bằng 0 giá trị trung
+
+00:09:20.263 --> 00:09:25.357
+bình của các giá trị ZL này trong lớp, nên
+việc có tham số BL này
+
+00:09:25.357 --> 00:09:30.450
+chẳng ích gì. Và vì vậy bạn cũng có thể thoát
+khỏi nó. Và thay vào đó,
+
+00:09:30.450 --> 00:09:34.930
+nó được thay thế bằng beta L, một tham số kiểm
+soát mà cuối cùng
+
+00:09:34.930 --> 00:09:39.410
+ảnh hưởng đến sự dịch chuyển hoặc các điều
+khoản sai lệch. Cuối
+
+00:09:39.410 --> 00:09:43.890
+cùng, hãy nhớ rằng kích thước của ZL, bởi vì
+nếu bạn đang thực hiện
+
+00:09:43.890 --> 00:09:49.010
+cái này trong một ví dụ, sẽ bằng nL một. Và
+
+00:09:49.010 --> 00:09:54.130
+do đó BL có thứ nguyên nL bằng một nếu nL là
+
+00:09:54.130 --> 00:10:01.770
+số đơn vị ẩn trong lớp L. Và do đó kích thước
+của beta L và gamma L cũng sẽ
+
+00:10:01.770 --> 00:10:09.410
+là nL một, bởi vì đó là số đơn vị ẩn bạn có,
+bạn có nL đơn vị ẩn. Và thế là
+
+00:10:09.970 --> 00:10:14.103
+beta L và gamma L được sử dụng để chia tỷ lệ
+giá trị trung bình và
+
+00:10:14.103 --> 00:10:18.237
+variance của từng đơn vị ẩn thành bất kỳ đơn
+vị nào mà mạng muốn đặt
+
+00:10:18.237 --> 00:10:22.370
+chúng thành. Vì vậy, hãy tập hợp tất cả lại
+với nhau và mô tả cách bạn có thể
+
+00:10:22.370 --> 00:10:27.517
+thực hiện gradient descent bằng cách sử dụng
+định mức hàng loạt. Giả
+
+00:10:27.517 --> 00:10:32.663
+sử bạn đang sử dụng phương pháp
+gradient descent hàng loạt nhỏ, bạn
+
+00:10:32.663 --> 00:10:37.810
+lặp lại với t bằng một với số lô nhỏ, bạn sẽ
+triển khai chuyển tiếp prop
+
+00:10:38.770 --> 00:10:47.730
+trên lô mini XT và thực hiện chuyển tiếp prop
+trong mỗi lớp ẩn, sử dụng định mức
+
+00:10:47.730 --> 00:10:56.690
+lô để thay thế ZL bằng Z thành L. Và do đó,
+điều này đảm bảo rằng trong lô nhỏ đó,
+
+00:10:57.650 --> 00:11:03.090
+giá trị Z kết thúc với một số giá trị trung
+bình và variance chuẩn
+
+00:11:03.090 --> 00:11:08.530
+hóa và các giá trị và phiên bản có giá trị
+trung bình và variance
+
+00:11:08.530 --> 00:11:13.970
+chuẩn hóa là Z này đến L. Và sau đó bạn sử
+dụng back prop để tính toán
+
+00:11:15.810 --> 00:11:21.290
+DW, DB cho tất cả các giá trị L, D beta, D
+gamma.
+
+00:11:21.290 --> 00:11:26.770
+Mặc dù về mặt kỹ thuật, vì chúng ta đã loại bỏ
+B,
+
+00:11:26.850 --> 00:11:33.543
+điều này thực sự bây giờ đã biến mất. Và cuối
+cùng, bạn cập nhật các thông số. Vì
+
+00:11:33.543 --> 00:11:40.237
+vậy, bạn biết đấy, W được cập nhật dưới dạng W
+trừ đi số lần learning rate tập,
+
+00:11:40.237 --> 00:11:46.930
+như thường lệ beta được cập nhật dưới dạng
+beta trừ đi số lần learning rate tập
+
+00:11:46.930 --> 00:11:51.730
+DB và tương tự cho gamma. Và nếu bạn đã tính
+toán độ dốc như sau, bạn có
+
+00:11:51.730 --> 00:11:56.530
+thể sử dụng phương pháp gradient descent. Đó
+là những gì tôi đã viết ra ở
+
+00:11:56.530 --> 00:12:01.330
+đây. Nhưng điều này cũng có tác dụng với
+gradient descent theo động lượng
+
+00:12:02.290 --> 00:12:07.330
+hoặc RMS prop hoặc Adam, trong đó thay vì thực
+hiện bản cập nhật
+
+00:12:07.330 --> 00:12:12.370
+gradient descent này, bạn có thể sử dụng các
+bản cập nhật do các thuật toán
+
+00:12:12.370 --> 00:12:17.410
+khác này cung cấp, như chúng ta đã thảo luận
+trong các video của tuần trước. Vậy những cái
+khác
+
+00:12:17.410 --> 00:12:21.170
+Các thuật toán tối ưu hóa cũng có thể được sử
+dụng để cập nhật các tham số beta và
+
+00:12:21.170 --> 00:12:24.930
+gamma mà định mức hàng loạt được thêm vào
+thuật toán của bạn. Vì vậy, tôi hy vọng
+
+00:12:24.930 --> 00:12:28.690
+điều đó mang lại cho bạn cảm giác về cách bạn
+có thể triển khai định mức theo lô
+
+00:12:28.690 --> 00:12:32.190
+từ đầu nếu bạn muốn. Nếu bạn đang sử dụng một
+trong các khung lập trình
+
+00:12:32.190 --> 00:12:35.690
+deep learning mà chúng ta sẽ nói nhiều hơn
+sau, hy vọng bạn có thể gọi
+
+00:12:35.690 --> 00:12:39.190
+cách triển khai của người khác trong khung lập
+trình, điều này sẽ giúp
+
+00:12:39.190 --> 00:12:42.690
+việc sử dụng định mức hàng loạt dễ dàng hơn
+nhiều. Bây giờ trong trường hợp lô
+
+00:12:42.770 --> 00:12:46.237
+Định mức vẫn có vẻ hơi bí ẩn, nếu bạn vẫn chưa
+hiểu rõ tại sao
+
+00:12:46.237 --> 00:12:49.703
+nó lại tăng tốc độ luyện tập nhanh đến vậy,
+hãy chuyển sang
+
+00:12:49.703 --> 00:12:53.170
+video tiếp theo và nói thêm về lý do tại sao
+định mức theo đợt
+
+00:12:53.170 --> 00:12:55.490
+thực sự hoạt động và những gì nó thực sự đang
+làm.

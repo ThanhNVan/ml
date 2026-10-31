@@ -1,0 +1,222 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.130 --> 00:00:08.130
+Welcome back. In this week, we'll learn to make linear regression much faster and much more powerful.
+
+00:00:08.130 --> 00:00:13.130
+And by the end of this week, you'll be two thirds of the way to finishing this first course.
+
+00:00:13.130 --> 00:00:21.130
+Let's start by looking at a version of linear regression that can look at not just one feature, but a lot of different features.
+
+00:00:21.130 --> 00:00:22.130
+Let's take a look.
+
+00:00:23.130 --> 00:00:31.130
+In the original version of linear regression, you had a single feature x, the size of the hulls,
+
+00:00:31.130 --> 00:00:35.130
+and you're able to predict y, the price of the hulls.
+
+00:00:35.130 --> 00:00:42.130
+So the model was f wb of x equals wx plus b.
+
+00:00:43.130 --> 00:00:49.130
+But now what if you did not only have the size of the hulls as a feature with which to try to predict the price.
+
+00:00:49.130 --> 00:00:56.130
+But if you also knew the number of bedrooms, the number of floors, and the age of the home in years,
+
+00:00:56.130 --> 00:01:01.130
+it seems like this would give you a lot more information with which to predict the price.
+
+00:01:01.130 --> 00:01:13.130
+To introduce a little bit of new notation, we're going to use the variables x subscript 1, x subscript 2, x subscript 3, and x subscript 4 to denote the four features.
+
+00:01:13.130 --> 00:01:18.130
+And for simplicity, let's introduce a little bit more notation.
+
+00:01:18.130 --> 00:01:26.130
+We'll write x subscript j, or sometimes I'll just say for short x sub j to represent the list of features.
+
+00:01:26.130 --> 00:01:31.130
+So here j will go from 1 through 4 because we have four features.
+
+00:01:31.130 --> 00:01:37.130
+I'm going to use lowercase n to denote the total number of features.
+
+00:01:37.130 --> 00:01:40.130
+So in this example, n is equal to 4.
+
+00:01:40.130 --> 00:01:48.130
+As before, we'll use x superscript i to denote the i-th training example.
+
+00:01:48.130 --> 00:01:55.130
+So here, x superscript i is actually going to be a list of four numbers.
+
+00:01:55.130 --> 00:02:04.130
+Or sometimes we'll call this a vector that includes all the features of the i-th training example.
+
+00:02:04.130 --> 00:02:15.130
+So as a concrete example, x superscript in parentheses 2 will be a vector of the features for the second training example.
+
+00:02:15.130 --> 00:02:20.130
+So it will equal to this 1, 4, 1, 6, 3, 2, and 40.
+
+00:02:20.130 --> 00:02:28.130
+And technically, I'm writing these numbers in a row, so sometimes this is called a row vector rather than a column vector.
+
+00:02:28.130 --> 00:02:31.130
+But if you don't know what the difference is, don't worry about it.
+
+00:02:31.130 --> 00:02:34.130
+It's not that important for this purpose.
+
+00:02:34.130 --> 00:02:45.130
+And to refer to a specific feature in the i-th training example, I will write x superscript i subscript j.
+
+00:02:45.130 --> 00:02:56.130
+So for example, x superscript 2 subscript 3 will be the value of the third feature, that is the number of floors in the second training example.
+
+00:02:56.130 --> 00:03:00.130
+And so that's going to be equal to 2.
+
+00:03:00.130 --> 00:03:08.130
+Sometimes in order to emphasize that this x2 is not a number, but it's actually a list of numbers that is a vector,
+
+00:03:08.130 --> 00:03:16.130
+we'll draw an arrow on top of that just to visually show that is a vector.
+
+00:03:16.130 --> 00:03:18.130
+And over here as well.
+
+00:03:18.130 --> 00:03:22.130
+But you don't have to draw this arrow in your notation.
+
+00:03:22.130 --> 00:03:31.130
+You can think of the arrow as an optional signifier that sometimes use just to emphasize that this is a vector and not a number.
+
+00:03:31.130 --> 00:03:36.130
+Now that we have multiple features, let's take a look at what a model would look like.
+
+00:03:36.130 --> 00:03:43.130
+Previously, this is how we defined the model, where x was a single feature, so a single number.
+
+00:03:43.130 --> 00:03:48.130
+But now with multiple features, we're going to define it differently.
+
+00:03:48.130 --> 00:04:02.130
+Instead, the model will be f wb of x equals w1 x1 plus w2 x2 plus w3 x3 plus w4 x4 plus b.
+
+00:04:02.130 --> 00:04:15.130
+Concretely, for housing price prediction, one possible model may be that we estimate the price of the hulls as 0.1 times x1, the size of the hulls,
+
+00:04:15.130 --> 00:04:27.130
+plus 4 times x2, the number of bedrooms, plus 10 times x3, the number of floors, minus 2 times x4, the age of the hulls in years, plus 80.
+
+00:04:27.130 --> 00:04:31.130
+Let's think a bit about how you might interpret these parameters.
+
+00:04:31.130 --> 00:04:36.130
+If the model is trying to predict the price of the hulls in thousands of dollars,
+
+00:04:36.130 --> 00:04:49.130
+you can think of this b equals 80 as saying that the base price of a hulls starts off at maybe $80,000, assuming it has no size, no bedrooms, no floor, and no age.
+
+00:04:49.130 --> 00:05:02.130
+And you can think of this 0.1 as saying that maybe for every additional square foot, the price will increase by $0.1000 or by $100,
+
+00:05:02.130 --> 00:05:12.130
+because we're saying that for each square foot, the price increases by 0.1, you know, times $1000, which is $100.
+
+00:05:12.130 --> 00:05:22.130
+And maybe for each additional bathroom, the price increases by $4000, and for each additional floor, the price may increase by $10,000.
+
+00:05:22.130 --> 00:05:31.130
+And for each additional year of the hulls' age, the price may decrease by $2000 because the parameter is negative 2.
+
+00:05:31.130 --> 00:05:38.130
+And in general, if you have n features, then the model will look like this.
+
+00:05:38.130 --> 00:05:44.820
+Here again is the definition of the model with n features.
+
+00:05:44.820 --> 00:05:51.820
+What we're going to do next is introduce a little bit of notation to rewrite this expression in a simpler but equivalent way.
+
+00:05:52.820 --> 00:06:01.820
+Let's define w as a list of numbers that list the parameters w1, w2, w3, all the way through wn.
+
+00:06:01.820 --> 00:06:04.820
+In mathematics, this is called a vector.
+
+00:06:04.820 --> 00:06:12.820
+And sometimes to designate that this is a vector, which just means a list of numbers, I'm going to draw a little arrow on top.
+
+00:06:12.820 --> 00:06:18.820
+You don't always have to draw this arrow, and you can do so or not in your own notation.
+
+00:06:19.820 --> 00:06:25.820
+So you can think of this little arrow as just an optional signifier to remind us that this is a vector.
+
+00:06:25.820 --> 00:06:33.820
+If you've taken a linear algebra class before, you might recognize that this is a row vector as opposed to a column vector.
+
+00:06:33.820 --> 00:06:37.820
+But if you don't know what those terms mean, you don't need to worry about it.
+
+00:06:37.820 --> 00:06:42.820
+Next, same as before, b is a single number, not a vector.
+
+00:06:42.820 --> 00:06:50.820
+And so this vector w, together with this number b, are the parameters of the model.
+
+00:06:51.820 --> 00:07:03.820
+Let me also write x as a list or a vector, again, a row vector, that lists all of the features x1, x2, x3 up through xn.
+
+00:07:04.820 --> 00:07:12.820
+This is again a vector, so I'm going to add a little arrow up on top to signify.
+
+00:07:12.820 --> 00:07:28.820
+So in the notation up on top, we can also add little arrows here and here to signify that that w and that x are actually these lists of numbers that are actually these vectors.
+
+00:07:29.820 --> 00:07:49.820
+So with this notation, the model can now be rewritten more succinctly as f of x equals the vector w dot, and this dot refers to a dot product from linear algebra, of x the vector plus the number b.
+
+00:07:49.820 --> 00:07:52.820
+So what does this dot product mean?
+
+00:07:52.820 --> 00:08:21.820
+Well, the dot product of two vectors of two lists of numbers, w and x, is computed by taking the corresponding pairs of numbers, w1 and x1, multiplying that, w2, x2, multiplying that, w3, x3, multiplying that, all the way up to wn, xn, multiplying that, and then summing up all of these products.
+
+00:08:23.820 --> 00:08:45.820
+Writing that out, this means that the dot product is equal to w1, x1 plus w2, x2 plus w3, x3 plus all the way up to wn, xn, and then finally we add back in the b on top.
+
+00:08:45.820 --> 00:08:52.140
+And you notice that this gives us exactly the same expression as we had on top.
+
+00:08:53.140 --> 00:09:01.140
+So the dot product notation lets you write the model in a more compact form, with fewer characters.
+
+00:09:01.140 --> 00:09:08.140
+The name for this type of linear regression model with multiple input features is multiple linear regression.
+
+00:09:08.140 --> 00:09:13.140
+This is in contrast to univariate regression, which had just one feature.
+
+00:09:13.140 --> 00:09:23.140
+And by the way, you might think this algorithm is called multivariate regression, but that term actually refers to something else that we won't be using here.
+
+00:09:23.140 --> 00:09:27.140
+So I'm going to refer to this model as multiple linear regression.
+
+00:09:27.140 --> 00:09:34.140
+And so that's it for linear regression with multiple features, which is also called multiple linear regression.
+
+00:09:35.140 --> 00:09:45.140
+In order to implement this, there's a really neat trick called vectorization, which will make it much simpler to implement this and many other learning algorithms.
+
+00:09:45.140 --> 00:09:50.140
+Let's go on to the next video to take a look at what is vectorization.

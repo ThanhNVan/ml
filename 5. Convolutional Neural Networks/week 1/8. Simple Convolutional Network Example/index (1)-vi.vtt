@@ -1,0 +1,461 @@
+WEBVTT
+
+1
+00:00:00.252 --> 00:00:04.029
+Trong video cuối cùng, bạn đã thấy các khối xây dựng của một lớp duy nhất,
+
+2
+00:00:04.029 --> 00:00:06.721
+của một lớp convolution duy nhất trong ConvNet.
+
+3
+00:00:06.721 --> 00:00:12.339
+Bây giờ chúng ta hãy đi qua một ví dụ cụ thể về một neural network phức tạp sâu.
+
+4
+00:00:12.339 --> 00:00:15.876
+Và điều này sẽ cung cấp cho bạn một số thực hành với ký hiệu mà chúng tôi giới thiệu về
+
+5
+00:00:15.876 --> 00:00:17.373
+phía cuối của video cuối cùng là tốt.
+
+6
+00:00:19.648 --> 00:00:22.203
+Giả sử bạn có một hình ảnh, và
+
+7
+00:00:22.203 --> 00:00:26.959
+bạn muốn thực hiện classification hình ảnh, hoặc nhận dạng hình ảnh.
+
+8
+00:00:26.959 --> 00:00:31.745
+Nơi bạn muốn lấy như đầu vào một hình ảnh, x, và quyết định này là một con mèo hay không, 0 hoặc
+
+9
+00:00:31.745 --> 00:00:34.254
+1, vì vậy nó là một vấn đề classification.
+
+10
+00:00:34.254 --> 00:00:38.626
+Hãy xây dựng một ví dụ về một ConvNet bạn có thể sử dụng cho nhiệm vụ này.
+
+11
+00:00:38.626 --> 00:00:42.943
+Vì lợi ích của ví dụ này, tôi sẽ sử dụng một hình ảnh khá nhỏ.
+
+12
+00:00:42.943 --> 00:00:48.499
+Giả sử hình ảnh này là 39 x 39 x 3.
+
+13
+00:00:48.499 --> 00:00:51.529
+Sự lựa chọn này chỉ làm cho một số con số hoạt động tốt hơn một chút.
+
+14
+00:00:51.529 --> 00:00:57.470
+Và như vậy, nH trong lớp 0 sẽ bằng nw
+
+15
+00:00:57.470 --> 00:01:00.581
+chiều cao và chiều rộng bằng 39 và
+
+16
+00:01:00.581 --> 00:01:06.532
+số kênh và lớp 0 bằng 3.
+
+17
+00:01:06.532 --> 00:01:11.906
+Giả sử lớp đầu tiên sử dụng một tập hợp các bộ lọc 3 bởi 3
+
+18
+00:01:11.906 --> 00:01:16.924
+để phát hiện các feature, vì vậy f = 3 hoặc thực sự f1 = 3,
+
+19
+00:01:16.924 --> 00:01:20.992
+bởi vì chúng ta đang sử dụng một quá trình 3 bởi 3.
+
+20
+00:01:20.992 --> 00:01:26.871
+Và chúng ta hãy nói rằng chúng ta đang sử dụng một sải chân của 1, và không có padding.
+
+21
+00:01:26.871 --> 00:01:32.641
+Vì vậy, sử dụng một convolution tương tự, và chúng ta hãy nói rằng bạn có 10 bộ lọc.
+
+22
+00:01:34.632 --> 00:01:38.779
+Sau đó, các kích hoạt trong lớp tiếp theo
+
+23
+00:01:38.779 --> 00:01:43.755
+của mạng trung tính sẽ là 37 x 37 x 10, và
+
+24
+00:01:43.755 --> 00:01:49.335
+10 này xuất phát từ thực tế là bạn sử dụng 10 bộ lọc.
+
+25
+00:01:49.335 --> 00:01:54.735
+Và 37 xuất phát từ công thức này
+
+26
+00:01:54.735 --> 00:01:58.739
+n + 2p- f trên s + 1.
+
+27
+00:01:58.739 --> 00:02:03.919
+Đúng, sau đó tôi đoán bạn có 39
+
+28
+00:02:03.919 --> 00:02:10.401
++ 0- 3 trên 1 + 1 đó là = đến 37.
+
+29
+00:02:10.401 --> 00:02:15.006
+Vì vậy, đó là lý do tại sao đầu ra là 37 x 37, nó là một convolution hợp lệ và
+
+30
+00:02:15.006 --> 00:02:17.590
+đó là kích thước đầu ra.
+
+31
+00:02:17.590 --> 00:02:25.029
+Vì vậy, trong ký hiệu của chúng tôi, bạn sẽ có nh [1] = nw [1] = 37 và
+
+32
+00:02:25.029 --> 00:02:30.126
+nc [1] = 10, do đó nc [1] cũng bằng
+
+33
+00:02:30.126 --> 00:02:36.240
+với số lượng các bộ lọc từ lớp đầu tiên.
+
+34
+00:02:36.240 --> 00:02:42.040
+Và vì vậy điều này trở thành kích thước của sự kích hoạt ở lớp đầu tiên.
+
+35
+00:02:43.300 --> 00:02:45.980
+Giả sử bây giờ bạn có một lớp cuộn tròn khác và
+
+36
+00:02:45.980 --> 00:02:48.900
+giả sử lần này bạn sử dụng 5 bởi 5 bộ lọc.
+
+37
+00:02:48.900 --> 00:02:54.996
+Vì vậy, trong ký hiệu của chúng tôi f [2] tại neural network tiếp theo = 5,
+
+38
+00:02:54.996 --> 00:02:59.231
+và chúng ta hãy sử dụng một sải bước của 2 lần này.
+
+39
+00:02:59.231 --> 00:03:03.922
+Và có lẽ bạn không có đệm và
+
+40
+00:03:03.922 --> 00:03:07.060
+nói, 20 bộ lọc.
+
+41
+00:03:09.370 --> 00:03:15.933
+Vì vậy, sau đó đầu ra của điều này sẽ là một khối lượng khác,
+
+42
+00:03:15.933 --> 00:03:20.946
+lần này nó sẽ là 17 x 17 x 20.
+
+43
+00:03:20.946 --> 00:03:23.866
+Chú ý rằng, bởi vì bây giờ bạn đang sử dụng một bước chân của 2,
+
+44
+00:03:23.866 --> 00:03:25.926
+kích thước đã thu hẹp nhanh hơn nhiều.
+
+45
+00:03:25.926 --> 00:03:32.800
+37 x 37 đã đi xuống trong kích thước bởi một chút hơn một yếu tố của 2, đến 17 x 17.
+
+46
+00:03:32.800 --> 00:03:37.554
+Và bởi vì bạn đang sử dụng 20 bộ lọc, số lượng kênh bây giờ là 20.
+
+47
+00:03:37.554 --> 00:03:42.167
+Vì vậy, đó là kích hoạt a2
+
+48
+00:03:42.167 --> 00:03:46.971
+sẽ là kích thước đó và vì vậy
+
+49
+00:03:46.971 --> 00:03:52.160
+nh [2] = nw [2] = 17 và
+
+50
+00:03:52.160 --> 00:03:55.247
+nc [2] = 20.
+
+51
+00:03:55.247 --> 00:03:58.180
+Được rồi, chúng ta hãy áp dụng một lớp cuộn tròn cuối cùng.
+
+52
+00:03:58.180 --> 00:04:04.071
+Vì vậy, chúng ta hãy nói rằng bạn sử dụng một bộ lọc 5 bởi 5 một lần nữa,
+
+53
+00:04:04.071 --> 00:04:07.390
+và một lần nữa, một sải bước của 2.
+
+54
+00:04:07.390 --> 00:04:13.681
+Vì vậy, nếu bạn làm điều đó, tôi sẽ bỏ qua toán học, nhưng bạn kết thúc với một 7 x 7, và
+
+55
+00:04:13.681 --> 00:04:19.251
+giả sử bạn sử dụng 40 bộ lọc, không đệm, 40 bộ lọc.
+
+56
+00:04:19.251 --> 00:04:22.760
+Bạn kết thúc với 7 x 7 x 40.
+
+57
+00:04:22.760 --> 00:04:27.860
+Vì vậy, bây giờ những gì bạn đã làm được lấy
+
+58
+00:04:29.380 --> 00:04:34.810
+hình ảnh đầu vào 39 x 39 x 3 của bạn và tính toán các feature 7 x 7 x 40 của bạn cho hình ảnh này.
+
+59
+00:04:34.810 --> 00:04:41.075
+Và cuối cùng, những gì thường được thực hiện là nếu bạn dùng 7 x 7 x 40,
+
+60
+00:04:41.075 --> 00:04:45.137
+7 lần 7 lần 40 thực sự là 1,960.
+
+61
+00:04:45.137 --> 00:04:50.888
+Và vì vậy những gì chúng ta có thể làm là lấy khối lượng này và làm phẳng nó hoặc
+
+62
+00:04:50.888 --> 00:04:55.901
+mở nó ra chỉ 1,960 đơn vị, đúng không?
+
+63
+00:04:55.901 --> 00:04:59.347
+Chỉ cần làm phẳng nó ra thành một vector, và
+
+64
+00:04:59.347 --> 00:05:05.283
+sau đó cho nó vào một đơn vị logistic regression, hoặc một đơn vị softmax.
+
+65
+00:05:07.917 --> 00:05:11.682
+Tùy thuộc vào việc bạn đang cố gắng để nhận ra hoặc
+
+66
+00:05:11.682 --> 00:05:15.150
+cố gắng để nhận ra bất kỳ một trong những đối tượng quan trọng khác nhau và
+
+67
+00:05:15.150 --> 00:05:19.900
+sau đó chỉ cần có điều này cung cấp cho đầu ra dự đoán cuối cùng cho neural network.
+
+68
+00:05:20.925 --> 00:05:26.520
+Vì vậy, chỉ cần rõ ràng, bước cuối cùng này chỉ là lấy tất cả những con số này,
+
+69
+00:05:26.520 --> 00:05:32.222
+tất cả 1,960 con số, và mở chúng thành một vector rất dài.
+
+70
+00:05:32.222 --> 00:05:36.483
+Vì vậy, sau đó bạn chỉ cần có một vector dài mà bạn có thể nạp vào softmax cho đến khi nó chỉ là
+
+71
+00:05:36.483 --> 00:05:39.770
+một regression để thực hiện dự đoán cho đầu ra cuối cùng.
+
+72
+00:05:41.600 --> 00:05:46.125
+Vì vậy, đây sẽ là một ví dụ khá điển hình của một ConvNet.
+
+73
+00:05:47.380 --> 00:05:51.187
+Rất nhiều công việc trong việc thiết kế neural network cuộn tròn là chọn các
+
+74
+00:05:51.187 --> 00:05:54.880
+siêu tham số như thế này, quyết định tổng kích thước là bao nhiêu?
+
+75
+00:05:54.880 --> 00:05:55.840
+Sải bước là gì?
+
+76
+00:05:55.840 --> 00:05:58.860
+Padding là gì và có bao nhiêu bộ lọc được sử dụng?
+
+77
+00:06:00.190 --> 00:06:03.980
+Và cả hai cuối tuần này cũng như tuần tới, chúng tôi sẽ đưa ra một số gợi ý và
+
+78
+00:06:03.980 --> 00:06:07.440
+một số hướng dẫn về cách đưa ra những lựa chọn này.
+
+79
+00:06:07.440 --> 00:06:12.510
+Nhưng bây giờ, có lẽ một điều cần tránh là khi bạn đi
+
+80
+00:06:12.510 --> 00:06:17.950
+sâu hơn trong một neural network, thông thường bạn bắt đầu với những hình ảnh lớn hơn, 39 đến 39.
+
+81
+00:06:17.950 --> 00:06:21.202
+Và sau đó chiều cao và chiều rộng sẽ giữ nguyên
+
+82
+00:06:21.202 --> 00:06:25.859
+trong một thời gian và dần dần đi xuống khi bạn đi sâu hơn trong neural network.
+
+83
+00:06:25.859 --> 00:06:29.663
+Nó đã biến mất từ 39 đến 37 đến 17 đến 14.
+
+84
+00:06:29.663 --> 00:06:33.961
+Xin lỗi, nó đã biến mất từ 39 đến 37 đến 17 đến 7.
+
+85
+00:06:33.961 --> 00:06:36.753
+Trong khi đó số lượng các kênh thường sẽ tăng lên.
+
+86
+00:06:36.753 --> 00:06:41.412
+Nó đã đi từ 3 đến 10 đến 20 đến 40, và bạn thấy
+
+87
+00:06:41.412 --> 00:06:45.930
+xu hướng chung này trong rất nhiều neural network cuộn tròn khác.
+
+88
+00:06:47.060 --> 00:06:52.576
+Vì vậy, chúng tôi sẽ nhận được nhiều hướng dẫn hơn về cách thiết kế các thông số này trong các video sau này.
+
+89
+00:06:52.576 --> 00:06:57.196
+Nhưng bây giờ bạn đã thấy ví dụ đầu tiên của bạn về một neural network cuộn tròn, hoặc
+
+90
+00:06:57.196 --> 00:06:59.210
+một ConvNet nói ngắn gọn.
+
+91
+00:06:59.210 --> 00:07:00.770
+Vì vậy, chúc mừng về điều đó.
+
+92
+00:07:02.050 --> 00:07:05.500
+Và nó chỉ ra rằng trong một ConvNet điển hình,
+
+93
+00:07:05.500 --> 00:07:07.870
+thường có ba loại lớp.
+
+94
+00:07:07.870 --> 00:07:13.615
+Một là lớp convolutional, và thường chúng ta sẽ biểu thị rằng như là một lớp Conv.
+
+95
+00:07:13.615 --> 00:07:17.025
+Và đó là những gì chúng tôi đã sử dụng trong mạng lưới trước đó.
+
+96
+00:07:17.025 --> 00:07:20.893
+Nó chỉ ra rằng có hai loại lớp phổ biến khác mà bạn
+
+97
+00:07:20.893 --> 00:07:23.945
+chưa xem nhưng chúng ta sẽ nói về trong vài video tiếp theo.
+
+98
+00:07:23.945 --> 00:07:28.272
+Một được gọi là một lớp tổng hợp, thường tôi sẽ gọi hồ bơi này.
+
+99
+00:07:28.272 --> 00:07:32.241
+Và sau đó là một lớp kết nối hoàn toàn được gọi là FC.
+
+100
+00:07:32.241 --> 00:07:36.466
+Và mặc dù nó có thể thiết kế một neural network khá tốt chỉ sử dụng các
+
+101
+00:07:36.466 --> 00:07:41.278
+lớp convolutional, hầu hết các kiến trúc neural network cũng sẽ có một vài
+
+102
+00:07:41.278 --> 00:07:43.569
+lớp tổng hợp và một vài lớp kết nối hoàn toàn.
+
+103
+00:07:46.398 --> 00:07:48.103
+May mắn thay các lớp tổng hợp và các
+
+104
+00:07:48.103 --> 00:07:52.340
+lớp kết nối hoàn toàn đơn giản hơn một chút so với các lớp convolutional để xác định.
+
+105
+00:07:54.150 --> 00:07:58.472
+Vì vậy, chúng tôi sẽ làm điều đó một cách nhanh chóng trong hai video tiếp theo và sau đó bạn có cảm giác
+
+106
+00:07:58.472 --> 00:08:03.173
+về tất cả các loại lớp phổ biến nhất trong một neural network cuộn tròn.
+
+107
+00:08:03.173 --> 00:08:06.725
+Và bạn sẽ tập hợp các mạng lưới mạnh mẽ hơn so với mạng lưới chúng ta
+
+108
+00:08:06.725 --> 00:08:07.290
+vừa thấy.
+
+109
+00:08:08.990 --> 00:08:14.110
+Vì vậy, chúc mừng một lần nữa khi nhìn thấy neural network convolutional đầy đủ đầu tiên của bạn.
+
+110
+00:08:14.110 --> 00:08:18.450
+Chúng tôi cũng sẽ nói chuyện sau trong tuần này về cách đào tạo các mạng này, nhưng
+
+111
+00:08:18.450 --> 00:08:22.180
+trước tiên chúng ta hãy nói ngắn gọn về việc tổng hợp và các lớp kết nối hoàn toàn.
+
+112
+00:08:22.180 --> 00:08:24.659
+Và sau đó đào tạo những thứ này, chúng tôi sẽ sử dụng sự truyền bá trở lại,
+
+113
+00:08:24.659 --> 00:08:26.241
+mà bạn đã quen thuộc.
+
+114
+00:08:26.241 --> 00:08:30.421
+Nhưng trong video tiếp theo, chúng ta hãy nhanh chóng đi qua làm thế nào để thực hiện một lớp tổng hợp cho
+
+115
+00:08:30.421 --> 00:08:31.230
+ConvNet của bạn.

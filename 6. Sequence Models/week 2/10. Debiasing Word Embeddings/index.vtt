@@ -1,0 +1,438 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.430 --> 00:00:06.310
+Machine learning and AI algorithms are increasingly trusted to help with or to make extremely
+
+00:00:06.310 --> 00:00:07.310
+important decisions.
+
+00:00:07.310 --> 00:00:12.510
+And so we'd like to make sure that as much as possible, that they're free of undesirable
+
+00:00:12.510 --> 00:00:16.630
+forms of bias, such as gender bias, ethnicity bias, and so on.
+
+00:00:16.630 --> 00:00:21.590
+What I want to do in this video is show you some of the ideas for diminishing or eliminating
+
+00:00:21.590 --> 00:00:24.470
+these forms of bias in word embeddings.
+
+00:00:24.470 --> 00:00:29.070
+When I use the term bias in this video, I don't mean the bias variance sense, the
+
+00:00:29.070 --> 00:00:33.950
+bias, instead I mean gender, ethnicity, sexual orientation bias.
+
+00:00:33.950 --> 00:00:38.830
+There's a different sense of bias than is typically used in the technical discussion
+
+00:00:38.830 --> 00:00:40.390
+on machine learning.
+
+00:00:40.390 --> 00:00:45.470
+But to motivate the problem, we talked about how word embeddings can learn analogies like
+
+00:00:45.470 --> 00:00:47.750
+man is the woman, the skin is the queen.
+
+00:00:47.750 --> 00:00:52.950
+But what if you ask it, man is the computer programmer as woman is the what?
+
+00:00:52.950 --> 00:01:00.750
+And so the authors of this paper, Toga Bulabasi, Kai Weichang, James Zhou, Van Kitech, Sally
+
+00:01:00.750 --> 00:01:05.990
+Grammer, and Adam Kallai found this somewhat horrifying result where a learned word embedding
+
+00:01:05.990 --> 00:01:11.310
+might output man is the computer programmer as woman is to homemaker.
+
+00:01:11.310 --> 00:01:17.590
+And that just seems wrong and it enforces a very unhealthy gender stereotype.
+
+00:01:17.590 --> 00:01:21.110
+And be much more preferable to have the algorithm output, man is the computer programmer
+
+00:01:21.110 --> 00:01:23.230
+as woman is the computer programmer.
+
+00:01:23.230 --> 00:01:27.830
+And they found also father is the doctor as mother is the what.
+
+00:01:27.830 --> 00:01:32.990
+And the really unfortunate result is that some learned word embeddings will output mother
+
+00:01:32.990 --> 00:01:34.650
+is the nurse.
+
+00:01:34.650 --> 00:01:39.670
+So word embeddings can reflect the gender, ethnicity, age, sexual orientation, and other
+
+00:01:39.670 --> 00:01:43.110
+biases of the text used to train the model.
+
+00:01:43.110 --> 00:01:48.630
+One that I'm especially passionate about is bias relating to social economic status.
+
+00:01:48.630 --> 00:01:53.150
+I think that every person, whether you come from a wealthy family or a low income family
+
+00:01:53.150 --> 00:01:57.950
+or anywhere in between, I think everyone should have great opportunities.
+
+00:01:57.950 --> 00:02:03.670
+And because machine learning algorithms are being used to make very important decisions,
+
+00:02:03.670 --> 00:02:08.470
+they're influencing everything ranging from college admissions to the way people find
+
+00:02:08.470 --> 00:02:14.630
+jobs to loan applications, whether your application for a loan gets approved to in the criminal
+
+00:02:14.630 --> 00:02:18.550
+justice system, even sentencing guidelines.
+
+00:02:18.550 --> 00:02:21.710
+Learning algorithms are making very important decisions.
+
+00:02:21.710 --> 00:02:27.630
+And so I think it's important that we try to change learning algorithms to diminish as
+
+00:02:27.630 --> 00:02:33.950
+much as is possible, or ideally eliminate these types of undesirable biases.
+
+00:02:33.950 --> 00:02:38.630
+Now in the case of word embeddings, they can pick up the biases of the text used
+
+00:02:38.630 --> 00:02:40.670
+to train the model.
+
+00:02:40.670 --> 00:02:47.310
+And so the biases they pick up will tend to reflect the biases in text, as is written
+
+00:02:47.310 --> 00:02:48.310
+by people.
+
+00:02:48.550 --> 00:02:53.750
+Over many decades, over many centuries, I think humanity has made progress in reducing these
+
+00:02:53.750 --> 00:02:55.150
+types of bias.
+
+00:02:55.150 --> 00:03:00.270
+And I think maybe fortunately for AI, I think we actually have better ideas to quickly reducing
+
+00:03:00.270 --> 00:03:05.710
+the bias in AI than for quickly reducing the bias in the human race.
+
+00:03:05.710 --> 00:03:09.430
+Although I think we're by no means done for AI as well.
+
+00:03:09.430 --> 00:03:14.750
+And there's still a lot of research and hardware to be done to reduce these types of biases
+
+00:03:14.750 --> 00:03:16.150
+in our learning algorithm.
+
+00:03:16.150 --> 00:03:21.350
+But what I want to do in this video is share with you one example of a set of ideas due
+
+00:03:21.350 --> 00:03:27.550
+to the paper referenced at the bottom by Bola Basi and others on reducing the bias in word
+
+00:03:27.550 --> 00:03:30.580
+embeddings.
+
+00:03:30.580 --> 00:03:32.340
+So here's the idea.
+
+00:03:32.340 --> 00:03:34.900
+Let's say that we've already learned a word embedding.
+
+00:03:34.900 --> 00:03:39.180
+So the word babysitter is here.
+
+00:03:39.180 --> 00:03:43.820
+The word doctor is here.
+
+00:03:43.820 --> 00:03:52.740
+We have a grandmother here and grandfather here.
+
+00:03:52.740 --> 00:03:54.580
+Maybe the word girl is embedded there.
+
+00:03:54.580 --> 00:03:56.980
+The word boy is embedded there.
+
+00:03:56.980 --> 00:03:59.900
+And maybe she is embedded here.
+
+00:03:59.900 --> 00:04:01.860
+And he is embedded there.
+
+00:04:01.860 --> 00:04:08.580
+So the first thing we're going to do is identify the direction corresponding to a particular
+
+00:04:08.580 --> 00:04:11.860
+bias we want to reduce or eliminate.
+
+00:04:11.860 --> 00:04:15.660
+And for illustration, I'm going to focus on gender bias.
+
+00:04:15.660 --> 00:04:20.020
+But these ideas are applicable to all of the other types of bias that I mentioned on the
+
+00:04:20.020 --> 00:04:22.100
+previous slide as well.
+
+00:04:22.100 --> 00:04:31.340
+So in this example, and so how do you identify the direction corresponding to the bias?
+
+00:04:31.340 --> 00:04:36.460
+For the case of gender, what you can do is take the embedding vector for he and subtract
+
+00:04:36.460 --> 00:04:44.540
+the embedding vector for she because that differs by gender and take e, male, subtract
+
+00:04:44.540 --> 00:04:48.780
+e, female, and take a few of these and average them.
+
+00:04:48.780 --> 00:04:52.020
+And take a few of these differences and basically average them.
+
+00:04:52.020 --> 00:04:57.660
+And this will allow you to figure out in this case that what looks like this direction
+
+00:04:57.660 --> 00:05:02.780
+is the gender direction, the bias direction.
+
+00:05:02.780 --> 00:05:10.700
+Whereas this direction is unrelated to the particular bias we're trying to address.
+
+00:05:10.700 --> 00:05:16.700
+So this is the non-bias direction.
+
+00:05:16.700 --> 00:05:21.780
+And in this case, the bias direction, think of this as a 1D subspace, whereas the non-bias
+
+00:05:21.780 --> 00:05:27.780
+direction, this would be a 299 dimensional subspace.
+
+00:05:27.780 --> 00:05:31.540
+And I've simplified the description a little bit in the original paper.
+
+00:05:31.540 --> 00:05:35.980
+The bias direction can be higher than one dimensional and rather than taking an average
+
+00:05:35.980 --> 00:05:39.980
+as an ascribing here, it's actually found using a more complicated algorithm called
+
+00:05:39.980 --> 00:05:45.900
+the SVD, a singular value decomposition, which is closely related to if you're familiar
+
+00:05:45.900 --> 00:05:50.460
+with principal components analysis and use this idea similar to the PC or the principal
+
+00:05:50.460 --> 00:05:53.900
+components analysis algorithm.
+
+00:05:53.900 --> 00:05:57.340
+After that, the next step is a neutralization step.
+
+00:05:57.340 --> 00:06:02.740
+So for every word that's not definitional, project it to get rid of bias.
+
+00:06:02.740 --> 00:06:07.460
+So there are some words that intrinsically capture gender.
+
+00:06:07.460 --> 00:06:10.220
+So words like grandmother, grandfather, girlboy, she, he.
+
+00:06:10.220 --> 00:06:13.820
+You know, a gender is intrinsic in the definition.
+
+00:06:13.820 --> 00:06:20.260
+Whereas there are other words like doctor and babysitter that we want to be gender neutral.
+
+00:06:20.260 --> 00:06:23.460
+And really in the more general case, you might want words like doctor, babysitter to
+
+00:06:23.460 --> 00:06:28.420
+be ethnicity neutral or sexual orientation neutral and so on.
+
+00:06:28.420 --> 00:06:33.260
+But we'll just use gender as the illustrating example here.
+
+00:06:33.260 --> 00:06:39.540
+But so for every word that is not definitional, this basically means not words like grandmother
+
+00:06:39.540 --> 00:06:45.420
+and grandfather, which really have a very legitimate gender component because by definition,
+
+00:06:45.420 --> 00:06:48.700
+grandmothers are female and grandfathers are male.
+
+00:06:48.700 --> 00:06:55.580
+And so for words like doctor and babysitter, let's just project them onto this axis to
+
+00:06:55.580 --> 00:07:01.260
+reduce their components or to eliminate their components in the bias direction to reduce
+
+00:07:01.260 --> 00:07:06.100
+a component in this horizontal direction.
+
+00:07:06.100 --> 00:07:08.580
+So that's the second neutralized step.
+
+00:07:08.580 --> 00:07:13.380
+And then the final step is called equalization in which you might have pairs of words such
+
+00:07:13.380 --> 00:07:24.660
+as grandmother and grandfather or a girl and boy where you want the only difference
+
+00:07:24.660 --> 00:07:27.900
+in their embedding to be the gender.
+
+00:07:27.900 --> 00:07:30.580
+And so in this, and so why do you want that?
+
+00:07:30.580 --> 00:07:37.060
+Well in this example, the distance or the similarity between babysitter and grandmother
+
+00:07:37.060 --> 00:07:42.780
+is actually smaller than the distance between babysitter and grandfather.
+
+00:07:42.780 --> 00:07:48.700
+And so this maybe reinforces an unhealthy or maybe undesirable bias that grandmothers
+
+00:07:48.700 --> 00:07:51.020
+end up babysitting more than grandfathers.
+
+00:07:51.020 --> 00:07:56.260
+So in the final equalization step, what we would like to do is to make sure that words
+
+00:07:56.260 --> 00:08:00.660
+like grandmother and grandfather are both exactly the same similarity or exactly the
+
+00:08:00.660 --> 00:08:05.580
+same distance from words that should be gender neutral, such as babysitter or such
+
+00:08:05.580 --> 00:08:06.780
+as doctor.
+
+00:08:06.780 --> 00:08:10.700
+So there are a few linear algebra steps for that, but what they will basically do is
+
+00:08:10.700 --> 00:08:19.100
+move grandmother and grandfather to a pair of points that are equally distant from this
+
+00:08:19.100 --> 00:08:21.060
+axis in the middle.
+
+00:08:21.060 --> 00:08:26.140
+And so the effect of that is that now the distance between babysitter compared to these
+
+00:08:26.140 --> 00:08:29.580
+two words will be exactly the same.
+
+00:08:29.580 --> 00:08:35.060
+And so in general, there are many pairs of words like this, grandmother, grandfather,
+
+00:08:35.060 --> 00:08:44.500
+boy girl, sorority, fraternity, girlhood, boyhood, sister, brother, niece, nephew, daughter,
+
+00:08:44.500 --> 00:08:49.820
+son that you might want to carry out through this equalization step.
+
+00:08:49.820 --> 00:08:54.700
+So the final detail is how do you decide what word to neutralize?
+
+00:08:54.700 --> 00:09:01.100
+So for example, the word doctor seems like a word you should neutralize to make it non-gender
+
+00:09:01.100 --> 00:09:04.540
+specific or non-ethnicity specific.
+
+00:09:04.540 --> 00:09:10.380
+Whereas the words grandmother and grandmother should not be made non-gender specific.
+
+00:09:10.380 --> 00:09:13.060
+And there are also words like beard, right?
+
+00:09:13.060 --> 00:09:17.380
+That is just a statistical fact that men are much more likely to have beards than women.
+
+00:09:17.380 --> 00:09:21.780
+So maybe beards should be closer to male than female.
+
+00:09:21.780 --> 00:09:31.460
+And so what the authors did is train a classifier to try to figure out what words are definitional,
+
+00:09:31.460 --> 00:09:34.700
+what words should be gender specific and what words should not be.
+
+00:09:34.700 --> 00:09:39.620
+And it turns out that most words in the English language are not definitional, meaning that
+
+00:09:39.620 --> 00:09:41.820
+gender is not part of the definition.
+
+00:09:41.820 --> 00:09:45.980
+And this is a relatively small subset of words like this, grandmother, grandfather,
+
+00:09:45.980 --> 00:09:53.420
+girl, boy, sorority, fraternity, and so on that should not be neutralized.
+
+00:09:53.420 --> 00:09:58.740
+And so a linear classifier can tell you what words to pass through the neutralization
+
+00:09:58.740 --> 00:10:06.020
+step to project out this bias direction to project it onto this essentially 299 dimensional
+
+00:10:06.020 --> 00:10:08.300
+subspace.
+
+00:10:08.300 --> 00:10:12.180
+And then finally, the number of pairs you want to equalize, that's actually also relatively
+
+00:10:12.180 --> 00:10:19.660
+small and is at least for the gender example, it is quite feasible to handpick most of
+
+00:10:19.660 --> 00:10:22.700
+the pairs you want to equalize.
+
+00:10:22.700 --> 00:10:27.140
+So the full algorithm is a bit more complicated than I presented here.
+
+00:10:27.140 --> 00:10:30.140
+You can take a look at the paper for the full details.
+
+00:10:30.140 --> 00:10:35.540
+And you also get to play a few of these ideas in the program exercises as well.
+
+00:10:35.540 --> 00:10:40.260
+So to summarize, I think that reducing or eliminating bias of our learning algorithms
+
+00:10:40.260 --> 00:10:45.100
+is a very important problem, because these algorithms are being asked to help with or
+
+00:10:45.100 --> 00:10:48.740
+to make more and more important decisions in society.
+
+00:10:48.740 --> 00:10:52.820
+In this video, I shared just one set of ideas for how to go about trying to address
+
+00:10:52.820 --> 00:10:53.820
+this problem.
+
+00:10:53.820 --> 00:11:00.260
+But this is still very much an ongoing area of active research by many researchers.
+
+00:11:00.260 --> 00:11:03.740
+So that's it for this week's videos.
+
+00:11:03.740 --> 00:11:07.740
+Best of luck with this week's program exercises, and I look forward to seeing you next week.

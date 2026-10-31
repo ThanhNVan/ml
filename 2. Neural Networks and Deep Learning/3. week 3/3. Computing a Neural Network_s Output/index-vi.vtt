@@ -1,0 +1,857 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.740
+Trong video trước, bạn đã thấy một mạng
+nơ-ron lớp ẩn duy nhất thì trông như thế nào.
+
+2
+00:00:04.740 --> 00:00:07.020
+Trong video này, chúng ta sẽ học
+
+3
+00:00:07.020 --> 00:00:10.140
+về cách mà neural network nhân tạo
+này tính toán các đầu ra này.
+
+4
+00:00:10.140 --> 00:00:13.530
+Bạn có thế thấy là
+giống như logistic regression,
+
+5
+00:00:13.530 --> 00:00:15.585
+thì chúng lặp lại rất nhiều lần.
+
+6
+00:00:15.585 --> 00:00:19.725
+Hãy cùng xem nào. Đây là hình dạng
+của một neural network nhân tạo hai lớp.
+
+7
+00:00:19.725 --> 00:00:23.850
+Chúng ta hãy đi sâu hơn vào xem
+neural network này tính toán những gì.
+
+8
+00:00:23.850 --> 00:00:26.985
+Bây giờ, như chúng ta đã nói
+trước đó, logistic regression đó,
+
+9
+00:00:26.985 --> 00:00:28.980
+hình tròn trong logistic regression,
+
+10
+00:00:28.980 --> 00:00:31.515
+đại diện cho hai bước
+của hàng tính toán.
+
+11
+00:00:31.515 --> 00:00:33.825
+Bạn tính z như sau và
+
+12
+00:00:33.825 --> 00:00:37.290
+bạn tính toán các kích hoạt
+dưới dạng hàm sigmoid của z.
+
+13
+00:00:37.290 --> 00:00:40.715
+Và một neural network nhân tạo thì
+chỉ làm điều này nhiều lần hơn.
+
+14
+00:00:40.715 --> 00:00:44.460
+Hãy bắt đầu bằng cách nhìn vào chỉ
+một nút trong các nút trong lớp ẩn.
+
+15
+00:00:44.460 --> 00:00:46.385
+Hãy nhìn vào nút
+đầu tiên trong lớp ẩn.
+
+16
+00:00:46.385 --> 00:00:48.095
+Và bây giờ tôi đã làm
+mờ các nút khác.
+
+17
+00:00:48.095 --> 00:00:50.810
+Tương tự như regression
+logistic ở bên trái,
+
+18
+00:00:50.810 --> 00:00:54.470
+các nút này trong lớp ẩn
+thực hiện hai bước tính toán.
+
+19
+00:00:54.470 --> 00:00:57.905
+Bước đầu tiên và ở
+nửa bên trái của nút này,
+
+20
+00:00:57.905 --> 00:01:02.570
+nó tính z bằng w
+chuyển vị x cộng b,
+
+21
+00:01:02.570 --> 00:01:05.060
+và ký hiệu mà
+chúng ta sử dụng là,
+
+22
+00:01:05.060 --> 00:01:08.300
+đây là tất cả số lượng
+liên quan đến lớp ẩn đầu tiên.
+
+23
+00:01:08.300 --> 00:01:10.720
+Đó là lý do tại sao chúng ta có một
+loạt các dấu ngoặc vuông ở đó.
+
+24
+00:01:10.720 --> 00:01:13.610
+Đây là nút đầu tiên trong lớp ẩn.
+
+25
+00:01:13.610 --> 00:01:16.700
+Nên chúng ta có
+chỉ số dưới 1 ở đó.
+
+26
+00:01:16.700 --> 00:01:18.005
+Đầu tiên, nó làm điều đó,
+
+27
+00:01:18.005 --> 00:01:19.130
+và rồi là bước thứ hai
+
+28
+00:01:19.130 --> 00:01:24.605
+là tính a_ [1] _1 bằng
+sigmoid của z_ [1] _1, như vậy.
+
+29
+00:01:24.605 --> 00:01:26.030
+Và với cả z và a,
+
+30
+00:01:26.030 --> 00:01:29.690
+quy ước ký hiệu là a, l, i,
+
+31
+00:01:29.690 --> 00:01:32.270
+l ở đây trong mũ ngoặc vuông,
+
+32
+00:01:32.270 --> 00:01:33.635
+đề cập đến số lớp,
+
+33
+00:01:33.635 --> 00:01:35.060
+và chỉ số dưới i ở đây,
+
+34
+00:01:35.060 --> 00:01:37.830
+chỉ các nút trong lớp đó.
+
+35
+00:01:37.830 --> 00:01:40.115
+Và nút mà chúng ta
+sẽ nhìn vào là lớp một,
+
+36
+00:01:40.115 --> 00:01:42.035
+đó là một nút lớp ẩn.
+
+37
+00:01:42.035 --> 00:01:45.965
+Vì vậy, các chỉ số trên và
+chỉ số dưới là đều là 1.
+
+38
+00:01:45.965 --> 00:01:47.375
+Và hình tròn nhỏ đó,
+
+39
+00:01:47.375 --> 00:01:49.385
+nút đầu tiên trong mạng
+nơ-ron nhân tạo,
+
+40
+00:01:49.385 --> 00:01:52.640
+biểu diễn việc thực hiện
+hai bước tính toán này.
+
+41
+00:01:52.640 --> 00:01:55.190
+Bây giờ, hãy nhìn vào nút thứ hai
+trong neural network nhân tạo,
+
+42
+00:01:55.190 --> 00:01:58.340
+hoặc nút thứ hai trong lớp ẩn
+của neural network nhân tạo.
+
+43
+00:01:58.340 --> 00:02:01.370
+Tương tự như đơn vị
+logistic regression bên trái,
+
+44
+00:02:01.370 --> 00:02:04.850
+hình tròn nhỏ này đại diện
+cho hai bước tính toán.
+
+45
+00:02:04.850 --> 00:02:07.550
+Bước đầu tiên là nó tính z.
+
+46
+00:02:07.550 --> 00:02:08.735
+Đây vẫn là lớp một,
+
+47
+00:02:08.735 --> 00:02:12.395
+nhưng bây giờ là một nút
+thứ hai bằng w chuyển vị x,
+
+48
+00:02:12.395 --> 00:02:19.190
+cộng b_ [1] _2, và sau đó a_ [1]_2
+bằng sigmoid bằng z_ [1] _2.
+
+49
+00:02:19.190 --> 00:02:21.200
+Một lần nữa, bạn có thể
+dừng video nếu muốn
+
+50
+00:02:21.200 --> 00:02:23.840
+nhưng bạn có thể kiểm tra lại
+rằng ký hiệu chỉ số trên và
+
+51
+00:02:23.840 --> 00:02:28.430
+chỉ số dưới phù hợp với những gì
+chúng tôi đã viết ở đây ở trên màu tím.
+
+52
+00:02:28.430 --> 00:02:32.845
+Và chúng ta đã nói về hai đơn vị ẩn đầu tiên
+trong một neural network nhân tạo, mà
+
+53
+00:02:32.845 --> 00:02:36.940
+có đơn vị ba và bốn cũng
+đại diện cho một số tính toán.
+
+54
+00:02:36.940 --> 00:02:40.205
+Bây giờ, tôi sẽ lấy
+cặp phương trình này,
+
+55
+00:02:40.205 --> 00:02:42.320
+và cặp phương trình này,
+
+56
+00:02:42.320 --> 00:02:44.210
+và sao chép chúng
+vào slide tiếp theo.
+
+57
+00:02:44.210 --> 00:02:45.380
+Và đây là neural network
+nhân tạo của chúng ta,
+
+58
+00:02:45.380 --> 00:02:46.550
+và đây là phương trình đầu tiên,
+
+59
+00:02:46.550 --> 00:02:49.550
+và đây là phương trình thứ hai
+mà chúng tôi đã thực hiện
+
+60
+00:02:49.550 --> 00:02:54.155
+trước đó với các đơn vị
+ẩn thứ nhất và thứ hai.
+
+61
+00:02:54.155 --> 00:02:57.650
+Nếu bạn viết ra các
+phương trình tương ứng
+
+62
+00:02:57.650 --> 00:03:01.475
+đối với các đơn vị ẩn thứ ba và
+thứ tư, bạn sẽ nhận được cái này.
+
+63
+00:03:01.475 --> 00:03:03.635
+Vì vậy, hãy để tôi trình bày
+ký hiệu này một cách rõ ràng,
+
+64
+00:03:03.635 --> 00:03:06.680
+đây là vectơ w_ [1] _1,
+
+65
+00:03:06.680 --> 00:03:09.335
+đây là một vectơ chuyển vị nhân x.
+
+66
+00:03:09.335 --> 00:03:12.050
+Đó là ý nghĩa
+của chỉ số trên T.
+
+67
+00:03:12.050 --> 00:03:13.535
+Đó là một vectơ chuyển vị.
+
+68
+00:03:13.535 --> 00:03:15.085
+Như bạn có thể thấy,
+
+69
+00:03:15.085 --> 00:03:17.195
+nếu bạn đang thực sự triển khai
+một neural network nhân tạo,
+
+70
+00:03:17.195 --> 00:03:20.285
+thực hiện điều này với một vòng lặp
+for, thì có vẻ như không hiệu quả.
+
+71
+00:03:20.285 --> 00:03:21.530
+Vì vậy, chúng ta sẽ
+
+72
+00:03:21.530 --> 00:03:25.220
+lấy bốn phương trình và vector hóa.
+
+73
+00:03:25.220 --> 00:03:29.050
+Chúng ta sẽ bắt đầu bằng cách
+hiển thị cách tính z dưới dạng vectơ,
+
+74
+00:03:29.050 --> 00:03:30.935
+bạn có thể làm như sau.
+
+75
+00:03:30.935 --> 00:03:34.910
+Hãy để tôi lấy những số hạng w này
+và xếp chúng thành một ma trận,
+
+76
+00:03:34.910 --> 00:03:37.980
+và bạn có w_ [1] _1 chuyển vị,
+
+77
+00:03:37.980 --> 00:03:39.450
+và đó là một vector hàng
+
+78
+00:03:39.450 --> 00:03:42.500
+hoặc vectơ chuyển vị cột này cung cấp
+cho bạn một vectơ hàng, và w_ [1] _2,
+
+79
+00:03:42.500 --> 00:03:48.980
+chuyển vị, w_ [1] _3
+chuyển vị, w_ [1] _4 chuyển vị.
+
+80
+00:03:48.980 --> 00:03:53.150
+Và bằng cách xếp
+bốn vectơ w lại với nhau,
+
+81
+00:03:53.150 --> 00:03:54.575
+bạn có một ma trận.
+
+82
+00:03:54.575 --> 00:03:58.985
+Có thể hiểu điều này là chúng ta có
+bốn đơn vị logistic regression ở đó,
+
+83
+00:03:58.985 --> 00:04:01.190
+và mỗi đơn vị logistic regression,
+
+84
+00:04:01.190 --> 00:04:03.290
+có một vectơ tham số w tương ứng.
+
+85
+00:04:03.290 --> 00:04:06.080
+Bằng cách xếp bốn
+vectơ đó lại với nhau,
+
+86
+00:04:06.080 --> 00:04:08.930
+bạn có ma trận 4x3 này.
+
+87
+00:04:08.930 --> 00:04:14.180
+Vì vậy, nếu sau đó bạn lấy ma trận này
+và nhân nó với các feature đầu vào x1,
+
+88
+00:04:14.180 --> 00:04:18.650
+x2, x3, bạn sẽ thực hiện
+phép nhân ma trận.
+
+89
+00:04:18.650 --> 00:04:20.870
+Bạn có w_ [1] _1 chuyển vị x,
+
+90
+00:04:20.870 --> 00:04:28.775
+w_2_ [1] chuyển vị x, w_3_ [1]
+chuyển vị x, w_4_ [1] chuyển vị x.
+
+91
+00:04:28.775 --> 00:04:31.010
+Sau đó, chúng ta không tìm ra b.
+
+92
+00:04:31.010 --> 00:04:39.450
+Bây giờ chúng ta thêm vào đây một
+vectơ b_ [1] _1, b_ [1] _2, b_ [1] _3, b_ [1] _4.
+
+93
+00:04:39.450 --> 00:04:40.860
+Về cơ bản là thế này,
+
+94
+00:04:40.860 --> 00:04:46.500
+đây là b_ [1] _1, b_ [1] _2,
+b_ [1]_3, b_ [1] _4.
+
+95
+00:04:46.500 --> 00:04:48.950
+Và bạn thấy rằng
+mỗi hàng trong bốn hàng
+
+96
+00:04:48.950 --> 00:04:53.195
+kết quả này tương ứng
+với bốn hàng này,
+
+97
+00:04:53.195 --> 00:04:55.610
+mỗi số lượng trong số bốn
+số lượng mà chúng tôi đã có ở trên.
+
+98
+00:04:55.610 --> 00:04:59.870
+Nói cách khác, chúng ta đã chỉ ra
+rằng điều này tương đương với
+
+99
+00:04:59.870 --> 00:05:05.695
+z_ [1] _1, z_ [1] _2, z_ [1] _3,
+z_ [1] _4, như được định nghĩa ở đây.
+
+100
+00:05:05.695 --> 00:05:09.830
+Có lẽ không có gì ngạc nhiên khi chúng ta
+sẽ gọi toàn bộ cái này, là vectơ z_ [1],
+
+101
+00:05:09.830 --> 00:05:15.095
+mà được tạo ra bằng cách
+xếp từng z vào một vectơ cột.
+
+102
+00:05:15.095 --> 00:05:20.300
+Khi chúng ta vectơ hóa, một trong những quy tắc
+kinh nghiệm mà có thể giúp bạn điều hướng này,
+
+103
+00:05:20.300 --> 00:05:22.450
+là khi chúng ta có các
+nút khác nhau trong lớp,
+
+104
+00:05:22.450 --> 00:05:23.965
+chúng ta sẽ xếp
+chúng theo chiều dọc.
+
+105
+00:05:23.965 --> 00:05:27.100
+Đó là lý do tại sao
+chúng ta có z_[1] _1 đến z_ [1] _4,
+
+106
+00:05:27.100 --> 00:05:30.430
+tương ứng với bốn nút
+khác nhau trong lớp ẩn,
+
+107
+00:05:30.430 --> 00:05:35.540
+và vì vậy chúng ta xếp chồng bốn số này
+theo chiều dọc để tạo thành vectơ z [1].
+
+108
+00:05:35.540 --> 00:05:37.410
+Và thêm một ký hiệu nữa,
+
+109
+00:05:37.410 --> 00:05:44.210
+ma trận 4 x 3 mà chúng ta thu được bằng
+cách xếp chồng các chữ thường w_ [1] _1,
+
+110
+00:05:44.210 --> 00:05:48.260
+w_ [1] _2, v.v., này sẽ
+được gọi là W [1].
+
+111
+00:05:48.260 --> 00:05:52.625
+Tương tự, vectơ này,
+chúng ta sẽ gọi là b mũ [1].
+
+112
+00:05:52.625 --> 00:05:54.590
+Vì vậy, đây là một vector (4,1).
+
+113
+00:05:54.590 --> 00:05:59.600
+Bây giờ, chúng ta đã tính z
+sử dụng ký hiệu ma trận vector này,
+
+114
+00:05:59.600 --> 00:06:03.300
+điều cuối cùng chúng ta cần
+làm là tính các giá trị này của a.
+
+115
+00:06:03.300 --> 00:06:08.120
+Và có lẽ bạn cũng không ngạc nhiên
+khi thấy rằng chúng ta sẽ định nghĩa a_ [1],
+
+116
+00:06:08.120 --> 00:06:09.710
+như là xếp chồng
+
+117
+00:06:09.710 --> 00:06:11.330
+những giá trị kích hoạt đó lên nhau,
+
+118
+00:06:11.330 --> 00:06:13.175
+a_1_[1] đến a_4_[1].
+
+119
+00:06:13.175 --> 00:06:18.260
+Và chỉ cần lấy bốn giá trị này và xếp chúng
+lại với nhau trong một vectơ gọi là a[1].
+
+120
+00:06:18.260 --> 00:06:21.050
+Đây sẽ là một sigmoid của z [1],
+
+121
+00:06:21.050 --> 00:06:23.360
+và điều này bây giờ
+là phép triển khai
+
+122
+00:06:23.360 --> 00:06:26.900
+hàm sigmoid mà
+lấy bốn phần tử của z,
+
+123
+00:06:26.900 --> 00:06:30.460
+và áp dụng hàm
+sigmoid với từng phần tử.
+
+124
+00:06:30.460 --> 00:06:31.950
+Tóm lại,
+
+125
+00:06:31.950 --> 00:06:38.820
+chúng ta đã tìm ra rằng z_ [1] bằng
+w_ [1] nhân vectơ x cộng với vectơ b_ [1],
+
+126
+00:06:38.820 --> 00:06:42.000
+và a_ [1] là sigmoid của z_ [1].
+
+127
+00:06:42.000 --> 00:06:44.055
+Tôi sẽ dùng cái
+trong slide tiếp theo.
+
+128
+00:06:44.055 --> 00:06:48.050
+Chúng ta thấy là đối với lớp đầu tiên
+của neural network với đầu vào x,
+
+129
+00:06:48.050 --> 00:06:52.070
+chúng ta có z_ [1] bằng
+w_ [1] nhân x cộng với b_ [1],
+
+130
+00:06:52.070 --> 00:06:55.740
+và a_ [1] là sigmoid của z_ [1].
+
+131
+00:06:55.740 --> 00:06:59.060
+Chiều của cái này là (4,1),
+
+132
+00:06:59.060 --> 00:07:05.255
+đây là ma trận 4x3 nhân một
+vectơ (3,1) cộng với vectơ b (4,1),
+
+133
+00:07:05.255 --> 00:07:08.480
+và đây cũng có
+cùng chiều (4,1).
+
+134
+00:07:08.480 --> 00:07:12.890
+Hãy nhớ là chúng ta
+đã nói x bằng a_ [0].
+
+135
+00:07:12.890 --> 00:07:16.535
+y mũ cũng bằng a[2].
+
+136
+00:07:16.535 --> 00:07:21.060
+Nếu bạn muốn, bạn có thể lấy x
+này và thay thế nó bằng a_ [0],
+
+137
+00:07:21.060 --> 00:07:25.460
+nếu bạn muốn a_ [0] làm bí danh
+cho vectơ của các feature đầu vào, x.
+
+138
+00:07:25.460 --> 00:07:27.230
+Bây giờ, với cách làm tương tự,
+
+139
+00:07:27.230 --> 00:07:31.580
+bạn có thể tìm ra là cách
+biểu diễn cho lớp tiếp theo
+
+140
+00:07:31.580 --> 00:07:36.125
+cũng được viết tương tự,
+trong đó lớp đầu ra
+
+141
+00:07:36.125 --> 00:07:37.945
+liên kết với nó,
+
+142
+00:07:37.945 --> 00:07:40.890
+là các tham số w_ [2] và b_ [2].
+
+143
+00:07:40.890 --> 00:07:44.600
+Và trong trường hợp này
+w_ [2] sẽ là một ma trận 1x4,
+
+144
+00:07:44.600 --> 00:07:47.240
+và b_ [2] là một số thực (1,1).
+
+145
+00:07:47.240 --> 00:07:52.130
+Vì vậy, z_ [2] sẽ là một số thực, chúng ta
+sẽ viết nó dưới dạng
+
+146
+00:07:52.130 --> 00:07:56.090
+một ma trận 1x1. Sẽ là (1,4) nhân a [1] (4,1)
+
+147
+00:07:56.090 --> 00:07:57.770
+cộng với b_ [2] (1,1),
+
+148
+00:07:57.770 --> 00:07:59.805
+và điều này cho bạn một số thực.
+
+149
+00:07:59.805 --> 00:08:02.900
+Nếu bạn nghĩ về đơn vị
+trên cuối cùng này mà
+
+150
+00:08:02.900 --> 00:08:07.295
+tương tự như regression
+logistic có tham số w và b,
+
+151
+00:08:07.295 --> 00:08:12.560
+w đóng vai trò tương tự
+với w_ [2] chuyển vị,
+
+152
+00:08:12.560 --> 00:08:16.790
+hoặc W_ [2] chính là w
+chuyển vị và b bằng b_ [2].
+
+153
+00:08:16.790 --> 00:08:21.840
+Tôi muốn che lại phần bên trái của mạng
+này và bỏ qua tất cả những điều đó bây giờ,
+
+154
+00:08:21.840 --> 00:08:26.300
+sau đó đơn vị trên cuối cùng này
+rất giống với logistic regression,
+
+155
+00:08:26.300 --> 00:08:29.375
+ngoại trừ việc thay vì viết
+các tham số như w và b,
+
+156
+00:08:29.375 --> 00:08:32.700
+chúng ta đang viết
+là w_ [2] và b_[2],
+
+157
+00:08:32.700 --> 00:08:35.535
+với chiều lần lượt là (1,4) và (1,1).
+
+158
+00:08:35.535 --> 00:08:37.365
+Tóm lại.
+
+159
+00:08:37.365 --> 00:08:41.690
+Đối với logistic regression, để
+triền khai đầu ra hoặc để dự đoán,
+
+160
+00:08:41.690 --> 00:08:44.945
+bạn tính z bằng
+w chuyển vị x cộng b,
+
+161
+00:08:44.945 --> 00:08:48.200
+và a hoặc y mũ bằng a,
+
+162
+00:08:48.200 --> 00:08:50.705
+bằng sigmoid của z.
+
+163
+00:08:50.705 --> 00:08:54.330
+Khi bạn có một mạng
+nơ-ron nhân tạo với một lớp ẩn,
+
+164
+00:08:54.330 --> 00:08:55.530
+bạn chỉ cần 4 phương trình
+này để tính đầu ra này.
+
+165
+00:08:55.530 --> 00:08:59.085
+Bạn có thể coi điều này như là một
+triển khai véc-tơ hóa để tính
+
+166
+00:08:59.085 --> 00:09:03.020
+Bạn có thể coi điều này như là
+một triển khai véc-tơ hóa để tính
+
+167
+00:09:03.020 --> 00:09:08.015
+đầu ra của 4 đơn vị logistic regression
+đầu tiên trong lớp ẩn,
+
+168
+00:09:08.015 --> 00:09:09.350
+là 2 phương trình này, và
+
+169
+00:09:09.350 --> 00:09:13.730
+và logistic regression này trong lớp
+đầu ra, đây là 2 phương trình này.
+
+170
+00:09:13.730 --> 00:09:15.680
+Tôi hy vọng mô tả này có nghĩa,
+
+171
+00:09:15.680 --> 00:09:19.240
+nhưng bài học rút ra là để tính
+đầu ra của neural network này,
+
+172
+00:09:19.240 --> 00:09:21.785
+tất cả những gì bạn cần là bốn dòng mã.
+
+173
+00:09:21.785 --> 00:09:25.280
+Bây giờ, bạn đã thấy cách mà với
+một feature đầu vào duy nhất,
+
+174
+00:09:25.280 --> 00:09:27.755
+vectơ a, bạn có thể dùng 4 dòng mã để
+
+175
+00:09:27.755 --> 00:09:30.185
+tính đầu ra của mạng
+nơ-ron nhân tạo này.
+
+176
+00:09:30.185 --> 00:09:32.600
+Tương tự như những gì chúng
+ta đã làm với logistic regression,
+
+177
+00:09:32.600 --> 00:09:36.635
+chúng ta cũng sẽ muốn vector
+hóa trên nhiều ví dụ đào tạo.
+
+178
+00:09:36.635 --> 00:09:41.690
+Chúng ta sẽ thấy điều đó bằng cách xếp chồng
+các ví dụ đào tạo trong các cột khác nhau trong ma trận,
+
+179
+00:09:41.690 --> 00:09:44.615
+chỉ cần sửa đổi một chút
+
+180
+00:09:44.615 --> 00:09:46.610
+giống như bạn thấy trong regression này,
+
+181
+00:09:46.610 --> 00:09:50.170
+là có thể tính đầu ra của
+neural network này,
+
+182
+00:09:50.170 --> 00:09:52.030
+không chỉ là một ví dụ tại một thời điểm,
+
+183
+00:09:52.030 --> 00:09:55.010
+mà kéo dài trên toàn bộ đào
+tạo của bạn tại một thời điểm.
+
+184
+00:09:55.010 --> 00:09:57.940
+Hãy xem kỹ hơn về điều đó
+trong video tiếp theo nhé.

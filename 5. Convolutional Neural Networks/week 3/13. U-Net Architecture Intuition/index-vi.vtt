@@ -1,0 +1,171 @@
+WEBVTT
+
+00:00:01.840 --> 00:00:05.120
+Được trang bị convolution ngang, giờ đây bạn
+đã
+
+00:00:05.120 --> 00:00:08.400
+sẵn sàng đi sâu vào chi tiết của kiến trúc
+UNET.
+
+00:00:08.400 --> 00:00:12.107
+Trong video này, trước tiên chúng ta hãy nhanh
+chóng tìm hiểu
+
+00:00:12.107 --> 00:00:15.813
+kiến trúc để xây dựng trực giác về cách UNET
+hoạt động và
+
+00:00:15.813 --> 00:00:19.520
+trong video tiếp theo, chúng ta sẽ cùng nhau
+tìm hiểu chi tiết.
+
+00:00:19.520 --> 00:00:22.540
+Hãy đào sâu vào.
+
+00:00:22.540 --> 00:00:28.680
+Đây là sơ đồ sơ bộ về kiến trúc mạng lưới thần
+kinh để phân đoạn theo ngữ nghĩa.
+
+00:00:29.400 --> 00:00:33.520
+Chúng tôi sử dụng phép convolution thông
+thường cho phần đầu
+
+00:00:33.520 --> 00:00:37.640
+tiên của neural network và tương tự như các
+neural network
+
+00:00:37.640 --> 00:00:41.760
+trước đó mà bạn đã thấy, phần neural network
+này sẽ nén hình ảnh.
+
+00:00:41.760 --> 00:00:45.540
+Bạn đã chuyển từ một hình ảnh rất lớn sang một
+hình ảnh có
+
+00:00:45.540 --> 00:00:49.320
+chiều cao và chiều rộng của lần kích hoạt này
+nhỏ hơn nhiều.
+
+00:00:49.320 --> 00:00:52.610
+Bạn đã mất rất nhiều thông tin về không gian
+vì
+
+00:00:52.610 --> 00:00:55.900
+kích thước nhỏ hơn nhiều nhưng lại sâu hơn
+nhiều.
+
+00:00:55.900 --> 00:01:01.620
+Ví dụ: lớp giữa này có thể biểu thị trông
+giống như có một con mèo ở phần
+
+00:01:01.620 --> 00:01:07.340
+dưới bên phải của hình ảnh, nhưng thông tin
+chi tiết về không gian bị mất vì
+
+00:01:07.340 --> 00:01:09.820
+chiều cao và chiều rộng nhỏ hơn nhiều.
+
+00:01:09.820 --> 00:01:15.120
+Sau đó, nửa sau của neural network này sử
+dụng convolution ngang để
+
+00:01:15.120 --> 00:01:20.420
+tăng kích thước biểu diễn lên kích thước của
+hình ảnh đầu vào ban đầu.
+
+00:01:20.420 --> 00:01:23.220
+Bây giờ hóa ra có một sửa đổi đối với kiến
+
+00:01:23.220 --> 00:01:26.020
+trúc này sẽ làm cho nó hoạt động tốt hơn
+nhiều.
+
+00:01:26.020 --> 00:01:33.570
+Đó là thứ sẽ biến điều này thành kiến trúc đơn
+vị, tức là bỏ qua các kết nối
+
+00:01:33.570 --> 00:01:41.120
+từ các lớp trước đó đến các lớp sau như thế
+này để khối kích hoạt trước đó
+
+00:01:41.120 --> 00:01:45.500
+được sao chép trực tiếp vào khối sau này.
+
+00:01:45.500 --> 00:01:47.100
+Tại sao chúng ta muốn làm điều này?
+
+00:01:47.100 --> 00:01:51.760
+Hóa ra, đối với lớp bên cạnh cuối cùng này để
+quyết
+
+00:01:51.760 --> 00:01:56.420
+định vùng nào là con mèo, có hai loại thông
+tin hữu ích.
+
+00:01:56.420 --> 00:02:02.060
+Một là thông tin ngữ cảnh cấp cao, không gian
+cấp cao mà nó nhận được từ
+
+00:02:02.060 --> 00:02:07.700
+lớp trước này, nơi hy vọng rằng mạng lưới thần
+kinh sẽ tìm ra điều đó trong
+
+00:02:07.700 --> 00:02:11.500
+góc dưới bên phải của hình ảnh hoặc có thể ở
+phần bên phải
+
+00:02:11.500 --> 00:02:15.300
+của hình ảnh, có một số thứ giống như con mèo
+đang diễn ra.
+
+00:02:15.300 --> 00:02:20.500
+Nhưng điều còn thiếu là thông tin không gian
+chi tiết rất chi
+
+00:02:20.500 --> 00:02:25.700
+tiết vì tập hợp kích hoạt ở đây có độ phân
+giải không gian thấp hơn.
+
+00:02:25.700 --> 00:02:28.560
+Chiều cao và chiều rộng chỉ thấp hơn.
+
+00:02:28.560 --> 00:02:34.670
+Vì vậy, chức năng của kết nối bỏ qua là nó cho
+phép neural network lấy thông tin
+
+00:02:34.670 --> 00:02:40.780
+đối tượng cấp thấp có độ phân giải rất cao này
+để có thể nắm bắt mọi vị trí pixel
+
+00:02:40.780 --> 00:02:44.880
+có bao nhiêu thứ có lông trong pixel này và sử
+dụng
+
+00:02:44.880 --> 00:02:48.980
+kết nối bỏ qua để tạm dừng trực tiếp đến lớp
+sau này.
+
+00:02:48.980 --> 00:02:56.160
+Và theo cách này, lớp này có cả thông tin ngữ
+cảnh cấp cao, độ phân giải
+
+00:02:56.160 --> 00:03:03.340
+thấp hơn nhưng cấp cao, cũng như cấp thấp hơn
+nhưng kết cấu chi tiết hơn như
+
+00:03:03.340 --> 00:03:06.840
+thông tin để đưa ra quyết định xem một pixel
+nhất
+
+00:03:06.840 --> 00:03:10.340
+định có phải là một phần của con mèo hay
+không.
+
+00:03:10.340 --> 00:03:17.220
+Trong video này, bạn chỉ thấy trực quan cấp
+cao ngắn gọn về cách hoạt động của UNet.
+
+00:03:17.220 --> 00:03:20.660
+Hãy chuyển sang video tiếp theo để xem chi
+tiết về cách bạn có thể triển khai nó.

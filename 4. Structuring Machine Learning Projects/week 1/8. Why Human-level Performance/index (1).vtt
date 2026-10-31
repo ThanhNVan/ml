@@ -1,0 +1,237 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.940 --> 00:00:05.860
+In the last few years, a lot more machine learning teams have been talking about comparing
+
+00:00:05.860 --> 00:00:09.440
+the machine learning systems to human level performance.
+
+00:00:09.440 --> 00:00:10.440
+Why is this?
+
+00:00:10.440 --> 00:00:12.360
+I think there are two main reasons.
+
+00:00:12.360 --> 00:00:16.580
+First is that because of advances in deep learning, machine learning algorithms are suddenly
+
+00:00:16.580 --> 00:00:21.260
+working much better and so it's become much more feasible in a lot of application areas
+
+00:00:21.260 --> 00:00:26.020
+of machine learning algorithms to actually become competitive with human level performance.
+
+00:00:26.380 --> 00:00:31.380
+Second, it turns out that the workflow of designing and building a machine learning system,
+
+00:00:31.380 --> 00:00:36.540
+the workflow is much more efficient when you're trying to do something that humans can also do.
+
+00:00:36.540 --> 00:00:41.540
+So in those settings, it becomes natural to talk about comparing or trying to mimic human
+
+00:00:41.540 --> 00:00:42.540
+level performance.
+
+00:00:42.540 --> 00:00:46.100
+Let's see a couple of examples of what this means.
+
+00:00:46.100 --> 00:00:50.500
+I've seen on a lot of machine learning tasks that as you work on a problem over time,
+
+00:00:50.500 --> 00:00:57.340
+so the x-axis time, this could be many months or even many years over which some team or
+
+00:00:57.340 --> 00:01:02.180
+some research community is working on a problem.
+
+00:01:02.180 --> 00:01:07.540
+Progress tends to be relatively rapid as you approach human level performance.
+
+00:01:07.540 --> 00:01:12.800
+But then after a while, the algorithm surpasses human level performance and then progress
+
+00:01:12.800 --> 00:01:17.020
+and accuracy actually slows down and maybe keeps getting better.
+
+00:01:17.020 --> 00:01:20.140
+But after surpassing human level performance, it can still get better.
+
+00:01:20.140 --> 00:01:26.420
+But performance, the slope of how rapidly accuracy is going up, often that slows down.
+
+00:01:26.420 --> 00:01:32.860
+And the hope is it achieves some theoretical optimum level of performance.
+
+00:01:32.860 --> 00:01:37.340
+And over time, as you keep creating the algorithm, maybe bigger and bigger models on more and
+
+00:01:37.340 --> 00:01:44.300
+more data, the performance approaches but never surpasses some theoretical limits, which
+
+00:01:44.300 --> 00:01:53.870
+is called the Bayes optimal error.
+
+00:01:53.870 --> 00:02:01.460
+So Bayes optimal error, think of this as the best possible error in that there's just no
+
+00:02:01.460 --> 00:02:09.460
+way for any function mapping from x to y to surpass this person level of accuracy.
+
+00:02:09.460 --> 00:02:15.140
+So for example, for speech recognition, if x is audio clips, some audio is just so noisy
+
+00:02:15.140 --> 00:02:20.420
+it's impossible to tell what is in the correct transcription.
+
+00:02:20.420 --> 00:02:23.780
+So the perfect error may not be 100%.
+
+00:02:23.780 --> 00:02:29.820
+Or for cat recognition, maybe some images are so blurry that it's just impossible for
+
+00:02:29.820 --> 00:02:34.740
+anyone or anything to tell whether or not there's a cat in that picture.
+
+00:02:34.740 --> 00:02:40.220
+So the perfect level of accuracy may not be 100%.
+
+00:02:40.220 --> 00:02:46.420
+And Bayes optimal error, or Bayesian optimal error, or sometimes Bayes error for short,
+
+00:02:46.420 --> 00:02:56.250
+is the very best theoretical function for mapping from x to y that can never be surpassed.
+
+00:02:56.250 --> 00:03:00.530
+So it should be no surprise that this purple line, no matter how many years you work on
+
+00:03:00.530 --> 00:03:05.330
+the problem, you can never surpass Bayes error or Bayes optimal error.
+
+00:03:05.330 --> 00:03:11.330
+And it turns out that progress is often quite fast until you surpass human level performance.
+
+00:03:11.850 --> 00:03:16.010
+And it sometimes slows down after you surpass human level performance.
+
+00:03:16.010 --> 00:03:20.810
+And I think there are two reasons for that, for why progress often slows down when you surpass
+
+00:03:20.810 --> 00:03:22.250
+human level performance.
+
+00:03:22.250 --> 00:03:28.290
+One reason is that human level performance is for many tasks not that far from Bayes optimal error.
+
+00:03:28.290 --> 00:03:31.970
+You know, people are very good at looking at images and telling if there's a cat or
+
+00:03:31.970 --> 00:03:34.610
+listening to audio and transcribing it.
+
+00:03:34.610 --> 00:03:38.730
+So by the time you surpass human level performance, maybe there's not that much
+
+00:03:38.730 --> 00:03:41.290
+headroom to still improve.
+
+00:03:42.250 --> 00:03:46.450
+But the second reason is that so long as your performance is worse than human level
+
+00:03:46.450 --> 00:03:51.490
+performance, then there are actually certain tools you could use to improve performance
+
+00:03:51.490 --> 00:03:56.770
+that are harder to use once you surpass human level performance.
+
+00:03:56.770 --> 00:04:00.070
+So here's what I mean.
+
+00:04:00.070 --> 00:04:04.870
+For tasks that humans are quite good at, and this includes looking at pictures and
+
+00:04:04.870 --> 00:04:10.110
+recognizing things, listening to audio or reading language, really natural data tasks
+
+00:04:10.110 --> 00:04:11.790
+humans tend to be very good at.
+
+00:04:11.790 --> 00:04:16.230
+For tasks that humans are good at, so long as your machine learning algorithm is still
+
+00:04:16.230 --> 00:04:20.470
+worse than a human, you can get labeled data from humans.
+
+00:04:20.470 --> 00:04:26.070
+That is, you can ask people, ask higher humans to label examples for you so that
+
+00:04:26.070 --> 00:04:29.390
+you can have more data to feed to your learning algorithm.
+
+00:04:29.390 --> 00:04:32.870
+Something we'll talk about next week is manual error analysis.
+
+00:04:32.870 --> 00:04:35.710
+But so long as humans are still performing better than your learning
+
+00:04:35.710 --> 00:04:39.830
+algorithm, you can ask people to look at examples that your algorithm is getting
+
+00:04:39.830 --> 00:04:43.470
+wrong and try to gain insight in terms of why a person got it right, but the
+
+00:04:43.470 --> 00:04:44.350
+algorithm got wrong.
+
+00:04:44.350 --> 00:04:48.070
+And we'll see next week that this helps improve your performance.
+
+00:04:48.070 --> 00:04:51.670
+And you can also get a better analysis of bias and variance, which
+
+00:04:51.670 --> 00:04:53.110
+we'll talk about a little bit.
+
+00:04:53.110 --> 00:04:57.390
+But so long as your algorithm is still doing worse than humans, you have these
+
+00:04:57.390 --> 00:05:00.150
+important tactics for improving your algorithm.
+
+00:05:00.150 --> 00:05:03.470
+Whereas once your algorithm is doing better than humans, then these three
+
+00:05:03.470 --> 00:05:07.110
+tactics are harder to apply.
+
+00:05:07.110 --> 00:05:11.350
+So this is maybe another reason why comparing to human level performance is
+
+00:05:11.350 --> 00:05:19.430
+helpful, especially on tasks that humans do well and why machine learning
+
+00:05:19.430 --> 00:05:23.990
+algorithms tend to be really good at trying to replicate tasks that people can
+
+00:05:23.990 --> 00:05:27.470
+do and trying to catch up to and maybe slightly surpass human level
+
+00:05:27.470 --> 00:05:29.230
+performance.
+
+00:05:29.230 --> 00:05:33.190
+In particular, even though you know what is bias and what is variance, it
+
+00:05:33.190 --> 00:05:37.390
+turns out that knowing how well humans can do well on a task can help
+
+00:05:37.390 --> 00:05:41.350
+you understand better how much you should try to reduce bias and how you
+
+00:05:41.350 --> 00:05:43.430
+should try to reduce variance.
+
+00:05:43.430 --> 00:05:45.750
+I want to show you an example of this in the next video.

@@ -1,0 +1,243 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.610
+Vậy là bạn sắp học xong bài học
+
+2
+00:00:02.610 --> 00:00:06.165
+của tuần đầu tiên trong khóa đầu tiên
+ trong chuỗi chuyên ngành này.
+
+3
+00:00:06.165 --> 00:00:09.960
+Tôi sẽ nói nhanh về những gì 
+bạn sẽ học trong vài tuần tới.
+
+4
+00:00:09.960 --> 00:00:12.000
+Như tôi đã nói trong 
+video đầu tiên,
+
+5
+00:00:12.000 --> 00:00:15.150
+chuỗi chuyên ngành này 
+bao gồm năm khóa học.
+
+6
+00:00:15.150 --> 00:00:17.250
+Và bây giờ, chúng ta đang 
+ở khóa đầu tiên mà sẽ
+
+7
+00:00:17.250 --> 00:00:20.385
+dạy cho bạn những 
+nền tảng quan trọng nhất,
+
+8
+00:00:20.385 --> 00:00:23.745
+các nền tảng quan trọng nhất
+ trong Deep learning (Deep Learning).
+
+9
+00:00:23.745 --> 00:00:25.530
+Như vậy, vào cuối
+ khóa học đầu tiên này,
+
+10
+00:00:25.530 --> 00:00:30.350
+bạn sẽ biết cách xây dựng và làm việc
+ với một neural network nhân tạo sâu.
+
+11
+00:00:30.350 --> 00:00:33.780
+Đây là chi tiết về bài học 
+trong khóa học đầu tiên này.
+
+12
+00:00:33.780 --> 00:00:35.725
+Khóa học này bao gồm bốn tuần học.
+
+13
+00:00:35.725 --> 00:00:37.620
+Và bạn sẽ học hết
+
+14
+00:00:37.620 --> 00:00:40.110
+tuần đầu tiên khi bạn thấy 
+một bài giới thiệu về học tập sâu.
+
+15
+00:00:40.110 --> 00:00:41.530
+Vào cuối mỗi tuần,
+
+16
+00:00:41.530 --> 00:00:44.190
+sẽ có 10 câu hỏi trắc nghiệm,
+
+17
+00:00:44.190 --> 00:00:47.495
+bạn có thể sử dụng chúng để kiểm
+ tra lại hiểu biết của bạn về bài học.
+
+18
+00:00:47.495 --> 00:00:49.185
+Thế nên khi bạn
+ xem xong video này,
+
+19
+00:00:49.185 --> 00:00:51.860
+tôi mong bạn sẽ 
+xem những câu hỏi đó.
+
+20
+00:00:51.860 --> 00:00:56.530
+Trong tuần thứ hai, bạn tìm hiểu về Khái niệm
+ cơ bản về lập trình neural network nhân tạo.
+
+21
+00:00:56.530 --> 00:00:58.420
+Bạn sẽ tìm hiểu cấu trúc
+
+22
+00:00:58.420 --> 00:01:00.960
+của các bước truyền xuôi và truyền ngược
+
+23
+00:01:00.960 --> 00:01:06.030
+trong thuật toán và cách triển khai các 
+neural network nhân tạo một cách hiệu quả.
+
+24
+00:01:06.030 --> 00:01:07.405
+Bắt đầu từ tuần thứ hai,
+
+25
+00:01:07.405 --> 00:01:10.125
+bạn cũng sẽ làm 
+một bài tập lập trình
+
+26
+00:01:10.125 --> 00:01:13.605
+giúp bạn thực hành 
+lý thuyết mà bạn vừa học,
+
+27
+00:01:13.605 --> 00:01:16.735
+tự thực hiện các thuật toán và xem 
+nó có hiệu quả đối với bạn hay không.
+
+28
+00:01:16.735 --> 00:01:19.550
+Tôi thấy rất hào hứng khi
+ tìm hiểu về thuật toán và
+
+29
+00:01:19.550 --> 00:01:22.375
+mã hóa nó và tôi thấy nó 
+hiệu quả đối với chính tôi.
+
+30
+00:01:22.375 --> 00:01:24.080
+Thế nên tôi hy vọng
+ bạn cũng thích điều đó.
+
+31
+00:01:24.080 --> 00:01:28.140
+Khi học xong nội dung lập trình mạng
+ nơ-ron nhân tạo trong tuần thứ ba,
+
+32
+00:01:28.140 --> 00:01:32.050
+bạn mã hóa một neural network 
+nhân tạo lớp ẩn duy nhất. Được rồi.
+
+33
+00:01:32.050 --> 00:01:34.470
+Như vậy, bạn đã tìm hiểu về tất cả
+ các khái niệm quan trọng cần thiết
+
+34
+00:01:34.470 --> 00:01:37.005
+để triển khai và làm việc
+ trong neural network nhân tạo.
+
+35
+00:01:37.005 --> 00:01:38.485
+Và cuối cùng vào tuần thứ tư,
+
+36
+00:01:38.485 --> 00:01:41.175
+bạn sẽ xây dựng một neural network
+ nhân tạo sâu và neural network nhân tạo với
+
+37
+00:01:41.175 --> 00:01:44.081
+nhiều lớp và xem nó 
+hoạt động như thế nào.
+
+38
+00:01:44.081 --> 00:01:47.930
+Chúc mừng bạn đã xem hết các video.
+
+39
+00:01:47.930 --> 00:01:51.600
+Sau video này, tôi hy vọng là bây giờ bạn đã
+ hiểu được điều đang diễn ra trong deep learning.
+
+40
+00:01:51.600 --> 00:01:53.610
+Và có lẽ một số bạn cũng đã
+
+41
+00:01:53.610 --> 00:01:57.355
+có một số ý tưởng về nơi mà bạn 
+có thể muốn tự áp dụng deep learning.
+
+42
+00:01:57.355 --> 00:01:59.370
+Tôi mong rằng sau video này,
+
+43
+00:01:59.370 --> 00:02:03.850
+bạn sẽ tiếp tục xem 10 câu hỏi 
+trắc nghiệm đi kèm video này
+
+44
+00:02:03.850 --> 00:02:05.500
+trên trang web của 
+khóa học và chỉ cần trả lời
+
+45
+00:02:05.500 --> 00:02:08.760
+10 câu hỏi trắc nghiệm đó 
+để kiểm tra hiểu biết của bạn.
+
+46
+00:02:08.760 --> 00:02:11.199
+Và đừng xem lại các video trước, bạn sẽ không thể 
+trả lời được tất cả các câu hỏi trong ngay lần đầu tiên,
+
+47
+00:02:11.199 --> 00:02:14.710
+nhưng bạn có thể thử đi thử lại
+ cho đến khi bạn có đáp án đúng.
+
+48
+00:02:14.710 --> 00:02:19.145
+Chúng rất hữu ích trong việc chắc chắn
+ rằng tôi hiểu rõ tất cả các khái niệm,
+
+49
+00:02:19.145 --> 00:02:21.465
+tôi hy vọng bạn cũng như vậy.
+
+50
+00:02:21.465 --> 00:02:24.000
+Một lần nữa tôi xin
+ chúc mừng vì bạn đã xem đến
+
+51
+00:02:24.000 --> 00:02:27.670
+video này và tôi mong được gặp 
+bạn trong các video tuần thứ hai.

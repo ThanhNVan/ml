@@ -1,0 +1,168 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:03.760
+You've learned to implement deep learning algorithms more or less from
+
+00:00:03.760 --> 00:00:08.880
+scratch using Python and NumPy and I'm glad you did that because I wanted you
+
+00:00:08.880 --> 00:00:12.400
+to understand what these deep learning algorithms are really doing. But you
+
+00:00:12.400 --> 00:00:16.400
+find that as you implement more complex models such as convolutional neural
+
+00:00:16.400 --> 00:00:20.840
+nets or recurrent neural networks or as you start to implement very large models
+
+00:00:20.840 --> 00:00:25.960
+that is increasingly not practical, at least for most people is not practical, to
+
+00:00:25.960 --> 00:00:29.800
+implement everything yourself from scratch. Fortunately there are now many
+
+00:00:29.800 --> 00:00:34.120
+good deep learning software frameworks that can help you implement these models.
+
+00:00:34.120 --> 00:00:39.520
+To make an analogy, I think that hopefully you understand how to do a matrix
+
+00:00:39.520 --> 00:00:43.300
+multiplication and you should be able to implement, you know, how to code to
+
+00:00:43.300 --> 00:00:47.920
+multiply two matrices yourself. But as you build very large applications you
+
+00:00:47.920 --> 00:00:51.960
+probably not want to implement your own matrix multiplication function but
+
+00:00:51.960 --> 00:00:55.940
+instead you want to call a numerical linear algebra library that could do it
+
+00:00:55.940 --> 00:01:00.300
+more efficiently for you. But it still helps that you understand how multiply
+
+00:01:00.300 --> 00:01:04.140
+two matrices work. So I think deep learning has now matured to that point
+
+00:01:04.140 --> 00:01:08.620
+where it's actually more practical you be more efficient doing some things with
+
+00:01:08.620 --> 00:01:12.820
+some of the deep learning frameworks. So let's take a look at the frameworks out
+
+00:01:12.820 --> 00:01:17.460
+there. Today there are many deep learning frameworks that makes it easy
+
+00:01:17.460 --> 00:01:21.660
+for you to implement neural networks and here are some of the leading ones.
+
+00:01:22.140 --> 00:01:28.060
+Each of these frameworks has a dedicated user and developer community and I think
+
+00:01:28.060 --> 00:01:33.220
+each of these frameworks is a credible choice for some subsets of applications.
+
+00:01:33.220 --> 00:01:36.980
+There are a lot of people writing articles comparing these deep learning
+
+00:01:36.980 --> 00:01:42.020
+frameworks and how well these deep learning frameworks changes. And because
+
+00:01:42.020 --> 00:01:47.060
+these frameworks are often evolving and getting better month to month, I'll leave
+
+00:01:47.060 --> 00:01:50.820
+you to do a few internet searches yourself if you want to see the
+
+00:01:50.820 --> 00:01:55.460
+arguments on the pros and cons of some of these frameworks. But I think many of
+
+00:01:55.460 --> 00:02:00.380
+these frameworks are evolving and getting better very rapidly. So rather
+
+00:02:00.380 --> 00:02:05.020
+than too strongly endorsing any of these frameworks I want to share with you
+
+00:02:05.020 --> 00:02:10.860
+the criteria I would recommend you use to choose frameworks. One important
+
+00:02:10.860 --> 00:02:15.660
+criteria is the ease of programming and that means both developing the neural
+
+00:02:15.660 --> 00:02:20.500
+network and iterating on it as well as deploying it for production for actual
+
+00:02:20.500 --> 00:02:26.220
+use by thousands or millions or maybe hundreds of millions of users depending
+
+00:02:26.220 --> 00:02:30.340
+on what you're trying to do. A second important criteria is running speeds
+
+00:02:30.340 --> 00:02:35.020
+especially training on large data sets some frameworks will let you run and
+
+00:02:35.020 --> 00:02:39.740
+train your neural network more efficiently than others. And then one
+
+00:02:39.740 --> 00:02:43.540
+criteria that people don't often talk about but I think is important is
+
+00:02:43.540 --> 00:02:49.140
+whether or not the framework is truly open. And for a framework to be truly open
+
+00:02:49.140 --> 00:02:54.500
+it needs not only to be open source but I think it needs good governance as well.
+
+00:02:54.500 --> 00:02:59.340
+Unfortunately in the software industry some companies have a history of open
+
+00:02:59.340 --> 00:03:04.100
+sourcing software but maintaining single corporation control of the software and
+
+00:03:04.100 --> 00:03:08.660
+then over some number of years as people start to use their software some
+
+00:03:08.660 --> 00:03:13.940
+companies have a history of gradually closing off what was open source or
+
+00:03:13.940 --> 00:03:19.780
+perhaps moving functionality into their own proprietary cloud services. So one
+
+00:03:19.780 --> 00:03:25.060
+thing I pay a bit of attention to is how much you trust that the framework will
+
+00:03:25.060 --> 00:03:30.180
+remain open source you know for a long time rather than just being under the
+
+00:03:30.180 --> 00:03:34.820
+control of a single company which for whatever reason they choose to close it
+
+00:03:34.820 --> 00:03:39.940
+off in the future even if the software is currently released under open source.
+
+00:03:39.940 --> 00:03:44.740
+But at least in the short term depending on your preferences of language whether
+
+00:03:44.740 --> 00:03:50.580
+you prefer Python or Java or C++ or something else and depending on what
+
+00:03:50.580 --> 00:03:53.620
+application you're working on whether it's computer vision or natural
+
+00:03:53.620 --> 00:03:59.540
+language processing or online advertising or something else I think multiple of
+
+00:03:59.540 --> 00:04:03.700
+these frameworks could be a good choice. So that's it on programming
+
+00:04:03.700 --> 00:04:08.180
+frameworks by providing a higher level of abstraction than just a numerical
+
+00:04:08.180 --> 00:04:11.780
+linear algebra library any of these programming frameworks can make you more
+
+00:04:11.780 --> 00:04:15.489
+efficient as you develop machine learning applications.

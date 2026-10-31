@@ -1,0 +1,657 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.700
+Nếu training set của bạn xuất phát từ một bản phân phối khác,
+
+2
+00:00:02.700 --> 00:00:04.135
+so với bộ dev và bộ kiểm tra của bạn,
+
+3
+00:00:04.135 --> 00:00:09.623
+và nếu phân tích lỗi cho bạn thấy rằng bạn có một vấn đề không khớp dữ liệu, bạn có thể làm gì?
+
+4
+00:00:09.623 --> 00:00:13.105
+Có những giải pháp hoàn toàn có hệ thống cho điều này,
+
+5
+00:00:13.105 --> 00:00:15.520
+nhưng hãy nhìn vào một số điều bạn có thể thử.
+
+6
+00:00:15.520 --> 00:00:19.107
+Nếu tôi thấy rằng tôi có một vấn đề không phù hợp dữ liệu lớn,
+
+7
+00:00:19.107 --> 00:00:23.865
+những gì tôi thường làm là thực hiện phân tích lỗi thủ công và cố gắng
+
+8
+00:00:23.865 --> 00:00:31.865
+hiểu sự khác biệt giữa training set và bộ dev/test.
+
+9
+00:00:31.865 --> 00:00:34.272
+Để tránh overfitting bộ kiểm tra,
+
+10
+00:00:34.272 --> 00:00:35.800
+về mặt kỹ thuật để phân tích lỗi,
+
+11
+00:00:35.800 --> 00:00:40.030
+bạn chỉ nên nhìn vào một bộ dev và không phải ở bộ kiểm tra.
+
+12
+00:00:40.030 --> 00:00:42.040
+Nhưng như một ví dụ cụ thể,
+
+13
+00:00:42.040 --> 00:00:47.020
+nếu bạn đang xây dựng ứng dụng gương chiếu hậu kích hoạt giọng nói,
+
+14
+00:00:47.020 --> 00:00:50.020
+bạn có thể nhìn hoặc, tôi đoán nếu đó là bài phát biểu,
+
+15
+00:00:50.020 --> 00:00:53.230
+lắng nghe ví dụ trong bộ dev của bạn
+
+16
+00:00:53.230 --> 00:00:56.885
+để cố gắng tìm ra cách thiết lập dev của bạn là khác nhau so với training set của bạn.
+
+17
+00:00:56.885 --> 00:00:58.890
+Vì vậy, ví dụ, bạn có thể thấy
+
+18
+00:00:58.890 --> 00:01:03.745
+rằng rất nhiều ví dụ thiết lập dev rất ồn ào và có rất nhiều tiếng ồn xe hơi.
+
+19
+00:01:03.745 --> 00:01:08.485
+Và đây là một cách mà bộ dev của bạn khác với bộ đào tạo của bạn.
+
+20
+00:01:08.485 --> 00:01:11.350
+Và có thể bạn tìm thấy các loại lỗi khác.
+
+21
+00:01:11.350 --> 00:01:17.095
+Ví dụ, trong gương chiếu hậu được kích hoạt bằng giọng nói trong xe của bạn,
+
+22
+00:01:17.095 --> 00:01:20.650
+bạn có thể thấy rằng
+
+23
+00:01:20.650 --> 00:01:22.600
+số đường phố thường nhận ra sai bởi vì
+
+24
+00:01:22.600 --> 00:01:25.450
+có rất nhiều truy vấn điều hướng hơn sẽ có địa chỉ đường phố.
+
+25
+00:01:25.450 --> 00:01:28.420
+Vì vậy, việc tìm đúng số đường phố là rất quan trọng.
+
+26
+00:01:28.420 --> 00:01:31.110
+Khi bạn có cái nhìn sâu sắc về bản chất của các dev thiết lập lỗi,
+
+27
+00:01:31.110 --> 00:01:33.960
+hoặc bạn có cái nhìn sâu sắc về cách các dev
+
+28
+00:01:33.960 --> 00:01:37.055
+thiết lập có thể khác nhau hoặc khó khăn hơn so với training set của bạn,
+
+29
+00:01:37.055 --> 00:01:41.645
+những gì bạn có thể làm là sau đó cố gắng tìm cách để làm cho các training data tương tự hơn.
+
+30
+00:01:41.645 --> 00:01:47.290
+Hoặc, cách khác, cố gắng thu thập thêm dữ liệu tương tự như bộ dev và thử nghiệm của bạn.
+
+31
+00:01:47.290 --> 00:01:53.940
+Vì vậy, ví dụ, nếu bạn thấy rằng tiếng ồn của xe trong nền là một nguồn lỗi chính,
+
+32
+00:01:53.940 --> 00:02:00.120
+một điều bạn có thể làm là mô phỏng dữ liệu trong xe ồn ào.
+
+33
+00:02:00.120 --> 00:02:03.580
+Vì vậy, một chút nữa về làm thế nào để làm điều này trên slide tiếp theo.
+
+34
+00:02:03.580 --> 00:02:06.710
+Hoặc bạn thấy rằng bạn đang gặp khó khăn khi nhận ra số đường phố,
+
+35
+00:02:06.710 --> 00:02:10.280
+có thể bạn có thể cố gắng tìm thêm dữ liệu
+
+36
+00:02:10.280 --> 00:02:15.150
+về những người nói ra con số và thêm vào bộ đào tạo của bạn.
+
+37
+00:02:15.150 --> 00:02:20.555
+Bây giờ, tôi nhận ra rằng slide này đang đưa ra một hướng dẫn thô sơ cho những thứ bạn có thể thử.
+
+38
+00:02:20.555 --> 00:02:23.525
+Đây không phải là một quá trình có hệ thống và,
+
+39
+00:02:23.525 --> 00:02:27.720
+tôi đoán, nó không đảm bảo rằng bạn có được những hiểu biết mà bạn cần để đạt được tiến bộ.
+
+40
+00:02:27.720 --> 00:02:32.045
+Nhưng tôi đã nhận ra rằng cái nhìn sâu sắc bằng tay này,
+
+41
+00:02:32.045 --> 00:02:35.870
+cùng nhau chúng ta đang cố gắng làm cho dữ liệu tương tự hơn về kích thước
+
+42
+00:02:35.870 --> 00:02:39.765
+mà điều này thường giúp cho rất nhiều vấn đề.
+
+43
+00:02:39.765 --> 00:02:46.010
+Vì vậy, nếu mục tiêu của bạn là làm cho training data tương tự như bộ dev của bạn,
+
+44
+00:02:46.010 --> 00:02:48.620
+một số điều bạn có thể làm là gì?
+
+45
+00:02:48.620 --> 00:02:50.270
+Một trong những kỹ thuật bạn có thể sử dụng là
+
+46
+00:02:50.270 --> 00:02:52.970
+tổng hợp dữ liệu nhân tạo và chúng ta hãy thảo luận về
+
+47
+00:02:52.970 --> 00:02:56.810
+điều đó trong bối cảnh giải quyết vấn đề tiếng ồn xe hơi.
+
+48
+00:02:56.810 --> 00:02:59.240
+Vì vậy, để xây dựng một hệ thống nhận dạng giọng nói,
+
+49
+00:02:59.240 --> 00:03:01.970
+có lẽ bạn không có nhiều âm thanh được
+
+50
+00:03:01.970 --> 00:03:05.030
+ghi lại bên trong xe với tiếng ồn nền của xe hơi,
+
+51
+00:03:05.030 --> 00:03:07.040
+tiếng ồn nền của đường cao tốc, v.v.
+
+52
+00:03:07.040 --> 00:03:09.440
+Nhưng, hóa ra, có một cách để tổng hợp nó.
+
+53
+00:03:09.440 --> 00:03:11.435
+Vì vậy, giả sử rằng bạn đã ghi lại
+
+54
+00:03:11.435 --> 00:03:15.620
+một lượng lớn âm thanh sạch mà không có tiếng ồn nền xe hơi này.
+
+55
+00:03:15.620 --> 00:03:20.400
+Vì vậy, đây là một ví dụ về một clip bạn có thể có trong bộ đào tạo của bạn.
+
+56
+00:03:21.190 --> 00:03:26.340
+Nhân tiện, câu này được sử dụng rất nhiều trong AI để
+
+57
+00:03:26.340 --> 00:03:30.590
+thử nghiệm bởi vì đây là một câu ngắn chứa tất cả các bảng chữ cái từ A đến Z,
+
+58
+00:03:30.590 --> 00:03:32.745
+vì vậy bạn thấy câu này rất nhiều.
+
+59
+00:03:32.745 --> 00:03:36.540
+Nhưng, với việc ghi âm “con cáo nâu nhanh chóng nhảy qua chó lười biếng”,
+
+60
+00:03:36.540 --> 00:03:46.455
+sau đó bạn cũng có thể nhận được một bản ghi âm của tiếng ồn xe hơi như thế này.
+
+61
+00:03:46.455 --> 00:03:49.010
+Vì vậy, đó là những gì bên trong của một chiếc xe nghe như thế,
+
+62
+00:03:49.010 --> 00:03:50.595
+nếu bạn đang lái xe trong im lặng.
+
+63
+00:03:50.595 --> 00:03:53.460
+Và nếu bạn lấy hai đoạn âm thanh này và thêm chúng lại với nhau,
+
+64
+00:03:53.460 --> 00:03:55.595
+sau đó bạn có thể tổng hợp những gì
+
+65
+00:03:55.595 --> 00:03:58.835
+nói “con cáo nâu nhanh chóng nhảy qua chó lười biếng” nghe có vẻ như,
+
+66
+00:03:58.835 --> 00:04:06.870
+nếu bạn nói điều đó trong một chiếc xe ồn ào. Nghe có vẻ như thế này.
+
+67
+00:04:06.870 --> 00:04:10.980
+Vì vậy, đây là một ví dụ tổng hợp âm thanh tương đối đơn giản.
+
+68
+00:04:10.980 --> 00:04:14.210
+Trong thực tế, bạn có thể tổng hợp các hiệu ứng âm thanh khác như tiếng
+
+69
+00:04:14.210 --> 00:04:16.370
+vang là âm thanh của
+
+70
+00:04:16.370 --> 00:04:19.700
+giọng nói của bạn bật ra khỏi các bức tường của xe và vân vân.
+
+71
+00:04:19.700 --> 00:04:22.370
+Nhưng thông qua quá trình tổng hợp dữ liệu nhân tạo,
+
+72
+00:04:22.370 --> 00:04:26.900
+bạn có thể nhanh chóng tạo ra nhiều dữ liệu có vẻ như nó
+
+73
+00:04:26.900 --> 00:04:32.540
+được ghi lại bên trong xe mà không cần phải đi ra ngoài đó và thu thập hàng tấn dữ liệu, có
+
+74
+00:04:32.540 --> 00:04:34.850
+thể hàng ngàn hoặc hàng chục ngàn giờ
+
+75
+00:04:34.850 --> 00:04:37.700
+dữ liệu trong một chiếc xe thực sự đang lái xe.
+
+76
+00:04:37.700 --> 00:04:41.210
+Vì vậy, nếu phân tích lỗi của bạn cho bạn thấy rằng bạn nên cố gắng
+
+77
+00:04:41.210 --> 00:04:45.050
+làm cho dữ liệu của bạn nghe giống như nó được ghi lại bên trong xe,
+
+78
+00:04:45.050 --> 00:04:47.705
+thì đây có thể là một quá trình hợp lý để
+
+79
+00:04:47.705 --> 00:04:51.310
+tổng hợp loại dữ liệu đó để cung cấp cho bạn một thuật toán học tập.
+
+80
+00:04:51.310 --> 00:04:54.380
+Bây giờ, có một lưu ý thận trọng tôi
+
+81
+00:04:54.380 --> 00:04:57.855
+muốn
+
+82
+00:04:57.855 --> 00:05:04.814
+nói về tổng hợp dữ liệu nhân tạo đó là, giả sử, bạn có 10.000 giờ dữ liệu được ghi lại dựa trên nền tảng yên tĩnh.
+
+83
+00:05:04.814 --> 00:05:11.915
+Và, giả sử, rằng bạn chỉ có một tiếng ồn xe hơi.
+
+84
+00:05:11.915 --> 00:05:14.940
+Vì vậy, một điều bạn có thể thử là lấy một tiếng
+
+85
+00:05:14.940 --> 00:05:17.820
+ồn xe hơi này và lặp lại 10.000 lần
+
+86
+00:05:17.820 --> 00:05:24.695
+để thêm vào 10.000 giờ dữ liệu được ghi lại trên nền yên tĩnh.
+
+87
+00:05:24.695 --> 00:05:29.355
+Nếu bạn làm điều đó, âm thanh sẽ nghe hoàn toàn tốt cho tai người,
+
+88
+00:05:29.355 --> 00:05:30.600
+nhưng có một cơ hội,
+
+89
+00:05:30.600 --> 00:05:38.790
+có một nguy cơ rằng thuật toán học tập của bạn sẽ qua phù hợp với một giờ tiếng ồn xe hơi.
+
+90
+00:05:38.790 --> 00:05:44.325
+Và, đặc biệt, nếu đây là tập hợp
+
+91
+00:05:44.325 --> 00:05:52.460
+tất cả các âm thanh mà bạn có thể ghi lại trong xe hoặc, có
+
+92
+00:05:52.460 --> 00:05:56.195
+thể là các tập hợp của tất cả các nền tiếng ồn xe hơi bạn có thể tưởng tượng,
+
+93
+00:05:56.195 --> 00:05:59.285
+nếu bạn chỉ có một giờ nền tiếng ồn xe hơi,
+
+94
+00:05:59.285 --> 00:06:03.660
+bạn có thể mô phỏng chỉ là một tập hợp con rất nhỏ của không gian này.
+
+95
+00:06:03.660 --> 00:06:09.010
+Bạn có thể chỉ tổng hợp từ một tập hợp con rất nhỏ của không gian này.
+
+96
+00:06:09.010 --> 00:06:10.870
+Và với tai người,
+
+97
+00:06:10.870 --> 00:06:13.990
+tất cả những âm thanh này nghe đều ổn bởi vì một tiếng ồn xe hơi
+
+98
+00:06:13.990 --> 00:06:18.030
+nghe giống như bất kỳ tiếng ồn xe nào khác đến tai người.
+
+99
+00:06:18.030 --> 00:06:23.880
+Nhưng, có thể bạn đang tổng hợp dữ liệu từ một tập hợp con rất nhỏ của không gian này,
+
+100
+00:06:23.880 --> 00:06:25.840
+và neural network có thể là
+
+101
+00:06:25.840 --> 00:06:30.530
+overfitting với một tiếng ồn xe hơi mà bạn có thể có.
+
+102
+00:06:30.530 --> 00:06:33.355
+Tôi không biết liệu nó sẽ thực tế khả thi để
+
+103
+00:06:33.355 --> 00:06:37.090
+thu thập không tốn kém 10.000 giờ tiếng ồn xe hơi
+
+104
+00:06:37.090 --> 00:06:39.310
+để bạn không cần phải lặp lại cùng một giờ
+
+105
+00:06:39.310 --> 00:06:42.550
+tiếng ồn xe hơi hơn và hơn nữa nhưng bạn có 10.000 giờ
+
+106
+00:06:42.550 --> 00:06:48.024
+tiếng ồn xe hơi độc đáo để thêm vào 10.000 giờ ghi âm độc đáo chống lại nền.
+
+107
+00:06:48.024 --> 00:06:50.900
+Nhưng nó có thể, không có đảm bảo.
+
+108
+00:06:50.900 --> 00:06:56.710
+Nhưng có thể sử dụng 10.000 giờ tiếng ồn xe hơi độc đáo hơn là chỉ một giờ,
+
+109
+00:06:56.710 --> 00:07:01.167
+điều đó có thể dẫn đến hiệu suất tốt hơn thông qua thuật toán học tập.
+
+110
+00:07:01.167 --> 00:07:05.650
+Và thách thức với tổng hợp dữ liệu nhân tạo là tai người, theo
+
+111
+00:07:05.650 --> 00:07:07.340
+như tai bạn có thể nói,
+
+112
+00:07:07.340 --> 00:07:10.850
+10.000 giờ này nghe giống như một giờ này,
+
+113
+00:07:10.850 --> 00:07:13.175
+vì vậy bạn có thể kết thúc tạo ra những
+
+114
+00:07:13.175 --> 00:07:16.310
+dữ liệu tổng hợp rất nghèo nàn này từ
+
+115
+00:07:16.310 --> 00:07:19.890
+một tập hợp con nhỏ hơn nhiều của không gian mà không cần thực sự nhận ra điều đó.
+
+116
+00:07:19.890 --> 00:07:23.265
+Đây là một ví dụ khác về tổng hợp dữ liệu nhân tạo.
+
+117
+00:07:23.265 --> 00:07:26.495
+Giả sử bạn đang xây dựng một chiếc xe tự lái và vì vậy bạn muốn thực sự phát hiện các
+
+118
+00:07:26.495 --> 00:07:31.260
+phương tiện như thế này và đặt một bounding box xung quanh nó giả sử.
+
+119
+00:07:31.260 --> 00:07:34.550
+Vì vậy, một ý tưởng mà rất nhiều người đã thảo luận là,
+
+120
+00:07:34.550 --> 00:07:39.070
+tại sao bạn nên sử dụng đồ họa máy tính để mô phỏng hàng tấn hình ảnh của xe ô tô?
+
+121
+00:07:39.070 --> 00:07:41.045
+Và, trên thực tế, đây là một vài hình ảnh của
+
+122
+00:07:41.045 --> 00:07:44.045
+xe ô tô được tạo ra bằng cách sử dụng đồ họa máy tính.
+
+123
+00:07:44.045 --> 00:07:46.970
+Và tôi nghĩ những hiệu ứng đồ họa này thực sự khá tốt và tôi có thể
+
+124
+00:07:46.970 --> 00:07:50.210
+tưởng tượng rằng bằng cách tổng hợp những bức ảnh như thế này,
+
+125
+00:07:50.210 --> 00:07:54.510
+bạn có thể đào tạo một hệ thống nhìn máy tính khá tốt để phát hiện xe hơi.
+
+126
+00:07:54.510 --> 00:07:56.570
+Thật không may, hình ảnh mà tôi
+
+127
+00:07:56.570 --> 00:08:00.740
+đã vẽ trên trang chiếu trước đó một lần nữa áp dụng trong cài đặt này.
+
+128
+00:08:00.740 --> 00:08:05.075
+Có lẽ đây là tập hợp tất cả các xe ô tô và,
+
+129
+00:08:05.075 --> 00:08:10.200
+nếu bạn tổng hợp chỉ là một tập hợp con rất nhỏ của những chiếc xe này,
+
+130
+00:08:10.200 --> 00:08:12.775
+thì với mắt người,
+
+131
+00:08:12.775 --> 00:08:15.145
+có lẽ những hình ảnh tổng hợp trông ổn.
+
+132
+00:08:15.145 --> 00:08:18.985
+Nhưng bạn có thể overfitting với tập hợp con nhỏ mà bạn đang tổng hợp.
+
+133
+00:08:18.985 --> 00:08:23.590
+Đặc biệt, một ý tưởng rằng rất nhiều người đã độc lập lớn lên là, một
+
+134
+00:08:23.590 --> 00:08:26.950
+khi bạn tìm thấy một trò chơi điện tử với đồ họa máy tính tốt của xe ô tô và chỉ cần
+
+135
+00:08:26.950 --> 00:08:31.115
+lấy hình ảnh từ họ và nhận được một bộ dữ liệu khổng lồ của hình ảnh của xe ô tô,
+
+136
+00:08:31.115 --> 00:08:33.805
+nó
+
+137
+00:08:33.805 --> 00:08:38.065
+chỉ ra rằng nếu bạn nhìn vào một trò chơi điện tử, nếu trò chơi điện tử có 20 chiếc xe độc đáo trong trò chơi điện tử,
+
+138
+00:08:38.065 --> 00:08:39.700
+sau đó trò chơi điện tử trông tốt
+
+139
+00:08:39.700 --> 00:08:42.190
+bởi vì bạn đang lái xe xung quanh trong trò chơi điện tử và bạn thấy
+
+140
+00:08:42.190 --> 00:08:47.065
+20 chiếc xe khác và nó trông giống như một mô phỏng khá thực tế.
+
+141
+00:08:47.065 --> 00:08:51.715
+Nhưng thế giới có nhiều hơn 20 thiết kế độc đáo của xe hơi,
+
+142
+00:08:51.715 --> 00:08:56.200
+và nếu toàn bộ bộ tập huấn tổng hợp của bạn chỉ có 20 chiếc xe riêng biệt,
+
+143
+00:08:56.200 --> 00:09:00.485
+thì neural network của bạn có thể sẽ phù hợp với 20 chiếc xe này.
+
+144
+00:09:00.485 --> 00:09:03.985
+Và rất khó cho một người dễ dàng nói điều đó,
+
+145
+00:09:03.985 --> 00:09:06.130
+mặc dù những hình ảnh này trông thực tế,
+
+146
+00:09:06.130 --> 00:09:11.780
+bạn thực sự bao gồm một tập hợp con nhỏ của tất cả những chiếc xe có thể.
+
+147
+00:09:11.780 --> 00:09:15.310
+Vì vậy, để tóm tắt, nếu bạn nghĩ rằng bạn có một vấn đề
+
+148
+00:09:15.310 --> 00:09:17.640
+không phù hợp dữ liệu, tôi khuyên bạn nên thực hiện phân tích lỗi,
+
+149
+00:09:17.640 --> 00:09:18.820
+hoặc nhìn vào training set,
+
+150
+00:09:18.820 --> 00:09:20.785
+hoặc nhìn vào bộ dev để thử con số này,
+
+151
+00:09:20.785 --> 00:09:24.685
+để cố gắng đạt được cái nhìn sâu sắc về cách hai phân phối dữ liệu này có thể khác nhau.
+
+152
+00:09:24.685 --> 00:09:26.950
+Và sau đó xem nếu bạn có thể tìm thấy một số cách để
+
+153
+00:09:26.950 --> 00:09:30.025
+có thêm training data trông giống như bộ dev của bạn.
+
+154
+00:09:30.025 --> 00:09:33.185
+Một trong những cách chúng tôi nói đến là tổng hợp dữ liệu nhân tạo.
+
+155
+00:09:33.185 --> 00:09:35.515
+Và tổng hợp dữ liệu nhân tạo không hiệu quả.
+
+156
+00:09:35.515 --> 00:09:39.630
+Trong nhận dạng giọng nói, tôi đã thấy sự tổng hợp dữ liệu nhân tạo làm
+
+157
+00:09:39.630 --> 00:09:43.870
+tăng đáng kể hiệu suất của hệ thống nhận dạng giọng nói đã rất tốt.
+
+158
+00:09:43.870 --> 00:09:45.505
+Vì vậy, nó có thể hoạt động rất tốt.
+
+159
+00:09:45.505 --> 00:09:47.675
+Tuy nhiên, nếu bạn đang sử dụng tổng hợp dữ liệu nhân tạo,
+
+160
+00:09:47.675 --> 00:09:51.505
+chỉ cần thận trọng và ghi nhớ liệu bạn có thể vô tình
+
+161
+00:09:51.505 --> 00:09:57.105
+mô phỏng dữ liệu chỉ từ một tập hợp con nhỏ của không gian của tất cả các ví dụ có thể.
+
+162
+00:09:57.105 --> 00:10:01.990
+Vì vậy, đó là nó để làm thế nào để đối phó với dữ liệu không phù hợp.
+
+163
+00:10:01.990 --> 00:10:04.690
+Tiếp theo, tôi muốn chia sẻ với các bạn một số suy nghĩ
+
+164
+00:10:04.690 --> 00:10:08.390
+về cách học hỏi từ nhiều loại dữ liệu cùng một lúc.

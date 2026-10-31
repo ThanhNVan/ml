@@ -1,0 +1,129 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.180
+Một trong những ứng dụng thú vị và thú vị nhất của
+
+2
+00:00:03.180 --> 00:00:06.600
+ConvNet gần đây đã được Neural Style Transfer.
+
+3
+00:00:06.600 --> 00:00:12.560
+Bạn có thể thực hiện điều này cho mình và tạo ra tác phẩm nghệ thuật của riêng bạn trong bài tập vấn đề.
+
+4
+00:00:12.560 --> 00:00:14.725
+Nhưng truyền phong cách thần kinh là gì?
+
+5
+00:00:14.725 --> 00:00:16.710
+Để tôi cho các bạn thấy một vài ví dụ.
+
+6
+00:00:16.710 --> 00:00:18.310
+Giả sử bạn chụp ảnh
+
+7
+00:00:18.310 --> 00:00:22.140
+này, nó thực sự được lấy từ Đại học Stanford không xa
+
+8
+00:00:22.140 --> 00:00:25.360
+văn phòng Stanford của tôi và bạn muốn
+
+9
+00:00:25.360 --> 00:00:29.940
+bức ảnh này được tái tạo theo phong cách của bức ảnh này ở bên phải.
+
+10
+00:00:29.940 --> 00:00:33.435
+Đây thực ra là bức tranh của Van Gogh, Starry Night.
+
+11
+00:00:33.435 --> 00:00:36.930
+Những gì Neural Style Transfer cho phép bạn làm là tạo ra
+
+12
+00:00:36.930 --> 00:00:40.620
+hình ảnh mới như hình dưới đây là hình ảnh
+
+13
+00:00:40.620 --> 00:00:43.890
+của trường Đại học Stanford
+
+14
+00:00:43.890 --> 00:00:48.580
+được vẽ nhưng được vẽ theo phong cách của hình ảnh bên phải.
+
+15
+00:00:48.580 --> 00:00:53.145
+Để mô tả cách bạn có thể thực hiện điều này
+
+16
+00:00:53.145 --> 00:00:56.644
+cho mình, tôi sẽ sử dụng C để biểu thị hình ảnh nội dung,
+
+17
+00:00:56.644 --> 00:00:59.545
+S để biểu thị hình ảnh phong cách,
+
+18
+00:00:59.545 --> 00:01:02.990
+và G để biểu thị hình ảnh bạn sẽ tạo ra.
+
+19
+00:01:02.990 --> 00:01:07.890
+Đây là một ví dụ khác, giả sử bạn có hình ảnh nội dung này vì vậy chúng ta hãy xem đây
+
+20
+00:01:07.890 --> 00:01:13.800
+là cầu Cổng Vàng ở San Francisco và bạn có hình ảnh phong cách
+
+21
+00:01:13.800 --> 00:01:16.740
+này, đây thực sự là hình ảnh Pablo Picasso.
+
+22
+00:01:16.740 --> 00:01:21.120
+Sau đó bạn có thể kết hợp chúng để tạo ra hình ảnh này G đó
+
+23
+00:01:21.120 --> 00:01:26.720
+là Golden Gate sơn theo phong cách của Picasso hiển thị bên phải.
+
+24
+00:01:26.720 --> 00:01:31.140
+Các ví dụ được hiển thị trên slide này được tạo ra bởi Justin Johnson.
+
+25
+00:01:31.140 --> 00:01:37.520
+Những gì bạn sẽ học được trong một vài video tiếp theo là cách bạn có thể tự tạo ra những hình ảnh này.
+
+26
+00:01:37.520 --> 00:01:40.050
+Để thực hiện Neural Style Transfer,
+
+27
+00:01:40.050 --> 00:01:44.970
+bạn cần phải xem xét các feature được trích xuất bởi ConvNet tại các lớp khác nhau,
+
+28
+00:01:44.970 --> 00:01:47.875
+các lớp nông và sâu hơn của một ConvNet.
+
+29
+00:01:47.875 --> 00:01:51.865
+Trước khi đi sâu vào cách bạn có thể thực hiện một truyền phong cách thần kinh,
+
+30
+00:01:51.865 --> 00:01:54.485
+những gì tôi muốn làm trong video tiếp theo là cố gắng cung cấp cho bạn
+
+31
+00:01:54.485 --> 00:01:59.905
+trực giác tốt hơn về việc liệu tất cả các lớp của một ConvNet thực sự tính toán.
+
+32
+00:01:59.905 --> 00:02:02.210
+Chúng ta hãy nhìn vào điều đó trong đoạn video tiếp theo.

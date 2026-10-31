@@ -1,0 +1,277 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.490
+Bạn đã nghe nói về orthogonalization,
+
+2
+00:00:02.490 --> 00:00:05.145
+làm thế nào để thiết lập các bộ khởi động và kiểm tra của bạn,
+
+3
+00:00:05.145 --> 00:00:07.530
+hiệu suất ở mức con người như một proxy cho
+
+4
+00:00:07.530 --> 00:00:11.955
+lỗi Bayes và làm thế nào để ước tính thiên vị và variance có thể tránh khỏi của bạn.
+
+5
+00:00:11.955 --> 00:00:14.670
+Hãy kéo tất cả lại với nhau thành một tập hợp các hướng dẫn
+
+6
+00:00:14.670 --> 00:00:17.400
+để làm thế nào để cải thiện hiệu suất của thuật toán học tập của bạn.
+
+7
+00:00:17.400 --> 00:00:20.970
+Vì vậy, tôi nghĩ việc có một thuật toán supervised learning hoạt động tốt có nghĩa là
+
+8
+00:00:20.970 --> 00:00:25.425
+về cơ bản hy vọng hoặc giả sử họ có thể làm được hai việc.
+
+9
+00:00:25.425 --> 00:00:29.810
+Đầu tiên, là bạn có thể phù hợp với các training set khá tốt,
+
+10
+00:00:29.810 --> 00:00:38.170
+và bạn có thể nghĩ về điều này như khoảng nói rằng bạn có thể đạt được sự thiên vị tránh thấp.
+
+11
+00:00:38.170 --> 00:00:41.025
+Và điều thứ hai bạn đang giả định bạn có thể làm tốt,
+
+12
+00:00:41.025 --> 00:00:43.145
+là làm tốt trên training set
+
+13
+00:00:43.145 --> 00:00:46.790
+tổng quát khá tốt cho bộ dev hoặc bộ kiểm tra,
+
+14
+00:00:46.790 --> 00:00:51.310
+và điều này là loại nói rằng variance không phải là quá xấu.
+
+15
+00:00:51.310 --> 00:00:54.115
+Và theo tinh thần của sự chính thống hóa,
+
+16
+00:00:54.115 --> 00:00:56.930
+những gì bạn thấy là có một bộ núm nào đó bạn có thể
+
+17
+00:00:56.930 --> 00:00:59.660
+sử dụng để khắc phục các vấn đề thiên vị có thể tránh khỏi,
+
+18
+00:00:59.660 --> 00:01:03.545
+chẳng hạn như đào tạo một mạng lưới lớn hơn hoặc đào tạo lâu hơn,
+
+19
+00:01:03.545 --> 00:01:09.770
+và như một tập hợp riêng biệt của những thứ bạn có thể sử dụng để giải quyết các vấn đề variance,
+
+20
+00:01:09.770 --> 00:01:12.770
+chẳng hạn như regularization hoặc nhận được nhiều training data hơn.
+
+21
+00:01:12.770 --> 00:01:17.780
+Vì vậy, để tóm tắt quá trình chúng tôi đã nhìn thấy trong một số video cuối cùng,
+
+22
+00:01:17.780 --> 00:01:21.920
+nếu bạn muốn cải thiện hiệu suất của hệ thống machine learning của bạn,
+
+23
+00:01:21.920 --> 00:01:26.120
+tôi sẽ khuyên bạn nên xem xét sự khác biệt giữa lỗi đào tạo của
+
+24
+00:01:26.120 --> 00:01:31.875
+bạn và proxy của bạn cho lỗi Bayes và chỉ cung cấp cho bạn một cảm giác có thể tránh khỏi thiên vị.
+
+25
+00:01:31.875 --> 00:01:34.280
+Nói cách khác, bạn
+
+26
+00:01:34.280 --> 00:01:37.055
+nghĩ rằng bạn nên cố gắng thực hiện việc đào tạo của mình tốt hơn bao nhiêu.
+
+27
+00:01:37.055 --> 00:01:39.740
+Và sau đó nhìn vào sự khác biệt giữa lỗi dev của
+
+28
+00:01:39.740 --> 00:01:44.120
+bạn và lỗi đào tạo của bạn như là một ước tính bao nhiêu của một vấn đề variance bạn có.
+
+29
+00:01:44.120 --> 00:01:46.160
+Nói cách khác, bạn nên
+
+30
+00:01:46.160 --> 00:01:48.440
+làm việc khó khăn hơn bao nhiêu để làm cho hiệu suất của bạn tổng quát từ
+
+31
+00:01:48.440 --> 00:01:53.880
+training set để bộ dev mà nó không được đào tạo trên một cách rõ ràng.
+
+32
+00:01:57.050 --> 00:02:02.465
+Vì vậy, ở bất cứ mức độ nào bạn muốn cố gắng giảm thiên vị tránh được,
+
+33
+00:02:02.465 --> 00:02:07.510
+tôi sẽ cố gắng áp dụng các chiến thuật như đào tạo một mô hình lớn hơn.
+
+34
+00:02:07.510 --> 00:02:11.695
+Vì vậy, bạn chỉ có thể làm tốt hơn trên bộ đào tạo của bạn hoặc đào tạo lâu hơn,
+
+35
+00:02:11.695 --> 00:02:13.705
+sử dụng một thuật toán tối ưu hóa tốt hơn,
+
+36
+00:02:13.705 --> 00:02:21.760
+chẳng hạn như ADS momentum hoặc RMSProp,
+
+37
+00:02:21.760 --> 00:02:26.610
+hoặc sử dụng một thuật toán tốt hơn như Adam,
+
+38
+00:02:27.730 --> 00:02:32.660
+hoặc một điều khác bạn có thể thử là chỉ cần tìm
+
+39
+00:02:32.660 --> 00:02:37.090
+một kiến trúc neural network tốt hơn hoặc bộ tốt hơn siêu tham số,
+
+40
+00:02:37.090 --> 00:02:39.920
+và điều này có thể bao gồm tất cả mọi thứ từ
+
+41
+00:02:39.920 --> 00:02:43.670
+việc thay đổi chức năng kích hoạt để thay đổi số lớp hoặc các đơn vị ẩn.
+
+42
+00:02:43.670 --> 00:02:46.910
+Mặc dù nếu bạn làm điều đó, nó sẽ theo hướng tăng
+
+43
+00:02:46.910 --> 00:02:52.605
+kích thước mô hình để thử các mô hình khác hoặc các kiến trúc mô hình khác,
+
+44
+00:02:52.605 --> 00:02:57.120
+chẳng hạn như neural network tái phát và neural network convolutional,
+
+45
+00:02:57.120 --> 00:02:59.190
+mà chúng ta sẽ thấy trong các khóa học sau này.
+
+46
+00:02:59.190 --> 00:03:02.355
+Liệu một kiến trúc neural network mới có
+
+47
+00:03:02.355 --> 00:03:05.840
+phù hợp với bộ đào tạo của bạn tốt hơn đôi khi khó có thể nói trước,
+
+48
+00:03:05.840 --> 00:03:10.545
+nhưng đôi khi bạn có thể nhận được kết quả tốt hơn nhiều với một kiến trúc tốt hơn.
+
+49
+00:03:10.545 --> 00:03:14.945
+Bên cạnh phạm vi mà bạn tìm ra variance là một vấn đề, một
+
+50
+00:03:14.945 --> 00:03:20.660
+số trong nhiều kỹ thuật bạn có thể thử sau đó bao gồm những điều sau đây: bạn có thể cố gắng để có được nhiều
+
+51
+00:03:20.660 --> 00:03:24.500
+dữ liệu hơn vì nhận được nhiều dữ liệu để đào tạo trên có thể giúp bạn
+
+52
+00:03:24.500 --> 00:03:29.250
+tổng quát tốt hơn để dev thiết lập dữ liệu mà phòng thuật toán của bạn không nhìn thấy,
+
+53
+00:03:29.250 --> 00:03:31.620
+bạn có thể cố gắng regularization.
+
+54
+00:03:31.620 --> 00:03:39.740
+Vì vậy, điều này bao gồm những thứ như L2 regularization hoặc dropout hoặc tăng cường dữ liệu,
+
+55
+00:03:39.740 --> 00:03:45.990
+mà chúng tôi đã nói về trong khóa học trước, hoặc một lần nữa,
+
+56
+00:03:45.990 --> 00:03:50.690
+bạn cũng có thể thử tìm kiếm kiến trúc NN/hyperparameters khác nhau để xem liệu
+
+57
+00:03:50.690 --> 00:03:52.310
+đó có thể giúp bạn tìm thấy
+
+58
+00:03:52.310 --> 00:03:56.150
+một kiến trúc neural network tốt hơn phù hợp với vấn đề của bạn.
+
+59
+00:03:56.150 --> 00:04:00.480
+Tôi nghĩ rằng khái niệm về sự thiên vị hay sự thiên vị và
+
+60
+00:04:00.480 --> 00:04:04.910
+variance có thể tránh khỏi là một trong những điều dễ học nhưng khó làm chủ.
+
+61
+00:04:04.910 --> 00:04:08.945
+Và bạn có thể áp dụng một cách có hệ thống các khái niệm từ các video trong tuần này.
+
+62
+00:04:08.945 --> 00:04:11.990
+Bạn thực sự sẽ hiệu quả hơn nhiều và hệ thống hơn nhiều và
+
+63
+00:04:11.990 --> 00:04:15.110
+chiến lược hơn nhiều so với rất nhiều
+
+64
+00:04:15.110 --> 00:04:17.915
+nhóm machine learning về làm thế nào để có
+
+65
+00:04:17.915 --> 00:04:22.400
+hệ thống đi về cải thiện hiệu suất của hệ thống machine learning của bạn.
+
+66
+00:04:22.400 --> 00:04:26.150
+Vì vậy, bài tập về nhà trong tuần này sẽ cho phép bạn
+
+67
+00:04:26.150 --> 00:04:30.515
+thực hành và tập thể dục nhiều hơn sự hiểu biết của bạn về những khái niệm này.
+
+68
+00:04:30.515 --> 00:04:32.540
+Chúc may mắn với bài tập về nhà tuần này,
+
+69
+00:04:32.540 --> 00:04:36.130
+và tôi mong được gặp bạn trong các video của tuần tới.

@@ -1,0 +1,316 @@
+WEBVTT
+
+00:00:02.100 --> 00:00:06.180
+Bây giờ, chúng ta hãy đi sâu hơn vào việc
+gradient descent để có trực
+
+00:00:06.180 --> 00:00:10.260
+giác tốt hơn về những gì nó đang làm và tại
+sao nó có thể có ý nghĩa.
+
+00:00:10.260 --> 00:00:15.460
+Đây là thuật toán gradient descent mà bạn đã
+thấy trong video trước.
+
+00:00:15.460 --> 00:00:21.500
+Và xin nhắc lại, biến này, ký hiệu alpha trong
+tiếng Hy Lạp này, là learning rate tập.
+
+00:00:21.500 --> 00:00:25.120
+Và learning rate sẽ kiểm soát mức độ bước bạn
+thực
+
+00:00:25.120 --> 00:00:28.740
+hiện khi cập nhật các tham số w và b của mô
+hình.
+
+00:00:28.740 --> 00:00:34.900
+Vậy số hạng này ở đây, số d này trên dw, đây
+là số hạng đạo hàm.
+
+00:00:34.900 --> 00:00:40.580
+Và theo quy ước trong toán học, chữ d này được
+viết bằng phông chữ ngộ nghĩnh ở đây.
+
+00:00:40.580 --> 00:00:43.460
+Và trong trường hợp bất kỳ ai xem phần này đều
+có bằng Tiến
+
+00:00:43.460 --> 00:00:46.340
+sĩ toán học hoặc là chuyên gia về phép tính đa
+biến, họ có
+
+00:00:46.340 --> 00:00:49.220
+thể thắc mắc, đó không phải là đạo hàm, đó là
+đạo hàm riêng.
+
+00:00:49.220 --> 00:00:50.660
+Và vâng, họ sẽ đúng.
+
+00:00:50.660 --> 00:00:56.180
+Nhưng với mục đích triển khai thuật toán
+machine learning, tôi sẽ gọi nó là đạo hàm.
+
+00:00:56.180 --> 00:00:59.940
+Và đừng lo lắng về những khác biệt nhỏ này.
+
+00:00:59.940 --> 00:01:05.940
+Vì vậy, điều chúng ta sẽ tập trung bây giờ là
+có thêm trực giác về
+
+00:01:05.940 --> 00:01:11.940
+learning rate và đạo hàm này đang làm gì, và
+tại sao, khi nhân với nhau như thế này,
+
+00:01:11.940 --> 00:01:15.300
+nó dẫn đến việc cập nhật các tham số w và b.
+
+00:01:15.300 --> 00:01:17.460
+Điều đó có ý nghĩa.
+
+00:01:17.460 --> 00:01:21.860
+Để thực hiện điều này, hãy sử dụng một ví dụ
+đơn giản hơn một
+
+00:01:21.860 --> 00:01:26.260
+chút, trong đó chúng tôi thực hiện việc giảm
+thiểu chỉ một tham số.
+
+00:01:26.260 --> 00:01:33.860
+Vì vậy, giả sử bạn có cost function j chỉ có
+một tham số w, trong đó w là một số.
+
+00:01:33.860 --> 00:01:37.380
+Điều này có nghĩa là gradient descent trông
+như thế này.
+
+00:01:37.380 --> 00:01:46.740
+w được cập nhật thành w trừ đi learning rate
+alpha nhân d trên dw của j của w.
+
+00:01:46.740 --> 00:01:52.420
+Và bạn đang cố gắng giảm thiểu chi phí bằng
+cách điều chỉnh tham số w.
+
+00:01:52.420 --> 00:01:55.780
+Vì vậy, đây giống như ví dụ trước của chúng
+
+00:01:55.780 --> 00:01:59.140
+ta, trong đó chúng ta đã tạm thời đặt b bằng
+0.
+
+00:01:59.140 --> 00:02:03.580
+Với một tham số w thay vì hai, bạn có thể xem
+biểu
+
+00:02:03.580 --> 00:02:08.020
+đồ hai chiều của hàm giá j thay vì biểu đồ ba
+chiều.
+
+00:02:08.020 --> 00:02:14.980
+Chúng ta hãy xem việc gradient descent thực
+hiện chức năng gì đối với hàm j của w.
+
+00:02:14.980 --> 00:02:22.900
+Ở đây trên trục hoành là tham số w và trên
+trục tung là chi phí j của w.
+
+00:02:23.700 --> 00:02:27.860
+Bây giờ hãy khởi tạo việc gradient descent với
+một số giá trị bắt đầu cho w.
+
+00:02:27.860 --> 00:02:30.020
+Hãy khởi tạo nó ở vị trí này.
+
+00:02:30.740 --> 00:02:35.540
+Vì vậy, hãy tưởng tượng rằng bạn bắt đầu tại
+thời điểm này trên hàm j.
+
+00:02:36.420 --> 00:02:41.540
+Việc gradient descent sẽ làm là nó sẽ cập nhật
+w thành w
+
+00:02:41.540 --> 00:02:46.660
+trừ learning rate tập alpha nhân d trên dw của
+j của w.
+
+00:02:47.940 --> 00:02:50.820
+Chúng ta hãy xem thuật ngữ phái sinh này ở đây
+có nghĩa là gì.
+
+00:02:51.940 --> 00:02:57.460
+Một cách để suy nghĩ về đạo hàm tại điểm này
+trên đường thẳng là vẽ một
+
+00:02:57.460 --> 00:03:02.980
+đường tiếp tuyến, là một đường thẳng tiếp xúc
+với đường cong này tại điểm đó.
+
+00:03:03.860 --> 00:03:09.380
+Trong toán học, độ dốc của đường này là đạo
+hàm của hàm j tại thời điểm này.
+
+00:03:10.180 --> 00:03:13.940
+Và để có được độ dốc, bạn có thể vẽ một hình
+tam giác nhỏ như thế này.
+
+00:03:14.660 --> 00:03:20.180
+Và nếu bạn tính chiều cao chia cho chiều rộng
+của tam giác này thì đó là độ dốc.
+
+00:03:21.140 --> 00:03:27.140
+Vì vậy, ví dụ, độ dốc này có thể là 2 trên 1
+chẳng hạn.
+
+00:03:27.140 --> 00:03:32.740
+Và khi đường tiếp tuyến hướng lên trên và sang
+phải thì hệ số
+
+00:03:32.740 --> 00:03:38.340
+góc là dương, nghĩa là đạo hàm này là số dương
+nên lớn hơn 0.
+
+00:03:39.220 --> 00:03:46.340
+Và do đó w cập nhật sẽ bằng w trừ
+learning rate nhân với một số dương.
+
+00:03:47.140 --> 00:03:49.540
+Learning rate tập luôn là một số dương.
+
+00:03:50.260 --> 00:03:53.900
+Vì vậy, nếu bạn lấy w trừ một số dương, bạn
+
+00:03:53.900 --> 00:03:57.540
+sẽ nhận được một giá trị mới của w nhỏ hơn.
+
+00:03:58.420 --> 00:04:04.580
+Vì vậy, trên biểu đồ, bạn đang di chuyển sang
+trái, bạn đang giảm giá trị của w.
+
+00:04:05.460 --> 00:04:09.060
+Và bạn có thể nhận thấy rằng đây là điều đúng
+đắn cần làm nếu
+
+00:04:09.060 --> 00:04:12.660
+bạn muốn giảm chi phí j, bởi vì khi chúng ta
+di chuyển về phía
+
+00:04:12.660 --> 00:04:16.260
+bên trái trên đường cong này, chi phí j sẽ
+giảm và bạn sẽ nhận được
+
+00:04:16.260 --> 00:04:23.620
+gần hơn với mức tối thiểu của j, ở đây. Cho
+đến nay, việc gradient descent dường như
+
+00:04:23.620 --> 00:04:30.980
+đang làm đúng. Bây giờ, hãy xem một ví dụ
+khác. Hãy lấy cùng hàm j của w như trên.
+
+00:04:31.540 --> 00:04:36.380
+Và bây giờ giả sử bạn khởi tạo việc
+gradient descent ở một vị trí
+
+00:04:36.380 --> 00:04:41.220
+khác, chẳng hạn bằng cách chọn giá trị bắt đầu
+cho w ở đây, bên trái.
+
+00:04:42.180 --> 00:04:47.513
+Vậy đó là điểm này của hàm j. Bây giờ, số hạng
+đạo hàm, hãy
+
+00:04:47.513 --> 00:04:52.847
+nhớ, là d trên d w của j của w. Và khi chúng
+ta nhìn vào
+
+00:04:52.847 --> 00:04:58.180
+đường tiếp tuyến tại điểm này ở đây, hệ số góc
+của đường này
+
+00:04:58.180 --> 00:05:04.100
+là đạo hàm của j tại thời điểm này. Nhưng
+đường tiếp tuyến này dốc xuống và sang phải.
+
+00:05:04.740 --> 00:05:10.460
+Và do đó đường này dốc xuống và sang bên phải
+có độ dốc âm. Nói cách khác,
+
+00:05:10.460 --> 00:05:16.180
+đạo hàm j tại thời điểm này là số âm. Ví dụ,
+nếu bạn vẽ một hình tam giác,
+
+00:05:16.740 --> 00:05:23.820
+thì chiều cao như thế này là âm hai và chiều
+rộng là một. Vậy độ dốc là
+
+00:05:23.820 --> 00:05:30.900
+âm hai chia cho một, bằng âm hai, là số âm. Vì
+vậy khi bạn cập nhật w,
+
+00:05:30.900 --> 00:05:39.700
+bạn nhận được w trừ đi learning rate tập nhân
+với số âm. Và điều này có nghĩa là bạn
+
+00:05:39.700 --> 00:05:48.500
+trừ từ w một số âm. Nhưng trừ số âm có nghĩa
+là cộng số dương. Và thế là bạn kết thúc
+
+00:05:48.580 --> 00:05:56.340
+tăng w vì trừ số âm cũng giống như cộng số
+dương vào w. Vì vậy, bước
+
+00:05:56.340 --> 00:06:04.100
+gradient descent này làm cho w tăng lên, có
+nghĩa là bạn đang di chuyển sang phải
+
+00:06:04.100 --> 00:06:09.007
+của biểu đồ và chi phí j của bạn đã giảm xuống
+đây. Và một lần nữa, có
+
+00:06:09.007 --> 00:06:13.913
+vẻ như việc gradient descent đang làm điều gì
+đó hợp lý, nó giúp bạn
+
+00:06:13.913 --> 00:06:18.820
+tiến gần hơn đến mức tối thiểu. Vì vậy, hy
+vọng, những điều cuối cùng này
+
+00:06:18.820 --> 00:06:23.620
+hai ví dụ cho thấy một số trực giác đằng sau
+tác dụng của số hạng đạo
+
+00:06:23.620 --> 00:06:28.420
+hàm và lý do tại sao điều này giúp
+gradient descent w để đưa bạn đến
+
+00:06:28.420 --> 00:06:33.220
+gần mức tối thiểu. Tôi hy vọng video này đã
+mang lại cho bạn một số
+
+00:06:33.220 --> 00:06:37.193
+giải thích tại sao số hạng đạo hàm trong quá
+trình gradient descent lại
+
+00:06:37.193 --> 00:06:41.167
+có ý nghĩa. Một đại lượng quan trọng khác
+trong thuật toán
+
+00:06:41.167 --> 00:06:45.140
+gradient descent là learning rate alpha. Bạn
+chọn alpha như thế nào? Điều gì xảy ra nếu
+
+00:06:45.140 --> 00:06:48.740
+nó quá nhỏ, hoặc điều gì xảy ra nếu nó quá
+lớn? Trong video tiếp
+
+00:06:48.740 --> 00:06:52.340
+theo, chúng ta hãy cùng tìm hiểu sâu hơn về
+tham số alpha để giúp
+
+00:06:52.340 --> 00:06:55.940
+xây dựng trực giác về chức năng của nó cũng
+như cách thực hiện tốt
+
+00:06:55.940 --> 00:07:00.740
+lựa chọn giá trị alpha tốt cho việc triển khai
+gradient descent.

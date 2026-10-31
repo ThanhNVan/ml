@@ -1,0 +1,685 @@
+WEBVTT
+
+1
+00:00:00.350 --> 00:00:02.080
+Xin chào, và chào mừng trở lại.
+
+2
+00:00:02.080 --> 00:00:06.550
+Nếu bạn đang cố gắng để có được một thuật toán học tập để làm một nhiệm vụ mà con người có thể làm.
+
+3
+00:00:06.550 --> 00:00:10.490
+Và nếu thuật toán học tập của bạn vẫn chưa ở hiệu suất của một con người.
+
+4
+00:00:10.490 --> 00:00:13.790
+Sau đó kiểm tra thủ công những sai lầm mà thuật toán của bạn đang thực hiện,
+
+5
+00:00:13.790 --> 00:00:16.240
+có thể cung cấp cho bạn thông tin chi tiết về những gì cần làm tiếp theo.
+
+6
+00:00:16.240 --> 00:00:19.040
+Quá trình này được gọi là phân tích lỗi.
+
+7
+00:00:19.040 --> 00:00:20.890
+Hãy bắt đầu với một ví dụ.
+
+8
+00:00:20.890 --> 00:00:24.520
+Giả sử bạn đang làm việc trên bộ classification mèo của bạn, và bạn đã đạt được
+
+9
+00:00:24.520 --> 00:00:29.390
+độ chính xác 90%, hoặc tương đương 10% lỗi, trên bộ dev của bạn.
+
+10
+00:00:29.390 --> 00:00:32.820
+Và chúng ta hãy nói rằng điều này còn tệ hơn nhiều so với bạn hy vọng làm.
+
+11
+00:00:32.820 --> 00:00:36.740
+Có lẽ một trong những đồng đội của bạn nhìn vào một số ví dụ rằng thuật toán đang
+
+12
+00:00:36.740 --> 00:00:42.340
+classification sai, và nhận thấy rằng nó đang classification nhầm một số chó như mèo.
+
+13
+00:00:42.340 --> 00:00:46.080
+Và nếu bạn nhìn vào hai chú chó này, có thể chúng trông hơi giống một con mèo,
+
+14
+00:00:46.080 --> 00:00:47.628
+ít nhất là ngay từ cái nhìn đầu tiên.
+
+15
+00:00:47.628 --> 00:00:51.160
+Vì vậy, có lẽ đồng đội của bạn đến với bạn với một đề xuất về làm
+
+16
+00:00:51.160 --> 00:00:56.110
+thế nào để làm cho thuật toán làm tốt hơn, cụ thể là trên chó, phải không?
+
+17
+00:00:56.110 --> 00:01:01.080
+Bạn có thể tưởng tượng xây dựng một nỗ lực tập trung, có thể để thu thập nhiều hình ảnh chó hơn, hoặc
+
+18
+00:01:01.080 --> 00:01:04.680
+có thể để thiết kế các feature cụ thể cho chó, hoặc một cái gì đó.
+
+19
+00:01:04.680 --> 00:01:07.833
+Để làm cho máy classification mèo của bạn làm tốt hơn trên chó, vì vậy
+
+20
+00:01:07.833 --> 00:01:11.070
+nó không nhận ra sai những chú chó này là mèo.
+
+21
+00:01:11.070 --> 00:01:13.980
+Vậy câu hỏi đặt ra là, bạn có nên
+
+22
+00:01:13.980 --> 00:01:18.080
+bắt đầu một dự án tập trung vào vấn đề chó không?
+
+23
+00:01:19.325 --> 00:01:23.740
+Có thể có vài tháng công việc bạn có thể làm để làm cho thuật toán của bạn
+
+24
+00:01:23.740 --> 00:01:25.890
+làm cho vài sai lầm trên hình ảnh chó.
+
+25
+00:01:27.280 --> 00:01:29.550
+Vậy điều đó có đáng để anh nỗ lực không?
+
+26
+00:01:29.550 --> 00:01:32.475
+Vâng, thay vì dành vài tháng để làm việc này,
+
+27
+00:01:32.475 --> 00:01:36.175
+chỉ để mạo hiểm phát hiện ra rằng nó không hữu ích gì.
+
+28
+00:01:36.175 --> 00:01:40.605
+Đây là một quy trình phân tích lỗi có thể cho phép bạn rất nhanh chóng biết liệu
+
+29
+00:01:40.605 --> 00:01:43.055
+điều này có đáng để bạn nỗ lực hay không.
+
+30
+00:01:43.055 --> 00:01:45.180
+Đây là những gì tôi khuyên bạn nên làm.
+
+31
+00:01:45.180 --> 00:01:51.860
+Trước tiên, có được khoảng, nói 100 ví dụ thiết lập dev dán nhãn sai, sau đó kiểm tra chúng theo cách thủ công.
+
+32
+00:01:51.860 --> 00:01:56.380
+Chỉ cần đếm chúng lên một lần, để xem có bao nhiêu
+
+33
+00:01:56.380 --> 00:01:59.338
+ví dụ bị dán nhãn sai trong bộ dev của bạn thực sự là hình ảnh của chó.
+
+34
+00:01:59.338 --> 00:02:02.160
+Bây giờ, giả sử rằng nó chỉ ra
+
+35
+00:02:02.160 --> 00:02:07.700
+rằng 5% trong số 100 ví dụ bộ dev bị dán nhãn sai của bạn là hình ảnh của chó.
+
+36
+00:02:07.700 --> 00:02:12.740
+Vì vậy, đó là, nếu 5 trong số 100 các
+
+37
+00:02:12.740 --> 00:02:18.231
+ví dụ bộ dev bị dán nhãn sai là chó, điều này có nghĩa là của 100 ví dụ.
+
+38
+00:02:18.231 --> 00:02:23.217
+Trong một tập hợp điển hình của 100 ví dụ bạn đang nhận được sai, ngay cả khi bạn
+
+39
+00:02:23.217 --> 00:02:28.807
+hoàn toàn giải quyết vấn đề chó, bạn chỉ nhận được 5 trên 100 chính xác hơn.
+
+40
+00:02:28.807 --> 00:02:33.802
+Hay nói cách khác, nếu chỉ có 5% lỗi của bạn là hình ảnh chó, thì tốt nhất bạn
+
+41
+00:02:33.802 --> 00:02:38.076
+có thể dễ dàng hy vọng làm, nếu bạn dành nhiều thời gian cho vấn đề chó.
+
+42
+00:02:38.076 --> 00:02:43.256
+Đó là lỗi của bạn có thể giảm từ lỗi 10%,
+
+43
+00:02:43.256 --> 00:02:46.635
+giảm xuống còn lỗi 9.5%, đúng không?
+
+44
+00:02:46.635 --> 00:02:53.455
+Vì vậy, điều này giảm 5% tương đối trong sai số, từ 10% xuống còn 9.5%.
+
+45
+00:02:53.455 --> 00:02:58.220
+Và vì vậy bạn có thể quyết định một cách hợp lý rằng đây không phải là cách sử dụng tốt nhất thời gian của bạn.
+
+46
+00:02:58.220 --> 00:03:02.743
+Hoặc có thể là vậy, nhưng ít nhất điều này cho bạn một trần nhà, phải không?
+
+47
+00:03:02.743 --> 00:03:08.566
+Trên ràng buộc về bao nhiêu bạn có thể cải thiện hiệu suất bằng cách làm việc trên vấn đề chó,
+
+48
+00:03:08.566 --> 00:03:09.150
+phải không?
+
+49
+00:03:10.800 --> 00:03:15.870
+Trong machine learning, đôi khi chúng ta gọi đây là trần nhà về hiệu suất. Điều
+
+50
+00:03:15.870 --> 00:03:17.818
+đó chỉ có nghĩa là, trường hợp tốt nhất là gì?
+
+51
+00:03:17.818 --> 00:03:20.720
+Làm thế nào tốt có thể làm việc trên vấn đề chó giúp bạn?
+
+52
+00:03:22.690 --> 00:03:25.310
+Nhưng bây giờ, giả sử có điều gì khác xảy ra.
+
+53
+00:03:25.310 --> 00:03:28.590
+Giả sử rằng chúng ta nhìn vào 100 ví dụ thiết lập dev dán nhãn sai của
+
+54
+00:03:28.590 --> 00:03:32.340
+bạn, bạn thấy rằng 50 trong số họ thực sự là hình ảnh chó.
+
+55
+00:03:32.340 --> 00:03:35.620
+Vậy 50% trong số đó là hình chó.
+
+56
+00:03:35.620 --> 00:03:39.760
+Bây giờ bạn có thể lạc quan hơn nhiều về việc dành thời gian cho vấn đề chó.
+
+57
+00:03:39.760 --> 00:03:42.807
+Trong trường hợp này, nếu bạn thực sự giải quyết vấn đề chó,
+
+58
+00:03:42.807 --> 00:03:47.158
+lỗi của bạn sẽ giảm từ 10% này, giảm xuống có khả năng 5% lỗi.
+
+59
+00:03:47.158 --> 00:03:52.260
+Và bạn có thể quyết định rằng giảm một nửa lỗi của bạn có thể là giá trị rất nhiều nỗ lực.
+
+60
+00:03:52.260 --> 00:03:56.150
+Tập trung vào việc giảm vấn đề chó bị dán nhãn sai.
+
+61
+00:03:56.150 --> 00:04:00.446
+Tôi biết rằng trong machine learning, đôi khi chúng ta nói những
+
+62
+00:04:00.446 --> 00:04:03.660
+thứ kỹ thuật tay, hoặc sử dụng quá nhiều cái nhìn sâu sắc giá trị.
+
+63
+00:04:03.660 --> 00:04:09.280
+Nhưng nếu bạn đang xây dựng các hệ thống ứng dụng, thì quy trình đếm đơn giản này,
+
+64
+00:04:09.280 --> 00:04:12.120
+phân tích lỗi, có thể giúp bạn tiết kiệm rất nhiều thời gian.
+
+65
+00:04:12.120 --> 00:04:14.740
+Về việc quyết định điều gì là quan trọng nhất, hoặc
+
+66
+00:04:14.740 --> 00:04:17.309
+hướng hứa hẹn nhất để tập trung vào là gì.
+
+67
+00:04:19.739 --> 00:04:24.263
+Trong thực tế, nếu bạn đang xem xét 100 ví dụ thiết lập dev bị dán nhãn sai,
+
+68
+00:04:24.263 --> 00:04:27.620
+có lẽ đây là một nỗ lực 5 đến 10 phút.
+
+69
+00:04:27.620 --> 00:04:29.930
+Để tự đi qua 100 ví dụ, và
+
+70
+00:04:29.930 --> 00:04:32.860
+đếm bằng tay có bao nhiêu người trong số họ là chó.
+
+71
+00:04:32.860 --> 00:04:36.212
+Và tùy thuộc vào kết quả, cho dù có nhiều hơn như 5%, hoặc
+
+72
+00:04:36.212 --> 00:04:37.570
+50%, hoặc một cái gì đó khác.
+
+73
+00:04:37.570 --> 00:04:39.580
+Điều này, chỉ trong 5 đến 10 phút,
+
+74
+00:04:39.580 --> 00:04:44.310
+cho bạn ước tính hướng này đáng giá như thế nào.
+
+75
+00:04:44.310 --> 00:04:46.430
+Và có thể giúp bạn đưa ra quyết định tốt hơn nhiều, liệu có nên
+
+76
+00:04:46.430 --> 00:04:51.470
+dành vài tháng tới tập trung vào việc tìm giải pháp để
+
+77
+00:04:51.470 --> 00:04:54.180
+giải quyết vấn đề chó bị dán nhãn sai hay không.
+
+78
+00:04:54.180 --> 00:04:58.120
+Trong slide này, chúng tôi sẽ mô tả bằng cách sử dụng phân tích lỗi để đánh giá liệu
+
+79
+00:04:58.120 --> 00:05:02.380
+một ý tưởng duy nhất, chó trong trường hợp này, có đáng làm việc hay không.
+
+80
+00:05:02.380 --> 00:05:08.260
+Đôi khi bạn cũng có thể đánh giá nhiều ý tưởng song song thực hiện phân tích lỗi.
+
+81
+00:05:08.260 --> 00:05:12.920
+Ví dụ, giả sử bạn có một số ý tưởng trong việc cải thiện máy dò mèo của bạn.
+
+82
+00:05:12.920 --> 00:05:16.460
+Có lẽ bạn có thể cải thiện hiệu suất trên chó?
+
+83
+00:05:16.460 --> 00:05:19.785
+Hoặc có thể bạn nhận thấy rằng đôi khi, những gì được gọi là những con mèo vĩ
+
+84
+00:05:19.785 --> 00:05:22.332
+đại, chẳng hạn như sư tử, báo, báo, và vân vân.
+
+85
+00:05:22.332 --> 00:05:25.758
+Rằng chúng đang được công nhận là mèo nhỏ, hoặc mèo nhà.
+
+86
+00:05:25.758 --> 00:05:28.031
+Vì vậy, có lẽ bạn có thể tìm ra cách để làm việc đó.
+
+87
+00:05:28.031 --> 00:05:32.632
+Hoặc có thể bạn thấy rằng một số hình ảnh của bạn bị mờ, và nó sẽ là tốt đẹp nếu bạn
+
+88
+00:05:32.632 --> 00:05:36.489
+có thể thiết kế một cái gì đó mà chỉ hoạt động tốt hơn trên hình ảnh mờ.
+
+89
+00:05:37.560 --> 00:05:39.280
+Và có lẽ bạn có một số ý tưởng về cách làm điều đó.
+
+90
+00:05:41.480 --> 00:05:45.430
+Vì vậy, nếu thực hiện phân tích lỗi để đánh giá ba ý tưởng này,
+
+91
+00:05:45.430 --> 00:05:48.430
+điều tôi sẽ làm là tạo ra một bảng như thế này.
+
+92
+00:05:50.760 --> 00:05:53.940
+Và tôi thường làm điều này trong một bảng tính, nhưng
+
+93
+00:05:53.940 --> 00:05:56.520
+sử dụng một tập tin văn bản thông thường cũng sẽ ổn.
+
+94
+00:05:57.610 --> 00:05:58.605
+Và ở phía bên trái,
+
+95
+00:05:58.605 --> 00:06:02.430
+nó đi qua tập hợp các hình ảnh bạn định xem theo cách thủ công.
+
+96
+00:06:02.430 --> 00:06:06.010
+Vì vậy, điều này có thể đi từ 1 đến 100, nếu bạn nhìn vào 100 bức ảnh.
+
+97
+00:06:06.010 --> 00:06:09.910
+Và các cột của bảng này, của bảng tính,
+
+98
+00:06:09.910 --> 00:06:12.570
+sẽ tương ứng với các ý tưởng bạn đang đánh giá.
+
+99
+00:06:12.570 --> 00:06:18.490
+Vì vậy, vấn đề của chó, vấn đề của những con mèo vĩ đại, và những hình ảnh mờ nhạt.
+
+100
+00:06:18.490 --> 00:06:23.870
+Và tôi cũng thường để lại không gian trong bảng tính để viết bình luận.
+
+101
+00:06:23.870 --> 00:06:25.724
+Vì vậy, hãy nhớ rằng, trong quá trình phân tích lỗi,
+
+102
+00:06:25.724 --> 00:06:29.610
+bạn chỉ đang nhìn vào các ví dụ bộ dev mà thuật toán của bạn đã nhận ra sai.
+
+103
+00:06:30.670 --> 00:06:34.640
+Vì vậy, nếu bạn thấy rằng hình ảnh bị nhận dạng sai đầu tiên là hình ảnh của một chú chó,
+
+104
+00:06:34.640 --> 00:06:36.550
+sau đó tôi sẽ đặt một dấu kiểm ở đó.
+
+105
+00:06:36.550 --> 00:06:39.540
+Và để giúp bản thân mình nhớ những hình ảnh này,
+
+106
+00:06:39.540 --> 00:06:41.830
+đôi khi tôi sẽ ghi chú trong các ý kiến.
+
+107
+00:06:41.830 --> 00:06:44.380
+Vậy có lẽ đó là một bức tranh pit bull.
+
+108
+00:06:44.380 --> 00:06:48.110
+Nếu hình ảnh thứ hai bị mờ, sau đó ghi chú ở đó.
+
+109
+00:06:48.110 --> 00:06:53.317
+Nếu con thứ ba là sư tử, vào một ngày mưa, trong sở thú đã bị nhận ra sai.
+
+110
+00:06:53.317 --> 00:06:56.030
+Sau đó, đó là một con mèo tuyệt vời, và dữ liệu mờ.
+
+111
+00:06:56.030 --> 00:07:00.920
+Ghi chú trong phần bình luận, ngày mưa ở sở thú, và
+
+112
+00:07:00.920 --> 00:07:03.620
+đó là cơn mưa làm cho nó mờ, vân vân.
+
+113
+00:07:05.670 --> 00:07:08.616
+Sau đó, cuối cùng, đã đi qua một số tập hợp các hình ảnh,
+
+114
+00:07:08.616 --> 00:07:11.508
+tôi sẽ đếm lên những gì tỷ lệ phần trăm của các thuật toán này.
+
+115
+00:07:11.508 --> 00:07:16.951
+Hoặc tỷ lệ phần trăm của mỗi loại lỗi này được quy cho chó,
+
+116
+00:07:16.951 --> 00:07:19.360
+hoặc mèo tuyệt vời, loại mờ.
+
+117
+00:07:19.360 --> 00:07:26.484
+Vậy có thể 8% trong số những hình ảnh bạn kiểm tra hóa ra là chó, và
+
+118
+00:07:26.484 --> 00:07:32.390
+có thể 43% mèo tuyệt vời, và 61% bị mờ.
+
+119
+00:07:32.390 --> 00:07:34.720
+Vì vậy, điều này chỉ có nghĩa là đi xuống mỗi cột, và
+
+120
+00:07:34.720 --> 00:07:39.290
+đếm số phần trăm của hình ảnh có một dấu kiểm trong cột đó.
+
+121
+00:07:39.290 --> 00:07:41.567
+Khi bạn là một phần của quá trình này,
+
+122
+00:07:41.567 --> 00:07:44.420
+đôi khi bạn nhận thấy các loại sai lầm khác.
+
+123
+00:07:44.420 --> 00:07:50.240
+Vì vậy, ví dụ, bạn có thể thấy rằng bộ lọc phong cách Instagram, những
+
+124
+00:07:50.240 --> 00:07:55.420
+bộ lọc hình ảnh ưa thích, cũng làm hỏng bộ classification của bạn.
+
+125
+00:07:55.420 --> 00:07:55.940
+Trong trường hợp đó,
+
+126
+00:07:55.940 --> 00:08:00.240
+nó thực sự ổn, một phần của quá trình, để thêm một cột khác như thế.
+
+127
+00:08:00.240 --> 00:08:03.125
+Đối với các bộ lọc nhiều màu, bộ lọc Instagram và
+
+128
+00:08:03.125 --> 00:08:04.650
+bộ lọc Snapchat.
+
+129
+00:08:04.650 --> 00:08:07.900
+Và sau đó đi qua và đếm số đó là tốt, và
+
+130
+00:08:07.900 --> 00:08:11.050
+tìm ra tỷ lệ phần trăm đến từ danh mục lỗi mới đó.
+
+131
+00:08:12.170 --> 00:08:16.640
+Kết luận của quá trình này cung cấp cho bạn một ước tính của nó có
+
+132
+00:08:16.640 --> 00:08:19.880
+thể đáng giá như thế nào để làm việc trên mỗi loại lỗi khác nhau.
+
+133
+00:08:19.880 --> 00:08:23.820
+Ví dụ, rõ ràng trong ví dụ này, rất nhiều sai lầm chúng tôi đã thực hiện trên
+
+134
+00:08:23.820 --> 00:08:28.780
+hình ảnh mờ, và khá nhiều trên đã được thực hiện trên những hình ảnh mèo tuyệt vời.
+
+135
+00:08:28.780 --> 00:08:35.750
+Và kết quả của phân tích này không phải là bạn phải làm việc trên hình ảnh mờ.
+
+136
+00:08:35.750 --> 00:08:39.360
+Điều này không cung cấp cho bạn một công thức toán học cứng nhắc cho bạn biết phải làm gì,
+
+137
+00:08:39.360 --> 00:08:43.140
+nhưng nó mang lại cho bạn một cảm giác về những lựa chọn tốt nhất để theo đuổi.
+
+138
+00:08:43.140 --> 00:08:44.650
+Nó cũng cho bạn biết, ví dụ,
+
+139
+00:08:44.650 --> 00:08:50.490
+rằng bất kể bạn làm tốt hơn bao nhiêu trên hình ảnh chó, hoặc trên hình ảnh Instagram.
+
+140
+00:08:50.490 --> 00:08:55.130
+Bạn hầu hết cải thiện hiệu suất bằng cách có thể 8%, hoặc 12%, trong những ví dụ này.
+
+141
+00:08:55.130 --> 00:08:57.700
+Trong khi bạn có thể để tốt hơn trên hình ảnh mèo tuyệt vời, hoặc
+
+142
+00:08:57.700 --> 00:09:00.246
+hình ảnh mờ, sự cải thiện tiềm năng.
+
+143
+00:09:00.246 --> 00:09:03.730
+Bây giờ có một trần nhà về bao nhiêu bạn có thể cải thiện hiệu suất,
+
+144
+00:09:03.730 --> 00:09:05.390
+là cao hơn nhiều.
+
+145
+00:09:05.390 --> 00:09:09.010
+Vì vậy, tùy thuộc vào bao nhiêu ý tưởng bạn có để cải thiện hiệu suất trên những con mèo tuyệt vời,
+
+146
+00:09:09.010 --> 00:09:10.320
+trên những hình ảnh mờ.
+
+147
+00:09:10.320 --> 00:09:13.856
+Có lẽ bạn có thể chọn một trong hai đội, hoặc nếu bạn có đủ nhân sự trong đội của bạn, có
+
+148
+00:09:13.856 --> 00:09:15.630
+lẽ bạn có thể có hai đội khác nhau.
+
+149
+00:09:15.630 --> 00:09:18.629
+Có một công việc để cải thiện lỗi trên mèo tuyệt vời, và
+
+150
+00:09:18.629 --> 00:09:22.120
+một nhóm khác nhau làm việc để cải thiện lỗi trên hình ảnh mờ.
+
+151
+00:09:27.184 --> 00:09:31.280
+Nhưng thủ tục đếm nhanh này, mà bạn thường có thể làm trong, nhiều nhất,
+
+152
+00:09:31.280 --> 00:09:33.130
+số giờ nhỏ.
+
+153
+00:09:33.130 --> 00:09:36.200
+Thực sự có thể giúp bạn đưa ra các quyết định ưu tiên tốt hơn
+
+154
+00:09:36.200 --> 00:09:39.410
+và hiểu cách tiếp cận khác nhau hứa hẹn sẽ làm việc như thế nào.
+
+155
+00:09:40.940 --> 00:09:44.670
+Vì vậy, để tóm tắt, để thực hiện phân tích lỗi, bạn nên tìm một tập hợp các
+
+156
+00:09:44.670 --> 00:09:48.731
+ví dụ bị dán nhãn sai, hoặc trong bộ dev của bạn, hoặc trong bộ phát triển của bạn.
+
+157
+00:09:48.731 --> 00:09:53.420
+Và nhìn vào các ví dụ bị dán nhãn sai cho các dấu hiệu dương tính sai và âm tính sai.
+
+158
+00:09:53.420 --> 00:09:56.378
+Và chỉ cần đếm số lỗi rơi vào các
+
+159
+00:09:56.378 --> 00:09:57.629
+loại khác nhau.
+
+160
+00:09:57.629 --> 00:10:01.916
+Trong quá trình này, bạn có thể được truyền cảm hứng để tạo ra các loại lỗi mới,
+
+161
+00:10:01.916 --> 00:10:02.597
+như chúng tôi đã thấy.
+
+162
+00:10:02.597 --> 00:10:06.016
+Nếu bạn đang xem qua các ví dụ và bạn nói gee, có rất nhiều bộ
+
+163
+00:10:06.016 --> 00:10:09.071
+lọc Instagram, hoặc bộ lọc Snapchat, chúng cũng làm hỏng bộ classification của tôi.
+
+164
+00:10:09.071 --> 00:10:11.600
+Bạn có thể tạo các thể loại mới trong quá trình đó.
+
+165
+00:10:11.600 --> 00:10:14.740
+Nhưng bằng cách đếm phần nhỏ của các ví dụ được dán nhãn sai
+
+166
+00:10:14.740 --> 00:10:17.375
+theo những cách khác nhau, thường điều này sẽ giúp bạn ưu tiên.
+
+167
+00:10:17.375 --> 00:10:21.140
+Hoặc cung cấp cho bạn cảm hứng cho những hướng đi mới để đi vào.
+
+168
+00:10:21.140 --> 00:10:23.074
+Bây giờ khi bạn đang thực hiện phân tích lỗi,
+
+169
+00:10:23.074 --> 00:10:27.600
+đôi khi bạn nhận thấy rằng một số ví dụ của bạn trong bộ dev của bạn bị dán nhãn sai.
+
+170
+00:10:27.600 --> 00:10:29.380
+Vậy anh sẽ làm gì với điều đó?
+
+171
+00:10:29.380 --> 00:10:31.020
+Hãy thảo luận về điều đó trong video tiếp theo.

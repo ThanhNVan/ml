@@ -1,0 +1,299 @@
+WEBVTT
+
+00:00:01.360 --> 00:00:06.280
+Trong video này, bạn sẽ thấy cách triển khai
+logistic regression chính quy.
+
+00:00:06.280 --> 00:00:09.627
+Giống như bản cập nhật độ dốc cho
+logistic regression có vẻ giống với
+
+00:00:09.627 --> 00:00:12.973
+bản cập nhật độ dốc cho linear regression một
+cách đáng ngạc nhiên,
+
+00:00:12.973 --> 00:00:16.320
+bạn thấy rằng bản cập nhật gradient descent
+cho regression chuẩn hóa.
+
+00:00:16.320 --> 00:00:18.780
+logistic regression cũng sẽ trông giống như
+
+00:00:18.780 --> 00:00:21.240
+bản cập nhật cho linear regression chính quy.
+
+00:00:21.240 --> 00:00:22.680
+Chúng ta hãy xem xét.
+
+00:00:22.680 --> 00:00:24.200
+Đây là ý tưởng.
+
+00:00:24.200 --> 00:00:28.520
+Chúng ta đã thấy trước đó rằng
+logistic regression có thể dễ bị trang bị
+
+00:00:28.520 --> 00:00:32.840
+quá mức nếu bạn lắp nó với các đặc tính đa
+thức bậc rất cao như thế này.
+
+00:00:32.840 --> 00:00:40.880
+Ở đây z là đa thức bậc cao được truyền vào hàm
+sigmoid để tính f.
+
+00:00:40.880 --> 00:00:45.620
+Và đặc biệt, bạn có thể nhập với
+
+00:00:45.620 --> 00:00:50.360
+decision boundary quá phức tạp và phù hợp với
+training set này.
+
+00:00:50.360 --> 00:00:56.270
+Tổng quát hơn, khi bạn huấn luyện
+logistic regression với nhiều feature, cho dù
+là
+
+00:00:56.270 --> 00:01:02.180
+feature đa thức hay một số feature khác, có
+thể có nguy cơ khớp quá mức cao hơn.
+
+00:01:02.180 --> 00:01:05.800
+Đây là cost function cho logistic regression.
+
+00:01:05.800 --> 00:01:09.740
+Nếu bạn muốn sửa đổi nó để sử dụng
+regularization, tất
+
+00:01:09.740 --> 00:01:13.680
+cả những gì bạn cần làm là thêm thuật ngữ sau
+vào đó.
+
+00:01:13.680 --> 00:01:20.150
+Hãy cộng lambda, tham số chính quy, gấp hơn 2m
+lần tổng từ j
+
+00:01:20.150 --> 00:01:26.620
+bằng 1 đến n trong đó n là số đối tượng như
+bình phương của wj.
+
+00:01:26.620 --> 00:01:33.130
+Vì vậy, khi bạn giảm thiểu cost function này
+dưới dạng hàm của w và b,
+
+00:01:33.130 --> 00:01:39.640
+nó có tác dụng phạt các tham số w1, w2 đến wn
+và ngăn chúng quá lớn.
+
+00:01:39.640 --> 00:01:44.700
+Và nếu bạn làm điều này, thì mặc dù bạn đang
+khớp một đa thức bậc cao với
+
+00:01:44.700 --> 00:01:49.760
+rất nhiều tham số, bạn vẫn nhận được
+decision boundary trông như thế này.
+
+00:01:49.760 --> 00:01:55.060
+Điều gì đó có vẻ hợp lý hơn để tách các ví dụ
+tích cực và tiêu cực
+
+00:01:55.060 --> 00:02:00.360
+đồng thời khái quát hóa các ví dụ mới, không
+có trong training set.
+
+00:02:00.360 --> 00:02:03.820
+Vì vậy, khi sử dụng feature regularization,
+ngay cả khi bạn có
+
+00:02:03.820 --> 00:02:07.280
+nhiều feature, bạn thực sự có thể triển khai
+feature này như thế nào?
+
+00:02:07.280 --> 00:02:10.370
+Làm thế nào bạn thực sự có thể cực tiểu hóa
+
+00:02:10.370 --> 00:02:13.460
+cost function j của wb bao gồm số hạng chính
+quy này?
+
+00:02:13.460 --> 00:02:17.720
+Chà, hãy sử dụng phương pháp gradient descent
+như trước.
+
+00:02:17.720 --> 00:02:21.640
+Đây là cost function mà bạn muốn giảm thiểu.
+
+00:02:21.640 --> 00:02:26.640
+Và để triển khai việc gradient descent, như
+trước đây, chúng
+
+00:02:26.640 --> 00:02:31.640
+tôi sẽ thực hiện các cập nhật đồng thời sau
+đây trên wj và b.
+
+00:02:31.640 --> 00:02:35.080
+Đây là các quy tắc cập nhật thông thường cho
+việc gradient descent.
+
+00:02:35.080 --> 00:02:40.960
+Và cũng giống như linear regression chính quy,
+khi bạn tính các số hạng
+
+00:02:40.960 --> 00:02:46.840
+đạo hàm này là gì, điều duy nhất thay đổi bây
+giờ là đạo hàm đối với wj
+
+00:02:46.840 --> 00:02:50.860
+Đây có phải là thuật ngữ bổ sung không,
+
+00:02:50.860 --> 00:02:54.880
+lambda hơn m lần wj được thêm vào đây vào
+cuối.
+
+00:02:54.880 --> 00:02:59.840
+Và một lần nữa, nó trông rất giống bản cập
+nhật cho linear regression chính quy.
+
+00:02:59.840 --> 00:03:06.050
+Trên thực tế, đó là cùng một phương trình,
+ngoại trừ thực tế là định nghĩa
+
+00:03:06.050 --> 00:03:12.260
+của f bây giờ không còn là hàm tuyến tính nữa
+mà là hàm logistic áp dụng cho z.
+
+00:03:12.660 --> 00:03:16.567
+Tương tự như linear regression, chúng tôi sẽ
+chỉ chuẩn hóa các
+
+00:03:16.567 --> 00:03:20.473
+tham số wj chứ không phải tham số b, đó là lý
+do tại sao không
+
+00:03:20.473 --> 00:03:24.380
+có thay đổi nào đối với bản cập nhật mà bạn
+thực hiện cho b.
+
+00:03:24.380 --> 00:03:27.280
+Trong phòng thí nghiệm tùy chọn cuối cùng
+
+00:03:27.280 --> 00:03:30.180
+của tuần này, bạn sẽ xem lại overfitting.
+
+00:03:30.180 --> 00:03:33.927
+Và trong biểu đồ tương tác trong phòng thí
+nghiệm tùy chọn, giờ đây
+
+00:03:33.927 --> 00:03:37.673
+bạn có thể chọn chuẩn hóa các mô hình của mình
+cả regression và
+
+00:03:37.673 --> 00:03:41.420
+classification bằng cách bật feature chuẩn hóa
+trong quá trình chuyển màu
+
+00:03:41.420 --> 00:03:45.380
+đi xuống bằng cách chọn một giá trị cho
+lambda.
+
+00:03:45.380 --> 00:03:50.910
+Vui lòng xem cụ thể mã để triển khai
+logistic regression chính quy vì bạn sẽ
+
+00:03:50.910 --> 00:03:56.440
+tự mình triển khai mã này trong phòng thí
+nghiệm thực hành vào cuối tuần này.
+
+00:03:56.440 --> 00:04:01.460
+Vì vậy, bây giờ bạn đã biết cách thực hiện
+logistic regression chính quy.
+
+00:04:01.460 --> 00:04:05.600
+Khi tôi dạo quanh Thung lũng Silicon, có rất
+nhiều kỹ sư sử dụng
+
+00:04:05.600 --> 00:04:09.740
+machine learning để tạo ra rất nhiều giá trị,
+đôi khi kiếm được rất nhiều tiền cho các công
+ty.
+
+00:04:09.740 --> 00:04:13.920
+Và tôi biết bạn mới chỉ nghiên cứu những thứ
+này được vài tuần.
+
+00:04:13.920 --> 00:04:18.930
+Nhưng nếu bạn hiểu và có thể áp dụng
+linear regression và logistic regression thì
+
+00:04:18.930 --> 00:04:23.940
+đó thực sự là tất cả những gì bạn cần để tạo
+ra một số ứng dụng rất có giá trị.
+
+00:04:23.940 --> 00:04:27.633
+Mặc dù các thuật toán học tập cụ thể mà bạn sử
+dụng rất quan trọng, nhưng việc
+
+00:04:27.633 --> 00:04:31.327
+biết những điều như khi nào và làm thế nào để
+giảm thiểu việc overfitting
+
+00:04:31.327 --> 00:04:35.020
+hóa ra cũng là một trong những kỹ năng rất có
+giá trị trong thế giới thực.
+
+00:04:35.020 --> 00:04:39.220
+Vì vậy, tôi muốn nói lời chúc mừng vì bạn đã
+tiến được bao xa.
+
+00:04:39.220 --> 00:04:44.500
+Và tôi muốn nói rằng bạn đã làm rất tốt khi
+xem hết video này.
+
+00:04:44.500 --> 00:04:49.140
+Tôi hy vọng bạn cũng làm việc thông qua các
+phòng thí nghiệm thực hành và các câu đố.
+
+00:04:49.140 --> 00:04:53.620
+Nói thế nhưng vẫn còn nhiều điều thú vị hơn để
+học.
+
+00:04:53.620 --> 00:04:57.300
+Trong khóa học thứ hai của chuyên ngành này,
+bạn tìm hiểu về
+
+00:04:57.300 --> 00:05:00.980
+neural network, còn được gọi là thuật
+toán deep learning.
+
+00:05:00.980 --> 00:05:04.660
+Neural network chịu trách nhiệm cho nhiều
+đột phá mới nhất
+
+00:05:04.660 --> 00:05:08.340
+trong AI ngày nay, từ nhận dạng giọng nói thực
+tế, đến máy tính
+
+00:05:08.340 --> 00:05:12.020
+nhận dạng chính xác vật thể và hình ảnh, cho
+đến ô tô tự lái.
+
+00:05:12.020 --> 00:05:16.560
+Cách xây dựng neural network thực sự sử
+dụng rất nhiều điều
+
+00:05:16.560 --> 00:05:21.100
+bạn đã học, như cost function, hàm
+gradient descent và hàm sigmoid.
+
+00:05:21.100 --> 00:05:23.920
+Vì vậy, một lần nữa, xin chúc mừng bạn đã hoàn
+
+00:05:23.920 --> 00:05:26.740
+thành tuần thứ ba và tuần cuối cùng của khóa
+học này.
+
+00:05:26.740 --> 00:05:29.180
+Tôi hy vọng bạn có niềm vui trong phòng thí
+nghiệm và tôi sẽ
+
+00:05:29.180 --> 00:05:31.620
+gặp bạn trong tài liệu về neural network
+vào tuần tới.

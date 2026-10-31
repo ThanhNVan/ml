@@ -1,0 +1,207 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.900 --> 00:00:07.900
+The transpose convolution is a key part of the UNet architecture.
+
+00:00:07.900 --> 00:00:14.400
+How do you take a 2x2 input and blow it up into a 4x4 dimensional output?
+
+00:00:14.400 --> 00:00:17.400
+The transpose convolution lets you do that.
+
+00:00:17.400 --> 00:00:18.900
+Let's dig into the details.
+
+00:00:18.900 --> 00:00:24.400
+You're familiar with the normal convolution in which a typical layer of a newer network
+
+00:00:24.400 --> 00:00:33.900
+may input a 6x6x3 image, convolve that with a set of, say, 3x3x3 filters,
+
+00:00:33.900 --> 00:00:39.400
+and if you have five of these, then you end up with an output that is 4x4x5.
+
+00:00:39.400 --> 00:00:42.400
+A transpose convolution looks a bit different.
+
+00:00:42.400 --> 00:00:47.400
+You might input a 2x2 set of activations,
+
+00:00:47.400 --> 00:00:56.400
+convolve that with a 3x3 filter, and end up with an output that is 4x4, that's bigger than the original input.
+
+00:00:56.400 --> 00:01:01.400
+Let's step through a more detailed example of how this works.
+
+00:01:01.400 --> 00:01:09.400
+In this example, we're going to take a 2x2 input, like that shown on the left,
+
+00:01:09.400 --> 00:01:14.400
+and we want to end up with a 4x4 output.
+
+00:01:14.400 --> 00:01:25.400
+But to go from 2x2 to 4x4, I'm going to choose to use a filter that is 3x3, so the filter is f by f,
+
+00:01:25.400 --> 00:01:31.400
+and I'm going to choose 3x3, and let's say that's the filter we will use.
+
+00:01:31.400 --> 00:01:41.400
+I'm also going to use a padding P that's equal to 1, and so in the output, I'm going to apply that 1 d padding.
+
+00:01:41.400 --> 00:01:49.400
+And then finally, the last parameter, I'm going to use a stride S equal to 2 for this example.
+
+00:01:49.400 --> 00:01:52.400
+Let's see how the transpose convolution will work.
+
+00:01:52.400 --> 00:01:59.400
+In the regular convolution, you would take the filter and place it on top of the input, and then multiply and sum up.
+
+00:01:59.400 --> 00:02:08.400
+In the transpose convolution, instead of placing the filter on the input, you would instead place the filter on the output.
+
+00:02:08.400 --> 00:02:16.400
+Let me illustrate that by mechanically stepping through the steps of the transpose convolution calculation.
+
+00:02:16.400 --> 00:02:22.400
+So let's start with this upper left entry of the input, which is a 2.
+
+00:02:22.400 --> 00:02:31.400
+We are going to take this number 2 and multiply it by every single value in the filter,
+
+00:02:31.400 --> 00:02:39.400
+and we're going to take the output, which is 3x3, and kind of paste it in this position.
+
+00:02:39.400 --> 00:02:49.400
+Now, the padding area isn't going to contain any values, so what we're going to end up doing is ignore this padded region,
+
+00:02:49.400 --> 00:02:54.400
+and just throw in four values in the red highlighted area.
+
+00:02:54.400 --> 00:03:01.400
+And so specifically, the upper left entry is 0x2, so that's 0.
+
+00:03:01.400 --> 00:03:07.400
+The second entry is 1x2, so that is 2.
+
+00:03:07.400 --> 00:03:12.400
+Down here is 2x2, so that's 4.
+
+00:03:12.400 --> 00:03:17.400
+And then over here is 1x2, so that's equal to 2.
+
+00:03:17.400 --> 00:03:23.400
+Next, let's look at the second entry of the input, which is a 1.
+
+00:03:23.400 --> 00:03:25.400
+I'm going to switch to green pen for this.
+
+00:03:25.400 --> 00:03:32.400
+So once again, we're going to take a 1 and multiply by 1 every single element of the filter.
+
+00:03:32.400 --> 00:03:44.400
+Because we're using a stride of 2, we're now going to shift the box in which we copy the numbers over by two steps.
+
+00:03:44.400 --> 00:03:47.400
+Again, we'll ignore the area which is in the padding,
+
+00:03:47.400 --> 00:03:53.400
+and so the only area that we need to copy the numbers over is this green shaded area.
+
+00:03:53.400 --> 00:04:01.400
+You may notice that there is some overlap between the places where we copied the red colored version of the filter
+
+00:04:01.400 --> 00:04:09.400
+and the green version, and we cannot simply copy the green value over the red one.
+
+00:04:09.400 --> 00:04:18.400
+So where the red and the green boxes overlap, you add the values, you add the two values together.
+
+00:04:18.400 --> 00:04:27.400
+So where there's already a 2 from the first weighted filter, you add to it this first value from the green region, which is also 2.
+
+00:04:27.400 --> 00:04:30.400
+So you end up with 2 plus 2.
+
+00:04:30.400 --> 00:04:43.400
+The next entry, 0 times 1 is 0. Then you have 1, 2 plus 0 times 1, so 2 plus 0, followed by 2, followed by 1.
+
+00:04:43.400 --> 00:04:52.400
+Again, we shifted two squares over from the red box here to the green box here because we're using a stride of 2.
+
+00:04:52.400 --> 00:04:57.400
+Next, let's look at the lower left entry of the input, which is a 3.
+
+00:04:57.400 --> 00:05:05.400
+So we'll take the filter, multiply every 11 by 3, and we've gone down by one step here.
+
+00:05:05.400 --> 00:05:08.400
+So we're going to go down by two steps here.
+
+00:05:08.400 --> 00:05:14.400
+So we will be filling in our numbers in this 3 by 3 square.
+
+00:05:14.400 --> 00:05:25.400
+And so you find that the numbers you're copying over are 2 times 3, which is 6, 1 times 3, which is 3, 0 times 3, which is 0,
+
+00:05:25.400 --> 00:05:28.400
+and so on, 3, 6, 3.
+
+00:05:28.400 --> 00:05:34.400
+And then lastly, let's go on to the last input element, which is 2.
+
+00:05:34.400 --> 00:05:43.400
+So we will multiply every element of the filter by 2 and add them to this block.
+
+00:05:43.400 --> 00:05:54.400
+And so you end up with adding 1 times 2, which is plus 2, and so on for the rest of the elements.
+
+00:05:54.400 --> 00:06:02.400
+So the final step is to take all the numbers in these 4 by 4 matrix of values, in these 16 values, and add them up.
+
+00:06:02.400 --> 00:06:06.400
+So you end up with 0 here. 2 plus 2 is 4.
+
+00:06:06.400 --> 00:06:15.400
+0, 1. 4 plus 6 is 10. 2 plus 0 plus 3 plus 2 is 7.
+
+00:06:15.400 --> 00:06:17.400
+2 plus 4 is 6.
+
+00:06:17.400 --> 00:06:20.400
+I know this looks like a little bit of a mess because I'm writing on top of things.
+
+00:06:20.400 --> 00:06:30.400
+That's 0. 3 plus 4 is 7. 0, 2, 6. 3 plus 0 is 3. 4, 2.
+
+00:06:30.400 --> 00:06:34.400
+And so that's your 4 by 4 output.
+
+00:06:34.400 --> 00:06:38.400
+In case you're wondering, why do we have it to do it this way?
+
+00:06:38.400 --> 00:06:45.400
+I think there are multiple possible ways to take a small input and turn it into a bigger output.
+
+00:06:45.400 --> 00:06:50.400
+But the transpose convolution happens to be one that is effective.
+
+00:06:50.400 --> 00:07:01.400
+And when you learn all the parameters of the filter here, this turns out to give good results when you put this in the context of the unit, which is the learning algorithm we'll use now.
+
+00:07:01.400 --> 00:07:05.400
+So let's go back and keep on building the unit.
+
+00:07:06.400 --> 00:07:17.400
+In this video, we step through, step by step, how the transpose convolution lets you take a small input, say 2 by 2, and blow it up into a larger output, say 4 by 4.
+
+00:07:17.400 --> 00:07:26.400
+This is the key building block of the unit architecture, which you get to implement and play with in this week's programming exercise as well.
+
+00:07:26.400 --> 00:07:37.400
+Now that you understand the transpose convolution, let's take this building block you now have and see how it fits into the overall unit architecture that you can use for semantics segmentation.
+
+00:07:37.400 --> 00:07:39.354
+Let's go on to the next video.

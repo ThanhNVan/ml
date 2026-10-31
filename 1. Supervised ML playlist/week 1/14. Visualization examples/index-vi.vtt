@@ -1,0 +1,304 @@
+WEBVTT
+
+00:00:03.660 --> 00:00:07.460
+Chúng ta hãy xem thêm một số hình ảnh trực
+quan của w và b.
+
+00:00:07.460 --> 00:00:09.660
+Đây là một ví dụ.
+
+00:00:09.660 --> 00:00:16.160
+Ở đây, bạn có một điểm cụ thể trên đồ thị J.
+Với
+
+00:00:16.160 --> 00:00:22.660
+điểm này, w bằng khoảng âm 0,15 và b bằng
+khoảng 800.
+
+00:00:22.660 --> 00:00:28.940
+Vì vậy, điểm này tương ứng với một cặp giá trị
+của w và b tạo ra một chi phí J
+
+00:00:28.940 --> 00:00:35.220
+cụ thể. Và trên thực tế, cặp giá trị cụ thể
+này của w và b tương ứng với điều này
+
+00:00:35.220 --> 00:00:41.140
+hàm số f(x), đây là dòng mà bạn có thể thấy ở
+bên trái.
+
+00:00:41.140 --> 00:00:47.820
+Đường này cắt trục tung ở 800 vì b bằng 800 và
+độ
+
+00:00:47.820 --> 00:00:54.500
+dốc của đường này là âm 0,15 vì w bằng âm
+0,15.
+
+00:00:54.500 --> 00:00:58.120
+Bây giờ nếu bạn nhìn vào các điểm dữ liệu
+trong training set,
+
+00:00:58.120 --> 00:01:01.740
+bạn có thể nhận thấy rằng dòng này không phù
+hợp với dữ liệu.
+
+00:01:01.740 --> 00:01:09.180
+Đối với hàm f(x) này, với các giá trị w và b
+này, nhiều dự đoán về giá trị
+
+00:01:09.180 --> 00:01:16.620
+của y khá xa so với giá trị mục tiêu thực tế
+của y có trong training data.
+
+00:01:16.620 --> 00:01:21.860
+Bởi vì đường này không phù hợp lắm, nếu bạn
+nhìn vào biểu đồ của
+
+00:01:21.860 --> 00:01:27.100
+J, chi phí của đường này nằm ở đây, khá xa so
+với mức tối thiểu.
+
+00:01:27.100 --> 00:01:31.260
+Đó là một chi phí khá cao vì sự lựa chọn w
+
+00:01:31.260 --> 00:01:35.420
+và b này không phù hợp lắm với training set.
+
+00:01:35.420 --> 00:01:42.140
+Bây giờ chúng ta hãy xem một ví dụ khác với sự
+lựa chọn khác của w và b.
+
+00:01:42.140 --> 00:01:45.620
+Bây giờ đây là một chức năng khác, bạn biết
+đấy, vẫn
+
+00:01:45.620 --> 00:01:49.100
+không phù hợp lắm với dữ liệu nhưng có lẽ đỡ
+tệ hơn một chút.
+
+00:01:49.100 --> 00:01:57.340
+Vì vậy, điểm này ở đây thể hiện chi phí cho
+cặp w và b cụ thể này tạo ra đường đó.
+
+00:01:57.340 --> 00:02:04.260
+Giá trị của w bằng 0 và giá trị của b là
+khoảng 360.
+
+00:02:04.260 --> 00:02:09.020
+Cặp tham số này tương ứng với hàm này là một
+
+00:02:09.020 --> 00:02:13.780
+đường thẳng vì f(x) bằng 0 nhân x cộng 360.
+
+00:02:13.780 --> 00:02:15.660
+Tôi hy vọng điều đó có ý nghĩa.
+
+00:02:16.220 --> 00:02:18.300
+Hãy xem xét một ví dụ khác.
+
+00:02:18.300 --> 00:02:22.100
+Đây là một lựa chọn nữa cho w và b và với
+những
+
+00:02:22.100 --> 00:02:25.900
+giá trị này bạn sẽ thu được dòng f này của x.
+
+00:02:25.900 --> 00:02:27.580
+Một lần nữa, không phù hợp lắm với dữ liệu.
+
+00:02:27.580 --> 00:02:33.180
+Nó thực sự còn cách xa mức tối thiểu so với ví
+dụ trước.
+
+00:02:33.180 --> 00:02:39.020
+Và hãy nhớ rằng điểm tối thiểu nằm ở tâm của
+hình elip nhỏ nhất đó.
+
+00:02:39.020 --> 00:02:40.380
+Ví dụ cuối cùng.
+
+00:02:40.380 --> 00:02:47.020
+Nếu bạn nhìn vào f(x) ở bên trái, nó có vẻ khá
+phù hợp với training set.
+
+00:02:47.020 --> 00:02:51.580
+Bạn có thể thấy ở bên phải, điểm này biểu
+
+00:02:51.580 --> 00:02:56.140
+thị chi phí rất gần với tâm của hình elip nhỏ.
+
+00:02:56.140 --> 00:03:00.260
+Nó không hẳn là mức tối thiểu nhưng nó khá
+gần.
+
+00:03:00.260 --> 00:03:06.940
+Với giá trị này của w và b, bạn nhận được dòng
+f này của x.
+
+00:03:06.940 --> 00:03:12.840
+Bạn có thể thấy rằng nếu bạn đo khoảng cách
+theo chiều dọc giữa các điểm dữ liệu và
+
+00:03:12.840 --> 00:03:18.740
+các giá trị được dự đoán trên đường thẳng, bạn
+sẽ gặp lỗi đối với từng điểm dữ liệu.
+
+00:03:18.740 --> 00:03:24.740
+Tổng sai số bình phương của tất cả các điểm dữ
+liệu này khá gần với tổng sai
+
+00:03:24.740 --> 00:03:30.740
+số bình phương tối thiểu có thể có trong số
+tất cả các đường thẳng có thể khớp.
+
+00:03:30.740 --> 00:03:34.647
+Tôi hy vọng rằng bằng cách nhìn vào những hình
+này, bạn có thể hiểu rõ
+
+00:03:34.647 --> 00:03:38.553
+hơn về việc các lựa chọn tham số khác nhau ảnh
+hưởng như thế nào đến
+
+00:03:38.553 --> 00:03:42.460
+đường f của x và điều này tương ứng như thế
+nào với các tham số khác nhau.
+
+00:03:42.460 --> 00:03:45.740
+giá trị của chi phí j.
+
+00:03:45.740 --> 00:03:51.073
+Và hy vọng bạn có thể thấy các đường phù hợp
+hơn tương ứng
+
+00:03:51.073 --> 00:03:56.407
+với các điểm trên đồ thị của j gần với chi phí
+tối thiểu
+
+00:03:56.407 --> 00:04:01.740
+có thể có cho cost function j của w và b này
+như thế nào.
+
+00:04:01.740 --> 00:04:07.220
+Trong phòng thí nghiệm tùy chọn sau video này,
+bạn có thể chạy một số mã.
+
+00:04:07.220 --> 00:04:10.420
+Và hãy nhớ rằng, tất cả mã đều được cung cấp
+nên
+
+00:04:10.420 --> 00:04:13.620
+bạn chỉ cần nhấn shift enter để chạy và xem
+qua.
+
+00:04:13.620 --> 00:04:18.740
+Và phòng thí nghiệm sẽ chỉ cho bạn cách triển
+khai cost function trong mã.
+
+00:04:18.740 --> 00:04:24.260
+Và với một training set nhỏ và các lựa chọn
+khác nhau cho các tham số, bạn sẽ có thể
+
+00:04:24.260 --> 00:04:29.780
+thấy chi phí thay đổi như thế nào tùy thuộc
+vào mức độ phù hợp của mô hình với dữ liệu.
+
+00:04:29.820 --> 00:04:31.880
+Trong phòng thí nghiệm tùy chọn, bạn cũng có
+
+00:04:31.880 --> 00:04:33.940
+thể chơi với sơ đồ bảng điều khiển tương tác.
+
+00:04:33.940 --> 00:04:35.420
+Kiểm tra cái này.
+
+00:04:35.420 --> 00:04:38.847
+Bạn có thể sử dụng con trỏ chuột để nhấp vào
+bất kỳ vị trí
+
+00:04:38.847 --> 00:04:42.273
+nào trên biểu đồ bảng điều khiển và bạn sẽ
+thấy đường thẳng
+
+00:04:42.273 --> 00:04:45.700
+được xác định bởi các giá trị bạn đã chọn cho
+tham số w và b.
+
+00:04:45.700 --> 00:04:51.500
+Bạn thấy một dấu chấm xuất hiện trên biểu đồ
+bề mặt 3D hiển thị chi phí.
+
+00:04:51.500 --> 00:04:55.367
+Cuối cùng, phòng thí nghiệm tùy chọn cũng có
+sơ đồ bề mặt 3D
+
+00:04:55.367 --> 00:04:59.233
+mà bạn có thể xoay và xoay xung quanh theo
+cách thủ công
+
+00:04:59.233 --> 00:05:03.100
+bằng cách sử dụng con trỏ chuột để xem rõ hơn
+cost function.
+
+00:05:03.100 --> 00:05:04.780
+trông giống như.
+
+00:05:04.780 --> 00:05:07.900
+Tôi hy vọng bạn thích chơi với phòng thí
+nghiệm tùy chọn.
+
+00:05:07.900 --> 00:05:11.313
+Bây giờ trong linear regression, thay vì phải
+cố gắng đọc biểu đồ
+
+00:05:11.313 --> 00:05:14.727
+bảng điều khiển theo cách thủ công để có giá
+trị tốt nhất cho w và b,
+
+00:05:14.727 --> 00:05:18.140
+đây thực sự không phải là một quy trình tốt và
+cũng sẽ không hoạt động
+
+00:05:18.140 --> 00:05:22.007
+Khi chúng ta tiếp cận các mô hình
+machine learning phức tạp
+
+00:05:22.007 --> 00:05:25.873
+hơn, điều bạn thực sự muốn là một thuật toán
+hiệu quả mà bạn
+
+00:05:25.873 --> 00:05:29.740
+có thể viết bằng mã để tự động tìm giá trị của
+tham số w và b mà
+
+00:05:29.740 --> 00:05:35.260
+cung cấp cho bạn đường phù hợp nhất giúp giảm
+thiểu cost function j.
+
+00:05:35.260 --> 00:05:38.980
+Có một thuật toán để thực hiện việc này được
+gọi là gradient descent.
+
+00:05:38.980 --> 00:05:43.460
+Thuật toán này là một trong những thuật toán
+quan trọng nhất trong machine learning.
+
+00:05:43.460 --> 00:05:46.847
+Gradient descent và các biến thể
+gradient descent được sử
+
+00:05:46.847 --> 00:05:50.233
+dụng để huấn luyện không chỉ linear regression
+mà còn cho
+
+00:05:50.233 --> 00:05:53.620
+một số mô hình lớn nhất và phức tạp nhất trong
+tất cả AI.
+
+00:05:53.620 --> 00:05:56.560
+Vì vậy, hãy chuyển sang video tiếp theo để tìm
+hiểu thuật
+
+00:05:56.560 --> 00:05:59.500
+toán thực sự quan trọng này được gọi là
+gradient descent.

@@ -1,0 +1,87 @@
+Nếu bạn nghi ngờ mạng nơ-ron
+của bạn quá khớp với dữ liệu của bạn. Đó là bạn có vấn đề về phương sai cao, một trong những điều đầu tiên bạn nên thử là điều chuẩn (regularization). Một cách khác để giải quyết phương sai cao, là nhận thêm dữ liệu huấn luyện đáng tin cậy. Nhưng không phải lúc nào bạn cũng nhận được thêm
+dữ liệu huấn luyện, hoặc nó có thể tốn kém để có thêm dữ liệu. Nhưng thêm quy tắc sẽ thường
+giúp đỡ để ngăn chặn tình trạng quá khớp, hoặc để giảm các lỗi trong mạng của bạn. Vì vậy, chúng ta hãy xem cách hoạt động của điều chuẩn. Hãy phát triển những ý tưởng này
+bằng cách sử dụng hồi quy logistic. Nhớ lại rằng đối với hồi quy logistic,
+bạn cố gắng giảm thiểu hàm chi phí J, được định nghĩa là hàm chi phí này. Một số ví dụ huấn luyện của bạn về những mất mát của dự đoán cá nhân trong các ví dụ khác nhau,
+nơi bạn nhớ lại rằng w và b trong hồi quy logistic,
+là các tham số. Vì vậy, w là một véc tơ tham số x chiều,
+và b là một số thực. Và do đó, để thêm điều chuẩn vào hồi quy logistic
+, những gì bạn làm là thêm vào điều này là, lambda, chính là cái được gọi là tham số điều chuẩn. Tôi sẽ nói thêm về điều đó trong giây lát. Nhưng lambda / 2m nhân với chuẩn của w bình phương. Vì vậy, ở đây, chuẩn của w bình phương chỉ bằng tổng từ j bằng 1 đến nx của wj bình phương,
+hoặc điều này cũng có thể được viết w chuyển vị w, nó chỉ là một chuẩn Euclide bình phương
+của số nguyên tố thành vectơ w. Và điều này được gọi là điều chuẩn L2. Bởi vì ở đây,
+bạn đang sử dụng các tiêu chuẩn Euclide, hoặc chuẩn L2 với với số nguyên tố đến vectơ w. Bây giờ, tại sao bạn điều chuẩn chỉ tham số w? Tại sao chúng ta không thêm một cái gì đó
+ở đây về b? Trong thực tế, bạn có thể làm điều này,
+nhưng tôi thường bỏ qua điều này. Bởi vì nếu bạn nhìn vào các tham số của mình,
+w thường là một vectơ tham số thứ nguyên khá cao,
+đặc biệt với một bài toán có phương sai cao. Có lẽ w chỉ có rất nhiều tham số, vì vậy bạn không khớp với tất cả các tham số
+, trong khi b chỉ là một số duy nhất. Vì vậy, hầu như tất cả các tham số
+nằm trong w thay vì b. Và nếu bạn thêm số hạng cuối cùng này,
+trong thực tế, nó sẽ không tạo ra nhiều khác biệt, bởi vì b chỉ là một tham số trong rất nhiều các tham số. Trong thực tế,
+, tôi thường không bận tâm đến nó. Nhưng bạn có thể nếu bạn muốn. Vì vậy, điều chuẩn L2 là loại điều chuẩn phổ biến nhất. Bạn cũng có thể đã nghe một số người nói về điều chuẩn L1. Và đó là khi bạn thêm, chuẩn L2 này, thay vào đó, bạn thêm một số hạng bằng
+lambda / m trong tổng số này. Và đây cũng được gọi là chuẩn L1
+của vectơ tham số w, vì vậy chỉ số nhỏ 1 ở dưới đó,
+phải không? Và tôi đoán cho dù bạn đặt m hay 2m ở mẫu số
+, cũng chỉ là một hằng số tỉ lệ. Nếu bạn sử dụng điều chuẩn L1,
+thì w sẽ trở nên thưa thớt. Và điều đó có nghĩa là vectơ w
+sẽ có rất nhiều số không trong đó. Và một số người nói rằng điều này có thể giúp
+việc nén mô hình, bởi vì tập các tham số là 0 và
+bạn cần ít bộ nhớ hơn để lưu mô hình. Mặc dù, tôi thấy rằng trên thực tế, điều chuẩn L1
+để làm cho mô hình của bạn trở nên thưa thớt, chỉ giúp một chút. Vì vậy, tôi không nghĩ rằng nó được sử dụng nhiều,
+ít nhất là không dùng cho mục đích nén mô hình. Và khi mọi người huấn luyện mạng của bạn, điều chuẩn L2 sẽ
+được sử dụng thường xuyên hơn nhiều. Xin lỗi, tôi sẽ sửa một số kí hiệu ở đây. Vì vậy, một chi tiết cuối cùng. Lambda ở đây được gọi là tham số điều chuẩn. Và thông thường, bạn đặt cái này bằng cách sử dụng tập phát triển của mình, hoặc tập kiểm định chéo bằng phương thức holdout. Khi bạn có nhiều giá trị và
+thấy giá trị nào tốt nhất, trong điều kiện đánh đổi giữa việc thực hiện tốt trong tập huấn luyện của bạn so với đặt
+tham số thông thường của bạn thành dạng nhỏ Điều này giúp ngăn ngừa quá khớp. Vì vậy, lambda là một siêu tham số
+mà bạn có thể phải điều chỉnh. Và nhân tiện, đối với
+bài tập lập trình, lambda là một từ khóa dành riêng trong ngôn ngữ lập trình Python
+. Vì vậy, trong bài tập lập trình,
+, chúng ta sẽ có lambd, không có a, để không trùng
+với từ khóa dành riêng trong Python. Vì vậy, chúng ta sử dụng lambd để biểu diễn
+tham số điều chuẩn lambda. Vì vậy, đây là cách bạn thực hiện điều chuẩn L2
+cho hồi quy logistic. Đối với mạng nơ-ron thì sao? Trong mạng nơ ron, bạn có một hàm chi phí
+, một hàm của tất cả các tham số của bạn, w [1],
+b [1] đến w [L], b [L], trong đó L là số lớp
+trong mạng nơ-ron của bạn. Và vì vậy hàm chi phí là này, tổng của các mất mát cộng với các ví dụ huấn luyện m. Và nói rằng khi điều chuẩn,
+bạn thêm lambda/2m của tổng tất cả các tham số của bạn W,
+ma trận tham số của bạn là w, và đó là chuẩn bình phương. Trong đó chuẩn này của ma trận,
+nghĩa là chuẩn bình phương được định nghĩa là tổng
+của tổng từ i dến j, của mỗi phần tử của ma trận đó,
+bình phương. Và nếu bạn muốn các chỉ số
+của tổng này. Đây là tổng từ i = 1 đến n [l-1]. Tính tổng từ j = 1 đến n [l], vì w là ma trận thứ n [l-1] x
+n [l] chiều, trong đó đây là số lượng
+đơn vị trong các lớp [l-1] trong lớp l. Vì vậy, chuẩn ma trận này,
+hóa ra được gọi là chuẩn Frobenius của ma trận,
+được ký hiệu bằng F trong chỉ số con. Vì vậy, vì
+lý do kỹ thuật đại số tuyến tính phức tạp, đây không được gọi là điều chuẩn l2
+của ma trận. Thay vào đó, nó được gọi là
+là chuẩn Frobenius của một ma trận. Tôi biết có vẻ như sẽ là
+tự nhiên hơn nếu chỉ gọi là chuẩn l2 của ma trận, nhưng vì
+lý do thực sự phức tạp mà bạn không cần biết, theo quy ước,
+được gọi là chuẩn Frobenius. Nó chỉ có nghĩa là tổng bình phương
+của các phần tử của ma trận. Vì vậy, làm thế nào để bạn triển khai
+gradient descent với điều này? Trước đây, chúng ta sẽ
+hoàn thành dw bằng cách sử dụng lan truyền , trong đó lan truyền ngược sẽ cung cấp cho chúng ta
+đạo hàm riêng của J đối với w, hoặc w đối với bất kỳ [l] đã cho. Và sau đó bạn cập nhật w [l],
+là w [l] - tốc độ học tập nhân với d. Vì vậy, đây là trước khi chúng ta thêm số hạng điều chuẩn bổ sung
+này vào mục tiêu. Bây giờ chúng ta đã thêm số hạng điều chuẩn
+này vào mục tiêu, những gì bạn làm là bạn lấy dw và bạn cộng vào nó, lambda / m nhân w. Và sau đó bạn chỉ cần tính cập nhật này,
+giống như trước đây. Và hóa ra
+định nghĩa mới về dw [l] , dw [l] mới này vẫn là một định nghĩa
+đúng của đạo hàm của hàm chi phí của bạn,
+đối với các tham số, bây giờ bạn đã thêm số hạng điều chuẩn bổ sung
+vào cuối. Và chính vì lý do này mà việc điều chuẩn L2
+đôi khi cũng gọi là suy giảm trọng số. Vì vậy, nếu tôi lấy định nghĩa về dw [l] và
+chỉ cần cắm nó vào đây, thì bạn thấy rằng bản cập nhật
+là w [l] = w [l] nhân tỷ lệ học nhân alpha lần với các
+thứ từ lan truyền ngược, + lambda của m nhân w [l]. Đặt dấu trừ ở đó. Và vì vậy điều này bằng với w [l] - alpha lambda / m nhân w [l] - nhân alpha lần thứ bạn nhận được từ lan truyền ngược. Và vì vậy số hạng này cho thấy rằng
+bất kể ma trận w [l] là gì, bạn vẫn sẽ là nó nhỏ hơn một chút phải không? Điều này thực sự giống như thể bạn đang
+lấy ma trận w và bạn đang nhân nó với (1-alpha) lambda / m. Bạn thực sự đang lấy ma trận w và
+trừ alpha lambda / m nhân với cái này. Giống như bạn đang nhân
+ma trận w với số này, chính là một số nhỏ hơn 1 một chút. Vì vậy, đây là lý do tại sao điều chuẩn chuẩn L2
+còn được gọi là suy giảm trọng số. Bởi vì nó giống như gradient descent theo thứ tự, nơi bạn cập nhật w bằng cách trừ alpha nhân với gradient
+ban đầu mà bạn nhận được từ lan truyền ngược. Nhưng bây giờ bạn cũng đang nhân w với cái này, nhỏ hơn 1 một chút. Vì vậy, tên thay thế cho
+điều chuẩn L2 là suy giảm trọng số. Tôi sẽ không thực sự sử dụng cái tên đó,
+nên gọi nó là suy giảm trọng số, đó là số hạng đầu tiên ở đây, bằng với số hạng này. Vì vậy, bạn chỉ nhân các chỉ số trọng số
+với một số nhỏ hơn 1 một chút. Vì vậy, đó là cách bạn thực hiện điều chuẩn L2
+trong mạng nơ-ron. Bây giờ, một câu hỏi mà tôi đã được hỏi là, này, Andrew, tại sao điều chuẩn
+ngăn chặn quá khớp? Hãy xem video tiếp theo, để hiểu được cách điều chuẩn ngăn chặn quá khớp.

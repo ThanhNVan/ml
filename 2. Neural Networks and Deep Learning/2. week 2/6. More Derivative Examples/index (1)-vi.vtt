@@ -1,0 +1,730 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.105
+Trong video này, tôi sẽ cho bạn xem
+ một ví dụ phức tạp hơn một chút,
+
+2
+00:00:03.105 --> 00:00:06.870
+trong đó độ dốc của hàm có thể khác nhau
+ tại các điểm khác nhau trong hàm.
+
+3
+00:00:06.870 --> 00:00:08.125
+Hãy bắt đầu với một ví dụ.
+
+4
+00:00:08.125 --> 00:00:11.888
+Bạn đã vẽ đồ thị hàm f (a) = a².
+
+5
+00:00:11.888 --> 00:00:15.975
+Hãy nhìn vào điểm a = 2.
+
+6
+00:00:15.975 --> 00:00:19.107
+Vậy a² hoặc f (a) = 4.
+
+7
+00:00:19.107 --> 00:00:24.490
+Hãy tăng nhẹ a sang phải, 
+vì vậy bây giờ a = 2.001.
+
+8
+00:00:24.490 --> 00:00:31.580
+f (a) là a² sẽ xấp xỉ 4.004.
+
+9
+00:00:31.580 --> 00:00:33.585
+Hóa ra giá trị chính xác,
+
+10
+00:00:33.585 --> 00:00:39.140
+bạn sử dụng máy tính và tìm ra 
+giá trị này thực sự bằng 4.004001.
+
+11
+00:00:39.140 --> 00:00:42.120
+Tôi sẽ chỉ nói 4.004 là gần đúng.
+
+12
+00:00:42.120 --> 00:00:44.430
+Điều này có nghĩa là khi a = 2,
+
+13
+00:00:44.430 --> 00:00:46.825
+hãy vẽ cái này trên đồ thị.
+
+14
+00:00:46.825 --> 00:00:49.320
+Chúng ta đang nói là nếu a = 2,
+
+15
+00:00:49.320 --> 00:00:56.225
+thì f (a) = 4 và đây là trục x 
+và y không được vẽ theo tỷ lệ.
+
+16
+00:00:56.225 --> 00:00:59.480
+Về mặt kỹ thuật, chiều cao trên
+ trục dọc nên cao hơn nhiều
+
+17
+00:00:59.480 --> 00:01:03.540
+trục ngang để trục x
+ và y không cùng tỷ lệ.
+
+18
+00:01:03.540 --> 00:01:10.865
+Nhưng nếu bây giờ tôi nhích a đến
+ 2.001 thì f (a) trở thành khoảng 4.004.
+
+19
+00:01:10.865 --> 00:01:13.864
+Như vậy, nếu chúng ta vẽ hình 
+tam giác nhỏ này một lần nữa,
+
+20
+00:01:13.864 --> 00:01:18.675
+điều này có nghĩa là nếu tôi 
+nhích a sang phải thêm 0,001, thì
+
+21
+00:01:18.675 --> 00:01:23.238
+f (a) tăng gấp bốn lần, thêm 0,004.
+
+22
+00:01:23.238 --> 00:01:25.170
+Thế nên, trong ngôn ngữ giải tích,
+
+23
+00:01:25.170 --> 00:01:30.880
+chúng ta nói rằng độ dốc
+ là đạo hàm của f (a) tại
+
+24
+00:01:30.880 --> 00:01:36.840
+a = 2 là 4, hoặc để viết
+ bằng ký hiệu giải tích thì
+
+25
+00:01:36.840 --> 00:01:42.750
+ta nói rằng d / da 
+của f (a) = 4 khi a = 2.
+
+26
+00:01:42.750 --> 00:01:45.200
+Bây giờ có một điều 
+về hàm này f(a) = a²
+
+27
+00:01:45.200 --> 00:01:49.530
+là độ dốc thì khác nhau 
+tại các giá trị a khác nhau.
+
+28
+00:01:49.530 --> 00:01:52.970
+Điều này khác với ví dụ 
+chúng ta đã thấy trong slide trước.
+
+29
+00:01:52.970 --> 00:01:55.650
+Hãy nhìn vào một điểm khác.
+
+30
+00:01:55.650 --> 00:01:58.721
+Nếu a = 5, thay vì a = 2,
+
+31
+00:01:58.721 --> 00:02:04.880
+và bây giờ a = 5 thì
+ a² = 25, đó là f (a).
+
+32
+00:02:04.880 --> 00:02:07.205
+Nếu tôi nhích a sang 
+phải một lần nữa,
+
+33
+00:02:07.205 --> 00:02:09.129
+thêm một chút thôi
+
+34
+00:02:09.129 --> 00:02:18.555
+vì vậy bây giờ a = 5,001 
+thì f (a) sẽ xấp xỉ 25,010.
+
+35
+00:02:18.555 --> 00:02:23.550
+Như vậy, những gì chúng ta thấy là
+ bằng cách đẩy nhẹ a lên 0.001,
+
+36
+00:02:23.550 --> 00:02:25.620
+f (a) tăng gấp mười lần.
+
+37
+00:02:25.620 --> 00:02:30.960
+Vậy ta có d / da f (a) = 10 khi
+
+38
+00:02:30.960 --> 00:02:33.690
+a = 5 vì f (a) tăng gấp mười lần
+
+39
+00:02:33.690 --> 00:02:36.910
+khi tôi tăng a lên một chút.
+
+40
+00:02:36.910 --> 00:02:41.040
+Một cách để xem tại sao các đạo hàm lại 
+khác nhau ở những điểm khác nhau là nếu bạn
+
+41
+00:02:41.040 --> 00:02:45.285
+vẽ hình tam giác nhỏ đó ngay tại
+ các vị trí khác nhau trên này,
+
+42
+00:02:45.285 --> 00:02:49.080
+bạn sẽ thấy tỷ lệ chiều cao trên
+
+43
+00:02:49.080 --> 00:02:53.280
+chiều rộng của tam giác rất khác nhau 
+tại các điểm khác nhau trên đường cong.
+
+44
+00:02:53.280 --> 00:02:59.880
+Ở đây, độ dốc = 4 khi
+ a = 2, a = 10, khi a = 5.
+
+45
+00:02:59.880 --> 00:03:02.670
+Bây giờ nếu bạn mở một cuốn 
+sách giáo khoa về giải tích,
+
+46
+00:03:02.670 --> 00:03:06.867
+sách giải tích sẽ cho bạn 
+biết rằng d / da của f (a),
+
+47
+00:03:06.867 --> 00:03:08.259
+mà f (a) = a²,
+
+48
+00:03:08.259 --> 00:03:09.929
+vì vậy đó là d / da của a².
+
+49
+00:03:09.929 --> 00:03:13.410
+Một trong những công thức bạn tìm
+ thấy trong sách giáo khoa giải tích là
+
+50
+00:03:13.410 --> 00:03:16.740
+độ dốc của hàm a², bằng 2a.
+
+51
+00:03:16.740 --> 00:03:19.200
+Tôi sẽ không chứng minh điều này,
+ nhưng bạn có thể tìm thấy điều này nếu
+
+52
+00:03:19.200 --> 00:03:22.170
+bạn mở một cuốn sách 
+giáo khoa giải tích ở mục
+
+53
+00:03:22.170 --> 00:03:28.135
+các công thức bảng và chúng sẽ cho
+ bạn biết rằng đạo hàm của 2 của a² là 2a.
+
+54
+00:03:28.135 --> 00:03:31.575
+Và thực sự thì điều này đúng với
+ những gì chúng ta đã tìm ra.
+
+55
+00:03:31.575 --> 00:03:39.460
+Cụ thể là, khi a = 2, độ dốc 
+của hàm ở a là 2x2 = 4.
+
+56
+00:03:39.460 --> 00:03:46.243
+Và khi a = 5 thì độ dốc 
+của hàm 2xa là 2x5 = 10.
+
+57
+00:03:46.243 --> 00:03:50.430
+Vì vậy, nếu bạn từng mở ra một cuốn sách 
+giáo khoa giải tích và bạn thấy công thức này,
+
+58
+00:03:50.430 --> 00:03:54.270
+rằng đạo hàm của a² = 2a, thì
+
+59
+00:03:54.270 --> 00:03:57.615
+nó có nghĩa là với bất kỳ 
+giá trị đã cho nào của a,
+
+60
+00:03:57.615 --> 00:04:04.695
+nếu bạn nâng lên 0,001 mà 
+là một giá trị rất nhỏ,
+
+61
+00:04:04.695 --> 00:04:09.550
+bạn sẽ mong đợi f (a) tăng thêm 2a.
+
+62
+00:04:09.550 --> 00:04:12.700
+Đó là độ dốc hoặc 
+đạo hàm nhân với
+
+63
+00:04:12.700 --> 00:04:16.660
+số lượng mà bạn đã thêm cho a.
+
+64
+00:04:16.660 --> 00:04:18.540
+Bây giờ có một chi tiết nhỏ,
+
+65
+00:04:18.540 --> 00:04:23.130
+tôi sử dụng các ký hiệu gần đúng ở
+ đây và đây không chính xác là 4.004,
+
+66
+00:04:23.130 --> 00:04:26.515
+còn có thêm 0,001 nữa.
+
+67
+00:04:26.515 --> 00:04:29.226
+Hóa ra rằng có 
+lượng thêm 0,001 này,
+
+68
+00:04:29.226 --> 00:04:34.370
+là bởi vì chúng ta 
+đã tăng a thêm 0,001,
+
+69
+00:04:34.370 --> 00:04:37.530
+nếu chúng ta tăng a thêmnếu chúng ta tăng a thêm
+
+70
+00:04:37.530 --> 00:04:43.290
+giá trị cực nhỏ này thì 
+lượng 0.001 này sẽ biến mất
+
+71
+00:04:43.290 --> 00:04:48.060
+và bạn thấy rằng số lượng mà 
+f (a) tăng lên là hoàn toàn bằng
+
+72
+00:04:48.060 --> 00:04:53.335
+đạo hàm nhân với lượng 
+giá trị mà bạn tăng a lên.
+
+73
+00:04:53.335 --> 00:04:59.295
+Và lý do tại sao không phải là 4.004 là vì các
+ đạo hàm được xác định bằng cách sử dụng
+
+74
+00:04:59.295 --> 00:05:05.774
+một lượng tăng lên cực kì 
+nhỏ của a mà 0,001 thì không phải.
+
+75
+00:05:05.774 --> 00:05:08.070
+Và 0,001 thì nhỏ,
+
+76
+00:05:08.070 --> 00:05:09.865
+nhưng nó không phải là cực kỳ nhỏ.
+
+77
+00:05:09.865 --> 00:05:13.730
+Vì vậy, đó là lý do tại sao số lượng mà
+ f (a) tăng lên không được đưa ra chính xác
+
+78
+00:05:13.730 --> 00:05:17.720
+theo công thức mà nó chỉ là một loại
+ xấp xỉ được đưa ra bởi đạo hàm.
+
+79
+00:05:17.720 --> 00:05:19.034
+Để kết thúc video này,
+
+80
+00:05:19.034 --> 00:05:21.945
+chúng ta hãy xem 
+một vài ví dụ nhanh hơn.
+
+81
+00:05:21.945 --> 00:05:27.980
+Ví dụ bạn đã thấy
+ là nếu f (a) = a² thì
+
+82
+00:05:27.980 --> 00:05:34.460
+bảng công thức sách giáo khoa giải tích
+ sẽ cho bạn biết rằng đạo hàm bằng 2a.
+
+83
+00:05:34.460 --> 00:05:38.300
+Và vì vậy, ví dụ chúng ta 
+đã xem là nếu (a) = 2,
+
+84
+00:05:38.300 --> 00:05:41.930
+f (a) = 4 và chúng ta 
+tăng a lên một chút,
+
+85
+00:05:41.930 --> 00:05:45.350
+vì nó lớn hơn một chút 
+so với f (a) là khoảng
+
+86
+00:05:45.350 --> 00:05:51.160
+4.004 và vì vậy f (a) đã tăng 
+gấp bốn lần và khi a = 2,
+
+87
+00:05:51.160 --> 00:05:53.660
+các đạo hàm bằng 4.
+
+88
+00:05:53.660 --> 00:05:55.600
+Hãy xem xét một số ví dụ khác.
+
+89
+00:05:55.600 --> 00:05:58.880
+Giả sử, f (a) = a³.
+
+90
+00:05:58.880 --> 00:06:03.380
+Nếu bạn mở một cuốn sách giáo khoa
+ giải tích và tra cứu bảng công thức,
+
+91
+00:06:03.380 --> 00:06:06.070
+bạn thấy rằng độ dốc
+ của hàm này, một lần nữa,
+
+92
+00:06:06.070 --> 00:06:10.000
+đạo hàm của hàm này bằng 3a².
+
+93
+00:06:10.000 --> 00:06:14.335
+Như vậy, bạn có thể đưa công thức
+ này ra khỏi sách giáo khoa giải tích.
+
+94
+00:06:14.335 --> 00:06:16.850
+Vậy công thức này có nghĩa là gì?
+
+95
+00:06:16.850 --> 00:06:19.430
+Cách để giải thích điều này là.
+
+96
+00:06:19.430 --> 00:06:21.725
+Hãy lấy a = 2 làm
+ ví dụ một lần nữa.
+
+97
+00:06:21.725 --> 00:06:27.560
+Vậy f (a) hoặc a³ = 8, 
+bằng hai mũ ba.
+
+98
+00:06:27.560 --> 00:06:30.570
+Chúng ta tăng a lên một chút,
+
+99
+00:06:30.570 --> 00:06:37.160
+bạn thấy rằng f (a) bằng khoảng 
+8.012 và bạn có thể kiểm tra điều này.
+
+100
+00:06:37.160 --> 00:06:40.070
+Lấy 2.001 mũ ba,
+
+101
+00:06:40.070 --> 00:06:41.330
+bạn thấy nó gần bằng 8.012.
+
+102
+00:06:41.330 --> 00:06:49.463
+Và thực tế, khi a = 2 
+thì 3x2² bằng 3x4,
+
+103
+00:06:49.463 --> 00:06:50.750
+bạn thấy đó là 12.
+
+104
+00:06:50.750 --> 00:06:55.255
+Vì vậy, công thức đạo hàm dự đoán
+ rằng nếu bạn tăng a lên một chút, thì
+
+105
+00:06:55.255 --> 00:06:58.464
+f (a) nên tăng gấp 12 lần.
+
+106
+00:06:58.464 --> 00:07:01.950
+Và thực tế, điều này là 
+đúng khi a tăng thêm 0,001,
+
+107
+00:07:01.950 --> 00:07:06.447
+f (a) đã tăng gấp 12 là 0,012.
+
+108
+00:07:06.447 --> 00:07:08.960
+Chỉ một ví dụ cuối cùng nữa thôi và
+ sau đó chúng ta sẽ kết thúc bài học này.
+
+109
+00:07:08.960 --> 00:07:12.190
+Giả sử f (a) bằng hàm log.
+
+110
+00:07:12.190 --> 00:07:14.690
+Vì vậy, tôi viết log(a),
+
+111
+00:07:14.690 --> 00:07:17.595
+tôi sẽ coi cái này
+ là logarit cơ số e.
+
+112
+00:07:17.595 --> 00:07:20.755
+Vì vậy, một số người 
+viết đó là log (a).
+
+113
+00:07:20.755 --> 00:07:22.420
+Vì vậy, nếu bạn mở 
+sách giáo khoa giải tích,
+
+114
+00:07:22.420 --> 00:07:26.465
+bạn thấy rằng khi bạn 
+lấy đạo hàm của log (a).
+
+115
+00:07:26.465 --> 00:07:30.005
+Thì đây là hàm này 
+sẽ trông như này,
+
+116
+00:07:30.005 --> 00:07:34.645
+độ dốc của hàm này 
+được cho là bằng 1 / a.
+
+117
+00:07:34.645 --> 00:07:40.430
+Để giải thích điều này thì là với bất kì 
+giá trị nào của a thì chúng ta hãy cứ
+
+118
+00:07:40.430 --> 00:07:46.865
+sử dụng a = 2 làm ví dụ và bạn 
+nhích a sang phải thêm 0,001,
+
+119
+00:07:46.865 --> 00:07:51.005
+bạn sẽ muốn f (a) tăng lên
+
+120
+00:07:51.005 --> 00:07:56.470
+1 / a, bằng đạo hàm nhân 
+với lượng mà bạn tăng a.
+
+121
+00:07:56.470 --> 00:08:00.380
+Trên thực tế, nếu bạn mở máy tính,
+
+122
+00:08:00.380 --> 00:08:02.795
+bạn thấy rằng nếu a = 2,
+
+123
+00:08:02.795 --> 00:08:10.850
+f (a) là xấp xỉ 0,69315 và nếu bạn
+
+124
+00:08:10.850 --> 00:08:21.617
+tăng f và nếu bạn tăng a lên 
+2.001 thì f (a) là khoảng 0,69365,
+
+125
+00:08:21.617 --> 00:08:27.220
+con số này đã tăng lên 0,0005.
+
+126
+00:08:27.220 --> 00:08:32.150
+Và thực tế, nếu bạn nhìn vào
+ công thức của đạo hàm khi a = 2,
+
+127
+00:08:32.150 --> 00:08:36.280
+d / da f (a) = 1/2.
+
+128
+00:08:36.280 --> 00:08:41.720
+Thì công thức đạo hàm dự đoán 
+rằng nếu bạn tăng lên 0,001,
+
+129
+00:08:41.720 --> 00:08:46.230
+bạn sẽ muốn f (a) tăng chỉ 
+bằng 1/2 và 1/2 của 0,001
+
+130
+00:08:46.230 --> 00:08:51.250
+là 0,0005, đó chính xác là 
+những gì chúng ta nhận được.
+
+131
+00:08:51.250 --> 00:08:56.180
+Sau đó khi a tăng lên 
+0,001, đi từ a = 2 đến
+
+132
+00:08:56.180 --> 00:09:01.095
+a = 2.001, f (a) tăng một nửa.
+
+133
+00:09:01.095 --> 00:09:04.980
+Như vậy, các đáp án đang 
+tăng lên khoảng 0,0005.
+
+134
+00:09:04.980 --> 00:09:08.510
+Nếu chúng ta vẽ hình 
+tam giác nhỏ đó, nếu bạn muốn
+
+135
+00:09:08.510 --> 00:09:13.450
+trục hoành chỉ tăng 
+0,001, trên trục tung
+
+136
+00:09:13.450 --> 00:09:18.217
+log (a) tăng một nửa
+ số đó là 0.0005.
+
+137
+00:09:18.217 --> 00:09:22.585
+Và vì vậy, 1 / a hoặc 1/2
+ trong trường hợp này,
+
+138
+00:09:22.585 --> 00:09:27.770
+1/a = 2 đó chỉ là độ dốc 
+của đường này khi a = 2.
+
+139
+00:09:27.770 --> 00:09:30.290
+Như vậy, đó là về đạo hàm.
+
+140
+00:09:30.290 --> 00:09:32.660
+Chỉ có hai lời nhắn trong video này.
+
+141
+00:09:32.660 --> 00:09:36.800
+Đầu tiên là đạo hàm của hàm
+ chỉ cónghĩa là độ dốc của
+
+142
+00:09:36.800 --> 00:09:39.110
+một hàm và độ dốc của hàm
+
+143
+00:09:39.110 --> 00:09:41.830
+có thể khác nhau ở các 
+điểm khác nhau trên hàm.
+
+144
+00:09:41.830 --> 00:09:45.635
+Trong ví dụ đầu tiên, trong đó 
+f(a) = 3a đó là một đường thẳng.
+
+145
+00:09:45.635 --> 00:09:47.400
+Đạo hàm giống nhau ở mọi nơi,
+
+146
+00:09:47.400 --> 00:09:48.885
+nó bằng 3 khắp mọi nơi.
+
+147
+00:09:48.885 --> 00:09:52.790
+Đối với các hàm khác như 
+f (a) = a² hoặc f (a) = log (a),
+
+148
+00:09:52.790 --> 00:09:54.920
+độ dốc của đường khác nhau.
+
+149
+00:09:54.920 --> 00:09:59.410
+Vì vậy, độ dốc hoặc đạo hàm có thể khác nhau
+ tại các điểm khác nhau trên đường cong.
+
+150
+00:09:59.410 --> 00:10:00.723
+Vì vậy, đó là lời nhắn đầu tiên.
+
+151
+00:10:00.723 --> 00:10:03.150
+Đạo hàm có nghĩa là 
+độ dốc của một đường.
+
+152
+00:10:03.150 --> 00:10:06.930
+Lời nhắn thứ hai là nếu bạn 
+muốn tra cứu đạo hàm của hàm,
+
+153
+00:10:06.930 --> 00:10:10.860
+bạn có thể mở sách giáo khoa
+ giải tích của bạn hoặc tra cứu Wikipedia và
+
+154
+00:10:10.860 --> 00:10:15.160
+bạn thường nhận được một công thức cho 
+độ dốc của các hàm này tại các điểm khác nhau.
+
+155
+00:10:15.160 --> 00:10:20.645
+Vì vậy, tôi hy vọng bạn đã hiểu cơ bản về
+ các đạo hàm hoặc độ dốc của các dòng.
+
+156
+00:10:20.645 --> 00:10:21.862
+Hãy cùng xem video tiếp theo.
+
+157
+00:10:21.862 --> 00:10:24.600
+Chúng ta sẽ bắt đầu nói về 
+đồ thị tính toán và cách
+
+158
+00:10:24.600 --> 00:10:27.620
+sử dụng nó để tính đạo hàm
+ của các hàm phức tạp hơn.

@@ -1,0 +1,381 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.410 --> 00:00:09.490
+Let's jump in to talk about the self-attention mechanism of transformers.
+
+00:00:09.490 --> 00:00:15.810
+If you can get the main idea behind this video, you understand the most important core idea
+
+00:00:15.810 --> 00:00:18.290
+behind what makes transformer networks work.
+
+00:00:18.290 --> 00:00:19.810
+Let's jump in.
+
+00:00:19.810 --> 00:00:24.510
+You've seen how attention is used with sequential neural networks such as RNNs.
+
+00:00:24.510 --> 00:00:31.410
+To use attention with a style more like CNNs, you need to calculate self-attention where
+
+00:00:31.410 --> 00:00:37.410
+you create attention-based representations for each of the words in your input sentence.
+
+00:00:37.410 --> 00:00:42.290
+Let's use our running example, Jane Vazik-Lefic on Sultembo.
+
+00:00:42.290 --> 00:00:53.410
+Our goal will be for each word to compute an attention-based representation like this.
+
+00:00:53.410 --> 00:00:58.370
+So we'll end up with five of these since our sentence has five words.
+
+00:00:58.370 --> 00:01:03.010
+And when we've computed them, we'll call the five representations of these five words
+
+00:01:03.010 --> 00:01:07.730
+A1 through A5.
+
+00:01:07.730 --> 00:01:13.350
+And I know you're starting to see a bunch of symbols Q, K, and V. We'll explain what
+
+00:01:13.350 --> 00:01:18.330
+these symbols mean in a later slide, so don't worry about them for now.
+
+00:01:18.330 --> 00:01:25.330
+The running example I'm going to use is take the word Lefric in this sentence.
+
+00:01:25.330 --> 00:01:31.630
+We'll step through on the next slide how the transformer network's self-attention mechanism
+
+00:01:31.630 --> 00:01:38.450
+allows you to compute A3 for this word, and then you do the same thing for the other words
+
+00:01:38.450 --> 00:01:40.330
+in the sentence as well.
+
+00:01:40.330 --> 00:01:45.210
+Now you learned previously about word embeddings, and so one way to represent Lefric would be
+
+00:01:45.210 --> 00:01:49.410
+to just look up the word embedding for Lefric.
+
+00:01:49.410 --> 00:01:56.390
+But depending on the context, are we thinking of Lefric or Africa as a site of historical
+
+00:01:56.390 --> 00:02:04.970
+interest or as a holiday destination or as the world's second largest continent?
+
+00:02:04.970 --> 00:02:11.170
+Depending on how you're thinking of Lefric, you may choose to represent it differently.
+
+00:02:11.170 --> 00:02:14.130
+And that's what this representation A3 will do.
+
+00:02:14.130 --> 00:02:19.850
+It will look at the surrounding words to try to figure out what's actually going on in
+
+00:02:19.850 --> 00:02:25.490
+how we're talking about Africa in this sentence and find the most appropriate representation
+
+00:02:25.490 --> 00:02:26.850
+for this.
+
+00:02:26.850 --> 00:02:33.010
+In terms of the actual calculation, it won't be too different from the attention mechanism
+
+00:02:33.010 --> 00:02:39.010
+you saw previously as applied in the context of RNNs, except we'll compute these representations
+
+00:02:39.010 --> 00:02:42.250
+in parallel for all five words in a sentence.
+
+00:02:42.250 --> 00:02:48.730
+So when we're building attention on top of RNNs, this was the equation we used.
+
+00:02:48.730 --> 00:02:55.590
+With the self-attention mechanism, the attention equation is instead going to look like this.
+
+00:02:55.590 --> 00:02:59.490
+So you can see the equations have some similarity.
+
+00:02:59.490 --> 00:03:06.850
+The inner term here also involves a softmax, just like this term over here on the left.
+
+00:03:06.850 --> 00:03:15.010
+And you can think of the exponent terms as being akin to attention values.
+
+00:03:15.010 --> 00:03:19.190
+Exactly how these terms are worked out, you see in the next slide.
+
+00:03:19.190 --> 00:03:22.630
+So again, don't worry about the details just yet.
+
+00:03:22.630 --> 00:03:30.010
+But the main difference is that for every word, say for Lefric, you have three values
+
+00:03:30.010 --> 00:03:36.330
+called the query, key, and value.
+
+00:03:36.330 --> 00:03:45.250
+And these vectors are the key inputs to computing the attention value for each word.
+
+00:03:45.250 --> 00:03:52.970
+Now let's step through the steps needed to actually calculate A3.
+
+00:03:52.970 --> 00:03:59.610
+On this side, let's step through the computations you need to go from the word Lefric to the
+
+00:03:59.610 --> 00:04:02.370
+self-attention representation A3.
+
+00:04:02.370 --> 00:04:07.610
+For reference, I've also printed up here on the upper right that softmax like equation
+
+00:04:07.610 --> 00:04:09.330
+from the previous slide.
+
+00:04:09.330 --> 00:04:16.190
+First, we're going to associate each of the words with three values called the query,
+
+00:04:16.190 --> 00:04:18.530
+key, and value pairs.
+
+00:04:18.530 --> 00:04:31.310
+So if x3 is the word embedding for Lefric, the way that q3 is computed is as a learned
+
+00:04:31.310 --> 00:04:39.130
+matrix which I'm going to write as wq times x3.
+
+00:04:39.130 --> 00:04:57.270
+And similarly for the key and value pairs, so k3 is wk times x3 and v3 is wv times x3.
+
+00:04:57.270 --> 00:05:04.990
+So these matrices wq, wk, and wv are parameters of this learning algorithm.
+
+00:05:04.990 --> 00:05:10.970
+And they allow you to pull up these query, key, and value vectors for each word.
+
+00:05:10.970 --> 00:05:14.650
+So what are these query, key, and value vectors supposed to do?
+
+00:05:14.650 --> 00:05:20.250
+They were named using a loose analogy to concepts and databases where you can have queries
+
+00:05:20.250 --> 00:05:23.070
+and also key value pairs.
+
+00:05:23.070 --> 00:05:27.190
+If you're familiar with those types of databases, the analogy may make sense to you.
+
+00:05:27.190 --> 00:05:31.950
+But if you're not familiar with that database concept, don't worry about it.
+
+00:05:31.950 --> 00:05:39.550
+Let me give one intuition behind the intent of these query, key, and value vectors.
+
+00:05:39.550 --> 00:05:45.610
+q3 is a question that you get to ask about Lefric.
+
+00:05:45.610 --> 00:05:52.810
+So q3 may represent a question like what's happening there.
+
+00:05:52.810 --> 00:05:55.530
+So Africa, Lefric is a destination.
+
+00:05:55.530 --> 00:06:01.710
+So you might want to know when computing a3, what's happening there.
+
+00:06:01.710 --> 00:06:10.410
+And what we're going to do is compute the inner product between q3 and k1 between query
+
+00:06:10.410 --> 00:06:12.610
+3 and key 1.
+
+00:06:12.610 --> 00:06:18.330
+And this will tell us how good is an answer, where it's one, to the question of what's
+
+00:06:18.330 --> 00:06:20.310
+happening in Africa.
+
+00:06:20.310 --> 00:06:24.910
+And then we compute the inner product between q3 and k2.
+
+00:06:24.910 --> 00:06:31.330
+And this is intended to tell us how good is the z and answer to the question of
+
+00:06:31.330 --> 00:06:37.230
+what's happening in Africa, and so on, for the other words in the sequence.
+
+00:06:37.230 --> 00:06:43.230
+And the goal of this operation is to pull up the most information is needed to help
+
+00:06:43.230 --> 00:06:50.070
+us compute the most useful representation a3 up here.
+
+00:06:50.070 --> 00:06:57.230
+So again, just for intuition building, if k1 represents that this word is a person,
+
+00:06:57.230 --> 00:07:04.610
+because Jane is a person, and k2 represents that the second word, the zit is an action,
+
+00:07:04.610 --> 00:07:10.930
+then you may find that q3 in a product with k2 has the largest value.
+
+00:07:10.930 --> 00:07:17.170
+And this may be intuitive example might suggest that visit gives you the most relevant context
+
+00:07:17.170 --> 00:07:21.250
+what's happening in Africa, which is that you know, it's a view there's a destination
+
+00:07:21.250 --> 00:07:23.250
+for a visit.
+
+00:07:23.270 --> 00:07:32.670
+So what we will do is take these five values in this row, and compute the softmax over them.
+
+00:07:32.670 --> 00:07:36.870
+So that's actually this softmax over here.
+
+00:07:36.870 --> 00:07:44.590
+And in the example that we've been talking about q3 times k2 corresponding to word visit,
+
+00:07:44.590 --> 00:07:48.990
+maybe has the largest value, so I'm going to shade that blue over here.
+
+00:07:49.010 --> 00:07:55.170
+And finally, we're going to take these softmax values and multiply them with v1, which is
+
+00:07:55.170 --> 00:08:00.450
+the value for word one, the value for word two, and so on.
+
+00:08:00.450 --> 00:08:08.450
+And so these values correspond to that value up there.
+
+00:08:08.450 --> 00:08:11.290
+Finally, we sum it all up.
+
+00:08:11.290 --> 00:08:16.130
+So this summation corresponds to this summation operator.
+
+00:08:16.130 --> 00:08:23.070
+And so adding up all of these values gives you a three, which is just equal to this value
+
+00:08:23.070 --> 00:08:24.070
+here.
+
+00:08:24.070 --> 00:08:35.730
+So another way to write a three is really as a this a up here of q3, comma, k, v, but
+
+00:08:35.730 --> 00:08:41.950
+sometimes it'll be more convenient to just write a three like that.
+
+00:08:42.030 --> 00:08:49.330
+And the key advantage of this representation is the word of the freak isn't some fixed word
+
+00:08:49.330 --> 00:08:51.210
+embedding.
+
+00:08:51.210 --> 00:08:57.810
+Instead, it lets the self attention mechanism realize that the freak is the destination of
+
+00:08:57.810 --> 00:09:05.650
+a visit of a visit, and thus compute a richer, more useful representation for this word.
+
+00:09:05.650 --> 00:09:10.750
+Now I've been using the third word the freak as a running example, but you could use
+
+00:09:10.770 --> 00:09:17.810
+this process for all five words in your sequence to get similarly rich representations for Jane,
+
+00:09:17.810 --> 00:09:22.990
+the Zit, the freak on September.
+
+00:09:22.990 --> 00:09:30.770
+And if you put all of these five computations together, the notation used in literature
+
+00:09:30.770 --> 00:09:35.970
+looks like this, where you can summarize all of these computations that we just talked about
+
+00:09:35.970 --> 00:09:44.270
+for all the words in the sequence by writing attention to k v, where q k v matrices with
+
+00:09:44.270 --> 00:09:46.870
+all of these values.
+
+00:09:46.870 --> 00:09:54.790
+And this is just a compressed or vectorized representation of this equation up here.
+
+00:09:54.790 --> 00:10:00.590
+The term in the denominator is just a scale the dot product, so it doesn't explode, you
+
+00:10:00.590 --> 00:10:03.210
+don't really need to worry about it.
+
+00:10:03.230 --> 00:10:09.450
+And another name for this type of attention is the scaled dot product attention.
+
+00:10:09.450 --> 00:10:14.770
+And this is the one represented in the original transformer architecture paper, attention is
+
+00:10:14.770 --> 00:10:17.070
+all you need as well.
+
+00:10:17.070 --> 00:10:21.830
+So that's the self attention mechanism of the transformer network.
+
+00:10:21.830 --> 00:10:27.030
+To recap, associated with each of the words, each of the five words, you end up with a
+
+00:10:27.030 --> 00:10:30.170
+query, a key and a value.
+
+00:10:30.170 --> 00:10:35.950
+The query lets you ask a question about that word, such as what's happening in Africa.
+
+00:10:35.950 --> 00:10:41.950
+The key looks at all of the other words, and by the similarity to the query, helps you figure
+
+00:10:41.950 --> 00:10:46.570
+out which words gives the most relevant answer to that question.
+
+00:10:46.570 --> 00:10:52.090
+And in this case, visit is what's happening in Africa, someone's visiting Africa.
+
+00:10:52.090 --> 00:10:59.430
+And then finally, the value allows a representation to plug in how visit should be represented
+
+00:10:59.430 --> 00:11:03.870
+within A3, within the representation of Africa.
+
+00:11:03.870 --> 00:11:09.830
+And so this allows you to come up with a representation for the word Africa that says this is Africa
+
+00:11:09.830 --> 00:11:12.070
+and someone is visiting Africa.
+
+00:11:12.070 --> 00:11:16.270
+And this is a much more nuanced, much richer representation for the word than if you just
+
+00:11:16.270 --> 00:11:20.950
+had to pull up the same fixed word embedding for every single word without being able
+
+00:11:20.950 --> 00:11:25.750
+to adapt it based on what words are to the left and to the right of that word,
+
+00:11:25.750 --> 00:11:28.790
+without being taken into account and in the context.
+
+00:11:29.670 --> 00:11:33.590
+Now, you have learned about the self attention mechanism.
+
+00:11:33.590 --> 00:11:38.230
+We're going to put a big for loop over this whole thing and that will be the multi headed
+
+00:11:38.230 --> 00:11:40.030
+attention mechanism.
+
+00:11:40.030 --> 00:11:42.430
+Let's dive into the details of that in the next video.

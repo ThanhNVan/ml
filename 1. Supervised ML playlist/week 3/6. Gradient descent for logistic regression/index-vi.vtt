@@ -1,0 +1,326 @@
+WEBVTT
+
+00:00:01.710 --> 00:00:07.140
+Để khớp các tham số của mô hình
+logistic regression, chúng ta sẽ cố gắng tìm
+
+00:00:07.140 --> 00:00:12.570
+giá trị của các tham số w và b sao cho
+cost function j của w và b là cực tiểu.
+
+00:00:12.570 --> 00:00:15.870
+Và chúng tôi đang áp dụng phương pháp
+gradient descent để thực hiện việc này.
+
+00:00:15.870 --> 00:00:18.270
+Chúng ta hãy xem làm thế nào.
+
+00:00:18.270 --> 00:00:21.370
+Trong video này, chúng ta sẽ tập trung vào
+cách
+
+00:00:21.370 --> 00:00:24.470
+tìm ra sự lựa chọn tốt cho các tham số w và b.
+
+00:00:24.470 --> 00:00:29.303
+Sau khi bạn làm như vậy, nếu bạn cung cấp cho
+mô hình một đầu vào x
+
+00:00:29.303 --> 00:00:34.137
+mới, chẳng hạn như một bệnh nhân mới tại bệnh
+viện có kích thước và độ
+
+00:00:34.137 --> 00:00:38.970
+tuổi khối u nhất định cần chẩn đoán, thì mô
+hình có thể đưa ra dự đoán
+
+00:00:38.970 --> 00:00:46.110
+hoặc nó có thể cố gắng ước tính xác suất nhãn
+y là 1.
+
+00:00:46.110 --> 00:00:51.210
+Thuật toán bạn có thể sử dụng để giảm thiểu
+cost function là gradient descent.
+
+00:00:51.210 --> 00:00:54.130
+Đây một lần nữa là cost function.
+
+00:00:54.130 --> 00:00:59.263
+Và vì vậy nếu bạn muốn giảm thiểu chi phí j
+dưới dạng hàm của w và
+
+00:00:59.263 --> 00:01:04.397
+b, thì đây là thuật toán gradient descent
+thông thường, trong đó
+
+00:01:04.397 --> 00:01:09.530
+bạn cập nhật liên tục từng tham số dưới dạng
+giá trị o trừ alpha,
+
+00:01:09.530 --> 00:01:14.970
+learning rate, nhân số hạng đạo hàm này.
+
+00:01:14.970 --> 00:01:20.210
+Chúng ta hãy xem đạo hàm của j theo wj, số
+hạng này ở
+
+00:01:20.210 --> 00:01:25.450
+trên cùng ở đây, trong đó như thường lệ j đi
+từ 1 đến n,
+
+00:01:25.450 --> 00:01:28.530
+trong đó n là số lượng feature.
+
+00:01:28.530 --> 00:01:34.810
+Nếu ai đó áp dụng các quy tắc tính toán, bạn
+có thể chỉ ra rằng
+
+00:01:34.810 --> 00:01:41.090
+đạo hàm theo wj của cost function vốn J bằng
+biểu thức này ở đây.
+
+00:01:41.090 --> 00:01:56.570
+Nó bằng 1 trên m nhân tổng từ 1 đến m của hạng
+lỗi này, tức là f trừ nhãn y nhân xj.
+
+00:01:56.570 --> 00:02:03.170
+Ở đây xij này là đặc điểm j của ví dụ huấn
+luyện i.
+
+00:02:03.170 --> 00:02:08.930
+Bây giờ chúng ta hãy xét đạo hàm của j theo
+tham số b.
+
+00:02:08.930 --> 00:02:12.530
+Hóa ra là biểu hiện này ở đây.
+
+00:02:12.530 --> 00:02:17.310
+Và nó khá giống với biểu thức trên, ngoại trừ
+việc nó
+
+00:02:17.310 --> 00:02:22.090
+không được nhân với chỉ số x superscript i
+subscript j ở cuối.
+
+00:02:22.090 --> 00:02:26.610
+Vì vậy, xin nhắc lại, tương tự như những gì
+bạn đã thấy về
+
+00:02:26.610 --> 00:02:31.130
+linear regression, cách thực hiện các cập nhật
+này là sử dụng các cập
+
+00:02:31.130 --> 00:02:35.650
+nhật đồng thời, nghĩa là trước tiên bạn sẽ
+tính vế phải cho tất cả các cập nhật này,
+
+00:02:35.650 --> 00:02:42.570
+và sau đó ghi đè đồng thời tất cả các giá trị
+ở bên trái cùng một lúc.
+
+00:02:42.570 --> 00:02:50.970
+Vậy hãy để tôi lấy các biểu thức đạo hàm ở đây
+và thế chúng vào các số hạng ở đây.
+
+00:02:50.970 --> 00:02:57.210
+Điều này cung cấp cho bạn gradient descent cho
+logistic regression.
+
+00:02:57.210 --> 00:03:02.090
+Có một điều buồn cười mà bạn có thể đang thắc
+mắc là, điều đó thật kỳ lạ.
+
+00:03:02.090 --> 00:03:05.250
+Hai phương trình này trông giống hệt như thuật
+toán
+
+00:03:05.250 --> 00:03:08.410
+mà chúng tôi đã đưa ra trước đây về
+linear regression.
+
+00:03:08.410 --> 00:03:11.530
+Vì vậy, bạn có thể tự hỏi, linear regression
+
+00:03:11.530 --> 00:03:14.650
+có thực sự giống như logistic regression
+không?
+
+00:03:14.650 --> 00:03:20.610
+Chà, mặc dù các phương trình này trông giống
+nhau, nhưng lý do đây
+
+00:03:20.610 --> 00:03:26.570
+không phải là linear regression là vì định
+nghĩa cho hàm f(x) đã thay đổi.
+
+00:03:26.570 --> 00:03:31.690
+Trong linear regression, f(x) bằng wx cộng b.
+
+00:03:31.690 --> 00:03:35.770
+Nhưng trong logistic regression, f(x) được
+
+00:03:35.770 --> 00:03:39.850
+định nghĩa là hàm sigma áp dụng cho wx cộng b.
+
+00:03:39.850 --> 00:03:44.437
+Vì vậy, mặc dù thuật toán được viết trông
+giống nhau cho cả
+
+00:03:44.437 --> 00:03:49.023
+linear regression và logistic regression,
+nhưng thực ra chúng là
+
+00:03:49.023 --> 00:03:53.610
+hai thuật toán rất khác nhau vì định nghĩa cho
+f(x) không giống nhau.
+
+00:03:53.610 --> 00:03:58.330
+Khi chúng ta nói về việc gradient descent cho
+linear regression trước đây, bạn
+
+00:03:58.330 --> 00:04:03.050
+đã thấy cách bạn có thể theo dõi việc
+gradient descent để đảm bảo nó hội tụ.
+
+00:04:03.050 --> 00:04:06.650
+Bạn chỉ có thể áp dụng phương pháp tương tự
+cho
+
+00:04:06.650 --> 00:04:10.250
+logistic regression để đảm bảo nó cũng hội tụ.
+
+00:04:10.250 --> 00:04:15.285
+Tôi đã viết ra những cập nhật này như thể bạn
+
+00:04:15.285 --> 00:04:20.320
+đang cập nhật các tham số với từng tham số
+một.
+
+00:04:20.320 --> 00:04:24.720
+Tương tự như cuộc thảo luận về việc triển khai
+vector hóa của
+
+00:04:24.720 --> 00:04:29.120
+linear regression, bạn cũng có thể sử dụng
+vector hóa để làm
+
+00:04:29.120 --> 00:04:33.520
+cho việc gradient descent chạy nhanh hơn cho
+logistic regression.
+
+00:04:33.520 --> 00:04:38.160
+Tôi sẽ không đi sâu vào chi tiết về cách triển
+khai vector hóa trong video này nhưng
+
+00:04:38.160 --> 00:04:42.800
+bạn cũng có thể tìm hiểu thêm về nó và xem mã
+trong các phòng thí nghiệm tùy chọn.
+
+00:04:42.800 --> 00:04:45.800
+Vậy là bây giờ, bạn đã biết cách triển khai
+
+00:04:45.800 --> 00:04:48.800
+phương pháp gradient descent cho
+logistic regression.
+
+00:04:48.800 --> 00:04:52.267
+Bạn cũng có thể nhớ việc chia tỷ lệ đối tượng
+khi chúng ta sử
+
+00:04:52.267 --> 00:04:55.733
+dụng linear regression, trong đó bạn đã thấy
+cách chia tỷ lệ đối
+
+00:04:55.733 --> 00:04:59.200
+tượng đang chia tỷ lệ tất cả các đối tượng để
+có phạm vi tương tự
+
+00:04:59.200 --> 00:05:02.960
+các giá trị, chẳng hạn như giữa âm một và cộng
+một, làm thế nào điều đó
+
+00:05:02.960 --> 00:05:06.720
+có thể giúp độ dốc giảm xuống hội tụ nhanh
+hơn. Chia tỷ lệ feature được
+
+00:05:06.720 --> 00:05:10.480
+áp dụng theo cách tương tự để chia tỷ lệ các
+feature khác nhau cần đảm nhận
+
+00:05:10.480 --> 00:05:12.840
+phạm vi giá trị tương tự cũng có thể tăng tốc
+
+00:05:12.840 --> 00:05:15.200
+độ gradient descent cho logistic regression.
+
+00:05:16.320 --> 00:05:20.720
+Trong phòng thực hành tùy chọn sắp tới, bạn
+cũng sẽ thấy
+
+00:05:20.720 --> 00:05:25.120
+cách tính gradient cho logistic regression
+trong mã. Điều
+
+00:05:25.120 --> 00:05:29.520
+này sẽ hữu ích khi xem xét vì bạn cũng triển
+khai điều này trong
+
+00:05:29.520 --> 00:05:32.853
+phòng thí nghiệm thực hành vào cuối tuần này.
+Sau khi bạn chạy
+
+00:05:32.853 --> 00:05:36.187
+feature gradient descent trong phòng thí
+nghiệm này, sẽ có một tập
+
+00:05:36.187 --> 00:05:39.520
+hợp các biểu đồ hoạt hình đẹp mắt thể hiện
+hoạt động gradient descent.
+
+00:05:40.160 --> 00:05:44.920
+Bạn thấy hàm sigmoid, biểu đồ đường viền của
+chi phí, biểu đồ bề mặt 3D
+
+00:05:44.920 --> 00:05:49.680
+của chi phí và đường cong học tập đều phát
+triển khi gradient descent.
+
+00:05:50.640 --> 00:05:54.293
+Sau đó sẽ có một phòng thí nghiệm tùy chọn
+khác, ngắn gọn và
+
+00:05:54.293 --> 00:05:57.947
+thú vị nhưng cũng rất hữu ích vì nó sẽ chỉ cho
+bạn cách sử
+
+00:05:57.947 --> 00:06:01.600
+dụng thư viện scikit-learn phổ biến để đào tạo
+nhân viên hậu cần.
+
+00:06:01.600 --> 00:06:05.360
+mô hình regression để classification. Nhiều
+người thực hành
+
+00:06:05.360 --> 00:06:09.120
+machine learning ở nhiều công ty ngày nay sử
+dụng scikit-learn
+
+00:06:09.120 --> 00:06:12.880
+thường xuyên như một phần công việc của họ. Và
+vì vậy tôi hy vọng bạn kiểm tra
+
+00:06:12.880 --> 00:06:18.800
+chức năng scikit-learn và xem cách sử dụng
+chức năng đó. Thế là xong.
+
+00:06:18.880 --> 00:06:22.933
+Bây giờ bạn đã biết cách thực hiện
+logistic regression. Đây là
+
+00:06:22.933 --> 00:06:26.987
+một thuật toán học tập rất mạnh mẽ và được sử
+dụng rất rộng
+
+00:06:26.987 --> 00:06:31.040
+rãi. Và bây giờ bạn đã biết cách làm cho nó
+hoạt động. Chúc mừng.

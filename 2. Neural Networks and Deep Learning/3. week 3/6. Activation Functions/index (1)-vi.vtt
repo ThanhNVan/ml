@@ -1,0 +1,751 @@
+WEBVTT
+
+1
+00:00:00.340 --> 00:00:04.760
+Khi bạn xây dựng neural network
+nhân tạo, bạn cần lựa chọn loại
+
+2
+00:00:04.760 --> 00:00:07.680
+activation function mà bạn sử
+dụng trong các lớp ẩn,
+
+3
+00:00:07.680 --> 00:00:10.810
+Cũng như ở đầu ra
+đơn vị của neural network của bạn.
+
+4
+00:00:10.810 --> 00:00:14.892
+Cho đến nay, chúng ta mới
+sử dụng activation function sigmoid.
+
+5
+00:00:14.892 --> 00:00:17.680
+Nhưng đôi khi, các lựa chọn khác
+có thể hoạt động hiệu quả hơn nhiều.
+
+6
+00:00:17.680 --> 00:00:20.132
+Hãy cùng xem một số tùy chọn sau.
+
+7
+00:00:20.132 --> 00:00:23.797
+Trong các bước truyền xuôi cho
+neural network nhân tạo,
+
+8
+00:00:23.797 --> 00:00:27.710
+chúng ta sẽ sử dụng hàm
+sigmoid ở ba bước này.
+
+9
+00:00:27.710 --> 00:00:31.340
+Như vậy, hàm sigmoid được
+gọi là một activation function.
+
+10
+00:00:31.340 --> 00:00:36.750
+Và đây là hàm sigmoid quen thuộc,
+
+11
+00:00:36.750 --> 00:00:39.940
+a = 1/1 + e mũ -z.
+
+12
+00:00:39.940 --> 00:00:43.661
+Vì vậy trong trường hợp tổng quát hơn,
+
+13
+00:00:43.661 --> 00:00:49.094
+chúng ta có một hàm g(z) khác
+
+14
+00:00:49.094 --> 00:00:53.870
+Tôi sẽ nói ngay ở đây, nơi
+g có thể là một hàm phi tuyến
+
+15
+00:00:53.870 --> 00:00:56.720
+đó có thể không phải là hàm sigmoid.
+
+16
+00:00:56.720 --> 00:01:02.340
+Ví dụ, hàm sigmoid nằm
+trong khoảng 0 và 1, và
+
+17
+00:01:02.340 --> 00:01:06.984
+activation function mà gần như luôn
+hoạt động tốt hơn hàm sigmoid
+
+18
+00:01:06.984 --> 00:01:12.140
+là hàm tiếp tuyến hoặc
+hàm tiếp tuyến hyperbol.
+
+19
+00:01:12.140 --> 00:01:19.491
+Đây là z, đây là a, a bằng tanh (z),
+
+20
+00:01:19.491 --> 00:01:24.810
+Và hàm này nằm giữa +1 và -1.
+
+21
+00:01:24.810 --> 00:01:30.901
+Công thức của hàm tanh là e mũ z
+
+22
+00:01:30.901 --> 00:01:36.740
+z trừ e thành z trên tổng của chúng.
+
+23
+00:01:36.740 --> 00:01:42.490
+Và về mặt toán học, một phiên
+bản dịch chuyển của hàm sigmoid.
+
+24
+00:01:42.490 --> 00:01:47.111
+Và, từ một hàm sigmoid
+giống như này, nhưng đã thay đổi,
+
+25
+00:01:47.111 --> 00:01:51.741
+bây giờ nó vượt qua điểm
+trên thang đo.
+
+26
+00:01:51.741 --> 00:01:53.860
+Vì vậy nó nằm giữa -1 và +1
+
+27
+00:01:53.860 --> 00:01:59.523
+Và nó đưa ra kết quả cho đơn vị ẩn
+
+28
+00:01:59.523 --> 00:02:07.740
+nếu bạn cho hàm
+g (z) bằng tanh (z).
+
+29
+00:02:07.740 --> 00:02:12.589
+Điều này hầu như luôn hoạt động tốt hơn hàm sigmoid bởi vì với nhiều giá trị
+
+30
+00:02:12.589 --> 00:02:17.069
+giữa -1 và +1, trung bình của activations xuất hiện
+
+31
+00:02:17.069 --> 00:02:20.391
+của lớp ẩn gần hơn có giá trị trung bình bằng 0.
+
+32
+00:02:20.391 --> 00:02:24.420
+Và cũng giống như khi bạn
+huấn luyện một thuật toán học tập,
+
+33
+00:02:24.420 --> 00:02:26.278
+có lẽ bạn sẽ đặt dữ liệu vào trung tâm và
+
+34
+00:02:26.278 --> 00:02:31.022
+dữ liệu của bạn là 0 thì có nghĩa là bạn sẽ
+sử dụng hàm tanh thay vì hàm sigmoid.
+
+35
+00:02:31.022 --> 00:02:34.425
+Tác dụng của nó là đặt dữ
+liệu của bạn và trung tâm
+
+36
+00:02:34.425 --> 00:02:39.420
+để giá trị trung bình của dữ liệu của
+bạn gần 0 hơn, thay vì là 0,5 chẳng hạn.
+
+37
+00:02:39.420 --> 00:02:43.030
+Và điều này thực sự làm cho việc học
+cho lớp tiếp theo dễ dàng hơn một chút.
+
+38
+00:02:43.030 --> 00:02:46.738
+Chúng ta sẽ nói kỹ hơn về điều này trong khóa
+học thứ hai, khi mà chúng ta học về thuật toán
+
+39
+00:02:46.738 --> 00:02:47.940
+tối ưu hóa.
+
+40
+00:02:47.940 --> 00:02:51.311
+Nhưng một điều rút ra là số
+mà tôi hầu như không bao giờ sử dụng
+
+41
+00:02:51.311 --> 00:02:54.530
+activation function sigmoid nữa.
+
+42
+00:02:54.530 --> 00:02:58.230
+Hàm tanh thì hầu như luôn luôn vượt trội.
+
+43
+00:02:58.230 --> 00:03:04.326
+Có một ngoại lệ cho lớp
+đầu ra, bởi vì nếu y bằng 0 hoặc
+
+44
+00:03:04.326 --> 00:03:09.579
+một, thì có nghĩa là
+y  là một số mà bạn muốn
+
+45
+00:03:09.579 --> 00:03:15.920
+kết quả nằm giữa 0 và 1 hơn là nằm giữa -1 và +1.
+
+46
+00:03:15.920 --> 00:03:20.860
+Vì vậy, một ngoại lệ mà tôi sẽ sử dụng
+hàm activation sigmoid là khi
+
+47
+00:03:20.860 --> 00:03:23.448
+bạn đang sử dụng bài toán classification nhị phân.
+
+48
+00:03:23.448 --> 00:03:28.740
+trong trường hợp đó bạn có thể sử dụng
+activation function sigmoid cho lớp đầu ra.
+
+49
+00:03:28.740 --> 00:03:34.740
+Vì vậy g (z2) ở đây bằng sigmoid của z2.
+
+50
+00:03:34.740 --> 00:03:39.782
+Và như vậy, trong ví dụ này, bạn có
+thể thấy là bạn có thể có một hàm
+
+51
+00:03:39.782 --> 00:03:47.210
+hàm activation tanh cho lớp ẩn và
+sigmoid cho lớp đầu ra.
+
+52
+00:03:47.210 --> 00:03:50.610
+Và có thể có các activation function khác
+nhau giữa các lớp khác nhau.
+
+53
+00:03:50.610 --> 00:03:55.093
+Và hãy lưu ý rằng đôi khi các
+activation function là khác nhau cho
+
+54
+00:03:55.093 --> 00:03:56.343
+những lớp khác nhau,
+
+55
+00:03:56.343 --> 00:04:00.825
+chúng ta có thể sử dụng các chỉ số trên để chỉ ra rằng
+
+56
+00:04:00.825 --> 00:04:05.469
+Dấu ngoặc vuông gf một có thể khác
+so với dấu ngoặc vuông gf hai, đúng không.
+
+57
+00:04:05.469 --> 00:04:09.292
+Và một lần nữa, [1] đề cập đến lớp này và
+
+58
+00:04:09.292 --> 00:04:12.930
+[2] đề cập đến lớp đầu ra.
+
+59
+00:04:12.930 --> 00:04:16.853
+Bây giờ, một nhược điểm của
+cả hàm sigmoid và
+
+60
+00:04:16.853 --> 00:04:21.177
+hàm tanh là nếu z vô cùng
+lớn hoặc vô cùng nhỏ,
+
+61
+00:04:21.177 --> 00:04:26.965
+thì gradient hoặc đạo hàm hoặc độ dốc
+của hàm này trở nên vô cùng nhỏ.
+
+62
+00:04:26.965 --> 00:04:31.816
+Vì vậy nếu z vô cùng lớn hoặc vô cùng nhỏ, độ dốc của hàm kết thúc
+
+63
+00:04:31.816 --> 00:04:36.070
+lên gần bằng 0 và vì vậy điều này có thể làm chậm gradient
+
+64
+00:04:36.070 --> 00:04:40.790
+Vì vậy, một sự lựa chọn phổ biến khác trong machine learning là
+
+65
+00:04:40.790 --> 00:04:44.640
+cái được gọi là đơn vị tuyến tính chỉnh lưu
+
+66
+00:04:44.640 --> 00:04:51.210
+Hàm giá trị trông như thế này.
+
+67
+00:04:51.210 --> 00:04:56.830
+Và công thức là a = max (0, z).
+
+68
+00:04:56.830 --> 00:05:01.200
+Vì vậy, đạo hàm là 1 khi z dương và
+
+69
+00:05:01.200 --> 00:05:05.690
+đạo hàm hoặc độ dốc bằng 0 khi z âm.
+
+70
+00:05:05.690 --> 00:05:07.418
+Nếu bạn đang triển khai điều này,
+
+71
+00:05:07.418 --> 00:05:11.440
+về lý thuyết thì đạo hàm không được
+xác định rõ khi z chính xác bằng 0.
+
+72
+00:05:11.440 --> 00:05:14.566
+Nhưng khi bạn triển khai
+điều này trong máy tính,
+
+73
+00:05:14.566 --> 00:05:20.171
+tỷ lệ cược mà bạn nhận được chính xác z
+bằng 000000000000 là rất nhỏ.
+
+74
+00:05:20.171 --> 00:05:22.020
+Vì vậy, bạn không cần phải lo lắng về nó.
+
+75
+00:05:22.020 --> 00:05:27.067
+Trong thực tế, bạn có thể giả sử
+là đạo hàm khi z bằng 0,
+
+76
+00:05:27.067 --> 00:05:29.870
+có thể giả vờ là 1 hoặc 0.
+
+77
+00:05:29.870 --> 00:05:31.800
+Và bạn có thể làm việc tốt.
+
+78
+00:05:31.800 --> 00:05:33.471
+Vì vậy, thực tế là không thể phân biệt được.
+
+79
+00:05:33.471 --> 00:05:38.893
+Thực tế là, vì vậy đây là một số quy tắc
+ngón tay cái để chọn các activation function.
+
+80
+00:05:38.893 --> 00:05:43.703
+Nếu đầu ra của bạn có giá trị là 0, 1, nếu
+bạn đang sử dụng classification nhị phân,
+
+81
+00:05:43.703 --> 00:05:48.990
+thì activation function sigmoid là
+một lựa chọn dễ hiểu cho lớp đầu ra.
+
+82
+00:05:48.990 --> 00:05:53.880
+Và sau đó đối với tất cả các đơn vị khác giá trị hoặc
+
+83
+00:05:53.880 --> 00:05:59.752
+đơn vị tuyến tính được điều chỉnh ngày càng
+
+84
+00:05:59.752 --> 00:06:06.440
+sự lựa chọn mặc định của activation function.
+
+85
+00:06:06.440 --> 00:06:11.219
+Vì vậy, nếu bạn không chắc chắn nên sử dụng gì cho
+lớp ẩn của mình, tôi sẽ chỉ sử dụng
+
+86
+00:06:11.219 --> 00:06:16.500
+activation function giá trị, là
+mà bạn thấy hầu hết mọi người sử dụng những ngày nay.
+
+87
+00:06:16.500 --> 00:06:21.440
+Mặc dù đôi khi người ta cũng sử
+dụng activation function tanh.
+
+88
+00:06:21.440 --> 00:06:26.383
+Một nhược điểm của giá trị là
+đạo hàm bằng 0 khi
+
+89
+00:06:26.383 --> 00:06:27.360
+z âm.
+
+90
+00:06:27.360 --> 00:06:29.260
+Trong thực tế, điều này vẫn hoạt động tốt.
+
+91
+00:06:29.260 --> 00:06:33.487
+Nhưng có một phiên bản khác của
+được gọi là Leaky ReLU.
+
+92
+00:06:33.487 --> 00:06:37.835
+Chúng tôi sẽ cung cấp cho bạn công thức trên slide
+tiếp theo nhưng thay vì nó bằng 0
+
+93
+00:06:37.835 --> 00:06:41.326
+khi z là âm,
+nó chỉ cần một độ dốc nhỏ như vậy.
+
+94
+00:06:41.326 --> 00:06:44.540
+Vì vậy, đây được gọi là Leaky ReLU.
+
+95
+00:06:44.540 --> 00:06:49.841
+Điều này thường hoạt động tốt hơn
+activation function giá trị.
+
+96
+00:06:49.841 --> 00:06:53.270
+mặc dù nó không được sử
+dụng nhiều trong thực tế.
+
+97
+00:06:53.270 --> 00:06:54.871
+Một trong hai sẽ ổn.
+
+98
+00:06:54.871 --> 00:06:58.836
+Mặc dù, nếu phải chọn một,
+, tôi thường chỉ sử dụng giá trị.
+
+99
+00:06:58.836 --> 00:07:02.993
+Và lợi thế của cả giá trị và
+Leaky ReLU là cho
+
+100
+00:07:02.993 --> 00:07:07.464
+rất nhiều không gian của Z,
+đạo hàm của activation function,
+
+101
+00:07:07.464 --> 00:07:11.881
+độ dốc của activation function thì khác 0.
+
+102
+00:07:11.881 --> 00:07:15.362
+Và trong thực tế,
+bằng cách sử dụng chức năng kích hoạt giá trị,
+
+103
+00:07:15.362 --> 00:07:19.746
+neural network nhân tạo của bạn thường sẽ học
+nhanh hơn nhiều so với khi sử dụng activation function
+
+104
+00:07:19.746 --> 00:07:21.851
+tanh hoặc hàm sigmoid.
+
+105
+00:07:21.851 --> 00:07:26.061
+Và lý do chính là ảnh hưởng
+của độ dốc của
+
+106
+00:07:26.061 --> 00:07:29.640
+hàm tiến về 0 sẽ ít hơn, làm chậm quá trình học.
+
+107
+00:07:29.640 --> 00:07:34.710
+Và tôi biết rằng đối với một nửa phạm vi
+của z, độ dốc cho giá trị bằng không.
+
+108
+00:07:34.710 --> 00:07:39.641
+nhưng trong thực tế, một lượng đủ các
+đơn vị ẩn của bạn sẽ có z lớn hơn 0.
+
+109
+00:07:39.641 --> 00:07:42.820
+Vậy nên hầu hết các ví dụ huấn
+luyện vẫn có thể học khá nhanh.
+
+110
+00:07:42.820 --> 00:07:47.241
+Hãy cùng tóm tắt nhanh những ưu và
+nhược điểm của các activation function khác nhau.
+
+111
+00:07:47.241 --> 00:07:49.350
+Đây là một activation function sigmoid.
+
+112
+00:07:49.350 --> 00:07:53.970
+Tôi sẽ nói không bao giờ sử dụng điều này ngoại trừ
+lớp đầu ra nếu bạn đang thực hiện
+
+113
+00:07:53.970 --> 00:07:56.850
+classification nhị phân hoặc
+có thể hầu như không bao giờ sử dụng điều này.
+
+114
+00:07:56.850 --> 00:08:01.412
+Và lý do tôi gần như không bao giờ
+sử dụng hàm này là vì hàm tanh
+
+115
+00:08:01.412 --> 00:08:04.040
+vượt trội hơn rất nhiều.
+
+116
+00:08:04.040 --> 00:08:07.051
+Vậy nên đây là activation function tanh.
+
+117
+00:08:10.640 --> 00:08:12.219
+Và hàm mặc định,
+
+118
+00:08:12.219 --> 00:08:17.301
+activation function được sử dụng phổ
+biến nhất là ReLU, là hàm này.
+
+119
+00:08:18.340 --> 00:08:20.680
+Nếu bạn không chắc chắn nên sử dụng
+hàm gì thì hãy sử dụng hàm này và
+
+120
+00:08:20.680 --> 00:08:25.702
+Và có thể, hãy thử
+
+121
+00:08:25.702 --> 00:08:30.166
+Leaky ReLU có thể ở đâu
+
+122
+00:08:30.166 --> 00:08:34.821
+0.01 (z, z), phải không?
+
+123
+00:08:34.821 --> 00:08:39.630
+Vậy a là giá trị lớn nhất của 0.1 lần z và z.
+
+124
+00:08:39.630 --> 00:08:42.739
+Vì vậy, điều đó cung cấp cho bạn
+này trong hàm.
+
+125
+00:08:42.739 --> 00:08:48.140
+Và bạn có thể nghĩ là, tại sao
+hằng số đó lại là 0,01?
+
+126
+00:08:48.140 --> 00:08:53.258
+Vâng, bạn cũng có thể sử dụng một
+tham số khác của thuật toán học tập.
+
+127
+00:08:53.258 --> 00:08:56.960
+Và một số người nói rằng điều đó thậm chí còn
+, nhưng họ thấy mọi người làm điều đó như thế nào.
+
+128
+00:08:56.960 --> 00:09:01.951
+Nhưng nếu bạn muốn thử điều đó trong ứng dụng
+của mình, thì bạn có thể làm như vậy.
+
+129
+00:09:01.951 --> 00:09:05.313
+Và bạn có thể xem nó hoạt động như thế
+nào, và nó hoạt động tốt như thế nào, và
+
+130
+00:09:05.313 --> 00:09:07.940
+tiếp tục sử dụng nó nếu
+nó mang lại kết quả tốt.
+
+131
+00:09:07.940 --> 00:09:11.344
+Tôi hy vọng bạn đã hiểu về
+một số lựa chọn activation function mà bạn
+
+132
+00:09:11.344 --> 00:09:13.040
+bạn có thể sử dụng trong neural network của mình.
+
+133
+00:09:13.040 --> 00:09:16.801
+Một trong những chủ đề chúng ta sẽ thấy
+trong deep learning là bạn thường có rất nhiều
+
+134
+00:09:16.801 --> 00:09:19.771
+lựa chọn khác nhau để
+mã hóa neural network nhân tạo.
+
+135
+00:09:19.771 --> 00:09:23.624
+Khác từ số lượng các đơn vị ẩn,
+đến lựa chọn activation function
+
+136
+00:09:23.624 --> 00:09:26.460
+đến cách bạn khởi tạo những
+điều mà chúng ta sẽ thấy sau này.
+
+137
+00:09:26.460 --> 00:09:28.140
+Có rất nhiều sự lựa chọn như thế.
+
+138
+00:09:28.140 --> 00:09:32.326
+Và trên thực tế, đôi khi việc
+có được hướng dẫn
+
+139
+00:09:32.326 --> 00:09:35.020
+chính xác về những điều
+tốt nhất cho vấn đề của bạn là rất khó.
+
+140
+00:09:35.020 --> 00:09:38.563
+Vì vậy, trong suốt các khóa học này,
+, tôi sẽ tiếp tục cung cấp cho bạn cảm giác về những gì tôi
+
+141
+00:09:38.563 --> 00:09:41.650
+xem trong ngành bằng
+những gì phổ biến hơn hoặc ít hơn.
+
+142
+00:09:41.650 --> 00:09:45.759
+Nhưng đối với ứng dụng của bạn với
+ứng dụng của bạn, các feature riêng biệt thực sự là
+
+143
+00:09:45.759 --> 00:09:49.030
+rất khó để biết trước
+chính xác cái gì sẽ hoạt động tốt nhất.
+
+144
+00:09:49.030 --> 00:09:52.844
+Do đó, tôi có một lời khuyên là,
+nếu bạn không chắc chắn
+
+145
+00:09:52.844 --> 00:09:55.416
+các activation function hoạt động tốt nhất,
+hãy thử tất cả.
+
+146
+00:09:55.416 --> 00:10:00.027
+Và đánh giá như một bộ xác thực khoản giữ
+hoặc như một bộ phát triển,
+
+147
+00:10:00.027 --> 00:10:02.078
+một khái niệm mà chúng ta sẽ tìm hiểu sau.
+
+148
+00:10:02.078 --> 00:10:05.140
+Và xem cái nào hoạt động tốt hơn và
+thì hãy làm cái đó.
+
+149
+00:10:05.140 --> 00:10:08.897
+Và tôi nghĩ rằng bằng cách thử nghiệm
+các lựa chọn khác nhau này cho
+
+150
+00:10:08.897 --> 00:10:13.553
+ứng dụng của bạn, bạn sẽ tốt hơn
+trong việc kiểm chứng kiến trúc
+
+151
+00:10:13.553 --> 00:10:17.900
+neural network tương lai với
+các vấn đề về phong cách riêng
+
+152
+00:10:17.900 --> 00:10:21.370
+cũng như sự phát triển của
+các thuật toán thay vì,
+
+153
+00:10:21.370 --> 00:10:26.551
+nếu tôi phải nói với bạn rằng luôn sử dụng
+và không sử dụng bất kỳ thứ gì khác.
+
+154
+00:10:26.551 --> 00:10:30.251
+Bạn có thể áp dụng điều đó hoặc không
+cho bất kỳ vấn đề nào mà bạn hoàn thành
+
+155
+00:10:30.251 --> 00:10:33.000
+trong tương lai gần hoặc
+trong tương lai xa.
+
+156
+00:10:33.000 --> 00:10:36.687
+Đó là về việc lựa chọn
+các activation function và
+
+157
+00:10:36.687 --> 00:10:39.840
+bạn đã thấy các hàm
+kích hoạt phổ biến nhất.
+
+158
+00:10:39.840 --> 00:10:43.400
+Có một câu hỏi khác mà
+đôi khi bạn có thể yêu cầu đó là,
+
+159
+00:10:43.400 --> 00:10:46.521
+tại sao bạn thậm chí cần sử dụng
+chức năng kích hoạt?
+
+160
+00:10:46.521 --> 00:10:48.120
+Tại sao chúng ta lại không
+thể không dùng?
+
+161
+00:10:48.120 --> 00:10:52.435
+Vì vậy, hãy nói về vấn đề đó trong
+tiếp theo, nơi bạn thấy lý do tại sao
+
+162
+00:10:52.435 --> 00:10:56.461
+mạng cần một số loại
+activation function phi tuyến tính.

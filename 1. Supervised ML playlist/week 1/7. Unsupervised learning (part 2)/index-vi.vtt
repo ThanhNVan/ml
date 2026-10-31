@@ -1,0 +1,216 @@
+WEBVTT
+
+00:00:01.100 --> 00:00:04.410
+Trong video trước, bạn đã biết
+unsupervised learning là gì
+
+00:00:04.410 --> 00:00:07.720
+và một loại unsupervised learning được gọi là
+clustering.
+
+00:00:07.720 --> 00:00:12.820
+Chúng ta hãy đưa ra một định nghĩa chính thức
+hơn một chút về
+
+00:00:12.820 --> 00:00:17.920
+unsupervised learning và xem nhanh một số loại
+unsupervised learning khác ngoài clustering.
+
+00:00:17.920 --> 00:00:22.107
+Trong khi supervised learning, dữ liệu đi kèm
+với cả nhãn
+
+00:00:22.107 --> 00:00:26.293
+đầu vào x và nhãn đầu ra y, thì trong
+
+00:00:26.293 --> 00:00:30.480
+unsupervised learning, dữ liệu chỉ có đầu vào
+x chứ không có nhãn đầu ra y và
+
+00:00:30.480 --> 00:00:33.490
+thuật toán phải tìm ra cấu trúc nào đó hoặc
+
+00:00:33.490 --> 00:00:36.500
+mẫu nào đó hoặc điều gì đó thú vị trong dữ
+liệu.
+
+00:00:36.500 --> 00:00:41.410
+Chúng ta vừa thấy một ví dụ về học tập không
+giám sát được gọi là
+
+00:00:41.410 --> 00:00:46.320
+thuật toán clustering, nhóm các điểm dữ liệu
+tương tự lại với nhau.
+
+00:00:46.320 --> 00:00:50.040
+Trong chuyên ngành này, bạn tìm hiểu về
+clustering
+
+00:00:50.040 --> 00:00:53.760
+cũng như hai loại hình học tập không giám sát
+khác.
+
+00:00:53.760 --> 00:00:56.980
+Một cái được gọi là phát hiện bất thường, được
+
+00:00:56.980 --> 00:01:00.200
+sử dụng để phát hiện các sự kiện bất thường.
+
+00:01:00.200 --> 00:01:04.627
+Điều này hóa ra thực sự quan trọng đối với
+việc phát hiện gian lận
+
+00:01:04.627 --> 00:01:09.053
+trong hệ thống tài chính, nơi các sự kiện bất
+thường, giao dịch bất
+
+00:01:09.053 --> 00:01:13.480
+thường có thể là khoa học về gian lận và đối
+với nhiều ứng dụng khác.
+
+00:01:13.480 --> 00:01:17.420
+Và bạn cũng tìm hiểu về việc giảm kích thước.
+
+00:01:17.420 --> 00:01:22.370
+Điều này cho phép bạn lấy một tập dữ liệu lớn
+và nén nó thành tập dữ
+
+00:01:22.370 --> 00:01:27.320
+liệu nhỏ hơn nhiều một cách kỳ diệu trong khi
+mất ít thông tin nhất có thể.
+
+00:01:27.320 --> 00:01:30.780
+Trong trường hợp việc phát hiện bất thường và
+giảm kích thước
+
+00:01:30.780 --> 00:01:34.240
+dường như chưa có nhiều ý nghĩa đối với bạn,
+đừng lo lắng về điều đó.
+
+00:01:34.240 --> 00:01:36.720
+Chúng ta sẽ đề cập đến vấn đề này sau trong
+chuyên ngành này.
+
+00:01:36.720 --> 00:01:43.560
+Bây giờ tôi muốn hỏi bạn một câu hỏi khác để
+giúp bạn kiểm tra sự hiểu biết của mình.
+
+00:01:43.560 --> 00:01:45.820
+Và không có áp lực nếu bạn không làm đúng ngay
+
+00:01:45.820 --> 00:01:48.080
+lần thử đầu tiên là điều hoàn toàn bình
+thường.
+
+00:01:48.080 --> 00:01:54.560
+Vui lòng chọn bất kỳ ví dụ nào sau đây mà bạn
+cho là ví dụ về học tập không giám sát.
+
+00:01:54.560 --> 00:01:59.680
+Hai là ví dụ không giám sát và hai là ví dụ
+supervised learning.
+
+00:01:59.680 --> 00:02:04.200
+Vậy xin hãy xem qua.
+
+00:02:04.200 --> 00:02:07.040
+Có thể bạn còn nhớ vấn đề lọc thư rác.
+
+00:02:07.040 --> 00:02:11.360
+Nếu bạn đã gắn nhãn dữ liệu, bạn biết đấy,
+được gắn nhãn là email thư rác
+
+00:02:11.360 --> 00:02:15.680
+hoặc không phải thư rác, bạn có thể coi đây là
+một vấn đề học tập có giám sát.
+
+00:02:15.680 --> 00:02:19.780
+Ví dụ thứ hai, ví dụ về câu chuyện tin tức, đó
+chính xác là ví dụ
+
+00:02:19.780 --> 00:02:23.880
+về tin tức và song song của Google mà bạn đã
+thấy trong video trước.
+
+00:02:23.880 --> 00:02:26.780
+Và do đó, bạn có thể tiếp cận điều đó bằng
+cách sử dụng
+
+00:02:26.780 --> 00:02:29.680
+thuật toán clustering để nhóm các bài báo lại
+với nhau.
+
+00:02:29.680 --> 00:02:33.080
+Vì vậy, điều đó sẽ sử dụng học tập không giám
+sát.
+
+00:02:33.080 --> 00:02:36.560
+Ví dụ về phân đoạn điểm đánh dấu mà tôi đã nói
+trước đó một chút,
+
+00:02:36.560 --> 00:02:40.040
+bạn cũng có thể thực hiện điều đó như một bài
+toán
+
+00:02:40.040 --> 00:02:43.520
+unsupervised learning, vì bạn có thể cung cấp
+cho thuật toán của mình một số dữ liệu
+
+00:02:43.520 --> 00:02:48.160
+và yêu cầu nó tự động khám phá các phân khúc
+thị trường.
+
+00:02:48.160 --> 00:02:51.960
+Và ví dụ cuối cùng về chẩn đoán bệnh tiểu
+đường.
+
+00:02:52.040 --> 00:02:55.080
+Thực ra, nó rất giống với ví dụ về bệnh ung
+thư vú
+
+00:02:55.080 --> 00:02:58.120
+của chúng ta trong các video học tập có giám
+sát.
+
+00:02:58.120 --> 00:03:01.200
+Chỉ thay vì các khối u lành tính hoặc ác tính,
+chúng ta
+
+00:03:01.200 --> 00:03:04.280
+mới mắc bệnh tiểu đường hoặc không mắc bệnh
+tiểu đường.
+
+00:03:04.280 --> 00:03:08.040
+Và vì vậy bạn có thể tiếp cận vấn đề này như
+một bài toán
+
+00:03:08.040 --> 00:03:11.800
+supervised learning, giống như chúng ta đã làm
+với bài toán classification khối u vú.
+
+00:03:11.800 --> 00:03:16.800
+Mặc dù trong video trước, chúng ta chủ yếu nói
+về việc clustering.
+
+00:03:16.800 --> 00:03:21.280
+Trong các video sau về chuyên ngành này, chúng
+ta cũng sẽ đi
+
+00:03:21.280 --> 00:03:25.760
+sâu hơn vào việc phát hiện sự bất thường và
+giảm kích thước.
+
+00:03:25.760 --> 00:03:28.400
+Vì vậy, đó là học tập không giám sát.
+
+00:03:28.400 --> 00:03:32.580
+Trước khi kết thúc phần này, tôi muốn chia sẻ
+với bạn một điều mà tôi thấy thực sự
+
+00:03:32.580 --> 00:03:36.760
+thú vị và hữu ích, đó là việc sử dụng sổ ghi
+chép Jupyter trong machine learning.
+
+00:03:36.760 --> 00:03:38.480
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

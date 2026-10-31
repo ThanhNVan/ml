@@ -1,0 +1,120 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.060 --> 00:00:10.060
+So far in the videos, you've seen supervised learning and unsupervised learning, and also examples of both.
+
+00:00:10.060 --> 00:00:21.060
+For you to more deeply understand these concepts, I'd like to invite you in this class to see, run, and maybe later write code yourself to implement these concepts.
+
+00:00:21.060 --> 00:00:28.060
+The most widely used tool by machine learning and data science practitioners today is the Jupyter Notebook.
+
+00:00:28.060 --> 00:00:34.060
+This is the default environment that a lot of us use to code up and experiment and try things out.
+
+00:00:34.060 --> 00:00:44.060
+And so in this class, right here in your web browser, you'd be able to use a Jupyter Notebook environment to test out some of these ideas for yourself as well.
+
+00:00:44.060 --> 00:00:52.060
+This is not some made up, simplified, you know, environment. This is the exact same environment, the exact same tool.
+
+00:00:52.060 --> 00:00:57.060
+The Jupyter Notebook that developers are using in many large companies right now.
+
+00:00:57.060 --> 00:01:09.060
+One type of lab that you see throughout this class are optional labs, which are ones you can open and run one line at a time with usually not needing to write any code yourself.
+
+00:01:09.060 --> 00:01:19.060
+So optional labs are designed to be very easy, and I can guarantee you will get full miles for every single one of them, because there are no miles.
+
+00:01:19.060 --> 00:01:24.060
+All you need to do is open it up and just run the code we've provided.
+
+00:01:24.060 --> 00:01:30.060
+And by reading through and running the code in the optional labs, you see how machine learning code runs.
+
+00:01:30.060 --> 00:01:40.060
+And you should be able to complete them, you know, relatively quickly, just by running it one line at a time from top to bottom.
+
+00:01:40.060 --> 00:01:45.060
+Optional labs are completely optional, so you don't have to do them at all if you don't want to.
+
+00:01:45.060 --> 00:01:58.060
+But I hope you will take a look, because running through them will give you a deeper feel, give you a little bit more experience with what machine learning algorithms, what machine learning code actually looks like.
+
+00:01:58.060 --> 00:02:05.060
+Starting next week, there'll also be some practice labs, which will give you an opportunity to write some of that code yourself.
+
+00:02:05.060 --> 00:02:08.060
+But we'll get to that next week, so don't worry about it for now.
+
+00:02:08.060 --> 00:02:14.060
+And I hope you just go through the next optional lab and get through the rest of the content for this week.
+
+00:02:15.060 --> 00:02:18.060
+So let's take a look at an example of a notebook.
+
+00:02:18.060 --> 00:02:31.060
+Here's what you see when you go to the first optional lab, feel free to scroll up and down and browse and mouse over the different menus and take a look at the different options here.
+
+00:02:31.060 --> 00:02:37.060
+You might notice that there are two types of these blocks, also called cells in the notebook.
+
+00:02:37.060 --> 00:02:39.060
+And there are two types of cells.
+
+00:02:40.060 --> 00:02:46.060
+One is what's called a mock down cell, which means basically a bunch of text.
+
+00:02:46.060 --> 00:02:51.060
+So here you can actually edit the text if you don't like the text that we wrote.
+
+00:02:51.060 --> 00:02:55.060
+But this is text that describes the code.
+
+00:02:55.060 --> 00:03:02.060
+Then there's a second type of block or cell, which looks like this, which is a code cell.
+
+00:03:02.060 --> 00:03:04.060
+So here we've already provided the code.
+
+00:03:04.060 --> 00:03:11.060
+And if you want to run this code cell hitting shift enter will run the code in this code cell.
+
+00:03:11.060 --> 00:03:21.060
+Oh, and by the way, if you click on a mock down cell, so showing all this formatting, go ahead and hit shift enter on your keyboard as well.
+
+00:03:21.060 --> 00:03:26.060
+And that will also convert it back to this nicely formatted text.
+
+00:03:26.060 --> 00:03:29.060
+This optional lab shows some common Python code.
+
+00:03:29.060 --> 00:03:34.060
+So you can go ahead and run this afterwards in your own Jupyter notebook.
+
+00:03:34.060 --> 00:03:41.060
+When you jump into this notebook yourself, what I'd like you to do is select the cells and hit shift enter.
+
+00:03:41.060 --> 00:03:44.060
+Well, read through the code, see if it makes sense.
+
+00:03:44.060 --> 00:03:53.060
+You know, try to make a prediction about what you think this code will do and then hit shift enter and then see what the code actually does.
+
+00:03:53.060 --> 00:04:00.060
+And if you feel like it, feel free to go in and edit the code, you know, change the code and then run it and see what happens.
+
+00:04:00.060 --> 00:04:08.060
+And if you haven't played in a Jupyter notebook environment before, I hope you become more familiar with Python in a Jupyter notebook.
+
+00:04:08.060 --> 00:04:14.060
+I spend a lot of hours playing around in Jupyter notebooks, and so I hope you have fun with them too.
+
+00:04:15.060 --> 00:04:25.060
+And after that, I look forward to seeing you in the next video where we'll take the supervised learning problem and start to flesh out our first supervised learning algorithm.
+
+00:04:25.060 --> 00:04:28.060
+I hope that would be fun too and look forward to seeing you there.

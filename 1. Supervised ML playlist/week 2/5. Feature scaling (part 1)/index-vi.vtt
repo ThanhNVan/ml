@@ -1,0 +1,316 @@
+WEBVTT
+
+00:00:02.220 --> 00:00:04.220
+Vì vậy, chào mừng trở lại.
+
+00:00:04.220 --> 00:00:08.700
+Chúng ta hãy xem xét một số kỹ thuật giúp
+gradient descent hoạt động tốt hơn nhiều.
+
+00:00:08.700 --> 00:00:12.440
+Trong video này, bạn sẽ thấy một kỹ thuật được
+gọi là chia tỷ
+
+00:00:12.440 --> 00:00:16.180
+lệ feature sẽ cho phép gradient descent chạy
+nhanh hơn nhiều.
+
+00:00:16.180 --> 00:00:19.793
+Hãy bắt đầu bằng cách xem xét mối quan hệ giữa
+kích thước của
+
+00:00:19.793 --> 00:00:23.407
+một đối tượng địa lý, tức là các con số của
+đối tượng địa lý
+
+00:00:23.407 --> 00:00:27.020
+đó lớn đến mức nào và kích thước của tham số
+liên quan của nó.
+
+00:00:27.020 --> 00:00:32.240
+Để làm một ví dụ cụ thể, hãy dự đoán giá của
+một thân tàu bằng cách
+
+00:00:32.240 --> 00:00:37.460
+sử dụng hai đặc điểm x1, kích thước của thân
+tàu và x2, số phòng ngủ.
+
+00:00:37.460 --> 00:00:42.920
+Giả sử x1 thường có diện tích từ 300 đến 2000
+feet vuông và
+
+00:00:42.920 --> 00:00:48.380
+x2, trong tập dữ liệu, nằm trong khoảng từ 0
+đến 5 phòng ngủ.
+
+00:00:48.380 --> 00:00:53.340
+Vì vậy, trong ví dụ này, x1 có phạm vi giá trị
+
+00:00:53.340 --> 00:00:58.300
+tương đối lớn và x2 có phạm vi giá trị tương
+đối nhỏ.
+
+00:00:58.300 --> 00:01:05.140
+Bây giờ hãy lấy ví dụ về một con tàu có diện
+tích 2000
+
+00:01:05.140 --> 00:01:11.980
+feet vuông, có 5 phòng ngủ và giá 500k hoặc
+500.000 USD.
+
+00:01:11.980 --> 00:01:16.280
+Đối với ví dụ đào tạo này, bạn nghĩ giá trị
+nào
+
+00:01:16.280 --> 00:01:20.580
+là hợp lý cho kích thước của tham số w1 và w2?
+
+00:01:20.580 --> 00:01:23.940
+Hãy xem xét một bộ tham số có thể có.
+
+00:01:23.940 --> 00:01:34.260
+Giả sử w1 là 50 và w2 là 0,1 và b là 50 nhằm
+mục đích thảo luận.
+
+00:01:34.260 --> 00:01:39.400
+Vậy trong trường hợp này giá ước tính tính
+bằng
+
+00:01:39.400 --> 00:01:44.540
+nghìn đô ở đây là 100.000k, cộng thêm 0,5k,
+cộng thêm
+
+00:01:44.540 --> 00:01:50.460
+50k, tức là hơn 100 triệu đô la một chút.
+
+00:01:50.460 --> 00:01:57.900
+Vì vậy, con số đó rõ ràng là rất xa so với mức
+giá thực tế là 500.000 USD.
+
+00:01:57.900 --> 00:02:03.700
+Và vì vậy đây không phải là một tập hợp các
+lựa chọn tham số tốt cho w1 và w2.
+
+00:02:03.700 --> 00:02:07.020
+Bây giờ chúng ta hãy xem xét một khả năng
+khác.
+
+00:02:07.020 --> 00:02:17.420
+Giả sử w1 và w2 ngược lại, w1 là 0,1 và w2 là
+50, và b vẫn là 50.
+
+00:02:17.420 --> 00:02:22.940
+Trong sự lựa chọn w1 và w2 này, w1 tương đối
+nhỏ
+
+00:02:22.940 --> 00:02:28.460
+và w2 tương đối lớn, 50 lớn hơn 0,1 rất nhiều.
+
+00:02:28.460 --> 00:02:38.340
+Vì vậy, ở đây giá dự đoán là 0,1 nhân 2000
+cộng 50 nhân 5 cộng 50.
+
+00:02:38.340 --> 00:02:45.540
+Số hạng đầu tiên trở thành 200k, số hạng thứ
+hai trở thành 250k, sau đó cộng thêm 50.
+
+00:02:45.540 --> 00:02:51.120
+Vì vậy, phiên bản này của mô hình dự đoán mức
+giá 500.000 USD, đây là một ước
+
+00:02:51.120 --> 00:02:56.700
+tính hợp lý hơn nhiều và nó tình cờ có cùng
+mức giá với giá thực của ngôi nhà.
+
+00:02:56.700 --> 00:03:00.313
+Vì vậy, hy vọng bạn có thể nhận thấy rằng khi
+phạm vi giá trị có
+
+00:03:00.313 --> 00:03:03.927
+thể có của một đối tượng địa lý là lớn, chẳng
+hạn như kích thước
+
+00:03:03.927 --> 00:03:07.540
+tính bằng feet vuông, có thể lên tới 2000, thì
+nhiều khả năng là
+
+00:03:07.540 --> 00:03:14.140
+một mô hình tốt sẽ học cách chọn một giá trị
+tham số tương đối nhỏ như 0,1.
+
+00:03:14.540 --> 00:03:18.553
+Tương tự như vậy, khi các giá trị có thể có
+của một đối tượng
+
+00:03:18.553 --> 00:03:22.567
+địa lý là nhỏ, chẳng hạn như số phòng ngủ, thì
+giá trị hợp lý
+
+00:03:22.567 --> 00:03:26.580
+cho các tham số của đối tượng đó sẽ tương đối
+lớn, chẳng hạn như 50.
+
+00:03:26.580 --> 00:03:29.740
+Vậy điều này liên quan thế nào đến việc
+gradient descent?
+
+00:03:29.740 --> 00:03:37.280
+Chà, chúng ta hãy xem biểu đồ phân tán của các
+đặc điểm, trong đó kích thước
+
+00:03:37.280 --> 00:03:44.820
+tính bằng feet vuông là trục hoành, x1 và số
+phòng ngủ, x2, nằm trên trục tung.
+
+00:03:44.820 --> 00:03:49.820
+Nếu bạn vẽ biểu đồ training data, bạn sẽ nhận
+thấy rằng trục hoành có
+
+00:03:49.820 --> 00:03:54.820
+tỷ lệ lớn hơn nhiều hoặc phạm vi giá trị lớn
+hơn nhiều so với trục tung.
+
+00:03:54.820 --> 00:03:57.980
+Tiếp theo, chúng ta hãy xem cost function có
+
+00:03:57.980 --> 00:04:01.140
+thể trông như thế nào trong biểu đồ đường
+viền.
+
+00:04:01.140 --> 00:04:05.807
+Bạn có thể thấy một biểu đồ đường viền trong
+đó trục hoành
+
+00:04:05.807 --> 00:04:10.473
+có phạm vi hẹp hơn nhiều, chẳng hạn từ 0 đến
+1, trong khi
+
+00:04:10.473 --> 00:04:15.140
+trục tung có giá trị lớn hơn nhiều, chẳng hạn
+từ 10 đến 100.
+
+00:04:15.140 --> 00:04:19.500
+Vì vậy, các đường viền tạo thành hình bầu dục
+hoặc hình
+
+00:04:19.500 --> 00:04:23.860
+elip, và chúng ngắn hơn ở một bên và dài hơn ở
+bên kia.
+
+00:04:23.860 --> 00:04:30.560
+Và điều này là do một thay đổi rất nhỏ đối với
+w1 có thể có tác động rất lớn đến mức
+
+00:04:30.560 --> 00:04:37.260
+giá ước tính và do đó tác động rất lớn đến chi
+phí j, vì w1 có xu hướng được nhân với
+
+00:04:37.580 --> 00:04:41.620
+một số lượng rất lớn, kích thước tính bằng
+feet vuông.
+
+00:04:41.620 --> 00:04:48.180
+Ngược lại, cần có một sự thay đổi lớn hơn
+nhiều trong w2 để thay đổi nhiều dự đoán và
+
+00:04:48.180 --> 00:04:54.740
+do đó những thay đổi nhỏ đối với w2 không làm
+thay đổi cost function nhiều như vậy.
+
+00:04:54.740 --> 00:04:56.740
+Vậy điều này sẽ dẫn chúng ta đến đâu?
+
+00:04:56.740 --> 00:05:00.820
+Đây là điều có thể xảy ra nếu bạn chạy
+
+00:05:00.820 --> 00:05:04.900
+gradient descent, nếu bạn vẫn sử dụng
+training data của mình.
+
+00:05:04.900 --> 00:05:11.160
+Bởi vì các đường viền quá cao và mỏng,
+gradient descent có thể nảy qua lại trong
+
+00:05:11.160 --> 00:05:17.420
+một thời gian dài trước khi cuối cùng nó có
+thể đạt đến mức tối thiểu toàn cầu.
+
+00:05:17.420 --> 00:05:20.020
+Trong những tình huống như thế này, điều hữu
+
+00:05:20.020 --> 00:05:22.620
+ích cần làm là mở rộng quy mô các feature.
+
+00:05:22.620 --> 00:05:26.833
+Điều này có nghĩa là thực hiện một số chuyển
+đổi
+
+00:05:26.833 --> 00:05:31.047
+training data của bạn để x1, chẳng hạn, bây
+giờ có thể nằm
+
+00:05:31.047 --> 00:05:35.260
+trong khoảng từ 0 đến 1 và x2 cũng có thể nằm
+trong khoảng từ 0 đến 1.
+
+00:05:35.260 --> 00:05:40.220
+Vì vậy, các điểm dữ liệu bây giờ trông giống
+thế này hơn và bạn có thể nhận
+
+00:05:40.220 --> 00:05:45.180
+thấy rằng tỷ lệ của biểu đồ ở phía dưới bây
+giờ khá khác so với biểu đồ ở trên.
+
+00:05:45.180 --> 00:05:49.760
+Điểm mấu chốt là cả x1 và x2 đã được thay đổi
+tỷ lệ
+
+00:05:49.760 --> 00:05:54.340
+hiện đều có phạm vi giá trị tương đương với
+nhau.
+
+00:05:54.340 --> 00:05:58.713
+Và nếu bạn chạy gradient descent trên
+cost function được xác định trên x1
+
+00:05:58.713 --> 00:06:03.087
+và x2 đã được thay đổi tỷ lệ này bằng cách sử
+dụng dữ liệu biến đổi này,
+
+00:06:03.087 --> 00:06:07.460
+thì các đường viền sẽ trông giống như thế này,
+giống hình tròn hơn và ít hơn
+
+00:06:07.460 --> 00:06:11.180
+cao và gầy, và gradient descent có thể tìm ra
+con
+
+00:06:11.180 --> 00:06:14.900
+đường trực tiếp hơn nhiều đến mức tối thiểu
+toàn cầu.
+
+00:06:14.900 --> 00:06:18.260
+Vì vậy, tóm lại, khi bạn có các feature khác
+nhau có phạm vi giá
+
+00:06:18.260 --> 00:06:21.620
+trị rất khác nhau, bạn có thể khiến quá trình
+gradient descent
+
+00:06:21.620 --> 00:06:24.980
+chạy chậm nhưng hãy định lại tỷ lệ cho các
+feature khác nhau để chúng
+
+00:06:24.980 --> 00:06:27.860
+tất cả đều có phạm vi giá trị tương đương có
+thể
+
+00:06:27.860 --> 00:06:30.740
+tăng tốc độ gradient descent một cách đáng kể.
+
+00:06:30.740 --> 00:06:31.900
+Làm thế nào để bạn thực sự làm điều này?
+
+00:06:31.900 --> 00:06:34.060
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

@@ -1,0 +1,780 @@
+WEBVTT
+
+1
+00:00:00.210 --> 00:00:03.240
+Trong video trước, tôi 
+đã nói rằng truyền phát
+
+2
+00:00:03.240 --> 00:00:07.040
+là một kỹ thuật khác mà bạn có thể sử dụng
+ để làm cho mã Python chạy nhanh hơn.
+
+3
+00:00:07.040 --> 00:00:11.860
+Trong video này, chúng ta sẽ tìm hiểu kỹ hơn
+ cách hoạt động của truyền phát trong Python.
+
+4
+00:00:11.860 --> 00:00:14.240
+Hãy cùng xem ví dụ sau.
+
+5
+00:00:14.240 --> 00:00:18.730
+Trong ma trận này, tôi đã chỉ ra
+ số lượng calo từ carbohydrate,
+
+6
+00:00:18.730 --> 00:00:22.320
+protein và chất béo trong 100 gram 
+của bốn loại thực phẩm khác nhau.
+
+7
+00:00:22.320 --> 00:00:25.380
+Ví dụ, trong 100 gram táo,
+
+8
+00:00:25.380 --> 00:00:29.690
+có 56 calo từ carbs, và lượng calo từ
+ protein và chất béo thì ít hơn nhiều.
+
+9
+00:00:29.690 --> 00:00:35.110
+Trong khi đó, ngược lại, 100 gram
+ thịt bò có 104 calo từ protein và
+
+10
+00:00:35.110 --> 00:00:37.620
+135 calo từ chất béo.
+
+11
+00:00:37.620 --> 00:00:43.330
+Bây giờ, giả sử mục tiêu của bạn 
+là tính toán tỷ lệ phần trăm calo
+
+12
+00:00:43.330 --> 00:00:48.440
+từ carbs, protein và chất béo cho 
+mỗi loại trong bốn loại thực phẩm này.
+
+13
+00:00:48.440 --> 00:00:52.338
+Như vậy, nếu bạn 
+nhìn vào cột này và
+
+14
+00:00:52.338 --> 00:00:57.697
+cộng các số trong cột đó
+ bạn sẽ có được 100 gram táo
+
+15
+00:00:57.697 --> 00:01:02.580
+có 56 cộng 1,2 cộng 
+1,8 bằng 59 calo.
+
+16
+00:01:02.580 --> 00:01:06.806
+Và như vậy là 
+tỷ lệ phần trăm của
+
+17
+00:01:06.806 --> 00:01:11.800
+calo từ carbohydrate
+ trong một quả táo sẽ
+
+18
+00:01:11.800 --> 00:01:16.932
+là 56 trên 59, 
+khoảng 94,9%.
+
+19
+00:01:16.932 --> 00:01:22.399
+Như vậy, hầu hết lượng calo trong một
+ quả táo là từ carbs, trong khi ngược lại,
+
+20
+00:01:22.399 --> 00:01:27.630
+hầu hết lượng calo của thịt bò 
+là từ protein và chất béo và v.v.
+
+21
+00:01:27.630 --> 00:01:33.630
+Vì vậy, phép tính mà bạn muốn 
+là cộng tất cả các số trong mỗi cột
+
+22
+00:01:33.630 --> 00:01:38.740
+của ma trận này để có được
+ tổng số calo trong 100 gram táo,
+
+23
+00:01:38.740 --> 00:01:40.920
+thịt bò, trứng và khoai tây.
+
+24
+00:01:40.920 --> 00:01:45.090
+Và sau đó thực hiện
+ phép chia trong ma trận,
+
+25
+00:01:47.230 --> 00:01:51.230
+để có được tỷ lệ phần trăm
+ calo từ carbs, protein và
+
+26
+00:01:51.230 --> 00:01:54.870
+chất béo cho mỗi loại 
+trong bốn loại thực phẩm.
+
+27
+00:01:54.870 --> 00:02:01.370
+Như vậy, câu hỏi là liệu bạn có thể làm điều này 
+mà không có một vòng lặp for tường minh không?
+
+28
+00:02:01.370 --> 00:02:03.290
+Hãy cùng xem cách 
+bạn có thể làm điều đó.
+
+29
+00:02:04.450 --> 00:02:08.602
+Tôi sẽ chỉ bạn cách 
+mà bạn có thể thiết lập,
+
+30
+00:02:08.602 --> 00:02:12.990
+ma trận này là ma trận A(3,4).
+
+31
+00:02:12.990 --> 00:02:18.300
+Và rồi với một dòng mã Python, 
+chúng ta sẽ tổng hợp các cột.
+
+32
+00:02:18.300 --> 00:02:22.078
+Như vậy, chúng ta sẽ nhận được
+ bốn số tương ứng với tổng
+
+33
+00:02:22.078 --> 00:02:25.046
+lượng calo trong bốn
+ loại thực phẩm khác nhau,
+
+34
+00:02:25.046 --> 00:02:28.095
+trong 100 gram của bốn 
+loại thực phẩm khác nhau.
+
+35
+00:02:28.095 --> 00:02:32.113
+Và tôi sẽ sử dụng một dòng mã
+ Python thứ hai để chia từng
+
+36
+00:02:32.113 --> 00:02:35.390
+cột trên tổng tương ứng của chúng.
+
+37
+00:02:35.390 --> 00:02:37.250
+Nếu chỉ mô tả bằng lời nói
+ thì không được rõ ràng lắm,
+
+38
+00:02:37.250 --> 00:02:40.670
+tôi mong hy vọng nó sẽ rõ ràng
+ hơn khi chúng ta xem mã Python.
+
+39
+00:02:40.670 --> 00:02:42.460
+Ở đây chúng ta đang ở 
+trong Jupiter notebook.
+
+40
+00:02:42.460 --> 00:02:46.150
+Tôi đã viết đoạn mã đầu tiên
+ này để chuẩn bị trước
+
+41
+00:02:46.150 --> 00:02:49.860
+ma trận A với các số chúng ta vừa có,
+ và chúng ta sẽ nhấn shift enter và
+
+42
+00:02:49.860 --> 00:02:51.220
+chỉ cần chạy nó, 
+và ta có ma trận A.
+
+43
+00:02:51.220 --> 00:02:55.080
+Và bây giờ đây là
+ hai dòng mã Python.
+
+44
+00:02:55.080 --> 00:02:59.983
+Đầu tiên, chúng ta sẽ tính 
+cal bằng a. sum(axis=0).
+
+45
+00:02:59.983 --> 00:03:02.280
+Và axis=0 nghĩa là tính 
+tổng theo chiều dọc.
+
+46
+00:03:02.280 --> 00:03:05.280
+Chúng ta sẽ nói 
+thêm về điều đó sau.
+
+47
+00:03:05.280 --> 00:03:06.076
+Và rồi print(cal).
+
+48
+00:03:06.076 --> 00:03:07.825
+Như vậy, chúng ta sẽ
+ tính tổng theo chiều dọc.
+
+49
+00:03:07.825 --> 00:03:13.735
+Bây giờ 59 là tổng lượng
+ calo trong quả táo, 239 là
+
+50
+00:03:13.735 --> 00:03:19.575
+tổng calo trong thịt bò 
+và trứng và khoai tây và v.v.
+
+51
+00:03:19.575 --> 00:03:25.151
+Và rồi với tỷ lệ 
+phần trăm (percentage)
+
+52
+00:03:25.151 --> 00:03:30.733
+được tính bằng
+ A / cal.reshape(1,4).
+
+53
+00:03:30.733 --> 00:03:33.927
+Trên thực tế chúng ta muốn có tỷ lệ
+ phần trăm, nên nhân với 100 ở đây.
+
+54
+00:03:35.913 --> 00:03:38.860
+Và sau đó print (percentage).
+
+55
+00:03:40.800 --> 00:03:41.950
+Hãy chạy nào.
+
+56
+00:03:41.950 --> 00:03:46.870
+Và như vậy, lệnh đó là
+ chúng ta đã lấy ma trận A và
+
+57
+00:03:46.870 --> 00:03:50.820
+chia nó cho một ma trận(1,4).
+
+58
+00:03:50.820 --> 00:03:52.672
+Và điều này cho chúng ta
+ ma trận tỷ lệ phần trăm.
+
+59
+00:03:52.672 --> 00:03:57.327
+Như vậy, khi chúng ta tính 
+bằng tay thì trong quả táo
+
+60
+00:03:57.327 --> 00:04:02.480
+cột đầu tiên 94,9%
+ lượng calo là từ carbs.
+
+61
+00:04:02.480 --> 00:04:04.000
+Chúng ta hãy quay 
+trở lại các slide.
+
+62
+00:04:04.000 --> 00:04:06.310
+Như vậy, chỉ cần lặp lại hai
+ dòng mã chúng ta đã có, thì
+
+63
+00:04:06.310 --> 00:04:09.940
+đây là những gì được viết ra
+ trong Jupiter notebook.
+
+64
+00:04:09.940 --> 00:04:13.306
+Để nói thêm về tham số này,
+
+65
+00:04:13.306 --> 00:04:18.540
+thì(axis = 0), có nghĩa là bạn muốn
+ Python tổng hợp theo chiều dọc.
+
+66
+00:04:18.540 --> 00:04:21.567
+Và nếu đây là trục 0, thì có 
+nghĩa là tổng hợp theo chiều dọc,
+
+67
+00:04:21.567 --> 00:04:24.029
+trong đó trục hoành là trục 1.
+
+68
+00:04:24.029 --> 00:04:28.050
+Vì vậy, có thể viết là trục 1 hoặc tổng theo
+ chiều ngang thay vì tổng theo chiều dọc.
+
+69
+00:04:28.050 --> 00:04:30.670
+Và lệnh ở đây,
+
+70
+00:04:30.670 --> 00:04:35.210
+là một ví dụ về truyền phát
+ Python khi bạn lấy ma trận A.
+
+71
+00:04:35.210 --> 00:04:43.330
+Đây là một ma trận(3,4) và bạn 
+chia nó cho một ma trận(1,4).
+
+72
+00:04:43.330 --> 00:04:47.370
+Và về mặt kỹ thuật, sau dòng 
+mã cal đầu tiên này, biến cal,
+
+73
+00:04:47.370 --> 00:04:49.590
+đã là ma trận (1,4).
+
+74
+00:04:49.590 --> 00:04:52.616
+Vì vậy, về mặt kỹ thuật, bạn không
+ cần phải viết lại reshape ở đây, và
+
+75
+00:04:52.616 --> 00:04:54.722
+viết điều đó hơi thừa.
+
+76
+00:04:54.722 --> 00:04:59.140
+Nhưng khi tôi viết mã Python nếu tôi không 
+hoàn toàn chắc chắn về loại ma trận,
+
+77
+00:04:59.140 --> 00:05:04.056
+về các kích thước của ma trận thì tôi thường 
+chỉ gọi một lệnh định hình lại (reshape) chỉ để
+
+78
+00:05:04.056 --> 00:05:07.833
+đảm bảo rằng đó là vectơ cột 
+bên phải hoặc vectơ hàng hoặc
+
+79
+00:05:07.833 --> 00:05:09.500
+bất cứ điều gì bạn muốn.
+
+80
+00:05:09.500 --> 00:05:11.840
+Lệnh định hình lại (reshape)
+ là một loại không đổi.
+
+81
+00:05:11.840 --> 00:05:15.150
+Đó là một lệnh bậc 1 
+mà rất dễ để gọi.
+
+82
+00:05:15.150 --> 00:05:18.404
+Vì vậy, đừng ngại sử dụng lệnh định
+ hình lại để đảm bảo rằng ma trận của bạn
+
+83
+00:05:18.404 --> 00:05:20.830
+có kích thước bạn cần.
+
+84
+00:05:21.920 --> 00:05:27.272
+Bây giờ, hãy nói kỹ hơn về cách thức
+ hoạt động của loại phép toán này.
+
+85
+00:05:27.272 --> 00:05:33.780
+Chúng ta có một ma trận (3,4) và
+ chúng ta chia nó cho một ma trận (1,4).
+
+86
+00:05:33.780 --> 00:05:37.840
+Như vậy, bạn làm thế nào để có thể
+ chia ma trận (3,4) cho ma trận (1,4)?
+
+87
+00:05:37.840 --> 00:05:38.860
+Hoặc cho vector (1,4)?
+
+88
+00:05:40.130 --> 00:05:43.160
+Chúng ta hãy xem qua 
+một vài ví dụ về truyền phát.
+
+89
+00:05:43.160 --> 00:05:47.920
+Nếu bạn lấy một vectơ (4,1) 
+và cộng thêm một số,
+
+90
+00:05:47.920 --> 00:05:53.011
+thì Python sẽ lấy số này 
+và tự động mở rộng
+
+91
+00:05:53.011 --> 00:05:58.180
+nó thành một 
+vector (4,1), như sau.
+
+92
+00:05:58.180 --> 00:06:00.257
+Và vì vậy, vectơ [1, 2, 3,
+
+93
+00:06:00.257 --> 00:06:04.450
+4] cộng với số 100 bằng
+ với vectơ bên phải.
+
+94
+00:06:04.450 --> 00:06:09.280
+Bạn đang cộng thêm 100 cho mọi phần tử
+ và trên thực tế, chúng ta sử dụng hình thức
+
+95
+00:06:09.280 --> 00:06:14.365
+truyền phát mà có hằng số là 
+tham số b trong một video trước đó.
+
+96
+00:06:14.365 --> 00:06:19.414
+Và loại truyền phát này hoạt động 
+với cả vectơ cột và vectơ hàng,
+
+97
+00:06:19.414 --> 00:06:24.157
+và trên thực tế, chúng ta sử dụng một hình thức 
+truyền phát tương tự trước đó, với hằng số
+
+98
+00:06:24.157 --> 00:06:29.330
+mà chúng ta thêm vào một vectơ 
+là tham số b trong logistic regression.
+
+99
+00:06:29.330 --> 00:06:31.610
+Đay là một ví dụ khác.
+
+100
+00:06:31.610 --> 00:06:35.900
+Giả sử bạn có 
+một ma trận 2x3 và
+
+101
+00:06:35.900 --> 00:06:39.420
+bạn cộng nó với
+ ma trận 1xn này.
+
+102
+00:06:40.950 --> 00:06:45.682
+Và trường hợp chung sẽ là nếu bạn
+
+103
+00:06:45.682 --> 00:06:50.583
+có một số ma trận
+ (m, n) ở đây và
+
+104
+00:06:50.583 --> 00:06:55.330
+bạn cộng nó với 
+ma trận (1, n).
+
+105
+00:06:55.330 --> 00:06:58.667
+Thì Python sẽ sao chép
+ ma trận này m
+
+106
+00:06:58.667 --> 00:07:03.672
+lần để biến nó thành ma trận 
+(m,n), vì vậy trong ví dụ này,
+
+107
+00:07:03.672 --> 00:07:09.980
+ma trận (1,3) này sẽ được sao chép
+ hai lần và biến thành thế này.
+
+108
+00:07:09.980 --> 00:07:14.092
+Thành ma trận (2,3) và 
+chúng ta sẽ cộng chúng lại và
+
+109
+00:07:14.092 --> 00:07:18.270
+bạn sẽ có kết quả
+ tổng như bên phải.
+
+110
+00:07:18.270 --> 00:07:21.583
+Như vậy, bạn đã thêm 
+100 vào cột đầu tiên,
+
+111
+00:07:21.583 --> 00:07:25.812
+thêm 200 và cột thứ hai, 
+thêm 300 vào cột thứ ba.
+
+112
+00:07:25.812 --> 00:07:28.796
+Và đây là những gì chúng ta 
+đã thực hiện trên slide trước,
+
+113
+00:07:28.796 --> 00:07:32.810
+nhưng lúc đó chúng ta sử dụng một 
+phép toán chia thay vì một phép toán cộng.
+
+114
+00:07:34.180 --> 00:07:40.402
+Và một ví dụ cuối cùng, 
+bạn có ma trận (m, n) và
+
+115
+00:07:40.402 --> 00:07:46.260
+bạn cộng nó với một 
+vectơ (m, 1), ma trận (m, 1).
+
+116
+00:07:47.310 --> 00:07:50.760
+Sau đó chỉ cần sao chép ma trận
+ (m,1) lên n lần theo chiều ngang.
+
+117
+00:07:50.760 --> 00:07:53.510
+Và bạn sẽ có một ma trận (m, n).
+
+118
+00:07:53.510 --> 00:07:56.990
+Vì vậy, như bạn biết, bạn sao chép
+ nó ba lần theo chiều ngang.
+
+119
+00:07:56.990 --> 00:07:58.650
+Và bạn cộng 2 ma trận này lại.
+
+120
+00:07:58.650 --> 00:08:01.070
+Và khi bạn cộng lại, bạn 
+có kết quả như này.
+
+121
+00:08:01.070 --> 00:08:06.890
+Và chúng ta đã cộng 100 vào hàng 
+đầu tiên và cộng 200 vào hàng thứ hai.
+
+122
+00:08:08.270 --> 00:08:12.061
+Đây là nguyên tắc tổng quát hơn 
+của truyền phát trong Python.
+
+123
+00:08:12.061 --> 00:08:17.353
+Nếu bạn có ma trận
+ (m, n) và bạn cộng hoặc
+
+124
+00:08:17.353 --> 00:08:24.409
+trừ hoặc nhân hoặc 
+chia với ma trận (1, n),
+
+125
+00:08:24.409 --> 00:08:31.177
+thì ma trận (1,n) sẽ sao chép m
+ lần thành một ma trận (m, n).
+
+126
+00:08:31.177 --> 00:08:33.781
+Và sau đó áp dụng
+ phép cộng, phép trừ và
+
+127
+00:08:33.781 --> 00:08:36.140
+phép nhân, chia phần tử.
+
+128
+00:08:37.250 --> 00:08:42.250
+Nếu ngược lại, bạn lấy ma trận
+ (m,n) và cộng, trừ, nhân,
+
+129
+00:08:42.250 --> 00:08:49.060
+chia cho một ma trận (m, 1), thì
+ ma trận (m,1) sẽ sao chép n lần.
+
+130
+00:08:49.060 --> 00:08:54.740
+Và biến thành một ma trận (m, n) và sau đó
+ áp dụng các phép toán cho từng phần tử.
+
+131
+00:08:54.740 --> 00:09:00.327
+Có một phần trong truyền phát, 
+đó là nếu bạn có ma trận (m, 1),
+
+132
+00:09:00.327 --> 00:09:05.175
+và đó là một vectơ cột
+ như [1,2,3] và bạn cộng,
+
+133
+00:09:05.175 --> 00:09:08.482
+trừ, nhân hoặc chia 
+cho một số hàng.
+
+134
+00:09:08.482 --> 00:09:11.080
+Có thể là một ma trận (1,1).
+
+135
+00:09:11.080 --> 00:09:16.117
+Và, cộng với 100, sau đó 
+bạn sẽ sao chép
+
+136
+00:09:16.117 --> 00:09:23.512
+số thực này n lần cho đến khi bạn
+ cũng nhận được ma trận (n, 1) khác.
+
+137
+00:09:23.512 --> 00:09:29.700
+Và sau đó bạn thực hiện phép toán
+ như phép cộng với từng phần tử.
+
+138
+00:09:29.700 --> 00:09:35.823
+Và điều này cũng áp dụng
+ tương tự với các vectơ hàng.
+
+139
+00:09:38.281 --> 00:09:43.730
+Phiên bản khái quát của truyền phát
+ có thể làm nhiều hơn một chút so với điều này.
+
+140
+00:09:43.730 --> 00:09:49.080
+Nếu bạn quan tâm, bạn 
+có thể đọc tài liệu về
+
+141
+00:09:49.080 --> 00:09:52.240
+NumPy, và xem truyền phát
+ trong tài liệu đó.
+
+142
+00:09:52.240 --> 00:09:56.380
+Thậm chí nó đưa ra một định nghĩa
+ còn tổng quát hơn về truyền phát.
+
+143
+00:09:56.380 --> 00:10:00.140
+Nhưng những điều trên slide là
+ hình thức truyền phát chính mà bạn
+
+144
+00:10:00.140 --> 00:10:02.560
+cần sử dụng khi bạn triển khai 
+một neural network nhân tạo.
+
+145
+00:10:03.890 --> 00:10:06.840
+Trước khi kết thúc, tôi có 
+một lời cuối cùng, dành cho
+
+146
+00:10:06.840 --> 00:10:10.210
+những bạn đã từng lập trình 
+trong MATLAB hoặc
+
+147
+00:10:10.210 --> 00:10:15.760
+Octave, nếu bạn đã từng sử dụng
+ hàm MATLAB hoặc hàm Octave bsxfun,
+
+148
+00:10:15.760 --> 00:10:20.590
+trong lập trình neural network nhân tạo, bsxfun thì
+ tương tự, nhưng lại không hoàn toàn giống nhau.
+
+149
+00:10:20.590 --> 00:10:25.750
+Nhưng nó thường được sử dụng với mục đích giống
+ với mục đích chúng ta sử dụng truyền phát trong Python.
+
+150
+00:10:25.750 --> 00:10:28.505
+Nhưng điều này chỉ dành 
+cho người dùng MATLAB và
+
+151
+00:10:28.505 --> 00:10:31.600
+Octave rất nâng cao, nếu bạn chưa
+ nghe về điều này thì đừng lo lắng.
+
+152
+00:10:31.600 --> 00:10:35.524
+Bạn không cần phải biết điều đó khi bạn 
+mã hóa các neural network nhân tạo trong Python.
+
+153
+00:10:35.524 --> 00:10:38.720
+Như vậy, đó là 
+truyền phát trong Python.
+
+154
+00:10:38.720 --> 00:10:42.360
+Tôi hy vọng rằng khi bạn làm bài tập
+ lập trình, truyền phát sẽ không chỉ giúp bạn
+
+155
+00:10:42.360 --> 00:10:44.580
+làm cho mã chạy nhanh hơn,
+
+156
+00:10:44.580 --> 00:10:48.920
+mà còn giúp bạn thực hiện điều 
+bạn muốn với ít dòng mã hơn.
+
+157
+00:10:50.360 --> 00:10:53.630
+Trước khi bạn đi sâu vào bài tập 
+lập trình, tôi muốn chia sẻ thêm với bạn
+
+158
+00:10:53.630 --> 00:10:56.290
+về một số ý tưởng, đó là 
+một số lời khuyên và
+
+159
+00:10:56.290 --> 00:11:00.700
+các thủ thuật mà tôi có để làm 
+giảm số lượng lỗi trong mã Python và
+
+160
+00:11:00.700 --> 00:11:02.640
+tôi hy vọng nó cũng 
+sẽ hữu ích với bạn.
+
+161
+00:11:02.640 --> 00:11:05.550
+Và hãy xem điều đó
+ trong video tiếp theo.

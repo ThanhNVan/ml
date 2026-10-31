@@ -1,0 +1,510 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.735
+Về thiết kế kiến trúc mạng convolution,
+
+2
+00:00:03.735 --> 00:00:05.925
+một trong những ý tưởng thực sự hữu ích
+
+3
+00:00:05.925 --> 00:00:08.895
+là sử dụng convolution 1x1
+
+4
+00:00:08.895 --> 00:00:10.650
+Bây giờ, mọi người có thể thắc mắc
+
+5
+00:00:10.650 --> 00:00:12.970
+convolution 1x1 có tác dụng gì?
+
+6
+00:00:12.970 --> 00:00:15.180
+Không phải chỉ là nhân với các số thôi sao?
+
+7
+00:00:15.180 --> 00:00:16.890
+Đó có vẻ như là một điều khá buồn cười để làm.
+
+8
+00:00:16.890 --> 00:00:18.690
+Hóa ra không hoàn toàn phải như vậy.
+
+9
+00:00:18.690 --> 00:00:22.620
+Hãy cùng xem nào. Chúng ta sẽ thấy bộ lọc 1x1,
+
+10
+00:00:22.620 --> 00:00:24.900
+chúng ta sẽ đưa vào số 2 vào đó,
+
+11
+00:00:24.900 --> 00:00:27.420
+và nếu chúng ta lấy hình ảnh 6x6,
+
+12
+00:00:27.420 --> 00:00:28.605
+6x6x1
+
+13
+00:00:28.605 --> 00:00:31.305
+và kết hợp nó với bộ lọc 1x1,
+
+14
+00:00:31.305 --> 00:00:33.945
+như vậy lấy hình ảnh và nhân nó với hai.
+
+15
+00:00:33.945 --> 00:00:37.605
+Vì vậy: 1, 2, 3 và được 2,
+
+16
+00:00:37.605 --> 00:00:40.410
+4, 6,...
+
+17
+00:00:40.410 --> 00:00:43.640
+Do đó, một convolution nhân với bộ lọc 1x1
+
+18
+00:00:43.640 --> 00:00:45.350
+không có vẻ hữu ích lắm nhỉ.
+
+19
+00:00:45.350 --> 00:00:47.645
+mọi người chỉ cần nhân nó với một số.
+
+20
+00:00:47.645 --> 00:00:53.475
+Nhưng đó là trường hợp của các hình ảnh kênh 6 x 6 x 1.
+
+21
+00:00:53.475 --> 00:00:58.415
+Nếu chúng ta có hình ảnh 6x6x32 thay vì 6x6x1,
+
+22
+00:00:58.415 --> 00:01:00.560
+thì convolution
+
+23
+00:01:00.560 --> 00:01:02.540
+với bộ lọc 1x1 có thể thực hiện
+
+24
+00:01:02.540 --> 00:01:04.960
+một điều có ý nghĩa hơn nhiều.
+
+25
+00:01:04.960 --> 00:01:07.850
+Cụ thể, convolution 1x1 sẽ
+
+26
+00:01:07.850 --> 00:01:09.290
+xem xét
+
+27
+00:01:09.290 --> 00:01:13.760
+từng vị trí trong số 36 vị trí khác nhau ở đây,
+
+28
+00:01:13.760 --> 00:01:16.850
+và nó sẽ lấy tích theo từng phần tử giữa
+
+29
+00:01:16.850 --> 00:01:21.200
+32 số ở bên trái và 32 số trong bộ lọc,
+
+30
+00:01:21.200 --> 00:01:24.140
+sau đó áp dụng một
+
+31
+00:01:24.140 --> 00:01:26.280
+phi tuyến tính ReLU cho nó.
+
+32
+00:01:26.280 --> 00:01:29.405
+Xem xét một trong 36 vị trí,
+
+33
+00:01:29.405 --> 00:01:32.855
+có thể là một lát cắt của hình khối này,
+
+34
+00:01:32.855 --> 00:01:35.330
+chúng ta lấy 36 số này
+
+35
+00:01:35.330 --> 00:01:40.160
+nhân với lát 1x1 qua
+
+36
+00:01:40.160 --> 00:01:42.650
+hình khối như vậy, và chúng ta được
+
+37
+00:01:42.650 --> 00:01:45.605
+một số thực duy nhất
+
+38
+00:01:45.605 --> 00:01:49.940
+mà sau đó được vẽ ở một trong các đầu ra như vậy.
+
+39
+00:01:49.940 --> 00:01:52.415
+Và trên thực tế, một cách để nghĩ về
+
+40
+00:01:52.415 --> 00:01:54.600
+32 số mà chúng ta có trong bộ lọc
+
+41
+00:01:54.600 --> 00:01:57.620
+1x1x32 này là coi như chúng ta có
+
+42
+00:01:57.620 --> 00:02:03.345
+nơ-ron đang lấy 32 số làm đầu vào,
+
+43
+00:02:03.345 --> 00:02:06.515
+nhân mỗi số trong 32 số này
+
+44
+00:02:06.515 --> 00:02:09.455
+trong một lát ở cùng vị trí:
+
+45
+00:02:09.455 --> 00:02:12.350
+chiều rộng và chiều cao nhưng 32 kênh khác nhau này,
+
+46
+00:02:12.350 --> 00:02:14.690
+nhân chúng với 32 trọng số,
+
+47
+00:02:14.690 --> 00:02:16.250
+sau đó áp dụng
+
+48
+00:02:16.250 --> 00:02:18.110
+một phi tuyến tính ReLU cho nó rồi
+
+49
+00:02:18.110 --> 00:02:21.690
+xuất ra các kết quả tương ứng ở đó.
+
+50
+00:02:22.450 --> 00:02:28.850
+Nhìn chung, nếu chúng ta không chỉ có một bộ lọc,
+
+51
+00:02:28.850 --> 00:02:31.025
+mà mọi người có nhiều bộ lọc,
+
+52
+00:02:31.025 --> 00:02:34.205
+thì chúng ta không chỉ có một nút,
+
+53
+00:02:34.205 --> 00:02:39.920
+mà là nhiều nút, lấy tất cả các số trong một lát cắt làm đầu vào,
+
+54
+00:02:39.920 --> 00:02:45.380
+sau đó xây dựng chúng thành một đầu ra
+
+55
+00:02:45.380 --> 00:02:49.315
+có kích thước 6x6xsố lượng bộ lọc.
+
+56
+00:02:49.315 --> 00:02:52.310
+Một cách để suy nghĩ về convolution 1x1 là
+
+57
+00:02:52.310 --> 00:02:54.875
+về cơ bản, nó có
+
+58
+00:02:54.875 --> 00:02:58.895
+một neural network được kết nối đầy đủ,
+
+59
+00:02:58.895 --> 00:03:03.655
+áp dụng cho từng vị trí trong số 62 vị trí khác nhau.
+
+60
+00:03:03.655 --> 00:03:05.630
+Neural network được kết nối đầy đủ
+
+61
+00:03:05.630 --> 00:03:06.650
+sẽ nhập
+
+62
+00:03:06.650 --> 00:03:13.150
+32 số và xuất ra số lượng bộ lọc.
+
+63
+00:03:13.150 --> 00:03:14.540
+Vì vậy, tôi nghĩ ký hiệu
+
+64
+00:03:14.540 --> 00:03:19.160
+sẽ là nC[l+1] nếu đó là layer tiếp theo.
+
+65
+00:03:19.160 --> 00:03:22.730
+Bằng cách này, ở mỗi vị trí trong số 36 vị trí,
+
+66
+00:03:22.730 --> 00:03:24.170
+mỗi vị trí trong số 6 x 6 vị trí,
+
+67
+00:03:24.170 --> 00:03:25.925
+chúng ta sẽ có đầu ra là
+
+68
+00:03:25.925 --> 00:03:29.280
+6x6xsố lượng bộ lọc.
+
+69
+00:03:29.280 --> 00:03:30.925
+Nó có thể thực hiện
+
+70
+00:03:30.925 --> 00:03:35.890
+một phép tính khá quan trọng ở khối đầu vào.
+
+71
+00:03:35.890 --> 00:03:40.765
+Và ý tưởng này thường được gọi là convolution 1x1,
+
+72
+00:03:40.765 --> 00:03:46.780
+đôi khi nó còn được gọi là Network in Network (Mạng trong Mạng),
+
+73
+00:03:46.780 --> 00:03:53.790
+và được mô tả trong nghiên cứu của
+Min Lin, Qiang Chen và Schuicheng Yan.
+
+74
+00:03:53.790 --> 00:03:55.300
+Mặc dù các chi tiết của
+
+75
+00:03:55.300 --> 00:03:58.570
+kiến trúc trong nghiên cứu này không được sử dụng rộng rãi,
+
+76
+00:03:58.570 --> 00:04:00.985
+ý tưởng về convolution 1x1 hoặc
+
+77
+00:04:00.985 --> 00:04:03.250
+ý tưởng Mạng trong Mạng
+
+78
+00:04:03.250 --> 00:04:05.485
+rất có sức ảnh hưởng
+
+79
+00:04:05.485 --> 00:04:08.080
+đến nhiều kiến trúc neural network khác
+
+80
+00:04:08.080 --> 00:04:09.895
+gồm cả mạng Inception
+
+81
+00:04:09.895 --> 00:04:11.930
+mà chúng ta sẽ gặp trong video tiếp theo.
+
+82
+00:04:11.930 --> 00:04:14.180
+Hãy xem một ví dụ minh họa
+
+83
+00:04:14.180 --> 00:04:16.250
+về tính hữu ích của convolution 1x1,
+
+84
+00:04:16.250 --> 00:04:18.565
+mọi người có thể làm điều này với nó.
+
+85
+00:04:18.565 --> 00:04:23.165
+Giả sử mọi người có hình khối 28 x 28 x 192.
+
+86
+00:04:23.165 --> 00:04:25.700
+Nếu mọi người muốn thu nhỏ chiều cao và chiều rộng,
+
+87
+00:04:25.700 --> 00:04:27.320
+chúng ta có thể sử dụng pooling layer,
+
+88
+00:04:27.320 --> 00:04:28.685
+chúng ta đã biết cách thực hiện thế nào.
+
+89
+00:04:28.685 --> 00:04:30.230
+Nhưng một trong số các kênh
+
+90
+00:04:30.230 --> 00:04:34.195
+quá lớn, và chúng ta muốn thu nhỏ lại
+
+91
+00:04:34.195 --> 00:04:36.700
+thì làm thế nào để thu nhỏ nó
+
+92
+00:04:36.700 --> 00:04:40.250
+thành một hình khối có kích thước 28x28x32?
+
+93
+00:04:40.250 --> 00:04:43.320
+Chúng ta có thể sử dụng
+
+94
+00:04:43.320 --> 00:04:47.705
+32 bộ lọc 1x1.
+
+95
+00:04:47.705 --> 00:04:50.000
+Và về mặt kỹ thuật, mỗi bộ lọc
+
+96
+00:04:50.000 --> 00:04:53.845
+sẽ có kích thước 1x1x192,
+
+97
+00:04:53.845 --> 00:04:56.230
+bởi vì số lượng kênh trong bộ lọc
+
+98
+00:04:56.230 --> 00:04:59.275
+phải khớp với số kênh trong hình khối đầu vào,
+
+99
+00:04:59.275 --> 00:05:03.445
+nhưng chúng ta sử dụng 32 bộ lọc và đầu ra
+
+100
+00:05:03.445 --> 00:05:08.020
+của quá trình này sẽ là hình khối 28x28x32.
+
+101
+00:05:08.020 --> 00:05:13.030
+Vì vậy, đây là một cách để thu nhỏ nC,
+
+102
+00:05:13.030 --> 00:05:15.470
+trong khi pooling layer được sử dụng
+
+103
+00:05:15.470 --> 00:05:18.115
+để thu nhỏ nH và nW,
+
+104
+00:05:18.115 --> 00:05:20.410
+là chiều cao và chiều rộng những hình khối này.
+
+105
+00:05:20.410 --> 00:05:22.930
+Sau này, chúng ta sẽ tìm hiểu ý tưởng
+
+106
+00:05:22.930 --> 00:05:25.270
+về convolution 1x1, cho phép chúng ta
+
+107
+00:05:25.270 --> 00:05:28.120
+thu nhỏ số lượng kênh
+
+108
+00:05:28.120 --> 00:05:31.285
+và do đó, tiết kiệm các phép tính trong một số mạng.
+
+109
+00:05:31.285 --> 00:05:34.150
+Tất nhiên, nếu chúng ta muốn giữ số kênh
+
+110
+00:05:34.150 --> 00:05:37.205
+thành 192, điều này cũng được thôi.
+
+111
+00:05:37.205 --> 00:05:39.605
+Và tác động của convolution 1x1
+
+112
+00:05:39.605 --> 00:05:41.480
+là nó có thêm tính phi tuyến tính,
+
+113
+00:05:41.480 --> 00:05:42.680
+cho phép chúng ta học
+
+114
+00:05:42.680 --> 00:05:44.390
+các hàm phức tạp hơn
+
+115
+00:05:44.390 --> 00:05:46.895
+của mạng bằng cách thêm một layer khác
+
+116
+00:05:46.895 --> 00:05:49.489
+có đầu vào 28x28x192
+
+117
+00:05:49.489 --> 00:05:52.645
+và đầu ra 28x28x192.
+
+118
+00:05:52.645 --> 00:05:54.530
+Các bạn vừa thấy cách
+
+119
+00:05:54.530 --> 00:05:57.095
+một phép toán convolution 1x1
+
+120
+00:05:57.095 --> 00:06:00.020
+thực hiện một phép toán quan trọng,
+
+121
+00:06:00.020 --> 00:06:03.350
+cho phép chúng ta giảm
+
+122
+00:06:03.350 --> 00:06:04.880
+hoặc giữ nguyên số kênh của hình khối tùy ý,
+
+123
+00:06:04.880 --> 00:06:07.190
+thậm chí là tăng nếu muốn.
+
+124
+00:06:07.190 --> 00:06:08.960
+Ở video tiếp theo,
+
+125
+00:06:08.960 --> 00:06:11.180
+chúng ta sẽ thấy nó thực sự hữu ích
+
+126
+00:06:11.180 --> 00:06:14.100
+trong việc xây dựng mạng Inception.
+
+127
+00:06:14.100 --> 00:06:16.570
+Hãy đón xem video tiếp theo.

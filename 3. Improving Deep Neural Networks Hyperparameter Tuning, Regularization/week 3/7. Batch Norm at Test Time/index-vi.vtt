@@ -1,0 +1,320 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.820
+Định mức Bash xử lý dữ liệu của bạn theo từng
+đợt nhỏ.
+
+00:00:03.820 --> 00:00:07.700
+Nhưng tại thời điểm kiểm tra, bạn có thể cần
+xử lý từng ví dụ một.
+
+00:00:07.700 --> 00:00:10.480
+Hãy xem cách bạn có thể điều chỉnh mạng của
+mình để thực hiện điều đó.
+
+00:00:10.480 --> 00:00:13.000
+Hãy nhớ rằng trong quá trình đào tạo, đây là
+các
+
+00:00:13.000 --> 00:00:15.520
+phương trình bạn sẽ sử dụng để triển khai định
+mức Bash.
+
+00:00:15.520 --> 00:00:19.050
+Trong một lô nhỏ, bạn sẽ tính tổng các giá trị
+
+00:00:19.050 --> 00:00:22.580
+zi của lô nhỏ đó để tính giá trị trung bình.
+
+00:00:22.580 --> 00:00:26.020
+Vì vậy, ở đây, bạn chỉ tổng hợp các ví dụ
+trong một đợt nhỏ.
+
+00:00:26.020 --> 00:00:28.760
+Tôi đang sử dụng m để biểu thị số lượng ví dụ
+
+00:00:28.760 --> 00:00:31.500
+trong lô nhỏ, không phải trong toàn bộ
+training set.
+
+00:00:31.500 --> 00:00:36.380
+Sau đó, bạn tính variance và tính chỉ tiêu z
+bằng cách chia tỷ lệ theo
+
+00:00:36.380 --> 00:00:41.260
+giá trị trung bình và bias chuẩn, có thêm
+epsilon để ổn định số học.
+
+00:00:41.260 --> 00:00:46.940
+Và sau đó dấu ngã z sẽ lấy chuẩn z theo tỷ lệ
+theo gamma và beta.
+
+00:00:46.940 --> 00:00:52.270
+Vì vậy, hãy lưu ý rằng bình phương mu và sigma
+mà bạn cần
+
+00:00:52.270 --> 00:00:57.600
+cho phép tính tỷ lệ này được tính toán trên
+toàn bộ lô nhỏ.
+
+00:00:57.720 --> 00:01:01.500
+Nhưng tại thời điểm thử nghiệm, bạn có thể
+không có một
+
+00:01:01.500 --> 00:01:05.280
+lô nhỏ gồm 64, 128 hoặc 256 mẫu để xử lý cùng
+một lúc.
+
+00:01:05.280 --> 00:01:08.840
+Vì vậy bạn cần một số cách khác để tính mu và
+sigma bình phương.
+
+00:01:08.840 --> 00:01:11.700
+Và nếu bạn chỉ có một ví dụ, lấy giá trị trung
+
+00:01:11.700 --> 00:01:14.560
+bình và variance của ví dụ đó sẽ không có ý
+nghĩa gì.
+
+00:01:14.560 --> 00:01:20.100
+Vì vậy, những gì thực sự được thực hiện để áp
+dụng neural network của bạn vào
+
+00:01:20.100 --> 00:01:25.640
+thời điểm thử nghiệm là đưa ra một số ước tính
+riêng biệt về bình phương mu và sigma.
+
+00:01:25.880 --> 00:01:30.853
+Và trong các triển khai điển hình của định mức
+lô, điều bạn làm
+
+00:01:30.853 --> 00:01:35.827
+là ước tính điều này bằng cách sử dụng mức
+trung bình có trọng
+
+00:01:35.827 --> 00:01:40.800
+số theo cấp số nhân, trong đó mức trung bình
+là trên các lô nhỏ.
+
+00:01:42.970 --> 00:01:46.010
+Vì vậy, để rất cụ thể, đây là những gì tôi
+muốn nói.
+
+00:01:46.010 --> 00:01:51.590
+Hãy chọn một số lớp L và giả sử bạn đang xem
+qua các lô
+
+00:01:51.590 --> 00:01:57.170
+nhỏ x1, x2 cùng với các giá trị tương ứng của
+y, v.v.
+
+00:01:57.770 --> 00:02:05.690
+Vì vậy, khi đào tạo trên x1, đối với lớp L đó,
+bạn sẽ nhận được một số mu L.
+
+00:02:05.690 --> 00:02:10.690
+Và trên thực tế, tôi sẽ viết cái này dưới dạng
+mu cho lô nhỏ đầu tiên và lớp đó.
+
+00:02:12.610 --> 00:02:15.890
+Và sau đó khi bạn huấn luyện trên lô nhỏ thứ
+hai, cho lớp đó
+
+00:02:15.890 --> 00:02:19.170
+và lô nhỏ đó, bạn sẽ nhận được giá trị thứ hai
+nào đó của mu.
+
+00:02:19.170 --> 00:02:23.890
+Và sau đó đối với lô nhỏ thứ ba trong lớp ẩn
+
+00:02:23.890 --> 00:02:28.610
+này, bạn sẽ có được giá trị thứ ba nào đó cho
+mu.
+
+00:02:29.570 --> 00:02:33.903
+Như chúng ta đã thấy cách sử dụng số trung
+bình có trọng số theo cấp
+
+00:02:33.903 --> 00:02:38.237
+số nhân để tính giá trị trung bình của theta
+1, theta 2, theta 3,
+
+00:02:38.237 --> 00:02:42.570
+khi bạn đang cố tính giá trị trung bình có
+trọng số theo cấp số nhân
+
+00:02:42.570 --> 00:02:46.830
+của nhiệt độ hiện tại, bạn sẽ làm điều đó để
+theo dõi giá trị
+
+00:02:46.830 --> 00:02:51.090
+trung bình mới nhất của vectơ trung bình mà
+bạn đã thấy là bao nhiêu.
+
+00:02:51.090 --> 00:02:55.350
+Vì vậy, mức trung bình có trọng số theo cấp số
+nhân đó trở thành
+
+00:02:55.350 --> 00:02:59.610
+ước tính của bạn về giá trị trung bình của z
+đối với lớp ẩn đó.
+
+00:02:59.610 --> 00:03:04.970
+Và tương tự, bạn sử dụng mức trung bình có
+trọng số theo cấp số nhân để theo
+
+00:03:04.970 --> 00:03:10.330
+dõi các giá trị bình phương sigma mà bạn thấy
+trên lô nhỏ đầu tiên trong lớp đó,
+
+00:03:10.330 --> 00:03:13.850
+sigma bình phương mà bạn thấy trên lô nhỏ thứ
+hai, v.v.
+
+00:03:13.850 --> 00:03:19.230
+Vì vậy, bạn duy trì bình phương trung bình của
+mu và sigma mà bạn đang thấy
+
+00:03:19.230 --> 00:03:24.610
+cho mỗi lớp khi bạn huấn luyện mạng lưới thần
+kinh qua các vụ nổ nhỏ khác nhau.
+
+00:03:24.610 --> 00:03:29.650
+Cuối cùng, tại thời điểm kiểm tra, điều bạn
+làm là thay cho phương
+
+00:03:29.650 --> 00:03:34.690
+trình này, bạn chỉ cần tính định mức z bằng
+cách sử dụng bất kỳ giá trị nào
+
+00:03:34.690 --> 00:03:40.050
+bạn có và sử dụng giá trị trung bình theo cấp
+số nhân của mu và sigma bình
+
+00:03:40.050 --> 00:03:45.410
+phương, bất kể giá trị mới nhất bạn có để thực
+hiện chia tỷ lệ ở đây là bao nhiêu.
+
+00:03:45.410 --> 00:03:52.010
+Sau đó, bạn sẽ tính z dấu ngã trên một ví dụ
+thử nghiệm của mình bằng cách sử dụng
+
+00:03:52.010 --> 00:03:58.610
+chuẩn z mà chúng ta vừa tính toán ở bên trái
+và sử dụng các tham số beta và gamma
+
+00:03:58.610 --> 00:04:02.690
+mà bạn sẽ- bạn đã học được trong quá trình đào
+tạo neural network của mình.
+
+00:04:02.690 --> 00:04:06.690
+Vì vậy, điều rút ra được từ điều này là trong
+thời gian huấn
+
+00:04:06.690 --> 00:04:10.690
+luyện, bình phương mu và sigma được tính toán
+trên toàn bộ một
+
+00:04:10.690 --> 00:04:14.690
+lô nhỏ, bạn biết đấy, chẳng hạn như 64, 128
+hoặc một số ví dụ.
+
+00:04:14.690 --> 00:04:18.210
+Tuy nhiên, tại thời điểm thử nghiệm, bạn có
+thể cần xử lý từng ví dụ một.
+
+00:04:18.210 --> 00:04:20.670
+Vì vậy, cách để làm điều đó là ước tính bình
+
+00:04:20.670 --> 00:04:23.130
+phương mu và sigma từ training set của bạn.
+
+00:04:23.130 --> 00:04:25.290
+Và có nhiều cách để làm điều đó.
+
+00:04:25.290 --> 00:04:28.090
+Về lý thuyết, bạn có thể chạy toàn bộ
+training set của mình
+
+00:04:28.090 --> 00:04:30.890
+thông qua mạng cuối cùng để có được bình
+phương mu và sigma.
+
+00:04:30.890 --> 00:04:33.690
+Nhưng trong thực tế, điều mọi người thường làm
+là triển khai mức
+
+00:04:33.690 --> 00:04:36.490
+trung bình có trọng số theo cấp số nhân trong
+đó bạn chỉ cần theo
+
+00:04:36.490 --> 00:04:39.290
+dõi các giá trị bình phương mu và sigma mà bạn
+thấy trong quá
+
+00:04:39.290 --> 00:04:42.090
+trình đào tạo và sử dụng mức trung bình có
+trọng số theo cấp số nhân,
+
+00:04:42.090 --> 00:04:47.170
+đôi khi còn được gọi là trung bình động, để
+ước tính sơ bộ bình phương mu và sigma.
+
+00:04:47.170 --> 00:04:51.530
+Và sau đó bạn sử dụng các giá trị mu và sigma
+bình phương đó tại thời điểm thử
+
+00:04:51.530 --> 00:04:55.890
+nghiệm để thực hiện việc chia tỷ lệ mà bạn cần
+đối với các giá trị đơn vị ẩn z.
+
+00:04:55.890 --> 00:04:59.650
+Trong thực tế, quy trình này khá mạnh mẽ theo
+đúng
+
+00:04:59.650 --> 00:05:03.410
+cách bạn sử dụng để ước tính bình phương mu và
+sigma.
+
+00:05:03.410 --> 00:05:07.250
+Vì vậy, tôi sẽ không lo lắng quá nhiều về cách
+bạn thực hiện việc này.
+
+00:05:07.250 --> 00:05:12.590
+Và nếu bạn đang sử dụng một khung
+deep learning, họ thường sẽ có một số
+
+00:05:12.590 --> 00:05:17.930
+cách mặc định để ước tính bình phương mu và
+sigma cũng sẽ hoạt động khá tốt.
+
+00:05:17.930 --> 00:05:23.270
+Nhưng trong thực tế, bất kỳ cách hợp lý nào để
+ước tính giá trị trung bình và
+
+00:05:23.270 --> 00:05:28.610
+variance của các giá trị đơn vị ẩn z của bạn
+sẽ hoạt động tốt khi kiểm tra.
+
+00:05:28.610 --> 00:05:30.450
+Vậy là xong với Dash Norm.
+
+00:05:30.450 --> 00:05:34.010
+Và bằng cách sử dụng nó, tôi nghĩ bạn sẽ có
+thể đào tạo các mạng sâu
+
+00:05:34.010 --> 00:05:37.570
+hơn nhiều và giúp thuật toán học tập của bạn
+chạy nhanh hơn nhiều.
+
+00:05:37.570 --> 00:05:40.330
+Trước khi kết thúc tuần này, tôi cũng muốn
+chia sẻ
+
+00:05:40.330 --> 00:05:43.090
+với bạn một số suy nghĩ về khuôn khổ
+deep learning.
+
+00:05:43.090 --> 00:05:45.370
+Hãy bắt đầu nói về điều đó trong video tiếp
+theo.

@@ -1,0 +1,1351 @@
+WEBVTT
+
+00:00:02.960 --> 00:00:04.360
+Chào Yosha. Tôi thực sự vui mừng vì bạn có
+
+00:00:04.360 --> 00:00:05.760
+thể tham gia cùng chúng tôi ở đây ngày hôm
+nay.
+
+00:00:05.760 --> 00:00:06.960
+Tôi rất vui mừng.
+
+00:00:06.960 --> 00:00:09.960
+Bạn biết đấy, ngày nay bạn không chỉ là nhà
+nghiên cứu hay
+
+00:00:09.960 --> 00:00:12.960
+kỹ sư về deep learning, bạn đã trở thành một
+trong những
+
+00:00:12.960 --> 00:00:15.960
+tổ chức hoặc một trong những biểu tượng của
+deep learning.
+
+00:00:15.960 --> 00:00:19.560
+Nhưng tôi thực sự muốn nghe câu chuyện về việc
+nó bắt đầu như thế nào.
+
+00:00:19.560 --> 00:00:22.260
+Vậy bạn biết đấy, bạn đã bắt đầu
+
+00:00:22.260 --> 00:00:24.960
+deep learning và theo đuổi hành trình này như
+thế nào?
+
+00:00:24.960 --> 00:00:28.460
+Đúng. Thực ra, nó bắt đầu khi tôi còn là một
+đứa trẻ,
+
+00:00:28.460 --> 00:00:31.960
+một thiếu niên, đọc rất nhiều truyện khoa học
+viễn tưởng.
+
+00:00:31.960 --> 00:00:33.960
+Giống như, tôi đoán, nhiều người trong chúng
+ta.
+
+00:00:33.960 --> 00:00:38.960
+Và khi tôi bắt đầu học cao học vào năm 1985,
+tôi bắt đầu
+
+00:00:38.960 --> 00:00:43.960
+đọc, bạn biết đấy, các bài báo trong phòng thí
+nghiệm.
+
+00:00:43.960 --> 00:00:47.960
+Và đó là lúc tôi cảm thấy phấn khích và nó
+thực sự trở thành niềm đam mê.
+
+00:00:47.960 --> 00:00:50.460
+Và thực ra, mọi chuyện diễn ra như thế nào vào
+giữa
+
+00:00:50.460 --> 00:00:52.960
+những năm 80, phải không? 1985, đọc những bài
+báo này.
+
+00:00:52.960 --> 00:00:53.960
+Bạn có nhớ không?
+
+00:00:54.960 --> 00:00:57.960
+Vâng, đúng vậy.
+
+00:00:59.960 --> 00:01:05.210
+Chà, bạn biết đấy, xuất phát từ những khóa học
+tôi đã tham gia về A.I cổ điển.
+
+00:01:05.210 --> 00:01:10.460
+với các hệ thống chuyên gia và đột nhiên phát
+hiện ra rằng có cả thế giới suy
+
+00:01:10.460 --> 00:01:15.710
+nghĩ về cách con người có thể học tập và trí
+thông minh của con người cũng như
+
+00:01:15.710 --> 00:01:20.960
+cách chúng ta có thể tạo ra mối liên hệ giữa
+điều đó với trí tuệ nhân tạo và máy tính.
+
+00:01:20.960 --> 00:01:23.960
+Điều đó thực sự thú vị đối với tôi khi tôi
+khám phá ra nền văn học
+
+00:01:23.960 --> 00:01:26.960
+này và tất nhiên tôi bắt đầu đọc những người
+theo chủ nghĩa kết nối.
+
+00:01:26.960 --> 00:01:30.960
+Vì vậy, các giấy tờ của Jeff Hinton, Rummel
+Hart, v.v.
+
+00:01:30.960 --> 00:01:34.960
+Và tôi đã làm việc trên các mạng định kỳ.
+
+00:01:34.960 --> 00:01:36.960
+Tôi đã làm việc về nhận dạng giọng nói.
+
+00:01:36.960 --> 00:01:41.960
+Tôi đã làm việc trên HMM, cũng như các mô hình
+đồ họa.
+
+00:01:41.960 --> 00:01:49.960
+Và sau đó nhanh chóng chuyển đến AT&T, Bell
+Labs và MIT, nơi tôi làm postdoc.
+
+00:01:49.960 --> 00:01:53.460
+Và đó là nơi tôi phát hiện ra một số vấn đề
+liên quan đến
+
+00:01:53.460 --> 00:01:56.960
+sự phụ thuộc lâu dài vào neural network
+huấn luyện.
+
+00:01:56.960 --> 00:02:01.960
+Và ngay sau đó tôi được tuyển dụng vào UDM ở
+Montreal,
+
+00:02:01.960 --> 00:02:06.960
+nơi tôi đã trải qua phần lớn thời niên thiếu
+của con tôi.
+
+00:02:06.960 --> 00:02:11.460
+Bạn biết đấy, và với tư cách là một người đã ở
+đó trong vài thập kỷ qua và đã
+
+00:02:11.460 --> 00:02:15.960
+chứng kiến, bạn biết đấy, đã chứng kiến tất
+cả, chắc chắn đã chứng kiến rất nhiều.
+
+00:02:16.960 --> 00:02:19.460
+Hãy cho tôi biết suy nghĩ của bạn về việc
+deep learning
+
+00:02:19.460 --> 00:02:21.960
+về neural network đã phát triển trong
+thời gian này.
+
+00:02:21.960 --> 00:02:26.960
+Chúng tôi bắt đầu với các thí nghiệm, với trực
+giác và lý thuyết đến sau.
+
+00:02:26.960 --> 00:02:30.960
+Bây giờ chúng ta đã hiểu rõ hơn rất nhiều,
+chẳng hạn như tại sao phông
+
+00:02:30.960 --> 00:02:34.960
+nền lại hoạt động tốt như vậy, tại sao độ sâu
+lại quan trọng đến vậy.
+
+00:02:34.960 --> 00:02:38.460
+Và, bạn biết đấy, những quan niệm kiểu này,
+chúng ta
+
+00:02:38.460 --> 00:02:41.960
+không có bất kỳ lời biện minh vững chắc nào
+vào thời đó.
+
+00:02:41.960 --> 00:02:45.960
+Khi chúng tôi bắt đầu nghiên cứu mạng sâu vào
+đầu những năm
+
+00:02:45.960 --> 00:02:49.960
+2000, chúng tôi có trực giác rằng mạng sâu hơn
+sẽ mạnh hơn.
+
+00:02:49.960 --> 00:02:54.960
+Và chúng tôi không biết làm thế nào để lấy
+điều đó và chứng minh điều đó.
+
+00:02:54.960 --> 00:02:58.960
+Và tất nhiên, thí nghiệm của chúng tôi ban đầu
+không thành công.
+
+00:02:58.960 --> 00:03:03.960
+Và trên thực tế, điều quan trọng nhất mà bạn
+nghĩ hóa ra là đúng là gì?
+
+00:03:03.960 --> 00:03:06.960
+Và bạn biết đấy, điều ngạc nhiên lớn nhất về
+những gì hóa ra là
+
+00:03:06.960 --> 00:03:09.960
+sai lầm so với những gì chúng ta đã biết cách
+đây 30 năm là gì?
+
+00:03:10.960 --> 00:03:15.627
+Chắc chắn rồi. Vì vậy, một trong những sai lầm
+lớn nhất mà tôi đã
+
+00:03:15.627 --> 00:03:20.293
+mắc phải là nghĩ rằng, giống như mọi người
+khác trong những năm 90,
+
+00:03:20.293 --> 00:03:24.960
+rằng bạn cần có sự phi tuyến tính mượt mà để
+phông nền hoạt động.
+
+00:03:24.960 --> 00:03:29.293
+Bởi vì tôi nghĩ rằng, bạn biết đấy, nếu chúng
+ta có thứ gì đó
+
+00:03:29.293 --> 00:03:33.627
+giống như hiệu chỉnh phi tuyến trong đó bạn có
+một phần phẳng,
+
+00:03:33.627 --> 00:03:37.960
+thì sẽ thực sự khó huấn luyện vì đạo hàm sẽ
+bằng 0 ở rất nhiều chỗ.
+
+00:03:37.960 --> 00:03:43.627
+Và khi chúng tôi bắt đầu thử nghiệm relu với
+lưới sâu vào khoảng năm 2010,
+
+00:03:43.627 --> 00:03:49.293
+bạn biết đấy, tôi bị ám ảnh bởi ý tưởng rằng,
+ồ, chúng ta nên cẩn thận về
+
+00:03:49.293 --> 00:03:54.960
+việc liệu tế bào thần kinh có bão hòa quá
+nhiều ở phần không hay không.
+
+00:03:54.960 --> 00:03:58.960
+Nhưng cuối cùng, hóa ra thực ra relu hoạt động
+tốt hơn
+
+00:03:58.960 --> 00:04:02.960
+rất nhiều so với sigmoid và tach. Và đó là một
+bất ngờ lớn.
+
+00:04:02.960 --> 00:04:07.960
+Thực ra, chúng tôi thực hiện việc khám phá này
+vì mối liên hệ sinh học, không
+
+00:04:07.960 --> 00:04:12.960
+phải vì chúng tôi nghĩ rằng nó sẽ dễ tối ưu
+hóa hơn mà hóa ra nó hoạt động tốt hơn.
+
+00:04:12.960 --> 00:04:15.960
+Trong khi đó tôi nghĩ việc tập luyện sẽ khó
+khăn hơn.
+
+00:04:15.960 --> 00:04:19.960
+Vậy để tôi hỏi bạn, mối quan hệ giữa
+deep learning và bộ não là gì?
+
+00:04:19.960 --> 00:04:23.960
+Có câu trả lời rõ ràng, nhưng tôi tò mò, câu
+trả lời của bạn là gì?
+
+00:04:24.960 --> 00:04:32.627
+Chà, cái nhìn sâu sắc ban đầu thực sự khiến
+tôi hào hứng với neural network là ý
+
+00:04:32.627 --> 00:04:40.293
+tưởng từ những người kết nối rằng thông tin
+được phân phối qua quá trình kích hoạt
+
+00:04:40.293 --> 00:04:47.960
+của nhiều tế bào thần kinh thay vì được đại
+diện bởi loại tế bào bà, như họ vẫn gọi,
+
+00:04:48.960 --> 00:04:53.460
+một cách thể hiện mang tính biểu tượng vốn là
+quan điểm truyền thống
+
+00:04:53.460 --> 00:04:57.960
+trong AI cổ điển. Và tôi vẫn tin rằng đây là
+một điều thực sự quan trọng.
+
+00:04:57.960 --> 00:05:02.960
+Và tôi thấy mọi người đang khám phá lại tầm
+quan trọng của
+
+00:05:02.960 --> 00:05:07.960
+điều đó ngay cả gần đây. Vì vậy, đó thực sự là
+một nền tảng.
+
+00:05:07.960 --> 00:05:12.960
+Cái chết là thứ xuất hiện muộn hơn vào đầu
+những năm 2000.
+
+00:05:12.960 --> 00:05:16.960
+Nhưng đó không phải là điều tôi nghĩ đến vào
+những năm 90 chẳng hạn.
+
+00:05:16.960 --> 00:05:21.960
+Đúng. Tôi nhớ bạn đã xây dựng rất nhiều cách
+trình bày tương
+
+00:05:21.960 --> 00:05:26.960
+đối nông nhưng rất phân tán hoặc các từ
+word embedding rất sớm.
+
+00:05:26.960 --> 00:05:30.210
+Đúng vậy. Đúng vậy. Vâng, đó là một trong
+những điều mà tôi thực
+
+00:05:30.210 --> 00:05:33.460
+sự hào hứng vào cuối những năm 90 cùng với anh
+trai tôi, Sunny, và
+
+00:05:33.460 --> 00:05:36.710
+tôi đã cùng nhau nghiên cứu ý tưởng rằng chúng
+ta có thể sử dụng
+
+00:05:36.710 --> 00:05:39.960
+neural network để giải quyết lời nguyền
+về chiều không gian,
+
+00:05:39.960 --> 00:05:45.627
+được cho là một trong những vấn đề trọng tâm
+của việc học thống kê. Và thực tế
+
+00:05:45.627 --> 00:05:51.293
+là chúng ta có thể có những biểu diễn phân tán
+này có thể được sử dụng để biểu
+
+00:05:51.293 --> 00:05:56.960
+diễn các phân phối chung trên nhiều biến ngẫu
+nhiên một cách rất hiệu quả.
+
+00:05:56.960 --> 00:06:01.460
+Và hóa ra nó hoạt động khá tốt. Và sau đó tôi
+mở rộng điều này để
+
+00:06:01.460 --> 00:06:05.960
+kết hợp các tổ chức qua các chuỗi từ. Và đây
+là cách mà từ
+
+00:06:05.960 --> 00:06:10.460
+embedding được sinh ra, bởi vì tôi nghĩ, ồ,
+bạn biết đấy, điều
+
+00:06:10.460 --> 00:06:14.960
+này sẽ cho phép khái quát hóa các từ có ý
+nghĩa ngữ nghĩa tương tự, v.v.
+
+00:06:15.960 --> 00:06:20.293
+Vì vậy, trong vài thập kỷ qua, nhóm nghiên cứu
+của bạn đã phát minh ra
+
+00:06:20.293 --> 00:06:24.627
+nhiều ý tưởng hơn bất kỳ ai có thể tóm tắt
+trong vài phút. Vì vậy, tôi rất
+
+00:06:24.627 --> 00:06:28.960
+tò mò, những phát minh hoặc ý tưởng nào mà bạn
+tự hào nhất về nhóm của mình?
+
+00:06:28.960 --> 00:06:34.460
+Đúng. Vì vậy, tôi nghĩ rằng tôi đã đề cập đến
+sự phụ thuộc lâu dài,
+
+00:06:34.460 --> 00:06:39.960
+nghiên cứu về điều đó, tôi nghĩ mọi người vẫn
+chưa hiểu rõ về nó.
+
+00:06:39.960 --> 00:06:44.627
+Sau đó là câu chuyện mà tôi đã đề cập về lời
+nguyền của các chiều, sự phân
+
+00:06:44.627 --> 00:06:49.293
+phối chung với neural network, gần đây đã
+trở thành nade mà Hugo Don
+
+00:06:49.293 --> 00:06:53.960
+Rochelle đã làm. Và sau đó, như tôi đã nói,
+điều đó cũng dẫn đến công việc
+
+00:06:53.960 --> 00:06:58.627
+học cách word embedding để phân phối chung các
+từ. Sau đó, tôi nghĩ, có lẽ
+
+00:06:58.627 --> 00:07:03.293
+là những sự kiện nổi tiếng nhất trong công
+việc mà chúng tôi đã thực hiện
+
+00:07:03.293 --> 00:07:07.960
+với việc deep learning với hàng loạt bộ mã hóa
+tự động và hàng loạt RBM.
+
+00:07:08.960 --> 00:07:13.960
+Sau đó, có một điều, đó là công việc hiểu rõ
+hơn những khó
+
+00:07:13.960 --> 00:07:18.960
+khăn khi huấn luyện lưới sâu với Xavier Laurel
+với những ý
+
+00:07:18.960 --> 00:07:23.960
+tưởng khởi tạo cũng như độ dốc biến mất trong
+lưới sâu.
+
+00:07:23.960 --> 00:07:29.460
+Và công trình đó thực sự là công trình đã dẫn
+đến các thí nghiệm cho
+
+00:07:29.460 --> 00:07:34.960
+thấy tầm quan trọng của các
+activation function tuyến tính từng phần.
+
+00:07:34.960 --> 00:07:39.293
+Sau đó, tôi sẽ nói rằng một số công việc quan
+trọng nhất liên quan đến công
+
+00:07:39.293 --> 00:07:43.627
+việc chúng tôi đã thực hiện với việc
+unsupervised learning, việc khử nhiễu
+
+00:07:43.627 --> 00:07:47.960
+trên các bộ mã hóa, GAN, rất phổ biến ngày
+nay, các mạng tường thuật đối nghịch.
+
+00:07:47.960 --> 00:07:52.293
+Công việc chúng tôi đã thực hiện với dịch máy
+thần kinh sử
+
+00:07:52.293 --> 00:07:56.627
+dụng attention, điều này hóa ra lại thực sự
+quan trọng để
+
+00:07:56.627 --> 00:08:00.960
+tạo attention, giúp công việc dịch thuật diễn
+ra hiệu quả.
+
+00:08:00.960 --> 00:08:04.960
+Và nó hiện đang được sử dụng trong các hệ
+thống công nghiệp như Google Translate.
+
+00:08:04.960 --> 00:08:08.960
+Nhưng attention này thực sự đã thay đổi quan
+điểm của tôi về neural network.
+
+00:08:08.960 --> 00:08:12.293
+Bạn biết đấy, neural network, chúng ta
+từng nghĩ như những cỗ
+
+00:08:12.293 --> 00:08:15.627
+máy có thể ánh xạ một vectơ thành một vectơ.
+Nhưng thực sự với
+
+00:08:15.627 --> 00:08:18.960
+attention, giờ đây bạn có thể xử lý bất kỳ
+loại cấu trúc dữ liệu nào.
+
+00:08:18.960 --> 00:08:23.960
+Và điều này thực sự đang mở ra rất nhiều con
+đường thú vị.
+
+00:08:23.960 --> 00:08:28.293
+Hướng thực sự kết nối với sinh học, một điều
+mà tôi đã nghiên
+
+00:08:28.293 --> 00:08:32.627
+cứu trong vài năm qua là làm thế nào chúng ta
+có thể nghĩ ra
+
+00:08:32.627 --> 00:08:36.960
+thứ gì đó giống như backprop mà bộ não có thể
+thực hiện được?
+
+00:08:36.960 --> 00:08:41.960
+Và chúng tôi có một số bài báo theo hướng đó
+có vẻ thú vị đối với những người
+
+00:08:41.960 --> 00:08:46.960
+làm khoa học thần kinh. Và tất nhiên chúng tôi
+sẽ tiếp tục đi theo hướng đó.
+
+00:08:47.960 --> 00:08:51.960
+Một trong những chủ đề mà tôi biết bạn đang
+suy nghĩ rất nhiều là mối quan hệ giữa
+
+00:08:51.960 --> 00:08:55.960
+deep learning và bộ não. Bạn có thể cho chúng
+tôi biết thêm một chút về điều đó?
+
+00:08:55.960 --> 00:09:01.960
+Thực ra, vấn đề sinh học là điều mà tôi đã
+nghĩ đến từ
+
+00:09:01.960 --> 00:09:07.960
+lâu và tôi có thể nói là có rất nhiều điều mơ
+mộng về nó.
+
+00:09:07.960 --> 00:09:12.293
+Bởi vì nó giống như, tôi nghĩ nó giống như một
+câu đố. Vì vậy, chúng tôi
+
+00:09:12.293 --> 00:09:16.627
+có những bằng chứng này từ những gì chúng tôi
+biết từ bộ não và từ việc
+
+00:09:16.627 --> 00:09:20.960
+học hỏi trong não, như thời gian tăng đột
+biến, tính linh hoạt phụ thuộc.
+
+00:09:20.960 --> 00:09:27.960
+Mặt khác, chúng tôi có tất cả các khái niệm
+này từ machine learning, ý tưởng đào tạo
+
+00:09:27.960 --> 00:09:34.960
+toàn cầu toàn bộ hệ thống liên quan đến chức
+năng khách quan và ý tưởng về backprop.
+
+00:09:34.960 --> 00:09:40.960
+Và backprop có nghĩa là gì? Chuyển nhượng tín
+dụng thực sự có ý nghĩa gì?
+
+00:09:40.960 --> 00:09:46.627
+Khi tôi bắt đầu nghĩ về cách bộ não có thể làm
+điều gì đó như backprop, nó thôi
+
+00:09:46.627 --> 00:09:52.293
+thúc tôi nghĩ về việc có lẽ có một số khái
+niệm tổng quát hơn đằng sau backprop
+
+00:09:52.293 --> 00:09:57.960
+khiến nó trở nên hiệu quả, cho phép chúng ta
+hoạt động hiệu quả với backprop.
+
+00:09:57.960 --> 00:10:02.460
+Có thể có một nhóm cách lớn hơn để thực hiện
+chuyển nhượng tín chỉ và điều đó
+
+00:10:02.460 --> 00:10:06.960
+liên quan đến các câu hỏi mà những người tham
+gia học tập tăng cường đã đặt ra.
+
+00:10:06.960 --> 00:10:12.627
+Vì vậy, thật thú vị khi đôi khi việc hỏi một
+câu hỏi đơn giản lại
+
+00:10:12.627 --> 00:10:18.293
+khiến bạn nghĩ về rất nhiều thứ khác nhau và
+buộc bạn phải nghĩ
+
+00:10:18.293 --> 00:10:23.960
+về rất nhiều yếu tố mà bạn muốn tập hợp lại
+như một câu đố lớn.
+
+00:10:23.960 --> 00:10:27.627
+Vì vậy, điều này đã diễn ra trong một số năm.
+Tôi cần phải nói rằng
+
+00:10:27.627 --> 00:10:31.293
+toàn bộ nỗ lực này, giống như nhiều nỗ lực mà
+tôi đã theo dõi, đều
+
+00:10:31.293 --> 00:10:34.960
+được truyền cảm hứng rất nhiều từ những suy
+nghĩ của Jeff Hinton.
+
+00:10:34.960 --> 00:10:43.627
+Vì vậy, tôi nghĩ cụ thể là anh ấy đã thực hiện
+bài nói chuyện này vào năm 2007, hội
+
+00:10:43.627 --> 00:10:52.293
+thảo deep learning đầu tiên về những gì anh ấy
+nghĩ là cách bộ não hoạt động, cách
+
+00:10:52.293 --> 00:11:00.960
+mã thời gian có thể được sử dụng để có thể
+thực hiện một số công việc của backprop.
+
+00:11:00.960 --> 00:11:08.460
+Và điều đó dẫn đến rất nhiều ý tưởng mà tôi đã
+khám phá trong những năm gần đây về vấn
+
+00:11:08.460 --> 00:11:15.960
+đề này. Vâng, về cơ bản thì đây là một câu
+chuyện thú vị đã kéo dài được một thập kỷ.
+
+00:11:15.960 --> 00:11:20.460
+Một trong những chủ đề tôi đã nghe bạn nói đến
+nhiều lần là học
+
+00:11:20.460 --> 00:11:24.960
+tập không giám sát. Bạn có thể chia sẻ quan
+điểm của bạn về điều đó?
+
+00:11:25.960 --> 00:11:29.960
+Vâng, vâng. Vì vậy, học tập không giám sát
+thực sự quan trọng. Hiện
+
+00:11:29.960 --> 00:11:33.960
+tại, hệ thống công nghiệp của chúng ta dựa
+trên cơ chế học tập có
+
+00:11:33.960 --> 00:11:37.960
+giám sát, về cơ bản yêu cầu con người xác định
+đâu là khái niệm quan
+
+00:11:37.960 --> 00:11:41.960
+trọng đối với vấn đề và gắn nhãn cho những
+khái niệm đó trong dữ liệu.
+
+00:11:42.960 --> 00:11:48.627
+Và chúng tôi xây dựng tất cả những đồ chơi,
+dịch vụ và hệ thống tuyệt vời này bằng
+
+00:11:48.627 --> 00:11:54.293
+cách sử dụng thứ này. Nhưng con người có thể
+làm được nhiều hơn thế. Họ có thể tìm
+
+00:11:54.293 --> 00:11:59.960
+hiểu và khám phá những khái niệm mới bằng cách
+quan sát và tương tác với thế giới.
+
+00:12:00.960 --> 00:12:07.460
+Một đứa trẻ hai tuổi có thể hiểu được vật lý
+trực quan. Nói cách khác, cô ấy
+
+00:12:07.460 --> 00:12:13.960
+hiểu trọng lực, cô ấy hiểu áp suất, cô ấy hiểu
+quán tính, cô ấy hiểu chất rắn lỏng.
+
+00:12:13.960 --> 00:12:17.460
+Và tất nhiên, bố mẹ cô chưa bao giờ nói với cô
+về
+
+00:12:17.460 --> 00:12:20.960
+những điều này. Phải? Vậy làm thế nào cô ấy
+tìm ra nó?
+
+00:12:20.960 --> 00:12:25.460
+Vì vậy, đó là loại câu hỏi mà học tập không
+giám sát đang cố gắng
+
+00:12:25.460 --> 00:12:29.960
+trả lời. Vấn đề không chỉ là chúng ta có nhãn
+hay không có nhãn.
+
+00:12:29.960 --> 00:12:34.960
+Đó thực sự là việc xây dựng một công trình,
+một công trình tinh thần giải
+
+00:12:34.960 --> 00:12:39.960
+thích cách thế giới vận hành bằng sự quan sát.
+Và gần đây hơn, tôi đã kết hợp
+
+00:12:39.960 --> 00:12:44.960
+các ý tưởng về unsupervised learning với các ý
+tưởng về reinforcement learning.
+
+00:12:44.960 --> 00:12:50.710
+Bởi vì tôi tin rằng có một dấu hiệu rất rõ
+ràng về các khái niệm cơ bản
+
+00:12:50.710 --> 00:12:56.460
+quan trọng mà chúng ta đang cố gắng gỡ rối khi
+cố gắng tách biệt khỏi nhau
+
+00:12:56.460 --> 00:13:02.210
+mà con người hoặc máy móc có thể đạt được bằng
+cách tương tác với thế
+
+00:13:02.210 --> 00:13:07.960
+giới, bằng cách khám phá thế giới và thử mọi
+thứ và cố gắng kiểm soát mọi thứ.
+
+00:13:07.960 --> 00:13:13.160
+Vì vậy, tôi nghĩ, những điều này được kết hợp
+chặt chẽ với những ý tưởng ban đầu
+
+00:13:13.160 --> 00:13:18.360
+về học tập không giám sát. Vì vậy, quan điểm
+của tôi về việc unsupervised learning
+
+00:13:18.360 --> 00:13:23.560
+cách đây 15 năm khi chúng tôi bắt đầu thực
+hiện trích dẫn tự động và RBM, v.v., đã
+
+00:13:23.560 --> 00:13:28.760
+rất tập trung vào ý tưởng học các cách biểu
+diễn tốt. Và tôi vẫn nghĩ đây là câu
+
+00:13:28.760 --> 00:13:33.960
+hỏi trọng tâm. Nhưng điều chúng ta không biết
+là thế nào là một sự thể hiện tốt?
+
+00:13:33.960 --> 00:13:37.960
+Ví dụ, làm thế nào để chúng ta tìm ra một hàm
+mục tiêu? Vì vậy, chúng tôi
+
+00:13:37.960 --> 00:13:41.960
+đã thử nhiều thứ trong nhiều năm. Và đó thực
+sự là một trong những điều
+
+00:13:41.960 --> 00:13:45.960
+thú vị về nghiên cứu học tập không giám sát,
+rằng có rất nhiều ý tưởng
+
+00:13:45.960 --> 00:13:49.960
+khác nhau, rất nhiều cách khác nhau để vấn đề
+này có thể được giải quyết.
+
+00:13:49.960 --> 00:13:54.460
+Và điều đó cho thấy có thể có một thứ khác mà
+chúng ta sẽ khám phá vào năm
+
+00:13:54.460 --> 00:13:58.960
+tới hoàn toàn khác và có thể bộ não đang sử
+dụng thứ khác hoàn toàn khác.
+
+00:13:58.960 --> 00:14:03.960
+Vì vậy, nó không phải là nghiên cứu gia tăng.
+Bản thân nó là một cái gì đó rất có
+
+00:14:03.960 --> 00:14:08.960
+tính khám phá. Chúng tôi không có định nghĩa
+rõ ràng về chức năng mục tiêu phù hợp
+
+00:14:08.960 --> 00:14:13.960
+để đo lường xem hệ thống có đang thực hiện tốt
+việc unsupervised learning hay không.
+
+00:14:13.960 --> 00:14:20.960
+Vì vậy, tất nhiên đó là thách thức, nhưng đồng
+thời nó cũng mở ra nhiều khả năng,
+
+00:14:20.960 --> 00:14:27.960
+đó là điều mà các nhà nghiên cứu thực sự yêu
+thích. Ít nhất đó là điều hấp dẫn tôi.
+
+00:14:27.960 --> 00:14:31.293
+Vì vậy ngày nay có rất nhiều điều đang diễn ra
+trong lĩnh vực
+
+00:14:31.293 --> 00:14:34.627
+deep learning. Và tôi nghĩ chúng ta đã vượt
+qua thời điểm mà bất
+
+00:14:34.627 --> 00:14:37.960
+kỳ ai cũng có thể đọc được từng bài báo về
+deep learning được xuất bản.
+
+00:14:37.960 --> 00:14:43.960
+Vì vậy, tôi tò mò, điều gì trong deep learning
+ngày nay khiến bạn phấn khích biết?
+
+00:14:43.960 --> 00:14:48.960
+Vì thế tôi là người rất tham vọng. Và tôi cảm
+thấy tình trạng khoa
+
+00:14:48.960 --> 00:14:53.960
+học về deep learning hiện nay còn xa mới đạt
+được mức tôi mong muốn.
+
+00:14:54.960 --> 00:15:00.460
+Và tôi có ấn tượng rằng hệ thống của chúng ta
+hiện đang mắc phải những sai lầm
+
+00:15:00.460 --> 00:15:05.960
+cho thấy, loại sai lầm cho thấy chúng có sự
+hiểu biết rất hời hợt về thế giới.
+
+00:15:05.960 --> 00:15:10.460
+Vì vậy, điều khiến tôi phấn khích nhất hiện
+nay là hướng nghiên cứu mà
+
+00:15:10.460 --> 00:15:14.960
+chúng tôi không cố gắng xây dựng hệ thống mà
+sẽ làm điều gì đó hữu ích.
+
+00:15:15.960 --> 00:15:20.960
+Chúng ta vừa quay lại những nguyên tắc về cách
+máy tính có thể quan sát
+
+00:15:20.960 --> 00:15:25.960
+thế giới, tương tác với thế giới và khám phá
+cách thế giới đó hoạt động.
+
+00:15:25.960 --> 00:15:29.460
+Ngay cả khi thế giới đó đơn giản, thứ mà chúng
+ta có thể lập trình là
+
+00:15:29.460 --> 00:15:32.960
+một loại trò chơi điện tử, chúng ta cũng không
+biết cách làm tốt điều đó.
+
+00:15:32.960 --> 00:15:35.460
+Và điều đó thật tuyệt vì tôi không phải cạnh
+
+00:15:35.460 --> 00:15:37.960
+tranh với Google, Facebook, Baidu, v.v. phải
+không?
+
+00:15:38.960 --> 00:15:41.960
+Bởi vì đây là một dạng nghiên cứu cơ bản mà
+bất kỳ ai trong
+
+00:15:41.960 --> 00:15:44.960
+gara của họ cũng có thể thực hiện và có thể
+thay đổi thế giới.
+
+00:15:44.960 --> 00:15:48.960
+Vì vậy, tất nhiên, có rất nhiều hướng để tấn
+công vấn đề này,
+
+00:15:48.960 --> 00:15:52.960
+nhưng tôi thấy rất nhiều sự tương tác hiệu quả
+giữa ý tưởng và
+
+00:15:52.960 --> 00:15:56.960
+deep learning và reinforcement learning thực
+sự quan trọng ở đó.
+
+00:15:57.960 --> 00:16:02.460
+Và tôi thực sự vui mừng vì sự tiến bộ theo
+hướng này thực sự có thể
+
+00:16:02.460 --> 00:16:06.960
+có tác động lớn đến các ứng dụng thực tế, bởi
+vì nếu bạn nhìn vào một
+
+00:16:06.960 --> 00:16:11.460
+số thách thức lớn mà chúng ta gặp phải trong
+các ứng dụng như cách
+
+00:16:11.460 --> 00:16:15.960
+chúng ta xử lý các miền hoặc danh mục mới mà
+chúng ta có quá ít ví dụ.
+
+00:16:15.960 --> 00:16:20.460
+Và trong trường hợp con người rất giỏi giải
+quyết những vấn đề
+
+00:16:20.460 --> 00:16:24.960
+đó, thì những vấn đề chuyển giao học tập và
+khái quát hóa này,
+
+00:16:24.960 --> 00:16:29.460
+chúng sẽ trở nên dễ giải quyết hơn nhiều nếu
+chúng ta có những hệ
+
+00:16:29.460 --> 00:16:33.960
+thống hiểu rõ hơn về cách thế giới vận hành,
+hiểu biết sâu sắc hơn.
+
+00:16:33.960 --> 00:16:38.460
+Điều gì đang thực sự xảy ra? Nguyên nhân của
+những gì tôi đang thấy là gì và làm
+
+00:16:38.460 --> 00:16:42.960
+cách nào tôi có thể tác động đến những gì tôi
+đang thấy bằng hành động của mình?
+
+00:16:42.960 --> 00:16:48.960
+Đây là những loại câu hỏi mà tôi thực sự hào
+hứng trong những ngày này.
+
+00:16:49.960 --> 00:16:55.627
+Và tôi nghĩ họ cũng kết nối nghiên cứu
+deep learning đã phát triển
+
+00:16:55.627 --> 00:17:01.293
+trong vài thập kỷ qua với những câu hỏi thậm
+chí còn cũ hơn về AI,
+
+00:17:01.293 --> 00:17:06.960
+bởi vì rất nhiều thành công trong
+deep learning đều đến từ nhận thức.
+
+00:17:06.960 --> 00:17:10.460
+Vậy còn lại gì, phải không? Những gì còn lại
+là nhận thức ở cấp độ
+
+00:17:10.460 --> 00:17:13.960
+cao hơn, đó là hiểu biết ở mức độ trừu tượng
+về cách mọi thứ hoạt động.
+
+00:17:14.960 --> 00:17:18.460
+Vì vậy, tôi nghĩ rằng chương trình tìm hiểu
+mức độ trừu
+
+00:17:18.460 --> 00:17:21.960
+tượng cao của chúng ta chưa đạt đến mức độ
+trừu tượng cao đó.
+
+00:17:21.960 --> 00:17:24.960
+Và vì vậy chúng ta phải đến đó. Chúng ta phải
+suy
+
+00:17:24.960 --> 00:17:27.960
+nghĩ về lý luận, về việc xử lý thông tin theo
+trình tự.
+
+00:17:27.960 --> 00:17:31.293
+Chúng ta phải nghĩ về cách thức hoạt động của
+quan hệ nhân quả và
+
+00:17:31.293 --> 00:17:34.627
+cách máy móc có thể tự khám phá tất cả những
+thứ này, có khả năng
+
+00:17:34.627 --> 00:17:37.960
+được hướng dẫn bởi con người, nhưng càng nhiều
+càng tốt theo cách tự chủ.
+
+00:17:38.960 --> 00:17:42.960
+Và có vẻ như một phần trong những gì bạn nói
+rằng bạn là người hâm mộ các
+
+00:17:42.960 --> 00:17:46.960
+phương pháp nghiên cứu nơi bạn thử nghiệm, bạn
+biết đấy, tôi sẽ sử dụng
+
+00:17:46.960 --> 00:17:50.960
+thuật ngữ vấn đề đồ chơi, không phải theo cách
+chê bai, mà là một vấn đề nhỏ.
+
+00:17:50.960 --> 00:17:54.960
+Và bạn lạc quan rằng điều đó sẽ chuyển sang
+những vấn đề lớn hơn sau này.
+
+00:17:54.960 --> 00:17:58.960
+Vâng, vâng, vâng. Ý tôi là, nó chuyển giao
+theo một cách
+
+00:17:58.960 --> 00:18:02.960
+meta, phải không? Tất nhiên, chúng tôi sẽ phải
+thực hiện một
+
+00:18:02.960 --> 00:18:06.960
+số công việc để mở rộng quy mô và giải quyết
+những vấn đề đó.
+
+00:18:07.960 --> 00:18:13.960
+Nhưng động lực chính của tôi khi giải quyết
+những vấn đề về đồ chơi đó là
+
+00:18:13.960 --> 00:18:19.960
+chúng ta có thể hiểu rõ hơn những thất bại của
+mình và chúng ta có thể giảm
+
+00:18:19.960 --> 00:18:25.960
+vấn đề thành một thứ mà chúng ta có thể thao
+tác và hiểu dễ dàng hơn bằng trực giác.
+
+00:18:25.960 --> 00:18:29.960
+Bạn biết đấy, một kiểu phân chia và chinh phục
+cổ điển, cách tiếp cận
+
+00:18:29.960 --> 00:18:33.960
+khoa học. Ngoài ra, tôi nghĩ điều mà mọi người
+chưa nghĩ đến đầy đủ là
+
+00:18:33.960 --> 00:18:37.960
+chu trình, chu trình nghiên cứu có thể nhanh
+hơn nhiều, phải không?
+
+00:18:37.960 --> 00:18:42.210
+Vì vậy, nếu tôi có thể thực hiện một thí
+nghiệm trong vài giờ, tôi
+
+00:18:42.210 --> 00:18:46.460
+có thể tiến bộ nhanh hơn nhiều. Nếu tôi phải
+đào tạo một mô hình
+
+00:18:46.460 --> 00:18:50.710
+khổng lồ cố gắng nắm bắt toàn bộ ý thức chung
+và, bạn biết đấy,
+
+00:18:50.710 --> 00:18:54.960
+mọi thứ trong kiến ​​thức tổng quát, điều đó
+cuối cùng sẽ làm được.
+
+00:18:54.960 --> 00:18:58.627
+Chỉ là mỗi lần thử nghiệm đều tốn quá nhiều
+thời gian với phần cứng hiện tại. Vì vậy,
+
+00:18:58.627 --> 00:19:02.293
+trong khi những người bạn phần cứng của chúng
+ta đang chế tạo những cỗ máy sẽ nhanh
+
+00:19:02.293 --> 00:19:05.960
+hơn hàng nghìn hoặc hàng triệu lần thì tôi
+đang thực hiện những thí nghiệm đồ chơi đó.
+
+00:19:05.960 --> 00:19:12.470
+Bạn biết đấy, tôi cũng đã nghe bạn nói về khoa
+học deep learning, không chỉ là một
+
+00:19:12.470 --> 00:19:18.980
+môn kỹ thuật mà còn phải làm nhiều việc hơn để
+hiểu điều gì đang thực sự diễn ra.
+
+00:19:18.980 --> 00:19:21.980
+Bạn có chia sẻ suy nghĩ của mình về điều đó
+không?
+
+00:19:21.980 --> 00:19:26.480
+Vâng, hoàn toàn. Tôi sợ rằng nhiều công việc
+chúng tôi
+
+00:19:26.480 --> 00:19:30.980
+đang làm giống như những người mù đang cố gắng
+tìm đường.
+
+00:19:30.980 --> 00:19:36.980
+Và bạn biết đấy, bạn có thể gặp rất nhiều may
+mắn và tìm thấy những điều thú vị theo
+
+00:19:36.980 --> 00:19:42.980
+cách đó. Nhưng thực sự, nếu chúng ta dừng lại
+một chút và cố gắng hiểu những gì chúng
+
+00:19:42.980 --> 00:19:48.980
+ta đang làm theo cách có thể áp dụng được vì
+chúng ta đi từ nguyên tắc đến lý thuyết.
+
+00:19:48.980 --> 00:19:51.980
+Nhưng khi tôi nói lý thuyết, tôi không nhất
+thiết muốn nói đến toán
+
+00:19:51.980 --> 00:19:54.980
+học. Phải. Tôi không, tất nhiên, tôi không
+thích, tôi thích toán và
+
+00:19:54.980 --> 00:19:57.980
+vân vân. Nhưng tôi không nghĩ rằng chúng ta
+cần mọi thứ được chính
+
+00:19:57.980 --> 00:20:00.980
+thức hóa về mặt toán học mà phải được chính
+thức hóa một cách hợp lý.
+
+00:20:00.980 --> 00:20:04.980
+Bây giờ, tôi có cảm giác rằng tôi có thể
+thuyết phục ai đó rằng, bạn biết đấy, cái
+
+00:20:04.980 --> 00:20:08.980
+này sẽ phù hợp với cái kia. Điều này có ý
+nghĩa. Đây là khía cạnh quan trọng nhất.
+
+00:20:08.980 --> 00:20:14.230
+Và toán học cho phép chúng ta làm điều đó mạnh
+mẽ hơn và chặt chẽ hơn. Nhưng
+
+00:20:14.230 --> 00:20:19.480
+thực sự, nó thiên về sự hiểu biết hơn. Và đó
+cũng là việc thực hiện nghiên cứu
+
+00:20:19.480 --> 00:20:24.730
+của chúng tôi không nhằm mục đích đánh bại
+đường cơ sở hoặc điểm chuẩn tiếp
+
+00:20:24.730 --> 00:20:29.980
+theo hoặc đánh bại những đối thủ khác trong
+phòng thí nghiệm khác hoặc công ty khác.
+
+00:20:29.980 --> 00:20:34.313
+Bạn biết đấy, vấn đề quan trọng hơn là chúng
+ta nên hỏi loại câu hỏi
+
+00:20:34.313 --> 00:20:38.647
+nào để có thể hiểu rõ hơn về hiện tượng quan
+tâm? Bạn biết đấy, điều
+
+00:20:38.647 --> 00:20:42.980
+gì khiến việc đào tạo trong các mạng sâu hơn
+trở nên khó khăn hơn?
+
+00:20:42.980 --> 00:20:45.980
+Chúng ta không thể lưới mạnh hơn. Chúng tôi có
+một
+
+00:20:45.980 --> 00:20:48.980
+số ý tưởng, nhưng còn nhiều điều chúng tôi
+chưa hiểu.
+
+00:20:48.980 --> 00:20:52.980
+Vì vậy, chúng ta có thể thiết kế các thử
+nghiệm với mục tiêu không phải
+
+00:20:52.980 --> 00:20:56.980
+là có thuật toán tốt hơn mà chỉ để hiểu rõ hơn
+các thuật toán chúng ta
+
+00:20:56.980 --> 00:21:00.980
+hiện có hoặc tại sao hoàn cảnh nào lại khiến
+các thuật toán cụ thể hoạt
+
+00:21:00.980 --> 00:21:04.980
+động tốt hơn và tại sao ý tôi là, đó là lý do
+điều đó thực sự quan trọng.
+
+00:21:04.980 --> 00:21:06.980
+Đó chính là điều khoa học hướng tới. Đó là lý
+do tại sao.
+
+00:21:07.980 --> 00:21:11.230
+Hiện nay có rất nhiều người muốn vào ruộng. Và
+tôi sẽ cho bạn thấy, Ansa
+
+00:21:11.230 --> 00:21:14.480
+thực hiện rất nhiều việc trong môi trường một
+đối một. Tuy nhiên, bạn biết
+
+00:21:14.480 --> 00:21:17.730
+đấy, với tất cả những người đang xem video
+này, bạn có lời khuyên nào dành
+
+00:21:17.730 --> 00:21:20.980
+cho những người muốn quay lại với AI như một
+phương pháp deep learning?
+
+00:21:20.980 --> 00:21:24.730
+Đúng. Vì vậy, trước hết, có những động cơ khác
+nhau, những điều khác
+
+00:21:24.730 --> 00:21:28.480
+nhau mà bạn có thể làm. Bạn biết đấy, những gì
+bạn cần để trở thành
+
+00:21:28.480 --> 00:21:32.230
+một nhà nghiên cứu về deep learning có thể
+không giống như khi bạn
+
+00:21:32.230 --> 00:21:35.980
+muốn trở thành một kỹ sư sử dụng deep learning
+để tạo ra sản phẩm.
+
+00:21:36.980 --> 00:21:40.980
+Có một mức độ hiểu biết khác nhau cần thiết
+trong cả hai trường hợp.
+
+00:21:40.980 --> 00:21:44.980
+Nhưng trong mọi trường hợp, trong cả hai
+trường hợp, hãy luyện tập.
+
+00:21:44.980 --> 00:21:50.980
+Vì vậy, để thực sự thành thạo một môn học như
+deep learning, tất nhiên,
+
+00:21:50.980 --> 00:21:56.980
+bạn phải đọc rất nhiều. Bạn phải tự mình thực
+hành lập trình mọi thứ.
+
+00:21:57.980 --> 00:22:01.980
+Bạn biết đấy, tôi rất thường xuyên phỏng vấn
+những sinh viên đã sử dụng phần
+
+00:22:01.980 --> 00:22:05.980
+mềm. Và ngày nay, có rất nhiều, bạn biết đấy,
+phần mềm quá tốt đến mức bạn
+
+00:22:05.980 --> 00:22:09.980
+có thể, bạn biết đấy, cắm và chạy và không
+hiểu gì về việc mình đang làm,
+
+00:22:09.980 --> 00:22:13.980
+hoặc ở mức độ hời hợt đến mức khó có thể nhận
+ra khi nào nó không hoạt động.
+
+00:22:13.980 --> 00:22:16.980
+Có chuyện gì vậy? Vì vậy, thực sự cố gắng tự
+mình thực hiện
+
+00:22:16.980 --> 00:22:19.980
+mọi thứ, ngay cả khi nó không hiệu quả, nhưng
+chỉ cần đảm bảo
+
+00:22:19.980 --> 00:22:22.980
+rằng bạn thực sự hiểu những gì đang diễn ra là
+thực sự hữu ích.
+
+00:22:23.980 --> 00:22:25.980
+Và, bạn biết đấy, đang cố gắng thực hiện chính
+mình.
+
+00:22:26.980 --> 00:22:29.980
+Vì vậy, đừng chỉ sử dụng một trong các khung
+lập trình, bạn có thể làm mọi thứ chỉ
+
+00:22:29.980 --> 00:22:32.980
+trong một vài dòng mã, nhưng bạn không thực sự
+biết chuyện gì vừa xảy ra, phải không?
+
+00:22:32.980 --> 00:22:37.730
+Chính xác, chính xác. Và tôi thậm chí còn muốn
+nói nhiều hơn thế, hãy cố
+
+00:22:37.730 --> 00:22:42.480
+gắng tự mình rút ra điều đó từ những nguyên
+tắc đầu tiên, nếu bạn có thể.
+
+00:22:42.480 --> 00:22:47.230
+Vì vậy, điều đó thực sự có ích. Nhưng, vâng, ý
+tôi là, những việc thông
+
+00:22:47.230 --> 00:22:51.980
+thường bạn phải làm, như đọc, xem mã của người
+khác, viết mã của riêng bạn,
+
+00:22:51.980 --> 00:22:55.980
+thực hiện nhiều thử nghiệm, đảm bảo rằng bạn
+hiểu mọi việc bạn làm.
+
+00:22:55.980 --> 00:22:59.980
+Vì vậy, ý tôi là, đặc biệt là về phần khoa
+học, tôi đang cố gắng
+
+00:22:59.980 --> 00:23:03.980
+hỏi, tại sao tôi lại làm điều này? Tại sao mọi
+người làm điều này?
+
+00:23:03.980 --> 00:23:08.480
+Và có thể câu trả lời nằm đâu đó trong cuốn
+sách, và bạn phải đọc
+
+00:23:08.480 --> 00:23:12.980
+thêm. Nhưng sẽ tốt hơn nếu bạn thực sự có thể
+tự mình tìm ra nó.
+
+00:23:13.980 --> 00:23:18.480
+Tuyệt. Vâng. Và trên thực tế, trong số những
+thứ đã đọc, bạn, Ian
+
+00:23:18.480 --> 00:23:22.980
+Goofalo và Aaron Koval đã viết một cuốn sách
+được đánh giá rất cao.
+
+00:23:23.980 --> 00:23:29.980
+Cảm ơn bạn. Cảm ơn. Vâng, nó đang được bán rất
+nhiều. Nó hơi điên một chút. Tôi cảm
+
+00:23:29.980 --> 00:23:35.980
+thấy như có nhiều người đọc cuốn sách này hơn
+số người có thể đọc nó ngay bây giờ.
+
+00:23:35.980 --> 00:23:41.980
+Nhưng vâng, thủ tục tố tụng của hội nghị ICLR
+ICLR có lẽ là cách tốt nhất để làm điều đó.
+
+00:23:42.980 --> 00:23:46.980
+Đó là một nơi thực sự tốt đẹp và tập trung các
+giấy tờ tốt. Tất nhiên, có
+
+00:23:46.980 --> 00:23:50.980
+những bài viết thực sự hay tại NIPS, ICML và
+các hội nghị khác. Nhưng nếu
+
+00:23:50.980 --> 00:23:54.980
+bạn thực sự muốn có nhiều bài báo hay, chỉ cần
+đọc một vài tài liệu ICLR
+
+00:23:54.980 --> 00:23:58.980
+gần đây nhất, và điều đó sẽ cho bạn cái nhìn
+thực sự tốt về lĩnh vực này.
+
+00:23:59.980 --> 00:24:03.980
+Tuyệt. Vâng. Bạn có suy nghĩ gì khác khi mọi
+người hỏi ý kiến ​​bạn
+
+00:24:03.980 --> 00:24:07.980
+không? Bạn biết đấy, làm thế nào một người có
+thể giỏi deep learning?
+
+00:24:08.980 --> 00:24:14.647
+Vâng, nó phụ thuộc vào nơi bạn đến. Đừng sợ
+môn toán. Bạn biết đấy,
+
+00:24:14.647 --> 00:24:20.313
+chỉ cần phát triển trực giác, và khi đó phép
+toán sẽ thực sự trở nên
+
+00:24:20.313 --> 00:24:25.980
+dễ hiểu hơn một khi bạn hiểu rõ những gì đang
+diễn ra ở cấp độ trực quan.
+
+00:24:26.980 --> 00:24:32.230
+Và một tin tốt là bạn không cần phải có 5 năm
+học tiến sĩ để thành thạo
+
+00:24:32.230 --> 00:24:37.480
+deep learning. Bạn thực sự có thể học khá
+nhanh. Nếu bạn có nền tảng tốt về
+
+00:24:37.480 --> 00:24:42.730
+khoa machine learning tính và toán học, bạn có
+thể học đủ để sử dụng nó và
+
+00:24:42.730 --> 00:24:47.980
+xây dựng mọi thứ cũng như bắt đầu các thí
+nghiệm nghiên cứu chỉ trong vài tháng.
+
+00:24:48.980 --> 00:24:52.313
+Khoảng sáu tháng đối với những người được đào
+tạo phù hợp, có
+
+00:24:52.313 --> 00:24:55.647
+thể họ không biết gì về machine learning,
+nhưng nếu họ giỏi
+
+00:24:55.647 --> 00:24:58.980
+toán và khoa machine learning tính, thời gian
+có thể rất nhanh.
+
+00:24:59.980 --> 00:25:03.980
+Và tất nhiên, điều đó có nghĩa là bạn cần được
+đào tạo phù hợp về toán và khoa
+
+00:25:03.980 --> 00:25:07.980
+machine learning tính. Đôi khi những gì bạn
+học chỉ trong các khóa học khoa
+
+00:25:07.980 --> 00:25:11.980
+machine learning tính là không đủ. Đặc biệt,
+bạn cần một số phép toán liên tục.
+
+00:25:12.980 --> 00:25:18.980
+Đây là đại số xác suất và tối ưu hóa chẳng
+hạn.
+
+00:25:19.980 --> 00:25:20.980
+Và tính toán.
+
+00:25:21.980 --> 00:25:22.980
+Và tính toán. Vâng.
+
+00:25:23.980 --> 00:25:27.313
+Cảm ơn Joshua rất nhiều vì đã chia sẻ tất cả
+các nhận xét, hiểu biết sâu
+
+00:25:27.313 --> 00:25:30.647
+sắc và lời khuyên. Mặc dù tôi đã biết bạn từ
+lâu nhưng có nhiều chi tiết
+
+00:25:30.647 --> 00:25:33.980
+về lịch sử ban đầu của bạn mà cho đến bây giờ
+tôi vẫn chưa biết. Cảm ơn bạn.
+
+00:25:33.980 --> 00:25:40.480
+Vâng, cảm ơn Andrew, vì đã thực hiện bản ghi
+âm đặc biệt này và
+
+00:25:40.480 --> 00:25:46.980
+những gì anh đang làm. Và tôi hy vọng nó sẽ
+được nhiều người sử dụng.

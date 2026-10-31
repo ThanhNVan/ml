@@ -1,0 +1,53 @@
+Tại sao mạng nơ-ron nhân tạo lại cần
+một hàm kích hoạt phi tuyến tính? Trên thực tế, để mạng nơ-ron nhân tạo
+tính được các hàm thú vị, bạn cần chọn một hàm kích hoạt
+phi tuyến tính, hãy xem ví dụ sau. bạn cần chọn một hàm kích hoạt
+phi tuyến tính, hãy xem ví dụ sau. Tại sao chúng ta lại không bỏ hàm này đi? Bỏ hàm g? Và đặt a1 bằng z1. Hoặc là, bạn có thể nói là g
+của z bằng z, đúng chứ? Đôi khi hàm này được gọi là
+hàm kích hoạt tuyến tính. Có lẽ nó nên được gọi là
+hàm kích hoạt danh tính bởi vì nó xuất ra bất cứ
+thứ gì là đầu vào. Tương tự, ở đây, nếu
+a [2] chỉ bằng z [2] thì sao? Nếu bạn làm điều này, thì
+mô hình này chỉ tính y hoặc y-mũ dưới dạng một hàm
+tuyến tính của các tính năng đầu vào x, để có được hai phương trình đầu tiên. Nếu bạn có a [1] = z [1]= w [1]x + b và a [2] = z [2] = w [2] a [1]+ b. Sau đó, nếu bạn lấy công
+thức này của a1 và đưa vào đây, bạn thấy rằng a2 = w2 (w1x + b1), di chuyển lên một chút. Đúng chứ? Và đây là a1 + b2, và vì vậy điều này được rút gọn thành: (W2w1) x + (w2b1 + b2). Và đây chỉ là, hãy gọi là w ',b'. Và bằng w 'x + b'. Nếu bạn đã sử dụng các hàm
+kích hoạt tuyến tính hoặc cũng có thể được gọi là các
+hàm kích hoạt danh tính, thì sau đó mạng nơ ron chỉ xuất ra
+một hàm tuyến tính của đầu vào. Và sau này, chúng ta sẽ học về các mạng sâu,
+các mạng nơ-ron nhân tạo với rất nhiều lớp, nhiều lớp ẩn. Và trên thực tế nếu bạn sử dụng hàm kích
+hoạt tuyến tính hoặc là nếu bạn không có hàm kích hoạt, dù
+mạng nơ-ron của bạn có bao nhiêu lớp thì nó cũng chỉ tính một
+hàm kích hoạt tuyến tính. Vì vậy, có thể bạn cũng
+sẽ không có bất kỳ lớp ẩn nào Trong một số trường hợp đã
+được nhắc tới, hóa ra là nếu bạn có một hàm kích hoạt tuyến tính ở đây và
+một hàm sigmoid ở đây, thì mô hình này không hơn hồi quy logistic tiêu
+chuẩn mà không có lớp ẩn nào. Vì vậy, tôi sẽ không chứng minh điều đó,
+nhưng bạn có thể làm điều đó nếu bạn muốn. Bài học rút ra là một lớp ẩn
+tuyến tính thì gần như là vô dụng bởi vì thành phần của hai hàm
+tuyến tính tự nó là một hàm tuyến tính. Vậy nên, trừ khi bạn đưa một chút phi
+tuyến tính vào đó, thì bạn sẽ không phải tính thêm các hàm thú vị ngay cả khi
+bạn đi sâu hơn vào mạng. Chỉ có một nơi mà bạn có thể
+sử dụng hàm kích hoạt tuyến tính. g (x) = z. Và đó là nếu bạn đang thực hiện
+học máy về bài toán hồi quy. Nếu y là một số thực. ví dụ, nếu bạn đang muốn
+dự đoán giá nhà đất. Và y không bằng 0, 1, mà là một số
+thực, từ bất cứ đâu - tôi không biết - từ $ 0 cho tới giá của một
+ngôi nhà đắt tiền, tôi đoán vậy. Những ngôi nhà có thể có
+giá hàng triệu đô la, vì vậy có nhiều giá nhà ở trong
+tập dữ liệu của bạn. Nhưng nếu y đảm nhận
+những giá trị thực này, thì có thể có hàm kích
+hoạt tuyến tính ở đây để y mũ cũng là một số thực đi từ âm vô cực
+đến dương vô cực. Nhưng sau đó các đơn vị ẩn không
+nên sử dụng các hàm kích hoạt. Chúng có thể sử dụng ReLU hoặc tanh hoặc
+Leaky ReLU hoặc có thể một cái gì đó khác. Vì vậy, bạn thường có thể sử dụng hàm kích hoạt tuyến tính ở lớp đầu ra. Nhưng ngoài điều đó ra, sử dụng hàm
+kích hoạt tuyến tính trong lớp ẩn ngoại trừ trong một số trường hợp rất
+đặc biệt liên quan đến nén mà chúng ta sẽ nói đến sau, việc sử dụng
+hàm tuyến tính là cực kỳ hiếm. Và, tất nhiên, nếu chúng ta
+dự đoán giá nhà đất, như bạn đã thấy trong video tuần 1,
+bởi vì giá nhà đất thì không âm, Có lẽ thậm chí bạn có thể
+sử dụng hàm kích hoạt giá trị để đầu ra y mũ đều lớn hơn hoặc bằng 0. Và tôi hy vọng bạn đã hiểu tại sao
+hàm kích hoạt phi tuyến tính lại là một phần quan trọng
+trong mạng nơ-ron nhân tạo. Tiếp theo chúng ta sẽ bắt đầu
+nói về gradient descent và để chuẩn bị cho cuộc thảo luận
+của chúng ta về gradient descent trong video tiếp theo, tôi muốn chỉ bạn
+cách ước tính - cách tính độ dốc hoặc các đạo hàm của các hàm
+kích hoạt cá nhân. Nào, cùng tiếp tục trong video tiếp theo nhé!

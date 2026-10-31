@@ -1,0 +1,993 @@
+WEBVTT
+
+1
+00:00:03.945 --> 00:00:07.666
+Hãy sẵn sàng ngay bây giờ để xem cách xây dựng một
+layer của neural network convolution (CNN)
+
+2
+00:00:07.666 --> 00:00:09.223
+chúng ta sẽ xem xét một ví dụ.
+
+3
+00:00:12.432 --> 00:00:17.146
+Ta đã xem ở video trước
+cách lấy hình khối 3D và
+
+4
+00:00:17.146 --> 00:00:20.670
+convolve nó với
+2 bộ lọc khác nhau chẳng hạn.
+
+5
+00:00:21.810 --> 00:00:25.861
+Để nhận được các đầu ra 4 x 4 khác nhau
+trong ví dụ này
+
+6
+00:00:30.891 --> 00:00:35.548
+Hãy convolve với bộ lọc
+
+7
+00:00:35.548 --> 00:00:40.769
+đầu tiên với đầu ra 4 x 4 đầu tiên này và
+
+8
+00:00:40.769 --> 00:00:49.108
+convolve với bộ lọc thứ hai
+ta sẽ được đầu ra 4 x 4 khác nhau.
+
+9
+00:00:49.108 --> 00:00:55.574
+Điều cuối cùng cần làm để biến nó thành
+là một lớp neural network convolution
+
+10
+00:00:55.574 --> 00:01:00.566
+là đối với mỗi cái này
+chúng ta sẽ thêm bias (bias)
+
+11
+00:01:00.566 --> 00:01:03.980
+vì vậy đây sẽ là một số thực.
+
+12
+00:01:03.980 --> 00:01:08.840
+Và với broadcasting trong python,
+ta phải thêm cùng một số cho
+
+13
+00:01:08.840 --> 00:01:11.750
+mỗi một trong 16 phần tử này.
+
+14
+00:01:11.750 --> 00:01:16.805
+Và sau đó áp dụng phi tuyến tính cho
+minh họa biểu diễn phi tuyến tính
+
+15
+00:01:16.805 --> 00:01:23.430
+tương đối, và chúng ta được
+kết quả 4 x 4, được chứ?
+
+16
+00:01:23.430 --> 00:01:27.295
+Sau khi áp dụng bias và
+phi tuyến tính.
+
+17
+00:01:27.295 --> 00:01:31.894
+Và sau đó áp dụng cho cái ở cuối nữa
+ta thêm một bias khác, một lần nữa,
+
+18
+00:01:31.894 --> 00:01:33.154
+đây là một con số thực.
+
+19
+00:01:33.154 --> 00:01:36.473
+Vậy, ta thêm một số
+vào tất cả 16 số, và
+
+20
+00:01:36.473 --> 00:01:40.934
+sau đó áp dụng phi tuyến tính,
+phi tuyến tính thực chẳng hạn
+
+21
+00:01:40.934 --> 00:01:47.369
+Và ta sẽ nhận đưuọc
+đầu ra 4 x 4 khác
+
+22
+00:01:47.369 --> 00:01:52.461
+Sau đó, giống như chúng ta đã làm trước đây,
+nếu chúng ta lấy nó và
+
+23
+00:01:52.461 --> 00:01:59.698
+xếp chồng lên nhau như sau, thì
+chúng ta có kết quả là đầu ra 4 x 4 x 2.
+
+24
+00:01:59.698 --> 00:02:06.326
+Sau đó, trong phép tính này ta convolve
+6 x 6 x 3 với 4 x 4 x 4,
+
+25
+00:02:06.326 --> 00:02:11.303
+đây là một layer của
+một CNN
+
+26
+00:02:11.303 --> 00:02:15.634
+Vậy, để ánh xạ nó với 1 lớp
+của 4 lan truyền trong mạng CNN tiêu chuẩn
+
+27
+00:02:15.634 --> 00:02:18.832
+trong một neural network
+không chập.
+
+28
+00:02:18.832 --> 00:02:23.155
+Hãy nhớ rằng một bước trước lan truyền
+là một thứ như thế này, phải không?
+
+29
+00:02:23.155 --> 00:02:28.461
+z1 = w1 x a0, a 0 cũng = x,
+
+30
+00:02:28.461 --> 00:02:31.265
+và sau đó + b [1].
+
+31
+00:02:31.265 --> 00:02:38.121
+Và ta áp dụng phi tuyến tính
+để nhận được [1], vì vậy đó là g (z [1]).
+
+32
+00:02:38.121 --> 00:02:43.400
+Vậy, đầu vào này ở đây,
+trong phép loại suy này là [0], đây là x3.
+
+33
+00:02:44.770 --> 00:02:48.076
+Và những bộ lọc này ở đây,
+
+34
+00:02:48.076 --> 00:02:52.488
+nó đóng một vai trò tương tự như w1.
+
+35
+00:02:52.488 --> 00:02:56.377
+Và mọi người nhớ rằng trong phép toán convolution
+, ta đã lấy
+
+36
+00:02:56.377 --> 00:03:01.149
+27 số này, hay là,
+27 x 2, bởi vì ta có hai bộ lọc.
+
+37
+00:03:01.149 --> 00:03:03.900
+Ta đang lấy tất cả các số này và nhân chúng với nhau
+
+38
+00:03:03.900 --> 00:03:09.631
+Vậy, ta thực ra đang tính toán một hàm
+tuyến tính để có được ma trận 4 x 4 này.
+
+39
+00:03:09.631 --> 00:03:15.048
+Vậy, ma trận 4 x 4 đó,
+đầu ra của phép toán convolution,
+
+40
+00:03:15.048 --> 00:03:19.245
+đóng vai trò tương tự như w1 x a0.
+
+41
+00:03:19.245 --> 00:03:25.340
+Đó có thể là đầu ra của
+4 x 4 cũng như 4 x 4 đó.
+
+42
+00:03:25.340 --> 00:03:29.599
+Và sau đó, ta cần phải làm thêm
+một điều là thêm bias.
+
+43
+00:03:29.599 --> 00:03:35.138
+Vậy, trước khi áp dụng giá trị thì cái này
+
+44
+00:03:35.138 --> 00:03:38.939
+nó đóng một vai trò tương tự như z.
+
+45
+00:03:38.939 --> 00:03:43.848
+Và cuối cùng bằng cách áp dụng
+phi tuyến tính, tôi đoán nó sẽ như thế này.
+
+46
+00:03:43.848 --> 00:03:49.740
+Vì vậy, đầu ra này đóng một vai trò,
+
+47
+00:03:49.740 --> 00:03:53.390
+nó sẽ trở thành activation
+của ta ở layer tiếp theo.
+
+48
+00:03:53.390 --> 00:03:58.794
+Vậy, đây là cách ta đi từ a0 đến a1,
+theo phép toán tuyến tính và
+
+49
+00:03:58.794 --> 00:04:02.192
+sau đó convolution có tất cả các tích này.
+
+50
+00:04:02.192 --> 00:04:05.507
+Vậy, convolution áp dụng
+một phép toán tuyến tính và
+
+51
+00:04:05.507 --> 00:04:08.437
+ta có bias và
+phép toán giá trị áp dụng.
+
+52
+00:04:08.437 --> 00:04:14.107
+Và ta đã đi từ 6 x 6 x 3,
+chiều a0
+
+53
+00:04:14.107 --> 00:04:18.210
+thông qua một layer của CNN tới
+
+54
+00:04:18.210 --> 00:04:22.693
+Tôi đoán là một 4 x 4 x 2 chiều a (1).
+
+55
+00:04:22.693 --> 00:04:27.144
+Và vì vậy 6 x 6 x 3 đã tới 4 x 4 x 2, và như vậy
+
+56
+00:04:27.144 --> 00:04:30.860
+đó là một layer của mạng phức hợp.
+
+57
+00:04:33.697 --> 00:04:40.504
+Bây giờ trong ví dụ này, chúng ta có hai bộ lọc,
+, vì vậy chúng ta có hai đặc điểm
+
+58
+00:04:40.504 --> 00:04:45.270
+đó là lý do tại sao chúng ta có
+kết quả là đầu ra 4 x 4 x 2.
+
+59
+00:04:45.270 --> 00:04:49.248
+Nhưng nếu ví dụ, thay vì 2 bộ lọc
+chúng ta có 10 bộ lọc
+
+60
+00:04:49.248 --> 00:04:54.396
+thì chúng ta sẽ có kết quả
+là hình khối đầu ra 4 x 4 x 10
+
+61
+00:04:54.396 --> 00:05:00.334
+Bởi vì chúng ta sẽ dùng 10 chứ
+không phải 2, và chúng ta xếp chồng chúng
+
+62
+00:05:00.334 --> 00:05:05.598
+để tạo thành hình khối đầu ra 4 x 4 x 10,
+và đó chính là a1
+
+63
+00:05:05.598 --> 00:05:09.630
+Vậy, để chắc chắn rằng mọi người hiểu được điều này,
+Hãy cùng làm một bài tập nhé
+
+64
+00:05:09.630 --> 00:05:14.655
+Giả sử ta có 10 bộ lọc, chứ không phải
+chỉ 2 bộ lọc, có kích thước 3 x 3 x 3 và
+
+65
+00:05:14.655 --> 00:05:19.600
+1 layer của CNN,
+thì layer này có bao nhiêu tham số?
+
+66
+00:05:21.000 --> 00:05:22.984
+Vâng, hãy cùng tìm kết quả nhé
+
+67
+00:05:22.984 --> 00:05:29.439
+Mỗi bộ lọc, là một hình khối 3 x 3 x 3,
+vậy 3 x 3 x 3,
+
+68
+00:05:29.439 --> 00:05:35.318
+vậy mỗi bộ lọcc có 27 tham số, được không?
+
+69
+00:05:35.318 --> 00:05:39.800
+Có 27 số được chạy,
+và cộng với bias.
+
+70
+00:05:42.210 --> 00:05:46.818
+Vậy, đó là tham số b,
+vậy chúng ta nhận được 28 tham số.
+
+71
+00:05:50.125 --> 00:05:54.456
+Và nếu ta tưởng tượng rằng trên
+slide trước đó, chúng ta đã vẽ hai bộ lọc,
+
+72
+00:05:54.456 --> 00:05:58.329
+nhưng bây giờ tưởng tượng rằng nếu ta
+có 10 bộ lọc, nhỉ?
+
+73
+00:05:58.329 --> 00:06:01.747
+1, 2 ..., 10 bộ lọc
+
+74
+00:06:01.747 --> 00:06:06.942
+sau đó ta sẽ có tổng cộng là 28 x 10,
+
+75
+00:06:06.942 --> 00:06:10.753
+vậy sẽ có 280 tham số.
+
+76
+00:06:10.753 --> 00:06:16.316
+Có một điều khá là hay rằng, tức là
+dù hình ảnh đầu vào có lớn như thế nào
+
+77
+00:06:16.316 --> 00:06:22.051
+hình ảnh đầu vào có thể là 1.000 x 1.000 hoặc
+5.000 x 5.000,
+
+78
+00:06:22.051 --> 00:06:26.973
+nhưng số tham số của ta
+vẫn được giữ nguyên là 280.
+
+79
+00:06:26.973 --> 00:06:31.453
+Và ta có thể sử dụng 10 bộ lọc
+để phát hiện các đối tượng  như các cạnh dọc,
+
+80
+00:06:31.453 --> 00:06:35.485
+các cạnh ngang, có thể là các đặc điểm
+khác ở bất kỳ đâu, ngay cả trong một
+
+81
+00:06:35.485 --> 00:06:39.240
+hình ảnh rất lớn thì vẫn chỉ có
+rất ít tham số.
+
+82
+00:06:40.920 --> 00:06:44.410
+Vậy, có một thuộc tính của
+CNN
+
+83
+00:06:44.410 --> 00:06:48.000
+giúp cho nó ít bị overfitting
+(overfitting) hơn
+
+84
+00:06:48.000 --> 00:06:51.450
+Vậy, khi ta đã tìm hiểu về 10
+bộ phát hiện đặc điểm
+
+85
+00:06:51.450 --> 00:06:54.770
+ta có thể áp dụng nó ngay cả với những hình ảnh lớn.
+
+86
+00:06:54.770 --> 00:06:58.300
+Và số lượng tham số vẫn là
+là cố định và tương đối nhỏ,
+
+87
+00:06:58.300 --> 00:07:00.494
+như 280 trong ví dụ này.
+
+88
+00:07:00.494 --> 00:07:05.130
+Được rồi, để kết thúc video này
+ta sẽ tóm tắt ký hiệu mà chúng ta
+
+89
+00:07:05.130 --> 00:07:09.766
+sẽ sử dụng để mô tả một lớp
+để mô tả một layer chập trong
+
+90
+00:07:09.766 --> 00:07:11.980
+CNN
+
+91
+00:07:11.980 --> 00:07:14.302
+Vậy, layer l là một layer convolution,
+
+92
+00:07:14.302 --> 00:07:18.555
+Tôi sẽ sử dụng f [l]
+để biểu thị kích thước bộ lọc.
+
+93
+00:07:18.555 --> 00:07:23.219
+Trước đây chúng ta đã thấy
+các bộ lọc là f x f và
+
+94
+00:07:23.219 --> 00:07:28.163
+bây giờ [l]
+chỉ biểu thị rằng đây là
+
+95
+00:07:28.163 --> 00:07:31.074
+một bộ lọc có kích thước f x f trong layer l.
+
+96
+00:07:31.074 --> 00:07:35.767
+Và như thường lệ, [l]
+là ký hiệu mà chúng ta đang sử dụng để
+
+97
+00:07:35.767 --> 00:07:37.611
+chỉ một layer l cụ thể
+
+98
+00:07:39.812 --> 00:07:42.809
+ta sẽ sử dụng p [l] để ký hiệu
+số lượng padding
+
+99
+00:07:42.809 --> 00:07:47.363
+Và một lần nữa, số lượng padding cũng có thể được chỉ định
+chỉ bằng cách nói rằng ta muốn
+
+100
+00:07:47.363 --> 00:07:50.135
+một convolution hợp lệ,
+có nghĩa là không có padding hoặc
+
+101
+00:07:50.135 --> 00:07:53.240
+một same convolution
+có nghĩa là ta chọn phần đệm.
+
+102
+00:07:53.240 --> 00:07:57.910
+Sao cho kích thước đầu ra có cùng chiều cao và chiều rộng
+với kích thước đầu vào.
+
+103
+00:07:59.000 --> 00:08:01.590
+Và sau đó ta sẽ sử dụng
+s [l] để biểu thị bước nhảy
+
+104
+00:08:03.250 --> 00:08:09.450
+Bây giờ, đầu vào của layer
+này sẽ là một số thứ nguyên.
+
+105
+00:08:09.450 --> 00:08:18.590
+Nó sẽ là n x n x số lượng kênh
+trong layer trước.
+
+106
+00:08:18.590 --> 00:08:21.162
+Bây giờ, tôi sẽ sửa đổi
+ký hiệu này một chút.
+
+107
+00:08:21.162 --> 00:08:25.385
+Tôi sẽ cho dùng chỉ số trên [l- 1],
+
+108
+00:08:25.385 --> 00:08:29.902
+bởi vì đó là activation từ
+
+109
+00:08:29.902 --> 00:08:35.594
+layer trước, [l- 1] x nc [l- 1].
+
+110
+00:08:35.594 --> 00:08:40.966
+Và trong ví dụ thì cho đến nay, chúng ta mới chỉ
+sử dụng các hình ảnh có cùng chiều cao và chiều rộng.
+
+111
+00:08:40.966 --> 00:08:43.990
+nên trong trường hợp chiều cao và chiều rộng
+có thể khác nhau,
+
+112
+00:08:43.990 --> 00:08:48.528
+Tôi sẽ sử dụng chỉ số trên h và
+chỉ số trên w, để biểu thị chiều cao và
+
+113
+00:08:48.528 --> 00:08:51.949
+chiều rộng của đầu vào của lớp trước,
+nhé?
+
+114
+00:08:51.949 --> 00:08:56.418
+Vậy, trong layer l,
+kích thước của hình khối sẽ là
+
+115
+00:08:56.418 --> 00:09:01.134
+nh x nw x nc [l]
+
+116
+00:09:01.134 --> 00:09:05.597
+Nó chỉ nằm trong layer l, đầu vào cho
+lớp này Là bất cứ thứ gì bạn có
+
+117
+00:09:05.597 --> 00:09:09.451
+lớp trước, vì vậy
+, đó là lý do tại sao ta có [l- 1] ở đó.
+
+118
+00:09:09.451 --> 00:09:16.730
+Và sau đ, lớp này của CNN
+sẽ tự xuất ra giá trị.
+
+119
+00:09:16.730 --> 00:09:23.065
+Vậy, kết quả là nh [l] x nw [l],
+x nc [l],
+
+120
+00:09:23.065 --> 00:09:28.495
+đó sẽ là kích thước của đầu ra.
+
+121
+00:09:28.495 --> 00:09:34.941
+Và vì vậy, dù chúng ta chấp nhận
+rằng kích thước hình khối đầu ra hoặc
+
+122
+00:09:34.941 --> 00:09:40.657
+ít nhất chiều cao và
+chiều rộng tính được công thức này,
+
+123
+00:09:40.657 --> 00:09:47.971
+(n + 2p- f) / (s + 1), sau đó lấy số đó
+và làm tròn nó xuống.
+
+124
+00:09:47.971 --> 00:09:55.605
+Trong ký hiệu mới này, chúng ta có
+giá trị đầu ra nằm trong layer l,
+
+125
+00:09:55.605 --> 00:10:00.891
+sẽ là chiều
+từ layer trước,
+
+126
+00:10:00.891 --> 00:10:05.471
++ padding
+mà chúng ta đang sử dụng trong layer này,
+
+127
+00:10:05.471 --> 00:10:11.760
+trừ đi kích thước bộ lọc, chúng ta đang
+sử dụng layer l, v.v.
+
+128
+00:10:11.760 --> 00:10:16.580
+Và về mặt kỹ thuật, nó đúng với
+chiều cao, nhỉ?
+
+129
+00:10:16.580 --> 00:10:21.510
+Vậy, chiều cao của hình khối đầu ra
+được ký hiệu thế này và ta có thể tính nó
+
+130
+00:10:21.510 --> 00:10:24.680
+với công thức ở bên phải và
+nó cũng đúng với chiều rộng.
+
+131
+00:10:24.680 --> 00:10:26.670
+Vậy, ta gạch bỏ h và
+
+132
+00:10:26.670 --> 00:10:30.780
+viết w vào, sau đó vẫn dùng một công thức
+với chiều cao hoặc
+
+133
+00:10:30.780 --> 00:10:34.775
+chiều rộng được nhập vào để tính toán
+chiều cao hoặc chiều rộng của giá trị đầu ra.
+
+134
+00:10:36.570 --> 00:10:44.024
+Vì vậy, đó là mỗi quan hệ của nh [l -1] với nh [l] và
+nw [l- 1] với nw [l].
+
+135
+00:10:44.024 --> 00:10:48.105
+Giờ, số lượng kênh thì sao,
+những con số đó đến từ đâu?
+
+136
+00:10:48.105 --> 00:10:52.784
+Hãy xem nhé,
+nếu hình khối đầu ra có độ sâu này,
+
+137
+00:10:52.784 --> 00:10:57.662
+trong khi ta biết từ
+ví dụ trước rằng nó bằng
+
+138
+00:10:57.662 --> 00:11:02.167
+với số bộ lọc mà chúng ta có
+trong lớp đó, phải không?
+
+139
+00:11:02.167 --> 00:11:07.017
+Vì vậy, chúng ta có hai bộ lọc, giá trị đầu ra
+là 4 x 4 x 2, là 2 chiều.
+
+140
+00:11:07.017 --> 00:11:11.097
+Và nếu ta có 10 bộ lọc và
+hình khối phía trên của ta là 4 x 4 x 10.
+
+141
+00:11:11.097 --> 00:11:15.744
+Vậy, đây là số lượng
+kênh trong giá trị đầu ra,
+
+142
+00:11:15.744 --> 00:11:23.098
+đó chỉ là số bộ lọc mà chúng ta đang sử dụng
+trong layer này của CNN
+
+143
+00:11:23.098 --> 00:11:26.849
+Tiếp theo, còn kích thước của bộ lọc này thì sao?
+
+144
+00:11:26.849 --> 00:11:33.057
+Chà, mỗi bộ lọc sẽ là
+f [l] x f [l] x một số nào đó phải không?
+
+145
+00:11:33.057 --> 00:11:34.704
+Vậy con số cuối cùng này là gì?
+
+146
+00:11:34.704 --> 00:11:39.465
+Chà, tai thấy rằng ta cần
+convolve một hình ảnh 6 x 6 x 3,
+
+147
+00:11:39.465 --> 00:11:41.580
+với bộ lọc 3 x 3 x 3.
+
+148
+00:11:43.070 --> 00:11:48.150
+Và do đó, số lượng kênh trong bộ lọc
+của ta, phải khớp với số lượng kênh
+
+149
+00:11:48.150 --> 00:11:54.360
+trong đầu vào của ta, vì vậy số
+này phải khớp với số đó, phải không?
+
+150
+00:11:54.360 --> 00:12:02.627
+Đó là lý do tại sao mỗi bộ lọc sẽ
+thành f [l] x f [l] bởi nc [l-1].
+
+151
+00:12:02.627 --> 00:12:07.875
+Và đầu ra của layer này thường
+áp dụng bias trong phi tuyến tính,
+
+152
+00:12:07.875 --> 00:12:11.745
+sẽ là các activation
+của layer a [l] này
+
+153
+00:12:11.745 --> 00:12:15.115
+Và chúng ta đã thấy
+nó sẽ là chiều này, phải không?
+
+154
+00:12:15.115 --> 00:12:20.451
+A [l] sẽ là một hình khối 3D,
+
+155
+00:12:20.451 --> 00:12:25.556
+đó là nh [l] x nw [l] x nc [l].
+
+156
+00:12:25.556 --> 00:12:31.082
+Và khi ta đang sử dụng triển khai vectơ
+hoặc thuật toán tối ưu
+
+157
+00:12:31.082 --> 00:12:36.891
+gradient descent hoặc thuật toán tối ưu gradient descent mini,
+thì ta xuất ra A [l],
+
+158
+00:12:36.891 --> 00:12:41.387
+là tập hợp m activation,
+nếu ta có m ví dụ.
+
+159
+00:12:41.387 --> 00:12:48.275
+Vậy, nó sẽ là m x nh [l],
+x nw [l] bởi nc [l], nhỉ?
+
+160
+00:12:48.275 --> 00:12:51.375
+Giả sử ta đang sử dụng
+thuật toán tối ưu gradient descent
+
+161
+00:12:51.375 --> 00:12:55.999
+trong kích thước lập trình,
+nó sẽ là thứ tự của các biến.
+
+162
+00:12:55.999 --> 00:12:59.962
+Và chúng ta có chỉ mục và
+ví dụ
+
+163
+00:12:59.962 --> 00:13:02.384
+và sau đó là ba biến này.
+
+164
+00:13:02.384 --> 00:13:07.618
+Tiếp theo, còn trọng số hoặc tham số
+thì sao, hay tham số w thì sao?
+
+165
+00:13:07.618 --> 00:13:10.264
+Vâng, chúng ta đã thấy
+kích thước bộ lọc là gì.
+
+166
+00:13:10.264 --> 00:13:16.258
+Vậy, các bộ lọc sẽ
+là f [l] x f [l] x nc [l- 1],
+
+167
+00:13:16.258 --> 00:13:20.230
+nhưng đó là chiều của một bộ lọc.
+
+168
+00:13:20.230 --> 00:13:22.247
+Chúng ta có bao nhiêu bộ lọc?
+
+169
+00:13:22.247 --> 00:13:25.097
+Đây là tổng số bộ lọc,
+nên
+
+170
+00:13:25.097 --> 00:13:30.029
+trọng số thực sự của tất cả các bộ lọc
+cộng lại với nhau sẽ có chiều là tích của phần này
+
+171
+00:13:30.029 --> 00:13:33.513
+nhân với
+tổng số bộ lọc, phải không?
+
+172
+00:13:33.513 --> 00:13:38.625
+Vì điều này,
+Số lượng cuối cùng là số
+
+173
+00:13:38.625 --> 00:13:43.750
+bộ lọc, trong layer l.
+
+174
+00:13:45.680 --> 00:13:48.710
+Và cuối cùng,
+ta có các tham số bias và
+
+175
+00:13:48.710 --> 00:13:54.100
+ta có một tham số bias,
+một số thực cho mỗi bộ lọc.
+
+176
+00:13:54.100 --> 00:13:57.970
+Vậy, ta sẽ có,
+bias sẽ có số biến như thế này,
+
+177
+00:13:57.970 --> 00:14:00.810
+nó chỉ là một vector của chiều này.
+
+178
+00:14:00.810 --> 00:14:05.052
+Mặc dù sau này chúng ta sẽ
+thấy rằng code sẽ
+
+179
+00:14:05.052 --> 00:14:09.813
+thuận tiện hơn khi được biểu diễn
+dưới dạng 1 x 1 x 1 x nc [l]
+
+180
+00:14:09.813 --> 00:14:14.790
+ma trận bốn chiều, hoặc
+tensor bốn chiều.
+
+181
+00:14:16.430 --> 00:14:19.408
+Vậy, tôi biết trong video có rất nhiều ký hiệu, và
+
+182
+00:14:19.408 --> 00:14:23.303
+đây là quy ước tôi sẽ thường xuyên sử dụng
+
+183
+00:14:23.303 --> 00:14:27.498
+Tôi chỉ muốn đề cập đến trường hợp ta tìm kiếm
+trên mạng và nhìn vào code nguồn mở.
+
+184
+00:14:27.498 --> 00:14:32.311
+Không có một quy ước tiêu chuẩn
+hoàn toàn phổ biến nào về thứ tự của
+
+185
+00:14:32.311 --> 00:14:34.260
+chiều cao, chiều rộng và kênh.
+
+186
+00:14:34.260 --> 00:14:39.142
+Vậy, nếu ta tìm kiếm côde nguồn trên GitHub hoặc
+triển khai code nguồn mở này,
+
+187
+00:14:39.142 --> 00:14:43.873
+ta sẽ thấy rằng một số tác giả sử dụng thứ tự
+này, đó là đầu tiên đặt
+
+188
+00:14:43.873 --> 00:14:48.631
+kênh đầu tiên và đôi khi ta
+thấy thứ tự khác của các biến.
+
+189
+00:14:48.631 --> 00:14:52.154
+Và trên thực tế, trong một số framework phổ biến,
+thực ra trong nhiều framework phổ biến
+
+190
+00:14:52.154 --> 00:14:54.155
+thực ra có một biến hoặc
+một tham số.
+
+191
+00:14:54.155 --> 00:14:57.652
+Tại sao ta nên liệt kê
+số kênh trước tiên, hoặc
+
+192
+00:14:57.652 --> 00:15:02.000
+liệt kê số kênh cuối cùng
+khi lập chỉ mục vào các hình khối này.
+
+193
+00:15:02.000 --> 00:15:08.137
+Tôi nghĩ cả hai quy ước này đều ổn
+, miễn là ta nhất quán.
+
+194
+00:15:08.137 --> 00:15:13.049
+Và rất tiếc có thể đây là
+một phần của ký hiệu mà vẫn
+
+195
+00:15:13.049 --> 00:15:17.772
+không có sự đồng thuận trong
+tài liệu học tập sâu nhưng
+
+196
+00:15:17.772 --> 00:15:21.752
+Tôi sẽ sử dụng quy ước này cho
+các video của mình.
+
+197
+00:15:24.681 --> 00:15:30.769
+Tức là ta liệt kê chiều cao và chiều rộng và
+sau đó là số kênh cuối cùng.
+
+198
+00:15:30.769 --> 00:15:34.327
+Vậy, tôi biết chắc chắn là có rất nhiều
+ký hiệu mới ta có thể sử dụng, nhưng ta
+
+199
+00:15:34.327 --> 00:15:38.027
+thấy wow, đó là một ký hiệu dài,
+làm thế nào để tôi nhớ tất cả chúng?
+
+200
+00:15:38.027 --> 00:15:41.994
+Đừng lo lắng về điều đó, ta không cần
+nhớ tất cả ký hiệu này, và
+
+201
+00:15:41.994 --> 00:15:46.036
+qua các bài tập trong tuần này mọi
+người sẽ thấy quen các ký hiệu hơn
+
+202
+00:15:46.036 --> 00:15:49.116
+Nhưng điểm mấu chốt tôi hy vọng
+mọi người hiểu được qua video này,
+
+203
+00:15:49.116 --> 00:15:52.694
+là cách hoạt động của một layer của CNN
+
+204
+00:15:52.694 --> 00:15:57.006
+Và các phép tính liên quan đến việc lấy
+activation của một layer và
+
+205
+00:15:57.006 --> 00:16:00.052
+ánh xạ nó đến các activation
+của layer tiếp theo.
+
+206
+00:16:00.052 --> 00:16:04.063
+Và tiếp theo, bây giờ ta đã biết cách một layer
+của CNN hoạt động,
+
+207
+00:16:04.063 --> 00:16:07.740
+hãy xếp chồng một loạt những thứ này lại với nhau
+để tạo thành một neural network
+
+208
+00:16:07.740 --> 00:16:09.040
+tổng hợp sâu hơn
+
+209
+00:16:09.040 --> 00:16:10.200
+Ta sẽ làm điều đó trong video tiếp theo

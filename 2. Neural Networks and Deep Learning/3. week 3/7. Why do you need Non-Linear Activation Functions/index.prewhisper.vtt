@@ -1,0 +1,199 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:06.311
+Tại sao mạng nơ-ron nhân tạo lại cần một hàm kích hoạt phi tuyến tính?
+
+00:00:06.311 --> 00:00:11.990
+Trên thực tế, để mạng nơ-ron nhân tạo tính được các hàm thú vị,
+
+00:00:11.990 --> 00:00:17.850
+bạn cần chọn một hàm kích hoạt phi tuyến tính, hãy xem ví dụ sau.
+
+00:00:17.850 --> 00:00:23.710
+bạn cần chọn một hàm kích hoạt phi tuyến tính, hãy xem ví dụ sau.
+
+00:00:23.710 --> 00:00:27.406
+Tại sao chúng ta lại không bỏ hàm này đi?
+
+00:00:27.406 --> 00:00:28.217
+Bỏ hàm g?
+
+00:00:28.217 --> 00:00:29.840
+Và đặt a1 bằng z1.
+
+00:00:29.840 --> 00:00:34.528
+Hoặc là, bạn có thể nói là g của z bằng z, đúng chứ?
+
+00:00:34.528 --> 00:00:39.306
+Đôi khi hàm này được gọi là hàm kích hoạt tuyến tính.
+
+00:00:39.306 --> 00:00:47.149
+Có lẽ nó nên được gọi là hàm kích hoạt danh tính bởi vì nó xuất ra bất cứ thứ gì là đầu
+
+00:00:47.149 --> 00:00:47.509
+vào.
+
+00:00:47.509 --> 00:00:52.017
+Tương tự, ở đây, nếu a [2] chỉ bằng z [2] thì sao?
+
+00:00:52.017 --> 00:00:59.860
+Nếu bạn làm điều này, thì mô hình này chỉ tính y hoặc y-mũ dưới dạng một hàm tuyến tính
+
+00:00:59.860 --> 00:01:05.810
+của các tính năng đầu vào x, để có được hai phương trình đầu tiên.
+
+00:01:05.810 --> 00:01:12.210
+Nếu bạn có a [1] = z [1]= w [1]x + b và a [2] = z [2] = w [2] a [1]+ b.
+
+00:01:12.210 --> 00:01:20.324
+Sau đó, nếu bạn lấy công thức này của a1 và đưa vào đây, bạn thấy rằng a2 = w2 (w1x + b1),
+
+00:01:20.324 --> 00:01:22.397
+di chuyển lên một chút.
+
+00:01:22.397 --> 00:01:23.209
+Đúng chứ?
+
+00:01:23.209 --> 00:01:30.511
+Và đây là a1 + b2, và vì vậy điều này được rút gọn thành: (W2w1) x + (w2b1 + b2).
+
+00:01:30.511 --> 00:01:33.486
+Và đây chỉ là, hãy gọi là w ',b'.
+
+00:01:33.486 --> 00:01:35.109
+Và bằng w 'x + b'.
+
+00:01:35.109 --> 00:01:43.132
+Nếu bạn đã sử dụng các hàm kích hoạt tuyến tính hoặc cũng có thể được gọi là các hàm kích
+
+00:01:43.132 --> 00:01:50.524
+hoạt danh tính, thì sau đó mạng nơ ron chỉ xuất ra một hàm tuyến tính của đầu vào.
+
+00:01:50.524 --> 00:01:58.457
+Và sau này, chúng ta sẽ học về các mạng sâu, các mạng nơ-ron nhân tạo với rất nhiều lớp,
+
+00:01:58.457 --> 00:01:59.629
+nhiều lớp ẩn.
+
+00:01:59.629 --> 00:02:07.292
+Và trên thực tế nếu bạn sử dụng hàm kích hoạt tuyến tính hoặc là nếu bạn không có hàm
+
+00:02:07.292 --> 00:02:15.316
+kích hoạt, dù mạng nơ-ron của bạn có bao nhiêu lớp thì nó cũng chỉ tính một hàm kích hoạt
+
+00:02:15.316 --> 00:02:16.307
+tuyến tính.
+
+00:02:16.307 --> 00:02:23.970
+Vì vậy, có thể bạn cũng sẽ không có bất kỳ lớp ẩn nào Trong một số trường hợp đã được
+
+00:02:23.970 --> 00:02:31.723
+nhắc tới, hóa ra là nếu bạn có một hàm kích hoạt tuyến tính ở đây và một hàm sigmoid ở
+
+00:02:31.723 --> 00:02:39.115
+đây, thì mô hình này không hơn hồi quy logistic tiêu chuẩn mà không có lớp ẩn nào.
+
+00:02:39.115 --> 00:02:46.598
+Vì vậy, tôi sẽ không chứng minh điều đó, nhưng bạn có thể làm điều đó nếu bạn muốn.
+
+00:02:46.598 --> 00:02:54.531
+Bài học rút ra là một lớp ẩn tuyến tính thì gần như là vô dụng bởi vì thành phần của hai
+
+00:02:54.531 --> 00:02:58.407
+hàm tuyến tính tự nó là một hàm tuyến tính.
+
+00:02:58.407 --> 00:03:03.456
+Vậy nên, trừ khi bạn đưa một chút phi tuyến tính vào đó,
+
+00:03:03.456 --> 00:03:10.938
+thì bạn sẽ không phải tính thêm các hàm thú vị ngay cả khi bạn đi sâu hơn vào mạng.
+
+00:03:10.938 --> 00:03:16.528
+Chỉ có một nơi mà bạn có thể sử dụng hàm kích hoạt tuyến tính.
+
+00:03:16.528 --> 00:03:17.429
+g (x) = z.
+
+00:03:17.429 --> 00:03:22.838
+Và đó là nếu bạn đang thực hiện học máy về bài toán hồi quy.
+
+00:03:22.838 --> 00:03:24.731
+Nếu y là một số thực.
+
+00:03:24.731 --> 00:03:28.788
+ví dụ, nếu bạn đang muốn dự đoán giá nhà đất.
+
+00:03:28.788 --> 00:03:32.394
+Và y không bằng 0, 1, mà là một số thực,
+
+00:03:32.394 --> 00:03:39.426
+từ bất cứ đâu - tôi không biết - từ $ 0 cho tới giá của một ngôi nhà đắt tiền,
+
+00:03:39.426 --> 00:03:40.598
+tôi đoán vậy.
+
+00:03:40.598 --> 00:03:44.745
+Những ngôi nhà có thể có giá hàng triệu đô la,
+
+00:03:44.745 --> 00:03:49.433
+vì vậy có nhiều giá nhà ở trong tập dữ liệu của bạn.
+
+00:03:49.433 --> 00:03:53.399
+Nhưng nếu y đảm nhận những giá trị thực này,
+
+00:03:53.399 --> 00:04:01.332
+thì có thể có hàm kích hoạt tuyến tính ở đây để y mũ cũng là một số thực đi từ âm vô cực
+
+00:04:01.332 --> 00:04:02.865
+đến dương vô cực.
+
+00:04:02.865 --> 00:04:08.544
+Nhưng sau đó các đơn vị ẩn không nên sử dụng các hàm kích hoạt.
+
+00:04:08.544 --> 00:04:16.027
+Chúng có thể sử dụng ReLU hoặc tanh hoặc Leaky ReLU hoặc có thể một cái gì đó khác.
+
+00:04:16.027 --> 00:04:22.518
+Vì vậy, bạn thường có thể sử dụng hàm kích hoạt tuyến tính ở lớp đầu ra.
+
+00:04:22.518 --> 00:04:30.541
+Nhưng ngoài điều đó ra, sử dụng hàm kích hoạt tuyến tính trong lớp ẩn ngoại trừ trong một
+
+00:04:30.541 --> 00:04:37.032
+số trường hợp rất đặc biệt liên quan đến nén mà chúng ta sẽ nói đến sau,
+
+00:04:37.032 --> 00:04:40.908
+việc sử dụng hàm tuyến tính là cực kỳ hiếm.
+
+00:04:40.908 --> 00:04:48.481
+Và, tất nhiên, nếu chúng ta dự đoán giá nhà đất, như bạn đã thấy trong video tuần 1,
+
+00:04:48.481 --> 00:04:51.366
+bởi vì giá nhà đất thì không âm,
+
+00:04:51.366 --> 00:04:59.209
+Có lẽ thậm chí bạn có thể sử dụng hàm kích hoạt giá trị để đầu ra y mũ đều lớn hơn hoặc
+
+00:04:59.209 --> 00:04:59.840
+bằng 0.
+
+00:04:59.840 --> 00:05:07.413
+Và tôi hy vọng bạn đã hiểu tại sao hàm kích hoạt phi tuyến tính lại là một phần quan
+
+00:05:07.413 --> 00:05:10.387
+trọng trong mạng nơ-ron nhân tạo.
+
+00:05:10.387 --> 00:05:18.231
+Tiếp theo chúng ta sẽ bắt đầu nói về gradient descent và để chuẩn bị cho cuộc thảo luận
+
+00:05:18.231 --> 00:05:23.189
+của chúng ta về gradient descent trong video tiếp theo,
+
+00:05:23.189 --> 00:05:31.122
+tôi muốn chỉ bạn cách ước tính - cách tính độ dốc hoặc các đạo hàm của các hàm kích hoạt
+
+00:05:31.122 --> 00:05:31.843
+cá nhân.
+
+00:05:31.843 --> 00:05:35.900
+Nào, cùng tiếp tục trong video tiếp theo nhé!

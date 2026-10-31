@@ -1,0 +1,521 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.970
+Vì vậy, tại sao ResNets hoạt động tốt như vậy?
+
+2
+00:00:02.970 --> 00:00:07.830
+Hãy xem qua một ví dụ minh họa tại sao ResNets hoạt động rất tốt,
+
+3
+00:00:07.830 --> 00:00:12.390
+ít nhất là về cách mọi người có thể làm cho mạng sâu hơn và sâu hơn mà không
+
+4
+00:00:12.390 --> 00:00:17.540
+ảnh hưởng đến khả năng hoạt động tốt với training set của chúng
+
+5
+00:00:17.540 --> 00:00:22.185
+Và hy vọng như mọi người đã hiểu từ khóa học thứ 3 trong chuỗi này,
+
+6
+00:00:22.185 --> 00:00:25.845
+hoạt động tốt với training set thường là điều kiện tiên quyết để làm
+
+7
+00:00:25.845 --> 00:00:29.800
+tốt holdout (một loại kiểm tra độ chính xác của máy) hoặc về độ sâu hoặc trên các test set.
+
+8
+00:00:29.800 --> 00:00:33.570
+Vì vậy, ít nhất có thể huấn luyện ResNet để hoạt động tốt
+
+9
+00:00:33.570 --> 00:00:38.650
+với training set là một bước đầu tiên để đạt được điều đó. Hãy xem một ví dụ.
+
+10
+00:00:38.650 --> 00:00:43.910
+Những gì chúng ta thấy trong video trước là nếu mọi người khiến mạng sâu hơn
+
+11
+00:00:43.910 --> 00:00:49.195
+nó có thể làm tổn hại đến khả năng của mọi người trong việc huấn luyện mạng để hoạt động tốt với training set.
+
+12
+00:00:49.195 --> 00:00:53.420
+Và đó là lý do tại sao đôi khi mọi người không muốn có một mạng quá sâu.
+
+13
+00:00:53.420 --> 00:00:58.555
+Nhưng điều này không đúng hoặc ít nhất là không đúng lắm khi mọi người huấn luyện một ResNet.
+
+14
+00:00:58.555 --> 00:01:01.365
+Hãy xem xét một ví dụ.
+
+15
+00:01:01.365 --> 00:01:04.980
+Giả sử mọi người có X nạp vào
+
+16
+00:01:04.980 --> 00:01:10.365
+một số mạng nơron lớn và chỉ xuất ra một activation a[l].
+
+17
+00:01:10.365 --> 00:01:14.080
+Ví dụ, giả sử rằng mọi người sẽ sửa đổi
+
+18
+00:01:14.080 --> 00:01:19.150
+neural network (NN) để làm cho nó sâu hơn một chút.
+
+19
+00:01:19.150 --> 00:01:20.755
+Vì vậy, hãy sử dụng cùng một Big NN,
+
+20
+00:01:20.755 --> 00:01:23.035
+và đầu ra này là a[l],
+
+21
+00:01:23.035 --> 00:01:28.240
+và chúng ta sẽ thêm một vài layer bổ sung vào mạng này
+
+22
+00:01:28.240 --> 00:01:33.635
+hãy thêm một layer ở đó và một layer khác ở đó.
+
+23
+00:01:33.635 --> 00:01:38.195
+Và chỉ cho đầu ra a[l + 2].
+
+24
+00:01:38.195 --> 00:01:40.930
+Chỉ chúng ta hãy biến điều này thành một khối ResNet,
+
+25
+00:01:40.930 --> 00:01:46.060
+một khối dư có thêm lối tắt
+
+26
+00:01:46.060 --> 00:01:47.380
+Để bàn luận thêm
+
+27
+00:01:47.380 --> 00:01:52.690
+giả sử trong toàn bộ mạng này, chúng ta đang sử dụng các hàm value activation
+
+28
+00:01:52.690 --> 00:01:58.330
+Vì vậy, tất cả các activation sẽ lớn hơn hoặc bằng 0,
+
+29
+00:01:58.330 --> 00:02:01.955
+có thể với ngoại lệ của đầu vào X.
+
+30
+00:02:01.955 --> 00:02:07.685
+Đúng. Bởi vì các con số của đầu ra value activation bằng 0 hoặc là số dương.
+
+31
+00:02:07.685 --> 00:02:10.510
+Bây giờ, hãy xem a[l + 2] sẽ là gì.
+
+32
+00:02:10.510 --> 00:02:15.025
+Để sao chép biểu thức từ video trước,
+
+33
+00:02:15.025 --> 00:02:21.715
+a [l + 2] sẽ là giá trị áp dụng cho z [l + 2],
+
+34
+00:02:21.715 --> 00:02:26.505
+và sau đó cộng với a[l], phép cộng a[l]
+
+35
+00:02:26.505 --> 00:02:31.750
+đến từ vòng tắt từ kết nối tắt mà chúng ta vừa thêm.
+
+36
+00:02:31.750 --> 00:02:33.300
+Và nếu chúng ta mở rộng nó,
+
+37
+00:02:33.300 --> 00:02:34.710
+giá trị này bằng g (w [l + 2],
+
+38
+00:02:34.710 --> 00:02:43.570
+x a ([l + 1]), + b [l + 2].
+
+39
+00:02:43.570 --> 00:02:48.810
+Vì vậy, z [l + 2] bằng phần này, cộng với a [l].
+
+40
+00:02:48.810 --> 00:02:53.450
+Bây giờ hãy chú ý điều này, nếu mọi người đang sử dụng regularization L2 (L2 regularisation), (trọng số tiêu biến)
+
+41
+00:02:53.450 --> 00:02:58.435
+điều đó sẽ có xu hướng giảm giá trị của w [l + 2].
+
+42
+00:02:58.435 --> 00:03:02.540
+Nếu mọi người đang áp dụng trọng số tiêu biến (weight decay) với B, nó cũng sẽ giảm điều này mặc dù
+
+43
+00:03:02.540 --> 00:03:06.665
+Tôi nghĩ rằng trong thực tế đôi khi mọi người sẽ áp dụng trọng số tiêu biến với B và đôi khi thì không
+
+44
+00:03:06.665 --> 00:03:12.050
+nhưng W thực sự là số hạng chủ chốt cần chú ý ở đây.
+
+45
+00:03:12.050 --> 00:03:16.175
+Và nếu w [l + 2] bằng 0.
+
+46
+00:03:16.175 --> 00:03:20.975
+Và để bàn bạc thêm thì giả sử, rằng B cũng bằng 0,
+
+47
+00:03:20.975 --> 00:03:25.820
+sau đó các số hạng này biến mất vì chúng bằng 0,
+
+48
+00:03:25.820 --> 00:03:27.995
+và sau đó là g (a[l]),
+
+49
+00:03:27.995 --> 00:03:36.805
+giá trị này chỉ bằng a[l] bởi vì chúng ta giả định rằng chúng ta đang sử dụng hàm value activation
+
+50
+00:03:36.805 --> 00:03:39.635
+Và do đó, tất cả các activation đều là âm và do đó,
+
+51
+00:03:39.635 --> 00:03:43.930
+g (a [l]) là giá trị áp dụng cho đại lượng không âm,
+
+52
+00:03:43.930 --> 00:03:46.800
+vì vậy mọi người chỉ cần lấy, a[l].
+
+53
+00:03:46.800 --> 00:03:56.270
+Vì vậy, điều này cho thấy hàm identity rất dễ học đối với khối dư
+
+54
+00:03:56.270 --> 00:04:03.515
+Và thật dễ dàng có được a[l + 2] bằng a[l] vì kết nối tắt này.
+
+55
+00:04:03.515 --> 00:04:08.060
+Và điều đó có nghĩa là thêm hai layer này vào neural network của mọi người,
+
+56
+00:04:08.060 --> 00:04:11.885
+nó không thực sự làm tổn hại đến khả năng của neural network
+
+57
+00:04:11.885 --> 00:04:16.205
+cũng như mạng đơn giản hơn không có hai layer bổ sung này,
+
+58
+00:04:16.205 --> 00:04:20.930
+bởi vì việc học hàm identity khá dễ dàng với nó, chỉ cần sao chép
+
+59
+00:04:20.930 --> 00:04:26.305
+a [l] vào a[l + 2] bằng cách sử dụng thêm 2 layer này.
+
+60
+00:04:26.305 --> 00:04:30.250
+Và đây là lý do tại sao thêm hai layer bổ sung,
+
+61
+00:04:30.250 --> 00:04:34.910
+thêm khối dư này vào một nơi nào đó trong
+
+62
+00:04:34.910 --> 00:04:40.392
+phần giữa hoặc phần cuối của neural network lớn này không ảnh hưởng đến hiệu suất.
+
+63
+00:04:40.392 --> 00:04:43.910
+Nhưng tất nhiên mục tiêu của chúng ta không chỉ là không ảnh hưởng đến hiệu suất,
+
+64
+00:04:43.910 --> 00:04:48.650
+mà là để tăng hiệu suất và vì vậy mọi người có thể tưởng tượng rằng nếu tất cả
+
+65
+00:04:48.650 --> 00:04:51.770
+các unit ẩn này, nếu chúng thực sự học được điều gì đó hữu ích thì
+
+66
+00:04:51.770 --> 00:04:55.745
+có thể mọi người có thể làm tốt hơn việc học hàm identity.
+
+67
+00:04:55.745 --> 00:05:00.970
+Và vấn đề xảy ra trong các mạng rất sâu mà không có
+
+68
+00:05:00.970 --> 00:05:03.650
+phần dư của các kết nối tắt là
+
+69
+00:05:03.650 --> 00:05:06.555
+khi mọi người làm cho mạng ngày càng sâu hơn,
+
+70
+00:05:06.555 --> 00:05:10.865
+nó thực sự rất khó khăn để chọn các tham số để học
+
+71
+00:05:10.865 --> 00:05:14.570
+ngay cả hàm identity, đó là lý do tại sao rất nhiều layer
+
+72
+00:05:14.570 --> 00:05:19.025
+lại khiến cho kết quả của mọi người tồi tệ hơn chứ không làm cho kết quả của mọi người tốt hơn.
+
+73
+00:05:19.025 --> 00:05:22.430
+Và tôi nghĩ lý do chính mà mạng thặng dư hoạt động ổn là
+
+74
+00:05:22.430 --> 00:05:26.360
+các layer bổ sung này rất dễ học
+
+75
+00:05:26.360 --> 00:05:30.260
+hàm identity đến mức mà mọi người được đảm bảo rằng nó không gây hại đến
+
+76
+00:05:30.260 --> 00:05:35.450
+hiệu suất và thậm chíi mọi người có thể gặp may mắn và hiệu suất còn tốt lên.
+
+77
+00:05:35.450 --> 00:05:39.530
+Ít nhất thì đi từ một cơ sở tốt, không làm ảnh hưởng đến
+
+78
+00:05:39.530 --> 00:05:44.435
+hiệu suất thì dễ dàng hơn và từ đó thuật toán gradient descent sẽ cải thiện giải pháp tốt hơn.
+
+79
+00:05:44.435 --> 00:05:46.450
+Vậy, một chi tiết nữa trong mạng thặng dư
+
+80
+00:05:46.450 --> 00:05:50.570
+đáng thảo luận là thông qua phiên bản này,
+
+81
+00:05:50.570 --> 00:05:54.995
+chúng ta đang giả định rằng z [l + 2] và a [l] có cùng kích thước
+
+82
+00:05:54.995 --> 00:06:01.175
+Và vì vậy, mọi người thấy trong ResNet, các phép chập giống nhau được sử dụng nhiều lần
+
+83
+00:06:01.175 --> 00:06:03.665
+để kích thước của nó
+
+84
+00:06:03.665 --> 00:06:08.280
+bằng kích thước, tôi đoán là của layer này hoặc layer kết quả.
+
+85
+00:06:08.280 --> 00:06:12.450
+Để chúng ta thực sự có thể thực hiện kết nối vòng tròn ngắn này,
+
+86
+00:06:12.450 --> 00:06:15.615
+vì cùng một phép chập bảo toàn các kích thước,
+
+87
+00:06:15.615 --> 00:06:19.205
+và do đó giúp mọi người thực hiện vòng tròn ngắn này
+
+88
+00:06:19.205 --> 00:06:25.575
+dễ dàng hơn và sau đó thực hiện phép cộng hai vectơ có kích thước bằng nhau.
+
+89
+00:06:25.575 --> 00:06:30.635
+Trong trường hợp đầu vào và đầu ra có kích thước khác nhau, ví dụ:
+
+90
+00:06:30.635 --> 00:06:36.420
+nếu cái này là 128 chiều và Z hay do đó,
+
+91
+00:06:36.420 --> 00:06:40.660
+a [l+2] là 256 chiều chẳng hạn
+
+92
+00:06:40.660 --> 00:06:46.640
+Mọi người sẽ thêm một ma trận bổ sung và sau đó gọi Ws đó ở đó,
+
+93
+00:06:46.640 --> 00:06:54.905
+và Ws trong ví dụ này sẽ là ma trận a[l] với kích thước 256 x 128
+
+94
+00:06:54.905 --> 00:06:59.930
+Vì vậy, Ws x a [l] thành 256 chiều và
+
+95
+00:06:59.930 --> 00:07:01.550
+phép cộng này là giữa
+
+96
+00:07:01.550 --> 00:07:05.300
+hai vectơ 256 chiều và mọi người có thể làm một số điều với Ws,
+
+97
+00:07:05.300 --> 00:07:07.940
+nó có thể là một ma trận các tham số mà chúng ta đã học được,
+
+98
+00:07:07.940 --> 00:07:10.490
+nó có thể là một ma trận cố định chỉ triển khai
+
+99
+00:07:10.490 --> 00:07:13.220
+0 padding, nhận a[l] và 0
+
+100
+00:07:13.220 --> 00:07:20.000
+padding, nó trở thành 256 chiều và tôi đoán, một trong hai phiên bản đó có thể hoạt động.
+
+101
+00:07:20.000 --> 00:07:23.650
+Vì vậy, cuối cùng, chúng ta hãy xem xét ResNets trên hình ảnh.
+
+102
+00:07:23.650 --> 00:07:27.870
+Đây là những hình ảnh tôi lấy từ nghiên cứu của Harlow.
+
+103
+00:07:27.870 --> 00:07:35.465
+Đây là một ví dụ về mạng thuần túy và trong mạng đó mọi người nhập một hình ảnh
+
+104
+00:07:35.465 --> 00:07:39.155
+và sau đó có một số layer convolution
+
+105
+00:07:39.155 --> 00:07:44.300
+và cuối cùng mọi người có đầu ra softmax.
+
+106
+00:07:44.300 --> 00:07:46.010
+Để biến nó thành ResNet,
+
+107
+00:07:46.010 --> 00:07:50.945
+mọi người thêm những kết nối tắt bổ sung đó.
+
+108
+00:07:50.945 --> 00:07:53.620
+Và tôi sẽ chỉ đề cập đến một vài chi tiết,
+
+109
+00:07:53.620 --> 00:07:57.744
+có rất nhiều convolution 3 x 3 ở đây và hầu hết trong số này là
+
+110
+00:07:57.744 --> 00:08:01.435
+tích chaajpj 3 x 3 giống nhau
+
+111
+00:08:01.435 --> 00:08:05.990
+và đó là lý do tại sao mọi người đang thêm vectơ đặc điểm có kích thước bằng nhau.
+
+112
+00:08:05.990 --> 00:08:08.360
+Vì vậy, thay vì một layer được kết nối đầy đủ,
+
+113
+00:08:08.360 --> 00:08:11.820
+đây thực ra là các layer convolution nhưng vì các phép chập giống nhau,
+
+114
+00:08:11.820 --> 00:08:21.360
+các kích thước được giữ nguyên và do đó phép cộng z [l + 2] cộng với a [l] là hợp lý
+
+115
+00:08:21.360 --> 00:08:25.085
+Và tương tự như những gì mọi người đã thấy trong rất nhiều NetRes trước đây,
+
+116
+00:08:25.085 --> 00:08:29.540
+mọi người có một loạt các layer convolution và sau đó có
+
+117
+00:08:29.540 --> 00:08:34.410
+thỉnh thoảng các pooling layer hoặc có thể có pool và pool
+
+118
+00:08:34.410 --> 00:08:36.170
+Và bất cứ khi nào một trong những điều đó xảy ra,
+
+119
+00:08:36.170 --> 00:08:42.200
+thì mọi người cần điều chỉnh kích thước mà chúng ta đã thấy trên slide trước.
+
+120
+00:08:42.200 --> 00:08:44.815
+mọi người có thể làm với ma trận Ws,
+
+121
+00:08:44.815 --> 00:08:46.955
+và cũng khá phổ biến trong các mạng này,
+
+122
+00:08:46.955 --> 00:08:50.724
+mọi người có 1 pool
+
+123
+00:08:50.724 --> 00:08:52.220
+và cuối cùng thì bây giờ mọi người có
+
+124
+00:08:52.220 --> 00:08:56.915
+một layer được kết nối đầy đủ sau đó đưa ra dự đoán bằng cách sử dụng softmax.
+
+125
+00:08:56.915 --> 00:08:58.340
+Vậy, video về ResNet đến đây là kết thúc.
+
+126
+00:08:58.340 --> 00:09:02.060
+Tiếp theo, có một ý tưởng rất thú vị
+
+127
+00:09:02.060 --> 00:09:05.955
+đằng sau việc sử dụng neural network với bộ lọc 1 x 1,
+
+128
+00:09:05.955 --> 00:09:07.490
+phép chập 1 x 1
+
+129
+00:09:07.490 --> 00:09:10.280
+Vì vậy, người ta có thể sử dụng phép chập 1 x 1
+
+130
+00:09:10.280 --> 00:09:12.220
+Chúng ta hãy xem xét ở video tiếp theo nhé.

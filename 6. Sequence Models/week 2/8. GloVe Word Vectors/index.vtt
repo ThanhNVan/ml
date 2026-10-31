@@ -1,0 +1,396 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.320
+You learn about several algorithms for computing word embeddings.
+
+00:00:04.320 --> 00:00:10.560
+Another algorithm that has some momentum in the NLP community is the GloVe algorithm.
+
+00:00:10.560 --> 00:00:14.560
+This is not used as much as the Word2Vec or the Skipped Grand Models,
+
+00:00:14.560 --> 00:00:19.920
+but it has some enthusiasm because I think in part of its simplicity.
+
+00:00:19.920 --> 00:00:20.960
+Let's take a look.
+
+00:00:20.960 --> 00:00:25.600
+The GloVe algorithm was created by Jeffrey Pennington, Richard Sosher and Chris Manning,
+
+00:00:25.600 --> 00:00:29.280
+and GloVe stands for Global Vectors for Word Representation.
+
+00:00:30.480 --> 00:00:35.120
+So previously, we were sampling pairs of words, context and target words,
+
+00:00:35.840 --> 00:00:41.440
+by picking two words that appear in close proximity to each other in our text corpus.
+
+00:00:42.080 --> 00:00:46.640
+So what the GloVe algorithm does is it starts off just by making that explicit.
+
+00:00:46.640 --> 00:00:49.920
+So let's let xi, j be the number of times
+
+00:00:49.920 --> 00:01:00.910
+that a word i appears in the context of j.
+
+00:01:01.470 --> 00:01:08.510
+And so here i and j play the role of t and c.
+
+00:01:09.310 --> 00:01:14.030
+So you can think of xi, j as being x subscript t, c.
+
+00:01:14.030 --> 00:01:18.750
+But you can go through your training set corpus and just count up how many words does
+
+00:01:18.750 --> 00:01:21.950
+a word i appear in the context of a different word j?
+
+00:01:21.950 --> 00:01:26.030
+How many times does a word t appear in context of a different word c?
+
+00:01:26.750 --> 00:01:33.150
+And depending on the definition of context and target words,
+
+00:01:33.150 --> 00:01:36.990
+you might have that xi, j equals xji.
+
+00:01:36.990 --> 00:01:42.430
+And in fact, if you're defining context and target in terms of whether or not they appear
+
+00:01:42.430 --> 00:01:46.510
+within plus minus 10 words of each other, then it would be a symmetric relationship.
+
+00:01:47.470 --> 00:01:53.230
+Although if your choice of context was that the context is always the word immediately
+
+00:01:53.230 --> 00:01:58.350
+before the target word, then xij and xji may not be symmetric like this.
+
+00:02:00.400 --> 00:02:05.840
+But for the purposes of the GloVe algorithm, we can define context and target as whether
+
+00:02:05.840 --> 00:02:11.680
+or not the two words appear in close proximity, say within plus minus 10 words of each other.
+
+00:02:13.840 --> 00:02:23.600
+So xij is a count that captures how often do words i and j appear with each other or close each other.
+
+00:02:24.720 --> 00:02:27.920
+So what the GloVe model does is it optimizes the following.
+
+00:02:28.480 --> 00:02:38.900
+We're going to minimize the difference between theta i transpose Ej
+
+00:02:39.220 --> 00:02:45.540
+minus log of xij squared.
+
+00:02:45.540 --> 00:02:48.660
+I'm going to fill in some of the parts of this equation in a little bit.
+
+00:02:48.660 --> 00:02:53.380
+But again, think of i and j as playing the row of t and c.
+
+00:02:53.380 --> 00:02:59.620
+So this is a bit like what you saw previously with theta t transpose E c.
+
+00:03:00.260 --> 00:03:05.060
+And what you want is for this to tell you how related are those two words?
+
+00:03:05.060 --> 00:03:08.500
+How related are words t and c? How related are words i and j?
+
+00:03:08.980 --> 00:03:16.100
+As measured by how often they occur with each other, which is affected by this xij.
+
+00:03:17.780 --> 00:03:25.220
+And so what we're going to do is solve for parameters theta and E using gradient descent
+
+00:03:26.100 --> 00:03:36.420
+to minimize the sum over i equals 1 to 10,000 sum over j from 1 to 10,000 of this difference.
+
+00:03:36.420 --> 00:03:39.780
+So you just want to learn vectors so that their inner product
+
+00:03:39.780 --> 00:03:43.700
+is a good predictor for how often the two words occur together.
+
+00:03:44.980 --> 00:03:47.220
+Now just some additional details.
+
+00:03:47.220 --> 00:03:52.580
+If xij is equal to 0, then log of 0 is undefined as negative infinity.
+
+00:03:52.580 --> 00:03:58.980
+And so what we'll do is we won't sum over the terms where xij is equal to 0.
+
+00:03:58.980 --> 00:04:02.820
+And so what we're going to do is add an extra waiting term.
+
+00:04:02.820 --> 00:04:06.020
+So this is going to be a waiting term.
+
+00:04:09.570 --> 00:04:17.810
+And this will be equal to 0 if xij is equal to 0.
+
+00:04:17.810 --> 00:04:23.170
+And we're going to use a convention that 0 log 0 is equal to 0.
+
+00:04:25.980 --> 00:04:29.180
+So what this means is that if xij is equal to 0,
+
+00:04:29.180 --> 00:04:32.380
+just don't bother to sum over that xij pair.
+
+00:04:32.380 --> 00:04:35.180
+So then this log of 0 term is not relevant.
+
+00:04:35.180 --> 00:04:40.700
+So this means the sum is a sum only over the pairs of words that have
+
+00:04:40.700 --> 00:04:45.260
+co-occurred at least once in that context-target relationship.
+
+00:04:45.980 --> 00:04:50.060
+The other thing that f of xij does is that there's some words that just appear
+
+00:04:50.060 --> 00:04:54.860
+very often in the English language, like this is of a and so on.
+
+00:04:54.860 --> 00:04:56.380
+Sometimes these are called stop words,
+
+00:04:56.380 --> 00:04:59.820
+but there's really a continuum between frequent and infrequent words.
+
+00:04:59.820 --> 00:05:02.620
+And then there are also some infrequent words like durin,
+
+00:05:02.620 --> 00:05:04.380
+which you actually still want to take into account.
+
+00:05:04.380 --> 00:05:09.420
+But not as frequently as the more common words.
+
+00:05:09.420 --> 00:05:16.860
+And so the waiting factor can be a function that gives a meaningful amount of computation,
+
+00:05:16.860 --> 00:05:19.580
+even to the less frequent words like durin,
+
+00:05:20.300 --> 00:05:23.740
+and gives more weight, but not an unduly large amount of weight,
+
+00:05:23.740 --> 00:05:28.780
+to words like this, which just appear a lot in language.
+
+00:05:28.780 --> 00:05:32.300
+And so there are various heuristics for choosing this waiting function f
+
+00:05:33.260 --> 00:05:37.020
+that neither gives these words too much weight,
+
+00:05:37.020 --> 00:05:39.900
+nor gives the infrequent words too little weight.
+
+00:05:41.940 --> 00:05:44.980
+So you can take a look at the glove paper that I referenced on the previous slide
+
+00:05:44.980 --> 00:05:50.100
+if you want the details of how f can be chosen to be a heuristic to accomplish this.
+
+00:05:52.180 --> 00:05:56.580
+And then finally, one funny thing about this algorithm is that
+
+00:05:56.580 --> 00:06:01.300
+the rows of theta and e are now completely symmetric.
+
+00:06:01.300 --> 00:06:05.620
+So theta i and e j are symmetric.
+
+00:06:06.980 --> 00:06:10.420
+In that if you look at the math, you know, they play pretty much the same row
+
+00:06:10.420 --> 00:06:13.460
+and you could reverse them or swap them around and they actually end up
+
+00:06:14.260 --> 00:06:16.260
+with the same optimization objective.
+
+00:06:16.820 --> 00:06:21.460
+So one way to train the algorithm is to initialize theta and e,
+
+00:06:21.460 --> 00:06:26.100
+both uniformly random, run gradient descent to minimize this objective.
+
+00:06:26.100 --> 00:06:28.580
+And then when you're done for every word
+
+00:06:29.060 --> 00:06:30.580
+to then take the average.
+
+00:06:30.580 --> 00:06:36.180
+So for a given word w, you can have e final to be equal to
+
+00:06:36.180 --> 00:06:41.620
+the embedding that was trained through this gradient descent procedure plus theta
+
+00:06:42.580 --> 00:06:45.860
+trained through this gradient descent procedure divided by two
+
+00:06:45.860 --> 00:06:49.300
+because theta and e in this particular formulation
+
+00:06:49.300 --> 00:06:53.860
+play symmetric roles unlike the earlier models we saw in the previous videos
+
+00:06:53.860 --> 00:06:56.660
+where theta and e actually played different roles
+
+00:06:57.300 --> 00:06:58.740
+and couldn't just be average like that.
+
+00:06:59.540 --> 00:07:02.180
+So that's it for the GloVe algorithm.
+
+00:07:02.180 --> 00:07:05.380
+I think one confusing part of this algorithm is if you look at this equation,
+
+00:07:05.380 --> 00:07:06.740
+it seems almost too simple.
+
+00:07:06.740 --> 00:07:06.980
+Right?
+
+00:07:06.980 --> 00:07:10.580
+How could it be that just minimizing a squared cost function like this
+
+00:07:10.580 --> 00:07:13.220
+allows you to learn meaningful word embeddings?
+
+00:07:13.220 --> 00:07:14.980
+But it turns out that this works.
+
+00:07:14.980 --> 00:07:19.060
+And the way that the inventors end up at this algorithm was they were building
+
+00:07:19.060 --> 00:07:23.460
+on a history of much more complicated algorithms like the neural language model.
+
+00:07:23.540 --> 00:07:28.260
+And then later, they came to the Word2Vec skip-gram model.
+
+00:07:28.260 --> 00:07:34.020
+And then this came later and really helped to simplify all of the earlier algorithms.
+
+00:07:35.620 --> 00:07:41.060
+Before concluding our discussion of algorithms for learning word embeddings,
+
+00:07:41.060 --> 00:07:46.420
+there's one more property of them that we should discuss briefly,
+
+00:07:47.700 --> 00:07:50.900
+which is that we started off with this featurization view
+
+00:07:50.900 --> 00:07:54.100
+as the motivation for learning word vectors,
+
+00:07:54.100 --> 00:07:57.620
+where we said, well, maybe the first component of the embedding vector
+
+00:07:57.620 --> 00:08:00.820
+could represent gender, the second component could represent
+
+00:08:00.820 --> 00:08:05.380
+how royal it is, then the age, and then whether it's a food and so on.
+
+00:08:06.500 --> 00:08:10.820
+But when you learn a word embedding using one of the algorithms that we've seen,
+
+00:08:10.820 --> 00:08:15.220
+such as the GloVe algorithm, which we just saw on the previous slide,
+
+00:08:15.860 --> 00:08:18.580
+what happens is you cannot guarantee
+
+00:08:18.580 --> 00:08:22.900
+that the individual components of the embeddings are interpretable.
+
+00:08:22.900 --> 00:08:27.700
+Why is that? Well, let's say that there is some space where the first axis is gender
+
+00:08:28.500 --> 00:08:36.580
+and the second axis is royal. What you can't do is guarantee that the first axis of the embedding
+
+00:08:36.580 --> 00:08:44.260
+vector is aligned with this axis of meaning of gender, royal, Asian food.
+
+00:08:45.220 --> 00:08:51.780
+And in particular, the learning algorithm might choose this to be the axis of the first dimension.
+
+00:08:51.780 --> 00:08:57.220
+So given a maybe a context of words, so the first dimension might be this axis and the second
+
+00:08:57.220 --> 00:09:03.300
+dimension might be this, or it might not even be orthogonal, maybe it'll be a second non-orthogonal
+
+00:09:04.820 --> 00:09:09.140
+axis could be the second component of the word embeddings you actually learn.
+
+00:09:09.140 --> 00:09:16.180
+And one way to see this is if you have a subscript understanding of linear algebra,
+
+00:09:16.180 --> 00:09:23.940
+is that if there was some invertible matrix A, then this could just as easily be replaced with
+
+00:09:23.940 --> 00:09:36.580
+A times theta I transpose A inverse transpose EJ. Because we expand this out,
+
+00:09:36.580 --> 00:09:44.980
+this is equal to theta I transpose A transpose A inverse transpose times EJ. And so the middle term
+
+00:09:44.980 --> 00:09:51.220
+cancels out, left with theta I transpose EJ, same as before. Don't worry if you didn't follow the
+
+00:09:51.220 --> 00:09:56.420
+linear algebra, but that's a brief proof that shows that with an algorithm like this,
+
+00:09:56.420 --> 00:10:03.300
+you can't guarantee that the axis used to represent the features will be well aligned with
+
+00:10:03.300 --> 00:10:08.660
+what might be easily humanly interpretable axes. And basically the first feature might be a
+
+00:10:08.660 --> 00:10:16.100
+combination of gender and royal and age and food and cost and size and is it a noun and action
+
+00:10:16.100 --> 00:10:21.540
+verb and all the other features. So it's very difficult to look at individual components,
+
+00:10:21.540 --> 00:10:27.140
+individual rows of the embedding matrix and assign a human interpretable interpretation to that.
+
+00:10:27.780 --> 00:10:33.700
+But despite this type of linear transformation, the parallelogram math that we worked out when
+
+00:10:33.700 --> 00:10:41.380
+we're describing analogies, that still works. And so despite this potentially arbitrary linear
+
+00:10:41.380 --> 00:10:47.620
+transformation of the features you end up learning, the parallelogram math for figuring out analogies
+
+00:10:47.620 --> 00:10:55.310
+still works. So that's it for learning word embeddings. You've now seen a variety of
+
+00:10:55.310 --> 00:10:59.870
+algorithms for learning these word embeddings and you get to play with them more in this week's
+
+00:10:59.870 --> 00:11:04.270
+program exercise as well. Next, I'd like to show you how you can use these algorithms
+
+00:11:04.270 --> 00:11:08.433
+to carry out sentiment classification. Let's go on to the next video.

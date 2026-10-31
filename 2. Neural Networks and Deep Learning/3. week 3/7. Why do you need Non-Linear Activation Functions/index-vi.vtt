@@ -1,0 +1,361 @@
+WEBVTT
+
+1
+00:00:00.650 --> 00:00:04.360
+Tại sao neural network nhân tạo lại cần
+ một activation function phi tuyến tính?
+
+2
+00:00:04.360 --> 00:00:07.796
+Trên thực tế, để neural network nhân tạo 
+tính được các hàm thú vị,
+
+3
+00:00:07.796 --> 00:00:11.325
+bạn cần chọn một activation function
+ phi tuyến tính, hãy xem ví dụ sau.
+
+4
+00:00:11.325 --> 00:00:15.920
+bạn cần chọn một activation function
+ phi tuyến tính, hãy xem ví dụ sau.
+
+5
+00:00:15.920 --> 00:00:17.700
+Tại sao chúng ta lại không bỏ hàm này đi?
+
+6
+00:00:17.700 --> 00:00:19.450
+Bỏ hàm g?
+
+7
+00:00:19.450 --> 00:00:21.550
+Và đặt a1 bằng z1.
+
+8
+00:00:21.550 --> 00:00:27.630
+Hoặc là, bạn có thể nói là g 
+của z bằng z, đúng chứ?
+
+9
+00:00:27.630 --> 00:00:32.035
+Đôi khi hàm này được gọi là
+ activation function tuyến tính.
+
+10
+00:00:32.035 --> 00:00:35.070
+Có lẽ nó nên được gọi là 
+activation function danh tính
+
+11
+00:00:35.070 --> 00:00:38.170
+bởi vì nó xuất ra bất cứ
+ thứ gì là đầu vào.
+
+12
+00:00:38.170 --> 00:00:42.576
+Tương tự, ở đây, nếu 
+a [2] chỉ bằng z [2] thì sao?
+
+13
+00:00:42.576 --> 00:00:48.759
+Nếu bạn làm điều này, thì 
+mô hình này chỉ tính y hoặc
+
+14
+00:00:48.759 --> 00:00:53.010
+y-mũ dưới dạng một hàm 
+tuyến tính của các feature đầu vào x,
+
+15
+00:00:53.010 --> 00:00:55.990
+để có được hai phương trình đầu tiên.
+
+16
+00:00:55.990 --> 00:01:01.504
+Nếu bạn có a [1]
+
+17
+00:01:01.504 --> 00:01:08.395
+= z [1]= w [1]x + b và
+
+18
+00:01:08.395 --> 00:01:14.459
+a [2] = z [2] =
+
+19
+00:01:14.459 --> 00:01:19.710
+w [2] a [1]+ b.
+
+20
+00:01:19.710 --> 00:01:24.720
+Sau đó, nếu bạn lấy công
+ thức này của a1 và
+
+21
+00:01:24.720 --> 00:01:30.040
+đưa vào đây, bạn thấy rằng a2 =
+
+22
+00:01:30.040 --> 00:01:36.880
+w2 (w1x + b1), di chuyển lên một chút.
+
+23
+00:01:36.880 --> 00:01:42.830
+Đúng chứ? Và đây là a1 + b2, và vì vậy
+
+24
+00:01:42.830 --> 00:01:44.960
+điều này được rút gọn thành:
+
+25
+00:01:45.550 --> 00:01:49.960
+(W2w1) x +
+
+26
+00:01:49.960 --> 00:01:56.800
+(w2b1 + b2).
+
+27
+00:01:58.030 --> 00:02:01.300
+Và đây chỉ là,
+
+28
+00:02:01.300 --> 00:02:06.500
+hãy gọi là w ',b'.
+
+29
+00:02:06.640 --> 00:02:11.600
+Và bằng w 'x + b'.
+
+30
+00:02:11.600 --> 00:02:14.440
+Nếu bạn đã sử dụng các hàm
+ kích hoạt tuyến tính hoặc
+
+31
+00:02:14.440 --> 00:02:17.810
+cũng có thể được gọi là các 
+activation function danh tính,
+
+32
+00:02:17.810 --> 00:02:22.660
+thì sau đó neural network chỉ xuất ra 
+một hàm tuyến tính của đầu vào.
+
+33
+00:02:23.890 --> 00:02:28.580
+Và sau này, chúng ta sẽ học về các mạng sâu, 
+các neural network nhân tạo với rất nhiều lớp,
+
+34
+00:02:28.580 --> 00:02:31.300
+nhiều lớp ẩn. Và trên thực tế
+
+35
+00:02:31.300 --> 00:02:34.760
+nếu bạn sử dụng hàm kích
+ hoạt tuyến tính hoặc là
+
+36
+00:02:34.760 --> 00:02:38.860
+nếu bạn không có activation function, dù 
+neural network của bạn có bao nhiêu lớp
+
+37
+00:02:38.860 --> 00:02:43.460
+thì nó cũng chỉ tính một
+ activation function tuyến tính.
+
+38
+00:02:43.460 --> 00:02:45.590
+Vì vậy, có thể bạn cũng 
+sẽ không có bất kỳ lớp ẩn nào
+
+39
+00:02:47.030 --> 00:02:51.270
+Trong một số trường hợp đã 
+được nhắc tới, hóa ra là nếu bạn có
+
+40
+00:02:51.270 --> 00:02:57.050
+một activation function tuyến tính ở đây và 
+một hàm sigmoid ở đây, thì mô hình này
+
+41
+00:02:57.050 --> 00:03:02.960
+không hơn logistic regression tiêu
+ chuẩn mà không có lớp ẩn nào.
+
+42
+00:03:02.960 --> 00:03:06.550
+Vì vậy, tôi sẽ không chứng minh điều đó,
+ nhưng bạn có thể làm điều đó nếu bạn muốn.
+
+43
+00:03:06.550 --> 00:03:11.700
+Bài học rút ra là một lớp ẩn
+ tuyến tính thì gần như là vô dụng
+
+44
+00:03:11.700 --> 00:03:16.570
+bởi vì thành phần của hai hàm
+ tuyến tính tự nó là một hàm tuyến tính.
+
+45
+00:03:17.570 --> 00:03:21.910
+Vậy nên, trừ khi bạn đưa một chút phi 
+tuyến tính vào đó, thì bạn sẽ không phải tính thêm
+
+46
+00:03:21.910 --> 00:03:25.320
+các hàm thú vị ngay cả khi 
+bạn đi sâu hơn vào mạng.
+
+47
+00:03:25.320 --> 00:03:29.890
+Chỉ có một nơi mà bạn có thể 
+sử dụng activation function tuyến tính.
+
+48
+00:03:29.890 --> 00:03:32.610
+g (x) = z.
+
+49
+00:03:32.610 --> 00:03:37.170
+Và đó là nếu bạn đang thực hiện 
+machine learning về bài toán regression.
+
+50
+00:03:37.170 --> 00:03:39.850
+Nếu y là một số thực.
+
+51
+00:03:39.850 --> 00:03:43.150
+ví dụ, nếu bạn đang muốn
+ dự đoán giá nhà đất.
+
+52
+00:03:43.150 --> 00:03:50.080
+Và y không bằng 0, 1, mà là một số
+ thực, từ bất cứ đâu - tôi không biết -
+
+53
+00:03:50.080 --> 00:03:55.330
+từ $ 0 cho tới giá của một 
+ngôi nhà đắt tiền, tôi đoán vậy.
+
+54
+00:03:55.330 --> 00:04:00.520
+Những ngôi nhà có thể có 
+giá hàng triệu đô la, vì vậy
+
+55
+00:04:00.520 --> 00:04:04.940
+có nhiều giá nhà ở trong
+ tập dữ liệu của bạn.
+
+56
+00:04:04.940 --> 00:04:09.590
+Nhưng nếu y đảm nhận
+ những giá trị thực này,
+
+57
+00:04:10.620 --> 00:04:14.640
+thì có thể có hàm kích 
+hoạt tuyến tính ở đây
+
+58
+00:04:14.640 --> 00:04:19.490
+để y mũ cũng là
+
+59
+00:04:19.490 --> 00:04:22.970
+một số thực đi từ âm vô cực 
+đến dương vô cực.
+
+60
+00:04:24.000 --> 00:04:29.070
+Nhưng sau đó các đơn vị ẩn không
+ nên sử dụng các activation function.
+
+61
+00:04:29.070 --> 00:04:34.790
+Chúng có thể sử dụng ReLU hoặc tanh hoặc
+ Leaky ReLU hoặc có thể một cái gì đó khác.
+
+62
+00:04:34.790 --> 00:04:38.200
+Vì vậy, bạn thường có thể sử dụng activation function tuyến tính
+
+63
+00:04:38.200 --> 00:04:40.500
+ở lớp đầu ra.
+
+64
+00:04:40.500 --> 00:04:47.500
+Nhưng ngoài điều đó ra, sử dụng hàm
+ kích hoạt tuyến tính trong lớp ẩn
+
+65
+00:04:47.500 --> 00:04:52.000
+ngoại trừ trong một số trường hợp rất 
+đặc biệt liên quan đến nén mà chúng ta
+
+66
+00:04:52.000 --> 00:04:56.360
+sẽ nói đến sau, việc sử dụng 
+hàm tuyến tính là cực kỳ hiếm.
+
+67
+00:04:56.360 --> 00:04:58.990
+Và, tất nhiên, nếu chúng ta 
+dự đoán giá nhà đất,
+
+68
+00:04:58.990 --> 00:05:02.730
+như bạn đã thấy trong video tuần 1, 
+bởi vì giá nhà đất thì không âm,
+
+69
+00:05:02.730 --> 00:05:06.760
+Có lẽ thậm chí bạn có thể 
+sử dụng activation function giá trị
+
+70
+00:05:06.760 --> 00:05:10.870
+để đầu ra y mũ đều lớn hơn hoặc bằng 0.
+
+71
+00:05:10.870 --> 00:05:15.380
+Và tôi hy vọng bạn đã hiểu tại sao
+ activation function phi tuyến tính
+
+72
+00:05:15.380 --> 00:05:19.250
+lại là một phần quan trọng
+ trong neural network nhân tạo.
+
+73
+00:05:19.250 --> 00:05:23.180
+Tiếp theo chúng ta sẽ bắt đầu
+ nói về gradient descent và
+
+74
+00:05:23.180 --> 00:05:26.400
+để chuẩn bị cho cuộc thảo luận
+ của chúng ta về gradient descent
+
+75
+00:05:26.400 --> 00:05:30.800
+trong video tiếp theo, tôi muốn chỉ bạn 
+cách ước tính - cách tính độ dốc hoặc
+
+76
+00:05:30.800 --> 00:05:34.050
+các đạo hàm của các hàm
+ kích hoạt cá nhân.
+
+77
+00:05:34.050 --> 00:05:35.320
+Nào, cùng tiếp tục trong video tiếp theo nhé!

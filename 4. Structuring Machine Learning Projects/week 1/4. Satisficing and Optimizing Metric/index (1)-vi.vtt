@@ -1,0 +1,381 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.910
+Không phải lúc nào cũng dễ dàng để kết hợp tất cả những thứ bạn quan
+
+2
+00:00:02.910 --> 00:00:06.265
+tâm vào một chỉ số đánh giá số hàng duy nhất.
+
+3
+00:00:06.265 --> 00:00:09.150
+Trong những trường hợp đó tôi đã tìm thấy nó đôi khi hữu ích để thiết lập
+
+4
+00:00:09.150 --> 00:00:12.390
+thỏa mãn cũng như tối ưu hóa ma trận.
+
+5
+00:00:12.390 --> 00:00:13.950
+Để tôi cho anh thấy ý tôi là gì.
+
+6
+00:00:13.950 --> 00:00:16.410
+Giả sử rằng bạn đã quyết định bạn quan tâm đến
+
+7
+00:00:16.410 --> 00:00:20.694
+độ chính xác classification của bộ classification mèo của bạn,
+
+8
+00:00:20.694 --> 00:00:25.470
+điều này có thể là điểm F1 hoặc một số biện pháp khác
+
+9
+00:00:25.470 --> 00:00:29.610
+về độ chính xác, nhưng hãy nói rằng ngoài độ chính xác, bạn cũng quan tâm đến thời gian chạy.
+
+10
+00:00:29.610 --> 00:00:35.050
+Vì vậy, mất bao lâu để classification một hình ảnh và classification A mất 80 mili giây,
+
+11
+00:00:35.050 --> 00:00:36.690
+B mất 95 mili giây,
+
+12
+00:00:36.690 --> 00:00:39.325
+và C mất 1.500 mili giây,
+
+13
+00:00:39.325 --> 00:00:42.150
+tức là 1,5 giây để classification một hình ảnh.
+
+14
+00:00:42.150 --> 00:00:45.000
+Vì vậy, một điều bạn có thể làm là kết hợp độ chính xác
+
+15
+00:00:45.000 --> 00:00:48.075
+và thời gian chạy vào một chỉ số đánh giá tổng thể.
+
+16
+00:00:48.075 --> 00:00:57.898
+Và vì vậy các chi phí như có thể chi phí tổng thể là độ chính xác trừ 0,5 lần chạy thời gian.
+
+17
+00:00:57.898 --> 00:01:01.460
+Nhưng có lẽ nó có vẻ hơi nhân tạo để kết hợp
+
+18
+00:01:01.460 --> 00:01:05.265
+độ chính xác và thời gian chạy bằng cách sử dụng một công thức như thế này,
+
+19
+00:01:05.265 --> 00:01:08.805
+giống như một tổng trọng số tuyến tính của hai điều này.
+
+20
+00:01:08.805 --> 00:01:11.090
+Vì vậy, đây là một cái gì đó khác
+
+21
+00:01:11.090 --> 00:01:13.841
+bạn có thể làm thay vào đó là bạn có thể muốn chọn một classification
+
+22
+00:01:13.841 --> 00:01:26.470
+tối đa hóa độ chính xác nhưng tùy thuộc
+
+23
+00:01:26.470 --> 00:01:28.584
+vào thời gian chạy, đó là thời gian cần
+
+24
+00:01:28.584 --> 00:01:36.325
+để classification một hình ảnh, mà phải nhỏ hơn hoặc bằng 100 mili giây.
+
+25
+00:01:36.325 --> 00:01:40.170
+Vì vậy, trong trường hợp này chúng ta sẽ nói rằng độ chính xác là một
+
+26
+00:01:40.170 --> 00:01:44.460
+số liệu tối ưu hóa bởi vì bạn muốn tối đa hóa độ chính xác.
+
+27
+00:01:44.460 --> 00:01:48.195
+Bạn muốn làm tốt nhất có thể về độ chính xác nhưng
+
+28
+00:01:48.195 --> 00:01:53.845
+thời gian chạy đó là những gì chúng tôi gọi là một số liệu thỏa mãn.
+
+29
+00:01:53.845 --> 00:01:55.580
+Có nghĩa là nó chỉ cần đủ tốt,
+
+30
+00:01:55.580 --> 00:02:00.285
+nó chỉ cần ít hơn 100 mili giây và hơn thế mà bạn không thực sự quan tâm,
+
+31
+00:02:00.285 --> 00:02:04.280
+hoặc ít nhất bạn không quan tâm nhiều đến vậy.
+
+32
+00:02:04.280 --> 00:02:07.340
+Vì vậy, đây sẽ là một cách khá hợp lý để thương mại hoặc để đặt
+
+33
+00:02:07.340 --> 00:02:11.705
+cùng độ chính xác cũng như thời gian chạy.
+
+34
+00:02:11.705 --> 00:02:16.015
+Và nó có thể là trường hợp mà miễn là thời gian chạy ít hơn 100 mili giây,
+
+35
+00:02:16.015 --> 00:02:18.465
+người dùng của bạn sẽ không quan tâm nhiều cho dù đó là
+
+36
+00:02:18.465 --> 00:02:21.855
+100 mili giây hoặc 50 mili giây hoặc thậm chí nhanh hơn.
+
+37
+00:02:21.855 --> 00:02:26.380
+Và bằng cách xác định tối ưu hóa cũng như ma trận thỏa mãn,
+
+38
+00:02:26.380 --> 00:02:30.475
+điều này cung cấp cho bạn một cách rõ ràng để chọn, trích dẫn, classification tốt nhất,
+
+39
+00:02:30.475 --> 00:02:34.450
+mà trong trường hợp này sẽ là classification B vì tất cả những người
+
+40
+00:02:34.450 --> 00:02:39.865
+có thời gian chạy tốt hơn 100 mili giây nó có độ chính xác tốt nhất.
+
+41
+00:02:39.865 --> 00:02:45.220
+Vì vậy, tổng quát hơn, nếu bạn có N ma trận mà bạn quan
+
+42
+00:02:45.220 --> 00:02:50.830
+tâm đến nó đôi khi hợp lý để chọn một trong số họ được tối ưu hóa.
+
+43
+00:02:50.830 --> 00:02:54.005
+Vì vậy, bạn muốn làm cũng như là có thể trên một trong những điều đó.
+
+44
+00:02:54.005 --> 00:02:57.515
+Và sau đó N trừ 1 để được thỏa mãn, có
+
+45
+00:02:57.515 --> 00:02:59.380
+nghĩa là miễn là chúng đạt đến
+
+46
+00:02:59.380 --> 00:03:02.730
+một số ngưỡng như chạy lần nhanh hơn 100 mili giây,
+
+47
+00:03:02.730 --> 00:03:04.405
+nhưng miễn
+
+48
+00:03:04.405 --> 00:03:06.520
+là chúng đạt đến một số ngưỡng, bạn không quan tâm nó tốt hơn bao nhiêu trong ngưỡng đó,
+
+49
+00:03:06.520 --> 00:03:09.455
+nhưng chúng phải đạt đến ngưỡng đó.
+
+50
+00:03:09.455 --> 00:03:11.350
+Đây là một ví dụ khác.
+
+51
+00:03:11.350 --> 00:03:15.280
+Giả sử bạn đang xây dựng một hệ thống để phát hiện từ thức tỉnh,
+
+52
+00:03:15.280 --> 00:03:19.030
+còn được gọi là từ kích hoạt.
+
+53
+00:03:19.030 --> 00:03:22.900
+Vì vậy, điều này đề cập đến các thiết bị điều khiển bằng giọng nói như
+
+54
+00:03:22.900 --> 00:03:25.780
+Amazon Echo nơi bạn thức dậy bằng cách nói
+
+55
+00:03:25.780 --> 00:03:29.020
+Alexa hoặc một số thiết bị Google mà bạn thức dậy
+
+56
+00:03:29.020 --> 00:03:35.095
+bằng cách nói okay Google hoặc một số thiết bị Apple mà bạn thức dậy bằng cách nói Hey Siri
+
+57
+00:03:35.095 --> 00:03:42.300
+hoặc một số thiết bị Baidu chúng ta nên thức dậy bằng cách nói bạn ni hao Baidu.
+
+58
+00:03:42.300 --> 00:03:46.390
+Oh, tôi đoán, bạn muốn đọc Trung Quốc, đó là ni hao Baidu.
+
+59
+00:03:46.390 --> 00:03:51.560
+Đúng vậy, đây là những từ thức tỉnh mà bạn sử dụng để
+
+60
+00:03:51.560 --> 00:03:54.350
+bảo một trong những thiết bị
+
+61
+00:03:54.350 --> 00:03:56.990
+điều khiển bằng giọng nói này thức dậy và lắng nghe điều gì đó bạn muốn nói.
+
+62
+00:03:56.990 --> 00:04:02.090
+Và đối với những ký tự Trung Quốc khác cho ni hao Baidu.
+
+63
+00:04:02.090 --> 00:04:07.935
+Vì vậy, bạn có thể quan tâm đến độ chính xác của hệ thống phát hiện từ kích hoạt của bạn.
+
+64
+00:04:07.935 --> 00:04:10.325
+Vì vậy, khi ai đó nói một trong những từ kích hoạt này,
+
+65
+00:04:10.325 --> 00:04:13.525
+khả năng bạn thực sự đánh thức thiết bị của mình như thế nào,
+
+66
+00:04:13.525 --> 00:04:16.970
+và bạn cũng có thể quan tâm đến số lượng dương tính giả.
+
+67
+00:04:16.970 --> 00:04:19.891
+Vì vậy, khi không ai thực sự nói từ kích hoạt này,
+
+68
+00:04:19.891 --> 00:04:23.294
+nó thức dậy ngẫu nhiên bao lâu?
+
+69
+00:04:23.294 --> 00:04:27.770
+Vì vậy, trong trường hợp này có lẽ một cách hợp lý
+
+70
+00:04:27.770 --> 00:04:33.275
+để kết hợp hai ma trận đánh giá này có thể là tối đa hóa độ chính xác,
+
+71
+00:04:33.275 --> 00:04:35.165
+vì vậy khi ai đó nói một trong những từ kích hoạt,
+
+72
+00:04:35.165 --> 00:04:37.565
+tối đa hóa cơ hội mà thiết bị của bạn thức dậy.
+
+73
+00:04:37.565 --> 00:04:39.215
+Và tùy thuộc vào điều đó,
+
+74
+00:04:39.215 --> 00:04:48.815
+bạn có nhiều nhất một dương tính giả mỗi 24 giờ
+
+75
+00:04:48.815 --> 00:04:51.070
+phẫu thuật, đúng không?
+
+76
+00:04:51.070 --> 00:04:53.760
+Vì vậy mà thiết bị của bạn ngẫu nhiên thức dậy chỉ một lần
+
+77
+00:04:53.760 --> 00:04:57.270
+mỗi ngày trung bình khi không có ai thực sự nói chuyện với nó.
+
+78
+00:04:57.270 --> 00:05:00.900
+Vì vậy, trong trường hợp này, độ chính xác là
+
+79
+00:05:00.900 --> 00:05:05.505
+số liệu tối ưu hóa và một số dương tính sai mỗi 24 giờ
+
+80
+00:05:05.505 --> 00:05:09.870
+là số liệu thỏa mãn mà bạn sẽ hài lòng miễn
+
+81
+00:05:09.870 --> 00:05:14.490
+là có nhiều nhất một dương tính sai mỗi 24 giờ.
+
+82
+00:05:14.490 --> 00:05:17.100
+Để tóm tắt, nếu có nhiều điều bạn quan
+
+83
+00:05:17.100 --> 00:05:19.920
+tâm bằng cách nói rằng có một là số liệu tối ưu hóa
+
+84
+00:05:19.920 --> 00:05:22.530
+mà bạn muốn làm cũng như có thể trên và một hoặc
+
+85
+00:05:22.530 --> 00:05:25.475
+nhiều như số liệu thỏa mãn là bạn sẽ được thỏa mãn.
+
+86
+00:05:25.475 --> 00:05:29.430
+Hầu như nó làm tốt hơn so với một số ngưỡng bây giờ bạn có thể có
+
+87
+00:05:29.430 --> 00:05:32.310
+một cách gần như tự động để nhanh chóng
+
+88
+00:05:32.310 --> 00:05:35.864
+nhìn vào kích thước lõi nhiều và chọn, báo giá, tốt nhất.
+
+89
+00:05:35.864 --> 00:05:39.000
+Bây giờ các ma trận đánh giá này phải được
+
+90
+00:05:39.000 --> 00:05:44.095
+đánh giá hoặc tính toán trên một training set hoặc một dev set hoặc có thể trên test set.
+
+91
+00:05:44.095 --> 00:05:46.935
+Vì vậy, một trong những điều bạn cũng cần làm là thiết lập đào tạo, phát
+
+92
+00:05:46.935 --> 00:05:50.100
+triển hoặc phát triển, cũng như các bộ kiểm tra.
+
+93
+00:05:50.100 --> 00:05:52.800
+Trong video tiếp theo, tôi muốn chia sẻ với bạn một số nguyên tắc về
+
+94
+00:05:52.800 --> 00:05:55.800
+cách thiết lập các bộ đào tạo, dev và kiểm tra.
+
+95
+00:05:55.800 --> 00:05:57.470
+Vì vậy, chúng ta hãy tiếp tục tiếp theo.

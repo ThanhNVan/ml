@@ -1,0 +1,434 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.116
+Hãy xem tôi vẽ một vài hình ảnh
+ của neural network nhân tạo.
+
+2
+00:00:03.116 --> 00:00:05.712
+Trong video này, chúng ta sẽ nói về
+ ý nghĩa của những hình ảnh đó.
+
+3
+00:00:05.712 --> 00:00:06.728
+Nói cách khác,
+
+4
+00:00:06.728 --> 00:00:11.235
+là những gì mà các neural network 
+nhân tạo mà chúng ta đã vẽ biểu diễn.
+
+5
+00:00:11.235 --> 00:00:15.014
+Và chúng ta sẽ bắt đầu với trường hợp
+ của neural network nhân tạo với
+
+6
+00:00:15.014 --> 00:00:17.290
+một lớp ẩn duy nhất.
+
+7
+00:00:17.290 --> 00:00:19.667
+Đây là hình ảnh về một 
+neural network nhân tạo.
+
+8
+00:00:19.667 --> 00:00:22.986
+Hãy đặt tên cho các phần 
+khác nhau trong hình ảnh này.
+
+9
+00:00:22.986 --> 00:00:27.447
+Chúng ta có các feature đầu vào, x1, 
+x2, x3 xếp chồng lên nhau theo chiều dọc.
+
+10
+00:00:27.447 --> 00:00:30.694
+Và đây được gọi là lớp
+ đầu vào của neural network.
+
+11
+00:00:30.694 --> 00:00:35.764
+Và dĩ nhiên, nó chứa các 
+đầu vào cho neural network.
+
+12
+00:00:35.764 --> 00:00:37.990
+Sau đó, có một lớp hình tròn khác.
+
+13
+00:00:37.990 --> 00:00:41.663
+Và đây được gọi là một lớp ẩn 
+của neural network nhân tạo.
+
+14
+00:00:41.663 --> 00:00:45.414
+Tôi sẽ nói từ ẩn có nghĩa là gì sau.
+
+15
+00:00:45.414 --> 00:00:49.509
+Nhưng trong ví dụ này, lớp cuối cùng
+ ở đây được hình thành bởi một nút.
+
+16
+00:00:49.509 --> 00:00:53.894
+Và lớp nút đơn này được gọi là lớp
+ đầu ra và chịu trách nhiệm để
+
+17
+00:00:53.894 --> 00:00:57.000
+cho ra các giá trị dự đoán y mũ (y^).
+
+18
+00:00:57.000 --> 00:00:59.932
+Trong một neural network nhân tạo mà
+ bạn huấn luyện với supervised learning,
+
+19
+00:00:59.932 --> 00:01:05.237
+training set chứa các giá trị của
+ đầu vào x cũng như đầu ra đích y.
+
+20
+00:01:05.237 --> 00:01:09.239
+Vì vậy, thuật ngữ lớp ẩn đề cập đến
+ thực tế là trong training set,
+
+21
+00:01:09.239 --> 00:01:12.702
+các giá trị thực cho các nút ở giữa
+ này thì không được quan sát.
+
+22
+00:01:12.702 --> 00:01:15.280
+Đó là, bạn không thấy 
+nó trong training set.
+
+23
+00:01:15.280 --> 00:01:16.640
+Bạn thấy đầu vào là gì.
+
+24
+00:01:16.640 --> 00:01:18.094
+Bạn thấy ngõ ra thì nên là gì.
+
+25
+00:01:18.094 --> 00:01:20.992
+Nhưng những thứ bên trong lớp ẩn thì
+ sẽ không thấy được trong training set.
+
+26
+00:01:20.992 --> 00:01:25.542
+Vì vậy, nó tên là lớp ẩn; chỉ vì bạn
+
+27
+00:01:25.542 --> 00:01:27.050
+không nhìn thấy nó 
+trong training set.
+
+28
+00:01:27.050 --> 00:01:28.400
+Tôi sẽ giới thiệu thêm
+ một vài ký hiệu nữa.
+
+29
+00:01:28.400 --> 00:01:34.660
+Trong khi trước đây, chúng ta đã sử dụng 
+vectơ x để biểu thị các feature đầu vào và
+
+30
+00:01:34.660 --> 00:01:36.400
+ký hiệu thay thế cho
+
+31
+00:01:36.400 --> 00:01:41.680
+các giá trị của các feature 
+đầu vào sẽ là a với mũ [0].
+
+32
+00:01:41.680 --> 00:01:44.934
+Và thuật ngữ a là viết tắt của 
+kích hoạt (activation), và
+
+33
+00:01:44.934 --> 00:01:47.733
+đề cập đến các giá trị 
+mà các lớp khác nhau
+
+34
+00:01:47.733 --> 00:01:51.651
+của neural network nhân tạo đang 
+truyền sang các lớp tiếp theo.
+
+35
+00:01:51.651 --> 00:01:55.998
+Vì vậy, lớp đầu vào chuyển 
+giá trị x sang lớp ẩn, vì vậy
+
+36
+00:01:55.998 --> 00:02:01.110
+chúng ta sẽ gọi kích hoạt 
+của lớp đầu vào là a mũ [0].
+
+37
+00:02:01.110 --> 00:02:05.990
+Lớp tiếp theo, lớp ẩn, sẽ lần lượt
+ tạo ra một số bộ kích hoạt,
+
+38
+00:02:05.990 --> 00:02:09.601
+mà tôi sẽ viết 
+dưới dạng a mũ [1].
+
+39
+00:02:09.601 --> 00:02:13.306
+Cụ thể là trong đơn vị đầu tiên 
+hoặc nút đầu tiên này,
+
+40
+00:02:13.306 --> 00:02:17.824
+chúng ta tạo ra 
+một giá trị a1 mũ [1].
+
+41
+00:02:17.824 --> 00:02:20.735
+Nút thứ hai này chúng ta
+ tạo ra một giá trị.
+
+42
+00:02:20.735 --> 00:02:23.311
+Bây giờ chúng ta 
+có a2 mũ [1] và v.v.
+
+43
+00:02:23.311 --> 00:02:26.488
+Và như vậy, a mũ [1],
+
+44
+00:02:26.488 --> 00:02:30.350
+là một vectơ bốn chiều mà 
+bạn muốn có trong Python
+
+45
+00:02:30.350 --> 00:02:34.707
+bởi vì ma trận 4x1, hoặc một 
+vectơ 4 cột, sẽ trông như thế này.
+
+46
+00:02:34.707 --> 00:02:39.205
+Và đó là bốn chiều, là vì trong trường hợp
+ này, chúng ta có bốn nút, hoặc
+
+47
+00:02:39.205 --> 00:02:43.330
+bốn đơn vị, hoặc là bốn 
+đơn vị ẩn trong lớp ẩn này.
+
+48
+00:02:43.330 --> 00:02:46.800
+Và cuối cùng, lớp mở 
+tái tạo một số giá trị a[2],
+
+49
+00:02:46.800 --> 00:02:48.440
+đó là một số thực.
+
+50
+00:02:48.440 --> 00:02:53.100
+Và vì vậy, y mũ 
+sẽ có giá trị là a[2].
+
+51
+00:02:53.100 --> 00:02:57.950
+Và điều này tương tự với regression
+ logistic, chúng ta có y mũ bằng a và
+
+52
+00:02:57.950 --> 00:03:02.560
+trong logistic regression chúng ta 
+chỉ có một lớp đầu ra, vì vậy
+
+53
+00:03:02.560 --> 00:03:04.500
+chúng ta không sử dụng 
+dấu ngoặc vuông.
+
+54
+00:03:04.500 --> 00:03:07.916
+Nhưng với neural network nhân tạo, bây giờ 
+chúng ta sẽ sử dụng dấu mũ ngoặc vuông
+
+55
+00:03:07.916 --> 00:03:11.653
+để chỉ rõ nó đến từ lớp nào.
+
+56
+00:03:11.653 --> 00:03:15.468
+Một điều thú vị về các quy ước ký hiệu
+ trong các neural network nhân tạo là
+
+57
+00:03:15.468 --> 00:03:20.194
+mạng mà bạn thấy ở đây được 
+gọi là neural network nhân tạo hai lớp.
+
+58
+00:03:20.194 --> 00:03:24.360
+Và lý do là khi chúng ta đếm các 
+lớp trong neural network nhân tạo,
+
+59
+00:03:24.360 --> 00:03:25.990
+chúng ta sẽ không đếm lớp đầu vào.
+
+60
+00:03:25.990 --> 00:03:30.680
+Vì vậy, lớp ẩn là lớp một 
+và lớp đầu ra là lớp hai.
+
+61
+00:03:30.680 --> 00:03:34.700
+Trong quy ước ký hiệu của chúng ta,
+ chúng ta gọi lớp đầu vào là lớp 0, vì vậy
+
+62
+00:03:34.700 --> 00:03:37.700
+về mặt kỹ thuật, có thể là có ba lớp
+ trong neural network nhân tạo này.
+
+63
+00:03:37.700 --> 00:03:40.260
+Đó là lớp đầu vào, 
+lớp ẩn và lớp đầu ra.
+
+64
+00:03:40.260 --> 00:03:44.600
+Nhưng trong cách sử dụng ký hiệu thông dụng,
+ nếu bạn đọc tài liệu nghiên cứu và
+
+65
+00:03:44.600 --> 00:03:48.700
+những nguồn khác trong khóa học, bạn sẽ thấy 
+mọi người coi neural network nhân tạo cụ thể này
+
+66
+00:03:48.700 --> 00:03:52.630
+là một neural network nhân tạo 2 lớp, vì chúng ta
+ không tính lớp đầu vào là lớp chính thức.
+
+67
+00:03:52.630 --> 00:03:55.912
+Cuối cùng, sau này chúng ta
+ sẽ biết là lớp ẩn và
+
+68
+00:03:55.912 --> 00:03:59.670
+các lớp đầu ra sẽ có các 
+tham số liên quan đến chúng.
+
+69
+00:03:59.670 --> 00:04:04.560
+Như vậy, lớp ẩn sẽ liên kết
+ với các tham số w và b.
+
+70
+00:04:04.560 --> 00:04:08.218
+Và tôi sẽ viết 
+số mũ [1] để chỉ ra rằng
+
+71
+00:04:08.218 --> 00:04:12.395
+đây là các tham số 
+liên kết với lớpmột lớp ẩn.
+
+72
+00:04:12.395 --> 00:04:15.416
+Sau này chúng ta sẽ thấy rằng 
+w sẽ là một ma trận 4 x 3 và
+
+73
+00:04:15.416 --> 00:04:19.830
+b sẽ là một vectơ 
+(4,1) trong ví dụ này.
+
+74
+00:04:19.830 --> 00:04:22.750
+Tọa độ 4 đầu tiên xuất phát
+ từ thực tế là chúng ta có
+
+75
+00:04:22.750 --> 00:04:25.300
+bốn nút của các 
+đơn vị ẩn và một lớp, và
+
+76
+00:04:25.300 --> 00:04:28.120
+3 nghĩa là chúng ta có 
+ba feature đầu vào.
+
+77
+00:04:28.120 --> 00:04:31.600
+Chúng ta sẽ nói về kích thước
+ của các ma trận này sau.
+
+78
+00:04:31.600 --> 00:04:33.540
+Và có thể nó sẽ dễ hiểu
+ hơn tại thời điểm đó.
+
+79
+00:04:33.540 --> 00:04:37.813
+Nhưng trong một số lớp đầu ra 
+mà cũng liên kết với các tham số w
+
+80
+00:04:37.813 --> 00:04:42.400
+mũ [2] và b mũ [2].
+
+81
+00:04:42.400 --> 00:04:45.747
+Và hóa ra kích thước 
+của chúng là 1x 4 và 1 x 1.
+
+82
+00:04:45.747 --> 00:04:49.297
+Và 1 x 4 này là do 
+lớp ẩn có bốn đơn vị ẩn,
+
+83
+00:04:49.297 --> 00:04:51.177
+lớp đầu ra chỉ có một đơn vị.
+
+84
+00:04:51.177 --> 00:04:56.378
+Nhưng chúng ta sẽ học về kích thước của các 
+ma trận và chiều vectơ trong một video sau này.
+
+85
+00:04:56.378 --> 00:04:59.839
+Và bạn vừa thấy hình dạng 
+một neural network nhân tạo.
+
+86
+00:04:59.839 --> 00:05:03.108
+Đó là một neural network 
+nhân tạo với một lớp ẩn.
+
+87
+00:05:03.108 --> 00:05:04.260
+Ở video tiếp theo,
+
+88
+00:05:04.260 --> 00:05:08.513
+chúng ta sẽ đi sâu hơn vào chính xác thì mạng 
+nơ-ron nhân tạo này đang tính toán những gì.
+
+89
+00:05:08.513 --> 00:05:11.223
+Đó là cách neural network
+ này nhập vào x và
+
+90
+00:05:11.223 --> 00:05:14.169
+tính đầu ra y mũ của nó.

@@ -1,0 +1,653 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.827
+Xin chào và chào mừng trở lại. Có một số khung
+lập trình
+
+00:00:03.827 --> 00:00:07.653
+deep learning có thể giúp bạn phát triển và sử
+dụng các
+
+00:00:07.653 --> 00:00:11.480
+thuật toán deep learning hiệu quả hơn nhiều.
+Một trong số này
+
+00:00:11.480 --> 00:00:17.380
+framework là TensorFlow. Điều tôi hy vọng làm
+trong video này là cùng bạn tìm
+
+00:00:17.380 --> 00:00:23.280
+hiểu cấu trúc cơ bản của chương trình
+TensorFlow để bạn biết cách sử dụng TensorFlow
+
+00:00:23.280 --> 00:00:29.140
+để triển khai các chương trình như vậy, hãy tự
+mình triển khai neural network. Và
+
+00:00:29.140 --> 00:00:35.000
+sau video này, tôi sẽ để bạn tìm hiểu thêm một
+số chi tiết và thực hành lập trình với
+
+00:00:35.000 --> 00:00:38.920
+TensorFlow trong bài tập lập trình tuần này.
+Bài tập lập trình
+
+00:00:38.920 --> 00:00:42.840
+tuần này cần thêm một chút thời gian. Vì vậy,
+vui lòng lập kế
+
+00:00:42.840 --> 00:00:46.760
+hoạch hoặc lập ngân sách để có thêm một chút
+thời gian để hoàn thành
+
+00:00:46.760 --> 00:00:53.027
+nó. Như một vấn đề thúc đẩy, giả sử bạn có một
+cost function j nào
+
+00:00:53.027 --> 00:00:59.293
+đó mà bạn muốn giảm thiểu. Và trong ví dụ này,
+tôi sẽ sử dụng hàm
+
+00:00:59.293 --> 00:01:05.560
+giá trị cực kỳ đơn giản j của w bằng w bình
+trừ 10w cộng 25. Vậy
+
+00:01:05.560 --> 00:01:09.493
+đó là cost function. Bạn có thể nhận thấy rằng
+hàm số này
+
+00:01:09.493 --> 00:01:13.427
+thực tế là w trừ 5 bình phương. Nếu bạn khai
+triển phương
+
+00:01:13.427 --> 00:01:17.360
+trình bậc hai này, bạn sẽ có được biểu thức
+trên. Và vì thế
+
+00:01:17.360 --> 00:01:21.253
+giá trị của w để cực tiểu hóa giá trị này là w
+bằng 5. Nhưng giả
+
+00:01:21.253 --> 00:01:25.147
+sử chúng tôi không biết điều đó và bạn chỉ có
+chức năng này. Hãy
+
+00:01:25.147 --> 00:01:29.040
+xem cách bạn có thể triển khai một cái gì đó
+trong TensorFlow để
+
+00:01:29.040 --> 00:01:33.347
+giảm thiểu điều này vì cấu trúc chương trình
+rất giống nhau có thể
+
+00:01:33.347 --> 00:01:37.653
+được sử dụng để huấn luyện neural network nơi
+bạn có thể có một số
+
+00:01:37.653 --> 00:01:41.960
+cost function phức tạp j của wb tùy thuộc vào
+tất cả các tham số
+
+00:01:41.960 --> 00:01:46.133
+của neural network của bạn. Và sau đó,
+tương tự, bạn sẽ sử dụng
+
+00:01:46.133 --> 00:01:50.307
+TensorFlow để tự động cố gắng tìm các giá trị
+của w và b nhằm giảm
+
+00:01:50.307 --> 00:01:54.480
+thiểu cost function này. Nhưng hãy bắt đầu với
+một cách đơn giản hơn
+
+00:01:54.480 --> 00:02:01.753
+ví dụ bên trái. Vì vậy, tôi đang sử dụng
+Python trong sổ ghi chép
+
+00:02:01.753 --> 00:02:09.027
+jucatan của mình. Để khởi động TensorFlow, bạn
+nhập import NumPy
+
+00:02:09.027 --> 00:02:16.300
+hoặc NumP as np import TensorFlow as tf. Vì
+vậy, đây là thành ngữ.
+
+00:02:16.300 --> 00:02:21.900
+Đây là những gì bạn biết, hầu hết mọi người
+đều gõ chính xác để
+
+00:02:21.900 --> 00:02:27.500
+nhập TensorFlow dưới dạng tf. Điều tiếp theo
+bạn muốn làm là
+
+00:02:27.500 --> 00:02:33.100
+xác định tham số w. Trong TensorFlow, bạn sẽ
+sử dụng tf.variable
+
+00:02:33.100 --> 00:02:41.280
+để biểu thị rằng đây là một biến, hãy khởi tạo
+nó về 0. Và loại của biến là số
+
+00:02:41.280 --> 00:02:49.460
+dấu phẩy động. Vậy dtype bằng tf.float32. Đây
+là số dấu phẩy động TensorFlow.
+
+00:02:49.460 --> 00:02:53.927
+Tiếp theo hãy xác định thuật toán tối ưu hóa
+mà chúng ta sẽ sử
+
+00:02:53.927 --> 00:02:58.393
+dụng. Trong trường hợp này là thuật toán tối
+ưu hóa Adam. Vì
+
+00:02:58.393 --> 00:03:02.860
+vậy, trình tối ưu hóa bằng
+tf.keras.optimizers.adam. Và hãy nói
+
+00:03:03.260 --> 00:03:09.993
+learning rate tập đến 0,1. Bây giờ chúng ta có
+thể xác định
+
+00:03:09.993 --> 00:03:16.727
+cost function. Hãy nhớ rằng cost function là w
+bình trừ 10 w
+
+00:03:16.727 --> 00:03:23.460
+cộng 25. Vì vậy, hãy để tôi viết rằng chi phí
+là w bình trừ
+
+00:03:23.460 --> 00:03:32.460
+10 w cộng 25. Điều tuyệt vời ở TensorFlow là
+bạn chỉ phải triển khai chuyển tiếp.
+
+00:03:32.460 --> 00:03:37.620
+Tức là bạn chỉ cần viết mã để tính giá trị của
+cost function. Và
+
+00:03:37.620 --> 00:03:42.780
+TensorFlow có thể tìm ra cách thực hiện back
+prop hoặc tính toán độ dốc. Một chiều
+
+00:03:42.780 --> 00:03:48.000
+để làm điều này là sử dụng băng chuyển màu. Để
+
+00:03:48.000 --> 00:03:53.220
+tôi chỉ cho bạn cú pháp với băng tf.gradient
+
+00:03:53.220 --> 00:03:59.800
+như băng. Tính chi phí như sau. Trực giác đằng
+sau cái tên băng gradient tương
+
+00:03:59.800 --> 00:04:06.380
+tự như băng cassette trường học cũ, trong đó
+băng gradient sẽ ghi lại trình tự
+
+00:04:06.380 --> 00:04:10.020
+của các hoạt động khi bạn tính toán
+cost function ở bước hỗ
+
+00:04:10.020 --> 00:04:13.660
+trợ phía trước. Và sau đó khi bạn phát đoạn
+băng ngược lại
+
+00:04:13.660 --> 00:04:17.300
+theo thứ tự ngược lại, nó có thể xem lại thứ
+tự các thao tác
+
+00:04:17.300 --> 00:04:22.073
+theo thứ tự ngược lại và trong quá trình thực
+hiện, tính toán phần
+
+00:04:22.073 --> 00:04:26.847
+chống đỡ và độ dốc. Bây giờ hãy xác định hàm
+bước huấn luyện để
+
+00:04:26.847 --> 00:04:31.620
+lặp lại. Chúng ta sẽ xác định một bước đào tạo
+duy nhất như thế này
+
+00:04:31.620 --> 00:04:37.703
+chức năng. Để thực hiện một lần huấn luyện lặp
+lại, bạn phải
+
+00:04:37.703 --> 00:04:43.787
+xác định các biến có thể huấn luyện là gì. Vì
+vậy, các biến có
+
+00:04:43.787 --> 00:04:49.870
+thể huấn luyện chỉ là một danh sách chỉ có w.
+Và lúc đó chúng tôi
+
+00:04:49.870 --> 00:04:55.643
+sẽ tính toán độ dốc với điều này với các biến
+có thể huấn luyện được
+
+00:04:55.643 --> 00:05:01.417
+về chi phí băng. Sau khi thực hiện việc này,
+bây giờ bạn có thể sử
+
+00:05:01.417 --> 00:05:07.190
+dụng trình tối ưu hóa để áp dụng các độ dốc và
+độ dốc là cấp độ và
+
+00:05:09.510 --> 00:05:13.190
+các biến có thể huấn luyện được. Và cú pháp
+chúng ta sắp sử
+
+00:05:13.190 --> 00:05:16.870
+dụng là chúng ta thực sự sẽ sử dụng các hàm
+zip được xây dựng
+
+00:05:16.870 --> 00:05:20.550
+trong hàm Python để lấy danh sách các gradient
+lấy danh sách
+
+00:05:20.550 --> 00:05:25.710
+các biến có thể huấn luyện và ghép chúng lại
+để gradient và hàm zip chỉ lấy
+
+00:05:25.710 --> 00:05:30.870
+hai danh sách này và ghép các phần tử tương
+ứng. Tôi đang định gõ print w ở đây
+
+00:05:30.870 --> 00:05:36.190
+chỉ để in giá trị ban đầu của w mà chúng ta
+chưa thực sự chạy train step. Được
+
+00:05:36.190 --> 00:05:41.510
+rồi, hy vọng là tôi không mắc lỗi cú pháp. Vì
+vậy w ban đầu là giá trị bằng 0, mà
+
+00:05:41.510 --> 00:05:46.510
+là những gì chúng tôi đã khởi tạo nó. Và bây
+giờ hãy chạy một
+
+00:05:46.510 --> 00:05:51.510
+bước của thuật toán học nhỏ của chúng ta và in
+giá trị mới
+
+00:05:51.510 --> 00:05:56.510
+của w. À, và bây giờ đang tăng một chút từ 0
+lên khoảng 0,1.
+
+00:05:56.510 --> 00:06:02.177
+Bây giờ chúng ta hãy chạy một nghìn lần bước
+train của chúng ta.
+
+00:06:02.177 --> 00:06:07.843
+Vì vậy, đối với tôi trong phạm vi 1000 bước
+tàu, hãy in w và xem
+
+00:06:07.843 --> 00:06:13.510
+điều gì sẽ xảy ra khá nhanh. À, và bây giờ w
+đã gần năm rồi, tức là
+
+00:06:18.670 --> 00:06:22.750
+chúng tôi biết là mức tối thiểu của
+cost function này. Thế không
+
+00:06:22.750 --> 00:06:26.830
+phải là tuyệt vời sao? Chúng tôi chỉ xác định
+cost function không
+
+00:06:26.830 --> 00:06:30.910
+cần phải sử dụng rôto và TensorFlow đã tìm ra
+cách giảm thiểu điều này
+
+00:06:30.910 --> 00:06:33.650
+cho chúng tôi. Tôi hy vọng điều này giúp bạn
+hiểu
+
+00:06:33.650 --> 00:06:36.390
+được cấu trúc rộng lớn của chương trình
+TensorFlow.
+
+00:06:36.390 --> 00:06:40.270
+Và khi bạn thực hiện bài tập lập trình của
+tuần này và tự
+
+00:06:40.270 --> 00:06:44.150
+mình chơi nhiều hơn với mã TensorFlow, một số
+hàm mà tôi vừa
+
+00:06:44.150 --> 00:06:48.030
+sử dụng ở đây sẽ trở nên quen thuộc hơn. Chỉ
+cần một vài điều
+
+00:06:48.030 --> 00:06:53.170
+để ý. w là thông số bạn muốn tối ưu. Đó là lý
+do tại sao chúng
+
+00:06:53.170 --> 00:06:58.310
+ta khai báo w là một biến. Và tất cả những gì
+chúng tôi phải
+
+00:06:58.310 --> 00:07:03.450
+làm là sử dụng băng chuyển màu để ghi lại thứ
+tự của trình tự
+
+00:07:03.450 --> 00:07:09.600
+các hoạt động cần thiết để tính toán
+cost function. Và đó là dành cho prop và
+
+00:07:09.600 --> 00:07:15.750
+TensorFlow có thể tự động tìm ra cách lấy đạo
+hàm theo cost function. Và đó là
+
+00:07:15.750 --> 00:07:19.750
+tại sao trong TensorFlow, về cơ bản bạn chỉ
+phải triển
+
+00:07:19.750 --> 00:07:23.750
+khai bước hỗ trợ for. Và nó sẽ tìm ra cách
+thực hiện phép
+
+00:07:23.750 --> 00:07:27.750
+tính phá vỡ. Bây giờ, có thêm một feature nữa
+của TensorFlow
+
+00:07:27.750 --> 00:07:34.290
+mà tôi muốn cho bạn thấy. Trong ví dụ chúng ta
+đã trình bày cho đến nay,
+
+00:07:34.290 --> 00:07:40.830
+cost function là hàm cố định của tham số hoặc
+biến w. Nhưng nếu chức năng bạn muốn giảm
+thiểu
+
+00:07:40.830 --> 00:07:45.190
+là một hàm không chỉ có các tham số của w mà
+còn là một hàm của
+
+00:07:45.190 --> 00:07:49.550
+training set của bạn. Vì vậy, hãy để bạn có
+một số
+
+00:07:49.550 --> 00:07:53.910
+training data x và x hoặc x hoặc y. Và bạn
+đang huấn luyện một thần kinh
+
+00:07:53.910 --> 00:07:58.937
+mạng trong đó cost function phụ thuộc vào dữ
+liệu của bạn x hoặc
+
+00:07:58.937 --> 00:08:03.963
+x và y cũng như các tham số w. Làm cách nào để
+đưa training data
+
+00:08:03.963 --> 00:08:08.990
+đó vào chương trình TensorFlow? Chúng ta hãy
+đi qua cái khác
+
+00:08:08.990 --> 00:08:20.630
+phiên bản về cách thực hiện tất cả điều này.
+Tôi vẫn sẽ định nghĩa w là biến. Cũng đi
+
+00:08:20.630 --> 00:08:25.910
+để sử dụng trình tối ưu hóa nguyên tử. Nhưng
+bây giờ tôi
+
+00:08:25.910 --> 00:08:31.190
+sẽ định nghĩa x là một danh sách các số dưới
+dạng một mảng.
+
+00:08:31.190 --> 00:08:44.670
+Và tôi sẽ thế một âm 10 và 25. Và đây sẽ là
+một số float khác 32. Vậy đây là
+
+00:08:44.670 --> 00:08:51.550
+Ba số một âm 10 và 25 sẽ đóng vai trò là hệ số
+của cost function.
+
+00:08:51.550 --> 00:08:58.430
+Vì vậy, bạn có thể coi x giống như dữ liệu
+kiểm soát các hệ số của
+
+00:08:58.430 --> 00:09:05.577
+cost function bậc hai. Vì vậy, bây giờ hãy để
+tôi xác định
+
+00:09:05.577 --> 00:09:12.723
+cost function, mà chúng ta sẽ cực tiểu hóa
+giống như trước,
+
+00:09:12.723 --> 00:09:19.870
+ngoại trừ việc bây giờ tôi sẽ viết x bằng 0
+nhân cộng với x của một
+
+00:09:19.870 --> 00:09:27.410
+nhân cái này cộng x hai. Vì vậy, đây là
+cost function tương tự như hàm trên, ngoại
+
+00:09:27.410 --> 00:09:34.950
+trừ việc các hệ số hiện được kiểm soát bởi
+phần dữ liệu x nhỏ mà chúng ta có. Vì thế
+
+00:09:34.950 --> 00:09:38.990
+bây giờ cost function này tính toán chính xác
+cost function
+
+00:09:38.990 --> 00:09:43.030
+giống như bạn đã làm ở trên, ngoại trừ phần dữ
+liệu nhỏ này
+
+00:09:43.030 --> 00:09:47.070
+trong mảng x kiểm soát các hệ số của phương
+trình bậc hai
+
+00:09:47.070 --> 00:09:52.830
+cost function. Bây giờ hãy để tôi viết print w
+cái này sẽ không có
+
+00:09:52.830 --> 00:09:58.590
+tác dụng gì vì w vẫn bằng 0 chỉ là giá trị ban
+đầu. Nhưng nếu sau
+
+00:09:58.590 --> 00:10:04.350
+đó bạn sử dụng trình tối ưu hóa để thực hiện
+một bước tối ưu hóa
+
+00:10:04.350 --> 00:10:10.523
+thuật toán, sau đó hãy in lại w, xem nó có
+hoạt động không.
+
+00:10:10.523 --> 00:10:16.697
+Tuyệt vời. Bây giờ điều này đã thực hiện một
+bước tối ưu hóa
+
+00:10:16.697 --> 00:10:22.870
+Adam. Và w lại bằng, khoảng 0,1. Vì vậy trình
+tối ưu hóa cú pháp
+
+00:10:22.870 --> 00:10:30.250
+hàm giảm thiểu dấu chấm, sau đó liệt kê các
+biến w, đó là một đoạn cú pháp thay thế
+
+00:10:30.250 --> 00:10:37.630
+đơn giản hơn hoặc thực hiện điều tương tự như
+những dòng ở trên bằng băng chuyển màu
+
+00:10:37.630 --> 00:10:43.497
+và áp dụng độ dốc. Bây giờ chúng ta đã triển
+khai một
+
+00:10:43.497 --> 00:10:49.363
+training set duy nhất, hãy đặt toàn bộ nội
+dung vào một trình
+
+00:10:49.363 --> 00:10:55.230
+tối ưu hóa vòng lặp def huấn luyện x w để tìm
+cost function trong phạm vi
+
+00:10:55.230 --> 00:11:05.715
+của chức năng này. Và sau đó đối với i trong
+
+00:11:05.715 --> 00:11:16.200
+phạm vi 1000, hãy chạy 1000 lần lặp rồi quay
+lại
+
+00:11:16.200 --> 00:11:26.360
+w. Vì vậy, hãy xem những gì nó làm. Thế đấy.
+Và bây
+
+00:11:26.360 --> 00:11:36.520
+giờ w gần đạt mức tối thiểu được đặt thành
+khoảng
+
+00:11:36.520 --> 00:11:40.240
+giá trị của năm. Vì vậy, hy vọng điều này mang
+lại cho bạn cảm giác về
+
+00:11:40.240 --> 00:11:43.960
+những gì dòng tensor có thể làm. Và điều làm
+cho nó trở nên mạnh mẽ là
+
+00:11:43.960 --> 00:11:47.680
+tất cả những gì bạn cần làm là xác định cách
+tính cost function. Và sau
+
+00:11:47.680 --> 00:11:51.400
+đó nó lấy đạo hàm và có thể áp dụng một trình
+tối ưu hóa với khá nhiều
+
+00:11:51.400 --> 00:11:56.667
+chỉ một hoặc hai dòng mã. Vì vậy, đây là mã
+một lần nữa. Và trong trường hợp một
+
+00:11:56.667 --> 00:12:01.933
+số hàm của biến này vẫn có vẻ hơi bí ẩn đối
+với bạn, chúng sẽ trở nên quen thuộc
+
+00:12:01.933 --> 00:12:07.200
+hơn sau khi bạn thực hành với nó một vài lần
+bằng cách thực hiện bài tập lập trình.
+
+00:12:07.200 --> 00:12:13.930
+Vậy mã này thực sự đang làm gì? Hãy tập trung
+vào phương trình này. Trọng tâm
+
+00:12:13.930 --> 00:12:20.660
+của chương trình tensor flow là tính toán chi
+phí. Và sau đó tensor tự động chảy
+
+00:12:20.660 --> 00:12:25.960
+tìm ra các dẫn xuất và cách giảm thiểu chi
+phí. Vì vậy, những gì dòng mã này đang
+
+00:12:25.960 --> 00:12:31.260
+làm là cho phép dòng tensor xây dựng một biểu
+đồ tính toán. Và thật là một tính toán
+
+00:12:31.260 --> 00:12:41.420
+đồ thị thực hiện như sau. Nó lấy x 0, và phải
+lấy w và w bình phương. Vậy w này
+
+00:12:41.420 --> 00:12:51.580
+bình phương, và sau đó x 0 và w bình phương
+được nhân với nhau để có x 0 nhân w
+
+00:12:51.580 --> 00:12:57.140
+bình phương. Và cứ như vậy qua nhiều bước, cho
+đến
+
+00:12:57.140 --> 00:13:02.700
+khi cuối cùng, điều này được xây dựng để tính
+toán
+
+00:13:02.700 --> 00:13:09.920
+cost function. Tôi đoán bước cuối cùng sẽ là
+thêm vào hệ số cuối cùng đó, x 2,
+
+00:13:09.920 --> 00:13:17.140
+điều thú vị về dòng tensor là bằng cách triển
+khai cơ bản cho một chỗ dựa thông qua
+
+00:13:17.140 --> 00:13:21.400
+đồ thị tính toán này, dòng tensor sẽ tự động
+
+00:13:21.400 --> 00:13:25.660
+tìm ra tất cả các phép tính ngược cần thiết.
+
+00:13:25.660 --> 00:13:30.647
+Và nó sẽ tự động có thể tìm ra tất cả các bước
+lùi cần
+
+00:13:30.647 --> 00:13:35.633
+thiết để triển khai back prop. Điều đó không
+tốt sao? Và
+
+00:13:35.633 --> 00:13:40.620
+đó là lý do tại sao bạn không cần triển khai
+một cách rõ ràng
+
+00:13:40.620 --> 00:13:45.687
+chống đỡ phía sau. Dòng chảy Tenor sẽ tìm ra
+nó cho bạn. Và đây là một trong những
+
+00:13:45.687 --> 00:13:50.753
+điều khiến các framework lập trình giúp bạn
+trở nên thực sự hiệu quả. Và cũng có
+
+00:13:50.753 --> 00:13:55.820
+rất nhiều thứ bạn có thể thay đổi chỉ bằng một
+dòng code. Ví dụ, nếu bạn không muốn
+
+00:13:55.820 --> 00:14:00.660
+sử dụng trình tối ưu hóa nguyên tử và bạn muốn
+sử dụng một trình tối
+
+00:14:00.660 --> 00:14:05.500
+ưu hóa khác, sau đó chỉ cần thay đổi một dòng
+mã này. Và bạn có thể
+
+00:14:05.500 --> 00:14:10.340
+nhanh chóng hoán đổi nó bằng một thuật toán
+tối ưu hóa khác. Tất cả
+
+00:14:10.340 --> 00:14:15.007
+trong số các khung lập trình deep learning
+hiện đại phổ biến hỗ trợ những
+
+00:14:15.007 --> 00:14:19.673
+thứ như thế này và giúp việc phát triển các
+neural network thậm chí
+
+00:14:19.673 --> 00:14:24.340
+khá phức tạp trở nên dễ dàng hơn nhiều. Vì vậy
+tôi hy vọng điều đó đã mang lại
+
+00:14:24.340 --> 00:14:28.693
+bạn hiểu được cấu trúc điển hình của một
+chương trình tensor flow.
+
+00:14:28.693 --> 00:14:33.047
+Để tóm tắt lại nội dung của tuần này, bạn đã
+biết cách tổ chức một
+
+00:14:33.047 --> 00:14:37.400
+cách có hệ thống quá trình tìm kiếm siêu tham
+số. Bạn cũng vậy
+
+00:14:37.400 --> 00:14:40.390
+đã thấy quá trình batch normalization và cách
+bạn có thể sử dụng
+
+00:14:40.390 --> 00:14:43.380
+điều đó để tăng tốc quá trình đào tạo
+neural network của mình.
+
+00:14:43.500 --> 00:14:46.180
+Chúng ta cũng trò chuyện về các khung lập
+trình
+
+00:14:46.180 --> 00:14:48.860
+deep learning và bạn đã tìm hiểu về
+TensorFlow.
+
+00:14:48.860 --> 00:14:53.420
+Tôi hy vọng rằng bạn tiếp tục, thử và thích
+thú với bài tập lập trình
+
+00:14:53.420 --> 00:14:57.980
+của tuần này, nó sẽ giúp bạn làm quen nhiều
+hơn với những ý tưởng này.

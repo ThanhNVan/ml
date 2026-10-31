@@ -1,0 +1,267 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.780 --> 00:00:06.500
+Let's look at how you can implement feature scaling to take features that take on very
+
+00:00:06.500 --> 00:00:11.100
+different ranges of values and scale them to have comparable ranges of value to each
+
+00:00:11.100 --> 00:00:12.100
+other.
+
+00:00:12.100 --> 00:00:14.420
+So how do you actually scale features?
+
+00:00:14.420 --> 00:00:22.660
+Well, if x1 ranges from 3 to 2000, one way to get a scale version of x1 is to take each
+
+00:00:22.660 --> 00:00:28.840
+original x1 value and divide by 2000 the maximum of the range.
+
+00:00:28.840 --> 00:00:34.400
+So the scale of x1 will range from 0.15 up to 1.
+
+00:00:34.400 --> 00:00:41.720
+Similarly, since x2 ranges from 0 to 5, you can calculate a scale version of x2 by taking
+
+00:00:41.720 --> 00:00:47.120
+each original x2 and dividing by 5, which is again the maximum.
+
+00:00:47.120 --> 00:00:52.480
+So the scale of x2 will now range from 0 to 1.
+
+00:00:52.480 --> 00:00:58.920
+So if you plot the scaled x1 and x2 on a graph, it might look like this.
+
+00:00:58.920 --> 00:01:05.020
+In addition to dividing by the maximum, you can also do what's called mean normalization.
+
+00:01:05.020 --> 00:01:09.760
+So what this looks like is, you start with the original features, and then you rescale
+
+00:01:09.760 --> 00:01:13.400
+them so that both of them are centered around 0.
+
+00:01:13.400 --> 00:01:18.600
+So whereas before, they only had values greater than 0, now they have both negative and
+
+00:01:18.600 --> 00:01:25.560
+positive values, but maybe usually between negative 1 and plus 1.
+
+00:01:25.560 --> 00:01:31.240
+So to calculate the mean normalization of x1, first find the average, also called the mean
+
+00:01:31.240 --> 00:01:38.400
+of x1 on your training set, and let's call this mean mu1, with this being the Greek alphabet
+
+00:01:38.400 --> 00:01:39.700
+mu.
+
+00:01:39.700 --> 00:01:46.640
+For example, you may find that the average of feature 1, mu1 is 600 square feet.
+
+00:01:46.680 --> 00:01:53.760
+So let's take each x1, subtract the mean mu1, and then let's divide by the difference
+
+00:01:53.760 --> 00:02:02.000
+2000 minus 300, where 2000 is the maximum and 300 the minimum.
+
+00:02:02.000 --> 00:02:11.360
+And if you do this, you get the normalized x1 to range from negative 0.18 to 0.82.
+
+00:02:11.360 --> 00:02:18.120
+Similarly to mean normalized x2, you can calculate the average of feature 2, and for instance,
+
+00:02:18.120 --> 00:02:21.040
+mu2 may be 2.3.
+
+00:02:21.040 --> 00:02:30.280
+Then you can take each x2, subtract mu2, and divide by 5 minus 0, again the max 5 minus
+
+00:02:30.280 --> 00:02:32.920
+the min, which is 0.
+
+00:02:32.920 --> 00:02:42.680
+The mean normalized x2 now ranges from negative 0.46 to 0.54, so if you plot the training
+
+00:02:42.680 --> 00:02:47.960
+data using the mean normalized x1 and x2, it might look like this.
+
+00:02:47.960 --> 00:02:54.440
+There's one last common rescaling method called z-score normalization.
+
+00:02:54.440 --> 00:02:58.720
+To implement z-score normalization, you need to calculate something called the standard
+
+00:02:58.720 --> 00:03:00.960
+deviation of each feature.
+
+00:03:00.960 --> 00:03:04.400
+If you don't know what the standard deviation is, don't worry about it, you won't need
+
+00:03:04.400 --> 00:03:06.560
+to know it for this class.
+
+00:03:06.560 --> 00:03:11.040
+Or if you've heard of the normal distribution or the bell-shaped curve, sometimes also called
+
+00:03:11.040 --> 00:03:16.680
+the Gaussian distribution, this is what the standard deviation for the normal distribution
+
+00:03:16.680 --> 00:03:17.680
+looks like.
+
+00:03:17.680 --> 00:03:21.200
+But if you haven't heard of this, you don't need to worry about that either.
+
+00:03:21.200 --> 00:03:26.960
+But if you do know what is the standard deviation, then to implement a z-score normalization,
+
+00:03:26.960 --> 00:03:33.400
+you first calculate the mean mu as well as the standard deviation, which is often denoted
+
+00:03:33.400 --> 00:03:38.600
+by the lowercase Greek alphabet sigma of each feature.
+
+00:03:38.600 --> 00:03:48.280
+So for instance, maybe feature 1 has a standard deviation of 450 and mean 600, then to z-score
+
+00:03:48.280 --> 00:03:57.120
+normalize x1, take each x1, subtract mu1, and then divide by the standard deviation, which
+
+00:03:57.120 --> 00:04:00.120
+I'm going to denote as sigma1.
+
+00:04:00.120 --> 00:04:07.880
+And what you might find is that the z-score normalize x1 now ranges from negative 0.67
+
+00:04:07.880 --> 00:04:10.000
+to 3.1.
+
+00:04:10.000 --> 00:04:18.040
+Similarly, if you calculate the second feature's standard deviation to be 1.4 and mean to
+
+00:04:18.040 --> 00:04:27.760
+be 2.3, then you can compute x2 minus mu2 divided by sigma2, and in this case, the z-score
+
+00:04:27.760 --> 00:04:35.800
+normalized by x2 might now range from negative 1.6 to 1.9.
+
+00:04:35.800 --> 00:04:43.730
+So if you plot the training data on the normalized x1 and x2 on a graph, it might look like this.
+
+00:04:43.730 --> 00:04:48.770
+As a rule of thumb, when performing feature scaling, you might want to aim for getting
+
+00:04:48.770 --> 00:04:54.850
+the features to range from maybe anywhere around negative 1 to somewhere around plus
+
+00:04:54.850 --> 00:04:58.170
+1 for each feature x.
+
+00:04:58.170 --> 00:05:03.210
+But these values negative 1 and plus 1 can be a little bit loose.
+
+00:05:03.210 --> 00:05:10.730
+So if the features range from negative 3 to plus 3, or negative 0.3 to plus 0.3, all
+
+00:05:10.730 --> 00:05:12.950
+of these are completely okay.
+
+00:05:12.950 --> 00:05:19.150
+So if you have a feature x1 that winds up being between 0 and 3, that's not a problem.
+
+00:05:19.150 --> 00:05:23.670
+And you can rescale it if you want, but if you don't rescale it, it should work okay
+
+00:05:23.670 --> 00:05:25.030
+too.
+
+00:05:25.030 --> 00:05:31.590
+Or if you have a different feature, x2, whose values are between negative 2 and plus 0.5,
+
+00:05:31.590 --> 00:05:33.270
+again, that's okay.
+
+00:05:33.270 --> 00:05:39.150
+No harm rescaling it, but it might be okay if you leave it alone as well.
+
+00:05:39.150 --> 00:05:46.670
+But if another feature like x3 here ranges from negative 100 to plus 100, then this takes
+
+00:05:46.670 --> 00:05:52.110
+on a very different range of values than something from around negative 1 to plus 1.
+
+00:05:52.110 --> 00:05:57.670
+So you're probably better off rescaling this feature x3 so that it ranges from something
+
+00:05:57.670 --> 00:06:01.430
+closer to negative 1 to plus 1.
+
+00:06:01.430 --> 00:06:08.270
+Similarly, if you have a feature x4 that takes on really small values, say between negative
+
+00:06:08.270 --> 00:06:15.110
+0.001 and plus 0.001, then these values are so small.
+
+00:06:15.110 --> 00:06:18.350
+That means you may want to rescale it as well.
+
+00:06:18.350 --> 00:06:25.270
+Finally, what if your feature x5, such as measurements of a hospital patient's body
+
+00:06:25.270 --> 00:06:32.430
+temperature ranges from 98.6 to 105 degrees Fahrenheit.
+
+00:06:32.430 --> 00:06:38.510
+In this case, these values are around 100, which is actually pretty large compared to
+
+00:06:38.510 --> 00:06:40.510
+other scale features.
+
+00:06:40.510 --> 00:06:44.330
+And this will actually cause gradient descent to run more slowly.
+
+00:06:44.330 --> 00:06:48.550
+So in this case, feature rescaling will likely help.
+
+00:06:48.550 --> 00:06:52.750
+There's almost never any harm to carrying out feature rescaling.
+
+00:06:52.750 --> 00:06:56.590
+So when in doubt, I encourage you to just carry it out.
+
+00:06:56.590 --> 00:06:58.870
+And that's it for feature scaling.
+
+00:06:58.870 --> 00:07:03.230
+With this little technique, you'll often be able to get gradient descent to run much
+
+00:07:03.230 --> 00:07:05.390
+faster.
+
+00:07:05.390 --> 00:07:07.790
+So that's feature scaling.
+
+00:07:07.790 --> 00:07:12.830
+And with or without feature scaling, when you run gradient descent, how can you know,
+
+00:07:12.830 --> 00:07:17.790
+how can you check if gradient descent is really working, if it is finding you the global
+
+00:07:17.790 --> 00:07:20.310
+minimum or something close to it?
+
+00:07:20.310 --> 00:07:25.030
+In the next video, let's take a look at how to recognize if gradient descent is
+
+00:07:25.030 --> 00:07:26.590
+converging.
+
+00:07:26.590 --> 00:07:31.110
+And then in the video after that, this will lead to discussion of how to choose a good
+
+00:07:31.110 --> 00:07:33.430
+learning rate for gradient descent.

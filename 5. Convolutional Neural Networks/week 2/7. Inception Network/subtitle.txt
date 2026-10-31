@@ -1,0 +1,87 @@
+Trong video trước, mọi người đã thấy tất cả
+khối xây dựng cơ bản của mạng Inception. Trong video này, hãy xem cách mọi người có thể
+kết hợp các khối xây dựng này lại với nhau để xây dựng mạng Inception cho riêng mình. Vì vậy, mô-đun Inception lấy
+activation làm đầu vào hoặc đầu ra từ một số layer trước đó. Vì vậy, để bàn bạc thêm, giả sử
+đây là 28 x 28 x 192, giống như video trước của chúng ta. Ví dụ mà chúng ta đã nghiên cứu rất kỹ
+là 1 x 1 sau đó là 5 x 5. Ở đó,
+có thể 1 x 1 có 16 kênh và sau đó, 5 x 5 sẽ xuất ra 28 x 28 x 32 kênh chẳng hạn. Và đây là ví dụ mà chúng ta đã tìm hiểu
+trên slide cuối cùng của video trước. Sau đó, để lưu tính toán trên phép chập 3 x 3
+mọi người cũng có thể thực hiện tương tự tại đây. Và sau đó là 3 x 3 đầu ra,
+28 x 28 x 1 x 28. Và sau đó có lẽ mọi người cũng nên
+xem xét phép chập 1 x 1. Không cần tính phép chập 1 x 1
+và sau đó là phép chập 1 x 1 nữa vì vậy chỉ có một bước ở đây và
+giả sử các đầu ra này là 28 x 28 x 64. Và cuối cùng là pooling layer. Vì vậy, ở đây tôi sẽ làm một thứ khá là vui nhộn. Để thực sự nối
+tất cả các đầu ra này chúng ta sẽ sử dụng cùng một kiểu
+padding cho việc pooling Vì vậy, chiều cao và chiều rộng
+của đầu ra vẫn là 28 x 28. Vì vậy, chúng ta có thể nối nó
+với các đầu ra khác này. Nhưng lưu ý rằng nếu mọi người thực hiện max pooling,
+ngay cả với cùng một padding (đệm), Bộ lọc 3 x 3 có stride (bước nhảy) là 1. Đầu ra ở đây sẽ là 28 x 28, đến 192. Nó sẽ có cùng số kênh
+và cùng độ sâu với
+đầu vào mà chúng ta có ở đây. Vì vậy, nó có vẻ như là
+có rất nhiều kênh. Vì vậy, chúng ta sẽ
+thêm một layer tích chập 1 x 1 nữa và sau đó lại tiếp tục thực hiện những gì chúng ta đã thấy trong
+video phép chập 1 x 1 để giảm số lượng kênh. Vì vậy, nó giảm xuống còn 28 x 28 x 32 chẳng hạn. Và mọi người có thể làm điều đó
+bằng cách sử dụng 32 bộ lọc, của kích thước 1 x 1 x 192. Vì vậy, đó là lý do tại sao số lượng kênh của
+kích thước đầu ra giảm xuống còn 32. Vì vậy, sau đó chúng ta sẽ không
+có pooling layer chiếm tất cả các kênh
+trong đầu ra cuối cùng. Và cuối cùng, mọi người lấy tất cả các khối
+và mọi người thực hiện ghép kênh. Chỉ cần nối
+64 cộng 128 cộng 32 cộng với 32 và
+nếu mọi người cộng chúng lại, mọi người sẽ có đầu ra với kích thước 28 x 28 x 256. Concat là viết tắt của concatenate, tức là nối các khối
+mà chúng ta đã thấy trong video trước. Vậy, đây là một mô-đun Inception và
+những gì mạng Inception làm, về cơ bản là
+kết hợp các mô-đun này lại với nhau. Đây là hình ảnh của mạng Inception,
+được lấy từ nghiên cứu của Szegedy Et al Và mọi người nhận thấy có rất nhiều khối
+lặp lại trong này. Có lẽ hình ảnh này trông
+thực sự phức tạp. Nhưng nếu mọi người nhìn vào một trong các khối
+ở đó, thì khối đó về cơ bản là mô-đun Inception mà mọi người
+đã thấy trên slide trước đó. Và tùy thuộc vào chi tiết nhỏ tôi sẽ không
+nói tới, đây là một khối Inception. Đây là một khối Inception khác. Có thêm một số max pooling layer
+ở đây để thay đổi kích thước của chiều cao và chiều rộng Nhưng đó là một khối Inception khác. Và sau đó, có một max pooling khác ở đây
+để thay đổi chiều cao và chiều rộng nhưng về cơ bản có một khối Inception khác. Nhưng mạng Inception chỉ là
+nhiều khối mà mọi người đã học về xuất hiện nhiều lần tại các vị trí
+khác nhau của mạng. Như vậy nếu mọi người đã hiểu khối
+Inception từ slide trước, thì mọi người đã hiểu về mạng Inception. Hóa ra là có một chi tiết cuối cùng
+của mạng Inception nếu mọi người đọc bài nghiên cứu không bắt buộc Tức là tôi vừa thêm vào
+nhánh phụ. Vậy thì họ cần làm gì? Chà, vài layer cuối cùng của
+mạng là layer được kết nối đầy đủ tiếp theo là layer softmax
+để cố gắng đưa ra dự đoán. Các nhánh phụ
+cần một số layer ẩn và nó cố gắng sử dụng layer đó để đưa ra dự đoán. Vì vậy, đây thực ra là một đầu ra softmax và
+đây cũng vậy. Và nhánh phụ còn lại một lần nữa nó là một layer ẩn truyền qua
+một vài layer ví dụ như một vài layer được kết nối. Và sau đó thử softmax để
+dự đoán nhãn đầu ra là gì. Và mọi người nên coi nó
+chỉ là một chi tiết khác của mạng Inception Nhiệm vụ của nó là giúp
+đảm bảo rằng các đặc điểm được tính toán. Ngay cả trong các unit ẩn,
+ngay cả ở các layer trung gian. Chúng cũng làm tốt việc
+bảo vệ kích hoạt đầu ra của một hình ảnh. Và điều này dường như có ảnh hưởng
+điều chỉnh đối với mạng Inception và giúp ngăn mạng
+này gặp tình trạng quá khớp Nhân tiện,
+mạng Inception này được phát triển bởi các tác giả làm việc tại Google. Họ đã gọi nó là GoogleNet, đánh vần như
+thế này, để tôn vinh mạng. Mọi người cũng đã học về nó trong
+video trước đó rồi. Vậy, tôi nghĩ rằng việc
+cộng đồng Deep Learning hợp tác với nhau là một điều thật tuyệt vời Và có sự tôn trọng
+lành mạnh đối với sản phẩm của nhau trong
+cộng đồng Học tập sâu. Đây là một sự thật thú vị. Tên của mạng Inception
+bắt nguồn từ đâu? Nghiên cứu Inception trích dẫn
+meme này "We need to go deeper" (Chúng ta cần đi sâu hơn) Và URL này là một tài liệu tham khảo
+thực tế trong nghiên cứu Inception, liên kết đến hình ảnh này. Và nếu mọi người đã xem bộ phim
+có tựa đề The Inception, có lẽ mọi người sẽ hiểu meme này Nhưng các tác giả thực sự trích dẫn
+meme này để làm động lực cho nhu cầu xây dựng các mạng mới sâu hơn. Và đó là cách họ nghĩ ra
+kiến trúc Inception. Vậy, tôi đoán các nghiên cứu thì
+không thường xuyên trích dẫn các meme trên Internet trong phần trích dẫn. Nhưng trong trường hợp này,
+, tôi nghĩ là nó hoạt động khá tốt. Vì vậy, để tóm tắt,
+nếu bạn hiểu mô-đun Inception, thì mọi người đã hiểu về mạng Inception. Mà phần lớn là mô-đun Inception
+lặp đi lặp lại nhiều lần trên toàn mạng. Kể từ khi mô-đun Inception
+ban đầu được phát minh, tác giả và những người khác đã phát triển nó và
+nghĩ ra các phiên bản khác. Vì vậy, có các tài liệu nghiên cứu về các phiên bản
+mới hơn của thuật toán khởi đầu. Và đôi khi mọi người thấy người ta cũng sử dụng
+một số phiên bản sau trong các sản phẩm của họ, như inception v2,
+inception v3, inception v4. Cũng có một phiên bản Inception Nó kết hợp với ý tưởng
+cộng hưởng của kết nối tắt, và điều đó đôi khi còn hoạt động tốt hơn. Nhưng tất cả các biến thể này đều được xây dựng dựa trên
+ý tưởng cơ bản mà mọi người đã tìm hiểu trong video trước về
+với mô-đun Inception và sau đó xếp chồng một loạt chúng lại với nhau. Và với những video này, tôi nghĩ rằng
+mọi người sẽ có thể đọc và hiểu nghiên cứu Inception cũng như một số bài báo
+mô tả những dẫn xuất sau này của nó. Chỉ có như vậy thôi, mọi người đã tìm hiểu khá nhiều kiến trúc
+mạng nơ-ron chuyên biệt. Trong video tiếp theo, tôi sẽ bắt đầu chỉ cho
+mọi người một số lời khuyên thiết thực hơn để thực sự sử dụng các thuật toán này để xây dựng
+hệ thống thị giác máy tính của riêng mọi người Hãy đón xem video tiếp theo.

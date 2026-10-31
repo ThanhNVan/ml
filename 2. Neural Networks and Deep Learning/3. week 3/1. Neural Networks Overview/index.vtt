@@ -1,0 +1,129 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:06.240
+Welcome back! In this week, you learn to implement a neural network. Before diving into the technical
+
+00:00:06.240 --> 00:00:10.400
+details, I wanted in this video to give you a quick overview of what you'll be seeing
+
+00:00:10.400 --> 00:00:15.280
+in this week's videos. So if you don't follow all the details in this video, don't worry
+
+00:00:15.280 --> 00:00:19.440
+about it. We'll delve into the technical details in the next few videos. But for now,
+
+00:00:19.440 --> 00:00:23.960
+let's give a quick overview of how you implement a neural network.
+
+00:00:23.960 --> 00:00:28.600
+Last week, we had talked about logistic regression, and we saw how this model
+
+00:00:28.600 --> 00:00:35.080
+corresponds to the following computation draft, where you then put the features x in
+
+00:00:35.080 --> 00:00:40.240
+parameters w and b, that allows you to compute z, which is then used to compute a,
+
+00:00:40.240 --> 00:00:46.960
+and we were using a interchangeably with this output y hat, and then you can compute
+
+00:00:46.960 --> 00:00:52.760
+the last function, L. A neural network looks like this, and as I'd already previously
+
+00:00:52.760 --> 00:00:58.760
+alluded, you can form a neural network by stacking together a lot of little sigma units.
+
+00:00:58.760 --> 00:01:04.360
+Whereas previously, this node corresponds to two steps of calculations. The first is
+
+00:01:04.360 --> 00:01:11.480
+compute the z value, second is compute this a value. In this neural network, this stack
+
+00:01:11.480 --> 00:01:19.280
+of nodes will correspond to a z-like calculation like this, as well as an a-like calculation
+
+00:01:19.280 --> 00:01:26.640
+like that, and then that node will correspond to another z and another a-like calculation.
+
+00:01:26.640 --> 00:01:32.040
+So the notation, which we'll introduce later, will look like this. First, we'll input the
+
+00:01:32.040 --> 00:01:38.520
+features x together with some parameters w and b, and this will allow you to compute
+
+00:01:38.520 --> 00:01:45.360
+z1. So a new notation that we'll introduce is that we'll use superstrip square bracket
+
+00:01:45.360 --> 00:01:51.720
+1 to refer to quantities associated with this stack of nodes, it's called a layer, and then
+
+00:01:51.720 --> 00:01:57.640
+later we'll use supergroup square bracket 2 to refer to quantities associated with that
+
+00:01:57.640 --> 00:02:02.400
+node, really, that's called another layer of the neural network. And the supergroup
+
+00:02:02.400 --> 00:02:09.840
+square brackets, like we have here, are not to be confused with the superstrip round brackets,
+
+00:02:09.840 --> 00:02:15.320
+which we use to refer to individual training examples. So whereas x superstrip round brackets
+
+00:02:15.320 --> 00:02:21.840
+I refer to the I-F training example, superstrip square bracket 1 and 2 refer to these different
+
+00:02:21.840 --> 00:02:31.120
+layers, layer 1 and layer 2 in this neural network. But so going on, after computing z1,
+
+00:02:31.120 --> 00:02:38.520
+similar to the logistic regression, there'll be a computation to compute a1, and that's just
+
+00:02:38.520 --> 00:02:51.880
+sigmoid of z1, and then you compute z2 using another linear equation and then compute a2,
+
+00:02:51.880 --> 00:02:58.680
+and a2 is the final output of the neural network and will also be used interchangeably with
+
+00:02:58.680 --> 00:03:04.080
+y hat. So I know that was a lot of details, but the key intuition to take away is that
+
+00:03:04.320 --> 00:03:10.080
+whereas for logistic regression, we had this z followed by a calculation, and this neural
+
+00:03:10.080 --> 00:03:15.120
+network here, we just do it multiple times. There's a z followed by an a calculation and
+
+00:03:15.120 --> 00:03:21.920
+a z followed by an a calculation, and then you finally compute the loss at the end. And
+
+00:03:21.920 --> 00:03:27.640
+you remember that for logistic regression, we had this backward calculation in order
+
+00:03:27.640 --> 00:03:35.160
+to compute derivatives, so computing dA, dz, and so on. So in the same way, in a neural
+
+00:03:35.160 --> 00:03:41.520
+network, we'll end up doing a backward calculation that looks like this, in which you end up
+
+00:03:41.520 --> 00:03:57.820
+computing dA2, dz2, that allows you to compute dW2, dB2, and so on. In this sort of a right
+
+00:03:57.820 --> 00:04:05.540
+to left backward calculation that is denoting with the red arrows. So that gives you a quick
+
+00:04:05.540 --> 00:04:10.780
+overview of what a neural network looks like. It's basically taking logistic regression and
+
+00:04:10.780 --> 00:04:16.020
+repeating it twice. I know there was a lot of new notation, a lot of new details. Don't
+
+00:04:16.020 --> 00:04:20.340
+worry about it. If you didn't follow everything, we'll go into the details more slowly in
+
+00:04:20.340 --> 00:04:24.180
+the next few videos. So let's go on to the next video. We'll start to talk about
+
+00:04:24.180 --> 00:04:26.180
+the neural network representation.

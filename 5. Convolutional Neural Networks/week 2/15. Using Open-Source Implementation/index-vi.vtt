@@ -1,0 +1,350 @@
+WEBVTT
+
+1
+00:00:01.040 --> 00:00:05.360
+Bây giờ mọi người đã biết về một số
+neural network hiệu quả cao và
+
+2
+00:00:05.360 --> 00:00:07.750
+Kiến trúc Mạng convolution (CNN).
+
+3
+00:00:07.750 --> 00:00:12.040
+Trong vài video tiếp theo, tôi muốn
+chia sẻ với mọi người một số lời khuyên thiết thực về
+
+4
+00:00:12.040 --> 00:00:17.056
+cách sử dụng chúng, trước tiên hãy bắt đầu
+bằng cách sử dụng các triển khai mã nguồn mở.
+
+5
+00:00:17.056 --> 00:00:21.870
+Hóa ra là rất khó hoặc phức tạp để sao chép rất nhiều mạng
+
+6
+00:00:21.870 --> 00:00:26.660
+nơ ron bởi vì rất nhiều chi tiết
+về việc điều chỉnh các siêu tham số như
+
+7
+00:00:26.660 --> 00:00:31.430
+như sự suy giảm học tập và những thứ khác
+làm thay đổi hiệu suất.
+
+8
+00:00:31.430 --> 00:00:34.890
+Và tôi thậm chí còn thấy rằng đôi khi cũng rất khó để
+
+9
+00:00:34.890 --> 00:00:40.140
+một nghiên cứu sinh tiến sĩ deep learning,
+ngay cả ở các trường đại học hàng đầu
+
+10
+00:00:40.140 --> 00:00:45.130
+có thể sao chép sản phẩm
+được xuất bản của người khác chỉ bằng việc đọc nghiên cứu của họ.
+
+11
+00:00:45.130 --> 00:00:47.860
+May mắn thay, rất nhiều
+các nhà nghiên cứu deep learning
+
+12
+00:00:47.860 --> 00:00:52.880
+thường xuyên để mã nguồn mở các sản phẩm của họ trên
+Internet, chẳng hạn như trên GitHub.
+
+13
+00:00:52.880 --> 00:00:55.680
+Và khi mọi người xây dựng các sản phẩm của mình,
+Tôi chắc chắn khuyến khích mọi người
+
+14
+00:00:55.680 --> 00:01:00.420
+hãy xem xét đóng góp code
+của mọi người cho cộng đồng mã nguồn mở.
+
+15
+00:01:00.420 --> 00:01:04.930
+Nhưng nếu mọi người muốn phát triển trên
+cơ sở kết quả của một bài nghiên cứu nào đó
+
+16
+00:01:04.930 --> 00:01:06.500
+mọi người nên cân nhắc làm một điều,
+
+17
+00:01:06.500 --> 00:01:11.770
+một điều tôi làm khá thường xuyên đó là tìm
+triển khai mã nguồn mở online
+
+18
+00:01:11.770 --> 00:01:16.284
+Bởi vì nếu mọi người có thể tìm được triển khai
+của tác giả, mọi người thường có thể làm
+
+19
+00:01:16.284 --> 00:01:20.000
+nhanh hơn nhiều so với nếu mọi người cố gắng
+bắt đầu làm lại từ đầu.
+
+20
+00:01:20.000 --> 00:01:23.414
+Mặc dù đôi khi việc triển khai lại
+từ đầu có thể là cách hay để
+
+21
+00:01:23.414 --> 00:01:24.350
+luyện tập
+
+22
+00:01:24.350 --> 00:01:27.800
+Nếu mọi người đã quen thuộc
+với cách sử dụng GitHub,
+
+23
+00:01:27.800 --> 00:01:32.080
+video này có thể không quá cần thiết hoặc
+không quá quan trọng đối với mọi người.
+
+24
+00:01:32.080 --> 00:01:35.960
+Nhưng nếu mọi người không quen tải xuống
+mã nguồn mở từ GitHub,
+
+25
+00:01:35.960 --> 00:01:38.300
+tôi sẽ nhanh chóng chỉ cho mọi người thấy nó dễ dàng như thế nào.
+
+26
+00:01:42.589 --> 00:01:46.270
+Giả sử mọi người quan tâm đến
+mạng thặng dư (resnet) và mọi người muốn sử dụng nó.
+
+27
+00:01:46.270 --> 00:01:49.700
+Thì hãy tìm resnets trên GitHub
+
+28
+00:01:50.880 --> 00:01:55.870
+Và mọi người thực sự thấy rất nhiều triển khai
+khác nhau của resnet trên GitHub.
+
+29
+00:01:55.870 --> 00:01:58.840
+Và tôi chỉ đi
+đến URL đầu tiên ở đây.
+
+30
+00:01:58.840 --> 00:02:02.760
+Và đây là một kho GitHub
+triển khai resnets
+
+31
+00:02:02.760 --> 00:02:06.346
+trong các trang web GitHub nếu
+mọi người cuộn xuống chúng ta sẽ có một số văn bản
+
+32
+00:02:06.346 --> 00:02:09.840
+mô tả sản phẩm hoặc
+triển khai cụ thể.
+
+33
+00:02:09.840 --> 00:02:13.980
+Trên kho cụ thể này,
+GitHub cụ thể này
+
+34
+00:02:13.980 --> 00:02:19.090
+kho lưu trữ là của
+tác giả ban đầu của nghiên cứu ResNet.
+
+35
+00:02:19.090 --> 00:02:22.940
+Và code này,
+được cấp phép này bởi giấy phép MIT,
+
+36
+00:02:22.940 --> 00:02:27.110
+mọi người có thể nhấp vào để xem
+ý nghĩa của giấy phép này.
+
+37
+00:02:27.110 --> 00:02:29.454
+Giấy phép MIT là một trong
+giấy phép cởi mở hơn và
+
+38
+00:02:29.454 --> 00:02:32.420
+một trong những giấy phép mã nguồn mở cởi mở hơn.
+
+39
+00:02:32.420 --> 00:02:37.650
+Vì vậy, tôi sẽ tải xuống code
+, và để làm điều đó, hãy nhấp vào liên kết này.
+
+40
+00:02:37.650 --> 00:02:41.327
+Nó sẽ cho mọi người URL mà mọi người
+có thể sử dụng để tải code xuống
+
+41
+00:02:41.327 --> 00:02:45.455
+Tôi sẽ nhấp vào nút này trên
+ở đây để sao chép URL vào khay nhớ tạm và
+
+42
+00:02:45.455 --> 00:02:46.527
+sau đó đi tới đây.
+
+43
+00:02:46.527 --> 00:02:53.100
+Sau đó, mọi người phải nhập git clone
+, sau đó nhấn Ctrl + V để dán URL và nhấn Enter.
+
+44
+00:02:53.100 --> 00:02:55.450
+Và như vậy là
+trong vài giây, nó đã tải xuống,
+
+45
+00:02:55.450 --> 00:02:58.726
+đã sao chép kho lưu trữ này
+vào đĩa cứng cục bộ của tôi.
+
+46
+00:02:58.726 --> 00:03:03.290
+Vậy, hãy đi vào thư mục và
+xem xét nhé.
+
+47
+00:03:03.290 --> 00:03:09.900
+Tôi quên dùng Mac hơn Windows, nhưng tôi
+đoán, xem nào, hãy nhập prototxt và
+
+48
+00:03:09.900 --> 00:03:15.450
+Tôi nghĩ đây là vị trí có
+các tệp chỉ định mạng.
+
+49
+00:03:15.450 --> 00:03:21.722
+Vậy, hãy xem xét tệp này, bởi vì
+đây là một tệp rất dài chỉ định
+
+50
+00:03:21.722 --> 00:03:28.030
+cấu hình chi tiết của ResNet
+với 101 layer, được chứ?
+
+51
+00:03:28.030 --> 00:03:32.640
+Và có vẻ như những gì tôi
+nhớ đã thấy từ trang web này,
+
+52
+00:03:32.640 --> 00:03:36.830
+chính triển khai này
+sử dụng framework Cafe.
+
+53
+00:03:39.112 --> 00:03:42.516
+Nhưng nếu mọi người muốn triển khai
+của code này nhưng là triển khai dùng
+
+54
+00:03:42.516 --> 00:03:45.930
+framework lập trình khác,
+mọi người cũng có thể tìm thấy nó.
+
+55
+00:03:48.198 --> 00:03:51.752
+Vì vậy, nếu mọi người đang phát triển
+một ứng dụng thị giác máy tính,
+
+56
+00:03:51.752 --> 00:03:56.030
+một quy trình công việc rất phổ biến sẽ là
+chọn một kiến trúc mà mọi người thích,
+
+57
+00:03:56.030 --> 00:03:59.405
+có lẽ một trong số những loại mọi người
+đã tìm hiểu trong khóa học này.
+
+58
+00:03:59.405 --> 00:04:03.415
+Hoặc có thể là một câu chuyện mà mọi người đã nghe từ
+một người bạn hoặc từ một số tài liệu.
+
+59
+00:04:03.415 --> 00:04:06.035
+Và tìm kiếm
+một triển khai mã nguồn mở và
+
+60
+00:04:06.035 --> 00:04:09.655
+tải nó từ GitHub để bắt đầu xây dựng từ đó
+
+61
+00:04:09.655 --> 00:04:14.300
+Một trong những lợi thế khi làm như vậy
+cũng là đôi khi các mạng này mất
+
+62
+00:04:14.300 --> 00:04:18.380
+một thời gian dài để huấn luyện và người khác
+có thể đã sử dụng nhiều GPU và
+
+63
+00:04:18.380 --> 00:04:22.110
+một tập dữ liệu rất lớn để huấn luyện trước
+một số mạng này.
+
+64
+00:04:22.110 --> 00:04:25.410
+Và điều đó cho phép mọi người thực hiện
+học chuyển giao bằng cách sử dụng
+
+65
+00:04:25.410 --> 00:04:28.930
+mạng mà chúng ta sẽ thảo luận về
+trong video tiếp theo.
+
+66
+00:04:28.930 --> 00:04:33.679
+Tất nhiên nếu mọi người là nhà nghiên cứu thị giác máy tính
+triển khai những điều này
+
+67
+00:04:33.679 --> 00:04:36.623
+từ đầu thì quy trình làm việc
+của mọi người sẽ khác.
+
+68
+00:04:36.623 --> 00:04:37.615
+Và nếu bạn làm điều đó,
+
+69
+00:04:37.615 --> 00:04:40.969
+thì hãy đóng góp sản phẩm của mọi người
+cho cộng đồng nguồn mở nhé.
+
+70
+00:04:40.969 --> 00:04:46.037
+Nhưng bởi vì rất nhiều nhà nghiên cứu thị giác
+đã làm rất nhiều công việc triển khai những
+
+71
+00:04:46.037 --> 00:04:51.183
+kiến trúc này, tôi thường thấy rằng
+bắt đầu với triển khai mã nguồn mở
+
+72
+00:04:51.183 --> 00:04:55.820
+là cách tốt hơn, hay chắc chắn là một cách
+nhanh hơn để bắt đầu một dự án mới.

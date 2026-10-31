@@ -1,0 +1,347 @@
+WEBVTT
+
+00:00:03.660 --> 00:00:06.980
+Cho đến nay, chúng ta chỉ mới khớp các đường
+thẳng vào dữ liệu của mình.
+
+00:00:06.980 --> 00:00:10.913
+Chúng ta hãy lấy ý tưởng về linear regression
+bội và kỹ thuật feature để
+
+00:00:10.913 --> 00:00:14.847
+đưa ra một thuật toán mới gọi là
+polynomial regression, thuật toán này sẽ
+
+00:00:14.847 --> 00:00:18.780
+cho phép bạn điều chỉnh các đường cong, hàm
+phi tuyến cho dữ liệu của mình.
+
+00:00:18.780 --> 00:00:22.540
+Giả sử bạn có một tập dữ liệu nhà ở trông như
+thế này,
+
+00:00:22.540 --> 00:00:26.300
+trong đó feature x là kích thước tính bằng
+feet vuông.
+
+00:00:26.300 --> 00:00:30.220
+Có vẻ như một đường thẳng không phù hợp lắm
+với tập dữ liệu này.
+
+00:00:30.220 --> 00:00:34.980
+Vì vậy, có thể bạn muốn khớp một đường cong,
+có thể là một
+
+00:00:34.980 --> 00:00:39.740
+hàm bậc hai cho dữ liệu như thế này, bao gồm
+kích thước x
+
+00:00:39.740 --> 00:00:44.500
+và cả x bình phương, là kích thước được nâng
+lên lũy thừa 2.
+
+00:00:44.500 --> 00:00:48.180
+Và có thể điều đó sẽ giúp bạn phù hợp hơn với
+dữ liệu.
+
+00:00:48.180 --> 00:00:51.740
+Nhưng sau đó bạn có thể quyết định rằng mô
+hình bậc hai của bạn
+
+00:00:51.740 --> 00:00:55.300
+không thực sự có ý nghĩa vì hàm số bậc hai
+cuối cùng lại quay trở lại.
+
+00:00:55.300 --> 00:00:58.240
+Và chúng ta thực sự sẽ không mong đợi giá nhà
+
+00:00:58.240 --> 00:01:01.180
+đất sẽ giảm khi quy mô tăng lên, phải không?
+
+00:01:01.180 --> 00:01:04.820
+Những ngôi nhà lớn có vẻ như thường có giá cao
+hơn.
+
+00:01:04.820 --> 00:01:08.700
+Vì vậy, bạn có thể chọn một hàm bậc ba trong
+đó bây giờ
+
+00:01:08.700 --> 00:01:12.580
+chúng ta không chỉ có x bình phương mà còn có
+x lập phương.
+
+00:01:12.580 --> 00:01:18.160
+Vì vậy, có thể mô hình này tạo ra đường cong
+này ở đây, nó phù hợp hơn với
+
+00:01:18.160 --> 00:01:23.740
+dữ liệu vì kích thước cuối cùng sẽ tăng trở
+lại khi kích thước tăng lên.
+
+00:01:23.740 --> 00:01:29.240
+Cả hai đều là ví dụ về polynomial regression,
+vì bạn đã lấy đặc tính x tùy
+
+00:01:29.240 --> 00:01:34.740
+chọn của mình và nâng nó lên lũy thừa 2 hoặc 3
+hoặc bất kỳ lũy thừa nào khác.
+
+00:01:34.740 --> 00:01:39.560
+Và trong trường hợp hàm bậc ba, đặc điểm đầu
+tiên là kích thước, đặc điểm
+
+00:01:39.560 --> 00:01:44.380
+thứ hai là kích thước bình phương và đặc điểm
+thứ ba là kích thước lập phương.
+
+00:01:44.380 --> 00:01:48.020
+Tôi chỉ muốn chỉ ra một điều nữa, đó là nếu
+bạn tạo các đối
+
+00:01:48.020 --> 00:01:51.660
+tượng có những lũy thừa này, giống như bình
+phương của các đối
+
+00:01:51.660 --> 00:01:55.300
+tượng ban đầu như thế này, thì việc chia tỷ lệ
+đối tượng sẽ trở thành
+
+00:01:55.300 --> 00:01:57.580
+ngày càng quan trọng.
+
+00:01:57.580 --> 00:02:01.927
+Vì vậy, nếu kích thước của ngôi nhà dao động
+từ 1 đến 1000 feet
+
+00:02:01.927 --> 00:02:06.273
+vuông, thì đặc điểm thứ hai, tức là kích thước
+bình phương, sẽ
+
+00:02:06.273 --> 00:02:10.620
+nằm trong khoảng từ 1 đến một triệu, và đặc
+điểm thứ ba, đó là
+
+00:02:10.620 --> 00:02:15.140
+có kích thước hình khối, dao động từ 1 đến một
+triệu.
+
+00:02:15.140 --> 00:02:19.160
+Vì vậy, hai đặc điểm này, x bình phương và x
+lập phương,
+
+00:02:19.160 --> 00:02:23.180
+có phạm vi giá trị rất khác nhau so với đặc
+điểm x ban đầu.
+
+00:02:23.180 --> 00:02:27.540
+Và nếu bạn đang sử dụng feature
+gradient descent, điều quan trọng là phải áp
+dụng tỷ
+
+00:02:27.540 --> 00:02:31.900
+lệ đối tượng để đưa các đối tượng của bạn vào
+phạm vi giá trị có thể so sánh được.
+
+00:02:31.900 --> 00:02:35.720
+Cuối cùng, đây là một ví dụ cuối cùng về việc
+bạn thực
+
+00:02:35.720 --> 00:02:39.540
+sự có nhiều lựa chọn về feature để sử dụng như
+thế nào.
+
+00:02:39.540 --> 00:02:43.120
+Một cách khác hợp lý hơn để lấy kích thước
+bình phương
+
+00:02:43.120 --> 00:02:46.700
+và kích thước lập phương là sử dụng căn bậc
+hai của x.
+
+00:02:46.700 --> 00:02:51.240
+Vì vậy, mô hình của bạn có thể trông giống như
+
+00:02:51.240 --> 00:02:55.780
+w1 nhân x cộng w2 nhân căn bậc hai của x cộng
+b.
+
+00:02:55.780 --> 00:02:59.767
+Hàm căn bậc hai trông như thế này, và nó trở
+nên ít dốc hơn
+
+00:02:59.767 --> 00:03:03.753
+một chút khi x tăng, nhưng nó không bao giờ bị
+làm phẳng
+
+00:03:03.753 --> 00:03:07.740
+hoàn toàn, và chắc chắn nó không bao giờ đi
+xuống trở lại.
+
+00:03:07.740 --> 00:03:10.420
+Vì vậy, đây sẽ là một lựa chọn khác về các
+
+00:03:10.420 --> 00:03:13.100
+feature có thể hoạt động tốt cho tập dữ liệu
+này.
+
+00:03:13.100 --> 00:03:17.740
+Vì vậy, bạn có thể tự hỏi, làm cách nào để
+quyết định nên sử dụng những feature nào?
+
+00:03:17.740 --> 00:03:22.500
+Sau đó, trong khóa học chuyên môn thứ hai, bạn
+sẽ biết cách chọn các feature
+
+00:03:22.500 --> 00:03:27.260
+khác nhau và các mô hình khác nhau bao gồm
+hoặc không bao gồm các feature này.
+
+00:03:27.260 --> 00:03:31.260
+Và bạn có một quy trình để đo lường hiệu quả
+hoạt động của các mô hình khác
+
+00:03:31.260 --> 00:03:35.260
+nhau này nhằm giúp bạn quyết định nên đưa vào
+hay không đưa những feature nào vào.
+
+00:03:35.260 --> 00:03:38.873
+Hiện tại, tôi chỉ muốn bạn biết rằng bạn có
+quyền lựa chọn
+
+00:03:38.873 --> 00:03:42.487
+những feature bạn sử dụng và bằng cách sử dụng
+kỹ thuật
+
+00:03:42.487 --> 00:03:46.100
+feature và hàm đa thức, bạn có thể có được kết
+quả tốt hơn nhiều.
+
+00:03:46.100 --> 00:03:48.900
+mô hình cho dữ liệu của bạn
+
+00:03:48.900 --> 00:03:52.140
+Trong phòng thí nghiệm tùy chọn theo sau video
+này, bạn sẽ
+
+00:03:52.140 --> 00:03:55.380
+thấy một số mã thực hiện polynomial regression
+bằng cách
+
+00:03:55.380 --> 00:03:58.620
+sử dụng các feature như x, x bình phương và x
+lập phương.
+
+00:03:58.620 --> 00:04:03.700
+Vì vậy, hãy xem và chạy mã và xem nó hoạt động
+như thế nào.
+
+00:04:03.700 --> 00:04:08.810
+Ngoài ra còn có một phòng thí nghiệm tùy chọn
+khác sau phòng thí nghiệm đó cho
+
+00:04:08.810 --> 00:04:13.920
+thấy cách sử dụng bộ công cụ nguồn mở phổ biến
+để thực hiện linear regression.
+
+00:04:13.920 --> 00:04:18.223
+Scikit-learn là một thư viện machine learning
+nguồn mở được
+
+00:04:18.223 --> 00:04:22.527
+sử dụng rất rộng rãi, được nhiều học viên ở
+nhiều công ty
+
+00:04:22.527 --> 00:04:26.830
+AI, internet, machine learning hàng đầu trên
+thế giới sử dụng.
+
+00:04:26.830 --> 00:04:30.443
+Vì vậy, nếu bây giờ hoặc trong tương lai, bạn
+đang sử dụng
+
+00:04:30.443 --> 00:04:34.057
+machine learning trong công việc của mình thì
+rất có thể bạn sẽ
+
+00:04:34.057 --> 00:04:37.670
+sử dụng các công cụ như Scikit-learn để đào
+tạo mô hình của mình.
+
+00:04:37.670 --> 00:04:41.097
+Và do đó, làm việc trong phòng thí nghiệm tùy
+chọn đó sẽ cho bạn
+
+00:04:41.097 --> 00:04:44.523
+cơ hội không chỉ hiểu rõ hơn về
+linear regression mà còn xem cách
+
+00:04:44.523 --> 00:04:47.950
+thực hiện việc này chỉ trong vài dòng mã bằng
+cách sử dụng một
+
+00:04:47.950 --> 00:04:51.230
+thư viện như Scikit-learn.
+
+00:04:51.230 --> 00:04:54.723
+Để bạn có sự hiểu biết vững chắc về các thuật
+toán này và
+
+00:04:54.723 --> 00:04:58.217
+có thể áp dụng chúng, tôi nghĩ điều quan trọng
+là bạn phải
+
+00:04:58.217 --> 00:05:01.710
+biết cách tự thực hiện linear regression chứ
+không chỉ gọi
+
+00:05:01.710 --> 00:05:05.030
+một số chức năng Scikit-learn là hộp đen.
+
+00:05:05.030 --> 00:05:08.470
+Nhưng Scikit-learn cũng có một vai trò quan
+trọng trong
+
+00:05:08.470 --> 00:05:11.910
+cách thực hiện machine learning trong thực tế
+ngày nay.
+
+00:05:11.910 --> 00:05:14.870
+Vậy là chúng ta sắp kết thúc tuần này rồi.
+
+00:05:14.870 --> 00:05:18.310
+Chúc mừng bạn đã hoàn thành tất cả video của
+tuần này.
+
+00:05:18.310 --> 00:05:22.950
+Vui lòng xem qua các câu hỏi thực hành cũng
+như phòng thí nghiệm thực hành mà
+
+00:05:22.950 --> 00:05:27.590
+tôi hy vọng sẽ cho phép bạn thử và thực hành
+các ý tưởng mà chúng ta đã thảo luận.
+
+00:05:27.590 --> 00:05:31.430
+Trong phòng thí nghiệm thực hành của tuần này,
+bạn thực hiện linear regression.
+
+00:05:31.430 --> 00:05:36.470
+Tôi hy vọng bạn có nhiều niềm vui khi sử dụng
+thuật toán học tập này cho chính mình.
+
+00:05:36.470 --> 00:05:39.937
+Chúc bạn may mắn với điều đó và tôi cũng mong
+được gặp bạn trong
+
+00:05:39.937 --> 00:05:43.403
+các video tuần tới, nơi chúng ta sẽ vượt xa
+regression, tức là dự
+
+00:05:43.403 --> 00:05:46.870
+đoán các con số, để nói về classification đầu
+tiên của chúng ta
+
+00:05:46.870 --> 00:05:49.110
+thuật toán, có thể dự đoán các danh mục.
+
+00:05:49.110 --> 00:05:50.910
+Tôi sẽ gặp bạn vào tuần tới.

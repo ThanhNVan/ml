@@ -1,0 +1,279 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.140 --> 00:00:04.740
+In a previous video, you saw how looking at training error and depth error can help you
+
+00:00:04.740 --> 00:00:09.460
+diagnose whether your algorithm has a bias or a variance problem or maybe both.
+
+00:00:09.460 --> 00:00:13.860
+It turns out that this information that lets you much more systematically, using what I
+
+00:00:13.860 --> 00:00:18.780
+call a basic recipe for machine learning, it lets you much more systematically go about
+
+00:00:18.780 --> 00:00:20.380
+improving your algorithm's performance.
+
+00:00:20.380 --> 00:00:22.040
+Let's take a look.
+
+00:00:22.040 --> 00:00:25.340
+When training a neural network, here's a basic recipe I would use.
+
+00:00:25.340 --> 00:00:30.700
+After having trained an initial model, I will first ask, does your algorithm have high bias?
+
+00:00:30.700 --> 00:00:36.780
+And so to try to evaluate if there's high bias, you should look at, um, really the training
+
+00:00:36.780 --> 00:00:40.700
+set or the training data performance, right?
+
+00:00:40.700 --> 00:00:45.340
+Um, and so if it does have high bias, so it's not even fitting the training set to that
+
+00:00:45.340 --> 00:00:51.380
+well, some things you could try would be to try a bigger network, uh, such as more layers
+
+00:00:51.380 --> 00:00:56.540
+or more hidden units, or you could train it longer, you know, maybe run it in longer
+
+00:00:56.540 --> 00:01:01.380
+or try some more advanced optimization algorithms, which we'll talk about later in this course.
+
+00:01:01.380 --> 00:01:06.720
+Or, um, you could also try, this is kind of a, maybe a work, maybe it won't, but we'll
+
+00:01:06.720 --> 00:01:11.680
+see later that there are a lot of different neural network architectures and maybe you
+
+00:01:11.680 --> 00:01:15.660
+can find a neural network architecture that's better suited for this problem.
+
+00:01:15.660 --> 00:01:18.940
+Putting this in parentheses, because one of those things that, you know, you just have
+
+00:01:18.940 --> 00:01:23.500
+to try, maybe you can make work, maybe not, whereas, uh, getting a bigger network almost
+
+00:01:23.500 --> 00:01:28.060
+always helps and training longer, well, doesn't always help, it certainly never hurts.
+
+00:01:28.060 --> 00:01:32.100
+But so when training a learning algorithm, I would try these things until I can at
+
+00:01:32.100 --> 00:01:37.900
+least get rid of the bias problems as if go back after I've tried this until, um,
+
+00:01:37.900 --> 00:01:42.700
+and keep doing that until I can fit, at least fit the training set pretty well.
+
+00:01:42.700 --> 00:01:46.300
+And usually if you have a big enough network, you could, you should usually be able to
+
+00:01:46.300 --> 00:01:54.420
+fit the training data well, uh, so long as there's a problem that is possible for someone to do, right?
+
+00:01:54.420 --> 00:01:59.060
+If an image is very blurry, it may be impossible to fit it, but if at least a human can do well
+
+00:01:59.060 --> 00:02:03.060
+on the top, so if you think Bayes' error is not too high, then by training a bigger
+
+00:02:03.060 --> 00:02:07.060
+than that, well, you should be able to hopefully do well at least on the training set,
+
+00:02:07.060 --> 00:02:09.980
+so at least fit or overfit the training set.
+
+00:02:09.980 --> 00:02:14.900
+Once you've reduced bias to a, um, acceptable amounts, I would then ask,
+
+00:02:14.900 --> 00:02:17.060
+do you have a variance problem?
+
+00:02:17.060 --> 00:02:20.980
+And so to evaluate that, I would look at the depth set performance.
+
+00:02:20.980 --> 00:02:28.500
+Are you able to generalize from a pretty good training set performance to having a pretty good depth set performance?
+
+00:02:28.500 --> 00:02:30.940
+And if you have high variance, well,
+
+00:02:30.940 --> 00:02:34.020
+best way to solve a high variance problem is to get more data.
+
+00:02:34.020 --> 00:02:37.300
+If you can get it, this, you know, can only help, um,
+
+00:02:37.300 --> 00:02:43.380
+but, but sometimes you can't get more data or you could try regularization,
+
+00:02:43.380 --> 00:02:46.660
+which we'll talk about in the next video to try to reduce overfitting.
+
+00:02:46.660 --> 00:02:50.500
+And then also, again, this is, uh, sometimes you just have to try it,
+
+00:02:50.500 --> 00:02:54.380
+um, but if you can find a more appropriate neural network architecture,
+
+00:02:54.380 --> 00:02:59.860
+sometimes that can reduce your variance problem as well, as well as reduce your, your bias problem.
+
+00:02:59.860 --> 00:03:03.860
+But how to do that, it's harder to be totally systematic how you do that.
+
+00:03:03.860 --> 00:03:08.100
+But so I try these things and kind of keep going back until hopefully, um,
+
+00:03:08.100 --> 00:03:14.300
+you find something with both low bias and low variance, whereupon you would be done.
+
+00:03:14.300 --> 00:03:16.460
+So couple of points to notice.
+
+00:03:16.460 --> 00:03:20.060
+First is that depending on whether you have high bias or high variance,
+
+00:03:20.060 --> 00:03:24.300
+the set of things you should try could be quite different.
+
+00:03:24.300 --> 00:03:29.980
+So I'll usually use the training depth set to try to diagnose if you have a bias or variance problem,
+
+00:03:29.980 --> 00:03:33.740
+and then use that to select the appropriate subset of things to try.
+
+00:03:33.740 --> 00:03:37.380
+So for example, if you actually have a high bias problem,
+
+00:03:37.380 --> 00:03:40.620
+getting more training data is actually not gonna help,
+
+00:03:40.620 --> 00:03:43.580
+or at least it's not the most efficient thing to do.
+
+00:03:43.580 --> 00:03:48.860
+So being clear on how much of a bias problem or variance problem or both can help you
+
+00:03:48.860 --> 00:03:52.620
+focus on selecting the most useful things to try.
+
+00:03:52.620 --> 00:03:56.820
+Second, in the earlier era of machine learning,
+
+00:03:56.820 --> 00:04:02.100
+there used to be a lot of discussion on what's called the bias variance trade-off.
+
+00:04:02.100 --> 00:04:06.460
+And the reason for that was that for a lot of the things you could try,
+
+00:04:06.460 --> 00:04:11.820
+you could increase bias and reduce variance or reduce bias and increase variance.
+
+00:04:11.820 --> 00:04:15.500
+But back in the pre-deep learning era,
+
+00:04:15.500 --> 00:04:17.260
+we didn't have many tools,
+
+00:04:17.260 --> 00:04:24.500
+we didn't have as many tools that just reduced bias or that just reduced variance without hurting the other one.
+
+00:04:24.500 --> 00:04:28.500
+But in the modern deep learning big data era,
+
+00:04:28.500 --> 00:04:34.300
+um, so long as you can keep training a bigger network and so long as you can keep getting more data,
+
+00:04:34.300 --> 00:04:36.380
+which isn't always the case for either of these,
+
+00:04:36.380 --> 00:04:38.020
+but if that's the case,
+
+00:04:38.020 --> 00:04:43.620
+then getting a bigger network almost always just reduces your bias without necessarily hurting your variance,
+
+00:04:43.620 --> 00:04:46.620
+so long as you regularize appropriately.
+
+00:04:46.620 --> 00:04:52.260
+Um, and getting more data pretty much always reduces your variance and doesn't hurt your bias much.
+
+00:04:52.260 --> 00:04:55.900
+So what's really happened is that with these two steps,
+
+00:04:55.900 --> 00:04:58.540
+the ability to train a bigger network or get more data,
+
+00:04:58.540 --> 00:05:05.180
+we now have tools to drive down bias and just drive down bias or drive down variance and just drive
+
+00:05:05.180 --> 00:05:09.580
+down variance without really hurting, uh, the other thing that much.
+
+00:05:09.580 --> 00:05:16.380
+And I think this has been one of the big reasons that deep learning has been so useful for supervised learning,
+
+00:05:16.380 --> 00:05:21.380
+that there's much less of this trade-off where you have to carefully balance bias and variance,
+
+00:05:21.380 --> 00:05:26.340
+but sometimes, uh, you just have more options for reducing bias and re- or reducing
+
+00:05:26.340 --> 00:05:29.860
+variance without necessarily increasing the other one.
+
+00:05:29.860 --> 00:05:31.860
+And in fact, um, so last,
+
+00:05:31.860 --> 00:05:33.780
+you have a well-regularized network.
+
+00:05:33.780 --> 00:05:36.820
+We'll talk about regularization starting for the next video.
+
+00:05:36.820 --> 00:05:40.060
+Training a bigger network almost never hurts.
+
+00:05:40.060 --> 00:05:44.620
+And the main cause to training a neural network that's too big is just computational time,
+
+00:05:44.620 --> 00:05:46.420
+so long as you're regularizing.
+
+00:05:46.420 --> 00:05:50.220
+So I hope this gives you a sense of the basic structure of how to organize
+
+00:05:50.220 --> 00:05:53.340
+your machine learning problem to diagnose bias and variance,
+
+00:05:53.340 --> 00:05:57.180
+and then try to select the right operation for you to make progress on your problem.
+
+00:05:57.180 --> 00:06:00.980
+One of the things I mentioned several times in the video is regularization,
+
+00:06:00.980 --> 00:06:03.820
+uh, is a very useful technique for reducing variance.
+
+00:06:03.820 --> 00:06:07.220
+There is a little bit of a bias variance trade-off when you use regularization.
+
+00:06:07.220 --> 00:06:09.140
+It might increase the bias a little bit,
+
+00:06:09.140 --> 00:06:12.700
+although often not too much if you have a huge enough network.
+
+00:06:12.700 --> 00:06:17.660
+Um, but let's dive into more details in the next video so we can better understand
+
+00:06:17.660 --> 00:06:21.460
+how to apply regularization to your neural network.

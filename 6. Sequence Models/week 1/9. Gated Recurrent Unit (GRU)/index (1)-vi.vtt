@@ -1,0 +1,841 @@
+WEBVTT
+
+00:00:00.140 --> 00:00:04.367
+Bạn đã thấy RNN cơ bản hoạt động như thế nào.
+Trong video này,
+
+00:00:04.367 --> 00:00:08.593
+bạn tìm hiểu về đơn vị lặp lại có kiểm soát,
+đây là một sửa đổi
+
+00:00:08.593 --> 00:00:12.820
+đối với lớp ẩn RNN giúp nó thu được các kết
+nối tầm xa tốt hơn nhiều
+
+00:00:12.820 --> 00:00:17.300
+và giúp ích rất nhiều cho các vấn đề về độ dốc
+biến mất. Chúng ta hãy xem xét.
+
+00:00:17.300 --> 00:00:23.540
+Bạn đã thấy công thức tính toán kích hoạt tại
+thời điểm t của RNN.
+
+00:00:23.540 --> 00:00:27.753
+Activation function áp dụng cho tham số WA
+nhân với lần kích hoạt
+
+00:00:27.753 --> 00:00:31.967
+cho thời gian trước đó được thiết lập với đầu
+vào hiện tại và sau
+
+00:00:31.967 --> 00:00:36.180
+đó cộng với bias. Vì vậy tôi sẽ vẽ cái này như
+một bức tranh.
+
+00:00:36.180 --> 00:00:41.580
+Vì vậy, đơn vị RNN tôi sẽ vẽ dưới dạng một bức
+tranh,
+
+00:00:41.580 --> 00:00:46.980
+được vẽ dưới dạng một cái hộp, nhập vào A của
+t trừ 1,
+
+00:00:46.980 --> 00:00:52.660
+kích hoạt cho bước thời gian cuối cùng và cũng
+nhập Xt.
+
+00:00:52.660 --> 00:01:02.740
+Và cả hai cái này đi cùng nhau và sau một số
+trọng số và sau kiểu tính toán tuyến tính
+
+00:01:02.740 --> 00:01:12.820
+này, nếu g là activation function 10H, thì sau
+10H, nó sẽ tính toán kích hoạt đầu ra.
+
+00:01:12.820 --> 00:01:18.873
+Và kích hoạt đầu ra tại cũng có thể được
+chuyển tới đơn vị
+
+00:01:18.873 --> 00:01:24.927
+softmax hoặc thứ gì đó mà sau đó có thể được
+sử dụng để xuất Y
+
+00:01:24.927 --> 00:01:30.980
+hat t. Vì vậy, đây có thể là hình ảnh trực
+quan của đơn vị RNN
+
+00:01:30.980 --> 00:01:36.860
+của lớp ẩn của RNN dưới dạng hình ảnh. Và tôi
+muốn cho bạn xem bức ảnh này vì chúng ta
+
+00:01:36.860 --> 00:01:42.740
+sẽ sử dụng một bức tranh tương tự để giải
+thích GRU hoặc đơn vị định kỳ có kiểm soát.
+
+00:01:42.740 --> 00:01:48.300
+Rất nhiều ý tưởng về GRU là do hai bài báo này
+lần lượt được thực hiện
+
+00:01:48.300 --> 00:01:53.860
+bởi Jun Young Chung, Kaggler, Gauss-Sehir,
+Kyung-Hoon Cho và Yoshiben Cho.
+
+00:01:53.860 --> 00:01:58.000
+Và đôi khi tôi sẽ đề cập đến câu này, mà chúng
+ta đã thấy trong
+
+00:01:58.000 --> 00:02:02.140
+video trước, để thúc đẩy rằng với một câu như
+thế này, bạn có thể
+
+00:02:02.140 --> 00:02:06.280
+cần phải nhớ con mèo là số ít để chắc chắn
+rằng bạn hiểu tại sao
+
+00:02:06.280 --> 00:02:10.420
+nó lại như vậy chứ không phải là. Vậy là con
+mèo đã no hay là con mèo
+
+00:02:10.420 --> 00:02:17.940
+đã đầy. Vì vậy, khi chúng ta đọc câu này từ
+trái sang phải, đơn vị GRU sẽ có một
+
+00:02:17.940 --> 00:02:25.460
+biến mới gọi là C, viết tắt của cell cho ô
+nhớ. Và công việc của tế bào bộ nhớ là
+
+00:02:25.460 --> 00:02:31.340
+nó sẽ cung cấp một chút trí nhớ để ghi nhớ,
+chẳng hạn như mèo là số ít hay số
+
+00:02:31.340 --> 00:02:37.220
+nhiều, để khi đi sâu hơn vào câu, nó vẫn có
+thể hoạt động trong việc xem xét
+
+00:02:37.220 --> 00:02:41.993
+chủ ngữ của câu là số ít hay số nhiều. Và tại
+thời điểm t,
+
+00:02:41.993 --> 00:02:46.767
+ô nhớ sẽ có giá trị C nào đó của t. Và những
+gì chúng ta
+
+00:02:46.767 --> 00:02:51.540
+sẽ thấy là đơn vị GRU sẽ thực sự đưa ra một
+lệnh kích hoạt
+
+00:02:51.540 --> 00:02:57.820
+giá trị a của t bằng C của t. Và hiện tại, tôi
+muốn sử dụng các ký hiệu C và a khác
+
+00:02:57.820 --> 00:03:04.100
+nhau để biểu thị giá trị ô nhớ và giá trị kích
+hoạt đầu ra, mặc dù chúng giống nhau.
+
+00:03:04.180 --> 00:03:08.207
+Tôi đang sử dụng ký hiệu này vì khi chúng ta
+nói về LSTM
+
+00:03:08.207 --> 00:03:12.233
+sau này, đây sẽ là hai giá trị khác nhau.
+Nhưng hiện tại,
+
+00:03:12.233 --> 00:03:16.260
+đối với GRU, C của t bằng giá trị kích hoạt
+đầu ra a của t.
+
+00:03:17.380 --> 00:03:22.180
+Vì vậy, đây là các phương trình chi phối việc
+tính toán của một
+
+00:03:22.180 --> 00:03:26.980
+đơn vị GRU. Tại mỗi bước thời gian, chúng ta
+sẽ xem xét việc ghi
+
+00:03:26.980 --> 00:03:31.780
+đè ô nhớ bằng giá trị C dấu ngã là t. Vì vậy,
+điều này đang diễn ra
+
+00:03:31.780 --> 00:03:37.593
+là ứng viên thay thế C của t. Và chúng ta sẽ
+tính toán điều này
+
+00:03:37.593 --> 00:03:43.407
+bằng cách sử dụng activation function tanh của
+wc. Và đó chính
+
+00:03:43.407 --> 00:03:49.220
+là ma trận tham số wc. Và chúng ta sẽ đi qua
+ma trận tham số này
+
+00:03:49.220 --> 00:03:56.220
+giá trị trước đó của ô nhớ, giá trị kích hoạt,
+cũng như giá trị đầu vào hiện tại
+
+00:03:56.220 --> 00:04:03.220
+X t và sau đó cộng với bias. Vì vậy dấu ngã C
+của t sẽ là ứng viên thay thế C t.
+
+00:04:04.260 --> 00:04:07.940
+Và sau đó, điều quan trọng, thực sự là ý tưởng
+quan
+
+00:04:07.940 --> 00:04:11.620
+trọng của GRU, đó là chúng ta sẽ có một cánh
+cổng.
+
+00:04:12.340 --> 00:04:16.980
+Vì vậy, cánh cổng tôi sẽ gọi là gamma u. Đây
+là chữ cái
+
+00:04:16.980 --> 00:04:21.620
+viết hoa của bảng chữ cái Hy Lạp gamma chỉ số
+dưới u.
+
+00:04:21.620 --> 00:04:26.687
+Và u là viết tắt của cổng cập nhật. Và đây sẽ
+là một giá trị từ 0
+
+00:04:26.687 --> 00:04:31.753
+đến 1. Và để phát triển trực giác của bạn về
+cách GRU hoạt động,
+
+00:04:31.753 --> 00:04:36.820
+hãy nghĩ về gamma u, giá trị cổng này, luôn là
+0 hoặc 1. Mặc dù
+
+00:04:36.820 --> 00:04:41.807
+trong thực tế, bạn tính toán nó bằng hàm
+sigmoid được áp dụng cho
+
+00:04:41.807 --> 00:04:46.793
+việc này. Vì vậy hãy nhớ rằng hàm sigmoid
+trông như thế này. Và do
+
+00:04:46.793 --> 00:04:51.780
+đó, giá trị của nó luôn nằm trong khoảng từ 0
+đến 1. Và đối với hầu hết
+
+00:04:51.780 --> 00:04:55.913
+Trong số các phạm vi có thể có của đầu vào,
+hàm sigmoid là
+
+00:04:55.913 --> 00:05:00.047
+rất, rất gần với 0 hoặc rất, rất gần với 1. Vì
+vậy, đối với
+
+00:05:00.047 --> 00:05:04.180
+trực giác, hãy nghĩ gamma là 0 hoặc 1 trong
+hầu hết thời gian.
+
+00:05:04.740 --> 00:05:08.660
+Và bảng chữ cái u là viết tắt của nó, vì vậy
+tôi đã chọn bảng chữ cái gamma
+
+00:05:08.660 --> 00:05:12.580
+cho bảng chữ cái này bởi vì nếu bạn nhìn vào
+một hàng rào có cổng, bạn biết
+
+00:05:12.580 --> 00:05:16.500
+đấy, trông hơi giống thế này, tôi đoán, sau
+đó, bạn biết đấy, có rất nhiều
+
+00:05:16.500 --> 00:05:19.620
+các loại gamma trong hàng rào này. Đó là lý do
+tại
+
+00:05:19.620 --> 00:05:22.740
+sao gamma u chúng ta sẽ sử dụng để biểu thị
+cổng.
+
+00:05:23.620 --> 00:05:28.660
+Ồ, cũng là bảng chữ cái Hy Lạp g, đúng rồi, g
+là cổng. Vậy g là gamma và g là cổng.
+
+00:05:30.100 --> 00:05:35.407
+Và tiếp theo, phần quan trọng của GRU là
+phương trình này, đó là chúng
+
+00:05:35.407 --> 00:05:40.713
+tôi đã nghĩ ra một cách ứng viên, chúng tôi
+đang nghĩ đến việc cập nhật
+
+00:05:40.713 --> 00:05:46.020
+C bằng cách sử dụng dấu ngã C, và sau đó cổng
+sẽ quyết định có hay không
+
+00:05:46.020 --> 00:05:50.980
+không phải chúng tôi thực sự cập nhật nó. Và
+do đó, cách nghĩ về
+
+00:05:50.980 --> 00:05:55.940
+nó là có thể ô nhớ C này sẽ được đặt thành 0
+hoặc 1 tùy thuộc vào
+
+00:05:55.940 --> 00:06:00.900
+việc từ bạn đang xem xét có thực sự là chủ đề
+của nó hay không.
+
+00:06:00.900 --> 00:06:05.487
+câu đó là số ít hoặc số nhiều. Vì vậy, vì số
+ít, giả sử
+
+00:06:05.487 --> 00:06:10.073
+chúng ta đặt số này là 1 và số nhiều, có thể
+chúng ta sẽ
+
+00:06:10.073 --> 00:06:14.660
+đặt số này thành 0. Và sau đó đơn vị GRU sẽ
+ghi nhớ giá trị của
+
+00:06:14.660 --> 00:06:19.780
+C t cho đến tận đây, ở đó, bạn biết đấy, cái
+này vẫn bằng 1.
+
+00:06:19.780 --> 00:06:24.900
+Và điều đó cho thấy, ồ, nó là số ít. Vì vậy
+hãy sử dụng sự
+
+00:06:24.900 --> 00:06:30.020
+lựa chọn. Và công việc của cổng gamma u là
+quyết định khi nào
+
+00:06:30.020 --> 00:06:33.520
+bạn có cập nhật giá trị này không. Đặc biệt,
+khi bạn nhìn thấy
+
+00:06:33.520 --> 00:06:37.020
+cụm từ con mèo, bạn biết rằng bạn đang nói về
+một khái niệm mới,
+
+00:06:37.020 --> 00:06:40.520
+chủ đề của câu mèo. Vì vậy, đây sẽ là thời
+điểm tốt để cập nhật
+
+00:06:40.520 --> 00:06:44.020
+phần này. Và có lẽ khi bạn sử dụng xong, bạn
+biết đấy, con mèo, bla,
+
+00:06:44.020 --> 00:06:48.153
+blah, blah đã đầy rồi, vậy thì bạn biết đấy,
+được rồi, tôi không cần
+
+00:06:48.153 --> 00:06:52.287
+phải ghi nhớ nữa, tôi có thể quên nó đi. Vì
+vậy, phương trình cụ thể
+
+00:06:52.287 --> 00:06:56.420
+mà chúng ta sẽ sử dụng cho GRU là như sau, đó
+là phương trình thực tế
+
+00:06:56.420 --> 00:07:08.180
+giá trị của C t sẽ bằng cổng này nhân với giá
+trị ứng cử viên cộng một trừ cổng
+
+00:07:10.020 --> 00:07:15.260
+lần giá trị cũ, C t trừ một. Vì vậy, hãy lưu ý
+rằng
+
+00:07:15.260 --> 00:07:20.500
+nếu cổng nếu giá trị cập nhật này thì giá trị
+này bằng
+
+00:07:20.500 --> 00:07:24.527
+thành 1, sau đó đặt giá trị mới của C t bằng
+giá trị ứng cử viên
+
+00:07:24.527 --> 00:07:28.553
+này. Vậy nó giống như ở đây, đặt cổng bằng 1.
+Vì vậy hãy tiếp
+
+00:07:28.553 --> 00:07:32.580
+tục và cập nhật phần đó. Và sau đó đối với tất
+cả những điều này
+
+00:07:33.220 --> 00:07:39.420
+giá trị ở giữa, bạn sẽ có cổng bằng 0. Vì vậy
+chỉ cần nói, đừng cập nhật, đừng
+
+00:07:39.420 --> 00:07:45.620
+cập nhật, đừng cập nhật, cứ giữ nguyên giá trị
+cũ. Bởi vì nếu gamma u bằng 0,
+
+00:07:45.620 --> 00:07:51.140
+thì cái này sẽ bằng 0, và cái này sẽ bằng một.
+Và do đó, nó chỉ đặt C t bằng
+
+00:07:51.140 --> 00:07:56.660
+giá trị cũ, ngay cả khi bạn quét câu từ trái
+sang phải. Vì vậy, khi cổng bằng 0,
+
+00:07:56.660 --> 00:08:00.153
+nói rằng, đừng cập nhật nó, đừng cập nhật nó,
+hãy giữ nguyên giá
+
+00:08:00.153 --> 00:08:03.647
+trị. Và đừng quên giá trị này là gì. Và theo
+cách đó, ngay cả khi
+
+00:08:03.647 --> 00:08:07.140
+bạn đi hết quãng đường xuống đây, hy vọng là
+bạn vừa mới thiết lập
+
+00:08:07.140 --> 00:08:15.020
+C t bằng C t trừ một, và nó vẫn ghi nhớ con
+mèo là số ít. Vậy để tôi cũng vẽ một hình
+
+00:08:15.020 --> 00:08:22.900
+để biểu thị đơn vị GRU nhé. Và nhân tiện, khi
+bạn xem các bài viết blog trực tuyến và
+
+00:08:22.900 --> 00:08:26.927
+sách giáo khoa và hướng dẫn, những loại hình
+ảnh này khá phổ
+
+00:08:26.927 --> 00:08:30.953
+biến để giải thích GRU cũng như chúng ta sẽ
+thấy các đơn vị LSTM
+
+00:08:30.953 --> 00:08:34.980
+sau này, cá nhân tôi thấy các phương trình
+trong hình dễ hiểu hơn.
+
+00:08:34.980 --> 00:08:38.873
+Vì vậy, nếu hình ảnh không có ý nghĩa, đừng lo
+lắng về nó. Nhưng
+
+00:08:38.873 --> 00:08:42.767
+tôi sẽ chỉ vẽ nó nếu nó giúp ích được cho một
+số bạn. Nhưng do đó,
+
+00:08:42.767 --> 00:08:46.660
+đơn vị GRU nhập C t trừ một từ bước thời gian
+trước đó. Và cái này
+
+00:08:46.660 --> 00:08:52.553
+xảy ra bằng AT trừ một. Vì vậy, nó lấy đầu vào
+của nó, và sau
+
+00:08:52.553 --> 00:08:58.447
+đó nó cũng lấy đầu vào X t, sau đó hai thứ này
+được kết hợp
+
+00:08:58.447 --> 00:09:04.340
+với nhau. Và với một số trọng lượng thích hợp
+và một số tanh,
+
+00:09:04.340 --> 00:09:08.500
+điều này mang lại cho bạn dấu ngã C, đây là
+một ứng cử viên để
+
+00:09:08.500 --> 00:09:12.660
+thay thế CT. Và sau đó với một bộ tham số khác
+và thông qua
+
+00:09:12.660 --> 00:09:16.820
+activation function sigma, điều này mang lại
+cho bạn gamma U, tức là
+
+00:09:16.820 --> 00:09:20.793
+cổng cập nhật. Và cuối cùng, tất cả những thứ
+này kết hợp lại với
+
+00:09:20.793 --> 00:09:24.767
+nhau thông qua một hoạt động khác. Và tôi sẽ
+không viết ra công
+
+00:09:24.767 --> 00:09:28.740
+thức, nhưng ô này ở đây, được tô màu tím,
+tượng trưng cho điều này
+
+00:09:28.740 --> 00:09:33.513
+phương trình mà chúng tôi đã có ở dưới đó. Vậy
+đó chính là ý
+
+00:09:33.513 --> 00:09:38.287
+nghĩa của thao tác màu tím này. Và nó lấy giá
+trị cổng, giá
+
+00:09:38.287 --> 00:09:43.060
+trị mới ứng cử viên làm đầu vào hoặc đó lại là
+giá trị cổng,
+
+00:09:43.060 --> 00:09:47.860
+và giá trị cũ của CT. Vì vậy, nó lấy đầu vào
+là cái này,
+
+00:09:47.860 --> 00:09:52.660
+cái này và cái này. Và cùng nhau, chúng tạo ra
+giá trị mới
+
+00:09:52.660 --> 00:09:57.460
+cho ô nhớ. Và đó là CT bằng A. Và nếu muốn,
+bạn cũng có thể
+
+00:09:57.460 --> 00:10:02.340
+sử dụng cái này và chuyển cái này tới softmax
+hoặc thứ gì đó để đưa
+
+00:10:02.340 --> 00:10:07.220
+ra dự đoán nào đó, bạn biết đấy, Y t của Y hat
+t. Vậy đó là đơn vị
+
+00:10:07.220 --> 00:10:12.100
+GRU, hoặc ít nhất là một phiên bản đơn giản
+hóa của nó. Và cái gì
+
+00:10:12.100 --> 00:10:15.673
+rất giỏi trong việc thông qua cổng quyết định
+rằng khi bạn
+
+00:10:15.673 --> 00:10:19.247
+quét câu từ trái sang phải, hãy nói rằng đó là
+thời điểm
+
+00:10:19.247 --> 00:10:22.820
+thích hợp để cập nhật một ô bộ nhớ cụ thể và
+sau đó không thay đổi
+
+00:10:22.820 --> 00:10:29.060
+nó, không thay đổi nó cho đến khi bạn thực sự
+cần sử dụng ô bộ nhớ này mà bạn đã
+
+00:10:29.060 --> 00:10:35.300
+đặt trước đó rất nhiều trong câu. Và bởi vì
+giá trị sigma, bây giờ bởi vì cổng
+
+00:10:35.940 --> 00:10:41.780
+khá dễ dàng để đặt thành 0, đúng vậy, miễn là
+đại lượng này là một giá trị âm
+
+00:10:41.780 --> 00:10:47.620
+lớn, sau đó làm tròn số, cổng cập nhật về cơ
+bản sẽ bằng 0, rất, rất, rất gần với
+
+00:10:47.620 --> 00:10:52.340
+không. Vì vậy, trong trường hợp đó, phương
+trình cập nhật
+
+00:10:52.340 --> 00:10:57.060
+này kết thúc bằng việc thiết lập CT bằng CT
+trừ một. Và
+
+00:10:57.060 --> 00:11:01.780
+điều này rất tốt trong việc duy trì giá trị
+cho ô. Và bởi vì
+
+00:11:01.780 --> 00:11:09.420
+gamma có thể rất gần bằng 0, có thể là
+0,000001 hoặc thậm chí nhỏ hơn thế, nó không
+
+00:11:09.420 --> 00:11:17.060
+gặp phải nhiều vấn đề về độ dốc biến mất. Bởi
+vì bạn nói gamma gần bằng 0 nên điều này
+
+00:11:17.060 --> 00:11:21.273
+về cơ bản trở thành CT bằng CT trừ một. Và giá
+trị của CT được duy
+
+00:11:21.273 --> 00:11:25.487
+trì khá chính xác, thậm chí qua nhiều, rất
+nhiều, rất nhiều bước
+
+00:11:25.487 --> 00:11:29.700
+thời gian. Vì vậy, điều này có thể giúp ích
+đáng kể với việc biến mất
+
+00:11:29.700 --> 00:11:33.380
+vấn đề về độ dốc và do đó cho phép mạng lưới
+thần kinh tìm hiểu các phần
+
+00:11:33.380 --> 00:11:37.060
+phụ thuộc thậm chí ở phạm vi rất dài, chẳng
+hạn như con mèo và các từ có
+
+00:11:37.060 --> 00:11:40.740
+liên quan với nhau ngay cả khi chúng bị phân
+tách bởi rất nhiều từ ở giữa.
+
+00:11:41.780 --> 00:11:45.780
+Bây giờ, tôi chỉ muốn nói thêm một số chi tiết
+về cách bạn triển khai điều này.
+
+00:11:47.220 --> 00:11:52.313
+Trong các phương trình tôi đã viết, CT có thể
+là một vectơ.
+
+00:11:52.313 --> 00:11:57.407
+Vì vậy, nếu bạn có giá trị kích hoạt ẩn một
+trăm chiều, thì
+
+00:11:57.407 --> 00:12:02.500
+CT có thể là một trăm chiều. Và do đó dấu ngã
+C cũng sẽ là
+
+00:12:02.500 --> 00:12:06.847
+cùng chiều, và gamma cũng sẽ có cùng chiều với
+những thứ
+
+00:12:06.847 --> 00:12:11.193
+khác mà tôi đang vẽ trong hộp. Và trong trường
+hợp đó,
+
+00:12:11.193 --> 00:12:15.540
+những dấu hoa thị này thực sự là phép nhân
+theo từng phần tử.
+
+00:12:16.500 --> 00:12:23.980
+Vì vậy, ở đây, nếu gamma u, nếu cổng là vectơ
+một trăm chiều, thì nó thực sự là
+
+00:12:23.980 --> 00:12:31.460
+một vectơ bit trăm chiều, các giá trị chủ yếu
+là 0 và một, cho bạn biết điều này
+
+00:12:31.460 --> 00:12:36.660
+ô nhớ trăm chiều là những bit bạn muốn cập
+nhật. Và tất nhiên, trong thực tế, gamma
+
+00:12:36.660 --> 00:12:41.860
+sẽ không chính xác bằng 0 hay bằng 1. Đôi khi
+nó cũng sẽ nhận các giá trị ở giữa,
+
+00:12:41.940 --> 00:12:45.753
+nhưng thật thuận tiện cho trực giác khi nghĩ
+về nó chủ yếu là nhận
+
+00:12:45.753 --> 00:12:49.567
+các giá trị chính xác bằng 0, gần như chính
+xác bằng 0 hoặc gần
+
+00:12:49.567 --> 00:12:53.380
+như chính xác bằng một. Và những phép nhân
+theo phần tử này là gì
+
+00:12:53.380 --> 00:13:00.340
+làm là chỉ cho đơn vị GRU biết các bit trong
+của bạn, nó chỉ cho GRU
+
+00:13:00.340 --> 00:13:07.300
+biết kích thước của vectơ ô bộ nhớ của bạn sẽ
+cập nhật ở mỗi bước. Vậy bạn
+
+00:13:07.300 --> 00:13:11.247
+có thể chọn giữ một số bit không đổi trong khi
+cập nhật các bit
+
+00:13:11.247 --> 00:13:15.193
+khác. Vì vậy, ví dụ, có thể bạn sẽ sử dụng một
+bit để ghi nhớ con
+
+00:13:15.193 --> 00:13:19.140
+mèo số ít hoặc số nhiều và có thể bạn sẽ sử
+dụng một số bit khác để
+
+00:13:19.700 --> 00:13:23.060
+nhận ra rằng bạn đang nói về thức ăn, và do
+đó, vì bạn nói về
+
+00:13:23.060 --> 00:13:26.420
+việc ăn và nói về thức ăn, nên bạn sẽ muốn nói
+về việc con mèo
+
+00:13:26.420 --> 00:13:29.780
+đã no sau này chưa. Vì vậy bạn có thể sử dụng
+các bit khác nhau và
+
+00:13:29.780 --> 00:13:33.940
+chỉ thay đổi một tập hợp con các bit tại mỗi
+thời điểm. Bây giờ bạn đã hiểu
+
+00:13:33.940 --> 00:13:38.100
+những ý tưởng quan trọng nhất của GRU. Những
+gì tôi trình bày trên slide này,
+
+00:13:38.100 --> 00:13:42.260
+thực ra những gì tôi trình bày trên slide này
+thực ra là một đơn vị GRU được
+
+00:13:42.260 --> 00:13:46.420
+đơn giản hóa một chút. Hãy để tôi mô tả đơn vị
+GRU đầy đủ. Vậy để làm được điều đó,
+
+00:13:46.420 --> 00:13:50.700
+Hãy để tôi sao chép ba phương trình chính, cái
+
+00:13:50.700 --> 00:13:54.980
+này, cái này và cái này sang slide tiếp theo.
+
+00:13:55.700 --> 00:13:59.993
+Vì vậy, họ ở đây. Và đối với đơn vị GRU đầy
+đủ, tôi sẽ thực
+
+00:13:59.993 --> 00:14:04.287
+hiện một thay đổi đối với phương trình này, đó
+là phương trình
+
+00:14:04.287 --> 00:14:08.580
+đầu tiên, tính toán giá trị mới ứng viên cho ô
+nhớ. tôi đang đi
+
+00:14:08.580 --> 00:14:11.180
+chỉ thêm một thuật ngữ. Hãy để tôi đẩy nó sang
+
+00:14:11.180 --> 00:14:13.780
+bên phải một chút và tôi sẽ thêm một cổng nữa.
+
+00:14:14.660 --> 00:14:20.127
+Vì vậy, đây là một cổng khác, gamma R. Bạn có
+thể coi R là đại diện
+
+00:14:20.127 --> 00:14:25.593
+cho sự liên quan. Vì vậy, cổng gamma R này cho
+bạn biết mức độ liên
+
+00:14:25.593 --> 00:14:31.060
+quan của CT trừ một trong việc tính toán ứng
+cử viên tiếp theo cho CT.
+
+00:14:32.900 --> 00:14:38.767
+Và cổng gamma R này được tính toán khá giống
+như bạn mong đợi
+
+00:14:38.767 --> 00:14:44.633
+với ma trận tham số mới WR, và sau đó những
+thứ tương tự như
+
+00:14:44.633 --> 00:14:50.500
+đầu vào XT cộng BR. Như bạn có thể tưởng
+tượng, có nhiều cách để
+
+00:14:50.500 --> 00:14:54.073
+thiết kế những loại neural network này và
+tại sao chúng ta lại
+
+00:14:54.073 --> 00:14:57.647
+có gamma R? Tại sao không chỉ, bạn biết đấy,
+tại sao không sử dụng
+
+00:14:57.647 --> 00:15:01.220
+phiên bản đơn giản hơn từ các slide trước? Hóa
+ra là trong nhiều năm,
+
+00:15:01.220 --> 00:15:05.140
+các nhà nghiên cứu đã thử nghiệm rất nhiều
+phiên bản khả thi khác
+
+00:15:05.140 --> 00:15:09.060
+nhau về cách thiết kế các thiết bị này để cố
+gắng có kết nối ở phạm
+
+00:15:09.060 --> 00:15:12.980
+vi xa hơn, cố gắng tạo ra một mô hình có hiệu
+ứng ở phạm vi xa hơn,
+
+00:15:12.980 --> 00:15:16.420
+và cũng giải quyết các vấn đề về độ dốc biến
+mất. Và GRU là một
+
+00:15:16.420 --> 00:15:19.860
+trong những phiên bản được sử dụng phổ biến
+nhất mà các nhà nghiên
+
+00:15:19.860 --> 00:15:23.300
+cứu đã tập trung và nhận thấy là mạnh mẽ và
+hữu ích cho nhiều người.
+
+00:15:23.300 --> 00:15:25.740
+các vấn đề khác nhau. Nếu muốn, bạn có thể thử
+phát
+
+00:15:25.740 --> 00:15:28.180
+minh ra phiên bản mới của các đơn vị này nếu
+muốn.
+
+00:15:28.980 --> 00:15:33.080
+Nhưng GRU là một phiên bản tiêu chuẩn được sử
+dụng phổ biến, mặc
+
+00:15:33.080 --> 00:15:37.180
+dù bạn có thể tưởng tượng rằng các nhà nghiên
+cứu đã thử các phiên
+
+00:15:37.180 --> 00:15:41.280
+bản khác tương tự, nhưng cũng không hoàn toàn
+giống với những gì
+
+00:15:41.280 --> 00:15:45.380
+tôi đang viết ở đây. Và phiên bản phổ biến
+khác được gọi là LSTM,
+
+00:15:45.380 --> 00:15:49.247
+viết tắt của trí nhớ dài hạn, chúng ta sẽ nói
+đến điều này
+
+00:15:49.247 --> 00:15:53.113
+trong video tiếp theo. Nhưng GRU và LSTM là
+hai cách thể
+
+00:15:53.113 --> 00:15:56.980
+hiện cụ thể của tập hợp ý tưởng được sử dụng
+phổ biến nhất này.
+
+00:15:57.700 --> 00:16:01.860
+Chỉ cần một lưu ý về ký hiệu, tôi đã cố gắng
+xác định một ký hiệu nhất
+
+00:16:01.860 --> 00:16:06.020
+quán để làm cho những ý tưởng này dễ hiểu hơn.
+Nếu bạn nhìn vào các
+
+00:16:06.020 --> 00:16:10.180
+tài liệu học thuật, bạn sẽ thấy nhiều hơn, đôi
+khi bạn thấy mọi người,
+
+00:16:11.940 --> 00:16:15.513
+Nếu bạn nhìn vào tài liệu học thuật, đôi khi
+bạn thấy mọi
+
+00:16:15.513 --> 00:16:19.087
+người sử dụng một ký hiệu thay thế, sẽ có h
+dấu ngã, ur và h
+
+00:16:19.087 --> 00:16:22.660
+để chỉ những đại lượng này. Nhưng tôi đã cố
+gắng sử dụng một
+
+00:16:22.660 --> 00:16:27.780
+ký hiệu nhất quán hơn giữa GRU và LSTM cũng
+như sử dụng ký hiệu nhất quán hơn,
+
+00:16:27.780 --> 00:16:32.900
+gamma, để đề cập đến lợi ích nhằm hy vọng làm
+cho những ý tưởng này dễ hiểu hơn.
+
+00:16:34.180 --> 00:16:37.753
+Vậy là xong đối với GRU, đối với đơn vị định
+kỳ có kiểm soát. Đây
+
+00:16:37.753 --> 00:16:41.327
+là một trong những ý tưởng trong RNN đã giúp
+chúng trở nên tốt
+
+00:16:41.327 --> 00:16:44.900
+hơn nhiều trong việc nắm bắt các phần phụ
+thuộc ở phạm vi rất dài
+
+00:16:44.900 --> 00:16:48.767
+vì RNN hiệu quả hơn nhiều. Tiếp theo, như tôi
+đã đề cập ngắn
+
+00:16:48.767 --> 00:16:52.633
+gọn, biến thể khác được sử dụng phổ biến nhất
+của loại ý tưởng
+
+00:16:52.633 --> 00:16:56.500
+này là thứ được gọi là đơn vị LSTM hoặc Đơn vị
+trí nhớ ngắn hạn dài.
+
+00:16:56.500 --> 00:16:58.706
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

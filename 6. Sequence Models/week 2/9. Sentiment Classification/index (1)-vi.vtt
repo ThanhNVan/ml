@@ -1,0 +1,542 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.530
+Sentiment Classification (classification cảm xúc) là
+nhiệm nụ xem xét một đoạn văn bản
+
+2
+00:00:04.530 --> 00:00:07.170
+và cho biết người nói có đang thích
+
+3
+00:00:07.170 --> 00:00:09.125
+điều họ đang nói hay không.
+
+4
+00:00:09.125 --> 00:00:14.135
+Đây là một trong những khối xây dựng quan trọng nhất trong NLP và được sử dụng trong nhiều ứng dụng.
+
+5
+00:00:14.135 --> 00:00:15.980
+Một trong những thách thức của classification cảm xúc
+
+6
+00:00:15.980 --> 00:00:19.223
+là bạn có thể không có một tập hợp đào tạo nhãn lớn cho nó.
+
+7
+00:00:19.223 --> 00:00:20.340
+Nhưng với feature word embeddings (word embedding),
+
+8
+00:00:20.340 --> 00:00:22.972
+bạn có thể xây dựng bộ classification cảm xúc tốt
+
+9
+00:00:22.972 --> 00:00:25.870
+ngay cả với các bộ đào tạo nhãn có kích thước khiêm tốn.
+
+10
+00:00:25.870 --> 00:00:27.255
+Hãy xem làm thế nào bạn có thể làm điều này.
+
+11
+00:00:27.255 --> 00:00:31.720
+Đây là một ví dụ về vấn đề classification cảm xúc.
+
+12
+00:00:31.720 --> 00:00:34.860
+Đầu vào X là một đoạn văn bản và đầu ra Y
+
+13
+00:00:34.860 --> 00:00:38.864
+mà bạn muốn dự đoán là cảm xúc là gì,
+
+14
+00:00:38.864 --> 00:00:40.983
+chẳng hạn như xếp hạng sao của,
+
+15
+00:00:40.983 --> 00:00:43.025
+giả sử, đánh giá một nhà hàng.
+
+16
+00:00:43.025 --> 00:00:47.025
+Vì vậy, nếu ai đó nói, "Món tráng miệng thật xuất sắc" và họ đánh giá nó bốn sao,
+
+17
+00:00:47.025 --> 00:00:49.090
+Bài đánh giá hai sao "Dịch vụ khá chậm",
+
+18
+00:00:49.090 --> 00:00:51.178
+Đánh giá ba sao "Tốt cho một bữa ăn nhanh nhưng không có gì đặc biệt".
+
+19
+00:00:51.178 --> 00:00:53.120
+Và đây là một đánh giá khá tiêu cực,
+
+20
+00:00:53.120 --> 00:00:54.090
+"Hoàn toàn không thiếu hương vị tốt, dịch vụ tốt, và không khí tốt."
+
+21
+00:00:54.090 --> 00:00:56.090
+Đó là một đánh giá một sao.
+
+22
+00:00:56.090 --> 00:01:02.835
+Vì vậy, nếu bạn có thể đào tạo hệ thống ánh xạ từ X hoặc Y dựa trên tập dữ liệu nhãn như thế này,
+
+23
+00:01:02.835 --> 00:01:05.880
+thì bạn có thể sử dụng nó để theo dõi các nhận xét
+
+24
+00:01:05.880 --> 00:01:08.925
+mọi người đang nói về một nhà hàng mà bạn điều hành.
+
+25
+00:01:08.925 --> 00:01:13.335
+Vì vậy, mọi người cũng có thể đăng tin nhắn về nhà hàng của bạn trên mạng xã hội,
+
+26
+00:01:13.335 --> 00:01:14.895
+trên Twitter hoặc Facebook,
+
+27
+00:01:14.895 --> 00:01:17.510
+hoặc Instagram, hoặc các hình thức truyền thông xã hội khác.
+
+28
+00:01:17.510 --> 00:01:20.605
+Và nếu bạn có bộ classification cảm xúc,
+
+29
+00:01:20.605 --> 00:01:23.730
+họ có thể chỉ xem một đoạn văn bản và tìm ra
+
+30
+00:01:23.730 --> 00:01:27.540
+cảm xúc của người đăng đối với nhà hàng của bạn là tích cực hay tiêu cực.
+
+31
+00:01:27.540 --> 00:01:30.750
+Sau đó, bạn cũng có thể theo dõi xem có
+
+32
+00:01:30.750 --> 00:01:35.475
+bất kỳ vấn đề nào hoặc nếu nhà hàng của bạn đang trở nên tốt hơn hoặc tệ hơn theo thời gian hay không.
+
+33
+00:01:35.475 --> 00:01:38.310
+Vì vậy, một trong những thách thức của
+
+34
+00:01:38.310 --> 00:01:43.250
+classification cảm xúc là bạn có thể không có tập dữ liệu nhãn khổng lồ.
+
+35
+00:01:43.250 --> 00:01:45.400
+Vì vậy, đối với nhiệm vụ classification cảm xúc,
+
+36
+00:01:45.400 --> 00:01:47.910
+bộ đào tạo có thể từ bất cứ đâu trong khoảng
+
+37
+00:01:47.910 --> 00:01:52.410
+10.000 đến chẳng hạn 100.000 từ sẽ không phải là hiếm.
+
+38
+00:01:52.410 --> 00:01:57.285
+Đôi khi thậm chí nhỏ hơn 10.000 từ và word embedding mà bạn có thể
+
+39
+00:01:57.285 --> 00:02:00.020
+sử dụng có thể giúp bạn
+
+40
+00:02:00.020 --> 00:02:03.680
+hiểu rõ hơn đặc biệt là khi bạn có một tập hợp huấn luyện nhỏ.
+
+41
+00:02:03.680 --> 00:02:04.980
+Vì vậy, đây là những gì bạn có thể làm.
+
+42
+00:02:04.980 --> 00:02:08.120
+Chúng ta sẽ đi tìm một vài thuật toán khác nhau trong video này.
+
+43
+00:02:08.120 --> 00:02:11.150
+Đây là một mô hình classification cảm xúc đơn giản.
+
+44
+00:02:11.150 --> 00:02:13.490
+Bạn có thể lấy một câu như "món tráng miệng tuyệt vời" và
+
+45
+00:02:13.490 --> 00:02:16.070
+tra cứu những từ đó trong từ điển của bạn.
+
+46
+00:02:16.070 --> 00:02:18.465
+Chúng tôi sử dụng từ điển 10.000 từ như thường lệ.
+
+47
+00:02:18.465 --> 00:02:24.140
+Và hãy xây dựng một bộ classification để ánh xạ nó tới đầu ra Y rằng đây là bốn sao.
+
+48
+00:02:24.140 --> 00:02:27.080
+Vì vậy, với bốn từ này, như thường lệ,
+
+49
+00:02:27.080 --> 00:02:33.620
+chúng ta có thể lấy bốn từ này và tra vectơ một nóng.
+
+50
+00:02:33.620 --> 00:02:38.882
+Vì vậy, có 0 8 9 2 8 là vectơ một nóng nhân với ma trận embedding E,
+
+51
+00:02:38.882 --> 00:02:41.920
+mà có thể học từ một kho ngữ liệu văn bản lớn hơn nhiều.
+
+52
+00:02:41.920 --> 00:02:43.550
+Nó có thể học cách word embedding, chẳng hạn như
+
+53
+00:02:43.550 --> 00:02:45.440
+một tỷ từ hoặc một trăm tỷ từ,
+
+54
+00:02:45.440 --> 00:02:50.745
+và sử dụng nó để trích xuất vectơ embedding cho từ "the",
+
+55
+00:02:50.745 --> 00:02:52.965
+và sau đó làm tương tự cho "món tráng miệng",
+
+56
+00:02:52.965 --> 00:02:57.545
+làm tương tự cho "is" và làm tương tự cho "xuất sắc".
+
+57
+00:02:57.545 --> 00:03:02.530
+Và nếu điều này được đào tạo trên một tập dữ liệu rất lớn,
+
+58
+00:03:02.530 --> 00:03:04.218
+như một trăm tỷ từ,
+
+59
+00:03:04.218 --> 00:03:06.980
+thì điều này cho phép bạn tiếp thu rất nhiều kiến thức thậm chí từ
+
+60
+00:03:06.980 --> 00:03:10.250
+những từ không thường xuyên và áp dụng chúng vào vấn đề của bạn,
+
+61
+00:03:10.250 --> 00:03:15.455
+ngay cả những từ không có trong bộ huấn luyện được gắn nhãn của bạn.
+
+62
+00:03:15.455 --> 00:03:17.709
+Bây giờ đây là một cách để tạo bộ classification,
+
+63
+00:03:17.709 --> 00:03:19.570
+đó là bạn có thể lấy các vectơ này,
+
+64
+00:03:19.570 --> 00:03:22.505
+giả sử đây là các vectơ 300 chiều,
+
+65
+00:03:22.505 --> 00:03:26.220
+và sau đó bạn có thể chỉ cần tính tổng hoặc trung bình chúng.
+
+66
+00:03:26.220 --> 00:03:34.380
+Và ta sẽ đặt một toán tử trung bình lớn hơn ở đây và bạn có thể sử dụng tổng hoặc trung bình.
+
+67
+00:03:34.380 --> 00:03:38.430
+Và điều này cung cấp cho bạn một vectơ feature 300 chiều
+
+68
+00:03:38.430 --> 00:03:44.260
+mà sau đó bạn chuyển đến bộ classification soft-max, sau đó xuất ra Y-hat.
+
+69
+00:03:44.260 --> 00:03:47.250
+Và vì vậy softmax có thể xuất ra
+
+70
+00:03:47.250 --> 00:03:50.935
+xác suất ra kết quả năm sao có thể có từ tập kết quả từ một sao đến năm sao.
+
+71
+00:03:50.935 --> 00:03:57.285
+Vì vậy, đây sẽ là classification năm khả năng có thể có để dự đoán Y là gì.
+
+72
+00:03:57.285 --> 00:04:01.070
+Vì vậy, lưu ý rằng bằng cách sử dụng hoạt động trung bình ở đây,
+
+73
+00:04:01.070 --> 00:04:04.680
+thuật toán cụ thể này hoạt động cho các bài đánh giá
+
+74
+00:04:04.680 --> 00:04:08.550
+ngắn hay dài bởi vì ngay cả khi một bài đánh giá dài 100 từ,
+
+75
+00:04:08.550 --> 00:04:11.390
+bạn chỉ có thể tính tổng hoặc trung bình tất cả các vectơ feature cho tất cả hàng trăm từ
+
+76
+00:04:11.390 --> 00:04:15.645
+và do đó, cung cấp cho bạn một đại diện,
+
+77
+00:04:15.645 --> 00:04:18.095
+biểu diễn feature 300 chiều,
+
+78
+00:04:18.095 --> 00:04:21.745
+mà sau đó bạn có thể chuyển vào bộ classification cảm xúc của mình.
+
+79
+00:04:21.745 --> 00:04:23.890
+Vì vậy, mức trung bình này sẽ hoạt động tốt.
+
+80
+00:04:23.890 --> 00:04:27.030
+Và những gì nó làm là nó lấy trung bình các ý nghĩa của
+
+81
+00:04:27.030 --> 00:04:33.045
+tất cả các từ hoặc tổng hợp ý nghĩa của tất cả các từ trong ví dụ của bạn.
+
+82
+00:04:33.045 --> 00:04:35.180
+Và điều này sẽ hoạt động để [không nghe được].
+
+83
+00:04:35.180 --> 00:04:38.575
+Vì vậy, một trong những vấn đề với thuật toán này là nó bỏ qua thứ tự từ.
+
+84
+00:04:38.575 --> 00:04:41.935
+Cụ thể, ta có một đánh giá rất tiêu cực,
+
+85
+00:04:41.935 --> 00:04:43.080
+"Hoàn toàn không có vị ngon,
+
+86
+00:04:43.080 --> 00:04:44.378
+dịch vụ tốt, và bầu không khí tốt ".
+
+87
+00:04:44.378 --> 00:04:46.725
+Nhưng từ tốt xuất hiện rất nhiều.
+
+88
+00:04:46.725 --> 00:04:47.440
+Đây là rất nhiều.
+
+89
+00:04:47.440 --> 00:04:48.420
+Tốt tốt tốt.
+
+90
+00:04:48.420 --> 00:04:52.557
+Vì vậy, nếu bạn sử dụng một thuật toán như thế này mà bỏ qua thứ tự từ
+
+91
+00:04:52.557 --> 00:04:56.870
+và chỉ tính tổng hoặc trung bình tất cả các lần embedding cho các từ khác nhau,
+
+92
+00:04:56.870 --> 00:05:01.445
+sau đó bạn sẽ có rất nhiều đại diện tốt trong
+
+93
+00:05:01.445 --> 00:05:04.231
+vectơ đặc điểm cuối cùng của bạn và trình classification của bạn có thể sẽ
+
+94
+00:05:04.231 --> 00:05:07.335
+nghĩ rằng đây là một đánh giá tốt mặc dù điều này thực sự rất khắc nghiệt.
+
+95
+00:05:07.335 --> 00:05:08.460
+Đây là một đánh giá một sao.
+
+96
+00:05:08.460 --> 00:05:11.625
+Vì vậy, đây là một mô hình phức tạp hơn,
+
+97
+00:05:11.625 --> 00:05:14.880
+thay vì chỉ tổng hợp tất cả các word embedding của bạn,
+
+98
+00:05:14.880 --> 00:05:20.550
+thay vào đó bạn có thể sử dụng RNN để classification cảm xúc.
+
+99
+00:05:20.550 --> 00:05:23.220
+Vì vậy, đây là những gì bạn có thể làm. Bạn có thể xem xét lại,
+
+100
+00:05:23.220 --> 00:05:24.645
+"Hoàn toàn không có vị ngon,
+
+101
+00:05:24.645 --> 00:05:26.231
+dịch vụ tốt, và bầu không khí tốt ".
+
+102
+00:05:26.231 --> 00:05:29.840
+và tìm cho mỗi từ trong số đó, vectơ một nóng.
+
+103
+00:05:29.840 --> 00:05:31.575
+Và vì vậy ta sẽ bỏ qua
+
+104
+00:05:31.575 --> 00:05:34.999
+one-hot vector đại diện nhưng lấy nhiều one-hot vector,
+
+105
+00:05:34.999 --> 00:05:38.805
+nhân nó với ma trận embedding E như bình thường,
+
+106
+00:05:38.805 --> 00:05:48.005
+thì ta có các vectơ embedding và sau đó bạn có thể đưa chúng vào một RNN.
+
+107
+00:05:48.005 --> 00:05:52.575
+Và nhiệm vụ của RNN là sau đó tính toán
+
+108
+00:05:52.575 --> 00:05:57.550
+đại diện ở bước vừa rồi cho phép bạn dự đoán Y mũ.
+
+109
+00:05:57.550 --> 00:05:59.620
+Vậy, đây là một ví dụ về
+
+110
+00:05:59.620 --> 00:06:07.098
+kiến trúc RNN many-to-one mà chúng ta đã thấy trong tuần trước.
+
+111
+00:06:07.098 --> 00:06:08.725
+Và với một thuật toán như thế này,
+
+112
+00:06:08.725 --> 00:06:14.260
+sẽ tốt hơn nhiều khi tính đến trình tự từ và nhận ra rằng "mọi thứ
+
+113
+00:06:14.260 --> 00:06:16.450
+hương vị không tốt"là một đánh giá tiêu cực
+
+114
+00:06:16.450 --> 00:06:20.681
+và "không tốt" một đánh giá tiêu cực không giống như thuật toán trước đó,
+
+115
+00:06:20.681 --> 00:06:24.140
+chỉ gộp mọi thứ lại với nhau thành một vectơ chữ lớn
+
+116
+00:06:24.140 --> 00:06:29.345
+hỗn độn và không nhận ra rằng "không tốt" có một nghĩa rất khác
+
+117
+00:06:29.345 --> 00:06:34.130
+với những từ "tốt" hoặc "hương vị không tốt", v.v.
+
+118
+00:06:34.130 --> 00:06:35.920
+Và vì vậy nếu bạn huấn luyện thuật toán này,
+
+119
+00:06:35.920 --> 00:06:39.548
+bạn kết thúc với một thuật toán classification cảm xúc khá tốt và
+
+120
+00:06:39.548 --> 00:06:45.150
+bởi vì các thao tác word embedding của bạn có thể được huấn luyện từ tập dữ liệu lớn hơn nhiều,
+
+121
+00:06:45.150 --> 00:06:46.720
+điều này sẽ làm một công việc tốt hơn
+
+122
+00:06:46.720 --> 00:06:49.630
+khái quát đến thậm chí có thể là những từ mới mà bạn sẽ thấy trong training set của mình,
+
+123
+00:06:49.630 --> 00:06:51.580
+chẳng hạn như nếu ai đó nói,
+
+124
+00:06:51.580 --> 00:06:55.540
+"Hoàn toàn thiếu hương vị ngon,
+
+125
+00:06:55.540 --> 00:06:57.220
+dịch vụ tốt và bầu không khí tốt "hoặc cái gì đó,
+
+126
+00:06:57.220 --> 00:07:02.730
+thì ngay cả khi từ "thiếu" không có trong bộ đào tạo nhãn của bạn,
+
+127
+00:07:02.730 --> 00:07:08.373
+nếu nó nằm trong kho ngữ liệu 1 tỷ hoặc 100 tỷ từ của bạn được sử dụng để đào tạo các từ embedding,
+
+128
+00:07:08.373 --> 00:07:14.130
+nó vẫn có thể làm đúng và khái quát hóa tốt hơn nhiều ngay cả với những từ có trong
+
+129
+00:07:14.130 --> 00:07:16.900
+bộ huấn luyện được sử dụng để huấn luyện các từ embedding nhưng không
+
+130
+00:07:16.900 --> 00:07:19.465
+nhất thiết phải có trong bộ huấn luyện nhãn
+
+131
+00:07:19.465 --> 00:07:21.303
+mà bạn đã gặp phải cho vấn đề classification cảm xúc cụ thể.
+
+132
+00:07:21.303 --> 00:07:25.630
+Vì vậy, đó là nó để classification cảm xúc,
+
+133
+00:07:25.630 --> 00:07:27.400
+và tôi hy vọng điều này cho bạn biết về cách
+
+134
+00:07:27.400 --> 00:07:31.670
+khi bạn đã học hoặc tải xuống từ trực tuyến một từ embedding,
+
+135
+00:07:31.670 --> 00:07:37.000
+điều này cho phép bạn xây dựng khá nhanh các hệ thống NLP khá hiệu quả.

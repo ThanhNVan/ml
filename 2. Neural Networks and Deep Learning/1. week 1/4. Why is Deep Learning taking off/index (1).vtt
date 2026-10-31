@@ -1,0 +1,474 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.910 --> 00:00:06.270
+If the basic technical ideas behind deep learning, behind neural networks, have been around for
+
+00:00:06.270 --> 00:00:09.310
+decades, why are they only just now taking off?
+
+00:00:09.310 --> 00:00:13.950
+In this video, let's go over some of the main drivers behind the rise of deep learning,
+
+00:00:13.950 --> 00:00:18.190
+because I think this will help you better spot the best opportunities within your own
+
+00:00:18.190 --> 00:00:20.710
+organisation to apply these two.
+
+00:00:20.710 --> 00:00:24.430
+Over the last few years, a lot of people have asked me, Andrew, why is deep learning
+
+00:00:24.430 --> 00:00:26.550
+certainly working so well?
+
+00:00:26.550 --> 00:00:30.430
+And when I'm asked that question, this is usually the picture I draw for them.
+
+00:00:30.670 --> 00:00:35.790
+Let's say we plot a figure where on the horizontal axis, we plot the amount of data
+
+00:00:35.790 --> 00:00:37.910
+we have for a task.
+
+00:00:37.910 --> 00:00:43.550
+And let's say on the vertical axis, we plot the performance of our learning algorithm,
+
+00:00:43.550 --> 00:00:50.790
+such as the accuracy of our spam classifier or our ad-click predictor, or the accuracy of
+
+00:00:50.790 --> 00:00:56.310
+our neural net for figuring out the position of other calls for our self-driving car.
+
+00:00:56.310 --> 00:01:00.710
+It turns out if you plot the performance of a traditional learning algorithm, like
+
+00:01:00.710 --> 00:01:06.710
+support vector machine or logistic regression, as a function of the amount of data you have,
+
+00:01:06.710 --> 00:01:11.350
+you might get a curve that looks like this, where the performance improves for a while
+
+00:01:11.350 --> 00:01:13.190
+as you add more data.
+
+00:01:13.190 --> 00:01:17.750
+But after a while, the performance pretty much plateaus.
+
+00:01:17.750 --> 00:01:20.590
+This is supposed to be a horizontal line to draw that very well.
+
+00:01:20.670 --> 00:01:26.870
+It was as if they didn't know what to do with huge amounts of data.
+
+00:01:26.870 --> 00:01:31.430
+And what happened in our society over the last 20 years maybe is that for a lot of
+
+00:01:31.430 --> 00:01:38.390
+problems, we've went from having a relatively small amount of data to having often a fairly
+
+00:01:38.390 --> 00:01:40.190
+large amount of data.
+
+00:01:40.190 --> 00:01:44.910
+And a lot of this was thanks to the digitization of a society where so much
+
+00:01:44.910 --> 00:01:47.950
+human activity is now in the digital realm.
+
+00:01:47.950 --> 00:01:53.070
+We spend so much time on our computers, on websites, on mobile apps, and activities on
+
+00:01:53.070 --> 00:01:56.590
+digital devices creates data.
+
+00:01:56.590 --> 00:02:00.790
+And thanks to the rise of inexpensive cameras built into our cell phones,
+
+00:02:00.790 --> 00:02:06.950
+accelerometers, all sorts of sensors in the Internet of Things, we also just have been
+
+00:02:06.950 --> 00:02:09.830
+collecting more and more and more data.
+
+00:02:09.830 --> 00:02:14.110
+So over the last 20 years, for a lot of applications, we just accumulated a lot more
+
+00:02:14.110 --> 00:02:18.750
+data, more than traditional learning algorithms were able to effectively take
+
+00:02:18.750 --> 00:02:20.070
+advantage of.
+
+00:02:20.070 --> 00:02:26.310
+And with neural networks, it turns out that if you train a small neural net, then its
+
+00:02:26.310 --> 00:02:29.070
+performance maybe looks like that.
+
+00:02:29.070 --> 00:02:34.710
+If you train a somewhat larger neural net, let's call this a medium-sized neural net,
+
+00:02:34.710 --> 00:02:37.710
+its performance often even a little bit better.
+
+00:02:37.710 --> 00:02:42.230
+And if you train a very large neural net, then its performance often just keeps
+
+00:02:42.230 --> 00:02:43.870
+getting better and better.
+
+00:02:43.950 --> 00:02:45.430
+So a couple observations.
+
+00:02:45.430 --> 00:02:50.150
+One is if you want to hit this very high level of performance, then you need two
+
+00:02:50.150 --> 00:02:50.710
+things.
+
+00:02:50.710 --> 00:02:56.510
+First, often you need to be able to train a big enough neural network in order to
+
+00:02:56.510 --> 00:02:59.030
+take advantage of a huge amount of data.
+
+00:02:59.030 --> 00:03:01.750
+And second, you need to be out here on the x-axis.
+
+00:03:01.750 --> 00:03:04.310
+You do need a lot of data.
+
+00:03:04.310 --> 00:03:08.710
+So we often say that scale has been driving deep learning progress.
+
+00:03:08.710 --> 00:03:13.230
+And by scale, I mean both the size of the neural network, meaning just a neural
+
+00:03:13.230 --> 00:03:18.190
+network with a lot of hidden units, a lot of parameters, a lot of connections, as
+
+00:03:18.190 --> 00:03:21.150
+well as scale of the data.
+
+00:03:21.150 --> 00:03:25.430
+In fact, today, one of the most reliable ways to get better performance in a neural
+
+00:03:25.430 --> 00:03:30.510
+network is often to either train a bigger network or throw more data at it.
+
+00:03:30.510 --> 00:03:33.710
+And that only works up to a point because eventually you run out of data or
+
+00:03:33.710 --> 00:03:37.670
+eventually the neural network is so big that it takes too long to train.
+
+00:03:37.670 --> 00:03:42.350
+But just improving scale has actually taken us a long way in the world of
+
+00:03:42.350 --> 00:03:43.510
+deep learning.
+
+00:03:43.510 --> 00:03:47.870
+In order to make this diagram a bit more technically precise, let me just add a
+
+00:03:47.870 --> 00:03:48.870
+few more things.
+
+00:03:48.870 --> 00:03:51.630
+I wrote the amount of data on the x-axis.
+
+00:03:51.630 --> 00:03:58.750
+Technically, this is amount of labeled data, where by labeled data, I mean
+
+00:03:58.750 --> 00:04:03.030
+training examples, we have both the input x and the label y.
+
+00:04:03.030 --> 00:04:06.870
+I want to introduce a little bit of notation that we'll use later.
+
+00:04:06.870 --> 00:04:11.710
+In this course, we're going to use lowercase alphabet M to denote the size of
+
+00:04:11.710 --> 00:04:12.710
+our training set.
+
+00:04:12.710 --> 00:04:15.870
+So the number of training examples is lowercase m, so that's the
+
+00:04:15.870 --> 00:04:17.270
+horizontal axis.
+
+00:04:17.270 --> 00:04:20.390
+A couple other details to this figure.
+
+00:04:20.390 --> 00:04:26.430
+In this regime of small training sets, the relative ordering of the
+
+00:04:26.430 --> 00:04:29.370
+algorithms is actually not very well defined.
+
+00:04:29.370 --> 00:04:33.390
+So if you don't have a lot of training data, it's often up to your
+
+00:04:33.390 --> 00:04:37.150
+skill at hand engineering features that determines performance.
+
+00:04:37.150 --> 00:04:42.630
+So it's quite possible that if someone training an SVM is more motivated
+
+00:04:42.630 --> 00:04:46.310
+to hand engineer features than someone training an even large neural
+
+00:04:46.310 --> 00:04:50.910
+net, maybe in this small training set regime, the SVM could do better.
+
+00:04:50.910 --> 00:04:55.110
+So in this region to the left of the figure, the relative ordering
+
+00:04:55.110 --> 00:04:58.310
+between the algorithms is not that well defined.
+
+00:04:58.310 --> 00:05:01.190
+And performance depends much more on your skill at hand
+
+00:05:01.190 --> 00:05:04.710
+engineering features and other little details of the algorithms.
+
+00:05:04.710 --> 00:05:10.070
+And as only in this big data regime, very large training sets, very large M
+
+00:05:10.070 --> 00:05:14.950
+regime in the right, that we more consistently see large neural nets
+
+00:05:14.950 --> 00:05:17.450
+dominating the other approaches.
+
+00:05:17.450 --> 00:05:21.430
+And so if any of your friends ask you why are neural nets taking off, I
+
+00:05:21.430 --> 00:05:25.310
+would encourage you to draw this picture for them as well.
+
+00:05:25.310 --> 00:05:29.430
+So I would say that in the early days in the modern rise of deep learning,
+
+00:05:29.430 --> 00:05:33.870
+it was scale of data and scale of computation.
+
+00:05:33.870 --> 00:05:38.750
+So it was our ability to train very large neural networks, either a CPU or a GPU
+
+00:05:38.750 --> 00:05:41.910
+that enabled us to make a lot of progress.
+
+00:05:41.910 --> 00:05:45.390
+But increasingly, especially in the last several years, we've been seeing
+
+00:05:45.390 --> 00:05:48.070
+tremendous algorithmic innovation as well.
+
+00:05:48.070 --> 00:05:51.790
+So I also don't want to understate that.
+
+00:05:51.790 --> 00:05:56.870
+Interestingly, many of the algorithmic innovations have been about trying
+
+00:05:56.870 --> 00:06:01.150
+to make neural networks run much faster.
+
+00:06:01.150 --> 00:06:04.950
+So as a concrete example, one of the huge breakthroughs in neural networks
+
+00:06:04.950 --> 00:06:11.310
+has been switching from a sigmoid function, which looks like this, to a
+
+00:06:11.310 --> 00:06:16.870
+relu function, which we talked about briefly in an earlier video that looks
+
+00:06:16.870 --> 00:06:18.390
+like this.
+
+00:06:18.390 --> 00:06:21.190
+If you don't understand the details of what I'm about to say, don't worry
+
+00:06:21.190 --> 00:06:25.190
+about it, but it turns out that one of the problems of using sigmoid
+
+00:06:25.190 --> 00:06:28.790
+functions in machine learning is that there are these regions here where
+
+00:06:28.790 --> 00:06:31.910
+the slope of the function, where the gradient is nearly zero.
+
+00:06:31.910 --> 00:06:36.070
+And so learning becomes really slow because when you implement gradient
+
+00:06:36.070 --> 00:06:40.190
+descent and the gradient is zero, the parameters just change very slowly.
+
+00:06:40.190 --> 00:06:41.830
+And so learning is very slow.
+
+00:06:41.830 --> 00:06:46.430
+Whereas by changing the, what's called the activation function of a neural
+
+00:06:46.430 --> 00:06:51.910
+network to use this function called the relu function or the rectified
+
+00:06:51.910 --> 00:06:56.310
+linear unit, RELU, the gradient is equal to one for all positive
+
+00:06:56.310 --> 00:06:58.070
+values of input, right?
+
+00:06:58.150 --> 00:07:03.150
+And so the gradient is much less likely to gradually shrink to zero.
+
+00:07:03.150 --> 00:07:06.950
+And the gradient here, the slope of this line is zero on the left, but it
+
+00:07:06.950 --> 00:07:11.470
+turns out that just by switching to the sigmoid function, to the relu
+
+00:07:11.470 --> 00:07:16.270
+function has made an algorithm called gradient descent work much faster.
+
+00:07:16.390 --> 00:07:20.910
+And so just an example of a maybe a relatively simple algorithm innovation,
+
+00:07:21.150 --> 00:07:24.670
+but ultimately the impact of this algorithm innovation was it really
+
+00:07:24.670 --> 00:07:26.510
+helped computation.
+
+00:07:27.110 --> 00:07:30.470
+So there've actually been quite a lot of examples like this where we
+
+00:07:30.470 --> 00:07:33.870
+change the algorithm because it allows our code to run much faster.
+
+00:07:33.870 --> 00:07:37.470
+And this allows us to train bigger neural networks or to do so in a
+
+00:07:37.470 --> 00:07:41.790
+reasonable amount of time, even when we have a large network or a lot of data.
+
+00:07:42.150 --> 00:07:48.350
+The other reason that fast computation is important is that it turns
+
+00:07:48.350 --> 00:07:52.270
+out the process of training your network is very iterative.
+
+00:07:52.710 --> 00:07:55.430
+Often you have an idea for a neural network architecture.
+
+00:07:55.990 --> 00:08:00.150
+And so you implement your idea in code, implementing your idea.
+
+00:08:00.150 --> 00:08:03.750
+Then as you run an experiment, which tells you how well your neural network
+
+00:08:03.750 --> 00:08:08.230
+does, and then by looking at it, you go back to change the details of your
+
+00:08:08.230 --> 00:08:12.590
+neural network, and then you go around this circle over and over.
+
+00:08:13.270 --> 00:08:17.630
+And when your neural network takes a long time to train, it just takes a
+
+00:08:17.630 --> 00:08:20.030
+long time to go around this cycle.
+
+00:08:20.590 --> 00:08:24.750
+And there's a huge difference in your productivity, building effective neural
+
+00:08:24.750 --> 00:08:31.150
+networks, when you can have an idea and try it and see if it worked in 10
+
+00:08:31.150 --> 00:08:36.310
+minutes or maybe at most a day versus if you have to train your neural
+
+00:08:36.310 --> 00:08:41.830
+network for a month, which sometimes does happen because we get a result
+
+00:08:41.830 --> 00:08:45.430
+back, you know, in 10 minutes or maybe in a day, you could just try a
+
+00:08:45.430 --> 00:08:49.630
+lot more ideas and be much more likely to discover a neural network
+
+00:08:49.630 --> 00:08:51.350
+that works well for your application.
+
+00:08:52.230 --> 00:08:58.790
+And so foster computation has really helped in terms of speeding up the rate.
+
+00:08:58.790 --> 00:09:01.350
+I wish you can get an experimental result back.
+
+00:09:01.790 --> 00:09:06.670
+And this has really helped both practitioners of neural networks as well
+
+00:09:06.670 --> 00:09:12.150
+as researchers working on deep learning iterate much faster and improve
+
+00:09:12.470 --> 00:09:13.950
+your ideas much faster.
+
+00:09:14.750 --> 00:09:18.790
+And so all this has also been a huge boon to the entire deep learning
+
+00:09:18.790 --> 00:09:23.630
+research community, which has been incredible at just inventing new
+
+00:09:23.630 --> 00:09:26.990
+algorithms and making nonstop progress on that front.
+
+00:09:27.830 --> 00:09:31.510
+So these are some of the forces powering the rise of deep learning.
+
+00:09:31.830 --> 00:09:35.870
+But the good news is that these forces are still working powerfully
+
+00:09:35.870 --> 00:09:37.630
+to make deep learning even better.
+
+00:09:38.070 --> 00:09:38.790
+Take data.
+
+00:09:38.870 --> 00:09:41.990
+Society is still throwing off more and more digital data.
+
+00:09:42.430 --> 00:09:46.670
+Or take computation with the rise of specialized hardware like GPUs and
+
+00:09:46.670 --> 00:09:49.190
+faster networking, many types of hardware.
+
+00:09:49.870 --> 00:09:53.310
+I'm actually quite confident that our ability to build very large neural
+
+00:09:53.310 --> 00:09:56.950
+networks from a shared computation point of view will keep on getting better.
+
+00:09:57.590 --> 00:10:01.790
+And take algorithms while the whole deep learning research community is still
+
+00:10:02.350 --> 00:10:06.150
+continuously phenomenal at innovating on the algorithms front.
+
+00:10:06.750 --> 00:10:10.030
+So because of this, I think that we can be optimistic, I'm certainly
+
+00:10:10.030 --> 00:10:14.070
+optimistic that deep learning will keep on getting better for many years to come.
+
+00:10:14.910 --> 00:10:18.430
+So with that, let's go on to the last video of this section, where we'll talk a
+
+00:10:18.430 --> 00:10:20.790
+little bit more about what you learn from this course.

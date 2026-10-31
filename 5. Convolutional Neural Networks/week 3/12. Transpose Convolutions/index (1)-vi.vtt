@@ -1,0 +1,346 @@
+WEBVTT
+
+00:00:02.900 --> 00:00:07.900
+Convolution chuyển vị là một phần quan trọng
+của kiến trúc UNet.
+
+00:00:07.900 --> 00:00:14.400
+Làm cách nào để bạn lấy đầu vào 2x2 và biến nó
+thành đầu ra 4x4 chiều?
+
+00:00:14.400 --> 00:00:17.400
+Convolution chuyển vị cho phép bạn làm điều
+đó.
+
+00:00:17.400 --> 00:00:18.900
+Hãy đi sâu vào chi tiết.
+
+00:00:18.900 --> 00:00:26.400
+Bạn đã quen với phép convolution thông thường
+trong đó một lớp điển hình của mạng
+
+00:00:26.400 --> 00:00:33.900
+mới hơn có thể nhập hình ảnh 6x6x3, kết hợp nó
+với một tập hợp các bộ lọc 3x3x3,
+
+00:00:33.900 --> 00:00:39.400
+và nếu bạn có năm trong số này, thì bạn sẽ có
+kết quả đầu ra là 4x4x5.
+
+00:00:39.400 --> 00:00:42.400
+Một convolution chuyển vị trông hơi khác một
+chút.
+
+00:00:42.400 --> 00:00:49.400
+Bạn có thể nhập một tập hợp kích hoạt 2x2, kết
+hợp nó với bộ
+
+00:00:49.400 --> 00:00:56.400
+lọc 3x3 và kết thúc với đầu ra là 4x4, lớn hơn
+đầu vào ban đầu.
+
+00:00:56.400 --> 00:01:01.400
+Hãy xem qua một ví dụ chi tiết hơn về cách
+thức hoạt động của feature này.
+
+00:01:01.400 --> 00:01:07.900
+Trong ví dụ này, chúng ta sẽ lấy đầu vào 2x2,
+giống như
+
+00:01:07.900 --> 00:01:14.400
+đầu vào bên trái và chúng ta muốn kết thúc
+bằng đầu ra 4x4.
+
+00:01:14.400 --> 00:01:25.400
+Nhưng để chuyển từ 2x2 lên 4x4, tôi sẽ chọn sử
+dụng bộ lọc 3x3, vậy bộ lọc là f x f,
+
+00:01:25.400 --> 00:01:31.400
+và tôi sẽ chọn 3x3, và giả sử đó là bộ lọc mà
+chúng ta sẽ sử dụng.
+
+00:01:31.400 --> 00:01:36.400
+Tôi cũng sẽ sử dụng phần đệm P bằng 1, và do
+
+00:01:36.400 --> 00:01:41.400
+đó ở đầu ra, tôi sẽ áp dụng phần đệm 1 d đó.
+
+00:01:41.400 --> 00:01:49.400
+Và cuối cùng, tham số cuối cùng, tôi sẽ sử
+dụng sải chân S bằng 2 cho ví dụ này.
+
+00:01:49.400 --> 00:01:52.400
+Hãy xem phép convolution chuyển vị sẽ hoạt
+động như thế nào.
+
+00:01:52.400 --> 00:01:55.900
+Trong phép convolution thông thường, bạn sẽ
+lấy bộ lọc
+
+00:01:55.900 --> 00:01:59.400
+và đặt nó lên trên đầu vào, sau đó nhân và
+tính tổng.
+
+00:01:59.400 --> 00:02:03.900
+Trong convolution chuyển vị, thay vì đặt bộ
+
+00:02:03.900 --> 00:02:08.400
+lọc vào đầu vào, bạn sẽ đặt bộ lọc vào đầu ra.
+
+00:02:08.400 --> 00:02:12.400
+Hãy để tôi minh họa điều đó bằng cách thực
+hiện một
+
+00:02:12.400 --> 00:02:16.400
+cách máy móc các bước tính toán chuyển vị
+convolution.
+
+00:02:16.400 --> 00:02:22.400
+Vì vậy, hãy bắt đầu với mục nhập phía trên bên
+trái này của đầu vào, là số 2.
+
+00:02:22.400 --> 00:02:30.900
+Chúng ta sẽ lấy số 2 này và nhân nó với từng
+giá trị trong bộ lọc
+
+00:02:30.900 --> 00:02:39.400
+và chúng ta sẽ lấy kết quả đầu ra là 3x3 và
+dán nó vào vị trí này.
+
+00:02:39.400 --> 00:02:44.400
+Bây giờ, vùng đệm sẽ không chứa bất kỳ giá trị
+nào,
+
+00:02:44.400 --> 00:02:49.400
+vì vậy điều chúng ta sắp làm là bỏ qua vùng
+đệm này,
+
+00:02:49.400 --> 00:02:54.400
+và chỉ cần nhập bốn giá trị vào vùng được đánh
+dấu màu đỏ.
+
+00:02:54.400 --> 00:03:01.400
+Và cụ thể, mục nhập phía trên bên trái là 0x2,
+vậy đó là 0.
+
+00:03:01.400 --> 00:03:07.400
+Mục nhập thứ hai là 1x2, tức là 2.
+
+00:03:07.400 --> 00:03:12.400
+Dưới đây là 2x2, vậy là 4.
+
+00:03:12.400 --> 00:03:17.400
+Và ở đây là 1x2, vậy nó bằng 2.
+
+00:03:17.400 --> 00:03:23.400
+Tiếp theo, chúng ta hãy xem mục nhập thứ hai
+của đầu vào, là 1.
+
+00:03:23.400 --> 00:03:25.400
+Tôi sẽ chuyển sang bút xanh cho việc này.
+
+00:03:25.400 --> 00:03:32.400
+Vì vậy, một lần nữa, chúng ta sẽ lấy 1 và nhân
+với 1 mọi phần tử của bộ lọc.
+
+00:03:32.400 --> 00:03:38.400
+Bởi vì chúng ta đang sử dụng bước nhảy là 2
+nên bây giờ chúng ta
+
+00:03:38.400 --> 00:03:44.400
+sẽ dịch chuyển hộp trong đó chúng ta sao chép
+các số lên hai bước.
+
+00:03:44.400 --> 00:03:48.900
+Một lần nữa, chúng ta sẽ bỏ qua khu vực nằm
+trong phần đệm và vì vậy khu vực duy
+
+00:03:48.900 --> 00:03:53.400
+nhất mà chúng ta cần sao chép các con số là
+khu vực bóng mờ màu xanh lá cây này.
+
+00:03:53.400 --> 00:03:58.733
+Bạn có thể nhận thấy rằng có một số trùng lặp
+giữa những vị trí mà chúng
+
+00:03:58.733 --> 00:04:04.067
+tôi đã sao chép phiên bản màu đỏ của bộ lọc và
+phiên bản màu xanh lá cây
+
+00:04:04.067 --> 00:04:09.400
+và chúng tôi không thể sao chép giá trị màu
+xanh lá cây lên giá trị màu đỏ.
+
+00:04:09.400 --> 00:04:13.900
+Vì vậy, khi hộp màu đỏ và màu xanh lá cây
+chồng lên nhau,
+
+00:04:13.900 --> 00:04:18.400
+bạn cộng các giá trị, bạn cộng hai giá trị đó
+lại với nhau.
+
+00:04:18.400 --> 00:04:22.900
+Vì vậy, khi đã có 2 từ bộ lọc có trọng số đầu
+tiên, bạn thêm
+
+00:04:22.900 --> 00:04:27.400
+vào đó giá trị đầu tiên này từ vùng màu xanh
+lục, cũng là 2.
+
+00:04:27.400 --> 00:04:30.400
+Vậy bạn có kết quả là 2 cộng 2.
+
+00:04:30.400 --> 00:04:36.900
+Mục tiếp theo, 0 nhân 1 là 0. Khi đó bạn có 1,
+2 cộng 0
+
+00:04:36.900 --> 00:04:43.400
+nhân 1, vậy 2 cộng 0, tiếp theo là 2, tiếp
+theo là 1.
+
+00:04:43.400 --> 00:04:47.900
+Một lần nữa, chúng ta đã chuyển hai ô vuông từ
+hộp màu đỏ ở đây
+
+00:04:47.900 --> 00:04:52.400
+sang hộp màu xanh lá cây ở đây vì chúng ta
+đang sử dụng sải chân là 2.
+
+00:04:52.400 --> 00:04:57.400
+Tiếp theo, chúng ta hãy nhìn vào mục nhập phía
+dưới bên trái của đầu vào, là số 3.
+
+00:04:57.400 --> 00:05:01.400
+Vì vậy, chúng ta sẽ lấy bộ lọc, nhân mỗi 11
+
+00:05:01.400 --> 00:05:05.400
+với 3 và chúng ta đã giảm xuống một bước ở
+đây.
+
+00:05:05.400 --> 00:05:08.400
+Vì vậy, chúng ta sẽ đi xuống hai bước ở đây.
+
+00:05:08.400 --> 00:05:14.400
+Vì vậy, chúng ta sẽ điền các số của mình vào
+hình vuông 3 x 3 này.
+
+00:05:14.400 --> 00:05:19.900
+Và do đó bạn thấy rằng các số bạn đang sao
+chép là 2
+
+00:05:19.900 --> 00:05:25.400
+nhân 3, bằng 6, 1 nhân 3, bằng 3, 0 nhân 3,
+bằng 0,
+
+00:05:25.400 --> 00:05:28.400
+vân vân, 3, 6, 3.
+
+00:05:28.400 --> 00:05:34.400
+Và cuối cùng, hãy chuyển sang phần tử đầu vào
+cuối cùng, là 2.
+
+00:05:34.400 --> 00:05:43.400
+Vì vậy, chúng tôi sẽ nhân mọi phần tử của bộ
+lọc với 2 và thêm chúng vào khối này.
+
+00:05:43.400 --> 00:05:48.900
+Và vì vậy bạn kết thúc bằng việc cộng 1 nhân
+
+00:05:48.900 --> 00:05:54.400
+2, tức là cộng 2, v.v. cho các phần tử còn
+lại.
+
+00:05:54.400 --> 00:05:58.400
+Vì vậy, bước cuối cùng là lấy tất cả các số
+trong ma trận
+
+00:05:58.400 --> 00:06:02.400
+giá trị 4 x 4 này, trong 16 giá trị này, và
+cộng chúng lại.
+
+00:06:02.400 --> 00:06:06.400
+Vì vậy, bạn kết thúc với 0 ở đây. 2 cộng 2 là
+4.
+
+00:06:06.400 --> 00:06:15.400
+0, 1. 4 cộng 6 là 10. 2 cộng 0 cộng 3 cộng 2
+là 7.
+
+00:06:15.400 --> 00:06:17.400
+2 cộng 4 là 6.
+
+00:06:17.400 --> 00:06:20.400
+Tôi biết điều này có vẻ hơi lộn xộn vì tôi
+đang viết lên trên mọi thứ.
+
+00:06:20.400 --> 00:06:30.400
+Đó là 0. 3 cộng 4 là 7. 0, 2, 6. 3 cộng 0 là
+3. 4, 2.
+
+00:06:30.400 --> 00:06:34.400
+Và đó là kết quả 4 x 4 của bạn.
+
+00:06:34.400 --> 00:06:38.400
+Trong trường hợp bạn đang thắc mắc, tại sao
+chúng ta phải làm theo cách này?
+
+00:06:38.400 --> 00:06:41.900
+Tôi nghĩ có nhiều cách khả thi để lấy một đầu
+
+00:06:41.900 --> 00:06:45.400
+vào nhỏ và biến nó thành một đầu ra lớn hơn.
+
+00:06:45.400 --> 00:06:50.400
+Nhưng phép convolution chuyển vị lại là một
+phép convolution hiệu quả.
+
+00:06:50.400 --> 00:06:54.067
+Và khi bạn tìm hiểu tất cả các tham số của bộ
+lọc ở đây, điều
+
+00:06:54.067 --> 00:06:57.733
+này sẽ mang lại kết quả tốt khi bạn đặt nó vào
+ngữ cảnh của đơn
+
+00:06:57.733 --> 00:07:01.400
+vị, đây là thuật toán học tập mà chúng ta sẽ
+sử dụng bây giờ.
+
+00:07:01.400 --> 00:07:05.400
+Vì vậy, hãy quay lại và tiếp tục xây dựng đơn
+vị.
+
+00:07:06.400 --> 00:07:10.067
+Trong video này, chúng tôi sẽ trình bày từng
+bước một về cách
+
+00:07:10.067 --> 00:07:13.733
+convolution chuyển vị cho phép bạn lấy một đầu
+vào nhỏ, chẳng hạn
+
+00:07:13.733 --> 00:07:17.400
+như 2 x 2, và tăng nó thành một đầu ra lớn
+hơn, chẳng hạn như 4 x 4.
+
+00:07:17.400 --> 00:07:21.900
+Đây là khối xây dựng chính của kiến trúc đơn
+vị mà bạn có thể
+
+00:07:21.900 --> 00:07:26.400
+triển khai và sử dụng trong bài tập lập trình
+của tuần này.
+
+00:07:26.400 --> 00:07:30.067
+Bây giờ bạn đã hiểu về convolution chuyển vị,
+hãy sử dụng khối xây
+
+00:07:30.067 --> 00:07:33.733
+dựng mà bạn hiện có này và xem nó phù hợp như
+thế nào với kiến
+
+00:07:33.733 --> 00:07:37.400
+trúc đơn vị tổng thể mà bạn có thể sử dụng để
+semantic segmentation.
+
+00:07:37.400 --> 00:07:39.354
+Chúng ta hãy chuyển sang video tiếp theo.

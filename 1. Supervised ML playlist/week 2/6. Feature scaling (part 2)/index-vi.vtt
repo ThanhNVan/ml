@@ -1,0 +1,367 @@
+WEBVTT
+
+00:00:01.780 --> 00:00:06.940
+Hãy xem cách bạn có thể triển khai chia tỷ lệ
+đối tượng để lấy các đối tượng có phạm
+
+00:00:06.940 --> 00:00:12.100
+vi giá trị rất khác nhau và chia tỷ lệ để có
+phạm vi giá trị tương đương với nhau.
+
+00:00:12.100 --> 00:00:14.420
+Vậy làm thế nào để bạn thực sự mở rộng quy mô
+các feature?
+
+00:00:14.420 --> 00:00:21.630
+Chà, nếu x1 nằm trong khoảng từ 3 đến 2000,
+một cách để có phiên bản tỷ lệ của
+
+00:00:21.630 --> 00:00:28.840
+x1 là lấy từng giá trị x1 ban đầu và chia cho
+2000 giá trị lớn nhất của phạm vi.
+
+00:00:28.840 --> 00:00:34.400
+Vì vậy thang đo của x1 sẽ dao động từ 0,15 đến
+1.
+
+00:00:34.400 --> 00:00:40.760
+Tương tự, vì x2 dao động từ 0 đến 5, bạn có
+thể tính phiên bản tỷ lệ của x2
+
+00:00:40.760 --> 00:00:47.120
+bằng cách lấy mỗi x2 ban đầu và chia cho 5,
+đây cũng là giá trị lớn nhất.
+
+00:00:47.120 --> 00:00:52.480
+Vì vậy, thang đo của x2 bây giờ sẽ nằm trong
+khoảng từ 0 đến 1.
+
+00:00:52.480 --> 00:00:58.920
+Vì vậy, nếu bạn vẽ x1 và x2 theo tỷ lệ trên
+biểu đồ, nó có thể trông như thế này.
+
+00:00:58.920 --> 00:01:01.970
+Ngoài việc chia cho giá trị tối đa, bạn cũng
+có thể thực
+
+00:01:01.970 --> 00:01:05.020
+hiện thao tác được gọi là chuẩn hóa giá trị
+trung bình.
+
+00:01:05.020 --> 00:01:09.210
+Vì vậy, điều này trông như thế nào, bạn bắt
+đầu với các feature ban đầu,
+
+00:01:09.210 --> 00:01:13.400
+sau đó bạn điều chỉnh lại tỷ lệ chúng để cả
+hai đều tập trung quanh 0.
+
+00:01:13.400 --> 00:01:19.480
+Vì vậy, trong khi trước đây chúng chỉ có giá
+trị lớn hơn 0 thì bây giờ chúng có cả
+
+00:01:19.480 --> 00:01:25.560
+giá trị âm và giá trị dương, nhưng có thể
+thường nằm trong khoảng từ âm 1 đến cộng 1.
+
+00:01:25.560 --> 00:01:29.840
+Vì vậy, để tính mức chuẩn hóa trung bình của
+x1, trước tiên hãy tìm giá trị
+
+00:01:29.840 --> 00:01:34.120
+trung bình, còn được gọi là giá trị trung bình
+của x1 trên training set của
+
+00:01:34.120 --> 00:01:38.400
+bạn và hãy gọi giá trị trung bình này là mu1,
+với đây là bảng chữ cái Hy Lạp
+
+00:01:38.400 --> 00:01:39.700
+mu.
+
+00:01:39.700 --> 00:01:46.640
+Ví dụ: bạn có thể thấy rằng mức trung bình của
+feature 1, mu1 là 600 feet vuông.
+
+00:01:46.680 --> 00:01:54.340
+Vì vậy, hãy lấy mỗi x1, trừ đi giá trị trung
+bình mu1, rồi chia cho
+
+00:01:54.340 --> 00:02:02.000
+hiệu 2000 trừ 300, trong đó 2000 là số lớn
+nhất và 300 là số nhỏ nhất.
+
+00:02:02.000 --> 00:02:06.680
+Và nếu bạn làm điều này, bạn sẽ nhận được x1
+đã
+
+00:02:06.680 --> 00:02:11.360
+chuẩn hóa nằm trong khoảng từ âm 0,18 đến
+0,82.
+
+00:02:11.360 --> 00:02:16.200
+Tương tự như x2 được chuẩn hóa trung bình, bạn
+có thể
+
+00:02:16.200 --> 00:02:21.040
+tính trung bình của feature 2 và ví dụ: mu2 có
+thể là 2,3.
+
+00:02:21.040 --> 00:02:26.980
+Sau đó, bạn có thể lấy từng x2, trừ mu2 và
+chia cho
+
+00:02:26.980 --> 00:02:32.920
+5 trừ 0, lại lấy tối đa 5 trừ đi tối thiểu,
+bằng 0.
+
+00:02:32.920 --> 00:02:37.933
+Giá trị trung bình x2 chuẩn hóa bây giờ nằm
+trong khoảng từ âm 0,46
+
+00:02:37.933 --> 00:02:42.947
+đến 0,54, vì vậy nếu bạn vẽ biểu đồ
+training data bằng cách sử dụng
+
+00:02:42.947 --> 00:02:47.960
+giá trị trung bình x1 và x2 chuẩn hóa, nó có
+thể trông như thế này.
+
+00:02:47.960 --> 00:02:54.440
+Có một phương pháp thay đổi tỷ lệ phổ biến
+cuối cùng được gọi là chuẩn hóa điểm z.
+
+00:02:54.440 --> 00:02:57.700
+Để triển khai chuẩn hóa điểm z, bạn cần tính
+
+00:02:57.700 --> 00:03:00.960
+toán một thứ gọi là bias chuẩn của từng
+feature.
+
+00:03:00.960 --> 00:03:03.760
+Nếu bạn không biết bias chuẩn là gì thì cũng
+đừng lo lắng về
+
+00:03:03.760 --> 00:03:06.560
+điều đó, bạn sẽ không cần phải biết nó đối với
+lớp học này.
+
+00:03:06.560 --> 00:03:11.620
+Hoặc nếu bạn đã nghe nói về phân bố chuẩn hoặc
+đường cong hình chuông, đôi
+
+00:03:11.620 --> 00:03:16.680
+khi còn được gọi là phân bố Gauss, thì đây là
+bias chuẩn của phân bố chuẩn
+
+00:03:16.680 --> 00:03:17.680
+trông giống như.
+
+00:03:17.680 --> 00:03:21.200
+Nhưng nếu bạn chưa nghe nói về điều này, bạn
+cũng không cần phải lo lắng về điều đó.
+
+00:03:21.200 --> 00:03:27.300
+Nhưng nếu bạn biết bias chuẩn là gì thì để
+thực hiện chuẩn hóa điểm z, trước
+
+00:03:27.300 --> 00:03:33.400
+tiên bạn tính giá trị trung bình mu cũng như
+bias chuẩn, thường được ký hiệu là
+
+00:03:33.400 --> 00:03:38.600
+bằng chữ cái Hy Lạp viết thường sigma của mỗi
+đặc điểm.
+
+00:03:38.600 --> 00:03:47.860
+Vì vậy, ví dụ: có thể đặc điểm 1 có bias chuẩn
+là 450 và trung bình là 600, sau đó
+
+00:03:47.860 --> 00:03:57.120
+để điểm z chuẩn hóa x1, lấy mỗi x1, trừ mu1,
+rồi chia cho bias chuẩn, kết quả này
+
+00:03:57.120 --> 00:04:00.120
+Tôi sẽ ký hiệu là sigma1.
+
+00:04:00.120 --> 00:04:05.060
+Và điều bạn có thể nhận thấy là điểm z chuẩn
+
+00:04:05.060 --> 00:04:10.000
+hóa x1 hiện nằm trong khoảng từ âm 0,67 đến
+3,1.
+
+00:04:10.000 --> 00:04:18.880
+Tương tự, nếu bạn tính bias chuẩn của đối
+tượng thứ hai là 1,4 và trung bình là
+
+00:04:18.880 --> 00:04:27.760
+2,3 thì bạn có thể tính x2 trừ mu2 chia cho
+sigma2 và trong trường hợp này là điểm z
+
+00:04:27.760 --> 00:04:35.800
+được chuẩn hóa bởi x2 bây giờ có thể nằm trong
+khoảng từ âm 1,6 đến 1,9.
+
+00:04:35.800 --> 00:04:39.765
+Vì vậy, nếu bạn vẽ training data trên x1 và x2
+đã
+
+00:04:39.765 --> 00:04:43.730
+chuẩn hóa trên biểu đồ, nó có thể trông như
+thế này.
+
+00:04:43.730 --> 00:04:47.437
+Theo nguyên tắc chung, khi thực hiện chia tỷ
+lệ đối tượng, bạn
+
+00:04:47.437 --> 00:04:51.143
+có thể muốn nhắm đến việc đưa các đối tượng
+vào phạm vi có thể
+
+00:04:51.143 --> 00:04:54.850
+từ bất kỳ đâu xung quanh âm 1 đến một nơi nào
+đó xung quanh cộng
+
+00:04:54.850 --> 00:04:58.170
+1 cho mỗi feature x.
+
+00:04:58.170 --> 00:05:03.210
+Nhưng những giá trị âm 1 và cộng 1 này có thể
+hơi lỏng lẻo một chút.
+
+00:05:03.210 --> 00:05:08.080
+Vì vậy, nếu các đặc điểm nằm trong phạm vi từ
+âm 3 đến cộng 3 hoặc
+
+00:05:08.080 --> 00:05:12.950
+âm 0,3 đến cộng 0,3 thì tất cả những đặc điểm
+này đều hoàn toàn ổn.
+
+00:05:12.950 --> 00:05:19.150
+Vì vậy, nếu bạn có đặc điểm x1 có giá trị từ 0
+đến 3 thì đó không phải là vấn đề.
+
+00:05:19.150 --> 00:05:22.090
+Và bạn có thể thay đổi kích thước nếu muốn,
+nhưng nếu
+
+00:05:22.090 --> 00:05:25.030
+bạn không thay đổi kích thước, nó cũng sẽ hoạt
+động tốt.
+
+00:05:25.030 --> 00:05:29.150
+Hoặc nếu bạn có một đặc điểm khác, x2, có giá
+trị nằm
+
+00:05:29.150 --> 00:05:33.270
+trong khoảng từ âm 2 đến cộng 0,5, thì không
+sao cả.
+
+00:05:33.270 --> 00:05:36.210
+Việc thay đổi kích thước nó không có hại gì,
+
+00:05:36.210 --> 00:05:39.150
+nhưng cũng có thể không sao nếu bạn để nó một
+mình.
+
+00:05:39.150 --> 00:05:45.630
+Nhưng nếu một feature khác như x3 ở đây có
+phạm vi từ âm 100 đến cộng 100, thì
+
+00:05:45.630 --> 00:05:52.110
+feature này sẽ có một phạm vi giá trị rất khác
+so với giá trị từ khoảng âm 1 đến cộng 1.
+
+00:05:52.110 --> 00:05:56.770
+Vì vậy, có lẽ tốt hơn hết bạn nên thay đổi tỷ
+lệ
+
+00:05:56.770 --> 00:06:01.430
+feature x3 này để nó nằm trong khoảng từ gần
+âm 1 đến cộng 1.
+
+00:06:01.430 --> 00:06:08.270
+Tương tự, nếu bạn có một feature x4 nhận các
+giá trị thực sự nhỏ,
+
+00:06:08.270 --> 00:06:15.110
+chẳng hạn từ âm 0,001 đến cộng 0,001, thì các
+giá trị này rất nhỏ.
+
+00:06:15.110 --> 00:06:18.350
+Điều đó có nghĩa là bạn cũng có thể muốn bán
+lại nó.
+
+00:06:18.350 --> 00:06:25.390
+Cuối cùng, điều gì sẽ xảy ra nếu feature của
+bạn x5, chẳng hạn như số đo nhiệt
+
+00:06:25.390 --> 00:06:32.430
+độ cơ thể của bệnh nhân trong bệnh viện nằm
+trong khoảng từ 98,6 đến 105 độ F.
+
+00:06:32.430 --> 00:06:36.470
+Trong trường hợp này, các giá trị này là
+khoảng 100,
+
+00:06:36.470 --> 00:06:40.510
+thực sự là khá lớn so với các đặc điểm tỷ lệ
+khác.
+
+00:06:40.510 --> 00:06:44.330
+Và điều này thực sự sẽ khiến việc
+gradient descent chạy chậm hơn.
+
+00:06:44.330 --> 00:06:48.550
+Vì vậy, trong trường hợp này, việc thay đổi
+kích thước feature có thể sẽ hữu ích.
+
+00:06:48.550 --> 00:06:52.750
+Hầu như không bao giờ có bất kỳ tác hại nào
+khi thực hiện thay đổi kích thước feature.
+
+00:06:52.750 --> 00:06:56.590
+Vì vậy, khi nghi ngờ, tôi khuyến khích bạn cứ
+thực hiện nó.
+
+00:06:56.590 --> 00:06:58.870
+Và đó là phần mở rộng feature.
+
+00:06:58.870 --> 00:07:05.390
+Với kỹ thuật nhỏ này, bạn thường có thể
+gradient descent để chạy nhanh hơn nhiều.
+
+00:07:05.390 --> 00:07:07.790
+Vì vậy, đó là feature mở rộng quy mô.
+
+00:07:07.790 --> 00:07:11.123
+Và có hoặc không có feature chia tỷ lệ, khi
+bạn chạy feature gradient descent, làm
+
+00:07:11.123 --> 00:07:14.457
+cách nào bạn có thể biết, làm cách nào bạn có
+thể kiểm tra xem feature
+
+00:07:14.457 --> 00:07:17.790
+gradient descent có thực sự hoạt động hay
+không, liệu nó có tìm thấy cho bạn toàn cục
+hay không
+
+00:07:17.790 --> 00:07:20.310
+tối thiểu hoặc một cái gì đó gần với nó?
+
+00:07:20.310 --> 00:07:23.450
+Trong video tiếp theo, chúng ta hãy xem cách
+
+00:07:23.450 --> 00:07:26.590
+nhận biết liệu độ dốc giảm có hội tụ hay
+không.
+
+00:07:26.590 --> 00:07:30.010
+Và trong video sau đó, điều này sẽ dẫn đến
+cuộc thảo luận về
+
+00:07:30.010 --> 00:07:33.430
+cách chọn learning rate tập tốt cho việc
+gradient descent.

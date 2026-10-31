@@ -1,0 +1,441 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.235
+Nếu bạn nhìn vào tài liệu object detection,
+
+2
+00:00:03.235 --> 00:00:06.790
+có một tập hợp các ý tưởng gọi
+
+3
+00:00:06.790 --> 00:00:10.995
+là đề xuất khu vực có ảnh hưởng rất lớn trong tầm nhìn máy tính.
+
+4
+00:00:10.995 --> 00:00:14.460
+Tôi muốn làm cho video này tùy chọn bởi vì tôi có xu hướng sử dụng
+
+5
+00:00:14.460 --> 00:00:19.275
+đề xuất khu vực thay vì thuật toán một chút ít thường xuyên hơn nhưng dù sao,
+
+6
+00:00:19.275 --> 00:00:22.170
+nó đã là một cơ quan có ảnh hưởng của công việc
+
+7
+00:00:22.170 --> 00:00:25.675
+và một ý tưởng rằng bạn có thể đi qua trong công việc của riêng bạn.
+
+8
+00:00:25.675 --> 00:00:29.640
+Chúng ta hãy xem qua. Vì vậy, nếu bạn nhớ lại ý tưởng cửa sổ trượt,
+
+9
+00:00:29.640 --> 00:00:33.225
+bạn sẽ đi một ngọn lửa
+
+10
+00:00:33.225 --> 00:00:37.695
+xuyên qua tất cả các cửa sổ khác nhau và chạy máy dò để xem có xe hơi,
+
+11
+00:00:37.695 --> 00:00:40.190
+người đi bộ, hoặc có thể là một chiếc xe máy.
+
+12
+00:00:40.190 --> 00:00:42.515
+Bây giờ, bạn có thể chạy thuật toán một cách phức tạp,
+
+13
+00:00:42.515 --> 00:00:45.570
+nhưng một nhược điểm của thuật toán là nó chỉ
+
+14
+00:00:45.570 --> 00:00:49.410
+xuyên tạc rất nhiều vùng mà rõ ràng là không có vật thể.
+
+15
+00:00:49.410 --> 00:00:52.569
+Hình chữ nhật ở dưới này khá trống.
+
+16
+00:00:52.569 --> 00:00:55.658
+Nó rõ ràng là không có gì thú vị ở đó để classification,
+
+17
+00:00:55.658 --> 00:00:58.610
+và có lẽ nó cũng đang chạy nó trên hình chữ nhật này,
+
+18
+00:00:58.610 --> 00:01:01.365
+trông giống như không có gì thú vị ở đó.
+
+19
+00:01:01.365 --> 00:01:04.275
+Vì vậy, những gì Russ Girshik, Jeff Donahue, Trevor Darrell,
+
+20
+00:01:04.275 --> 00:01:06.548
+và Jitendra Malik đề xuất trong bài báo,
+
+21
+00:01:06.548 --> 00:01:07.905
+như được trích dẫn ở dưới cùng của slide,
+
+22
+00:01:07.905 --> 00:01:10.470
+là một thuật toán được gọi là R-CNN
+
+23
+00:01:10.470 --> 00:01:15.915
+, viết tắt của Regions với mạng convolutional hoặc các vùng có CNN.
+
+24
+00:01:15.915 --> 00:01:18.330
+Và điều đó làm là nó cố gắng chọn
+
+25
+00:01:18.330 --> 00:01:22.925
+một vài vùng có ý nghĩa để chạy xuyên lục địa của bạn.
+
+26
+00:01:22.925 --> 00:01:27.505
+Vì vậy, thay vì chạy cửa sổ trượt của bạn trên mỗi cửa sổ duy nhất,
+
+27
+00:01:27.505 --> 00:01:30.330
+thay vào đó bạn chỉ chọn một vài cửa sổ và
+
+28
+00:01:30.330 --> 00:01:33.570
+chạy crossfire lục địa của bạn chỉ trên một vài cửa sổ.
+
+29
+00:01:33.570 --> 00:01:35.205
+Cách mà họ thực hiện
+
+30
+00:01:35.205 --> 00:01:40.425
+các đề xuất khu vực là chạy một thuật toán gọi là một thuật toán phân đoạn,
+
+31
+00:01:40.425 --> 00:01:42.915
+kết quả là kết quả đầu ra này
+
+32
+00:01:42.915 --> 00:01:46.170
+ở bên phải, để tìm ra những gì có thể là đối tượng.
+
+33
+00:01:46.170 --> 00:01:50.306
+Ví dụ, thuật toán phân đoạn tìm thấy một blob ở đây.
+
+34
+00:01:50.306 --> 00:01:53.625
+Và vì vậy bạn có thể chọn những quả bóng đập đó và nói,
+
+35
+00:01:53.625 --> 00:01:55.680
+“Chúng ta hãy chạy một ngọn lửa trên đốm đó.” Có
+
+36
+00:01:55.680 --> 00:01:58.730
+vẻ như điều nhỏ màu xanh lá cây này tìm thấy một đốm ở đó,
+
+37
+00:01:58.730 --> 00:02:00.960
+vì bạn cũng có thể chạy ngọn lửa trên
+
+38
+00:02:00.960 --> 00:02:04.650
+hình chữ nhật đó để xem liệu có một số thú vị ở đó.
+
+39
+00:02:04.650 --> 00:02:06.000
+Và trong trường hợp
+
+40
+00:02:06.000 --> 00:02:08.830
+này, đốm xanh này, nếu bạn chạy một ngọn lửa trên đó,
+
+41
+00:02:08.830 --> 00:02:10.793
+hy vọng bạn tìm thấy người đi bộ,
+
+42
+00:02:10.793 --> 00:02:13.575
+và nếu bạn chạy nó trên đốm xanh lục nhạt này,
+
+43
+00:02:13.575 --> 00:02:16.120
+có thể bạn sẽ tìm thấy một chiếc xe hơi, có thể không.
+
+44
+00:02:16.120 --> 00:02:17.535
+Tôi không chắc nữa. Vì vậy, chi tiết của nó,
+
+45
+00:02:17.535 --> 00:02:20.080
+nó được gọi là một thuật toán phân đoạn,
+
+46
+00:02:20.080 --> 00:02:25.410
+và những gì bạn làm là bạn tìm thấy có thể 2000 đốm và đặt các
+
+47
+00:02:25.410 --> 00:02:31.544
+bounding box xung quanh khoảng 2000 đốm và giá trị crossfire trên 2000 đốm,
+
+48
+00:02:31.544 --> 00:02:34.380
+và đây có thể là một số lượng nhỏ hơn nhiều các vị trí
+
+49
+00:02:34.380 --> 00:02:37.529
+để chạy lục địa của bạn crossfire,
+
+50
+00:02:37.529 --> 00:02:40.935
+sau đó nếu bạn phải chạy nó ở mọi vị trí duy nhất trong suốt hình ảnh.
+
+51
+00:02:40.935 --> 00:02:44.172
+Và đây là một trường hợp đặc biệt nếu bạn đang điều hành lục địa của bạn
+
+52
+00:02:44.172 --> 00:02:48.055
+không chỉ trên các khu vực hình vuông mà còn chạy chúng trên
+
+53
+00:02:48.055 --> 00:02:51.870
+các khu vực gầy gò cao để cố gắng tìm người đi bộ hoặc chạy chúng trên
+
+54
+00:02:51.870 --> 00:02:57.915
+các khu vực mỡ trắng của bạn cố gắng tìm xe và chạy chúng ở nhiều quy mô.
+
+55
+00:02:57.915 --> 00:03:02.170
+Đó là R-CNN hay khu vực với CNN,
+
+56
+00:03:02.170 --> 00:03:04.380
+một khu vực của CNN có ý tưởng feature của CNN.
+
+57
+00:03:04.380 --> 00:03:08.305
+Bây giờ, hóa ra thuật toán R-CNN vẫn còn khá chậm.
+
+58
+00:03:08.305 --> 00:03:13.320
+Vì vậy, đã có một dòng công việc để tìm hiểu làm thế nào để tăng tốc độ thuật toán này.
+
+59
+00:03:13.320 --> 00:03:16.920
+Vì vậy, thuật toán R-CNN cơ bản với các vùng được đề xuất sử dụng
+
+60
+00:03:16.920 --> 00:03:20.933
+một số thuật toán và sau đó xuyên các vùng được đề xuất một tại một thời điểm.
+
+61
+00:03:20.933 --> 00:03:22.380
+Và đối với mỗi khu vực,
+
+62
+00:03:22.380 --> 00:03:23.844
+họ sẽ xuất ra nhãn.
+
+63
+00:03:23.844 --> 00:03:25.960
+Vậy có xe không? Có người đi bộ không?
+
+64
+00:03:25.960 --> 00:03:27.580
+Có một chiếc xe máy ở đó không?
+
+65
+00:03:27.580 --> 00:03:30.090
+Và sau đó cũng xuất ra một bounding box,
+
+66
+00:03:30.090 --> 00:03:36.510
+vì vậy bạn có thể có được một bounding box chính xác nếu thực sự có một đối tượng trong khu vực đó.
+
+67
+00:03:36.510 --> 00:03:37.645
+Vì vậy, chỉ để rõ ràng,
+
+68
+00:03:37.645 --> 00:03:42.075
+thuật toán R-CNN không chỉ tin tưởng vào bounding box mà nó đã được đưa ra.
+
+69
+00:03:42.075 --> 00:03:44.540
+Nó cũng xuất ra một bounding box,
+
+70
+00:03:44.540 --> 00:03:46.620
+B X B Y B H B W,
+
+71
+00:03:46.620 --> 00:03:51.045
+để có được một bounding box chính xác hơn và bất cứ điều gì xảy ra
+
+72
+00:03:51.045 --> 00:03:56.070
+để bao quanh blob mà thuật toán phân đoạn hình ảnh đã đưa cho nó.
+
+73
+00:03:56.070 --> 00:03:58.705
+Vì vậy, nó có thể có được các bounding box khá chính xác.
+
+74
+00:03:58.705 --> 00:04:03.425
+Bây giờ, một nhược điểm của thuật toán R-CNN là nó thực sự khá chậm.
+
+75
+00:04:03.425 --> 00:04:04.470
+Vì vậy, trong những năm qua,
+
+76
+00:04:04.470 --> 00:04:08.295
+đã có một vài cải tiến cho thuật toán R-CNN.
+
+77
+00:04:08.295 --> 00:04:12.180
+Russ Girshik đề xuất thuật toán R-CNN nhanh,
+
+78
+00:04:12.180 --> 00:04:15.150
+và về cơ bản nó là thuật toán R-CNN nhưng với
+
+79
+00:04:15.150 --> 00:04:18.290
+một thực hiện convolutional của cửa sổ trượt.
+
+80
+00:04:18.290 --> 00:04:23.745
+Vì vậy, việc thực hiện ban đầu sẽ thực sự classification từng khu vực một lần.
+
+81
+00:04:23.745 --> 00:04:28.955
+Cho đến nay, R-CNN sử dụng một thực hiện convolutional của cửa sổ trượt,
+
+82
+00:04:28.955 --> 00:04:35.550
+và điều này gần giống với ý tưởng bạn đã thấy trong video thứ tư của tuần này.
+
+83
+00:04:35.550 --> 00:04:39.850
+Và điều đó làm tăng tốc độ R-CNN khá nhiều.
+
+84
+00:04:40.390 --> 00:04:46.680
+Nó chỉ ra rằng một trong những vấn đề của thuật toán R-CNN nhanh là
+
+85
+00:04:46.680 --> 00:04:53.270
+bước cụm để đề xuất các khu vực vẫn còn khá chậm và do đó một nhóm khác nhau,
+
+86
+00:04:53.270 --> 00:04:56.025
+Shaoqing Ren, Kaiming He, Ross Girshick, và Jian Son,
+
+87
+00:04:56.025 --> 00:04:59.043
+đề xuất thuật toán R-CNN nhanh hơn,
+
+88
+00:04:59.043 --> 00:05:02.520
+sử dụng một thần kinh xoắn ốc thay vì một
+
+89
+00:05:02.520 --> 00:05:07.550
+trong những thuật toán phân đoạn truyền thống hơn để đề xuất một đốm trên những vùng
+
+90
+00:05:07.550 --> 00:05:12.487
+đó, và nó chạy nhanh hơn một chút so với thuật toán R-CNN nhanh.
+
+91
+00:05:12.487 --> 00:05:15.810
+Mặc dù, tôi nghĩ rằng thuật toán R-CNN nhanh hơn,
+
+92
+00:05:15.810 --> 00:05:21.730
+hầu hết các triển khai thường vẫn bỏ đi chậm hơn một chút so với thuật toán YOLO.
+
+93
+00:05:21.730 --> 00:05:27.090
+Ý tưởng về các đề xuất khu vực có ảnh hưởng khá lớn trong tầm nhìn máy tính,
+
+94
+00:05:27.090 --> 00:05:32.995
+và tôi muốn bạn biết về những ý tưởng này bởi vì bạn thấy những người khác vẫn sử dụng những ý tưởng
+
+95
+00:05:32.995 --> 00:05:35.595
+này, cho bản thân tôi, và đây là ý kiến cá nhân của tôi,
+
+96
+00:05:35.595 --> 00:05:38.893
+không phải là ý kiến của Ủy ban nghiên cứu tầm nhìn máy tính nói chung.
+
+97
+00:05:38.893 --> 00:05:44.100
+Tôi nghĩ rằng chúng ta có thể đề xuất một ý tưởng thú vị nhưng không có hai bước,
+
+98
+00:05:44.100 --> 00:05:45.630
+đầu tiên, đề xuất khu vực và sau đó crossfire,
+
+99
+00:05:45.630 --> 00:05:49.800
+có thể làm tất cả mọi thứ nhiều hơn hoặc cùng một lúc,
+
+100
+00:05:49.800 --> 00:05:53.085
+tương tự như các YOLO hoặc các Bạn Chỉ Nhìn Một lần thuật toán
+
+101
+00:05:53.085 --> 00:05:56.885
+mà dường như với tôi như một hướng hứa hẹn hơn cho các dài hạn.
+
+102
+00:05:56.885 --> 00:05:58.995
+Nhưng đó là ý kiến cá nhân của tôi và không cần thiết
+
+103
+00:05:58.995 --> 00:06:01.865
+ý kiến của toàn bộ ủy ban nghiên cứu tầm nhìn máy tính.
+
+104
+00:06:01.865 --> 00:06:04.868
+Vì vậy, cảm thấy tự do để lấy nó với một hạt muối,
+
+105
+00:06:04.868 --> 00:06:07.550
+nhưng tôi nghĩ rằng ý tưởng của R-CNN,
+
+106
+00:06:07.550 --> 00:06:10.438
+bạn có thể gặp những người khác sử dụng nó.
+
+107
+00:06:10.438 --> 00:06:14.460
+Vì vậy, nó cũng đáng để học để bạn có thể hiểu các thuật toán khác tốt hơn.
+
+108
+00:06:14.460 --> 00:06:21.565
+Vì vậy, chúng tôi đã hoàn thành tài liệu của mình trong tuần này về phát hiện vật thể.
+
+109
+00:06:21.565 --> 00:06:25.133
+Tôi hy vọng các bạn thích làm việc trong bài tập vấn đề tuần này,
+
+110
+00:06:25.133 --> 00:06:27.000
+và tôi rất mong được gặp các bạn trong tuần này.

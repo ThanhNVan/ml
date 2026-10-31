@@ -1,0 +1,186 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.050 --> 00:00:05.610
+Welcome back. In this video, we'll talk about how to compute derivatives for you to implement
+
+00:00:05.610 --> 00:00:10.490
+gradient descent for logistic regression. The key takeaways will be what you need to
+
+00:00:10.490 --> 00:00:15.890
+implement, that is the key equations you need in order to implement gradient descent for
+
+00:00:15.890 --> 00:00:21.530
+logistic regression. But in this video, I want to do this computation using the computation
+
+00:00:21.530 --> 00:00:26.490
+graph. I have to admit, using the computation graph is a little bit of an overkill for
+
+00:00:26.490 --> 00:00:30.970
+deriving gradient descent for logistic regression. But I want to start explaining things this
+
+00:00:30.970 --> 00:00:35.330
+way to get you familiar with these ideas so that hopefully it will make a bit more sense
+
+00:00:35.330 --> 00:00:41.490
+when we talk about full-fledged neural networks. But with that, let's dive into gradient descent
+
+00:00:41.490 --> 00:00:49.570
+for logistic regression. To recap, we had set up logistic regression as follows. Your
+
+00:00:49.570 --> 00:00:58.330
+predictions y hat is defined as follows, where z is that. And if we focus on just one
+
+00:00:58.330 --> 00:01:05.330
+example for now, then the loss with respect to that one example is defined as follows,
+
+00:01:05.330 --> 00:01:11.130
+where a is the output of logistic regression, and y is the ground truth label. So let's
+
+00:01:11.130 --> 00:01:17.290
+write this out as a computation graph. And for this example, let's say we have only
+
+00:01:17.290 --> 00:01:28.570
+two features, x1 and x2. So in order to compute z, we'll need to input w1, w2, and b in addition
+
+00:01:28.570 --> 00:01:34.410
+to the feature values x1 and x2. So these things in our computation graph get used to
+
+00:01:34.410 --> 00:01:45.610
+compute z, which is w1, x1 plus w2, x2 plus b. Draw a tiny little box around that. And
+
+00:01:45.610 --> 00:01:53.850
+then we compute y hat or a equals sigma of z. That's the next step in the computation
+
+00:01:53.850 --> 00:02:02.490
+graph. And then finally, we compute L, a, y, and I won't copy the formula again. So in
+
+00:02:02.490 --> 00:02:10.490
+logistic regression, what we want to do is to modify the parameters w and b in order to
+
+00:02:10.490 --> 00:02:16.490
+reduce this loss. We've described the forward propagation steps of how you actually compute
+
+00:02:16.490 --> 00:02:21.610
+the loss on a single training example. Now let's talk about how you can go backwards to
+
+00:02:21.610 --> 00:02:26.410
+talk to compute the derivatives. Here's a cleaned out version of the diagram. Because
+
+00:02:26.410 --> 00:02:31.050
+what we want to do is compute derivatives with respect to this loss. The first thing
+
+00:02:31.050 --> 00:02:37.450
+we want to do going backwards is to compute the derivative of this loss with respect to
+
+00:02:38.170 --> 00:02:44.970
+the script over there with respect to this variable a. And so in the code, you just use dA
+
+00:02:46.090 --> 00:02:53.690
+to denote this variable. And it turns out that if you are familiar with calculus, you could show that
+
+00:02:54.330 --> 00:03:03.530
+this ends up being negative y over a plus one minus y over one minus a. And the way you do that
+
+00:03:03.610 --> 00:03:08.010
+is you take the formula for the loss. And if you're familiar with calculus, you can
+
+00:03:08.010 --> 00:03:12.730
+compute the derivative with respect to the variable, lowercase a, and you get this formula.
+
+00:03:12.730 --> 00:03:17.610
+But if you're not familiar with calculus, don't worry about it. We'll provide the derivative
+
+00:03:17.610 --> 00:03:21.850
+formulas you need throughout this course. So if you're an expert in calculus, you'll
+
+00:03:21.850 --> 00:03:26.410
+encourage you to look up the formula for the loss from the previous slide and try taking the
+
+00:03:26.410 --> 00:03:31.290
+derivative with respect to a using calculus. But if you don't know enough calculus to do
+
+00:03:31.290 --> 00:03:36.970
+that, don't worry about it. Now having computed this quantity or dA, the derivative of your final
+
+00:03:36.970 --> 00:03:42.970
+output variable with respect to a, you can then go backwards. And it turns out that you can show
+
+00:03:43.610 --> 00:03:50.650
+dz, which this is the Python code variable name, this is going to be the derivative of the loss
+
+00:03:51.370 --> 00:03:58.250
+with respect to z. Or for L, you could really write the loss, including a and y explicitly
+
+00:03:58.330 --> 00:04:05.770
+as parameters or not. Either type of notation is equally acceptable. We can show that this is equal
+
+00:04:05.770 --> 00:04:14.730
+to a minus y. Just a couple comments only for those of you that are experts in calculus. If
+
+00:04:14.730 --> 00:04:20.250
+you're not experts in calculus, don't worry about it. But it turns out that this, right, dL dz,
+
+00:04:20.250 --> 00:04:31.050
+this can be expressed as dL dA times dA dz. And it turns out that dA dz, this turns out to be
+
+00:04:31.690 --> 00:04:38.730
+a times 1 minus a. And dL dA, we had previously worked out over here. And so if you take these
+
+00:04:38.730 --> 00:04:44.890
+two quantities, you know, dL dA, which is this term, together with dA dz, which is this term,
+
+00:04:44.890 --> 00:04:49.850
+and just take these two things and multiply them, you can show that you, the equation
+
+00:04:49.930 --> 00:04:55.450
+simplifies to a minus y. So that's how you derive it. And this is really the chain rule that I
+
+00:04:55.450 --> 00:05:01.450
+briefly alluded to before. Okay, so feel free to go through that calculation yourself if you are
+
+00:05:01.450 --> 00:05:05.530
+knowledgeable in calculus. But if you aren't, all you need to know is that you can compute dz
+
+00:05:06.090 --> 00:05:10.650
+as a minus y. And we've already done that calculus for you. And then the final step in back
+
+00:05:10.650 --> 00:05:18.330
+propagation is to go back to compute how much you need to change w and b. So in particular,
+
+00:05:19.050 --> 00:05:27.690
+you can show that the derivative with respect to w1, and in code we'll call this dw1, that this is
+
+00:05:27.690 --> 00:05:37.050
+equal to x1 times dz. And then similarly, dw2, which is how much you want to change, w2 is x2
+
+00:05:37.050 --> 00:05:45.450
+times dz, and b, excuse me, db is equal to dz. So if you want to do gradient descent with respect
+
+00:05:45.450 --> 00:05:51.850
+to just this one example, what you would do is the following. You would use this formula to compute
+
+00:05:51.850 --> 00:06:01.610
+dz and then use these formulas to compute dw1, dw2, and db. And then you perform these updates. w1
+
+00:06:01.610 --> 00:06:11.130
+gets updated as w1 minus learning rate alpha times dw1, w2 gets updated similarly, and b gets set as
+
+00:06:11.130 --> 00:06:17.050
+b minus the learning rate times db. And so this would be one step of gradient with respect to a
+
+00:06:17.050 --> 00:06:22.890
+single example. So you see in how to compute derivatives and implement gradient descent for
+
+00:06:22.890 --> 00:06:28.250
+logistic regression with respect to a single training example. But to train your logistic
+
+00:06:28.250 --> 00:06:33.450
+regression model, you have not just one training example, you have an entire training set of m
+
+00:06:33.450 --> 00:06:38.650
+training examples. So in the next video, let's see how you can take these ideas and apply them
+
+00:06:38.650 --> 00:06:47.690
+to learning not just from one example, but from an entire training set.

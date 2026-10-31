@@ -1,0 +1,77 @@
+Chúng tôi đã học về cách mà vector hóa giúp
+bạn tăng tốc đáng kể mã của bạn như thế nào. Trong video này, chúng ta sẽ
+học cách bạn có thể vector hóa trong triển khai hồi quy logistic, để chúng có thể xử lý
+toàn bộ tập huấn luyện, đó là triển khai gradient
+descent ở mức độ cao cho toàn bộ tập huấn luyện mà không
+sử dụng vòng lặp for tường minh nào. Tôi vô cùng hào hứng
+về kỹ thuật này, và sau này chúng ta sẽ học về
+mạng nơ-ron nhân tạo mà không sử dụng bất cứ vòng lặp
+for tường minh nào. Cùng bắt đầu nào. Đầu tiên hãy cùng
+xem bước truyền xuôi của hồi quy logistic. Nếu bạn có m ví dụ đào tạo, để đưa ra dự đoán
+về ví dụ đầu tiên, bạn cần tính, tính Z. Tôi đang sử dụng
+công thức quen thuộc này, sau đó tính toán kích hoạt, bạn tính y mũ
+trong ví dụ đầu tiên. Sau đó, để đưa ra dự đoán
+về ví dụ đào tạo thứ hai, bạn cần phải tính cái này. Sau đó, để đưa ra một
+dự đoán về ví dụ thứ ba, bạn cần phải tính cái này, v.v. Và có thể bạn sẽ phải
+làm điều này m lần, nếu bạn có m ví dụ huấn luyện. Như vậy, để thực hiện
+bước truyền xuôi, mà để tính những dự đoán này
+trên m ví dụ đào tạo của chúng ta, có một cách để làm như vậy, mà không cần tới một
+vòng lặp for tường minh nào. Hãy cùng xem cách để làm điều đó. Đầu tiên, hãy nhớ rằng chúng ta đã xác định
+ma trận X là đầu vào đào tạo của bạn, xếp thành các cột
+khác nhau như thế này. Đây là một ma trận, đó là ma trận (nx,m). Và tôi đang viết điều này
+như hình Python numpy, có nghĩa là X là ma
+trận nx nhân m chiều. Bây giờ, đầu tiên tôi muốn chỉ
+bạn cách có thể tính z(1), z(2), z(3) và v.v, tất cả chỉ trong một bước thực tế là, chỉ với một dòng mã. Vì vậy, tôi sẽ xây dựng ma trận 1x m chiều, là một vectơ
+hàng trong khi đó tôi sẽ tính z(1), z(2), v.v. tới z(m), cùng một lúc. Trên thực tế, điều này
+có thể được thể hiện như là w chuyển vị ma trận X
+cộng với vectơ b này, b và v.v. b, b, b, b, b, này là một vectơ 1xm hoặc ma trận 1xm hoặc đó là
+một vectơ hàng m chiều. Như vậy, tôi hy vọng bạn đã
+thấy phép nhân ma trận. Bạn có thể thấy
+rằng w chuyển vị x1, x2 và như vậy với xm, w chuyển vị có thể
+là một vectơ hàng. w chuyển vị này sẽ là một
+vectơ hàng như thế này. Và vì vậy, số hạng đầu tiên này
+sẽ được tính là w chuyển vị x1, w hoán vị x2 và v.v,
+chấm, chấm, chấm, w chuyển vị xm, và sau đó chúng ta
+thêm số hạng b thứ hai này, b, b, v.v. cuối cùng bạn thêm
+b vào mỗi phần tử. Và bạn kết thúc với
+một vector 1xm khác. Đây là phần tử đầu tiên, đây là phần tử
+thứ hai và cứ thế, và đó là yếu tố thứ n. Và nếu bạn xem các
+định nghĩa phía trên, thì phần tử đầu tiên này
+chính xác là công thức của z1. Phần tử thứ hai chính xác
+là công thức của z2, v.v. Vậy nên, X có được khi bạn lấy ví dụ
+huấn luyện của bạn và xếp chúng cạnh nhau,
+xếp chúng theo chiều ngang. Tôi sẽ định nghĩa Z như sau, bạn lấy z viết thường và xếp
+chúng theo chiều ngang. Và khi bạn chữ x thường thành các cột
+tương ứng với một ví dụ huấn luyện khác, theo chiều ngang bạn có
+được biến X này và tương tự, khi bạn lấy các
+biến z viết thường này, và xếp chúng theo chiều ngang, bạn nhận được biến Z. Và để thực hiện điều này, lệnh numpy là Z
+bằng np.dot(w.T,X), đó là W chuyển vị X
+và sau đó cộng b. Bây giờ có một sự
+tinh vi trong Python, ở đây b là số thực hoặc nếu bạn
+muốn nói là bạn biết ma trận 1x1, chỉ là một con số
+thực bình thường. Nhưng, khi bạn thêm
+vectơ này vào số thực này, Python tự động lấy số thực b này và
+mở rộng nó ra vector hàng 1xm này. Và khi phép toán này
+có vẻ hơi bí ẩn, thì đây được gọi là broadcasting
+(truyền phát) trong Python, và hiện tại thì bạn vẫn
+chưa cần lo lắng về nó, chúng ta sẽ nói thêm về
+nó trong video tiếp theo. Nhưng điều đáng nói là chỉ với
+một dòng mã, với dòng mã này, bạn có thể tính được Z và Z sẽ là một ma trận 1xm
+chứa tất cả các chữ z thường. Từ z1 tới zm. Vậy đó là z, thế
+còn những giá trị a. Tiếp theo chúng ta đang tìm cách tính a1, a2 và v.v. đến am, cùng một lúc, và giống như việc
+xếp cột x thường để có X hoa và xếp cột z thường
+theo chiều ngang để có Z hoa, xếp cột a thường sẽ dẫn đến một biến mới, mà được xác định là A hoa. Và trong phần bài tập lập trình, bạn thấy cách triển khai một
+hàm sigmoid giá trị vector, sao cho hàm sigmoid, nhập vào biến Z hoa này và
+xuất ra A hoa vô cùng hiệu quả. Và bạn sẽ thấy chi tiết về
+điều đó trong bài tập lập trình. Tóm lại, trên slide này chúng ta cáo thể
+thấy thay vì phải lặp đi lặp lại m ví dụ đào tạo để tính
+z thường và a thường, từng cái mộy, thì bạn có thể
+triển khai một dòng mã này, để tính toán tất cả
+z này cùng một lúc. Và rồi, dòng mã này, với việc triển khai phù hợp chữ thường Sigma để tính toán
+tất cả chữ a thường cùng một lúc. Như vậy, đây là
+cách bạn thực hiện triển khai véc tơ hóa truyền xuôi cho tất cả m
+ví dụ đào tạo cùng một lúc. Tóm lại, bạn vừa thấy
+cách bạn có thể sử dụng vector hóa để tính toán rất
+hiệu quả tất cả các kích hoạt, tất cả chữ a thường cùng một lúc. Tiếp theo, bạn cũng có thể
+sử dụng hiệu quả vector hóa để tính toán truyền ngược, để tính gradient. Hãy cùng xem cách làm
+điều đó, trong video tiếp theo.

@@ -1,0 +1,925 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.595
+Trong video cuối cùng, bạn đã thấy ký hiệu chúng tôi sẽ sử dụng để xác định các bài toán học trình tự.
+
+2
+00:00:05.595 --> 00:00:08.250
+Bây giờ, chúng ta hãy nói về làm thế nào bạn có thể xây dựng một mô hình,
+
+3
+00:00:08.250 --> 00:00:11.470
+xây dựng một neural network để học cách ánh xạ từ x đến y
+
+4
+00:00:11.470 --> 00:00:16.950
+Bây giờ, một điều bạn có thể làm là cố gắng sử dụng một neural network tiêu chuẩn cho nhiệm vụ này.
+
+5
+00:00:16.950 --> 00:00:19.410
+Vì vậy, trong ví dụ trước của chúng
+
+6
+00:00:19.410 --> 00:00:21.570
+tôi, chúng tôi đã có chín từ nhập.
+
+7
+00:00:21.570 --> 00:00:26.070
+Vì vậy, bạn có thể tưởng tượng cố gắng lấy 9 từ đầu vào này, có
+
+8
+00:00:26.070 --> 00:00:31.790
+thể 9 vectơ một nóng và đưa chúng vào một neural network tiêu chuẩn, có
+
+9
+00:00:31.790 --> 00:00:33.110
+thể là một vài lớp ẩn,
+
+10
+00:00:33.110 --> 00:00:37.040
+và cuối cùng có kết quả 9 giá trị 0 hoặc
+
+11
+00:00:37.040 --> 00:00:41.335
+một giá trị cho bạn biết liệu mỗi từ là một phần của tên.
+
+12
+00:00:41.335 --> 00:00:46.580
+Nhưng điều này hóa ra không hoạt động tốt và thực sự có hai vấn đề chính của điều này
+
+13
+00:00:46.580 --> 00:00:52.225
+là đầu vào và đầu ra có thể là độ dài khác nhau và các ví dụ khác nhau.
+
+14
+00:00:52.225 --> 00:00:57.290
+Vì vậy, nó không phải như thể mỗi ví dụ duy nhất có cùng chiều dài đầu vào Tx hoặc
+
+15
+00:00:57.290 --> 00:01:03.250
+cùng chiều dài trên Ty và có thể nếu mỗi câu có chiều dài tối đa.
+
+16
+00:01:03.250 --> 00:01:06.770
+Có lẽ bạn có thể pad hoặc zero-pad mọi đầu vào lên đến
+
+17
+00:01:06.770 --> 00:01:11.350
+chiều dài tối đa đó nhưng điều này vẫn không có vẻ như một đại diện tốt.
+
+18
+00:01:11.350 --> 00:01:14.280
+Và một vấn đề thứ hai và có thể nghiêm trọng hơn
+
+19
+00:01:14.280 --> 00:01:17.820
+là một kiến trúc neural network ngây thơ như thế này,
+
+20
+00:01:17.820 --> 00:01:21.870
+nó không chia sẻ các feature được học qua các vị trí khác nhau của văn bản.
+
+21
+00:01:21.870 --> 00:01:25.605
+Đặc biệt của neural network đã học được rằng có lẽ từ
+
+22
+00:01:25.605 --> 00:01:31.995
+nặng xuất hiện ở vị trí một cho một dấu hiệu cho thấy đó là một phần của tên của một người,
+
+23
+00:01:31.995 --> 00:01:36.240
+sau đó nó sẽ không được tốt đẹp nếu nó tự động tìm ra rằng nặng xuất hiện ở
+
+24
+00:01:36.240 --> 00:01:41.500
+một số vị trí khác x t cũng có nghĩa là đó có thể là một người tên của.
+
+25
+00:01:41.500 --> 00:01:47.145
+Và điều này có thể tương tự như những gì bạn thấy trong các neural network cuộn tròn nơi
+
+26
+00:01:47.145 --> 00:01:50.100
+bạn muốn những thứ học được cho một phần
+
+27
+00:01:50.100 --> 00:01:53.145
+của hình ảnh để tổng quát nhanh chóng đến các phần khác của hình ảnh,
+
+28
+00:01:53.145 --> 00:01:57.310
+và chúng tôi cũng thích một hiệu ứng tương tự cho dữ liệu chuỗi.
+
+29
+00:01:57.310 --> 00:02:00.870
+Và tương tự như những gì bạn thấy với sự tự tin bằng cách sử dụng
+
+30
+00:02:00.870 --> 00:02:06.435
+một đại diện tốt hơn cũng sẽ cho phép bạn giảm số lượng các tham số trong mô hình của bạn.
+
+31
+00:02:06.435 --> 00:02:10.330
+Vì vậy, trước đây, chúng tôi đã nói rằng mỗi trong số
+
+32
+00:02:10.330 --> 00:02:13.920
+này là một vector một chiều 10.000 chiều và vì vậy đây
+
+33
+00:02:13.920 --> 00:02:17.190
+chỉ là một lớp đầu vào rất lớn nếu
+
+34
+00:02:17.190 --> 00:02:22.750
+tổng kích thước đầu vào là số từ tối đa lần 10.000.
+
+35
+00:02:22.750 --> 00:02:27.950
+Một ma trận trọng lượng của lớp đầu tiên này sẽ kết thúc có một số lượng lớn các thông số.
+
+36
+00:02:27.950 --> 00:02:31.890
+Vì vậy, một neural network tái phát mà chúng ta sẽ bắt đầu mô tả
+
+37
+00:02:31.890 --> 00:02:36.735
+trong slide tiếp theo không có một trong những bất lợi này.
+
+38
+00:02:36.735 --> 00:02:39.925
+Vậy, neural network tái phát là gì?
+
+39
+00:02:39.925 --> 00:02:41.895
+Chúng ta hãy xây dựng một cái.
+
+40
+00:02:41.895 --> 00:02:46.175
+Vì vậy, nếu bạn đang đọc câu từ trái sang phải,
+
+41
+00:02:46.175 --> 00:02:50.535
+từ đầu tiên bạn sẽ đọc là một số từ đầu tiên nói X1,
+
+42
+00:02:50.535 --> 00:02:53.570
+và những gì chúng ta sẽ làm là lấy từ đầu tiên
+
+43
+00:02:53.570 --> 00:02:56.480
+và đưa nó vào một lớp neural network.
+
+44
+00:02:56.480 --> 00:02:59.005
+Tôi sẽ vẽ nó như thế này.
+
+45
+00:02:59.005 --> 00:03:03.080
+Vì vậy, có một lớp ẩn của neural network đầu tiên và chúng ta
+
+46
+00:03:03.080 --> 00:03:07.330
+có thể có neural network có thể cố gắng dự đoán kết quả.
+
+47
+00:03:07.330 --> 00:03:09.960
+Vì vậy, đây là một phần của tên của người đó hay không.
+
+48
+00:03:09.960 --> 00:03:14.599
+Và những gì một neural network tái phát làm là,
+
+49
+00:03:14.599 --> 00:03:19.890
+khi nó tiếp tục đọc từ thứ hai trong câu,
+
+50
+00:03:19.890 --> 00:03:26.730
+nói x2, thay vì chỉ dự đoán y2 chỉ sử dụng X2,
+
+51
+00:03:26.730 --> 00:03:33.700
+nó cũng được nhập một số thông tin từ liệu máy tính thời gian đó bước một.
+
+52
+00:03:33.700 --> 00:03:40.365
+Vì vậy, đặc biệt, hủy kích hoạt giá trị từ thời gian bước một được chuyển sang thời gian bước hai.
+
+53
+00:03:40.365 --> 00:03:43.065
+Sau đó, ở bước thời gian tiếp theo,
+
+54
+00:03:43.065 --> 00:03:47.920
+tái phát neural network đầu
+
+55
+00:03:47.920 --> 00:03:53.715
+vào từ thứ ba X3 và nó cố gắng để xuất ra một số dự đoán,
+
+56
+00:03:53.715 --> 00:04:02.305
+Y hat ba và như vậy cho đến khi
+
+57
+00:04:02.305 --> 00:04:11.650
+bước thời gian cuối cùng nơi nó đầu vào X_tx và sau đó nó đầu ra y_hat_ty.
+
+58
+00:04:11.650 --> 00:04:15.290
+Ít nhất trong ví dụ này, T
+
+59
+00:04:15.290 --> 00:04:22.000
+s bằng ty và kiến trúc sẽ thay đổi một chút nếu tx và ty không giống nhau.
+
+60
+00:04:22.000 --> 00:04:24.365
+Vì vậy, tại mỗi bước thời gian,
+
+61
+00:04:24.365 --> 00:04:27.340
+neural network tái phát chuyển tiếp
+
+62
+00:04:27.340 --> 00:04:30.460
+như là kích hoạt để bước thời gian tiếp theo để nó sử dụng.
+
+63
+00:04:30.460 --> 00:04:33.715
+Và để bắt đầu tất cả mọi thứ,
+
+64
+00:04:33.715 --> 00:04:38.100
+chúng ta cũng sẽ có một số kích hoạt thực hiện tại thời điểm 0,
+
+65
+00:04:38.100 --> 00:04:41.025
+đây thường là vector của số 0.
+
+66
+00:04:41.025 --> 00:04:44.030
+Một số nhà nghiên cứu sẽ khởi tạo a_zero một cách ngẫu nhiên.
+
+67
+00:04:44.030 --> 00:04:48.480
+Bạn có những cách khác để khởi tạo a_zero nhưng thực sự có một vector của
+
+68
+00:04:48.480 --> 00:04:54.185
+số không vì thời gian giả zero kích hoạt là lựa chọn phổ biến nhất.
+
+69
+00:04:54.185 --> 00:04:56.530
+Vì vậy, nó được đầu vào neural network.
+
+70
+00:04:56.530 --> 00:05:00.605
+Trong một số bài báo nghiên cứu hoặc trong một số cuốn sách,
+
+71
+00:05:00.605 --> 00:05:05.370
+bạn thấy loại neural network này được vẽ với sơ đồ sau đây, trong đó
+
+72
+00:05:05.370 --> 00:05:10.425
+mỗi lần bước bạn nhập x và đầu ra y_hat.
+
+73
+00:05:10.425 --> 00:05:11.880
+Có lẽ đôi khi sẽ có
+
+74
+00:05:11.880 --> 00:05:17.020
+một chỉ số T ở đó và sau đó để biểu thị kết nối tái phát,
+
+75
+00:05:17.020 --> 00:05:19.860
+đôi khi người ta sẽ vẽ một vòng lặp như thế,
+
+76
+00:05:19.860 --> 00:05:21.340
+rằng lớp cấp dữ liệu trở lại tế bào.
+
+77
+00:05:21.340 --> 00:05:27.320
+Đôi khi, họ sẽ vẽ một hộp tô bóng để biểu thị rằng đây là hộp tô bóng ở đây,
+
+78
+00:05:27.320 --> 00:05:29.665
+biểu thị sự chậm trễ thời gian của một bước.
+
+79
+00:05:29.665 --> 00:05:32.495
+Cá nhân tôi tìm thấy những sơ đồ tái phát này
+
+80
+00:05:32.495 --> 00:05:35.390
+khó giải thích hơn nhiều và vì vậy trong suốt khóa học này,
+
+81
+00:05:35.390 --> 00:05:39.560
+tôi sẽ có xu hướng vẽ sơ đồ chưa cuộn giống như sơ đồ bạn có ở bên trái,
+
+82
+00:05:39.560 --> 00:05:41.540
+nhưng nếu bạn thấy
+
+83
+00:05:41.540 --> 00:05:43.960
+một cái gì đó giống như sơ đồ ở bên phải trong sách giáo khoa hoặc trong một bài báo nghiên cứu,
+
+84
+00:05:43.960 --> 00:05:47.135
+những gì nó thực sự có nghĩa là hoặc cách tôi có xu hướng suy nghĩ về nó là để
+
+85
+00:05:47.135 --> 00:05:50.545
+giải phóng tinh thần nó vào biểu đồ bạn có ở bên trái thay vào đó.
+
+86
+00:05:50.545 --> 00:05:55.800
+Neural network tái phát quét qua dữ liệu từ trái sang phải.
+
+87
+00:05:55.800 --> 00:05:59.560
+Các tham số mà nó sử dụng cho mỗi bước thời gian được chia sẻ.
+
+88
+00:05:59.560 --> 00:06:01.890
+Vì vậy, sẽ có một tập hợp các thông số mà
+
+89
+00:06:01.890 --> 00:06:04.680
+chúng tôi sẽ mô tả chi tiết hơn trên slide tiếp theo,
+
+90
+00:06:04.680 --> 00:06:09.150
+nhưng các thông số chi phối kết nối từ X1 đến lớp ẩn,
+
+91
+00:06:09.150 --> 00:06:13.400
+sẽ là một số tập hợp các thông số chúng tôi sẽ viết như Wax và là
+
+92
+00:06:13.400 --> 00:06:18.420
+cùng một tham số Wax mà nó sử dụng cho mỗi bước thời gian .
+
+93
+00:06:18.420 --> 00:06:22.090
+Tôi đoán là tôi cũng có thể viết Wax ở đó.
+
+94
+00:06:22.090 --> 00:06:26.220
+Hủy kích hoạt, các kết nối ngang sẽ được điều chỉnh bởi một
+
+95
+00:06:26.220 --> 00:06:29.970
+số tập hợp các thông số Wa và
+
+96
+00:06:29.970 --> 00:06:35.400
+các thông số tương tự Wa sử dụng trên mỗi timestep và
+
+97
+00:06:35.400 --> 00:06:43.390
+tương tự như tổng Wya chi phối các dự đoán đầu ra.
+
+98
+00:06:43.840 --> 00:06:48.400
+Tôi sẽ mô tả trên dòng tiếp theo chính xác cách các tham số này hoạt động.
+
+99
+00:06:48.400 --> 00:06:50.940
+Vì vậy, trong neural network tái phát này,
+
+100
+00:06:50.940 --> 00:06:55.210
+điều này có nghĩa là khi đưa ra dự đoán cho y3,
+
+101
+00:06:55.210 --> 00:07:01.480
+nó nhận được thông tin không chỉ từ X3 mà còn là thông tin từ x1 và x2 vì
+
+102
+00:07:01.480 --> 00:07:07.980
+thông tin trên x1 có thể đi qua cách này để giúp dự đoán với Y3.
+
+103
+00:07:07.980 --> 00:07:11.580
+Bây giờ, một điểm yếu của RNN này là nó chỉ sử dụng
+
+104
+00:07:11.580 --> 00:07:15.625
+thông tin trước đó trong trình tự để đưa ra dự đoán.
+
+105
+00:07:15.625 --> 00:07:18.500
+Đặc biệt, khi dự đoán y3,
+
+106
+00:07:18.500 --> 00:07:22.125
+nó không sử dụng thông tin về X4, X
+
+107
+00:07:22.125 --> 00:07:24.250
+5, X6 tồi tệ nhất và vân vân.
+
+108
+00:07:24.250 --> 00:07:29.405
+Vì vậy, đây là một vấn đề bởi vì nếu bạn được đưa ra một câu,
+
+109
+00:07:29.405 --> 00:07:32.489
+“Ông ấy nói Teddy Roosevelt là một tổng thống vĩ đại.”
+
+110
+00:07:32.489 --> 00:07:36.710
+Để quyết định có hay không từ Teddy là một phần trong tên của một người,
+
+111
+00:07:36.710 --> 00:07:41.380
+sẽ thực sự hữu ích nếu biết không chỉ thông tin từ hai từ đầu mà còn
+
+112
+00:07:41.380 --> 00:07:44.100
+biết thông tin từ những từ sau này trong câu
+
+113
+00:07:44.100 --> 00:07:47.035
+vì câu cũng có thể là,
+
+114
+00:07:47.035 --> 00:07:49.410
+“Ông nói teddy gấu mà họ đang được bán.”
+
+115
+00:07:49.410 --> 00:07:53.340
+Vì vậy, cho chỉ ba từ đầu tiên là không thể biết
+
+116
+00:07:53.340 --> 00:07:57.090
+chắc chắn liệu từ Teddy là một phần của tên của một người.
+
+117
+00:07:57.090 --> 00:07:58.530
+Trong ví dụ đầu tiên, nó là.
+
+118
+00:07:58.530 --> 00:08:00.130
+Trong ví dụ thứ hai, nó không phải là.
+
+119
+00:08:00.130 --> 00:08:05.395
+Nhưng bạn không thể nhận ra sự khác biệt nếu bạn chỉ nhìn vào ba từ đầu tiên.
+
+120
+00:08:05.395 --> 00:08:07.280
+Vì vậy, một giới hạn của
+
+121
+00:08:07.280 --> 00:08:11.920
+cấu trúc neural network đặc biệt này là dự đoán tại một thời điểm nhất định
+
+122
+00:08:11.920 --> 00:08:15.740
+sử dụng đầu vào hoặc sử dụng thông tin từ các đầu vào
+
+123
+00:08:15.740 --> 00:08:19.580
+trước đó trong trình tự nhưng không phải thông tin sau này trong trình tự.
+
+124
+00:08:19.580 --> 00:08:22.895
+Chúng ta sẽ giải quyết vấn đề này trong một video sau đó, nơi chúng ta nói về
+
+125
+00:08:22.895 --> 00:08:28.390
+các neural network tái phát hai hướng hoặc BRNN.
+
+126
+00:08:28.390 --> 00:08:30.315
+Nhưng bây giờ,
+
+127
+00:08:30.315 --> 00:08:35.300
+kiến trúc neural network đơn hướng đơn giản này
+
+128
+00:08:35.300 --> 00:08:38.475
+sẽ đủ để giải thích các khái niệm chính.
+
+129
+00:08:38.475 --> 00:08:42.760
+Chúng ta sẽ chỉ cần thực hiện một sửa đổi nhanh chóng cho những ý tưởng này sau này để kích hoạt, ví dụ,
+
+130
+00:08:42.760 --> 00:08:46.099
+dự đoán của y_hat_three để sử dụng cả hai thông tin
+
+131
+00:08:46.099 --> 00:08:49.750
+trước đó trong trình tự cũng như thông tin sau này trong trình tự.
+
+132
+00:08:49.750 --> 00:08:51.815
+Chúng ta sẽ làm được điều đó trong một đoạn video sau.
+
+133
+00:08:51.815 --> 00:08:57.305
+Vì vậy, bây giờ chúng ta hãy viết một cách rõ ràng những tính toán mà neural network này làm.
+
+134
+00:08:57.305 --> 00:09:01.700
+Đây là một phiên bản được làm sạch của hình ảnh của neural network.
+
+135
+00:09:01.700 --> 00:09:04.185
+Như tôi đã đề cập trước đây, thông thường,
+
+136
+00:09:04.185 --> 00:09:09.510
+bạn bắt đầu với _zero đầu vào bằng vectơ của tất cả các số không.
+
+137
+00:09:09.510 --> 00:09:13.810
+Tiếp theo, đây là những gì tuyên truyền về phía trước trông như thế nào.
+
+138
+00:09:13.810 --> 00:09:22.580
+Để tính toán a1, bạn sẽ tính toán rằng như là một activation function g áp dụng cho
+
+139
+00:09:22.580 --> 00:09:28.185
+Waa lần a0 cộng với W
+
+140
+00:09:28.185 --> 00:09:34.010
+ax lần x1 cộng với một thiên vị.
+
+141
+00:09:34.010 --> 00:09:36.405
+Tôi sẽ viết như ba,
+
+142
+00:09:36.405 --> 00:09:39.310
+và sau đó để tính toán y hat.
+
+143
+00:09:39.310 --> 00:09:42.190
+Một, dự đoán tại các thời điểm tại một,
+
+144
+00:09:42.190 --> 00:09:44.915
+đó sẽ là một số chức năng kích hoạt,
+
+145
+00:09:44.915 --> 00:09:49.450
+có thể là một chức năng kích hoạt khác với một trong những ở trên nhưng
+
+146
+00:09:49.450 --> 00:09:59.140
+áp dụng cho Wya lần a1 cộng bởi.
+
+147
+00:09:59.140 --> 00:10:01.960
+Quy ước ký hiệu tôi sẽ sử dụng cho bề mặt của
+
+148
+00:10:01.960 --> 00:10:05.810
+các ma trận như ví dụ đó, Wax.
+
+149
+00:10:05.810 --> 00:10:11.960
+Chỉ số thứ hai có nghĩa là Wax này sẽ được nhân với một số lượng giống như X,
+
+150
+00:10:11.960 --> 00:10:18.270
+và điều này có nghĩa là điều này được sử dụng để tính toán một số lượng giống như vậy.
+
+151
+00:10:18.270 --> 00:10:20.665
+Tương tự như vậy, bạn nhận thấy rằng ở đây,
+
+152
+00:10:20.665 --> 00:10:29.395
+Wya được nhân với một số lượng giống như một số lượng để tính toán một số lượng kiểu y.
+
+153
+00:10:29.395 --> 00:10:32.545
+Chức năng kích hoạt bằng cách sử dụng hoặc để tính toán
+
+154
+00:10:32.545 --> 00:10:39.355
+các kích hoạt thường sẽ là một trọng tải trong việc lựa chọn một RNN
+
+155
+00:10:39.355 --> 00:10:46.320
+và đôi khi rất lỏng lẻo cũng được sử dụng mặc dù trọng tải thực sự là
+
+156
+00:10:46.320 --> 00:10:49.630
+một lựa chọn khá phổ biến và chúng tôi
+
+157
+00:10:49.630 --> 00:10:53.825
+có những cách khác để ngăn chặn vấn đề gradient biến mất,
+
+158
+00:10:53.825 --> 00:10:56.275
+mà chúng tôi sẽ nói về cuối tuần này.
+
+159
+00:10:56.275 --> 00:10:59.470
+Tùy thuộc vào những gì y đầu ra của bạn là,
+
+160
+00:10:59.470 --> 00:11:02.205
+nếu nó là một vấn đề classification nhị phân,
+
+161
+00:11:02.205 --> 00:11:05.725
+sau đó tôi đoán bạn sẽ sử dụng một activation function sigmoid,
+
+162
+00:11:05.725 --> 00:11:09.850
+hoặc nó có thể là một softmax mà bạn có một vấn đề classification k-way rằng
+
+163
+00:11:09.850 --> 00:11:15.230
+sự lựa chọn của chức năng kích hoạt ở đây sẽ phụ thuộc vào loại đầu ra y bạn đã có.
+
+164
+00:11:15.230 --> 00:11:19.300
+Vì vậy, đối với nhiệm vụ nhận dạng thực thể tên nơi y là 01,
+
+165
+00:11:19.300 --> 00:11:23.915
+tôi đoán một g thứ hai có thể là một chức năng kích hoạt sigmoid.
+
+166
+00:11:23.915 --> 00:11:28.120
+Sau đó, tôi đoán bạn có thể viết g2 nếu bạn muốn phân biệt rằng
+
+167
+00:11:28.120 --> 00:11:32.280
+điều này có thể là chức năng kích hoạt khác nhau nhưng tôi thường sẽ không làm điều đó.
+
+168
+00:11:32.280 --> 00:11:35.330
+Sau đó tổng quát hơn, tại thời điểm t,
+
+169
+00:11:35.330 --> 00:11:41.715
+tại sẽ là g của Waa lần a
+
+170
+00:11:41.715 --> 00:11:49.440
+từ bước thời gian trước cộng với Wax của x từ bước thời gian hiện tại cộng với ba,
+
+171
+00:11:49.440 --> 00:11:54.460
+và y hat t bằng g. một lần nữa,
+
+172
+00:11:54.460 --> 00:12:02.380
+nó có thể là chức năng kích hoạt khác nhau nhưng g của Wya lần cộng với bởi.
+
+173
+00:12:03.090 --> 00:12:07.210
+Vì vậy, phương trình này được định nghĩa về phía trước tuyên truyền trong
+
+174
+00:12:07.210 --> 00:12:12.110
+một neural network nơi bạn sẽ bắt đầu với a0 là vector của tất cả các số không,
+
+175
+00:12:12.110 --> 00:12:14.340
+và sau đó sử dụng
+
+176
+00:12:14.340 --> 00:12:16.810
+a0 và x1, bạn sẽ tính toán a1
+
+177
+00:12:16.810 --> 00:12:24.610
+và y hat one, và sau đó bạn lấy x2 và a1 để tính toán a2 và y hat 2,
+
+178
+00:12:24.610 --> 00:12:26.480
+và như vậy, và bạn sẽ thực hiện
+
+179
+00:12:26.480 --> 00:12:30.595
+tuyên truyền về phía trước đi từ trái sang phải của bức tranh này.
+
+180
+00:12:30.595 --> 00:12:34.560
+Bây giờ, để giúp chúng ta phát triển các neural network phức tạp hơn,
+
+181
+00:12:34.560 --> 00:12:38.690
+tôi thực sự sẽ lấy ký hiệu này và đơn giản hóa nó một chút.
+
+182
+00:12:38.690 --> 00:12:45.490
+Vì vậy, để tôi sao chép hai phương trình này vào slide tiếp theo. Đúng rồi, chúng đây rồi.
+
+183
+00:12:45.490 --> 00:12:48.825
+Những gì tôi sẽ làm là thực sự lấy,
+
+184
+00:12:48.825 --> 00:12:50.770
+vì vậy để đơn giản hóa ký hiệu một chút,
+
+185
+00:12:50.770 --> 00:12:55.970
+tôi thực sự sẽ lấy điều đó và viết theo một cách đơn giản hơn một chút.
+
+186
+00:12:55.970 --> 00:13:01.890
+Vì vậy, tôi sẽ viết điều này như tại bằng g lần chỉ là một ma trận
+
+187
+00:13:01.890 --> 00:13:12.500
+Wa lần một số lượng mới mà sẽ là 80 trừ một dấu phẩy xt,
+
+188
+00:13:12.500 --> 00:13:16.880
+và sau đó cộng với ba,
+
+189
+00:13:16.880 --> 00:13:22.865
+và do đó số lượng cơ bản ở bên trái và bên phải được cho là tương đương.
+
+190
+00:13:22.865 --> 00:13:28.000
+Vì vậy, cách chúng ta định nghĩa Wa là chúng ta sẽ lấy ma trận
+
+191
+00:13:28.000 --> 00:13:30.130
+này Wa, và ma trận này Wax,
+
+192
+00:13:30.130 --> 00:13:33.235
+và đặt chúng cạnh nhau,
+
+193
+00:13:33.235 --> 00:13:36.180
+xếp chúng theo chiều ngang như sau,
+
+194
+00:13:36.180 --> 00:13:40.260
+và đây sẽ là ma trận Wa.
+
+195
+00:13:40.280 --> 00:13:47.385
+Ví dụ, nếu a là 100 chiều,
+
+196
+00:13:47.385 --> 00:13:51.920
+và trong ví dụ chạy x là 10.000 chiều,
+
+197
+00:13:51.920 --> 00:13:57.520
+thì Waa sẽ là ma trận 100 x 100 chiều,
+
+198
+00:13:57.520 --> 00:14:03.755
+và Wax sẽ là ma trận 100 x 10.000 chiều.
+
+199
+00:14:03.755 --> 00:14:06.300
+Khi chúng ta xếp hai ma trận này lại với nhau,
+
+200
+00:14:06.300 --> 00:14:08.945
+nó sẽ là 100 chiều.
+
+201
+00:14:08.945 --> 00:14:10.800
+Đây sẽ là 100,
+
+202
+00:14:10.800 --> 00:14:14.005
+và đây sẽ là tôi đoán 10.000 yếu tố.
+
+203
+00:14:14.005 --> 00:14:22.295
+Vì vậy, Wa sẽ là một ma trận chiều 100 bởi 10100.
+
+204
+00:14:22.295 --> 00:14:25.730
+Tôi đoán sơ đồ này ở bên trái không được rút ra để quy mô,
+
+205
+00:14:25.730 --> 00:14:29.295
+vì Wax sẽ là một ma trận rất rộng.
+
+206
+00:14:29.295 --> 00:14:31.665
+Điều ký hiệu này có nghĩa
+
+207
+00:14:31.665 --> 00:14:36.635
+là, chỉ cần lấy hai vectơ và xếp chúng lại với nhau.
+
+208
+00:14:36.635 --> 00:14:39.145
+Vì vậy, khi bạn sử dụng ký hiệu đó để biểu thị rằng,
+
+209
+00:14:39.145 --> 00:14:42.010
+chúng ta sẽ lấy vectơ ở trừ một,
+
+210
+00:14:42.010 --> 00:14:48.215
+vì vậy đó là một 100 chiều và xếp nó
+
+211
+00:14:48.215 --> 00:14:55.425
+lên trên cùng của at, vì vậy, điều này kết thúc là một vectơ 10100 chiều.
+
+212
+00:14:55.425 --> 00:14:59.700
+Vì vậy, hy vọng, bạn có thể kiểm tra cho chính mình rằng ma trận này
+
+213
+00:14:59.700 --> 00:15:05.705
+lần vector này chỉ cung cấp cho bạn trở lại số lượng ban đầu.
+
+214
+00:15:05.705 --> 00:15:11.340
+Đúng. Bởi vì bây giờ, ma trận Waa lần W
+
+215
+00:15:11.340 --> 00:15:17.935
+ax nhân với điều này tại trừ một vector xt,
+
+216
+00:15:17.935 --> 00:15:27.685
+điều này chỉ bằng với Waa lần tại trừ một cộng Wax lần xt,
+
+217
+00:15:27.685 --> 00:15:32.260
+đó chính xác là những gì chúng tôi đã trở lại ở đây.
+
+218
+00:15:32.260 --> 00:15:35.690
+Vì vậy, lợi thế của ký hiệu này là thay vì mang theo
+
+219
+00:15:35.690 --> 00:15:40.005
+hai ma trận tham số, Waa và Wax, chúng
+
+220
+00:15:40.005 --> 00:15:44.105
+ta có thể nén chúng thành chỉ một ma trận tham số Wa,
+
+221
+00:15:44.105 --> 00:15:48.850
+và chỉ để đơn giản hóa ký hiệu của chúng ta khi chúng ta phát triển các mô hình phức tạp hơn.
+
+222
+00:15:48.850 --> 00:15:51.645
+Sau đó, cho điều này theo một cách tương tự,
+
+223
+00:15:51.645 --> 00:15:54.125
+tôi sẽ chỉ viết lại điều này một chút.
+
+224
+00:15:54.125 --> 00:16:00.210
+Tôi sẽ viết điều này như Wy at plus by,
+
+225
+00:16:00.210 --> 00:16:06.200
+và bây giờ chúng ta chỉ có hai chất nền trong ký hiệu Wy và bởi,
+
+226
+00:16:06.200 --> 00:16:09.140
+nó biểu thị loại số lượng đầu ra chúng ta đang tính toán.
+
+227
+00:16:09.140 --> 00:16:13.345
+Vì vậy, Wy chỉ ra một ma trận trọng lượng hoặc tính toán một số lượng y giống như,
+
+228
+00:16:13.345 --> 00:16:17.820
+và ở đây tại Wa và ba trên đầu trang chỉ ra nơi nào các
+
+229
+00:16:17.820 --> 00:16:22.475
+thông số này để tính toán như một số lượng đầu ra kích hoạt.
+
+230
+00:16:22.475 --> 00:16:26.680
+Vậy, đúng vậy. Bây giờ bạn đã biết một neural network tái phát cơ bản là gì.
+
+231
+00:16:26.680 --> 00:16:31.210
+Tiếp theo, chúng ta hãy nói về tuyên truyền trở lại và làm thế nào bạn sẽ học với những RNN này.

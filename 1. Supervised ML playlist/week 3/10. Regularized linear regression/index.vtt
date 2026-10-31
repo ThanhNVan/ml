@@ -1,0 +1,282 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.260 --> 00:00:07.100
+In this video, we'll figure out how to get gradient descent to work with regularized linear regression.
+
+00:00:07.100 --> 00:00:08.100
+Let's jump in.
+
+00:00:08.100 --> 00:00:14.580
+Here's a cost function we've come up with in the last video for regularized linear regression.
+
+00:00:14.580 --> 00:00:18.760
+The first part is the usual squared error cost function.
+
+00:00:18.760 --> 00:00:25.580
+And now you have this additional regularization term, where lambda is the regularization parameter.
+
+00:00:25.580 --> 00:00:32.500
+And you'd like to find parameters w and b that minimize the regularized cost function.
+
+00:00:32.500 --> 00:00:38.620
+Previously, we were using gradient descent for the original cost function, just the first
+
+00:00:38.620 --> 00:00:43.340
+term before we added that second regularization term.
+
+00:00:43.340 --> 00:00:49.300
+And previously, we had the following gradient descent algorithm, which is that we repeatedly
+
+00:00:49.300 --> 00:00:56.260
+update the parameters wj and b for j equals 1 through n according to this formula, and
+
+00:00:56.260 --> 00:00:58.700
+b is also updated similarly.
+
+00:00:58.700 --> 00:01:04.180
+Again, alpha is a very small positive number called the learning rate.
+
+00:01:04.180 --> 00:01:09.420
+In fact, the updates for regularized linear regression look exactly the same, except that
+
+00:01:09.420 --> 00:01:13.660
+now the cost j is defined a bit differently.
+
+00:01:14.060 --> 00:01:21.340
+Previously, the derivative of j with respect to wj was given by this expression over here,
+
+00:01:21.340 --> 00:01:27.300
+and the derivative with respect to b was given by this expression over here.
+
+00:01:27.300 --> 00:01:32.900
+Now that we've added this additional regularization term, the only thing that changes is that
+
+00:01:32.900 --> 00:01:39.140
+the expression for the derivative with respect to wj ends up with one additional term.
+
+00:01:39.140 --> 00:01:44.260
+This plus lambda over m times wj.
+
+00:01:44.260 --> 00:01:49.320
+And in particular, for the new definition of the cost function j, these two expressions
+
+00:01:49.320 --> 00:01:56.540
+over here, these are the new derivatives of j with respect to wj, and the derivative
+
+00:01:56.540 --> 00:01:59.060
+of j with respect to b.
+
+00:01:59.060 --> 00:02:04.460
+Recall that we don't regularize b, so we're not trying to shrink b.
+
+00:02:04.460 --> 00:02:10.580
+That's why the updated b remains the same as before, whereas the updated w changes because
+
+00:02:10.580 --> 00:02:16.740
+the regularization term causes us to try to shrink wj.
+
+00:02:16.740 --> 00:02:21.780
+So let's take these definitions for the derivatives and put them back into the expression
+
+00:02:21.780 --> 00:02:29.060
+on the left to write out the gradient descent algorithm for regularized linear regression.
+
+00:02:29.060 --> 00:02:35.060
+So to implement gradient descent for regularized linear regression, this is what you would
+
+00:02:35.060 --> 00:02:36.860
+have your code do.
+
+00:02:36.860 --> 00:02:42.820
+Here's the update for wj for j equals 1 through n, and here's the update for b.
+
+00:02:42.820 --> 00:02:50.460
+And as usual, please remember to carry out simultaneous updates for all of these parameters.
+
+00:02:50.460 --> 00:02:55.780
+Now in order for you to get this algorithm to work, this is all you need to know.
+
+00:02:55.780 --> 00:02:59.560
+But what I'd like to do in the remainder of this video is to go over some optional
+
+00:02:59.560 --> 00:03:05.740
+material to convey a slightly deeper intuition about what this formula is actually doing,
+
+00:03:05.740 --> 00:03:10.100
+as well as chat briefly about how these derivatives are derived.
+
+00:03:10.100 --> 00:03:12.500
+The rest of this video is completely optional.
+
+00:03:12.500 --> 00:03:16.780
+It's completely okay if you skip the rest of this video.
+
+00:03:16.780 --> 00:03:19.780
+But if you have a strong interest in math, then stick with me.
+
+00:03:19.780 --> 00:03:22.180
+It's always nice to hang out with you here.
+
+00:03:22.180 --> 00:03:27.260
+And through these equations, perhaps you can build a deeper intuition about what the math
+
+00:03:27.260 --> 00:03:29.700
+and what the derivatives are doing as well.
+
+00:03:29.700 --> 00:03:32.380
+So let's take a look.
+
+00:03:32.380 --> 00:03:37.620
+Let's look at the update rule for wj and rewrite it in another way.
+
+00:03:37.620 --> 00:03:49.380
+We're updating wj as 1 times wj minus alpha times lambda over m times wj.
+
+00:03:49.380 --> 00:03:56.660
+So I've moved the term from the end to the front here, and then minus alpha times 1 over
+
+00:03:56.660 --> 00:04:01.380
+m, and then the rest of that term over there.
+
+00:04:01.380 --> 00:04:04.620
+So we just rearranged the terms a little bit.
+
+00:04:04.620 --> 00:04:13.500
+And if we simplify, then we're saying that wj is updated as wj times 1 minus alpha times
+
+00:04:13.500 --> 00:04:20.020
+lambda over m minus alpha times this other term over here.
+
+00:04:20.020 --> 00:04:26.380
+And you might recognize this second term as the usual gradient descent update for unregularized
+
+00:04:26.380 --> 00:04:28.140
+linear regression.
+
+00:04:28.140 --> 00:04:32.700
+This is the update for linear regression before we had regularization.
+
+00:04:32.700 --> 00:04:37.420
+And this is the term we saw in week two of this course.
+
+00:04:37.420 --> 00:04:43.260
+And so the only change when you add regularization is that instead of wj being set to be equal
+
+00:04:43.340 --> 00:04:53.420
+to wj minus alpha times this term is now w times this number minus the usual update.
+
+00:04:53.420 --> 00:04:56.520
+So this is what we had in week one of this course.
+
+00:04:56.520 --> 00:04:59.900
+So what is this first term over here?
+
+00:04:59.900 --> 00:05:05.660
+Well, alpha is a very small positive number, say 0.01.
+
+00:05:05.660 --> 00:05:11.340
+Lambda is usually a small number, say one or maybe 10.
+
+00:05:11.420 --> 00:05:18.220
+Let's say lambda is one for this example, and m is the training set size, say 50.
+
+00:05:18.220 --> 00:05:28.820
+And so when you multiply alpha lambda over m, say 0.01 times 1 divided by 50, this term
+
+00:05:28.820 --> 00:05:34.940
+ends up being a small positive number, say 0.0002.
+
+00:05:34.940 --> 00:05:40.820
+And thus, 1 minus alpha lambda over m is going to be a number just slightly less than 1.
+
+00:05:40.820 --> 00:05:44.020
+In this case, 0.9998.
+
+00:05:44.020 --> 00:05:49.500
+And so the effect of this term is that on every single iteration of gradient descent,
+
+00:05:49.500 --> 00:05:54.780
+you're taking wj and multiplying it by 0.9998.
+
+00:05:54.780 --> 00:06:00.220
+That is by some number slightly less than 1 before carrying out the usual update.
+
+00:06:00.220 --> 00:06:06.140
+So what regularization is doing on every single iteration is you're multiplying w by a number
+
+00:06:06.140 --> 00:06:13.380
+slightly less than 1, and that has the effect of shrinking the value of wj just a little bit.
+
+00:06:13.380 --> 00:06:18.980
+So this gives us another view on why regularization has the effect of shrinking the parameters
+
+00:06:18.980 --> 00:06:22.220
+wj a little bit on every iteration.
+
+00:06:22.220 --> 00:06:25.740
+And so that's how regularization works.
+
+00:06:25.740 --> 00:06:30.700
+If you're curious about how these derivative terms were computed, I have just one last optional
+
+00:06:30.780 --> 00:06:36.060
+slide that goes through just a little bit of the calculation of the derivative term.
+
+00:06:36.060 --> 00:06:40.140
+Again, this slide and the rest of this video are completely optional,
+
+00:06:40.140 --> 00:06:43.660
+meaning you won't need any of this to do the practice labs and the quizzes.
+
+00:06:45.340 --> 00:06:48.220
+So let's step through quickly the derivative calculation.
+
+00:06:49.020 --> 00:06:54.540
+The derivative of j with respect to wj looks like this.
+
+00:07:06.530 --> 00:07:15.570
+Recall that f of x for linear regression is defined as w dot x plus b, or w dot product x plus b.
+
+00:07:16.450 --> 00:07:21.170
+And it turns out that by the rules of calculus, the derivatives look like this.
+
+00:07:21.170 --> 00:07:36.210
+This is 1 over 2m times the sum i equals 1 through m of w dot x plus b minus y times 2xj
+
+00:07:36.210 --> 00:07:44.770
+plus the derivative of the regularization term, which is lambda over 2m times 2wj.
+
+00:07:45.330 --> 00:07:52.050
+Notice that the second term does not have the summation term from j equals 1 through n anymore.
+
+00:07:52.690 --> 00:07:57.570
+The 2s cancel out here and here, and also here and here.
+
+00:07:59.010 --> 00:08:02.370
+And so it simplifies to this expression over here.
+
+00:08:03.170 --> 00:08:11.700
+And finally, remember that wx plus b is f of x.
+
+00:08:11.940 --> 00:08:15.780
+And so you can rewrite it as this expression down here.
+
+00:08:16.340 --> 00:08:22.820
+So this is why this expression is used to compute the gradient in regularized linear regression.
+
+00:08:23.780 --> 00:08:28.100
+So you now know how to implement regularized linear regression.
+
+00:08:28.100 --> 00:08:32.900
+Using this, you really reduce overfitting when you have a lot of features and a relatively small
+
+00:08:32.900 --> 00:08:38.900
+training set. And this should let you get linear regression to work much better on many problems.
+
+00:08:39.780 --> 00:08:45.140
+In the next video, we'll take this regularization idea and apply it to logistic regression.
+
+00:08:45.780 --> 00:08:51.380
+To avoid overfitting for logistic regression as well. Let's take a look at that in the next video.

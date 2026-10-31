@@ -1,0 +1,213 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.620 --> 00:00:07.820
+You've now learned about several highly effective neural network and confnet architectures.
+
+00:00:07.820 --> 00:00:12.140
+What I want to do in the next few videos is share with you some practical advice on how
+
+00:00:12.140 --> 00:00:17.060
+to use them, first starting with using open source implementations.
+
+00:00:17.060 --> 00:00:22.820
+It turns out that a lot of these neural networks are difficult or finicky to replicate because
+
+00:00:22.820 --> 00:00:28.700
+a lot of details about tuning the hyperparameters such as learning rate decay and other things
+
+00:00:28.700 --> 00:00:31.540
+that make some difference to the performance.
+
+00:00:31.540 --> 00:00:38.180
+And so I found that it's sometimes difficult even for say AI or deep learning PhD students
+
+00:00:38.180 --> 00:00:43.620
+even at the top universities to replicate someone else's published work just from reading the
+
+00:00:43.620 --> 00:00:44.900
+research paper.
+
+00:00:44.900 --> 00:00:51.260
+Fortunately, a lot of deep learning researchers routinely open source their work on the internet
+
+00:00:51.260 --> 00:00:52.940
+such as on GitHub.
+
+00:00:52.940 --> 00:00:58.260
+And as you do work yourself, I certainly encourage you to consider contributing back your code
+
+00:00:58.260 --> 00:01:00.500
+to the open source community.
+
+00:01:00.500 --> 00:01:05.220
+But if you see a research paper whose results you would like to build on top of, one thing
+
+00:01:05.220 --> 00:01:10.080
+you should consider doing, one thing I do quite often is just look online for an open
+
+00:01:10.080 --> 00:01:12.120
+source implementation.
+
+00:01:12.120 --> 00:01:16.940
+Because if you can get the author's implementation, you can usually get going much faster than
+
+00:01:16.940 --> 00:01:20.140
+you would try to re implement it from scratch.
+
+00:01:20.140 --> 00:01:25.100
+Although certainly re implementing from scratch could be a good exercise to do as well.
+
+00:01:25.100 --> 00:01:30.460
+If you're already familiar with how to use GitHub, this video might be less necessary
+
+00:01:30.460 --> 00:01:32.180
+or less important for you.
+
+00:01:32.180 --> 00:01:36.600
+But if you aren't used to downloading open source code from GitHub, let me quickly show
+
+00:01:36.600 --> 00:01:40.780
+you how easy it is.
+
+00:01:40.780 --> 00:01:45.420
+Let's say you've heard about, let's say you're excited about residual networks and you
+
+00:01:45.420 --> 00:01:46.420
+want to use it.
+
+00:01:46.420 --> 00:01:51.060
+So let's search for resnets on GitHub.
+
+00:01:51.060 --> 00:01:55.460
+And so you actually see a lot of different implementations of resnets on GitHub.
+
+00:01:55.900 --> 00:01:59.060
+I'm just going to go to the first URL here.
+
+00:01:59.060 --> 00:02:02.220
+And this is a GitHub repo that implements resnets.
+
+00:02:02.220 --> 00:02:07.980
+A lot of the GitHub web pages you scroll down will have some text describing the work of
+
+00:02:07.980 --> 00:02:10.140
+the particular implementation.
+
+00:02:10.140 --> 00:02:15.860
+This particular repo, this particular GitHub repo repository was actually by the original
+
+00:02:15.860 --> 00:02:19.260
+authors of the resnet paper.
+
+00:02:19.260 --> 00:02:25.260
+And this code, this license under MIT license, you can click through to take a look at
+
+00:02:25.380 --> 00:02:27.140
+the implications of this license.
+
+00:02:27.140 --> 00:02:32.500
+The MIT license is one of the more permissive or one of the more open open source licenses.
+
+00:02:32.500 --> 00:02:35.620
+So I'm going to go ahead and download the code.
+
+00:02:35.620 --> 00:02:37.740
+And to do that, click on this link.
+
+00:02:37.740 --> 00:02:41.020
+This gives you the URL that you can use to download the code.
+
+00:02:41.020 --> 00:02:45.860
+I'm going to click this button over here to copy the URL to my clipboard and then go
+
+00:02:45.860 --> 00:02:46.860
+over here.
+
+00:02:46.860 --> 00:02:53.200
+And all you have to do is type git clone and then control V for the URL and hit enter.
+
+00:02:53.200 --> 00:02:58.240
+And so in a couple seconds, it has downloaded, it has cloned this repository to my local hard
+
+00:02:58.240 --> 00:02:59.200
+disk.
+
+00:02:59.200 --> 00:03:01.920
+So let's go into the directory.
+
+00:03:01.920 --> 00:03:02.920
+Let's take a look.
+
+00:03:02.920 --> 00:03:07.360
+I'm more used to Mac than Windows, but I guess let's see.
+
+00:03:07.360 --> 00:03:09.760
+Let's go to Prototex.
+
+00:03:09.760 --> 00:03:15.520
+And I think this is where it has the files specifying the network.
+
+00:03:15.520 --> 00:03:21.320
+So let's take a look at this file because this is a very long file that specifies the
+
+00:03:21.320 --> 00:03:28.080
+detailed configurations of the ResNet with 101 layers.
+
+00:03:28.080 --> 00:03:34.400
+And it looks like from what I remember seeing from this web page, this particular implementation
+
+00:03:34.400 --> 00:03:39.650
+uses the CAFE framework.
+
+00:03:39.650 --> 00:03:44.170
+But if you want an implementation of this code using some other programming framework,
+
+00:03:44.170 --> 00:03:48.560
+you might be able to find it as well.
+
+00:03:48.560 --> 00:03:54.160
+So if you're developing a computer vision application, a very common workflow would be
+
+00:03:54.160 --> 00:03:59.320
+to pick an architecture that you like, maybe one of the ones you learn about in this course,
+
+00:03:59.320 --> 00:04:03.800
+or maybe one that you heard about from a friend or from some of the literature, and look for
+
+00:04:03.800 --> 00:04:09.680
+an open source implementation and download it from GitHub to start building from there.
+
+00:04:09.680 --> 00:04:14.480
+One of the advantages of doing so also is that sometimes these networks take a long
+
+00:04:14.480 --> 00:04:19.640
+time to train and someone else might have used multiple GPUs and a very large dataset
+
+00:04:19.640 --> 00:04:22.180
+to pre-train some of these networks.
+
+00:04:22.180 --> 00:04:26.900
+And that allows you to do transfer learning using these networks, which we'll discuss
+
+00:04:26.900 --> 00:04:28.940
+in the next video as well.
+
+00:04:28.940 --> 00:04:34.300
+Of course, if you're a computer vision researcher implementing these things from scratch, then
+
+00:04:34.300 --> 00:04:36.380
+your workflow would be different.
+
+00:04:36.380 --> 00:04:40.860
+And if you do that, then do contribute your work back to the open source community.
+
+00:04:40.860 --> 00:04:46.660
+But because so many vision researchers have done so much work implementing these architectures,
+
+00:04:46.660 --> 00:04:52.220
+I've found that often starting with open source implementations is a better way or is
+
+00:04:52.220 --> 00:04:55.780
+certainly a faster way to get started on the new project.

@@ -1,0 +1,761 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.947
+Một cách để tìm hiểu các tham số của
+neural network để nó
+
+00:00:03.947 --> 00:00:07.893
+cung cấp cho bạn mã hóa tốt cho hình ảnh khuôn
+mặt của bạn
+
+00:00:07.893 --> 00:00:11.840
+là xác định và áp dụng gradient descent cho
+hàm mất bộ ba.
+
+00:00:11.840 --> 00:00:13.380
+Hãy xem điều đó có nghĩa là gì.
+
+00:00:13.380 --> 00:00:18.560
+Để áp dụng mất bộ ba, bạn cần so sánh các cặp
+hình ảnh.
+
+00:00:18.560 --> 00:00:22.960
+Ví dụ, với bức ảnh này, để tìm hiểu các thông
+số của
+
+00:00:22.960 --> 00:00:27.360
+neural network, bạn phải xem nhiều bức
+ảnh cùng lúc.
+
+00:00:27.520 --> 00:00:30.720
+Ví dụ: với cặp hình ảnh này, bạn muốn mã hóa
+
+00:00:30.720 --> 00:00:33.920
+của chúng giống nhau vì đây là cùng một người.
+
+00:00:33.920 --> 00:00:37.840
+Trong khi với cặp hình ảnh này, bạn muốn mã
+hóa của
+
+00:00:37.840 --> 00:00:41.760
+chúng khá khác nhau vì đây là những người khác
+nhau.
+
+00:00:41.760 --> 00:00:46.213
+Theo thuật ngữ của sự mất bộ ba, điều bạn sẽ
+làm là luôn nhìn
+
+00:00:46.213 --> 00:00:50.667
+vào một hình ảnh neo, và sau đó bạn muốn
+khoảng cách giữa điểm
+
+00:00:50.667 --> 00:00:55.120
+neo và một hình ảnh tích cực, thực sự là một
+ví dụ tích cực,
+
+00:00:55.120 --> 00:00:58.000
+nghĩa là cùng một người, giống nhau.
+
+00:00:58.000 --> 00:01:02.720
+Trong khi đó, bạn muốn mỏ neo khi được ghép
+nối hoặc so sánh với
+
+00:01:02.720 --> 00:01:07.440
+một ví dụ tiêu cực để khoảng cách của chúng xa
+nhau hơn nhiều.
+
+00:01:07.440 --> 00:01:11.240
+Vì vậy, đây chính là nguyên nhân dẫn đến thuật
+ngữ mất bộ
+
+00:01:11.240 --> 00:01:15.040
+ba, tức là bạn sẽ luôn nhìn vào ba hình ảnh
+cùng một lúc.
+
+00:01:15.040 --> 00:01:22.080
+Bạn sẽ xem hình ảnh neo, hình ảnh tích cực
+cũng như hình ảnh tiêu cực.
+
+00:01:22.160 --> 00:01:28.000
+Tôi sẽ viết tắt mỏ neo, dương và âm là a, p và
+n.
+
+00:01:28.000 --> 00:01:33.600
+Vì vậy, để chính thức hóa điều này, điều bạn
+muốn là các tham số của
+
+00:01:33.600 --> 00:01:39.200
+neural network hoặc các mã hóa của bạn phải có
+thuộc tính sau, tức
+
+00:01:39.200 --> 00:01:44.800
+là bạn muốn mã hóa giữa điểm neo trừ đi mã hóa
+của ví dụ tích cực.
+
+00:01:44.800 --> 00:01:46.960
+Bạn muốn điều này nhỏ.
+
+00:01:46.960 --> 00:01:53.200
+Và đặc biệt, bạn muốn giá trị này nhỏ hơn hoặc
+bằng khoảng cách
+
+00:01:53.200 --> 00:01:59.440
+hoặc chuẩn bình phương giữa mã hóa của mỏ neo
+và mã hóa của âm.
+
+00:01:59.440 --> 00:02:08.160
+Tất nhiên đây là d của a, p, và đây là d của
+a, n.
+
+00:02:08.160 --> 00:02:11.200
+Và bạn có thể coi d như một hàm khoảng cách,
+đó là lý
+
+00:02:11.200 --> 00:02:14.240
+do tại sao chúng tôi đặt tên nó theo bảng chữ
+cái d.
+
+00:02:14.240 --> 00:02:19.720
+Bây giờ nếu chúng ta di chuyển số hạng từ vế
+phải của phương
+
+00:02:19.720 --> 00:02:25.200
+trình này sang vế trái, kết quả bạn thu được
+là f(a-f(p) bình trừ,
+
+00:02:25.200 --> 00:02:31.360
+Bây giờ tôi sẽ tính vế phải, trừ f(n bình
+phương).
+
+00:02:31.360 --> 00:02:34.880
+Bạn muốn giá trị này nhỏ hơn hoặc bằng 0.
+
+00:02:34.880 --> 00:02:39.520
+Nhưng bây giờ chúng ta sẽ thực hiện một thay
+đổi nhỏ đối với biểu thức này,
+
+00:02:39.520 --> 00:02:44.160
+một cách đơn giản để đảm bảo điều này được
+thỏa mãn là học mọi thứ bằng 0.
+
+00:02:44.160 --> 00:02:48.640
+Nếu f luôn cho kết quả bằng 0 thì đây bằng 0
+trừ 0, bằng 0.
+
+00:02:48.640 --> 00:02:50.400
+Đây là số không trừ số không, bằng không.
+
+00:02:50.400 --> 00:02:55.960
+Và vì vậy, bằng cách nói f của bất kỳ ảnh nào
+bằng một vectơ toàn số
+
+00:02:55.960 --> 00:03:01.520
+0, bạn có thể thỏa mãn phương trình này một
+cách gần như tầm thường.
+
+00:03:01.520 --> 00:03:06.960
+Vì vậy, để đảm bảo rằng neural network không
+chỉ xuất ra số 0 cho tất cả các
+
+00:03:06.960 --> 00:03:12.400
+mã hóa, do đó, hãy đảm bảo rằng mạng không đặt
+tất cả các mã hóa bằng nhau.
+
+00:03:12.400 --> 00:03:16.693
+Một cách khác để neural network đưa ra một đầu
+ra tầm thường
+
+00:03:16.693 --> 00:03:20.987
+là nếu mã hóa cho mọi hình ảnh giống hệt với
+mã hóa cho mọi
+
+00:03:20.987 --> 00:03:25.280
+hình ảnh khác, trong trường hợp đó bạn lại
+nhận được 0 trừ 0.
+
+00:03:25.280 --> 00:03:31.200
+Vì vậy, để ngăn neural network làm điều
+đó, điều chúng ta sẽ làm là sửa
+
+00:03:31.200 --> 00:03:37.120
+đổi mục tiêu này để nói rằng mục tiêu này
+không cần phải nhỏ hơn hoặc bằng 0.
+
+00:03:37.120 --> 00:03:40.640
+Nó cần phải nhỏ hơn 0 một chút.
+
+00:03:40.640 --> 00:03:44.933
+Vì vậy, cụ thể, chúng tôi nói rằng giá trị này
+cần phải nhỏ hơn
+
+00:03:44.933 --> 00:03:49.227
+alpha âm, trong đó alpha là một siêu tham số
+khác, thì điều này
+
+00:03:49.227 --> 00:03:53.520
+sẽ ngăn neural network đưa ra các giải
+pháp tầm thường.
+
+00:03:53.520 --> 00:03:59.600
+Và theo quy ước, thông thường chúng ta viết
+dấu cộng alpha thay vì chữ alpha âm ở đó.
+
+00:03:59.600 --> 00:04:06.480
+Và đây còn được gọi là mức ký quỹ, là thuật
+ngữ mà bạn đã quen thuộc.
+
+00:04:06.480 --> 00:04:12.640
+Nếu bạn cũng đã xem tài liệu về máy vectơ hỗ
+trợ, nhưng đừng lo lắng nếu bạn chưa xem.
+
+00:04:12.640 --> 00:04:15.320
+Và chúng ta cũng có thể sửa đổi phương trình
+
+00:04:15.320 --> 00:04:18.000
+này lên trên bằng cách thêm tham số lề này.
+
+00:04:18.000 --> 00:04:23.360
+Vì vậy, để đưa ra một ví dụ, giả sử lề được
+đặt thành 0,2.
+
+00:04:23.360 --> 00:04:29.280
+Nếu trong ví dụ này, d của cái neo và giá trị
+dương bằng 0,5 thì bạn sẽ
+
+00:04:29.280 --> 00:04:35.200
+không hài lòng nếu d giữa cái neo và giá trị
+âm chỉ lớn hơn một chút,
+
+00:04:35.200 --> 00:04:37.920
+nói 0,51.
+
+00:04:37.920 --> 00:04:43.120
+Mặc dù 0,51 lớn hơn 0,5 nhưng bạn vẫn cho rằng
+như vậy là chưa đủ.
+
+00:04:43.120 --> 00:04:48.160
+Chúng ta muốn d của dấu phẩy n lớn hơn nhiều
+so với d của dấu phẩy p.
+
+00:04:48.160 --> 00:04:53.440
+Và đặc biệt, bạn muốn con số này ít nhất là
+0,7 hoặc cao hơn.
+
+00:04:53.440 --> 00:04:57.707
+Hoặc cách khác, để đạt được mức chênh lệch này
+hoặc khoảng
+
+00:04:57.707 --> 00:05:01.973
+cách ít nhất là 0,2, bạn có thể đẩy phần này
+lên hoặc đẩy
+
+00:05:01.973 --> 00:05:06.240
+phần này xuống để có ít nhất khoảng cách này
+của bản alpha này,
+
+00:05:06.240 --> 00:05:10.360
+siêu tham số alpha ở mức 0,2, giữa khoảng cách
+giữa
+
+00:05:10.360 --> 00:05:14.480
+điểm neo và điểm dương so với điểm neo và điểm
+âm.
+
+00:05:14.480 --> 00:05:19.760
+Vì vậy, đó là tác dụng của tham số lề ở đây,
+tức là
+
+00:05:19.760 --> 00:05:25.040
+nó đẩy cặp neo dương và cặp neo âm ra xa nhau
+hơn.
+
+00:05:25.680 --> 00:05:30.440
+Vì vậy, hãy sử dụng phương trình mà chúng ta
+có ở phía dưới và trên
+
+00:05:30.440 --> 00:05:35.200
+trang trình bày tiếp theo, chính thức hóa nó
+và xác định hàm mất bộ ba.
+
+00:05:35.200 --> 00:05:40.720
+Vì vậy, hàm mất bộ ba được xác định trên bộ ba
+hình ảnh.
+
+00:05:40.720 --> 00:05:48.960
+Vì vậy, với ba hình ảnh a, p và n, các ví dụ
+tích cực và tiêu cực là neo.
+
+00:05:48.960 --> 00:05:52.800
+Vì vậy, những ví dụ tích cực là của cùng một
+người với mỏ
+
+00:05:52.800 --> 00:05:56.640
+neo, nhưng ví dụ tiêu cực là của một người
+khác với mỏ neo.
+
+00:05:58.160 --> 00:06:01.440
+Chúng ta sẽ xác định sự mất mát như sau.
+
+00:06:01.440 --> 00:06:05.680
+Sự mất mát trong ví dụ này, thực sự được xác
+định trên bộ ba hình ảnh,
+
+00:06:05.680 --> 00:06:09.920
+trước tiên hãy để tôi sao chép lại những gì
+chúng ta có trên trang chiếu trước.
+
+00:06:09.920 --> 00:06:25.170
+Vậy đó là f a trừ f p bình trừ f a trừ f n
+bình phương, rồi cộng alpha,
+
+00:06:25.170 --> 00:06:26.290
+tham số lề.
+
+00:06:26.850 --> 00:06:30.930
+Và điều bạn muốn là giá trị này nhỏ hơn hoặc
+bằng 0.
+
+00:06:31.730 --> 00:06:35.050
+Vì vậy, để xác định loss function, hãy lấy
+
+00:06:35.050 --> 00:06:38.370
+giá trị lớn nhất giữa giá trị này và giá trị
+0.
+
+00:06:39.170 --> 00:06:45.530
+Vì vậy, tác dụng của việc lấy mức tối đa ở đây
+là miễn là giá trị này nhỏ
+
+00:06:45.530 --> 00:06:51.890
+hơn 0 thì tổn thất bằng 0 vì mức tối đa là cái
+gì đó nhỏ hơn 0 với 0 sẽ bằng
+
+00:06:51.890 --> 00:06:57.170
+không. Miễn là bạn đạt được mục tiêu làm cho
+phần gạch chân này có màu xanh lá
+
+00:06:57.170 --> 00:07:02.450
+cây, miễn là bạn đã đạt được mục tiêu làm cho
+phần đó nhỏ hơn hoặc bằng 0, thì
+
+00:07:02.450 --> 00:07:07.730
+tổn thất trong ví dụ này bằng 0. Nhưng mặt
+khác, nếu giá trị này lớn hơn 0,
+
+00:07:07.730 --> 00:07:12.290
+sau đó nếu bạn lấy mức tối đa, mức tối đa sẽ
+chọn thứ có màu xanh lá cây cơ bản này.
+
+00:07:12.290 --> 00:07:16.450
+Và vì vậy bạn sẽ có một sự mất mát tích cực.
+Vì vậy, bằng cách
+
+00:07:16.450 --> 00:07:20.610
+cố gắng giảm thiểu điều này, điều này có tác
+dụng cố gắng gửi
+
+00:07:20.610 --> 00:07:24.770
+thứ này bằng 0 hoặc nhỏ hơn bằng 0. Và sau đó
+miễn là điều này
+
+00:07:24.770 --> 00:07:30.850
+0 hoặc nhỏ hơn 0, neural network không
+quan tâm nó âm thêm bao nhiêu.
+
+00:07:30.850 --> 00:07:36.930
+Vì vậy, đây là cách bạn xác định sự mất mát
+trên một bộ ba. Và tổng chi phí
+
+00:07:36.930 --> 00:07:42.717
+Chức năng cho neural network của bạn có
+thể nằm trong
+
+00:07:42.717 --> 00:07:48.503
+training set về những tổn thất riêng lẻ này
+trên các bộ ba khác nhau.
+
+00:07:48.503 --> 00:07:54.290
+Vì vậy, nếu bạn có một training set gồm 10.000
+bức ảnh với 1000 bức ảnh khác nhau
+
+00:07:54.290 --> 00:07:58.717
+Mọi người, những gì bạn phải làm là lấy 10.000
+bức ảnh của mình và sử dụng
+
+00:07:58.717 --> 00:08:03.143
+nó để tạo ra các bộ ba như thế này, sau đó
+huấn luyện thuật toán học tập
+
+00:08:03.143 --> 00:08:07.570
+của bạn bằng cách sử dụng phương pháp
+gradient descent cho loại chi phí này
+
+00:08:07.570 --> 00:08:12.690
+hàm này thực sự được xác định trên bộ ba hình
+ảnh được rút ra từ training set của bạn.
+
+00:08:14.450 --> 00:08:21.290
+Lưu ý rằng để xác định bộ dữ liệu bộ ba này,
+bạn cần một số cặp A và P, các
+
+00:08:21.290 --> 00:08:28.130
+cặp ảnh của cùng một người. Vì vậy, mục đích
+đào tạo hệ thống của bạn, bạn cần
+
+00:08:28.130 --> 00:08:32.157
+một tập dữ liệu nơi bạn có nhiều hình ảnh của
+cùng một người. Đó
+
+00:08:32.157 --> 00:08:36.183
+là lý do tại sao trong ví dụ này, tôi đã nói
+nếu bạn có 10.000
+
+00:08:36.183 --> 00:08:40.210
+bức ảnh của 1000 người khác nhau, thì có thể
+bạn có 10 bức ảnh
+
+00:08:40.210 --> 00:08:43.917
+trung bình mỗi người trong số 1000 người sẽ
+tạo thành toàn bộ tập dữ
+
+00:08:43.917 --> 00:08:47.623
+liệu của bạn. Nếu bạn chỉ có một bức ảnh của
+mỗi người thì bạn thực sự
+
+00:08:47.623 --> 00:08:51.330
+không thể huấn luyện hệ thống này. Nhưng tất
+nhiên, sau khi tập luyện,
+
+00:08:52.530 --> 00:08:56.290
+nếu bạn đang áp dụng điều này, nhưng tất
+nhiên, sau khi đã đào tạo hệ
+
+00:08:56.290 --> 00:09:00.050
+thống, bạn có thể áp dụng nó cho bài toán học
+một lần của mình trong
+
+00:09:00.050 --> 00:09:03.810
+đó đối với hệ thống nhận dạng khuôn mặt của
+bạn, có thể bạn chỉ có
+
+00:09:03.810 --> 00:09:07.117
+một bức ảnh duy nhất của ai đó mà bạn có thể
+đang cố gắng nhận ra. Nhưng
+
+00:09:07.117 --> 00:09:10.423
+đối với training set của bạn, bạn cần đảm bảo
+có nhiều hình ảnh của cùng
+
+00:09:10.423 --> 00:09:13.730
+một người, ít nhất là đối với một số người
+trong training set của bạn
+
+00:09:13.730 --> 00:09:19.250
+được thiết lập để bạn có thể có các cặp hình
+ảnh neo và hình ảnh tích cực.
+
+00:09:19.250 --> 00:09:24.770
+Bây giờ, làm thế nào để bạn thực sự chọn được
+những bộ ba này để hình thành
+
+00:09:24.770 --> 00:09:30.290
+training set của mình? Một trong những vấn đề
+nếu bạn chọn ngẫu nhiên AP và N từ
+
+00:09:30.290 --> 00:09:34.290
+training set, với điều kiện A và P là cùng một
+người và A
+
+00:09:34.290 --> 00:09:38.290
+và N là những người khác nhau, một trong những
+vấn đề là
+
+00:09:38.290 --> 00:09:42.290
+nếu bạn chọn chúng một cách ngẫu nhiên, thì
+ràng buộc này rất
+
+00:09:42.290 --> 00:09:47.437
+dễ thỏa mãn. Bởi vì cho hai bức ảnh được chọn
+ngẫu nhiên về
+
+00:09:47.437 --> 00:09:52.583
+mọi người, rất có thể A và N khác nhau rất
+nhiều so với A và
+
+00:09:52.583 --> 00:09:57.730
+P. Và tôi hy vọng bạn vẫn nhận ra ký hiệu này.
+D, A, P này là
+
+00:09:58.530 --> 00:10:02.690
+những gì chúng tôi đã viết trên vài slide gần
+đây dưới dạng
+
+00:10:02.690 --> 00:10:06.850
+mã hóa. Vì vậy, đây chỉ bằng khoảng cách chuẩn
+bình phương
+
+00:10:06.850 --> 00:10:11.010
+giữa các bảng mã mà chúng ta có trên trang
+trình bày trước đó.
+
+00:10:11.010 --> 00:10:16.490
+Nhưng nếu A và N là hai người khác nhau được
+chọn ngẫu nhiên thì có khả năng rất cao
+
+00:10:16.490 --> 00:10:21.970
+là số này sẽ lớn hơn nhiều, nhiều hơn số alpha
+lề so với số hạng ở bên trái. Và vì thế
+
+00:10:21.970 --> 00:10:25.730
+neural network sẽ không học được nhiều từ
+nó. Vì vậy, để xây
+
+00:10:25.730 --> 00:10:29.490
+dựng training set của bạn, điều bạn muốn làm
+là chọn các bộ ba A,
+
+00:10:29.490 --> 00:10:33.250
+P và N, khó huấn luyện. Vì vậy, đặc biệt,
+những gì bạn muốn là
+
+00:10:33.250 --> 00:10:39.383
+cho tất cả các bộ ba mà ràng buộc này được
+thỏa mãn. Vì
+
+00:10:39.383 --> 00:10:45.517
+vậy, một bộ ba sẽ khó xảy ra nếu bạn chọn các
+giá trị cho
+
+00:10:45.517 --> 00:10:51.650
+A, P và N, sao cho có thể D, A, P thực sự khá
+gần với D, A, N.
+
+00:10:52.850 --> 00:10:58.410
+Vì vậy, trong trường hợp đó, thuật toán học
+phải cố gắng hết sức để lấy thứ này ở bên
+
+00:10:58.410 --> 00:11:03.970
+phải và cố gắng đẩy nó lên hoặc lấy thứ này ở
+bên trái và cố gắng đẩy nó xuống để có
+
+00:11:03.970 --> 00:11:10.170
+ít nhất một lề alpha giữa bên trái và bên
+phải. Và tác dụng của việc chọn
+
+00:11:10.170 --> 00:11:16.370
+các bộ ba này là nó làm tăng hiệu quả tính
+toán cho thuật toán học của bạn.
+
+00:11:16.370 --> 00:11:19.703
+Nếu bạn chọn các bộ ba một cách ngẫu nhiên thì
+việc có quá nhiều
+
+00:11:19.703 --> 00:11:23.037
+bộ ba sẽ thực sự dễ dàng. Và do đó, việc
+gradient descent sẽ không
+
+00:11:23.037 --> 00:11:26.370
+làm được gì vì neural network của bạn sẽ
+làm đúng khá nhiều
+
+00:11:26.370 --> 00:11:32.490
+mọi lúc. Và chỉ bằng cách chọn các bộ ba cứng
+thì quy trình giảm gradient mới phải
+
+00:11:32.490 --> 00:11:38.610
+thực hiện một số công việc để cố gắng đẩy các
+đại lượng này ra xa các đại lượng đó.
+
+00:11:38.610 --> 00:11:44.970
+Và nếu bạn quan tâm, chi tiết sẽ được trình
+bày trong bài viết này của
+
+00:11:44.970 --> 00:11:51.330
+Florinschoff, Dimitri Kalenichenko và James
+Thoben, nơi họ có một hệ thống tên là FaceNet,
+
+00:11:51.330 --> 00:11:55.063
+đó là nơi nảy sinh rất nhiều ý tưởng mà tôi
+trình bày trong video
+
+00:11:55.063 --> 00:11:58.797
+này. Nhân tiện, đây cũng là một sự thật thú vị
+về cách các thuật
+
+00:11:58.797 --> 00:12:02.530
+toán thường được đặt tên trong thế giới
+deep learning, đó là nếu
+
+00:12:02.530 --> 00:12:06.983
+bạn làm việc trên một miền nhất định, hãy để
+tôi gọi đó là trống, bạn
+
+00:12:06.983 --> 00:12:11.437
+thường có một hệ thống gọi là lưới trống hoặc
+trống sâu. Vậy là chúng ta
+
+00:12:11.437 --> 00:12:15.890
+đang nói về nhận dạng khuôn mặt. Vì vậy bài
+báo này được gọi là FaceNet.
+
+00:12:15.890 --> 00:12:20.690
+Và trong video trước, bạn vừa thấy khuôn mặt
+sâu sắc. Nhưng ý tưởng về
+
+00:12:20.690 --> 00:12:25.490
+lưới trống hoặc khoảng trống sâu này là một
+cách đặt tên thuật toán
+
+00:12:25.490 --> 00:12:30.290
+rất phổ biến trong thế giới deep learning. Và
+bạn nên thoải mái lấy một
+
+00:12:30.290 --> 00:12:33.970
+hãy xem bài viết đó nếu bạn muốn tìm hiểu một
+số chi tiết khác
+
+00:12:33.970 --> 00:12:37.650
+để tăng tốc thuật toán của mình bằng cách chọn
+các bộ ba hữu ích
+
+00:12:37.650 --> 00:12:41.330
+nhất để đào tạo. Đó là một tờ giấy đẹp. Vì
+vậy, chỉ để kết thúc,
+
+00:12:41.330 --> 00:12:45.117
+để huấn luyện về việc mất bộ ba, bạn cần lấy
+training set của mình
+
+00:12:45.117 --> 00:12:48.903
+và ánh xạ nó tới nhiều bộ ba. Vì vậy, đây là
+bộ ba với một mỏ neo
+
+00:12:48.903 --> 00:12:52.690
+và một mặt tích cực của cùng một người và một
+mặt tiêu cực của một
+
+00:12:52.690 --> 00:12:56.850
+người khác. Đây là một ví dụ khác trong đó
+điểm neo và điểm
+
+00:12:56.850 --> 00:13:01.010
+tích cực là của cùng một người, nhưng điểm neo
+và điểm tiêu
+
+00:13:01.010 --> 00:13:05.170
+cực là của những người khác nhau, v.v. Và
+những gì bạn đang có
+
+00:13:05.250 --> 00:13:09.623
+Để tìm training set về bộ ba dương và âm neo
+này, hãy sử dụng phương
+
+00:13:09.623 --> 00:13:13.997
+pháp gradient descent để cố gắng giảm thiểu
+cost function J mà chúng
+
+00:13:13.997 --> 00:13:18.370
+ta đã xác định trên trang trình bày trước đó.
+Và điều đó sẽ có tác dụng
+
+00:13:18.370 --> 00:13:26.570
+truyền ngược tới tất cả các tham số của
+neural network nhằm học cách mã hóa
+
+00:13:26.570 --> 00:13:34.770
+sao cho D của hai ảnh sẽ nhỏ khi hai ảnh này
+là của cùng một người. Và sẽ có
+
+00:13:35.730 --> 00:13:39.783
+lớn khi đây là hai hình ảnh của những người
+khác nhau. Vậy đó là
+
+00:13:39.783 --> 00:13:43.837
+về sự mất bộ ba và cách bạn có thể sử dụng nó
+để huấn luyện mạng
+
+00:13:43.837 --> 00:13:47.890
+lưới thần kinh tạo ra một mã hóa tốt để nhận
+dạng khuôn mặt.
+
+00:13:48.610 --> 00:13:52.157
+Bây giờ hóa ra các hệ thống nhận dạng khuôn
+mặt ngày nay, đặc biệt
+
+00:13:52.157 --> 00:13:55.703
+là các hệ thống nhận dạng khuôn mặt thương mại
+quy mô lớn đều được
+
+00:13:55.703 --> 00:13:59.250
+đào tạo trên các bộ dữ liệu rất lớn. Bộ dữ
+liệu ở phía bắc một triệu
+
+00:13:59.250 --> 00:14:02.663
+hình ảnh không phải là hiếm. Một số công ty
+đang sử dụng phía bắc
+
+00:14:02.663 --> 00:14:06.077
+10 triệu hình ảnh và một số công ty có phía
+bắc 100 triệu hình ảnh
+
+00:14:06.077 --> 00:14:09.490
+để cố gắng đào tạo các hệ thống này. Vì vậy
+đây là những điều rất
+
+00:14:09.490 --> 00:14:12.290
+các tập dữ liệu lớn, thậm chí theo các tiêu
+chuẩn hiện
+
+00:14:12.290 --> 00:14:15.090
+đại, những nội dung tập dữ liệu này không dễ
+có được.
+
+00:14:15.810 --> 00:14:19.050
+May mắn thay, một số công ty này đã đào tạo
+các
+
+00:14:19.050 --> 00:14:22.290
+mạng lưới lớn này và đăng các thông số trực
+tuyến.
+
+00:14:22.290 --> 00:14:25.783
+Vì vậy, thay vì cố gắng đào tạo một trong các
+mạng này từ
+
+00:14:25.783 --> 00:14:29.277
+đầu, đây là một miền mà do kích thước khối
+lượng dữ liệu
+
+00:14:29.277 --> 00:14:32.770
+tuyệt đối nên đây là một miền thường có thể
+hữu ích cho bạn
+
+00:14:32.770 --> 00:14:35.450
+để tải xuống mô hình được đào tạo trước của
+
+00:14:35.450 --> 00:14:38.130
+người khác thay vì tự mình làm mọi thứ từ đầu.
+
+00:14:38.130 --> 00:14:41.850
+Nhưng ngay cả khi bạn tải xuống mô hình được
+đào tạo trước của người
+
+00:14:41.850 --> 00:14:45.570
+khác, tôi nghĩ vẫn hữu ích nếu biết các thuật
+toán này được đào tạo như
+
+00:14:45.570 --> 00:14:49.290
+thế nào trong trường hợp bạn cần tự mình áp
+dụng những ý tưởng này từ
+
+00:14:49.290 --> 00:14:53.010
+đầu cho một số ứng dụng. Vậy là đã thua ba lần
+rồi. Trong video tiếp theo,
+
+00:14:53.010 --> 00:14:56.786
+Tôi cũng muốn cho bạn xem một số biến thể khác
+trên mạng Xiêm và cách
+
+00:14:56.786 --> 00:15:00.563
+đào tạo các hệ thống này. Chúng ta hãy chuyển
+sang video tiếp theo.

@@ -1,0 +1,100 @@
+Trong video trước, bạn đã thấy các khối cơ bản của việc triển khai
+một mạng nơ-ron sâu, một bước truyền bá về phía trước cho mỗi lớp và một bước truyền lùi Hãy cùng xem cách thực hiện các bước này. Chúng ta sẽ bắt đầu với truyền xuôi trước. Nhớ lại rằng điều này sẽ
+là nhập a ^ l trừ 1, và xuất ra a ^ l và
+bộ nhớ đệm, z ^ l. Chúng tôi chỉ nói rằng, từ quan điểm triển khai có thể chúng tôi cũng sẽ lưu vào bộ nhớ cache
+w ^ l và b ^ l, chỉ để thực hiện lệnh gọi của hàm dễ hơn một chút trong bài tập chương trình Các phương trình cho điều này
+đã trông quen thuộc. Cách triển khai
+chuyển tiếp chỉ là thế này, bằng w ^ l lần a ^ l
+trừ 1 cộng với b ^ l, và sau đó a ^ l bằng
+được áp dụng cho z. Nếu bạn muốn triển khai thì nó chỉ là nhân lần
+a ^ l trừ 1 cộng với b, b là một chương trình phát sóng Python, và a ^ l bằng g, áp dụng phần tử khôn ngoan cho z. Bạn nhớ rằng, trên
+cho bước thứ 4, chúng ta đã có chuỗi các
+hộp truyền xuôi như này, vì vậy bạn khởi tạo số
+bằng cách cho ăn trong a ^ 0, bằng x. Vì vậy, bạn khởi tạo điều này với, đầu vào
+cho đầu tiên là gì? Nó thực sự là ^ 0,
+là đầu vào các tính năng cho
+một ví dụ đào tạo nếu bạn đang thực hiện từng ví dụ một, hoặc ^ 0 nếu bạn đang xử lý
+toàn bộ tập huấn luyện. Đó là đầu vào cho chuyển tiếp đầu tiên trong chuỗi, và sau đó chỉ cần lặp lại
+điều này cho phép bạn tính toán truyền thuận
+từ trái sang phải. Tiếp theo, hãy nói về truyền ngược. Ở đây, mục tiêu của bạn là nhập vào da [l], và xuất ra da ^ l trừ
+1 và dw ^ l và db ^ l. Hãy để tôi viết ra các bước bạn cần phải
+tính những điều này. Dz ^ l bằng da ^ l
+nguyên tố, với g của l nguyên tố z của l. Sau đó, để tính
+các đạo hàm, dw ^ l bằng dz ^ l
+lần a của l trừ 1. Tôi không rõ ràng
+đặt trong bộ nhớ cache, nhưng hóa ra bạn
+cần điều này. Khi đó db ^ l bằng
+dz ^ l, và cuối cùng, da của l trừ đi 1 bằng w ^ l chuyển vị lần dz ^ l. Tôi không muốn đi qua chi tiết cho điều này, nhưng nó chỉ ra rằng nếu
+bạn lấy định nghĩa này cho da và cắm nó vào đây, sau đó bạn nhận được cùng một công thức như chúng tôi đã ở đó trước đây, cho cách bạn tính toán dz ^ l như một hàm của
+dz ^ l trước đó. Trên thực tế, nếu tôi
+chỉ cắm nó vào đây, bạn kết thúc rằng dz ^ l bằng thành w ^ l cộng với 1 chuyển vị dz ^ l cộng 1 lần g ^ l nguyên tố z của l. Tôi biết điều này có vẻ
+như rất nhiều đại số. Bạn thực sự có thể
+kiểm tra kỹ bản thân rằng
+này là phương trình chúng tôi đã viết ra
+lần tuyên truyền ngược vào tuần trước, khi chúng tôi làm
+một mạng nơ-ron chỉ với một lớp ẩn duy nhất. Xin nhắc lại, lần này
+là sản phẩm khôn ngoan, vì vậy tất cả những gì bạn cần là bốn phương trình đó để thực hiện
+hàm lùi của bạn. Và cuối cùng, tôi sẽ viết ra một
+phiên bản véc tơ hóa. Vì vậy, dòng đầu tiên trở thành dz ^ l bằng da ^ l tích
+nguyên tố với g ^ l nguyên tố của z ^ l, Cũng không có gì bất ngờ ở đó. Dw ^ l trở thành 1 trên m, dz ^ l lần a ^ l
+trừ 1 chuyển vị. Khi đó db ^ l trở thành 1
+trên m np.sum dz ^ l. Khi đó trục bằng 1,
+keepdims bằng true. Chúng tôi đã nói về việc sử dụng np.sum trong
+tuần trước, để tính db. Cuối cùng, da ^ l trừ
+1 là w ^ l lần hoán vị dz của l. Cái này cho phép bạn nhập
+này, da, ở đây. Xuất ra dW ^ l, dp ^ l,
+dẫn xuất bạn cần, cũng như da ^ l
+trừ 1 như sau. và dA [l-1], đúng chứ? Như ở đây. Chỉ để tóm tắt,
+lấy đầu vào x, bạn có thể có
+lớp đầu tiên có thể có chức năng kích hoạt ReLU. Rồi đến lớp thứ hai, có thể sử dụng một hàm
+kích hoạt ReLU khác, đi đến
+thứ ba có thể có một chức năng kích hoạt sigmoid Nếu bạn đang thực hiện phân loại nhị phân, và điều này tạo ra y-hat. Sau đó, sử dụng y-hat, bạn
+có thể tính toán sự mất mát. và điều này cho phép bạn bắt đầu lặp ngược. Tôi sẽ vẽ các mũi tên trước. Tôi đoán tôi không cần phải
+bút thay đổi quá nhiều. Sau đó bạn sẽ ở đâu có backprop tính toán
+các dẫn xuất, tính toán dW ^ 3, db ^ 3, dW ^ 2, db ^ 2, dW ^ 1, db ^ 1. Trên đường đi bạn sẽ là
+tính toán so với tiền mặt. Chúng ta sẽ chuyển z ^ 1, z ^ 2, z ^ 3. Ở đây bạn chuyển ngược
+da ^ 2 và da ^ 1. Điều này có thể tính da [0], nhưng chúng tôi sẽ không sử dụng mà để
+, bạn có thể chỉ loại bỏ đó. Đây là cách bạn triển khai
+tiến lùi và hỗ trợ lùi cho một mạng nơ-ron nhân tạo ba lớp. cuối cùng này mà tôi chưa nói về cái đó là cho phép đệ quy chuyển tiếp chúng ta sẽ khởi tạo nó với dữ liệu đầu vào X. Thế còn về đệ quy ngược? Nó chỉ ra rằng da của l khi bạn đang sử dụng
+hồi quy logistic, Nếu bạn đang thực hiện phân loại nhị phân, bằng với y hơn a cộng 1 trừ y hơn 1 trừ a. Nó chỉ ra rằng đạo hàm của hàm mất mát liên quan đến đầu ra liên quan đến y-hat có thể được hiển thị là
+. nếu bạn quen với giải tích, nếu bạn tra cứu hàm mất mát lấy các đạo hàm đối với
+đối với y-hat đối với a, bạn có thể chứng minh rằng
+bạn có được công thức đó. Đây là công thức
+bạn nên sử dụng cho da, cho lớp cuối cùng, vốn L. Tất nhiên nếu bạn phải có một triển khai sau đó bạn khởi tạo đệ quy ngược,
+không phải với điều này, nhưng với da hoa A cho lớp L sẽ là điều tương tự đối với
+ví dụ khác nhau. Trên một cho chuyến tàu đầu tiên
+ví dụ cộng với 1 trừ y cho ví dụ về 1 trừ A cho
+ví dụ về chuyến tàu đầu tiên, dot-dot-dot xuống
+ví dụ về chuyến tàu thứ n. Vì vậy, 1 trừ đi một của M. Đó là cách bạn sẽ triển khai
+vectơ hóa. Đó là cách bạn khởi tạo phiên bản vectơ hóa
+của lan truyền ngược. Bây giờ chúng ta đã thấy
+khối xây dựng cơ bản của cả truyền xuôi cũng như truyền ngược. Nếu bạn thực hiện các phương trình này, bạn sẽ có một triển khai chuyển tiếp prop và backprop tới giúp bạn có được
+cụ phái sinh mà bạn cần. Bạn có thể nghĩ,
+đó là rất nhiều phương trình. Tôi hơi bối rối.
+Tôi không chắc là tôi thấy cách này hoạt động như thế nào và nếu
+bạn đang cảm thấy như vậy, lời khuyên của tôi là khi bạn bài tập lập trình của tuần này, bạn sẽ có thể
+triển khai những điều này cho bản thân bạn và chúng sẽ bằng
+cụ thể hơn nhiều. Tôi biết những là một
+rất nhiều phương trình, và có thể một số phương trình không có ý nghĩa hoàn toàn, nhưng nếu bạn làm việc thông qua phép tính toán và
+không hề đơn giản, và hãy cứ thoải mái thử, nhưng đó thực sự là
+một trong những các dẫn xuất khó
+trong học máy. Hóa ra các phương trình
+mà chúng tôi đã viết ra là chỉ là các phương trình giải tích đạo hàm tự nhiên nhất. đặc biệt là trong backprop,
+nhưng một lần nữa, nếu điều này cảm thấy một
+chút trừu tượng chút, hoặc khó hiểu lời khuyên của tôi là khi bạn đã hoàn thành
+bài tập lập trình, thì bạn sẽ thấy nó cụ thể hơn một chút. Mặc dù tôi phải nói, ngay cả hôm nay khi tôi triển khai
+một thuật toán học tập, đôi khi thậm chí tôi
+ngạc nhiên khi triển khai thuật toán học tập hoạt động và đó là bởi vì rất nhiều sự phức tạp của máy học đến từ dữ liệu thay vì
+từ các dòng mã. Đôi khi bạn cảm thấy như bạn thực hiện một vài dòng mã, và không chắc chắn về những
+gì nó đã thực hiện, nhưng nó lại hoạt động một cách kỳ diệu, và đó là bởi vì rất nhiều
+thực sự không có trong đoạn mã bạn viết
+thường không quá dài. Nó không hằn là đơn giản, nhưng nó không phải là 10.000, 100.000 dòng mã, nhưng bạn cung cấp cho nó
+quá nhiều dữ liệu đôi khi mặc dù tôi đã làm việc với máy
+trong một thời gian dài, đôi khi nó vẫn gây ngạc nhiên cho tôi một chút khi
+học của tôi hoạt động, bởi vì rất nhiều
+độ phức tạp của thuật toán học tập
+của bạn đến từ dữ liệu thay vì nhất thiết phải từ bạn viết hàng nghìn và
+nghìn dòng mã. Đó là cách bạn triển khai
+mạng nơron sâu. Một lần nữa, điều này sẽ trở nên nhiều hơn cụ thể khi bạn đã hoàn thành
+bài tập lập trình. Trước khi tiếp tục bài học, thì
+trong video tiếp theo, tôi sẽ nói về các tham số và siêu tham số. Trên thực tế khi bạn huấn luyện mạng sâu, việc có thể tổ chức tốt các siêu tham số sẽ giúp bạn hiệu quả hơn trong việc phát triển mạng của bạn. Trong video tiếp theo, chúng ta hãy bàn xem điều đó chính xác là gì.

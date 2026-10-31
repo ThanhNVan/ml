@@ -1,0 +1,583 @@
+WEBVTT
+
+1
+00:00:00.190 --> 00:00:01.320
+Trong video trước,
+
+2
+00:00:01.320 --> 00:00:06.420
+mọi người đã thấy tất cả
+khối xây dựng cơ bản của mạng Inception.
+
+3
+00:00:06.420 --> 00:00:10.680
+Trong video này, hãy xem cách mọi người có thể
+kết hợp các khối xây dựng này lại với nhau
+
+4
+00:00:10.680 --> 00:00:12.780
+để xây dựng mạng Inception cho riêng mình.
+
+5
+00:00:13.910 --> 00:00:17.970
+Vì vậy, mô-đun Inception lấy
+activation làm đầu vào hoặc
+
+6
+00:00:17.970 --> 00:00:20.260
+đầu ra từ một số layer trước đó.
+
+7
+00:00:20.260 --> 00:00:25.860
+Vì vậy, để bàn bạc thêm, giả sử
+đây là 28 x 28 x 192,
+
+8
+00:00:25.860 --> 00:00:28.030
+giống như video trước của chúng ta.
+
+9
+00:00:28.030 --> 00:00:35.130
+Ví dụ mà chúng ta đã nghiên cứu rất kỹ
+là 1 x 1 sau đó là 5 x 5.
+
+10
+00:00:35.130 --> 00:00:41.120
+Ở đó,
+có thể 1 x 1 có 16 kênh và
+
+11
+00:00:41.120 --> 00:00:48.170
+sau đó, 5 x 5 sẽ xuất ra 28 x 28 x 32 kênh chẳng hạn.
+
+12
+00:00:49.700 --> 00:00:53.790
+Và đây là ví dụ mà chúng ta đã tìm hiểu
+trên slide cuối cùng của video trước.
+
+13
+00:00:54.900 --> 00:01:02.260
+Sau đó, để lưu tính toán trên phép chập 3 x 3
+mọi người cũng có thể thực hiện tương tự tại đây.
+
+14
+00:01:02.260 --> 00:01:08.310
+Và sau đó là 3 x 3 đầu ra,
+28 x 28 x 1 x 28.
+
+15
+00:01:09.390 --> 00:01:14.100
+Và sau đó có lẽ mọi người cũng nên
+xem xét phép chập 1 x 1.
+
+16
+00:01:14.100 --> 00:01:18.481
+Không cần tính phép chập 1 x 1
+và sau đó là phép chập 1 x 1 nữa vì vậy
+
+17
+00:01:18.481 --> 00:01:23.409
+chỉ có một bước ở đây và
+giả sử các đầu ra này là 28 x 28 x 64.
+
+18
+00:01:23.409 --> 00:01:31.900
+Và cuối cùng là pooling layer.
+
+19
+00:01:34.000 --> 00:01:35.730
+Vì vậy, ở đây tôi sẽ làm một thứ khá là vui nhộn.
+
+20
+00:01:35.730 --> 00:01:40.154
+Để thực sự nối
+tất cả các đầu ra này
+
+21
+00:01:40.154 --> 00:01:44.073
+chúng ta sẽ sử dụng cùng một kiểu
+padding cho việc pooling
+
+22
+00:01:44.073 --> 00:01:47.480
+Vì vậy, chiều cao và chiều rộng
+của đầu ra vẫn là 28 x 28.
+
+23
+00:01:47.480 --> 00:01:53.300
+Vì vậy, chúng ta có thể nối nó
+với các đầu ra khác này.
+
+24
+00:01:53.300 --> 00:01:57.842
+Nhưng lưu ý rằng nếu mọi người thực hiện max pooling,
+ngay cả với cùng một padding (đệm),
+
+25
+00:01:57.842 --> 00:01:59.917
+Bộ lọc 3 x 3 có stride (bước nhảy) là 1.
+
+26
+00:01:59.917 --> 00:02:07.016
+Đầu ra ở đây sẽ là 28 x 28, đến 192.
+
+27
+00:02:07.016 --> 00:02:10.790
+Nó sẽ có cùng số kênh
+và
+
+28
+00:02:10.790 --> 00:02:15.570
+cùng độ sâu với
+đầu vào mà chúng ta có ở đây.
+
+29
+00:02:15.570 --> 00:02:19.252
+Vì vậy, nó có vẻ như là
+có rất nhiều kênh.
+
+30
+00:02:19.252 --> 00:02:23.752
+Vì vậy, chúng ta sẽ
+thêm một layer convolution 1 x 1 nữa
+
+31
+00:02:23.752 --> 00:02:28.607
+và sau đó lại tiếp tục thực hiện những gì chúng ta đã thấy trong
+video phép chập 1 x 1
+
+32
+00:02:28.607 --> 00:02:31.541
+để giảm số lượng kênh.
+
+33
+00:02:31.541 --> 00:02:37.730
+Vì vậy, nó giảm xuống còn 28 x 28 x 32 chẳng hạn.
+
+34
+00:02:37.730 --> 00:02:44.770
+Và mọi người có thể làm điều đó
+bằng cách sử dụng 32 bộ lọc,
+
+35
+00:02:44.770 --> 00:02:49.660
+của kích thước 1 x 1 x 192.
+
+36
+00:02:49.660 --> 00:02:54.110
+Vì vậy, đó là lý do tại sao số lượng kênh của
+kích thước đầu ra giảm xuống còn 32.
+
+37
+00:02:54.110 --> 00:02:58.460
+Vì vậy, sau đó chúng ta sẽ không
+có pooling layer
+
+38
+00:02:58.460 --> 00:03:00.920
+chiếm tất cả các kênh
+trong đầu ra cuối cùng.
+
+39
+00:03:02.310 --> 00:03:08.121
+Và cuối cùng, mọi người lấy tất cả các khối
+và mọi người thực hiện ghép kênh.
+
+40
+00:03:08.121 --> 00:03:12.865
+Chỉ cần nối
+64 cộng 128 cộng
+
+41
+00:03:12.865 --> 00:03:18.165
+32 cộng với 32 và
+nếu mọi người cộng chúng lại, mọi người sẽ có
+
+42
+00:03:18.165 --> 00:03:24.055
+đầu ra với kích thước 28 x 28 x 256.
+
+43
+00:03:24.055 --> 00:03:30.879
+Concat là viết tắt của concatenate, tức là nối các khối
+mà chúng ta đã thấy trong video trước.
+
+44
+00:03:33.918 --> 00:03:39.598
+Vậy, đây là một mô-đun Inception và
+những gì mạng Inception làm,
+
+45
+00:03:39.598 --> 00:03:44.057
+về cơ bản là
+kết hợp các mô-đun này lại với nhau.
+
+46
+00:03:45.624 --> 00:03:50.671
+Đây là hình ảnh của mạng Inception,
+được lấy từ nghiên cứu của Szegedy Et al
+
+47
+00:03:53.615 --> 00:03:56.570
+Và mọi người nhận thấy có rất nhiều khối
+lặp lại trong này.
+
+48
+00:03:56.570 --> 00:03:58.580
+Có lẽ hình ảnh này trông
+thực sự phức tạp.
+
+49
+00:03:58.580 --> 00:04:03.563
+Nhưng nếu mọi người nhìn vào một trong các khối
+ở đó, thì khối đó về cơ bản là
+
+50
+00:04:03.563 --> 00:04:07.920
+mô-đun Inception mà mọi người
+đã thấy trên slide trước đó.
+
+51
+00:04:10.046 --> 00:04:17.085
+Và tùy thuộc vào chi tiết nhỏ tôi sẽ không
+nói tới, đây là một khối Inception.
+
+52
+00:04:17.085 --> 00:04:19.460
+Đây là một khối Inception khác.
+
+53
+00:04:19.460 --> 00:04:23.200
+Có thêm một số max pooling layer
+ở đây để thay đổi kích thước
+
+54
+00:04:24.250 --> 00:04:25.800
+của chiều cao và chiều rộng
+
+55
+00:04:25.800 --> 00:04:28.140
+Nhưng đó là một khối Inception khác.
+
+56
+00:04:28.140 --> 00:04:31.020
+Và sau đó, có một max pooling khác ở đây
+để thay đổi chiều cao và chiều rộng nhưng
+
+57
+00:04:31.020 --> 00:04:33.280
+về cơ bản có một khối Inception khác.
+
+58
+00:04:33.280 --> 00:04:37.370
+Nhưng mạng Inception chỉ là
+nhiều khối mà mọi người đã học về
+
+59
+00:04:37.370 --> 00:04:40.930
+xuất hiện nhiều lần tại các vị trí
+khác nhau của mạng.
+
+60
+00:04:40.930 --> 00:04:44.509
+Như vậy nếu mọi người đã hiểu khối
+Inception từ slide trước,
+
+61
+00:04:44.509 --> 00:04:46.914
+thì mọi người đã hiểu về mạng Inception.
+
+62
+00:04:49.518 --> 00:04:53.403
+Hóa ra là có một chi tiết cuối cùng
+của mạng Inception nếu mọi người đọc
+
+63
+00:04:53.403 --> 00:04:55.430
+bài nghiên cứu không bắt buộc
+
+64
+00:04:55.430 --> 00:04:59.311
+Tức là tôi vừa thêm vào
+nhánh phụ.
+
+65
+00:05:01.835 --> 00:05:03.440
+Vậy thì họ cần làm gì?
+
+66
+00:05:03.440 --> 00:05:07.800
+Chà, vài layer cuối cùng của
+mạng là layer được kết nối đầy đủ
+
+67
+00:05:07.800 --> 00:05:11.360
+tiếp theo là layer softmax
+để cố gắng đưa ra dự đoán.
+
+68
+00:05:11.360 --> 00:05:15.430
+Các nhánh phụ
+cần một số layer ẩn và
+
+69
+00:05:15.430 --> 00:05:17.760
+nó cố gắng sử dụng layer đó để đưa ra dự đoán.
+
+70
+00:05:17.760 --> 00:05:22.140
+Vì vậy, đây thực ra là một đầu ra softmax và
+đây cũng vậy.
+
+71
+00:05:22.140 --> 00:05:23.952
+Và nhánh phụ còn lại
+
+72
+00:05:23.952 --> 00:05:29.173
+một lần nữa nó là một layer ẩn truyền qua
+một vài layer ví dụ như một vài layer được kết nối.
+
+73
+00:05:29.173 --> 00:05:33.243
+Và sau đó thử softmax để
+dự đoán nhãn đầu ra là gì.
+
+74
+00:05:35.545 --> 00:05:38.798
+Và mọi người nên coi nó
+chỉ là một chi tiết khác của mạng
+
+75
+00:05:38.798 --> 00:05:40.000
+Inception
+
+76
+00:05:40.000 --> 00:05:44.460
+Nhiệm vụ của nó là giúp
+đảm bảo rằng các đặc điểm được tính toán.
+
+77
+00:05:44.460 --> 00:05:48.060
+Ngay cả trong các unit ẩn,
+ngay cả ở các layer trung gian.
+
+78
+00:05:48.060 --> 00:05:52.490
+Chúng cũng làm tốt việc
+bảo vệ kích hoạt đầu ra của một hình ảnh.
+
+79
+00:05:52.490 --> 00:05:56.875
+Và điều này dường như có ảnh hưởng
+điều chỉnh đối với mạng Inception và
+
+80
+00:05:56.875 --> 00:05:59.667
+giúp ngăn mạng
+này gặp tình trạng overfitting
+
+81
+00:06:03.048 --> 00:06:07.907
+Nhân tiện,
+mạng Inception này
+
+82
+00:06:07.907 --> 00:06:11.770
+được phát triển bởi các tác giả làm việc tại Google.
+
+83
+00:06:11.770 --> 00:06:18.850
+Họ đã gọi nó là GoogleNet, đánh vần như
+thế này, để tôn vinh mạng.
+
+84
+00:06:18.850 --> 00:06:21.350
+Mọi người cũng đã học về nó trong
+video trước đó rồi.
+
+85
+00:06:23.460 --> 00:06:29.086
+Vậy, tôi nghĩ rằng việc
+cộng đồng Deep Learning hợp tác với nhau
+
+86
+00:06:29.086 --> 00:06:30.436
+là một điều thật tuyệt vời
+
+87
+00:06:30.436 --> 00:06:32.593
+Và có sự tôn trọng
+lành mạnh đối với
+
+88
+00:06:32.593 --> 00:06:35.865
+sản phẩm của nhau trong
+cộng đồng Học tập sâu.
+
+89
+00:06:35.865 --> 00:06:37.895
+Đây là một sự thật thú vị.
+
+90
+00:06:37.895 --> 00:06:40.425
+Tên của mạng Inception
+bắt nguồn từ đâu?
+
+91
+00:06:41.585 --> 00:06:47.375
+Nghiên cứu Inception trích dẫn
+meme này "We need to go deeper" (Chúng ta cần đi sâu hơn)
+
+92
+00:06:47.375 --> 00:06:52.315
+Và URL này là một tài liệu tham khảo
+thực tế trong nghiên cứu Inception,
+
+93
+00:06:52.315 --> 00:06:54.320
+liên kết đến hình ảnh này.
+
+94
+00:06:54.320 --> 00:06:57.610
+Và nếu mọi người đã xem bộ phim
+có tựa đề The Inception,
+
+95
+00:06:57.610 --> 00:07:00.070
+có lẽ mọi người sẽ hiểu meme này
+
+96
+00:07:00.070 --> 00:07:05.380
+Nhưng các tác giả thực sự trích dẫn
+meme này để làm động lực cho
+
+97
+00:07:05.380 --> 00:07:09.040
+nhu cầu xây dựng các mạng mới sâu hơn.
+
+98
+00:07:09.040 --> 00:07:12.890
+Và đó là cách họ nghĩ ra
+kiến trúc Inception.
+
+99
+00:07:12.890 --> 00:07:17.830
+Vậy, tôi đoán các nghiên cứu thì
+không thường xuyên trích dẫn các meme trên Internet
+
+100
+00:07:17.830 --> 00:07:19.030
+trong phần trích dẫn.
+
+101
+00:07:19.030 --> 00:07:22.165
+Nhưng trong trường hợp này,
+, tôi nghĩ là nó hoạt động khá tốt.
+
+102
+00:07:23.285 --> 00:07:27.015
+Vì vậy, để tóm tắt,
+nếu bạn hiểu mô-đun Inception,
+
+103
+00:07:27.015 --> 00:07:29.765
+thì mọi người đã hiểu về mạng Inception.
+
+104
+00:07:29.765 --> 00:07:33.865
+Mà phần lớn là mô-đun Inception
+lặp đi lặp lại nhiều lần
+
+105
+00:07:33.865 --> 00:07:35.435
+trên toàn mạng.
+
+106
+00:07:35.435 --> 00:07:40.025
+Kể từ khi mô-đun Inception
+ban đầu được phát minh, tác giả và
+
+107
+00:07:40.025 --> 00:07:43.760
+những người khác đã phát triển nó và
+nghĩ ra các phiên bản khác.
+
+108
+00:07:43.760 --> 00:07:49.090
+Vì vậy, có các tài liệu nghiên cứu về các phiên bản
+mới hơn của thuật toán khởi đầu.
+
+109
+00:07:49.090 --> 00:07:53.380
+Và đôi khi mọi người thấy người ta cũng sử dụng
+một số phiên bản sau
+
+110
+00:07:53.380 --> 00:07:57.040
+trong các sản phẩm của họ, như inception v2,
+inception v3, inception v4.
+
+111
+00:07:57.040 --> 00:07:59.360
+Cũng có một phiên bản Inception
+
+112
+00:07:59.360 --> 00:08:02.800
+Nó kết hợp với ý tưởng
+cộng hưởng của kết nối tắt,
+
+113
+00:08:02.800 --> 00:08:05.740
+và điều đó đôi khi còn hoạt động tốt hơn.
+
+114
+00:08:05.740 --> 00:08:10.600
+Nhưng tất cả các biến thể này đều được xây dựng dựa trên
+ý tưởng cơ bản mà
+
+115
+00:08:10.600 --> 00:08:14.710
+mọi người đã tìm hiểu trong video trước về
+với mô-đun Inception và
+
+116
+00:08:14.710 --> 00:08:17.510
+sau đó xếp chồng một loạt chúng lại với nhau.
+
+117
+00:08:17.510 --> 00:08:20.530
+Và với những video này, tôi nghĩ rằng
+mọi người sẽ có thể
+
+118
+00:08:20.530 --> 00:08:23.940
+đọc và hiểu nghiên cứu Inception
+
+119
+00:08:23.940 --> 00:08:28.790
+cũng như một số bài báo
+mô tả những dẫn xuất sau này của nó.
+
+120
+00:08:28.790 --> 00:08:30.020
+Chỉ có như vậy thôi,
+
+121
+00:08:30.020 --> 00:08:34.820
+mọi người đã tìm hiểu khá nhiều kiến trúc
+neural network chuyên biệt.
+
+122
+00:08:34.820 --> 00:08:39.650
+Trong video tiếp theo, tôi sẽ bắt đầu chỉ cho
+mọi người một số lời khuyên thiết thực hơn để
+
+123
+00:08:39.650 --> 00:08:43.830
+thực sự sử dụng các thuật toán này để xây dựng
+hệ thống thị giác máy tính của riêng mọi người
+
+124
+00:08:43.830 --> 00:08:45.090
+Hãy đón xem video tiếp theo.

@@ -1,0 +1,389 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.182
+Nếu bạn đang làm việc trên một ứng dụng machine learning hoàn toàn mới,
+
+2
+00:00:04.182 --> 00:00:06.840
+một trong những lời khuyên tôi thường cung cấp cho mọi người là,
+
+3
+00:00:06.840 --> 00:00:11.005
+tôi nghĩ bạn nên xây dựng hệ thống đầu tiên của bạn một cách nhanh chóng và sau đó lặp lại.
+
+4
+00:00:11.005 --> 00:00:14.895
+Để tôi cho các bạn thấy ý tôi. Tôi đã làm việc trong việc nhận dạng giọng nói trong nhiều năm.
+
+5
+00:00:14.895 --> 00:00:18.385
+Và nếu bạn đang nghĩ đến việc xây dựng một hệ thống nhận dạng giọng nói mới,
+
+6
+00:00:18.385 --> 00:00:20.430
+thực sự có rất nhiều hướng dẫn bạn có thể
+
+7
+00:00:20.430 --> 00:00:22.976
+đi và rất nhiều thứ bạn có thể ưu tiên.
+
+8
+00:00:22.976 --> 00:00:25.590
+Ví dụ, có những kỹ thuật cụ thể để làm cho các
+
+9
+00:00:25.590 --> 00:00:29.235
+hệ thống nhận dạng giọng nói mạnh mẽ hơn để ồn ào nền.
+
+10
+00:00:29.235 --> 00:00:32.340
+Và nền ồn ào có thể có nghĩa là tiếng ồn
+
+11
+00:00:32.340 --> 00:00:35.430
+của quán cà phê, giống như rất nhiều người nói chuyện trong nền hoặc tiếng ồn xe hơi,
+
+12
+00:00:35.430 --> 00:00:38.930
+âm thanh của xe hơi và đường cao tốc hoặc các loại tiếng ồn khác.
+
+13
+00:00:38.930 --> 00:00:43.440
+Có nhiều cách để làm cho một hệ thống nhận dạng giọng nói mạnh mẽ hơn để nói có dấu.
+
+14
+00:00:43.440 --> 00:00:48.311
+Có những vấn đề cụ thể liên quan đến loa xa micrô,
+
+15
+00:00:48.311 --> 00:00:50.705
+điều này được gọi là nhận dạng giọng nói trường xa.
+
+16
+00:00:50.705 --> 00:00:53.610
+Bài phát biểu của trẻ nhỏ đặt ra những thách thức đặc biệt,
+
+17
+00:00:53.610 --> 00:00:56.535
+cả về cách phát âm các từ riêng lẻ cũng
+
+18
+00:00:56.535 --> 00:00:59.820
+như lựa chọn từ và từ vựng mà chúng có xu hướng sử dụng.
+
+19
+00:00:59.820 --> 00:01:07.130
+Và nếu đôi khi người nói nói lắp hoặc nếu họ sử dụng các cụm từ vô nghĩa như oh, ah,
+
+20
+00:01:07.130 --> 00:01:09.960
+um, có những lựa chọn khác nhau và
+
+21
+00:01:09.960 --> 00:01:12.940
+kỹ thuật khác nhau để tạo ra bản ghi mà bạn xuất ra,
+
+22
+00:01:12.940 --> 00:01:15.310
+vẫn đọc trôi chảy hơn.
+
+23
+00:01:15.310 --> 00:01:17.880
+Vì vậy, có những điều này và
+
+24
+00:01:17.880 --> 00:01:22.710
+nhiều điều khác bạn có thể làm để cải thiện một hệ thống nhận dạng giọng nói.
+
+25
+00:01:22.710 --> 00:01:26.693
+Và tổng quát hơn, đối với hầu hết mọi ứng dụng machine learning,
+
+26
+00:01:26.693 --> 00:01:30.030
+có thể có 50 hướng khác nhau bạn có thể đi vào
+
+27
+00:01:30.030 --> 00:01:34.650
+và mỗi hướng này là hợp lý và sẽ làm cho hệ thống của bạn tốt hơn.
+
+28
+00:01:34.650 --> 00:01:35.955
+Nhưng thách thức là,
+
+29
+00:01:35.955 --> 00:01:38.990
+làm thế nào để bạn chọn cái nào trong số này để tập trung vào.
+
+30
+00:01:38.990 --> 00:01:42.970
+Và mặc dù tôi đã làm việc trong nhận dạng giọng nói trong nhiều năm,
+
+31
+00:01:42.970 --> 00:01:46.075
+nếu tôi đang xây dựng một hệ thống mới cho một miền ứng dụng mới,
+
+32
+00:01:46.075 --> 00:01:48.730
+tôi vẫn sẽ thấy nó có thể hơi khó khăn để
+
+33
+00:01:48.730 --> 00:01:52.625
+chọn mà không tốn thời gian suy nghĩ về vấn đề.
+
+34
+00:01:52.625 --> 00:01:54.550
+Vì vậy, những gì chúng tôi khuyên bạn nên làm,
+
+35
+00:01:54.550 --> 00:01:58.570
+nếu bạn đang bắt đầu xây dựng một ứng dụng machine learning hoàn toàn mới,
+
+36
+00:01:58.570 --> 00:02:02.277
+là xây dựng hệ thống đầu tiên của bạn một cách nhanh chóng và sau đó lặp lại.
+
+37
+00:02:02.277 --> 00:02:04.720
+Những gì tôi có nghĩa là bởi đó là tôi khuyên
+
+38
+00:02:04.720 --> 00:02:08.470
+bạn nên đầu tiên nhanh chóng thiết lập một thiết lập dev/test và metric.
+
+39
+00:02:08.470 --> 00:02:12.360
+Vì vậy, điều này thực sự quyết định nơi để đặt mục tiêu của bạn.
+
+40
+00:02:12.360 --> 00:02:14.560
+Và nếu bạn hiểu sai, bạn luôn có thể di chuyển nó sau này,
+
+41
+00:02:14.560 --> 00:02:16.695
+nhưng chỉ cần thiết lập một mục tiêu ở đâu đó.
+
+42
+00:02:16.695 --> 00:02:20.920
+Và sau đó tôi khuyên bạn nên xây dựng một hệ thống machine learning ban đầu một cách nhanh chóng.
+
+43
+00:02:20.920 --> 00:02:23.248
+Tìm bộ đào tạo, đào tạo nó và xem.
+
+44
+00:02:23.248 --> 00:02:25.180
+Bắt đầu để xem và hiểu bạn đang
+
+45
+00:02:25.180 --> 00:02:29.475
+làm tốt như thế nào đối với thiết lập dev/test của bạn và các giá trị và số liệu của bạn.
+
+46
+00:02:29.475 --> 00:02:32.633
+Khi bạn xây dựng hệ thống ban đầu của
+
+47
+00:02:32.633 --> 00:02:37.180
+bạn, sau đó bạn có thể sử dụng phân tích bias/variance mà chúng tôi đã nói về
+
+48
+00:02:37.180 --> 00:02:42.470
+trước đó cũng như phân tích lỗi mà chúng tôi đã nói về chỉ trong một số video cuối cùng,
+
+49
+00:02:42.470 --> 00:02:45.260
+để ưu tiên các bước tiếp theo.
+
+50
+00:02:45.260 --> 00:02:49.320
+Đặc biệt, nếu phân tích lỗi
+
+51
+00:02:49.320 --> 00:02:52.780
+khiến bạn nhận ra rằng rất nhiều lỗi là
+
+52
+00:02:52.780 --> 00:02:55.675
+từ loa rất xa micrô,
+
+53
+00:02:55.675 --> 00:02:58.342
+gây ra những thách thức đặc biệt để nhận dạng giọng nói, thì điều
+
+54
+00:02:58.342 --> 00:03:03.990
+đó sẽ cung cấp cho bạn một lý do chính đáng để tập trung vào các kỹ thuật để giải quyết điều này được gọi là
+
+55
+00:03:03.990 --> 00:03:06.640
+xa - lĩnh vực nhận dạng giọng nói mà
+
+56
+00:03:06.640 --> 00:03:10.865
+về cơ bản có nghĩa là xử lý khi loa là rất xa micrô.
+
+57
+00:03:10.865 --> 00:03:14.693
+Trong tất cả các giá trị của việc xây dựng hệ thống ban đầu này,
+
+58
+00:03:14.693 --> 00:03:16.737
+nó có thể là một thực hiện nhanh chóng và bẩn thỉu
+
+59
+00:03:16.737 --> 00:03:18.120
+, bạn biết đấy, đừng lạm dụng nó,
+
+60
+00:03:18.120 --> 00:03:22.690
+nhưng tất cả các giá trị của hệ thống ban đầu là có một số hệ thống học được,
+
+61
+00:03:22.690 --> 00:03:26.497
+có một số hệ thống được đào tạo cho phép bạn địa phương hóa bias/variance,
+
+62
+00:03:26.497 --> 00:03:28.255
+để cố gắng ưu tiên phải làm gì tiếp theo,
+
+63
+00:03:28.255 --> 00:03:30.270
+cho phép bạn phân tích lỗi,
+
+64
+00:03:30.270 --> 00:03:31.480
+nhìn vào một số sai lầm,
+
+65
+00:03:31.480 --> 00:03:34.630
+để tìm ra tất cả các hướng khác nhau bạn có thể đi vào,
+
+66
+00:03:34.630 --> 00:03:37.822
+cái nào thực sự đáng giá nhất.
+
+67
+00:03:37.822 --> 00:03:44.125
+Vì vậy, để tóm lại, những gì tôi khuyên bạn nên làm là xây dựng hệ thống đầu tiên của bạn một cách nhanh chóng, sau đó lặp lại.
+
+68
+00:03:44.125 --> 00:03:47.050
+Lời khuyên này áp dụng ít mạnh hơn nếu bạn đang làm việc trên
+
+69
+00:03:47.050 --> 00:03:52.300
+một khu vực ứng dụng mà bạn có kinh nghiệm đáng kể trước đó.
+
+70
+00:03:52.300 --> 00:03:56.080
+Nó cũng ngụ ý xây dựng ít mạnh mẽ hơn nếu có một cơ quan quan trọng của
+
+71
+00:03:56.080 --> 00:03:58.480
+tài liệu học thuật mà bạn có thể rút ra
+
+72
+00:03:58.480 --> 00:04:01.425
+cho khá nhiều vấn đề chính xác mà bạn đang xây dựng.
+
+73
+00:04:01.425 --> 00:04:05.810
+Ví dụ, có một tài liệu học thuật lớn về nhận diện khuôn mặt.
+
+74
+00:04:05.810 --> 00:04:08.185
+Và nếu bạn đang cố gắng xây dựng một máy nhận diện khuôn mặt,
+
+75
+00:04:08.185 --> 00:04:11.725
+có thể sẽ không sao nếu xây dựng một hệ thống phức tạp hơn từ lúc bắt
+
+76
+00:04:11.725 --> 00:04:16.595
+đầu bằng cách xây dựng trên cơ sở lớn của tài liệu học thuật này.
+
+77
+00:04:16.595 --> 00:04:19.990
+Nhưng nếu bạn đang giải quyết một vấn đề mới lần đầu tiên,
+
+78
+00:04:19.990 --> 00:04:23.235
+sau đó tôi sẽ khuyến khích bạn thực sự không
+
+79
+00:04:23.235 --> 00:04:27.010
+suy nghĩ quá mức hoặc không làm cho hệ thống đầu tiên của bạn quá phức tạp.
+
+80
+00:04:27.010 --> 00:04:30.070
+Vâng, chỉ cần xây dựng một cái gì đó nhanh chóng và bẩn thỉu và sau đó sử dụng nó
+
+81
+00:04:30.070 --> 00:04:33.447
+để giúp bạn ưu tiên làm thế nào để cải thiện hệ thống của bạn.
+
+82
+00:04:33.447 --> 00:04:36.670
+Vì vậy, tôi đã nhìn thấy rất nhiều dự án machine learning và tôi đã
+
+83
+00:04:36.670 --> 00:04:40.465
+thấy một số nhóm suy nghĩ quá mức về giải pháp và xây dựng một cái gì đó quá phức tạp.
+
+84
+00:04:40.465 --> 00:04:44.335
+Tôi cũng đã thấy một số nhóm suy nghĩ và sau đó xây dựng một cái gì đó có thể quá đơn giản.
+
+85
+00:04:44.335 --> 00:04:46.240
+Trung bình, tôi đã thấy rất nhiều
+
+86
+00:04:46.240 --> 00:04:49.315
+đội nghĩ quá nhiều và xây dựng một cái gì đó quá phức tạp.
+
+87
+00:04:49.315 --> 00:04:52.275
+Và tôi đã thấy các đội xây dựng một cái gì đó quá đơn giản.
+
+88
+00:04:52.275 --> 00:04:53.920
+Vì vậy, tôi hy vọng điều này giúp,
+
+89
+00:04:53.920 --> 00:04:58.583
+và nếu bạn đang áp dụng cho machine learning thuật toán để một ứng dụng mới,
+
+90
+00:04:58.583 --> 00:05:01.840
+và nếu mục tiêu chính của bạn là để xây dựng một cái gì đó hoạt động,
+
+91
+00:05:01.840 --> 00:05:04.720
+như trái ngược với nếu mục tiêu chính của bạn là để phát minh ra
+
+92
+00:05:04.720 --> 00:05:08.020
+một thuật toán machine learning mới đó là một mục tiêu khác nhau,
+
+93
+00:05:08.020 --> 00:05:11.075
+sau đó chính của bạn mục tiêu là để có được một cái gì đó hoạt động thực sự tốt.
+
+94
+00:05:11.075 --> 00:05:13.360
+Tôi khuyến khích các bạn xây dựng một cái gì đó nhanh chóng và bẩn thỉu.
+
+95
+00:05:13.360 --> 00:05:14.600
+Sử dụng nó để thực hiện phân tích bias/variance,
+
+96
+00:05:14.600 --> 00:05:17.890
+sử dụng nó để thực hiện phân tích lỗi và
+
+97
+00:05:17.890 --> 00:05:23.510
+sử dụng kết quả của các phân tích đó để giúp bạn ưu tiên đi đâu tiếp theo.

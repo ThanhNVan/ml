@@ -1,0 +1,326 @@
+WEBVTT
+
+00:00:01.940 --> 00:00:06.660
+Thuật toán học của bạn sẽ chạy tốt hơn nhiều
+với lựa chọn learning rate phù hợp.
+
+00:00:06.660 --> 00:00:12.500
+Nếu quá nhỏ, nó sẽ chạy rất chậm và nếu quá
+lớn, nó thậm chí có thể không hội tụ.
+
+00:00:12.500 --> 00:00:14.560
+Chúng ta hãy xem làm thế nào bạn có thể chọn
+
+00:00:14.560 --> 00:00:16.620
+learning rate tập tốt cho mô hình của mình.
+
+00:00:16.620 --> 00:00:20.927
+Ngược lại, nếu bạn vẽ biểu đồ chi phí cho một
+số lần lặp và
+
+00:00:20.927 --> 00:00:25.233
+nhận thấy rằng chi phí đôi khi tăng lên và đôi
+khi giảm xuống,
+
+00:00:25.233 --> 00:00:29.540
+bạn nên coi đó là một dấu hiệu rõ ràng cho
+thấy gradient descent.
+
+00:00:29.540 --> 00:00:31.660
+không hoạt động đúng cách.
+
+00:00:31.660 --> 00:00:35.000
+Điều này có thể có nghĩa là có lỗi trong mã
+hoặc đôi
+
+00:00:35.000 --> 00:00:38.340
+khi có thể có nghĩa là learning rate của bạn
+quá lớn.
+
+00:00:38.340 --> 00:00:42.300
+Vì vậy, đây là một minh họa về những gì có thể
+xảy ra.
+
+00:00:42.300 --> 00:00:50.040
+Ở đây trục tung là cost function j và trục
+hoành biểu thị một tham số
+
+00:00:50.040 --> 00:00:57.780
+như có thể là w1, và nếu learning rate quá lớn
+thì nếu bạn bắt đầu ở đây,
+
+00:00:57.780 --> 00:01:01.820
+bước cập nhật có thể vượt quá mức tối thiểu và
+kết thúc ở đây.
+
+00:01:01.820 --> 00:01:05.060
+Và trong bước cập nhật tiếp theo tại đây, bạn
+
+00:01:05.060 --> 00:01:08.300
+sẽ bị vượt mức, nên bạn kết thúc ở đây, v.v.
+
+00:01:08.300 --> 00:01:12.940
+Và đó là lý do tại sao chi phí đôi khi có thể
+tăng lên thay vì giảm đi.
+
+00:01:12.940 --> 00:01:15.980
+Để khắc phục điều này, bạn có thể sử dụng
+learning rate tập nhỏ hơn.
+
+00:01:15.980 --> 00:01:21.400
+Vì vậy, các bản cập nhật của bạn có thể bắt
+đầu từ đây và giảm dần một chút, giảm
+
+00:01:21.400 --> 00:01:26.820
+dần một chút và hy vọng sẽ giảm liên tục cho
+đến khi đạt mức tối thiểu toàn cầu.
+
+00:01:26.820 --> 00:01:30.340
+Đôi khi bạn có thể thấy chi phí tăng liên tục
+
+00:01:30.340 --> 00:01:33.860
+sau mỗi lần lặp lại, như đường cong này ở đây.
+
+00:01:33.860 --> 00:01:37.900
+Điều này cũng có thể là do learning rate quá
+lớn và có
+
+00:01:37.900 --> 00:01:41.940
+thể được giải quyết bằng cách chọn
+learning rate nhỏ hơn.
+
+00:01:41.940 --> 00:01:44.500
+Nhưng learning rate như thế này cũng có thể
+
+00:01:44.500 --> 00:01:47.060
+là dấu hiệu của lỗi có thể xảy ra trong mã.
+
+00:01:47.060 --> 00:01:54.520
+Ví dụ: nếu tôi viết mã của mình để w1 được cập
+nhật dưới dạng w1 cộng alpha nhân với
+
+00:01:54.520 --> 00:02:01.980
+số hạng đạo hàm của nó, điều này có thể dẫn
+đến chi phí tăng liên tục ở mỗi lần lặp.
+
+00:02:01.980 --> 00:02:06.000
+Và điều này là do việc thêm số hạng phái sinh
+sẽ đẩy chi
+
+00:02:06.000 --> 00:02:10.020
+phí j của bạn ra xa mức tối thiểu toàn cầu
+thay vì gần hơn.
+
+00:02:10.020 --> 00:02:16.080
+Vì vậy, hãy nhớ rằng, bạn muốn sử dụng dấu
+trừ, vì vậy mã phải được
+
+00:02:16.080 --> 00:02:22.140
+cập nhật, w1 được cập nhật bằng w1 trừ alpha
+nhân số hạng đạo hàm.
+
+00:02:22.140 --> 00:02:27.920
+Một mẹo gỡ lỗi để triển khai chính xác việc
+gradient descent là
+
+00:02:27.920 --> 00:02:33.700
+với learning rate đủ nhỏ, cost function sẽ
+giảm trên mỗi lần lặp.
+
+00:02:33.700 --> 00:02:37.313
+Vì vậy, nếu việc gradient descent không hoạt
+động, một điều
+
+00:02:37.313 --> 00:02:40.927
+tôi sẽ thường làm và tôi hy vọng bạn cũng thấy
+mẹo này hữu
+
+00:02:40.927 --> 00:02:44.540
+ích, một điều tôi thường làm là đặt alpha ở
+mức rất rất nhỏ.
+
+00:02:44.540 --> 00:02:51.660
+số và xem liệu điều đó có làm cho chi phí giảm
+sau mỗi lần lặp hay không.
+
+00:02:51.660 --> 00:02:57.080
+Nếu ngay cả khi alpha được đặt thành một số
+rất nhỏ, j không giảm sau mỗi lần lặp mà
+
+00:02:57.080 --> 00:03:02.500
+thay vào đó đôi khi tăng lên, thì điều đó
+thường có nghĩa là có lỗi ở đâu đó trong
+
+00:03:02.500 --> 00:03:04.740
+mã.
+
+00:03:04.740 --> 00:03:10.540
+Lưu ý rằng việc đặt alpha ở mức thực sự rất
+nhỏ ở đây có nghĩa là một bước gỡ lỗi.
+
+00:03:10.540 --> 00:03:14.020
+Và một giá trị rất nhỏ của alpha sẽ không phải
+là lựa chọn
+
+00:03:14.020 --> 00:03:17.500
+hiệu quả nhất để thực sự đào tạo thuật toán
+học tập của bạn.
+
+00:03:17.500 --> 00:03:21.760
+Một sự đánh đổi quan trọng là nếu
+learning rate của bạn quá nhỏ
+
+00:03:21.760 --> 00:03:26.020
+thì việc gradient descent có thể mất rất nhiều
+lần lặp để hội tụ.
+
+00:03:26.020 --> 00:03:29.240
+Vì vậy, khi tôi chạy gradient descent, tôi
+thường
+
+00:03:29.240 --> 00:03:32.460
+sẽ thử một loạt giá trị cho learning rate tập
+alpha.
+
+00:03:32.460 --> 00:03:38.860
+Vì vậy, tôi có thể bắt đầu bằng cách thử
+learning rate là 0,001 và tôi
+
+00:03:38.860 --> 00:03:45.260
+cũng có thể thử learning rate lớn gấp 10 lần,
+chẳng hạn như 0,01 và 0,1, v.v.
+
+00:03:45.260 --> 00:03:51.160
+Và đối với mỗi lựa chọn alpha, bạn có thể chạy
+gradient descent chỉ
+
+00:03:51.160 --> 00:03:57.060
+cho một số lần lặp và vẽ cost function j dưới
+dạng hàm của số lần lặp.
+
+00:03:57.060 --> 00:04:02.280
+Và sau khi thử một vài giá trị khác nhau, bạn
+có thể chọn giá trị
+
+00:04:02.280 --> 00:04:07.500
+alpha có vẻ làm giảm learning rate nhanh chóng
+nhưng cũng nhất quán.
+
+00:04:07.500 --> 00:04:12.580
+Trên thực tế, điều tôi thực sự làm là thử một
+loạt giá trị như thế này.
+
+00:04:12.580 --> 00:04:20.360
+Sau khi thử 0,001, tôi sẽ tăng learning rate
+lên gấp 3 lần lên
+
+00:04:20.360 --> 00:04:28.140
+0,003 và sau đó tôi sẽ thử 0,01, lại lớn gấp
+khoảng 3 lần 0,003.
+
+00:04:28.140 --> 00:04:32.640
+Vì vậy, đây là những thử nghiệm sơ bộ về việc
+gradient descent
+
+00:04:32.640 --> 00:04:37.140
+với mỗi giá trị alpha lớn hơn khoảng 3 lần so
+với giá trị trước đó.
+
+00:04:37.140 --> 00:04:40.687
+Vì vậy, điều tôi sẽ làm là thử một loạt các
+giá trị cho đến
+
+00:04:40.687 --> 00:04:44.233
+khi tôi tìm thấy một giá trị quá nhỏ, sau đó
+cũng đảm bảo
+
+00:04:44.233 --> 00:04:47.780
+rằng tôi đã tìm thấy một giá trị quá lớn và
+tôi sẽ từ từ thử chọn
+
+00:04:47.780 --> 00:04:51.800
+learning rate lớn nhất có thể hoặc chỉ nhỏ hơn
+một
+
+00:04:51.800 --> 00:04:55.820
+chút so với giá trị hợp lý lớn nhất mà tôi tìm
+thấy.
+
+00:04:55.820 --> 00:04:58.180
+Và khi tôi làm điều đó, nó thường mang lại cho
+
+00:04:58.180 --> 00:05:00.540
+tôi learning rate tập tốt cho mô hình của
+mình.
+
+00:05:00.540 --> 00:05:05.180
+Vì vậy, tôi hy vọng kỹ thuật này cũng sẽ hữu
+ích để bạn
+
+00:05:05.180 --> 00:05:09.820
+chọn learning rate tốt cho việc triển khai
+gradient descent.
+
+00:05:09.820 --> 00:05:13.433
+Trong phòng thí nghiệm tùy chọn sắp tới, bạn
+cũng có thể xem cách
+
+00:05:13.433 --> 00:05:17.047
+thực hiện chia tỷ lệ feature trong mã và cũng
+xem các lựa chọn khác
+
+00:05:17.047 --> 00:05:20.660
+nhau về learning rate tập alpha có thể dẫn đến
+một trong hai điều sau:
+
+00:05:20.660 --> 00:05:24.020
+đào tạo tốt hơn hoặc tồi tệ hơn cho mô hình
+của bạn.
+
+00:05:24.020 --> 00:05:27.300
+Tôi hy vọng bạn vui vẻ khi sử dụng giá trị
+alpha
+
+00:05:27.300 --> 00:05:30.580
+và xem kết quả của các lựa chọn alpha khác
+nhau.
+
+00:05:30.580 --> 00:05:35.160
+Vì vậy, vui lòng xem và chạy mã trong phòng
+thí nghiệm tùy chọn để có
+
+00:05:35.160 --> 00:05:39.740
+được trực giác sâu hơn về tỷ lệ feature cũng
+như learning rate tập alpha.
+
+00:05:39.740 --> 00:05:43.420
+Sử dụng learning rate tập là một phần quan
+trọng trong quá trình đào tạo
+
+00:05:43.420 --> 00:05:47.100
+nhiều thuật toán học tập và tôi hy vọng rằng
+video này mang đến cho bạn trực
+
+00:05:47.100 --> 00:05:50.780
+giác về các lựa chọn khác nhau cũng như cách
+chọn giá trị phù hợp cho alpha.
+
+00:05:50.780 --> 00:05:54.300
+Bây giờ, họ có thể sử dụng thêm một số ý tưởng
+để làm cho
+
+00:05:54.300 --> 00:05:57.820
+linear regression đa biến trở nên mạnh mẽ hơn
+nhiều và đó là
+
+00:05:57.820 --> 00:06:01.340
+việc chọn các feature tùy chỉnh cũng sẽ cho
+phép bạn điều chỉnh phù hợp.
+
+00:06:01.340 --> 00:06:04.060
+đường cong không chỉ là một đường thẳng tới dữ
+liệu của bạn.
+
+00:06:04.060 --> 00:06:05.900
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

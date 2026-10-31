@@ -1,0 +1,573 @@
+WEBVTT
+
+1
+00:00:00.860 --> 00:00:05.760
+Chúng tôi đã học về cách mà vector hóa giúp 
+bạn tăng tốc đáng kể mã của bạn như thế nào.
+
+2
+00:00:05.760 --> 00:00:08.160
+Trong video này, chúng ta sẽ 
+học cách bạn có thể vector hóa
+
+3
+00:00:08.160 --> 00:00:10.545
+trong triển khai logistic regression,
+
+4
+00:00:10.545 --> 00:00:12.960
+để chúng có thể xử lý 
+toàn bộ training set,
+
+5
+00:00:12.960 --> 00:00:15.930
+đó là triển khai gradient 
+descent ở mức độ cao cho
+
+6
+00:00:15.930 --> 00:00:22.330
+toàn bộ training set mà không 
+sử dụng vòng lặp for tường minh nào.
+
+7
+00:00:22.330 --> 00:00:24.039
+Tôi vô cùng hào hứng 
+về kỹ thuật này,
+
+8
+00:00:24.039 --> 00:00:26.670
+và sau này chúng ta sẽ học về 
+neural network nhân tạo mà không
+
+9
+00:00:26.670 --> 00:00:30.050
+sử dụng bất cứ vòng lặp 
+for tường minh nào.
+
+10
+00:00:30.050 --> 00:00:35.965
+Cùng bắt đầu nào. Đầu tiên hãy cùng
+ xem bước truyền xuôi của logistic regression.
+
+11
+00:00:35.965 --> 00:00:37.860
+Nếu bạn có m ví dụ đào tạo,
+
+12
+00:00:37.860 --> 00:00:40.605
+để đưa ra dự đoán 
+về ví dụ đầu tiên,
+
+13
+00:00:40.605 --> 00:00:42.105
+bạn cần tính,
+
+14
+00:00:42.105 --> 00:00:45.480
+tính Z. Tôi đang sử dụng 
+công thức quen thuộc này,
+
+15
+00:00:45.480 --> 00:00:47.370
+sau đó tính toán kích hoạt,
+
+16
+00:00:47.370 --> 00:00:49.485
+bạn tính y mũ
+ trong ví dụ đầu tiên.
+
+17
+00:00:49.485 --> 00:00:52.705
+Sau đó, để đưa ra dự đoán
+ về ví dụ đào tạo thứ hai,
+
+18
+00:00:52.705 --> 00:00:54.405
+bạn cần phải tính cái này.
+
+19
+00:00:54.405 --> 00:00:57.085
+Sau đó, để đưa ra một
+ dự đoán về ví dụ thứ ba,
+
+20
+00:00:57.085 --> 00:00:59.045
+bạn cần phải tính cái này, v.v.
+
+21
+00:00:59.045 --> 00:01:01.020
+Và có thể bạn sẽ phải 
+làm điều này m lần,
+
+22
+00:01:01.020 --> 00:01:03.855
+nếu bạn có m ví dụ huấn luyện.
+
+23
+00:01:03.855 --> 00:01:08.250
+Như vậy, để thực hiện
+ bước truyền xuôi,
+
+24
+00:01:08.250 --> 00:01:13.435
+mà để tính những dự đoán này
+ trên m ví dụ đào tạo của chúng ta,
+
+25
+00:01:13.435 --> 00:01:14.865
+có một cách để làm như vậy,
+
+26
+00:01:14.865 --> 00:01:17.925
+mà không cần tới một 
+vòng lặp for tường minh nào.
+
+27
+00:01:17.925 --> 00:01:20.450
+Hãy cùng xem cách để làm điều đó.
+
+28
+00:01:20.450 --> 00:01:26.455
+Đầu tiên, hãy nhớ rằng chúng ta đã xác định 
+ma trận X là đầu vào đào tạo của bạn,
+
+29
+00:01:26.455 --> 00:01:30.895
+xếp thành các cột 
+khác nhau như thế này.
+
+30
+00:01:30.895 --> 00:01:33.810
+Đây là một ma trận,
+
+31
+00:01:33.810 --> 00:01:38.425
+đó là ma trận (nx,m).
+
+32
+00:01:38.425 --> 00:01:41.885
+Và tôi đang viết điều này 
+như hình Python numpy,
+
+33
+00:01:41.885 --> 00:01:50.350
+có nghĩa là X là ma
+ trận nx nhân m chiều.
+
+34
+00:01:50.350 --> 00:01:54.670
+Bây giờ, đầu tiên tôi muốn chỉ
+ bạn cách có thể tính z(1), z(2),
+
+35
+00:01:54.670 --> 00:01:56.512
+z(3) và v.v,
+
+36
+00:01:56.512 --> 00:01:58.665
+tất cả chỉ trong một bước
+
+37
+00:01:58.665 --> 00:02:01.195
+thực tế là, chỉ với một dòng mã.
+
+38
+00:02:01.195 --> 00:02:06.930
+Vì vậy, tôi sẽ xây dựng
+
+39
+00:02:06.930 --> 00:02:13.100
+ma trận 1x m chiều, là một vectơ 
+hàng trong khi đó tôi sẽ tính z(1),
+
+40
+00:02:13.100 --> 00:02:15.405
+z(2), v.v.
+
+41
+00:02:15.405 --> 00:02:18.480
+tới z(m), cùng một lúc.
+
+42
+00:02:18.480 --> 00:02:22.175
+Trên thực tế, điều này 
+có thể được thể hiện như là
+
+43
+00:02:22.175 --> 00:02:29.225
+w chuyển vị ma trận X 
+cộng với vectơ b này,
+
+44
+00:02:29.225 --> 00:02:31.040
+b và v.v.
+
+45
+00:02:31.040 --> 00:02:33.315
+b,
+
+46
+00:02:33.315 --> 00:02:34.480
+b, b, b, b, này
+
+47
+00:02:34.480 --> 00:02:38.980
+là một vectơ 1xm hoặc
+
+48
+00:02:38.980 --> 00:02:46.725
+ma trận 1xm hoặc đó là
+ một vectơ hàng m chiều.
+
+49
+00:02:46.725 --> 00:02:50.495
+Như vậy, tôi hy vọng bạn đã
+ thấy phép nhân ma trận.
+
+50
+00:02:50.495 --> 00:02:56.300
+Bạn có thể thấy 
+rằng w chuyển vị x1,
+
+51
+00:02:56.300 --> 00:02:58.760
+x2 và như vậy với xm,
+
+52
+00:02:58.760 --> 00:03:05.755
+w chuyển vị có thể
+ là một vectơ hàng.
+
+53
+00:03:05.755 --> 00:03:10.655
+w chuyển vị này sẽ là một 
+vectơ hàng như thế này.
+
+54
+00:03:10.655 --> 00:03:18.614
+Và vì vậy, số hạng đầu tiên này 
+sẽ được tính là w chuyển vị x1,
+
+55
+00:03:18.614 --> 00:03:22.970
+w hoán vị x2 và v.v, 
+chấm, chấm, chấm,
+
+56
+00:03:22.970 --> 00:03:29.840
+w chuyển vị xm, và sau đó chúng ta
+ thêm số hạng b thứ hai này,
+
+57
+00:03:29.840 --> 00:03:30.960
+b, b, v.v.
+
+58
+00:03:30.960 --> 00:03:33.565
+cuối cùng bạn thêm 
+b vào mỗi phần tử.
+
+59
+00:03:33.565 --> 00:03:37.650
+Và bạn kết thúc với 
+một vector 1xm khác.
+
+60
+00:03:37.650 --> 00:03:38.955
+Đây là phần tử đầu tiên,
+
+61
+00:03:38.955 --> 00:03:40.590
+đây là phần tử 
+thứ hai và cứ thế,
+
+62
+00:03:40.590 --> 00:03:42.810
+và đó là yếu tố thứ n.
+
+63
+00:03:42.810 --> 00:03:45.605
+Và nếu bạn xem các 
+định nghĩa phía trên, thì
+
+64
+00:03:45.605 --> 00:03:51.250
+phần tử đầu tiên này
+ chính xác là công thức của z1.
+
+65
+00:03:51.250 --> 00:03:57.305
+Phần tử thứ hai chính xác 
+là công thức của z2, v.v.
+
+66
+00:03:57.305 --> 00:04:00.035
+Vậy nên, X có được
+
+67
+00:04:00.035 --> 00:04:02.870
+khi bạn lấy ví dụ 
+huấn luyện của bạn và
+
+68
+00:04:02.870 --> 00:04:07.400
+xếp chúng cạnh nhau, 
+xếp chúng theo chiều ngang.
+
+69
+00:04:07.400 --> 00:04:11.069
+Tôi sẽ định nghĩa Z như sau,
+
+70
+00:04:11.069 --> 00:04:16.385
+bạn lấy z viết thường và xếp 
+chúng theo chiều ngang.
+
+71
+00:04:16.385 --> 00:04:21.080
+Và khi bạn chữ x thường thành các cột
+ tương ứng với một ví dụ huấn luyện khác,
+
+72
+00:04:21.080 --> 00:04:24.350
+theo chiều ngang bạn có
+ được biến X này và
+
+73
+00:04:24.350 --> 00:04:27.420
+tương tự, khi bạn lấy các 
+biến z viết thường này,
+
+74
+00:04:27.420 --> 00:04:28.805
+và xếp chúng theo chiều ngang,
+
+75
+00:04:28.805 --> 00:04:34.050
+bạn nhận được biến Z.
+
+76
+00:04:34.050 --> 00:04:37.400
+Và để thực hiện điều này,
+
+77
+00:04:37.400 --> 00:04:45.773
+lệnh numpy là Z 
+bằng np.dot(w.T,X),
+
+78
+00:04:45.773 --> 00:04:51.095
+đó là W chuyển vị X 
+và sau đó cộng b.
+
+79
+00:04:51.095 --> 00:04:53.645
+Bây giờ có một sự 
+tinh vi trong Python,
+
+80
+00:04:53.645 --> 00:04:59.405
+ở đây b là số thực hoặc nếu bạn 
+muốn nói là bạn biết ma trận 1x1,
+
+81
+00:04:59.405 --> 00:05:01.330
+chỉ là một con số 
+thực bình thường.
+
+82
+00:05:01.330 --> 00:05:06.230
+Nhưng, khi bạn thêm
+ vectơ này vào số thực này,
+
+83
+00:05:06.230 --> 00:05:13.235
+Python tự động lấy số thực b này và
+ mở rộng nó ra vector hàng 1xm này.
+
+84
+00:05:13.235 --> 00:05:16.490
+Và khi phép toán này 
+ có vẻ hơi bí ẩn, thì
+
+85
+00:05:16.490 --> 00:05:20.120
+đây được gọi là broadcasting
+ (truyền phát) trong Python,
+
+86
+00:05:20.120 --> 00:05:22.210
+và hiện tại thì bạn vẫn
+ chưa cần lo lắng về nó,
+
+87
+00:05:22.210 --> 00:05:25.760
+chúng ta sẽ nói thêm về 
+nó trong video tiếp theo.
+
+88
+00:05:25.760 --> 00:05:29.180
+Nhưng điều đáng nói là chỉ với
+ một dòng mã, với dòng mã này,
+
+89
+00:05:29.180 --> 00:05:33.290
+bạn có thể tính được Z và Z
+
+90
+00:05:33.290 --> 00:05:37.698
+sẽ là một ma trận 1xm 
+chứa tất cả các chữ z thường.
+
+91
+00:05:37.698 --> 00:05:41.200
+Từ z1 tới zm.
+
+92
+00:05:41.200 --> 00:05:46.255
+Vậy đó là z, thế 
+còn những giá trị a.
+
+93
+00:05:46.255 --> 00:05:48.260
+Tiếp theo chúng ta
+
+94
+00:05:48.260 --> 00:05:52.685
+đang tìm cách tính a1,
+
+95
+00:05:52.685 --> 00:05:57.220
+a2 và v.v. đến am,
+
+96
+00:05:57.220 --> 00:05:58.700
+cùng một lúc,
+
+97
+00:05:58.700 --> 00:06:03.350
+và giống như việc
+ xếp cột x thường để
+
+98
+00:06:03.350 --> 00:06:08.870
+có X hoa và xếp cột z thường 
+theo chiều ngang để có Z hoa,
+
+99
+00:06:08.870 --> 00:06:10.810
+xếp cột a thường
+
+100
+00:06:10.810 --> 00:06:12.470
+sẽ dẫn đến một biến mới,
+
+101
+00:06:12.470 --> 00:06:15.200
+mà được xác định là A hoa.
+
+102
+00:06:15.200 --> 00:06:18.075
+Và trong phần bài tập lập trình,
+
+103
+00:06:18.075 --> 00:06:22.790
+bạn thấy cách triển khai một 
+hàm sigmoid giá trị vector,
+
+104
+00:06:22.790 --> 00:06:24.480
+sao cho hàm sigmoid,
+
+105
+00:06:24.480 --> 00:06:32.380
+nhập vào biến Z hoa này và 
+xuất ra A hoa vô cùng hiệu quả.
+
+106
+00:06:32.380 --> 00:06:36.620
+Và bạn sẽ thấy chi tiết về 
+điều đó trong bài tập lập trình.
+
+107
+00:06:36.620 --> 00:06:38.110
+Tóm lại,
+
+108
+00:06:38.110 --> 00:06:42.655
+trên slide này chúng ta cáo thể 
+thấy thay vì phải lặp đi lặp lại
+
+109
+00:06:42.655 --> 00:06:47.515
+m ví dụ đào tạo để tính 
+z thường và a thường,
+
+110
+00:06:47.515 --> 00:06:52.090
+từng cái mộy, thì bạn có thể 
+triển khai một dòng mã này,
+
+111
+00:06:52.090 --> 00:06:54.290
+để tính toán tất cả 
+z này cùng một lúc.
+
+112
+00:06:54.290 --> 00:06:57.100
+Và rồi, dòng mã này,
+
+113
+00:06:57.100 --> 00:06:59.260
+với việc triển khai phù hợp
+
+114
+00:06:59.260 --> 00:07:04.115
+chữ thường Sigma để tính toán 
+tất cả chữ a thường cùng một lúc.
+
+115
+00:07:04.115 --> 00:07:05.965
+Như vậy, đây là 
+cách bạn thực hiện
+
+116
+00:07:05.965 --> 00:07:07.948
+triển khai véc tơ hóa
+
+117
+00:07:07.948 --> 00:07:11.560
+truyền xuôi cho tất cả m
+ ví dụ đào tạo cùng một lúc.
+
+118
+00:07:11.560 --> 00:07:13.985
+Tóm lại, bạn vừa thấy 
+cách bạn có thể sử dụng
+
+119
+00:07:13.985 --> 00:07:18.100
+vector hóa để tính toán rất
+ hiệu quả tất cả các kích hoạt,
+
+120
+00:07:18.100 --> 00:07:21.700
+tất cả chữ a thường cùng một lúc.
+
+121
+00:07:21.700 --> 00:07:24.860
+Tiếp theo, bạn cũng có thể 
+sử dụng hiệu quả vector hóa
+
+122
+00:07:24.860 --> 00:07:27.910
+để tính toán truyền ngược,
+
+123
+00:07:27.910 --> 00:07:29.650
+để tính gradient.
+
+124
+00:07:29.650 --> 00:07:32.000
+Hãy cùng xem cách làm
+ điều đó, trong video tiếp theo.

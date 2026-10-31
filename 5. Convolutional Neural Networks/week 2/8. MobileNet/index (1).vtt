@@ -1,0 +1,342 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.540 --> 00:00:10.540
+Hi and welcome back. You've learned about the ResNet architecture, you've learned about InceptionNet.
+
+00:00:10.540 --> 00:00:19.540
+In this video, you learned about MobileNet, which is another foundational convolutional neural network architecture used for computer vision.
+
+00:00:19.540 --> 00:00:28.540
+Using MobileNet will allow you to build and deploy neural networks that work even in low-compute environments, such as mobile phone.
+
+00:00:28.540 --> 00:00:33.540
+Let's dive in. Why do you need another neural network architecture?
+
+00:00:33.540 --> 00:00:39.540
+It turns out a lot of neural networks you've learned about so far are quite computationally expensive.
+
+00:00:39.540 --> 00:00:47.540
+And if you want your neural network to run on a device with less powerful CPU or GPU deployment,
+
+00:00:47.540 --> 00:00:53.540
+then there's another neural network architecture called the MobileNet that could perform much better.
+
+00:00:53.540 --> 00:01:00.540
+So I hope to share with you in this video how the depth-wise separable convolution works.
+
+00:01:00.540 --> 00:01:08.540
+Let's first revisit what the normal convolution does and then we'll modify it to build the depth-wise separable convolution.
+
+00:01:08.540 --> 00:01:18.540
+In the normal convolution, you may have an input image that is some n by n by nc,
+
+00:01:18.540 --> 00:01:24.540
+where nc is the number of channels, so 6 by 6 by 3 channels in this case,
+
+00:01:24.540 --> 00:01:35.540
+and you want to convolve it with a filter that is f by f by nc, and in this case is 3 by 3 by 3.
+
+00:01:35.540 --> 00:01:45.880
+And the way you do this is you would take this filter, which I'm going to draw as a three-dimensional yellow block,
+
+00:01:45.880 --> 00:01:52.880
+and put the yellow filter over there. There are 27 multiplications you have to do.
+
+00:01:52.880 --> 00:01:58.880
+Sum it up and then that gives you this value, and then shift the filter over,
+
+00:01:58.880 --> 00:02:03.880
+multiply the 27 pairs of numbers, add that up, that gives you this number,
+
+00:02:03.880 --> 00:02:11.880
+and you keep going to get this, to get this, and then this, and so on.
+
+00:02:11.880 --> 00:02:18.640
+Until you've computed all 4 by 4 output values.
+
+00:02:18.640 --> 00:02:25.640
+We didn't use padding in this case, and we used a stride of 1, which is why the output size, n out by n out,
+
+00:02:25.640 --> 00:02:33.640
+is a bit smaller than the input size. That is this 4 by 4 instead of 6 by 6.
+
+00:02:33.640 --> 00:02:43.640
+And rather than just having one of these 3 by 3 by 3 filters, you may have some nc prime filters,
+
+00:02:43.640 --> 00:02:55.640
+and if you have 5 of them, then the output will be 4 by 4 by 5, or n out by n out by nc prime.
+
+00:02:55.640 --> 00:02:59.640
+So let's figure out what is the computational cost of what we just did.
+
+00:02:59.640 --> 00:03:07.640
+It turns out the total number of computations needed to compute this output is given by the number of filter parameters,
+
+00:03:07.640 --> 00:03:16.640
+which is 3 by 3 by 3 in this case, multiplied by the number of filter positions,
+
+00:03:16.640 --> 00:03:23.640
+that is the number of places where we place this big yellow block, which is 4 by 4,
+
+00:03:24.640 --> 00:03:29.640
+and then multiplied by the number of filters, which is 5 in this case.
+
+00:03:29.640 --> 00:03:35.640
+And you can check for yourself that this is the total number of multiplications we need to do,
+
+00:03:35.640 --> 00:03:41.640
+because at each of the locations we plopped down the filter, we need to do this many multiplications,
+
+00:03:41.640 --> 00:03:50.640
+and then we have this many filters. And if you multiply these numbers out, this turns out to be 2,160.
+
+00:03:50.640 --> 00:03:54.640
+So we'll come back. You'll see this number again later in this video,
+
+00:03:54.640 --> 00:04:00.640
+when we come up with the depth-wise separable convolution, that will be able to take its input,
+
+00:04:00.640 --> 00:04:10.640
+a 6 by 6 by 3 image, and output a 4 by 4 by 5 set of activations, but with fewer computations than 2,160.
+
+00:04:10.640 --> 00:04:14.640
+Let's see how the depth-wise separable convolution does that.
+
+00:04:14.640 --> 00:04:21.640
+In contrast to the normal convolution, which you just saw, the depth-wise separable convolution has two steps.
+
+00:04:21.640 --> 00:04:29.640
+You're going to first use a depth-wise convolution, followed by a point-wise convolution.
+
+00:04:29.640 --> 00:04:36.640
+And it is these two steps which together make up this depth-wise separable convolution.
+
+00:04:36.640 --> 00:04:39.640
+Let's see how each of these two steps work.
+
+00:04:39.640 --> 00:04:46.640
+In particular, let's flesh out the details of how the depth-wise convolution, the first of these two steps, works.
+
+00:04:46.640 --> 00:04:56.640
+As before, we have an input that is 6 by 6 by 3, so n by n by nc, three channels.
+
+00:04:56.640 --> 00:05:06.640
+The filter in the depth-wise convolution is going to be f by f, not f by f by nc, but just f by f.
+
+00:05:07.640 --> 00:05:15.640
+And the number of filters is going to be nc, which in this case is 3.
+
+00:05:15.640 --> 00:05:28.640
+The way that you will compute the 4 by 4 by 3 output is that you apply one of each of these filters to one of each of these input channels.
+
+00:05:28.640 --> 00:05:30.640
+Let's step through this.
+
+00:05:30.640 --> 00:05:35.640
+First, let's focus on the first of the three filters, just the red one.
+
+00:05:35.640 --> 00:05:39.640
+We're going to take the red filter and position it there.
+
+00:05:39.640 --> 00:05:41.640
+Carry out the 9 multiplications.
+
+00:05:41.640 --> 00:05:48.640
+Notice there's only 9 numbers you need to multiply, not 27, but 9, and add them up, and that will give you this value.
+
+00:05:48.640 --> 00:05:53.640
+Then shift it over, multiply the 9 corresponding pairs of numbers.
+
+00:05:53.640 --> 00:05:55.640
+That gives you this value.
+
+00:05:55.640 --> 00:05:58.640
+Over here, gives you that.
+
+00:05:59.640 --> 00:06:08.640
+And so on, until you get to the loss of these 16 values.
+
+00:06:08.640 --> 00:06:13.640
+Next, we go to the second channel, and let's look at the green filter.
+
+00:06:13.640 --> 00:06:19.640
+The green filter you position there, carry out the 9 multiplications to compute this value.
+
+00:06:19.640 --> 00:06:21.640
+Shift it over by 1 to compute this value.
+
+00:06:21.640 --> 00:06:24.640
+Shift it over by 1, and so on.
+
+00:06:25.640 --> 00:06:32.640
+And you do that 16 times until you've computed all of these values in the second channel of the output.
+
+00:06:32.640 --> 00:06:34.640
+Finally, you do this for the third channel.
+
+00:06:34.640 --> 00:06:36.640
+There's the blue filter.
+
+00:06:36.640 --> 00:06:38.640
+Position it there to compute this value.
+
+00:06:38.640 --> 00:06:51.640
+Shift it over, shift it over, shift it over, and so on, until you've computed all 16 outputs in that third channel as well.
+
+00:06:52.640 --> 00:07:06.640
+The size of the output after this step will be n out by n out, 4 by 4, by n c, where n c is the same as this n c, the number of channels in your original input.
+
+00:07:06.640 --> 00:07:10.640
+Let's look at the computational cost of what we've just done.
+
+00:07:10.640 --> 00:07:18.640
+Because to generate each of these output values, each of these 4 by 4 by 3 output values, it required 9 multiplications.
+
+00:07:19.640 --> 00:07:34.640
+The total computational cost is 3 by 3 times the number of filter positions, that is the number of positions each of these filters was placed on top of the image on the left, so that was 4 by 4.
+
+00:07:34.640 --> 00:07:38.640
+And then finally times the number of filters, which is 3.
+
+00:07:39.640 --> 00:07:50.640
+Another way to look at this is that you have 4 by 4 by 3 outputs, and for each of those outputs, you needed to carry out 9 multiplications.
+
+00:07:50.640 --> 00:08:01.640
+So the total computational cost is 3 times 3 times 4 times 4 times 3, and if you multiply out these numbers, it turns out to be 432.
+
+00:08:02.640 --> 00:08:19.640
+But we're not yet done. This is a depth-wise convolution part of the depth-wise separable convolution. There's one more step, which is we need to take this 4 by 4 by 3 intermediate value and carry out one more step.
+
+00:08:20.640 --> 00:08:38.880
+The remaining step is to take this 4 by 4 by 3 set of values, or n out by n out by n c set of values, and apply a point-wise convolution in order to get the output we want, which will be 4 by 4 by 5.
+
+00:08:39.880 --> 00:08:41.880
+So let's see how the point-wise convolution works.
+
+00:08:42.880 --> 00:09:01.880
+Here's the point-wise convolution. You are going to take the intermediate set of values, which is n out by n out by n c, and convolve it with a filter that is 1 by 1 by n c.
+
+00:09:02.880 --> 00:09:18.880
+1 by 1 by 3 in this case. Well, you take this pink filter, this pink 1 by 1 by 3 block, and apply the upper leftmost position, carry out the 3 multiplications, add them up, and that gives you this value.
+
+00:09:19.880 --> 00:09:26.880
+Shift it over by 1, multiply the 3 pairs of numbers, add them up, that gives you that value, and so on.
+
+00:09:27.880 --> 00:09:33.880
+And you keep going until you've filled out all 16 values of this output.
+
+00:09:34.880 --> 00:09:49.880
+Now, we've done this with just one filter. In order to get another 4 by 4 output, but a 4 by 4 by 5 dimensional output, you would actually do this with n c prime filters.
+
+00:09:50.880 --> 00:10:07.880
+In this case, n c prime will set to 5, so with 5 of these 1 by 1 by 3 filters, you end up with a 4 by 4 by 5 output as follows, to give you an n out by n out by n c prime dimensional output.
+
+00:10:08.880 --> 00:10:13.880
+And so, the point-wise convolution gives you the 4 by 4 by 5 output.
+
+00:10:14.880 --> 00:10:25.880
+Let's figure out the computational cost of what we just did. For every one of these 4 by 4 by 5 output values, we had to apply this pink filter to part of the input.
+
+00:10:26.880 --> 00:10:33.880
+And that costs 3 operations, or 1 by 1 by 3, which is the number of filter parameters.
+
+00:10:34.880 --> 00:10:42.880
+The filter had to be placed in 4 by 4 different positions, and we had 5 filters.
+
+00:10:43.880 --> 00:10:53.880
+So, the total cost of what we just did here is 1 times 1 times 3 times 4 times 4 times 5, which is 240 multiplications.
+
+00:10:54.880 --> 00:11:04.880
+In the example we just walked through, the normal convolution took its input, a 6 by 6 by 3 input, and wound up with a 4 by 4 by 5 output.
+
+00:11:05.880 --> 00:11:15.880
+And same for the depth-wise separable convolution, except we did it in two steps, with a depth-wise convolution followed by a point-wise convolution.
+
+00:11:16.880 --> 00:11:21.880
+Now, what were the computational costs of all of these operations?
+
+00:11:22.880 --> 00:11:29.880
+In the case of the normal convolution, we needed 2,160 multiplications to compute the output.
+
+00:11:30.880 --> 00:11:48.880
+For the depth-wise separable convolution, there was first the depth-wise step, where we had from earlier in the video 432 multiplications, and then the point-wise step, where we had 240 multiplications.
+
+00:11:49.880 --> 00:11:55.880
+And so, adding these up, we wound up with 672 multiplications.
+
+00:11:56.880 --> 00:12:05.880
+If we look at the ratio between these two numbers, 672 over 2160, this turns out to be about 0.31.
+
+00:12:06.880 --> 00:12:17.880
+So, in this example, the depth-wise separable convolution was about 31% as computationally expensive as the normal convolution, so roughly a 3x savings.
+
+00:12:18.880 --> 00:12:40.880
+The authors of the Mobile Net's paper showed that in general, the ratio of the cost of the depth-wise separable convolution compared to the normal convolution, that turns out to be equal to 1 over nC prime plus 1 over f squared in the general case.
+
+00:12:41.880 --> 00:12:47.880
+And in our case, this was 1 over 5 plus 1 over 3 squared, or 1 over 9, which is 0.31.
+
+00:12:48.880 --> 00:12:58.880
+In a more typical neural network example, nC prime will be much bigger, so it may be, say, 1 over 512.
+
+00:12:59.880 --> 00:13:09.880
+If you have 512 channels in your output, plus 1 over 3 squared, this would be a fairly typical parameter in your neural network.
+
+00:13:10.880 --> 00:13:13.880
+This is really small, and this is 1 9th.
+
+00:13:14.880 --> 00:13:26.880
+And so, very roughly, the depth-wise separable convolution may be about 1 9th, or maybe rounding up roughly 10 times cheaper in computational costs.
+
+00:13:27.880 --> 00:13:37.880
+And that's why the depth-wise separable convolution as a building block of a ConvNet allows you to carry out inference much more efficiently than using a normal convolution.
+
+00:13:37.880 --> 00:13:43.880
+Now, there's just one more detail I want to share with you before we wrap up this video.
+
+00:13:44.880 --> 00:13:57.880
+In the example that we went through, the input here was 6 by 6 by nC, where nC was equal to 3, and thus you had 3 by 3 by nC filters here.
+
+00:13:58.880 --> 00:14:03.880
+Now, the depth-wise separable convolution works for any number of input channels.
+
+00:14:03.880 --> 00:14:13.880
+So if you had 6 input channels, then nC would be equal to 6, and you would also then have to have 3 by 3 by 6 filters.
+
+00:14:14.880 --> 00:14:24.880
+And the intermediate output will continue to be 4 by 4 by nC. That becomes 4 by 4 by 6.
+
+00:14:25.880 --> 00:14:33.880
+Now, something looks wrong with this diagram, doesn't it? Which is that this should be 3 by 3 by 6, not 3 by 3 by 3.
+
+00:14:33.880 --> 00:14:48.880
+But in order to make the diagrams in the next video look a little bit simpler, even when the number of channels is greater than 3, I'm still going to draw the depth-wise convolution operation as if it was this stack of 3 filters.
+
+00:14:48.880 --> 00:15:05.880
+So when you see this exact icon later, think of that as the icon we're using to denote a depth-wise convolution, rather than a very literal exact visualization of the number of channels of the depth-wise convolution filter.
+
+00:15:05.880 --> 00:15:10.880
+And I'm going to use a similar icon to denote point-wise convolution.
+
+00:15:10.880 --> 00:15:19.880
+In this example, the input here would be 4 by 4 by nC, so it's really this value from up here.
+
+00:15:19.880 --> 00:15:30.880
+And rather than expanding this stack of values to be 1 by 1 by nC, I'm going to continue to use this pink set of filters that looks like that.
+
+00:15:30.880 --> 00:15:39.880
+And even if nC is much larger, I'm still going to draw it as if it looks like it only has 3 filters to make some of the diagrams look simpler.
+
+00:15:39.880 --> 00:15:49.880
+Then this can give you the output of whatever is the necessary dimension, such as 4 by 4 by 8 by some of the value of nC prime in this case.
+
+00:15:49.880 --> 00:15:59.880
+So that's it. You've learned about the depth-wise separable convolution, which comprises two main steps, the depth-wise convolution and the point-wise convolution.
+
+00:16:00.880 --> 00:16:10.880
+And this operation can be designed to have the same input and output dimensions as the normal convolutional operation, but it can be done at much lower computational cost.
+
+00:16:10.880 --> 00:16:17.880
+Let's now take this building block and use it to build the mobile net. We'll do that in the next video.

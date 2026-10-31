@@ -1,0 +1,385 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.370
+>> Trong video cuối cùng,
+
+2
+00:00:01.370 --> 00:00:05.445
+bạn đã thấy bộ phát triển và thử nghiệm của bạn nên đến từ cùng một bản phân phối,
+
+3
+00:00:05.445 --> 00:00:07.370
+nhưng chúng nên được bao lâu?
+
+4
+00:00:07.370 --> 00:00:08.780
+Các nguyên tắc để giúp thiết lập
+
+5
+00:00:08.780 --> 00:00:11.955
+bộ khởi động và kiểm tra của bạn đang thay đổi trong kỷ nguyên Deep Learning.
+
+6
+00:00:11.955 --> 00:00:14.645
+Chúng ta hãy xem xét một số phương pháp hay nhất.
+
+7
+00:00:14.645 --> 00:00:17.870
+Bạn có thể đã nghe nói về quy tắc của ngón tay cái
+
+8
+00:00:17.870 --> 00:00:20.489
+trong machine learning lấy tất cả các dữ liệu bạn có
+
+9
+00:00:20.489 --> 00:00:26.495
+và sử dụng một 70/30 chia thành một tàu và test set,
+
+10
+00:00:26.495 --> 00:00:30.800
+hoặc bạn đã phải thiết lập các thiết lập đào tạo và kiểm tra có thể,
+
+11
+00:00:30.800 --> 00:00:42.705
+bạn sẽ sử dụng một 60% đào tạo và 20% dev và 20% kiểm tra.
+
+12
+00:00:42.705 --> 00:00:47.200
+Trong thời kỳ trước đó của machine learning,
+
+13
+00:00:47.200 --> 00:00:50.155
+điều này là khá hợp lý,
+
+14
+00:00:50.155 --> 00:00:54.550
+đặc biệt là khi kích thước tập dữ liệu chỉ nhỏ hơn.
+
+15
+00:00:54.550 --> 00:00:57.085
+Vì vậy, nếu bạn có một trăm ví dụ trong tổng
+
+16
+00:00:57.085 --> 00:01:03.555
+số, quy tắc 70/30 hoặc 60/20/20 này sẽ khá hợp lý.
+
+17
+00:01:03.555 --> 00:01:05.485
+Nếu bạn có hàng ngàn ví dụ, có
+
+18
+00:01:05.485 --> 00:01:09.070
+thể nếu bạn có mười ngàn ví dụ,
+
+19
+00:01:09.070 --> 00:01:13.070
+những điều này không phải là không hợp lý.
+
+20
+00:01:13.070 --> 00:01:16.255
+Nhưng trong kỷ nguyên machine learning hiện đại,
+
+21
+00:01:16.255 --> 00:01:20.310
+chúng ta đã quen với việc làm việc với kích thước tập dữ liệu lớn hơn nhiều.
+
+22
+00:01:20.310 --> 00:01:26.430
+Vì vậy, giả sử bạn có một triệu ví dụ đào tạo,
+
+23
+00:01:26.430 --> 00:01:29.490
+nó có thể là khá hợp lý để thiết lập
+
+24
+00:01:29.490 --> 00:01:33.810
+dữ liệu của bạn để bạn có 98% trong training set
+
+25
+00:01:33.810 --> 00:01:40.437
+, 1% dev và 1% test.
+
+26
+00:01:40.437 --> 00:01:44.590
+Và khi bạn sử dụng DNT để viết tắt bộ dev và test.
+
+27
+00:01:44.590 --> 00:01:46.710
+Bởi vì nếu bạn có một triệu ví dụ,
+
+28
+00:01:46.710 --> 00:01:48.285
+thì 1% trong số đó,
+
+29
+00:01:48.285 --> 00:01:54.800
+là 10.000 ví dụ, và điều đó có thể đủ cho một bộ dev hoặc cho một bộ thử nghiệm.
+
+30
+00:01:54.800 --> 00:02:00.255
+Vì vậy, trong kỷ nguyên Deep Learning hiện đại nơi đôi khi chúng ta có bộ dữ liệu lớn hơn nhiều,
+
+31
+00:02:00.255 --> 00:02:04.020
+Nó là khá hợp lý để sử dụng một nhỏ hơn nhiều so với 20
+
+32
+00:02:04.020 --> 00:02:07.785
+hoặc 30% dữ liệu của bạn cho một bộ dev hoặc một bộ thử nghiệm.
+
+33
+00:02:07.785 --> 00:02:12.690
+Và bởi vì các thuật toán Deep Learning có một cơn đói dữ liệu lớn, tôi thấy rằng,
+
+34
+00:02:12.690 --> 00:02:16.020
+những vấn đề chúng ta có các tập dữ liệu lớn có
+
+35
+00:02:16.020 --> 00:02:20.430
+phần lớn hơn nhiều trong số đó đi vào training set.
+
+36
+00:02:20.430 --> 00:02:24.447
+Vậy, còn bộ kiểm tra thì sao?
+
+37
+00:02:24.447 --> 00:02:28.930
+Hãy nhớ mục đích của bộ kiểm tra của bạn là,
+
+38
+00:02:28.930 --> 00:02:30.865
+sau khi bạn hoàn thành phát triển một hệ thống,
+
+39
+00:02:30.865 --> 00:02:34.360
+bộ kiểm tra sẽ giúp đánh giá hệ thống cuối cùng của bạn tốt như thế nào.
+
+40
+00:02:34.360 --> 00:02:37.690
+Hướng dẫn là, để thiết lập bộ kiểm tra của bạn đủ lớn để cung cấp cho
+
+41
+00:02:37.690 --> 00:02:41.150
+sự tự tin cao trong hiệu suất tổng thể của hệ thống của bạn.
+
+42
+00:02:41.150 --> 00:02:43.690
+Vì vậy, trừ khi bạn cần phải có
+
+43
+00:02:43.690 --> 00:02:48.090
+một thước đo rất chính xác về hệ thống cuối cùng của bạn đang hoạt động tốt như thế nào, có
+
+44
+00:02:48.090 --> 00:02:54.059
+lẽ bạn không cần hàng triệu và hàng triệu ví dụ trong một test set,
+
+45
+00:02:54.059 --> 00:02:57.640
+và có thể cho ứng dụng của bạn nếu bạn nghĩ rằng có 10.000 ví dụ cung cấp cho bạn
+
+46
+00:02:57.640 --> 00:03:00.545
+đủ tự tin để tìm ra hiệu suất trên có thể
+
+47
+00:03:00.545 --> 00:03:03.725
+100.000 hoặc bất cứ điều gì nó là, điều đó có thể là đủ.
+
+48
+00:03:03.725 --> 00:03:05.260
+Và điều này có thể ít hơn nhiều,
+
+49
+00:03:05.260 --> 00:03:07.340
+nói 30% của tập hợp dữ liệu tổng thể,
+
+50
+00:03:07.340 --> 00:03:08.440
+phụ thuộc vào số lượng dữ liệu bạn có.
+
+51
+00:03:08.440 --> 00:03:13.250
+Đối với một số ứng dụng,
+
+52
+00:03:13.250 --> 00:03:18.320
+có thể bạn không cần một sự tự tin cao trong hiệu suất tổng thể của hệ thống cuối cùng của bạn.
+
+53
+00:03:18.320 --> 00:03:23.055
+Có lẽ tất cả những gì bạn cần là một chuyến tàu và bộ dev,
+
+54
+00:03:23.055 --> 00:03:29.230
+Và tôi nghĩ, không có một bộ thử nghiệm có thể là ổn.
+
+55
+00:03:29.230 --> 00:03:31.685
+Trong thực tế, những gì đôi khi xảy ra là,
+
+56
+00:03:31.685 --> 00:03:33.965
+mọi người đang nói về việc sử dụng
+
+57
+00:03:33.965 --> 00:03:40.580
+phân tách thử nghiệm tàu nhưng những gì họ thực sự đang làm là lặp lại trên bộ thử nghiệm.
+
+58
+00:03:40.580 --> 00:03:42.250
+Vì vậy, thay vì thử nghiệm thiết lập,
+
+59
+00:03:42.250 --> 00:03:46.415
+những gì họ đã có là một phát triển tàu và không có thiết lập thử nghiệm.
+
+60
+00:03:46.415 --> 00:03:48.604
+Nếu bạn đang thực sự điều chỉnh để thiết lập
+
+61
+00:03:48.604 --> 00:03:50.390
+này, để bộ dev này và bộ kiểm tra này,
+
+62
+00:03:50.390 --> 00:03:53.205
+Nó tốt hơn để gọi bộ dev.
+
+63
+00:03:53.205 --> 00:03:56.335
+Mặc dù tôi nghĩ rằng trong lịch sử của machine learning,
+
+64
+00:03:56.335 --> 00:03:59.875
+không phải ai cũng đã hoàn toàn sạch sẽ và hoàn toàn hồ sơ
+
+65
+00:03:59.875 --> 00:04:03.895
+về việc gọi bộ dev khi nó thực sự nên được coi là bộ kiểm tra.
+
+66
+00:04:03.895 --> 00:04:07.485
+Nhưng, nếu tất cả những gì bạn quan tâm là có một số dữ liệu mà bạn đào tạo,
+
+67
+00:04:07.485 --> 00:04:09.150
+và có một số dữ liệu để điều chỉnh,
+
+68
+00:04:09.150 --> 00:04:11.682
+và bạn chỉ cần lắc hệ thống cuối cùng
+
+69
+00:04:11.682 --> 00:04:15.710
+và không phải lo lắng quá nhiều về cách nó thực sự làm,
+
+70
+00:04:15.710 --> 00:04:17.940
+tôi nghĩ rằng nó sẽ khỏe mạnh và chỉ cần gọi cho bộ khởi động tàu
+
+71
+00:04:17.940 --> 00:04:20.700
+và thừa nhận rằng bạn không có bộ kiểm tra.
+
+72
+00:04:20.700 --> 00:04:22.720
+Điều này hơi bất thường à?
+
+73
+00:04:22.720 --> 00:04:26.970
+Tôi chắc chắn không khuyên bạn không nên có một bộ kiểm tra khi xây dựng một hệ thống.
+
+74
+00:04:26.970 --> 00:04:30.225
+Tôi thấy nó yên tâm để có một bộ thử nghiệm riêng biệt
+
+75
+00:04:30.225 --> 00:04:33.900
+bạn có thể sử dụng để có được một ước tính không thiên vị về cách tôi đã làm trước khi bạn thay đổi nó,
+
+76
+00:04:33.900 --> 00:04:37.770
+nhưng nếu bạn có một
+
+77
+00:04:37.770 --> 00:04:41.650
+bộ dev rất lớn để bạn nghĩ rằng bạn sẽ không overfit các bộ dev quá nặng.
+
+78
+00:04:41.650 --> 00:04:45.200
+Có lẽ nó không phải là hoàn toàn không hợp lý để chỉ có một bộ dev tàu,
+
+79
+00:04:45.200 --> 00:04:48.800
+mặc dù nó không phải là những gì tôi thường khuyên bạn nên.
+
+80
+00:04:48.800 --> 00:04:51.600
+Vì vậy, để tóm tắt, trong thời đại của dữ liệu lớn,
+
+81
+00:04:51.600 --> 00:04:54.500
+tôi nghĩ nguyên tắc cũ của ngón tay cái của 70/30 là, điều
+
+82
+00:04:54.500 --> 00:04:56.275
+đó không còn áp dụng nữa.
+
+83
+00:04:56.275 --> 00:05:01.035
+Và xu hướng này đã được sử dụng nhiều dữ liệu hơn cho đào tạo và ít hơn cho dev và kiểm tra,
+
+84
+00:05:01.035 --> 00:05:03.220
+đặc biệt là khi bạn có một bộ dữ liệu rất lớn.
+
+85
+00:05:03.220 --> 00:05:06.960
+Và quy tắc của ngón tay cái là thực sự cố gắng thiết lập các dev đủ lớn cho mục đích của nó,
+
+86
+00:05:06.960 --> 00:05:11.110
+giúp bạn đánh giá các ý tưởng khác nhau và chọn điều này từ AOP tốt hơn.
+
+87
+00:05:11.110 --> 00:05:15.450
+Và mục đích của bộ kiểm tra là để giúp bạn đánh giá chi phí cuối cùng của bạn mua.
+
+88
+00:05:15.450 --> 00:05:18.590
+Bạn chỉ cần thiết lập bộ thử nghiệm của bạn đủ lớn cho mục đích
+
+89
+00:05:18.590 --> 00:05:21.710
+đó, và đó có thể ít hơn 30% dữ liệu.
+
+90
+00:05:21.710 --> 00:05:24.810
+Vì vậy, tôi hy vọng rằng cung cấp một số hướng dẫn hoặc một số gợi ý về cách
+
+91
+00:05:24.810 --> 00:05:28.710
+thiết lập bộ khởi động và kiểm tra của bạn trong kỷ nguyên Deep Learning.
+
+92
+00:05:28.710 --> 00:05:30.595
+Tiếp theo, nó chỉ ra rằng đôi khi, một
+
+93
+00:05:30.595 --> 00:05:32.640
+phần của một vấn đề machine learning,
+
+94
+00:05:32.640 --> 00:05:34.800
+bạn có thể muốn thay đổi số liệu đánh giá của bạn,
+
+95
+00:05:34.800 --> 00:05:36.615
+hoặc thay đổi bộ khởi động và kiểm tra của bạn.
+
+96
+00:05:36.615 --> 00:05:38.250
+Hãy nói về nó khi nào bạn có thể muốn làm điều đó.

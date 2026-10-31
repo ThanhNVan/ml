@@ -1,0 +1,504 @@
+WEBVTT
+
+00:00:01.520 --> 00:00:04.640
+Trong video này, chúng ta sẽ xem xét toàn bộ
+
+00:00:04.640 --> 00:00:07.760
+quá trình supervised learning là như thế nào.
+
+00:00:07.760 --> 00:00:14.120
+Cụ thể, bạn sẽ thấy mô hình đầu tiên của khóa
+học này, mô hình linear regression.
+
+00:00:14.120 --> 00:00:17.440
+Điều đó chỉ có nghĩa là khớp một đường thẳng
+vào dữ liệu của bạn.
+
+00:00:17.440 --> 00:00:21.840
+Đây có lẽ là thuật toán học tập được sử dụng
+rộng rãi nhất trên thế giới hiện nay.
+
+00:00:21.840 --> 00:00:26.130
+Và khi bạn làm quen với linear regression,
+nhiều khái niệm bạn
+
+00:00:26.130 --> 00:00:30.420
+thấy ở đây cũng sẽ áp dụng cho các mô hình
+machine learning khác.
+
+00:00:30.420 --> 00:00:34.300
+Đó là những gì bạn sẽ thấy sau này trong
+chuyên ngành này.
+
+00:00:34.300 --> 00:00:36.320
+Hãy bắt đầu với một vấn đề mà bạn có thể
+
+00:00:36.320 --> 00:00:38.340
+giải quyết bằng phương pháp linear regression.
+
+00:00:38.340 --> 00:00:42.180
+Giả sử bạn muốn dự đoán giá một ngôi nhà dựa
+trên kích thước của ngôi nhà.
+
+00:00:42.180 --> 00:00:45.460
+Đây là một ví dụ chúng ta thấy vào đầu tuần
+này.
+
+00:00:45.460 --> 00:00:49.220
+Chúng tôi sẽ sử dụng tập dữ liệu về quy mô và
+
+00:00:49.220 --> 00:00:52.980
+giá nhà từ Portland, một thành phố ở Hoa Kỳ.
+
+00:00:52.980 --> 00:00:58.320
+Ở đây có biểu đồ trong đó trục hoành là kích
+thước của ngôi nhà
+
+00:00:58.320 --> 00:01:03.660
+tính bằng feet vuông và trục tung là giá nhà
+tính bằng nghìn đô la.
+
+00:01:03.660 --> 00:01:08.260
+Hãy tiếp tục và vẽ các điểm dữ liệu cho các
+ngôi nhà khác nhau trong tập dữ liệu.
+
+00:01:08.260 --> 00:01:13.020
+Ở đây, tại mỗi điểm dữ liệu, mỗi dấu thập nhỏ
+này là
+
+00:01:13.020 --> 00:01:17.780
+một ngôi nhà có kích thước và giá được bán gần
+đây nhất.
+
+00:01:17.780 --> 00:01:20.700
+Bây giờ, giả sử bạn là một đại lý bất động sản
+ở Portland và
+
+00:01:20.700 --> 00:01:23.620
+bạn đang hy vọng một khách hàng sẽ bán được
+căn nhà của mình.
+
+00:01:23.620 --> 00:01:27.700
+Và cô ấy hỏi bạn, bạn nghĩ bạn sẽ mua được căn
+nhà này bao nhiêu?
+
+00:01:27.700 --> 00:01:32.420
+Tập dữ liệu này có thể giúp bạn ước tính mức
+giá mà cô ấy có thể nhận được cho nó.
+
+00:01:32.420 --> 00:01:35.860
+Bạn bắt đầu bằng cách đo kích thước của ngôi
+nhà, và
+
+00:01:35.860 --> 00:01:39.300
+kết quả là ngôi nhà của cô ấy rộng 1250 feet
+vuông.
+
+00:01:39.300 --> 00:01:42.420
+Bạn nghĩ ngôi nhà này có thể bán được bao
+nhiêu?
+
+00:01:42.420 --> 00:01:47.900
+Một điều bạn có thể làm là xây dựng mô hình
+linear regression từ tập dữ liệu này.
+
+00:01:47.900 --> 00:01:53.260
+Mô hình của bạn sẽ khớp một đường thẳng với dữ
+liệu, có thể trông như thế này.
+
+00:01:53.260 --> 00:01:58.900
+Và dựa trên đường thẳng phù hợp với dữ liệu
+này, bạn có thể thấy rằng nếu
+
+00:01:58.900 --> 00:02:04.540
+một ngôi nhà rộng 1250 feet vuông, nó sẽ giao
+với đường phù hợp nhất ở đây.
+
+00:02:04.540 --> 00:02:08.820
+Và nếu bạn theo dõi trục tung ở bên trái, bạn
+có
+
+00:02:08.820 --> 00:02:13.100
+thể thấy giá có thể ở quanh đây, khoảng
+220.000 USD.
+
+00:02:13.100 --> 00:02:17.940
+Đây là một ví dụ về cái được gọi là mô hình
+học tập có giám sát.
+
+00:02:17.940 --> 00:02:21.260
+Chúng tôi gọi đây là supervised learning vì
+trước tiên bạn đang
+
+00:02:21.260 --> 00:02:24.580
+đào tạo một mô hình bằng cách đưa ra dữ liệu
+có câu trả lời đúng.
+
+00:02:24.580 --> 00:02:28.400
+Bởi vì bạn đưa ra ví dụ mẫu về những ngôi nhà
+có cả quy mô ngôi
+
+00:02:28.400 --> 00:02:32.220
+nhà cũng như mức giá mà mô hình nên dự đoán
+cho từng ngôi nhà.
+
+00:02:32.220 --> 00:02:38.940
+Giá ở đâu thì đó là câu trả lời đúng cho từng
+ngôi nhà trong tập dữ liệu.
+
+00:02:38.940 --> 00:02:44.340
+Mô hình linear regression này là một loại mô
+hình supervised learning cụ thể được
+
+00:02:44.340 --> 00:02:49.740
+gọi là mô hình regression vì nó dự đoán các
+con số là đầu ra, như giá cả và đô la.
+
+00:02:49.740 --> 00:02:56.620
+Bất kỳ mô hình supervised learning nào dự đoán
+một con số như 220.000
+
+00:02:56.620 --> 00:03:03.500
+hoặc 1,5 hoặc âm 33,2 đều giải quyết được cái
+gọi là vấn đề regression.
+
+00:03:03.500 --> 00:03:07.700
+Vì vậy, linear regression là một ví dụ về mô
+hình regression.
+
+00:03:07.700 --> 00:03:12.420
+Nhưng cũng có những mô hình khác để giải quyết
+các vấn đề regression.
+
+00:03:12.420 --> 00:03:18.060
+Và chúng ta sẽ thấy một số điều đó sau trong
+khóa học thứ hai của chuyên ngành này.
+
+00:03:18.060 --> 00:03:23.320
+Và xin nhắc bạn rằng, trái ngược với mô hình
+regression, loại mô hình
+
+00:03:23.320 --> 00:03:28.580
+supervised learning phổ biến nhất khác được
+gọi là mô hình classification.
+
+00:03:28.580 --> 00:03:33.167
+Mô hình classification dự đoán các danh mục
+hoặc danh mục
+
+00:03:33.167 --> 00:03:37.753
+riêng biệt, chẳng hạn như dự đoán xem bức ảnh
+là của mèo
+
+00:03:37.753 --> 00:03:42.340
+hay chó hoặc nếu được cung cấp hồ sơ bệnh án,
+nó phải dự đoán
+
+00:03:42.340 --> 00:03:45.420
+nếu bệnh nhân mắc một bệnh cụ thể.
+
+00:03:45.420 --> 00:03:50.140
+Bạn cũng có thể xem thêm về các mô hình
+classification ở phần sau của khóa học này.
+
+00:03:50.140 --> 00:03:54.640
+Vì vậy, xin nhắc lại về sự khác biệt giữa
+classification và regression,
+
+00:03:54.640 --> 00:03:59.140
+trong classification, chỉ có một số lượng nhỏ
+kết quả đầu ra có thể có.
+
+00:03:59.140 --> 00:04:05.380
+Nếu mô hình của bạn đang nhận dạng mèo và chó
+thì đó có thể là hai kết quả đầu ra.
+
+00:04:05.380 --> 00:04:09.050
+Hoặc có thể bạn đang cố gắng nhận biết bất kỳ
+tình trạng bệnh
+
+00:04:09.050 --> 00:04:12.720
+lý nào trong số 10 tình trạng bệnh lý có thể
+xảy ra ở bệnh nhân.
+
+00:04:12.720 --> 00:04:15.860
+Vì vậy, nếu có một tập hợp hữu hạn các đầu ra
+có
+
+00:04:15.860 --> 00:04:19.000
+thể có, chúng tôi gọi đó là vấn đề
+classification.
+
+00:04:19.000 --> 00:04:24.520
+Trong khi đó, trong regression, có vô số con
+số có thể mà mô hình có thể đưa ra.
+
+00:04:24.520 --> 00:04:29.420
+Ngoài việc hiển thị dữ liệu này dưới dạng biểu
+đồ ở bên
+
+00:04:29.420 --> 00:04:34.320
+trái, còn có một cách khác để xem dữ liệu sẽ
+hữu ích.
+
+00:04:34.320 --> 00:04:38.760
+Và đó là bảng dữ liệu ở bên phải.
+
+00:04:38.800 --> 00:04:42.700
+Nếu dữ liệu bao gồm một tập hợp các yếu tố đầu
+vào thì
+
+00:04:42.700 --> 00:04:46.600
+đây sẽ là kích thước của ngôi nhà, chính là
+cột ở đây.
+
+00:04:46.600 --> 00:04:49.240
+Nó cũng có đầu ra.
+
+00:04:49.240 --> 00:04:55.040
+Bạn đang cố gắng dự đoán giá, đó là cột này ở
+đây.
+
+00:04:55.040 --> 00:05:05.120
+Lưu ý rằng trục ngang và trục dọc tương ứng
+với hai cột này là kích thước và giá cả.
+
+00:05:05.120 --> 00:05:13.960
+Và vì vậy, nếu bạn có 47 hàng trong bảng dữ
+liệu này, thì có 47 đường chéo
+
+00:05:13.960 --> 00:05:22.800
+thấp hơn trên biểu đồ bên trái, mỗi đường chéo
+tương ứng với một hàng của bảng.
+
+00:05:22.800 --> 00:05:31.320
+Ví dụ, hàng đầu tiên của bảng là một ngôi nhà
+có diện tích 2104 feet vuông.
+
+00:05:31.320 --> 00:05:35.320
+Vậy nó ở quanh đây.
+
+00:05:35.320 --> 00:05:42.360
+Và ngôi nhà này có giá 400.000 đô la, ở quanh
+đây.
+
+00:05:42.360 --> 00:05:49.480
+Vì vậy, hàng đầu tiên của bảng được vẽ dưới
+dạng điểm dữ liệu ở đây.
+
+00:05:49.480 --> 00:05:53.920
+Bây giờ chúng ta hãy xem xét một số ký hiệu để
+mô tả dữ liệu.
+
+00:05:53.920 --> 00:05:58.920
+Đây là ký hiệu mà bạn thấy hữu ích trong suốt
+hành trình machine learning của mình.
+
+00:05:58.920 --> 00:06:03.900
+Khi bạn ngày càng quen với thuật ngữ
+machine learning, đây sẽ là thuật ngữ họ
+
+00:06:03.900 --> 00:06:08.880
+có thể sử dụng để nói về các khái niệm
+machine learning với những người khác.
+
+00:06:08.880 --> 00:06:12.900
+Vì phần lớn ký hiệu này khá chuẩn đối với AI
+nên
+
+00:06:12.900 --> 00:06:16.920
+bạn sẽ thấy ký hiệu này nhiều lần trong chuyên
+ngành.
+
+00:06:16.920 --> 00:06:20.940
+Vì vậy, nếu bạn không nhớ hết mọi thứ trong
+lần đầu tiên thì cũng
+
+00:06:20.940 --> 00:06:24.960
+không sao, theo thời gian nó sẽ tự nhiên trở
+nên quen thuộc hơn.
+
+00:06:25.000 --> 00:06:29.360
+Tập dữ liệu bạn vừa thấy và được sử dụng để
+
+00:06:29.360 --> 00:06:33.720
+huấn luyện mô hình được gọi là training set.
+
+00:06:33.720 --> 00:06:36.190
+Lưu ý rằng ngôi nhà của khách hàng của bạn
+
+00:06:36.190 --> 00:06:38.660
+không có trong bộ dữ liệu này vì nó chưa được
+bán.
+
+00:06:38.660 --> 00:06:41.460
+Vì thế không ai biết giá cả là bao nhiêu.
+
+00:06:41.460 --> 00:06:44.900
+Vì vậy, để dự đoán giá căn nhà của khách hàng,
+trước tiên
+
+00:06:44.900 --> 00:06:48.340
+bạn huấn luyện mô hình của mình để học hỏi từ
+training set.
+
+00:06:48.340 --> 00:06:53.920
+Và mô hình đó sau đó có thể dự đoán giá nhà
+của khách hàng của bạn.
+
+00:06:53.920 --> 00:07:01.700
+Trong machine learning, ký hiệu chuẩn để biểu
+thị đầu vào ở đây là chữ x thường
+
+00:07:01.700 --> 00:07:09.480
+và chúng ta gọi đây là biến đầu vào hay còn
+gọi là feature hay input feature.
+
+00:07:09.480 --> 00:07:12.500
+Ví dụ: đối với ngôi nhà đầu tiên trong
+
+00:07:12.500 --> 00:07:15.520
+training set của bạn, x là kích thước của ngôi
+nhà.
+
+00:07:15.520 --> 00:07:20.200
+Vậy x bằng 2104.
+
+00:07:20.200 --> 00:07:27.860
+Ký hiệu tiêu chuẩn để biểu thị biến đầu ra mà
+bạn đang cố gắng
+
+00:07:27.860 --> 00:07:35.520
+dự đoán, đôi khi còn được gọi là biến mục tiêu
+là chữ thường y.
+
+00:07:35.520 --> 00:07:39.920
+Và ở đây, y là giá của ngôi nhà.
+
+00:07:39.920 --> 00:07:44.400
+Và đối với ví dụ huấn luyện đầu tiên, giá trị
+này bằng 400.
+
+00:07:44.400 --> 00:07:48.120
+Vậy y bằng 400.
+
+00:07:48.120 --> 00:07:52.320
+Vì vậy, tập dữ liệu có một hàng cho mỗi ngôi
+nhà.
+
+00:07:52.320 --> 00:07:58.210
+Và trong training set cụ thể này, có 47 hàng,
+mỗi
+
+00:07:58.210 --> 00:08:04.100
+hàng đại diện cho một mẫu huấn luyện khác
+nhau.
+
+00:08:04.100 --> 00:08:09.480
+Chúng ta sẽ sử dụng chữ m thường để chỉ tổng
+số ví dụ huấn luyện.
+
+00:08:09.480 --> 00:08:13.920
+Và ở đây, m bằng 47.
+
+00:08:13.920 --> 00:08:18.070
+Để chỉ ra một ví dụ huấn luyện duy nhất, chúng
+
+00:08:18.070 --> 00:08:22.220
+ta sẽ sử dụng dấu ngoặc đơn ký hiệu x dấu phẩy
+y.
+
+00:08:22.220 --> 00:08:28.210
+Vì vậy, đối với ví dụ huấn luyện đầu tiên, x
+
+00:08:28.210 --> 00:08:34.200
+dấu phẩy y, cặp số này là 2104 dấu phẩy 400.
+
+00:08:34.200 --> 00:08:37.360
+Bây giờ chúng tôi có rất nhiều ví dụ đào tạo
+khác nhau.
+
+00:08:37.360 --> 00:08:39.360
+Trên thực tế, chúng tôi có 47 người trong số
+họ.
+
+00:08:39.360 --> 00:08:43.480
+Vì vậy, để tham khảo một ví dụ đào tạo cụ thể,
+điều này
+
+00:08:43.480 --> 00:08:47.600
+sẽ tương ứng với một hàng cụ thể trong bảng
+bên trái.
+
+00:08:47.600 --> 00:08:52.360
+Tôi sẽ sử dụng ký hiệu x chỉ số trên trong
+ngoặc
+
+00:08:52.360 --> 00:08:57.120
+đơn, tôi đặt dấu phẩy y chỉ số trên trong
+ngoặc đơn I.
+
+00:08:57.120 --> 00:09:03.240
+Chỉ số trên này cho chúng ta biết rằng đây là
+ví dụ huấn luyện I, chẳng hạn như
+
+00:09:03.240 --> 00:09:09.360
+ví dụ huấn luyện thứ nhất, thứ hai hoặc thứ ba
+cho đến ví dụ huấn luyện thứ 47.
+
+00:09:09.360 --> 00:09:15.880
+Tôi ở đây đề cập đến một hàng cụ thể trong
+bảng.
+
+00:09:15.880 --> 00:09:21.600
+Vì vậy, ví dụ, đây là ví dụ đầu tiên.
+
+00:09:21.600 --> 00:09:25.960
+Khi tôi bằng một trong training set.
+
+00:09:25.960 --> 00:09:31.960
+Và do đó x chỉ số trên một bằng 2104.
+
+00:09:31.960 --> 00:09:37.200
+Và y chỉ số trên một bằng 400.
+
+00:09:37.200 --> 00:09:42.400
+Và hãy thêm chỉ số trên vào đây nữa.
+
+00:09:42.400 --> 00:09:48.240
+Xin lưu ý rằng chữ I trong ngoặc đơn này không
+phải là lũy thừa.
+
+00:09:48.240 --> 00:09:53.560
+Vậy khi tôi viết cái này, đây không phải là x
+bình phương.
+
+00:09:53.560 --> 00:09:55.880
+Đây không phải là x lũy thừa của hai.
+
+00:09:55.880 --> 00:09:59.560
+Nó chỉ đề cập đến ví dụ đào tạo thứ hai.
+
+00:09:59.560 --> 00:10:06.640
+Vì vậy, I này chỉ là một chỉ mục trong
+training set và đề cập đến hàng I trong bảng.
+
+00:10:06.640 --> 00:10:10.200
+Trong video này, bạn đã thấy training set
+trông như thế
+
+00:10:10.200 --> 00:10:13.760
+nào cũng như ký hiệu tiêu chuẩn để mô tả
+training set này.
+
+00:10:13.760 --> 00:10:18.840
+Trong video tiếp theo, chúng ta hãy xem cần
+những gì để thực hiện training set này
+
+00:10:18.840 --> 00:10:23.920
+mà bạn chỉ đưa nó vào một thuật toán học để
+thuật toán có thể học từ dữ liệu này.
+
+00:10:23.920 --> 00:10:25.440
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

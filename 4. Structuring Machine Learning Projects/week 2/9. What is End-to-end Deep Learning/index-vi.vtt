@@ -1,0 +1,893 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.880
+Một trong những phát triển thú vị nhất gần đây trong deep learning,
+
+2
+00:00:02.880 --> 00:00:05.765
+là sự gia tăng của deep learning đầu cuối.
+
+3
+00:00:05.765 --> 00:00:07.570
+Vậy việc học từ đầu đến cuối là gì?
+
+4
+00:00:07.570 --> 00:00:10.510
+Tóm lại, đã có một số hệ thống xử lý dữ liệu,
+
+5
+00:00:10.510 --> 00:00:13.880
+hoặc hệ thống học tập đòi hỏi nhiều giai đoạn xử lý.
+
+6
+00:00:13.880 --> 00:00:15.330
+Và những gì deep learning đầu cuối làm,
+
+7
+00:00:15.330 --> 00:00:17.625
+là nó có thể thực hiện tất cả các giai đoạn đó,
+
+8
+00:00:17.625 --> 00:00:20.968
+và thay thế nó thường chỉ bằng một neural network duy nhất.
+
+9
+00:00:20.968 --> 00:00:24.170
+Hãy nhìn vào một số ví dụ.
+
+10
+00:00:24.170 --> 00:00:26.460
+Lấy nhận dạng giọng nói làm ví dụ,
+
+11
+00:00:26.460 --> 00:00:30.975
+nơi mục tiêu của bạn là lấy một đầu vào X như một clip âm thanh,
+
+12
+00:00:30.975 --> 00:00:33.015
+và ánh xạ nó với một đầu ra Y,
+
+13
+00:00:33.015 --> 00:00:37.230
+đó là một bản ghi của clip âm thanh.
+
+14
+00:00:37.230 --> 00:00:41.550
+Vì vậy, theo truyền thống, nhận dạng giọng nói đòi hỏi nhiều giai đoạn xử lý.
+
+15
+00:00:41.550 --> 00:00:44.085
+Trước tiên, bạn sẽ trích xuất một số feature,
+
+16
+00:00:44.085 --> 00:00:46.045
+một số feature được thiết kế bằng tay của âm thanh.
+
+17
+00:00:46.045 --> 00:00:48.885
+Vì vậy, nếu bạn đã nghe nói về MFC,
+
+18
+00:00:48.885 --> 00:00:53.570
+đó là một thuật toán để trích xuất một tập hợp các feature thiết kế tay nhất định cho âm thanh.
+
+19
+00:00:53.570 --> 00:00:55.845
+Và sau đó đã trích xuất một số feature cấp thấp,
+
+20
+00:00:55.845 --> 00:00:58.260
+bạn có thể áp dụng một thuật toán machine learning,
+
+21
+00:00:58.260 --> 00:01:01.530
+để tìm các âm vị trong clip âm thanh.
+
+22
+00:01:01.530 --> 00:01:04.390
+Vì vậy âm vị là những đơn vị cơ bản của âm thanh.
+
+23
+00:01:04.390 --> 00:01:07.810
+Vì vậy, ví dụ, từ mèo được tạo thành từ ba âm thanh.
+
+24
+00:01:07.810 --> 00:01:10.690
+Các Cu- Ah- và Tu- vì vậy họ trích xuất chúng.
+
+25
+00:01:10.690 --> 00:01:13.630
+Và sau đó bạn xâu chuỗi các âm vị lại với nhau để tạo thành các từ riêng lẻ.
+
+26
+00:01:13.630 --> 00:01:19.356
+Và sau đó bạn xâu chuỗi chúng lại với nhau để tạo thành bảng điểm của clip âm thanh.
+
+27
+00:01:19.356 --> 00:01:23.365
+Vì vậy, trái ngược với đường ống dẫn này với rất nhiều giai đoạn,
+
+28
+00:01:23.365 --> 00:01:24.940
+những gì deep learning đầu cuối làm,
+
+29
+00:01:24.940 --> 00:01:28.735
+là bạn có thể đào tạo một neural network khổng lồ để chỉ cần nhập vào đoạn âm thanh,
+
+30
+00:01:28.735 --> 00:01:32.670
+và đưa nó trực tiếp ra bảng điểm.
+
+31
+00:01:32.670 --> 00:01:35.800
+Một hiệu ứng xã hội học thú vị trong AI
+
+32
+00:01:35.800 --> 00:01:39.085
+là khi deep learning đầu cuối bắt đầu hoạt động tốt hơn,
+
+33
+00:01:39.085 --> 00:01:41.545
+có một số nhà nghiên cứu ví dụ đã dành
+
+34
+00:01:41.545 --> 00:01:44.830
+nhiều năm trong sự nghiệp của họ để thiết kế các bước riêng lẻ của đường ống.
+
+35
+00:01:44.830 --> 00:01:50.249
+Vì vậy, có một số nhà nghiên cứu trong các lĩnh vực khác nhau không chỉ trong nhận dạng lời nói.
+
+36
+00:01:50.249 --> 00:01:52.360
+Có lẽ trong tầm nhìn máy tính, và các lĩnh vực khác,
+
+37
+00:01:52.360 --> 00:01:53.945
+đã dành rất nhiều thời gian mà bạn biết,
+
+38
+00:01:53.945 --> 00:01:57.332
+viết nhiều bài báo, thậm chí có thể xây dựng một phần lớn sự nghiệp của họ, các
+
+39
+00:01:57.332 --> 00:02:00.270
+feature kỹ thuật hoặc thiết kế các phần khác của đường ống.
+
+40
+00:02:00.270 --> 00:02:02.990
+Và khi deep learning đầu cuối vừa lấy tập
+
+41
+00:02:02.990 --> 00:02:06.475
+huấn luyện cuối cùng và học trực tiếp lập bản đồ hàm từ x và y,
+
+42
+00:02:06.475 --> 00:02:09.720
+thực sự bỏ qua rất nhiều bước trung gian
+
+43
+00:02:09.720 --> 00:02:13.300
+này, một số ngành học phải
+
+44
+00:02:13.300 --> 00:02:17.255
+chấp nhận cách thay thế này để xây dựng hệ thống AI.
+
+45
+00:02:17.255 --> 00:02:20.110
+Bởi vì nó thực sự lỗi thời trong một số trường hợp,
+
+46
+00:02:20.110 --> 00:02:23.665
+nhiều năm nghiên cứu trong một số thành phần trung gian.
+
+47
+00:02:23.665 --> 00:02:27.070
+Nó chỉ ra rằng một trong những thách thức của deep learning đầu cuối là
+
+48
+00:02:27.070 --> 00:02:30.670
+bạn có thể cần rất nhiều dữ liệu trước khi nó hoạt động tốt.
+
+49
+00:02:30.670 --> 00:02:33.030
+Ví dụ, nếu bạn đang đào tạo trên 3.000
+
+50
+00:02:33.030 --> 00:02:35.935
+giờ dữ liệu để xây dựng một hệ thống nhận dạng giọng nói,
+
+51
+00:02:35.935 --> 00:02:37.600
+thì đường ống truyền thống, đường
+
+52
+00:02:37.600 --> 00:02:40.675
+ống truyền thống đầy đủ hoạt động rất tốt.
+
+53
+00:02:40.675 --> 00:02:42.745
+Chỉ khi bạn có một tập dữ liệu rất lớn,
+
+54
+00:02:42.745 --> 00:02:45.290
+bạn biết một trong những khoảng 10.000 giờ dữ liệu,
+
+55
+00:02:45.290 --> 00:02:49.000
+bất cứ thứ gì có thể lên đến 100.000 giờ dữ liệu mà
+
+56
+00:02:49.000 --> 00:02:53.350
+cách tiếp cận cuối đột nhiên bắt đầu hoạt động rất tốt.
+
+57
+00:02:53.350 --> 00:02:55.000
+Vì vậy, khi bạn có một tập dữ liệu nhỏ hơn,
+
+58
+00:02:55.000 --> 00:02:58.990
+cách tiếp cận đường ống truyền thống hơn thực sự hoạt động cũng như tốt.
+
+59
+00:02:58.990 --> 00:03:00.700
+Thường hoạt động tốt hơn.
+
+60
+00:03:00.700 --> 00:03:06.855
+Và bạn cần một tập dữ liệu lớn trước khi tiếp cận đầu cuối thực sự tỏa sáng.
+
+61
+00:03:06.855 --> 00:03:08.850
+Và nếu bạn có một lượng dữ liệu trung bình,
+
+62
+00:03:08.850 --> 00:03:12.365
+thì cũng có những cách tiếp cận trung gian mà bạn có thể nhập âm thanh
+
+63
+00:03:12.365 --> 00:03:16.420
+và bỏ qua các feature và chỉ học cách xuất âm vị của neural network,
+
+64
+00:03:16.420 --> 00:03:17.765
+và sau đó ở một số giai đoạn khác là tốt.
+
+65
+00:03:17.765 --> 00:03:19.420
+Vì vậy, đây sẽ là một bước tiến tới việc học từ đầu đến cuối,
+
+66
+00:03:19.420 --> 00:03:29.065
+nhưng không phải tất cả các cách ở đó.
+
+67
+00:03:29.065 --> 00:03:34.855
+Kiểm tra. Đây là một bức ảnh của một cửa quay nhận diện khuôn mặt được xây dựng bởi một nhà nghiên cứu,
+
+68
+00:03:34.855 --> 00:03:36.600
+Yuanqing Lin ở Baidu,
+
+69
+00:03:36.600 --> 00:03:41.050
+nơi đây là một máy ảnh và nó nhìn vào người đang đến gần cổng,
+
+70
+00:03:41.050 --> 00:03:43.135
+và nếu nó nhận ra người đó,
+
+71
+00:03:43.135 --> 00:03:46.645
+bạn biết rằng cửa quay sẽ tự động cho họ qua.
+
+72
+00:03:46.645 --> 00:03:51.170
+Vì vậy, thay vì cần phải vuốt một huy hiệu RFID để vào cơ sở này,
+
+73
+00:03:51.170 --> 00:03:53.410
+trong ngày càng nhiều văn phòng ở
+
+74
+00:03:53.410 --> 00:03:56.270
+Trung Quốc và hy vọng ngày càng nhiều ở các nước khác,
+
+75
+00:03:56.270 --> 00:03:59.485
+bạn chỉ có thể tiếp cận cửa quay và nếu nó nhận ra khuôn mặt của bạn, nó
+
+76
+00:03:59.485 --> 00:04:04.155
+chỉ cho phép bạn qua mà không cần bạn mang theo Huy hiệu RFID.
+
+77
+00:04:04.155 --> 00:04:07.385
+Vậy, làm thế nào để bạn xây dựng một hệ thống như thế này?
+
+78
+00:04:07.385 --> 00:04:12.590
+Vâng, một điều bạn có thể làm là nhìn vào hình ảnh mà máy ảnh đang chụp.
+
+79
+00:04:12.590 --> 00:04:14.645
+Đúng không? Vì vậy, tôi đoán đây là bản vẽ tồi tệ của tôi,
+
+80
+00:04:14.645 --> 00:04:16.190
+nhưng có lẽ đây là một hình ảnh máy ảnh.
+
+81
+00:04:16.190 --> 00:04:19.390
+Và bạn biết đấy, bạn có ai đó đang đến gần cửa quay.
+
+82
+00:04:19.390 --> 00:04:23.810
+Vì vậy, đây có thể là hình ảnh X mà bạn mà máy ảnh của bạn đang chụp.
+
+83
+00:04:23.810 --> 00:04:26.950
+Và một điều bạn có thể làm là cố gắng tìm hiểu một hàm ánh xạ
+
+84
+00:04:26.950 --> 00:04:31.470
+trực tiếp từ hình ảnh X đến danh tính của người Y
+
+85
+00:04:31.470 --> 00:04:34.580
+Hóa ra đây không phải là cách tiếp cận tốt nhất.
+
+86
+00:04:34.580 --> 00:04:36.395
+Và một trong những vấn đề là bạn biết đấy,
+
+87
+00:04:36.395 --> 00:04:39.835
+người tiếp cận cửa quay có thể tiếp cận từ nhiều hướng khác nhau.
+
+88
+00:04:39.835 --> 00:04:41.945
+Vì vậy, chúng có thể là các vị trí màu xanh lá cây,
+
+89
+00:04:41.945 --> 00:04:43.195
+chúng có thể ở vị trí màu xanh.
+
+90
+00:04:43.195 --> 00:04:45.245
+Bạn biết đấy, đôi khi chúng ở gần máy ảnh hơn,
+
+91
+00:04:45.245 --> 00:04:47.020
+vì vậy chúng có vẻ lớn hơn trong ảnh.
+
+92
+00:04:47.020 --> 00:04:49.225
+Và đôi khi chúng đã ở gần máy ảnh hơn,
+
+93
+00:04:49.225 --> 00:04:51.600
+vì vậy khuôn mặt đó có vẻ to hơn nhiều.
+
+94
+00:04:51.600 --> 00:04:54.205
+Vì vậy, những gì nó thực sự làm để xây dựng những cửa quay này,
+
+95
+00:04:54.205 --> 00:04:56.350
+không chỉ là lấy hình ảnh thô và
+
+96
+00:04:56.350 --> 00:04:59.315
+đưa nó vào một neural network để cố gắng tìm ra danh tính của một người.
+
+97
+00:04:59.315 --> 00:05:02.005
+Thay vào đó, cách tiếp cận tốt nhất cho
+
+98
+00:05:02.005 --> 00:05:05.140
+đến nay, dường như là một cách tiếp cận nhiều bước, nơi đầu tiên,
+
+99
+00:05:05.140 --> 00:05:09.210
+bạn chạy một phần mềm để phát hiện khuôn mặt của người đó.
+
+100
+00:05:09.210 --> 00:05:12.820
+Vì vậy, máy dò đầu tiên tìm ra khuôn mặt của người đó ở đâu.
+
+101
+00:05:12.820 --> 00:05:14.785
+Sau khi phát hiện khuôn mặt của người đó,
+
+102
+00:05:14.785 --> 00:05:16.930
+sau đó bạn phóng to đến phần đó của
+
+103
+00:05:16.930 --> 00:05:24.540
+hình ảnh và cắt xén
+
+104
+00:05:24.540 --> 00:05:29.340
+hình ảnh đó sao cho khuôn mặt của người đó được căn giữa.
+
+105
+00:05:29.340 --> 00:05:34.757
+Sau đó, nó là bức ảnh mà tôi đoán tôi vẽ ở đây màu đỏ, nó
+
+106
+00:05:34.757 --> 00:05:36.080
+được đưa vào neural network,
+
+107
+00:05:36.080 --> 00:05:38.010
+để sau đó cố gắng tìm hiểu,
+
+108
+00:05:38.010 --> 00:05:40.485
+hoặc ước tính danh tính của người đó.
+
+109
+00:05:40.485 --> 00:05:42.150
+Và những gì các nhà nghiên cứu đã tìm thấy,
+
+110
+00:05:42.150 --> 00:05:45.615
+là thay vì cố gắng tìm hiểu mọi thứ trên một bước,
+
+111
+00:05:45.615 --> 00:05:48.780
+bằng cách phá vỡ vấn đề này thành hai bước đơn giản hơn,
+
+112
+00:05:48.780 --> 00:05:51.490
+đầu tiên là tìm ra khuôn mặt ở đâu.
+
+113
+00:05:51.490 --> 00:05:54.890
+Và thứ hai, là nhìn vào khuôn mặt và tìm ra điều này thực sự là ai.
+
+114
+00:05:54.890 --> 00:05:58.010
+Cách tiếp cận thứ hai này cho phép các thuật toán học tập hoặc thực sự hai thuật toán học tập
+
+115
+00:05:58.010 --> 00:06:03.560
+để giải quyết hai nhiệm vụ đơn giản hơn nhiều và kết quả trong tổng thể hiệu suất tốt hơn.
+
+116
+00:06:03.560 --> 00:06:05.930
+Nhân tiện, nếu bạn muốn biết
+
+117
+00:06:05.930 --> 00:06:08.975
+bước thứ hai thực sự hoạt động như thế nào, tôi đã đơn giản hóa cuộc thảo luận.
+
+118
+00:06:08.975 --> 00:06:11.865
+Nhân tiện, nếu bạn muốn biết bước hai ở đây thực sự hoạt động như thế nào,
+
+119
+00:06:11.865 --> 00:06:13.605
+tôi đã thực sự đơn giản hóa mô tả một chút.
+
+120
+00:06:13.605 --> 00:06:15.470
+Cách bước thứ hai thực sự được đào tạo,
+
+121
+00:06:15.470 --> 00:06:16.730
+khi bạn đào tạo trong mạng của bạn,
+
+122
+00:06:16.730 --> 00:06:18.920
+mà mất như đầu vào hai hình ảnh,
+
+123
+00:06:18.920 --> 00:06:22.230
+và những gì sau đó mạng của bạn làm là nó lấy
+
+124
+00:06:22.230 --> 00:06:29.553
+đầu vào hai hình ảnh và nó cho bạn biết nếu hai hình ảnh này là cùng một người hay không.
+
+125
+00:06:29.553 --> 00:06:34.700
+Vì vậy, nếu sau đó bạn có nói 10.000 nhân viên ID trên hồ sơ,
+
+126
+00:06:34.700 --> 00:06:36.430
+sau đó bạn có thể lấy hình ảnh này trong màu đỏ,
+
+127
+00:06:36.430 --> 00:06:38.545
+và nhanh chóng so sánh nó với có thể tất cả
+
+128
+00:06:38.545 --> 00:06:41.795
+10.000 nhân viên ID trên hồ sơ để cố gắng tìm ra nếu
+
+129
+00:06:41.795 --> 00:06:44.810
+hình ảnh này trong màu đỏ thực sự là một trong 10000 nhân viên của bạn mà bạn
+
+130
+00:06:44.810 --> 00:06:48.640
+nên cho phép vào cơ sở này hoặc điều đó nên cho phép vào tòa nhà văn phòng của bạn.
+
+131
+00:06:48.640 --> 00:06:51.770
+Đây là một cửa quay cung cấp cho nhân viên quyền truy cập vào một
+
+132
+00:06:51.770 --> 00:06:55.970
+nơi làm việc.Vậy tại sao cách tiếp cận hai bước lại hoạt động tốt hơn?
+
+133
+00:06:55.970 --> 00:06:58.605
+Thực ra có hai lý do cho điều đó.
+
+134
+00:06:58.605 --> 00:07:02.020
+Một là mỗi trong hai vấn đề bạn đang giải quyết thực sự đơn giản hơn nhiều.
+
+135
+00:07:02.020 --> 00:07:10.360
+Nhưng thứ hai, là bạn có rất nhiều dữ liệu cho mỗi trong hai nhiệm vụ phụ.
+
+136
+00:07:10.360 --> 00:07:16.950
+Đặc biệt, có rất nhiều dữ liệu bạn có thể nhận được để phát hiện giai đoạn,
+
+137
+00:07:16.950 --> 00:07:18.720
+cho nhiệm vụ một ở đây,
+
+138
+00:07:18.720 --> 00:07:20.820
+nơi nhiệm vụ là nhìn vào một hình ảnh và tìm
+
+139
+00:07:20.820 --> 00:07:23.415
+ra khuôn mặt của người đó và hình ảnh ở đâu.
+
+140
+00:07:23.415 --> 00:07:25.695
+Vì vậy, có rất nhiều dữ liệu.
+
+141
+00:07:25.695 --> 00:07:27.610
+Có rất nhiều dữ liệu nhãn X,
+
+142
+00:07:27.610 --> 00:07:31.420
+dấu phẩy Y trong đó X là một hình ảnh và y cho thấy vị trí của khuôn mặt của người đó.
+
+143
+00:07:31.420 --> 00:07:35.100
+Vì vậy, bạn có thể xây dựng một neural network để làm nhiệm vụ một khá tốt.
+
+144
+00:07:35.100 --> 00:07:37.440
+Và sau đó một cách riêng biệt, có rất nhiều dữ liệu cho nhiệm vụ hai là tốt.
+
+145
+00:07:37.440 --> 00:07:41.710
+Ngày nay, các công ty hàng đầu đã giả
+
+146
+00:07:41.710 --> 00:07:44.525
+sử, hàng trăm triệu hình ảnh của khuôn mặt người dân.
+
+147
+00:07:44.525 --> 00:07:46.845
+Vì vậy, với một hình ảnh cắt xén chặt chẽ,
+
+148
+00:07:46.845 --> 00:07:49.275
+như hình ảnh màu đỏ này hay hình ảnh này dưới đây,
+
+149
+00:07:49.275 --> 00:07:51.555
+ngày nay các đội nhận dạng khuôn mặt hàng đầu có
+
+150
+00:07:51.555 --> 00:07:53.880
+ít nhất hàng trăm triệu hình ảnh mà họ có thể
+
+151
+00:07:53.880 --> 00:07:55.980
+dùng để xem hai hình ảnh và cố gắng
+
+152
+00:07:55.980 --> 00:07:58.765
+tìm ra danh tính hay tìm ra xem nó có phải là cùng một người hay không .
+
+153
+00:07:58.765 --> 00:08:02.310
+Vì vậy, cũng có rất nhiều dữ liệu cho nhiệm vụ hai.
+
+154
+00:08:02.310 --> 00:08:07.155
+Nhưng ngược lại, nếu bạn cố gắng tìm hiểu tất cả mọi thứ cùng
+
+155
+00:08:07.155 --> 00:08:10.680
+một lúc, có ít dữ liệu của hình thức X dấu phẩy Y Trong
+
+156
+00:08:10.680 --> 00:08:13.175
+đó X là hình ảnh như thế này lấy từ cửa quay,
+
+157
+00:08:13.175 --> 00:08:16.390
+và Y là danh tính của người đó.
+
+158
+00:08:16.390 --> 00:08:21.610
+Vì vậy, bởi vì bạn không có đủ dữ liệu để giải quyết vấn đề học tập từ đầu đến cuối này,
+
+159
+00:08:21.610 --> 00:08:27.410
+nhưng bạn có đủ dữ liệu để giải quyết các vấn đề phụ một và hai, trong thực tế,
+
+160
+00:08:27.410 --> 00:08:29.740
+chia thành hai vấn đề phụ dẫn đến
+
+161
+00:08:29.740 --> 00:08:34.260
+hiệu suất tốt hơn so với phương pháp deep learning đầu cuối thuần túy.
+
+162
+00:08:34.260 --> 00:08:37.575
+Mặc dù nếu bạn có đủ dữ liệu cho cách tiếp cận đầu cuối, có
+
+163
+00:08:37.575 --> 00:08:40.470
+thể cách tiếp cận đầu cuối sẽ hoạt động tốt hơn,
+
+164
+00:08:40.470 --> 00:08:44.240
+nhưng đó không thực sự là những gì hoạt động tốt nhất trong thực tế ngày nay.
+
+165
+00:08:44.240 --> 00:08:46.886
+Hãy nhìn vào một vài ví dụ khác.
+
+166
+00:08:46.886 --> 00:08:49.000
+Lấy máy dịch đi.
+
+167
+00:08:49.000 --> 00:08:54.390
+Theo truyền thống, hệ thống dịch máy cũng có một đường ống dài phức tạp,
+
+168
+00:08:54.390 --> 00:08:56.230
+nơi đầu tiên bạn nói tiếng Anh,
+
+169
+00:08:56.230 --> 00:08:58.955
+văn bản và sau đó phân tích văn bản.
+
+170
+00:08:58.955 --> 00:09:01.990
+Về cơ bản, trích xuất một loạt các feature ra khỏi văn bản, và như vậy.
+
+171
+00:09:01.990 --> 00:09:04.630
+Và sau nhiều bước bạn sẽ kết thúc với nói,
+
+172
+00:09:04.630 --> 00:09:07.900
+một bản dịch của văn bản tiếng Anh sang tiếng Pháp.
+
+173
+00:09:07.900 --> 00:09:10.030
+Bởi vì, đối với dịch máy,
+
+174
+00:09:10.030 --> 00:09:13.990
+bạn có rất nhiều cặp câu tiếng Anh bằng dấu phẩy tiếng Pháp.
+
+175
+00:09:13.990 --> 00:09:17.640
+Deep learning từ đầu đến cuối hoạt động khá tốt cho dịch máy.
+
+176
+00:09:17.640 --> 00:09:20.140
+Và
+
+177
+00:09:20.140 --> 00:09:24.350
+đó là bởi vì ngày nay, có thể thu thập các tập dữ liệu lớn của các cặp X-Y nơi đó là
+
+178
+00:09:24.350 --> 00:09:28.780
+câu tiếng Anh và đó là bản dịch tiếng Pháp tương ứng.
+
+179
+00:09:28.780 --> 00:09:29.955
+Vì vậy, trong ví dụ này,
+
+180
+00:09:29.955 --> 00:09:32.320
+deep learning đầu cuối hoạt động tốt.
+
+181
+00:09:32.320 --> 00:09:35.200
+Một ví dụ cuối cùng, giả sử rằng bạn
+
+182
+00:09:35.200 --> 00:09:38.220
+muốn nhìn vào một bức ảnh X-quang của một bàn tay của một đứa trẻ,
+
+183
+00:09:38.220 --> 00:09:40.215
+và ước tính tuổi của một đứa trẻ.
+
+184
+00:09:40.215 --> 00:09:41.830
+Khi lần đầu tiên tôi nghe về vấn đề này,
+
+185
+00:09:41.830 --> 00:09:45.460
+tôi nghĩ đây là một nhiệm vụ điều tra hiện trường vụ án rất thú
+
+186
+00:09:45.460 --> 00:09:48.610
+vị khi bạn tìm thấy có thể là bộ xương của một đứa trẻ,
+
+187
+00:09:48.610 --> 00:09:50.980
+và bạn muốn tìm hiểu xem đứa trẻ như thế nào.
+
+188
+00:09:50.980 --> 00:09:54.445
+Hóa ra ứng dụng điển hình của vấn đề này,
+
+189
+00:09:54.445 --> 00:09:57.010
+ước tính tuổi của một đứa trẻ từ một tia X
+
+190
+00:09:57.010 --> 00:09:59.995
+ít kịch tính hơn cuộc điều tra hiện trường vụ án mà tôi đang hình dung.
+
+191
+00:09:59.995 --> 00:10:02.890
+Nó chỉ ra rằng các bác sĩ nhi khoa sử dụng
+
+192
+00:10:02.890 --> 00:10:06.925
+điều này để ước tính có hay không một đứa trẻ đang phát triển hoặc phát triển bình thường hay không.
+
+193
+00:10:06.925 --> 00:10:09.460
+Nhưng một cách tiếp cận không phải đầu cuối đối với điều này,
+
+194
+00:10:09.460 --> 00:10:14.045
+sẽ là bạn định vị một hình ảnh và sau đó bạn phân đoạn ra hoặc nhận ra xương.
+
+195
+00:10:14.045 --> 00:10:16.730
+Vậy, hãy cố gắng tìm ra đoạn xương đó ở đâu?
+
+196
+00:10:16.730 --> 00:10:17.849
+Đoạn xương đó ở đâu?
+
+197
+00:10:17.849 --> 00:10:20.290
+Đoạn xương đó ở đâu? Và cứ thế. Và sau đó.
+
+198
+00:10:20.290 --> 00:10:22.285
+Biết được độ dài của các xương khác nhau,
+
+199
+00:10:22.285 --> 00:10:26.380
+bạn có thể sắp xếp đi đến một bảng tra cứu cho thấy chiều dài xương trung bình trong
+
+200
+00:10:26.380 --> 00:10:30.615
+tay của một đứa trẻ và sau đó sử dụng nó để ước tính tuổi của đứa trẻ.
+
+201
+00:10:30.615 --> 00:10:32.800
+Và cách tiếp cận này thực sự hoạt động khá tốt.
+
+202
+00:10:32.800 --> 00:10:37.960
+Ngược lại, nếu bạn đi thẳng từ hình ảnh đến tuổi của đứa trẻ,
+
+203
+00:10:37.960 --> 00:10:43.030
+thì bạn sẽ cần rất nhiều dữ liệu để làm điều đó trực tiếp và theo như tôi biết, cách tiếp
+
+204
+00:10:43.030 --> 00:10:45.850
+cận này không hoạt động như ngày hôm nay chỉ
+
+205
+00:10:45.850 --> 00:10:50.515
+vì không có đủ dữ liệu để đào tạo nhiệm vụ này trong một thời trang đầu cuối.
+
+206
+00:10:50.515 --> 00:10:56.326
+Trong khi ngược lại, bạn có thể tưởng tượng rằng bằng cách chia nhỏ vấn đề này thành hai bước.
+
+207
+00:10:56.326 --> 00:10:58.780
+Bước một là một vấn đề tương đối đơn giản.
+
+208
+00:10:58.780 --> 00:11:00.345
+Có lẽ bạn không cần nhiều dữ liệu như vậy.
+
+209
+00:11:00.345 --> 00:11:03.455
+Có lẽ bạn không cần nhiều hình ảnh chụp X-quang để phân chia xương.
+
+210
+00:11:03.455 --> 00:11:08.225
+Và nhiệm vụ hai, bằng cách thu thập số liệu thống kê của một số bàn tay của trẻ em,
+
+211
+00:11:08.225 --> 00:11:11.280
+bạn cũng có thể nhận được ước tính phong nha về điều đó mà không có quá nhiều dữ liệu.
+
+212
+00:11:11.280 --> 00:11:14.125
+Vì vậy, cách tiếp cận nhiều bước này có vẻ đầy hứa hẹn.
+
+213
+00:11:14.125 --> 00:11:16.420
+Có lẽ hứa hẹn hơn phương pháp tiếp cận đầu cuối,
+
+214
+00:11:16.420 --> 00:11:20.635
+ít nhất là cho đến khi bạn có thể nhận được nhiều dữ liệu hơn cho phương pháp tiếp cận học tập đầu cuối.
+
+215
+00:11:20.635 --> 00:11:22.840
+Vì vậy, một chương trình deep learning từ đầu đến cuối hoạt động.
+
+216
+00:11:22.840 --> 00:11:26.650
+Nó có thể hoạt động thực sự tốt và nó thực sự có thể đơn giản hóa hệ thống và không
+
+217
+00:11:26.650 --> 00:11:30.875
+đòi hỏi bạn phải xây dựng rất nhiều thành phần cá nhân được thiết kế bằng tay.
+
+218
+00:11:30.875 --> 00:11:32.773
+Nhưng nó cũng không phải thuốc chữa bách bệnh,
+
+219
+00:11:32.773 --> 00:11:34.315
+nó không phải lúc nào cũng hiệu quả.
+
+220
+00:11:34.315 --> 00:11:35.650
+Trong video tiếp theo,
+
+221
+00:11:35.650 --> 00:11:39.530
+tôi muốn chia sẻ với các bạn một mô tả có hệ thống hơn về thời điểm bạn nên,
+
+222
+00:11:39.530 --> 00:11:42.820
+và có thể khi nào bạn không nên sử dụng deep learning từ đầu đến cuối và làm thế nào
+
+223
+00:11:42.820 --> 00:11:47.000
+để ghép lại với nhau những hệ thống machine learning phức tạp này.

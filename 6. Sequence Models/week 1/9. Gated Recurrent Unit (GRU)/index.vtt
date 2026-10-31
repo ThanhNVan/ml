@@ -1,0 +1,462 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.140 --> 00:00:06.500
+You've seen how a basic RNN works. In this video, you learn about the gated recurrent unit,
+
+00:00:06.500 --> 00:00:12.820
+which is a modification to the RNN hidden layer that makes it much better at capturing long-range connections
+
+00:00:12.820 --> 00:00:17.300
+and helps a lot with the vanishing gradient problems. Let's take a look.
+
+00:00:17.300 --> 00:00:23.540
+You've already seen the formula for computing the activation at time t of an RNN.
+
+00:00:23.540 --> 00:00:30.740
+The activation function applies to the parameter WA times the activation for the previous time set
+
+00:00:30.740 --> 00:00:36.180
+with the current input and then plus the bias. So I'm going to draw this as a picture.
+
+00:00:36.180 --> 00:00:46.980
+So the RNN unit I'm going to draw as a picture, drawn as a box, which inputs A of t minus 1,
+
+00:00:46.980 --> 00:00:52.660
+the activation for the last time step, and also inputs Xt.
+
+00:00:52.660 --> 00:01:01.940
+And these two go together and after some weights and after this type of linear calculation,
+
+00:01:01.940 --> 00:01:12.820
+if g is a 10H activation function, then after the 10H, it computes the output activation.
+
+00:01:12.820 --> 00:01:21.780
+And the output activation at might also be passed to, say, a softmax unit or something
+
+00:01:21.780 --> 00:01:30.980
+that could then be used to output Y hat t. So this is maybe a visualization of the RNN unit
+
+00:01:30.980 --> 00:01:36.980
+of the hidden layer of the RNN in terms of a picture. And I want to show you this picture
+
+00:01:36.980 --> 00:01:42.740
+because we're going to use a similar picture to explain the GRU or the gated recurrent unit.
+
+00:01:42.740 --> 00:01:49.060
+A lot of the ideas of GRUs were due to these two papers respectively by Jun Young Chung,
+
+00:01:49.060 --> 00:01:53.860
+Kaggler, Gauss-Sehir, Kyung-Hoon Cho, and Yoshiben Cho.
+
+00:01:53.860 --> 00:01:57.940
+And I'm sometimes going to refer to this sentence, which we'd seen in the last video,
+
+00:01:57.940 --> 00:02:03.540
+to motivate that given a sentence like this, you might need to remember the cat was singular
+
+00:02:03.540 --> 00:02:10.420
+to make sure you understand why that was rather than were. So the cat was full or the cats
+
+00:02:10.420 --> 00:02:17.300
+were full. So as we read in this sentence from left to right, the GRU unit is going to have
+
+00:02:17.300 --> 00:02:25.460
+a new variable called C, which stands for cell for memory cell. And what the memory cell do is
+
+00:02:25.460 --> 00:02:31.940
+it will provide a bit of memory to remember, for example, whether cat was singular or plural,
+
+00:02:31.940 --> 00:02:37.220
+so that when it gets much further into the sentence, it can still work on the consideration
+
+00:02:37.220 --> 00:02:42.900
+whether the subject of the sentence was singular or plural. And so at time t, the memory cell will
+
+00:02:42.900 --> 00:02:51.540
+have some value C of t. And what we'll see is that the GRU unit will actually output an activation
+
+00:02:51.540 --> 00:02:58.340
+value a of t that's equal to C of t. And for now, I wanted to use different symbols C and a
+
+00:02:58.340 --> 00:03:04.100
+to denote the memory cell value and the output activation value, even though they are the same.
+
+00:03:04.180 --> 00:03:10.100
+I'm using this notation because when we talk about LSTMs a little bit later, these will be two
+
+00:03:10.100 --> 00:03:16.260
+different values. But for now, for the GRU, C of t is equal to the output activation a of t.
+
+00:03:17.380 --> 00:03:25.140
+So these are the equations that govern the computations of a GRU unit. At every time step,
+
+00:03:25.140 --> 00:03:31.780
+we're going to consider overwriting the memory cell with a value C tilde of t. So this is going
+
+00:03:31.780 --> 00:03:38.260
+to be a candidate for replacing C of t. And we're going to compute this using an activation function
+
+00:03:39.300 --> 00:03:49.220
+tanh of wc. And so that's the parameter matrix wc. And we'll pass through this parameter matrix
+
+00:03:49.220 --> 00:03:56.020
+the previous value of the memory cell, the activation value, as well as the current input
+
+00:03:56.020 --> 00:04:03.220
+value X t and then plus a bias. So C tilde of t is going to be a candidate for replacing C t.
+
+00:04:04.260 --> 00:04:11.620
+And then the key, really the important idea of the GRU, it will be that we'll have a gate.
+
+00:04:12.340 --> 00:04:21.620
+So the gate I'm going to call gamma u. This is the capital Greek alphabet gamma subscript u.
+
+00:04:21.620 --> 00:04:29.780
+And u stands for update gate. And this will be a value between 0 and 1. And to develop your
+
+00:04:29.780 --> 00:04:36.820
+intuition about how GRUs work, think of gamma u, this gate value, as being always 0 or 1. Although
+
+00:04:36.820 --> 00:04:44.020
+in practice, you compute it with a sigmoid function applied to this. So remember that the
+
+00:04:44.020 --> 00:04:51.780
+sigmoid function looks like this. And so its values are always between 0 and 1. And for most
+
+00:04:51.780 --> 00:04:57.060
+of the possible ranges of the input, the sigmoid function is either very, very close to 0 or very,
+
+00:04:57.060 --> 00:05:04.180
+very close to 1. So for intuition, think of gamma as being either 0 or 1 most of the time.
+
+00:05:04.740 --> 00:05:10.260
+And this alphabet u stands for, so I chose the alphabet gamma for this because
+
+00:05:10.820 --> 00:05:16.500
+if you look at a gated fence, you know, looks a bit like this, I guess, then, you know, there are a lot
+
+00:05:16.500 --> 00:05:22.740
+of sort of gammas in this fence. So that's why gamma u we're going to use to denote the gate.
+
+00:05:23.620 --> 00:05:28.660
+Oh, also Greek alphabet g, right, g for gate. So g for gamma and g for gate.
+
+00:05:30.100 --> 00:05:38.740
+And then next, the key part of the GRU is this equation, which is that we have come up with a
+
+00:05:38.820 --> 00:05:46.020
+candidate way, we're thinking of updating C using C tilde, and then the gate will decide whether or
+
+00:05:46.020 --> 00:05:54.180
+not we actually update it. And so the way to think about it is maybe this memory cell C is going to
+
+00:05:54.180 --> 00:06:00.900
+be set to either 0 or 1 depending on whether the word you are considering really the subject of
+
+00:06:00.900 --> 00:06:07.220
+the sentence is singular or plural. So because a singular, let's say that we set this to 1,
+
+00:06:07.220 --> 00:06:14.660
+and it was plural, maybe we'll set this to 0. And then the GRU unit will memorize the value of
+
+00:06:14.660 --> 00:06:22.340
+the C t all the way until here, where, you know, this is still equal to 1. And so that tells it,
+
+00:06:22.340 --> 00:06:30.020
+oh, it was singular. So use the choice was. And the job of the gate of gamma u is to decide when
+
+00:06:30.020 --> 00:06:34.900
+do you update this value. So in particular, when you see the phrase the cat, you know,
+
+00:06:34.900 --> 00:06:39.460
+that you're talking about a new concept, the subject of a sentence cat. So that would be a
+
+00:06:39.460 --> 00:06:44.020
+good time to update this bit. And then maybe when you're done using it, you know, the cat, blah,
+
+00:06:44.020 --> 00:06:48.980
+blah, blah was full, then you know, okay, I don't need to memorize anymore, I can I can just forget
+
+00:06:48.980 --> 00:06:56.420
+that. So the specific equation we'll use for the GRU is the following, which is that the actual
+
+00:06:56.420 --> 00:07:08.180
+value of C t will be equal to this gate times the candidate value plus one minus the gate
+
+00:07:10.020 --> 00:07:20.500
+times the old value, C t minus one. So notice that if the gate if this update value, this is equal
+
+00:07:20.500 --> 00:07:26.980
+to one, then the same set the new value of C t equal to this candidate value. So that's like over
+
+00:07:26.980 --> 00:07:32.580
+here, set the gate equal to one. So go ahead and update that bit. And then for all of these
+
+00:07:33.220 --> 00:07:39.060
+values in the middle, you should have the gate equals zero. So just saying, don't update it,
+
+00:07:39.060 --> 00:07:45.620
+don't update it, don't update it, just hang on to the old value. Because if gamma u is equal to zero,
+
+00:07:45.620 --> 00:07:52.420
+then this will be zero, and this will be one. And so it's just setting C t equal to the old value,
+
+00:07:52.420 --> 00:07:56.660
+even as you scan the sentence from left to right. So when the gate is equal to zero,
+
+00:07:56.660 --> 00:08:01.380
+saying, don't update it, don't update it, just hang on to the value. And don't forget what this value
+
+00:08:01.380 --> 00:08:07.140
+was. And so that way, even when you get all the way down here, hopefully, you've just been setting
+
+00:08:07.140 --> 00:08:14.820
+C t equals C t minus one all along, and it still memorizes the cat was singular. So let me also
+
+00:08:14.820 --> 00:08:22.900
+draw a picture to denote the GRU unit. And by the way, when you look in online blog posts and
+
+00:08:22.900 --> 00:08:28.660
+textbooks and tutorials, these types of pictures are quite popular for explaining GRUs as well as
+
+00:08:28.660 --> 00:08:34.980
+we'll see later LSTM units, I personally find the equations easier to understand in the pictures.
+
+00:08:34.980 --> 00:08:40.100
+So if the picture doesn't make sense, don't worry about it. But I'll just draw it if in case it
+
+00:08:40.100 --> 00:08:46.660
+helps some of you. But so a GRU unit inputs C t minus one from the previous time step. And this
+
+00:08:46.660 --> 00:08:52.980
+happens to be equal to AT minus one. So it takes as its input, and then it also takes its input
+
+00:08:54.020 --> 00:09:04.340
+X t, then these two things get combined together. And with some appropriate weighting and some tanh,
+
+00:09:04.340 --> 00:09:11.860
+this gives you C tilde t, which is a candidate for replacing CT. And then with a different set of
+
+00:09:11.860 --> 00:09:16.820
+parameters and through a sigma activation function, this gives you gamma U, which is the
+
+00:09:16.820 --> 00:09:24.100
+update gate. And then finally, all of these things combined together through another operation. And
+
+00:09:24.100 --> 00:09:28.740
+I won't write out the formula, but this box here, which are shaded in purple, represents this
+
+00:09:28.740 --> 00:09:35.940
+equation, which we had down there. So that's what this purple operation represents. And it
+
+00:09:35.940 --> 00:09:43.060
+takes as input the gate value, the candidate new value, or that's the gate value again,
+
+00:09:43.060 --> 00:09:50.180
+and the old value for CT. So it takes its input this, this, and this. And together, they generate
+
+00:09:50.900 --> 00:09:57.460
+the new value for the memory cell. And so that's CT equals A. And if you wish, you could also
+
+00:09:57.460 --> 00:10:05.780
+use this and pass this to a softmax or something to make some prediction for, you know, Y t of Y
+
+00:10:05.780 --> 00:10:12.100
+hat t. So that is the GRU unit, or at least a slightly simplified version of it. And what
+
+00:10:12.100 --> 00:10:18.340
+is remarkably good at is through the gate deciding that when you're scanning the sentence from left
+
+00:10:18.340 --> 00:10:22.820
+to right, say that that's a good time to update one particular memory cell, and then to not change
+
+00:10:22.820 --> 00:10:28.500
+it, not change it until you get to the point where you really needed to use this memory cell
+
+00:10:28.500 --> 00:10:35.300
+that you had set even much earlier in the sentence. And because the sigma value, now because the gate
+
+00:10:35.940 --> 00:10:42.020
+is quite easy to set to zero, right, so so long as this quantity is a large negative value,
+
+00:10:42.020 --> 00:10:47.620
+then up to numerical round off, the update gate will be essentially zero, very, very, very close to
+
+00:10:47.620 --> 00:10:53.860
+zero. So when that's the case, then this update equation ends up setting CT equals
+
+00:10:54.740 --> 00:11:01.780
+CT minus one. And so this is very good at maintaining the value for the cell. And because
+
+00:11:01.780 --> 00:11:11.220
+gamma can be so close to zero, can be 0.000001, or even smaller than that, it doesn't suffer from
+
+00:11:11.220 --> 00:11:17.060
+much of a vanishing gradient problem. Because you say gamma is so close to zero that this
+
+00:11:17.060 --> 00:11:24.100
+becomes essentially CT equals CT minus one. And the value of CT is maintained pretty much exactly,
+
+00:11:24.100 --> 00:11:29.700
+even across many, many, many, many time steps. So this can help significantly with the vanishing
+
+00:11:29.700 --> 00:11:35.460
+gradient problem, and therefore allow a neural network to learn even very long range dependencies,
+
+00:11:35.460 --> 00:11:40.740
+such as the cat and words are related even if they're separated by a lot of words in the middle.
+
+00:11:41.780 --> 00:11:45.780
+Now, I just want to talk over some more details of how you implement this.
+
+00:11:47.220 --> 00:11:55.780
+In the equations I've written, CT can be a vector. So if you have a hundred dimensional
+
+00:11:56.340 --> 00:12:02.500
+hidden activation value, then CT can be a hundred dimensional, say. And so C tilde t would also be
+
+00:12:02.500 --> 00:12:08.660
+the same dimension, and gamma would also be the same dimension as the other things I'm
+
+00:12:08.660 --> 00:12:15.540
+drawing in boxes. And in that case, these asterisks are actually element-wise multiplication.
+
+00:12:16.500 --> 00:12:23.540
+So here, if gamma u, if the gate is a hundred dimensional vector, what it is, is really a
+
+00:12:23.540 --> 00:12:31.460
+hundred dimensional vector of bits, the values mostly zero and one, that tells you of this
+
+00:12:31.460 --> 00:12:37.220
+hundred dimensional memory cell which are the bits you want to update. And of course, in practice,
+
+00:12:37.220 --> 00:12:41.860
+gamma won't be exactly zero or one. Sometimes it'll take values in the middle as well,
+
+00:12:41.940 --> 00:12:47.220
+but it's convenient for intuition to think of it as mostly taking on values that are exactly zero,
+
+00:12:47.220 --> 00:12:53.380
+pretty much exactly zero, or pretty much exactly one. And what these element-wise multiplications
+
+00:12:53.380 --> 00:13:02.180
+do is it just, element-wise, tells the GRU unit which are the bits in your, it just tells your GRU
+
+00:13:02.180 --> 00:13:07.300
+which are the dimensions of your memory cell vector to update at every time step. So you
+
+00:13:07.300 --> 00:13:12.660
+can choose to keep some bits constant while updating other bits. So for example, maybe you'll
+
+00:13:12.660 --> 00:13:19.140
+use one bit to remember the singular or plural cat, and maybe you'll use some other bits to
+
+00:13:19.700 --> 00:13:24.580
+realize that you're talking about food, and so because you talk about eating and talk about food,
+
+00:13:25.140 --> 00:13:29.780
+then you'd expect to talk about whether the cat is full later. So you can use different bits and
+
+00:13:29.780 --> 00:13:34.100
+change only a subset of the bits at every point in time. You now understand the most
+
+00:13:34.180 --> 00:13:39.700
+important ideas of the GRU. What I presented on this slide, actually what I presented on this
+
+00:13:39.700 --> 00:13:46.420
+slide is actually a slightly simplified GRU unit. Let me describe the full GRU unit. So to do that,
+
+00:13:46.420 --> 00:13:54.980
+let me copy the three main equations, this one, this one, and this one to the next slide.
+
+00:13:55.700 --> 00:14:02.420
+So here they are. And for the full GRU unit, I'm going to make one change to this, which is
+
+00:14:02.420 --> 00:14:08.580
+for the first equation, which was calculating the candidate new value for the memory cell. I'm going
+
+00:14:08.580 --> 00:14:13.780
+to add just one term. Let me push that a little bit to the right, and I'm going to add one more gate.
+
+00:14:14.660 --> 00:14:23.300
+So this is a get another gate, gamma R. You can think of R as standing for relevance. So this gate
+
+00:14:23.300 --> 00:14:31.060
+gamma R tells you how relevant is CT minus one to computing the next candidate for CT.
+
+00:14:32.900 --> 00:14:39.540
+And this gate gamma R is computed pretty much as you expect with a new parameter matrix WR,
+
+00:14:40.100 --> 00:14:50.500
+and then the same things as input XT plus BR. So as you can imagine, there are multiple ways to
+
+00:14:50.500 --> 00:14:56.580
+design these types of neural networks, and why do we have gamma R? Why not just, you know, always,
+
+00:14:56.580 --> 00:15:01.220
+why not use the simpler version from the previous slides? So it turns out that over many years,
+
+00:15:01.220 --> 00:15:06.500
+researchers have experimented with many, many different possible versions of how to design these
+
+00:15:06.500 --> 00:15:12.980
+units to try to have longer range connections, to try to have a model longer range effects,
+
+00:15:12.980 --> 00:15:18.580
+and also address vanishing gradient problems. And the GRU is one of the most commonly used
+
+00:15:18.580 --> 00:15:23.300
+versions that researchers have converged to and have found is robust and useful for many
+
+00:15:23.300 --> 00:15:28.180
+different problems. If you wish, you could try to invent new versions of these units if you want.
+
+00:15:28.980 --> 00:15:33.860
+But the GRU is a standard one that's just commonly used, although you can imagine that
+
+00:15:33.860 --> 00:15:38.180
+researchers have tried other versions that are similar, but not exactly the same
+
+00:15:38.180 --> 00:15:45.380
+as what I'm writing down here as well. And the other common version is called an LSTM,
+
+00:15:45.380 --> 00:15:50.660
+which stands for long short term memory, which we'll talk about in the next video. But GRUs and
+
+00:15:50.660 --> 00:15:56.980
+LSTM are two specific instantiations of this set of ideas that are most commonly used.
+
+00:15:57.700 --> 00:16:03.380
+Just one note on notation, I tried to define a consistent notation to make these ideas easier
+
+00:16:03.380 --> 00:16:10.180
+to understand. If you look at the academic literature, you more, you sometimes see people,
+
+00:16:11.940 --> 00:16:16.420
+if you look at the academic literature, sometimes you see people use an alternative notation,
+
+00:16:16.420 --> 00:16:22.660
+there'll be h tilde, u r, and h to refer to these quantities as well. But I tried to use a
+
+00:16:22.660 --> 00:16:28.500
+more consistent notation between GRUs and LSTMs as well as using a more consistent notation,
+
+00:16:28.500 --> 00:16:32.900
+gamma, to refer to the gains to hopefully make these ideas easier to understand.
+
+00:16:34.180 --> 00:16:38.980
+So that's it for the GRU, for the gated recurrent unit. This is one of the ideas in
+
+00:16:38.980 --> 00:16:44.900
+RNNs that has enabled them to become much better at capturing very long range dependencies
+
+00:16:44.900 --> 00:16:51.300
+as RNNs much more effective. Next, as I briefly mentioned, the other most commonly used variation
+
+00:16:51.300 --> 00:16:56.500
+of this class of ideas is something called the LSTM unit or the Long Short-Term Memory Unit.
+
+00:16:56.500 --> 00:16:58.706
+Let's take a look at that in the next video.

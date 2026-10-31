@@ -1,0 +1,575 @@
+WEBVTT
+
+1
+00:00:00.920 --> 00:00:02.860
+Xin chào và chào mừng quay trở lại.
+
+2
+00:00:02.860 --> 00:00:08.860
+Trong tuần này chúng ta sẽ học về những điều
+ cơ bản trong lập trình neural network nhân tạo.
+
+3
+00:00:08.860 --> 00:00:11.990
+Khi bạn triển khai một mạng 
+nơ-ron nhân tạo thì sẽ sử dụng
+
+4
+00:00:11.990 --> 00:00:16.260
+một số kỹ thuật rất quan trọng.
+
+5
+00:00:16.260 --> 00:00:21.150
+Ví dụ: nếu bạn có một tập 
+huấn luyện về m ví dụ huấn luyện,
+
+6
+00:00:21.150 --> 00:00:25.110
+có thể bạn quen với việc xử lý training set 
+bằng cách sử dụng một vòng lặp for
+
+7
+00:00:25.110 --> 00:00:28.240
+trong m ví dụ 
+huấn luyện của bạn.
+
+8
+00:00:28.240 --> 00:00:31.260
+Nhưng hóa ra khi triển khai
+ một neural network nhân tạo,
+
+9
+00:00:31.260 --> 00:00:34.540
+bạn thường muốn xử lý 
+toàn bộ training set của mình
+
+10
+00:00:34.540 --> 00:00:39.040
+mà không sử dụng lặp đi lặp lại vòng lặp for 
+rõ ràng trong toàn bộ training set của bạn.
+
+11
+00:00:39.040 --> 00:00:42.940
+Và bạn sẽ thấy cách làm điều
+ đó trong bài học tuần này.
+
+12
+00:00:42.940 --> 00:00:47.700
+Tiếp theo, khi bạn tổ chức các 
+tính toán, trong mạng của bạn,
+
+13
+00:00:47.700 --> 00:00:51.670
+thông thường bạn sẽ sử dụng tạm dừng
+ chuyển tiếp hoặc bước truyền xuôi,
+
+14
+00:00:51.670 --> 00:00:56.100
+tiếp đến là một tạm dừng 
+lùi hoặc bước truyền ngược.
+
+15
+00:00:56.100 --> 00:01:00.010
+Vì thế nên trong các bài học của tuần
+ này, bạn cũng sẽ biết lý do tại sao
+
+16
+00:01:00.010 --> 00:01:04.830
+các tính toán, trong việc học một mạng
+ nơ-ron nhân tạo có thể được tổ chức theo cách
+
+17
+00:01:04.830 --> 00:01:08.010
+truyền xuôi và truyền ngược
+ một cách riêng biệt.
+
+18
+00:01:09.100 --> 00:01:12.620
+Trong các bài học tuần này, tôi muốn truyền đạt
+ lại những ý tưởng này bằng cách sử dụng
+
+19
+00:01:12.620 --> 00:01:16.170
+logistic regression để 
+bạn thấy dễ hiểu hơn.
+
+20
+00:01:16.170 --> 00:01:19.970
+Nhưng ngay cả khi bạn đã từng thấy regression
+ logistic rồi thì tôi nghĩ rằng bạn cũng sẽ
+
+21
+00:01:19.970 --> 00:01:23.845
+tìm được một số kiến thức mới 
+và thú vị trong tài liệu tuần này.
+
+22
+00:01:23.845 --> 00:01:25.815
+Hãy cùng bắt đầu nào.
+
+23
+00:01:25.815 --> 00:01:30.605
+Logistic regression là một thuật toán
+ cho việc classification nhị phân.
+
+24
+00:01:30.605 --> 00:01:33.145
+Hãy bắt đầu với 
+thiết lập vấn đề.
+
+25
+00:01:33.145 --> 00:01:36.925
+Đây là một ví dụ về một 
+bài toán classification nhị phân.
+
+26
+00:01:36.925 --> 00:01:41.545
+Bạn có thể có một đầu vào là 
+một hình ảnh, như thế này, và bạn
+
+27
+00:01:41.545 --> 00:01:47.260
+muốn xuất ra một nhãn để 
+nhận ra đây là hình một con mèo,
+
+28
+00:01:47.260 --> 00:01:52.140
+trong trường hợp này bạn có đầu ra 1, hoặc
+ không phải hình mèo thì bạn có đầu ra 0,
+
+29
+00:01:52.140 --> 00:01:57.740
+và chúng ta sẽ sử dụng 
+y để biểu thị nhãn đầu ra.
+
+30
+00:01:57.740 --> 00:02:01.550
+Hãy cùng xem cách mà một hình ảnh
+ được hiển thị trong một máy tính.
+
+31
+00:02:01.550 --> 00:02:05.680
+Để lưu trữ một hình ảnh, máy tính 
+của bạn lưu trữ ba ma trận riêng biệt
+
+32
+00:02:05.680 --> 00:02:09.890
+tương ứng với các kênh màu đỏ, xanh 
+lá cây và xanh dương trong hình ảnh này.
+
+33
+00:02:10.990 --> 00:02:15.900
+Như vậy, nếu hình ảnh đầu vào
+ của bạn là 64 pixel x 64 pixel,
+
+34
+00:02:15.900 --> 00:02:21.700
+sau đó bạn sẽ có 3 ma trận 
+64 x 64 tương ứng với
+
+35
+00:02:21.700 --> 00:02:27.230
+các giá trị cường độ pixel đỏ, xanh lá cây
+ và xanh dương trong hình ảnh của bạn.
+
+36
+00:02:27.230 --> 00:02:31.290
+Trong slide nhỏ này, tôi đã vẽ ra
+ những ma trận nhỏ hơn nhiều, vì vậy
+
+37
+00:02:31.290 --> 00:02:35.320
+thực ra đây là các ma trận
+ 5x4 thay vì 64 x 64.
+
+38
+00:02:35.320 --> 00:02:41.640
+Vì vậy, để biến các giá trị cường độ pixel này 
+ thành một vectơ feature, chúng ta
+
+39
+00:02:41.640 --> 00:02:48.000
+sẽ khai triển tất cả các giá trị pixel này 
+thành một vectơ feature đầu vào x.
+
+40
+00:02:48.000 --> 00:02:53.782
+Như vậy, để khai triển tất cả các giá trị cường độ
+ pixel này thành vectơ feature, chúng ta sẽ
+
+41
+00:02:53.782 --> 00:02:59.580
+xác định một vectơ feature x
+ tương ứng với hình ảnh này như sau.
+
+42
+00:02:59.580 --> 00:03:03.960
+Chúng ta sẽ lấy tất cả 
+các giá trị pixel 255, 231, v.v.
+
+43
+00:03:03.960 --> 00:03:10.827
+255, 231, v.v. cho đến khi chúng ta
+ liệt kê được tất cả các pixel màu đỏ.
+
+44
+00:03:10.827 --> 00:03:15.737
+Và cuối cùng là 255 134 
+255, 134 và v.v. cho đến khi
+
+45
+00:03:15.737 --> 00:03:20.952
+chúng ta nhận được một vectơ feature dài 
+liệt kê tất cả các giá trị cường độ pixel màu đỏ,
+
+46
+00:03:20.952 --> 00:03:25.570
+xanh lá cây và xanh
+ dương của hình ảnh này.
+
+47
+00:03:25.570 --> 00:03:31.043
+Nếu đây là hình ảnh 
+64 x 64, thì tổng kích thước
+
+48
+00:03:31.043 --> 00:03:36.401
+của vectơ x này sẽ là 
+64 x 64 x 3 vì đó là
+
+49
+00:03:36.401 --> 00:03:41.320
+tất cả các số mà chúng ta có 
+trong tất cả các ma trận này.
+
+50
+00:03:41.320 --> 00:03:44.097
+Trong trường hợp này, 12.288,
+
+51
+00:03:44.097 --> 00:03:47.330
+là con số bạn nhận được nếu
+ bạn nhân tất cả những số trên.
+
+52
+00:03:47.330 --> 00:03:51.870
+Như vậy chúng ta sẽ 
+sử dụng nx = 12288
+
+53
+00:03:51.870 --> 00:03:55.080
+để biểu diễn kích thước của 
+các feature đầu vào x.
+
+54
+00:03:55.080 --> 00:03:59.280
+Và để đơn giản, đôi lúc tôi cũng
+ sẽ chỉ sử dụng chữ n thường
+
+55
+00:03:59.280 --> 00:04:02.720
+để biểu diễn kích thước của
+ vectơ feature đầu vào này.
+
+56
+00:04:02.720 --> 00:04:07.510
+Thế nên, trong classification nhị phân, mục tiêu của
+ chúng ta là tìm hiểu một bộ classification có thể
+
+57
+00:04:07.510 --> 00:04:10.760
+nhập vào một hình ảnh được 
+biểu diễn bởi vector x feature này.
+
+58
+00:04:10.760 --> 00:04:15.460
+Và dự đoán xem nhãn y
+ tương ứng là 1 hay 0,
+
+59
+00:04:15.460 --> 00:04:19.000
+đây có phải hình
+ con mèo hay không.
+
+60
+00:04:19.000 --> 00:04:21.560
+Bây giờ tôi sẽ đưa ra một số
+ ký hiệu mà chúng ta sẽ
+
+61
+00:04:21.560 --> 00:04:23.820
+sử dụng trong suốt phần 
+còn lại của khóa học này.
+
+62
+00:04:23.820 --> 00:04:29.453
+Một ví dụ huấn luyện duy nhất
+ được biểu diễn bởi một cặp,
+
+63
+00:04:29.453 --> 00:04:34.446
+(x, y) trong đó x là 
+một vector feature
+
+64
+00:04:34.446 --> 00:04:39.320
+x chiều, và y là 
+nhãn, là 0 hoặc 1.
+
+65
+00:04:39.320 --> 00:04:44.550
+Bộ huấn luyện của bạn sẽ bao gồm
+ m (viết thường) ví dụ huấn luyện.
+
+66
+00:04:44.550 --> 00:04:50.320
+Và do đó, training set của bạn sẽ
+ được viết là (x(1), y(1)) là đầu vào và
+
+67
+00:04:50.320 --> 00:04:55.370
+đầu ra cho ví dụ huấn luyện 
+đầu tiên của bạn, (x2, y2) cho
+
+68
+00:04:55.370 --> 00:05:01.980
+ví dụ huấn luyện thứ hai, và (xm, ym), là 
+ví dụ huấn luyện cuối cùng của bạn.
+
+69
+00:05:01.980 --> 00:05:05.650
+Và tất cả tập này là tập
+ huấn luyện của bạn.
+
+70
+00:05:05.650 --> 00:05:10.170
+Như vậy, tôi sẽ sử dụng chữ m thường
+ để biểu thị số lượng mẫu huấn luyện.
+
+71
+00:05:10.170 --> 00:05:14.418
+Và đôi khi để nhấn mạnh rằng
+ đây là số lượng ví dụ huấn luyện,
+
+72
+00:05:14.418 --> 00:05:16.437
+có thể tôi sẽ viết là M = M train.
+
+73
+00:05:16.437 --> 00:05:18.692
+Và khi chúng ta nói về
+ một bộ thử nghiệm,
+
+74
+00:05:18.692 --> 00:05:24.430
+đôi khi chúng ta có thể sử dụng Mtest 
+để biểu thị số lượng ví dụ thử nghiệm.
+
+75
+00:05:24.430 --> 00:05:27.430
+Như vậy, đây là số lượng
+ ví dụ thử nghiệm.
+
+76
+00:05:27.430 --> 00:05:33.440
+Cuối cùng, để xuất ra tất cả các ví dụ 
+huấn luyện thành một ký hiệu nhỏ gọn hơn,
+
+77
+00:05:33.440 --> 00:05:36.840
+chúng ta sẽ xác định một 
+ma trận bằng chữ X hoa.
+
+78
+00:05:36.840 --> 00:05:41.592
+Nó được xác định bằng cách đưa vào các
+ đầu vào x1, x2 trong bộ huấn luyện của bạn và
+
+79
+00:05:41.592 --> 00:05:44.568
+cứ như vậy và đưa 
+chúng vào trong các cột.
+
+80
+00:05:44.568 --> 00:05:49.958
+Như vậy, chúng ta lấy x1 và đặt nó
+ trong cột đầu tiên của ma trận này,
+
+81
+00:05:49.958 --> 00:05:54.798
+đặt x2 ở cột thứ hai và 
+cứ tiếp tục đến tận xm,
+
+82
+00:05:54.798 --> 00:05:58.000
+đây chính là ma trận X.
+
+83
+00:05:58.000 --> 00:06:03.005
+Vậy ma trận X này sẽ có m
+ cột, trong đó m là số lượng
+
+84
+00:06:03.005 --> 00:06:08.665
+ví dụ huấn luyện và số lượng các dòng
+ hay chiều cao của ma trận này là nx.
+
+85
+00:06:08.665 --> 00:06:14.400
+Hãy lưu ý rằng trong các khóa học
+ khác, có thể bạn sẽ thấy ma trận
+
+86
+00:06:14.400 --> 00:06:19.390
+X được xác định bằng cách xếp các
+ ví dụ huấn luyện theo dòng như thế này,
+
+87
+00:06:19.390 --> 00:06:23.940
+x1 chuyển vị cho 
+đến xm chuyển vị.
+
+88
+00:06:23.940 --> 00:06:27.704
+Nhưng khi bạn đang triển khai các mạng
+ nơ-ron nhân tạo, thì bằng cách sử dụng
+
+89
+00:06:27.704 --> 00:06:32.218
+quy ước mà tôi có ở bên trái này, 
+bạn sẽ triển khai dễ dàng hơn nhiều.
+
+90
+00:06:32.218 --> 00:06:37.171
+Như vậy, nói tóm lại, X là 
+ma trận nx x m chiều và
+
+91
+00:06:37.171 --> 00:06:40.404
+khi bạn triển khai 
+điều này trong Python,
+
+92
+00:06:40.404 --> 00:06:45.362
+bạn sẽ thấy rằng X.shape
+ là lệnh python để
+
+93
+00:06:45.362 --> 00:06:50.325
+tìm hình dạng của
+ ma trận, bằng (nx, m).
+
+94
+00:06:50.325 --> 00:06:53.255
+Có nghĩa là nó là một 
+ma trận nx x m chiều.
+
+95
+00:06:53.255 --> 00:06:58.785
+Như vậy, đó là cách bạn nhóm các 
+ví dụ huấn luyện, nhập x vào ma trận.
+
+96
+00:06:58.785 --> 00:07:01.315
+Làm thế nào để xuất ra nhãn Y?
+
+97
+00:07:01.315 --> 00:07:04.815
+Để triển khai một mạng 
+nơ-ron nhân tạo dễ dàng hơn,
+
+98
+00:07:04.815 --> 00:07:10.030
+thì nên rất xếp chồng
+ Y thành các cột.
+
+99
+00:07:10.030 --> 00:07:14.650
+Như vậy, chúng ta sẽ
+ xác định Y bằng [y1, y2,
+
+100
+00:07:14.650 --> 00:07:18.580
+…,ym].
+
+101
+00:07:18.580 --> 00:07:24.980
+Y ở đây sẽ là ma trận 1 x m chiều.
+
+102
+00:07:24.980 --> 00:07:30.530
+Và một lần nữa, để sử dụng ký hiệu 
+Python thì sẽ có Y.shape = (1, m).
+
+103
+00:07:30.530 --> 00:07:34.810
+Nghĩa là đây là 
+ma trận 1 x m chiều.
+
+104
+00:07:34.810 --> 00:07:39.660
+Và khi bạn triển khai neural network nhân tạo
+ sau này trong khóa học, bạn sẽ thấy các
+
+105
+00:07:39.660 --> 00:07:43.630
+quy ước này hữu ích trong việc lấy dữ liệu
+ liên quan đến các ví dụ huấn luyện khác nhau
+
+106
+00:07:43.630 --> 00:07:48.580
+và dữ liệu mà tôi nói thì có nghĩa là x hoặc y 
+hoặc các đại lượng khác mà bạn sẽ thấy sau này.
+
+107
+00:07:48.580 --> 00:07:49.900
+Nhưng để lấy các
+
+108
+00:07:49.900 --> 00:07:52.990
+dữ liệu liên quan đến các ví dụ
+ huấn luyện khác nhau và
+
+109
+00:07:52.990 --> 00:07:57.430
+xếp chúng trong các cột khác nhau, giống như
+ chúng ta đã thực hiện ở đây cho cả x và y.
+
+110
+00:07:58.450 --> 00:08:01.380
+Như vậy, đó là ký hiệu mà chúng ta
+ sẽ sử dụng cho phép regression và cho
+
+111
+00:08:01.380 --> 00:08:04.060
+neural network nhân tạo 
+sau này trong khóa học.
+
+112
+00:08:04.060 --> 00:08:07.430
+Nếu bạn quên mất một 
+ký hiệu, như là m là gì hoặc
+
+113
+00:08:07.430 --> 00:08:08.300
+n là gì
+
+114
+00:08:08.300 --> 00:08:12.630
+hoặc các kí hiệu khác, thì chúng tôi cũng đã đăng 
+một ghi chú về ký hiệu trên trang web khóa học
+
+115
+00:08:12.630 --> 00:08:17.430
+và bạn có thể sử dụng nó để nhanh chóng
+ tra cứu ý nghĩa của bất kỳ ký hiệu nào.
+
+116
+00:08:17.430 --> 00:08:20.890
+Hãy tiếp tục với video 
+tiếp theo để bắt đầu tìm hiểu về
+
+117
+00:08:20.890 --> 00:08:23.190
+logistic regression có 
+sử dụng ký hiệu này.

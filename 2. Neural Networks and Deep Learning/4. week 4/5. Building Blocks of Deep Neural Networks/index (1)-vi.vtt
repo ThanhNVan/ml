@@ -1,0 +1,501 @@
+WEBVTT
+
+1
+00:00:00.550 --> 00:00:02.370
+Trong các video đầu tuần,
+
+2
+00:00:02.370 --> 00:00:05.890
+cũng như trong các video vài tuần trước,
+
+3
+00:00:05.890 --> 00:00:09.500
+bạn đã thấy các yếu tố 
+cơ bản của truyền xuôi và
+
+4
+00:00:09.500 --> 00:00:14.200
+truyền ngược, các thành phần chính cần thiết
+ để triển khai một neural network nhân tạo sâu.
+
+5
+00:00:14.200 --> 00:00:17.540
+Hãy cùng xem cách mà bạn có thể kết hợp các thành phần
+ này lại với nhau để xây dựng một neural network nhân tạo sâu.
+
+6
+00:00:18.560 --> 00:00:20.440
+Đây là một neural network gồm vài lớp.
+
+7
+00:00:20.440 --> 00:00:21.610
+Hãy chọn một lớp.
+
+8
+00:00:22.650 --> 00:00:27.330
+Và bây giờ hãy cùng xem các
+ phép tính cho lớp đó.
+
+9
+00:00:27.330 --> 00:00:32.130
+Và đối với lớp L, bạn có tham số wl và
+
+10
+00:00:33.250 --> 00:00:37.638
+bl và trong truyền xuôi, bạn sẽ nhập
+
+11
+00:00:37.638 --> 00:00:44.762
+kích hoạt a(l-1) từ lớp trước và
+
+12
+00:00:44.762 --> 00:00:48.930
+đầu ra al.
+
+13
+00:00:48.930 --> 00:00:54.618
+Và cách mà chúng ta đã làm
+ điều này trước đây là bạn tính z l =
+
+14
+00:00:54.618 --> 00:00:59.136
+w l nhân al - 1 + b l.
+
+15
+00:00:59.136 --> 00:01:07.050
+Và rồi al = g của z l.
+
+16
+00:01:07.050 --> 00:01:08.180
+Tốt.
+
+17
+00:01:08.180 --> 00:01:13.100
+Đó là cách bạn đi từ đầu 
+vào a(l-1)tới đầu ra al.
+
+18
+00:01:13.100 --> 00:01:20.900
+Và, trên thực tế để sử dụng
+ về sau thì nên lưu trữ giá trị zl.
+
+19
+00:01:20.900 --> 00:01:25.640
+Tôi sẽ đưa cái này vào bộ nhớ 
+cache vì việc lưu trữ giá trị zl
+
+20
+00:01:25.640 --> 00:01:30.930
+sẽ có ích cho truyền ngược, cho
+ bước truyền ngược sau này.
+
+21
+00:01:30.930 --> 00:01:35.854
+Và đối với bước truyền ngược, một lần nữa,
+
+22
+00:01:35.854 --> 00:01:37.760
+tập trung vào tính toán cho lớp l này,
+
+23
+00:01:37.760 --> 00:01:43.530
+bạn sẽ triển khai một hàm nhập vào da (l).
+
+24
+00:01:45.830 --> 00:01:53.750
+Và xuất da (l-1), và tôi chỉ muốn nói thêm là,
+
+25
+00:01:53.750 --> 00:01:59.230
+đầu vào là da (l), cũng như là bộ đệm,
+
+26
+00:01:59.230 --> 00:02:04.230
+và bạn đã có sẵn giá trị zl mà bạn đã tính và
+
+27
+00:02:04.230 --> 00:02:10.150
+sau đó, xuất ra da (l- 1) bạn xuất đầu ra hoặc
+
+28
+00:02:10.150 --> 00:02:13.100
+gradient bạn muốn để
+ thực hiện gradient descent
+
+29
+00:02:13.500 --> 00:02:14.330
+cho việc học, đúng chứ?
+
+30
+00:02:14.330 --> 00:02:19.830
+Và đây là cấu trúc cơ bản để bạn 
+thực hiện bước truyền xuôi này,
+
+31
+00:02:19.830 --> 00:02:23.050
+chúng ta gọi đó là hàm xuôi, và bước lùi này,
+
+32
+00:02:23.050 --> 00:02:25.170
+chúng ta sẽ gọi là hàm ngược.
+
+33
+00:02:25.170 --> 00:02:28.150
+Tóm lại, trong lớp l,
+
+34
+00:02:28.150 --> 00:02:32.250
+bạn sẽ có bước xuôi hoặc
+ truyền xuôi của hàm xuôi.
+
+35
+00:02:32.250 --> 00:02:39.360
+Đầu vào a(l-1) và đầu ra, al, và
+
+36
+00:02:39.360 --> 00:02:45.300
+để thực hiện phép tính này,
+ bạn cần sử dụng wl và bl.
+
+37
+00:02:45.300 --> 00:02:52.690
+Và bạn cũng xuất ra một bộ nhớ 
+đệm (cache), trong đó có chứa zl, đúng chứ?
+
+38
+00:02:52.690 --> 00:02:56.300
+Và sau đó là hàm ngược, sử dụng
+ bước truyền ngược,
+
+39
+00:02:56.300 --> 00:03:01.170
+sẽ là một hàm khác mà bây giờ
+
+40
+00:03:01.170 --> 00:03:08.460
+nhập vào da (l) và xuất ra da (l-1).
+
+41
+00:03:08.460 --> 00:03:14.390
+Và nó cho bạn biết, với các đạo hàm
+ liên quan đến các kích hoạt này,
+
+42
+00:03:14.390 --> 00:03:17.400
+da (l), thì các đạo hàm là gì?
+
+43
+00:03:17.400 --> 00:03:18.540
+Tôi muốn bao nhiêu?
+
+44
+00:03:18.540 --> 00:03:23.170
+Bạn cũng biết là a(l-1) thay đổi các
+ đạo hàm được tính với các kích hoạt
+
+45
+00:03:23.170 --> 00:03:24.580
+từ một lớp trước.
+
+46
+00:03:25.380 --> 00:03:26.800
+Trong hộp này, đúng chứ?
+
+47
+00:03:26.800 --> 00:03:31.610
+Bạn cần sử dụng wl và bl, và cuối cùng bạn
+
+48
+00:03:31.610 --> 00:03:36.910
+tính dzl, và rồi hộp này,
+
+49
+00:03:36.910 --> 00:03:42.790
+hàm ngược này cũng có thể xuất dwl và
+
+50
+00:03:42.790 --> 00:03:47.360
+dbl, nhưng đôi khi tôi sử dụng mũi
+ tên màu đỏ để biểu thị sự lặp ngược.
+
+51
+00:03:47.360 --> 00:03:50.520
+Nếu bạn muốn thì chúng ta có 
+thể vẽ những mũi tên này bằng màu đỏ.
+
+52
+00:03:51.680 --> 00:03:55.450
+Nếu bạn có thể triển khai hai hàm này
+
+53
+00:03:55.450 --> 00:03:59.660
+thì phép tính cơ bản của mạng
+ nơ-ron nhân tạo sẽ như sau.
+
+54
+00:03:59.660 --> 00:04:05.120
+Bạn sẽ đưa các feature đầu vào a0 vào và
+
+55
+00:04:05.120 --> 00:04:10.170
+nó sẽ tính toán hoạt của lớp 
+đầu tiên, hãy gọi đó là a1 và
+
+56
+00:04:10.170 --> 00:04:16.180
+để làm điều đó, bạn cần một
+ w1 và b1 và sau đó,
+
+57
+00:04:16.180 --> 00:04:19.760
+bạn biết đấy, lưu trữ z1, đúng chứ?
+
+58
+00:04:21.520 --> 00:04:26.340
+Bây giờ sau khi đã thực hiện điều đó, bạn đưa nó
+ vào lớp thứ hai và sau đó sử dụng w2 và b2,
+
+59
+00:04:26.340 --> 00:04:34.330
+bạn sẽ tính các kích hoạt
+ trong lớp tiếp theo a2, v.v.
+
+60
+00:04:34.330 --> 00:04:38.110
+Cho đến khi bạn xuất ra
+
+61
+00:04:38.110 --> 00:04:43.540
+a l bằng với mũ y.
+
+62
+00:04:43.540 --> 00:04:50.160
+Và trong qua trình này, chúng ta 
+lưu trữ tất cả các giá trị z này.
+
+63
+00:04:52.660 --> 00:04:55.030
+Và đó là bước truyền xuôi.
+
+64
+00:04:55.370 --> 00:04:59.600
+Bây giờ, đối với bước truyền 
+ngược, chúng ta sẽ thực hiện
+
+65
+00:04:59.600 --> 00:05:03.960
+một chuỗi lặp ngược
+
+66
+00:05:05.260 --> 00:05:09.960
+trong đó bạn đang triển khai
+ ngược lại và tính gradient như này.
+
+67
+00:05:12.260 --> 00:05:17.560
+Và bạn sẽ đưa da (l) vào đây và
+
+68
+00:05:17.560 --> 00:05:30.700
+rồi hộp này sẽ cung cấp cho chúng ta da (l- 1) và
+ cứ thế cho đến khi chúng ta nhận được da (2), da (1).
+
+69
+00:05:30.950 --> 00:05:36.940
+Bạn có thể có thêm một đầu
+ ra nữa để tính da (0) nhưng
+
+70
+00:05:36.940 --> 00:05:38.650
+đây là đạo hàm với
+
+71
+00:05:38.650 --> 00:05:40.950
+feature đầu vào của bạn, cái mà 
+không hữu ích đối với việc
+
+72
+00:05:40.950 --> 00:05:46.700
+huấn luyện trọng số của các mạng
+ nơ-ron nhân tạo có giám sát.
+
+73
+00:05:46.700 --> 00:05:49.180
+Vậy nên, bạn có thể chỉ dừng ở đó. 
+Nhưng trong quá trình đó,
+
+74
+00:05:49.180 --> 00:05:54.680
+truyền ngược cũng sẽ xuất ra dwl, dbl.
+
+75
+00:05:54.680 --> 00:05:59.170
+Tôi chỉ sử dụng dấu nhắc là wl và bl.
+
+76
+00:05:59.170 --> 00:06:06.750
+Điều này sẽ xuất ra dw3, db3 và v.v..
+
+77
+00:06:10.500 --> 00:06:13.510
+Và cuối cùng bạn có thể tính
+ tất cả các đạo hàm bạn cần.
+
+78
+00:06:16.560 --> 00:06:21.110
+Và để thêm một chút vào cấu trúc này,
+
+79
+00:06:21.110 --> 00:06:24.380
+những hộp này cũng sẽ sử 
+dụng các tham số đó.
+
+80
+00:06:26.180 --> 00:06:31.930
+wl, bl và
+
+81
+00:06:31.930 --> 00:06:37.400
+Sau này chúng ta sẽ thấy rằng bên trong
+ các hộp này, chúng ta cũng sẽ tính các dz.
+
+82
+00:06:37.400 --> 00:06:42.250
+Vì vậy, một bước lặp của huấn luyện thông
+ qua một neural network nhân tạo bao gồm: bắt đầu với
+
+83
+00:06:42.250 --> 00:06:46.930
+a (0) là x và thực hiện bước 
+truyền xuôi như sau.
+
+84
+00:06:46.930 --> 00:06:50.840
+Tính y mũ và sau đó sử dụng
+ nó để tính cái này và
+
+85
+00:06:50.840 --> 00:06:56.480
+sau đó thực hiện truyền ngược, 
+phải, làm như này và
+
+86
+00:06:56.480 --> 00:07:01.560
+bây giờ bạn có tất cả các số 
+hạng đạo hàm này và vì vậy, bạn biết đấy,
+
+87
+00:07:01.560 --> 00:07:06.370
+w sẽ được cập nhật là w1 = tốc độ
+ học dw, đúng chứ?
+
+88
+00:07:06.370 --> 00:07:13.260
+Đối với mỗi lớp và tương tự với tốc độ b.
+
+89
+00:07:13.260 --> 00:07:17.690
+Bây giờ đã có tất cả các đạo hàm
+ khi thực hiện xong truyền ngược.
+
+90
+00:07:17.690 --> 00:07:21.930
+Và đó là một lần lặp lại gradient 
+descent cho neural network nhân tạo của bạn.
+
+91
+00:07:21.930 --> 00:07:25.390
+Bây giờ trước khi tiếp tục, tôi muốn
+ nói thêm một vài điều.
+
+92
+00:07:25.390 --> 00:07:30.110
+Về lý thuyết, sẽ rất hữu ích khi
+ sử dụng bộ đệm ở đây để
+
+93
+00:07:30.110 --> 00:07:34.110
+lưu trữ giá trị của z cho các hàm ngược.
+
+94
+00:07:34.110 --> 00:07:37.130
+Nhưng khi bạn triển khai điều này, và 
+bạn thấy điều này trong bài tập lập trình,
+
+95
+00:07:37.130 --> 00:07:40.060
+Khi bạn thực hiện điều này, bạn sẽ 
+thấy bộ đệm có thể là
+
+96
+00:07:40.060 --> 00:07:43.650
+một cách dễ dàng để đưa giá trị
+ này của các tham số w1, b1,
+
+97
+00:07:43.650 --> 00:07:46.510
+vào hàm ngược. Vì vậy trong
+
+98
+00:07:46.510 --> 00:07:51.000
+bài tập này, bạn lưu trữ z, w và b 
+trong bộ nhớ cache của bạn.
+
+99
+00:07:51.000 --> 00:07:59.800
+Vì vậy, cái này lưu trữ z2, w2, b2. 
+Nhưng từ quan điểm thực hành,
+
+100
+00:07:59.800 --> 00:08:03.790
+tôi thấy việc lấy các tham số,
+ sao chép vào nơi
+
+101
+00:08:03.790 --> 00:08:08.630
+bạn cần sử dụng chúng sau này khi 
+bạn tính truyền ngược thì tiện hơn.
+
+102
+00:08:08.630 --> 00:08:12.030
+Và đó chỉ là một điều về triển 
+khai mà bạn thấy khi
+
+103
+00:08:12.030 --> 00:08:15.330
+làm bài tập lập trình.
+
+104
+00:08:15.330 --> 00:08:18.000
+Bây giờ bạn đã biết được các
+ yếu tố cơ bản để
+
+105
+00:08:18.000 --> 00:08:19.910
+triển khai một neural network nhân tạo sâu.
+
+106
+00:08:19.910 --> 00:08:22.040
+Trong mỗi lớp có một bước truyền xuôi và
+
+107
+00:08:22.040 --> 00:08:24.270
+có một bước truyền ngược tương ứng.
+
+108
+00:08:24.270 --> 00:08:27.870
+Và có một bộ đệm để truyền 
+thông tin từ cái này sang cái khác.
+
+109
+00:08:27.870 --> 00:08:28.810
+Ở video tiếp theo,
+
+110
+00:08:28.810 --> 00:08:32.190
+chúng ta sẽ nói về cách
+ triển khai các yếu tố này.
+
+111
+00:08:32.190 --> 00:08:33.340
+Hãy đón xem video tiếp theo.

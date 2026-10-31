@@ -1,0 +1,309 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.260 --> 00:00:08.600
+In the last video, you saw one visualization of the cost function j of w or j of wb.
+
+00:00:08.600 --> 00:00:13.760
+Let's look at some further richer visualizations so that you can get an even better intuition
+
+00:00:13.760 --> 00:00:16.600
+about what the cost function is doing.
+
+00:00:16.600 --> 00:00:18.720
+Here is what we've seen so far.
+
+00:00:18.720 --> 00:00:25.880
+There's the model, the model's parameters w and b, the cost function j of w and b,
+
+00:00:25.880 --> 00:00:32.520
+as well as the goal of linear regression, which is to minimize the cost function j of w and b
+
+00:00:32.520 --> 00:00:35.560
+over parameters w and b.
+
+00:00:35.560 --> 00:00:42.240
+In the last video, we had temporarily set b to 0 in order to simplify the visualizations.
+
+00:00:42.240 --> 00:00:48.520
+But now let's go back to the original model with both parameters w and b without setting
+
+00:00:48.520 --> 00:00:50.680
+b to be equal to 0.
+
+00:00:50.680 --> 00:00:57.400
+Same as last time, we want to get a visual understanding of the model function f of x,
+
+00:00:57.400 --> 00:01:05.160
+shown here on the left, and how it relates to the cost function j of wb, shown here on
+
+00:01:05.160 --> 00:01:06.160
+the right.
+
+00:01:06.160 --> 00:01:10.760
+Here's a training set of house sizes and prices.
+
+00:01:10.760 --> 00:01:14.960
+Let's say you pick one possible function of x, like this one.
+
+00:01:14.960 --> 00:01:20.480
+Here I've set w to 0.06 and b to 50.
+
+00:01:20.480 --> 00:01:25.800
+So f of x is 0.06 times x plus 50.
+
+00:01:25.800 --> 00:01:28.560
+Note that this is not a particularly good model for this training set.
+
+00:01:28.560 --> 00:01:30.440
+It's actually a pretty bad model.
+
+00:01:30.440 --> 00:01:35.280
+It seems to consistently underestimate housing prices.
+
+00:01:35.280 --> 00:01:41.480
+Given these values for w and b, let's look at what the cost function j of w and b may
+
+00:01:41.480 --> 00:01:42.760
+look like.
+
+00:01:42.760 --> 00:01:49.560
+Recall what we saw last time was when you had only w, because we temporarily set b
+
+00:01:49.560 --> 00:01:52.200
+to 0 to simplify things.
+
+00:01:52.200 --> 00:01:57.880
+Back then, we had come up with a plot of the cost function that looked like this as a function
+
+00:01:57.880 --> 00:02:00.360
+of w only.
+
+00:02:00.360 --> 00:02:06.960
+So when we had only one parameter w, the cost function had this u-shaped curve, shaped a
+
+00:02:06.960 --> 00:02:08.840
+bit like a soup bowl.
+
+00:02:08.840 --> 00:02:11.240
+That sounds delicious.
+
+00:02:11.240 --> 00:02:18.680
+Now in this housing price example that we have on this slide, we have two parameters, w
+
+00:02:18.680 --> 00:02:24.080
+and b, and so the plot becomes a little more complex.
+
+00:02:24.080 --> 00:02:31.960
+It turns out that the cost function also has a similar shape, like a soup bowl, except
+
+00:02:31.960 --> 00:02:34.920
+in three dimensions instead of two.
+
+00:02:34.920 --> 00:02:40.840
+In fact, depending on your training set, the cost function will look something like this.
+
+00:02:40.840 --> 00:02:45.480
+To me, this looks like a soup bowl, maybe because I'm a little bit hungry.
+
+00:02:45.480 --> 00:02:50.840
+Or maybe to you, it looks like a curved dinner plate, or a hammock.
+
+00:02:50.840 --> 00:02:55.880
+Actually that sounds relaxing too, and there's your coconut drink.
+
+00:02:55.880 --> 00:02:59.840
+Maybe when you're done with this course, you should treat yourself to vacation and relax
+
+00:02:59.840 --> 00:03:01.680
+in a hammock like this.
+
+00:03:01.680 --> 00:03:08.800
+What you see here is a 3D surface plot where the axes are labeled w and b.
+
+00:03:08.800 --> 00:03:14.440
+So as you vary w and b, which are the two parameters of the model, you get different
+
+00:03:14.440 --> 00:03:19.160
+values for the cost function j of w and b.
+
+00:03:19.160 --> 00:03:24.360
+This is a lot like the u-shaped curve you saw in the last video, except instead of having
+
+00:03:24.360 --> 00:03:31.880
+one parameter, w as input in the j, you now have two parameters, w and b, as inputs into
+
+00:03:31.880 --> 00:03:35.720
+this soup bowl or this hammock shaped function j.
+
+00:03:35.720 --> 00:03:40.440
+And I just want to point out that any single point on this surface represents a particular
+
+00:03:40.440 --> 00:03:43.640
+choice of w and b.
+
+00:03:43.800 --> 00:03:52.240
+For example, if w was minus 10 and b was minus 15, then the height of the surface above this
+
+00:03:52.240 --> 00:03:59.960
+point is the value of j when w is minus 10 and b is minus 15.
+
+00:03:59.960 --> 00:04:05.840
+Now in order to look even more closely at specific points, there's another way of plotting
+
+00:04:05.840 --> 00:04:11.680
+the cost function j that would be useful for visualization, which is rather than using
+
+00:04:11.680 --> 00:04:17.440
+these 3D surface plots, I'd like to take this exact same function j, so I'm not changing
+
+00:04:17.440 --> 00:04:23.280
+the function j at all, and plot it using something called a contour plot.
+
+00:04:23.280 --> 00:04:28.560
+And if you've ever seen a topographical map showing how high different mountains are,
+
+00:04:28.560 --> 00:04:35.480
+the contours in a topographical map are basically horizontal slices of the landscape of say
+
+00:04:35.480 --> 00:04:36.840
+a mountain.
+
+00:04:36.840 --> 00:04:40.320
+This image is of Mount Fuji in Japan.
+
+00:04:40.320 --> 00:04:45.880
+I still remember my family visiting Mount Fuji when I was a teenager with some beautiful
+
+00:04:45.880 --> 00:04:47.760
+sights.
+
+00:04:47.760 --> 00:04:53.960
+And if you fly directly above the mountain, that's what this contour map looks like.
+
+00:04:53.960 --> 00:04:59.960
+It shows all the points that are at the same height for different heights.
+
+00:04:59.960 --> 00:05:05.200
+At the bottom of this slide is the 3D surface plot of the cost function j.
+
+00:05:05.200 --> 00:05:10.840
+I know it doesn't look very bow shaped, but it is actually a bow just very stretched
+
+00:05:10.840 --> 00:05:13.120
+out which is why it looks like that.
+
+00:05:13.120 --> 00:05:18.800
+In an optional map that is shortly to follow, you'll be able to see this in 3D and spin
+
+00:05:18.800 --> 00:05:23.480
+around to surface yourself and it'll look more obviously bow shaped there.
+
+00:05:23.480 --> 00:05:30.000
+Next, here on the upper right is a contour plot of this exact same cost function as
+
+00:05:30.000 --> 00:05:32.560
+that shown at the bottom.
+
+00:05:32.560 --> 00:05:41.560
+The two axes on this contour plot are b on the vertical axis and w on the horizontal axis.
+
+00:05:41.560 --> 00:05:49.760
+What each of these ovals also called ellipses shows is the set of points on the 3D surface
+
+00:05:49.760 --> 00:05:52.040
+which are at the exact same height.
+
+00:05:52.040 --> 00:05:58.160
+In other words, the set of points which have the same value for the cost function j.
+
+00:05:58.160 --> 00:06:05.840
+So to get the contour plot, you take the 3D surface at the bottom and you use a knife
+
+00:06:05.840 --> 00:06:08.520
+to slice it horizontally.
+
+00:06:08.520 --> 00:06:14.240
+You take horizontal slices of that 3D surface and get all the points that are at the same
+
+00:06:14.240 --> 00:06:15.240
+height.
+
+00:06:15.240 --> 00:06:22.600
+Therefore, each horizontal slice ends up being shown as one of these ellipses or one of
+
+00:06:22.600 --> 00:06:25.040
+these ovals.
+
+00:06:25.040 --> 00:06:34.000
+So concretely, if you take that point and that point and that point, all of these three
+
+00:06:34.000 --> 00:06:39.920
+points have the same value for the cost function j even though they have different
+
+00:06:39.920 --> 00:06:43.920
+values for w and b.
+
+00:06:43.920 --> 00:06:49.920
+And in the figure on the upper left, you see also that these three points correspond
+
+00:06:49.920 --> 00:06:56.360
+to different functions f, all three of which are actually pretty bad for predicting housing
+
+00:06:56.360 --> 00:06:58.600
+prices in this case.
+
+00:06:58.600 --> 00:07:07.240
+Now the bottom of the boat where the cost function j is at a minimum is this point
+
+00:07:07.240 --> 00:07:12.000
+right here at the center of this concentric ovals.
+
+00:07:12.000 --> 00:07:17.040
+If you haven't seen contour plots much before, I'd like you to imagine if you
+
+00:07:17.040 --> 00:07:24.320
+will that you are flying high up above the bow in an aeroplane or in a rocket ship and
+
+00:07:24.320 --> 00:07:26.760
+you're looking straight down at it.
+
+00:07:26.760 --> 00:07:33.360
+So that is as if you set your computer monitor flat on your desk facing up and the bow
+
+00:07:33.360 --> 00:07:38.440
+shape is coming directly out of your screen rising above your desk.
+
+00:07:38.440 --> 00:07:45.360
+Imagine that the bow shape grows out of your computer screen line flat like that so that
+
+00:07:45.360 --> 00:07:52.160
+each of these ovals have the same height above your screen and the minimum of the bow is
+
+00:07:52.160 --> 00:07:57.000
+right down there in the center of the smallest oval.
+
+00:07:57.000 --> 00:08:02.760
+So it turns out that the contour plots are a convenient way to visualize the 3D cost
+
+00:08:02.760 --> 00:08:07.880
+function j but in a way that's plotted in just 2D.
+
+00:08:07.880 --> 00:08:14.360
+In this video, you saw how the 3D bow shaped surface plot can also be visualized as a
+
+00:08:14.360 --> 00:08:16.400
+contour plot.
+
+00:08:16.400 --> 00:08:22.120
+Using this visualization tool, in the next video, let's visualize some specific choices
+
+00:08:22.120 --> 00:08:27.880
+of WMB in the linear regression model so that we can see how these different choices affect
+
+00:08:27.880 --> 00:08:30.600
+the straight line you're fitting to the data.
+
+00:08:30.600 --> 00:08:32.080
+Let's go on to the next video.

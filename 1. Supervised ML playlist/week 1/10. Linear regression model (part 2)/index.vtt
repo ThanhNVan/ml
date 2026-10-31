@@ -1,0 +1,267 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.420 --> 00:00:07.300
+Let's look in this video at the process of how supervised learning works.
+
+00:00:07.300 --> 00:00:11.540
+Supervised learning algorithm will input a dataset and then what exactly does it do and
+
+00:00:11.540 --> 00:00:12.700
+what does it output?
+
+00:00:12.700 --> 00:00:15.580
+Let's find out in this video.
+
+00:00:15.580 --> 00:00:20.900
+Recall that a training set in supervised learning includes both the input features, such as
+
+00:00:20.900 --> 00:00:26.060
+the size of the hulls, and also the output targets, such as the price of the hulls.
+
+00:00:26.060 --> 00:00:30.980
+The output targets are the right answers to the model we'll learn from.
+
+00:00:30.980 --> 00:00:35.740
+To train the model, you feed the training set both the input features and the output
+
+00:00:35.740 --> 00:00:40.140
+targets to your learning algorithm.
+
+00:00:40.140 --> 00:00:45.180
+Then your supervised learning algorithm will produce some function.
+
+00:00:45.180 --> 00:00:49.860
+We'll write this function as lowercase f, where f stands for function.
+
+00:00:49.860 --> 00:00:55.580
+Historically, this function used to be called a hypothesis, but I'm just going to call
+
+00:00:55.580 --> 00:00:58.500
+it a function f in this class.
+
+00:00:58.500 --> 00:01:09.180
+And the job of f is to take a new input x and output an estimate or prediction, which
+
+00:01:09.180 --> 00:01:16.340
+I'm going to call y hat, and is written like the variable y with this little hat symbol
+
+00:01:16.340 --> 00:01:18.420
+on top.
+
+00:01:18.420 --> 00:01:25.780
+In machine learning, the convention is that y hat is the estimate or the prediction for
+
+00:01:25.780 --> 00:01:27.940
+y.
+
+00:01:27.940 --> 00:01:31.940
+The function f is called the model.
+
+00:01:31.940 --> 00:01:39.060
+X is called the input or the input feature, and the output of the model is the prediction
+
+00:01:39.060 --> 00:01:41.060
+y hat.
+
+00:01:41.060 --> 00:01:45.580
+The model's prediction is the estimated value of y.
+
+00:01:45.580 --> 00:01:52.140
+When the symbol is just the letter y, then that refers to the target, which is the
+
+00:01:52.140 --> 00:01:55.700
+actual true value in the training set.
+
+00:01:55.700 --> 00:01:58.500
+In contrast, y hat is an estimate.
+
+00:01:58.500 --> 00:02:01.100
+It may or may not be the actual true value.
+
+00:02:01.100 --> 00:02:06.100
+Well, if you're helping your client to sell their hulls, well, the true price of
+
+00:02:06.100 --> 00:02:09.140
+their hulls is unknown until they sell it.
+
+00:02:09.140 --> 00:02:15.180
+So your model f, given the size, outputs a price which is the estimated, that is the
+
+00:02:15.180 --> 00:02:19.580
+prediction of what the true price will be.
+
+00:02:19.580 --> 00:02:25.900
+Now when we design a learning algorithm, a key question is how are we going to
+
+00:02:25.900 --> 00:02:28.380
+represent the function f?
+
+00:02:28.380 --> 00:02:35.460
+Or in other words, what is the math formula we're going to use to compute f?
+
+00:02:35.460 --> 00:02:39.760
+For now, let's stick with f being a straight line.
+
+00:02:39.760 --> 00:02:47.740
+So your function can be written as f subscript w comma b of x equals, I'm going
+
+00:02:47.740 --> 00:02:52.220
+to use w times x plus b.
+
+00:02:52.220 --> 00:02:58.980
+I'll define w and b soon, but for now, just know that w and b are numbers, and
+
+00:02:58.980 --> 00:03:06.180
+the values chosen for w and b will determine the prediction y hat based on the
+
+00:03:06.180 --> 00:03:08.380
+input feature x.
+
+00:03:08.380 --> 00:03:16.220
+So this f w b of x means f is a function that takes x's input, and depending on
+
+00:03:16.220 --> 00:03:24.180
+the values of w and b, f will output some value of a prediction y hat.
+
+00:03:24.180 --> 00:03:31.300
+As an alternative to writing this f w comma b of x, I'll sometimes just write f
+
+00:03:31.300 --> 00:03:35.580
+of x without explicitly including w and b in the subscript.
+
+00:03:35.580 --> 00:03:43.180
+It's just a simpler notation, but means exactly the same thing as f w b of x.
+
+00:03:43.180 --> 00:03:47.340
+Let's plot the training set on a graph where the input feature x is on the
+
+00:03:47.340 --> 00:03:54.220
+horizontal axis, and the output target y is on the vertical axis.
+
+00:03:54.220 --> 00:03:59.940
+Remember the algorithm learns from this data and generates a best fit line like
+
+00:03:59.940 --> 00:04:02.460
+maybe this one here.
+
+00:04:02.460 --> 00:04:12.060
+This straight line is the linear function f w b of x equals w times x plus b.
+
+00:04:12.060 --> 00:04:20.780
+Or more simply, we can drop w and b and just write f of x equals w x plus b.
+
+00:04:20.780 --> 00:04:22.580
+Here's what this function is doing.
+
+00:04:22.580 --> 00:04:28.620
+It's making predictions for the value of y using a straight line function of x.
+
+00:04:28.620 --> 00:04:33.740
+So you may ask, why are we choosing a linear function where linear function is
+
+00:04:33.740 --> 00:04:38.700
+just a fancy term for a straight line instead of some non-linear function like
+
+00:04:38.700 --> 00:04:40.700
+a curve or a parabola?
+
+00:04:40.940 --> 00:04:46.020
+Well, sometimes you want to fit more complex non-linear functions as well, like a
+
+00:04:46.020 --> 00:04:47.500
+curve like this.
+
+00:04:47.500 --> 00:04:51.900
+But since this linear function is relatively simple and easy to work with,
+
+00:04:51.900 --> 00:04:56.540
+let's use a line as a foundation that will eventually help you to get to more
+
+00:04:56.540 --> 00:05:00.180
+complex models that are non-linear.
+
+00:05:00.180 --> 00:05:04.500
+This particular model as a name is called linear regression.
+
+00:05:04.500 --> 00:05:09.300
+More specifically, this is linear regression with one variable, with a
+
+00:05:09.300 --> 00:05:14.180
+phrase one variable means that there's a single input variable or feature x,
+
+00:05:14.180 --> 00:05:17.140
+namely the size of the house.
+
+00:05:17.140 --> 00:05:22.900
+Another name for a linear model with one input variable is univariate linear
+
+00:05:22.900 --> 00:05:29.540
+regression, where uni means one in Latin and where variate means variable.
+
+00:05:29.540 --> 00:05:34.580
+So univariate is just a fancy way of saying one variable.
+
+00:05:34.580 --> 00:05:39.540
+In a later video, you'll also see a variation of regression where you want to
+
+00:05:39.540 --> 00:05:43.940
+make a prediction based not just on the size of a house, but on a bunch of other
+
+00:05:43.940 --> 00:05:47.780
+things that you may know about the house, such as number of bedrooms and other
+
+00:05:47.780 --> 00:05:48.900
+features.
+
+00:05:48.900 --> 00:05:53.700
+And by the way, when you're done with this video, there is another optional lab.
+
+00:05:53.700 --> 00:05:55.620
+You don't need to write any code.
+
+00:05:55.620 --> 00:05:58.740
+Just review it, run the code and see what it does.
+
+00:05:58.740 --> 00:06:03.220
+That will show you how to define in Python a straight line function.
+
+00:06:03.220 --> 00:06:08.500
+And the lab will let you choose the values of w and b to try to fit the
+
+00:06:08.500 --> 00:06:10.260
+training data.
+
+00:06:10.260 --> 00:06:14.100
+You don't have to do the lab if you don't want to, but I hope you play with it
+
+00:06:14.100 --> 00:06:16.900
+when you're done watching this video.
+
+00:06:16.900 --> 00:06:19.060
+So that's linear regression.
+
+00:06:19.060 --> 00:06:22.500
+In order for you to make this work, one of the most important things you have to
+
+00:06:22.500 --> 00:06:25.220
+do is construct a cost function.
+
+00:06:25.220 --> 00:06:29.780
+The idea of a cost function is one of the most universal and important ideas in
+
+00:06:29.780 --> 00:06:30.980
+machine learning.
+
+00:06:30.980 --> 00:06:35.700
+And it's used in both linear regression and in training many of the most advanced
+
+00:06:35.700 --> 00:06:37.460
+AI models in the world.
+
+00:06:37.460 --> 00:06:41.940
+So let's go on to the next video and take a look at how you can construct a
+
+00:06:41.940 --> 00:06:43.780
+cost function.

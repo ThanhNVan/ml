@@ -1,0 +1,341 @@
+WEBVTT
+
+00:00:00.590 --> 00:00:03.790
+Khi triển khai backpropagation, bạn sẽ thấy
+rằng có một
+
+00:00:03.790 --> 00:00:06.990
+thử nghiệm gọi là kiểm tra độ dốc thực sự có
+thể giúp bạn
+
+00:00:06.990 --> 00:00:10.190
+đảm bảo rằng việc triển khai backprop của bạn
+là chính xác.
+
+00:00:10.470 --> 00:00:13.890
+Bởi vì đôi khi bạn viết tất cả các phương
+trình này và bạn không chắc chắn 100%
+
+00:00:13.890 --> 00:00:17.310
+liệu bạn có hiểu đúng tất cả các chi tiết khi
+triển khai backpropagation hay không.
+
+00:00:17.590 --> 00:00:22.417
+Vì vậy, để bắt đầu kiểm tra độ dốc, trước tiên
+hãy nói về cách tính toán gần đúng về
+
+00:00:22.417 --> 00:00:27.243
+mặt số của độ dốc và trong video tiếp theo,
+chúng ta sẽ nói về cách bạn có thể triển
+
+00:00:27.243 --> 00:00:32.070
+khai kiểm tra độ dốc để đảm bảo rằng việc
+triển khai backprop của bạn là chính xác.
+
+00:00:32.070 --> 00:00:36.083
+Vì vậy, hãy lấy hàm f và vẽ đồ thị ở đây. Hãy
+nhớ rằng, đây
+
+00:00:36.083 --> 00:00:40.097
+là f(theta) bằng theta lập phương và chúng ta
+hãy bắt đầu
+
+00:00:40.097 --> 00:00:44.110
+lại với một giá trị nào đó của theta. Giả sử
+theta bằng 1.
+
+00:00:44.630 --> 00:00:49.863
+Bây giờ thay vì chỉ di chuyển theta sang phải
+để có theta cộng epsilon,
+
+00:00:49.863 --> 00:00:55.097
+chúng ta sẽ di chuyển nó sang phải và di
+chuyển nó sang trái để có
+
+00:00:55.097 --> 00:01:00.330
+theta trừ epsilon cũng như theta cộng epsilon.
+Vậy đây là 1, đây là 1,01,
+
+00:01:00.330 --> 00:01:05.990
+đây là 0,99 trong đó epsilon lại giống như
+trước là 0,01.
+
+00:01:06.110 --> 00:01:11.330
+Hóa ra là thay vì lấy hình tam giác nhỏ này và
+tính chiều cao theo chiều
+
+00:01:11.330 --> 00:01:16.550
+rộng, bạn có thể ước tính độ dốc tốt hơn nhiều
+nếu bạn tính theo điểm này
+
+00:01:17.190 --> 00:01:23.670
+f tại theta trừ epsilon và điểm này và thay
+vào đó bạn tính chiều cao trên chiều
+
+00:01:23.670 --> 00:01:30.150
+rộng của tam giác lớn hơn này. Vì lý do kỹ
+thuật mà tôi sẽ không đề cập tới, chiều cao
+
+00:01:30.670 --> 00:01:34.270
+theo chiều rộng của hình tam giác màu xanh lá
+cây lớn hơn này sẽ
+
+00:01:34.270 --> 00:01:37.870
+cho bạn một kết quả gần đúng hơn với đạo hàm
+tại theta. Và bạn biết
+
+00:01:37.870 --> 00:01:41.470
+đấy, thay vì chỉ lấy hình tam giác nhỏ ở phía
+trên bên phải này là
+
+00:01:41.470 --> 00:01:45.470
+như thể bạn có hai hình tam giác, phải không?
+Cái này ở phía trên
+
+00:01:45.470 --> 00:01:49.470
+bên phải và cái này ở phía dưới bên trái và
+bạn đang tính đến cả
+
+00:01:49.470 --> 00:01:53.470
+hai bằng cách sử dụng hình tam giác màu xanh
+lá cây lớn hơn này.
+
+00:01:54.230 --> 00:01:56.410
+Vì vậy, thay vì sự khác biệt một bên, bạn đang
+lấy sự khác
+
+00:01:56.410 --> 00:01:58.590
+biệt hai bên. Vì vậy, chúng ta hãy làm việc
+trên toán học.
+
+00:01:59.070 --> 00:02:03.070
+Điểm này ở đây là f của theta cộng với
+
+00:02:03.070 --> 00:02:07.070
+epsilon. Điểm này ở đây là f của theta trừ
+epsilon.
+
+00:02:07.670 --> 00:02:11.150
+Vậy chiều cao của tam giác lớn màu xanh lá cây
+này là
+
+00:02:11.150 --> 00:02:14.630
+f của theta cộng epsilon trừ f của theta trừ
+epsilon.
+
+00:02:15.110 --> 00:02:20.710
+Và chiều rộng, bạn biết đấy, đây là một
+epsilon, đây là hai epsilon.
+
+00:02:21.110 --> 00:02:24.270
+Vậy chiều rộng của tam giác màu xanh lá cây
+này là hai
+
+00:02:24.270 --> 00:02:27.430
+epsilon. Vì vậy, chiều cao trên chiều rộng sẽ
+là chiều cao đầu tiên.
+
+00:02:28.150 --> 00:02:34.950
+Vậy đó là f của theta cộng epsilon trừ f của
+theta trừ epsilon chia cho chiều rộng.
+
+00:02:34.950 --> 00:02:38.990
+Vậy đó là hai epsilon mà chúng tôi đã nghiên
+cứu ở
+
+00:02:38.990 --> 00:02:43.030
+đây. Và hy vọng giá trị này sẽ gần bằng g
+theta.
+
+00:02:43.350 --> 00:02:46.270
+Vì vậy, đưa các giá trị vào, hãy nhớ f của
+theta bằng
+
+00:02:46.270 --> 00:02:49.190
+theta lập phương. Vậy đây là theta cộng
+epsilon bằng 1,01.
+
+00:02:49.750 --> 00:02:54.070
+Vậy lấy lập phương của số đó trừ đi bây giờ là
+
+00:02:54.070 --> 00:02:58.390
+0,99. Lấy lập phương đó chia cho 2 lần 0,01.
+
+00:02:59.270 --> 00:03:06.310
+Vui lòng tạm dừng video và cắm cái này vào máy
+tính. Bạn sẽ hiểu rằng đây là 3,0001.
+
+00:03:06.310 --> 00:03:12.070
+Trong khi ở slide trước, chúng ta đã thấy g
+của theta, đây là 3 theta bình phương. Vì
+
+00:03:12.070 --> 00:03:17.830
+vậy, khi theta bằng 1, đây là 2. Vậy hai giá
+trị này thực sự rất gần nhau. Sự gần đúng
+
+00:03:17.830 --> 00:03:26.390
+lỗi bây giờ là 0,0001. Trong khi ở trang trình
+bày trước, chúng ta lấy hiệu một
+
+00:03:26.390 --> 00:03:34.950
+phía, chỉ theta và theta cộng epsilon, chúng
+ta được 3,0301. Và do đó sai số gần đúng
+
+00:03:34.950 --> 00:03:42.270
+là 0,03, đúng vậy, thay vì 0,0001. Nhưng với
+cách lấy đạo hàm gần đúng hai vế này,
+
+00:03:42.270 --> 00:03:49.590
+bạn sẽ thấy rằng cái này cực kỳ gần bằng 3. Và
+do đó, điều này mang lại cho bạn,
+
+00:03:49.590 --> 00:03:55.470
+bạn biết đấy, tin cậy hơn nhiều rằng g của
+theta có lẽ là một cách triển khai đúng
+
+00:03:55.470 --> 00:04:01.350
+đạo hàm của f. Khi bạn sử dụng phương pháp này
+để kiểm tra độ dốc và truyền ngược,
+
+00:04:01.350 --> 00:04:06.350
+điều này hóa ra lại chạy chậm gấp đôi so với
+khi bạn sử dụng chênh lệch một phía. Hóa
+
+00:04:06.350 --> 00:04:11.350
+ra trong thực tế, tôi nghĩ nên sử dụng phương
+pháp khác này vì nó chính xác hơn nhiều.
+
+00:04:11.910 --> 00:04:17.070
+Một chút lý thuyết tùy chọn, dành cho những ai
+quen thuộc hơn với phép tính,
+
+00:04:17.070 --> 00:04:22.230
+hóa ra là như vậy, và cũng không sao nếu bạn
+không hiểu điều tôi sắp nói ở đây,
+
+00:04:22.230 --> 00:04:26.577
+hóa ra định nghĩa chính thức của đạo hàm là
+đối với các giá
+
+00:04:26.577 --> 00:04:30.923
+trị rất nhỏ của epsilon là f của theta cộng
+epsilon trừ f
+
+00:04:30.923 --> 00:04:35.270
+của theta trừ epsilon trên 2 epsilon. Và định
+nghĩa chính thức
+
+00:04:35.270 --> 00:04:39.377
+của đạo hàm nằm trong giới hạn của chính xác
+công thức đó ở bên
+
+00:04:39.377 --> 00:04:43.483
+phải khi epsilon tiến tới 0. Và định nghĩa về
+giới hạn là điều
+
+00:04:43.483 --> 00:04:47.590
+bạn học được nếu tham gia lớp giải tích, nhưng
+tôi sẽ không học
+
+00:04:47.590 --> 00:04:51.670
+đi sâu vào vấn đề đó ở đây Và hóa ra là đối
+với giá trị khác 0 của
+
+00:04:51.670 --> 00:04:55.750
+epsilon, bạn có thể chỉ ra rằng sai số của
+phép tính gần đúng này
+
+00:04:55.750 --> 00:04:59.830
+nằm ở cấp độ bình phương của epsilon. Và hãy
+nhớ, epsilon là một
+
+00:04:59.830 --> 00:05:03.230
+số nhỏ. Vì vậy, nếu epsilon là, bạn biết đấy,
+
+00:05:03.230 --> 00:05:06.630
+0,01, như ở đây, thì epsilon bình phương là
+0,0001.
+
+00:05:08.630 --> 00:05:13.670
+Ký hiệu O lớn có nghĩa là lỗi thực sự là một
+số lần không đổi, nhưng đây thực sự
+
+00:05:13.670 --> 00:05:18.710
+chính xác là lỗi gần đúng của chúng tôi. Vậy
+hằng số O lớn xảy ra là 1. Ngược lại,
+
+00:05:18.710 --> 00:05:23.083
+nếu chúng ta sử dụng công thức này và công
+thức kia, thì sai số
+
+00:05:23.083 --> 00:05:27.457
+sẽ ở mức epsilon. Và một lần nữa, khi epsilon
+là một số nhỏ hơn
+
+00:05:27.457 --> 00:05:31.830
+1, thì epsilon thực sự lớn hơn nhiều so với
+epsilon bình phương,
+
+00:05:31.830 --> 00:05:35.483
+đó là lý do tại sao công thức này ở đây thực
+sự kém chính xác hơn
+
+00:05:35.483 --> 00:05:39.137
+nhiều so với công thức ở bên trái, đó là lý do
+tại sao khi thực
+
+00:05:39.137 --> 00:05:42.790
+hiện kiểm tra độ dốc, chúng ta nên sử dụng sự
+khác biệt hai mặt này
+
+00:05:42.790 --> 00:05:46.843
+khi bạn tính f của theta cộng với epsilon trừ
+f của theta
+
+00:05:46.843 --> 00:05:50.897
+trừ epsilon, ừm, rồi chia cho 2 epsilon chứ
+không phải hiệu
+
+00:05:50.897 --> 00:05:54.950
+một phía này, điều này kém chính xác hơn. Nếu
+bạn không hiểu
+
+00:05:54.950 --> 00:05:57.883
+vài nhận xét cuối cùng của tôi, tất cả những
+điều ở dưới đây, đừng lo
+
+00:05:57.883 --> 00:06:00.817
+lắng về nó. Điều đó thực sự còn hơn thế nữa,
+đối với những bạn đã quen
+
+00:06:00.817 --> 00:06:03.750
+thuộc hơn một chút với phép tính và các phép
+tính gần đúng bằng số.
+
+00:06:04.390 --> 00:06:08.390
+Nhưng điều đáng chú ý là công thức sai phân
+hai phía này chính xác hơn nhiều.
+
+00:06:08.390 --> 00:06:12.390
+Và đó là những gì chúng ta sẽ sử dụng khi kiểm
+tra độ dốc trong video tiếp theo.
+
+00:06:13.590 --> 00:06:18.990
+Vì vậy, bạn thấy bằng cách lấy hiệu hai vế,
+bạn có thể xác minh bằng số liệu hàm g,
+
+00:06:18.990 --> 00:06:24.390
+g của theta mà người khác đưa cho bạn có phải
+là cách triển khai đúng đạo hàm của
+
+00:06:24.390 --> 00:06:27.883
+chức năng f. Bây giờ chúng ta hãy xem cách
+chúng ta có thể sử dụng điều này để
+
+00:06:27.883 --> 00:06:31.377
+xác minh xem việc triển khai backpropagation
+của bạn có chính xác hay không, hoặc
+
+00:06:31.377 --> 00:06:34.870
+nếu bạn biết đấy, có thể có một lỗi trong đó
+mà bạn cần phải đi vào và khắc phục.

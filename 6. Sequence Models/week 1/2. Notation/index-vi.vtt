@@ -1,0 +1,517 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.980
+Trong video trước, bạn đã thấy một số
+
+2
+00:00:01.980 --> 00:00:05.047
+loại ứng dụng mà qua đó bạn có thể áp dụng các model chuỗi (sequence model).
+
+3
+00:00:05.047 --> 00:00:10.470
+Hãy bắt đầu bằng cách xác định một ký hiệu mà chúng ta sẽ sử dụng để xây dựng các model chuỗi này.
+
+4
+00:00:10.470 --> 00:00:12.360
+Như một ví dụ để tìm ra định nghĩa sau,
+
+5
+00:00:12.360 --> 00:00:16.290
+giả sử bạn muốn xây dựng một model chuỗi để nhập một câu như thế này,
+
+6
+00:00:16.290 --> 00:00:19.361
+Harry Potter và Hermione Granger đã phát minh ra một câu thần chú mới.
+
+7
+00:00:19.361 --> 00:00:21.210
+Và đây là những nhân vật,
+
+8
+00:00:21.210 --> 00:00:25.595
+từ loạt tiểu thuyết Harry Potter của JK Rowling.
+
+9
+00:00:25.595 --> 00:00:29.220
+Và giả sử bạn muốn một model chuỗi tự động cho biết
+
+10
+00:00:29.220 --> 00:00:34.120
+tên người nằm ở đâu trong câu này.
+
+11
+00:00:34.120 --> 00:00:36.760
+Đây là một bài toán được gọi là Named-entity recognition (nhận dạng thực thể có tên)
+
+12
+00:00:36.760 --> 00:00:40.125
+và bài toán này được sử dụng bởi các công cụ tìm kiếm, ví dụ:
+
+13
+00:00:40.125 --> 00:00:43.800
+để lập chỉ mục tất cả tin tức 24 giờ qua về
+
+14
+00:00:43.800 --> 00:00:49.245
+tất cả những người được đề cập trong các bài báo để họ có thể lập chỉ mục chúng một cách thích hợp.
+
+15
+00:00:49.245 --> 00:00:52.050
+Và tên ở hệ thống nhận dạng có thể
+
+16
+00:00:52.050 --> 00:00:54.765
+được sử dụng để tìm tên người, tên công ty,
+
+17
+00:00:54.765 --> 00:00:57.210
+thời gian, địa điểm, tên quốc gia,
+
+18
+00:00:57.210 --> 00:01:01.370
+tên loại tiền tệ, v.v. trong các loại văn bản khác nhau.
+
+19
+00:01:01.370 --> 00:01:04.650
+Với đầu vào x này, giả sử rằng bạn muốn một model
+
+20
+00:01:04.650 --> 00:01:08.250
+để vận hành y có một đầu ra cho mỗi
+
+21
+00:01:08.250 --> 00:01:11.355
+đầu vào và đầu ra mục tiêu
+
+22
+00:01:11.355 --> 00:01:17.130
+thiết kế y cho bạn biết mỗi từ đầu vào là một phần tên người.
+
+23
+00:01:17.130 --> 00:01:21.030
+Về mặt kỹ thuật, nó có thể không biểu diễn đầu ra tốt nhất,
+
+24
+00:01:21.030 --> 00:01:23.520
+có một số biểu diễn đầu ra phức tạp hơn cho bạn biết
+
+25
+00:01:23.520 --> 00:01:26.558
+không chỉ là một phần của tên người,
+
+26
+00:01:26.558 --> 00:01:30.775
+mà còn cho bạn biết đâu là điểm bắt đầu và kết thúc của tên người trong câu,
+
+27
+00:01:30.775 --> 00:01:33.297
+bạn muốn biết Harry Potter bắt đầu từ đây,
+
+28
+00:01:33.297 --> 00:01:35.550
+và kết thúc ở đây, bắt đầu ở đây và kết thúc ở đây.
+
+29
+00:01:35.550 --> 00:01:37.990
+Nhưng đối với ví dụ này,
+
+30
+00:01:37.990 --> 00:01:41.900
+Tôi sẽ chỉ biểu diễn đầu ra đơn giản hơn này.
+
+31
+00:01:41.900 --> 00:01:44.790
+Bây giờ, đầu vào là chuỗi chín từ.
+
+32
+00:01:44.790 --> 00:01:51.345
+Cuối cùng chúng ta sẽ có chín bộ feature (feature) để biểu diễn cho chín từ này,
+
+33
+00:01:51.345 --> 00:01:53.858
+và lập chỉ mục vào các vị trí và chuỗi,
+
+34
+00:01:53.858 --> 00:01:59.797
+Tôi sẽ sử dụng X và sau đó mở ngoặc nhỏ 1, 2,
+
+35
+00:01:59.797 --> 00:02:06.955
+3 và cứ như vậy lên đến X chín để lập chỉ mục vào các vị trí khác nhau.
+
+36
+00:02:06.955 --> 00:02:13.180
+Tôi sẽ sử dụng Xt với chỉ số t để lập chỉ mục vào các vị trí,
+
+37
+00:02:13.180 --> 00:02:15.270
+ở giữa chuỗi.
+
+38
+00:02:15.270 --> 00:02:17.400
+Và t ám chỉ rằng đây là
+
+39
+00:02:17.400 --> 00:02:21.735
+chuỗi thời gian dù các chuỗi có phải là chuỗi thời gian hay không,
+
+40
+00:02:21.735 --> 00:02:27.805
+Tôi sẽ sử dụng chỉ số t để lập chỉ mục vào các vị trí trong chuỗi.
+
+41
+00:02:27.805 --> 00:02:29.895
+Và tương tự đối với đầu ra,
+
+42
+00:02:29.895 --> 00:02:34.040
+chúng ta sẽ gọi các kết quả đầu ra này là y và quay lại 1,
+
+43
+00:02:34.040 --> 00:02:39.725
+2, 3, v.v. cho đến 9.
+
+44
+00:02:39.725 --> 00:02:44.553
+Hãy cũng sử dụng Tx nhỏ để biểu thị độ dài của chuỗi đầu vào,
+
+45
+00:02:44.553 --> 00:02:46.540
+vì vậy trong trường hợp này có chín từ.
+
+46
+00:02:46.540 --> 00:02:53.025
+Vậy Tx = 9 và chúng ta dùng Ty để ký hiệu độ dài của chuỗi đầu ra.
+
+47
+00:02:53.025 --> 00:02:56.130
+Trong ví dụ này Tx bằng Ty nhưng
+
+48
+00:02:56.130 --> 00:02:59.410
+bạn đã xem video trước Tx và Ty có thể khác nhau.
+
+49
+00:02:59.410 --> 00:03:03.690
+Bạn sẽ nhớ rằng trong ký hiệu chúng ta đã sử dụng,
+
+50
+00:03:03.690 --> 00:03:09.080
+chúng ta đã viết X(i) để biểu thị ví dụ training i.
+
+51
+00:03:09.080 --> 00:03:10.710
+Vì vậy, để nhắc đén
+
+52
+00:03:10.710 --> 00:03:17.160
+phần tử t hoặc phần tử t trong chuỗi ví dụ training mà tôi sẽ sử dụng
+
+53
+00:03:17.160 --> 00:03:21.870
+ký hiệu này và nếu Tx là độ dài của
+
+54
+00:03:21.870 --> 00:03:26.700
+một chuỗi thì các ví dụ khác nhau trong tập training của bạn có thể có độ dài khác nhau.
+
+55
+00:03:26.700 --> 00:03:33.368
+Và vì vậy T(x)(i) sẽ là độ dài chuỗi đầu vào cho ví dụ training i,
+
+56
+00:03:33.368 --> 00:03:40.930
+và tương tự Y(i)(t) có nghĩa là phần tử t trong chuỗi đầu ra của i cho
+
+57
+00:03:40.930 --> 00:03:49.842
+ví dụ và Ty(i) sẽ là độ dài của chuỗi đầu ra trong ví dụ training thứ i.
+
+58
+00:03:49.842 --> 00:03:51.570
+Vậy trong ví dụ này,
+
+59
+00:03:51.570 --> 00:03:57.015
+T(x)(i) bằng 9 sẽ là ví dụ training rất khác với một câu
+
+60
+00:03:57.015 --> 00:04:03.370
+15 từ và T(x)(i) sẽ gần bằng 15 cho ví dụ training khác nhau đó.
+
+61
+00:04:03.370 --> 00:04:09.645
+Bây giờ, chúng ta bắt đầu làm việc trong NLP hoặc Xử lý ngôn ngữ tự nhiên (Natural Language Processing).
+
+62
+00:04:09.645 --> 00:04:16.410
+Đây là bước đột phá nghiêm túc đầu tiên của chúng ta vào NLP hoặc Xử lý ngôn ngữ tự nhiên.
+
+63
+00:04:16.410 --> 00:04:18.915
+Và một trong những điều chúng ta cần quyết định là
+
+64
+00:04:18.915 --> 00:04:22.470
+cách biểu diễn các từ riêng lẻ trong dãy.
+
+65
+00:04:22.470 --> 00:04:25.195
+Vì vậy, làm thế nào để bạn biểu thị một từ như Harry,
+
+66
+00:04:25.195 --> 00:04:30.330
+và x(1) thật ra phải như thế nào?
+
+67
+00:04:30.330 --> 00:04:35.580
+Tiếp theo hãy nói về cách chúng ta sẽ biểu diễn các từ riêng lẻ trong một câu.
+
+68
+00:04:35.580 --> 00:04:38.530
+Để biểu diễn một từ trong câu, điều đầu tiên bạn
+
+69
+00:04:38.530 --> 00:04:42.075
+làm là đưa ra một Từ vựng (Vocabulary).
+
+70
+00:04:42.075 --> 00:04:46.090
+Đôi khi còn được gọi là Từ điển (Dictionary) và điều đó có nghĩa là làm
+
+71
+00:04:46.090 --> 00:04:50.740
+danh sách các từ mà bạn sẽ sử dụng trong biểu diễn của mình.
+
+72
+00:04:50.740 --> 00:04:53.160
+Vì vậy, từ đầu tiên trong từ vựng là a,
+
+73
+00:04:53.160 --> 00:04:55.270
+đó sẽ là từ đầu tiên trong từ điển.
+
+74
+00:04:55.270 --> 00:05:00.805
+Từ thứ hai là Aaron và sau đó xuống thấp hơn một chút là từ and (và),
+
+75
+00:05:00.805 --> 00:05:08.035
+và rồi cuối cùng bạn đến từ Harry rồi cuối cùng là từ Potter,
+
+76
+00:05:08.035 --> 00:05:16.895
+và sau đó là từ cuối cùng trong từ điển có lẽ là Zulu.
+
+77
+00:05:16.895 --> 00:05:19.415
+Và như vậy, "a" sẽ là từ số một,
+
+78
+00:05:19.415 --> 00:05:21.302
+Aaron là từ hai,
+
+79
+00:05:21.302 --> 00:05:29.385
+và trong từ điển của tôi từ "and" xuất hiện trong chỉ mục vị trí 367.
+
+80
+00:05:29.385 --> 00:05:34.925
+Harry xuất hiện ở vị trí 4075,
+
+81
+00:05:34.925 --> 00:05:37.775
+Potter ở vị trí 6830,
+
+82
+00:05:37.775 --> 00:05:44.690
+và Zulu là từ cuối cùng trong từ điển có thể là từ 10.000.
+
+83
+00:05:44.690 --> 00:05:46.295
+Vậy trong ví dụ này,
+
+84
+00:05:46.295 --> 00:05:51.380
+Tôi sẽ sử dụng một từ điển có kích thước 10.000 từ.
+
+85
+00:05:51.380 --> 00:05:55.880
+Điều này là khá nhỏ với các ứng dụng NLP hiện đại.
+
+86
+00:05:55.880 --> 00:06:00.460
+Đối với các ứng dụng thương mại, đối với các ứng dụng thương mại kích thước trực quan,
+
+87
+00:06:00.460 --> 00:06:07.485
+kích thước từ điển từ 30 - 50.000 phổ biến hơn và 100.000 không phải là hiếm.
+
+88
+00:06:07.485 --> 00:06:09.920
+Và sau đó một số công ty Internet lớn sẽ sử dụng
+
+89
+00:06:09.920 --> 00:06:14.310
+kích thước từ điển có thể là một triệu từ hoặc thậm chí lớn hơn thế.
+
+90
+00:06:14.310 --> 00:06:17.695
+Nhưng bạn thấy rất nhiều ứng dụng thương mại đã sử dụng kích thước từ điển
+
+91
+00:06:17.695 --> 00:06:21.660
+có thể 30.000 hoặc có thể 50.000 từ.
+
+92
+00:06:21.660 --> 00:06:27.790
+Nhưng tôi sẽ sử dụng 10.000 để minh họa vì đó là một con số tròn trịa.
+
+93
+00:06:27.790 --> 00:06:33.520
+Vì vậy, nếu bạn đã chọn từ điển 10.000 từ và một cách để xây dựng là
+
+94
+00:06:33.520 --> 00:06:35.630
+từ điển này sẽ được xem qua
+
+95
+00:06:35.630 --> 00:06:40.115
+tập training của bạn và tìm 10.000 từ xuất hiện hàng đầu,
+
+96
+00:06:40.115 --> 00:06:43.940
+cũng xem qua một số từ điển trực tuyến
+
+97
+00:06:43.940 --> 00:06:48.099
+cho bạn biết 10.000 từ phổ biến nhất trong Ngôn ngữ tiếng Anh được lưu là gì.
+
+98
+00:06:48.099 --> 00:06:54.320
+Những gì bạn có thể làm sau đó là sử dụng một đại diện nổi bật để biểu diễn cho mỗi từ này.
+
+99
+00:06:54.320 --> 00:07:02.960
+Ví dụ: x(1) đại diện cho từ Harry sẽ là một vectơ có tất cả các số 0 ngoại trừ
+
+100
+00:07:02.960 --> 00:07:12.080
+một số 1 ở vị trí 4075 vì đó là vị trí của Harry trong từ điển.
+
+101
+00:07:12.080 --> 00:07:18.110
+Và sau đó x(2) sẽ lại là một vectơ tương tự của tất cả các số 0
+
+102
+00:07:18.110 --> 00:07:24.757
+ngoại trừ số 1 ở vị trí 6830 và sau đó là số không các nơi khác.
+
+103
+00:07:24.757 --> 00:07:30.620
+Từ "and" được biểu diễn ở vị trí 367 nên x(3) sẽ là
+
+104
+00:07:30.620 --> 00:07:38.000
+một vectơ có các số không và 1 ở vị trí 367 và sau đó là các số 0 ở các chỗ còn lại.
+
+105
+00:07:38.000 --> 00:07:40.835
+Và mỗi số này sẽ là 10.000
+
+106
+00:07:40.835 --> 00:07:45.830
+vector chiều nếu vốn từ vựng của bạn có 10.000 từ.
+
+107
+00:07:45.830 --> 00:07:50.570
+Và từ "a" này, tôi đoán vì "a" là từ đầu tiên trong từ điển,
+
+108
+00:07:50.570 --> 00:07:54.258
+thì x(7) tương ứng với từ a,
+
+109
+00:07:54.258 --> 00:07:57.625
+đó sẽ là vectơ 1.
+
+110
+00:07:57.625 --> 00:08:03.060
+Đây là phần tử đầu tiên của từ điển và sau đó là số không ở mọi nơi khác.
+
+111
+00:08:03.060 --> 00:08:07.760
+Trong biểu diễn này,
+
+112
+00:08:07.760 --> 00:08:12.800
+x(t) với mỗi giá trị của t trong một câu sẽ là một vectơ one-hot,
+
+113
+00:08:12.800 --> 00:08:16.760
+one-hot vì có chính xác một số 1 và còn lại là 0
+
+114
+00:08:16.760 --> 00:08:22.075
+và bạn sẽ có chín để biểu diễn cho chín từ trong câu này.
+
+115
+00:08:22.075 --> 00:08:25.995
+Và mục tiêu là biểu diễn cho X biết
+
+116
+00:08:25.995 --> 00:08:31.325
+ánh xạ sử dụng model chuỗi để nhắm mục tiêu đầu ra y,
+
+117
+00:08:31.325 --> 00:08:33.875
+Tôi sẽ làm điều này như một bài toán học tập giám sát (supervised learning),
+
+118
+00:08:33.875 --> 00:08:37.460
+Tôi chắc rằng bảng dữ liệu cho trước với cả x và y.
+
+119
+00:08:37.460 --> 00:08:39.137
+Sau đó, chỉ một chi tiết cuối cùng,
+
+120
+00:08:39.137 --> 00:08:42.665
+mà chúng ta sẽ nói nhiều hơn trong các video sau là,
+
+121
+00:08:42.665 --> 00:08:46.545
+Điều gì sẽ xảy ra nếu bạn gặp một từ không có trong vốn từ vựng của bạn?
+
+122
+00:08:46.545 --> 00:08:52.400
+Câu trả lời là bạn tạo một mã thông báo mới (token) hoặc một từ giả mới được gọi là Từ không xác định (Unknown Word).
+
+123
+00:08:52.400 --> 00:08:58.391
+dưới ghi chú như sau và quay lại dưới dạng UNK để biểu thị các từ không có trong từ vựng của bạn,
+
+124
+00:08:58.391 --> 00:09:00.985
+chúng ta sẽ nói thêm về điều này sau.
+
+125
+00:09:00.985 --> 00:09:02.660
+Tóm lại, trong video này,
+
+126
+00:09:02.660 --> 00:09:05.570
+chúng ta đã mô tả một ký hiệu để mô tả
+
+127
+00:09:05.570 --> 00:09:09.205
+tập training của bạn cho cả x và y cho dữ liệu chuỗi.
+
+128
+00:09:09.205 --> 00:09:11.390
+Trong video tiếp theo, chúng ta sẽ mô tả
+
+129
+00:09:11.390 --> 00:09:15.420
+RNN để học về ánh xạ từ x tới y.

@@ -1,0 +1,150 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.360 --> 00:00:05.360
+When running gradient descent, how can you tell if it is converging?
+
+00:00:05.360 --> 00:00:11.360
+That is, whether it's helping you to find parameters close to the global minimum of the cost function.
+
+00:00:11.360 --> 00:00:16.360
+By learning to recognize what a well-running implementation of gradient descent looks like,
+
+00:00:16.360 --> 00:00:22.360
+we will also, in a later video, be better able to choose the good learning rate alpha.
+
+00:00:22.360 --> 00:00:23.360
+Let's take a look.
+
+00:00:23.360 --> 00:00:26.360
+As a reminder, here's the gradient descent rule.
+
+00:00:26.360 --> 00:00:32.360
+And one of the key choices is the choice of the learning rate alpha.
+
+00:00:32.360 --> 00:00:37.360
+Here's something that I often do to make sure that gradient descent is working well.
+
+00:00:37.360 --> 00:00:45.360
+Recall that the job of gradient descent is to find parameters w and b that hopefully minimize the cost function j.
+
+00:00:45.360 --> 00:00:52.360
+So what I'll often do is plot the cost function j, which is calculated on the training set.
+
+00:00:53.360 --> 00:00:58.360
+And I'll plot the value of j at each iteration of gradient descent.
+
+00:00:58.360 --> 00:01:07.360
+Remember that each iteration means after each simultaneous update of the parameters w and b,
+
+00:01:07.360 --> 00:01:16.360
+so in this plot, the horizontal axis is the number of iterations of gradient descent that you've run so far.
+
+00:01:16.360 --> 00:01:20.360
+And so you may get a curve that looks like this.
+
+00:01:20.360 --> 00:01:29.360
+Notice that the horizontal axis is the number of iterations of gradient descent and not a parameter like w or b.
+
+00:01:29.360 --> 00:01:41.360
+This differs from previous graphs you've seen, where the vertical axis was cost j and the horizontal axis was a single parameter like w or b.
+
+00:01:41.360 --> 00:01:46.360
+This curve is also called a learning curve.
+
+00:01:46.360 --> 00:01:51.360
+Note that there are a few different types of learning curves used in machine learning,
+
+00:01:51.360 --> 00:01:55.360
+and you'll see some of the types later in this course as well.
+
+00:01:55.360 --> 00:02:04.360
+Concretely, if you look at this point on the curve, this means that after you've run gradient descent for 100 iterations,
+
+00:02:04.360 --> 00:02:12.360
+meaning 100 simultaneous updates of the parameters, you have some learned values for w and b.
+
+00:02:12.360 --> 00:02:21.360
+And if you compute the cost j, w, b, for those values of w and b, the ones you got after 100 iterations,
+
+00:02:21.360 --> 00:02:29.360
+you get this value for the cost j, that is this point, on the vertical axis.
+
+00:02:29.360 --> 00:02:39.360
+And this point here corresponds to the value of j for the parameters that you got after 200 iterations of gradient descent.
+
+00:02:39.360 --> 00:02:47.360
+So looking at this graph helps you to see how your cost j changes after each iteration of gradient descent.
+
+00:02:47.360 --> 00:02:54.360
+If gradient descent is working properly, then the cost j should decrease after every single iteration.
+
+00:02:54.360 --> 00:03:02.360
+If j ever increases after one iteration, that means either alpha is chosen poorly,
+
+00:03:02.360 --> 00:03:07.360
+and it usually means alpha is too large, or there could be a bug in the code.
+
+00:03:07.360 --> 00:03:12.360
+Another useful thing that this point can tell you is that if you look at this curve,
+
+00:03:12.360 --> 00:03:22.360
+by the time you reach maybe 300 iterations or so, the cost j is leveling off and is no longer decreasing much.
+
+00:03:22.360 --> 00:03:27.360
+And by 400 iterations, it looks like the curve has flattened out.
+
+00:03:27.360 --> 00:03:36.360
+So this means that gradient descent has more or less converged because the curve is no longer decreasing.
+
+00:03:36.360 --> 00:03:44.360
+So looking at this learning curve, you can try to spot whether or not gradient descent is converging.
+
+00:03:44.360 --> 00:03:52.360
+By the way, the number of iterations that gradient descent takes to converge can vary a lot between different applications.
+
+00:03:52.360 --> 00:03:56.360
+In one application, it may converge after just 30 iterations.
+
+00:03:56.360 --> 00:04:02.360
+For a different application, it could take a thousand or a hundred thousand iterations.
+
+00:04:02.360 --> 00:04:10.360
+It turns out to be very difficult to tell in advance how many iterations gradient descent needs to converge,
+
+00:04:10.360 --> 00:04:20.360
+which is why you can create a graph like this, a learning curve, to try to find out when you can stop training your particular model.
+
+00:04:20.360 --> 00:04:27.360
+Another way to decide when your model is done training is with an automatic convergence test.
+
+00:04:27.360 --> 00:04:37.360
+So let's let epsilon, this here is the Greek alphabet epsilon, let's let epsilon be available representing a small number,
+
+00:04:37.360 --> 00:04:43.360
+such as 0.001 or 10 to the power of negative 3.
+
+00:04:43.360 --> 00:04:48.360
+If the cost j decreases by less than this number epsilon on one iteration,
+
+00:04:48.360 --> 00:04:56.360
+then you're likely on this flattened part of the curve that you see on the left and you can declare convergence.
+
+00:04:56.360 --> 00:05:05.360
+Remember, convergence hopefully indicates that you found parameters w and b that are close to the minimum possible value of j.
+
+00:05:05.360 --> 00:05:09.360
+I usually find that choosing the right threshold epsilon is pretty difficult,
+
+00:05:09.360 --> 00:05:16.360
+so I actually tend to look at graphs like this one on the left rather than rely on automatic convergence tests.
+
+00:05:16.360 --> 00:05:25.360
+Looking at this other figure can tell you, I'll give you some advance warning if maybe gradient descent is not working correctly as well.
+
+00:05:26.360 --> 00:05:32.360
+So you've now seen what the learning curve should look like when gradient descent is running well.
+
+00:05:32.360 --> 00:05:38.360
+Let's take these insights and in the next video, take a look at how to choose an appropriate learning rate.

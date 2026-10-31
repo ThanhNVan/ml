@@ -1,0 +1,57 @@
+Trong các video đầu tuần, cũng như trong các video vài tuần trước, bạn đã thấy các yếu tố
+cơ bản của truyền xuôi và truyền ngược, các thành phần chính cần thiết
+để triển khai một mạng nơ-ron nhân tạo sâu. Hãy cùng xem cách mà bạn có thể kết hợp các thành phần
+này lại với nhau để xây dựng một mạng nơ-ron nhân tạo sâu. Đây là một mạng nơ-ron gồm vài lớp. Hãy chọn một lớp. Và bây giờ hãy cùng xem các
+phép tính cho lớp đó. Và đối với lớp L, bạn có tham số wl và bl và trong truyền xuôi, bạn sẽ nhập kích hoạt a(l-1) từ lớp trước và đầu ra al. Và cách mà chúng ta đã làm
+điều này trước đây là bạn tính z l = w l nhân al - 1 + b l. Và rồi al = g của z l. Tốt. Đó là cách bạn đi từ đầu
+vào a(l-1)tới đầu ra al. Và, trên thực tế để sử dụng
+về sau thì nên lưu trữ giá trị zl. Tôi sẽ đưa cái này vào bộ nhớ
+cache vì việc lưu trữ giá trị zl sẽ có ích cho truyền ngược, cho
+bước truyền ngược sau này. Và đối với bước truyền ngược, một lần nữa, tập trung vào tính toán cho lớp l này, bạn sẽ triển khai một hàm nhập vào da (l). Và xuất da (l-1), và tôi chỉ muốn nói thêm là, đầu vào là da (l), cũng như là bộ đệm, và bạn đã có sẵn giá trị zl mà bạn đã tính và sau đó, xuất ra da (l- 1) bạn xuất đầu ra hoặc gradient bạn muốn để
+thực hiện gradient descent cho việc học, đúng chứ? Và đây là cấu trúc cơ bản để bạn
+thực hiện bước truyền xuôi này, chúng ta gọi đó là hàm xuôi, và bước lùi này, chúng ta sẽ gọi là hàm ngược. Tóm lại, trong lớp l, bạn sẽ có bước xuôi hoặc
+truyền xuôi của hàm xuôi. Đầu vào a(l-1) và đầu ra, al, và để thực hiện phép tính này,
+bạn cần sử dụng wl và bl. Và bạn cũng xuất ra một bộ nhớ
+đệm (cache), trong đó có chứa zl, đúng chứ? Và sau đó là hàm ngược, sử dụng
+bước truyền ngược, sẽ là một hàm khác mà bây giờ nhập vào da (l) và xuất ra da (l-1). Và nó cho bạn biết, với các đạo hàm
+liên quan đến các kích hoạt này, da (l), thì các đạo hàm là gì? Tôi muốn bao nhiêu? Bạn cũng biết là a(l-1) thay đổi các
+đạo hàm được tính với các kích hoạt từ một lớp trước. Trong hộp này, đúng chứ? Bạn cần sử dụng wl và bl, và cuối cùng bạn tính dzl, và rồi hộp này, hàm ngược này cũng có thể xuất dwl và dbl, nhưng đôi khi tôi sử dụng mũi
+tên màu đỏ để biểu thị sự lặp ngược. Nếu bạn muốn thì chúng ta có
+thể vẽ những mũi tên này bằng màu đỏ. Nếu bạn có thể triển khai hai hàm này thì phép tính cơ bản của mạng
+nơ-ron nhân tạo sẽ như sau. Bạn sẽ đưa các tính năng đầu vào a0 vào và nó sẽ tính toán hoạt của lớp
+đầu tiên, hãy gọi đó là a1 và để làm điều đó, bạn cần một
+w1 và b1 và sau đó, bạn biết đấy, lưu trữ z1, đúng chứ? Bây giờ sau khi đã thực hiện điều đó, bạn đưa nó
+vào lớp thứ hai và sau đó sử dụng w2 và b2, bạn sẽ tính các kích hoạt
+trong lớp tiếp theo a2, v.v. Cho đến khi bạn xuất ra a l bằng với mũ y. Và trong qua trình này, chúng ta
+lưu trữ tất cả các giá trị z này. Và đó là bước truyền xuôi. Bây giờ, đối với bước truyền
+ngược, chúng ta sẽ thực hiện một chuỗi lặp ngược trong đó bạn đang triển khai
+ngược lại và tính gradient như này. Và bạn sẽ đưa da (l) vào đây và rồi hộp này sẽ cung cấp cho chúng ta da (l- 1) và
+cứ thế cho đến khi chúng ta nhận được da (2), da (1). Bạn có thể có thêm một đầu
+ra nữa để tính da (0) nhưng đây là đạo hàm với tính năng đầu vào của bạn, cái mà
+không hữu ích đối với việc huấn luyện trọng số của các mạng
+nơ-ron nhân tạo có giám sát. Vậy nên, bạn có thể chỉ dừng ở đó.
+Nhưng trong quá trình đó, truyền ngược cũng sẽ xuất ra dwl, dbl. Tôi chỉ sử dụng dấu nhắc là wl và bl. Điều này sẽ xuất ra dw3, db3 và v.v.. Và cuối cùng bạn có thể tính
+tất cả các đạo hàm bạn cần. Và để thêm một chút vào cấu trúc này, những hộp này cũng sẽ sử
+dụng các tham số đó. wl, bl và Sau này chúng ta sẽ thấy rằng bên trong
+các hộp này, chúng ta cũng sẽ tính các dz. Vì vậy, một bước lặp của huấn luyện thông
+qua một mạng nơ-ron nhân tạo bao gồm: bắt đầu với a (0) là x và thực hiện bước
+truyền xuôi như sau. Tính y mũ và sau đó sử dụng
+nó để tính cái này và sau đó thực hiện truyền ngược,
+phải, làm như này và bây giờ bạn có tất cả các số
+hạng đạo hàm này và vì vậy, bạn biết đấy, w sẽ được cập nhật là w1 = tốc độ
+học dw, đúng chứ? Đối với mỗi lớp và tương tự với tốc độ b. Bây giờ đã có tất cả các đạo hàm
+khi thực hiện xong truyền ngược. Và đó là một lần lặp lại gradient
+descent cho mạng nơ-ron nhân tạo của bạn. Bây giờ trước khi tiếp tục, tôi muốn
+nói thêm một vài điều. Về lý thuyết, sẽ rất hữu ích khi
+sử dụng bộ đệm ở đây để lưu trữ giá trị của z cho các hàm ngược. Nhưng khi bạn triển khai điều này, và
+bạn thấy điều này trong bài tập lập trình, Khi bạn thực hiện điều này, bạn sẽ
+thấy bộ đệm có thể là một cách dễ dàng để đưa giá trị
+này của các tham số w1, b1, vào hàm ngược. Vì vậy trong bài tập này, bạn lưu trữ z, w và b
+trong bộ nhớ cache của bạn. Vì vậy, cái này lưu trữ z2, w2, b2.
+Nhưng từ quan điểm thực hành, tôi thấy việc lấy các tham số,
+sao chép vào nơi bạn cần sử dụng chúng sau này khi
+bạn tính truyền ngược thì tiện hơn. Và đó chỉ là một điều về triển
+khai mà bạn thấy khi làm bài tập lập trình. Bây giờ bạn đã biết được các
+yếu tố cơ bản để triển khai một mạng nơ-ron nhân tạo sâu. Trong mỗi lớp có một bước truyền xuôi và có một bước truyền ngược tương ứng. Và có một bộ đệm để truyền
+thông tin từ cái này sang cái khác. Ở video tiếp theo, chúng ta sẽ nói về cách
+triển khai các yếu tố này. Hãy đón xem video tiếp theo.

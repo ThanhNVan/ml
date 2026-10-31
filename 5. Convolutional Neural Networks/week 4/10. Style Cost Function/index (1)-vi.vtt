@@ -1,0 +1,785 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.400
+Trong video cuối cùng, bạn đã thấy làm thế nào để xác
+
+2
+00:00:02.400 --> 00:00:04.980
+định nội dung chi phí chức năng cho việc truyền phong cách thần kinh.
+
+3
+00:00:04.980 --> 00:00:09.317
+Tiếp theo, chúng ta hãy nhìn vào chức năng chi phí phong cách.
+
+4
+00:00:09.317 --> 00:00:12.373
+Vì vậy, phong cách của một hình ảnh có nghĩa là gì?
+
+5
+00:00:12.373 --> 00:00:14.633
+Giả sử bạn có một hình ảnh đầu vào như thế này,
+
+6
+00:00:14.633 --> 00:00:16.750
+họ thường nhìn thấy một convnet như thế,
+
+7
+00:00:16.750 --> 00:00:20.091
+tính toán các feature mà có các lớp khác nhau.
+
+8
+00:00:20.091 --> 00:00:22.692
+Và giả sử bạn đã chọn một số lớp L,
+
+9
+00:00:22.692 --> 00:00:29.020
+có thể là lớp để xác định thước đo của phong cách của một hình ảnh.
+
+10
+00:00:29.020 --> 00:00:34.095
+Những gì chúng ta cần làm là định nghĩa phong cách như là mối tương quan giữa
+
+11
+00:00:34.095 --> 00:00:40.635
+các kích hoạt trên các kênh khác nhau trong kích hoạt lớp L này.
+
+12
+00:00:40.635 --> 00:00:42.190
+Vì vậy, đây là những gì tôi muốn nói.
+
+13
+00:00:42.190 --> 00:00:44.480
+Giả sử bạn thực hiện kích hoạt lớp L.
+
+14
+00:00:44.480 --> 00:00:50.936
+Vì vậy, đây sẽ là nh bởi nw bởi nc khối kích hoạt,
+
+15
+00:00:50.936 --> 00:00:55.995
+và chúng tôi sẽ hỏi làm thế nào tương quan là các kích hoạt trên các kênh khác nhau.
+
+16
+00:00:55.995 --> 00:00:59.966
+Vì vậy, để giải thích những gì tôi có nghĩa là bởi điều này có thể là cụm từ hơi khó hiểu,
+
+17
+00:00:59.966 --> 00:01:02.850
+chúng ta hãy lấy khối kích hoạt này
+
+18
+00:01:02.850 --> 00:01:06.575
+và để tôi che bóng các kênh khác nhau bằng một màu sắc khác nhau.
+
+19
+00:01:06.575 --> 00:01:08.295
+Vì vậy, trong ví dụ dưới đây,
+
+20
+00:01:08.295 --> 00:01:14.286
+chúng ta đã nói năm kênh và đó là lý do tại sao tôi có năm sắc thái của màu sắc ở đây.
+
+21
+00:01:14.286 --> 00:01:15.375
+Trong thực tế, tất nhiên,
+
+22
+00:01:15.375 --> 00:01:18.514
+trong neural network chúng ta thường có nhiều kênh hơn năm,
+
+23
+00:01:18.514 --> 00:01:22.056
+nhưng chỉ sử dụng năm làm cho nó vẽ dễ dàng hơn.
+
+24
+00:01:22.056 --> 00:01:24.765
+Nhưng để chụp được phong cách của một bức ảnh,
+
+25
+00:01:24.765 --> 00:01:26.850
+những gì bạn sẽ làm là những điều sau đây.
+
+26
+00:01:26.850 --> 00:01:28.910
+Hãy nhìn vào hai kênh đầu tiên.
+
+27
+00:01:28.910 --> 00:01:32.970
+Hãy xem kênh màu đỏ và kênh màu vàng và nói
+
+28
+00:01:32.970 --> 00:01:37.450
+cách tương quan là kích hoạt trong hai kênh đầu tiên này.
+
+29
+00:01:37.450 --> 00:01:40.575
+Vì vậy, ví dụ, ở góc dưới bên phải,
+
+30
+00:01:40.575 --> 00:01:45.820
+bạn có một số kích hoạt trong kênh đầu tiên và một số kích hoạt trong kênh thứ hai.
+
+31
+00:01:45.820 --> 00:01:47.655
+Vì vậy, nó cung cấp cho bạn một cặp số.
+
+32
+00:01:47.655 --> 00:01:51.510
+Và những gì bạn làm là nhìn vào các vị trí khác nhau trên
+
+33
+00:01:51.510 --> 00:01:55.435
+khối kích hoạt này và chỉ nhìn vào hai cặp số đó,
+
+34
+00:01:55.435 --> 00:01:57.232
+một trong kênh đầu tiên, kênh màu đỏ,
+
+35
+00:01:57.232 --> 00:02:00.000
+một trong kênh màu vàng, kênh thứ hai.
+
+36
+00:02:00.000 --> 00:02:02.370
+Và bạn chỉ cần nhìn vào hai cặp số này và
+
+37
+00:02:02.370 --> 00:02:04.816
+xem khi bạn nhìn qua tất cả các vị trí này,
+
+38
+00:02:04.816 --> 00:02:07.320
+tất cả các vị trí nh theo nw,
+
+39
+00:02:07.320 --> 00:02:10.205
+làm thế nào tương quan là hai con số này.
+
+40
+00:02:10.205 --> 00:02:12.550
+Vì vậy, tại sao phong cách chụp này?
+
+41
+00:02:12.550 --> 00:02:14.405
+Hãy xem một ví dụ khác.
+
+42
+00:02:14.405 --> 00:02:17.844
+Đây là một trong những hình ảnh trực quan hóa từ video trước đó.
+
+43
+00:02:17.844 --> 00:02:20.280
+Điều này xuất phát từ một lần nữa các bài báo của
+
+44
+00:02:20.280 --> 00:02:23.350
+Matthew Zeiler và Rob Fergus mà tôi đã tham khảo trước đó.
+
+45
+00:02:23.350 --> 00:02:25.360
+Và chúng ta hãy nói vì lợi ích của các đối số,
+
+46
+00:02:25.360 --> 00:02:28.300
+rằng tế bào thần kinh màu đỏ tương ứng với,
+
+47
+00:02:28.300 --> 00:02:30.170
+và chúng ta hãy nói vì lợi ích của các đối số,
+
+48
+00:02:30.170 --> 00:02:36.600
+rằng kênh màu đỏ tương ứng với tế bào thần kinh này, vì vậy chúng tôi đang cố gắng tìm ra nếu có một
+
+49
+00:02:36.600 --> 00:02:40.320
+chút kết cấu thẳng đứng ở
+
+50
+00:02:40.320 --> 00:02:46.185
+một vị trí cụ thể trong nh và chúng ta hãy nói rằng kênh thứ hai
+
+51
+00:02:46.185 --> 00:02:51.795
+này, kênh thứ hai màu vàng này tương ứng với tế bào thần kinh này,
+
+52
+00:02:51.795 --> 00:02:56.515
+đó là mơ hồ tìm kiếm các bản vá màu cam.
+
+53
+00:02:56.515 --> 00:03:01.104
+Điều gì có nghĩa là hai kênh này có mối tương quan cao?
+
+54
+00:03:01.104 --> 00:03:04.560
+Vâng, nếu chúng có mối tương quan cao ý nghĩa là bất cứ phần nào
+
+55
+00:03:04.560 --> 00:03:08.430
+của ảnh có kiểu kết cấu thẳng đứng tinh tế này,
+
+56
+00:03:08.430 --> 00:03:12.980
+phần đó của ảnh có thể sẽ có màu cam.
+
+57
+00:03:12.980 --> 00:03:15.755
+Và nó có ý nghĩa gì đối với họ để không tương quan?
+
+58
+00:03:15.755 --> 00:03:19.635
+Vâng, nó có nghĩa là bất cứ khi nào có kết cấu thẳng đứng này,
+
+59
+00:03:19.635 --> 00:03:22.625
+nó có thể sẽ không có màu cam.
+
+60
+00:03:22.625 --> 00:03:25.710
+Và vì vậy mối tương quan cho bạn biết
+
+61
+00:03:25.710 --> 00:03:31.020
+những thành phần kết cấu cấp cao này có xu hướng xảy ra hoặc không xảy ra cùng nhau
+
+62
+00:03:31.020 --> 00:03:35.550
+trong một phần của một hình ảnh và đó là mức độ tương quan cung cấp cho bạn
+
+63
+00:03:35.550 --> 00:03:40.455
+một cách để đo tần suất các feature cấp cao khác nhau,
+
+64
+00:03:40.455 --> 00:03:45.441
+chẳng hạn như kết cấu dọc hoặc màu cam hoặc những thứ khác,
+
+65
+00:03:45.441 --> 00:03:48.180
+tần suất chúng xuất hiện và tần suất chúng xuất hiện
+
+66
+00:03:48.180 --> 00:03:51.740
+cùng nhau và không xuất hiện cùng nhau ở các phần khác nhau của ảnh.
+
+67
+00:03:51.740 --> 00:03:57.180
+Và như vậy, nếu chúng ta sử dụng mức độ tương quan giữa các kênh như là một thước đo của phong cách,
+
+68
+00:03:57.180 --> 00:04:02.670
+sau đó những gì bạn có thể làm là đo mức độ mà trong hình ảnh
+
+69
+00:04:02.670 --> 00:04:06.810
+được tạo ra của bạn, kênh đầu tiên này tương quan hoặc không tương quan với
+
+70
+00:04:06.810 --> 00:04:12.090
+kênh thứ hai và điều đó sẽ cho bạn biết trong hình ảnh được tạo ra bao lâu
+
+71
+00:04:12.090 --> 00:04:14.820
+kiểu kết cấu thẳng đứng này xảy ra hoặc không
+
+72
+00:04:14.820 --> 00:04:18.450
+xảy ra với màu cam này và điều này cung cấp cho bạn một thước đo
+
+73
+00:04:18.450 --> 00:04:25.675
+về cách tương tự như thế nào là phong cách của hình ảnh được tạo ra với phong cách của hình ảnh kiểu đầu vào.
+
+74
+00:04:25.675 --> 00:04:28.600
+Vì vậy, bây giờ chúng ta hãy chính thức hóa trực giác này.
+
+75
+00:04:28.600 --> 00:04:34.620
+Vì vậy, những gì bạn có thể làm là cho một hình ảnh tính toán một cái gì đó gọi là ma trận phong cách,
+
+76
+00:04:34.620 --> 00:04:38.960
+nó sẽ đo tất cả những mối tương quan mà chúng ta nói về trên slide cuối cùng.
+
+77
+00:04:38.960 --> 00:04:44.280
+Vì vậy, chính thức hơn, chúng ta hãy để một chỉ số trên l, chỉ số dưới i,
+
+78
+00:04:44.280 --> 00:04:47.868
+j, k biểu thị kích hoạt ở vị trí i, j, k trong
+
+79
+00:04:47.868 --> 00:04:53.610
+lớp ẩn l Vì vậy, i chỉ số vào chiều cao,
+
+80
+00:04:53.610 --> 00:04:54.850
+chỉ số j vào chiều rộng,
+
+81
+00:04:54.850 --> 00:04:58.050
+và k chỉ số trên các kênh khác nhau.
+
+82
+00:04:58.050 --> 00:05:00.045
+Vì vậy, trong slide trước đó,
+
+83
+00:05:00.045 --> 00:05:05.165
+chúng tôi đã có năm kênh mà k sẽ chỉ mục trên năm kênh đó.
+
+84
+00:05:05.165 --> 00:05:09.635
+Vì vậy, những gì ma trận phong cách sẽ làm là bạn sẽ tính toán một mệnh đề ma trận
+
+85
+00:05:09.635 --> 00:05:17.390
+G chỉ số vuông dấu ngoặc vuông l Đây sẽ là một nc bởi nc ma trận chiều,
+
+86
+00:05:17.390 --> 00:05:18.755
+vì vậy nó sẽ là một ma trận vuông.
+
+87
+00:05:18.755 --> 00:05:23.390
+Hãy nhớ rằng bạn có kênh nc và vì vậy bạn có một
+
+88
+00:05:23.390 --> 00:05:29.490
+nc bởi nc ma trận chiều để đo cách tương quan mỗi cặp trong số họ là.
+
+89
+00:05:29.490 --> 00:05:32.585
+Vì vậy, đặc biệt G, l,
+
+90
+00:05:32.585 --> 00:05:36.954
+k, k nguyên tố sẽ đo mức độ tương quan là các hoạt hóa trong
+
+91
+00:05:36.954 --> 00:05:41.755
+kênh k so với các hoạt hóa trong kênh k nguyên tố.
+
+92
+00:05:41.755 --> 00:05:46.250
+Vâng ở đây, k và k nguyên tố sẽ dao động từ 1 đến nc,
+
+93
+00:05:46.250 --> 00:05:49.630
+số lượng kênh mà họ đang ở trong lớp đó.
+
+94
+00:05:49.630 --> 00:05:55.820
+Vì vậy, chính thức hơn, cách bạn tính toán G,
+
+95
+00:05:55.820 --> 00:06:00.840
+l và tôi sẽ viết ra công thức để tính toán một phần tử.
+
+96
+00:06:00.840 --> 00:06:03.283
+Vì vậy, k, k nguyên tố của điều này.
+
+97
+00:06:03.283 --> 00:06:06.210
+Đây sẽ là tổng của một i,
+
+98
+00:06:06.210 --> 00:06:08.987
+tổng của một j,
+
+99
+00:06:08.987 --> 00:06:13.979
+của hủy kích hoạt và lớp i, j,
+
+100
+00:06:13.979 --> 00:06:22.078
+k lần kích hoạt tại i, j, k nguyên tố.
+
+101
+00:06:22.078 --> 00:06:27.989
+Vì vậy, ở đây, hãy nhớ chỉ số i và j qua một vị trí khác nhau trong khối,
+
+102
+00:06:27.989 --> 00:06:30.453
+chỉ số trên chiều cao và chiều rộng.
+
+103
+00:06:30.453 --> 00:06:39.755
+Vì vậy, i là tổng từ một đến nh và j là một tổng từ một đến nw
+
+104
+00:06:39.755 --> 00:06:45.200
+và k ở đây và k chỉ số nguyên tố trên kênh nên
+
+105
+00:06:45.200 --> 00:06:47.870
+k và k phạm vi nguyên tố từ một đến
+
+106
+00:06:47.870 --> 00:06:51.913
+tổng số kênh trong lớp đó của neural network.
+
+107
+00:06:51.913 --> 00:06:55.967
+Vì vậy, tất cả điều này đang làm
+
+108
+00:06:55.967 --> 00:07:00.225
+là tổng hợp các vị trí khác nhau mà hình ảnh trên chiều cao và chiều rộng và chỉ
+
+109
+00:07:00.225 --> 00:07:03.640
+nhân các kích hoạt với nhau của
+
+110
+00:07:03.640 --> 00:07:08.853
+các kênh k và k nguyên tố và đó là định nghĩa của G, k, k nguyên tố.
+
+111
+00:07:08.853 --> 00:07:14.450
+Và bạn làm điều này cho mọi giá trị của k và k nguyên tố để tính toán ma trận này G,
+
+112
+00:07:14.450 --> 00:07:17.585
+còn gọi là ma trận kiểu.
+
+113
+00:07:17.585 --> 00:07:23.435
+Và để ý rằng nếu cả hai kích hoạt này có xu hướng được lashed với nhau,
+
+114
+00:07:23.435 --> 00:07:26.325
+thì G, k, k nguyên tố sẽ lớn,
+
+115
+00:07:26.325 --> 00:07:28.510
+trong khi nếu chúng không tương quan thì g, k,
+
+116
+00:07:28.510 --> 00:07:30.305
+k nguyên tố có thể nhỏ.
+
+117
+00:07:30.305 --> 00:07:32.060
+Và về mặt kỹ thuật, tôi đã sử dụng
+
+118
+00:07:32.060 --> 00:07:36.170
+thuật ngữ tương quan để truyền đạt trực giác nhưng đây thực
+
+119
+00:07:36.170 --> 00:07:40.130
+sự là thập giá bất thường của các khu vực bởi vì chúng ta không
+
+120
+00:07:40.130 --> 00:07:46.130
+trừ đi trung bình và điều này chỉ được nhân với những yếu tố này trực tiếp.
+
+121
+00:07:46.130 --> 00:07:50.370
+Vì vậy, đây là cách bạn tính toán phong cách của một hình ảnh.
+
+122
+00:07:50.370 --> 00:07:54.030
+Và bạn thực sự muốn làm điều này cho cả hình ảnh phong cách s, n cho
+
+123
+00:07:54.030 --> 00:08:01.020
+hình ảnh được tạo ra G. Vì vậy, chỉ để phân biệt rằng đây là hình ảnh phong cách, có
+
+124
+00:08:01.020 --> 00:08:07.630
+lẽ cho phép tôi thêm một khung tròn S có,
+
+125
+00:08:07.630 --> 00:08:10.105
+chỉ để biểu thị rằng đây là hình ảnh phong cách cho hình ảnh
+
+126
+00:08:10.105 --> 00:08:12.715
+S và đó là những kích hoạt trên hình ảnh
+
+127
+00:08:12.715 --> 00:08:21.085
+S. Và những gì bạn làm là sau đó tính toán cùng một thứ cho hình ảnh được tạo ra.
+
+128
+00:08:21.085 --> 00:08:28.581
+Vì vậy, nó thực sự là cùng một điều tóm tắt tổng của một j, a, i
+
+129
+00:08:28.581 --> 00:08:32.670
+, j, k, l, a
+
+130
+00:08:32.670 --> 00:08:36.678
+, i, j, k, l và các chỉ số tổng hợp là như nhau.
+
+131
+00:08:36.678 --> 00:08:46.130
+Hãy làm theo điều này và bạn muốn chỉ cần biểu thị điều này là cho hình ảnh được tạo ra,
+
+132
+00:08:46.130 --> 00:08:51.710
+tôi sẽ chỉ cần đặt các dấu ngoặc tròn G ở đó.
+
+133
+00:08:51.710 --> 00:08:55.540
+Vì vậy, bây giờ, bạn có hai ma trận họ nắm bắt những gì là phong cách với
+
+134
+00:08:55.540 --> 00:08:59.770
+hình ảnh s và phong cách của hình ảnh G. và,
+
+135
+00:08:59.770 --> 00:09:05.260
+bằng cách này, chúng tôi đã sử dụng chữ viết hoa chữ cái G để biểu thị những ma trận này.
+
+136
+00:09:05.260 --> 00:09:09.445
+Trong đại số tuyến tính, chúng cũng được gọi là
+
+137
+00:09:09.445 --> 00:09:14.030
+ma trận lớn của những trong gọi là ma trận lớn nhưng trong video này,
+
+138
+00:09:14.030 --> 00:09:17.680
+tôi sẽ chỉ sử dụng ma trận phong cách thuật ngữ vì thuật ngữ này ma
+
+139
+00:09:17.680 --> 00:09:23.630
+trận lớn mà hầu hết trong số này sử dụng chữ G để biểu thị các ma trận này.
+
+140
+00:09:23.630 --> 00:09:26.035
+Cuối cùng, cost function,
+
+141
+00:09:26.035 --> 00:09:28.875
+cost function phong cách.
+
+142
+00:09:28.875 --> 00:09:34.570
+Nếu bạn đang làm điều này trên lớp l giữa s và G,
+
+143
+00:09:34.570 --> 00:09:37.050
+bây giờ bạn có thể xác định rằng
+
+144
+00:09:37.050 --> 00:09:44.610
+chỉ là sự khác biệt
+
+145
+00:09:44.610 --> 00:09:48.675
+giữa hai ma trận này,
+
+146
+00:09:48.675 --> 00:09:54.265
+G l, G vuông và đây là ma trận.
+
+147
+00:09:54.265 --> 00:09:55.754
+Vì vậy, chỉ cần lấy nó từ một trong những trước đó.
+
+148
+00:09:55.754 --> 00:10:00.660
+Đây chỉ là tổng các bình phương của các yếu tố khác biệt khôn ngoan giữa
+
+149
+00:10:00.660 --> 00:10:07.065
+hai ma trận này và chỉ chia này ra điều này sẽ được tổng hợp trên k,
+
+150
+00:10:07.065 --> 00:10:12.964
+tổng trên k nguyên tố của những khác biệt của s, k,
+
+151
+00:10:12.964 --> 00:10:17.450
+k nguyên tố trừ đi G l,
+
+152
+00:10:17.450 --> 00:10:24.530
+G, k, k nguyên tố và sau đó tổng bình phương của các phần tử.
+
+153
+00:10:24.530 --> 00:10:32.715
+Các tác giả thực sự sử dụng điều này cho các hằng số bình thường hóa hai lần nh,
+
+154
+00:10:32.715 --> 00:10:34.890
+nw, trong lớp đó,
+
+155
+00:10:34.890 --> 00:10:40.015
+nc trong lớp đó và tôi sẽ vuông này và bạn có thể đặt điều này lên đây là tốt.
+
+156
+00:10:40.015 --> 00:10:43.600
+Nhưng một hằng số bình thường hóa không quan trọng nhiều bởi vì
+
+157
+00:10:43.600 --> 00:10:47.485
+nguyên nhân này nhân với một số siêu tham số b nào đó.
+
+158
+00:10:47.485 --> 00:10:48.910
+Vì vậy, chỉ để kết thúc,
+
+159
+00:10:48.910 --> 00:10:51.970
+đây là cost function phong cách được định nghĩa
+
+160
+00:10:51.970 --> 00:10:55.645
+bằng cách sử dụng lớp l và như bạn đã thấy trên slide trước đó,
+
+161
+00:10:55.645 --> 00:11:02.440
+đây về cơ bản là chuẩn Frobenius giữa hai ma trận sao tính toán trên
+
+162
+00:11:02.440 --> 00:11:05.953
+hình ảnh s và trên hình ảnh G
+
+163
+00:11:05.953 --> 00:11:10.810
+Frobenius trên bình phương và không bao giờ bằng chỉ thấp bình thường hóa hằng số,
+
+164
+00:11:10.810 --> 00:11:13.255
+mà không phải là quan trọng.
+
+165
+00:11:13.255 --> 00:11:18.400
+Và, cuối cùng, nó chỉ ra rằng bạn nhận được kết quả trực quan dễ chịu hơn nếu bạn
+
+166
+00:11:18.400 --> 00:11:23.443
+sử dụng chức năng chi phí phong cách từ nhiều lớp khác nhau.
+
+167
+00:11:23.443 --> 00:11:27.095
+Vì vậy, cost function phong cách tổng thể,
+
+168
+00:11:27.095 --> 00:11:31.305
+bạn có thể định nghĩa là tổng trên
+
+169
+00:11:31.305 --> 00:11:37.640
+tất cả các lớp khác nhau của cost function phong cách cho lớp đó.
+
+170
+00:11:37.640 --> 00:11:41.820
+Chúng ta nên xác định cuốn sách trọng số bởi một số tập hợp các tham số,
+
+171
+00:11:41.820 --> 00:11:44.160
+bởi một số tập hợp các siêu tham số bổ sung,
+
+172
+00:11:44.160 --> 00:11:46.895
+mà chúng ta sẽ biểu thị là lambda l ở đây.
+
+173
+00:11:46.895 --> 00:11:51.595
+Vì vậy, những gì nó làm là cho phép bạn sử dụng các lớp khác nhau trong một neural network. Trong
+
+174
+00:11:51.595 --> 00:11:52.815
+số những người đầu tiên
+
+175
+00:11:52.815 --> 00:11:55.800
+, đo lường các feature cấp thấp tương đối đơn giản hơn
+
+176
+00:11:55.800 --> 00:11:59.050
+như các cạnh cũng như một số lớp sau
+
+177
+00:11:59.050 --> 00:12:03.000
+, đo lường các feature cấp cao và làm cho một neural network phải tính đến
+
+178
+00:12:03.000 --> 00:12:08.475
+cả các mối tương quan cấp thấp và cấp cao khi tính toán phong cách.
+
+179
+00:12:08.475 --> 00:12:10.845
+Và, trong bài tập sau đây,
+
+180
+00:12:10.845 --> 00:12:13.980
+bạn có được nhiều trực giác hơn về những gì có thể là
+
+181
+00:12:13.980 --> 00:12:19.080
+lựa chọn hợp lý cho loại tham số lambda là tốt.
+
+182
+00:12:19.080 --> 00:12:20.790
+Và vì vậy chỉ để bọc này lên,
+
+183
+00:12:20.790 --> 00:12:24.660
+bây giờ bạn có thể xác định cost function tổng thể
+
+184
+00:12:24.660 --> 00:12:30.720
+như alpha lần chi phí nội dung giữa c và G cộng với
+
+185
+00:12:30.720 --> 00:12:37.515
+beta lần chi phí phong cách giữa s và G và sau đó chỉ cần tạo ra trong ý nghĩa
+
+186
+00:12:37.515 --> 00:12:40.785
+hoặc một thuật toán tối ưu hóa phức tạp hơn nếu bạn muốn
+
+187
+00:12:40.785 --> 00:12:44.696
+để cố gắng tìm thấy một hình ảnh G bình thường hóa,
+
+188
+00:12:44.696 --> 00:12:49.590
+cố gắng giảm thiểu chức năng chi phí j của G. Và nếu bạn làm điều đó,
+
+189
+00:12:49.590 --> 00:12:53.730
+bạn có thể tạo ra một nghệ thuật thần kinh trông khá tốt
+
+190
+00:12:53.730 --> 00:12:59.220
+và nếu bạn làm điều đó bạn sẽ có thể tạo ra một số tác phẩm nghệ thuật tiểu thuyết khá đẹp.
+
+191
+00:12:59.220 --> 00:13:02.010
+Vì vậy, đó là nó cho truyền phong cách thần kinh và tôi hy vọng bạn có
+
+192
+00:13:02.010 --> 00:13:05.235
+vui vẻ thực hiện nó trong bài tập in ấn của tuần này.
+
+193
+00:13:05.235 --> 00:13:06.625
+Trước khi kết thúc tuần này,
+
+194
+00:13:06.625 --> 00:13:08.575
+chỉ có một điều cuối cùng tôi muốn chia sẻ về các bạn,
+
+195
+00:13:08.575 --> 00:13:11.100
+đó là làm thế nào để làm phức tạp trên
+
+196
+00:13:11.100 --> 00:13:17.000
+dữ liệu 1D hoặc 3D hơn là chỉ trên hình ảnh 2D. Chúng ta hãy đi vào đoạn video cuối cùng.

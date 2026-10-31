@@ -1,0 +1,336 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:06.720
+So, why does batch norm work? Here's one reason. You've seen how normalizing the input features,
+
+00:00:06.720 --> 00:00:12.080
+the Xs, to mean 0 and variance 1, how that can speed up learning. So rather than having
+
+00:00:12.080 --> 00:00:17.920
+some features that range from 0 to 1 and some from 1 to 1000, by normalizing all the features,
+
+00:00:17.920 --> 00:00:23.080
+input features X, to take on a similar range of values that can speed up learning. So
+
+00:00:23.080 --> 00:00:28.200
+one intuition behind why batch norm works is this is doing a similar thing, but for
+
+00:00:28.200 --> 00:00:34.560
+the values in your hidden units and not just for your input layer. Now this is just a partial
+
+00:00:34.560 --> 00:00:39.920
+picture for what batch norm is doing. There are a couple further intuitions that will help
+
+00:00:39.920 --> 00:00:44.720
+you gain a deeper understanding of what batch norm is doing. Let's take a look at those in
+
+00:00:44.720 --> 00:00:51.480
+this video. A second reason why batch norm works is it makes weights later or deeper
+
+00:00:51.480 --> 00:00:56.920
+in the neural network, say the weights for layer 10, more robust to changes to weights
+
+00:00:56.920 --> 00:01:02.440
+in earlier layers of the neural network, say in layer 1. To explain what I mean, let's look
+
+00:01:02.440 --> 00:01:07.720
+at this motivating example. Let's say you're training a network, maybe a shallow network
+
+00:01:07.720 --> 00:01:14.280
+like logistic regression, or maybe a neural network, maybe a, maybe a shallow network
+
+00:01:14.280 --> 00:01:21.480
+like logistic regression, or maybe a deeper network on a famous cat detection toss. But
+
+00:01:21.480 --> 00:01:27.560
+let's say that you've trained your data sets on all images of black cats. If you now try
+
+00:01:27.560 --> 00:01:34.600
+to apply this network to data with colored cats, where the positive examples are not
+
+00:01:34.600 --> 00:01:41.400
+just black cats like on the left, but to color cats like on the right, then your class
+
+00:01:41.400 --> 00:01:48.040
+file might not do very well. So in pictures, if your training set look like this, where
+
+00:01:48.040 --> 00:01:54.280
+you have positive examples here, and negative examples here, but you were to try to generalize
+
+00:01:54.280 --> 00:02:01.400
+it to a data set where maybe the positive examples are here, and the negative examples
+
+00:02:01.400 --> 00:02:07.640
+are here, then you might not expect a model trained on the data on the left to do very well
+
+00:02:07.640 --> 00:02:12.760
+on the data on the right, even though you know, there might be the same function that actually
+
+00:02:12.760 --> 00:02:18.680
+works well, but you wouldn't expect your learning algorithm to discover that green decision
+
+00:02:18.680 --> 00:02:25.320
+boundary just looking at the data on the left. So this idea of your data distribution changing
+
+00:02:25.960 --> 00:02:34.440
+goes by the somewhat fancy name covariate shift. And the idea is that if you learn some
+
+00:02:34.440 --> 00:02:40.200
+x and y mapping, if the distribution of x changes, then you might need to retrain your
+
+00:02:40.280 --> 00:02:45.800
+learning algorithm. And this is true even if the function, the ground truth function mapping from
+
+00:02:45.800 --> 00:02:51.720
+x to y remains unchanged, which it is in this example, because the ground truth function is,
+
+00:02:51.720 --> 00:02:57.560
+is this picture a cat or not, and the need to retrain your function becomes even more
+
+00:02:57.560 --> 00:03:04.920
+acute, or becomes even worse if the ground truth function shifts as well. So how does this
+
+00:03:04.920 --> 00:03:11.000
+problem of covariate shift apply to a neural network? Consider a deep network like this. And
+
+00:03:11.000 --> 00:03:15.960
+let's look at the learning process from the perspective of this hidden layer, the third
+
+00:03:15.960 --> 00:03:22.680
+hidden layer. So this network has to learn the parameters w three, and b three. And from the
+
+00:03:22.680 --> 00:03:27.560
+perspective of the third hidden layer, it gets some set of values from the earlier layers,
+
+00:03:27.560 --> 00:03:32.920
+and then has to do some stuff to hopefully make the output y hat close to the ground truth value
+
+00:03:32.920 --> 00:03:40.120
+y. So let me cover up the nose on the left for a second. So from the perspective of this
+
+00:03:41.160 --> 00:03:49.080
+third hidden layer, it gets some values, let's call them a two one, a two two,
+
+00:03:50.600 --> 00:03:58.440
+a two three, and a two four. But these values might as well be features x one x two x three x four.
+
+00:03:59.000 --> 00:04:06.840
+And the job of the third hidden layer is to take these values and find a way to map them
+
+00:04:06.840 --> 00:04:13.960
+to y hat. So you can imagine doing gradient descent so that these parameters w three b three,
+
+00:04:13.960 --> 00:04:21.640
+as well as maybe w four, b four, and even w five b five, maybe trying to learn those parameters.
+
+00:04:21.640 --> 00:04:26.680
+So the network does a good job mapping from the values I drew in black on the left,
+
+00:04:27.240 --> 00:04:33.400
+to the output values y hat. But now let's uncover the left of the network again,
+
+00:04:33.400 --> 00:04:44.440
+the network is also adapting parameters w two, b two, and w one, b one. And so as these parameters
+
+00:04:44.440 --> 00:04:52.600
+change, these values, a two will also change. So from the perspective of the third hidden layer,
+
+00:04:53.320 --> 00:04:59.160
+these hidden unit values are changing all the time. And so suffering from the problem of
+
+00:04:59.160 --> 00:05:04.520
+covariate shift that we talked about on the previous slide. So what batch norm does is it
+
+00:05:04.520 --> 00:05:11.160
+reduces the amount that the distribution of these hidden unit values shifts around. And if
+
+00:05:11.160 --> 00:05:17.000
+it were to plot the distribution of these hidden unit values, maybe this is technically
+
+00:05:17.000 --> 00:05:26.760
+we normalize a z. So this is actually z two, one, and z two, two. And we're going to plot two values
+
+00:05:26.760 --> 00:05:31.400
+instead of four values, so we can visualize it in 2d. What batch norm is saying is that
+
+00:05:32.200 --> 00:05:37.160
+the values for z two, one and z two, two can change. And indeed, they will change when
+
+00:05:37.160 --> 00:05:42.840
+the neural network updates the parameters in the earlier layers. But what batch norm ensures is
+
+00:05:42.840 --> 00:05:52.120
+that no matter how it changes, the mean and variance of z two, one and z two, two will
+
+00:05:52.120 --> 00:05:59.400
+remain the same. So so even if the exact values of z two, one and z two, two change,
+
+00:05:59.960 --> 00:06:08.200
+their mean and variance will at least stay, say mean zero and variance one, or not necessarily
+
+00:06:08.200 --> 00:06:17.960
+mean zero and variance one. But whatever value is governed by beta two and gamma two, which if the
+
+00:06:17.960 --> 00:06:23.480
+neural networks chooses can force it to be mean zero and variance one or really any other mean and
+
+00:06:23.480 --> 00:06:30.600
+variance. But what this does is it limits the amount to which updating the parameters in the
+
+00:06:30.600 --> 00:06:37.480
+earlier layers can affect the distribution of values that the third layer now sees and therefore
+
+00:06:37.480 --> 00:06:44.440
+has to learn on. And so batch norm reduces the problem of the input values changing.
+
+00:06:44.440 --> 00:06:51.400
+It really causes these values to become more stable so that the later layers of the neural
+
+00:06:51.400 --> 00:06:57.560
+network has more firm ground to stand on. And even though the input distribution changes a bit,
+
+00:06:57.560 --> 00:07:02.840
+it changes less. And what this does is even as the earlier layers keep learning,
+
+00:07:03.480 --> 00:07:09.880
+the amount that this forces the later layers to adapt to its earliest layers changes is reduced,
+
+00:07:09.880 --> 00:07:15.320
+or if you will, it weakens the coupling between what the earlier layers parameters has to do
+
+00:07:15.320 --> 00:07:21.240
+and what the later layers parameters have to do. And so the laws each layer of the network to learn
+
+00:07:21.240 --> 00:07:26.040
+by itself, you know, a little bit more independently of other layers. And this is the
+
+00:07:26.040 --> 00:07:32.120
+effect of speeding up learning in the whole network. So I hope this gives some better intuition,
+
+00:07:32.120 --> 00:07:37.560
+but the takeaway is that batch norm means that especially from the perspective of one of the
+
+00:07:37.560 --> 00:07:43.480
+later layers of the neural network, the earlier layers don't get to shift around as much because
+
+00:07:43.480 --> 00:07:48.040
+they're constrained to have the same mean and variance. And so this makes the job of learning
+
+00:07:48.040 --> 00:07:53.480
+and the later layers easier. It turns out batch norm has a second effect, it has a
+
+00:07:53.480 --> 00:08:00.040
+slight regularization effect. So one non-intuitive thing of a batch norm is that each mini-batch,
+
+00:08:00.040 --> 00:08:10.280
+say mini-batch x t has the values z t has the values z L scaled by the mean and variance
+
+00:08:10.280 --> 00:08:16.520
+computed on just that one mini-batch. Now because the mean and variance computed on just that mini
+
+00:08:16.520 --> 00:08:22.280
+batch as opposed to computed on the entire data set, that mean and variance has a little bit of
+
+00:08:22.280 --> 00:08:29.960
+noise in it because it's computed just on your mini-batch of say 64 or 128 or maybe 256.
+
+00:08:30.840 --> 00:08:36.120
+So because the mean and variance is a little bit noisy because it's estimated with just a
+
+00:08:36.120 --> 00:08:44.600
+relatively small sample of data, the scaling process going from z L to z tilde L, that process
+
+00:08:44.600 --> 00:08:50.440
+is a little bit noisy as well because it's computed using a slightly noisy mean and variance.
+
+00:08:52.200 --> 00:08:59.000
+So similar to dropout, it adds some noise to each hidden layer's activations. The way dropout
+
+00:08:59.000 --> 00:09:04.200
+has noise is it takes a hidden unit and it multiplies it by zero with some probability
+
+00:09:04.200 --> 00:09:09.640
+and multiplies it by one with some probability. And so dropout adds multiplicative noise because
+
+00:09:09.640 --> 00:09:17.160
+it's multiplied by zero or one. Whereas batch norm has multiplicative noise because of scaling by the
+
+00:09:17.160 --> 00:09:22.360
+standard deviation as well as additive noise because it's subtracting the mean. Where here
+
+00:09:22.440 --> 00:09:29.080
+the estimates of the mean and the standard deviation are noisy. And so similar to dropout,
+
+00:09:29.720 --> 00:09:34.920
+batch norm therefore has a slight regularization effect because by adding noise to the hidden
+
+00:09:34.920 --> 00:09:41.320
+units is forcing the downstream hidden units not to rely too much on any one hidden unit.
+
+00:09:41.320 --> 00:09:46.120
+And so similar to dropout, this adds noise to the hidden layers and therefore has a very
+
+00:09:46.120 --> 00:09:51.320
+slight regularization effect. Because the noise added is quite small, this is not a huge
+
+00:09:51.320 --> 00:09:57.160
+regularization effect. And you might choose to use batch norm together with dropout. And you
+
+00:09:57.160 --> 00:10:02.200
+might use batch norm together with dropout if you want the more powerful regularization effect of
+
+00:10:02.200 --> 00:10:08.520
+dropout. And maybe one other slightly non-intuitive effect is that if you use a bigger mini batch size,
+
+00:10:08.520 --> 00:10:16.040
+right, so if you use a mini batch size of say 512 instead of 64, by using a larger mini batch size,
+
+00:10:16.040 --> 00:10:21.000
+you're reducing this noise and therefore also reducing this regularization effect.
+
+00:10:21.000 --> 00:10:27.400
+So that's one strange property of dropout, which is that by using a bigger mini batch size,
+
+00:10:27.400 --> 00:10:32.840
+you reduce the regularization effect. Having said this, I wouldn't really use batch norm as a
+
+00:10:32.840 --> 00:10:39.640
+regularizer. That's really not the intent of batch norm. But sometimes it has this extra
+
+00:10:40.280 --> 00:10:46.040
+intended or unintended effect on your learning algorithm. But really don't turn to batch
+
+00:10:46.040 --> 00:10:51.160
+norm as a regularization. Use it as a way to normalize your hidden units,
+
+00:10:51.160 --> 00:10:55.800
+activations and therefore speed up learning. And I think the regularization is an almost
+
+00:10:55.800 --> 00:11:01.720
+your unintended side effect. So I hope that gives you better intuition about what batch norm is
+
+00:11:01.720 --> 00:11:06.360
+doing. Before we wrap up the discussion on batch norm, there's one more detail I want to make sure
+
+00:11:06.360 --> 00:11:12.040
+you know, which is that batch norm handles data one mini batch at a time, it computes mean and
+
+00:11:12.040 --> 00:11:17.320
+variances on mini batches. So at test time, we're trying to make predictions, trying to evaluate the
+
+00:11:17.320 --> 00:11:22.520
+neural network, you might not have a mini batch of examples, you might be processing one single
+
+00:11:22.520 --> 00:11:27.800
+example at a time. So at test time, you need to do something slightly differently to make sure
+
+00:11:27.800 --> 00:11:32.840
+your predictions make sense. Let in the next and final video on batch norm, let's talk over
+
+00:11:32.840 --> 00:11:37.880
+the details of what you need to do in order to take your neural network train using batch norm
+
+00:11:37.880 --> 00:11:45.160
+to make predictions.

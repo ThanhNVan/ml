@@ -1,0 +1,497 @@
+WEBVTT
+
+1
+00:00:00.040 --> 00:00:04.030
+Trong video trước, chúng ta đã đã thấy mô hình logistic regression
+
+2
+00:00:04.030 --> 00:00:08.039
+để huấn luyện các tham số w và b của mô hình logistic regression.
+
+3
+00:00:08.039 --> 00:00:12.341
+Chúng ta cần xác định cost function,
+hãy xem xét cost function
+
+4
+00:00:12.341 --> 00:00:16.943
+mà chúng ta có thể sử dụng để huấn luyện logistic regression.
+Nhắc lại, đây là những gì chúng ta đã xác định trong
+
+5
+00:00:16.943 --> 00:00:18.180
+slide trước,
+
+6
+00:00:18.180 --> 00:00:23.160
+Vì vậy, đầu ra ŷ bằng sigmoid của w chuyển vị T x cộng b,
+trong đó σ(z)
+
+7
+00:00:23.160 --> 00:00:24.670
+được xác định ở đây.
+
+8
+00:00:24.670 --> 00:00:29.717
+Vì vậy, để tìm hiểu các tham số cho mô hình,
+bạn được cung cấp một training set có
+
+9
+00:00:29.717 --> 00:00:34.710
+m mẫu huấn luyện và có vẻ như
+mà chúng ta cần tìm tham số w và b.
+
+10
+00:00:34.710 --> 00:00:38.731
+Vì vậy, ít nhất trên training set,
+kết quả đầu ra, các dự đoán mà chúng ta có
+
+11
+00:00:38.731 --> 00:00:40.841
+trên training set là
+
+12
+00:00:40.841 --> 00:00:45.657
+ŷ(i) sẽ gần bằng giá trị thật y(i) có nhãn gốc y(i)
+
+13
+00:00:45.657 --> 00:00:48.040
+trong training set.
+
+14
+00:00:48.040 --> 00:00:52.796
+Vì vậy, để làm rõ hơn phương trình ở trên,
+
+15
+00:00:52.796 --> 00:00:58.240
+chúng ta đã nói rằng ŷ
+được xác định ở trên cùng cho mẫu huấn luyện,
+
+16
+00:00:58.240 --> 00:01:02.981
+và tất nhiên đối với mỗi mẫu huấn luyện,
+chúng ta sử dụng các chỉ số trên
+
+17
+00:01:02.981 --> 00:01:07.640
+dấu ngoặc đơn để lập chỉ mục các mẫu huấn luyện khác nhau.
+
+18
+00:01:07.640 --> 00:01:11.869
+Dự đoán về mẫu huấn luyện i là ŷ(i)
+
+19
+00:01:11.869 --> 00:01:15.922
+sẽ được tính bằng cách tính hàm sigmoid và
+
+20
+00:01:15.922 --> 00:01:21.500
+áp dụng cho w chuyển vị x(i),
+đầu vào cho mẫu huấn luyện cộng với b.
+
+21
+00:01:21.500 --> 00:01:26.830
+Chúng ta cũng có thể định nghĩa z(i) như sau,
+
+22
+00:01:26.830 --> 00:01:29.960
+z(i) bằng w chuyển vị x(i) cộng b.
+
+23
+00:01:29.960 --> 00:01:36.953
+Vì vậy, trong suốt khóa học, chúng ta sẽ
+sử dụng quy ước ký hiệu này,
+
+24
+00:01:36.953 --> 00:01:42.951
+chỉ số trên (i)
+đề cập đến dữ liệu là x, y hoặc z
+
+25
+00:01:42.951 --> 00:01:48.411
+hoặc một cái gì đó khác liên quan với
+mẫu huấn luyện thứ i, liên quan tới
+
+26
+00:01:48.411 --> 00:01:54.770
+mẫu thứ i, chỉ số trên (i) có ý nghĩa như vậy.
+
+27
+00:01:54.770 --> 00:01:57.022
+Bây giờ hãy xem chúng ta có thể dùng loss function hoặc
+
+28
+00:01:57.022 --> 00:02:01.250
+hàm lỗi nào để xem chúng ta đang thực hiện tốt như thế nào.
+
+29
+00:02:01.250 --> 00:02:06.690
+Chúng ta có thể xác định mất mát
+khi thuật toán ŷ và
+
+30
+00:02:06.690 --> 00:02:12.240
+nhãn đúng y bằng
+lỗi bình phương hoặc một nửa lỗi bình phương của lỗi.
+
+31
+00:02:12.240 --> 00:02:14.573
+Hóa ra là chúng ta có thể thự hiện như vậy
+
+32
+00:02:14.573 --> 00:02:17.906
+nhưng trong logistic regression, mọi người
+thường không làm vậy
+
+33
+00:02:17.906 --> 00:02:22.274
+vì khi tìm hiểu các tham số,
+chúng ta thấy bài toán tối ưu hóa
+
+34
+00:02:22.274 --> 00:02:25.729
+sẽ trở nên không lồi, chúng ta sẽ thảo luận điều này sau.
+
+35
+00:02:25.729 --> 00:02:30.100
+Vì vậy, chúng ta kết thúc với bài toán tối ưu,
+được nhiều local optima.
+
+36
+00:02:30.100 --> 00:02:34.366
+Gradient descent có thể không tìm thấy điểm tối ưu.
+Nếu bạn không hiểu các chú thích cuối,
+
+37
+00:02:34.366 --> 00:02:38.250
+đừng lo lắng về điều đó.
+Chúng tôi sẽ giải thích trong video sau.
+
+38
+00:02:38.250 --> 00:02:43.205
+Có thể thấy hàm L là loss function
+
+39
+00:02:43.205 --> 00:02:47.983
+là một hàm cần được xác định để đo lường đầu ra
+
+40
+00:02:47.983 --> 00:02:51.280
+ŷ thực hiện tốt thế nào khi nhãn đúng là y.
+
+41
+00:02:51.280 --> 00:02:55.573
+Và lỗi bình phương có vẻ là một lựa chọn hợp lý ngoài việc
+
+42
+00:02:55.573 --> 00:02:58.110
+nó khiến gradient descent không hoạt động tốt.
+
+43
+00:02:58.110 --> 00:03:02.989
+Vì vậy, trong logistic regression, chúng ta sẽ
+xác định một loss function khác
+
+44
+00:03:02.989 --> 00:03:05.978
+có vai trò tương tự như lỗi bình phương nhưng
+
+45
+00:03:05.978 --> 00:03:09.531
+sẽ cho chúng ta bài toán tối ưu hóa lồi.
+
+46
+00:03:09.531 --> 00:03:14.351
+Trong video sau, chúng ta sẽ thấy nó
+trở nên dễ tối ưu hóa hơn, vì vậy
+
+47
+00:03:14.351 --> 00:03:19.752
+trong logistic regression,
+chúng ta sẽ sử dụng loss function sau,
+
+48
+00:03:19.752 --> 00:03:23.261
+mà tôi đang viết ở đây, bằng
+
+49
+00:03:25.340 --> 00:03:30.191
+- ylogŷ + với (1 - y)log(1 - ŷ).
+
+50
+00:03:30.191 --> 00:03:38.590
+Đây là một số điều khiến loss function có nghĩa.
+
+51
+00:03:38.590 --> 00:03:43.434
+Hãy nhớ rằng nếu chúng ta đang sử dụng
+lỗi bình phương thì bạn cần bình phương
+
+52
+00:03:43.434 --> 00:03:45.790
+lỗi để nó nhỏ nhất có thể.
+
+53
+00:03:45.790 --> 00:03:47.946
+Và với logistic regression này,
+
+54
+00:03:47.946 --> 00:03:51.510
+mất hàm cũng cần càng nhỏ càng tốt.
+
+55
+00:03:51.510 --> 00:03:55.710
+Để hiểu rõ điều này,
+hãy xem xét hai trường hợp sau,
+
+56
+00:03:55.710 --> 00:04:00.061
+trong trường hợp đầu tiên, giả sử y = 1 thì loss function
+
+57
+00:04:01.440 --> 00:04:06.530
+ŷ,y chỉ là phần đầu tiên trong biểu thức phủ định này,
+
+58
+00:04:06.530 --> 00:04:09.851
+bằng -logŷ nếu y = 1
+
+59
+00:04:09.851 --> 00:04:14.779
+vì nếu y = 1 thì phần thứ hai 1 - y = 0.
+
+60
+00:04:14.779 --> 00:04:20.230
+Vậy nếu y = 1, chúng ta cần
+-logŷ càng nhỏ càng tốt,
+
+61
+00:04:20.230 --> 00:04:28.318
+điều đó có nghĩa là cần logŷ càng lớn càng tốt,
+
+62
+00:04:28.318 --> 00:04:33.340
+tức là cần ŷ phải lớn.
+
+63
+00:04:33.340 --> 00:04:38.560
+Nhưng vì ŷ là hàm sigmoid
+nên nó không thể lớn hơn 1.
+
+64
+00:04:38.560 --> 00:04:41.633
+do đó nếu y = 1, cần
+
+65
+00:04:41.633 --> 00:04:45.931
+ŷ lớn nhất có thể, nhưng không thể lớn hơn 1
+
+66
+00:04:45.931 --> 00:04:49.347
+nên có thể nói chúng ta cần ŷ lớn gần bằng 1.
+
+67
+00:04:49.347 --> 00:04:52.451
+Một trường hợp khác là y = 0, nếu y = 0
+
+68
+00:04:52.451 --> 00:04:58.466
+thì phần tử đầu tiên này trong
+loss function sẽ bằng 0 do y = 0,
+
+69
+00:04:58.466 --> 00:05:02.487
+và phần tử thứ hai xác định loss function.
+
+70
+00:05:02.487 --> 00:05:06.556
+Loss function bằng -log(1 - ŷ)
+
+71
+00:05:06.556 --> 00:05:11.910
+nếu trong quá trình học,
+bạn cố gắng làm loss function nhỏ đi,
+
+72
+00:05:11.910 --> 00:05:16.979
+điều này có nghĩa là bạn muốn log(1 - ŷ) lớn
+
+73
+00:05:16.979 --> 00:05:22.310
+và có dấu âm ở đó.
+
+74
+00:05:22.310 --> 00:05:27.192
+Với các lý do tương tự,
+chúng ta có thể kết luận rằng
+
+75
+00:05:27.192 --> 00:05:31.284
+loss function đang cố gắng khiến ŷ nhỏ nhất có thể và
+
+76
+00:05:31.284 --> 00:05:34.700
+một lần nữa, bởi vì ŷ nằm trong khoảng từ 0 đến 1,
+
+77
+00:05:34.700 --> 00:05:39.551
+tức là nếu y = 0 thì loss function sẽ
+
+78
+00:05:39.551 --> 00:05:44.180
+đẩy các tham số khiến ŷ gần bằng 0 nhất có thể.
+
+79
+00:05:44.180 --> 00:05:48.403
+Bây giờ có rất nhiều hàm
+có hiệu ứng đại khái như vậy, nếu y bằng 1
+
+80
+00:05:48.403 --> 00:05:51.552
+thì ŷ lớn còn nếu y bằng 0
+
+81
+00:05:51.552 --> 00:05:53.247
+thì ŷ nhỏ.
+
+82
+00:05:53.247 --> 00:05:57.539
+Phần giải thích màu xanh lá phần nào
+chứng minh một cách không chính thức cho
+
+83
+00:05:57.539 --> 00:06:02.069
+loss function cụ thể này.
+Chúng tôi sẽ cung cấp một video tham khảo sau
+
+84
+00:06:02.069 --> 00:06:04.942
+để đưa ra biện minh chính thức hơn cho y.
+
+85
+00:06:04.942 --> 00:06:08.810
+Trong logistic regression, chúng ta muốn sử dụng
+loss function với công thức cụ thể này.
+
+86
+00:06:08.810 --> 00:06:14.031
+Cuối cùng, loss function được xác định
+với một mẫu huấn luyện riêng lẻ.
+
+87
+00:06:14.031 --> 00:06:17.886
+Nó đo lường mức độ bạn thực hiện thế nào
+trên một mẫu huấn luyện.
+
+88
+00:06:17.886 --> 00:06:21.530
+Bây giờ tôi sẽ xác định
+một cost function,
+
+89
+00:06:21.530 --> 00:06:25.121
+đo lường xem nào bạn đang thực hiện thế nào
+trên toàn bộ training set?
+
+90
+00:06:25.121 --> 00:06:31.717
+Cost function J cho các tham số w và b,
+
+91
+00:06:31.717 --> 00:06:37.038
+sẽ là trung bình, 1/m của tổng
+
+92
+00:06:37.038 --> 00:06:42.981
+của loss function áp dụng lần lượt cho từng mẫu huấn luyện.
+
+93
+00:06:42.981 --> 00:06:47.805
+Ở đây, ŷ là đầu ra dự đoán được đưa ra bởi
+
+94
+00:06:47.805 --> 00:06:53.040
+thuật toán logistic regression sử dụng
+tập hợp các tham số w, b cụ thể.
+
+95
+00:06:53.040 --> 00:06:58.145
+Mở rộng ra, điều này bằng với -1/m
+
+96
+00:06:58.145 --> 00:07:03.971
+tổng từ i=1 đến m của
+định nghĩa về loss function ở trên
+
+97
+00:07:03.971 --> 00:07:09.524
+y(i)logŷ(i)
+
+98
+00:07:09.524 --> 00:07:18.230
+cộng với (1 - ŷ)log(1 - ŷ(i)),
+có thể đặt dấu ngoặc vuông ở đây.
+
+99
+00:07:18.230 --> 00:07:23.144
+Dấu âm ở ngoài ngoặc,
+vì vậy thuật ngữ tôi sẽ
+
+100
+00:07:23.144 --> 00:07:28.740
+sử dụng là loss function,
+áp dụng cho một mẫu huấn luyện duy nhất
+
+101
+00:07:28.740 --> 00:07:33.843
+như vậy và cost function là chi phí
+của các tham số, vì vậy trong khi huấn luyện
+
+102
+00:07:33.843 --> 00:07:39.191
+mô hình logistic regression, chúng ta
+sẽ cố gắng tìm các tham số w và b
+
+103
+00:07:39.191 --> 00:07:43.740
+giảm thiểu cost function tổng thể J,
+được viết ở phía dưới.
+
+104
+00:07:43.740 --> 00:07:47.744
+Như vậy, các bạn vừa thấy phần thiết lập của
+thuật toán logistic regression,
+
+105
+00:07:47.744 --> 00:07:51.947
+loss function với mẫu huấn luyện
+và cost function tổng thể cho
+
+106
+00:07:51.947 --> 00:07:54.540
+các tham số của thuật toán.
+
+107
+00:07:54.540 --> 00:07:58.216
+Logistic regression có thể xem như một
+
+108
+00:07:58.216 --> 00:07:59.930
+neural network rất nhỏ.
+
+109
+00:07:59.930 --> 00:08:01.907
+Trong video tiếp theo, chúng ta sẽ xem xét vấn đề đó,
+
+110
+00:08:01.907 --> 00:08:05.440
+bắt đầu tìm hiểu xem neural network thực hiện những gì.
+
+111
+00:08:05.440 --> 00:08:10.191
+Hãy chuyển sang video tiếp theo
+để tìm hiểu logistic regression
+
+112
+00:08:10.191 --> 00:08:12.061
+dưới góc nhìn của neural network nhỏ.

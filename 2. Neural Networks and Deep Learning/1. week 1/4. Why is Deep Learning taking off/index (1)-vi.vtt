@@ -1,0 +1,1096 @@
+WEBVTT
+
+1
+00:00:00.329 --> 00:00:03.060
+nếu ý tưởng kỹ thuật cơ bản đằng sau
+
+2
+00:00:03.060 --> 00:00:05.700
+deep learning, đằng sau mạng
+ nơ-ron nhân tạo đã
+
+3
+00:00:05.700 --> 00:00:07.470
+tồn tại trong nhiều thập kỷ,
+ tại sao chúng lại
+
+4
+00:00:07.470 --> 00:00:09.870
+chỉ vừa mới trở nên phổ biến. 
+Trong video này,
+
+5
+00:00:09.870 --> 00:00:12.090
+chúng ta nói về một số yếu tố chính
+
+6
+00:00:12.090 --> 00:00:14.130
+đằng sau sự nổi lên của deep learning bởi vì
+
+7
+00:00:14.130 --> 00:00:16.170
+Tôi nghĩ rằng điều này sẽ 
+giúp bạn nắm bắt được
+
+8
+00:00:16.170 --> 00:00:18.090
+những cơ hội tốt nhất trong
+
+9
+00:00:18.090 --> 00:00:20.850
+tổ chức của mình để áp dụng
+ những điều này
+
+10
+00:00:20.850 --> 00:00:22.439
+trong vài năm qua, có rất nhiều người
+
+11
+00:00:22.439 --> 00:00:24.240
+hỏi tôi: Andrew tại sao deep learning lại
+
+12
+00:00:24.240 --> 00:00:26.820
+chắc chắn hiệu quả và khi
+
+13
+00:00:26.820 --> 00:00:28.949
+được hỏi câu hỏi này, tôi thường vẽ
+
+14
+00:00:28.949 --> 00:00:31.109
+bức tranh này cho họ, giả sử
+
+15
+00:00:31.109 --> 00:00:33.210
+chúng ta vẽ một hình, trong đó
+
+16
+00:00:33.210 --> 00:00:36.180
+trên trục ngang là lượng
+ dữ liệu chúng ta có
+
+17
+00:00:36.180 --> 00:00:39.270
+trong một dự án và giả sử rằng
+
+18
+00:00:39.270 --> 00:00:42.570
+ở trục dọc là hiệu suất ở trên
+
+19
+00:00:42.570 --> 00:00:44.430
+các thuật toán học tập như độ chính xác
+
+20
+00:00:44.430 --> 00:00:48.180
+của trình classification spam hoặc dự 
+đoán số lượng nhấp vào quảng cáo
+
+21
+00:00:48.180 --> 00:00:51.960
+hoặc tính chính xác của
+ neural network nhân tạo của
+
+22
+00:00:51.960 --> 00:00:53.969
+để tìm ra vị trí của
+
+23
+00:00:53.969 --> 00:00:56.399
+các cuộc gọi khác cho xe tự lái
+
+24
+00:00:56.399 --> 00:00:58.440
+hóa ra nếu bạn coi hiệu suất của
+
+25
+00:00:58.440 --> 00:01:00.270
+một thuật toán học tập
+ truyền thống như
+
+26
+00:01:00.270 --> 00:01:02.460
+máy vector hỗ trợ hoặc logistic regression
+
+27
+00:01:02.460 --> 00:01:04.710
+như một hàm của số lượng
+
+28
+00:01:04.710 --> 00:01:07.619
+dữ liệu bạn có, bạn có thể
+ có một đường cong
+
+29
+00:01:07.619 --> 00:01:09.720
+như thế này thể hiện
+
+30
+00:01:09.720 --> 00:01:11.670
+hiệu suất cải thiện trong
+ một thời gian khi bạn
+
+31
+00:01:11.670 --> 00:01:14.280
+thêm nhiều dữ liệu hơn
+
+32
+00:01:14.280 --> 00:01:16.200
+nhưng sau một thời gian, bạn thấy đấy
+
+33
+00:01:16.200 --> 00:01:18.630
+hiệu suất khá là ổn định, đó
+
+34
+00:01:18.630 --> 00:01:21.180
+là một đường nằm ngang, bạn biết là
+
+35
+00:01:21.180 --> 00:01:25.320
+họ không biết phải làm gì với số lượng lớn
+
+36
+00:01:25.320 --> 00:01:28.140
+dữ liệu, và những gì đã xảy ra trong
+
+37
+00:01:28.140 --> 00:01:30.689
+xã hội chúng ta trong 10 năm qua có lẽ là
+
+38
+00:01:30.689 --> 00:01:32.850
+đối với rất nhiều vấn đề, chúng ta đã đi từ
+
+39
+00:01:32.850 --> 00:01:34.820
+có một lượng dữ liệu tương đối nhỏ
+
+40
+00:01:34.820 --> 00:01:38.610
+tới một lượng dữ liệu khá lớn
+
+41
+00:01:38.610 --> 00:01:40.979
+và tất cả điều này là
+
+42
+00:01:40.979 --> 00:01:43.979
+nhờ vào sự số hóa của một xã hội
+
+43
+00:01:43.979 --> 00:01:46.979
+mà có rất nhiều hoạt động
+ của con người trong
+
+44
+00:01:46.979 --> 00:01:48.720
+lĩnh vực kỹ thuật số. Chúng ta
+ dành rất nhiều thời gian
+
+45
+00:01:48.720 --> 00:01:51.180
+vào máy tính, trên các trang 
+web, trên thiết bị di động
+
+46
+00:01:51.180 --> 00:01:54.320
+ứng dụng và hoạt động trên 
+các thiết bị kỹ thuật số
+
+47
+00:01:54.320 --> 00:01:57.960
+và tạo dữ liệu, nhờ có sự gia tăng của
+
+48
+00:01:57.960 --> 00:02:00.360
+máy ảnh rẻ được tích hợp vào
+ điện thoại của chúng ta,
+
+49
+00:02:00.360 --> 00:02:02.369
+gia tốc kế, tất cả các loại
+
+50
+00:02:02.369 --> 00:02:05.909
+cảm biến trong Internet vạn vật, chúng ta
+
+51
+00:02:05.909 --> 00:02:07.890
+đã có thể thu thập thêm được
+
+52
+00:02:07.890 --> 00:02:11.129
+nhiều dữ liệu hơn, trong 20 năm qua
+
+53
+00:02:11.129 --> 00:02:12.870
+với rất nhiều ứng dụng, chúng ta đã
+
+54
+00:02:12.870 --> 00:02:13.560
+thu thập được
+
+55
+00:02:13.560 --> 00:02:16.319
+nhiều dữ liệu hơn, hơn những gì mà
+
+56
+00:02:16.319 --> 00:02:17.550
+thuật toán học truyền
+ thống có thể làm được
+
+57
+00:02:17.550 --> 00:02:20.520
+khai thác hiệu quả dữ liệu hơn
+
+58
+00:02:20.520 --> 00:02:22.560
+và neural network mới chỉ ra rằng nếu bạn
+
+59
+00:02:22.560 --> 00:02:26.310
+huấn luyện một neural network
+ nhân tạo nhỏ, sau đó
+
+60
+00:02:26.310 --> 00:02:28.470
+hiệu suất có thể trông như thế này
+
+61
+00:02:28.470 --> 00:02:31.349
+nếu bạn huấn luyện một
+ mạng Internet lớn hơn một chút
+
+62
+00:02:31.349 --> 00:02:34.590
+gọi là một mạng internet cỡ trung bình,
+
+63
+00:02:34.590 --> 00:02:36.330
+hiệu suất sẽ tốt hơn một chút
+
+64
+00:02:36.330 --> 00:02:39.900
+và nếu bạn huấn luyện 
+một neural network nhân tạo cực lớn thì
+
+65
+00:02:39.900 --> 00:02:42.180
+đó chỉ là vấn đề về hình thức còn
+
+66
+00:02:42.180 --> 00:02:44.580
+hiệu suất sẽ ngày càng trở nên tốt hơn
+
+67
+00:02:44.580 --> 00:02:46.890
+kết luận rút ra đầu tiên là nếu bạn muốn đạt được
+
+68
+00:02:46.890 --> 00:02:49.410
+mức độ hiệu suất rất cao,
+
+69
+00:02:49.410 --> 00:02:52.620
+bạn cần hai điều, đầu tiên là bạn cần có
+
+70
+00:02:52.620 --> 00:02:54.420
+khả năng huấn luyện một mạng
+
+71
+00:02:54.420 --> 00:02:57.360
+nơ-ron nhân tạo đủ lớn để tận dụng
+
+72
+00:02:57.360 --> 00:02:59.670
+lượng dữ liệu khổng lồ, và thứ hai bạn
+
+73
+00:02:59.670 --> 00:03:02.010
+cần phải ra đây, trên các trục x, bạn
+
+74
+00:03:02.010 --> 00:03:05.430
+cần rất nhiều dữ liệu, nên chúng
+ ta thường nói rằng
+
+75
+00:03:05.430 --> 00:03:07.799
+quy mô đã thúc đẩy tiến độ deep learning
+
+76
+00:03:07.799 --> 00:03:10.860
+và khi nói về quy mô, ý tôi là cả
+
+77
+00:03:10.860 --> 00:03:12.900
+kích thước của neural network
+ nhân tạo chúng ta cần
+
+78
+00:03:12.900 --> 00:03:15.150
+một neural network rất nhiều đơn vị ẩn,
+
+79
+00:03:15.150 --> 00:03:17.069
+rất nhiều thông số, rất nhiều kết nối
+
+80
+00:03:17.069 --> 00:03:21.480
+và cả quy mô của dữ liệu, trong thực tế,
+
+81
+00:03:21.480 --> 00:03:23.910
+ngày nay một trong những
+ cách đáng tin cậy nhất để
+
+82
+00:03:23.910 --> 00:03:25.440
+có được hiệu suất tốt hơn trong mạng
+ nơ-ron nhân tạo thường là huấn luyện một
+
+83
+00:03:25.440 --> 00:03:27.390
+mạng lớn hơn hoặc đưa 
+nhiều dữ liệu hơn vào đó
+
+84
+00:03:27.390 --> 00:03:29.940
+nhưng điều đó chỉ hoạt 
+động đến một mức độ nhất định
+
+85
+00:03:29.940 --> 00:03:31.829
+bởi vì cuối cùng thì bạn sẽ hết dữ liệu
+
+86
+00:03:31.829 --> 00:03:33.359
+bởi vì cuối cùng thì bạn sẽ hết dữ liệu
+
+87
+00:03:33.359 --> 00:03:35.640
+hoặc cuối cùng thì mạng của bạn quá
+
+88
+00:03:35.640 --> 00:03:37.769
+lớn và bạn phải mất quá nhiều 
+thời gian để huấn luyện nó
+
+89
+00:03:37.769 --> 00:03:40.200
+nhưng chỉ cần cải thiện
+ quy mô thôi đã giúp
+
+90
+00:03:40.200 --> 00:03:42.690
+chúng ta đi được một chặng đường
+ dài trong thế giới học tập
+
+91
+00:03:42.690 --> 00:03:45.810
+để làm cho sơ đồ này 
+chính xác hơn về mặt
+
+92
+00:03:45.810 --> 00:03:48.060
+kỹ thuật và thêm một vài
+
+93
+00:03:48.060 --> 00:03:49.920
+thứ, tôi đã viết số lượng dữ liệu
+
+94
+00:03:49.920 --> 00:03:53.040
+trên trục x, về mặt kỹ thuật, đây là số
+
+95
+00:03:53.040 --> 00:03:57.900
+lượng dữ liệu được dán nhãn, 
+bên cạnh dữ liệu nhãn,
+
+96
+00:03:57.900 --> 00:04:00.180
+Ý tôi là ví dụ đào tạo, chúng ta có cả
+
+97
+00:04:00.180 --> 00:04:03.630
+đầu vào X và nhãn Y, Tôi muốn
+
+98
+00:04:03.630 --> 00:04:05.910
+nói qua về ký hiệu mà
+
+99
+00:04:05.910 --> 00:04:07.709
+chúng ta sẽ sử dụng trong
+ khóa học này, Chúng ta
+
+100
+00:04:07.709 --> 00:04:10.769
+sẽ sử dụng chữ “m” thường để
+
+101
+00:04:10.769 --> 00:04:12.540
+biểu thị kích thước của bộ 
+huấn luyện của tôi hoặc
+
+102
+00:04:12.540 --> 00:04:13.739
+số lượng ví dụ đào tạo
+
+103
+00:04:13.739 --> 00:04:15.690
+chữ “m” thường này ở đây
+
+104
+00:04:15.690 --> 00:04:18.989
+có một vài chi tiết khác
+
+105
+00:04:18.989 --> 00:04:20.310
+về đồ thị này
+
+106
+00:04:20.310 --> 00:04:23.340
+trong khuôn khổ của các
+ bộ đào tạo nhỏ hơn
+
+107
+00:04:23.340 --> 00:04:26.970
+thứ tự quan hệ của các thuật toán
+
+108
+00:04:26.970 --> 00:04:29.700
+thực sự không được xác định rõ lắm
+
+109
+00:04:29.700 --> 00:04:31.590
+nên nếu bạn không có 
+nhiều training data thì
+
+110
+00:04:31.590 --> 00:04:34.500
+bạn cần sử dụng kỹ năng thủ công
+
+111
+00:04:34.500 --> 00:04:36.510
+chuyển dữ liệu thô thành đặc tính
+
+112
+00:04:36.510 --> 00:04:39.090
+vì vậy có thể có trường hợp là có
+
+113
+00:04:39.090 --> 00:04:41.910
+người huấn luyện một SVM
+ (máy véc tơ hỗ trợ) có thêm
+
+114
+00:04:41.910 --> 00:04:44.070
+động lực để chuyển dữ liệu 
+thô thành đặc tính bằng tay và có
+
+115
+00:04:44.070 --> 00:04:46.320
+người huấn luyện một 
+mạng lớn của riêng họ,
+
+116
+00:04:46.320 --> 00:04:48.300
+có thể là trong khuôn khổ
+ bộ huấn luyện nhỏ này thì
+
+117
+00:04:48.300 --> 00:04:50.730
+chế độ SEM (Marketing với
+ công cụ tìm kiếm) có thể làm tốt hơn.
+
+118
+00:04:50.730 --> 00:04:53.130
+như vậy, trong khu vực này
+
+119
+00:04:53.130 --> 00:04:55.020
+bên trái số liệu, thứ tự quan hệ
+
+120
+00:04:55.020 --> 00:04:57.090
+giữa các thuật toán gen thì không rõ ràng
+
+121
+00:04:57.090 --> 00:04:59.550
+và hiệu suất phụ thuộc nhiều
+
+122
+00:04:59.550 --> 00:05:01.919
+vào kỹ năng chuyển đổi dữ liệu của bạn
+
+123
+00:05:01.919 --> 00:05:03.389
+và các chi tiết di động khác trong
+
+124
+00:05:03.389 --> 00:05:05.970
+thuật toán, Và chỉ trong một số
+
+125
+00:05:05.970 --> 00:05:08.850
+chế độ dữ liệu lớn, trong
+ các bộ huấn luyện rất lớn, trong
+
+126
+00:05:08.850 --> 00:05:12.000
+chế độ M rất lớn ở bên phải là chúng ta
+
+127
+00:05:12.000 --> 00:05:14.669
+thường xuyên thấy phần lớn Ronettes
+
+128
+00:05:14.669 --> 00:05:17.639
+vượt qua các phương pháp khác và
+
+129
+00:05:17.639 --> 00:05:19.560
+nếu có ai trong số bạn bè 
+của bạn hỏi bạn tại sao
+
+130
+00:05:19.560 --> 00:05:21.600
+neural network nhân tạo lại
+ nổi lên thì tôi mong
+
+131
+00:05:21.600 --> 00:05:23.700
+bạn cũng sẽ vẽ bức tranh này cho họ
+
+132
+00:05:23.700 --> 00:05:26.729
+như vậy, tôi sẽ nói rằng trong
+
+133
+00:05:26.729 --> 00:05:28.890
+những ngày đầu Deep learning nổi
+
+134
+00:05:28.890 --> 00:05:29.310
+lên
+
+135
+00:05:29.310 --> 00:05:32.070
+thì quy mô của dữ liệu và quy mô của
+
+136
+00:05:32.070 --> 00:05:34.919
+tính toán, mà chúng ta
+ có thể dùng để huấn luyện
+
+137
+00:05:34.919 --> 00:05:36.330
+neural network nhân tạo rất lớn
+
+138
+00:05:36.330 --> 00:05:39.479
+trên CPU hoặc GPU, giúp chúng ta
+
+139
+00:05:39.479 --> 00:05:41.850
+đạt được nhiều tiến bộ nhưng
+
+140
+00:05:41.850 --> 00:05:43.590
+đặc biệt là trong vài năm gần đây
+
+141
+00:05:43.590 --> 00:05:45.800
+chúng ta đã chứng kiến rất nhiều
+
+142
+00:05:45.800 --> 00:05:48.360
+đổi mới thuật toán tuyệt 
+vời nên tôi vẫn chưa
+
+143
+00:05:48.360 --> 00:05:50.539
+nói hết về điều đó
+
+144
+00:05:50.539 --> 00:05:53.700
+thú vị là, nhiều đổi mới thuật toán
+
+145
+00:05:53.700 --> 00:05:56.940
+là để làm cho neural network nhân tạo
+
+146
+00:05:56.940 --> 00:06:01.139
+chạy nhanh hơn nhiều
+
+147
+00:06:01.139 --> 00:06:03.510
+một ví dụ cụ thể là một trong những
+
+148
+00:06:03.510 --> 00:06:05.310
+đột phá trong neural network nhân tạo là
+
+149
+00:06:05.310 --> 00:06:08.729
+chuyển từ một hàm Sigmoid
+
+150
+00:06:08.729 --> 00:06:12.330
+trông như thế này sang hàm Railer
+
+151
+00:06:12.330 --> 00:06:14.760
+mà chúng ta đã nói qua trong
+
+152
+00:06:14.760 --> 00:06:18.479
+video đầu tiên trông như thế này, Nếu bạn
+
+153
+00:06:18.479 --> 00:06:20.190
+không hiểu lắm về một
+
+154
+00:06:20.190 --> 00:06:22.260
+hàm thì đừng lo lắng về điều đó
+
+155
+00:06:22.260 --> 00:06:24.389
+nhưng hóa ra rằng một
+ trong những vấn đề trong việc
+
+156
+00:06:24.389 --> 00:06:26.010
+sử dụng các hàm Sigmoid và machine learning là
+
+157
+00:06:26.010 --> 00:06:27.870
+những khu vực này
+
+158
+00:06:27.870 --> 00:06:29.520
+là độ dốc của hàm
+
+159
+00:06:29.520 --> 00:06:30.280
+sẽ
+
+160
+00:06:30.280 --> 00:06:32.920
+có độ dốc gần như bằng
+ không và vì vậy việc học
+
+161
+00:06:32.920 --> 00:06:35.350
+trở nên rất chậm bởi vì khi bạn
+
+162
+00:06:35.350 --> 00:06:37.060
+thực hiện thuật toán
+ Gradient Descent và gradient
+
+163
+00:06:37.060 --> 00:06:39.639
+bằng không, các tham số thay đổi rất
+
+164
+00:06:39.639 --> 00:06:41.470
+từ từ và học rất chậm.
+
+165
+00:06:41.470 --> 00:06:44.740
+trong khi đó bằng cách thay đổi
+
+166
+00:06:44.740 --> 00:06:46.450
+chức năng kích hoạt
+ neural network nhân tạo
+
+167
+00:06:46.450 --> 00:06:48.600
+để sử dụng hàm này hay
+
+168
+00:06:48.600 --> 00:06:52.060
+hàm giá trị của đơn vị
+
+169
+00:06:52.060 --> 00:06:54.970
+tuyến tính tinh chỉnh
+
+170
+00:06:54.970 --> 00:06:57.070
+một cho tất cả các giá trị dương của đầu vào
+
+171
+00:06:57.070 --> 00:07:00.220
+và vì vậy gradient có ít
+
+172
+00:07:00.220 --> 00:07:03.100
+khả năng thu nhỏ dần về 0, và
+
+173
+00:07:03.100 --> 00:07:04.750
+gradient ở đây độ dốc của đường này
+
+174
+00:07:04.750 --> 00:07:07.300
+bằng không ở phía bên trái
+
+175
+00:07:07.300 --> 00:07:09.520
+nhưng chỉ bằng cách
+ chuyển từ hàm Sigmoid
+
+176
+00:07:09.520 --> 00:07:12.580
+sang hàm ReLU đã
+
+177
+00:07:12.580 --> 00:07:14.410
+khiến thuật toán Gradient Descent
+
+178
+00:07:14.410 --> 00:07:16.960
+chạy nhanh hơn nhiều
+
+179
+00:07:16.960 --> 00:07:19.169
+đây là một ví dụ về thuật
+ toán tương đối đơn giản
+
+180
+00:07:19.169 --> 00:07:22.030
+trong Định lý Bayes, Nhưng cuối cùng thì
+
+181
+00:07:22.030 --> 00:07:23.860
+sự đổi mới thuật toán này
+
+182
+00:07:23.860 --> 00:07:27.520
+thực sự tác động về mặt tính toán
+
+183
+00:07:27.520 --> 00:07:29.080
+nên có khá nhiều ví dụ như này về
+
+184
+00:07:29.080 --> 00:07:31.240
+nơi chúng ta thay đổi thuật toán
+
+185
+00:07:31.240 --> 00:07:33.340
+bởi vì nó cho phép mã đó chạy nhanh hơn
+
+186
+00:07:33.340 --> 00:07:35.140
+và điều này giúp chúng ta huấn luyện
+
+187
+00:07:35.140 --> 00:07:37.479
+neural network nhân tạo 
+lớn hơn hoặc làm như vậy
+
+188
+00:07:37.479 --> 00:07:39.520
+để có nhiều khách hàng 
+hơn, ngay cả khi chúng ta có
+
+189
+00:07:39.520 --> 00:07:42.250
+một mạng lớn chuyển vùng tất cả dữ liệu,
+
+190
+00:07:42.250 --> 00:07:45.810
+một lý do khác mà tính toán nhanh
+
+191
+00:07:45.810 --> 00:07:48.610
+hì quan trọng là nó cho thấy
+
+192
+00:07:48.610 --> 00:07:51.070
+quá trình huấn luyện mạng của bạn là
+
+193
+00:07:51.070 --> 00:07:53.710
+rất trực quan, thường
+ thì bạn có ý tưởng về
+
+194
+00:07:53.710 --> 00:07:56.350
+một kiến trúc neural network
+ nhân tạo và như vậy
+
+195
+00:07:56.350 --> 00:07:58.020
+bạn triển khai ý tưởng 
+của mình và mã hóa
+
+196
+00:07:58.020 --> 00:08:01.060
+triển khai ý tưởng của bạn sau đó chạy
+
+197
+00:08:01.060 --> 00:08:02.830
+một thí nghiệm để biết 
+được mức độ hiệu quả
+
+198
+00:08:02.830 --> 00:08:05.050
+neural network nhân tạo bạn làm
+
+199
+00:08:05.050 --> 00:08:07.510
+và sau đó bằng cách nhìn vào 
+kết quả, bạn có thể quay lại để thay đổi
+
+200
+00:08:07.510 --> 00:08:10.030
+chi tiết về neural network
+ của mình và sau đó là bạn
+
+201
+00:08:10.030 --> 00:08:12.930
+thực hiện quá trình này lặp 
+đi lặp lại nhiều lần
+
+202
+00:08:12.930 --> 00:08:15.880
+và khi bạn mất nhiều thời gian để
+
+203
+00:08:15.880 --> 00:08:18.550
+huấn luyện neural network thì bạn nghĩa là
+
+204
+00:08:18.550 --> 00:08:21.400
+bạn mất nhiều thời gian
+ để thực hiện quá trình này
+
+205
+00:08:21.400 --> 00:08:24.039
+có điểm khác biệt rất lớn 
+trong hiệu suất xây dựng
+
+206
+00:08:24.039 --> 00:08:26.740
+neural network nhân tạo
+ hiệu quả, khi bạn có thể
+
+207
+00:08:26.740 --> 00:08:29.560
+có một ý tưởng và thử nó 
+và xem nó có hiệu quả không
+
+208
+00:08:29.560 --> 00:08:34.169
+trong mười phút hoặc có thể là một ngày
+
+209
+00:08:34.169 --> 00:08:36.370
+so với việc bạn có thể phải huấn luyện
+
+210
+00:08:36.370 --> 00:08:39.490
+neural network nhân tạo trong một tháng, điều này
+
+211
+00:08:39.490 --> 00:08:40.590
+thường xảy ra
+
+212
+00:08:40.590 --> 00:08:42.570
+bởi vì bạn nhận được một kết quả
+
+213
+00:08:42.570 --> 00:08:44.670
+trong mười phút hoặc
+ có thể trong một ngày
+
+214
+00:08:44.670 --> 00:08:47.250
+bạn chỉ muốn thử nhiều
+ ý tưởng hơn và được
+
+215
+00:08:47.250 --> 00:08:49.170
+khám phá mạng của bạn nhiều hơn
+
+216
+00:08:49.170 --> 00:08:50.610
+nó hoạt động hiệu quả
+ đối
+
+217
+00:08:50.610 --> 00:08:53.720
+với ứng dụng của bạn 
+và tính toán nhanh hơn
+
+218
+00:08:53.720 --> 00:08:57.900
+đã thực sự giúp rút ngắn thời gian
+
+219
+00:08:57.900 --> 00:08:59.730
+bạn có thể nhận được kết quả
+
+220
+00:08:59.730 --> 00:09:02.610
+thử nghiệm và điều này có
+
+221
+00:09:02.610 --> 00:09:05.400
+thực sự đã giúp cả học viên thực hành
+
+222
+00:09:05.400 --> 00:09:07.550
+neural network nhân tạo 
+cũng như các nhà nghiên cứu
+
+223
+00:09:07.550 --> 00:09:10.650
+làm việc và deep learning thực 
+hiện quá trình lặp lại này
+
+224
+00:09:10.650 --> 00:09:13.320
+nhanh hơn và cải thiện ý tưởng của bạn
+
+225
+00:09:13.320 --> 00:09:16.589
+nhanh hơn và vì vậy tất cả
+ nhũng điều này cũng đã là một
+
+226
+00:09:16.589 --> 00:09:18.570
+ợi ích lớn đối với toàn bộ
+
+227
+00:09:18.570 --> 00:09:21.029
+cộng đồng nghiên cứu deep learning
+
+228
+00:09:21.029 --> 00:09:23.370
+bạn biết đấy, chúng có thể
+
+229
+00:09:23.370 --> 00:09:25.620
+phát minh ra thuật toán mới 
+và đang phát triển không ngừng
+
+230
+00:09:25.620 --> 00:09:28.920
+vì vậy đây là một số 
+nguồn lực tạo ra những
+
+231
+00:09:28.920 --> 00:09:30.990
+bước tiến mạnh mẽ của deep learning
+
+232
+00:09:30.990 --> 00:09:33.570
+nhưng tin tốt là những
+
+233
+00:09:33.570 --> 00:09:36.000
+yếu tố này vẫn đang phát triển mạnh mẽ
+
+234
+00:09:36.000 --> 00:09:38.490
+để giúp deep learning thậm chí 
+trở nên tốt hơn nữa
+
+235
+00:09:38.490 --> 00:09:41.130
+xã hội dữ liệu công nghệ
+
+236
+00:09:41.130 --> 00:09:43.800
+dữ liệu số hoặc tính toán với
+
+237
+00:09:43.800 --> 00:09:45.660
+sự gia tăng của phần 
+cứng chuyên dụng như
+
+238
+00:09:45.660 --> 00:09:48.300
+GPU và kết nối mạng nhanh hơn
+
+239
+00:09:48.300 --> 00:09:50.940
+có vô sô loại phần cứng
+ mà Tôi khá tự tin về
+
+240
+00:09:50.940 --> 00:09:53.250
+khả năng của chúng ta trong việc
+ tạo ra một neural network nhân tạo lớn
+
+241
+00:09:53.250 --> 00:09:55.140
+hoặc là một quan điểm tính toán
+
+242
+00:09:55.140 --> 00:09:57.320
+sẽ tiếp tục trở nên tốt hơn và khiến
+
+243
+00:09:57.320 --> 00:10:00.360
+thuật toán deep learning trong
+
+244
+00:10:00.360 --> 00:10:02.880
+cộng đồng nghiên cứu liên tục
+
+245
+00:10:02.880 --> 00:10:05.070
+đổi mới trên các
+
+246
+00:10:05.070 --> 00:10:07.680
+mặt trận thuật toán vì vậy tôi
+
+247
+00:10:07.680 --> 00:10:09.839
+nghĩ rằng chúng ta có thể lạc quan, trả lời
+
+248
+00:10:09.839 --> 00:10:11.370
+rằng deep learning có triển vọng sẽ
+
+249
+00:10:11.370 --> 00:10:13.650
+tiếp tục phát triển tốt hơn
+ trong nhiều năm
+
+250
+00:10:13.650 --> 00:10:14.120
+tới
+
+251
+00:10:14.120 --> 00:10:17.100
+hãy tiếp tục xem đến phần cuối 
+trong video này,
+
+252
+00:10:17.100 --> 00:10:18.540
+sẽ có một phần mà chúng tôi đã
+
+253
+00:10:18.540 --> 00:10:20.280
+nhắc lại những gì bạn học được
+
+254
+00:10:20.280 --> 00:10:22.610
+từ khóa học này

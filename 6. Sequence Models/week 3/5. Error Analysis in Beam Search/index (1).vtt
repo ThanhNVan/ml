@@ -1,0 +1,183 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:10.360
+In the third course of this sequence of five courses, you saw how error analysis can help you focus your time on doing the most useful work for your project.
+
+00:00:10.860 --> 00:00:16.240
+Now, beam search is an approximate search algorithm, also called a heuristic search algorithm.
+
+00:00:16.460 --> 00:00:20.000
+And so it doesn't always output the most likely sentence.
+
+00:00:20.240 --> 00:00:25.700
+It's only keeping track of B equals three or 10 or 100 top possibilities.
+
+00:00:25.920 --> 00:00:28.620
+So what if beam search makes a mistake?
+
+00:00:29.020 --> 00:00:40.520
+In this video, you learn how error analysis interacts with beam search and how you can figure out whether it is the beam search algorithm that's causing problems and worth spending time on,
+
+00:00:40.740 --> 00:00:45.780
+or whether it might be your RNN model that is causing problems that worth spending time on.
+
+00:00:46.100 --> 00:00:49.700
+Let's take a look at how to do error analysis with beam search.
+
+00:00:50.420 --> 00:00:55.460
+Let's use this example of Jane Vizzi, Lefic on Saptong.
+
+00:00:56.380 --> 00:01:05.820
+So let's say that in your machine translation Dev Set, your development set, the human provided this translation, Jane Vizzi's Africa in September.
+
+00:01:06.140 --> 00:01:11.380
+And I'm going to call this Y star. So it is a pretty good translation written by a human.
+
+00:01:11.820 --> 00:01:21.140
+But let's say that when you run beam search on your learned RNN model, your learned translation model, it ends up with this translation,
+
+00:01:21.260 --> 00:01:28.180
+which we call Y hat. Jane Vizzi's Africa last September, which is a much worse translation of the French sentence.
+
+00:01:28.180 --> 00:01:31.100
+That actually changes the meaning. So it's not a good translation.
+
+00:01:32.780 --> 00:01:39.540
+Now, your model has two main components. There is a neural network model, the sequence sequence model,
+
+00:01:40.660 --> 00:01:45.820
+which I'm going to call, that's your RNN model. It's really an encoder and a decoder.
+
+00:01:46.300 --> 00:01:52.420
+And you have your beam search algorithm, which you're running with some beam with B.
+
+00:01:53.180 --> 00:02:00.100
+And one of the nights if you could attribute this error, this not very good translation to one of these two components,
+
+00:02:00.100 --> 00:02:08.100
+was it the RNN or really the neural network that is more to blame or is it the beam search algorithm that is more to blame?
+
+00:02:08.740 --> 00:02:16.620
+And what you saw in the third course of the sequence is that it's always tempting to collect more training data that never hurts.
+
+00:02:16.940 --> 00:02:23.540
+So some way is always tempting to increase the beam with you know, that never hurts. It pretty much never hurts.
+
+00:02:24.580 --> 00:02:30.620
+But just as getting more training data by itself might not get you to the level performance you want,
+
+00:02:31.540 --> 00:02:37.460
+in the same way, increasing the beam with by itself might not get you to where you want to go.
+
+00:02:37.860 --> 00:02:43.460
+And so but how do you decide whether or not improving the search algorithm is a good use of your time?
+
+00:02:44.140 --> 00:02:49.460
+So here's how you can break the problem down and figure out what's actually a good use of your time.
+
+00:02:50.100 --> 00:02:56.180
+Now the RNN, the neural network, what is called RNN, really means the encoder and the decoder.
+
+00:02:57.420 --> 00:03:06.380
+It computes P of Y given X. So for example, for a sentence, Jane visits Africa in September,
+
+00:03:06.700 --> 00:03:15.740
+you plug in Jane visits Africa. Again, I'm ignoring upper versus lower case for now, right? And so on.
+
+00:03:15.740 --> 00:03:26.780
+And this computes P of Y given X. So it turns out that the most useful thing for you to do at this point is to compute using this model
+
+00:03:27.020 --> 00:03:39.380
+to compute P of Y star given X, as well as to compute P of Y hat given X using your RNN model. And then to see which of these two is bigger.
+
+00:03:39.420 --> 00:03:48.500
+So it's possible that the left side is bigger than the right hand side. It's also possible that P of Y star is less than P of Y hat, actually less than or equal to.
+
+00:03:48.660 --> 00:04:03.100
+Depending on which of these two cases hold true, you'd be able to more clearly ascribe this particular error, this particular bad translation to one of the RNN or the beam search algorithm being at greater fault.
+
+00:04:03.860 --> 00:04:17.020
+So let's figure out the logic behind this. Here are the two sentences from the previous slide. And remember, we're going to compute P of Y star given X and P of Y hat given X and see which of these two
+
+00:04:17.260 --> 00:04:37.020
+is bigger. So there are going to be two cases in case one. P of Y star given X as output by the RNN model is greater than P of Y hat given X. What does this mean? Well, the beam search algorithm chose Y hat.
+
+00:04:37.660 --> 00:04:50.300
+The way you got Y hat was you had an RNN that was computing P of Y given X and beam search's job was to try to find the value of Y that gives that out back.
+
+00:04:51.340 --> 00:05:06.300
+But in this case, Y star actually attains a higher value for P of Y given X than Y hat. So what this allows you to conclude is beam search is failing to actually give you the value of Y,
+
+00:05:06.540 --> 00:05:15.260
+that maximizes P of Y given X because, you know, the one job that beam search had was to find the value of Y that makes this really big.
+
+00:05:15.700 --> 00:05:23.540
+But it chose Y hat, but Y star actually gets a much bigger value. So in this case, you could conclude that beam search is at fault.
+
+00:05:24.540 --> 00:05:40.220
+Now, how about the other case? In case two, P of Y star given X is less than or equal to P of Y hat given X. And then, you know, either this or this has got to be true. So either case one or case two has to hold true.
+
+00:05:40.980 --> 00:05:49.620
+What you conclude under case two? Well, in our example, Y star is a better translation than Y hat.
+
+00:05:50.300 --> 00:06:07.420
+But according to the RNN, P of Y star is less than P of Y hat. So saying that Y star is a less likely output than Y hat. So in this case, it seems that the RNN model is at fault.
+
+00:06:07.540 --> 00:06:11.580
+And it might be worth spending more time working on the RNN.
+
+00:06:12.620 --> 00:06:17.580
+There's some subtleties here pertaining to length normalization that I'm glossing over.
+
+00:06:17.860 --> 00:06:34.660
+If there's some subtleties pertaining to length normalization that I'm glossing over, and if you are using some sort of length normalization, instead of evaluating these probabilities, you should be evaluating the optimization objective that takes into account length normalization.
+
+00:06:35.460 --> 00:06:51.860
+But ignoring that complication for now, in this case, what it tells you is that even though Y star is a better translation, the RNN has strived Y star a lower probability than the inferior translation.
+
+00:06:51.980 --> 00:06:55.660
+So in this case, I would say the RNN model is at fault.
+
+00:06:55.900 --> 00:07:05.820
+So the error analysis process looks as follows. You go through the development set and find the mistakes that the algorithm made in the development set.
+
+00:07:06.740 --> 00:07:19.180
+And so in this example, let's say that P of Y star given X was 2 by 10 to the minus 10, whereas P of Y hat given X was 1 by 10 to the minus 10.
+
+00:07:19.820 --> 00:07:30.700
+Using the logic from the previous slide, in this case, we see that beam search actually chose Y hat, which has a lower probability than Y star.
+
+00:07:30.700 --> 00:07:39.340
+So I would say beam search is at fault. So I abbreviate that B. And then you go through a second mistake or second bad output by the algorithm.
+
+00:07:40.020 --> 00:07:45.140
+Look at these probabilities and maybe for the second example, you think the model is at fault.
+
+00:07:45.380 --> 00:07:55.860
+I'm going to abbreviate the RNN model with R. And you go through more examples and sometimes the beam search is at fault, sometimes the model is at fault, and so on.
+
+00:07:56.660 --> 00:08:07.820
+And through this process, you can then carry out error analysis to figure out what fraction of errors are due to beam search versus the RNN model.
+
+00:08:08.460 --> 00:08:34.620
+And with an error analysis process like this, for every example in your depth set where the algorithm gives a much worse output than the human translation, you can try to extract the error to either the search algorithm or to the objective function or to the RNN model that generates the objective function that beam search is supposed to be maximizing.
+
+00:08:35.100 --> 00:08:41.340
+And through this, you can try to figure out which of these two components is responsible for more errors.
+
+00:08:41.340 --> 00:08:49.180
+And only if you find that beam search is responsible for a lot of errors, then maybe it's worth working hard to increase the beam width.
+
+00:08:49.180 --> 00:09:04.060
+Whereas in contrast, if you find that the RNN model is at fault, then you could do a deeper layer of analysis to try to figure out if you want to add regularization or get more training data or try a different network architecture or something else.
+
+00:09:04.140 --> 00:09:11.660
+And so a lot of the techniques that you saw in the third course in the sequence would be applicable there.
+
+00:09:11.660 --> 00:09:32.940
+So that's it for error analysis using beam search. I found this particular error analysis process very useful whenever you have an approximate optimization algorithm, such as beam search, that is working to optimize some sort of objective, some sort of cost function that is output by a learning algorithm, such as the sequence-to-sequence model, sequence-to-sequence RNN,
+
+00:09:32.940 --> 00:09:41.580
+that we've been discussing in these lectures. So with that, I hope that you'll be more efficient at making these types of models work well for your applications.

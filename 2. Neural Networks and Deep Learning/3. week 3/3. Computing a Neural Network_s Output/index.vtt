@@ -1,0 +1,504 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.960
+In the last video, you saw what a single hidden layer neural network looks like.
+
+00:00:04.960 --> 00:00:09.320
+In this video, let's go through the details of exactly how this neural network computes
+
+00:00:09.320 --> 00:00:10.320
+its outputs.
+
+00:00:10.320 --> 00:00:15.760
+What you see is that it's like logistic regression, but repeated a lot of times.
+
+00:00:15.760 --> 00:00:16.760
+Let's take a look.
+
+00:00:16.760 --> 00:00:19.880
+So this is what a two-layer neural network looks like.
+
+00:00:19.880 --> 00:00:24.160
+Let's go more deeply into exactly what this neural network computes.
+
+00:00:24.160 --> 00:00:29.240
+Now we've said before that logistic regression, the circle in logistic regression, really
+
+00:00:29.240 --> 00:00:31.000
+represents two steps of computation.
+
+00:00:31.000 --> 00:00:32.840
+First, you compute Z as follows.
+
+00:00:32.840 --> 00:00:37.200
+And then second, you compute the activation as a sigmoid function of Z.
+
+00:00:37.200 --> 00:00:40.920
+So a neural network just does this a lot more times.
+
+00:00:40.920 --> 00:00:44.600
+Let's start by focusing on just one of the nodes in the hidden layer.
+
+00:00:44.600 --> 00:00:46.480
+Let's look at the first node in the hidden layer.
+
+00:00:46.480 --> 00:00:48.200
+So I've grayed out the other nodes for now.
+
+00:00:48.200 --> 00:00:52.800
+So similar to logistic regression on the left, this node in the hidden layer does
+
+00:00:52.800 --> 00:00:54.600
+two steps of computation.
+
+00:00:54.600 --> 00:01:01.200
+The first step, and think of as the left half of this node, it computes Z equals W transpose
+
+00:01:01.200 --> 00:01:07.600
+X plus B. And the notation we'll use is these are all quantities associated with the first
+
+00:01:07.600 --> 00:01:08.600
+hidden layer.
+
+00:01:08.600 --> 00:01:10.880
+So that's why we have a bunch of square brackets there.
+
+00:01:10.880 --> 00:01:13.760
+And this is the first node in the hidden layer.
+
+00:01:13.760 --> 00:01:16.840
+So that's why we'll have a subscript 1 over there.
+
+00:01:16.840 --> 00:01:18.080
+So first it does that.
+
+00:01:18.080 --> 00:01:24.240
+And then the second step is it computes A11 equals sigmoid of Z11.
+
+00:01:24.560 --> 00:01:31.440
+So for both Z and A, the notation convention is that A, L, I, the L here in superscript
+
+00:01:31.440 --> 00:01:36.880
+square brackets refers to the layer number, and the I subscript here refers to the nodes
+
+00:01:36.880 --> 00:01:37.880
+in that layer.
+
+00:01:37.880 --> 00:01:42.160
+So the node we've been looking at is layer 1, that is the hidden layer node 1.
+
+00:01:42.160 --> 00:01:46.080
+So that's why the superscript and subscripts were both 1, 1.
+
+00:01:46.080 --> 00:01:51.160
+So that little circle, that first node in the neural network represents carrying out these
+
+00:01:51.160 --> 00:01:52.760
+two steps of computation.
+
+00:01:52.760 --> 00:01:56.160
+Now let's look at the second node in the neural network, or the second node in the
+
+00:01:56.160 --> 00:01:58.960
+hidden layer of the neural network.
+
+00:01:58.960 --> 00:02:03.440
+Similar to the logistic regression unit on the left, this little circle represents two
+
+00:02:03.440 --> 00:02:04.880
+steps of computation.
+
+00:02:04.880 --> 00:02:10.000
+The first step is it computes Z. This is still layer 1, but now it's the second node
+
+00:02:10.000 --> 00:02:14.760
+equals W transpose X plus B12.
+
+00:02:14.760 --> 00:02:19.080
+And then A12 equals sigmoid of Z12.
+
+00:02:19.080 --> 00:02:23.560
+Feel free to pause the video if you want, but you can double check that the superscript
+
+00:02:23.560 --> 00:02:28.560
+and subscript notation is consistent with what we had written here above in purple.
+
+00:02:28.560 --> 00:02:33.200
+So we'll talk through the first two hidden units in the neural network.
+
+00:02:33.200 --> 00:02:37.080
+Hidden units 3 and 4 also represent similar computations.
+
+00:02:37.080 --> 00:02:42.920
+So now let me take this pair of equations and this pair of equations, and let's copy
+
+00:02:42.920 --> 00:02:44.240
+them to the next slide.
+
+00:02:44.240 --> 00:02:48.760
+So here's our neural network, and here's the first, and here's the second equations.
+
+00:02:48.760 --> 00:02:54.240
+They were worked out previously for the first and the second hidden units.
+
+00:02:54.240 --> 00:02:58.840
+If you then go through and write out the corresponding equations for the third and
+
+00:02:58.840 --> 00:03:01.520
+fourth hidden units, you get the following.
+
+00:03:01.520 --> 00:03:03.960
+And just make sure this notation is clear.
+
+00:03:03.960 --> 00:03:06.720
+This is the vector W11.
+
+00:03:06.720 --> 00:03:09.160
+This is a vector transpose times X.
+
+00:03:09.160 --> 00:03:12.160
+So that's what the superscript T there represents.
+
+00:03:12.160 --> 00:03:13.560
+This is a vector transpose.
+
+00:03:13.560 --> 00:03:17.280
+Now as you might have guessed, if you're actually implementing a neural network,
+
+00:03:17.280 --> 00:03:20.400
+doing this with a for loop seems really inefficient.
+
+00:03:20.400 --> 00:03:25.200
+So what we're going to do is take these four equations and vectorize.
+
+00:03:25.200 --> 00:03:29.160
+So we're gonna start by showing how to compute Z as a vector.
+
+00:03:29.160 --> 00:03:30.960
+It turns out you could do it as follows.
+
+00:03:30.960 --> 00:03:34.920
+Let me take these W's and stack them into a matrix.
+
+00:03:34.920 --> 00:03:39.480
+Then you have W11 transpose, so that's a row vector.
+
+00:03:39.480 --> 00:03:42.280
+This is a column vector transpose gives you a row vector.
+
+00:03:42.280 --> 00:03:49.000
+Then W12 transpose, W13 transpose, W14 transpose.
+
+00:03:49.000 --> 00:03:54.600
+And so this, by stacking those four W vectors together, you end up with a matrix.
+
+00:03:54.600 --> 00:03:59.040
+So another way to think of this is that we have four logistic regression units there.
+
+00:03:59.040 --> 00:04:03.960
+And each of the logistic regression units has a corresponding parameter vector W.
+
+00:04:03.960 --> 00:04:06.160
+And by stacking those four vectors together,
+
+00:04:06.160 --> 00:04:09.040
+you end up with this four by three matrix.
+
+00:04:09.040 --> 00:04:13.640
+So if you then take this matrix and multiply it by your input features,
+
+00:04:13.640 --> 00:04:18.680
+X1, X2, X3, you end up with, by how matrix multiplication works,
+
+00:04:18.680 --> 00:04:25.520
+you end up with W11 transpose X, W12 transpose X, W3,
+
+00:04:25.520 --> 00:04:28.760
+1 transpose X, W4, 1 transpose X.
+
+00:04:28.760 --> 00:04:31.120
+And then let's not forget the B's.
+
+00:04:31.120 --> 00:04:35.720
+So we now add to this a vector B1, 1, B12,
+
+00:04:35.720 --> 00:04:39.360
+B13, B14.
+
+00:04:39.360 --> 00:04:40.840
+So that's basically this.
+
+00:04:40.840 --> 00:04:46.280
+Then this is B11, B12, B13, B14.
+
+00:04:46.280 --> 00:04:51.640
+And so you see that each of the four rows of this outcome correspond exactly to each
+
+00:04:51.640 --> 00:04:55.920
+of these four rows, each of these four quantities that we had above.
+
+00:04:55.920 --> 00:05:01.280
+So in other words, we've just shown that this thing is therefore equal to Z11,
+
+00:05:01.280 --> 00:05:05.560
+Z12, Z13, Z14, as defined here.
+
+00:05:05.560 --> 00:05:09.800
+And maybe not surprisingly, we're going to call this whole thing the vector Z1,
+
+00:05:09.800 --> 00:05:15.160
+which is taken by stacking up these individuals of Z's into a column vector.
+
+00:05:15.160 --> 00:05:20.240
+When we're vectorizing, one of the rules of thumb that might help you navigate this
+
+00:05:20.240 --> 00:05:23.960
+is that when we have different nodes in a layer, we'll stack them vertically.
+
+00:05:23.960 --> 00:05:28.800
+So that's why when you have Z11 through Z14, those corresponded to four different
+
+00:05:28.800 --> 00:05:30.560
+nodes in the hidden layer.
+
+00:05:30.560 --> 00:05:34.840
+And so we stacked these four numbers vertically to form the vector Z1.
+
+00:05:34.840 --> 00:05:39.280
+And to use one more piece of notation, this 4 by 3 matrix here,
+
+00:05:39.280 --> 00:05:44.680
+which we obtained by stacking the lowercase, you know, W11, W12, and so on,
+
+00:05:44.680 --> 00:05:48.040
+we're going to call this matrix W1.
+
+00:05:48.040 --> 00:05:52.600
+And similarly, this vector we're going to call B superscript 1 square bracket.
+
+00:05:52.600 --> 00:05:54.600
+And so this is a 4 by 1 vector.
+
+00:05:54.600 --> 00:05:59.560
+So now we've computed Z using this vector matrix notation.
+
+00:05:59.560 --> 00:06:03.160
+The last thing we need to do is also compute these values of A.
+
+00:06:03.160 --> 00:06:08.520
+And so probably won't surprise you to see that we're going to define A1 as just
+
+00:06:08.520 --> 00:06:13.080
+stacking together those activation values, A11 through A14.
+
+00:06:13.080 --> 00:06:17.960
+So just take these four values and stack them together in a vector called A1.
+
+00:06:17.960 --> 00:06:23.200
+And this is going to be sigmoid of Z1, where this now has been implementation
+
+00:06:23.200 --> 00:06:27.040
+of the sigmoid function that takes in the four elements of Z and
+
+00:06:27.040 --> 00:06:30.640
+applies the sigmoid function elements-wise to it.
+
+00:06:30.640 --> 00:06:37.360
+So just to recap, we've figured out that Z1 is equal to W1 times the vector X
+
+00:06:37.360 --> 00:06:41.960
+plus the vector B1, and A1 is sigmoid times Z1.
+
+00:06:41.960 --> 00:06:44.040
+Let's just copy this to the next slide.
+
+00:06:44.040 --> 00:06:46.920
+And what we see is that for the first layer of the neural network,
+
+00:06:46.920 --> 00:06:52.040
+given an input X, we have that Z1 is equal to W1 times X plus B1,
+
+00:06:52.040 --> 00:06:55.560
+and A1 is sigmoid of Z1.
+
+00:06:55.560 --> 00:06:59.040
+And the dimensions of this are 4 by 1 equals,
+
+00:06:59.040 --> 00:07:05.240
+this was a 4 by 3 matrix times a 3 by 1 vector plus a 4 by 1 vector B.
+
+00:07:05.240 --> 00:07:08.000
+And this is 4 by 1, same dimension as Z.
+
+00:07:08.000 --> 00:07:12.840
+And remember that we said X is equal to A0, right?
+
+00:07:12.840 --> 00:07:16.560
+Just like Y hat is also equal to A2.
+
+00:07:16.560 --> 00:07:21.040
+So if you want, you can actually take this X and replace it with A0.
+
+00:07:21.040 --> 00:07:25.440
+Since A0 is, if you want, is an alias for the vector of input features X.
+
+00:07:25.440 --> 00:07:27.240
+Now, through a similar derivation,
+
+00:07:27.240 --> 00:07:31.360
+you can figure out that the representation for the next layer
+
+00:07:31.360 --> 00:07:35.640
+can also be written similarly, where what the output layer does
+
+00:07:35.640 --> 00:07:40.840
+is it has associated with it, set the parameters W2 and B2.
+
+00:07:40.840 --> 00:07:44.560
+So W2 in this case is going to be a 1 by 4 matrix,
+
+00:07:44.560 --> 00:07:46.960
+and B2 is just a real number as 1 by 1.
+
+00:07:46.960 --> 00:07:50.040
+And so Z2 is going to be a real number,
+
+00:07:50.040 --> 00:07:52.120
+which is right as a 1 by 1 matrix.
+
+00:07:52.120 --> 00:07:56.720
+It's going to be a 1 by 4 thing times A was 4 by 1 plus B2
+
+00:07:56.840 --> 00:07:57.680
+is 1 by 1.
+
+00:07:57.680 --> 00:07:59.760
+And so this gives you just a real number.
+
+00:07:59.760 --> 00:08:02.120
+And if you think of this loss output unit
+
+00:08:02.120 --> 00:08:04.880
+as just being analogous to logistic regression, which
+
+00:08:04.880 --> 00:08:10.440
+had parameters W and B, W really plays an analogous role
+
+00:08:10.440 --> 00:08:12.520
+to W2 transpose.
+
+00:08:12.520 --> 00:08:16.800
+So W2 is really W transpose, and B is equal to B2.
+
+00:08:16.800 --> 00:08:20.320
+So if you were to cover up the left of this network
+
+00:08:20.320 --> 00:08:22.960
+and ignore all that for now, then this is just,
+
+00:08:22.960 --> 00:08:26.280
+this loss output unit is a lot like logistic regression,
+
+00:08:26.280 --> 00:08:29.480
+except that instead of writing the parameters as W and B,
+
+00:08:29.480 --> 00:08:34.120
+we're writing them as W2 and B2 with dimensions 1 by 4
+
+00:08:34.120 --> 00:08:35.880
+and 1 by 1.
+
+00:08:35.880 --> 00:08:38.640
+So just to recap, for logistic regression,
+
+00:08:38.640 --> 00:08:41.640
+to implement the output or to implement prediction,
+
+00:08:41.640 --> 00:08:44.920
+you compute Z equals W transpose X plus B,
+
+00:08:44.920 --> 00:08:51.240
+and A, or Y hat, equals A equals sigmoid of Z.
+
+00:08:51.240 --> 00:08:54.280
+When you have a neural network with one hidden layer,
+
+00:08:54.280 --> 00:08:56.760
+what you need to implement to compute this output
+
+00:08:56.760 --> 00:08:59.040
+is just these four equations.
+
+00:08:59.040 --> 00:09:02.240
+And you can think of this as a vectorized implementation
+
+00:09:02.240 --> 00:09:06.800
+of computing the output of first these four logistic regression
+
+00:09:06.800 --> 00:09:08.000
+units in the hidden layer.
+
+00:09:08.000 --> 00:09:09.120
+That's what this does.
+
+00:09:09.120 --> 00:09:12.520
+And then this logistic regression in the output layer,
+
+00:09:12.520 --> 00:09:13.880
+which is what this does.
+
+00:09:13.880 --> 00:09:15.640
+I hope this description made sense,
+
+00:09:15.640 --> 00:09:18.160
+but the takeaway is to compute the output
+
+00:09:18.160 --> 00:09:19.920
+of this neural network, all you need
+
+00:09:19.920 --> 00:09:21.880
+is those four lines of code.
+
+00:09:21.880 --> 00:09:25.680
+So now you've seen how, given a single input feature vector
+
+00:09:25.680 --> 00:09:27.680
+X, you can, with four lines of code,
+
+00:09:27.680 --> 00:09:30.440
+compute the output of this neural network.
+
+00:09:30.440 --> 00:09:32.520
+Similar to what we did for logistic regression,
+
+00:09:32.520 --> 00:09:35.480
+we'll also want to vectorize across multiple training
+
+00:09:35.480 --> 00:09:36.320
+examples.
+
+00:09:36.320 --> 00:09:39.880
+And we'll see that by stacking up training examples
+
+00:09:39.880 --> 00:09:41.640
+in different columns in the matrix,
+
+00:09:41.640 --> 00:09:43.760
+with just slight modification to this,
+
+00:09:43.760 --> 00:09:46.680
+you also, similar to what you saw in logistic regression,
+
+00:09:46.680 --> 00:09:50.120
+be able to compute the output of this neural network,
+
+00:09:50.120 --> 00:09:52.040
+not just on one example at a time,
+
+00:09:52.040 --> 00:09:55.280
+but on your, say, your entire training set at a time.
+
+00:09:55.280 --> 00:09:57.891
+So let's see the details of that in the next video.

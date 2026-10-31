@@ -1,0 +1,489 @@
+WEBVTT
+
+1
+00:00:00.270 --> 00:00:04.351
+Bạn đã học được rất nhiều về ConvNet, tất cả mọi
+
+2
+00:00:04.351 --> 00:00:08.888
+thứ từ kiến trúc của ConvNet đến cách sử dụng nó để nhận dạng hình ảnh,
+
+3
+00:00:08.888 --> 00:00:13.590
+object detection, nhận dạng khuôn mặt và truyền tải kiểu thần kinh.
+
+4
+00:00:13.590 --> 00:00:17.626
+Và mặc dù hầu hết các cuộc thảo luận đã tập trung vào hình ảnh,
+
+5
+00:00:17.626 --> 00:00:21.205
+vào loại dữ liệu 2D, bởi vì hình ảnh rất phổ biến.
+
+6
+00:00:21.205 --> 00:00:26.135
+Nó chỉ ra rằng nhiều ý tưởng bạn đã học được về cũng áp dụng,
+
+7
+00:00:26.135 --> 00:00:30.640
+không chỉ cho hình ảnh 2D mà còn cho dữ liệu 1D cũng như dữ liệu 3D.
+
+8
+00:00:30.640 --> 00:00:33.048
+Chúng ta hãy xem qua.
+
+9
+00:00:33.048 --> 00:00:38.506
+Trong tuần đầu tiên của khóa học này, bạn đã học được về sự phức tạp 2D,
+
+10
+00:00:38.506 --> 00:00:44.340
+nơi bạn có thể nhập một hình ảnh 14 x 14 và convolve nó với một bộ lọc 5 x 5.
+
+11
+00:00:44.340 --> 00:00:49.097
+Và bạn đã thấy làm thế nào 14 x 14 convolved với 5 x 5,
+
+12
+00:00:49.097 --> 00:00:52.590
+điều này cung cấp cho bạn một 10 x 10 đầu ra.
+
+13
+00:00:52.590 --> 00:00:58.662
+Và nếu bạn có nhiều kênh, có thể những 14 x 14 x 3,
+
+14
+00:00:58.662 --> 00:01:03.170
+sau đó nó sẽ là 5 x 5 phù hợp với cùng 3.
+
+15
+00:01:03.170 --> 00:01:08.460
+Và sau đó nếu bạn có nhiều bộ lọc, nói 16 bộ lọc, bạn sẽ kết thúc với 10 x 10 x 16.
+
+16
+00:01:08.460 --> 00:01:14.430
+Nó chỉ ra rằng một ý tưởng tương tự có thể được áp dụng cho dữ liệu 1D là tốt.
+
+17
+00:01:14.430 --> 00:01:21.328
+Ví dụ, bên trái là một tín hiệu EKG, còn được gọi là một điện tâm đồ.
+
+18
+00:01:21.328 --> 00:01:25.577
+Về cơ bản nếu bạn đặt một điện cực lên ngực của bạn, điều này
+
+19
+00:01:25.577 --> 00:01:29.910
+sẽ đo điện áp nhỏ thay đổi trên ngực của bạn khi tim bạn đập.
+
+20
+00:01:29.910 --> 00:01:34.562
+Bởi vì những sóng điện nhỏ được tạo ra bởi nhịp tim của bạn có thể được
+
+21
+00:01:34.562 --> 00:01:36.823
+đo bằng một cặp điện cực.
+
+22
+00:01:36.823 --> 00:01:40.490
+Và đây là một EKG của nhịp tim của một người nào đó.
+
+23
+00:01:40.490 --> 00:01:45.930
+Và vì vậy mỗi đỉnh núi tương ứng với một nhịp tim.
+
+24
+00:01:45.930 --> 00:01:49.970
+Vì vậy, nếu bạn muốn sử dụng tín hiệu EKG để chẩn đoán y tế
+
+25
+00:01:49.970 --> 00:01:55.062
+, ví dụ, bạn sẽ có dữ liệu 1D vì dữ liệu EKG
+
+26
+00:01:55.062 --> 00:02:01.610
+là gì, đó là chuỗi thời gian hiển thị điện áp tại mỗi thời điểm.
+
+27
+00:02:01.610 --> 00:02:04.500
+Vì vậy, thay vì một đầu vào 14 x 14 chiều, có
+
+28
+00:02:04.500 --> 00:02:08.160
+lẽ bạn chỉ có một đầu vào 14 chiều.
+
+29
+00:02:08.160 --> 00:02:11.770
+Và trong trường hợp đó, bạn có thể muốn convolve điều này với một bộ lọc 1 chiều.
+
+30
+00:02:11.770 --> 00:02:16.420
+Vì vậy, thay vì 5 của 5, bạn chỉ có 5 chiều lọc.
+
+31
+00:02:16.420 --> 00:02:21.481
+Vì vậy, với dữ liệu 2D những gì một convolution sẽ cho phép bạn làm là lấy cùng một
+
+32
+00:02:21.481 --> 00:02:26.950
+máy dò feature 5 x 5 và áp dụng nó trên các vị trí khác nhau trong toàn bộ hình ảnh.
+
+33
+00:02:26.950 --> 00:02:31.110
+Và đó là cách bạn kết thúc với đầu ra 10 x 10 của bạn.
+
+34
+00:02:31.110 --> 00:02:36.258
+Những gì một bộ lọc 1D cho phép bạn làm là lấy bộ lọc 5 chiều của bạn và
+
+35
+00:02:36.258 --> 00:02:42.860
+tương tự áp dụng rằng trong rất nhiều vị trí khác nhau trong suốt tín hiệu 1D này.
+
+36
+00:02:42.860 --> 00:02:45.510
+Và nếu bạn áp dụng sự phức tạp này,
+
+37
+00:02:45.510 --> 00:02:50.270
+những gì bạn thấy là một thứ 14 chiều được convolved với
+
+38
+00:02:50.270 --> 00:02:55.370
+thứ 5 chiều này, nó sẽ cho bạn một đầu ra 10 chiều.
+
+39
+00:02:55.370 --> 00:03:00.496
+Và một lần nữa, nếu bạn có nhiều kênh, bạn có thể có trong trường hợp này bạn
+
+40
+00:03:00.496 --> 00:03:06.381
+có thể sử dụng chỉ 1 kênh, nếu bạn có 1 chì hoặc 1 điện cực cho EKG, vì vậy thời gian 5 x 1.
+
+41
+00:03:06.381 --> 00:03:12.468
+Và nếu bạn có 16 bộ lọc, có thể kết thúc với 10 x 16 ở đó,
+
+42
+00:03:12.468 --> 00:03:16.300
+và đây có thể là một lớp ConvNet của bạn.
+
+43
+00:03:16.300 --> 00:03:20.257
+Và sau đó cho lớp tiếp theo của ConvNet của bạn, nếu bạn nhập một đầu vào 10 x 16
+
+44
+00:03:20.257 --> 00:03:25.560
+chiều và bạn có thể convolve đó với một bộ lọc 5 chiều một lần nữa.
+
+45
+00:03:25.560 --> 00:03:29.583
+Sau đó, chúng có 16 kênh, vì vậy mà có một trận đấu.
+
+46
+00:03:29.583 --> 00:03:34.585
+Và chúng tôi có 32 bộ lọc, sau đó đầu ra của một lớp khác
+
+47
+00:03:34.585 --> 00:03:39.190
+sẽ là 6 x 32, nếu bạn có 32 bộ lọc, phải không?
+
+48
+00:03:39.190 --> 00:03:42.268
+Và sự tương tự với dữ liệu 2D,
+
+49
+00:03:42.268 --> 00:03:46.779
+điều này tương tự như tất cả các dữ liệu 10 x 10 x 16 và
+
+50
+00:03:46.779 --> 00:03:51.860
+convolve nó với một 5 x 5 x 16, và điều đó phải phù hợp.
+
+51
+00:03:51.860 --> 00:03:54.568
+Điều đó sẽ cung cấp cho bạn một đầu ra 6 x 6 chiều,
+
+52
+00:03:54.568 --> 00:03:58.080
+và bạn có 32 bộ lọc, đó là nơi 32 đến từ.
+
+53
+00:03:58.080 --> 00:04:03.567
+Vì vậy, tất cả những ý tưởng này cũng áp dụng cho dữ liệu 1D, nơi bạn có thể có cùng
+
+54
+00:04:03.567 --> 00:04:08.884
+một máy dò feature, chẳng hạn như thế này, áp dụng cho nhiều vị trí khác nhau.
+
+55
+00:04:08.884 --> 00:04:13.430
+Ví dụ, để phát hiện các nhịp tim khác nhau trong một tín hiệu EKG.
+
+56
+00:04:13.430 --> 00:04:18.505
+Nhưng để sử dụng cùng một tập hợp các feature để phát hiện nhịp tim ngay cả ở các
+
+57
+00:04:18.505 --> 00:04:23.836
+vị trí khác nhau dọc theo các chuỗi thời gian, và do đó ConvNet có thể được sử dụng ngay cả trên dữ liệu 1D.
+
+58
+00:04:23.836 --> 00:04:28.501
+Cùng với các ứng dụng dữ liệu 1D, bạn thực sự sử dụng một neural network tái phát,
+
+59
+00:04:28.501 --> 00:04:30.790
+mà bạn tìm hiểu trong khóa học tiếp theo.
+
+60
+00:04:30.790 --> 00:04:36.520
+Nhưng một số người cũng có thể thử sử dụng ConvNet trong những vấn đề này.
+
+61
+00:04:36.520 --> 00:04:39.990
+Và trong khóa học tiếp theo về các mô hình trình tự, mà chúng ta sẽ nói về các
+
+62
+00:04:39.990 --> 00:04:43.310
+neural network định kỳ và LSM và các mô hình khác như thế.
+
+63
+00:04:43.310 --> 00:04:47.545
+Chúng ta sẽ nói về những ưu và nhược điểm của việc sử dụng 1D ConvNet so với một số các
+
+64
+00:04:47.545 --> 00:04:51.070
+mô hình khác được thiết kế một cách rõ ràng để sắp xếp dữ liệu.
+
+65
+00:04:51.070 --> 00:04:54.290
+Đó là sự tổng quát hóa từ 2D đến 1D.
+
+66
+00:04:54.290 --> 00:04:56.510
+Thế còn dữ liệu 3D thì sao?
+
+67
+00:04:56.510 --> 00:04:58.900
+Vâng, dữ liệu ba chiều là gì?
+
+68
+00:04:58.900 --> 00:05:04.720
+Đó là, thay vì có một danh sách 1D các số hoặc một ma trận 2D của các số,
+
+69
+00:05:04.720 --> 00:05:11.060
+bây giờ bạn có một khối 3D, một khối lượng đầu vào ba chiều của các số.
+
+70
+00:05:11.060 --> 00:05:15.123
+Đây là ví dụ về ví dụ đó là nếu bạn chụp CT,
+
+71
+00:05:15.123 --> 00:05:20.510
+đây là một loại chụp X-quang cung cấp cho một mô hình ba chiều của cơ thể bạn.
+
+72
+00:05:20.510 --> 00:05:24.746
+Nhưng những gì chụp CT làm là nó lấy những lát khác nhau xuyên qua cơ thể bạn.
+
+73
+00:05:24.746 --> 00:05:28.465
+Vì vậy, khi bạn quét qua một CT scan mà tôi đang làm ở đây,
+
+74
+00:05:28.465 --> 00:05:33.507
+bạn có thể nhìn vào các lát khác nhau của thân người để xem chúng trông như thế nào và
+
+75
+00:05:33.507 --> 00:05:37.090
+dữ liệu này về cơ bản là ba chiều.
+
+76
+00:05:37.090 --> 00:05:43.039
+Và một cách để nghĩ về dữ liệu này là nếu dữ liệu của bạn bây giờ có chiều cao, chiều
+
+77
+00:05:43.039 --> 00:05:46.558
+rộng nào đó, và sau đó cũng có chiều sâu nào đó.
+
+78
+00:05:46.558 --> 00:05:50.359
+Trường hợp này là các lát khác nhau thông qua khối lượng này,
+
+79
+00:05:50.359 --> 00:05:53.840
+là những lát khác nhau thông qua thân mình.
+
+80
+00:05:53.840 --> 00:05:57.660
+Vì vậy, nếu bạn muốn áp dụng một ConvNet để phát hiện các feature trong
+
+81
+00:05:57.660 --> 00:06:02.470
+ba chiều CAT scan hoặc CT scan, sau đó bạn có thể khái quát hóa
+
+82
+00:06:02.470 --> 00:06:07.020
+các ý tưởng từ slide đầu tiên đến ba chiều convolutions là tốt.
+
+83
+00:06:07.020 --> 00:06:10.356
+Vì vậy, nếu bạn có một khối lượng 3D, và vì
+
+84
+00:06:10.356 --> 00:06:15.764
+lợi ích của sự đơn giản, hãy nói là 14 x 14 x 14 và
+
+85
+00:06:15.764 --> 00:06:21.770
+vì vậy đây là chiều cao, chiều rộng và chiều sâu của chụp CT đầu vào.
+
+86
+00:06:21.770 --> 00:06:25.735
+Và một lần nữa, giống như hình ảnh tất cả chúng sẽ phải là hình vuông,
+
+87
+00:06:25.735 --> 00:06:29.450
+một khối lượng 3D không cần phải là một khối lập phương hoàn hảo là tốt.
+
+88
+00:06:29.450 --> 00:06:32.210
+Vì vậy, chiều cao và chiều rộng của một hình ảnh có thể khác nhau, và
+
+89
+00:06:32.210 --> 00:06:36.118
+trong cùng một cách chiều cao và chiều rộng và độ sâu của một chụp CT có thể khác nhau.
+
+90
+00:06:36.118 --> 00:06:40.560
+Nhưng tôi chỉ sử dụng 14 x 14 x 14 ở đây để đơn giản hóa cuộc thảo luận.
+
+91
+00:06:40.560 --> 00:06:45.849
+Và nếu bạn convolve này với một bộ lọc bây giờ 5 x 5 x 5,
+
+92
+00:06:45.849 --> 00:06:50.788
+vì vậy bạn đang bộ lọc bây giờ cũng là ba chiều
+
+93
+00:06:50.788 --> 00:06:55.863
+sau đó điều này sẽ cung cấp cho bạn một khối lượng 10 x 10 x 10 x 10.
+
+94
+00:06:55.863 --> 00:07:01.366
+Và về mặt kỹ thuật, bạn cũng có thể có bởi 1, nếu đây là số lượng các kênh.
+
+95
+00:07:01.366 --> 00:07:06.715
+Vì vậy, đây chỉ là một khối lượng 3D, nhưng dữ liệu của bạn cũng có thể có
+
+96
+00:07:06.715 --> 00:07:11.489
+số kênh khác nhau, sau đó đây cũng sẽ là lần 1.
+
+97
+00:07:11.489 --> 00:07:17.472
+Bởi vì số lượng các kênh ở đây và số lượng các kênh ở đây phải phù hợp.
+
+98
+00:07:17.472 --> 00:07:22.371
+Và sau đó nếu bạn có 16 bộ lọc đã làm một 5 x 5 x 5 x 1 sau đó đầu ra tiếp theo
+
+99
+00:07:22.371 --> 00:07:24.790
+sẽ là một 10 x 10 x 10 x 16.
+
+100
+00:07:24.790 --> 00:07:30.129
+Vì vậy, đây có thể là một lớp ConvNet của bạn trên dữ liệu 3D, và nếu
+
+101
+00:07:30.129 --> 00:07:36.660
+lớp tiếp theo của ConvNet convolves này một lần nữa với một bộ lọc 5 x 5 x 5 x 16 chiều.
+
+102
+00:07:36.660 --> 00:07:40.666
+Vì vậy, số lượng kênh này phải phù hợp với dữ liệu như bình thường, và
+
+103
+00:07:40.666 --> 00:07:46.190
+nếu bạn có 32 bộ lọc thì tương tự như những gì bạn thấy là ConvNet của các hình ảnh.
+
+104
+00:07:46.190 --> 00:07:54.350
+Bây giờ bạn sẽ kết thúc với một âm lượng 6 x 6 x 6 trên 32 kênh.
+
+105
+00:07:54.350 --> 00:07:57.992
+Vì vậy, dữ liệu 3D cũng có thể được học trên,
+
+106
+00:07:57.992 --> 00:08:02.020
+loại trực tiếp sử dụng một ConvNet ba chiều.
+
+107
+00:08:02.020 --> 00:08:07.500
+Và những gì các bộ lọc này thực sự là phát hiện các feature trên dữ liệu 3D,
+
+108
+00:08:08.730 --> 00:08:13.180
+quét CAT, quét y tế như một ví dụ về khối lượng 3D.
+
+109
+00:08:13.180 --> 00:08:18.450
+Nhưng một ví dụ khác về dữ liệu, bạn có thể coi như một khối lượng 3D sẽ là dữ liệu phim, trong
+
+110
+00:08:18.450 --> 00:08:23.410
+đó các lát khác nhau có thể là các lát khác nhau trong thời gian qua một bộ phim.
+
+111
+00:08:23.410 --> 00:08:28.171
+Và bạn có thể sử dụng nó để phát hiện chuyển động hoặc những người thực hiện hành động trong phim.
+
+112
+00:08:28.171 --> 00:08:31.868
+Vì vậy, đó là nó trên khái quát hóa của ConvNet từ
+
+113
+00:08:31.868 --> 00:08:35.520
+dữ liệu 2D đến cũng 1D cũng như dữ liệu 3D.
+
+114
+00:08:35.520 --> 00:08:40.395
+Dữ liệu hình ảnh rất phổ biến đến nỗi phần lớn ConvNet nằm trên dữ liệu 2D, dữ
+
+115
+00:08:40.395 --> 00:08:45.420
+liệu hình ảnh, nhưng tôi hy vọng rằng các mô hình khác cũng sẽ hữu ích cho bạn.
+
+116
+00:08:45.420 --> 00:08:48.588
+Vì vậy, đây là nó, đây là video cuối cùng của tuần này và là
+
+117
+00:08:48.588 --> 00:08:51.570
+video cuối cùng của khóa học này trên ConvNet.
+
+118
+00:08:51.570 --> 00:08:53.810
+Bạn đã học được rất nhiều về ConvNet và
+
+119
+00:08:53.810 --> 00:08:58.380
+tôi hy vọng bạn thấy rất nhiều ý tưởng này hữu ích cho công việc tương lai của bạn.
+
+120
+00:08:58.380 --> 00:09:01.600
+Vì vậy, xin chúc mừng về việc hoàn thành các video này.
+
+121
+00:09:01.600 --> 00:09:04.150
+Tôi hy vọng các bạn thích bài tập tuần này và
+
+122
+00:09:04.150 --> 00:09:07.850
+tôi rất mong được gặp các bạn trong khóa học tiếp theo về các mô hình trình tự.

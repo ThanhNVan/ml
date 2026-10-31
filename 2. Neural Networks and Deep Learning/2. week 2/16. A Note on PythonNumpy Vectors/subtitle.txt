@@ -1,0 +1,84 @@
+Python cho phép bạn sử dụng các
+phép toán truyền phát và khái quát hơn thì tôi nghĩ tính linh hoạt tuyệt vời của
+ngôn ngữ lập trình numpy python chính là, Tôi nghĩ, đó là điểm mạnh cũng như
+điểm yếu của ngôn ngữ lập trình này. Tôi nghĩ đó là một điểm mạnh bởi vì
+chúng tạo ra tính biểu cảm của ngôn ngữ. Sự linh hoạt tuyệt vời của ngôn ngữ
+giúp bạn hoàn thành rất nhiều việc chỉ với một dòng mã duy nhất. Nhưng đó cũng là điểm yếu bởi vì
+với truyền phát và số lượng lớn tính linh hoạt này, thì đôi khi có thể
+bạn sẽ đưa vào các lỗi rất tinh vi hoặc lỗi trông rất kỳ lạ, nếu bạn không quen
+với tất cả những yếu tố phức tạp trong cách truyền phát và cách hoạt động
+của các tính năng như truyền phát. Ví dụ: nếu bạn lấy một vectơ cột và
+cộng nó với một vectơ hàng, bạn sẽ mong nó đưa ra một lỗi không tương quan về
+chiều hoặc lỗi đánh máy hoặc một cái gì đó. Nhưng bạn lại có thể có kết quả là một
+ma trận dưới dạng tổng của một vectơ hàng và một vectơ cột. Vì vậy, có một logic bên trong đối
+với các hiệu ứng lạ này của Python. Nhưng nếu bạn không quen sử dụng Python,
+tôi đã thấy một số sinh viên thấy rất lạ lẫm, rất khó tìm lỗi. Vì vậy, trong video tôi muốn
+chia sẻ với bạn một số mẹo và thủ thuật hữu ích để loại bỏ hoặc đơn giản hóa và loại bỏ tất cả các
+lỗi kỳ lạ trong mã của riêng tôi. Và tôi hy vọng rằng với
+những mẹo và thủ thuật này, bạn cũng sẽ có thể viết mã python và
+numpy không bị lỗi dễ dàng hơn nhiều. Để minh họa một trong những hiệu ứng
+không trực quan lắm của Python-Numpy, đặc biệt là cách bạn xây dựng các vectơ trong
+Python-Numpy, tôi sẽ thực hiện một bản demo nhanh. Đặt a = np.random.randn (5), và điều này tạo ra năm
+biến Gaussian ngẫu nhiên được lưu trữ trong mảng a. Và print(a) và bây giờ hóa ra hình dạng của a khi bạn làm điều
+này là cấu trúc năm màu này. Và do đó, đây được gọi là
+mảng hạng 1 trong Python và nó không phải là một
+vectơ hàng hay một vectơ cột. Và điều này dẫn đến nó có
+một số hiệu ứng không trực quan. Ví dụ nếu tôi in a chuyển vị,
+thì nó sẽ có kết quả như a. Vì vậy, a và a chuyển vị
+có kết quả như nhau. Và nếu tôi in tích trong giữa a
+và a chuyển vị, bạn có thể nghĩ một nhân a chuyển vị có thể là kết quả
+bên ngoài mà sẽ đưa cho bạn ma trận. Nhưng nếu tôi làm điều đó, thì
+thay vào đó bạn lại có được một số. Vì vậy, điều tôi muốn giới thiệu là
+khi bạn mã hóa các mạng mới, bạn sẽ không sử dụng các cấu trúc dữ liệu
+mà có hình dạng là 5 hoặc n, mảng hạng 1. Mà thay vào đó, nếu bạn
+đặt a bằng cái này, (5,1), thì nó sẽ cam kết
+a là vectơ cột (5,1). Và trong khi trước đây, a và
+a chuyển vị trông giống nhau, thì bây giờ nó trở thành a chuyển vị,
+bây giờ a chuyển vị là một vector hàng. Hãy lưu ý điểm khác biệt nhỏ sau. Trong cấu trúc dữ liệu này, có hai dấu
+ngoặc vuông khi chúng ta in a chuyển vị. Trong khi trước đây, có
+một dấu ngoặc vuông. Vì vậy, đây là điểm
+khác biệt là một ma trận (1,5) với một trong
+các mảng hạng 1 này. Và nếu bạn in, giả sử,
+tích giữa a và a chuyển vị, thì điều này sẽ đưa cho bạn
+tích ngoài của một vector, đúng chứ? Và do đó, tích ngoài của một vectơ
+cung cấp cho bạn một ma trận. Và hãy xem xét kỹ hơn về
+những gì chúng ta vừa thấy ở đây. Lệnh đầu tiên mà
+chúng ta chạy, là đây. Và điều này tạo ra
+một cấu trúc dữ liệu với a.shape, bằng (5,) và đây được gọi là mảng hạng 1. Và đây là một cấu trúc
+dữ liệu rất hài hước. Nó không hoạt động nhất quán
+như là một vectơ hàng hay vectơ cột, và điều này làm cho một số
+hiệu ứng của nó không trực quan. Vì vậy, tôi muốn nói là
+khi bạn làm bài tập lập trình, hoặc trong thực tế khi bạn
+đang triển khai hồi quy logistic hoặc mạng nơ-ron nhân tạo thì bạn
+đừng sử dụng các mảng hạng 1 này. Thay vào đó, mỗi lần bạn tạo một mảng, thì hãy cam kết biến nó
+thành một vectơ cột, như vậy điều này tạo ra một vectơ (5,1) hoặc
+cam kết biến nó thành một vectơ hàng, và rồi cách hoạt động của các
+vectơ của bạn sẽ dễ hiểu hơn. Vì vậy, trong trường hợp này,
+a.shape sẽ bằng 5,1. Và do đó, nó chạy rất giống a, nhưng
+trên thực tế, đây là một vectơ cột. Và đó là lý do tại sao bạn có thể nghĩ đây là
+ma trận (5,1), trong đó nó là một vectơ cột. Và ở đây a.shape sẽ là (1,5), và điều này chạy
+như một vector hàng. Vì vậy, khi bạn cần một vectơ, tôi sẽ nói rằng
+hãy sử dụng cái này hoặc cái này, nhưng đừng dùng một mảng hạng 1. Một điều nữa mà tôi thực hiện rất nhiều trong mã
+của mình là nếu tôi không hoàn toàn chắc chắn về kích thước của một trong các vectơ của tôi,
+thì tôi sẽ thường đưa ra một câu lệnh xác định như thế này, để chắc chắn, trong
+trường hợp này, đây là một vectơ (5,1). Và đây là một vector cột. Những xác định này thì rất
+dễ để được thực thi và chúng cũng sẽ trở thành
+tài liệu cho mã của bạn. Vì vậy, đừng ngần ngại đưa ra những câu lệnh
+xác định như thế này bất cứ khi nào bạn cảm thấy cần phải sử dụng. Và cuối cùng, nếu vì một lý do nào đó,
+bạn có kết quả là một mảng hạng 1, thì bạn có thể định hình lại
+cái này, a bằng a.reshape một mảng (5,1) hoặc
+một mảng (1,5) và nó sẽ chạy nhất quán hơn
+như là vectơ cột hoặc vectơ hàng. Vì vậy, đôi khi tôi thấy các sinh
+viên đã gặp khó khăn khi theo dõi bởi vì đó là những ảnh hưởng
+không trực quan của mảng hạng 1. Bằng cách loại bỏ mảng hạng 1 trong mã cũ,
+tôi nghĩ mã của tôi đã trở nên đơn giản hơn. Và tôi không thấy hạn chế gì
+về những điều mà tôi có thể thể hiện trong mã. Tôi chỉ không bao giờ
+sử dụng một mảng hạng 1. Và vì vậy, điều rút ra là để đơn giản hóa mã
+của bạn, không sử dụng mảng hạng 1. Luôn luôn sử dụng ma trận (n,1), cơ bản là các vectơ cột, hoặc
+ma trận (1,n), là các vectơ hàng. Hãy thoải mái thực hiện
+nhiều câu lệnh xác định, và kiểm tra kỹ các kích thước
+của ma trận và mảng của bạn. Ngoài ra, đừng ngại gọi phép toán
+định hình lại để đảm bảo rằng ma trận hoặc vectơ của bạn
+có chiều mà bạn cần. Vì thế, tôi hy vọng rằng bộ đề xuất này sẽ giúp
+bạn loại trừ được nguyên nhân gây ra lỗi từ mã Python và giúp bạn
+hoàn thành bài tập dễ dàng hơn.

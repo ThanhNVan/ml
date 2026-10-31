@@ -1,0 +1,369 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.270 --> 00:00:05.310
+If you suspect your neural network is overfitting your data, that is, if you have a high variance
+
+00:00:05.310 --> 00:00:09.430
+problem, one of the first things to try is probably regularization.
+
+00:00:09.430 --> 00:00:12.670
+The other way to address high variance is to get more training data.
+
+00:00:12.670 --> 00:00:13.670
+There's also quite reliable.
+
+00:00:13.670 --> 00:00:15.710
+You can't always get more training data.
+
+00:00:15.710 --> 00:00:20.950
+It could be expensive to get more data, but adding regularization will often help to prevent
+
+00:00:20.950 --> 00:00:23.950
+overfitting or to reduce variance in your neural network.
+
+00:00:23.950 --> 00:00:26.110
+So let's see how regularization works.
+
+00:00:26.110 --> 00:00:28.750
+Let's develop these ideas using logistic regression.
+
+00:00:28.750 --> 00:00:34.070
+Recall that for logistic regression, you try to minimize the cost function j, which is defined
+
+00:00:34.070 --> 00:00:37.110
+as this cost function.
+
+00:00:37.110 --> 00:00:41.550
+Some of your training examples of the losses of the individual predictions and the different
+
+00:00:41.550 --> 00:00:48.310
+examples where you recall that w and b in logistic regression are the parameters.
+
+00:00:48.310 --> 00:00:54.670
+So w is an x-dimensional parameter vector and b is a real number.
+
+00:00:54.670 --> 00:01:00.630
+And so to add regularization to logistic regression, what you do is add to it this thing, lambda,
+
+00:01:00.630 --> 00:01:03.310
+which is called the regularization parameter.
+
+00:01:03.310 --> 00:01:04.310
+Say more about that in a second.
+
+00:01:04.310 --> 00:01:10.030
+But lambda over 2m times the norm of w squared.
+
+00:01:10.030 --> 00:01:20.950
+So here, the norm of w squared is just equal to sum from j equals 1 to nx of wj squared.
+
+00:01:20.950 --> 00:01:26.190
+This can also be written w transpose w is just a squared Euclidean norm of the parameter
+
+00:01:26.190 --> 00:01:27.750
+vector w.
+
+00:01:27.750 --> 00:01:35.910
+And this is called L2 regularization because here you're using the Euclidean norm, also
+
+00:01:35.910 --> 00:01:38.710
+it's called the L2 norm of the parameter vector w.
+
+00:01:38.710 --> 00:01:41.750
+Now, why do you regularize just the parameter w?
+
+00:01:41.750 --> 00:01:47.110
+Why don't we add something here about b as well?
+
+00:01:47.110 --> 00:01:52.870
+In practice, you could do this, but I usually just omit this because if you look at the
+
+00:01:52.870 --> 00:01:59.510
+parameters, w is usually a pretty high dimensional parameter vector, especially if a high variance
+
+00:01:59.510 --> 00:02:03.390
+problem, maybe w just has a lot of parameters, so you aren't fitting all the parameters as
+
+00:02:03.390 --> 00:02:06.630
+well, whereas b is just a single number.
+
+00:02:06.630 --> 00:02:10.390
+So almost all the parameters are in w rather than b.
+
+00:02:10.390 --> 00:02:14.110
+And if you add this last term in practice, it won't make much of a difference because
+
+00:02:14.110 --> 00:02:17.630
+b is just one parameter out of a very large number of parameters.
+
+00:02:17.630 --> 00:02:23.070
+In practice, I usually just don't bother to include it, but you can if you want.
+
+00:02:23.070 --> 00:02:27.550
+So L2 regularization is the most common type of regularization.
+
+00:02:27.550 --> 00:02:32.510
+You might have also heard of some people talk about L1 regularization, and that's
+
+00:02:32.510 --> 00:02:41.190
+when you add, instead of this L2 norm, you instead add a term that is lambda over m of
+
+00:02:41.190 --> 00:02:45.630
+sum over of this.
+
+00:02:45.630 --> 00:02:51.630
+And this is also called the L1 norm of the parameter vector w, so a little subscript 1
+
+00:02:51.630 --> 00:02:52.630
+down there.
+
+00:02:52.630 --> 00:02:58.070
+And I guess whether you put m or 2m in the denominator is just a scaling constant.
+
+00:02:58.070 --> 00:03:03.070
+If you use L1 regularization, then w will end up being sparse.
+
+00:03:03.070 --> 00:03:08.150
+And what that means is that the w vector will have a lot of zeros in it.
+
+00:03:08.150 --> 00:03:11.870
+And some people say that this can help with compressing the model because if some of the
+
+00:03:11.870 --> 00:03:15.910
+parameters are zero, then you need less memory to store the model.
+
+00:03:15.910 --> 00:03:19.710
+Although I find that in practice, L1 regularization to make your model sparse
+
+00:03:19.710 --> 00:03:20.910
+helps only a little bit.
+
+00:03:20.910 --> 00:03:25.070
+So I don't think it's used that much, at least not for the purpose of compressing your
+
+00:03:25.070 --> 00:03:26.070
+model.
+
+00:03:26.070 --> 00:03:30.910
+And when people train your networks, L2 regularization is just used much, much more often.
+
+00:03:30.910 --> 00:03:34.430
+Oh, sorry, it's fixing up some of the notation here.
+
+00:03:34.430 --> 00:03:45.460
+So one last detail, lambda here is called the regularization parameter.
+
+00:03:45.460 --> 00:03:50.060
+And usually you set this using your development set or using holdout cross validation, where
+
+00:03:50.060 --> 00:03:54.700
+you try a variety of values and see what does the best in terms of trading off between
+
+00:03:54.700 --> 00:04:00.060
+doing well on your training set versus also setting the two norm of your parameters
+
+00:04:00.060 --> 00:04:03.160
+to be small, which helps prevent overfitting.
+
+00:04:03.160 --> 00:04:07.220
+So lambda is another hyperparameter that you might have to tune.
+
+00:04:07.220 --> 00:04:12.420
+And by the way, for the programming exercises, lambda is a reserved keyword in the Python
+
+00:04:12.420 --> 00:04:14.300
+programming language.
+
+00:04:14.300 --> 00:04:21.380
+So in the programming exercise, we'll have L-A-M-B-D without the A, so as not to clash
+
+00:04:21.380 --> 00:04:23.660
+with a reserved keyword in Python.
+
+00:04:23.660 --> 00:04:29.180
+So we'll use L-A-M-B-D to represent the lambda regularization parameter.
+
+00:04:29.180 --> 00:04:33.300
+So this is how you implement L2 regularization for logistic regression.
+
+00:04:33.300 --> 00:04:35.300
+How about a neural network?
+
+00:04:35.300 --> 00:04:38.380
+In a neural network, you have a cost function.
+
+00:04:38.380 --> 00:04:45.540
+There's a function of all of your parameters, w1, b1 through w capital L, b capital L, where
+
+00:04:45.540 --> 00:04:49.060
+capital L is the number of layers in your neural network.
+
+00:04:49.060 --> 00:04:58.260
+And so the cost function is this, sum of the losses, sum over your M training samples.
+
+00:04:58.340 --> 00:05:08.340
+And so to add regularization, you add lambda over 2M of sum over all of your parameters,
+
+00:05:08.340 --> 00:05:17.580
+w, your parameter matrix is w, of their, let's call it the squared norm, where this norm
+
+00:05:17.580 --> 00:05:25.020
+of a matrix, really the squared norm, is defined as the sum of i, sum over j of each of the
+
+00:05:25.020 --> 00:05:29.260
+elements of that matrix squared.
+
+00:05:29.260 --> 00:05:34.020
+And if you want the indices of the summation, this is sum from i equals 1 through nL minus
+
+00:05:34.020 --> 00:05:45.100
+1, sum from j equals 1 through nL, because w is a nL by nL minus 1 dimensional matrix,
+
+00:05:45.100 --> 00:05:49.620
+where these are the number of hidden units in, or number of units in layers L minus 1
+
+00:05:49.620 --> 00:05:51.460
+and layer L.
+
+00:05:51.460 --> 00:06:00.940
+So this matrix norm, it turns out, is called the Frobenius norm of a matrix denoted with
+
+00:06:00.940 --> 00:06:03.700
+f in the subscript.
+
+00:06:03.700 --> 00:06:09.860
+So for our arcane linear algebra technical reasons, this is not called the L2 norm of
+
+00:06:09.860 --> 00:06:14.420
+a matrix, instead it's called the Frobenius norm of a matrix.
+
+00:06:14.420 --> 00:06:18.220
+I know it sounds like it would be more natural just call the L2 norm of the matrix, but
+
+00:06:18.220 --> 00:06:23.020
+really arcane reasons that you don't need to know by convention, this is called the
+
+00:06:23.020 --> 00:06:27.380
+Frobenius norm, which just means the sum of squared of elements of a matrix.
+
+00:06:27.380 --> 00:06:30.420
+So how do you implement gradient descent with this?
+
+00:06:30.420 --> 00:06:38.750
+Previously, we would compute dW, you know, using backprop, where backprop would give
+
+00:06:38.750 --> 00:06:46.710
+us the partial derivative of j with respect to W, or really W for any given L. And then
+
+00:06:46.710 --> 00:06:52.750
+you update WL as WL minus the learning rate times d.
+
+00:06:52.750 --> 00:06:57.950
+So this is before we added this extra regularization term to the objective.
+
+00:06:57.950 --> 00:07:02.110
+Now that we've added this regularization term to the objective, what you do is you take
+
+00:07:02.110 --> 00:07:09.670
+dW and you add to it lambda over m times W, and then you just compute this update
+
+00:07:09.670 --> 00:07:10.670
+same as before.
+
+00:07:10.670 --> 00:07:16.670
+And it turns out that with this new definition of dWL, this is still, you know,
+
+00:07:16.670 --> 00:07:23.550
+this new dWL is still a correct definition of the derivative of your cost function with
+
+00:07:23.550 --> 00:07:25.230
+respect to your parameters.
+
+00:07:25.230 --> 00:07:29.390
+Now you've added the extra regularization term at the end.
+
+00:07:29.390 --> 00:07:36.750
+And it's for this reason that L2 regularization is sometimes also called weight decay.
+
+00:07:36.750 --> 00:07:43.830
+So if I take this definition of dWL and just plug it in here, then you see that the
+
+00:07:43.830 --> 00:07:50.710
+update is WL gets updated as WL times the learning rate alpha times, you know, the
+
+00:07:50.710 --> 00:08:02.750
+thing from backprop plus lambda over m times WL.
+
+00:08:02.750 --> 00:08:04.390
+So with a minus sign there.
+
+00:08:04.390 --> 00:08:15.230
+And so this is equal to WL minus alpha lambda over m times WL minus alpha times,
+
+00:08:15.230 --> 00:08:18.780
+you know, the thing you got from backprop.
+
+00:08:18.780 --> 00:08:23.980
+And so this term shows that whatever the matrix WL is, you're going to make it,
+
+00:08:23.980 --> 00:08:25.380
+you know, a little bit smaller, right?
+
+00:08:25.380 --> 00:08:30.220
+This is actually as if you're taking the matrix W and you're multiplying it by 1
+
+00:08:30.220 --> 00:08:32.860
+minus alpha lambda over m.
+
+00:08:32.860 --> 00:08:37.740
+You're really taking the matrix W and subtracting alpha lambda over m times.
+
+00:08:37.740 --> 00:08:41.740
+And so it's like you're multiplying the matrix W by this number, which is going to
+
+00:08:41.740 --> 00:08:43.500
+be a little bit less than 1.
+
+00:08:43.500 --> 00:08:49.540
+So this is why L2 norm regularization is also called weight decay, because it's
+
+00:08:49.540 --> 00:08:55.780
+just like the ordinary gradient descent where you update W by subtracting alpha
+
+00:08:55.780 --> 00:08:59.140
+times the original gradient got from backprop.
+
+00:08:59.140 --> 00:09:06.660
+But now you're also, you know, multiplying W by this, by this thing, which is a little
+
+00:09:06.660 --> 00:09:08.260
+bit less than 1.
+
+00:09:08.260 --> 00:09:11.660
+So the alternative name for L2 regularization is weight decay.
+
+00:09:11.660 --> 00:09:16.300
+I'm not really going to use that name, but the intuition for why it's called
+
+00:09:16.300 --> 00:09:20.860
+weight decay is that this first term here is equal to this.
+
+00:09:20.860 --> 00:09:25.460
+So you're just multiplying the weight matrix by a number slightly less than 1.
+
+00:09:25.460 --> 00:09:29.380
+So that's how you implement L2 regularization in the neural network.
+
+00:09:29.380 --> 00:09:33.380
+Now, one question that people sometimes ask me is, you know, hey, Andrew, why does
+
+00:09:33.380 --> 00:09:35.540
+regularization prevent overfitting?
+
+00:09:35.540 --> 00:09:39.340
+Let's take a quick look at the next video and gain some intuition for how
+
+00:09:39.340 --> 00:09:41.780
+regularization prevents overfitting.

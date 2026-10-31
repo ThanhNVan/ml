@@ -1,0 +1,323 @@
+WEBVTT
+
+00:00:01.140 --> 00:00:04.810
+Trong video trước, bạn đã thấy mạng lưới thần
+kinh rất sâu có
+
+00:00:04.810 --> 00:00:08.480
+thể gặp phải vấn đề biến mất và bùng nổ độ dốc
+như thế nào.
+
+00:00:08.480 --> 00:00:12.087
+Hóa ra, giải pháp từng phần cho vấn đề này
+không giải quyết được
+
+00:00:12.087 --> 00:00:15.693
+hoàn toàn nhưng giúp ích rất nhiều, tốt hơn
+hoặc cẩn thận hơn
+
+00:00:15.693 --> 00:00:19.300
+trong việc lựa chọn khởi tạo ngẫu nhiên cho
+neural network của bạn.
+
+00:00:19.300 --> 00:00:23.520
+Để hiểu điều này, hãy bắt đầu với ví dụ về
+việc khởi tạo các trọng số cho một
+
+00:00:23.520 --> 00:00:27.740
+nơ-ron đơn lẻ, sau đó chúng ta sẽ tiếp tục
+khái quát hóa điều này thành một mạng sâu.
+
+00:00:27.740 --> 00:00:30.580
+Chúng ta hãy xem xét vấn đề này bằng một ví dụ
+chỉ với một
+
+00:00:30.580 --> 00:00:33.420
+nơ-ron duy nhất và sau đó chúng ta sẽ nói về
+một mạng lưới sâu.
+
+00:00:33.420 --> 00:00:38.260
+Vì vậy, nơ-ron đơn lẻ, bạn có thể nhập bốn đặc
+tính, từ x1 đến
+
+00:00:38.260 --> 00:00:43.100
+x4, và sau đó bạn có a bằng g của z, và sau đó
+nó xuất ra một số y.
+
+00:00:43.100 --> 00:00:48.140
+Và sau này đối với mạng sâu, các đầu vào này
+sẽ là một lớp a nào đó của l.
+
+00:00:48.140 --> 00:00:52.100
+Nhưng bây giờ, hãy tạm gọi đây là x.
+
+00:00:52.100 --> 00:01:04.380
+Vậy z sẽ bằng w1 x1 cộng w2 x2 cộng dot dot
+dot cộng wn xn.
+
+00:01:04.380 --> 00:01:08.780
+Và hãy đặt b bằng 0, vì vậy bây giờ chúng ta
+hãy bỏ qua b.
+
+00:01:08.780 --> 00:01:15.580
+Vì vậy, để làm cho z không bị nổ tung và không
+trở nên quá nhỏ,
+
+00:01:15.580 --> 00:01:22.380
+bạn để ý rằng n càng lớn thì bạn muốn wi càng
+nhỏ, phải không?
+
+00:01:22.380 --> 00:01:26.740
+Bởi vì z là tổng của wi xi, và vì vậy nếu bạn
+cộng
+
+00:01:26.740 --> 00:01:31.100
+nhiều số hạng này, bạn muốn mỗi số hạng này
+nhỏ hơn.
+
+00:01:31.100 --> 00:01:37.680
+Một điều hợp lý cần làm là đặt variance của wi
+bằng 1 trên
+
+00:01:37.680 --> 00:01:44.260
+n, trong đó n là số đặc điểm đầu vào sẽ đi vào
+một nơ-ron.
+
+00:01:44.260 --> 00:01:49.233
+Vì vậy, trong thực tế, những gì bạn có thể làm
+là đặt ma trận
+
+00:01:49.233 --> 00:01:54.207
+trọng số w cho một lớp nhất định là np dot
+ngẫu nhiên dot rand
+
+00:01:54.207 --> 00:01:59.180
+n, bạn biết đấy, và sau đó bất kể hình dạng
+của ma trận là gì, bạn
+
+00:01:59.180 --> 00:02:01.660
+gấp cái này ra đây.
+
+00:02:01.660 --> 00:02:09.160
+Và sau đó nhân căn bậc hai của 1 trên số đặc
+điểm được đưa vào mỗi
+
+00:02:09.160 --> 00:02:16.660
+nơron trong lớp L. Vậy nó sẽ bằng n của L trừ
+1, vì đó là số đơn vị
+
+00:02:16.660 --> 00:02:20.300
+đang cung cấp dữ liệu cho từng đơn vị trong
+lớp L.
+
+00:02:20.300 --> 00:02:25.600
+Hóa ra là nếu bạn đang sử dụng
+activation function ReLU, thì thay vì 1 trên
+
+00:02:25.600 --> 00:02:30.900
+n, hóa ra việc đặt variance thành 2 trên n sẽ
+hoạt động tốt hơn một chút.
+
+00:02:30.900 --> 00:02:33.640
+Vì vậy bạn thường thấy điều đó trong quá trình
+khởi tạo,
+
+00:02:33.640 --> 00:02:36.380
+đặc biệt nếu bạn đang sử dụng chức năng kích
+hoạt ReLU.
+
+00:02:36.380 --> 00:02:40.393
+Vì vậy, nếu gL của z là ReLU của z, ồ, và tùy
+thuộc vào mức
+
+00:02:40.393 --> 00:02:44.407
+độ quen thuộc của bạn với các biến ngẫu nhiên,
+hóa ra đó là
+
+00:02:44.407 --> 00:02:48.420
+một biến ngẫu nhiên Gaussian, rồi nhân nó với
+bình phương
+
+00:02:48.420 --> 00:02:53.660
+nghiệm của cái này, cái đó đặt variance bằng
+cái này, bằng 2 trên n.
+
+00:02:53.660 --> 00:02:59.500
+Và lý do tôi đi từ n đến n chỉ số trên L trừ 1
+này là trong ví dụ này
+
+00:02:59.500 --> 00:03:05.340
+với logistic regression, đó là n feature đầu
+vào, nhưng trong trường hợp
+
+00:03:05.340 --> 00:03:11.180
+tổng quát hơn, lớp L sẽ có nL trừ 1 đầu vào
+cho mỗi đơn vị trong lớp đó.
+
+00:03:11.180 --> 00:03:15.287
+Vì vậy, nếu các feature đầu vào hoặc kích hoạt
+trực quan gần
+
+00:03:15.287 --> 00:03:19.393
+bằng trung bình 0 và variance tiêu chuẩn và
+variance 1, thì
+
+00:03:19.393 --> 00:03:23.500
+điều này sẽ khiến z cũng được tính theo thang
+đo tương tự.
+
+00:03:23.500 --> 00:03:28.680
+Và điều này không giải quyết được, nhưng nó
+chắc chắn giúp giảm vấn đề độ biến thiên
+
+00:03:28.680 --> 00:03:33.860
+biến mất và bùng nổ, bởi vì nó đang cố gắng
+đặt từng ma trận trọng số w, bạn biết đấy,
+
+00:03:33.860 --> 00:03:37.300
+sao cho nó không quá lớn hơn 1 và không quá
+nhỏ hơn 1.
+
+00:03:37.300 --> 00:03:41.420
+Vì vậy, nó không phát nổ hoặc biến mất quá
+nhanh.
+
+00:03:41.420 --> 00:03:43.660
+Tôi vừa đề cập đến một số variance khác.
+
+00:03:43.660 --> 00:03:47.240
+Phiên bản mà chúng tôi vừa mô tả đang giả định
+chức
+
+00:03:47.240 --> 00:03:50.820
+năng kích hoạt ReLU và đó là một bài báo của
+Hoe et al.
+
+00:03:50.820 --> 00:03:56.800
+Một vài biến thể khác, nếu bạn đang sử dụng
+activation function 10H, thì có một
+
+00:03:56.800 --> 00:04:02.780
+bài báo chỉ ra rằng thay vì sử dụng hằng số 2,
+tốt hơn nên sử dụng hằng số 1.
+
+00:04:02.780 --> 00:04:11.420
+Và 1 trên cái này thay vì 2, vậy bạn nhân với
+căn bậc hai của cái này.
+
+00:04:11.420 --> 00:04:16.900
+Vậy số hạng căn bậc hai này sẽ thay thế số
+hạng này.
+
+00:04:16.900 --> 00:04:21.940
+Và bạn sử dụng điều này nếu bạn đang sử dụng
+chức năng kích hoạt 10H.
+
+00:04:21.940 --> 00:04:25.780
+Điều này được gọi là khởi tạo Xavier.
+
+00:04:25.780 --> 00:04:30.380
+Và một phiên bản khác do Josje Benjour và các
+đồng nghiệp
+
+00:04:30.380 --> 00:04:34.980
+của ông phát triển, bạn có thể thấy trong một
+số bài báo,
+
+00:04:34.980 --> 00:04:39.580
+nhưng là sử dụng công thức này, có một số cơ
+sở lý thuyết khác.
+
+00:04:39.580 --> 00:04:43.500
+Nhưng tôi muốn nói rằng nếu bạn đang sử dụng
+activation function ReLU, đây
+
+00:04:43.500 --> 00:04:47.420
+thực sự là activation function phổ biến nhất,
+thì tôi sẽ sử dụng công thức này.
+
+00:04:47.420 --> 00:04:51.220
+Nếu bạn đang sử dụng 10H, bạn có thể thử phiên
+bản này.
+
+00:04:51.220 --> 00:04:53.060
+Và một số tác giả cũng sẽ sử dụng điều này.
+
+00:04:53.500 --> 00:04:57.260
+Nhưng trên thực tế, tôi nghĩ tất cả những công
+thức này chỉ cho bạn điểm khởi đầu.
+
+00:04:57.260 --> 00:05:00.080
+Nó cung cấp cho bạn một giá trị mặc định để sử
+
+00:05:00.080 --> 00:05:02.900
+dụng cho variance khởi tạo ma trận trọng số
+của bạn.
+
+00:05:02.900 --> 00:05:06.640
+Nếu bạn muốn, variance ở đây, tham số variance
+này, có thể là
+
+00:05:06.640 --> 00:05:10.380
+một thứ khác mà bạn có thể điều chỉnh bằng
+siêu tham số của mình.
+
+00:05:10.380 --> 00:05:15.080
+Vì vậy, bạn có thể có một tham số khác nhân
+vào công thức này và điều
+
+00:05:15.080 --> 00:05:19.780
+chỉnh hệ số nhân đó như một phần của tìm kiếm
+siêu tham số của bạn.
+
+00:05:19.780 --> 00:05:24.440
+Đôi khi việc điều chỉnh siêu tham số đó có
+hiệu ứng kích thước khiêm tốn không
+
+00:05:24.440 --> 00:05:29.100
+phải là một trong những siêu tham số đầu tiên
+mà tôi thường cố gắng điều chỉnh.
+
+00:05:29.100 --> 00:05:34.140
+Nhưng tôi cũng thấy một số vấn đề với việc
+điều chỉnh điều này ở mức độ hợp lý.
+
+00:05:34.140 --> 00:05:37.860
+Nhưng đối với tôi, điều này thường thấp hơn về
+mức độ quan
+
+00:05:37.860 --> 00:05:41.580
+trọng của nó so với các siêu tham số khác mà
+bạn có thể điều chỉnh.
+
+00:05:41.580 --> 00:05:46.560
+Vì vậy, tôi hy vọng điều đó mang lại cho bạn
+một số trực giác về vấn đề biến mất
+
+00:05:46.560 --> 00:05:51.540
+hoặc bùng nổ độ dốc, cũng như cách chọn tỷ lệ
+hợp lý cho cách bạn khởi tạo trọng số.
+
+00:05:51.540 --> 00:05:54.300
+Hy vọng rằng điều đó làm cho trọng lượng của
+bạn không
+
+00:05:54.300 --> 00:05:57.060
+bị nổ quá nhanh và không bị phân hủy về 0 quá
+nhanh.
+
+00:05:57.060 --> 00:06:00.780
+Vì vậy, bạn có thể huấn luyện một mạng có độ
+sâu hợp lý mà
+
+00:06:00.780 --> 00:06:04.500
+không cần đến trọng số hoặc độ dốc bùng nổ
+hoặc biến mất quá nhiều.
+
+00:06:04.500 --> 00:06:07.380
+Khi bạn đào tạo mạng sâu, đây là một thủ thuật
+khác sẽ giúp
+
+00:06:07.380 --> 00:06:10.260
+bạn làm cho neural network của bạn đào
+tạo nhanh hơn nhiều.

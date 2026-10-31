@@ -1,0 +1,121 @@
+Trong video trước, bạn đã thấy một mạng
+nơ-ron lớp ẩn duy nhất thì trông như thế nào. Trong video này, chúng ta sẽ học về cách mà mạng nơ-ron nhân tạo
+này tính toán các đầu ra này. Bạn có thế thấy là
+giống như hồi quy logistic, thì chúng lặp lại rất nhiều lần. Hãy cùng xem nào. Đây là hình dạng
+của một mạng nơ-ron nhân tạo hai lớp. Chúng ta hãy đi sâu hơn vào xem
+mạng nơ-ron này tính toán những gì. Bây giờ, như chúng ta đã nói
+trước đó, hồi quy logistic đó, hình tròn trong hồi quy logistic, đại diện cho hai bước
+của hàng tính toán. Bạn tính z như sau và bạn tính toán các kích hoạt
+dưới dạng hàm sigmoid của z. Và một mạng nơ-ron nhân tạo thì
+chỉ làm điều này nhiều lần hơn. Hãy bắt đầu bằng cách nhìn vào chỉ
+một nút trong các nút trong lớp ẩn. Hãy nhìn vào nút
+đầu tiên trong lớp ẩn. Và bây giờ tôi đã làm
+mờ các nút khác. Tương tự như hồi quy
+logistic ở bên trái, các nút này trong lớp ẩn
+thực hiện hai bước tính toán. Bước đầu tiên và ở
+nửa bên trái của nút này, nó tính z bằng w
+chuyển vị x cộng b, và ký hiệu mà
+chúng ta sử dụng là, đây là tất cả số lượng
+liên quan đến lớp ẩn đầu tiên. Đó là lý do tại sao chúng ta có một
+loạt các dấu ngoặc vuông ở đó. Đây là nút đầu tiên trong lớp ẩn. Nên chúng ta có
+chỉ số dưới 1 ở đó. Đầu tiên, nó làm điều đó, và rồi là bước thứ hai là tính a_ [1] _1 bằng
+sigmoid của z_ [1] _1, như vậy. Và với cả z và a, quy ước ký hiệu là a, l, i, l ở đây trong mũ ngoặc vuông, đề cập đến số lớp, và chỉ số dưới i ở đây, chỉ các nút trong lớp đó. Và nút mà chúng ta
+sẽ nhìn vào là lớp một, đó là một nút lớp ẩn. Vì vậy, các chỉ số trên và
+chỉ số dưới là đều là 1. Và hình tròn nhỏ đó, nút đầu tiên trong mạng
+nơ-ron nhân tạo, biểu diễn việc thực hiện
+hai bước tính toán này. Bây giờ, hãy nhìn vào nút thứ hai
+trong mạng nơ-ron nhân tạo, hoặc nút thứ hai trong lớp ẩn
+của mạng nơ-ron nhân tạo. Tương tự như đơn vị
+hồi quy logistic bên trái, hình tròn nhỏ này đại diện
+cho hai bước tính toán. Bước đầu tiên là nó tính z. Đây vẫn là lớp một, nhưng bây giờ là một nút
+thứ hai bằng w chuyển vị x, cộng b_ [1] _2, và sau đó a_ [1]_2
+bằng sigmoid bằng z_ [1] _2. Một lần nữa, bạn có thể
+dừng video nếu muốn nhưng bạn có thể kiểm tra lại
+rằng ký hiệu chỉ số trên và chỉ số dưới phù hợp với những gì
+chúng tôi đã viết ở đây ở trên màu tím. Và chúng ta đã nói về hai đơn vị ẩn đầu tiên
+trong một mạng nơ-ron nhân tạo, mà có đơn vị ba và bốn cũng
+đại diện cho một số tính toán. Bây giờ, tôi sẽ lấy
+cặp phương trình này, và cặp phương trình này, và sao chép chúng
+vào slide tiếp theo. Và đây là mạng nơ-ron
+nhân tạo của chúng ta, và đây là phương trình đầu tiên, và đây là phương trình thứ hai
+mà chúng tôi đã thực hiện trước đó với các đơn vị
+ẩn thứ nhất và thứ hai. Nếu bạn viết ra các
+phương trình tương ứng đối với các đơn vị ẩn thứ ba và
+thứ tư, bạn sẽ nhận được cái này. Vì vậy, hãy để tôi trình bày
+ký hiệu này một cách rõ ràng, đây là vectơ w_ [1] _1, đây là một vectơ chuyển vị nhân x. Đó là ý nghĩa
+của chỉ số trên T. Đó là một vectơ chuyển vị. Như bạn có thể thấy, nếu bạn đang thực sự triển khai
+một mạng nơ-ron nhân tạo, thực hiện điều này với một vòng lặp
+for, thì có vẻ như không hiệu quả. Vì vậy, chúng ta sẽ lấy bốn phương trình và vector hóa. Chúng ta sẽ bắt đầu bằng cách
+hiển thị cách tính z dưới dạng vectơ, bạn có thể làm như sau. Hãy để tôi lấy những số hạng w này
+và xếp chúng thành một ma trận, và bạn có w_ [1] _1 chuyển vị, và đó là một vector hàng hoặc vectơ chuyển vị cột này cung cấp
+cho bạn một vectơ hàng, và w_ [1] _2, chuyển vị, w_ [1] _3
+chuyển vị, w_ [1] _4 chuyển vị. Và bằng cách xếp
+bốn vectơ w lại với nhau, bạn có một ma trận. Có thể hiểu điều này là chúng ta có
+bốn đơn vị hồi quy logistic ở đó, và mỗi đơn vị hồi quy logistic, có một vectơ tham số w tương ứng. Bằng cách xếp bốn
+vectơ đó lại với nhau, bạn có ma trận 4x3 này. Vì vậy, nếu sau đó bạn lấy ma trận này
+và nhân nó với các tính năng đầu vào x1, x2, x3, bạn sẽ thực hiện
+phép nhân ma trận. Bạn có w_ [1] _1 chuyển vị x, w_2_ [1] chuyển vị x, w_3_ [1]
+chuyển vị x, w_4_ [1] chuyển vị x. Sau đó, chúng ta không tìm ra b. Bây giờ chúng ta thêm vào đây một
+vectơ b_ [1] _1, b_ [1] _2, b_ [1] _3, b_ [1] _4. Về cơ bản là thế này, đây là b_ [1] _1, b_ [1] _2,
+b_ [1]_3, b_ [1] _4. Và bạn thấy rằng
+mỗi hàng trong bốn hàng kết quả này tương ứng
+với bốn hàng này, mỗi số lượng trong số bốn
+số lượng mà chúng tôi đã có ở trên. Nói cách khác, chúng ta đã chỉ ra
+rằng điều này tương đương với z_ [1] _1, z_ [1] _2, z_ [1] _3,
+z_ [1] _4, như được định nghĩa ở đây. Có lẽ không có gì ngạc nhiên khi chúng ta
+sẽ gọi toàn bộ cái này, là vectơ z_ [1], mà được tạo ra bằng cách
+xếp từng z vào một vectơ cột. Khi chúng ta vectơ hóa, một trong những quy tắc
+kinh nghiệm mà có thể giúp bạn điều hướng này, là khi chúng ta có các
+nút khác nhau trong lớp, chúng ta sẽ xếp
+chúng theo chiều dọc. Đó là lý do tại sao
+chúng ta có z_[1] _1 đến z_ [1] _4, tương ứng với bốn nút
+khác nhau trong lớp ẩn, và vì vậy chúng ta xếp chồng bốn số này
+theo chiều dọc để tạo thành vectơ z [1]. Và thêm một ký hiệu nữa, ma trận 4 x 3 mà chúng ta thu được bằng
+cách xếp chồng các chữ thường w_ [1] _1, w_ [1] _2, v.v., này sẽ
+được gọi là W [1]. Tương tự, vectơ này,
+chúng ta sẽ gọi là b mũ [1]. Vì vậy, đây là một vector (4,1). Bây giờ, chúng ta đã tính z
+sử dụng ký hiệu ma trận vector này, điều cuối cùng chúng ta cần
+làm là tính các giá trị này của a. Và có lẽ bạn cũng không ngạc nhiên
+khi thấy rằng chúng ta sẽ định nghĩa a_ [1], như là xếp chồng những giá trị kích hoạt đó lên nhau, a_1_[1] đến a_4_[1]. Và chỉ cần lấy bốn giá trị này và xếp chúng
+lại với nhau trong một vectơ gọi là a[1]. Đây sẽ là một sigmoid của z [1], và điều này bây giờ
+là phép triển khai hàm sigmoid mà
+lấy bốn phần tử của z, và áp dụng hàm
+sigmoid với từng phần tử. Tóm lại, chúng ta đã tìm ra rằng z_ [1] bằng
+w_ [1] nhân vectơ x cộng với vectơ b_ [1], và a_ [1] là sigmoid của z_ [1]. Tôi sẽ dùng cái
+trong slide tiếp theo. Chúng ta thấy là đối với lớp đầu tiên
+của mạng nơ ron với đầu vào x, chúng ta có z_ [1] bằng
+w_ [1] nhân x cộng với b_ [1], và a_ [1] là sigmoid của z_ [1]. Chiều của cái này là (4,1), đây là ma trận 4x3 nhân một
+vectơ (3,1) cộng với vectơ b (4,1), và đây cũng có
+cùng chiều (4,1). Hãy nhớ là chúng ta
+đã nói x bằng a_ [0]. y mũ cũng bằng a[2]. Nếu bạn muốn, bạn có thể lấy x
+này và thay thế nó bằng a_ [0], nếu bạn muốn a_ [0] làm bí danh
+cho vectơ của các tính năng đầu vào, x. Bây giờ, với cách làm tương tự, bạn có thể tìm ra là cách
+biểu diễn cho lớp tiếp theo cũng được viết tương tự,
+trong đó lớp đầu ra liên kết với nó, là các tham số w_ [2] và b_ [2]. Và trong trường hợp này
+w_ [2] sẽ là một ma trận 1x4, và b_ [2] là một số thực (1,1). Vì vậy, z_ [2] sẽ là một số thực, chúng ta
+sẽ viết nó dưới dạng một ma trận 1x1. Sẽ là (1,4) nhân a [1] (4,1) cộng với b_ [2] (1,1), và điều này cho bạn một số thực. Nếu bạn nghĩ về đơn vị
+trên cuối cùng này mà tương tự như hồi quy
+logistic có tham số w và b, w đóng vai trò tương tự
+với w_ [2] chuyển vị, hoặc W_ [2] chính là w
+chuyển vị và b bằng b_ [2]. Tôi muốn che lại phần bên trái của mạng
+này và bỏ qua tất cả những điều đó bây giờ, sau đó đơn vị trên cuối cùng này
+rất giống với hồi quy logistic, ngoại trừ việc thay vì viết
+các tham số như w và b, chúng ta đang viết
+là w_ [2] và b_[2], với chiều lần lượt là (1,4) và (1,1). Tóm lại. Đối với hồi quy logistic, để
+triền khai đầu ra hoặc để dự đoán, bạn tính z bằng
+w chuyển vị x cộng b, và a hoặc y mũ bằng a, bằng sigmoid của z. Khi bạn có một mạng
+nơ-ron nhân tạo với một lớp ẩn, bạn chỉ cần 4 phương trình
+này để tính đầu ra này. Bạn có thể coi điều này như là một
+triển khai véc-tơ hóa để tính Bạn có thể coi điều này như là
+một triển khai véc-tơ hóa để tính đầu ra của 4 đơn vị hồi quy logistic
+đầu tiên trong lớp ẩn, là 2 phương trình này, và và hồi quy logistic này trong lớp
+đầu ra, đây là 2 phương trình này. Tôi hy vọng mô tả này có nghĩa, nhưng bài học rút ra là để tính
+đầu ra của mạng nơ ron này, tất cả những gì bạn cần là bốn dòng mã. Bây giờ, bạn đã thấy cách mà với
+một tính năng đầu vào duy nhất, vectơ a, bạn có thể dùng 4 dòng mã để tính đầu ra của mạng
+nơ-ron nhân tạo này. Tương tự như những gì chúng
+ta đã làm với hồi quy logistic, chúng ta cũng sẽ muốn vector
+hóa trên nhiều ví dụ đào tạo. Chúng ta sẽ thấy điều đó bằng cách xếp chồng
+các ví dụ đào tạo trong các cột khác nhau trong ma trận, chỉ cần sửa đổi một chút giống như bạn thấy trong hồi quy này, là có thể tính đầu ra của
+mạng nơ ron này, không chỉ là một ví dụ tại một thời điểm, mà kéo dài trên toàn bộ đào
+tạo của bạn tại một thời điểm. Hãy xem kỹ hơn về điều đó
+trong video tiếp theo nhé.

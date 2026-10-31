@@ -1,0 +1,378 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.210 --> 00:00:04.330
+In the last video, you saw the basic beam surge algorithm.
+
+00:00:04.330 --> 00:00:10.490
+In this video, you learned some little changes that make it work even better.
+
+00:00:10.490 --> 00:00:14.410
+Length normalization is a small change to the beam surge algorithm that can help you
+
+00:00:14.410 --> 00:00:16.090
+get much better results.
+
+00:00:16.090 --> 00:00:17.950
+Here's what it is.
+
+00:00:17.950 --> 00:00:23.010
+We talked about beam surge as maximizing this probability.
+
+00:00:23.010 --> 00:00:33.770
+This product here is just expressing the observation that P of y1 up to yty given x can be expressed
+
+00:00:33.770 --> 00:00:49.010
+as P of y1 given x times P of y2 given x and y1 times dot dot dot up to I guess P of yty
+
+00:00:49.010 --> 00:00:56.630
+given x and y1 up to yty minus 1.
+
+00:00:56.630 --> 00:01:01.590
+Maybe this notation is a bit more scary and more intimidating than it needs to be, but this
+
+00:01:01.590 --> 00:01:07.390
+is that probability, product of probabilities that you've seen previously.
+
+00:01:07.390 --> 00:01:13.350
+Now if you're implementing these, these probabilities are all numbers less than 1.
+
+00:01:13.350 --> 00:01:16.230
+In fact, often they're much less than 1.
+
+00:01:16.250 --> 00:01:21.850
+And multiplying a lot of numbers less than 1 will result in a tiny tiny tiny number which
+
+00:01:21.850 --> 00:01:27.570
+can result in numerical underflow, meaning that it's too small for the floating part representation
+
+00:01:27.570 --> 00:01:31.650
+in your computer to store accurately.
+
+00:01:31.650 --> 00:01:40.210
+So in practice, instead of maximizing this product, we will take logs.
+
+00:01:40.210 --> 00:01:47.230
+And if you insert a log there, then the log of a product becomes a sum of a log and maximizing
+
+00:01:47.230 --> 00:01:52.950
+this sum of log probabilities should give you the same result in terms of selecting the
+
+00:01:52.950 --> 00:01:55.750
+most likely sentence y.
+
+00:01:55.750 --> 00:02:01.790
+So by taking logs, you end up with a more numerically stable algorithm that is less
+
+00:02:01.790 --> 00:02:09.750
+prone to rounding errors, numerical rounding errors or to really numerical underflow.
+
+00:02:09.770 --> 00:02:14.930
+And because the logarithmic function, here's the log function, is a strictly monotonically
+
+00:02:14.930 --> 00:02:21.970
+increasing function, we know that maximizing log p of y given x should give you the same
+
+00:02:21.970 --> 00:02:26.930
+result as maximizing p of y given x.
+
+00:02:26.930 --> 00:02:32.950
+As in the same value of y that maximizes this should also maximize that.
+
+00:02:32.950 --> 00:02:38.330
+So in most implementations, you keep track of the sum of logs of the probabilities
+
+00:02:38.350 --> 00:02:41.590
+rather than the product of the probabilities.
+
+00:02:41.590 --> 00:02:48.710
+Now there's one other change to this objective function that makes the machine translation
+
+00:02:48.710 --> 00:02:57.210
+algorithm work even better, which is that if you refer to this original objective up
+
+00:02:57.210 --> 00:03:02.970
+here, if you have a very long sentence, the probability of that sentence is going to
+
+00:03:02.970 --> 00:03:08.330
+be low because you're multiplying as many terms here, lots of numbers are less than
+
+00:03:08.330 --> 00:03:11.630
+one to estimate the probability of that sentence.
+
+00:03:11.630 --> 00:03:15.830
+And so if you multiply a lot of numbers, less than one together, you just tend to end
+
+00:03:15.830 --> 00:03:20.030
+up with a smaller probability.
+
+00:03:20.030 --> 00:03:25.470
+And so this objective function has an undesirable effect that it maybe
+
+00:03:25.470 --> 00:03:31.070
+unnaturally tends to prefer very short translations, tends to prefer very short
+
+00:03:31.070 --> 00:03:33.270
+outputs.
+
+00:03:33.270 --> 00:03:37.550
+Because the probability of a short sentence is determined just by multiplying,
+
+00:03:37.570 --> 00:03:42.240
+fewer of these numbers are less than one.
+
+00:03:42.240 --> 00:03:46.600
+And so the product will just be not quite as small.
+
+00:03:46.600 --> 00:03:49.040
+And by the way, the same thing is true for this.
+
+00:03:49.040 --> 00:03:55.040
+The log of a probability is always less than or equal to one.
+
+00:03:55.040 --> 00:03:57.120
+You're actually in this range of a log.
+
+00:03:57.120 --> 00:04:04.880
+So the more terms you add together, the more negative this thing becomes.
+
+00:04:04.880 --> 00:04:08.600
+So there's one other change to the algorithm that makes it work better,
+
+00:04:08.620 --> 00:04:15.100
+which is instead of using this as the objective you're trying to maximize,
+
+00:04:15.100 --> 00:04:20.740
+one thing you could do is normalize this by the number of words in your translation.
+
+00:04:20.740 --> 00:04:26.620
+And so this takes the average of the log of the probability of each word.
+
+00:04:26.620 --> 00:04:34.420
+Now, and this significantly reduces the penalty for outputting longer translations.
+
+00:04:34.420 --> 00:04:40.120
+And in practice, as a heuristic, instead of dividing by t y, but the number of words
+
+00:04:40.120 --> 00:04:45.440
+in the output sentence, sometimes you use the softer approach where you have t y to the power
+
+00:04:45.440 --> 00:04:50.160
+of alpha, where maybe alpha is equal to 0.7.
+
+00:04:50.160 --> 00:04:54.640
+So if alpha was equal to one, then you're completely normalizing by length.
+
+00:04:54.640 --> 00:05:00.040
+If alpha was equal to zero, then well, t y to the zero would be one.
+
+00:05:00.040 --> 00:05:02.160
+Then you're just not normalizing at all.
+
+00:05:02.160 --> 00:05:06.820
+And this is somewhere in between full normalization and no normalization.
+
+00:05:06.820 --> 00:05:12.620
+And alpha is another parameter, hyperparameter of the algorithm that you can tune to try
+
+00:05:12.620 --> 00:05:15.780
+to get the best results.
+
+00:05:15.780 --> 00:05:21.100
+And have to admit, using alpha this way, this is a heuristic or this is a hack.
+
+00:05:21.100 --> 00:05:26.900
+There isn't a great theoretical justification for it, but people found that this works well.
+
+00:05:26.900 --> 00:05:30.860
+People found that it works well in practice, so many groups will do this.
+
+00:05:30.880 --> 00:05:37.040
+And you can try out different values of alpha until and then see which one gives you the best result.
+
+00:05:38.800 --> 00:05:44.800
+So just to wrap up how you run beam search, as you run beam search, you see a lot of sentences
+
+00:05:44.800 --> 00:05:50.560
+with length equal one, lot of sentences with length equal two, lot of sentences with length
+
+00:05:50.560 --> 00:05:53.480
+equals three, and so on.
+
+00:05:53.480 --> 00:05:56.040
+And maybe you run beam search for 30 steps.
+
+00:05:56.040 --> 00:06:01.420
+You consider output sentences up to length 30, let's say.
+
+00:06:01.420 --> 00:06:08.460
+And so with beam with a three, you would be keeping track of the top three possibilities
+
+00:06:08.460 --> 00:06:15.540
+for each of these possible sentence lengths, one, two, three, four, and so on up to 30.
+
+00:06:15.540 --> 00:06:26.890
+Then you would look at all the output sentences and score them against the score.
+
+00:06:26.890 --> 00:06:33.990
+And so you can take your top sentences and just compute this objective function on the
+
+00:06:33.990 --> 00:06:39.270
+sentences that you have seen through the beam search process.
+
+00:06:39.270 --> 00:06:44.530
+And then finally, of all these sentences that you evaluate this way, you would pick the
+
+00:06:44.530 --> 00:06:50.750
+one that achieves the highest value on this normalized log probability objective.
+
+00:06:50.750 --> 00:06:54.830
+Sometimes it's called a normalized log likelihood objective, and then that would be the final
+
+00:06:54.830 --> 00:06:58.090
+translation, the output.
+
+00:06:58.090 --> 00:07:00.450
+So that's how you implement beam search.
+
+00:07:00.450 --> 00:07:04.370
+And you get to play this yourself in this week's programming exercise.
+
+00:07:04.370 --> 00:07:07.890
+Finally, a few implementation details.
+
+00:07:07.890 --> 00:07:10.470
+How do you choose the beam with?
+
+00:07:10.470 --> 00:07:15.910
+So here are the pros and cons of setting B to be very large versus very small.
+
+00:07:15.910 --> 00:07:22.390
+If the beam width is very large, then you consider a lot of possibilities.
+
+00:07:22.390 --> 00:07:28.010
+And so you tend to get a better result because you're considering a lot of different options,
+
+00:07:28.010 --> 00:07:30.130
+but it will be slower.
+
+00:07:30.130 --> 00:07:35.770
+And the memory requirements will also grow, but also be computationally slower.
+
+00:07:35.770 --> 00:07:40.290
+Whereas if you use a very small beam width, then you get a worse result because you're
+
+00:07:40.290 --> 00:07:46.610
+just keeping less possibilities in mind as the algorithm is running, but you get a
+
+00:07:46.610 --> 00:07:51.490
+result faster, and the memory requirements will also be lower.
+
+00:07:51.490 --> 00:07:56.650
+So in the previous video, we used in our running example a beam width of three.
+
+00:07:56.650 --> 00:07:59.510
+So we're keeping three possibilities in mind.
+
+00:07:59.510 --> 00:08:02.110
+In practice, that is on the small side.
+
+00:08:02.110 --> 00:08:07.670
+In production systems, it's not uncommon to see a beam width maybe around 10.
+
+00:08:07.670 --> 00:08:13.310
+And I think a beam width of 100 would be considered very large for a production system,
+
+00:08:13.310 --> 00:08:14.950
+depending on the application.
+
+00:08:14.950 --> 00:08:20.270
+But for research systems where people want to squeeze out every last drop of performance
+
+00:08:20.330 --> 00:08:25.350
+in order to publish a paper, the best possible result is not uncommon to see people use beam
+
+00:08:25.350 --> 00:08:28.070
+widths of a thousand or three thousand.
+
+00:08:28.070 --> 00:08:33.570
+But this is very application as well as domain dependent.
+
+00:08:33.570 --> 00:08:39.570
+So I would say try out a variety of values of B and see what works for your application.
+
+00:08:39.570 --> 00:08:45.970
+But when B gets very large, there is often diminishing returns.
+
+00:08:45.970 --> 00:08:51.250
+So for many applications, I would expect to see a huge gain as you go from beam
+
+00:08:51.250 --> 00:08:55.110
+width of one, which is basically greedy search to three to maybe 10.
+
+00:08:55.110 --> 00:09:01.550
+But the gains as you go from a thousand to three thousand in beam width might not be as big.
+
+00:09:01.550 --> 00:09:08.590
+And for those of you that have taken maybe a lot of computer science courses before,
+
+00:09:08.590 --> 00:09:12.830
+if you're familiar with computer science search algorithms like BFS,
+
+00:09:12.830 --> 00:09:17.870
+breadth of search or DFS, depth of search, the way to think about beam search is that
+
+00:09:17.870 --> 00:09:22.070
+unlike those other algorithms, which you might have learned about in a computer science
+
+00:09:22.070 --> 00:09:26.030
+algorithms course, and don't worry about it if you've not heard of these algorithms,
+
+00:09:26.030 --> 00:09:30.270
+but if you've heard of breadth of search or depth of search, then unlike those algorithms,
+
+00:09:30.270 --> 00:09:36.350
+which are exact search algorithms, beam search runs much faster, but does not guarantee to
+
+00:09:36.350 --> 00:09:41.630
+find the exact maximum for this argument you like to find.
+
+00:09:41.630 --> 00:09:44.750
+If you haven't heard of breadth of search or depth of search, don't worry about it.
+
+00:09:44.750 --> 00:09:46.710
+It's not important for our purposes.
+
+00:09:46.710 --> 00:09:51.710
+But if you have, this is how beam search relates to those algorithms.
+
+00:09:51.710 --> 00:09:57.310
+So that's it for beam search, which is a widely used algorithm in many production systems
+
+00:09:57.310 --> 00:09:59.950
+or in many commercial systems.
+
+00:09:59.950 --> 00:10:05.430
+Now, in the third course, in this sequence of courses on deep learning, we talk a lot about
+
+00:10:05.430 --> 00:10:07.070
+error analysis.
+
+00:10:07.230 --> 00:10:13.030
+It turns out one of the most useful tools I've found is to do error analysis on beam search.
+
+00:10:13.030 --> 00:10:15.430
+So you sometimes wonder, should I increase my beam width?
+
+00:10:15.430 --> 00:10:17.750
+Is my beam width working well enough?
+
+00:10:17.750 --> 00:10:22.150
+And there's some simple things you can compute to give you guidance on whether you need to
+
+00:10:22.150 --> 00:10:25.110
+work on improving your search algorithm.
+
+00:10:25.110 --> 00:10:26.910
+Let's talk about that in the next video.

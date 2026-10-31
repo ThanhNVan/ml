@@ -1,0 +1,290 @@
+WEBVTT
+
+00:00:00.530 --> 00:00:03.980
+Một trong những vấn đề với việc huấn luyện
+neural network, đặc
+
+00:00:03.980 --> 00:00:07.430
+biệt là neural network rất sâu, là độ dốc
+biến mất và bùng nổ.
+
+00:00:07.430 --> 00:00:10.880
+Điều đó có nghĩa là khi bạn đang huấn luyện
+một mạng lưới rất sâu, các
+
+00:00:10.880 --> 00:00:14.330
+đạo hàm hoặc hệ số góc của bạn đôi khi có thể
+trở nên rất, rất lớn hoặc
+
+00:00:14.730 --> 00:00:18.677
+rất, rất nhỏ, thậm chí có thể nhỏ theo cấp số
+nhân, và điều này gây khó
+
+00:00:18.677 --> 00:00:22.623
+khăn cho việc đào tạo. Trong video này, bạn sẽ
+biết vấn đề bùng nổ hoặc
+
+00:00:22.623 --> 00:00:26.570
+độ dốc biến mất thực sự có ý nghĩa gì cũng như
+cách bạn có thể sử dụng
+
+00:00:27.370 --> 00:00:32.490
+lựa chọn cẩn thận việc khởi tạo trọng số ngẫu
+nhiên để giảm đáng kể vấn đề này.
+
+00:00:33.050 --> 00:00:37.097
+Giả sử bạn đang huấn luyện một mạng lưới thần
+kinh rất sâu như thế này. Để tiết
+
+00:00:37.097 --> 00:00:41.143
+kiệm không gian trên slide này, tôi đã vẽ nó
+như thể bạn chỉ có hai đơn vị ẩn
+
+00:00:41.143 --> 00:00:45.190
+trên mỗi lớp, nhưng có thể nhiều hơn nữa.
+Nhưng neural network này sẽ có tham số w1,
+
+00:00:45.730 --> 00:00:52.210
+w2, w3, v.v. cho đến wl. Để đơn giản, giả sử
+chúng ta đang sử dụng
+
+00:00:52.210 --> 00:00:58.690
+activation function g của z bằng z, do đó
+activation function tuyến tính và
+
+00:00:59.290 --> 00:01:04.997
+chúng ta hãy bỏ qua b. Giả sử b của l bằng 0.
+Vì vậy, trong
+
+00:01:04.997 --> 00:01:10.703
+trường hợp đó, bạn có thể chỉ ra rằng kết quả
+đầu ra y sẽ
+
+00:01:10.703 --> 00:01:16.410
+là wl nhân wl trừ 1 nhân wl trừ 2 dot dot dot
+down tới w3,
+
+00:01:17.530 --> 00:01:25.270
+w2, w1 nhân x. Nhưng nếu bạn chỉ muốn kiểm tra
+phép toán của
+
+00:01:25.270 --> 00:01:33.010
+tôi, w1 nhân x sẽ bằng z1, vì b bằng 0, nên z1
+bằng, tôi đoán,
+
+00:01:33.890 --> 00:01:40.170
+w1 nhân x rồi cộng b bằng 0, nhưng khi đó a1
+bằng g của z1, nhưng vì
+
+00:01:40.170 --> 00:01:46.450
+chúng ta sử dụng activation function tuyến
+tính nên kết quả này chỉ bằng
+
+00:01:47.170 --> 00:01:52.270
+z1. Vậy số hạng đầu tiên w1 x này bằng a1. Và
+bằng cách suy
+
+00:01:52.270 --> 00:01:57.370
+luận tương tự, bạn có thể tìm ra rằng w2 nhân
+w1 nhân x bằng a2,
+
+00:01:57.890 --> 00:02:11.610
+bởi vì đó sẽ là g của z2. Nó sẽ bằng g(w2 nhân
+a1), đúng vậy, bạn thế nó vào đây.
+
+00:02:11.690 --> 00:02:21.810
+Vậy cái này sẽ bằng a2, và sau đó, bạn biết
+đấy, cái này sẽ bằng a3
+
+00:02:21.810 --> 00:02:28.037
+và cứ như vậy cho đến khi tích của tất cả các
+ma trận này cho bạn mũ y
+
+00:02:28.037 --> 00:02:34.263
+chứ không phải y. Bây giờ, giả sử rằng mỗi ma
+trận trọng số của bạn, wl,
+
+00:02:34.263 --> 00:02:40.490
+bằng, giả sử nó chỉ lớn hơn 1 nhân danh tính
+một chút. Vậy nó là 1,5, 1,5,
+
+00:02:41.490 --> 00:02:44.790
+0, 0 phải không? Về mặt kỹ thuật, cái cuối
+cùng có các kích thước khác
+
+00:02:44.790 --> 00:02:48.090
+nhau, nên có lẽ đây chỉ là phần còn lại của ma
+trận trọng lượng này.
+
+00:02:48.850 --> 00:02:55.270
+Khi đó y hat sẽ, bạn biết đấy, bỏ qua cái cuối
+cùng này cho một chiều khác,
+
+00:02:55.270 --> 00:03:01.690
+nó sẽ là ma trận 1,5, 0, 0, 1,5 này với lũy
+thừa của L trừ 1 nhân x, bởi vì
+
+00:03:02.410 --> 00:03:07.050
+chúng ta giả định rằng mỗi ma trận này, bạn
+biết đấy, bằng thứ này.
+
+00:03:07.770 --> 00:03:13.183
+Nó thực sự gấp 1,5 lần ma trận nhận dạng, sau
+đó bạn kết thúc phép tính
+
+00:03:13.183 --> 00:03:18.597
+này. Và vì vậy, y hat về cơ bản sẽ bằng 1,5
+lũy thừa của L, lũy thừa của
+
+00:03:18.597 --> 00:03:24.010
+L trừ 1 nhân x, và nếu L lớn đối với một mạng
+lưới thần kinh rất sâu,
+
+00:03:24.250 --> 00:03:28.063
+Chiếc mũ y sẽ rất lớn. Trong thực tế, điều này
+tăng theo cấp
+
+00:03:28.063 --> 00:03:31.877
+số nhân. Nó phát triển như 1,5 theo số lớp. Và
+vì vậy nếu bạn
+
+00:03:31.877 --> 00:03:35.690
+có một neural network rất sâu, giá trị
+của y sẽ bùng nổ.
+
+00:03:36.570 --> 00:03:42.190
+Bây giờ ngược lại, nếu chúng ta thay thế số
+này bằng 0,5, thì số nào đó nhỏ hơn
+
+00:03:42.190 --> 00:03:47.810
+1, thì số này trở thành 0,5 lũy thừa của L,
+phải không? Ma trận này trở thành
+
+00:03:48.850 --> 00:03:55.330
+0,5 đến L trừ 1 lần x, một lần nữa, bỏ qua WL.
+Nhưng vì vậy, nếu mỗi ma trận
+
+00:03:55.330 --> 00:04:01.810
+của bạn nhỏ hơn 1, thì nếu, giả sử x1, x2 là
+1, 1, thì số lần kích hoạt sẽ là
+
+00:04:01.930 --> 00:04:07.990
+1,5, 1,5, 1,4, 1,4, 1,8, 1,8, v.v., cho đến
+khi số này trở thành 1
+
+00:04:07.990 --> 00:04:14.050
+trên 2 đối với L. Vì vậy, giá trị kích hoạt sẽ
+giảm theo cấp số nhân
+
+00:04:14.690 --> 00:04:19.810
+là hàm của độ sâu, là hàm của số lớp L của
+mạng. Vì vậy, nếu bạn có
+
+00:04:19.810 --> 00:04:24.930
+một mạng lưới rất sâu, số lần kích hoạt sẽ
+giảm theo cấp số nhân.
+
+00:04:26.010 --> 00:04:29.757
+Vì vậy, trực giác mà tôi hy vọng bạn có thể
+rút ra từ điều này là
+
+00:04:29.757 --> 00:04:33.503
+nếu các trọng số W, nếu chúng đều bằng nhau,
+bạn biết đấy, chỉ lớn
+
+00:04:33.503 --> 00:04:37.250
+hơn 1 một chút, hoặc chỉ lớn hơn một chút so
+với ma trận đẳng thức, thì
+
+00:04:37.570 --> 00:04:41.037
+với một mạng lưới rất sâu, việc kích hoạt có
+thể bùng nổ.
+
+00:04:41.037 --> 00:04:44.503
+Và nếu W là, bạn biết đấy, chỉ cần bớt đồng
+nhất một chút
+
+00:04:44.503 --> 00:04:47.970
+thôi, phải không? Vậy nếu đây có lẽ không phải
+là 0,9, 0,9,
+
+00:04:48.330 --> 00:04:52.290
+phải không? Sau đó, nếu một mạng rất sâu, số
+lần kích hoạt sẽ giảm
+
+00:04:52.290 --> 00:04:56.250
+theo cấp số nhân. Và mặc dù tôi đã giải thích
+lập luận này về mặt
+
+00:04:56.250 --> 00:05:00.210
+số lần kích hoạt tăng hoặc giảm theo cấp số
+nhân như một hàm của L,
+
+00:05:00.890 --> 00:05:04.330
+một đối số tương tự có thể được sử dụng để chỉ
+ra rằng đạo hàm hoặc
+
+00:05:04.330 --> 00:05:07.770
+độ dốc mà bạn tính toán bằng cách
+gradient descent cũng sẽ tăng theo
+
+00:05:07.770 --> 00:05:11.210
+cấp số nhân hoặc giảm theo cấp số nhân như là
+một hàm của số lớp.
+
+00:05:11.730 --> 00:05:15.680
+Với một số neural network hiện đại, bạn thực
+sự có L bằng 150.
+
+00:05:15.680 --> 00:05:19.630
+Microsoft gần đây đã có kết quả tuyệt vời về
+neural network 352
+
+00:05:19.630 --> 00:05:23.580
+lớp. Nhưng với neural network sâu như
+vậy, nếu số lần kích
+
+00:05:23.580 --> 00:05:27.530
+hoạt của bạn, độ dốc của bạn tăng hoặc giảm
+theo cấp số nhân theo hàm của L,
+
+00:05:27.730 --> 00:05:31.957
+thì những giá trị này có thể rất lớn hoặc rất
+nhỏ. Và điều này làm cho việc
+
+00:05:31.957 --> 00:05:36.183
+đào tạo trở nên khó khăn, đặc biệt nếu độ dốc
+của bạn nhỏ theo cấp số nhân
+
+00:05:36.183 --> 00:05:40.410
+trong L, thì bạn biết đấy, việc
+gradient descent sẽ thực hiện các bước nhỏ.
+
+00:05:40.410 --> 00:05:43.730
+Sẽ mất nhiều thời gian để gradient descent để
+tìm hiểu bất cứ điều gì.
+
+00:05:44.330 --> 00:05:47.510
+Tóm lại, bạn đã thấy các mạng sâu gặp phải vấn
+
+00:05:47.510 --> 00:05:50.690
+đề biến mất hoặc bùng nổ độ dốc như thế nào.
+
+00:05:50.690 --> 00:05:54.340
+Trên thực tế, trong một thời gian dài, vấn đề
+này là rào cản rất lớn đối với
+
+00:05:54.340 --> 00:05:57.990
+việc đào tạo neural network sâu. Hóa ra
+có một giải pháp từng phần không
+
+00:05:57.990 --> 00:06:01.640
+giải quyết được hoàn toàn vấn đề này, nhưng
+điều đó giúp ích rất nhiều, đó là
+
+00:06:01.640 --> 00:06:05.290
+sự lựa chọn cẩn thận về cách bạn khởi tạo các
+trọng số. Để thấy được điều đó,
+
+00:06:05.410 --> 00:06:07.293
+chúng ta hãy chuyển sang video tiếp theo.

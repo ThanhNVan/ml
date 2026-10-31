@@ -1,0 +1,186 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.500 --> 00:00:06.040
+Hello and welcome. As you probably know, deep learning has already transformed traditional
+
+00:00:06.040 --> 00:00:11.540
+internet businesses like web search and advertising. But deep learning is also enabling brand new
+
+00:00:11.540 --> 00:00:16.440
+products and businesses and ways of helping people to be created, everything ranging from
+
+00:00:16.440 --> 00:00:20.780
+better healthcare, where deep learning is getting really good at reading x-ray images,
+
+00:00:20.780 --> 00:00:27.020
+to delivering personalized education, to precision agriculture, to even self-driving cars, and
+
+00:00:27.020 --> 00:00:31.980
+many others. If you want to learn the tools of deep learning and be able to apply them to
+
+00:00:31.980 --> 00:00:37.260
+build these amazing things, I want to help you get there. When you finish this sequence of
+
+00:00:37.260 --> 00:00:42.340
+courses on Coursera, called a specialization, you will be able to put deep learning onto your
+
+00:00:42.340 --> 00:00:47.940
+resume with confidence. Over the next decade, I think all of us have an opportunity to build
+
+00:00:47.940 --> 00:00:53.820
+an amazing world, amazing society that is AI powered. I hope that you will play a big
+
+00:00:53.820 --> 00:00:58.980
+role in the creation of this AI powered society. So that, let's get started.
+
+00:00:58.980 --> 00:01:07.140
+I think that AI is the new electricity. Starting about 100 years ago, the electrification of our
+
+00:01:07.140 --> 00:01:12.380
+society transformed every major industry, everything ranging from translation, manufacturing,
+
+00:01:12.380 --> 00:01:17.860
+to healthcare, to communications, and many more. And I think that today we see a surprisingly clear
+
+00:01:17.860 --> 00:01:23.980
+path for AI to bring about an equally big transformation. And of course, the part of AI
+
+00:01:23.980 --> 00:01:30.020
+that is rising rapidly and driving a lot of these developments is deep learning. So today,
+
+00:01:30.020 --> 00:01:34.580
+deep learning is one of the most highly sought after skills in the technology world. And
+
+00:01:34.580 --> 00:01:39.660
+through this course and a few courses after this one, I want to help you to gain and master
+
+00:01:39.660 --> 00:01:46.260
+those skills. So here's what you learn in this sequence of courses, also called a specialization
+
+00:01:46.260 --> 00:01:51.980
+on Coursera. In the first course, you learn about the foundations of neural networks, you
+
+00:01:51.980 --> 00:01:56.580
+learn about neural networks and deep learning. This video that you're watching is part of
+
+00:01:56.580 --> 00:02:01.940
+this first course, which lasts four weeks in total. And each of the five courses in
+
+00:02:01.940 --> 00:02:07.300
+this specialization will be about two to four weeks with most of them actually shorter
+
+00:02:07.300 --> 00:02:12.220
+than four weeks. But in this first course, you learn how to build a new network, including
+
+00:02:12.220 --> 00:02:16.940
+a deep neural network, and how to train it on data. And at the end of this course, you'll
+
+00:02:16.940 --> 00:02:23.820
+be able to build a deep neural network to recognize, guess what, cats. For some reason,
+
+00:02:23.820 --> 00:02:29.100
+there is a cat meme running around in deep learning. And so following tradition in this
+
+00:02:29.100 --> 00:02:36.340
+first course, we'll build a cat recognizer. Then in the second course, you learn about
+
+00:02:36.340 --> 00:02:40.700
+the practical aspects of deep learning. So you learn now that you've built a neural
+
+00:02:40.700 --> 00:02:45.260
+network, how to actually get it to perform well. So you learn about hyper parameter tuning,
+
+00:02:45.260 --> 00:02:51.660
+regularization, how to diagnose bias invariance, and advanced optimization algorithms like momentum,
+
+00:02:51.660 --> 00:02:56.140
+RMS prop, and the added optimization algorithm. Sometimes it seems like there's a lot of
+
+00:02:56.140 --> 00:03:01.620
+tuning, even some black magic and how you build in your network. So the second course,
+
+00:03:01.620 --> 00:03:06.660
+which is just three weeks, will demystify some of that black magic. In the third course,
+
+00:03:06.660 --> 00:03:11.100
+which is just two weeks, you learn how to structure your machine learning project. It
+
+00:03:11.100 --> 00:03:15.220
+turns out that the strategy for building a machine learning system has changed in the
+
+00:03:15.220 --> 00:03:21.540
+era of deep learning. So for example, the way you switch your data into train development
+
+00:03:21.540 --> 00:03:27.420
+or dev, also called holdout cross validation set, and test sets has changed in the era
+
+00:03:27.420 --> 00:03:32.900
+of deep learning. So what are the new best practices for doing that? And what have
+
+00:03:32.900 --> 00:03:36.740
+you a training set and your test set come from different distributions that's happening
+
+00:03:36.740 --> 00:03:41.260
+a lot more in the era of deep learning. So how do you deal with that? And if you've
+
+00:03:41.260 --> 00:03:48.250
+heard of end to end deep learning, you also learn more about that in this third course
+
+00:03:48.250 --> 00:03:52.570
+and see when you should use it and maybe when you shouldn't. The material in this
+
+00:03:52.570 --> 00:03:56.610
+third course is relatively unique. I'm going to share with you a lot of the hard one
+
+00:03:56.610 --> 00:04:02.370
+lessons that I've learned building and shipping, quite a lot of deep learning products. This
+
+00:04:02.370 --> 00:04:08.850
+as far as I know, this is largely material that is not taught in most universities that
+
+00:04:08.850 --> 00:04:13.250
+have deep learning courses. But I think I really help you to get your deep learning
+
+00:04:13.250 --> 00:04:18.970
+systems to work well. In the next course, we'll then talk about convolutional neural
+
+00:04:18.970 --> 00:04:26.410
+networks, often abbreviated CNNs. Convolutional networks or convolutional neural networks
+
+00:04:26.410 --> 00:04:32.290
+are often applied to images. So you learn how to build these models in course four.
+
+00:04:32.290 --> 00:04:37.810
+In course five, you learn sequence models and how to apply them to natural language
+
+00:04:37.810 --> 00:04:43.930
+processing and other problems. So sequence models includes models like recurrent neural
+
+00:04:43.930 --> 00:04:49.730
+networks, abbreviated RNNs and LSTM models, that's a long short term memory models. You
+
+00:04:49.730 --> 00:04:54.530
+learn what these terms mean in course five and be able to apply them to natural language
+
+00:04:54.530 --> 00:05:01.130
+processing problems. So you learn these models in course five and be able to apply them to
+
+00:05:01.130 --> 00:05:07.090
+sequence data. So for example, natural language is just a sequence of words. And you also understand
+
+00:05:07.090 --> 00:05:12.970
+how these models can be applied to speech recognition, or to music generation and other
+
+00:05:12.970 --> 00:05:18.130
+problems. So through these courses, you learn the tools of deep learning, you'll be able
+
+00:05:18.130 --> 00:05:22.530
+to apply them to build amazing things. And I hope many of you through this will also
+
+00:05:22.530 --> 00:05:28.170
+be able to advance your career. So that let's get started. Please go on to the next video
+
+00:05:28.170 --> 00:05:31.530
+where we'll talk about deep learning applied to supervised learning.

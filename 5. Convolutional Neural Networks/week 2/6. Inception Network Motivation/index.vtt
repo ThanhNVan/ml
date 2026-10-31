@@ -1,0 +1,333 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.400
+When designing a layer for a conch net, you might have to pick, do you want a 1x3 filter
+
+00:00:05.400 --> 00:00:09.640
+or 3x3 or 5x5 or do you want a pooling layer?
+
+00:00:09.640 --> 00:00:13.500
+What the Inception network does is it says, why don't you do them all?
+
+00:00:13.500 --> 00:00:18.380
+And this makes the network architecture more complicated but it also works remarkably well.
+
+00:00:18.380 --> 00:00:20.140
+Let's see how this works.
+
+00:00:20.140 --> 00:00:27.880
+Let's say for the sake of example that you have inputs a 28x28x192 dimensional volume.
+
+00:00:27.880 --> 00:00:34.360
+So what the Inception network or what an Inception layer says is instead of choosing what filter
+
+00:00:34.360 --> 00:00:40.520
+size you want in a conv layer or even do you want a convolutional layer or pooling layer,
+
+00:00:40.520 --> 00:00:42.000
+let's do them all.
+
+00:00:42.000 --> 00:00:50.960
+So what if you can use a 1x1 convolution and that will output a 28x28xsomething.
+
+00:00:50.960 --> 00:00:59.000
+Let's say 28x28x64 output and you just have a volume there.
+
+00:00:59.000 --> 00:01:07.600
+But maybe you also want to try a 3x3 and that might output a 28x28x128 and then what you
+
+00:01:07.600 --> 00:01:15.760
+do is just stack up this second volume next to the first volume and to make the dimensions
+
+00:01:15.760 --> 00:01:19.720
+match up, let's make this a same convolution.
+
+00:01:19.720 --> 00:01:26.520
+So the output dimension is still 28x28 same as the input dimension in terms of height
+
+00:01:26.520 --> 00:01:31.920
+and width, but 28x28 by in this example 128.
+
+00:01:31.920 --> 00:01:36.920
+And maybe you might say, well I want to hedge my bets, maybe a 5x5 filter works better so
+
+00:01:36.920 --> 00:01:47.640
+let's do that too and have that output a 28x28x32 and again you use the same convolution
+
+00:01:47.640 --> 00:01:53.080
+to keep the dimensions the same and maybe you don't want a convolutional layer, let's
+
+00:01:53.080 --> 00:01:59.000
+apply pooling and that has some other output and let's stack that up as well.
+
+00:01:59.000 --> 00:02:06.000
+And here pooling output is 28x28x32.
+
+00:02:06.000 --> 00:02:12.040
+Now in order to make all the dimensions match you actually need to use padding for max
+
+00:02:12.040 --> 00:02:13.040
+pooling.
+
+00:02:13.040 --> 00:02:17.200
+So this is an unusual form of pooling because if you want the input to have height and
+
+00:02:17.200 --> 00:02:24.600
+width 28x28 and have the output match the dimensions of everything else also by 28x28
+
+00:02:24.600 --> 00:02:31.920
+then you need to use same padding as well as a stride of 1 for pooling.
+
+00:02:31.920 --> 00:02:37.680
+So this detail might seem a bit funny to you now but let's keep going and we'll make
+
+00:02:37.680 --> 00:02:40.240
+this all work later.
+
+00:02:40.240 --> 00:02:46.320
+But with an inception module like this you can input some volume and output in this
+
+00:02:46.320 --> 00:02:52.720
+case you can see we add up all these numbers 32 plus 32 plus 128 plus 64 that's equal to
+
+00:02:52.720 --> 00:02:55.440
+256.
+
+00:02:55.440 --> 00:03:07.080
+So you will have one inception module input 28x28x129 and output 28x28x256.
+
+00:03:07.080 --> 00:03:13.800
+And this is the heart of the inception network which is due to Tristan Zegady, Weylu Yantin
+
+00:03:13.800 --> 00:03:19.120
+Zia, Pia Semine, Scott Reed, Dragomah Angeloff, Dimitri Erhan, Vincent Van Kook and Andrew
+
+00:03:19.120 --> 00:03:21.800
+Rabinovich.
+
+00:03:21.800 --> 00:03:27.360
+And the basic idea is that instead of you needing to pick one of these filter sizes or
+
+00:03:27.360 --> 00:03:32.400
+pooling you want and committing to that you can do them all and just concatenate all the
+
+00:03:32.400 --> 00:03:37.360
+outputs and let the network learn whatever parameters it wants to use whatever combinations
+
+00:03:37.360 --> 00:03:40.680
+of these filter sizes it wants.
+
+00:03:40.720 --> 00:03:45.080
+Now it turns out that there's a problem with the inception layer as we described it here
+
+00:03:45.080 --> 00:03:47.200
+which is computational cost.
+
+00:03:47.200 --> 00:03:54.440
+On the next slide let's figure out what's the computational cost of this 5x5 filter resulting
+
+00:03:54.440 --> 00:03:57.280
+in this block over here.
+
+00:03:57.280 --> 00:04:07.320
+So just focusing on the 5x5 part on the previous slide we had as input a 28x28x192 block and
+
+00:04:07.400 --> 00:04:15.400
+you implement a 5x5 same convolution with 32 filters output 28x28x32.
+
+00:04:15.520 --> 00:04:19.520
+On the previous slide I had drawn this as a thin purple size but I'm just going to draw
+
+00:04:19.520 --> 00:04:23.720
+this as a more normal looking blue block here.
+
+00:04:23.720 --> 00:04:30.720
+So let's look at the computational cost of outputting this 28x28x32.
+
+00:04:31.360 --> 00:04:40.360
+So you have 32 filters because the output has 32 channels and each filter is going to be
+
+00:04:40.560 --> 00:04:47.560
+5x5x192 and so the output size is 28x28x32 and so you need to compute 28x28x32 numbers
+
+00:04:47.560 --> 00:04:54.560
+and for each of them you need to do this many multiplications 5x5x192.
+
+00:05:01.640 --> 00:05:06.600
+So the total number of multipliers you need is the number of multipliers you need to compute
+
+00:05:06.600 --> 00:05:13.360
+each of the output values times the number of output values you need to compute.
+
+00:05:13.360 --> 00:05:19.640
+And if you multiply out all these numbers this is equal to 120 million.
+
+00:05:19.640 --> 00:05:25.920
+And so while you can do 120 million multipliers on a modern computer this is still a pretty
+
+00:05:25.920 --> 00:05:27.720
+expensive operation.
+
+00:05:27.720 --> 00:05:33.040
+On the next slide you see how using the idea of 1x1 convolutions which you learned about
+
+00:05:33.040 --> 00:05:38.240
+in the previous video you'll be able to reduce the computational cost by about a factor of
+
+00:05:38.240 --> 00:05:45.240
+10 to go from about 120 million multipliers to about 1 tenth of that.
+
+00:05:45.240 --> 00:05:50.760
+So please remember the number 120 so you can compare it with what you see on the next slide
+
+00:05:50.760 --> 00:05:52.800
+120 million.
+
+00:05:52.800 --> 00:06:01.800
+Here's an alternative architecture for inputting 28x28x192 and outputting 28x28x32 which is
+
+00:06:02.520 --> 00:06:03.240
+following.
+
+00:06:03.240 --> 00:06:10.240
+You're going to input the volume, use a 1x1 convolution to reduce the volume to a 16 channels
+
+00:06:12.520 --> 00:06:19.520
+instead of 192 channels and then on this much smaller volume run your 5x5 convolution to
+
+00:06:19.880 --> 00:06:22.080
+give you your final output.
+
+00:06:22.080 --> 00:06:24.800
+So notice the input and output dimensions are still the same.
+
+00:06:24.800 --> 00:06:31.800
+You input 28x28x182 and output 28x28x32 same as the previous slide.
+
+00:06:33.840 --> 00:06:38.320
+But what we've done is we've taken this huge volume we had on the left and we've shrunk
+
+00:06:38.320 --> 00:06:45.320
+it to this much smaller intermediate volume which is only has 16 instead of 192 channels.
+
+00:06:47.440 --> 00:06:55.580
+Sometimes this is called a bottleneck layer.
+
+00:06:55.580 --> 00:06:59.860
+I guess because a bottleneck is usually the smallest part of something.
+
+00:06:59.860 --> 00:07:06.860
+So I guess if you have a glass bottle that looks like this then you know this is I guess
+
+00:07:07.140 --> 00:07:08.860
+where the core goes.
+
+00:07:08.860 --> 00:07:14.220
+Then the bottleneck is the smallest part of this bottle.
+
+00:07:14.220 --> 00:07:18.220
+So in the same way the bottleneck layer is the smallest part of this network where you
+
+00:07:18.220 --> 00:07:23.380
+shrink the representation before increasing the size again.
+
+00:07:23.380 --> 00:07:27.380
+Now let's look at the computational cost involved.
+
+00:07:27.380 --> 00:07:32.860
+To apply this 1x1 convolution we have 16 filters.
+
+00:07:32.860 --> 00:07:37.380
+Each of the filters is going to be of dimension 1x1x192.
+
+00:07:37.380 --> 00:07:44.380
+This 192 matches that 192 and so the cost of computing this 28x28x16 volume is going
+
+00:07:44.580 --> 00:07:51.580
+to be well you need this many outputs and for each of them you need to do 190 pixels
+
+00:07:53.380 --> 00:07:54.380
+and 192 multiplications.
+
+00:07:54.380 --> 00:08:01.380
+I could have written 1x1x192 and if you multiply this out this is 2.4 million.
+
+00:08:02.380 --> 00:08:04.940
+It's about 2.4 million.
+
+00:08:04.940 --> 00:08:05.820
+How about the second?
+
+00:08:05.820 --> 00:08:12.020
+So that's the cost of this first convolutional layer.
+
+00:08:12.020 --> 00:08:17.540
+The cost of this second convolutional layer will be that well you have this many outputs
+
+00:08:17.540 --> 00:08:28.540
+so 28x28x32 and then for each of the outputs you have to apply a 5x5x16 dimensional filter.
+
+00:08:28.540 --> 00:08:36.540
+So 5x5x16 and you multiply that out is equal to 10.0.
+
+00:08:36.540 --> 00:08:41.260
+And so the total number of multiplications you need to do is the sum of those which
+
+00:08:41.260 --> 00:08:45.260
+is 12.4 million multiplications.
+
+00:08:45.260 --> 00:08:49.420
+And if you compare this with what we had on the previous slide you reduce the computational
+
+00:08:49.420 --> 00:08:58.420
+cost from about 120 million multiplies down to about 1 tenth of that to 12.4 million multiplications.
+
+00:08:59.420 --> 00:09:04.860
+Oh and the number of additions you need to do is about very similar to the number of
+
+00:09:04.860 --> 00:09:11.060
+multiplications you need to do so that's why I'm just counting the number of multiplications.
+
+00:09:11.060 --> 00:09:15.340
+So to summarize, if you're building a layer of a neural network and you don't want to
+
+00:09:15.340 --> 00:09:21.580
+have to decide do you want a 1x1 or 3x3 or 5x5 or a pooling layer, the inception module
+
+00:09:21.580 --> 00:09:26.060
+lets you say let's do them all and let's concatenate the results.
+
+00:09:26.060 --> 00:09:30.700
+And then we ran into the problem of computational cost and what you saw here was how using
+
+00:09:30.700 --> 00:09:36.620
+a 1x1 convolution you can create this bottleneck layer thereby reducing the computational
+
+00:09:36.620 --> 00:09:38.580
+cost significantly.
+
+00:09:38.580 --> 00:09:43.380
+Now you might be wondering does shrinking down the representation size so dramatically
+
+00:09:43.380 --> 00:09:47.020
+doesn't hurt the performance of your neural network?
+
+00:09:47.020 --> 00:09:53.460
+It turns out that so long as you implement this bottleneck layer within reason you can
+
+00:09:53.460 --> 00:09:59.340
+shrink down the representation size significantly and it doesn't seem to hurt the performance
+
+00:09:59.340 --> 00:10:02.300
+but saves you a lot of computation.
+
+00:10:02.300 --> 00:10:08.260
+So this is the key of the, these are the key ideas of the inception module.
+
+00:10:08.260 --> 00:10:13.700
+Let's put them together and in the next video show you what the full inception network
+
+00:10:13.700 --> 00:10:14.100
+looks like.

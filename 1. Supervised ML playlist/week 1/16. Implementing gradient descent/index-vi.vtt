@@ -1,0 +1,475 @@
+WEBVTT
+
+00:00:04.050 --> 00:00:09.930
+Chúng ta hãy xem cách bạn thực sự có thể triển
+khai thuật toán gradient descent.
+
+00:00:09.930 --> 00:00:14.170
+Hãy để tôi viết ra thuật toán
+gradient descent.
+
+00:00:14.170 --> 00:00:15.310
+Hãy nghe điều này.
+
+00:00:15.310 --> 00:00:23.100
+Ở mỗi bước, w, tham số, được cập nhật thành
+giá trị cũ của w
+
+00:00:23.100 --> 00:00:30.890
+trừ alpha lần số hạng d trên d w của
+cost function j của wb.
+
+00:00:30.890 --> 00:00:35.383
+Vì vậy, ý nghĩa của biểu thức này là, hãy cập
+nhật tham số w
+
+00:00:35.383 --> 00:00:39.877
+của bạn bằng cách lấy giá trị hiện tại của w
+và điều chỉnh nó
+
+00:00:39.877 --> 00:00:44.370
+một lượng nhỏ, chính là biểu thức này ở bên
+phải, trừ alpha
+
+00:00:44.370 --> 00:00:49.250
+nhân học kỳ này ở đây.
+
+00:00:49.250 --> 00:00:53.610
+Vì vậy, nếu bạn cảm thấy có nhiều điều đang
+diễn ra trong phương trình
+
+00:00:53.610 --> 00:00:57.970
+này, không sao cả, đừng lo lắng về điều đó,
+chúng ta sẽ cùng nhau giải quyết.
+
+00:00:58.050 --> 00:01:01.890
+Đầu tiên, ký hiệu bằng nhau ở đây.
+
+00:01:01.890 --> 00:01:06.750
+Lưu ý rằng tôi đã nói rằng chúng ta đang gán
+giá trị w bằng dấu bằng này.
+
+00:01:06.750 --> 00:01:12.090
+Vì vậy, trong ngữ cảnh này, dấu bằng này là
+toán tử gán.
+
+00:01:12.090 --> 00:01:18.010
+Cụ thể trong ngữ cảnh này, nếu bạn viết mã có
+nội dung a bằng c, điều đó
+
+00:01:18.010 --> 00:01:23.930
+có nghĩa là lấy giá trị của c và lưu nó vào
+máy tính của bạn dưới biến a.
+
+00:01:24.090 --> 00:01:28.910
+Hoặc nếu bạn viết a bằng cộng một, điều đó có
+nghĩa là đặt
+
+00:01:28.910 --> 00:01:33.730
+giá trị của a bằng cộng một hoặc tăng giá trị
+của a lên một.
+
+00:01:33.730 --> 00:01:38.370
+Vì vậy, toán tử gán trong mã hóa khác với toán
+tử xác nhận
+
+00:01:38.370 --> 00:01:43.010
+chân lý trong toán học, trong đó nếu tôi viết
+a bằng c, tôi
+
+00:01:43.010 --> 00:01:47.650
+đang khẳng định rằng tôi đang khẳng định rằng
+các giá trị của a và
+
+00:01:47.650 --> 00:01:50.450
+c bằng nhau.
+
+00:01:50.450 --> 00:01:54.330
+Và hy vọng tôi sẽ không bao giờ viết một khẳng
+định sự thật a
+
+00:01:54.330 --> 00:01:58.210
+bằng cộng một bởi vì bạn biết đấy, điều đó
+không thể nào đúng được.
+
+00:01:58.210 --> 00:02:02.070
+Vì vậy, trong Python và các ngôn ngữ lập trình
+khác, các
+
+00:02:02.070 --> 00:02:05.930
+xác nhận sự thật đôi khi được viết dưới dạng
+bằng nhau.
+
+00:02:05.930 --> 00:02:09.350
+Vì vậy, bạn có thể thấy mã cho biết a bằng c
+
+00:02:09.350 --> 00:02:12.770
+nếu bạn đang kiểm tra xem a có bằng c hay
+không.
+
+00:02:12.770 --> 00:02:18.040
+Nhưng trong ký hiệu toán học, như chúng ta
+thường sử dụng, như trong các video
+
+00:02:18.040 --> 00:02:23.310
+này, dấu bằng có thể được sử dụng cho các bài
+tập hoặc để khẳng định sự thật.
+
+00:02:23.310 --> 00:02:27.363
+Và vì vậy, tôi sẽ cố gắng đảm bảo rõ ràng khi
+tôi viết dấu bằng,
+
+00:02:27.363 --> 00:02:31.417
+cho dù chúng ta đang gán một giá trị cho một
+biến hay liệu chúng
+
+00:02:31.417 --> 00:02:35.470
+ta đang khẳng định tính đúng đắn của sự bằng
+nhau của hai giá trị.
+
+00:02:35.470 --> 00:02:40.470
+Bây giờ chúng ta hãy đi sâu hơn vào ý nghĩa
+của các ký hiệu trong phương trình này.
+
+00:02:40.470 --> 00:02:45.470
+Ký hiệu ở đây là bảng chữ cái Hy Lạp, alpha.
+
+00:02:45.470 --> 00:02:51.170
+Và trong phương trình này, alpha còn được gọi
+là learning rate tập.
+
+00:02:51.170 --> 00:02:55.790
+Learning rate tập thường là một số dương nhỏ
+giữa 0 và 1.
+
+00:02:55.790 --> 00:02:59.830
+Và nó có thể là 0,01.
+
+00:02:59.830 --> 00:03:05.990
+Những gì alpha làm về cơ bản là kiểm soát mức
+độ bước xuống dốc của bạn.
+
+00:03:05.990 --> 00:03:10.990
+Vì vậy, nếu alpha rất lớn thì điều đó tương
+ứng với quy trình
+
+00:03:10.990 --> 00:03:15.990
+gradient descent rất tích cực khi bạn đang cố
+gắng thực hiện những bước đi xuống dốc lớn.
+
+00:03:15.990 --> 00:03:21.190
+Và nếu alpha rất nhỏ thì bạn sẽ bước những
+bước nhỏ xuống dốc.
+
+00:03:21.190 --> 00:03:24.090
+Chúng ta sẽ quay lại sau để tìm hiểu sâu hơn
+
+00:03:24.090 --> 00:03:26.990
+về cách chọn alpha có learning rate tập tốt.
+
+00:03:26.990 --> 00:03:33.550
+Và cuối cùng, số hạng này ở đây, là số hạng
+đạo hàm của cost function j.
+
+00:03:33.550 --> 00:03:37.350
+Bây giờ chúng ta đừng lo lắng về các chi tiết
+của đạo hàm
+
+00:03:37.350 --> 00:03:41.150
+này, nhưng sau này bạn sẽ biết thêm về thuật
+ngữ đạo hàm.
+
+00:03:41.150 --> 00:03:45.570
+Nhưng bây giờ, bạn có thể nghĩ thuật ngữ phái
+sinh này mà tôi đã vẽ một chiếc hộp
+
+00:03:45.570 --> 00:03:49.990
+màu đỏ tươi xung quanh để cho bạn biết bạn
+muốn đưa con mình đi theo hướng nào.
+
+00:03:49.990 --> 00:03:54.250
+Và kết hợp với learning rate tập alpha, nó
+cũng xác
+
+00:03:54.250 --> 00:03:58.510
+định kích thước của các bước bạn muốn đi xuống
+dốc.
+
+00:03:58.510 --> 00:04:02.970
+Bây giờ tôi muốn đề cập rằng đạo hàm đến từ
+phép tính, và ngay cả
+
+00:04:02.970 --> 00:04:07.430
+khi bạn không quen với phép tính, cũng đừng lo
+lắng về điều đó.
+
+00:04:07.430 --> 00:04:11.550
+Ngay cả khi không biết bất kỳ phép tính nào,
+bạn vẫn có thể tìm ra tất cả
+
+00:04:11.550 --> 00:04:15.670
+những gì bạn cần biết về đạo hàm này trong
+video này và video tiếp theo.
+
+00:04:15.670 --> 00:04:22.070
+Một điều nữa, hãy nhớ rằng mô hình của bạn có
+hai tham số, không chỉ w mà còn cả b.
+
+00:04:22.270 --> 00:04:28.670
+Như vậy các bạn cũng có thao tác gán để cập
+nhật tham số b trông rất giống nhau.
+
+00:04:28.670 --> 00:04:35.950
+b được gán giá trị cũ của b trừ đi
+learning rate alpha
+
+00:04:35.950 --> 00:04:43.230
+nhân số hạng đạo hàm hơi khác này d trên db
+của j của wb.
+
+00:04:43.230 --> 00:04:47.070
+Vì vậy, hãy nhớ trong biểu đồ của sơ đồ bề
+mặt, nơi bạn đang
+
+00:04:47.070 --> 00:04:50.910
+thực hiện các bước nhỏ cho đến khi chạm đến
+đáy của giá trị?
+
+00:04:50.910 --> 00:04:54.650
+Đối với thuật toán gradient descent, bạn sẽ
+lặp lại
+
+00:04:54.650 --> 00:04:58.390
+hai bước cập nhật này cho đến khi thuật toán
+hội tụ.
+
+00:04:58.390 --> 00:05:04.430
+Và bằng cách hội tụ, ý tôi là bạn đạt đến điểm
+ở mức tối thiểu cục bộ nơi các
+
+00:05:04.430 --> 00:05:10.470
+tham số w và b không còn thay đổi nhiều sau
+mỗi bước bổ sung mà bạn thực hiện.
+
+00:05:10.470 --> 00:05:13.610
+Bây giờ có một chi tiết tinh tế hơn về cách
+
+00:05:13.610 --> 00:05:16.750
+triển khai gradient descent một cách chính
+xác.
+
+00:05:16.750 --> 00:05:20.990
+Bạn định cập nhật hai tham số w và b phải
+không?
+
+00:05:20.990 --> 00:05:26.510
+Vì vậy, bản cập nhật này diễn ra cho cả hai
+tham số w và b.
+
+00:05:26.510 --> 00:05:33.350
+Một chi tiết quan trọng là đối với việc
+gradient descent, bạn muốn cập nhật
+
+00:05:33.350 --> 00:05:40.190
+đồng thời w và b, nghĩa là bạn muốn cập nhật
+cả hai tham số cùng một lúc.
+
+00:05:40.190 --> 00:05:47.790
+Ý tôi là trong biểu thức này, bạn sẽ cập nhật
+w từ giá trị cũ thành
+
+00:05:47.790 --> 00:05:55.390
+w mới và bạn cũng đang cập nhật b từ giá trị
+cũ thành giá trị mới b.
+
+00:05:55.390 --> 00:06:03.070
+Và cách để thực hiện điều này là tính vế phải,
+tính cái này
+
+00:06:03.070 --> 00:06:10.750
+cho w và b, đồng thời cập nhật w và b thành
+các giá trị mới.
+
+00:06:10.750 --> 00:06:13.830
+Vì vậy, chúng ta hãy xem điều này có nghĩa là
+gì.
+
+00:06:14.150 --> 00:06:17.190
+Đây là cách chính xác để triển khai việc
+
+00:06:17.190 --> 00:06:20.230
+gradient descent, thực hiện cập nhật đồng
+thời.
+
+00:06:20.230 --> 00:06:28.150
+Cái này đặt một biến temp w bằng với biểu thức
+đó, bằng w trừ số hạng đó ở đây.
+
+00:06:28.150 --> 00:06:34.070
+Chúng ta cũng hãy đặt một biến khác temp b cho
+biến đó, đó là b trừ số hạng đó.
+
+00:06:34.070 --> 00:06:37.770
+Vì vậy, bạn tính cả hai vế phải, cả hai bản
+cập
+
+00:06:37.770 --> 00:06:41.470
+nhật và lưu chúng vào các biến temp w và temp
+b.
+
+00:06:41.550 --> 00:06:46.710
+Sau đó bạn sao chép giá trị của temp w vào w
+
+00:06:46.710 --> 00:06:51.870
+và bạn cũng sao chép giá trị của temp b vào b.
+
+00:06:51.870 --> 00:06:56.230
+Bây giờ, một điều bạn có thể nhận thấy là giá
+
+00:06:56.230 --> 00:07:00.590
+trị này của w có trước khi w được cập nhật.
+
+00:07:00.590 --> 00:07:08.430
+Ở đây, lưu ý rằng bản cập nhật trước w là
+những gì đi vào số hạng đạo hàm ở đây.
+
+00:07:08.430 --> 00:07:16.110
+Ngược lại, đây là cách triển khai sai độ dốc
+mà không thực hiện cập nhật đồng thời.
+
+00:07:16.110 --> 00:07:19.910
+Trong cách triển khai không chính xác này,
+chúng tôi tính
+
+00:07:19.910 --> 00:07:23.710
+toán temp w giống như trước đây, cho đến nay
+điều đó vẫn ổn.
+
+00:07:23.710 --> 00:07:26.990
+Và bây giờ đây là lúc mọi thứ bắt đầu khác đi.
+
+00:07:26.990 --> 00:07:31.470
+Sau đó chúng tôi cập nhật w với giá trị trong
+temp
+
+00:07:31.470 --> 00:07:35.950
+w trước khi tính giá trị mới cho tham số b
+khác.
+
+00:07:35.950 --> 00:07:40.590
+Tiếp theo, chúng tôi tính toán nhiệt độ b bằng
+b trừ số hạng đó ở đây.
+
+00:07:40.590 --> 00:07:45.550
+Và cuối cùng, chúng tôi cập nhật b với giá trị
+trong temp b.
+
+00:07:45.550 --> 00:07:50.750
+Sự khác biệt giữa việc triển khai bên phải và
+bên trái là nếu
+
+00:07:50.750 --> 00:07:55.950
+bạn nhìn qua đây, w này đã được cập nhật lên
+giá trị mới này.
+
+00:07:55.950 --> 00:08:03.230
+Và chính w được cập nhật này thực sự đi vào
+cost function j của w b.
+
+00:08:03.230 --> 00:08:07.070
+Nó có nghĩa là số hạng ở bên phải này không
+
+00:08:07.070 --> 00:08:10.910
+giống với số hạng ở đây mà bạn nhìn thấy ở bên
+trái.
+
+00:08:10.910 --> 00:08:15.510
+Và điều đó cũng có nghĩa là số hạng temp b ở
+bên phải
+
+00:08:15.510 --> 00:08:20.110
+không hoàn toàn giống với số hạng temp b ở bên
+trái.
+
+00:08:20.110 --> 00:08:24.750
+Và do đó, giá trị cập nhật này cho b ở bên
+phải không
+
+00:08:24.750 --> 00:08:29.390
+giống với giá trị cập nhật này cho biến b ở
+bên trái.
+
+00:08:29.390 --> 00:08:34.710
+Cách triển khai gradient descent trong mã thực
+sự trở nên tự nhiên hơn
+
+00:08:34.710 --> 00:08:40.030
+khi triển khai nó theo cách chính xác với các
+bản cập nhật đồng thời.
+
+00:08:40.030 --> 00:08:44.310
+Khi bạn nghe ai đó nói về việc
+gradient descent, họ luôn có nghĩa là
+
+00:08:44.310 --> 00:08:48.590
+gradient descent khi bạn thực hiện cập nhật
+đồng thời các tham số.
+
+00:08:48.590 --> 00:08:54.790
+Tuy nhiên, nếu bạn thực hiện cập nhật không
+đồng thời, thì hóa ra nó có thể sẽ hoạt
+
+00:08:54.790 --> 00:09:00.990
+động ít nhiều. Nhưng làm theo cách này không
+thực sự là cách chính xác để thực hiện nó.
+
+00:09:00.990 --> 00:09:04.350
+Nó thực sự là một số thuật toán khác với các
+thuộc tính khác nhau.
+
+00:09:04.350 --> 00:09:07.990
+Vì vậy, tôi khuyên bạn chỉ nên cập nhật đồng
+thời chính xác
+
+00:09:07.990 --> 00:09:11.630
+và không sử dụng phiên bản không chính xác này
+ở bên phải.
+
+00:09:12.750 --> 00:09:14.910
+Vậy đó là sự gradient descent.
+
+00:09:14.910 --> 00:09:18.590
+Trong video tiếp theo, chúng ta sẽ đi vào chi
+tiết về thuật ngữ phái sinh được
+
+00:09:18.590 --> 00:09:22.270
+bán trong video này nhưng chúng ta chưa thực
+sự nói chi tiết về thuật ngữ đó.
+
+00:09:23.150 --> 00:09:28.110
+Đạo hàm là một phần của phép tính. Và một lần
+nữa, nếu bạn không quen với phép
+
+00:09:28.110 --> 00:09:33.070
+tính, đừng lo lắng về điều đó. Bạn sẽ không
+cần phải biết tính toán để hoàn thành
+
+00:09:33.070 --> 00:09:38.030
+khóa học này hoặc chuyên ngành này. Và bạn sẽ
+có tất cả thông tin bạn cần để thực hiện
+
+00:09:38.030 --> 00:09:43.870
+sự gradient descent. Trong video tiếp theo,
+chúng ta sẽ cùng nhau tìm hiểu về đạo hàm.
+
+00:09:43.870 --> 00:09:48.910
+Và bạn sẽ có được trực giác và kiến thức cần
+thiết để có thể tự mình triển khai và áp
+
+00:09:48.910 --> 00:09:53.950
+dụng phương pháp gradient descent. Tôi nghĩ đó
+sẽ là một điều thú vị để bạn biết cách
+
+00:09:53.950 --> 00:09:58.990
+thực hiện. Vì vậy, hãy chuyển sang video tiếp
+theo để xem cách thực hiện điều đó.

@@ -1,0 +1,93 @@
+Trong video trước, bạn đã thấy
+cách tính đạo hàm và thực hiện gradient descent chỉ trong một
+ví dụ đào tạo cho hồi quy logistic. Bây giờ, chúng ta muốn làm
+điều đó cho m ví dụ huấn luyện. Để bắt đầu bài học, bạn hãy tự
+nhớ lại định nghĩa của hàm chi phí J. Hàm chi phí của w, b, bạn sẽ
+quan tâm tới mức trung bình này, một trên m tổng từ i
+bằng một đến m của hàm loss khi thuật toán
+xuất ra a(i) trong ví dụ y, trong đó a(i) là dự đoán về ví dụ
+đào tạo thứ i, là sigma của z(i), bằng với sigma của w
+chuyển vị x(i) cộng với b. Vì vậy, trong slide trước chúng ta đã
+học về đối với bất kỳ ví dụ đào tạo nào, làm thế nào để tính các đạo hàm
+khi bạn chỉ có một ví dụ đào tạo. Như vậy, dw1(i), dw2(i) và db(i), Với chỉ số trên (i) để biểu thị
+các giá trị tương ứng bạn nhận được nếu bạn đang thực hiện những gì
+mà chúng ta đã thực hiện trên slide trước đó, nhưng chỉ sử dụng một ví dụ đào tạo, x_i y_i, xin lỗi, thiếu một (i) ở đây. Bây giờ bạn có thể thấy các toàn bộ
+hàm chi phí là một tổng thực sự trung bình, bởi vì một trên m của
+các hàm loss riêng lẻ. Như vậy, hóa ra đạo hàm, với biến w1 của hàm chi phí
+tổng thể cũng sẽ là trung bình của các đạo hàm với
+biến w1 của các hàm loss riêng lẻ. Nhưng trước đây, chúng ta đã chỉ ra
+cách tính số hạng này là dw1(i), mà trên slide trước, chúng tôi đã chỉ ra cách tính số hạng này trong
+một ví dụ huấn luyện duy nhất. Như vậy, những gì
+bạn cần làm là tính các đạo hàm như chúng tôi đã chỉ ra trên ví dụ
+huấn luyện trước đó và tính trung bình chúng, và điều này sẽ cung cấp cho bạn gradient tổng thể mà bạn có thể
+sử dụng để thực hiện gradient descent. Tôi biết là có rất nhiều chi tiết, nhưng chúng ta hãy lấy tất cả
+những điều này và tổng hợp nó thành một thuật toán
+cố định cho đến khi bạn thực hiện hồi quy logistic
+sử dụng gradient descent. Bạn có thể làm như sau:
+hãy khởi tạo j bằng 0, dw1 bằng 0, dw2 bằng 0, db bằng 0. Chúng ta sẽ sử dụng một vòng lặp
+“for” trên tập huấn luyện, và tính đạo hàm theo từng ví dụ
+huấn luyện và rồi tăng chúng lên. Chúng ta làm điều này
+như sau, với i bằng một đến m, m là số ví dụ đào tạo, chúng ta tính z(i) bằng
+w chuyển vị x(i) cộng b. Dự đoán a(i) bằng sigma của z(i), và sau đó hãy thêm J, J cộng bằng (y(i) log a(i)
++ (1-y(i))log(1-a(i)) và sau đó đặt dấu âm
+trước toàn bộ biểu thức này, và rồi như chúng ta
+đã thấy trước đó, chúng ta có dz(i),
+bằng a(i) trừ y(i), và dw1 cộng bằng x1(i) dz(i), dw2 cộng bằng x2(i) dz(i), và tôi đang thực hiện phép toán này với
+giả định rằng bạn chỉ có hai tính năng, sao cho n bằng 2, mặt khác, bạn thực hiện điều này với dw1, dw2, dw3, v.v. và sau đó db cộng bằng dz(i), và tôi đoán đó là
+kết thúc của vòng lặp for. Cuối cùng, sau khi đã làm điều này
+cho tất cả m ví dụ huấn luyện, bạn vẫn sẽ cần chia cho m vì
+chúng ta đang tính trung bình. Thế nên, dw1 chia bằng m, dw2 chia bằng m, db chia bằng m, để tính trung bình. Như vậy, với tất cả
+các phép toán này, bạn vừa tính toán các
+đạo hàm của hàm chi phí J với từng tham số w1, w2 và b. Cụ thể thì những gì
+chúng ta đang làm là, chúng ta đang coi dw1 và
+dw2 và db là bộ cộng tích lũy, để mà sau phép tính này, dw1 bằng đạo hàm của hàm chi phí tổng thể với biến
+w1 và tương tự với dw2 và db. Như vậy, hãy lưu ý rằng dw1
+và dw2 không có chỉ số trên i, bởi vì chúng ta đang sử dụng
+chúng trong mã này như là bộ cộng tích lũy để tổng hợp
+trên toàn bộ tập huấn luyện. Trong khi đó, ngược lại, dz(i) ở đây, đây là dz trong một
+ví dụ huấn luyện duy nhất. Vì vậy, đó là lý do tại sao nó có
+chỉ số trên i để chỉ một ví dụ đào tạo, (i) là đã được lưu trữ
+trong máy tính . Như vậy, sau khi đã hoàn thành
+tất cả các phép tính này, để thực hiện một bước
+của gradient descent bạn sẽ triển khai w1, được cập nhật thành w1
+trừ đi (tỷ lệ học tập nhân dw_1), w2, thành w2 trừ đi
+(tỷ lệ học tập nhân dw2), và b được cập nhật thành b
+trừ đi (tỷ lệ học tập nhân db), trong đó dw1, dw2 và db
+được tính như nhau. Cuối cùng, J ở đây cũng sẽ là một giá trị
+chính xác cho hàm chi phí của bạn. Mọi thứ trên slide chỉ thực hiện một
+bước duy nhất trong gradient descent, và vì vậy bạn phải lặp lại
+mọi thứ trên slide này nhiều lần để thực hiện
+nhiều bước gradient descent. Trong trường hợp mà những chi tiết
+này có vẻ quá phức tạp thì một lần nữa, đừng lo lắng quá nhiều về nó, tôi hy vọng tất cả điều này
+sẽ rõ ràng hơn khi bạn tiếp tục và thực hiện điều này
+trong các bài tập lập trình. Nhưng thực tế là
+có hai điểm yếu trong phép tính mà
+chúng ta đã thực hiện ở đây, đó là, để thực hiện hồi quy
+logistic theo cách này, bạn cần phải viết
+hai vòng lặp “for”. Vòng lặp đầu tiên là vòng lặp
+“for” cho m ví dụ huấn luyện, và vòng lặp for thứ hai là vòng lặp
+for cho tất cả các tính năng ở đây. Trong ví dụ này, chúng ta chỉ có hai
+tính năng; vì thế, n bằng hai và x bằng hai, nhưng nếu chúng ta
+có nhiều tính năng hơn, bạn có thể viết dw1 dw2 ở đây, và bạn tính tương tự với dwt, và như vậy cho đến dwn. Như vậy, có vẻ như bạn cần phải có một
+vòng lặp for cho các tính năng, cho n tính năng. Khi bạn thực hiện các
+thuật toán học sâu, bạn sẽ thấy rằng có các
+vòng lặp for rõ ràng trong mã của bạn khiến thuật toán
+của bạn chạy ít hiệu quả hơn. Thế nên, trong thời đại học sâu, chúng ta sẽ chuyển đến
+một bộ dữ liệu lớn hơn nữa, và vì vậy việc có thể thực hiện các thuật toán
+mà không cần sử dụng các vòng lặp “for”rõ ràng là cực kỳ quan trọng và sẽ giúp bạn mở rộng
+phạm vi tới các bộ dữ liệu lớn hơn nhiều. Trên thực tế, có một tập hợp các kỹ thuật
+được gọi là các kỹ thuật vector hóa cho phép bạn loại bỏ các vòng lặp
+for rõ ràng này trong mã của mình. Tôi nghĩ rằng trong
+thời đại tiền học sâu, đó là trước sự nổi lên của học sâu, thì thật tốt khi có vector hóa, đôi khi bạn có thể làm điều đó để tăng tốc
+mã của bạn và đôi khi thì không cần. Nhưng trong thời đại
+học sâu, vector hóa, là loại bỏ các vòng lặp for, như thế này và như thế này đã trở nên thực sự quan trọng, bởi vì chúng ta càng ngày càng
+huấn luyện nhiều bộ dữ liệu cực lớn và thế nên bạn rất cần mã
+của mình chạy hiệu quả. Trong một vài video tới, chúng ta sẽ nói về vector
+hóa và làm thế nào để thực hiện tất cả điều này mà không
+sử dụng một vòng lặp “for” nào cả. Như vậy, với video này, tôi hy vọng
+bạn đã hiểu được làm thế nào để thực hiện hồi quy logistic hoặc là thực hiện
+gradient descent cho hồi quy logistic. Mọi thứ sẽ rõ ràng hơn khi
+bạn làm bài tập lập trình. Nhưng trước khi bắt tay
+vào làm bài tập lập trình, thì đầu tiên hãy xem về vector hóa để
+bạn có thể thực hiện toàn bộ điều này, thực hiện một bước lặp gradient descent duy nhất
+mà không sử dụng bất kỳ vòng lặp “for” nào.

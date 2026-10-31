@@ -1,0 +1,329 @@
+WEBVTT
+
+00:00:01.420 --> 00:00:07.300
+Hãy cùng xem video này về quá trình hoạt động
+của học tập có giám sát.
+
+00:00:07.300 --> 00:00:10.000
+Thuật toán supervised learning sẽ nhập một tập
+dữ
+
+00:00:10.000 --> 00:00:12.700
+liệu, sau đó chính xác nó làm gì và xuất ra
+cái gì?
+
+00:00:12.700 --> 00:00:15.580
+Hãy cùng tìm hiểu trong video này.
+
+00:00:15.580 --> 00:00:19.073
+Hãy nhớ lại rằng training set trong
+supervised learning bao
+
+00:00:19.073 --> 00:00:22.567
+gồm cả các đặc điểm đầu vào, chẳng hạn như
+kích thước của thân
+
+00:00:22.567 --> 00:00:26.060
+tàu, và cả các mục tiêu đầu ra, chẳng hạn như
+giá của thân tàu.
+
+00:00:26.060 --> 00:00:30.980
+Các mục tiêu đầu ra là câu trả lời đúng cho mô
+hình mà chúng ta sẽ học hỏi.
+
+00:00:30.980 --> 00:00:35.560
+Để huấn luyện mô hình, bạn cung cấp
+training set cả các
+
+00:00:35.560 --> 00:00:40.140
+feature đầu vào và mục tiêu đầu ra cho thuật
+toán học của mình.
+
+00:00:40.140 --> 00:00:45.180
+Sau đó, thuật toán supervised learning của bạn
+sẽ tạo ra một số chức năng.
+
+00:00:45.180 --> 00:00:49.860
+Chúng ta sẽ viết hàm này dưới dạng chữ f
+thường, trong đó f là viết tắt của hàm.
+
+00:00:49.860 --> 00:00:54.180
+Về mặt lịch sử, hàm này từng được gọi là giả
+
+00:00:54.180 --> 00:00:58.500
+thuyết, nhưng tôi sẽ gọi nó là hàm f trong lớp
+này.
+
+00:00:58.500 --> 00:01:09.180
+Và công việc của f là lấy đầu vào x mới và đưa
+ra ước tính hoặc dự đoán,
+
+00:01:09.180 --> 00:01:13.800
+Tôi sẽ gọi y là mũ, và được viết giống như
+
+00:01:13.800 --> 00:01:18.420
+biến y với biểu tượng chiếc mũ nhỏ này ở trên.
+
+00:01:18.420 --> 00:01:27.940
+Trong machine learning, quy ước là y hat là
+ước tính hoặc dự đoán cho y.
+
+00:01:27.940 --> 00:01:31.940
+Hàm f được gọi là mô hình.
+
+00:01:31.940 --> 00:01:41.060
+X được gọi là đầu vào hoặc feature đầu vào và
+đầu ra của mô hình là mũ y dự đoán.
+
+00:01:41.060 --> 00:01:45.580
+Dự đoán của mô hình là giá trị ước tính của y.
+
+00:01:45.580 --> 00:01:50.640
+Khi ký hiệu chỉ là chữ cái y thì ký hiệu đó đề
+cập đến
+
+00:01:50.640 --> 00:01:55.700
+mục tiêu, là giá trị thực thực tế trong
+training set.
+
+00:01:55.700 --> 00:01:58.500
+Ngược lại, y hat là ước tính.
+
+00:01:58.500 --> 00:02:01.100
+Nó có thể là giá trị thực tế hoặc không.
+
+00:02:01.100 --> 00:02:05.120
+Chà, nếu bạn đang giúp khách hàng của mình bán
+thân tàu của họ, thì giá
+
+00:02:05.120 --> 00:02:09.140
+thực sự của thân tàu của họ sẽ không được biết
+cho đến khi họ bán nó.
+
+00:02:09.140 --> 00:02:14.360
+Vì vậy, mô hình f của bạn, với kích thước nhất
+định, đưa ra một
+
+00:02:14.360 --> 00:02:19.580
+mức giá ước tính, đó là dự đoán về giá thực sự
+sẽ là bao nhiêu.
+
+00:02:19.580 --> 00:02:23.980
+Bây giờ khi chúng ta thiết kế một thuật toán
+học tập, một
+
+00:02:23.980 --> 00:02:28.380
+câu hỏi quan trọng là chúng ta sẽ biểu diễn
+hàm f như thế nào?
+
+00:02:28.380 --> 00:02:35.460
+Hay nói cách khác, công thức toán học mà chúng
+ta sẽ sử dụng để tính f là gì?
+
+00:02:35.460 --> 00:02:39.760
+Bây giờ, hãy coi f là một đường thẳng.
+
+00:02:39.760 --> 00:02:45.990
+Vậy hàm của bạn có thể được viết dưới dạng f
+chỉ số dưới
+
+00:02:45.990 --> 00:02:52.220
+w dấu phẩy b của x bằng, tôi sẽ sử dụng w nhân
+x cộng b.
+
+00:02:52.220 --> 00:02:59.200
+Tôi sẽ sớm xác định w và b, nhưng hiện tại,
+chỉ cần biết rằng w và b là các
+
+00:02:59.200 --> 00:03:06.180
+số và các giá trị được chọn cho w và b sẽ xác
+định dự đoán y hat dựa trên
+
+00:03:06.180 --> 00:03:08.380
+feature đầu vào x.
+
+00:03:08.380 --> 00:03:16.280
+Vì vậy, f w b của x có nghĩa là f là một hàm
+lấy đầu vào của x, và tùy
+
+00:03:16.280 --> 00:03:24.180
+thuộc vào giá trị của w và b, f sẽ tạo ra một
+giá trị nào đó của mũ y dự đoán.
+
+00:03:24.180 --> 00:03:29.880
+Để thay thế cho việc viết f w dấu phẩy b của
+x, đôi khi tôi sẽ chỉ
+
+00:03:29.880 --> 00:03:35.580
+viết f của x mà không thêm w và b vào chỉ số
+dưới một cách rõ ràng.
+
+00:03:35.580 --> 00:03:43.180
+Nó chỉ là một ký hiệu đơn giản hơn, nhưng có
+nghĩa chính xác giống như f w b của x.
+
+00:03:43.180 --> 00:03:48.700
+Hãy vẽ training set trên biểu đồ trong đó
+feature đầu vào x
+
+00:03:48.700 --> 00:03:54.220
+nằm trên trục hoành và mục tiêu đầu ra y nằm
+trên trục tung.
+
+00:03:54.220 --> 00:03:58.340
+Hãy nhớ rằng thuật toán học từ dữ liệu này và
+tạo ra
+
+00:03:58.340 --> 00:04:02.460
+một dòng phù hợp nhất có thể giống như dòng
+này ở đây.
+
+00:04:02.460 --> 00:04:12.060
+Đường thẳng này là hàm tuyến tính f w b của x
+bằng w nhân x cộng b.
+
+00:04:12.060 --> 00:04:20.780
+Hoặc đơn giản hơn, chúng ta có thể bỏ w và b
+và chỉ viết f(x) bằng w x cộng b.
+
+00:04:20.780 --> 00:04:22.580
+Đây là những gì chức năng này đang làm.
+
+00:04:22.580 --> 00:04:28.620
+Nó đưa ra dự đoán cho giá trị của y bằng cách
+sử dụng hàm đường thẳng của x.
+
+00:04:28.620 --> 00:04:31.980
+Vì vậy, bạn có thể hỏi, tại sao chúng ta lại
+chọn một hàm
+
+00:04:31.980 --> 00:04:35.340
+tuyến tính trong đó hàm tuyến tính chỉ là một
+thuật ngữ ưa
+
+00:04:35.340 --> 00:04:38.700
+thích cho một đường thẳng thay vì một số hàm
+phi tuyến tính như
+
+00:04:38.700 --> 00:04:40.700
+một đường cong hay một parabol?
+
+00:04:40.940 --> 00:04:44.220
+Chà, đôi khi bạn cũng muốn khớp các hàm phi
+tuyến tính
+
+00:04:44.220 --> 00:04:47.500
+phức tạp hơn, chẳng hạn như một đường cong như
+thế này.
+
+00:04:47.500 --> 00:04:51.727
+Nhưng vì hàm tuyến tính này tương đối đơn giản
+và dễ làm
+
+00:04:51.727 --> 00:04:55.953
+việc, hãy sử dụng đường thẳng làm nền tảng để
+cuối cùng sẽ
+
+00:04:55.953 --> 00:05:00.180
+giúp bạn có được các mô hình phi tuyến tính
+phức tạp hơn.
+
+00:05:00.180 --> 00:05:04.500
+Mô hình cụ thể này được gọi là
+linear regression.
+
+00:05:04.500 --> 00:05:10.820
+Cụ thể hơn, đây là linear regression một biến,
+với cụm từ một biến nghĩa là
+
+00:05:10.820 --> 00:05:17.140
+chỉ có một biến đầu vào duy nhất hoặc đặc điểm
+x, đó là kích thước của ngôi nhà.
+
+00:05:17.140 --> 00:05:21.273
+Một tên gọi khác của mô hình tuyến tính với
+một biến đầu
+
+00:05:21.273 --> 00:05:25.407
+vào là linear regression đơn biến, trong đó
+uni có nghĩa là
+
+00:05:25.407 --> 00:05:29.540
+một trong tiếng Latin và trong đó biến thể có
+nghĩa là biến.
+
+00:05:29.540 --> 00:05:34.580
+Vì vậy, đơn biến chỉ là một cách nói hoa mỹ để
+nói về một biến.
+
+00:05:34.580 --> 00:05:38.980
+Trong video sau, bạn cũng sẽ thấy một biến thể
+của regression trong đó bạn muốn đưa ra
+
+00:05:38.980 --> 00:05:43.380
+dự đoán không chỉ dựa trên kích thước của ngôi
+nhà mà còn dựa trên nhiều thông tin
+
+00:05:43.380 --> 00:05:47.780
+khác mà bạn có thể biết về ngôi nhà, chẳng hạn
+như số phòng ngủ và các thông tin khác.
+
+00:05:47.780 --> 00:05:48.900
+feature.
+
+00:05:48.900 --> 00:05:53.700
+Và nhân tiện, khi bạn xem xong video này, sẽ
+có một phòng thí nghiệm tùy chọn khác.
+
+00:05:53.700 --> 00:05:55.620
+Bạn không cần phải viết bất kỳ mã nào.
+
+00:05:55.620 --> 00:05:58.740
+Chỉ cần xem lại nó, chạy mã và xem nó làm gì.
+
+00:05:58.740 --> 00:06:03.220
+Điều đó sẽ chỉ cho bạn cách xác định hàm đường
+thẳng trong Python.
+
+00:06:03.220 --> 00:06:10.260
+Và lab sẽ cho phép bạn chọn các giá trị của w
+và b để cố gắng khớp với training data.
+
+00:06:10.260 --> 00:06:13.580
+Bạn không cần phải làm phòng thí nghiệm nếu
+bạn không muốn,
+
+00:06:13.580 --> 00:06:16.900
+nhưng tôi hy vọng bạn sẽ thích thú với nó khi
+xem xong video này.
+
+00:06:16.900 --> 00:06:19.060
+Vì vậy, đó là linear regression.
+
+00:06:19.060 --> 00:06:22.140
+Để thực hiện được điều này, một trong những
+điều
+
+00:06:22.140 --> 00:06:25.220
+quan trọng nhất bạn phải làm là xây dựng
+cost function.
+
+00:06:25.220 --> 00:06:28.100
+Ý tưởng về cost function là một trong những ý
+tưởng
+
+00:06:28.100 --> 00:06:30.980
+phổ biến và quan trọng nhất trong
+machine learning.
+
+00:06:30.980 --> 00:06:34.220
+Và nó được sử dụng trong cả linear regression
+và đào
+
+00:06:34.220 --> 00:06:37.460
+tạo nhiều mô hình AI tiên tiến nhất trên thế
+giới.
+
+00:06:37.460 --> 00:06:43.780
+Vì vậy, hãy chuyển sang video tiếp theo và xem
+cách bạn có thể xây dựng cost function.

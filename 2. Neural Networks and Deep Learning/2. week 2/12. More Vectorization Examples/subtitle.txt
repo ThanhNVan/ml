@@ -1,0 +1,54 @@
+Trong video trước, bạn đã xem
+một vài ví dụ về cách vector hóa, bằng cách sử dụng các hàm
+có sẵn và bằng cách tránh các vòng lặp for tường minh, giúp bạn
+tăng tốc đáng kể mã của mình. Hãy cùng xem thêm một vài ví dụ nữa. Có một nguyên tắc cần lưu ý là, khi bạn
+lập trình mạng nơ-ron nhân tạo hoặc khi bạn lập trình một hồi quy, thì hãy tránh các vòng lặp
+tường minh bất cứ khi nào có thể. Và không phải lúc nào cũng có thể tránh
+sử dụng vòng lặp for, nhưng khi bạn có thể sử dụng hàm cài sẵn hoặc tìm một số cách
+khác để tính bất cứ thứ gì bạn cần, thì thường bạn sẽ tiến nhanh hơ
+n khi bạn có một vòng lặp tường minh. Hãy xem một ví dụ khác. Nếu bạn muốn tính một
+vectơ u, là kết quả của ma trận A và một vectơ v khác, rồi
+định nghĩa của nhân ma trận là Ui của bạn bằng tổng trên j ,, Aij, Vj. Đó là cách bạn xác định Ui. Và do đó, việc triển khai
+không vector hóa này sẽ đặt u bằng NP.zeros, (n,1). Với i, tương tự Với j, tương tự Và sau đó u [i] +bằng A [i] [j] nhân v [j]. Bây giờ, đây là hai vòng
+lặp for, lặp cả i và j. Đây là một phiên bản không vector hóa, việc triển khai vector hóa
+nghĩa là u bằng np.dot (A, v). Và phiên bản vector hóa ở bên phải bây giờ loại bỏ hai vòng lặp
+khác nhau và nó trở nên nhanh hơn. Chúng ta hãy xem một ví dụ nữa. Giả sử bạn đã có một
+vectơ, v, trong bộ nhớ và bạn muốn áp dụng phép toán số
+mũ trên mọi phần tử của vectơ này v. Như vậy, bạn có thể đặt u
+bằng với vectơ, e mũ v1, e mũ v2, v.v., đến e mũ vn. Vì vậy, đây sẽ là một
+triển khai không vector hóa, đầu tiên bạn khởi tạo u
+thành vectơ không. Và sau đó bạn có một vòng lặp
+tính toán từng phần tử một. Nhưng hóa ra Python và NumPy
+có nhiều hàm cài sẵn cho phép bạn tính toán các vectơ này chỉ bằng
+một lệnh gọi một hàm duy nhất. Thế nên, tôi sẽ thực hiện
+điều này bằng cách nhập numpy as np, và sau đó bạn chỉ cần gọi u = np.exp (v). Và lưu ý rằng, trong khi trước đó
+bạn có vòng lặp for tường minh, thì chỉ với một dòng mã ở đây, v là
+vectơ đầu vào, u là vectơ đầu ra, bạn đã loại bỏ vòng lặp
+tường minh và triển khai bên phải sẽ nhanh hơn nhiều so với triển
+khai mà cần một vòng lặp tường minh. Trong thực tế, thư viện
+NumPy có nhiều hàm giá trị vector. Như vậy, np.log (v) sẽ tính
+log từng phần tử np.abs tính giá trị tuyệt đối, np.maximum tính tối đa từng phần tử để lấy tối đa của mọi phần tử của v với 0. v ** 2 chỉ lấy bình phương
+phần tử của mỗi phần tử của v. 1/ v lấy nghịch đảo phần tử, v.v. Vì vậy, bất cứ khi nào bạn muốn viết
+một vòng lặp for, hãy xem xem liệu có cách nào để gọi hàm cài sẵn NumPy để
+thực hiện điều đó mà không cần tới vòng lặp không. Như vậy, hãy tiếp thu tất cả
+những điều bạn vừa học và áp dụng nó để thực hành
+gradient descent hồi quy logistic, và xem liệu chúng ta có thể loại bỏ ít nhất một
+trong hai vòng lặp mà chúng ta đã có hay không. Đây là mã của chúng ta để tính các đạo hàm cho hồi quy logistic
+và chúng ta có hai vòng lặp for. Một cái là cái này ở đây,
+và cái thứ hai là cái này. Trong ví dụ này, chúng ta
+có nx bằng 2, nhưng nếu bạn có nhiều hơn 2
+tính năng thì bạn sẽ cần có một vòng lặp
+cho dw1, dw2, dw3, v.v. Như vậy sẽ có 4j bằng 1,.. và x. dWj được cập nhật. Chúng ta muốn loại bỏ
+vòng lặp for thứ hai này. Đây là điều chúng ta sẽ làm ở đây. Như vậy, cách chúng ta làm là thay vì khởi tạo rõ ràng dw1, dw2, v.v. chúng ta sẽ loại bỏ điều này
+và làm dw trở thành một vectơ. Chúng ta sẽ đặt dw bằng np.zeros và ((n-x,1)), vectơ có chiều. Sau đó, ở đây, thay vì vòng lặp trên các thành phần riêng lẻ, chúng ta sẽ sử dụng các
+phép toán giá trị véc tơ này, dw+ bằng xi nhân dz (i). Và cuối cùng, thay vì cái này, chúng ta sẽ chỉ có dw/ bằng m. Như vậy, từ việc có hai vòng lặp
+giờ chúng ta chỉ còn một vòng lặp. Chúng ta vẫn có một vòng lặp này lặp
+lại trên các ví dụ huấn luyện cá nhân. Tôi hy vọng video này đã
+giúp bạn hiểu về vector hóa. Và bằng cách loại bỏ một vòng lặp,
+mã của bạn sẽ chạy nhanh hơn. Nhưng chúng ta còn có thể làm tốt hơn nữa. Và video tiếp theo sẽ nói thêm
+về cách vectơ hóa hồi quy logistic. Và bạn sẽ thấy một kết quả bất ngờ, mà
+không cần sử dụng bất kỳ vòng lặp nào, không cần một vòng lặp for
+trên các ví dụ huấn luyện, bạn vẫn có thể viết mã để xử lý
+toàn bộ tập huấn luyện. Và bây giờ đã có quá nhiều
+điều cần học rồi. Vậy nên hãy xem điều đó
+trong video tiếp theo.

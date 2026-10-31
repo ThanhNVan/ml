@@ -1,0 +1,444 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.960 --> 00:00:05.760
+Hi, Yosha. I'm really glad you could join us here today.
+
+00:00:05.760 --> 00:00:06.960
+I'm very glad to.
+
+00:00:06.960 --> 00:00:11.960
+You know, today you're not just a researcher or engineer in deep learning,
+
+00:00:11.960 --> 00:00:15.960
+you've become one of the institutions or one of the icons of deep learning.
+
+00:00:15.960 --> 00:00:19.560
+But I'd really like to hear the story of how it started.
+
+00:00:19.560 --> 00:00:24.960
+So how did you end up, you know, getting into deep learning and then pursuing this journey?
+
+00:00:24.960 --> 00:00:31.960
+Right. Well, actually, it started when I was a kid, adolescent, reading a lot of science fiction.
+
+00:00:31.960 --> 00:00:33.960
+Like, I guess, many of us.
+
+00:00:33.960 --> 00:00:43.960
+And when I started my graduate studies in 1985, I started reading, you know, lab papers.
+
+00:00:43.960 --> 00:00:47.960
+And that's where I got all excited and it became really a passion.
+
+00:00:47.960 --> 00:00:52.960
+And actually, what was that like in what, mid 80s, right? 1985, reading these papers.
+
+00:00:52.960 --> 00:00:53.960
+Do you remember?
+
+00:00:54.960 --> 00:00:57.960
+Yeah, it was.
+
+00:00:59.960 --> 00:01:20.960
+Well, you know, coming from the courses I had taken in classical A.I. with expert systems and suddenly discovering that there was all this world of thinking about how humans might be learning and human intelligence and how we might draw connections between that and artificial intelligence and computers.
+
+00:01:20.960 --> 00:01:26.960
+That was really exciting for me when I discovered this literature and I started reading the connectionists, of course.
+
+00:01:26.960 --> 00:01:30.960
+So the papers from Jeff Hinton, Rummel Hart and so on.
+
+00:01:30.960 --> 00:01:34.960
+And I worked on recurrent nets.
+
+00:01:34.960 --> 00:01:36.960
+I worked on speech recognition.
+
+00:01:36.960 --> 00:01:41.960
+I worked on HMM, so graphical models.
+
+00:01:41.960 --> 00:01:49.960
+And then quickly moved to AT&T, Bell Labs and MIT, where I did postdocs.
+
+00:01:49.960 --> 00:01:56.960
+And that's where I discovered some of the issues with the long term dependencies with training neural nets.
+
+00:01:56.960 --> 00:02:06.960
+And then shortly after I got recruited at UDM back in Montreal, where I had spent most of my child's adolescence years.
+
+00:02:06.960 --> 00:02:15.960
+You know, and so as someone who's been there for the last several decades and seen, you know, seen it all, certainly seen a lot of it.
+
+00:02:16.960 --> 00:02:21.960
+Tell me about how you're thinking about deep learning about neural networks as evolved over this time.
+
+00:02:21.960 --> 00:02:26.960
+We started with experiments, with intuitions and theory sort of comes later.
+
+00:02:26.960 --> 00:02:34.960
+We now understand a lot better, for example, why backdrop is working so well, why depth is so important.
+
+00:02:34.960 --> 00:02:41.960
+And, you know, these kinds of notions, we didn't have any solid justification for in those days.
+
+00:02:41.960 --> 00:02:49.960
+When we started working on deep nets in the early 2000s, we had the intuition that it made a lot of sense that a deeper network should be more powerful.
+
+00:02:49.960 --> 00:02:54.960
+And we didn't know how to take that and prove it.
+
+00:02:54.960 --> 00:02:58.960
+And of course, our experiments initially didn't work.
+
+00:02:58.960 --> 00:03:03.960
+And actually, what are the most important things that you think turned out to be right?
+
+00:03:03.960 --> 00:03:09.960
+And what were the biggest surprises of what turned out to be wrong, you know, compared to what we knew 30 years ago?
+
+00:03:10.960 --> 00:03:24.960
+Sure. So one of the biggest mistakes I made was to think that, like everyone else in the 90s, that you needed smooth nonlinearities in order for backdrop to work.
+
+00:03:24.960 --> 00:03:37.960
+Because I thought that, you know, if we had something like the rectifying nonlinearities where you have a flat part, that it would be really hard to train because the derivative would be zero in so many places.
+
+00:03:37.960 --> 00:03:54.960
+And when we started experimenting with relu with deep nets in around 2010, you know, I was obsessed with the idea that, oh, we should be careful about whether neurons won't saturate too much on the zero part.
+
+00:03:54.960 --> 00:04:02.960
+But in the end, it turned out that actually the relu was working a lot better than the sigmoids and the tach. And that was a big surprise.
+
+00:04:02.960 --> 00:04:12.960
+We did this exploring this because of the biological connection, actually, not because we thought that it would be easier to optimize, but it turned out work better.
+
+00:04:12.960 --> 00:04:15.960
+Whereas I thought it would be harder to train.
+
+00:04:15.960 --> 00:04:23.960
+So let me ask you, what is the relationship between deep learning and the brain? There's the obvious answer, but I'm curious, what's your answer to that?
+
+00:04:24.960 --> 00:04:47.960
+Well, the initial insight that really got me excited with neural nets was this idea from the connectionists that information is distributed across the activation of many neurons rather than being represented by sort of the grandmother cell, as they were calling it,
+
+00:04:48.960 --> 00:04:57.960
+a symbolic representation that was the traditional view in classical AI. And I still believe this is a really important thing.
+
+00:04:57.960 --> 00:05:12.960
+And I see people rediscovering the importance of that even recently. So that was really a foundation. The death thing is something that came later in the early 2000s.
+
+00:05:12.960 --> 00:05:16.960
+But it wasn't something I was thinking about in the 90s, for example.
+
+00:05:16.960 --> 00:05:26.960
+Right. I remember you build a lot of relatively shallow but very distributed representations or the word embeddings very early on.
+
+00:05:26.960 --> 00:05:39.960
+That's right. That's right. Yeah, that's that's one of the things that I got really excited about in the late 90s with actually my brother, Sunny, and I worked on the idea that we could use neural nets to tackle the curse of dimensionality,
+
+00:05:39.960 --> 00:05:56.960
+which was believed to be one of the central issues with statistical learning. And the fact that we could have these distributed representations could be used to represent joint distributions over many random variables in a very efficient way.
+
+00:05:56.960 --> 00:06:14.960
+And it turned out to work quite well. And then I extended this to join institutions over sequences of words. And this is how the word embeddings were born, because I thought, oh, you know, this will allow generalization across words that have similar semantic meaning and so on.
+
+00:06:15.960 --> 00:06:28.960
+So over the last couple of decades, your research group has invented more ideas than anyone can summarize in a few minutes. So I'm curious, what are the inventions or ideas you're most proud of from your group?
+
+00:06:28.960 --> 00:06:39.960
+Right. So I think I mentioned long term dependencies, the study of that, I think people still don't understand it well enough.
+
+00:06:39.960 --> 00:06:47.920
+Then there's the story I mentioned about curse of dimensionality, joint distributions with neural nets, which became more recently the nade that Hugo Don
+
+00:06:47.920 --> 00:07:07.960
+Rochelle did. And then, as I said that gave rise to also the work on learning word embeddings for joint distributions for words. Then came, I think, probably the best known events of the work we did with deep learning with stacks of auto encoders and stacks of RBMs.
+
+00:07:08.960 --> 00:07:23.960
+One thing then, it was the work on understanding better the difficulties of training deep nets with Xavier Laurel with the initialization ideas and also the vanishing gradient in deep nets.
+
+00:07:23.960 --> 00:07:34.960
+And that work actually was the one which gave rise to the experiments showing the importance of piecewise linear activation functions.
+
+00:07:34.960 --> 00:07:47.960
+Then I would say some of the most important work regards the work we did with unsupervised learning, the denoising on encoders, the GANs, which are very popular these days, the narrative adversarial networks.
+
+00:07:47.960 --> 00:08:00.960
+The work we did with neural machine translation using attention, which turned out to be really important for making attention, making translation work.
+
+00:08:00.960 --> 00:08:08.960
+And it's currently used in industrial systems like Google Translate. But this attention thing actually really changed my views on neural nets.
+
+00:08:08.960 --> 00:08:18.960
+You know, neural nets, we used to think as machines that can map a vector to a vector. But really with attention mechanisms, you can now handle any kind of data structure.
+
+00:08:18.960 --> 00:08:23.960
+And this is really opening up a lot of interesting avenues.
+
+00:08:23.960 --> 00:08:36.960
+The direction of actually connecting to biology, one thing that I've been working on in the last couple of years is how could we come up with something like backprop that brains could implement?
+
+00:08:36.960 --> 00:08:46.960
+And we have a few papers in that direction that seems to be interesting for the neuroscience people. And then we're continuing on that direction, of course.
+
+00:08:47.960 --> 00:08:55.960
+One of the topics that I know you've been thinking a lot about is the relationship between deep learning and the brain. Can you tell us a bit more about that?
+
+00:08:55.960 --> 00:09:07.960
+The biological thing is something I've been thinking about for a while, actually, and having a lot of, I would say, daydreaming about.
+
+00:09:07.960 --> 00:09:20.960
+Because it's like, I think of it like a puzzle. So we have these pieces of evidence from what we know from the brain and from learning in the brain, like spike timing, dependent plasticity.
+
+00:09:20.960 --> 00:09:34.960
+And on the other hand, we have all of these concepts from machine learning, the idea of globally training the whole system with respect to an objective function and the idea of backprop.
+
+00:09:34.960 --> 00:09:40.960
+And what does backprop mean? What does credit assignment really mean?
+
+00:09:40.960 --> 00:09:57.960
+When I started thinking about how brains could do something like backprop, it prompted me to think about, well, maybe there's some more general concepts behind backprop which make it so efficient, which allows us to be efficient with backprop.
+
+00:09:57.960 --> 00:10:06.960
+Maybe there's a larger family of ways to do credit assignment, and that connects to questions that people in reinforcement learning have been asking.
+
+00:10:06.960 --> 00:10:23.960
+So it's interesting how sometimes asking a simple question leads you to thinking about so many different things and forces you to think about so many elements that you'd like to bring together like a big puzzle.
+
+00:10:23.960 --> 00:10:34.960
+So this has gone for a number of years. I need to say that this whole endeavor, like many of the ones that I have followed, has been highly inspired by Jeff Hinton's thoughts.
+
+00:10:34.960 --> 00:11:00.960
+So in particular, he gave this talk in 2007, I think, the first deep learning workshop on what he thought was the way that the brain is working, how temporal code could be used for potentially doing some of the job of backprop.
+
+00:11:00.960 --> 00:11:15.960
+And that led to a lot of the ideas that I've explored in recent years with this. Yeah, so it's kind of an interesting story that has been running for a decade now, basically.
+
+00:11:15.960 --> 00:11:24.960
+One of the topics I've heard you speak about multiple times as well is unsupervised learning. Can you share your perspective on that?
+
+00:11:25.960 --> 00:11:41.960
+Yes, yes. So unsupervised learning is really important. Right now, our industrial systems are based on supervised learning, which essentially requires humans to define what the important concepts are for the problem and to label those concepts in the data.
+
+00:11:42.960 --> 00:11:59.960
+And we build all these amazing toys and services and systems using this. But humans are able to do much more. They're able to explore and discover new concepts by observation and interaction with the world.
+
+00:12:00.960 --> 00:12:13.960
+A two-year-old is able to understand intuitive physics. In other words, she understands gravity, she understands pressure, she understands inertia, she understands liquid solids.
+
+00:12:13.960 --> 00:12:20.960
+And of course, her parents never told her about any of these stuff. Right? So how did she figure it out?
+
+00:12:20.960 --> 00:12:29.960
+So that's the kind of question that unsupervised learning is trying to answer. It's not just about we have labels or we don't have labels.
+
+00:12:29.960 --> 00:12:44.960
+It's about actually building a construction, a mental construction that explains how the world works by observation. And more recently, I've been combining the ideas in unsupervised learning with the ideas of reinforcement learning.
+
+00:12:44.960 --> 00:13:07.960
+Because I believe that there is a very strong indication about the important underlying concepts that we're trying to disentangle when trying to separate from each other that a human or machine can get by interacting with the world, by exploring the world and trying things and trying to control things.
+
+00:13:07.960 --> 00:13:09.960
+So these are, I think, tightly coupled to the original ideas of unsupervised learning. So my take on unsupervised learning 15 years ago when we started doing the auto-enquoted
+
+00:13:09.960 --> 00:13:33.960
+and the RBM's and so on was very focused on the idea of learning good representations. And I still think this is a central question. But the thing we don't know is what is a good representation?
+
+00:13:33.960 --> 00:13:49.960
+How do we figure out an objective function, for example? So we've tried many things over the years. And that's actually one of the cool things about unsupervised learning research, that there are so many different ideas, so different ways that this problem can be attacked.
+
+00:13:49.960 --> 00:13:58.960
+And that suggests maybe there's another one we'll discover next year that's completely different and maybe the brain is using something else completely different.
+
+00:13:58.960 --> 00:14:13.960
+So it's not incremental research. It's something that in itself is very exploratory. We don't have a good definition of what's the right objective function to even measure that a system is doing a good job of unsupervised learning.
+
+00:14:13.960 --> 00:14:27.960
+So of course it's challenging, but at the same time it leaves open a wide field of possibilities, which is what researchers really love. At least that's something that appeals to me.
+
+00:14:27.960 --> 00:14:37.960
+So today there's so much going on in deep learning. And I think we've passed the point where it's possible for anyone human to read every single deep learning paper being published.
+
+00:14:37.960 --> 00:14:43.960
+So I'm curious, what in deep learning today excites you to know?
+
+00:14:43.960 --> 00:14:53.960
+So I'm very ambitious. And I feel like the current state of science of deep learning is far from where I'd like to see it.
+
+00:14:54.960 --> 00:15:05.960
+And I have the impression that our systems right now make mistakes that suggest, the kind of mistakes that suggest that they have a very superficial understanding of the world.
+
+00:15:05.960 --> 00:15:14.960
+So what excites me the most now is sort of direction of research where we're not trying to build systems and we're going to do something useful.
+
+00:15:15.960 --> 00:15:25.960
+We're just going back to principles about how can a computer observe the world, interact with the world, and discover how that world works.
+
+00:15:25.960 --> 00:15:32.960
+Even if that world is simple, something that we can program is a kind of video game, we don't know how to do that well.
+
+00:15:32.960 --> 00:15:37.960
+And that's cool because I don't have to compete with Google and Facebook and Baidu and so on, right?
+
+00:15:38.960 --> 00:15:44.960
+Because this is a kind of basic research that can be done by anyone in their garage and could change the world.
+
+00:15:44.960 --> 00:15:56.960
+So there are many, of course, many directions to attack this, but I see a lot of the fruitful interactions between ideas and deep learning and reinforcement learning being really important there.
+
+00:15:57.960 --> 00:16:15.960
+And I'm really excited that the progress in this direction could have a huge impact on practical applications, actually, because if you look at some of the big challenges that we have in applications like how we deal with new domains or categories on which we have too few examples.
+
+00:16:15.960 --> 00:16:23.960
+And in cases where humans are very good at solving those problems, so these transfer learning and generalization issues,
+
+00:16:24.960 --> 00:16:33.960
+they would become much easier to tackle if we have systems that had a better understanding of how the world works, a deeper understanding.
+
+00:16:33.960 --> 00:16:42.960
+What is actually going on? What are the causes of what I'm seeing and how could I influence what I'm seeing by my actions?
+
+00:16:42.960 --> 00:16:48.960
+So these are the kinds of questions I'm really excited about these days.
+
+00:16:49.960 --> 00:17:06.960
+And I think they connect also the deep learning research that has evolved over the last couple of decades with even older questions in AI, because a lot of the success in deep learning has been with perception.
+
+00:17:06.960 --> 00:17:13.960
+So what's left, right? What's left is sort of higher level cognition, which is about understanding at an abstract level how things work.
+
+00:17:14.960 --> 00:17:21.960
+So our program of understanding high level abstractions, I think, has not reached those high level of abstractions.
+
+00:17:21.960 --> 00:17:27.960
+And so we have to get there. We have to think about reasoning, about sequential processing of information.
+
+00:17:27.960 --> 00:17:37.960
+We have to think of how causality works and how machines can discover all these things by themselves, potentially guided by humans, but as much as possible in an autonomous way.
+
+00:17:38.960 --> 00:17:50.960
+And it sounds like from part of what you said that you're a fan of research approaches where you experiment on, you know, I'm going to use the term toy problem, not in a disparaging way, but on a small problem.
+
+00:17:50.960 --> 00:17:54.960
+And you're optimistic that that transfers to bigger problems later.
+
+00:17:54.960 --> 00:18:06.960
+Yes, yes, yes. I mean, it transfers in a in a meta way, right? Of course, we're going to have to do some work to scale up and address those problems.
+
+00:18:07.960 --> 00:18:25.960
+But my main motivation for going for those toy problems is that we can understand better our failures and we can reduce the problem to something we can intuitively sort of manipulate and understand more easily.
+
+00:18:25.960 --> 00:18:37.960
+So sort of a classical divide and conquer, you know, science approach. And also, I think something people don't think about enough is the cycle, the research cycle can be much faster, right?
+
+00:18:37.960 --> 00:18:54.960
+So if I can do an experiment in a few hours, I can progress much faster. If I have to train a huge model that tries to capture the whole common sense and, you know, everything in the general knowledge, which will eventually will do.
+
+00:18:54.960 --> 00:19:05.960
+It's just each experiment just takes too much time with current hardware. So while our hardware friends are building machines that are going to be a thousand or a million times faster, I'm doing those toy experiments.
+
+00:19:05.960 --> 00:19:18.980
+You know, I've also heard you speak about the science of deep learning, not just as an engineering discipline, but doing more work to understand what's really going on.
+
+00:19:18.980 --> 00:19:21.980
+Do you share your thoughts on that?
+
+00:19:21.980 --> 00:19:30.980
+Yeah, absolutely. I fear that a lot of the work that we're doing is sort of like blind people trying to find their way.
+
+00:19:30.980 --> 00:19:48.980
+And, you know, you can get a lot of luck and find interesting things that way. But really, if we sort of stop a little bit and try to understand what we're doing in a way that's transferable because we go down to principles to theory.
+
+00:19:48.980 --> 00:20:00.980
+But when I say theory, I don't mean necessarily math. Right. I don't I'm not like, of course, I like math and so on. But but I don't think that we need that everything be formalized mathematically, but be formalized logically.
+
+00:20:00.980 --> 00:20:08.980
+Now, the sense that I can convince somebody that, you know, this should work with that. This makes sense. This is the most important aspect.
+
+00:20:08.980 --> 00:20:29.980
+And then math allows us to make that stronger and tighter. But really, it's more about understanding. And it's about also doing our research not to beat the next baseline or a benchmark or beat the other guys in the other lab or the other company.
+
+00:20:29.980 --> 00:20:42.980
+It's more about, you know, what kind of question should we ask that would allow us to understand better the phenomenon of interest? Like, you know, what makes, for example, training in deeper networks harder?
+
+00:20:42.980 --> 00:20:48.980
+We can't net harder. We have some ideas, but a lot of things we don't understand yet.
+
+00:20:48.980 --> 00:21:04.980
+So we can maybe design experiments whose goal is not to have like a better algorithm, but just to understand better the algorithms we currently have or why what circumstances make particular algorithms work better and why I mean, it's the why that really matters.
+
+00:21:04.980 --> 00:21:06.980
+That's what science is about. It's why.
+
+00:21:07.980 --> 00:21:20.980
+Today, there are a lot of people that want to enter the fields. And I'll show you, Ansa does a lot in one on one settings. But, you know, with all the people watching this on video, what advice would you have for people that want to get into AI again as a deep learning?
+
+00:21:20.980 --> 00:21:35.980
+Right. So first of all, there are different motivations, different things you could do. You know, what you need to become a deep learning researcher may not be the same as if you want to be an engineer who's going to use deep learning to build products.
+
+00:21:36.980 --> 00:21:44.980
+There's a different level of understanding that's needed in both cases. But in any case, in both cases, practice.
+
+00:21:44.980 --> 00:21:56.980
+So to really master a subject like deep learning, of course, you have to read a lot. You have to practice programming the things yourself.
+
+00:21:57.980 --> 00:22:13.980
+Very often, I, you know, I interview students who have used software. And these days, there's so so many, you know, so so good software around that you can just, you know, plug and play and understand nothing of what you're doing, or at such a superficial level that then it becomes hard to figure out when it doesn't work.
+
+00:22:13.980 --> 00:22:22.980
+What's going wrong? So actually trying to implement things yourself, even if it's inefficient, but just to make sure you really understand what is going on is really useful.
+
+00:22:23.980 --> 00:22:25.980
+And, you know, trying to implement yourself.
+
+00:22:26.980 --> 00:22:32.980
+So don't just use one of the programming frameworks, you can do everything in a few lines of code, but you don't really know what just happened, right?
+
+00:22:32.980 --> 00:22:51.980
+Exactly, exactly. And I would say even more than that, try to derive the thing yourself from, you know, first principles, if you can. So that really helps. But, yeah, I mean, the usual things you have to do, like reading, looking at other people's code, writing your own code,
+
+00:22:51.980 --> 00:23:03.980
+doing a lot of experiment, making sure you understand everything you do. So I mean, especially for the science part of it, trying to ask, why am I doing this? Why are people doing this?
+
+00:23:03.980 --> 00:23:12.980
+And maybe the answer is somewhere in the book, and you have to read more. But it's even better if you can actually figure it out by yourself.
+
+00:23:13.980 --> 00:23:22.980
+Cool. Yeah. And in fact, of the things that read, you and Ian Goofalo and Aaron Koval wrote a very highly regarded book.
+
+00:23:23.980 --> 00:23:41.980
+Thank you. Thank you. Yes, it's selling a lot. It's a bit crazy. I feel like there's more people reading this book than people who can read it right now. But yeah, also proceedings of the ICLR ICLR conference is probably the best way to do it.
+
+00:23:42.980 --> 00:23:58.980
+It's a really nice, concentrated place of good papers. Of course, there are really good papers at NIPS and ICML and other conferences. But if you really want to go for a lot of good papers, just read the last few ICLR proceedings, and that will give you a really good view of the field.
+
+00:23:59.980 --> 00:24:07.980
+Cool. Yeah. Any other thoughts when people ask you for advice? You know, how does someone, right, become good at deep learning?
+
+00:24:08.980 --> 00:24:25.980
+Well, it depends on where you come from. Don't be afraid by the math. Just, you know, just develop the intuitions, and then the math becomes really easier to understand once you get the hang of what's going on at the intuitive level.
+
+00:24:26.980 --> 00:24:47.980
+And one good news is that you don't need five years of PhD to become proficient at deep learning. You can actually learn pretty quickly. If you have a good background in computer science and math, you can learn enough to use it and build things and start research experiments in just a few months.
+
+00:24:48.980 --> 00:24:58.980
+Something like six months for people with the right training, maybe they don't know anything about machine learning, but if they're good in math and computer science, it can be very fast.
+
+00:24:59.980 --> 00:25:11.980
+And of course, so that means you need to have the right training in math and computer science. Sometimes what you learn in just computer science courses is not enough. You need some continuous math, especially.
+
+00:25:12.980 --> 00:25:18.980
+So this is probability algebra and optimization, for example.
+
+00:25:19.980 --> 00:25:20.980
+And calculus.
+
+00:25:21.980 --> 00:25:22.980
+And calculus. Yeah.
+
+00:25:23.980 --> 00:25:33.980
+Thanks a lot, Joshua, for sharing all the comments and insights and advice. Even though I've known you for a long time, there are many details of your early history that I didn't know until now. So thank you.
+
+00:25:33.980 --> 00:25:46.980
+Well, thank you, Andrew, for doing this special recording and what you're doing. And well, I hope it's going to be used by a lot of people.

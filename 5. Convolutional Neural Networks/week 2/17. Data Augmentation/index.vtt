@@ -1,0 +1,303 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.020 --> 00:00:04.660
+Most computer vision tasks could use more data and so data
+
+00:00:04.660 --> 00:00:09.060
+augmentation is one of the techniques that is often used to improve the
+
+00:00:09.060 --> 00:00:14.260
+performance of computer vision systems. I think that computer vision is a pretty
+
+00:00:14.260 --> 00:00:19.220
+complicated task. You have to input this image, all these pixels, and then figure
+
+00:00:19.220 --> 00:00:24.220
+out what is in this picture. And it seems like you need to learn a decently
+
+00:00:24.220 --> 00:00:29.660
+complicated function to do that. And in practice, for almost all computer vision
+
+00:00:29.660 --> 00:00:34.580
+tasks, having more data will help. This is unlike some other domains where
+
+00:00:34.580 --> 00:00:38.620
+sometimes you can get enough data that you don't feel as much pressure to get even
+
+00:00:38.620 --> 00:00:42.620
+more data. But I think today the state of computer vision is that for the
+
+00:00:42.620 --> 00:00:46.740
+majority of computer vision problems, we feel like we just can't get enough data.
+
+00:00:46.740 --> 00:00:51.060
+And this is not true for all applications of machine learning, but it
+
+00:00:51.060 --> 00:00:55.180
+does feel like it's true for computer vision. So what that means is that when
+
+00:00:55.180 --> 00:01:00.100
+you're training computer vision model, often data augmentation will help. And
+
+00:01:00.100 --> 00:01:03.580
+this is true whether you're using transfer learning and using someone else's
+
+00:01:03.580 --> 00:01:07.260
+pre trained ways to start, or whether you're trying to train something
+
+00:01:07.420 --> 00:01:11.820
+yourself from scratch. Let's take a look at the common data augmentation
+
+00:01:11.820 --> 00:01:17.220
+methods in computer vision. Perhaps the simplest data augmentation method is
+
+00:01:17.220 --> 00:01:21.940
+mirroring on the vertical axis, where if you have this example in your
+
+00:01:21.940 --> 00:01:27.940
+training set, you flip it horizontally to get that image on the right. And for most
+
+00:01:27.940 --> 00:01:33.140
+computer vision tasks, if the left picture is a cat, then mirroring it is still a cat.
+
+00:01:33.780 --> 00:01:38.260
+And if the mirroring operation preserves whatever you're trying to recognize in
+
+00:01:38.260 --> 00:01:44.340
+the picture, this would be a good data augmentation technique to use. Another
+
+00:01:44.340 --> 00:01:49.180
+commonly used technique is random cropping. So given this data set, let's pick a
+
+00:01:49.180 --> 00:01:54.460
+few random crops. So you might pick that and take that crop. You might take that,
+
+00:01:54.780 --> 00:02:00.420
+take that crop, take this, take that crop. And so this gives you different
+
+00:02:00.420 --> 00:02:04.460
+examples to feed into your training set with sort of different random crops of
+
+00:02:04.460 --> 00:02:09.740
+your data set. So random cropping isn't a perfect data augmentation method. You know,
+
+00:02:09.740 --> 00:02:14.820
+one of you randomly end up taking that crop, right, which won't look much like a
+
+00:02:14.820 --> 00:02:19.700
+cat. But in practice, it works well, so long as your random crops are reasonably
+
+00:02:19.700 --> 00:02:24.220
+large subsets of the original image. So mirroring and random cropping are
+
+00:02:24.220 --> 00:02:29.420
+frequently used. And in theory, you could also use things like rotation,
+
+00:02:29.620 --> 00:02:35.100
+shearing of the image. So that's if you do this to the image, distorted that
+
+00:02:35.100 --> 00:02:39.980
+way, introduce various forms of local warping, and so on. And there's really
+
+00:02:39.980 --> 00:02:43.460
+no harm with trying all of these things as well, although in practice,
+
+00:02:43.460 --> 00:02:52.780
+they seem to be used a bit less, perhaps because of the complexity. A second type
+
+00:02:52.820 --> 00:02:59.820
+of data augmentation that is commonly used is color shifting. So given a
+
+00:02:59.820 --> 00:03:08.140
+picture like this, let's say you add to the R, G, and B channels, different
+
+00:03:08.300 --> 00:03:14.060
+distortions. In this example, we are adding to the red and blue channels
+
+00:03:14.060 --> 00:03:20.740
+and subtracting from the green channel. So red and blue make purple. So this
+
+00:03:20.740 --> 00:03:25.300
+makes the whole image a bit more purpley. And that creates a distorted image
+
+00:03:25.500 --> 00:03:30.380
+for your training set. For illustration purposes, I'm making somewhat dramatic
+
+00:03:30.380 --> 00:03:34.740
+changes to the colors. In practice, you draw R, G, and B from some
+
+00:03:34.740 --> 00:03:41.740
+distribution that could be quite small as well. But what you do is take
+
+00:03:41.740 --> 00:03:47.100
+different values of R, G, and B and use them to distort the color channels. So in
+
+00:03:47.100 --> 00:03:52.660
+the second example, we are making a less red and more green and more blue. So that
+
+00:03:52.660 --> 00:04:00.250
+turns the whole image a bit more yellowish. And here we are making it much
+
+00:04:00.250 --> 00:04:04.930
+more blue, just a tiny little bit more red. But in practice, the values R, G,
+
+00:04:04.930 --> 00:04:11.900
+and B are drawn from some probability distribution. And the motivation for
+
+00:04:11.900 --> 00:04:17.700
+this is that if maybe the sunlight was a bit yellower, or maybe the indoor
+
+00:04:17.700 --> 00:04:23.060
+illumination was a bit more yellow, that could easily change the color of an
+
+00:04:23.060 --> 00:04:28.820
+image, but the identity of the cat or the identity of the content, the label Y,
+
+00:04:28.980 --> 00:04:33.980
+should still say the same. And so introducing these color distortions, or
+
+00:04:34.020 --> 00:04:39.220
+by doing color shifting, this makes your learning algorithm more robust to
+
+00:04:39.220 --> 00:04:52.300
+changes in the colors of your images. Just a comment for the advanced learners
+
+00:04:52.340 --> 00:04:58.580
+in this course. And it's okay if you don't understand what I'm about to say
+
+00:04:58.580 --> 00:05:04.460
+when I'm using in red. There are different ways to sample R, G, and B. One
+
+00:05:04.460 --> 00:05:08.660
+of the ways to implement color distortion uses an algorithm called PCA.
+
+00:05:08.740 --> 00:05:14.300
+This is called principles components analysis, which I talked about in the
+
+00:05:14.340 --> 00:05:22.060
+machine learning book in the ML class.org machine learning course on course
+
+00:05:22.060 --> 00:05:27.900
+error. But the details of this are actually given in the AlexNet paper,
+
+00:05:28.260 --> 00:05:37.660
+and it's called sometimes called PCA color augmentation. But the rough idea
+
+00:05:37.660 --> 00:05:43.420
+between PCA color augmentation is, for example, if your image is mainly
+
+00:05:43.420 --> 00:05:50.420
+purple, if it mainly has red and blue tints, and very little green, then PCA
+
+00:05:50.420 --> 00:05:55.340
+color augmentation will add and subtract a lot to red and blue, but relatively
+
+00:05:55.340 --> 00:05:59.900
+little to green. So it kind of keeps the overall color of the tint the
+
+00:05:59.900 --> 00:06:05.980
+same. If you didn't understand any of this, don't worry about it. But if
+
+00:06:05.980 --> 00:06:11.820
+you can search online for, but you can if you want to read about the details
+
+00:06:11.820 --> 00:06:15.700
+of it in the AlexNet paper. And you can also find some open source
+
+00:06:15.700 --> 00:06:23.100
+implementations of PCA color augmentation, and just use that. So you
+
+00:06:23.100 --> 00:06:27.740
+might have your data stored, your training data stored in a hard disk
+
+00:06:27.740 --> 00:06:32.140
+when they use this symbol, this round bucket symbol to represent your
+
+00:06:32.140 --> 00:06:36.700
+hard disk. And if you have a small training set, you could do almost
+
+00:06:36.700 --> 00:06:40.300
+anything and they'll be okay. But if you're very large training set, then
+
+00:06:40.300 --> 00:06:44.540
+this is how people will often implement it, which is you might have a CPU
+
+00:06:44.540 --> 00:06:54.620
+thread that is constantly loading images off your hard disk. So you have
+
+00:06:54.620 --> 00:07:01.690
+this, you know, stream of images coming in from your hard disk. And what
+
+00:07:01.690 --> 00:07:09.770
+you can do is use maybe a CPU thread to implement the distortions, be it the
+
+00:07:09.770 --> 00:07:17.260
+random cropping or the color shifting or the mirroring. But for each image, you
+
+00:07:17.260 --> 00:07:22.900
+might then end up with some distorted version of it. So let's see this image,
+
+00:07:22.900 --> 00:07:27.020
+I'm gonna mirror it and maybe also implement color distortion and so on.
+
+00:07:27.020 --> 00:07:39.310
+And maybe this image ends up being color shifted. So you end up with, you
+
+00:07:39.310 --> 00:07:45.790
+know, some different color cat. And so your CPU thread is constantly loading
+
+00:07:45.790 --> 00:07:52.190
+data, as well as implementing whatever distortions are needed to form a batch or
+
+00:07:52.190 --> 00:08:02.260
+really mini batches of data. And this data is then constantly passed to some
+
+00:08:02.260 --> 00:08:06.460
+other thread or some other process for implementing training. And this could
+
+00:08:06.460 --> 00:08:11.140
+be done on the CPU or really increasingly on the GPU if you have a
+
+00:08:11.140 --> 00:08:18.100
+large neural network to train. And so a pretty common way of implementing data
+
+00:08:18.100 --> 00:08:26.510
+augmentation is to really have, you know, one thread or multiple threads that is
+
+00:08:26.510 --> 00:08:31.510
+responsible for loading the data and implementing distortions, and then passing
+
+00:08:31.510 --> 00:08:35.950
+that to some other thread or some other process that then does the training. And
+
+00:08:35.950 --> 00:08:44.500
+often this and this can run in parallel. So that's it for data
+
+00:08:44.500 --> 00:08:50.220
+augmentation. And similar to other parts of training a deep neural network, the
+
+00:08:50.220 --> 00:08:55.380
+data augmentation process also has a few hyper parameters such as how much color
+
+00:08:55.380 --> 00:09:00.420
+shifting do you implement and exactly what parameters you use for random cropping.
+
+00:09:00.420 --> 00:09:05.460
+So similar to elsewhere in computer vision, a good place to get started might
+
+00:09:05.460 --> 00:09:10.660
+be to use someone else's open source implementation for how they use data
+
+00:09:10.660 --> 00:09:15.900
+augmentation. But of course, if you want to capture more in variances than you
+
+00:09:15.900 --> 00:09:20.700
+think someone else's open source implementation isn't, it might be reasonable
+
+00:09:20.700 --> 00:09:26.420
+to also tune these hyper parameters yourself. So with that, I hope that you'll be able to
+
+00:09:26.420 --> 00:09:30.780
+use data augmentation to get your computer vision applications to work better.

@@ -1,0 +1,74 @@
+Hãy xem tôi vẽ một vài hình ảnh
+của mạng nơ-ron nhân tạo. Trong video này, chúng ta sẽ nói về
+ý nghĩa của những hình ảnh đó. Nói cách khác, là những gì mà các mạng nơ-ron
+nhân tạo mà chúng ta đã vẽ biểu diễn. Và chúng ta sẽ bắt đầu với trường hợp
+của mạng nơ-ron nhân tạo với một lớp ẩn duy nhất. Đây là hình ảnh về một
+mạng nơ-ron nhân tạo. Hãy đặt tên cho các phần
+khác nhau trong hình ảnh này. Chúng ta có các tính năng đầu vào, x1,
+x2, x3 xếp chồng lên nhau theo chiều dọc. Và đây được gọi là lớp
+đầu vào của mạng nơ ron. Và dĩ nhiên, nó chứa các
+đầu vào cho mạng thần kinh. Sau đó, có một lớp hình tròn khác. Và đây được gọi là một lớp ẩn
+của mạng nơ-ron nhân tạo. Tôi sẽ nói từ ẩn có nghĩa là gì sau. Nhưng trong ví dụ này, lớp cuối cùng
+ở đây được hình thành bởi một nút. Và lớp nút đơn này được gọi là lớp
+đầu ra và chịu trách nhiệm để cho ra các giá trị dự đoán y mũ (y^). Trong một mạng nơ-ron nhân tạo mà
+bạn huấn luyện với học có giám sát, tập huấn luyện chứa các giá trị của
+đầu vào x cũng như đầu ra đích y. Vì vậy, thuật ngữ lớp ẩn đề cập đến
+thực tế là trong tập huấn luyện, các giá trị thực cho các nút ở giữa
+này thì không được quan sát. Đó là, bạn không thấy
+nó trong tập huấn luyện. Bạn thấy đầu vào là gì. Bạn thấy ngõ ra thì nên là gì. Nhưng những thứ bên trong lớp ẩn thì
+sẽ không thấy được trong tập huấn luyện. Vì vậy, nó tên là lớp ẩn; chỉ vì bạn không nhìn thấy nó
+trong tập huấn luyện. Tôi sẽ giới thiệu thêm
+một vài ký hiệu nữa. Trong khi trước đây, chúng ta đã sử dụng
+vectơ x để biểu thị các tính năng đầu vào và ký hiệu thay thế cho các giá trị của các tính năng
+đầu vào sẽ là a với mũ [0]. Và thuật ngữ a là viết tắt của
+kích hoạt (activation), và đề cập đến các giá trị
+mà các lớp khác nhau của mạng nơ-ron nhân tạo đang
+truyền sang các lớp tiếp theo. Vì vậy, lớp đầu vào chuyển
+giá trị x sang lớp ẩn, vì vậy chúng ta sẽ gọi kích hoạt
+của lớp đầu vào là a mũ [0]. Lớp tiếp theo, lớp ẩn, sẽ lần lượt
+tạo ra một số bộ kích hoạt, mà tôi sẽ viết
+dưới dạng a mũ [1]. Cụ thể là trong đơn vị đầu tiên
+hoặc nút đầu tiên này, chúng ta tạo ra
+một giá trị a1 mũ [1]. Nút thứ hai này chúng ta
+tạo ra một giá trị. Bây giờ chúng ta
+có a2 mũ [1] và v.v. Và như vậy, a mũ [1], là một vectơ bốn chiều mà
+bạn muốn có trong Python bởi vì ma trận 4x1, hoặc một
+vectơ 4 cột, sẽ trông như thế này. Và đó là bốn chiều, là vì trong trường hợp
+này, chúng ta có bốn nút, hoặc bốn đơn vị, hoặc là bốn
+đơn vị ẩn trong lớp ẩn này. Và cuối cùng, lớp mở
+tái tạo một số giá trị a[2], đó là một số thực. Và vì vậy, y mũ
+sẽ có giá trị là a[2]. Và điều này tương tự với hồi quy
+logistic, chúng ta có y mũ bằng a và trong hồi quy logistic chúng ta
+chỉ có một lớp đầu ra, vì vậy chúng ta không sử dụng
+dấu ngoặc vuông. Nhưng với mạng nơ-ron nhân tạo, bây giờ
+chúng ta sẽ sử dụng dấu mũ ngoặc vuông để chỉ rõ nó đến từ lớp nào. Một điều thú vị về các quy ước ký hiệu
+trong các mạng nơ-ron nhân tạo là mạng mà bạn thấy ở đây được
+gọi là mạng nơ-ron nhân tạo hai lớp. Và lý do là khi chúng ta đếm các
+lớp trong mạng nơ-ron nhân tạo, chúng ta sẽ không đếm lớp đầu vào. Vì vậy, lớp ẩn là lớp một
+và lớp đầu ra là lớp hai. Trong quy ước ký hiệu của chúng ta,
+chúng ta gọi lớp đầu vào là lớp 0, vì vậy về mặt kỹ thuật, có thể là có ba lớp
+trong mạng nơ-ron nhân tạo này. Đó là lớp đầu vào,
+lớp ẩn và lớp đầu ra. Nhưng trong cách sử dụng ký hiệu thông dụng,
+nếu bạn đọc tài liệu nghiên cứu và những nguồn khác trong khóa học, bạn sẽ thấy
+mọi người coi mạng nơ-ron nhân tạo cụ thể này là một mạng nơ-ron nhân tạo 2 lớp, vì chúng ta
+không tính lớp đầu vào là lớp chính thức. Cuối cùng, sau này chúng ta
+sẽ biết là lớp ẩn và các lớp đầu ra sẽ có các
+tham số liên quan đến chúng. Như vậy, lớp ẩn sẽ liên kết
+với các tham số w và b. Và tôi sẽ viết
+số mũ [1] để chỉ ra rằng đây là các tham số
+liên kết với lớpmột lớp ẩn. Sau này chúng ta sẽ thấy rằng
+w sẽ là một ma trận 4 x 3 và b sẽ là một vectơ
+(4,1) trong ví dụ này. Tọa độ 4 đầu tiên xuất phát
+từ thực tế là chúng ta có bốn nút của các
+đơn vị ẩn và một lớp, và 3 nghĩa là chúng ta có
+ba tính năng đầu vào. Chúng ta sẽ nói về kích thước
+của các ma trận này sau. Và có thể nó sẽ dễ hiểu
+hơn tại thời điểm đó. Nhưng trong một số lớp đầu ra
+mà cũng liên kết với các tham số w mũ [2] và b mũ [2]. Và hóa ra kích thước
+của chúng là 1x 4 và 1 x 1. Và 1 x 4 này là do
+lớp ẩn có bốn đơn vị ẩn, lớp đầu ra chỉ có một đơn vị. Nhưng chúng ta sẽ học về kích thước của các
+ma trận và chiều vectơ trong một video sau này. Và bạn vừa thấy hình dạng
+một mạng nơ-ron nhân tạo. Đó là một mạng nơ-ron
+nhân tạo với một lớp ẩn. Ở video tiếp theo, chúng ta sẽ đi sâu hơn vào chính xác thì mạng
+nơ-ron nhân tạo này đang tính toán những gì. Đó là cách mạng nơ ron
+này nhập vào x và tính đầu ra y mũ của nó.

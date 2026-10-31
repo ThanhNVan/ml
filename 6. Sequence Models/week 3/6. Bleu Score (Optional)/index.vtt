@@ -1,0 +1,549 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.270 --> 00:00:05.550
+One of the challenges of machine translation is that given a French sentence, there could
+
+00:00:05.550 --> 00:00:11.350
+be multiple English translations that are equally good translations in that French sentence.
+
+00:00:11.350 --> 00:00:16.990
+So how do you evaluate a machine translation system if there are multiple equally good answers?
+
+00:00:16.990 --> 00:00:22.110
+Unlike, say, image recognition, where there's one right answer that just measures accuracy.
+
+00:00:22.110 --> 00:00:26.390
+If there are multiple great answers, how do you measure accuracy?
+
+00:00:26.390 --> 00:00:30.310
+The way this is done conventionally is with something called the blue score.
+
+00:00:30.310 --> 00:00:34.390
+So in this optional video, I want to share with you, I want to give you a sense of how
+
+00:00:34.390 --> 00:00:37.110
+the blue score works.
+
+00:00:37.110 --> 00:00:41.510
+Let's say you are given a French sentence, Le Chai is a Le Tapi.
+
+00:00:41.510 --> 00:00:47.830
+And you are given a reference, human generated translation of this, which is the cat is on
+
+00:00:47.830 --> 00:00:49.590
+the mat.
+
+00:00:49.590 --> 00:00:52.030
+But there are multiple pretty good translations of this.
+
+00:00:52.030 --> 00:00:57.270
+So a different human, different person might translate it as there is a cat on the mat.
+
+00:00:57.270 --> 00:01:03.230
+And both of these are actually just fine, perfectly fine translations of the French sentence.
+
+00:01:03.230 --> 00:01:10.830
+What the blue score does is given a machine generated translation, it allows you to automatically
+
+00:01:10.830 --> 00:01:16.750
+compute a score that measures how good is that machine translation.
+
+00:01:16.750 --> 00:01:23.310
+And the intuition is so long as the machine generated translation is pretty close to any
+
+00:01:23.310 --> 00:01:29.630
+of the references provided by humans, then it will get a high blue score.
+
+00:01:29.630 --> 00:01:39.750
+Blue by the way, stands for bilingual evaluation understudy.
+
+00:01:39.750 --> 00:01:45.430
+So in the theater world, an understudy is someone that learns the role of a more senior
+
+00:01:45.430 --> 00:01:51.070
+actor so they can take over the role of the most senior actor if necessary.
+
+00:01:51.070 --> 00:01:57.750
+And motivation for blue is that whereas you could ask human evaluators to evaluate the
+
+00:01:57.750 --> 00:02:04.430
+machine translation system, the blue score is an understudy, could be a substitute for
+
+00:02:04.430 --> 00:02:12.230
+having humans evaluate every output of a machine translation system.
+
+00:02:12.230 --> 00:02:19.970
+So the blue score was due to Kishore Papaneni, Salim Rookus, Todd Ward and Wei-Jing Zhu.
+
+00:02:19.970 --> 00:02:25.230
+This paper has been incredibly influential and is actually quite a readable, and is actually
+
+00:02:25.230 --> 00:02:31.190
+quite a readable paper so it covers you to take a look if you have time.
+
+00:02:31.190 --> 00:02:37.750
+So the intuition behind the blue score is we're going to look at the machine generated
+
+00:02:37.750 --> 00:02:45.630
+output and see if the types of words it generates appear in at least one of the human generated
+
+00:02:45.630 --> 00:02:46.990
+references.
+
+00:02:46.990 --> 00:02:52.750
+And so these human generated references would be provided as part of the depth set or as
+
+00:02:52.750 --> 00:02:55.030
+part of the test set.
+
+00:02:55.030 --> 00:02:57.310
+Now let's look at some extreme example.
+
+00:02:57.310 --> 00:03:03.990
+Let's say that the machine translation system, I'm abbreviating machine translation as MT.
+
+00:03:03.990 --> 00:03:08.390
+So the machine translation or the MT output is dv, dv, dv, dv, dv.
+
+00:03:08.390 --> 00:03:12.390
+So this is clearly a pretty terrible translation.
+
+00:03:12.390 --> 00:03:19.670
+So one way to measure how good the machine translation output is, is to look at each of
+
+00:03:19.670 --> 00:03:25.950
+the words in the output and see if it appears in the references.
+
+00:03:25.950 --> 00:03:31.590
+And so this could be called a precision of the machine translation output.
+
+00:03:31.590 --> 00:03:38.670
+And in this case there are seven words in the machine translation output and every one
+
+00:03:38.670 --> 00:03:44.310
+of these seven words appears in either reference one or reference two.
+
+00:03:44.310 --> 00:03:47.790
+So the word d appears in both references.
+
+00:03:47.790 --> 00:03:50.670
+So each of these words looks like a pretty good word to include.
+
+00:03:50.670 --> 00:03:54.110
+So this will have a precision of seven over seven.
+
+00:03:54.110 --> 00:03:56.470
+It looks like it's a great position.
+
+00:03:56.470 --> 00:04:02.870
+So this is why the basic precision measure of what fraction of the words in the MT output
+
+00:04:02.870 --> 00:04:04.670
+also appear in the references.
+
+00:04:04.670 --> 00:04:09.270
+This is not a particularly useful measure because it seems to imply that this MT output has
+
+00:04:09.270 --> 00:04:11.270
+very high precision.
+
+00:04:11.270 --> 00:04:17.990
+So instead what we're going to use is a modified precision measure in which we will give each
+
+00:04:17.990 --> 00:04:26.190
+word credit only up to the maximum number of times it appears in the reference sentences.
+
+00:04:26.190 --> 00:04:29.830
+So in reference one the word d appears twice.
+
+00:04:29.830 --> 00:04:33.110
+In reference two the word d appears just once.
+
+00:04:33.110 --> 00:04:36.030
+So two is bigger than one.
+
+00:04:36.030 --> 00:04:42.030
+And so we're going to say that the word d gets credit up to twice.
+
+00:04:42.030 --> 00:04:50.350
+So with a modified precision we will say that it gets a score of two out of seven because
+
+00:04:50.430 --> 00:04:59.310
+out of seven words we'll give it a two credits for appearing.
+
+00:04:59.310 --> 00:05:08.830
+So here the denominator is the count of the number of times the word d appears, the seven
+
+00:05:08.830 --> 00:05:15.590
+words in total, and the numerator is the count of the number of times the word d appears
+
+00:05:15.590 --> 00:05:21.710
+but we clip this count, we take a max or clip discount back to.
+
+00:05:21.710 --> 00:05:25.230
+So this gives us the modified precision measure.
+
+00:05:25.230 --> 00:05:28.430
+Now so far we've been looking at words in isolation.
+
+00:05:28.430 --> 00:05:32.310
+In the blue score you don't want to just look at isolated words, you maybe want to
+
+00:05:32.310 --> 00:05:34.710
+look at pairs of words as well.
+
+00:05:34.710 --> 00:05:39.030
+Let's define a portion of the blue score on bigrams.
+
+00:05:39.030 --> 00:05:43.790
+And bigrams just means pairs of words appear next to each other.
+
+00:05:43.790 --> 00:05:49.790
+So now let's see how we could use bigrams to define the blue score.
+
+00:05:49.790 --> 00:05:52.990
+And this would just be a portion of the final blue score.
+
+00:05:52.990 --> 00:05:57.830
+And we'll take unigrams or single words as well as bigrams which means pairs of words
+
+00:05:57.830 --> 00:06:04.030
+into count as well as maybe even longer sequences of words such as trigrams which means three
+
+00:06:04.030 --> 00:06:06.870
+words appearing together.
+
+00:06:06.870 --> 00:06:11.230
+So let's continue our example from before.
+
+00:06:11.230 --> 00:06:13.790
+We have the same reference one and reference two.
+
+00:06:13.790 --> 00:06:19.190
+But now let's say the machine translation of the MT system has a slightly better output
+
+00:06:19.190 --> 00:06:20.710
+of the cat on the mat.
+
+00:06:20.710 --> 00:06:25.230
+Still not a great translation but maybe better than the last one.
+
+00:06:25.230 --> 00:06:31.590
+So here the possible bigrams are, well there's the cat, when they ignore case.
+
+00:06:31.590 --> 00:06:34.790
+And then there's cat d, there's another bigram.
+
+00:06:34.790 --> 00:06:40.130
+And then there's dcat again but I've already had that so let's skip that.
+
+00:06:40.130 --> 00:06:44.810
+And then cat on is the next one and then on the and the mat.
+
+00:06:44.810 --> 00:06:52.760
+So these are the bigrams in the machine translation output.
+
+00:06:52.760 --> 00:06:59.640
+And so let's count up how many times each of these bigrams appear.
+
+00:06:59.640 --> 00:07:06.800
+The cat appears twice, cat d appears once and the others all appear just once.
+
+00:07:06.800 --> 00:07:10.480
+And then finally let's define the clipped count.
+
+00:07:10.480 --> 00:07:14.760
+So count and then subscript clip.
+
+00:07:14.760 --> 00:07:19.880
+And to define that let's take this column with numbers but give our algorithm credit
+
+00:07:19.880 --> 00:07:25.480
+only up to the maximum number of times that that bigram appears in either reference one
+
+00:07:25.480 --> 00:07:28.720
+or reference two.
+
+00:07:28.720 --> 00:07:34.520
+So the cat appears a maximum of once in either of the references.
+
+00:07:34.520 --> 00:07:37.440
+So I'm going to clip that count to one.
+
+00:07:37.440 --> 00:07:43.840
+Cat d, well it doesn't appear in reference one or reference two so clip that to zero.
+
+00:07:43.840 --> 00:07:47.120
+Cat on, yep that appears once, we give it credit for once.
+
+00:07:47.120 --> 00:07:51.840
+On d appears once, give that credit for once and d mat appears once.
+
+00:07:51.840 --> 00:07:53.040
+So these are the clipped counts.
+
+00:07:53.040 --> 00:08:00.400
+We're taking all the counts and clipping them, reducing them to be no more than the
+
+00:08:00.400 --> 00:08:08.370
+number of times that bigram appears in at least one of the references.
+
+00:08:08.370 --> 00:08:15.010
+And then finally our modified bigram precision will be the sum of the count clips.
+
+00:08:15.010 --> 00:08:21.050
+So that's one, two, three, four divided by the total number of bigrams.
+
+00:08:21.050 --> 00:08:24.530
+That's two, three, four, five, six.
+
+00:08:24.530 --> 00:08:33.020
+So four out of six or two thirds is the modified precision on bigrams.
+
+00:08:33.020 --> 00:08:37.660
+So let's just formalize this a little bit further.
+
+00:08:37.660 --> 00:08:45.700
+With what we had developed with on unigrams we defined this modified precision computed
+
+00:08:45.700 --> 00:08:49.140
+on unigrams as p subscript one.
+
+00:08:49.140 --> 00:08:54.660
+So p stands for precision and the subscript one here means we're referring to unigrams.
+
+00:08:54.660 --> 00:08:59.100
+But that is defined as sum over the unigrams.
+
+00:08:59.100 --> 00:09:05.260
+So that just means sum over the words that appear in the machine translation output.
+
+00:09:05.260 --> 00:09:18.400
+So this is called y hat of count clip of that unigram divided by
+
+00:09:18.400 --> 00:09:28.160
+sum over all unigrams in the machine translation output of count,
+
+00:09:28.160 --> 00:09:31.920
+number of counts of that unigram.
+
+00:09:32.080 --> 00:09:37.600
+And so this was the, what we had gotten as,
+
+00:09:37.600 --> 00:09:40.760
+I guess as two out of seven, two slides back.
+
+00:09:40.760 --> 00:09:44.440
+So the one here refers to unigram,
+
+00:09:44.440 --> 00:09:47.640
+meaning we're looking at single words in isolation.
+
+00:09:47.640 --> 00:09:59.720
+You can also define pn as the n-gram version instead of a unigram for n-gram.
+
+00:09:59.720 --> 00:10:08.000
+So this would be sum over the n-grams in the machine translation output of
+
+00:10:08.000 --> 00:10:24.880
+count clip of that n-gram divided by sum over n-grams of the count of that n-gram.
+
+00:10:29.640 --> 00:10:38.800
+And so these precision or these modified precision schools measured on unigrams or on
+
+00:10:38.800 --> 00:10:43.360
+bigrams, which we did on the previous slide, or on trigrams, which are triples of
+
+00:10:43.360 --> 00:10:48.760
+words or even higher values of n for other n-grams.
+
+00:10:48.760 --> 00:10:53.680
+This allows you to measure the degree to which the machine translation output is
+
+00:10:53.680 --> 00:11:03.210
+similar or maybe overlaps with the references.
+
+00:11:03.330 --> 00:11:08.090
+And one thing that you could pretty convince yourself of is if the empty output is
+
+00:11:08.090 --> 00:11:12.810
+exactly the same as either reference one or reference two, then all of these
+
+00:11:12.810 --> 00:11:20.770
+values p1 and p2 and so on, they'll all be equal to 1.0.
+
+00:11:20.770 --> 00:11:27.410
+So to get a precision or a modified precision of 1.0, you just have to be
+
+00:11:27.410 --> 00:11:30.450
+exactly equal to one of the references.
+
+00:11:30.450 --> 00:11:34.730
+And sometimes it's possible to achieve this even if you aren't exactly the same as
+
+00:11:34.730 --> 00:11:38.810
+any of the references, but kind of combine them in a way that hopefully still
+
+00:11:38.810 --> 00:11:40.210
+results in the good translation.
+
+00:11:41.330 --> 00:11:47.330
+Finally, let's put this together to form the final blue school.
+
+00:11:47.890 --> 00:11:53.010
+So p subscript n is the blue school computed on n-grams only,
+
+00:11:53.010 --> 00:11:57.650
+or was also the modified precision computed on n-grams only.
+
+00:11:58.130 --> 00:12:08.250
+And by convention, to compute one number, you compute p1, p2, p3, and p4 and combine
+
+00:12:08.250 --> 00:12:10.970
+them together using the following formula.
+
+00:12:11.730 --> 00:12:19.450
+It's going to be the average, so sum from n equals 1 to 4 of pn and divide that by 4.
+
+00:12:19.450 --> 00:12:20.730
+So basically taking the average.
+
+00:12:21.730 --> 00:12:25.690
+By convention, the blue school is defined as e to the this, and
+
+00:12:25.770 --> 00:12:27.610
+exponentiation is a linear operator.
+
+00:12:28.450 --> 00:12:33.250
+Exponentiation is strictly monotonically increasing operation.
+
+00:12:33.570 --> 00:12:41.890
+And then we actually adjust this with one more factor called the BP penalty.
+
+00:12:41.930 --> 00:12:48.240
+So BP stands for brevity penalty.
+
+00:12:50.300 --> 00:12:55.140
+The details maybe aren't super important, but just to give you a sense, it turns out
+
+00:12:55.140 --> 00:13:00.540
+that if you output very short translations, it's easier to get high precision,
+
+00:13:00.540 --> 00:13:04.260
+because probably most of the words you appear, probably most of the words you
+
+00:13:04.260 --> 00:13:06.060
+output appear in the references.
+
+00:13:06.380 --> 00:13:09.540
+So, but we don't want translations that are very short.
+
+00:13:10.060 --> 00:13:15.260
+So the BP or the brevity penalty is an adjustment factor that penalizes
+
+00:13:15.260 --> 00:13:18.580
+translation systems that output translations that are too short.
+
+00:13:19.020 --> 00:13:21.820
+So the formula for the brevity penalty is the following.
+
+00:13:22.580 --> 00:13:27.460
+It's equal to 1 if your machine translation system actually outputs things that are
+
+00:13:29.340 --> 00:13:33.340
+longer than the human generated reference outputs.
+
+00:13:33.660 --> 00:13:41.780
+And otherwise, it's some formula like that that overall penalizes shorter translations.
+
+00:13:42.460 --> 00:13:45.020
+So in the details, you can find in this paper.
+
+00:13:47.620 --> 00:13:53.060
+So once again, earlier in this set of causes, you saw the importance of having a
+
+00:13:53.260 --> 00:13:57.820
+single row number evaluation metric, because that allows you to try out two
+
+00:13:57.820 --> 00:14:01.660
+ideas, see which one achieves a higher score, and then, you know, try to stick
+
+00:14:01.660 --> 00:14:03.380
+with the one to achieve the higher score.
+
+00:14:03.620 --> 00:14:07.820
+So the reason the blue score was revolutionary for machine translation was
+
+00:14:07.820 --> 00:14:12.580
+because this gave a pretty good, by no means perfect, but pretty good single
+
+00:14:12.580 --> 00:14:14.140
+row number evaluation metric.
+
+00:14:14.420 --> 00:14:19.140
+And so that accelerated the progress of the entire field of machine translation.
+
+00:14:19.580 --> 00:14:22.940
+I hope this video gave you a sense of how the blue score works.
+
+00:14:23.220 --> 00:14:27.740
+In practice, a few people would implement the blue score from scratch, their open
+
+00:14:27.740 --> 00:14:32.380
+source implementations you can download and just use to evaluate your own system.
+
+00:14:32.660 --> 00:14:38.420
+But today, blue score is used to evaluate many systems that generate texts, such as
+
+00:14:38.420 --> 00:14:43.020
+machine translation systems, as well as the example I showed briefly earlier of
+
+00:14:43.420 --> 00:14:48.140
+image captioning systems, where you would have a system, have a neural network
+
+00:14:48.140 --> 00:14:52.900
+generate an image caption, and then use the blue score to see how much that
+
+00:14:52.900 --> 00:14:57.140
+overlaps with maybe a reference caption or multiple reference captions that
+
+00:14:57.140 --> 00:14:58.780
+were generated by people.
+
+00:14:59.100 --> 00:15:04.700
+So the blue score is a useful single row number evaluation metric to use whenever
+
+00:15:04.900 --> 00:15:08.900
+you want your algorithm to generate a piece of text, and you want to see
+
+00:15:09.020 --> 00:15:14.860
+whether it has similar meaning as a reference piece of text generated by humans.
+
+00:15:15.420 --> 00:15:18.820
+This is not used for speech recognition because of speech recognition, there's
+
+00:15:18.820 --> 00:15:24.140
+usually one ground truth and just use other measures to see if you got a speech
+
+00:15:24.140 --> 00:15:27.820
+transcription on pretty much exactly where for where correct.
+
+00:15:28.140 --> 00:15:31.620
+But for things like image captioning, multiple captions for a picture, it
+
+00:15:31.620 --> 00:15:35.300
+could be about equally good or for machine translation, there are multiple
+
+00:15:35.300 --> 00:15:36.900
+translations about equally good.
+
+00:15:37.220 --> 00:15:42.140
+The blue score gives you a way to evaluate that automatically and therefore
+
+00:15:42.140 --> 00:15:43.980
+speed up your algorithmic development.
+
+00:15:43.980 --> 00:15:48.020
+So with that, I hope you have a sense of how the blue score works.

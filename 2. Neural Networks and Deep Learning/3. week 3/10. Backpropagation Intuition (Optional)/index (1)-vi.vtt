@@ -1,0 +1,616 @@
+WEBVTT
+
+00:00:00.020 --> 00:00:03.660
+Trong video trước, bạn đã thấy các phương
+trình backpropagation.
+
+00:00:03.660 --> 00:00:07.300
+Trong video này, chúng ta hãy xem xét một số
+trực giác bằng cách sử
+
+00:00:07.300 --> 00:00:10.940
+dụng biểu đồ tính toán để biết cách suy ra các
+phương trình đó. Cái này
+
+00:00:10.940 --> 00:00:14.900
+video là hoàn toàn tùy chọn, vì vậy dù bạn có
+xem hay không thì bạn
+
+00:00:14.900 --> 00:00:18.860
+cũng thực sự nên làm bài tập về nhà. Vì vậy,
+hãy nhớ lại rằng khi
+
+00:00:18.860 --> 00:00:22.820
+chúng ta nói về logistic regression, chúng ta
+đã có bước chuyển tiếp
+
+00:00:22.820 --> 00:00:26.780
+này trong đó chúng ta sẽ tính z, sau đó là a,
+rồi tính lỗ, rồi tính
+
+00:00:26.780 --> 00:00:34.620
+đạo hàm, chúng ta đã có bước lùi này trong đó
+trước tiên chúng ta có thể tính
+
+00:00:34.620 --> 00:00:42.460
+dA, sau đó tiếp tục tính dz, rồi tiếp tục tính
+dW và dB. Vì vậy định nghĩa cho
+
+00:00:42.460 --> 00:00:55.620
+sự mất mát là l dấu phẩy y bằng âm y log a trừ
+1 trừ y lần log 1
+
+00:00:55.620 --> 00:01:01.780
+trừ a. Vì vậy, nếu bạn quen thuộc với phép
+tính và bạn lấy đạo
+
+00:01:01.780 --> 00:01:07.940
+hàm của cái này theo a, nó sẽ cho bạn công
+thức dA. Vậy dA bằng
+
+00:01:07.940 --> 00:01:14.100
+cái đó, và nếu bạn thực sự tìm ra phép tính,
+bạn có thể chỉ ra rằng đây là y
+
+00:01:14.100 --> 00:01:20.260
+trên a, âm y trên a, cộng 1 trừ y trên 1 trừ
+a. Chỉ là rút ra được điều đó
+
+00:01:20.260 --> 00:01:25.040
+khỏi phép tính bằng cách lấy đạo hàm của cái
+này. Hóa ra là khi bạn lùi
+
+00:01:25.040 --> 00:01:29.820
+lại một bước nữa để tính dz, thì chúng ta đã
+tính được rằng dz bằng a trừ y.
+
+00:01:29.820 --> 00:01:39.700
+Tôi đã không giải thích tại sao trước đây,
+nhưng hóa ra từ chuỗi hàng
+
+00:01:39.700 --> 00:01:49.580
+phép tính, dz bằng dA nhân g số nguyên tố của
+z, trong đó g của z bằng sigma
+
+00:01:49.580 --> 00:01:52.440
+điểm z là activation function của chúng tôi
+
+00:01:52.440 --> 00:01:55.300
+cho đơn vị đầu ra này trong
+logistic regression.
+
+00:01:55.300 --> 00:02:01.860
+Vì vậy hãy nhớ rằng, đây vẫn là
+logistic regression. Chúng ta có x1, x2, x3,
+và sau đó
+
+00:02:01.860 --> 00:02:08.420
+chỉ một đơn vị sigma, và rồi nó cho chúng ta
+a, hoặc cho chúng ta mũ y. Vì vậy ở đây
+
+00:02:08.420 --> 00:02:14.240
+activation function là hàm sigma. Và bên cạnh
+đó, chỉ dành cho những
+
+00:02:14.240 --> 00:02:20.060
+ai quen thuộc với dãy hàng giải tích, lý do
+cho điều này là vì a là
+
+00:02:20.060 --> 00:02:30.380
+bằng điểm sigma của z, và do đó đạo hàm riêng
+của L theo z bằng đạo hàm riêng
+
+00:02:30.380 --> 00:02:40.700
+của L theo a nhân dA dz. Nhưng vì a bằng điểm
+sigma của z nên giá trị này bằng
+
+00:02:40.780 --> 00:02:48.340
+tới d dz g của z, phải, bằng g phẩy của z. Đó
+là lý do tại sao biểu
+
+00:02:48.340 --> 00:02:55.900
+thức này, là dz trong mã của chúng ta, lại
+bằng biểu thức này, là dA trong
+
+00:02:55.900 --> 00:03:01.700
+mã của chúng tôi nhân g số nguyên tố của z. Và
+
+00:03:01.700 --> 00:03:07.500
+đây chỉ là điều đó. Vậy đạo hàm cuối cùng đó
+
+00:03:07.500 --> 00:03:12.047
+chỉ có ý nghĩa nếu bạn quen thuộc với phép
+tính và đặc biệt là chuỗi hàng
+
+00:03:12.047 --> 00:03:16.593
+của phép tính. Nhưng nếu không, đừng lo lắng
+về nó. Tôi sẽ cố gắng giải
+
+00:03:16.593 --> 00:03:21.140
+thích trực giác ở bất cứ nơi nào cần thiết. Và
+cuối cùng, đã tính được dz cho
+
+00:03:21.140 --> 00:03:27.080
+logistic regression, chúng ta sẽ tính dW, kết
+quả là dz nhân x và dB, nó chỉ bằng
+
+00:03:27.080 --> 00:03:33.020
+dz khi bạn có một ví dụ huấn luyện duy nhất.
+Vì vậy, đó là logistic regression.
+
+00:03:33.820 --> 00:03:37.567
+Vì vậy, những gì chúng ta sắp làm khi tính
+toán
+
+00:03:37.567 --> 00:03:41.313
+backpropagation cho mạng nơron là một phép
+tính rất giống
+
+00:03:41.313 --> 00:03:45.060
+thế này, nhưng chúng ta sẽ chỉ thực hiện hai
+lần vì bây giờ chúng ta chưa
+
+00:03:45.060 --> 00:03:51.280
+x sẽ chuyển đến đơn vị đầu ra, nhưng x sẽ
+chuyển đến lớp ẩn và sau đó
+
+00:03:51.280 --> 00:03:57.500
+chuyển đến đơn vị đầu ra. Và thay vì tính toán
+này chỉ là một bước như chúng ta
+
+00:03:57.500 --> 00:04:04.380
+ở đây, chúng ta sẽ có hai bước trong loại mạng
+lưới thần kinh có hai lớp này.
+
+00:04:04.380 --> 00:04:09.580
+Vì vậy, trong neural network hai lớp này,
+nghĩa là với lớp đầu vào,
+
+00:04:09.580 --> 00:04:14.780
+lớp ẩn và lớp đầu ra, hãy nhớ các bước tính
+toán. Đầu tiên bạn tính z1
+
+00:04:14.780 --> 00:04:21.540
+sử dụng phương trình này và sau đó tính a1. Và
+sau đó bạn tính z2. Và chú
+
+00:04:21.540 --> 00:04:28.300
+ý z2 cũng phụ thuộc vào tham số w2 và b2. Và
+sau đó dựa vào z2, tính a2.
+
+00:04:28.300 --> 00:04:35.033
+Và cuối cùng, điều đó mang lại cho bạn sự mất
+mát. Vì vậy,
+
+00:04:35.033 --> 00:04:41.767
+những gì backpropagation làm là nó sẽ quay
+ngược lại để
+
+00:04:41.767 --> 00:04:48.500
+tính dA2 và sau đó là dz2, để chúng quay lại
+tính dW2 và dB2,
+
+00:04:48.820 --> 00:05:00.140
+quay lại tính dA1, dz1, v.v. Chúng ta không
+cần phải lấy đạo hàm một cách tôn trọng
+
+00:05:00.140 --> 00:05:04.060
+đến đầu vào x. Vì đầu vào x cho việc
+supervised learning là cố
+
+00:05:04.060 --> 00:05:07.980
+định, nên chúng tôi không cố gắng tối ưu hóa
+x, nên chúng tôi sẽ
+
+00:05:07.980 --> 00:05:11.900
+không bận tâm đến việc lấy đạo hàm, ít nhất là
+cho việc
+
+00:05:11.900 --> 00:05:15.820
+supervised learning đối với x. Và vì vậy tôi
+sẽ bỏ qua việc tính toán rõ ràng dA2.
+
+00:05:15.820 --> 00:05:21.660
+Nếu muốn, bạn thực sự có thể tính dA2 và sau
+đó sử dụng nó để tính dz2, nhưng
+
+00:05:21.660 --> 00:05:27.500
+trong thực tế, bạn có thể thu gọn cả hai bước
+này thành một, thành một bước.
+
+00:05:27.500 --> 00:05:33.340
+Vì vậy, bạn kết quả là dz2 bằng a2 trừ y,
+giống như trước. Và bạn cũng có,
+
+00:05:33.340 --> 00:05:43.840
+Tôi sẽ viết dW2 và dB2 xuống dưới đây. Bạn có
+dW2 bằng dz2
+
+00:05:43.840 --> 00:05:54.340
+nhân chuyển vị A1 và dB2 bằng dz2. Vì vậy bước
+này khá giống với
+
+00:05:54.340 --> 00:06:01.540
+logistic regression trong đó chúng ta có dW
+bằng dz nhân x, ngoại trừ
+
+00:06:01.540 --> 00:06:08.740
+việc bây giờ A1 đóng vai trò của x và có thêm
+một chuyển vị ở đó vì
+
+00:06:08.740 --> 00:06:15.520
+mối quan hệ giữa ma trận vốn W và các tham số
+riêng W của chúng ta là, có một
+
+00:06:15.520 --> 00:06:22.300
+sự chuyển vị ở đó, phải không? Bởi vì W bằng
+một vectơ hàng trong trường hợp
+
+00:06:22.300 --> 00:06:25.993
+logistic regression với một đầu ra duy nhất,
+dW2 giống như
+
+00:06:25.993 --> 00:06:29.687
+vậy, trong khi W ở đây là một vectơ cột, đó là
+lý do tại sao
+
+00:06:29.687 --> 00:06:33.380
+nó thực hiện thêm một chuyển vị cho A1, trong
+khi chúng tôi đã làm
+
+00:06:33.380 --> 00:06:36.660
+nó cho x ở đây để logistic regression. Vì vậy,
+điều
+
+00:06:36.660 --> 00:06:39.940
+này hoàn thành một nửa quá trình
+backpropagation.
+
+00:06:39.940 --> 00:06:46.740
+Và một lần nữa, bạn có thể tính dA1 nếu muốn,
+mặc dù trong thực tế việc
+
+00:06:46.740 --> 00:06:53.540
+tính toán dA1 và dz1 thường được thu gọn thành
+một bước. Và bạn thì sao
+
+00:06:53.540 --> 00:07:03.240
+thực tế triển khai là dz1 bằng W2 hoán vị nhân
+với dz2 và sau đó
+
+00:07:03.240 --> 00:07:12.940
+nhân với tích phần tử của G1 nguyên tố của z1.
+Và chỉ để kiểm tra
+
+00:07:12.940 --> 00:07:21.360
+kích thước, đúng rồi, nếu bạn có một mạng lưới
+thần kinh trông như thế này,
+
+00:07:21.360 --> 00:07:29.780
+phải, sẽ xuất ra Y, vậy nếu bạn có n0 và x
+bằng n0 feature đầu vào và một đơn vị ẩn
+
+00:07:29.900 --> 00:07:36.560
+và n2 cho đến nay, và n2 trong trường hợp của
+
+00:07:36.560 --> 00:07:43.220
+chúng ta chỉ là một đơn vị đầu ra, thì ma trận
+W2 là
+
+00:07:43.220 --> 00:07:57.380
+n2 nhân n1 chiều, z2 và do đó dz2 sẽ bằng n2
+nhân 1 chiều,
+
+00:07:57.380 --> 00:08:01.980
+nó thực sự sẽ là từng cái một khi chúng ta
+thực hiện classification nhị phân.
+
+00:08:01.980 --> 00:08:10.020
+Và z1 và do đó dz1 cũng sẽ bằng n1 nhân 1
+chiều, phải không?
+
+00:08:10.020 --> 00:08:15.560
+Lưu ý rằng đối với bất kỳ biến nào foo, foo và
+dfoo luôn có cùng thứ
+
+00:08:15.560 --> 00:08:21.100
+nguyên, đó là lý do tại sao W và dW luôn có
+cùng thứ nguyên và tương tự đối với
+
+00:08:21.100 --> 00:08:29.400
+B và dB và Z và dZ, v.v. Vì vậy, để đảm bảo
+rằng các kích thước của cái này
+
+00:08:29.400 --> 00:08:37.700
+khớp với nhau, chúng ta có dz1 bằng W2 chuyển
+vị nhân dz2 và sau đó cái này
+
+00:08:37.700 --> 00:08:45.540
+là tích từng phần tử nhân G1 số nguyên tố của
+z1. Vì vậy, khớp với các kích
+
+00:08:45.540 --> 00:08:53.380
+thước ở trên, cái này sẽ là n1 x 1 bằng với
+chuyển vị W2, chúng ta chuyển vị của
+
+00:08:53.380 --> 00:09:03.500
+cái này, vậy cái này sẽ bằng n1 nhân n2 chiều,
+dz2 sẽ bằng n2 nhân 1
+
+00:09:03.500 --> 00:09:08.900
+chiều và khi đó đây có cùng chiều với z1, vì
+vậy đây cũng là n1 x 1
+
+00:09:08.900 --> 00:09:14.300
+chiều, vì vậy tích số theo phần tử. Vì vậy,
+kích thước có ý nghĩa, phải không?
+
+00:09:14.300 --> 00:09:20.180
+n1 x 1 vectơ có thể thu được bằng n1 x n2 ma
+trận chiều
+
+00:09:20.180 --> 00:09:26.060
+nhân n2 x n1 vì tích của hai thứ này cho bạn
+kết quả n1 x 1
+
+00:09:26.060 --> 00:09:31.860
+ma trận chiều và do đó, ma trận này trở thành
+tích phần tử của hai
+
+00:09:31.860 --> 00:09:37.660
+vectơ n1 x 1 chiều và do đó các kích thước
+khớp với nhau. Một mẹo khi
+
+00:09:37.660 --> 00:09:43.220
+triển khai backprop, nếu bạn chỉ đảm bảo rằng
+kích thước của các ma trận
+
+00:09:43.220 --> 00:09:48.780
+của bạn khớp với nhau, vì vậy nếu bạn nghĩ kỹ
+kích thước của các ma trận
+
+00:09:48.780 --> 00:09:54.340
+khác nhau của mình bao gồm W1, W2, Z1, Z2, A1,
+A2, v.v. và chỉ cần đảm bảo rằng
+
+00:09:54.340 --> 00:10:00.020
+kích thước của các hoạt động ma trận này có
+thể khớp với nhau, đôi khi điều đó sẽ
+
+00:10:00.020 --> 00:10:05.700
+loại bỏ khá nhiều lỗi trong backprop. Được
+rồi, điều này mang lại cho chúng ta dz1 và
+
+00:10:05.700 --> 00:10:11.900
+rồi cuối cùng chỉ để kết thúc, dW1 và dB1, tôi
+đoán là tôi nên viết chúng
+
+00:10:11.900 --> 00:10:18.100
+ở đây nhưng vì tôi hết chỗ nên tôi sẽ viết
+chúng ở bên phải của slide. dW1
+
+00:10:18.100 --> 00:10:24.120
+và dB1 được tính theo các công thức sau, giá
+trị này sẽ bằng dz1
+
+00:10:24.120 --> 00:10:30.140
+nhân x chuyển vị và giá trị này sẽ bằng dz và
+bạn có thể nhận thấy a
+
+00:10:30.140 --> 00:10:35.920
+sự giống nhau giữa các phương trình này và các
+phương trình này thực sự không
+
+00:10:35.920 --> 00:10:41.700
+phải là ngẫu nhiên vì x đóng hàng A0 nên x
+chuyển vị là chuyển vị A0, do đó
+
+00:10:41.700 --> 00:10:49.800
+những phương trình đó thực sự rất giống nhau.
+Được rồi, điều đó giúp hiểu được cách
+
+00:10:49.800 --> 00:10:57.900
+tạo ra backprop và chúng ta có sáu phương
+trình chính ở đây cho dz2, dW2, dB2, dz1,
+
+00:10:57.900 --> 00:11:04.020
+dW1 và dB1, vì vậy hãy để tôi lấy sáu phương
+trình này và sao chép chúng sang trang
+
+00:11:04.020 --> 00:11:10.140
+trình bày tiếp theo, chúng đây và cho đến nay
+với backprop dẫn xuất cho đào tạo API
+
+00:11:10.140 --> 00:11:17.140
+trên một ví dụ đào tạo tại một thời điểm nhưng
+không có gì ngạc nhiên khi thay
+
+00:11:17.140 --> 00:11:24.140
+vì làm việc trên một ví dụ duy nhất tại một
+thời điểm, chúng tôi muốn vector hóa
+
+00:11:24.140 --> 00:11:30.380
+qua các ví dụ đào tạo khác nhau. Vì vậy, bạn
+hãy nhớ rằng để nhân rộng khi chúng ta
+
+00:11:30.380 --> 00:11:36.620
+thao tác trên một mẫu tại một thời điểm, chúng
+ta cũng có các phương trình như thế này
+
+00:11:36.620 --> 00:11:48.980
+giả sử A1 bằng Q1 của z1 và để vector hóa,
+chúng ta lấy z và
+
+00:11:48.980 --> 00:11:55.440
+xếp chúng thành các cột như thế này, z1m và
+
+00:11:55.440 --> 00:12:01.900
+gọi đây là chữ Z viết hoa và sau đó chúng tôi
+
+00:12:01.900 --> 00:12:11.020
+thấy rằng bạn biết bằng cách xếp các thứ thành
+các cột và xác định phiên bản
+
+00:12:11.020 --> 00:12:20.140
+viết hoa của những cột này, khi đó chúng ta có
+z1 bằng w1 x cộng b và A1 bằng
+
+00:12:20.140 --> 00:12:27.000
+g1 của z1 đúng và chúng ta đã xác định ký hiệu
+rất cẩn thận trong khóa học này để
+
+00:12:27.000 --> 00:12:33.860
+đảm bảo rằng một số ví dụ xếp chồng vào các
+cột khác nhau của ma trận sẽ tạo ra
+
+00:12:33.860 --> 00:12:37.620
+tất cả điều này thành công. Vì vậy, hóa ra là
+nếu bạn thực hiện
+
+00:12:37.620 --> 00:12:41.380
+phép toán một cách cẩn thận thì thủ thuật
+tương tự cũng có tác
+
+00:12:41.380 --> 00:12:45.140
+dụng đối với việc tạo backprop nên các phương
+trình được vector hóa
+
+00:12:45.140 --> 00:12:49.180
+trước tiên sẽ như sau nếu bạn lấy các dz này
+cho các ví dụ
+
+00:12:49.180 --> 00:12:53.220
+huấn luyện khác nhau và xếp chúng thành các
+cột khác nhau
+
+00:12:53.220 --> 00:12:57.260
+của ma trận và giống nhau cho cột này và các
+cột tương tự
+
+00:12:57.340 --> 00:13:02.740
+đối với điều này thì đây là cách triển khai
+được vector hóa và đây là
+
+00:13:02.740 --> 00:13:08.140
+định nghĩa cho hoặc đây là cách bạn có thể
+tính dw2 có thêm 1 trên m
+
+00:13:08.140 --> 00:13:14.700
+bởi vì bạn biết cost function j là 1 trên m
+của tổng từ i bằng 1
+
+00:13:14.700 --> 00:13:21.260
+đến m của tổn thất và vì vậy khi tính đạo hàm
+chúng ta có thêm số đó
+
+00:13:21.260 --> 00:13:27.210
+1 trên m giống như chúng tôi đã làm khi tính
+toán các cập nhật trọng số cho
+
+00:13:27.210 --> 00:13:33.160
+logistic regression và sau đó đó lại là bản
+cập nhật bạn nhận được cho db2 một số trong
+
+00:13:33.160 --> 00:13:41.560
+dz's và sau đó với 1 trên m và sau đó dz1 được
+tính như sau một lần nữa, đây
+
+00:13:41.560 --> 00:13:49.960
+chỉ là một tích phân phần tử trong khi trước
+đây điều này chúng ta đã thấy trên
+
+00:13:50.040 --> 00:14:00.480
+trang trình bày trước cho biết đây là vectơ n1
+x 1 chiều, bây giờ đây là vectơ n1 x m
+
+00:14:00.480 --> 00:14:10.480
+ma trận chiều và cả hai đều có n1 x m chiều và
+do đó
+
+00:14:10.480 --> 00:14:15.847
+tại sao dấu hoa thị đó là một sản phẩm thông
+minh về các yếu tố và
+
+00:14:15.847 --> 00:14:21.213
+cuối cùng, hai bản cập nhật còn lại có lẽ
+không có gì đáng ngạc
+
+00:14:21.213 --> 00:14:26.580
+nhiên nên tôi hy vọng điều đó sẽ mang lại cho
+bạn một số thông tin
+
+00:14:26.580 --> 00:14:31.100
+trực giác về cách thuật toán backpropagation
+được bắt nguồn trong tất cả quá trình
+
+00:14:31.100 --> 00:14:35.620
+machine learning. Tôi nghĩ rằng việc suy ra
+thuật toán backpropagation thực sự là
+
+00:14:35.620 --> 00:14:40.140
+một trong những phần toán học phức tạp nhất mà
+tôi từng thấy và nó đòi hỏi phải biết
+
+00:14:40.140 --> 00:14:45.087
+cả đại số tuyến tính cũng như ma trận đạo hàm
+để thực sự rút ra nó từ
+
+00:14:45.087 --> 00:14:50.033
+đầu từ các nguyên tắc đầu tiên. Nếu bạn là
+chuyên gia về phép tính ma
+
+00:14:50.033 --> 00:14:54.980
+trận bằng quy trình này, bạn có thể tự mình
+rút ra thuật toán nhưng tôi nghĩ
+
+00:14:54.980 --> 00:14:59.140
+rằng thực tế có rất nhiều người thực hành
+deep learning đã nhìn thấy
+
+00:14:59.140 --> 00:15:03.300
+đạo hàm ở mức độ như bạn thấy trong video này
+và đã có thể có tất cả
+
+00:15:03.300 --> 00:15:07.460
+trực giác đúng đắn cũng như có thể triển khai
+thuật toán này rất tốt.
+
+00:15:07.460 --> 00:15:10.760
+một cách hiệu quả, vì vậy nếu bạn là một
+chuyên gia về phép tính, hãy xem
+
+00:15:10.760 --> 00:15:14.060
+liệu bạn có thể suy ra toàn bộ mọi thứ từ đầu
+hay không thì đó là một
+
+00:15:14.060 --> 00:15:17.360
+trong những phần toán học khó nhất, một dạng
+suy luận rất khó nhất mà tôi
+
+00:15:17.360 --> 00:15:20.660
+từng thấy trong tất cả các môn
+machine learning nhưng dù thế nào đi nữa
+
+00:15:20.660 --> 00:15:25.233
+nếu bạn triển khai điều này thì bạn biết nó sẽ
+hoạt động và tôi nghĩ bạn có đủ
+
+00:15:25.233 --> 00:15:29.807
+trực giác để điều chỉnh và làm cho nó hoạt
+động nên chỉ có một chi tiết cuối
+
+00:15:29.807 --> 00:15:34.380
+cùng mà tôi muốn chia sẻ với bạn trước khi bạn
+triển khai neural network của mình.
+
+00:15:34.380 --> 00:15:38.982
+là cách khởi tạo các trọng số của
+neural network của bạn và hóa ra việc khởi tạo
+
+00:15:38.982 --> 00:15:43.585
+các tham số của bạn không phải bằng 0 mà ngẫu
+nhiên hóa ra lại rất quan trọng để
+
+00:15:43.585 --> 00:15:48.187
+huấn luyện neural network của bạn trong video
+tiếp theo, bạn sẽ hiểu tại sao

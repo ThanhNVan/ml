@@ -1,0 +1,39 @@
+Vậy là bạn sắp học xong bài học của tuần đầu tiên trong khóa đầu tiên
+trong chuỗi chuyên ngành này. Tôi sẽ nói nhanh về những gì
+bạn sẽ học trong vài tuần tới. Như tôi đã nói trong
+video đầu tiên, chuỗi chuyên ngành này
+bao gồm năm khóa học. Và bây giờ, chúng ta đang
+ở khóa đầu tiên mà sẽ dạy cho bạn những
+nền tảng quan trọng nhất, các nền tảng quan trọng nhất
+trong Học sâu (Deep Learning). Như vậy, vào cuối
+khóa học đầu tiên này, bạn sẽ biết cách xây dựng và làm việc
+với một mạng nơ-ron nhân tạo sâu. Đây là chi tiết về bài học
+trong khóa học đầu tiên này. Khóa học này bao gồm bốn tuần học. Và bạn sẽ học hết tuần đầu tiên khi bạn thấy
+một bài giới thiệu về học tập sâu. Vào cuối mỗi tuần, sẽ có 10 câu hỏi trắc nghiệm, bạn có thể sử dụng chúng để kiểm
+tra lại hiểu biết của bạn về bài học. Thế nên khi bạn
+xem xong video này, tôi mong bạn sẽ
+xem những câu hỏi đó. Trong tuần thứ hai, bạn tìm hiểu về Khái niệm
+cơ bản về lập trình mạng nơ-ron nhân tạo. Bạn sẽ tìm hiểu cấu trúc của các bước truyền xuôi và truyền ngược trong thuật toán và cách triển khai các
+mạng nơ-ron nhân tạo một cách hiệu quả. Bắt đầu từ tuần thứ hai, bạn cũng sẽ làm
+một bài tập lập trình giúp bạn thực hành
+lý thuyết mà bạn vừa học, tự thực hiện các thuật toán và xem
+nó có hiệu quả đối với bạn hay không. Tôi thấy rất hào hứng khi
+tìm hiểu về thuật toán và mã hóa nó và tôi thấy nó
+hiệu quả đối với chính tôi. Thế nên tôi hy vọng
+bạn cũng thích điều đó. Khi học xong nội dung lập trình mạng
+nơ-ron nhân tạo trong tuần thứ ba, bạn mã hóa một mạng nơ-ron
+nhân tạo lớp ẩn duy nhất. Được rồi. Như vậy, bạn đã tìm hiểu về tất cả
+các khái niệm quan trọng cần thiết để triển khai và làm việc
+trong mạng nơ-ron nhân tạo. Và cuối cùng vào tuần thứ tư, bạn sẽ xây dựng một mạng nơ-ron
+nhân tạo sâu và mạng nơ-ron nhân tạo với nhiều lớp và xem nó
+hoạt động như thế nào. Chúc mừng bạn đã xem hết các video. Sau video này, tôi hy vọng là bây giờ bạn đã
+hiểu được điều đang diễn ra trong học sâu. Và có lẽ một số bạn cũng đã có một số ý tưởng về nơi mà bạn
+có thể muốn tự áp dụng học sâu. Tôi mong rằng sau video này, bạn sẽ tiếp tục xem 10 câu hỏi
+trắc nghiệm đi kèm video này trên trang web của
+khóa học và chỉ cần trả lời 10 câu hỏi trắc nghiệm đó
+để kiểm tra hiểu biết của bạn. Và đừng xem lại các video trước, bạn sẽ không thể
+trả lời được tất cả các câu hỏi trong ngay lần đầu tiên, nhưng bạn có thể thử đi thử lại
+cho đến khi bạn có đáp án đúng. Chúng rất hữu ích trong việc chắc chắn
+rằng tôi hiểu rõ tất cả các khái niệm, tôi hy vọng bạn cũng như vậy. Một lần nữa tôi xin
+chúc mừng vì bạn đã xem đến video này và tôi mong được gặp
+bạn trong các video tuần thứ hai.

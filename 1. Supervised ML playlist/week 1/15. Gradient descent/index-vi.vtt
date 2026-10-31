@@ -1,0 +1,379 @@
+WEBVTT
+
+00:00:01.070 --> 00:00:05.463
+Chào mừng trở lại! Trong video trước, chúng ta
+đã thấy hình ảnh trực
+
+00:00:05.463 --> 00:00:09.857
+quan của cost function j và cách bạn có thể
+thử các lựa chọn khác nhau
+
+00:00:09.857 --> 00:00:14.250
+nếu tham số là w và b, đồng thời xem giá trị
+chi phí nào mang lại cho bạn.
+
+00:00:14.250 --> 00:00:20.340
+Sẽ thật tuyệt nếu chúng ta có một cách có hệ
+thống hơn để tìm các giá trị của w và
+
+00:00:20.340 --> 00:00:26.430
+b sao cho chi phí j của w, b là nhỏ nhất có
+thể. Hóa ra có một thuật toán tên là
+
+00:00:26.430 --> 00:00:30.117
+gradient descent mà bạn có thể sử dụng để làm
+điều đó.
+
+00:00:30.117 --> 00:00:33.803
+Gradient descent được sử dụng ở mọi nơi trong
+machine learning,
+
+00:00:33.803 --> 00:00:37.490
+không chỉ cho linear regression mà còn cho đào
+tạo, chẳng hạn như một số
+
+00:00:37.490 --> 00:00:42.760
+các mô hình neural network tiên tiến nhất, còn
+được gọi là mô hình
+
+00:00:42.760 --> 00:00:48.030
+deep learning. Mô hình deep learning là nội
+dung bạn học trong khóa học thứ hai.
+
+00:00:48.030 --> 00:00:52.530
+Vì vậy, việc học công cụ gradient descent này
+sẽ giúp bạn thiết lập
+
+00:00:52.530 --> 00:00:57.030
+một trong những nền tảng quan trọng nhất trong
+machine learning. Dưới
+
+00:00:57.030 --> 00:01:01.530
+đây là tổng quan về những gì chúng ta sẽ làm
+với việc
+
+00:01:01.530 --> 00:01:06.030
+gradient descent. Bạn có hàm giá j của w, b
+ngay tại đây mà bạn muốn cực tiểu hóa. TRONG
+
+00:01:06.030 --> 00:01:10.070
+ví dụ chúng ta đã thấy cho đến nay, đây là
+cost function cho
+
+00:01:10.070 --> 00:01:14.110
+linear regression, nhưng hóa ra
+gradient descent là một thuật
+
+00:01:14.110 --> 00:01:18.150
+toán mà bạn có thể sử dụng để cố gắng giảm
+thiểu bất kỳ hàm nào,
+
+00:01:18.150 --> 00:01:22.483
+không chỉ là một cost function cho
+linear regression. Để làm cho
+
+00:01:22.483 --> 00:01:26.817
+cuộc thảo luận này về việc gradient descent
+trở nên tổng quát hơn,
+
+00:01:26.817 --> 00:01:31.150
+hóa ra việc gradient descent áp dụng cho các
+hàm tổng quát hơn, bao gồm
+
+00:01:31.150 --> 00:01:39.610
+các cost function khác hoạt động với các mô
+hình có nhiều hơn hai tham số. Vì
+
+00:01:39.610 --> 00:01:48.070
+vậy, ví dụ: nếu bạn có cost function j là hàm
+của w1, w2, lên đến wn và b, thì
+
+00:01:48.070 --> 00:01:57.340
+Mục tiêu là giảm thiểu j trên các tham số w1
+đến wn và b. Nói cách khác, bạn muốn
+
+00:01:57.340 --> 00:02:06.610
+chọn các giá trị từ w1 đến wn và b mang lại
+cho bạn giá trị nhỏ nhất có thể có của j. Nó
+
+00:02:06.610 --> 00:02:12.950
+hóa ra gradient descent là một thuật toán mà
+bạn có thể áp dụng để cố gắng
+
+00:02:12.950 --> 00:02:19.290
+giảm thiểu cost function j này. Những gì bạn
+sắp làm chỉ là bắt đầu với một số
+
+00:02:19.290 --> 00:02:23.650
+đoán cho w và b. Trong linear regression, giá
+trị ban đầu
+
+00:02:23.650 --> 00:02:28.010
+là bao nhiêu không quan trọng, do đó, lựa chọn
+phổ biến là
+
+00:02:28.010 --> 00:02:32.370
+đặt cả hai giá trị này về 0. Vì vậy, ví dụ:
+bạn có thể đặt w
+
+00:02:32.370 --> 00:02:38.390
+đến 0 và b đến 0 như dự đoán ban đầu. Với
+thuật toán gradient descent, điều
+
+00:02:38.390 --> 00:02:44.410
+bạn sắp làm là, bạn sẽ tiếp tục thay đổi các
+tham số w và b mỗi lần một chút để
+
+00:02:44.410 --> 00:02:49.397
+cố gắng giảm chi phí j của wb cho đến khi hy
+vọng j ổn định ở mức
+
+00:02:49.397 --> 00:02:54.383
+hoặc gần mức tối thiểu. Một điều tôi cần lưu ý
+là đối với một số
+
+00:02:54.383 --> 00:02:59.370
+chức năng j có thể không phải là hình cánh
+cung hoặc hình võng
+
+00:02:59.370 --> 00:03:06.580
+hình dạng, có thể có nhiều hơn một mức tối
+thiểu có thể. Chúng ta hãy xem một ví dụ về
+
+00:03:06.580 --> 00:03:13.790
+biểu đồ bề mặt j phức tạp hơn để xem việc
+gradient descent đang thực hiện gì. Cái này
+
+00:03:13.790 --> 00:03:17.990
+hàm không phải là cost function lỗi bình
+phương. Đối với
+
+00:03:17.990 --> 00:03:22.190
+linear regression với cost function sai số
+bình phương, bạn
+
+00:03:22.190 --> 00:03:26.390
+luôn kết thúc bằng hình cánh cung hoặc hình
+võng. Nhưng đây là
+
+00:03:26.390 --> 00:03:31.590
+loại cost function bạn có thể nhận được nếu
+bạn đang huấn luyện một mô
+
+00:03:31.590 --> 00:03:36.790
+hình neural network. Chú ý trục. Đó là w và b
+trên trục dưới cùng. Đối
+
+00:03:36.790 --> 00:03:41.990
+với các giá trị khác nhau của w và b, bạn sẽ
+nhận được các giá trị khác nhau
+
+00:03:41.990 --> 00:03:46.723
+các điểm trên bề mặt j này của wb trong đó
+chiều cao của bề
+
+00:03:46.723 --> 00:03:51.457
+mặt tại một điểm nào đó là giá trị của
+cost function. Bây giờ,
+
+00:03:51.457 --> 00:03:56.190
+hãy tưởng tượng rằng sơ đồ bề mặt này thực sự
+là một khung nhìn
+
+00:03:56.190 --> 00:04:02.470
+về một công viên ngoài trời có nhiều đồi núi
+hoặc một sân gôn nơi có điểm cao là
+
+00:04:02.470 --> 00:04:08.750
+đồi và điểm thấp là thung lũng. Và tôi muốn
+bạn hãy tưởng tượng nếu bạn muốn thì bạn
+
+00:04:08.750 --> 00:04:12.550
+thực tế đang đứng ở điểm này trên đồi. Và nếu
+nó giúp bạn
+
+00:04:12.550 --> 00:04:16.350
+thư giãn, hãy tưởng tượng rằng sự mất mát của
+cỏ xanh,
+
+00:04:16.350 --> 00:04:20.150
+bướm và hoa thực sự rất đẹp này là một điều
+thực sự tốt đẹp.
+
+00:04:20.150 --> 00:04:26.283
+ngọn đồi và bạn đi là bắt đầu từ đây và đi đến
+đáy của một trong
+
+00:04:26.283 --> 00:04:32.417
+những thung lũng này một cách hiệu quả nhất có
+thể. Vì vậy, thuật
+
+00:04:32.417 --> 00:04:38.550
+toán gradient descent thực hiện là bạn sẽ quay
+xung quanh 360 độ
+
+00:04:38.550 --> 00:04:44.950
+và nhìn xung quanh và tự hỏi liệu tôi có định
+bước một bước bé nhỏ về một hướng và tôi
+
+00:04:44.950 --> 00:04:51.350
+muốn xuống dốc càng nhanh càng tốt về phía một
+trong những thung lũng này, hướng nào
+
+00:04:51.350 --> 00:04:56.510
+tôi có chọn thực hiện bước nhỏ đó không? Chà,
+nếu bạn muốn đi bộ xuống ngọn đồi này
+
+00:04:56.510 --> 00:05:01.670
+một cách hiệu quả nhất có thể, hóa ra là nếu
+bạn đang đứng ở điểm này trên ngọn đồi và
+
+00:05:01.670 --> 00:05:07.630
+bạn nhìn xung quanh, bạn có thể nhận thấy rằng
+hướng tốt nhất để thực hiện bước tiếp
+
+00:05:07.630 --> 00:05:13.590
+theo xuống dốc gần như là hướng đó. Về mặt
+toán học, đây là hướng đi xuống dốc nhất.
+
+00:05:13.590 --> 00:05:17.243
+Và điều đó có nghĩa là khi bạn bước một bước
+nhỏ bé, điều này
+
+00:05:17.243 --> 00:05:20.897
+sẽ khiến bạn xuống dốc nhanh hơn một bước nhỏ
+bé mà bạn có
+
+00:05:20.897 --> 00:05:24.550
+thể thực hiện theo bất kỳ hướng nào khác. Vì
+vậy sau khi lấy
+
+00:05:24.550 --> 00:05:31.070
+bước đầu tiên này, bây giờ bạn đang ở điểm này
+trên ngọn đồi đằng kia. Bây
+
+00:05:31.070 --> 00:05:37.590
+giờ hãy lặp lại quá trình. Đứng ở điểm mới
+này, bạn sẽ lại quay quanh 360 độ và
+
+00:05:37.590 --> 00:05:44.070
+hãy tự hỏi mình sẽ thực hiện bước tiếp theo
+theo hướng nào để xuống dốc? Và nếu bạn
+
+00:05:44.070 --> 00:05:50.550
+làm điều đó và tiến thêm một bước nữa, cuối
+cùng bạn sẽ di chuyển một chút theo hướng đó
+
+00:05:50.550 --> 00:05:54.803
+và bạn có thể tiếp tục. Từ điểm mới này, bạn
+có thể nhìn xung
+
+00:05:54.803 --> 00:05:59.057
+quanh một lần nữa và quyết định hướng nào sẽ
+đưa bạn xuống
+
+00:05:59.057 --> 00:06:03.310
+dốc nhanh nhất. Tiến thêm một bước nữa, một
+bước nữa, vân vân,
+
+00:06:03.310 --> 00:06:08.790
+cho đến khi bạn thấy mình ở dưới đáy thung
+lũng này ở mức tối thiểu cục bộ
+
+00:06:08.790 --> 00:06:14.270
+ngay tại đây. Những gì bạn vừa làm là trải qua
+nhiều bước gradient descent.
+
+00:06:14.270 --> 00:06:20.910
+Hóa ra việc gradient descent có một đặc tính
+thú vị. Hãy nhớ rằng bạn có thể chọn
+
+00:06:20.910 --> 00:06:27.550
+điểm bắt đầu ở bề mặt bằng cách chọn giá trị
+bắt đầu cho tham số w và b. Khi bạn
+
+00:06:27.550 --> 00:06:34.430
+thực hiện gradient descent một lúc trước, bạn
+đã bắt đầu ở điểm này ở đây, phải không?
+
+00:06:34.430 --> 00:06:38.043
+Bây giờ hãy tưởng tượng nếu bạn thử
+gradient descent một lần nữa,
+
+00:06:38.043 --> 00:06:41.657
+nhưng lần này bạn chọn một điểm bắt đầu khác
+bằng cách chọn các tham
+
+00:06:41.657 --> 00:06:45.270
+số đặt điểm bắt đầu của bạn chỉ cách một vài
+bước so với điểm bắt đầu.
+
+00:06:45.270 --> 00:06:51.390
+ngay ở đây. Sau đó, nếu bạn lặp lại quá trình
+gradient descent, nghĩa là bạn nhìn
+
+00:06:51.390 --> 00:06:57.510
+xung quanh, bước một bước nhỏ theo hướng
+gradient descent, để bạn kết thúc ở đây, sau
+đó
+
+00:06:57.510 --> 00:07:03.050
+bạn lại nhìn xung quanh, bước thêm một bước
+nữa, v.v. Và nếu bạn chạy
+
+00:07:03.050 --> 00:07:08.590
+gradient descent lần thứ hai, hãy bắt đầu chỉ
+một vài bước ở bên phải nơi chúng tôi đã thực
+hiện
+
+00:07:08.590 --> 00:07:15.490
+lần đầu tiên, bạn sẽ đến một thung lũng hoàn
+toàn khác, mức tối thiểu khác
+
+00:07:15.490 --> 00:07:22.390
+biệt ở đây, bên phải. Đáy của cả thung lũng
+thứ nhất và thứ hai được gọi là
+
+00:07:22.390 --> 00:07:26.097
+cực tiểu cục bộ, bởi vì nếu bạn bắt đầu đi
+xuống thung lũng đầu
+
+00:07:26.097 --> 00:07:29.803
+tiên, việc gradient descent sẽ không dẫn bạn
+đến thung lũng thứ
+
+00:07:29.803 --> 00:07:33.510
+hai và điều tương tự cũng đúng nếu bạn bắt đầu
+đi xuống thung lũng
+
+00:07:33.510 --> 00:07:37.510
+thung lũng thứ hai, bạn sẽ ở mức tối thiểu thứ
+hai đó và
+
+00:07:37.510 --> 00:07:41.510
+không tìm được đường đến mức tối thiểu cục bộ
+đầu tiên. Vì
+
+00:07:41.510 --> 00:07:45.510
+vậy, đây là một tính chất thú vị của thuật
+toán gradient descent,
+
+00:07:45.510 --> 00:07:49.323
+và bạn sẽ thấy nhiều hơn về điều này sau. Vì
+vậy, trong video này,
+
+00:07:49.323 --> 00:07:53.137
+bạn đã biết cách gradient descent giúp bạn
+xuống dốc như thế nào.
+
+00:07:53.137 --> 00:07:56.950
+Trong video tiếp theo, chúng ta hãy xem xét
+các biểu thức toán học
+
+00:07:56.950 --> 00:08:00.222
+mà bạn có thể triển khai để thực hiện công
+việc
+
+00:08:00.222 --> 00:08:03.494
+gradient descent. Chúng ta hãy chuyển sang
+video tiếp theo.

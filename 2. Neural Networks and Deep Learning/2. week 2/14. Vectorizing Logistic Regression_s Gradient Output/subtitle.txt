@@ -1,0 +1,96 @@
+Trong video trước, bạn đã thấy cách sử dụng vector
+hóa để tính toán dự đoán. Chữ a thường cho toàn bộ
+tập huấn luyện cùng một lúc. Trong video này, bạn sẽ thấy cách
+bạn có thể sử dụng vector hóa để triển khai các phép toán
+gradient cho m ví dụ huấn luyện. Một lần nữa, tất cả cùng một lúc. Và trong phần
+cuối của video này, chúng ta sẽ kết hợp
+tất cả lại với nhau và bạn sẽ thấy cách thực hiện hồi quy
+logistic vô cùng hiệu quả. Và có thể bạn biết rằng
+đối với phép toán gradient, những gì chúng ta đã làm là chúng ta
+đã tính dz1 cho ví dụ đầu tiên, có thể là a1 trừ y1
+và sau đó dz2 bằng a2 trừ y2, v.v. Và như vậy cho
+tất cả m ví dụ đào tạo. Và rồi chúng ta sẽ
+xác định một biến mới, dZ sẽ là dz1, dz2, dzm. Một lần nữa, tất cả các biến dz thường
+được đặt cạnh nhau theo chiều ngang. Và đây sẽ là ma trận 1xm hoặc thay
+vào đó là một vectơ hàng m chiều. Bây giờ hãy nhớ lại
+trong slide trước, chúng ta đã tìm ra cách
+tính A hoa như sau: a1 đến am và chúng ta
+xác định Y hoa là y1 tới ym. và xếp chúng theo chiều ngang. Và dựa trên các công thức này, bạn có thể tự thấy rằng
+dz có thể được tính bằng A trừ Y vì nó sẽ bằng a1 - y1. Là phần tử đầu tiên, a2 - y2, phần tử thứ hai và cứ thế. Vì vậy phần tử đầu tiên a1 - y1
+này chính là công thức của dz1. Phần tử thứ hai chính xác
+là định nghĩa của dz2, v.v. Như vậy, chỉ với một dòng mã, bạn có thể tính tất cả những
+điều này cùng một lúc. Bây giờ, trong lần triển khai trước, chúng ta đã loại bỏ một vòng lặp
+for nhưng chúng ta vẫn có vòng lặp for thứ hai
+này trong hơn 20 ví dụ. Thế nên, chúng ta khởi tạo dw
+bằng 0, thành một vectơ số không. Nhưng rồi chúng ta vẫn phải lặp lại
+hơn 20 ví dụ trong đó chúng ta có dw cộng bằng x1 nhân dz1, trong ví dụ huấn luyện đầu tiên
+dw cộng bằng x2 nhân dz2, v.v. Và chúng ta thực hiện m lần và rồi dw/ bằng
+m và cũng tương tự với biến b, đúng chứ? db được khởi tạo là 0
+và db cộng bằng dz1. db cộng bằng dz2 đến dz (m) và db/ bằng m. Đó là những gì
+chúng ta có trong lần triển khai trước. Chúng ta đã loại bỏ
+một vòng lặp for. Như vậy, ít nhất bây giờ thì dw là một vectơ
+và chúng ta đã cập nhật riêng biệt dw1, dw2, v.v. Và dù đã loại bỏ điều đó
+rồi nhưng chúng ta vẫn có vòng lặp for trên m
+ví dụ trong tập huấn luyện. Thế nên hãy triển khai các
+phép toán này và vector hóa chúng. Đây là những gì
+chúng ta có thể làm, để triển khai vectơ hóa của db,
+về cơ bản là tổng hợp, tất cả các dz này và
+sau đó chia cho m. Vì vậy, db bằng một trên m, tổng từ i bằng 1 đến m, dzi và tất cả các dz nằm trong
+vectơ hàng đó và trong Python, bạn sẽ triển khai, 1 trên m nhân np. sum (dz). Vì vậy, bạn chỉ cần lấy
+biến này và gọi hàm np.sum trên nó và nó sẽ
+cung cấp cho bạn db. Thế còn dw? Tôi sẽ chỉ viết ra các phương trình chính xác, mà
+có thể xác minh chính là điều nên làm. Hóa ra dw là một trên m, nhân với ma trận
+X nhân dz chuyển vị. Và, hãy cùng xem tại sao
+điều này lại xảy ra. Điều này bằng với một
+trên m nhân ma trận X, x1 đến xm xếp trong
+các cột như thế và dz chuyển vị sẽ là dz1
+đến dz (m) như này. Và vì vậy, kết quả của
+ma trận nhân vectơ này, thì bằng một trên m nhân x1 dz1 cộng ... cộng với xm dzm. Vì vậy, đây là một vectơ nx1 và
+đây là những gì bạn nhận được, dw vì dw đã lấy, xi dzi và cộng chúng lại và đó chính là việc mà phép nhân vectơ ma trận
+này đang làm và một lần nữa, với một dòng mã
+bạn có thể tính dw. Vì vậy, việc triển khai véc tơ hóa
+của các phép tính đạo hàm chỉ là, bạn sử dụng dòng này
+để triển khai db và sử dụng dòng này để triển khai dw và lưu ý rằng không cần
+sử dụng các vòng lặp for trên tập huấn luyện, giờ đây bạn có thể tính toán các cập nhật
+bạn muốn đối với thông số của bạn. Bây giờ, hãy tổng hợp tất cả vào
+cách bạn thực hiện hồi quy logistic. Đây là triển khai không vector hóa ban đầu,
+không hiệu quả cao của chúng ta. Và điều đầu tiên mà chúng ta thực hiện trong
+video trước là loại bỏ tập này đúng chứ? Và, thay vì lặp qua dw1, dw2, v.v., chúng ta đã thay thế giá trị này
+bằng giá trị vectơ dw là dw + = xi, giờ là vectơ nhân dz (i). Nhưng bây giờ, chúng ta sẽ
+thấy rằng chúng ta không chỉ loại bỏ vòng lặp for bên dưới mà còn
+loại bỏ được vòng lặp for này. Và đây là cách
+bạn làm điều đó. Bằng cách sử dụng những gì
+chúng ta có từ các trang slide trước, ta có, Z hoa, Z bằng w chuyển vị X + b và mã
+bạn viết là Z hoa bằng np.dot w chuyển vị X + b và sau đó
+là một sigmoid bằng Z hoa. Và bây giờ bạn đã tính tất cả những điều này và
+tất cả những điều này đối với tất cả các giá trị của i. Tiếp theo trên slide trước, chúng ta đã nói rằng
+bạn sẽ tính z bằng A - Y. Vậy nên, bây giờ bạn đã tính tất cả những
+điều này đối với tất cả các giá trị của i. Và, cuối cùng
+dw bằng 1 / m x dz chuyển vị và
+db bằng 1 / m, np. sum (dz). Vì vậy, bạn vừa thực hiện
+truyền xuôi và truyền ngược, tính toán các dự đoán
+và tính các đạo hàm trên tất cả m ví dụ huấn luyện mà
+không cần sử dụng vòng lặp for nào. Và vì vậy, bản cập nhật
+gradient descent sẽ là W được cập nhật thành
+w trừ đi tốc độ học nhân dw vừa được tính ở trên và b được
+cập nhật thành b trừ đi tốc độ học nhân db. Đôi khi khá đẽ để nhận thấy
+rằng đó là một bài tập, nhưng tôi nghĩ là tôi không
+hoàn toàn nhất quán với ký hiệu đó. Nhưng với điều này,
+bạn vừa triển khai một bản gradient descent nâng cao
+duy nhất cho hồi quy logistic. Bây giờ, tôi biết là tôi đã nói
+rằng chúng ta nên loại bỏ các vòng lặp for tường minh bất cứ
+khi nào có thể nhưng nếu bạn muốn thực hiện nhiều điều chỉnh như như gradient descent thì bạn vẫn
+cần một vòng lặp for qua số lần lặp. Vì vậy, nếu bạn muốn có một
+nghìn lần lặp gradient descent, bạn vẫn có thể cần một
+vòng lặp for trên số lần lặp. Có một vòng lặp for
+ngoài cùng như vậy và tôi không nghĩ là chúng ta
+có thể loại bỏ vòng lặp for đó. Nhưng tôi nghĩ thật tuyệt vời
+khi bạn có thể thực hiện ít nhất một lần lặp gradient descent mà
+không cần phải sử dụng một vòng lặp for. Và bây giờ bạn có một
+triển khai gradient descent được vector hóa và hiệu quả
+cao cho hồi quy logistic. Chỉ còn một điều nữa mà tôi muốn
+nói trong video tiếp theo, đó là trong mô tả của chúng tôi ở đây, tôi đã trình bày
+ngắn gọn về kỹ thuật truyền phát (broadcasting). Truyền phát là một kỹ thuật mà
+Python và numpy cho phép bạn sử dụng để làm cho một số phần nhất định
+trong mã của bạn trở nên hiệu quả hơn nhiều. Thế nên, hãy xem thêm về
+truyền phát trong video tiếp theo nhé.

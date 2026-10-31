@@ -1,0 +1,78 @@
+>> Chào mừng bạn đã quay lại.
+Về cơ bản thì véc tơ hóa là một nghệ thuật loại bỏ các thư mục
+tường minh trong mã của bạn. Trong thời đại học sâu, an toàn
+trong học sâu trong thực tế, bạn thường được đào tạo về
+các tập dữ liệu tương đối lớn, bởi vì đó là khi các thuật toán
+học sâu trở nên nổi bật. Vì vậy, quan trọng là mã của
+bạn phải rất nhanh nếu không thì, nếu nó chạy trên
+một tập dữ liệu lớn, mã của bạn có thể tốn nhiều
+thời gian để chạy, sau đó bạn sẽ phải chờ đợi rất lâu
+để có được kết quả. Thế nên, trong thời đại học sâu, tôi cho rằng khả năng thực hiện véc-tơ
+hóa đã trở thành một kỹ năng quan trọng. Hãy bắt đầu với một ví dụ. Vậy thì Vector hóa là gì? Trong hồi quy logistic, bạn cần
+tính z bằng w chuyển vị x cộng với b, trong đó, w là vectơ cột
+này và x cũng là vectơ này. Có thể có những vectơ rất lớn
+nếu bạn có nhiều tính năng. Vì vậy, cả w và
+x đều thuộc Rnx. Như vậy, để tính
+w chuyển vị x, nếu bạn có một triển khai
+không vector hóa, bạn sẽ để z bằng không. Và sau đó for i trong
+phạm vi của (n-x). Với i bằng 1,… nx, z+ bằng w(i) nhân x(i). Và sau đó bạn có thể
+có z cộng bằng b. Đó là một triển khai
+không vector hóa. Và rồi, bạn sẽ thấy
+rằng nó rất chậm. Ngược lại, một triển khai được vector
+hóa sẽ trực tiếp tính w chuyển vị x. Trong Python hoặc một numpy, lệnh bạn sử dụng cho
+nó là z bằng np.dot(w,x) do đó, tính w chuyển vị x. Và bạn chỉ cần trực tiếp thêm b vào. Và bạn thấy rằng điều
+này nhanh hơn nhiều. Tôi sẽ minh họa điều này
+với một bản demo nhỏ. Đây là Jupiter notebook của tôi,
+trong đó tôi sẽ viết một số mã Python. Trước tiên, hãy để
+tôi nhập numpy as np. Và ví dụ, tôi có thể tạo mảng a như sau. print(a). Bây giờ, sau khi đã
+viết đoạn mã này, nếu tôi nhấn shift, thì nó sẽ thực thi mã. Và như vậy, nó đã
+tạo ra mảng a và nó in ra. Bây giờ, hãy làm bản demo
+Véc tơ hóa (Vectorization). Tôi sẽ nhập time, chúng ta sử dụng nó, để tính thời gian thực thi
+các phép tính khác nhau. Chúng có thể tạo
+một mảng a không? random.rand. Điều này tạo ra một mảng hàng
+triệu chiều với các giá trị ngẫu nhiên. b = np.random.rand. Một mảng hàng triệu chiều khác. Và, bây giờ, tic = time.time,
+như vậy cái này đo thời gian hiện tại, c = np.dot (a, b). toc = time.time. Và bản in này, nó là phiên bản vector hóa. Đây là một phiên bản vector hóa. Hãy in nó ra. Hãy xem lần cuối cùng, vì vậy có toc - tic x 1000, và chúng ta có thể diễn đạt điều này
+trong một phần nghìn giây(mili giây). Vì vậy, ms là mili giây. Tôi sẽ nhấn Shift Enter. Và mã đó mất khoảng ba phần
+nghìn giây hoặc là ở lần này là 1,5, có thể khoảng 1,5 hoặc
+3,5 phần nghìn giây mỗi lần. Khi tôi chạy nó thì nó
+thay đổi theo từng lần, nhưng có vẻ như trung bình
+nó chỉ mất 1,5 mili giây, có lẽ là hai mili giây
+khi tôi chạy cái này. Tốt. Hãy tiếp tục thêm
+vào khối mã này. Bây giờ hãy triển khai
+phiên bản không vector hóa. Hãy viết, c = 0, sau đó tic = time.time. Bây giờ, hãy triển khai một vòng lặp for. For i trong phạm vi 1 triệu, tôi có rất nhiều số
+không, phải không? c + = (a, i) x (b,i) và sau đó toc = time.time. Cuối cùng, print(“for loop:”). Thời gian cần thiết là
+1000 x toc - tic + "ms" để hiểu rằng chúng ta đang làm
+điều này trong một phần nghìn giây. Hãy làm thêm một điều nữa. Chúng ta hãy in ra
+giá trị của c, chúng ta tính nó để đảm bảo rằng nó có
+cùng giá trị trong cả hai trường hợp. Tôi sẽ nhấn shift để
+chạy cái này và kiểm tra xem. Trong cả hai trường hợp,
+phiên bản vector hóa và phiên bản không vector hóa
+tính ra các giá trị tương tự, như bạn thấy, 2.50 đến 6,99, v.v. Phiên bản véc-tơ hóa
+mất 1,5 mili giây. Phiên bản vòng lặp for tường minh và không
+vector hóa mất khoảng 400, gần 500 mili giây. Phiên bản không vector hóa tốn nhiều
+thời gian hơn, lâu hơn khoảng 300 lần phiên bản vector hóa. Trong ví dụ này, bạn thấy rằng chỉ cần
+bạn nhớ phải vectơ hóa mã của bạn, thì mã của bạn sẽ chạy
+nhanh hơn 300 lần. Hãy chạy lại đi. Chạy lại lần nữa. Vâng. Phiên bản vector hóa 1,5
+mili giây giây và vòng lặp for. Một lần nữa, 480 mili giây, chậm hơn khoảng 300 lần để
+triển khai vòng lặp for tường minh. Nếu x chậm lại, đấy chính là điểm khác biệt giữa việc
+mã của bạn mất khoảng một phút để chạy so với mất năm giờ để chạy. Và khi bạn đang triển khai
+các thuật toán học sâu, bạn có thể nhận được
+kết quả trả về nhanh hơn. Sẽ nhanh hơn nhiều nếu
+bạn vector hóa mã của bạn. Một số bạn có thể đã
+nghe nói rằng rất nhiều triển khai học sâu mở rộng được
+thực hiện trên GPU (Bộ xử lý đồ họa). Nhưng tất cả các bản demo mà tôi làm tới giờ
+trong Jupiter notebook thì diễn ra trên CPU. Trên thực tế, cả GPU và CPU
+đều có hướng dẫn song song. Đôi khi chúng được gọi
+là hướng dẫn SIMD. Đây là từ viết tắt của một hướng dẫn đơn dòng lệnh,
+đa luồng dữ liệu (single instruction multiple data). Nhưng về cơ bản
+thì điều này nghĩa là, nếu bạn sử dụng
+các hàm cài sẵn như np.function hoặc các hàm khác không yêu cầu
+bạn thực hiện rõ ràng một vòng lặp for. Nó cho phép Phyton Numpy tận dụng tính song song tốt hơn nhiều để làm
+các tính toán của bạn nhanh hơn nhiều. Và điều này đúng cả về tính toán
+trên CPU và tính toán trên GPU. Chỉ là GPU đặc biệt tốt trong những tính toán SIMD này
+nhưng CPU thì cũng không quá tệ. Chỉ là không tốt như GPU. Bạn đang thấy cách vector hóa
+có thể tăng tốc đáng kể mã của bạn. Một nguyên tắc cần nhớ là
+bất cứ khi nào có thể, thì hãy tránh sử dụng các
+vòng lặp for tường minh. Hãy xem video tiếp theo để
+xem thêm một số ví dụ về vector hóa và bắt đầu
+vector hóa hồi quy logistic.

@@ -1,0 +1,444 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:03.780
+We've all been hearing that deep neural networks work really well for a lot of problems.
+
+00:00:03.780 --> 00:00:07.960
+It's not just that they need to be big neural networks, it's that specifically they need
+
+00:00:07.960 --> 00:00:11.040
+to be deep or to have a lot of hidden layers.
+
+00:00:11.040 --> 00:00:12.040
+So why is that?
+
+00:00:12.040 --> 00:00:16.680
+Let's go for a couple examples and try to gain some intuition for why deep networks
+
+00:00:16.680 --> 00:00:18.920
+might work well.
+
+00:00:18.920 --> 00:00:22.560
+So first, what is a deep network computing?
+
+00:00:22.560 --> 00:00:27.840
+If you're building a system for face recognition or face detection, here's what a deep neural
+
+00:00:27.840 --> 00:00:30.160
+network could be doing.
+
+00:00:30.160 --> 00:00:35.520
+Perhaps you input a picture of a face, then the first layer of the neural network you can
+
+00:00:35.520 --> 00:00:40.480
+think of as maybe being a feature detector or an edge detector.
+
+00:00:40.480 --> 00:00:46.340
+In this example, I'm plotting what a neural network with maybe 20 hidden units might be
+
+00:00:46.340 --> 00:00:51.720
+trying to compute on this image with the 20 hidden units visualized by these little square
+
+00:00:51.720 --> 00:00:52.720
+boxes.
+
+00:00:52.720 --> 00:00:56.900
+So for example, this little visualization represents a hidden unit that's trying to
+
+00:00:56.900 --> 00:01:02.620
+figure out if you know where the edges of that orientation are in the image.
+
+00:01:02.620 --> 00:01:08.900
+And maybe this hidden unit might be trying to figure out where are the horizontal edges
+
+00:01:08.900 --> 00:01:10.460
+in this image.
+
+00:01:10.460 --> 00:01:14.940
+And when we talk about convolutional networks in a later course, this particular visualization
+
+00:01:14.940 --> 00:01:15.940
+will make a bit more sense.
+
+00:01:15.940 --> 00:01:19.380
+But informally, you can think of the first layer of the neural network as looking at
+
+00:01:19.380 --> 00:01:23.100
+a picture and trying to figure out where are the edges in this picture.
+
+00:01:23.100 --> 00:01:27.180
+Now that it's figured out where are the edges in this picture by grouping together pixels
+
+00:01:27.180 --> 00:01:33.700
+to form edges, it can then take the detected edges and group edges together to form parts
+
+00:01:33.700 --> 00:01:34.700
+of faces.
+
+00:01:34.700 --> 00:01:39.540
+So for example, you might have a little neuron trying to see if it's finding an eye
+
+00:01:39.540 --> 00:01:44.900
+or a different neuron trying to find that part of the nose.
+
+00:01:44.900 --> 00:01:50.020
+And so by putting together lots of edges, it can start to detect different parts of
+
+00:01:50.020 --> 00:01:51.420
+faces.
+
+00:01:51.420 --> 00:01:56.860
+And then finally, by putting together different parts of faces, like an eye or a nose or an
+
+00:01:56.860 --> 00:02:04.380
+ear or a chin, it can then try to recognize or detect different types of faces.
+
+00:02:04.380 --> 00:02:08.860
+So intuitively, you can think of the earlier layers of a neural network as detecting simpler
+
+00:02:08.860 --> 00:02:14.140
+functions like edges and then composing them together in the later layers of a neural
+
+00:02:14.140 --> 00:02:18.940
+network so that they can learn more and more complex functions.
+
+00:02:18.940 --> 00:02:23.980
+These visualizations will make more sense when we talk about convolutional nets.
+
+00:02:23.980 --> 00:02:28.620
+And one technical detail of this visualization, the edge detectors are looking in relatively
+
+00:02:28.620 --> 00:02:32.540
+small areas of an image, maybe very small regions like that.
+
+00:02:32.540 --> 00:02:37.540
+And then the facial detectors, you know, can look at maybe much larger areas of the
+
+00:02:37.540 --> 00:02:38.540
+image.
+
+00:02:38.540 --> 00:02:41.860
+But the main intuition, what you take away from this is just finding simpler things
+
+00:02:41.860 --> 00:02:46.060
+like edges and then building them up, composing them together to detect more complex
+
+00:02:46.060 --> 00:02:49.540
+things like an eye or a nose and then composing those together to find even more
+
+00:02:49.540 --> 00:02:51.940
+complex things.
+
+00:02:51.940 --> 00:02:56.940
+And this type of simple to complex hierarchical representation or compositional
+
+00:02:56.940 --> 00:03:03.580
+representation applies in other types of data than images and face recognition as
+
+00:03:03.580 --> 00:03:04.580
+well.
+
+00:03:04.580 --> 00:03:07.540
+For example, if you're trying to build a speech recognition system, it's hard to
+
+00:03:07.540 --> 00:03:12.700
+visualize speech, but if you input an audio clip, then maybe the first level of
+
+00:03:12.700 --> 00:03:19.220
+a neural network might learn to detect, you know, low level audio waveform features,
+
+00:03:19.220 --> 00:03:24.500
+such as is this tone going up, is this going down, is it the white noise or sibilant
+
+00:03:24.500 --> 00:03:29.980
+sound like right, and what is the pitch, but it can detect low level waveform
+
+00:03:29.980 --> 00:03:31.260
+features like that.
+
+00:03:31.260 --> 00:03:35.460
+And then by composing low level waveforms, maybe you'll learn to detect basic
+
+00:03:35.460 --> 00:03:36.940
+units of sound.
+
+00:03:36.940 --> 00:03:40.460
+So in linguistics, they're called phonemes.
+
+00:03:40.540 --> 00:03:45.620
+But for example, in the word cat, the cup is a phoneme, the ah is a phoneme, the
+
+00:03:45.620 --> 00:03:50.420
+tuh is another phoneme, but learns to find maybe the basic units of sound and then
+
+00:03:50.420 --> 00:03:55.220
+composing that together, maybe you learn to recognize words in the audio and then
+
+00:03:55.220 --> 00:04:03.100
+maybe compose those together in order to recognize entire phrases or sentences.
+
+00:04:03.100 --> 00:04:06.540
+So deep neural network with multiple hidden layers might be able to have the
+
+00:04:06.540 --> 00:04:11.380
+earlier layers learn these low level simpler features and then have the later
+
+00:04:11.380 --> 00:04:16.020
+deeper layers then put together the simpler things that's detected in order
+
+00:04:16.020 --> 00:04:20.180
+to detect more complex things like recognize specific words or even phrases
+
+00:04:20.180 --> 00:04:25.820
+or sentences that you're uttering in order to carry out speech recognition.
+
+00:04:25.820 --> 00:04:30.100
+And what we see is that whereas the earlier layers are computing what seems
+
+00:04:30.100 --> 00:04:35.100
+like relatively simple functions of the input, such as where the edges, by the
+
+00:04:35.100 --> 00:04:39.340
+time you get deep in the network, you can actually do, you know, surprisingly
+
+00:04:39.340 --> 00:04:45.020
+complex things such as detect faces or detect words or phrases or sentences.
+
+00:04:45.020 --> 00:04:48.300
+Some people like to make an analogy between deep neural networks and the
+
+00:04:48.300 --> 00:04:52.140
+human brain where we believe or neuroscientists believe that the human
+
+00:04:52.140 --> 00:04:57.340
+brain also starts off detecting simple things like edges in what your eyes see
+
+00:04:57.340 --> 00:05:01.660
+and then builds those up to detect more complex things like the faces that
+
+00:05:01.660 --> 00:05:03.580
+you see.
+
+00:05:03.580 --> 00:05:07.580
+I think analogies between deep learning and the human brain are sometimes a
+
+00:05:07.580 --> 00:05:12.620
+little bit dangerous but you know there is a lot of truth to this being how we
+
+00:05:12.620 --> 00:05:16.500
+think the human brain works and that the human brain probably detect simple
+
+00:05:16.500 --> 00:05:19.860
+things like edges first and it puts them together to form more and more
+
+00:05:19.860 --> 00:05:25.140
+complex objects and so that has served as a loose form of inspiration
+
+00:05:25.140 --> 00:05:27.820
+for some deep learning as well.
+
+00:05:27.820 --> 00:05:31.700
+We'll say a bit more about the human brain or about the biological brain in
+
+00:05:31.700 --> 00:05:35.480
+a later video this week.
+
+00:05:35.480 --> 00:05:41.360
+The other piece of intuition about why deep networks seem to work well is
+
+00:05:41.360 --> 00:05:43.060
+the following.
+
+00:05:43.060 --> 00:05:47.880
+So this result comes from circuit theory which pertains to thinking
+
+00:05:47.880 --> 00:05:51.200
+about what types of functions you can compute with different AND gates
+
+00:05:51.200 --> 00:05:54.280
+and OR gates and NOT gates, basically logic gates.
+
+00:05:54.280 --> 00:05:58.120
+So informally their functions compute with a relatively small but deep
+
+00:05:58.120 --> 00:06:02.760
+neural network and by small I mean the number of hidden units is relatively
+
+00:06:02.760 --> 00:06:06.520
+small but that if you try to compute the same function with a shallow
+
+00:06:06.520 --> 00:06:10.200
+network so beyond the loud enough hidden layers then you might require
+
+00:06:10.200 --> 00:06:13.480
+exponentially more hidden units to compute.
+
+00:06:13.480 --> 00:06:18.440
+So let me just give you one example and illustrate this a bit informally.
+
+00:06:18.440 --> 00:06:21.960
+But let's say you're trying to compute the exclusive OR or the parity
+
+00:06:21.960 --> 00:06:23.160
+of all your input features.
+
+00:06:23.160 --> 00:06:31.040
+So you're trying to compute X1, X4, X2, X4, X3, X4 up to Xn if you have
+
+00:06:31.040 --> 00:06:33.280
+n or nx features.
+
+00:06:33.280 --> 00:06:41.200
+So if you build an XOR tree like this, so first compute the XOR of X1 and X2,
+
+00:06:41.200 --> 00:06:45.840
+then take X3 and X4 and compute their XOR and technically if you're just
+
+00:06:45.840 --> 00:06:49.520
+using AND, OR and NOT gates you might need a couple layers to compute the
+
+00:06:49.520 --> 00:06:55.520
+XOR function rather than just one layer but with a relatively small circuit
+
+00:06:55.520 --> 00:06:59.480
+you can compute the XOR and so on.
+
+00:06:59.480 --> 00:07:06.400
+And then you can build really an XOR tree like so.
+
+00:07:06.400 --> 00:07:12.360
+And so eventually you have a circuit here that outputs the, let's call this Y,
+
+00:07:12.360 --> 00:07:17.480
+that outputs Y hat equals Y, the exclusive OR or the parity of all of these
+
+00:07:17.480 --> 00:07:18.720
+input bits.
+
+00:07:18.720 --> 00:07:23.320
+So to compute the XOR the depth of the network will be on the order of
+
+00:07:23.320 --> 00:07:27.760
+log n, right, with this type of XOR tree.
+
+00:07:27.760 --> 00:07:31.440
+So the number of nodes and the number of circuit, circuit components or the
+
+00:07:31.440 --> 00:07:34.080
+number of gates in this network is not that large.
+
+00:07:34.080 --> 00:07:38.760
+You don't need that many gates in order to compute the exclusive OR.
+
+00:07:38.760 --> 00:07:43.760
+But now if you're not allowed to use a new network with multiple hidden
+
+00:07:43.760 --> 00:07:48.160
+layers with in this case all the log n hidden layers, if you're forced to
+
+00:07:48.160 --> 00:07:53.160
+compute this function with just one hidden layer, right, so you have all
+
+00:07:53.160 --> 00:07:59.120
+these things going into, you know, set of hidden units and then these things
+
+00:07:59.120 --> 00:08:05.840
+then outputs Y. Then in order to compute the parity of XOR, to compute this
+
+00:08:05.840 --> 00:08:11.480
+XOR function, this hidden layer will need to be exponentially large.
+
+00:08:11.480 --> 00:08:17.120
+Because essentially you need to exhaustively enumerate all 2 to the n
+
+00:08:17.120 --> 00:08:23.560
+possible configurations or on the order of 2 to the n possible configurations of
+
+00:08:23.560 --> 00:08:28.000
+the input bits that result in the exclusive OR being either 1 or 0.
+
+00:08:28.000 --> 00:08:32.560
+So you end up needing a hidden layer that is exponentially large in the number of
+
+00:08:32.560 --> 00:08:37.640
+bits. I think technically you could do this with 2 to the n minus 1 hidden
+
+00:08:37.640 --> 00:08:40.560
+units, right, but that's the order 2 to the n.
+
+00:08:40.560 --> 00:08:44.040
+So it's going to be exponentially large in the number of bits.
+
+00:08:44.040 --> 00:08:49.960
+So I hope this gives a sense that there are mathematical functions that are much
+
+00:08:49.960 --> 00:08:55.440
+easier to compute with deep networks than with shallow networks.
+
+00:08:55.440 --> 00:09:00.520
+I have to admit, I personally found the result from circuit theory less useful
+
+00:09:00.520 --> 00:09:04.960
+for gaining intuitions, but this is one of the results that people often cite
+
+00:09:04.960 --> 00:09:11.360
+when just, when explaining the value of having very deep representations.
+
+00:09:11.360 --> 00:09:16.840
+Now, in addition to these reasons for preferring deep neural networks, to be
+
+00:09:16.840 --> 00:09:21.280
+perfectly honest, I think the other reason the term deep learning has taken off is
+
+00:09:21.280 --> 00:09:24.440
+just branding, right? These things used to be called neural networks with a lot of
+
+00:09:24.440 --> 00:09:28.840
+hidden layers, but the phrase deep learning, you know, it's just a great
+
+00:09:28.840 --> 00:09:34.080
+brand. It's just, it's so deep, right? So I think that once that term called on,
+
+00:09:34.080 --> 00:09:38.240
+that really neural networks rebranded or neural networks with many hidden layers
+
+00:09:38.240 --> 00:09:44.000
+rebranded help to capture the popular imagination as well. But regardless of
+
+00:09:44.000 --> 00:09:49.240
+the PR branding, deep networks do work well. Sometimes people go overboard and
+
+00:09:49.240 --> 00:09:52.720
+insist on using tons of hidden layers, but when I'm starting out on a new
+
+00:09:52.720 --> 00:09:56.800
+problem, I'll often really start out with even logistic regression, then try
+
+00:09:56.800 --> 00:10:02.080
+something with one or two hidden layers and use that as a hyper parameter, use
+
+00:10:02.080 --> 00:10:06.200
+that as a parameter or hyper parameter that you tune in order to try to find
+
+00:10:06.200 --> 00:10:09.560
+the right depth for your neural network. But over the last several years, there
+
+00:10:09.560 --> 00:10:14.560
+has been a trend toward people finding that for some applications, very, very
+
+00:10:14.560 --> 00:10:18.840
+deep neural networks, you know, maybe many dozens of layers sometimes can
+
+00:10:18.840 --> 00:10:23.640
+sometimes be the best model for a problem. So that's it for the
+
+00:10:23.640 --> 00:10:28.880
+intuitions for why deep learning seems to work well. Let's now take a look at
+
+00:10:28.880 --> 00:10:32.880
+the mechanics of how to implement not just forward propagation, but also back
+
+00:10:32.880 --> 00:10:33.720
+propagation.

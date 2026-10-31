@@ -1,0 +1,306 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.150 --> 00:00:07.790
+I found the UNet architecture useful for many applications I've worked on and this
+
+00:00:07.790 --> 00:00:13.710
+is one of the most important and foundational neural network architectures of computer vision
+
+00:00:13.710 --> 00:00:14.710
+today.
+
+00:00:14.710 --> 00:00:19.910
+So in this video, let's dig into the details of exactly how the UNet works.
+
+00:00:19.910 --> 00:00:21.670
+This is what the UNet looks like.
+
+00:00:21.670 --> 00:00:23.670
+I know there's a lot going on in this picture.
+
+00:00:23.670 --> 00:00:24.670
+It's okay.
+
+00:00:24.670 --> 00:00:27.950
+We'll break it down and step it through one step at a time.
+
+00:00:27.950 --> 00:00:33.790
+But I want to quickly show you the final outcome of what a UNet architecture looks like.
+
+00:00:33.790 --> 00:00:38.310
+And this, by the way, is also why it's called a UNet because when you draw it like this,
+
+00:00:38.310 --> 00:00:40.990
+it looks a lot like a U.
+
+00:00:40.990 --> 00:00:45.390
+But let's break it down and build this back up one piece at a time.
+
+00:00:45.390 --> 00:00:50.110
+So we're going to make sure we know what all of the things going on in this diagram actually
+
+00:00:50.110 --> 00:00:51.230
+are doing.
+
+00:00:51.230 --> 00:00:56.510
+These ideas were due to Olaf Rauneberger, Philip Fisher and Thomas Brox.
+
+00:00:56.510 --> 00:01:01.910
+One fact, when they wrote their original UNet paper, they were thinking of the application
+
+00:01:01.910 --> 00:01:06.950
+of biomedical image segmentation, really segmenting medical images.
+
+00:01:06.950 --> 00:01:12.150
+But these ideas turned out to be useful for many other computer vision semantics segmentation
+
+00:01:12.150 --> 00:01:14.030
+applications as well.
+
+00:01:14.030 --> 00:01:22.910
+So the input to the UNet is an image, let's say is H by W by three for three channels,
+
+00:01:22.910 --> 00:01:24.510
+RGB channels.
+
+00:01:24.510 --> 00:01:30.430
+I'm going to visualize this image as a thin layer like that.
+
+00:01:30.430 --> 00:01:36.830
+I know that previously we had taken neural network layers and drawn them as 3D blocks like
+
+00:01:36.830 --> 00:01:43.390
+this, where this might be H by W by three.
+
+00:01:43.390 --> 00:01:48.430
+But in order to make the UNet diagram look simpler, I'm going to imagine looking at
+
+00:01:48.430 --> 00:01:49.430
+this edge on.
+
+00:01:49.430 --> 00:01:58.470
+So all you see is this, and the rest of this is hidden behind this dark blue rectangle
+
+00:01:58.470 --> 00:01:59.470
+that I've drawn.
+
+00:01:59.470 --> 00:02:01.430
+And so that's what this is.
+
+00:02:01.430 --> 00:02:08.910
+The height of this is the height H, and the width of this is three.
+
+00:02:08.910 --> 00:02:13.030
+The number of channels, the depth is three, so it looks very thin.
+
+00:02:13.030 --> 00:02:17.790
+So to simplify the UNet diagram, I'm going to use these rectangles rather than 3D
+
+00:02:17.790 --> 00:02:20.790
+layers to illustrate the algorithm.
+
+00:02:20.790 --> 00:02:26.230
+Now the first part of the UNet uses normal feed-forward neural network convolutional
+
+00:02:26.230 --> 00:02:27.390
+layers.
+
+00:02:27.390 --> 00:02:34.510
+So I'm going to use a black arrow to denote a convolutional layer followed by a ReLU
+
+00:02:34.510 --> 00:02:36.270
+activation function.
+
+00:02:36.270 --> 00:02:41.470
+So the next layer maybe looks like that, will increase the number of channels a little
+
+00:02:41.470 --> 00:02:46.470
+bit, but the dimension is still high by width by a little bit more channels.
+
+00:02:46.470 --> 00:02:51.310
+And then another convolutional layer with a ReLU activation function.
+
+00:02:51.310 --> 00:02:55.590
+Now we're still in the first half of the neural network.
+
+00:02:55.590 --> 00:03:00.010
+We're going to use max pooling to reduce the height and width.
+
+00:03:00.010 --> 00:03:06.390
+So maybe you end up with a set of activations where the height and width is lower, but maybe
+
+00:03:06.390 --> 00:03:09.710
+a sticker, so the number of channels is increasing.
+
+00:03:09.710 --> 00:03:18.110
+Then we have two more layers of normal feed-forward convolutions with a ReLU activation function.
+
+00:03:18.110 --> 00:03:22.150
+And then let's apply max pooling again, and so you get that.
+
+00:03:22.150 --> 00:03:26.950
+And then repeat again, and so you end up with this.
+
+00:03:26.950 --> 00:03:33.070
+So so far, this is the normal convolution layers with activation functions that you've
+
+00:03:33.070 --> 00:03:38.590
+been used to from earlier videos with occasional max pooling layers.
+
+00:03:38.590 --> 00:03:45.170
+So notice that the height of this layer, height and width, is now very small.
+
+00:03:45.170 --> 00:03:51.710
+So we're going to start to apply transpose convolution layers, which I'm going to denote
+
+00:03:51.710 --> 00:03:57.830
+by the green arrow in order to build the dimension of this neural network back up.
+
+00:03:57.830 --> 00:04:03.430
+So with the first transpose convolutional layer, or trans-conf layer, you are going
+
+00:04:03.430 --> 00:04:07.590
+to get a set of activations that looks like that.
+
+00:04:07.590 --> 00:04:14.150
+In this example, we did not increase the height and width, but we did decrease the
+
+00:04:14.150 --> 00:04:16.130
+number of channels.
+
+00:04:16.130 --> 00:04:21.070
+But there's one more thing you need to do to build a unit, which is to add in that skip
+
+00:04:21.070 --> 00:04:25.910
+connection, which I'm going to denote with this gray arrow.
+
+00:04:25.910 --> 00:04:31.510
+What the skip connection does is it takes this set of activations and just copies it
+
+00:04:31.510 --> 00:04:32.910
+over to the right.
+
+00:04:32.910 --> 00:04:36.390
+And so the set of activations you end up with is like this.
+
+00:04:36.390 --> 00:04:41.750
+The light blue part comes from the transpose convolution, and the dark blue part is just
+
+00:04:41.750 --> 00:04:44.790
+copied over from the left.
+
+00:04:44.790 --> 00:04:51.710
+To keep on building up the unit, we are going to then apply a couple more layers of the
+
+00:04:51.710 --> 00:04:57.990
+regular convolutions, followed by a relu activation function, so denoted by the black
+
+00:04:57.990 --> 00:05:00.550
+arrows like so.
+
+00:05:00.550 --> 00:05:05.490
+And then we'll apply another transpose convolution layer, so green arrow.
+
+00:05:05.490 --> 00:05:10.850
+And here we're going to start to increase the dimension, increase the height and width
+
+00:05:10.850 --> 00:05:11.850
+of this image.
+
+00:05:11.850 --> 00:05:15.730
+And so now the height is getting bigger.
+
+00:05:15.730 --> 00:05:19.010
+But here too, we're going to apply a skip connection.
+
+00:05:19.010 --> 00:05:23.890
+So there's a gray arrow again, we're going to take this set of activations and just
+
+00:05:23.890 --> 00:05:28.650
+copy it right there over to the right.
+
+00:05:28.650 --> 00:05:33.370
+More convolutional layers and other transpose convolution skip connection.
+
+00:05:33.370 --> 00:05:38.090
+Once again, we're going to take this set of activations and copy it over to the right.
+
+00:05:38.090 --> 00:05:44.690
+And then more convolutional layers, followed by another transpose convolution, skip connection,
+
+00:05:44.690 --> 00:05:46.490
+copy that over.
+
+00:05:46.490 --> 00:05:53.530
+And now we're back to a set of activations that is the original input images height and
+
+00:05:53.530 --> 00:05:54.530
+width.
+
+00:05:54.530 --> 00:06:00.090
+We're going to have a couple more layers of a normal feed forward convolutions.
+
+00:06:00.090 --> 00:06:06.410
+And then finally, to take this and map this to our segmentation map, we're going to use
+
+00:06:06.410 --> 00:06:13.810
+a one by one convolution, which I'm going to denote with that magenta arrow to finally
+
+00:06:13.810 --> 00:06:18.930
+give us this, which is going to be our output.
+
+00:06:18.930 --> 00:06:23.530
+The dimensions of this output layer is going to be h by w.
+
+00:06:23.530 --> 00:06:29.970
+So the same dimensions as our original input by num classes.
+
+00:06:29.970 --> 00:06:35.290
+So if you have three classes to try to recognize, this will be three, if you have 10 different
+
+00:06:35.290 --> 00:06:41.890
+classes to try to recognize in your segmentation map, then that last number will be 10.
+
+00:06:41.890 --> 00:06:46.890
+And so what this does is for every one of your pixels, you have h by w pixels, you
+
+00:06:46.890 --> 00:06:53.170
+have, you know, an array or a vector, essentially of n classes numbers that tells you for one
+
+00:06:53.170 --> 00:06:58.250
+pixel, how likely is that pixel to come from each of these different classes.
+
+00:06:58.250 --> 00:07:03.650
+And if you take an argmax over these n classes, then that's how you classify each of the
+
+00:07:03.650 --> 00:07:05.970
+pixels into one of the classes.
+
+00:07:05.970 --> 00:07:10.450
+And you can visualize it like the segmentation map shown on the right.
+
+00:07:10.450 --> 00:07:11.450
+So that's it.
+
+00:07:11.450 --> 00:07:16.170
+You've learned about the transpose convolution and the unit architecture.
+
+00:07:16.170 --> 00:07:18.810
+Congrats on getting to the end of this week's videos.
+
+00:07:18.810 --> 00:07:24.050
+I hope you also enjoy working through these ideas in the program exercise.
+
+00:07:24.050 --> 00:07:29.010
+Next week, we'll come back and talk about some specialized architectures for face recognition
+
+00:07:29.010 --> 00:07:35.250
+and for your style transfer, where you get to create some really interesting artwork using
+
+00:07:35.250 --> 00:07:36.890
+neural networks.
+
+00:07:36.890 --> 00:07:40.410
+Have fun in the program exercise and I look forward to seeing you next week.

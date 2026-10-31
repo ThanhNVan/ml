@@ -1,0 +1,318 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.880 --> 00:00:06.040
+If you're building a computer vision application, rather than training the weights from scratch,
+
+00:00:06.040 --> 00:00:10.880
+from random initialization, you often make much faster progress if you download weights
+
+00:00:10.880 --> 00:00:15.640
+that someone else has already trained on a network architecture and use that as pre-training
+
+00:00:15.640 --> 00:00:19.800
+and transfer that to a new task that you might be interested in.
+
+00:00:19.800 --> 00:00:24.920
+The computer vision research community has been pretty good at posting lots of datasets
+
+00:00:24.920 --> 00:00:25.920
+on the internet.
+
+00:00:25.920 --> 00:00:31.600
+If you hear of things like ImageNet or MS-CoCo or Pascal types of datasets, these are the
+
+00:00:31.600 --> 00:00:36.280
+names of different datasets that people have posted online and that a lot of computer vision
+
+00:00:36.280 --> 00:00:40.280
+researchers have trained their algorithms on.
+
+00:00:40.280 --> 00:00:45.760
+Sometimes this training takes several weeks and might take many, many GPUs and the fact
+
+00:00:45.760 --> 00:00:50.200
+that someone else has done this and gone through the painful hyperparameter search process
+
+00:00:50.200 --> 00:00:55.200
+means that you can often download open source weights that took someone else many weeks
+
+00:00:55.200 --> 00:01:00.520
+or months to figure out and use that as a very good initialization for your own neural
+
+00:01:00.520 --> 00:01:06.480
+network and use transfer learning to transfer knowledge from some of these very large public
+
+00:01:06.480 --> 00:01:09.240
+datasets to your own problem.
+
+00:01:09.240 --> 00:01:11.880
+Let's take a deeper look at how to do this.
+
+00:01:11.880 --> 00:01:14.080
+Let's start with an example.
+
+00:01:14.080 --> 00:01:19.000
+Let's say you're building a cat detector to recognize your own pet cat.
+
+00:01:19.000 --> 00:01:34.700
+According to the internet, Tigger is a common cat name and Misty is another common cat name.
+
+00:01:34.700 --> 00:01:41.620
+Let's say your cats are called Tigger and Misty and there's also neither.
+
+00:01:41.620 --> 00:01:44.620
+So you have a classification problem with three classes.
+
+00:01:44.620 --> 00:01:48.620
+Is this picture Tigger or is it Misty or is it neither?
+
+00:01:48.620 --> 00:01:54.060
+And we'll ignore the case of both of your cats appearing in a picture.
+
+00:01:54.060 --> 00:01:59.620
+Now you probably don't have a lot of pictures of Tigger or Misty so your training set will
+
+00:01:59.620 --> 00:02:00.900
+be small.
+
+00:02:00.900 --> 00:02:02.260
+So what can you do?
+
+00:02:02.260 --> 00:02:08.620
+I recommend you go online and download some open source implementation of a neural network
+
+00:02:08.620 --> 00:02:12.980
+and download not just the code but also the weights.
+
+00:02:13.500 --> 00:02:20.900
+There are a lot of networks you can download that have been trained on for example the ImageNet
+
+00:02:20.900 --> 00:02:24.420
+dataset which has a thousand different classes.
+
+00:02:24.420 --> 00:02:31.380
+So the network might have a softmax unit that outputs one of a thousand possible classes.
+
+00:02:31.380 --> 00:02:40.140
+What you can do is then get rid of the softmax layer and create your own softmax unit that
+
+00:02:40.140 --> 00:02:46.660
+outputs Tigger or Misty or neither.
+
+00:02:46.660 --> 00:02:53.660
+And in terms of the network I'd encourage you to think of all of these layers as frozen.
+
+00:02:53.660 --> 00:03:00.260
+So you freeze the parameters in all of these layers of the network and you would then just
+
+00:03:00.260 --> 00:03:08.180
+train the parameters associated with your softmax layer which is a softmax layer with three possible
+
+00:03:08.180 --> 00:03:12.460
+outputs, Tigger, Misty or neither.
+
+00:03:12.460 --> 00:03:18.460
+And by using someone else's pre-trained weights you might be able to get pretty good performance
+
+00:03:18.460 --> 00:03:21.780
+on this even with a small dataset.
+
+00:03:21.780 --> 00:03:28.220
+Fortunately, a lot of deep learning frameworks support this mode of operation and in fact
+
+00:03:28.220 --> 00:03:35.140
+depending on the framework it might have things like trainable parameter equals zero.
+
+00:03:35.140 --> 00:03:40.140
+You might set that for some of these earlier layers in order to just say don't train those
+
+00:03:40.140 --> 00:03:47.620
+weights or sometimes you have a parameter like freeze equals one and these are different
+
+00:03:47.620 --> 00:03:52.060
+weights and different deep learning programming frameworks that let you specify whether or
+
+00:03:52.060 --> 00:03:56.500
+not to train the weights associated with a particular layer.
+
+00:03:56.500 --> 00:04:01.660
+And so in this case you would train only the softmax layers weights that freeze all
+
+00:04:01.740 --> 00:04:05.380
+of the earlier layers weights.
+
+00:04:05.380 --> 00:04:10.820
+One other neat trick that may help for some implementations is that because all of these
+
+00:04:10.820 --> 00:04:15.420
+earlier layers are frozen there is some fixed function that doesn't change because you're
+
+00:04:15.420 --> 00:04:21.060
+not changing it, you're not training it that takes this input image X and maps it to
+
+00:04:21.060 --> 00:04:24.460
+some set of activations in that layer.
+
+00:04:24.460 --> 00:04:31.140
+So one other trick that could speed up training is you just pre-compute that layer, the
+
+00:04:31.140 --> 00:04:37.020
+features, the activations from that layer and just save them to disk.
+
+00:04:37.020 --> 00:04:42.340
+And what you're doing is you're using this fixed function in this first part of the neural
+
+00:04:42.340 --> 00:04:49.420
+network to take as input any input, any image X and compute some feature vector for it and
+
+00:04:49.420 --> 00:04:56.580
+then you're training a shallow softmax model from this feature vector to make a prediction.
+
+00:04:56.580 --> 00:05:03.580
+And so one step that could help your computation is you just pre-compute that layer's activation
+
+00:05:03.580 --> 00:05:08.420
+for all the examples in your training set and save them to disk and then just train a softmax
+
+00:05:08.420 --> 00:05:10.740
+classifier on top of that.
+
+00:05:10.740 --> 00:05:14.500
+So the advantage of the save to disk or the pre-compute method, the save to disk method
+
+00:05:14.500 --> 00:05:20.500
+is that you don't need to recompute those activations every time you take an epoch
+
+00:05:20.500 --> 00:05:23.380
+or take a pass through a training set.
+
+00:05:23.380 --> 00:05:29.020
+So this is what you do if you have a pretty small training set for your task.
+
+00:05:29.020 --> 00:05:31.500
+What even the larger training set?
+
+00:05:31.500 --> 00:05:36.500
+So one rule of thumb is if you have a larger label data set, so maybe you just have a ton
+
+00:05:36.500 --> 00:05:42.300
+of pictures of Tigger, Misty, as well as I guess pictures of neither of them, one thing
+
+00:05:42.300 --> 00:05:46.100
+you could do is then freeze fewer layers.
+
+00:05:46.100 --> 00:05:53.540
+So maybe you freeze just these layers and then train these later layers.
+
+00:05:53.540 --> 00:05:58.820
+Although if the output layer has different classes then you need to have your own output
+
+00:05:58.820 --> 00:06:01.500
+unit anyway.
+
+00:06:01.500 --> 00:06:04.700
+Tigger, Misty, or Neither.
+
+00:06:04.700 --> 00:06:07.780
+And there are a couple ways to do this.
+
+00:06:07.780 --> 00:06:13.620
+You could take the last few layers and there are a couple ways to do this.
+
+00:06:13.620 --> 00:06:17.060
+You could take the last few layers weights and just use that as initialization and do
+
+00:06:17.060 --> 00:06:18.660
+gradient descent from there.
+
+00:06:18.660 --> 00:06:25.860
+Or you could also blow away these last few layers and just use your own new hidden units
+
+00:06:25.860 --> 00:06:28.140
+and then your own final softmax output.
+
+00:06:28.140 --> 00:06:32.340
+So either of these methods could be worth trying.
+
+00:06:32.340 --> 00:06:37.740
+But maybe one pattern is if you have more data, the number of layers you freeze could
+
+00:06:37.740 --> 00:06:44.020
+be smaller and then the number of layers you train on top could be greater.
+
+00:06:44.020 --> 00:06:48.140
+And the idea is that if you have a bigger data set then maybe you have enough data not just
+
+00:06:48.140 --> 00:06:53.980
+to train a single softmax unit but to train some, you know, model size neural network
+
+00:06:53.980 --> 00:07:01.580
+that comprises the last few layers of this final network that you end up using.
+
+00:07:01.580 --> 00:07:06.740
+And then finally if you have a lot of data, one thing you might do is take this open
+
+00:07:06.740 --> 00:07:14.580
+source network and weights and use the whole thing just as initialization and train the
+
+00:07:14.580 --> 00:07:15.580
+whole network.
+
+00:07:15.580 --> 00:07:21.060
+Although again, if this was a thousand-note softmax and you have just three outputs,
+
+00:07:21.060 --> 00:07:26.580
+you need your own softmax output to output the labels you care about.
+
+00:07:26.580 --> 00:07:32.220
+But the more label data you have for your task, so the more pictures you have of Tigger,
+
+00:07:32.220 --> 00:07:35.940
+Amnesty, and neither, the more layers you could train.
+
+00:07:35.940 --> 00:07:41.260
+And in the extreme case, you could use the weights you download just as initialization
+
+00:07:41.260 --> 00:07:47.260
+so they would replace random initialization and then you could do gradient descent training,
+
+00:07:47.260 --> 00:07:51.060
+updating all the weights and all the layers of the network.
+
+00:07:51.060 --> 00:07:54.860
+So that's transfer learning for the training of confidence.
+
+00:07:54.860 --> 00:08:00.060
+In practice, because the open data sets on the Internet are so big and the weights you
+
+00:08:00.060 --> 00:08:05.700
+can download that someone else has spent weeks training, has learned from so much data, you
+
+00:08:05.700 --> 00:08:11.300
+find that for a lot of computer vision applications, you just do much better if you download someone
+
+00:08:11.300 --> 00:08:16.300
+else's open source weights and use that as initialization for your problem.
+
+00:08:16.300 --> 00:08:21.900
+So in all the different disciplines and all the different applications of deep learning,
+
+00:08:21.900 --> 00:08:26.580
+I think that computer vision is one where transfer learning is something that you should
+
+00:08:26.580 --> 00:08:32.060
+almost always do unless you actually have a very, very large, unless you have an exceptionally
+
+00:08:32.060 --> 00:08:35.740
+large data set to train everything else from scratch yourself.
+
+00:08:35.740 --> 00:08:41.260
+But transfer learning is just very worth seriously considering unless you have an exceptionally
+
+00:08:41.260 --> 00:08:46.580
+large data set and a very large computational budget to train everything from scratch by
+
+00:08:46.580 --> 00:08:47.060
+yourself.

@@ -1,0 +1,493 @@
+WEBVTT
+
+00:00:02.000 --> 00:00:05.200
+Sau supervised learning, hình thức
+machine learning
+
+00:00:05.200 --> 00:00:08.400
+được sử dụng rộng rãi nhất là
+unsupervised learning.
+
+00:00:08.400 --> 00:00:11.240
+Chúng ta hãy xem điều đó có nghĩa là gì.
+
+00:00:11.240 --> 00:00:16.800
+Chúng ta đã nói về học tập có giám sát và
+video này nói về học tập không giám sát.
+
+00:00:16.800 --> 00:00:20.080
+Nhưng đừng để cái tên không giám sát đánh lừa
+bạn.
+
+00:00:20.080 --> 00:00:25.120
+Tôi nghĩ unsupervised learning cũng tuyệt vời
+như supervised learning.
+
+00:00:25.120 --> 00:00:27.780
+Khi xem xét phương pháp supervised learning
+trong video
+
+00:00:27.780 --> 00:00:30.440
+trước, chúng tôi gọi giao diện này giống như
+thế này.
+
+00:00:30.440 --> 00:00:36.080
+Trong trường hợp có vấn đề về classification,
+mỗi ví dụ được liên kết với nhãn đầu
+
+00:00:36.080 --> 00:00:41.720
+ra Y, chẳng hạn như lành tính hoặc ác tính,
+được chỉ định bởi chữ O và chữ thập.
+
+00:00:41.720 --> 00:00:46.320
+Trong học tập không giám sát, chúng tôi nhận
+được dữ liệu không liên
+
+00:00:46.320 --> 00:00:50.920
+quan đến bất kỳ nhãn đầu ra Y nào. Giả sử bạn
+được cung cấp dữ liệu
+
+00:00:50.920 --> 00:00:55.520
+về bệnh nhân và kích thước khối u cũng như
+tuổi của bệnh nhân, nhưng
+
+00:00:55.520 --> 00:00:59.360
+không biết khối u đó lành tính hay ác tính.
+
+00:00:59.360 --> 00:01:03.520
+Vì vậy, tập dữ liệu trông như thế này ở bên
+phải.
+
+00:01:03.520 --> 00:01:08.780
+Chúng tôi không được yêu cầu chẩn đoán xem
+khối u là lành tính hay
+
+00:01:08.780 --> 00:01:14.040
+ác tính vì chúng tôi không được gắn nhãn Y nào
+trong tập dữ liệu.
+
+00:01:14.040 --> 00:01:17.580
+Thay vào đó, công việc của chúng ta là tìm ra
+cấu trúc hoặc
+
+00:01:17.580 --> 00:01:21.120
+mẫu nào đó, hoặc chỉ tìm điều gì đó thú vị
+trong dữ liệu.
+
+00:01:21.120 --> 00:01:23.560
+Đây là học tập không giám sát.
+
+00:01:23.560 --> 00:01:27.700
+Chúng tôi gọi đó là không giám sát vì chúng
+tôi không cố gắng giám sát
+
+00:01:27.700 --> 00:01:31.840
+thuật toán để đưa ra một số trích dẫn, câu trả
+lời đúng cho mọi đầu vào.
+
+00:01:31.840 --> 00:01:37.020
+Thay vào đó, chúng tôi yêu cầu thuật toán tự
+tìm ra điều gì thú
+
+00:01:37.020 --> 00:01:42.200
+vị hoặc những mẫu hoặc cấu trúc nào có thể có
+trong dữ liệu này.
+
+00:01:42.200 --> 00:01:47.220
+Với tập dữ liệu cụ thể này, thuật toán
+unsupervised learning có thể quyết
+
+00:01:47.220 --> 00:01:52.240
+định rằng dữ liệu có thể được gán cho hai nhóm
+khác nhau hoặc hai cụm khác nhau.
+
+00:01:52.240 --> 00:01:57.860
+Và vì vậy nó có thể quyết định rằng có một cụm
+
+00:01:57.860 --> 00:02:03.480
+hoặc nhóm ở đây và có một cụm hoặc nhóm khác ở
+đây.
+
+00:02:03.480 --> 00:02:08.620
+Đây là một loại học tập không giám sát cụ thể
+được gọi là thuật toán
+
+00:02:08.620 --> 00:02:13.760
+clustering, vì nó đặt dữ liệu không được gắn
+nhãn vào các cụm khác nhau.
+
+00:02:13.760 --> 00:02:17.440
+Và điều này hóa ra được sử dụng trong nhiều
+ứng dụng.
+
+00:02:17.440 --> 00:02:22.800
+Ví dụ: clustering được sử dụng trong Google
+Tin tức.
+
+00:02:22.800 --> 00:02:27.440
+Những gì Google Tin tức làm là mỗi ngày nó xem
+xét hàng trăm nghìn bài
+
+00:02:27.440 --> 00:02:32.080
+viết tin tức trên internet và nhóm các câu
+chuyện liên quan lại với nhau.
+
+00:02:32.080 --> 00:02:37.120
+Ví dụ: đây là mẫu từ Google Tin tức, trong đó
+tiêu đề của bài viết hàng đầu là Gấu
+
+00:02:37.120 --> 00:02:42.160
+trúc khổng lồ sinh ra hai câu lạc bộ song sinh
+ở Vườn thú lâu đời nhất Nhật Bản.
+
+00:02:42.160 --> 00:02:46.640
+Bài viết này thực sự đã thu hút attention của
+tôi vì con gái tôi rất thích gấu trúc.
+
+00:02:46.640 --> 00:02:49.320
+Và vì vậy có rất nhiều thứ, đồ chơi gấu trúc
+và
+
+00:02:49.320 --> 00:02:52.000
+xem video về gấu trúc trong hội trường của
+tôi.
+
+00:02:52.000 --> 00:02:55.900
+Và khi nhìn vào đây, bạn có thể nhận thấy rằng
+
+00:02:55.900 --> 00:02:59.800
+bên dưới đây là các bài viết liên quan khác.
+
+00:02:59.800 --> 00:03:02.980
+Có thể chỉ từ các tiêu đề, bạn có thể bắt đầu
+
+00:03:02.980 --> 00:03:06.160
+đoán được việc clustering có thể đang làm gì.
+
+00:03:06.160 --> 00:03:14.600
+Lưu ý rằng từ panda xuất hiện ở đây, ở đây, ở
+đây, ở đây và ở đây.
+
+00:03:14.600 --> 00:03:21.840
+Và lưu ý rằng từ song sinh cũng xuất hiện
+trong cả năm bài viết.
+
+00:03:21.840 --> 00:03:26.240
+Và từ sở thú cũng xuất hiện trong tất cả các
+bài viết này.
+
+00:03:26.240 --> 00:03:29.787
+Vì vậy, thuật toán clustering đang tìm kiếm
+các bài viết
+
+00:03:29.787 --> 00:03:33.333
+trong số hàng trăm nghìn bài báo trên internet
+ngày hôm đó,
+
+00:03:33.333 --> 00:03:36.880
+tìm ra các bài viết đề cập đến những từ và nội
+dung tương tự.
+
+00:03:36.880 --> 00:03:39.520
+nhóm chúng thành các cụm.
+
+00:03:39.520 --> 00:03:43.660
+Điều thú vị là thuật toán clustering này tự
+tìm ra những từ
+
+00:03:43.660 --> 00:03:47.800
+gợi ý rằng một số bài viết nhất định nằm trong
+cùng một nhóm.
+
+00:03:47.800 --> 00:03:52.880
+Ý tôi là không có nhân viên nào ở Google Tin
+tức ra lệnh cho thuật toán tìm các
+
+00:03:52.880 --> 00:03:57.960
+bài báo có từ gấu trúc, cặp song sinh và sở
+thú để xếp chúng vào cùng một cụm.
+
+00:03:57.960 --> 00:04:00.120
+Các chủ đề tin tức thay đổi mỗi ngày.
+
+00:04:00.120 --> 00:04:04.500
+Và có rất nhiều tin tức, việc để mọi người làm
+việc này hàng
+
+00:04:04.500 --> 00:04:08.880
+ngày cho tất cả các chủ đề mà tin tức đề cập
+là không khả thi.
+
+00:04:08.960 --> 00:04:13.360
+Thay vào đó, thuật toán phải tự mình tìm ra
+
+00:04:13.360 --> 00:04:17.760
+các cụm bài báo ngày nay mà không cần giám
+sát.
+
+00:04:17.760 --> 00:04:20.780
+Vì vậy, đó là lý do tại sao thuật toán
+clustering
+
+00:04:20.780 --> 00:04:23.800
+này là một loại thuật toán
+unsupervised learning.
+
+00:04:23.800 --> 00:04:27.700
+Hãy xem ví dụ thứ hai về việc
+unsupervised learning
+
+00:04:27.700 --> 00:04:31.600
+được áp dụng để clustering dữ liệu di truyền
+hoặc DNA.
+
+00:04:31.600 --> 00:04:36.120
+Hình ảnh này hiển thị hình ảnh dữ liệu DNA
+microarray.
+
+00:04:36.120 --> 00:04:40.760
+Chúng trông giống như những lưới nhỏ của một
+bảng tính và mỗi
+
+00:04:40.760 --> 00:04:45.400
+cột nhỏ thể hiện hoạt động di truyền hoặc DNA
+của một người.
+
+00:04:45.400 --> 00:04:50.020
+Vì vậy, ví dụ, toàn bộ cột này ở đây là từ DNA
+
+00:04:50.020 --> 00:04:54.640
+của một người và cột kia là của một người
+khác.
+
+00:04:54.640 --> 00:04:57.960
+Mỗi hàng đại diện cho một gen cụ thể.
+
+00:04:57.960 --> 00:05:03.840
+Vì vậy, chỉ là một ví dụ, có lẽ hàng này ở đây
+có thể đại diện cho một gen ảnh
+
+00:05:03.840 --> 00:05:09.720
+hưởng đến màu mắt hoặc hàng này ở đây là một
+gen ảnh hưởng đến chiều cao của một người.
+
+00:05:09.720 --> 00:05:14.440
+Các nhà nghiên cứu thậm chí còn tìm thấy mối
+liên hệ di truyền với việc ai
+
+00:05:14.440 --> 00:05:19.160
+đó không thích một số loại rau như bông cải
+xanh, cải Brussels hay măng tây.
+
+00:05:19.160 --> 00:05:22.460
+Vì vậy, lần tới khi ai đó hỏi bạn tại sao bạn
+không ăn hết món
+
+00:05:22.460 --> 00:05:25.760
+salad, bạn có thể nói với họ rằng, ồ, có thể
+đó là do di truyền.
+
+00:05:25.760 --> 00:05:29.820
+Đối với các vi mô DNA, ý tưởng là đo lường mức
+độ
+
+00:05:29.820 --> 00:05:33.880
+biểu hiện của một số gen nhất định đối với mỗi
+cá nhân.
+
+00:05:33.960 --> 00:05:39.380
+Vì vậy, những màu sắc này, đỏ, xanh lá cây,
+xám, v.v., cho thấy mức
+
+00:05:39.380 --> 00:05:44.800
+độ mà các cá thể khác nhau có hoặc không có
+một gen cụ thể hoạt động.
+
+00:05:44.800 --> 00:05:49.600
+Và điều bạn có thể làm là chạy thuật toán
+clustering để nhóm các cá
+
+00:05:49.600 --> 00:05:54.400
+nhân thành các danh mục khác nhau hoặc những
+kiểu người khác nhau.
+
+00:05:54.400 --> 00:05:57.240
+Giống như có thể những cá nhân này được nhóm
+
+00:05:57.240 --> 00:06:00.080
+lại với nhau và chúng ta hãy gọi loại này là
+một.
+
+00:06:00.080 --> 00:06:04.800
+Và những người này được xếp vào loại hai.
+
+00:06:04.800 --> 00:06:09.280
+Và những người này được xếp vào loại thứ ba.
+
+00:06:09.280 --> 00:06:12.773
+Đây là phương pháp unsupervised learning vì
+chúng tôi không cho
+
+00:06:12.773 --> 00:06:16.267
+thuật toán biết trước rằng có loại người một
+với những đặc điểm
+
+00:06:16.267 --> 00:06:19.760
+nhất định hoặc loại người hai với những đặc
+điểm nhất định.
+
+00:06:19.760 --> 00:06:22.240
+Thay vào đó, điều chúng tôi đang nói là đây là
+một loạt dữ liệu.
+
+00:06:22.240 --> 00:06:27.220
+Tôi không biết các loại người khác nhau là gì,
+nhưng bạn có thể tự động
+
+00:06:27.220 --> 00:06:32.200
+tìm cấu trúc trong dữ liệu và tự động tìm ra
+các loại cá nhân chính không?
+
+00:06:32.200 --> 00:06:35.420
+Vì chúng tôi không đưa ra trước cho thuật toán
+câu trả lời
+
+00:06:35.420 --> 00:06:38.640
+đúng cho các ví dụ nên đây là phương pháp
+unsupervised learning.
+
+00:06:38.640 --> 00:06:41.640
+Đây là một ví dụ thứ ba.
+
+00:06:41.640 --> 00:06:46.480
+Nhiều công ty có cơ sở dữ liệu khổng lồ về
+thông tin khách hàng.
+
+00:06:46.480 --> 00:06:51.500
+Với dữ liệu này, bạn có thể tự động nhóm khách
+hàng của mình thành các phân
+
+00:06:51.500 --> 00:06:56.520
+khúc thị trường khác nhau để có thể phục vụ
+khách hàng hiệu quả hơn không?
+
+00:06:56.520 --> 00:07:00.107
+Tóm lại, nhóm deep learning.ai đã thực hiện
+một số nghiên cứu
+
+00:07:00.107 --> 00:07:03.693
+để hiểu rõ hơn về cộng đồng deep learning.ai
+và lý do tại sao
+
+00:07:03.693 --> 00:07:07.280
+các cá nhân khác nhau tham gia các lớp này,
+đăng ký theo đợt
+
+00:07:07.280 --> 00:07:12.000
+bản tin hàng tuần hoặc tham dự các sự kiện Py
+in AI của chúng tôi.
+
+00:07:12.000 --> 00:07:17.600
+Hãy hình dung cộng đồng deep learning.ai như
+tập hợp những người này.
+
+00:07:17.600 --> 00:07:21.520
+Tiến hành clustering, tức là phân khúc thị
+
+00:07:21.520 --> 00:07:25.440
+trường, đã tìm ra một vài nhóm cá nhân riêng
+biệt.
+
+00:07:25.440 --> 00:07:30.840
+Động lực chính của một số nhóm là tìm kiếm
+kiến thức để phát triển kỹ năng của họ.
+
+00:07:30.840 --> 00:07:33.520
+Có lẽ đây là bạn, và điều đó thật tuyệt.
+
+00:07:33.520 --> 00:07:38.400
+Động lực chính của nhóm thứ hai là tìm cách
+phát triển sự nghiệp.
+
+00:07:38.400 --> 00:07:42.440
+Có thể bạn muốn được thăng chức, có một công
+việc mới hoặc thăng tiến trong sự nghiệp.
+
+00:07:42.440 --> 00:07:45.520
+Nếu điều này mô tả về bạn thì điều đó cũng
+thật tuyệt.
+
+00:07:45.520 --> 00:07:51.400
+Và một nhóm khác muốn cập nhật về cách AI tác
+động đến lĩnh vực công việc của họ.
+
+00:07:51.400 --> 00:07:53.120
+Có lẽ đây là bạn.
+
+00:07:53.120 --> 00:07:54.560
+Điều đó cũng tuyệt vời.
+
+00:07:54.560 --> 00:07:58.653
+Đây là một nhóm mà nhóm của chúng tôi sử dụng
+để cố gắng phục
+
+00:07:58.653 --> 00:08:02.747
+vụ cộng đồng của mình tốt hơn khi chúng tôi
+đang cố gắng tìm
+
+00:08:02.747 --> 00:08:06.840
+ra những loại người học chính trong cộng đồng
+deep learning.ai.
+
+00:08:06.840 --> 00:08:08.620
+Vì vậy, nếu bất kỳ điều nào trong số này là
+động
+
+00:08:08.620 --> 00:08:10.400
+lực học tập hàng đầu của bạn thì điều đó thật
+tuyệt.
+
+00:08:10.400 --> 00:08:13.760
+Và tôi hy vọng tôi có thể giúp đỡ bạn trên
+hành trình của mình.
+
+00:08:13.760 --> 00:08:17.340
+Hoặc trong trường hợp đây là bạn và bạn muốn
+thứ gì đó
+
+00:08:17.340 --> 00:08:20.920
+hoàn toàn khác với ba loại còn lại, điều đó
+cũng tốt.
+
+00:08:20.920 --> 00:08:24.480
+Và tôi muốn bạn biết, tôi cũng yêu bạn như
+vậy.
+
+00:08:24.480 --> 00:08:30.000
+Vì vậy, tóm lại, thuật toán clustering, là
+loại thuật toán
+
+00:08:30.000 --> 00:08:35.520
+unsupervised learning, lấy dữ liệu không có
+nhãn và cố gắng tự động nhóm chúng thành các
+cụm.
+
+00:08:35.520 --> 00:08:39.020
+Và vì vậy có thể lần tới khi bạn nhìn thấy
+hoặc nghĩ đến
+
+00:08:39.020 --> 00:08:42.520
+gấu trúc, có thể bạn cũng sẽ nghĩ đến việc
+clustering.
+
+00:08:42.520 --> 00:08:47.360
+Và bên cạnh việc clustering, còn có các kiểu
+unsupervised learning khác.
+
+00:08:47.360 --> 00:08:49.780
+Chúng ta hãy chuyển sang video tiếp theo để
+xem
+
+00:08:49.780 --> 00:08:52.200
+một số loại thuật toán unsupervised learning
+khác.

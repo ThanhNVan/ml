@@ -1,0 +1,96 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.280
+Welcome to this fifth course on deep learning. In this course, you learn about sequence models,
+
+00:00:05.280 --> 00:00:10.880
+one of the most exciting areas in deep learning. Models like recurrent neural networks or RNNs
+
+00:00:10.880 --> 00:00:15.680
+have transformed speech recognition, natural language processing, and other areas. And in
+
+00:00:15.680 --> 00:00:20.160
+this course, you learn how to build these models for yourself. Let's start by looking at a few
+
+00:00:20.160 --> 00:00:26.000
+examples of what sequence models can be useful. In speech recognition, you are given an input
+
+00:00:26.000 --> 00:00:32.880
+audio clip, X, and ask to map it to a text transcript, Y. Both the input and the output
+
+00:00:32.880 --> 00:00:39.280
+here are sequence data because X is an audio clip so that plays out over time, and Y, the output,
+
+00:00:39.280 --> 00:00:44.960
+is a sequence of words. So sequence models such as recurrent neural networks and other variations
+
+00:00:44.960 --> 00:00:50.000
+you learn about a little bit have been very useful for speech recognition. Music generation
+
+00:00:50.000 --> 00:00:57.280
+is another example of a problem with sequence data. In this case, only the output Y is a sequence.
+
+00:00:57.280 --> 00:01:03.600
+The input can be the empty set or it can be a single integer, maybe referring to the
+
+00:01:03.600 --> 00:01:08.000
+genre of music you want to generate or maybe the first few notes of the piece of music you want.
+
+00:01:08.000 --> 00:01:14.960
+But here, X can be nothing or maybe just an integer and the output Y is a sequence.
+
+00:01:15.840 --> 00:01:20.880
+In sentiment classification, the input X is a sequence. So given an input phrase like,
+
+00:01:20.880 --> 00:01:26.320
+there's nothing to like in this movie, how many stars do you think this review would be?
+
+00:01:26.320 --> 00:01:33.520
+Sequence models are also very useful for DNA sequence analysis. So your DNA is represented
+
+00:01:33.520 --> 00:01:40.080
+via the four alphabets AC, G, and T. And so given a DNA sequence, can you label which part of
+
+00:01:40.080 --> 00:01:46.720
+this DNA sequence say corresponds to a protein? In machine translation, you are given an input
+
+00:01:46.720 --> 00:01:52.480
+sentence, the L'Evolutional Terre of Écois, and you're asked to output the translation in a different
+
+00:01:52.480 --> 00:01:58.560
+language. In video activity recognition, you might be given a sequence of video frames in
+
+00:01:58.560 --> 00:02:05.200
+order to recognize the activity. And in named entity recognition, you might be given a sentence
+
+00:02:05.200 --> 00:02:11.840
+and asked to identify the people in that sentence. So all of these problems can be addressed as
+
+00:02:11.840 --> 00:02:19.040
+supervised learning with label data, x comma y as the training set. But as you can tell from this
+
+00:02:19.040 --> 00:02:24.080
+list of examples, there are a lot of different types of sequence problems in some, both the
+
+00:02:24.080 --> 00:02:30.240
+input X and the output Y are sequences. And in that case, sometimes X and Y can have different
+
+00:02:30.240 --> 00:02:36.320
+lengths. Or in this example, and this example, X and Y have the same length. And in some of these
+
+00:02:36.320 --> 00:02:42.400
+examples, only either X or only the output Y is a sequence. So in this course, you learn about
+
+00:02:42.400 --> 00:02:47.280
+sequence models that are applicable to all of these different settings. So I hope this gives
+
+00:02:47.280 --> 00:02:52.400
+you a sense of the exciting set of problems that sequence models might be able to help you to
+
+00:02:52.400 --> 00:02:57.360
+address. With that, let's go on to the next video, where we start to define the notation we'll
+
+00:02:57.360 --> 00:02:59.760
+use to define these sequence problems.

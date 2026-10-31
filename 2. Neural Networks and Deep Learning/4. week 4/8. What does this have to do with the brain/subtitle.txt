@@ -1,0 +1,27 @@
+Vậy học sâu có liên quan gì với bộ não? Sắp kết thúc khóa học rồi, tôi sẽ nói là không nhiều lắm. Nhưng hãy cùng xem nhanh
+tại sao mọi người lại cứ so sánh học sâu với bộ não con người. Khi bạn triển khai một
+mạng nơ-ron nhân tạo, bạn sẽ làm như sau, truyền xuôi và truyền ngược. Tôi nghĩ, bởi vì thật khó
+để truyền đạt lại thông tin mà những gì
+các phương trình này đang làm, thực hiên gradient descent trên một hàm rất phức tạp, suy luận “ Cái này giống như bộ não vậy” đã trở thành một lời giải thích
+đơn giản hóa quá mức cho những gì điều này đang làm. Nhưng sự đơn giản của
+điều này làm cho nó trở nên quyến rũ để mọi người chỉ nói điều đó cũng như khiến phương tiện
+truyền thông thông báo về nó, và chắc chắn là mọi người đều
+có thể tưởng tượng ra nó. Có một điểm hơi giống nhau nữa, giả sử một đơn vị hồi quy logistic giả sử một đơn vị hồi quy logistic và đây là hình ảnh một tế bào
+thần kinh đơn trong não. Trong hình minh họa của một tế bào
+thần kinh sinh học, tế bào thần kinh này, đây là một tế bào trong não của bạn, nhận tín hiệu điện từ các tế
+bào thần kinh khác, X1, X2, X3 hoặc có thể từ
+nơ-ron khác, A1, A2, A_3, thực hiện một phép
+tính ngưỡng đơn giản, và sau đó nếu tế bào thần kinh này nóng lên, nó gửi một xung điện xuống sợi trục, xuống dây dài này, có lẽ tới các tế bào thần kinh khác. Như vậy, có một điểm
+tương đồng đơn giản giữa một nơ-ron duy nhất
+trong một mạng nơ-ron, và một nơ-ron sinh học như
+được hiển thị ở bên phải. nhưng tôi nghĩ rằng ngày nay
+ngay cả các nhà thần kinh học cũng hầu như không biết một tế bào
+thần kinh đang làm những gì. Một tế bào thần kinh đơn dường như là phức tạp hơn nhiều điều mà chúng ta có thể
+mô tả trong khoa học thần kinh, và trong khi một số thứ đang vận hành hơi giống như hồi quy logistic, thì con người vẫn còn nhiều điều chưa biết về những gì mà một tế bào thần kinh đơn làm. Ví dụ như các tế bào thần kinh trong não người học như thế nào, vẫn là một quá trình rất bí ẩn Đến nay, người ta vẫn không rõ liệu bộ não con người có sử dụng thuật toán hay không, có thực hiện những thứ như lan truyền ngược hay gradient descent hay có các nguyên tắc học khác mà bộ não con người sử dụng. Khi tôi nghĩ về học sâu, tôi nghĩ rằng nó rất giỏi trong việc học các hàm linh hoạt, các hàm rất phức tạp để học ánh xạ X đến Y, để học ánh xạ đầu vào-đầu
+ra trong học có giám sát. Khác với suy luận
+“Điều này thì giống như bộ não” có lẽ đó là những thứ hữu ích Tôi nghĩ rằng lĩnh vực này đã đi đến điểm mà nó không còn suy luận này nữa và tôi có xu hướng không sử dụng suy luận
+đó nhiều nữa. Đó là về các mạng nơ-ron nhân tạo và não. Tôi nghĩ rằng
+có thể là lĩnh vực thị giác máy tính đã lấy nhiều cảm hứng từ bộ não con người hơn các quy tắc khác cũng áp dụng học sâu nhưng cá nhân tôi sử dụng sự tương tự với bộ não của con người ít hơn tôi trước đây. Đó là toàn bộ nội dung video này. Bây giờ bạn đã biết cách
+truyền xuôi, truyền ngược và gradient descent. ngay cả đối với
+các mạng nơ-ron nhân tạo sâu. Chúc bạn may mắn với bài tập lập trình và tôi mong sẽ được chia sẻ nhiều hơn những ý tưởng này với bạn
+trong khóa học thứ hai.

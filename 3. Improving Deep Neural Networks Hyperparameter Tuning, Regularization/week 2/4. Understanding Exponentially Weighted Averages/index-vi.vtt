@@ -1,0 +1,484 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.000
+Trong video trước, chúng ta đã nói về mức
+trung bình theo cấp số nhân.
+
+00:00:04.000 --> 00:00:07.000
+Đây sẽ trở thành thành phần chính của một số
+thuật toán tối
+
+00:00:07.000 --> 00:00:10.000
+ưu hóa mà bạn sử dụng để đào tạo mạng lưới
+thần kinh của mình.
+
+00:00:10.000 --> 00:00:13.000
+Vì vậy, trong video này, tôi muốn tìm hiểu sâu
+hơn một
+
+00:00:13.000 --> 00:00:16.000
+chút về trực giác về tác dụng thực sự của
+thuật toán này.
+
+00:00:16.000 --> 00:00:18.500
+Hãy nhớ lại rằng đây là phương trình quan
+trọng để
+
+00:00:18.500 --> 00:00:21.000
+thực hiện các giá trị trung bình theo cấp số
+nhân.
+
+00:00:21.000 --> 00:00:24.000
+Và vì vậy nếu beta bằng 0,9, bạn sẽ có đường
+màu đỏ.
+
+00:00:24.000 --> 00:00:28.000
+Nếu nó gần hơn với 1 thì là 0,98.
+
+00:00:28.000 --> 00:00:31.000
+Bạn nhận được đường màu xanh lá cây. Và nếu nó
+nhỏ
+
+00:00:31.000 --> 00:00:34.000
+hơn nhiều, có thể là 0,5, bạn sẽ có đường màu
+vàng.
+
+00:00:34.000 --> 00:00:37.000
+Chúng ta hãy xem xét kỹ hơn một chút về phép
+toán để
+
+00:00:37.000 --> 00:00:40.000
+hiểu cách tính toán nhiệt độ trung bình hàng
+ngày này.
+
+00:00:40.000 --> 00:00:42.000
+Vì vậy, đây là phương trình đó một lần nữa.
+
+00:00:42.000 --> 00:00:48.000
+Và hãy đặt beta bằng 0,9 và viết ra một vài
+phương trình tương ứng với giá trị này.
+
+00:00:48.000 --> 00:00:51.500
+Vì vậy, trong khi thực hiện nó, bạn sẽ không
+
+00:00:51.500 --> 00:00:55.000
+phải tăng giá trị của t từ 0 lên 1 lên 2 lên
+3.
+
+00:00:55.000 --> 00:00:59.000
+Để phân tích nó, tôi đã viết nó với giá trị t
+giảm dần.
+
+00:00:59.000 --> 00:01:01.000
+Và điều này tiếp tục.
+
+00:01:01.000 --> 00:01:06.000
+Vì vậy, hãy lấy phương trình đầu tiên này ở
+đây và hiểu V100 thực sự là gì.
+
+00:01:06.000 --> 00:01:12.000
+Vậy V100 sẽ như thế nào, để tôi đảo ngược 2 số
+hạng này nhé.
+
+00:01:12.000 --> 00:01:15.500
+Giá trị này sẽ bằng 0,1 nhân theta 100 cộng
+
+00:01:15.500 --> 00:01:19.000
+0,9 lần bất kể giá trị nào của ngày hôm trước.
+
+00:01:19.000 --> 00:01:24.000
+Nhưng V99 là gì? Vâng, chúng tôi vừa thay nó
+vào từ phương trình này.
+
+00:01:24.000 --> 00:01:30.000
+Vậy cái này sẽ bằng 0,1 nhân theta 99.
+
+00:01:30.000 --> 00:01:38.000
+Và một lần nữa, tôi đã đảo ngược hai số hạng
+này cộng 0,9 lần V98.
+
+00:01:38.000 --> 00:01:41.000
+Nhưng vậy thì V98 là gì? Vâng, bạn chỉ cần có
+được điều đó từ đây.
+
+00:01:41.000 --> 00:01:52.000
+Vì vậy, bạn có thể chỉ cần cắm vào đây 0,1
+nhân theta 98 cộng 0,9 nhân V97, v.v.
+
+00:01:52.000 --> 00:01:56.000
+Và nếu bạn nhân tất cả các số hạng này ra, bạn
+có
+
+00:01:56.000 --> 00:02:00.000
+thể chỉ ra rằng V100 bằng 0,1 nhân theta 100
+plus.
+
+00:02:00.000 --> 00:02:03.000
+Bây giờ hãy xem hệ số trên theta 99.
+
+00:02:03.000 --> 00:02:09.000
+Nó sẽ bằng 0,1 nhân 0,9 nhân theta 99.
+
+00:02:09.000 --> 00:02:12.000
+Bây giờ hãy xem hệ số trên theta 98.
+
+00:02:12.000 --> 00:02:17.000
+Có 0,1 ở đây nhân 0,9 nhân 0,9.
+
+00:02:17.000 --> 00:02:27.000
+Vì vậy, nếu bạn mở rộng đại số, cái này sẽ trở
+thành 0,1 nhân 0,9 bình nhân theta 98.
+
+00:02:27.000 --> 00:02:32.500
+Và nếu bạn tiếp tục mở rộng cái này ra, bạn sẽ
+thấy rằng cái này trở thành 0,1
+
+00:02:32.500 --> 00:02:38.000
+nhân 0,9 lập phương, theta 97 cộng 0,1 nhân
+0,9 đến lần thứ 4 nhân theta 96.
+
+00:02:38.000 --> 00:02:43.000
+Thêm dấu chấm, dấu chấm, dấu chấm. Vì vậy, đây
+thực sự là một tổng có trọng số, do
+
+00:02:43.000 --> 00:02:48.000
+đó trung bình có trọng số của theta 100, là
+nhiệt độ của ngày hiện tại. Chúng tôi
+
+00:02:48.000 --> 00:02:53.000
+đang tìm kiếm phối cảnh của V100 mà bạn tính
+toán vào ngày thứ một trăm trong năm.
+
+00:02:53.000 --> 00:03:02.000
+Nhưng nó là tổng của theta 100, theta 99,
+theta 98, theta 97, theta 96, v.v.
+
+00:03:02.000 --> 00:03:05.500
+Vì vậy, một cách để vẽ cái này bằng hình ảnh
+là
+
+00:03:05.500 --> 00:03:09.000
+nếu, giả sử chúng ta có một số ngày nhiệt độ.
+
+00:03:09.000 --> 00:03:13.500
+Vậy đây là theta và đây là T. Vậy theta 100 sẽ
+là một giá
+
+00:03:13.500 --> 00:03:18.000
+trị nào đó, thì theta 99 sẽ là một giá trị nào
+đó, theta 98.
+
+00:03:18.000 --> 00:03:26.000
+Vậy đây là, vậy đây là T bằng 100, 99, 98,
+v.v. Vì vậy, bạn có một số ngày nhiệt độ.
+
+00:03:26.000 --> 00:03:35.000
+Và những gì chúng ta có khi đó là một hàm phân
+rã theo cấp số nhân. Vì
+
+00:03:35.000 --> 00:03:44.000
+vậy, bắt đầu từ 0,1 đến 0,9 nhân 0,1 đến 0,9
+bình phương nhân 0,1 đến, v.v.
+
+00:03:44.000 --> 00:03:49.000
+Vậy bạn có hàm phân rã theo cấp số nhân này.
+Và cách
+
+00:03:49.000 --> 00:03:54.000
+bạn tính V100 là bạn lấy tích phần tử giữa hai
+hàm này
+
+00:03:54.000 --> 00:04:01.000
+và tổng hợp nó lại. Vì vậy, bạn lấy giá trị
+này, theta 100 nhân 0,1,
+
+00:04:01.000 --> 00:04:08.000
+nhân giá trị này, theta 99 nhân 0,1 nhân 0,9,
+đó là số hạng thứ hai, v.v.
+
+00:04:08.000 --> 00:04:11.000
+Vì vậy, nó thực sự lấy nhiệt độ hàng ngày,
+nhân với
+
+00:04:11.000 --> 00:04:14.000
+hàm số phân rã theo cấp số nhân này, rồi cộng
+nó lại.
+
+00:04:15.000 --> 00:04:20.667
+Và đây sẽ trở thành chiếc V100 của bạn. Hóa ra
+về chi tiết thì tôi sẽ nói sau,
+
+00:04:20.667 --> 00:04:26.333
+nhưng tất cả các hệ số này cộng lại bằng 1,
+hoặc cộng lại rất gần với 1, đến
+
+00:04:26.333 --> 00:04:32.000
+một chi tiết gọi là hiệu chỉnh sai lệch, mà
+tôi sẽ nói đến trong video tiếp theo.
+
+00:04:32.000 --> 00:04:35.000
+Nhưng vì lý do đó, đây thực sự là một mức
+trung bình có
+
+00:04:35.000 --> 00:04:38.000
+trọng số theo cấp số nhân. Và cuối cùng, bạn
+có thể tự hỏi,
+
+00:04:38.000 --> 00:04:41.000
+bạn biết đấy, nhiệt độ trung bình này kéo dài
+bao nhiêu ngày?
+
+00:04:41.000 --> 00:04:47.500
+Chà, hóa ra là 0,9, đúng vậy, lũy thừa 10, là
+khoảng 0,35, và cái này
+
+00:04:47.500 --> 00:04:54.000
+hóa ra là khoảng 1 trên E, một trong những cơ
+số của logarit tự nhiên.
+
+00:04:54.000 --> 00:05:01.000
+Và tổng quát hơn, nếu bạn có 1 trừ epsilon,
+vậy trong ví dụ này, epsilon sẽ là 0,1,
+
+00:05:01.000 --> 00:05:08.000
+vậy nếu đây là 0,9, thì 1 trừ epsilon bằng 1
+trên epsilon, đây là khoảng 1 trên E.
+
+00:05:08.000 --> 00:05:16.000
+Đây là khoảng 0,34, 0,35. Và vì vậy, nói cách
+khác, phải mất khoảng 10 ngày để
+
+00:05:16.000 --> 00:05:24.000
+độ cao của nó giảm xuống, bạn biết đấy, khoảng
+1/3, đã bằng 1 trên E của đỉnh.
+
+00:05:25.000 --> 00:05:30.000
+Vì vậy, chính vì điều này mà khi beta bằng
+0,9, chúng tôi nói rằng cần
+
+00:05:30.000 --> 00:05:35.000
+phải có, điều này giống như thể bạn đang tính
+toán mức trung bình có
+
+00:05:35.000 --> 00:05:40.000
+trọng số theo cấp số nhân chỉ tập trung vào
+nhiệt độ của 10 ngày qua,
+
+00:05:40.000 --> 00:05:44.000
+bởi vì sau 10 ngày, trọng lượng sẽ giảm xuống,
+bạn biết
+
+00:05:44.000 --> 00:05:48.000
+đấy, chưa bằng khoảng 1/3 trọng lượng của ngày
+hiện tại.
+
+00:05:48.000 --> 00:05:53.500
+Ngược lại, nếu beta bằng 0,98, thì bạn cần lũy
+
+00:05:53.500 --> 00:05:59.000
+thừa 0,98 bằng bao nhiêu để số này thực sự
+nhỏ?
+
+00:05:59.000 --> 00:06:07.000
+Hóa ra 0,98 lũy thừa 50 sẽ xấp xỉ bằng 1 trên
+E, do đó trọng số sẽ khá lớn.
+
+00:06:07.000 --> 00:06:09.500
+Nó sẽ lớn hơn 1 trên E trong 50 ngày đầu tiên,
+và
+
+00:06:09.500 --> 00:06:12.000
+sau đó nó sẽ phân rã khá nhanh trong thời gian
+đó.
+
+00:06:12.000 --> 00:06:16.333
+Vì vậy, bằng trực giác, đây là một điều khó
+khăn và nhanh chóng. Bạn có
+
+00:06:16.333 --> 00:06:20.667
+thể coi đây là nhiệt độ trung bình trong
+khoảng 50 ngày, bởi vì trong
+
+00:06:20.667 --> 00:06:25.000
+ví dụ này, sử dụng ký hiệu ở bên trái này
+giống như epsilon bằng 0,02.
+
+00:06:25.000 --> 00:06:30.000
+Vậy 1 trên epsilon là 50. Và đây, nhân tiện,
+là cách chúng ta có
+
+00:06:30.000 --> 00:06:35.000
+công thức tính trung bình của 1 trên 1 trừ
+beta, cũng là ngày.
+
+00:06:35.000 --> 00:06:40.000
+Ở đây, epsilon, chúng ta đặt một hàng 1 trừ
+beta. Nó cho bạn biết có một số hằng số
+
+00:06:40.000 --> 00:06:45.000
+gần đúng về nhiệt độ mà bạn nên coi đây là
+nhiệt độ trung bình trong bao nhiêu ngày.
+
+00:06:45.000 --> 00:06:48.000
+Nhưng đây chỉ là quy tắc kinh nghiệm để suy
+nghĩ về
+
+00:06:48.000 --> 00:06:51.000
+nó và nằm trong một phát biểu toán học hình
+thức.
+
+00:06:51.000 --> 00:06:56.000
+Cuối cùng, hãy nói về cách bạn thực sự triển
+khai điều này. Hãy nhớ lại rằng chúng
+
+00:06:56.000 --> 00:07:01.000
+ta bắt đầu với V0, khởi tạo số 0, sau đó bạn
+tính V1 vào ngày đầu tiên, V2, v.v.
+
+00:07:02.000 --> 00:07:05.500
+Bây giờ, để giải thích thuật toán, sẽ rất hữu
+ích khi
+
+00:07:05.500 --> 00:07:09.000
+viết V0, V1, V2, v.v. dưới dạng các biến riêng
+biệt.
+
+00:07:09.000 --> 00:07:12.000
+Nhưng nếu bạn đang triển khai điều này trong
+thực tế
+
+00:07:12.000 --> 00:07:15.000
+thì đây là điều bạn nên làm. Bạn khởi tạo V
+bằng 0.
+
+00:07:15.000 --> 00:07:25.000
+Và vào ngày thứ nhất, bạn sẽ đặt V bằng beta
+nhân V cộng 1 trừ beta nhân theta 1.
+
+00:07:25.000 --> 00:07:35.000
+Và vào ngày hôm sau, bạn sẽ cập nhật V để bằng
+beta V cộng 1 trừ beta theta 2, v.v.
+
+00:07:35.000 --> 00:07:40.500
+Và đôi khi chúng ta sử dụng ký hiệu V chỉ số
+theta này để biểu thị
+
+00:07:40.500 --> 00:07:46.000
+rằng V đang tính giá trị trung bình theo cấp
+số nhân của tham số theta.
+
+00:07:47.000 --> 00:07:54.000
+Vì vậy, chỉ để nói lại điều này, nhưng ở định
+dạng vòng lặp for, bạn đặt V theta
+
+00:07:54.000 --> 00:08:01.000
+bằng 0, sau đó lặp đi lặp lại, và nếu vào mỗi
+ngày, bạn sẽ nhận được theta t tiếp theo,
+
+00:08:01.000 --> 00:08:06.500
+và sau đó đặt V theta sẽ cập nhật dưới dạng
+beta nhân với giá trị cũ
+
+00:08:06.500 --> 00:08:12.000
+của V theta cộng với 1 trừ beta nhân với giá
+trị hiện tại của V theta.
+
+00:08:12.000 --> 00:08:14.500
+Vì vậy, một trong những ưu điểm của công thức
+tính
+
+00:08:14.500 --> 00:08:17.000
+trung bình theo cấp số nhân này là nó chiếm
+rất ít bộ nhớ.
+
+00:08:17.000 --> 00:08:22.000
+Bạn chỉ cần giữ một số thực này trong bộ nhớ
+máy tính và tiếp tục ghi
+
+00:08:22.000 --> 00:08:27.000
+đè nó bằng công thức này dựa trên giá trị mới
+nhất mà bạn nhận được.
+
+00:08:27.000 --> 00:08:30.667
+Và thực sự đó là lý do, tính hiệu quả, về cơ
+bản chỉ cần một
+
+00:08:30.667 --> 00:08:34.333
+dòng mã, và chỉ cần bộ nhớ và bộ nhớ cho một
+số thực duy
+
+00:08:34.333 --> 00:08:38.000
+nhất để tính mức trung bình có trọng số theo
+cấp số nhân này.
+
+00:08:38.000 --> 00:08:40.000
+Đó thực sự không phải là cách tốt nhất, không
+phải
+
+00:08:40.000 --> 00:08:42.000
+là cách chính xác nhất để tính giá trị trung
+bình.
+
+00:08:42.000 --> 00:08:45.667
+Nếu bạn tính toán một cửa sổ chuyển động trong
+đó bạn tính tổng
+
+00:08:45.667 --> 00:08:49.333
+rõ ràng trong 10 ngày qua, nhiệt độ của 50
+ngày qua và chỉ chia
+
+00:08:49.333 --> 00:08:53.000
+cho 10 hoặc chia cho 50, điều đó thường cho
+bạn ước tính tốt hơn.
+
+00:08:53.000 --> 00:08:56.667
+Nhưng nhược điểm của việc đó, trong việc giữ
+tất cả nhiệt độ xung quanh
+
+00:08:56.667 --> 00:09:00.333
+và tính tổng của 10 ngày qua một cách rõ ràng,
+là nó đòi hỏi nhiều bộ
+
+00:09:00.333 --> 00:09:04.000
+nhớ hơn và việc thực hiện phức tạp hơn và tốn
+kém hơn về mặt tính toán.
+
+00:09:04.000 --> 00:09:08.000
+Vì vậy, về mọi thứ, chúng ta sẽ xem một số ví
+dụ trong một số video
+
+00:09:08.000 --> 00:09:12.000
+tiếp theo, trong đó bạn cần tính giá trị trung
+bình của rất nhiều biến số.
+
+00:09:12.000 --> 00:09:16.000
+Đây là một cách rất hiệu quả để làm như vậy,
+cả từ quan điểm tính toán và hiệu
+
+00:09:16.000 --> 00:09:20.000
+quả bộ nhớ, đó là lý do tại sao nó được sử
+dụng nhiều trong machine learning.
+
+00:09:20.000 --> 00:09:24.000
+Chưa kể đó chỉ là một dòng mã, đây có thể là
+một lợi thế khác.
+
+00:09:24.000 --> 00:09:28.000
+Vậy là bây giờ bạn đã biết cách tính trung
+bình theo cấp số nhân.
+
+00:09:28.000 --> 00:09:33.000
+Có một chi tiết kỹ thuật nữa đáng để bạn biết
+được gọi là hiệu chỉnh sai lệch.
+
+00:09:33.000 --> 00:09:35.667
+Chúng ta hãy xem điều đó trong video tiếp
+theo. Và sau đó,
+
+00:09:35.667 --> 00:09:38.333
+bạn sẽ có thể sử dụng thuật toán này để xây
+dựng thuật toán
+
+00:09:38.333 --> 00:09:41.000
+tối ưu hóa tốt hơn thuật toán gradient descent
+đơn giản.

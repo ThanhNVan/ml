@@ -1,0 +1,260 @@
+WEBVTT
+
+00:00:01.900 --> 00:00:05.600
+Trong lớp học này, bạn sẽ tìm hiểu về công
+nghệ tiên tiến nhất và cũng
+
+00:00:05.600 --> 00:00:09.300
+có thể tự mình thực hành triển khai các thuật
+toán machine learning.
+
+00:00:09.300 --> 00:00:12.647
+Bạn tìm hiểu về các thuật toán
+machine learning quan trọng nhất, một số thuật
+
+00:00:12.647 --> 00:00:15.993
+toán trong số đó chính xác là những thuật toán
+đang được sử dụng trong các
+
+00:00:15.993 --> 00:00:19.340
+công ty công nghệ lớn hoặc AI lớn ngày nay và
+bạn hiểu được điều gì sẽ xảy ra.
+
+00:00:19.340 --> 00:00:22.340
+là công nghệ tiên tiến nhất trong AI.
+
+00:00:22.340 --> 00:00:25.793
+Tuy nhiên, ngoài việc học các thuật toán,
+trong lớp học này,
+
+00:00:25.793 --> 00:00:29.247
+bạn còn học tất cả các mẹo và thủ thuật thực
+tế quan trọng
+
+00:00:29.247 --> 00:00:32.700
+để giúp chúng hoạt động tốt và bạn có thể
+triển khai chúng
+
+00:00:32.700 --> 00:00:36.020
+và xem chúng có tác dụng như thế nào đối với
+chính bạn.
+
+00:00:36.020 --> 00:00:40.300
+Vậy tại sao machine learning ngày nay lại được
+sử dụng rộng rãi đến vậy?
+
+00:00:40.300 --> 00:00:45.300
+Machine learning đã phát triển như một lĩnh
+vực con của AI hoặc trí tuệ nhân tạo.
+
+00:00:45.300 --> 00:00:48.953
+Chúng tôi muốn tạo ra những cỗ máy thông minh,
+và hóa ra có một số
+
+00:00:48.953 --> 00:00:52.607
+điều cơ bản mà chúng có thể lập trình cho một
+cỗ máy thực hiện, chẳng
+
+00:00:52.607 --> 00:00:56.260
+hạn như cách tìm đường đi ngắn nhất từ A đến B
+như trong GPS của bạn.
+
+00:00:56.260 --> 00:00:59.807
+Nhưng phần lớn, chúng tôi không biết cách viết
+một chương
+
+00:00:59.807 --> 00:01:03.353
+trình rõ ràng để thực hiện nhiều việc thú vị
+hơn như thực hiện
+
+00:01:03.353 --> 00:01:06.900
+tìm kiếm trên web, nhận dạng giọng nói của con
+người, chẩn đoán
+
+00:01:06.900 --> 00:01:10.620
+bệnh từ tia X, hoặc chế tạo ô tô tự lái.
+
+00:01:10.620 --> 00:01:14.040
+Cách duy nhất chúng tôi biết cách làm những
+việc
+
+00:01:14.040 --> 00:01:17.460
+này là để một cỗ máy tự học cách làm những
+việc đó.
+
+00:01:17.460 --> 00:01:21.327
+Đối với tôi, khi thành lập và lãnh đạo nhóm
+Google Brain, tôi
+
+00:01:21.327 --> 00:01:25.193
+đã nghiên cứu các vấn đề như nhận dạng giọng
+nói, thị giác
+
+00:01:25.193 --> 00:01:29.060
+máy tính cho hình ảnh đánh giá trên Google
+Maps và quảng cáo.
+
+00:01:29.060 --> 00:01:34.040
+Hoặc dẫn đầu về AI, tôi đã làm việc trên mọi
+thứ, từ AI cho thực tế
+
+00:01:34.040 --> 00:01:39.020
+tăng cường đến chống gian lận thanh toán cho
+đến lãnh đạo nhóm xe tự lái.
+
+00:01:39.020 --> 00:01:42.673
+Gần đây nhất, tại Landing AI, AI được tài trợ
+bởi Đại học Stanford,
+
+00:01:42.673 --> 00:01:46.327
+đã bắt tay vào nghiên cứu các ứng dụng AI
+trong sản xuất, nông nghiệp
+
+00:01:46.327 --> 00:01:49.980
+quy mô lớn, chăm sóc sức khỏe, thương mại điện
+tử và các vấn đề khác.
+
+00:01:50.460 --> 00:01:53.407
+Ngày nay, có hàng trăm nghìn, có lẽ là hàng
+triệu người, đang
+
+00:01:53.407 --> 00:01:56.353
+làm việc trên các ứng dụng machine learning có
+thể kể cho bạn
+
+00:01:56.353 --> 00:01:59.300
+những câu chuyện tương tự về công việc của họ
+với machine learning.
+
+00:01:59.300 --> 00:02:04.180
+Khi bạn học được những kỹ năng này, tôi hy
+vọng rằng bạn cũng sẽ thấy rất thú vị
+
+00:02:04.180 --> 00:02:09.060
+khi tìm hiểu các ứng dụng thú vị khác nhau và
+thậm chí có thể là các ngành khác nhau.
+
+00:02:09.060 --> 00:02:13.780
+Trên thực tế, tôi thấy khó có thể nghĩ ra bất
+kỳ ngành nào mà
+
+00:02:13.780 --> 00:02:18.500
+machine learning khó có thể tiếp cận một cách
+đáng kể ở hiện tại hoặc trong tương lai gần.
+
+00:02:18.500 --> 00:02:23.740
+Nhìn xa hơn về tương lai, nhiều người, trong
+đó có tôi, rất hào hứng với giấc
+
+00:02:23.740 --> 00:02:28.980
+mơ AI về một ngày nào đó chế tạo được những cỗ
+máy thông minh như bạn hoặc tôi.
+
+00:02:28.980 --> 00:02:34.220
+Điều này đôi khi được gọi là trí tuệ tổng hợp
+nhân tạo hoặc AGI.
+
+00:02:34.220 --> 00:02:36.880
+Tôi nghĩ AGI đã bị thổi phồng quá mức và vẫn
+
+00:02:36.880 --> 00:02:39.540
+còn một chặng đường dài mới đạt được điều đó.
+
+00:02:39.540 --> 00:02:43.273
+Tôi không biết liệu sẽ mất 50 năm hay 500 năm
+hay lâu hơn để
+
+00:02:43.273 --> 00:02:47.007
+đạt được điều đó, nhưng hầu hết các nhà nghiên
+cứu AI đều tin
+
+00:02:47.007 --> 00:02:50.740
+rằng cách tốt nhất để tiến gần hơn đến mục
+tiêu đó là sử dụng
+
+00:02:50.740 --> 00:02:53.540
+học các thuật toán, có thể là những thuật toán
+lấy
+
+00:02:53.540 --> 00:02:56.340
+cảm hứng từ cách hoạt động của bộ não con
+người.
+
+00:02:56.340 --> 00:02:59.160
+Bạn cũng sẽ được nghe thêm một chút về nhiệm
+
+00:02:59.160 --> 00:03:01.980
+vụ tìm kiếm AGI ở phần sau của khóa học này.
+
+00:03:01.980 --> 00:03:08.160
+Theo một nghiên cứu của McKinsey, AI và
+machine learning được ước
+
+00:03:08.160 --> 00:03:14.340
+tính sẽ tạo ra thêm giá trị 13 nghìn tỷ đô la
+Mỹ hàng năm vào năm 2030.
+
+00:03:14.340 --> 00:03:19.900
+Mặc dù machine learning đã tạo ra lượng giá
+trị to lớn trong ngành công nghiệp phần
+
+00:03:19.900 --> 00:03:25.460
+mềm, nhưng tôi nghĩ có thể còn có giá trị lớn
+hơn rất nhiều chưa được tạo ra bên ngoài
+
+00:03:25.460 --> 00:03:30.100
+ngành công nghiệp phần mềm trong các lĩnh vực
+như bán
+
+00:03:30.100 --> 00:03:34.740
+lẻ, du lịch, vận tải, ô tô, sản xuất vật liệu,
+v.v.
+
+00:03:34.740 --> 00:03:39.860
+Do có rất nhiều cơ hội chưa được khai thác
+trên nhiều lĩnh vực khác nhau
+
+00:03:39.860 --> 00:03:44.980
+nên ngày nay có rất nhiều nhu cầu chưa được
+đáp ứng đối với bộ kỹ năng này.
+
+00:03:44.980 --> 00:03:49.540
+Đó là lý do tại sao đây là thời điểm tuyệt vời
+để tìm hiểu về machine learning.
+
+00:03:49.540 --> 00:03:52.740
+Nếu bạn thấy các ứng dụng machine learning thú
+vị,
+
+00:03:52.740 --> 00:03:55.940
+tôi hy vọng bạn sẽ đồng hành cùng tôi qua khóa
+học này.
+
+00:03:55.940 --> 00:03:58.680
+Tôi gần như có thể đảm bảo rằng bạn thấy
+
+00:03:58.680 --> 00:04:01.420
+việc thành thạo những kỹ năng này là đáng giá.
+
+00:04:01.420 --> 00:04:04.800
+Trong video tiếp theo, chúng ta sẽ xem xét
+định
+
+00:04:04.800 --> 00:04:08.180
+nghĩa chính thức hơn về machine learning là
+gì.
+
+00:04:08.180 --> 00:04:14.180
+Và chúng ta sẽ bắt đầu nói về các loại vấn đề
+và thuật toán machine learning chính.
+
+00:04:14.180 --> 00:04:19.700
+Bạn chọn một số thuật ngữ machine learning
+chính và bắt đầu hiểu các
+
+00:04:19.700 --> 00:04:25.220
+thuật toán khác nhau là gì và khi nào mỗi
+thuật toán có thể phù hợp.
+
+00:04:25.220 --> 00:04:27.700
+Vậy chúng ta hãy chuyển sang video tiếp theo.

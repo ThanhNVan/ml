@@ -1,0 +1,55 @@
+You've now learned so
+much about deep learning and sequence models that we can actually
+describe a trigger word system quite simply just on one slide,
+as you see in this video. But with the rise of speech recognition,
+that there have been more and more devices you can wake
+up with your voice and those are sometimes called
+trigger word detection systems. So let's see how you can
+build a trigger word system. Examples of trigger word systems
+include the Amazon Echo, which is woken up with the word Alexa, the Baidu DuerOS powered devices
+woken up with the phrase xiaodunihao, Apple Siri working up with hey, Siri, and
+Google Home woken up with okay, Google. So it's thanks to trigger word
+detection that if you have, say, an Amazon Echo in your living room,
+you can walk in your living room and just say, Alexa, what time is it? And have it wake up or be triggered by the
+word Alexa and answer your voice query. So if you can build a trigger word
+detection system, maybe you can make your computer do something by telling it,
+computer, activate. One of my friends also
+worked on turning on and off a particular lamp using a trigger
+word kind of as a fun project. But what I want to show you is how you can
+build a trigger word detection system. The literature on trigger detection
+algorithm is still evolving so there isn't wide consensus yet on what's the best
+algorithm for trigger word detection. So I'm just going to show you one
+example of an algorithm you can use. Now, you've seen RNNs like this and
+what we really do is take an audio clip, maybe compute spectrogram features. And that generates features, x1,
+x2, x3 audio features, x1, x2, x3 that you pass through an RNN. And so all that remains to be done
+is to define the target labels. Y So if this point in the audio clip
+is when someone just finished saying the trigger word, such as Alexa or
+xiaodunihao or hey, Siri, or okay, Google, then in the training sets,
+you can set the target labels to be 0 for everything before that point and right
+after that to set the target label of 1. And then if a little bit later on,
+the trigger word was said again and the trigger word was said at this point, then you can again set the target
+label to be 1 right after that. Now, this type of labelling scheme for
+an RNN could work. Actually, this will actually
+work reasonably well. One slight disadvantage of this
+is it creates a very imbalanced training set to have
+a lot more 0s than 1s. So one other thing you could do,
+this is a little bit of a hack, but could make the model a little bit easier
+to train is instead of setting only a single time step output 1, you can
+actually make it output a few 1s for several times or for a fixed period
+of time before reverting back to 0. So and that slightly evens
+out the ratio of 1s to 0s, but this is a little bit of a hack. But if this is when in the audio
+clipper the trigger word is said, then right after that,
+you can set the target label to 1, and if this is the trigger word said again, then right after that is when
+you want the RNN to output 1. So you get to play more of this as
+well in the programming exercise. But I think you should feel quite proud of
+yourself that you've learned enough about deep learning that it just
+takes one picture and one slide to describe something as
+complicated as trigger word detection. And based on this, I hope you'll be able to implement
+something that works and allows you to detect trigger words when you see
+more of this in the program exercise. In this course on sequence models,
+you learned about our RNNs, including both GRUs and LSTMs,
+and then in the second week, you learned a lot about word embeddings
+and how to learn representations of words. And then in this week,
+you learned about the attention model as well as how to use it
+to process audio data. And I hope you have fun implementing
+all of these ideas in this week's program exercise.

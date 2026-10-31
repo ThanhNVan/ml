@@ -1,0 +1,183 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.760
+You've heard about orthogonization, how to set up your depth and test sets, human level
+
+00:00:05.760 --> 00:00:11.760
+performance as a proxy for Bayes' era, and how to estimate your avoidable bias and variance.
+
+00:00:11.760 --> 00:00:16.100
+Let's pull it all together into a set of guidelines for how to improve the performance
+
+00:00:16.100 --> 00:00:17.800
+of your learning algorithm.
+
+00:00:17.800 --> 00:00:22.980
+So I think getting a supervised learning algorithm to work well means fundamentally
+
+00:00:22.980 --> 00:00:25.920
+hoping or assuming that you can do two things.
+
+00:00:25.920 --> 00:00:30.280
+One is that you can fit the training set pretty well.
+
+00:00:30.280 --> 00:00:38.840
+And you can think of this as roughly saying that you can achieve low avoidable bias.
+
+00:00:38.840 --> 00:00:44.060
+And the second thing you're assuming can do well is that doing well in a training set generalizes
+
+00:00:44.060 --> 00:00:46.800
+pretty well to the depth set or the test set.
+
+00:00:46.800 --> 00:00:51.920
+And this is sort of saying that variance is not too bad.
+
+00:00:51.920 --> 00:00:56.200
+And in the spirit of orthogonization, what you see is that there's a certain set of
+
+00:00:56.200 --> 00:01:01.600
+knobs you could use to fix avoidable bias issues, such as training a bigger network or
+
+00:01:01.600 --> 00:01:04.680
+training longer.
+
+00:01:04.680 --> 00:01:11.100
+And there's a separate set of things you could use to address variance problems, such as regularization
+
+00:01:11.100 --> 00:01:13.580
+or getting more training data.
+
+00:01:13.580 --> 00:01:18.800
+So to summarize the process we've seen in the last several videos, if you want to improve
+
+00:01:18.800 --> 00:01:23.920
+the performance of your machine learning system, I would recommend looking at the difference
+
+00:01:23.920 --> 00:01:28.200
+between your training error and your proxy for Bayes error.
+
+00:01:28.200 --> 00:01:31.960
+And this gives you a sense of the avoidable bias.
+
+00:01:31.960 --> 00:01:35.680
+In other words, just how much better do you think you should be trying to do on your
+
+00:01:35.680 --> 00:01:37.480
+training set?
+
+00:01:37.480 --> 00:01:41.360
+And then look at the difference between your depth error and your training error as an
+
+00:01:41.360 --> 00:01:44.120
+estimate of how much of a variance problem you have.
+
+00:01:44.120 --> 00:01:48.160
+In other words, how much harder you should be working to make your performance generalized
+
+00:01:48.160 --> 00:01:58.140
+from the training set to the depth set that it wasn't trained on explicitly.
+
+00:01:58.140 --> 00:02:05.220
+So to whatever extent you want to try to reduce avoidable bias, I would try to apply tactics
+
+00:02:05.220 --> 00:02:08.100
+like train a bigger model.
+
+00:02:08.100 --> 00:02:12.740
+So you can just do better on your training sets or train longer, use a better optimization
+
+00:02:12.740 --> 00:02:28.980
+algorithm, such as adds momentum or RMS prop or use a better algorithm like Adam.
+
+00:02:28.980 --> 00:02:34.900
+Or one other thing you could try is to just find a better neural network architecture or
+
+00:02:34.900 --> 00:02:37.500
+better set of hyperparameters.
+
+00:02:37.500 --> 00:02:42.300
+And this could include everything from changing the activation function to changing the number
+
+00:02:42.300 --> 00:02:43.500
+of layers or hidden units.
+
+00:02:43.500 --> 00:02:49.340
+Although if you do that, it would be in the direction of increasing the model size to
+
+00:02:49.340 --> 00:02:56.300
+trying out other models or other model architectures, such as recurrent neural networks and convolutional
+
+00:02:56.300 --> 00:02:59.700
+neural networks, which we'll see in later courses.
+
+00:02:59.700 --> 00:03:04.420
+Whether or not a new neural network architecture will fit your training set better is sometimes
+
+00:03:04.420 --> 00:03:09.700
+hard to tell in advance, but sometimes you can get much better results with a better
+
+00:03:09.700 --> 00:03:10.700
+architecture.
+
+00:03:11.380 --> 00:03:16.500
+Next to the extent that you find out variance is a problem, some of the many of techniques
+
+00:03:16.500 --> 00:03:19.860
+you could try then includes the following.
+
+00:03:19.860 --> 00:03:24.980
+You can try to get more data because getting more data to train on could help you generalize
+
+00:03:24.980 --> 00:03:29.620
+better to depth set data that you're out from data and see.
+
+00:03:29.620 --> 00:03:31.780
+You could try regularization.
+
+00:03:31.780 --> 00:03:41.860
+So this includes things like L2 regularization or dropout or data augmentation, which we talked
+
+00:03:41.860 --> 00:03:45.220
+about in the previous course.
+
+00:03:45.220 --> 00:03:50.220
+Or once again, you can also try various neural network architecture hyperparameters search to
+
+00:03:50.220 --> 00:03:54.980
+see if that can help you find a neural network architecture that is better suited for your
+
+00:03:54.980 --> 00:03:56.700
+problem.
+
+00:03:56.700 --> 00:04:01.660
+I think that this notion of bias or avoidable bias and variance is one of those things
+
+00:04:01.700 --> 00:04:04.660
+that's easier to learn but hard to master.
+
+00:04:04.660 --> 00:04:09.180
+And if you're able to systematically apply the concepts from this week's videos, you
+
+00:04:09.180 --> 00:04:14.740
+actually be much more efficient and much more systematic and much more strategic than a
+
+00:04:14.740 --> 00:04:20.060
+lot of machine learning teams in terms of how to systematically go about improving
+
+00:04:20.060 --> 00:04:22.900
+the performance of your machine learning system.
+
+00:04:22.900 --> 00:04:28.660
+So with that, this week's homework will allow you to practice and exercise more your
+
+00:04:28.660 --> 00:04:30.900
+understanding of these concepts.
+
+00:04:31.140 --> 00:04:33.900
+So I hope you have had a nice of luck with this week's homework and I look forward to
+
+00:04:33.900 --> 00:04:35.900
+also seeing you in next week's videos.

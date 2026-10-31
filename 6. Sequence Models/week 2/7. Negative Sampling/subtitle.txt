@@ -1,0 +1,167 @@
+In the last video, you saw how the Skip-Gram model
+allows you to construct a supervised learning tasks so you map from
+context to target words and how that allows you to learn a useful
+word embedding. But the downside of that was the sock max objective
+was slow to compute. In this video, you see a modified learning
+problem called negative sampling that allows
+you to do something similar to the skip-gram
+model you saw just now, but with a much more
+efficient learning algorithm. Let's see how you could do that. Most of the ideas presented in this video are due
+to Thomas Mikolov, Sasaki, Chen Greco,
+and Jeff Dean. What we're going to do in this algorithm is create a new supervised
+learning problem. The problem is, given
+a pair of words like orange and juice, we're going to predict, is
+this a context target pair? In this example, orange juice
+was a positive example. How about Orange and King? Well, that's a negative example so I'm going to write
+zero for the target. What we're going to do is
+we're actually going to sample a context
+and a target word. In this case, we had
+orange and juice and we'll associate that
+with a Label 1. Let's just put word
+in the middle. Then having generated
+a positive example, the positive examples
+generated exactly how we generated it in the previous videos sample context word, look around a window of say, +-10 words, and
+pick a target word. That's how you generate
+the first row of this table with
+orange juice one. Then to generate the
+negative examples, you're going to take the
+same context word and then just pick a word at
+random from the dictionary. In this case, I chose
+the word king at random and label that as zero. Then let's take
+orange and let's pick another random word from the dictionary under
+the assumption that if we pick a random word, it probably won't be associated
+with the word orange, so book, zero. Let's pick a few others, orange, maybe just by chance
+we'll pick the zero, and then orange, and
+maybe just by chance, we'll pick the word of and
+we'll put a zero there. Notice that all of these
+labeled as zero even though the word of actually appears
+next to orange as well. To summarize the way we generated this
+dataset is we'll pick a context word and then
+pick a target word and that is the first
+row of this table, that gives us a
+positive example. Context target, and then
+give that a label of one. Then what we do is for
+some number of times, say k times, we're going to take the same context words and then pick random words
+from the dictionary. King, book, the, of, whatever comes out
+at random from the dictionary and
+label all those zero, and those will be our
+negative examples. It's okay if just by chance, one of those words we
+picked at random from the dictionary happens
+to appear in a window, in a plus-minus
+ten-word windows, say next to the
+context word orange. Then we're going to create a
+supervised learning problem, where the algorithm inputs x
+inputs this pair of words, and then has to predict the target label to
+predict the output Y. The problem is really
+given a pair of words like orange and juice, do you think they
+appear together? Do you think I got
+these two words by sampling two words
+close to each other? Or do you think I got them as one word from the text and one word chosen at random
+from the dictionary? Is really to try to distinguish between these two types of distributions from which you might sample a pair of words. This is how you generate
+the training set. How do you choose Mikolov at all that recommend
+that maybe k is 5-20 for smaller datasets and if you have a
+very large dataset, then choose k to be
+smaller so k=2-5 for larger datasets
+and larger values of k for smaller datasets. In this example,
+I've just used k=4. Next, let's describe the
+supervised learning model for learning and
+mapping from x-y. Here was the SoftMax model you saw from the previous video and here's the training set we got from the previous
+slide where again, this is going to be the new
+input x and this is going to be the value of y you're
+trying to predict. To define the model,
+I'm going to use this to denote this with c
+for the context word, this to denote the
+possible target word t and this I'll use
+y to denote 01. This is a context target pair. What we're going to do is define a logistic
+regression model. We say that the chance that y=1 given the input c,t pair, we're going to model this as basically a logistic
+regression model. But the specific formula we
+use is sigmoid applied to Theta t transpose ec. The parameters are
+similar as before. You have one parameter
+vector Theta for each possible
+target word and a separate parameter
+vector really the embedding vector for
+each possible context word. We're going to use this formula to estimate the
+probability that y=1. If you have k examples here. Then if you can think
+of this as having a k:1 ratio of negative
+to positive examples. For every positive examples, you will have k
+negative examples with which to train this
+logistic regression model. To draw this as a
+neural network, if the input word is orange, which is word 6,257, then what you do is input their one hot vector passes through E, do the multiplication to get
+the embedding vector 6,257. Then what you have is really 10,000 possible
+logistic regression classification problems
+where one of these will be the classifier
+corresponding to. Well, is the target word juice or not. Then there'll
+be other words. For example, there
+may be one somewhere down here which is predicting is the word king or not
+and so on for these are possible words
+in your vocabulary. Think of this as having 10,000 binary logistic
+regression classifiers. But instead of training all 10,000 of them on
+every iteration, we're only going to
+train five of them. We're going to train the
+one corresponding to the actual target
+word we got and then train four randomly
+chosen negative examples, and this is for the
+case where K = 4. Instead of having one
+giant 10,000 way softmax, which is very
+expensive to compute, we've instead turned it into 10,000 binary
+classification problems. Each of which is quite cheap to compute and on every iteration, we're only going to
+train five of them, or more generally, k+1 of them, with k negative examples and one positive examples and this is why the computational
+cost of this algorithm is much lower because you're updating k+1 binary
+classification problems, which is relatively cheap
+to do on every iteration, rather than updating a 10,000
+way softmax classifier. This technique is called negative sampling
+because what you're doing is you had a
+positive example, the orange and the juice. Then you would go
+and deliberately generate a bunch of
+negative examples. We've negative samplings,
+hence the negative sampling, which to train four more of
+these binary classifiers, and on every
+iteration you choose four different random
+negative words with which to train
+your algorithm on. Now, before wrapping up, one more important detail
+of this algorithm is, how do you choose the
+negative examples? After having chosen the
+context word orange, how do you sample these words to generate
+the negative examples? One thing you could do is
+sample the words in the middle, the candidate target words. One thing you could do is
+sample it according to the empirical frequency
+of words in your corpus. Just sample it according to how often different
+words appears. But the problem with that
+is that you end up with a very high representation
+of words like the, of, and, and so on. One other extreme
+will be let say, you use one over the vocab_size. Sample the negative
+examples uniformly random. But that's also very
+non representative of the distribution
+of English words. The authors [inaudible]
+reported that empirically what they found to work best was to take this heuristic value, which is a little bit in between the two extremes of sampling from the
+empirical frequencies, meaning from whatever is the
+observed distribution in English text to the
+uniform distribution, and what they did
+was they sampled proportional to the frequency of a word to the
+power of three forms. If f(w_i) is the
+observed frequency of a particular word in the English language or in
+your training set corpus, then by taking it to
+the power of 3/4. This is somewhere in between
+the extreme of taking uniform distribution and
+the other extreme of just taking whatever was the observed distribution
+in your training set. I'm not sure this is very
+theoretically justified, but multiple researchers
+are now using this heuristic and it seems
+to work decently well. To summarize, you've
+seen how you can learn word vectors of
+a software classified, but it's very competition
+expensive and in this video, you saw how by changing that to a bunch of binary
+classification problems, you can very efficiently
+learn word vectors, and if you run this album, you will be able to learn
+pretty good word vectors. Now, of course,
+as is the case in other areas of deep
+learning as well, there are open source
+implementations and there are also pretrained word vectors that
+others have trained and released online under
+permissive licenses. If you want to get going
+quickly on a NLP problem, it'd be reasonable to download someone else's word vectors and use that as a
+starting point. That's it for the
+skip-gram model. In the next video, I
+want to share with you yet another version of a word embedding
+learning algorithm that is maybe even simpler
+than what you've seen so far. In the next video, let's learn about the GloVe algorithm.

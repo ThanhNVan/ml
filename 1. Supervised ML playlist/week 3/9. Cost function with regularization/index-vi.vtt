@@ -1,0 +1,483 @@
+WEBVTT
+
+00:00:01.010 --> 00:00:05.850
+Trong video trước, chúng ta đã thấy rằng việc
+regularization sẽ cố gắng tạo
+
+00:00:05.850 --> 00:00:10.690
+các giá trị tham số từ w1 đến wnsmall để giảm
+tình trạng overfitting.
+
+00:00:10.690 --> 00:00:13.970
+Trong video này, chúng ta sẽ xây dựng dựa trên
+trực giác đó và
+
+00:00:13.970 --> 00:00:17.250
+phát triển cost function được sửa đổi cho
+thuật toán học tập của
+
+00:00:17.250 --> 00:00:20.530
+bạn mà bạn có thể sử dụng để áp dụng
+regularization trên thực tế.
+
+00:00:20.530 --> 00:00:22.030
+Hãy nhảy vào.
+
+00:00:22.030 --> 00:00:26.960
+Hãy nhớ lại ví dụ này từ video trước, trong đó
+chúng ta đã thấy rằng
+
+00:00:26.960 --> 00:00:31.890
+nếu bạn khớp một hàm bậc hai với dữ liệu này
+thì nó sẽ rất phù hợp.
+
+00:00:31.890 --> 00:00:34.910
+Nhưng nếu bạn khớp một đa thức bậc rất cao,
+bạn
+
+00:00:34.910 --> 00:00:37.930
+sẽ có một đường cong overfitting với dữ liệu.
+
+00:00:37.930 --> 00:00:41.450
+Nhưng bây giờ hãy xem xét những điều sau đây.
+
+00:00:41.450 --> 00:00:45.770
+Giả sử bạn có cách làm cho các tham số w3 và
+
+00:00:45.770 --> 00:00:50.090
+w4 thực sự rất nhỏ, chẳng hạn như gần bằng 0.
+
+00:00:50.090 --> 00:00:52.290
+Đây là điều tôi muốn nói.
+
+00:00:52.290 --> 00:00:55.890
+Giả sử thay vì giảm thiểu hàm mục tiêu này,
+
+00:00:55.890 --> 00:00:59.490
+đây là cost function cho linear regression.
+
+00:00:59.490 --> 00:01:05.090
+Giả sử bạn sửa đổi hàm giá và cộng nó 1000 lần
+
+00:01:05.090 --> 00:01:10.690
+w3 bình phương cộng 1000 lần w4 bình phương.
+
+00:01:10.690 --> 00:01:14.290
+Và ở đây tôi chỉ chọn 1000 vì nó là một con số
+lớn.
+
+00:01:14.290 --> 00:01:17.810
+Nhưng bất kỳ số lượng thực sự lớn nào khác sẽ
+ổn thôi.
+
+00:01:17.810 --> 00:01:22.150
+Vì vậy, với cost function được sửa đổi này,
+trên
+
+00:01:22.150 --> 00:01:26.490
+thực tế, bạn sẽ bị phạt mô hình nếu w3 và w4
+lớn.
+
+00:01:26.490 --> 00:01:31.070
+Bởi vì nếu bạn muốn tối thiểu hóa hàm này,
+cách duy nhất để làm
+
+00:01:31.070 --> 00:01:35.650
+cho cost function mới này nhỏ là w3 và w4 đều
+nhỏ, phải không?
+
+00:01:35.650 --> 00:01:40.430
+Bởi vì nếu không, số hạng 1000 nhân w3 bình
+
+00:01:40.430 --> 00:01:45.210
+phương và 1000 nhân w4 này sẽ thực sự rất lớn.
+
+00:01:45.210 --> 00:01:53.410
+Vì vậy, khi bạn thu nhỏ hàm này, bạn sẽ có w3
+gần bằng 0 và w4 gần bằng 0.
+
+00:01:53.410 --> 00:01:59.630
+Vì vậy, trên thực tế, chúng ta gần như loại bỏ
+ảnh hưởng của việc
+
+00:01:59.630 --> 00:02:05.850
+thực thi các feature và x lũy thừa 4 và loại
+bỏ hai số hạng này ở đây.
+
+00:02:05.850 --> 00:02:09.877
+Và nếu chúng ta làm điều đó, thì chúng ta sẽ
+có được sự phù hợp
+
+00:02:09.877 --> 00:02:13.903
+với dữ liệu gần với hàm bậc hai hơn nhiều, bao
+gồm cả những đóng
+
+00:02:13.903 --> 00:02:17.930
+góp có thể chỉ rất nhỏ từ các feature thực thi
+và x đến phần thứ tư.
+
+00:02:17.930 --> 00:02:22.850
+Và điều này tốt vì nó phù hợp hơn với dữ liệu
+so với việc nếu tất cả
+
+00:02:22.850 --> 00:02:27.770
+các tham số có thể lớn, và bạn sẽ thu được hàm
+bậc hai lung lay này.
+
+00:02:27.770 --> 00:02:31.130
+Tổng quát hơn, đây là ý tưởng đằng sau việc
+regularization.
+
+00:02:31.130 --> 00:02:34.663
+Ý tưởng là nếu có các giá trị nhỏ hơn cho các
+tham số thì
+
+00:02:34.663 --> 00:02:38.197
+điều đó giống như có một mô hình đơn giản hơn,
+có thể là một
+
+00:02:38.197 --> 00:02:41.730
+mô hình có ít feature hơn, do đó ít có khả
+năng xảy ra lỗi hơn.
+
+00:02:41.730 --> 00:02:44.290
+overfitting.
+
+00:02:44.290 --> 00:02:48.330
+Ở slide cuối cùng, chúng tôi phạt hoặc chúng
+tôi
+
+00:02:48.330 --> 00:02:52.370
+nói rằng chúng tôi chỉ regularization w3 và
+w4.
+
+00:02:52.370 --> 00:02:55.983
+Nhưng tổng quát hơn, cách mà việc
+regularization có xu hướng
+
+00:02:55.983 --> 00:02:59.597
+được triển khai là nếu bạn có nhiều feature,
+chẳng hạn như 100
+
+00:02:59.597 --> 00:03:03.210
+feature, bạn có thể không biết đâu là feature
+quan trọng nhất
+
+00:03:03.210 --> 00:03:05.330
+và xử phạt trường hợp nào.
+
+00:03:05.330 --> 00:03:10.190
+Vì vậy, cách thực hiện regularization thường
+là xử phạt tất cả
+
+00:03:10.190 --> 00:03:15.050
+các feature hay chính xác hơn là bạn xử phạt
+tất cả các tham số wj.
+
+00:03:15.050 --> 00:03:19.710
+Và có thể chứng minh rằng điều này thường sẽ
+dẫn đến việc lắp một chức
+
+00:03:19.710 --> 00:03:24.370
+năng mượt mà hơn, đơn giản hơn, ít lung lay
+hơn và ít bị overfitting.
+
+00:03:24.370 --> 00:03:28.510
+Vì vậy, trong ví dụ này, nếu bạn có dữ liệu
+với 100 đặc điểm cho mỗi ngôi nhà, có
+
+00:03:28.510 --> 00:03:32.650
+thể khó chọn trước những đặc điểm nào cần đưa
+vào và những đặc điểm nào cần loại trừ.
+
+00:03:32.650 --> 00:03:37.570
+Vì vậy, hãy xây dựng một mô hình sử dụng tất
+cả 100 feature.
+
+00:03:37.570 --> 00:03:47.330
+Vì vậy, bạn có 100 tham số này, từ w1 đến
+w100, cũng như tham số thứ 101 b.
+
+00:03:47.330 --> 00:03:51.303
+Bởi vì chúng ta không biết tham số nào trong
+số này sẽ là
+
+00:03:51.303 --> 00:03:55.277
+tham số quan trọng, nên hãy phạt tất cả chúng
+một chút và
+
+00:03:55.277 --> 00:03:59.250
+thu nhỏ tất cả chúng bằng cách thêm thuật ngữ
+mới này lần lambda
+
+00:03:59.250 --> 00:04:08.770
+tổng từ j bằng 1 đến n, trong đó n là 100, số
+feature của wj bình phương.
+
+00:04:08.770 --> 00:04:13.330
+Giá trị lambda ở đây là bảng chữ cái Hy Lạp
+
+00:04:13.330 --> 00:04:17.890
+lambda và nó còn được gọi là tham số chính
+quy.
+
+00:04:17.890 --> 00:04:22.510
+Tương tự như việc chọn learning rate tập
+alpha,
+
+00:04:22.510 --> 00:04:27.130
+bây giờ bạn cũng phải chọn một số cho lambda.
+
+00:04:27.130 --> 00:04:28.970
+Một vài điều tôi muốn chỉ ra.
+
+00:04:28.970 --> 00:04:34.077
+Theo quy ước, thay vì sử dụng lambda nhân với
+tổng wj bình
+
+00:04:34.077 --> 00:04:39.183
+phương, chúng ta cũng chia lambda cho 2m, sao
+cho cả số hạng
+
+00:04:39.183 --> 00:04:44.290
+thứ nhất và số hạng thứ hai ở đây đều có tỷ lệ
+là 1 trên 2m.
+
+00:04:44.290 --> 00:04:48.570
+Hóa ra là bằng cách chia tỷ lệ cả hai thuật
+ngữ theo cùng một cách,
+
+00:04:48.570 --> 00:04:52.850
+việc chọn giá trị phù hợp cho lambda sẽ trở
+nên dễ dàng hơn một chút.
+
+00:04:52.850 --> 00:04:56.610
+Và đặc biệt, bạn thấy rằng ngay cả khi kích
+thước training set của
+
+00:04:56.610 --> 00:05:00.370
+bạn tăng lên, giả sử bạn tìm thấy nhiều ví dụ
+huấn luyện hơn, thì
+
+00:05:00.370 --> 00:05:04.130
+m, kích thước training set bây giờ lớn hơn,
+cùng giá trị của lambda
+
+00:05:04.130 --> 00:05:08.410
+mà bạn đã chọn trước đó giờ đây cũng có nhiều
+khả
+
+00:05:08.410 --> 00:05:12.690
+năng tiếp tục hoạt động hơn nếu bạn tăng thêm
+2m.
+
+00:05:12.690 --> 00:05:19.130
+Ngoài ra, nhân tiện, theo quy ước, chúng ta sẽ
+không phạt tham số b vì tham số lớn.
+
+00:05:19.130 --> 00:05:23.010
+Trong thực tế, sẽ có rất ít sự khác biệt cho
+dù bạn có làm
+
+00:05:23.010 --> 00:05:26.890
+hay không, và một số kỹ sư machine learning
+cũng như thực tế
+
+00:05:26.890 --> 00:05:30.770
+một số cách triển khai học tập khác cũng sẽ
+bao gồm lambda trên
+
+00:05:30.770 --> 00:05:33.930
+2m nhân số hạng b bình phương.
+
+00:05:33.930 --> 00:05:37.330
+Nhưng điều này tạo ra rất ít sự khác biệt
+trong thực tế và
+
+00:05:37.330 --> 00:05:40.730
+quy ước phổ biến hơn mà chúng ta sẽ sử dụng
+trong khóa học
+
+00:05:40.730 --> 00:05:44.130
+này là chỉ chuẩn hóa các tham số w chứ không
+phải tham số
+
+00:05:44.130 --> 00:05:45.130
+b.
+
+00:05:45.890 --> 00:05:50.290
+Vì vậy, để tóm tắt, trong cost function được
+sửa đổi này, chúng
+
+00:05:50.290 --> 00:05:54.690
+tôi muốn giảm thiểu chi phí ban đầu, đó là chi
+phí lỗi bình phương
+
+00:05:54.690 --> 00:05:59.090
+trung bình, cộng thêm thuật ngữ thứ hai được
+gọi là regularization
+
+00:05:59.090 --> 00:06:01.130
+hạn.
+
+00:06:01.130 --> 00:06:05.930
+Và do đó, cost function mới này đánh đổi hai
+mục tiêu mà bạn có thể có.
+
+00:06:05.930 --> 00:06:09.250
+Việc cố gắng giảm thiểu thuật ngữ đầu tiên này
+sẽ khuyến
+
+00:06:09.250 --> 00:06:12.570
+khích thuật toán phù hợp tốt với training data
+bằng cách
+
+00:06:12.570 --> 00:06:15.890
+giảm thiểu chênh lệch bình phương của dự đoán
+và giá trị thực tế.
+
+00:06:15.890 --> 00:06:21.050
+Và khi cố gắng tối thiểu hóa số hạng thứ hai,
+thuật toán cũng cố gắng giữ
+
+00:06:21.050 --> 00:06:26.210
+các tham số wj nhỏ, điều này sẽ có xu hướng
+giảm hiện tượng overfitting.
+
+00:06:26.210 --> 00:06:31.390
+Giá trị lambda mà bạn chọn chỉ định tầm quan
+trọng tương đối hoặc
+
+00:06:31.390 --> 00:06:36.570
+sự cân bằng tương đối hoặc cách bạn cân bằng
+giữa hai mục tiêu này.
+
+00:06:36.570 --> 00:06:39.470
+Chúng ta hãy xem những giá trị khác nhau của
+
+00:06:39.470 --> 00:06:42.370
+lambda sẽ khiến thuật toán học của bạn thực
+hiện.
+
+00:06:42.370 --> 00:06:47.010
+Hãy sử dụng ví dụ dự đoán giá nhà đất bằng
+phương pháp linear regression.
+
+00:06:47.010 --> 00:06:50.370
+Vậy f(x) là mô hình linear regression.
+
+00:06:50.370 --> 00:06:55.430
+Nếu lambda được đặt thành 0 thì bạn hoàn toàn
+không sử dụng
+
+00:06:55.430 --> 00:07:00.490
+thuật ngữ chính quy vì thuật ngữ chính quy
+được nhân với 0.
+
+00:07:00.490 --> 00:07:04.390
+Và vì vậy nếu lambda bằng 0, thì cuối cùng bạn
+sẽ điều chỉnh
+
+00:07:04.390 --> 00:07:08.290
+đường cong quá phức tạp quá phức tạp này và nó
+overfitting.
+
+00:07:08.290 --> 00:07:11.370
+Vì vậy, đó là một thái cực nếu lambda bằng 0.
+
+00:07:11.370 --> 00:07:14.330
+Bây giờ chúng ta hãy nhìn vào thái cực khác.
+
+00:07:14.330 --> 00:07:18.030
+Nếu bạn đặt lambda là một số thực sự, thực
+
+00:07:18.030 --> 00:07:21.730
+sự, thực sự lớn, giả sử lambda bằng 10 mũ 10.
+
+00:07:21.730 --> 00:07:25.970
+Sau đó, bạn đang đặt trọng tâm rất lớn vào
+thuật ngữ regularization này ở bên phải.
+
+00:07:25.970 --> 00:07:30.270
+Và cách duy nhất để giảm thiểu điều này là đảm
+bảo
+
+00:07:30.270 --> 00:07:34.570
+rằng tất cả các giá trị của w gần như rất gần
+với 0.
+
+00:07:34.570 --> 00:07:39.470
+Vì vậy, nếu lambda rất, rất lớn, thuật toán
+
+00:07:39.470 --> 00:07:44.370
+học sẽ chọn w1, w2, w3 và w4 cực gần bằng 0.
+
+00:07:44.370 --> 00:07:49.130
+Và do đó, f(x) về cơ bản bằng b.
+
+00:07:49.130 --> 00:07:55.330
+Và do đó, thuật toán học phù hợp với một đường
+thẳng nằm ngang và không phù hợp.
+
+00:07:55.330 --> 00:08:00.330
+Tóm lại, nếu lambda bằng 0 thì mô hình này sẽ
+overfitting.
+
+00:08:00.330 --> 00:08:05.890
+Nếu lambda rất lớn, chẳng hạn như 10 mũ 10,
+thì mô hình này sẽ không phù hợp.
+
+00:08:05.890 --> 00:08:10.210
+Và vì vậy, khi bạn muốn tính tổng giá trị của
+lambda nằm ở giữa,
+
+00:08:10.210 --> 00:08:14.530
+điều đó sẽ cân bằng hợp lý hơn các điều khoản
+thứ nhất và thứ hai
+
+00:08:14.530 --> 00:08:18.850
+của việc giao dịch để giảm thiểu sai số bình
+phương trung bình và
+
+00:08:18.850 --> 00:08:22.570
+giữ các thông số nhỏ.
+
+00:08:22.570 --> 00:08:27.970
+Và khi giá trị của lambda không quá nhỏ cũng
+không quá lớn mà vừa phải thì hy
+
+00:08:27.970 --> 00:08:33.370
+vọng bạn có thể khớp đa thức bậc bốn với tất
+cả các đặc điểm này, nhưng với một
+
+00:08:33.370 --> 00:08:36.650
+chức năng trông như thế này.
+
+00:08:36.650 --> 00:08:39.410
+Vì vậy, đó là cách hoạt động chính quy.
+
+00:08:39.410 --> 00:08:43.890
+Khi nói về việc lựa chọn mô hình sau này trong
+chuyên môn hóa, chúng
+
+00:08:43.890 --> 00:08:48.370
+ta cũng sẽ thấy nhiều cách khác nhau để chọn
+giá trị tốt cho lambda.
+
+00:08:48.370 --> 00:08:51.543
+Trong hai video tiếp theo, chúng ta sẽ tìm
+hiểu cách áp dụng
+
+00:08:51.543 --> 00:08:54.717
+regularization cho linear regression và
+logistic regression
+
+00:08:54.717 --> 00:08:57.890
+cũng như cách đào tạo các mô hình này bằng
+cách gradient descent.
+
+00:08:57.890 --> 00:08:59.730
+Nhờ đó, bạn sẽ có thể tránh được tình trạng
+
+00:08:59.730 --> 00:09:01.570
+overfitting với cả hai thuật toán này.

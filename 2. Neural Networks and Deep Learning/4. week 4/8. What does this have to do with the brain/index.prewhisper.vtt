@@ -1,0 +1,142 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.530
+Vậy học sâu có liên quan gì với bộ não?
+
+00:00:02.530 --> 00:00:06.227
+Sắp kết thúc khóa học rồi, tôi sẽ nói là không nhiều lắm.
+
+00:00:06.227 --> 00:00:11.871
+Nhưng hãy cùng xem nhanh tại sao mọi người lại cứ so sánh học sâu với bộ não con người.
+
+00:00:11.871 --> 00:00:16.022
+Khi bạn triển khai một mạng nơ-ron nhân tạo, bạn sẽ làm như sau,
+
+00:00:16.022 --> 00:00:17.838
+truyền xuôi và truyền ngược.
+
+00:00:17.838 --> 00:00:23.417
+Tôi nghĩ, bởi vì thật khó để truyền đạt lại thông tin mà những gì các phương trình này
+
+00:00:23.417 --> 00:00:27.503
+đang làm, thực hiên gradient descent trên một hàm rất phức tạp,
+
+00:00:27.503 --> 00:00:33.276
+suy luận “ Cái này giống như bộ não vậy” đã trở thành một lời giải thích đơn giản hóa quá
+
+00:00:33.276 --> 00:00:35.547
+mức cho những gì điều này đang làm.
+
+00:00:35.547 --> 00:00:41.190
+Nhưng sự đơn giản của điều này làm cho nó trở nên quyến rũ để mọi người chỉ nói điều đó
+
+00:00:41.190 --> 00:00:44.823
+cũng như khiến phương tiện truyền thông thông báo về nó,
+
+00:00:44.823 --> 00:00:48.390
+và chắc chắn là mọi người đều có thể tưởng tượng ra nó.
+
+00:00:48.390 --> 00:00:54.099
+Có một điểm hơi giống nhau nữa, giả sử một đơn vị hồi quy logistic giả sử một đơn vị hồi
+
+00:00:54.099 --> 00:00:58.445
+quy logistic và đây là hình ảnh một tế bào thần kinh đơn trong não.
+
+00:00:58.445 --> 00:01:03.374
+Trong hình minh họa của một tế bào thần kinh sinh học, tế bào thần kinh này,
+
+00:01:03.374 --> 00:01:09.147
+đây là một tế bào trong não của bạn, nhận tín hiệu điện từ các tế bào thần kinh khác, X1,
+
+00:01:09.147 --> 00:01:14.856
+X2, X3 hoặc có thể từ nơ-ron khác, A1, A2, A_3, thực hiện một phép tính ngưỡng đơn giản,
+
+00:01:14.856 --> 00:01:20.110
+và sau đó nếu tế bào thần kinh này nóng lên, nó gửi một xung điện xuống sợi trục,
+
+00:01:20.110 --> 00:01:23.678
+xuống dây dài này, có lẽ tới các tế bào thần kinh khác.
+
+00:01:23.678 --> 00:01:29.386
+Như vậy, có một điểm tương đồng đơn giản giữa một nơ-ron duy nhất trong một mạng nơ-ron,
+
+00:01:29.386 --> 00:01:32.759
+và một nơ-ron sinh học như được hiển thị ở bên phải.
+
+00:01:32.759 --> 00:01:38.532
+nhưng tôi nghĩ rằng ngày nay ngay cả các nhà thần kinh học cũng hầu như không biết một tế
+
+00:01:38.532 --> 00:01:40.608
+bào thần kinh đang làm những gì.
+
+00:01:40.608 --> 00:01:46.186
+Một tế bào thần kinh đơn dường như là phức tạp hơn nhiều điều mà chúng ta có thể mô tả
+
+00:01:46.186 --> 00:01:51.700
+trong khoa học thần kinh, và trong khi một số thứ đang vận hành hơi giống như hồi quy
+
+00:01:51.700 --> 00:01:57.408
+logistic, thì con người vẫn còn nhiều điều chưa biết về những gì mà một tế bào thần kinh
+
+00:01:57.408 --> 00:01:57.927
+đơn làm.
+
+00:01:57.927 --> 00:02:02.014
+Ví dụ như các tế bào thần kinh trong não người học như thế nào,
+
+00:02:02.014 --> 00:02:04.543
+vẫn là một quá trình rất bí ẩn Đến nay,
+
+00:02:04.543 --> 00:02:09.473
+người ta vẫn không rõ liệu bộ não con người có sử dụng thuật toán hay không,
+
+00:02:09.473 --> 00:02:15.052
+có thực hiện những thứ như lan truyền ngược hay gradient descent hay có các nguyên tắc
+
+00:02:15.052 --> 00:02:17.452
+học khác mà bộ não con người sử dụng.
+
+00:02:17.452 --> 00:02:22.900
+Khi tôi nghĩ về học sâu, tôi nghĩ rằng nó rất giỏi trong việc học các hàm linh hoạt,
+
+00:02:22.900 --> 00:02:25.690
+các hàm rất phức tạp để học ánh xạ X đến Y,
+
+00:02:25.690 --> 00:02:28.998
+để học ánh xạ đầu vào-đầu ra trong học có giám sát.
+
+00:02:28.998 --> 00:02:34.706
+Khác với suy luận “Điều này thì giống như bộ não” có lẽ đó là những thứ hữu ích Tôi nghĩ
+
+00:02:34.706 --> 00:02:40.155
+rằng lĩnh vực này đã đi đến điểm mà nó không còn suy luận này nữa và tôi có xu hướng
+
+00:02:40.155 --> 00:02:42.490
+không sử dụng suy luận đó nhiều nữa.
+
+00:02:42.490 --> 00:02:45.150
+Đó là về các mạng nơ-ron nhân tạo và não.
+
+00:02:45.150 --> 00:02:50.728
+Tôi nghĩ rằng có thể là lĩnh vực thị giác máy tính đã lấy nhiều cảm hứng từ bộ não con
+
+00:02:50.728 --> 00:02:56.501
+người hơn các quy tắc khác cũng áp dụng học sâu nhưng cá nhân tôi sử dụng sự tương tự với
+
+00:02:56.501 --> 00:02:59.226
+bộ não của con người ít hơn tôi trước đây.
+
+00:02:59.226 --> 00:03:01.366
+Đó là toàn bộ nội dung video này.
+
+00:03:01.366 --> 00:03:05.972
+Bây giờ bạn đã biết cách truyền xuôi, truyền ngược và gradient descent.
+
+00:03:05.972 --> 00:03:08.891
+ngay cả đối với các mạng nơ-ron nhân tạo sâu.
+
+00:03:08.891 --> 00:03:14.339
+Chúc bạn may mắn với bài tập lập trình và tôi mong sẽ được chia sẻ nhiều hơn những ý
+
+00:03:14.339 --> 00:03:16.999
+tưởng này với bạn trong khóa học thứ hai.

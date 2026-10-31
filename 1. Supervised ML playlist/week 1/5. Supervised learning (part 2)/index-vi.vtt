@@ -1,0 +1,358 @@
+WEBVTT
+
+00:00:02.030 --> 00:00:06.083
+Vì vậy, các thuật toán supervised learning học
+cách dự đoán ánh
+
+00:00:06.083 --> 00:00:10.137
+xạ đầu vào-đầu ra hoặc x-y và trong video
+trước, bạn đã thấy
+
+00:00:10.137 --> 00:00:14.190
+thuật toán regression đó, một loại thuật toán
+học được giám sát.
+
+00:00:14.190 --> 00:00:19.550
+học thuật toán, học cách dự đoán các số trong
+vô số số có thể.
+
+00:00:19.550 --> 00:00:22.710
+Có một loại thuật toán supervised learning
+chính
+
+00:00:22.710 --> 00:00:25.870
+thứ hai được gọi là thuật toán classification.
+
+00:00:25.870 --> 00:00:29.230
+Chúng ta hãy xem điều này có nghĩa là gì.
+
+00:00:29.230 --> 00:00:35.390
+Lấy việc phát hiện ung thư vú làm ví dụ về vấn
+đề classification.
+
+00:00:35.390 --> 00:00:38.530
+Giả sử bạn đang xây dựng một hệ thống
+machine learning để
+
+00:00:38.530 --> 00:00:41.670
+các bác sĩ có thể có công cụ chẩn đoán phát
+hiện ung thư vú.
+
+00:00:41.670 --> 00:00:47.030
+Điều này rất quan trọng vì việc phát hiện sớm
+có thể cứu sống bệnh nhân.
+
+00:00:47.030 --> 00:00:51.377
+Bằng cách sử dụng hồ sơ bệnh án của bệnh nhân,
+hệ thống machine learning
+
+00:00:51.377 --> 00:00:55.723
+của bạn sẽ cố gắng tìm hiểu xem liệu khối u đó
+có phải là khối u ác tính
+
+00:00:55.723 --> 00:01:00.070
+hay không, nghĩa là ung thư hoặc nguy hiểm,
+hoặc nếu khối u đó, khối u đó,
+
+00:01:00.070 --> 00:01:03.390
+là lành tính, có nghĩa là, bạn biết đấy, nó
+chỉ là một
+
+00:01:03.390 --> 00:01:06.710
+khối u không gây ung thư và không nguy hiểm
+đến mức đó.
+
+00:01:06.710 --> 00:01:10.150
+Một số người bạn của tôi thực sự đang giải
+quyết vấn đề cụ thể này.
+
+00:01:11.110 --> 00:01:15.963
+Vì vậy, có thể tập dữ liệu của bạn có các khối
+u có kích thước khác
+
+00:01:15.963 --> 00:01:20.817
+nhau và những khối u này được dán nhãn là lành
+tính, mà tôi sẽ chỉ định
+
+00:01:20.817 --> 00:01:25.670
+trong ví dụ này bằng số 0 hoặc ác tính, tôi sẽ
+chỉ định trong ví dụ này
+
+00:01:25.670 --> 00:01:28.630
+trong ví dụ này với một.
+
+00:01:28.630 --> 00:01:35.230
+Sau đó, bạn có thể vẽ dữ liệu của mình trên
+biểu đồ như thế này, trong đó trục
+
+00:01:35.230 --> 00:01:41.830
+hoành biểu thị kích thước của khối u và trục
+tung chỉ có hai giá trị, 0 hoặc một,
+
+00:01:41.830 --> 00:01:47.030
+tùy thuộc vào khối u là lành tính, số 0 hay ác
+tính.
+
+00:01:47.990 --> 00:01:53.510
+Một lý do khiến điều này khác với regression
+là vì chúng tôi đang cố
+
+00:01:53.510 --> 00:01:59.030
+gắng chỉ dự đoán một số lượng nhỏ sản lượng
+hoặc lượng calo có thể có.
+
+00:01:59.030 --> 00:02:03.430
+Trong trường hợp này, có hai kết quả đầu ra, 0
+hoặc 1, lành tính hoặc ác tính.
+
+00:02:04.390 --> 00:02:08.590
+Điều này khác với regression, cố gắng dự
+
+00:02:08.590 --> 00:02:12.790
+đoán bất kỳ số nào, mặc dù có vô số số có thể.
+
+00:02:13.350 --> 00:02:16.270
+Và thực tế là chỉ có hai kết quả đầu ra có thể
+
+00:02:16.270 --> 00:02:19.190
+xảy ra là điều tạo nên sự classification này.
+
+00:02:20.390 --> 00:02:25.030
+Vì chỉ có hai kết quả đầu ra hoặc hai danh mục
+có thể có trong
+
+00:02:25.030 --> 00:02:29.670
+ví dụ này nên bạn cũng có thể vẽ biểu đồ tập
+dữ liệu này trên
+
+00:02:29.670 --> 00:02:34.310
+một dòng như thế này, bây giờ tôi sẽ sử dụng
+hai kết quả khác nhau.
+
+00:02:34.310 --> 00:02:38.270
+các ký hiệu để biểu thị danh mục bằng cách sử
+dụng
+
+00:02:38.270 --> 00:02:42.230
+hình tròn hoặc chữ O để biểu thị ví dụ lành
+tính.
+
+00:02:43.190 --> 00:02:46.870
+Và ngang qua để biểu thị các ví dụ ác tính.
+
+00:02:47.510 --> 00:02:52.203
+Và nếu một bệnh nhân mới đến để được chẩn đoán
+và họ có một
+
+00:02:52.203 --> 00:02:56.897
+khối u có kích thước như thế này thì câu hỏi
+đặt ra là hệ
+
+00:02:56.897 --> 00:03:01.590
+thống của bạn sẽ classification khối u này là
+lành tính hay ác tính?
+
+00:03:02.950 --> 00:03:08.790
+Hóa ra là trong các bài toán classification,
+bạn cũng có thể có nhiều hơn hai loại
+
+00:03:08.790 --> 00:03:14.630
+đầu ra. Có thể thuật toán học của bạn có thể
+đưa ra nhiều loại chẩn đoán ung thư
+
+00:03:14.630 --> 00:03:16.230
+nếu nó trở nên ác tính.
+
+00:03:17.670 --> 00:03:23.150
+Vì vậy, hãy gọi hai loại ung thư khác nhau là
+loại một và loại hai.
+
+00:03:23.150 --> 00:03:28.630
+Trong trường hợp này, thuật toán sẽ có ba loại
+đầu ra có thể dự đoán được.
+
+00:03:29.910 --> 00:03:33.963
+Và nhân tiện, trong classification, thuật ngữ
+loại đầu ra
+
+00:03:33.963 --> 00:03:38.017
+và danh mục đầu ra thường được sử dụng thay
+thế cho nhau.
+
+00:03:38.017 --> 00:03:42.070
+Vì vậy, khi tôi nói lớp hoặc danh mục, khi đề
+cập đến đầu ra,
+
+00:03:42.070 --> 00:03:46.070
+nó có nghĩa là điều tương tự Vậy để tổng hợp,
+
+00:03:46.070 --> 00:03:50.070
+thuật toán classification, dự đoán danh mục.
+
+00:03:50.790 --> 00:03:55.777
+danh mục không nhất thiết phải là số, nó có
+thể không phải là
+
+00:03:55.777 --> 00:04:00.763
+số. Ví dụ, nó có thể dự đoán một bức ảnh là
+của một con mèo hay
+
+00:04:00.763 --> 00:04:05.750
+một con chó. Và nó có thể dự đoán khối u là
+lành tính hay ác tính.
+
+00:04:07.110 --> 00:04:11.697
+các danh mục cũng có thể là các số như 0 hoặc
+một, hoặc 0 hoặc một
+
+00:04:11.697 --> 00:04:16.283
+hoặc hai. Nhưng điều làm cho việc
+classification khác với regression
+
+00:04:16.283 --> 00:04:20.870
+khi bạn diễn giải các con số là việc
+classification dự đoán một tỷ lệ nhỏ,
+
+00:04:21.510 --> 00:04:27.030
+tập hợp giới hạn hữu hạn các loại đầu ra có
+thể có, chẳng hạn như 0, một và
+
+00:04:27.030 --> 00:04:32.550
+hai, nhưng không phải tất cả các số có thể nằm
+trong khoảng như 0,5 hoặc 1,7.
+
+00:04:32.550 --> 00:04:38.310
+Trong ví dụ về supervised learning mà chúng ta
+đang xem xét,
+
+00:04:38.310 --> 00:04:44.070
+chúng ta chỉ có một giá trị đầu vào, kích
+thước của khối u.
+
+00:04:44.070 --> 00:04:49.830
+Nhưng bạn cũng có thể sử dụng nhiều giá trị
+đầu vào để dự đoán đầu ra.
+
+00:04:51.110 --> 00:04:55.403
+Đây là một ví dụ. Thay vì chỉ biết kích thước
+khối u, giả
+
+00:04:55.403 --> 00:04:59.697
+sử bạn cũng có tuổi của mỗi bệnh nhân theo
+năm, bộ dữ liệu
+
+00:04:59.697 --> 00:05:03.990
+mới của bạn hiện có hai đầu vào, tuổi và kích
+thước khối u.
+
+00:05:04.950 --> 00:05:09.803
+Trong tập dữ liệu mới này, chúng tôi sẽ sử
+dụng vòng tròn để hiển
+
+00:05:09.803 --> 00:05:14.657
+thị những bệnh nhân có khối u lành tính và
+chéo để hiển thị những
+
+00:05:14.657 --> 00:05:19.510
+bệnh nhân có khối u ác tính. Vì vậy khi có
+bệnh nhân mới đến,
+
+00:05:19.510 --> 00:05:24.363
+bác sĩ có thể đo kích thước khối u của bệnh
+nhân và ghi lại tuổi của bệnh
+
+00:05:24.363 --> 00:05:29.217
+nhân. Và dựa trên điều này, làm thế nào chúng
+ta có thể dự đoán khối u
+
+00:05:29.217 --> 00:05:34.070
+của bệnh nhân này là lành tính hay ác tính?
+Vâng, với một tập dữ liệu như
+
+00:05:34.070 --> 00:05:38.737
+Điều này, thuật toán học có thể làm là tìm ra
+ranh giới nào đó để
+
+00:05:38.737 --> 00:05:43.403
+phân biệt các khối u ác tính với các khối u
+lành tính. Vì vậy,
+
+00:05:43.403 --> 00:05:48.070
+thuật toán học phải quyết định làm thế nào để
+phù hợp với một ranh giới
+
+00:05:48.070 --> 00:05:52.710
+dòng tới dữ liệu này. Đường ranh giới được tìm
+thấy bởi
+
+00:05:52.710 --> 00:05:57.350
+thuật toán học tập sẽ giúp bác sĩ chẩn đoán.
+Trong trường
+
+00:05:57.350 --> 00:06:01.990
+hợp này, khối u có nhiều khả năng là lành
+tính. Từ ví dụ này,
+
+00:06:01.990 --> 00:06:06.257
+chúng ta đã thấy hai yếu tố đầu vào, tuổi của
+bệnh nhân và kích thước khối u có
+
+00:06:06.257 --> 00:06:10.523
+thể được sử dụng như thế nào. Trong các bài
+toán machine learning khác, thường cần
+
+00:06:10.523 --> 00:06:14.790
+nhiều giá trị đầu vào hơn. Những người bạn của
+tôi đã làm việc về bệnh ung thư vú
+
+00:06:14.790 --> 00:06:19.003
+Việc phát hiện sử dụng nhiều thông tin đầu vào
+bổ sung, như
+
+00:06:19.003 --> 00:06:23.217
+độ dày của khối u, tính đồng nhất của kích
+thước tế bào, tính
+
+00:06:23.217 --> 00:06:27.430
+đồng nhất của hình dạng tế bào, v.v. Tóm lại,
+được giám sát
+
+00:06:27.430 --> 00:06:32.337
+học tập ánh xạ đầu vào x đến đầu ra y, trong
+đó thuật toán học
+
+00:06:32.337 --> 00:06:37.243
+tập học từ câu trích dẫn, câu trả lời đúng.
+Hai loại học tập có
+
+00:06:37.243 --> 00:06:42.150
+giám sát chính là regression và
+classification. Trong một regression
+
+00:06:42.150 --> 00:06:47.870
+ứng dụng, giống như dự đoán giá nhà, thuật
+toán học phải dự đoán các con số từ vô
+
+00:06:47.870 --> 00:06:53.590
+số con số đầu ra có thể có. Trong khi đó,
+trong classification, thuật toán học phải
+
+00:06:53.590 --> 00:06:57.830
+đưa ra dự đoán về một danh mục từ một tập hợp
+nhỏ các kết quả đầu ra
+
+00:06:57.830 --> 00:07:02.070
+có thể có. Vậy là bây giờ bạn đã biết
+supervised learning là gì, bao
+
+00:07:02.070 --> 00:07:06.310
+gồm cả regression và classification. Tôi hy
+vọng bạn đang vui vẻ.
+
+00:07:07.350 --> 00:07:11.710
+Tiếp theo, có một loại machine learning chính
+thứ hai được gọi là
+
+00:07:11.710 --> 00:07:16.070
+unsupervised learning. Hãy cùng xem video tiếp
+theo để xem đó là gì nhé.

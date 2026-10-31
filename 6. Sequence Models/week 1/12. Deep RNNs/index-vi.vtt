@@ -1,0 +1,317 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.704
+Các phiên bản RNN khác nhau mà bạn đã thấy cho đến nay
+
+2
+00:00:02.704 --> 00:00:05.055
+sẽ tự hoạt động khá tốt.
+
+3
+00:00:05.055 --> 00:00:09.240
+Nhưng để học các hàm rất phức tạp, đôi khi rất hữu ích khi xếp
+
+4
+00:00:09.240 --> 00:00:13.860
+nhiều layer (tầng) RNN với nhau để tạo ra các phiên bản sâu hơn của các mô hình này.
+
+5
+00:00:13.860 --> 00:00:19.195
+Trong video này, bạn sẽ thấy cách tạo các RNN sâu hơn này. Chúng ta hãy xem xét.
+
+6
+00:00:19.195 --> 00:00:20.850
+Bạn còn nhớ đối với một neural network tiêu chuẩn,
+
+7
+00:00:20.850 --> 00:00:23.520
+bạn sẽ có một đầu vào X.
+
+8
+00:00:23.520 --> 00:00:29.580
+Và sau đó nó được xếp chồng lên một layer ẩn nào đó và có thể có các kích hoạt,
+
+9
+00:00:29.580 --> 00:00:33.610
+a1 cho layer ẩn đầu tiên,
+
+10
+00:00:33.610 --> 00:00:36.790
+và sau đó được xếp chồng lên layer tiếp theo với các kích hoạt a2,
+
+11
+00:00:36.790 --> 00:00:40.000
+sau đó có thể là một layer khác,
+
+12
+00:00:40.000 --> 00:00:42.880
+kích hoạt a3 và sau đó bạn đưa ra dự đoán ŷ.
+
+13
+00:00:42.880 --> 00:00:45.290
+RNN sâu hơi giống như thế này,
+
+14
+00:00:45.290 --> 00:00:47.900
+bằng cách lấy mạng này mà tôi vừa vẽ bằng tay và
+
+15
+00:00:47.900 --> 00:00:51.370
+giải nén trong thời gian cho phép. Vì vậy, chúng ta hãy xem xét.
+
+16
+00:00:51.370 --> 00:00:54.070
+Đây là RNN tiêu chuẩn mà bạn đã thấy cho đến nay.
+
+17
+00:00:54.070 --> 00:00:56.395
+Nhưng tôi đã thay đổi ký hiệu một chút, đó là
+
+18
+00:00:56.395 --> 00:01:01.450
+thay vì viết đây là a0 cho thời gian kích hoạt bằng 0,
+
+19
+00:01:01.450 --> 00:01:06.605
+Tôi đã thêm dấu ngoặc vuông 1 này để biểu thị rằng đây là cho layer một.
+
+20
+00:01:06.605 --> 00:01:12.970
+Vì vậy, ký hiệu chúng ta sẽ sử dụng là [l] để biểu thị rằng đó là một kích hoạt
+
+21
+00:01:12.970 --> 00:01:20.285
+liên kết với layer l và sau đó t để biểu thị rằng nó được liên kết theo thời gian t.
+
+22
+00:01:20.285 --> 00:01:23.830
+Vì vậy, điều này sẽ có một kích hoạt trên a[1] <1>,
+
+23
+00:01:23.830 --> 00:01:32.688
+đây sẽ là a[1]<2>, a[1]<3>, a[1]<4>.
+
+24
+00:01:32.688 --> 00:01:38.950
+Và sau đó chúng ta có thể xếp những thứ này lên
+
+25
+00:01:38.950 --> 00:01:45.697
+trên cùng và đây sẽ là một mạng mới với ba layer ẩn.
+
+26
+00:01:45.697 --> 00:01:51.740
+Vì vậy, hãy xem một ví dụ về cách giá trị này được tính.
+
+27
+00:01:51.740 --> 00:01:56.440
+Vì vậy, [2] <3> có hai đầu vào.
+
+28
+00:01:56.440 --> 00:01:58.750
+Nó có đầu vào đến từ phía dưới,
+
+29
+00:01:58.750 --> 00:02:03.005
+và có đầu vào đến từ bên trái.
+
+30
+00:02:03.005 --> 00:02:09.055
+Vì vậy, máy tính có một activation function g áp dụng cho một ma trận trọng số (weight matrix).
+
+31
+00:02:09.055 --> 00:02:14.140
+Đây sẽ là Wa vì tính toán một đại lượng, một đại lượng kích hoạt.
+
+32
+00:02:14.140 --> 00:02:16.097
+Và đối với layer thứ hai,
+
+33
+00:02:16.097 --> 00:02:19.510
+tôi sẽ cho điều này là a[2]<2>,
+
+34
+00:02:19.510 --> 00:02:25.045
+dấu phẩy a[1]<3>, đây rồi,
+
+35
+00:02:25.045 --> 00:02:34.653
+, a[1]<3>, cộng ba, liên kết với layer thứ hai.
+
+36
+00:02:34.653 --> 00:02:37.400
+Và đó là cách bạn nhận được giá trị kích hoạt đó.
+
+37
+00:02:37.400 --> 00:02:41.985
+Và các tham số tương tự Wa[2] và
+
+38
+00:02:41.985 --> 00:02:48.515
+ba[2] được sử dụng cho mọi phép tính trong layer này.
+
+39
+00:02:48.515 --> 00:02:57.150
+Trong khi đó, ngược lại, layer đầu tiên sẽ có các tham số riêng của nó là Wa[1] và ba[1].
+
+40
+00:02:57.150 --> 00:03:01.625
+Vì vậy, trong khi đối với RNN tiêu chuẩn như ở bên trái,
+
+41
+00:03:01.625 --> 00:03:03.580
+bạn biết đấy, chúng ta đã thấy các neural network rất,
+
+42
+00:03:03.580 --> 00:03:05.575
+rất sâu, có thể trên 100 layer.
+
+43
+00:03:05.575 --> 00:03:10.970
+Đối với RNN, có ba layer đã là khá nhiều.
+
+44
+00:03:10.970 --> 00:03:12.720
+Vì chiều hướng thời gian,
+
+45
+00:03:12.720 --> 00:03:17.260
+những mạng này đã có thể trở nên khá lớn ngay cả khi bạn chỉ có một số layer nhỏ.
+
+46
+00:03:17.260 --> 00:03:22.535
+Và bạn thường không thấy những thứ này xếp chồng lên nhau giống như 100 layer.
+
+47
+00:03:22.535 --> 00:03:26.080
+Một điều đôi khi bạn thấy là
+
+48
+00:03:26.080 --> 00:03:30.040
+rằng bạn có các layer regression được xếp chồng lên nhau.
+
+49
+00:03:30.040 --> 00:03:32.988
+Nhưng sau đó bạn có thể lấy đầu ra ở đây, hãy loại bỏ điều này,
+
+50
+00:03:32.988 --> 00:03:36.730
+và sau đó chỉ có một loạt các layer sâu không được kết nối
+
+51
+00:03:36.730 --> 00:03:41.495
+theo chiều ngang nhưng có một mạng lưới sâu ở đây mà cuối cùng dự đoán y<1>.
+
+52
+00:03:41.495 --> 00:03:48.000
+Và bạn có thể có cùng một mạng sâu ở đây dự đoán y<2>.
+
+53
+00:03:48.000 --> 00:03:51.270
+Đây là một loại kiến trúc mạng mà chúng ta sẽ thấy rõ hơn một chút khi
+
+54
+00:03:51.270 --> 00:03:55.065
+có ba đơn vị regression kết nối kịp thời,
+
+55
+00:03:55.065 --> 00:03:56.655
+theo sau là một mạng,
+
+56
+00:03:56.655 --> 00:03:58.285
+tiếp theo là một mạng nữa sau đó,
+
+57
+00:03:58.285 --> 00:04:00.705
+như chúng ta đã thấy đối với y<3> và y<4>, tất nhiên.
+
+58
+00:04:00.705 --> 00:04:04.105
+Có một mạng lưới sâu, nhưng điều đó không có các kết nối ngang.
+
+59
+00:04:04.105 --> 00:04:08.095
+Vì vậy, đó là một kiểu kiến trúc mà chúng ta dường như đang thấy nhiều hơn.
+
+60
+00:04:08.095 --> 00:04:12.410
+Và khá thường xuyên, các khối này không chỉ phải là RNN tiêu chuẩn,
+
+61
+00:04:12.410 --> 00:04:14.390
+mô hình RNN đơn giản.
+
+62
+00:04:14.390 --> 00:04:17.770
+Chúng cũng có thể là khối GRU, khối LSTM.
+
+63
+00:04:17.770 --> 00:04:24.110
+Và cuối cùng, bạn cũng có thể xây dựng các phiên bản sâu của RNN hai chiều.
+
+64
+00:04:24.110 --> 00:04:30.085
+Vì các RNN sâu khá tốn kém tính toán để training,
+
+65
+00:04:30.085 --> 00:04:32.715
+thường đã có một phạm vi thời gian lớn rồi,
+
+66
+00:04:32.715 --> 00:04:37.700
+mặc dù bạn không thấy nhiều layer regression sâu.
+
+67
+00:04:37.700 --> 00:04:42.320
+Tôi đoán, ba layer lặp lại sâu được kết nối kịp thời.
+
+68
+00:04:42.320 --> 00:04:45.530
+Bạn không thấy nhiều layer lặp lại sâu như bạn sẽ thấy
+
+69
+00:04:45.530 --> 00:04:48.940
+trong một số layer trong neural network thông thường sâu.
+
+70
+00:04:48.940 --> 00:04:51.510
+Bài học về RNN sâu đến đây là hết.
+
+71
+00:04:51.510 --> 00:04:53.810
+Với những gì bạn đã thấy trong tuần này,
+
+72
+00:04:53.810 --> 00:04:55.621
+từ RNN cơ bản,
+
+73
+00:04:55.621 --> 00:04:57.050
+đơn vị regression cơ bản,
+
+74
+00:04:57.050 --> 00:04:58.149
+tới GRU, tới LSTM, tới RNN hai chiều (bidirectional RNN),
+
+75
+00:04:58.149 --> 00:05:01.770
+các phiên bản sâu của điều này mà bạn vừa thấy,
+
+76
+00:05:01.770 --> 00:05:04.685
+bây giờ bạn có một hộp công cụ rất phong phú để xây dựng
+
+77
+00:05:04.685 --> 00:05:08.530
+mô hình rất mạnh mẽ cho mô hình học chuỗi.
+
+78
+00:05:08.530 --> 00:05:11.450
+Tôi hy vọng bạn thích video của tuần này.
+
+79
+00:05:11.450 --> 00:05:16.000
+Chúc các bạn may mắn với bài tập và tôi mong được gặp các bạn vào tuần tới.

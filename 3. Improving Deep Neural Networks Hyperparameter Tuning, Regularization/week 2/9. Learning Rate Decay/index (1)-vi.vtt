@@ -1,0 +1,585 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.410
+Một trong những điều
+
+2
+00:00:01.410 --> 00:00:03.060
+giúp tăng tốc thuật toán học
+
+3
+00:00:03.060 --> 00:00:06.000
+là giảm dần learning rate
+của bạn theo thời gian.
+
+4
+00:00:06.000 --> 00:00:08.265
+Chúng ta gọi đây là sự suy giảm learning rate tập.
+
+5
+00:00:08.265 --> 00:00:10.275
+Hãy xem cách bạn có thể thực hiện điều này.
+
+6
+00:00:10.275 --> 00:00:12.450
+Hãy bắt đầu với một ví dụ về lý do tại sao bạn
+
+7
+00:00:12.450 --> 00:00:14.865
+muốn triển khai suy giảm learning rate tập
+
+8
+00:00:14.865 --> 00:00:18.210
+Giả sử bạn đang triển khai mini-batch gradient descent,
+
+9
+00:00:18.210 --> 00:00:20.010
+với một mini-batch nhỏ hợp lý.
+
+10
+00:00:20.010 --> 00:00:23.925
+Có thể một mini-batch chỉ có 64 đến 128 mẫu.
+
+11
+00:00:23.925 --> 00:00:25.635
+Sau đó, khi bạn lặp lại,
+
+12
+00:00:25.635 --> 00:00:28.485
+các bước của bạn sẽ hơi nhiễu và
+
+13
+00:00:28.485 --> 00:00:31.485
+nó nó sẽ có xu hướng hướng tới cực tiểu ở đây,
+
+14
+00:00:31.485 --> 00:00:33.840
+nhưng nó sẽ không hội tụ chính xác.
+
+15
+00:00:33.840 --> 00:00:36.060
+Nhưng thuật toán có thể chỉ đi vòng quanh
+
+16
+00:00:36.060 --> 00:00:39.625
+và không bao giờ thực sự hội tụ
+
+17
+00:00:39.625 --> 00:00:41.930
+bởi vì bạn đang sử dụng một số giá trị cố định
+
+18
+00:00:41.930 --> 00:00:44.690
+Alpha và chỉ có một số nhiễu
+
+19
+00:00:44.690 --> 00:00:46.310
+trong các mini-batch khác.
+
+20
+00:00:46.310 --> 00:00:48.500
+Nhưng nếu bạn
+
+21
+00:00:48.500 --> 00:00:52.445
+từ từ giảm learning rate alpha
+
+22
+00:00:52.445 --> 00:00:54.470
+thì trong giai đoạn đầu,
+
+23
+00:00:54.470 --> 00:00:56.360
+mặc dù learning rate alpha vẫn còn lớn,
+
+24
+00:00:56.360 --> 00:00:58.990
+bạn vẫn có thể học tương đối nhanh.
+
+25
+00:00:58.990 --> 00:01:01.835
+Nhưng sau đó khi alpha nhỏ hơn,
+
+26
+00:01:01.835 --> 00:01:06.230
+các bước đi dần dần nhỏ và chậm hơn.
+
+27
+00:01:06.230 --> 00:01:10.130
+Và vì vậy bạn sẽ dao động ở
+một vùng chặt chẽ hơn xung quanh
+
+28
+00:01:10.130 --> 00:01:11.585
+mức tối thiểu này thay vì
+
+29
+00:01:11.585 --> 00:01:15.510
+lang thang xa ngay cả khi quá trình huấn luyện diễn ra liên tục.
+
+30
+00:01:15.510 --> 00:01:18.589
+Trực giác đằng sau việc giảm alpha từ từ
+
+31
+00:01:18.589 --> 00:01:22.000
+có thể trong bước đầu tiên của việc học,
+
+32
+00:01:22.000 --> 00:01:24.850
+bạn đủ khả năng để thực hiện
+những bước lớn hơn nhiều.
+
+33
+00:01:24.850 --> 00:01:28.865
+Nhưng khi các phương pháp học tập hội tụ,
+
+34
+00:01:28.865 --> 00:01:30.515
+thì việc có learning rate chậm hơn
+
+35
+00:01:30.515 --> 00:01:32.990
+cho phép bạn thực hiện bước nhỏ hơn.
+
+36
+00:01:32.990 --> 00:01:36.380
+Vì vậy, đây là cách bạn có thể
+triển khai giảm learning rate tập.
+
+37
+00:01:36.380 --> 00:01:44.560
+Nhớ lại rằng một epoch là một lần truyền thông qua các dữ liệu.
+
+38
+00:01:44.720 --> 00:01:49.955
+Vì vậy, nếu bạn có một training set như sau,
+
+39
+00:01:49.955 --> 00:01:54.595
+có thể bạn chia nó thành các mini batch khác nhau.
+
+40
+00:01:54.595 --> 00:01:57.470
+Sau đó, lần đầu tiên đi qua
+
+41
+00:01:57.470 --> 00:02:00.500
+training set được gọi là epoch đầu tiên,
+
+42
+00:02:00.500 --> 00:02:05.505
+và sau đó lần vượt qua thứ hai là
+epoch thứ hai, v.v.
+
+43
+00:02:05.505 --> 00:02:07.240
+Một điều bạn có thể làm là thiết lập
+
+44
+00:02:07.240 --> 00:02:09.490
+đặt learning rate Alpha
+
+45
+00:02:09.490 --> 00:02:13.450
+bằng 1 trên 1 cộng với một tham số,
+
+46
+00:02:13.450 --> 00:02:16.210
+mà tôi sẽ gọi là tỷ lệ phân rã,
+
+47
+00:02:17.090 --> 00:02:22.140
+nhân với epoch-num.
+
+48
+00:02:22.140 --> 00:02:24.070
+Đây sẽ là sẽ nhân
+
+49
+00:02:24.070 --> 00:02:27.025
+learning rate ban đầu alpha 0.
+
+50
+00:02:27.025 --> 00:02:29.140
+Lưu ý rằng tốc độ phân rã ở đây
+
+51
+00:02:29.140 --> 00:02:32.230
+trở thành một siêu tham số khác mà bạn có thể cần điều chỉnh.
+
+52
+00:02:32.230 --> 00:02:34.480
+Đây là một ví dụ cụ thể.
+
+53
+00:02:34.480 --> 00:02:36.730
+Nếu bạn thực hiện một vài epoch,
+
+54
+00:02:36.730 --> 00:02:39.140
+thì vài epoch sẽ đi qua dữ liệu của bạn.
+
+55
+00:02:39.140 --> 00:02:41.740
+Nếu alpha 0 bằng
+
+56
+00:02:41.740 --> 00:02:46.590
+0.2 và tốc độ phân rã = 1,
+
+57
+00:02:46.590 --> 00:02:48.990
+thì trong epoch đầu tiên của bạn,
+
+58
+00:02:48.990 --> 00:02:55.200
+alpha sẽ là 1/1 + 1 * alpha 0.
+
+59
+00:02:55.200 --> 00:02:59.415
+Vì vậy, learning rate của bạn sẽ là 0.1.
+
+60
+00:02:59.415 --> 00:03:02.160
+Đó chỉ là đánh giá công thức này
+
+61
+00:03:02.160 --> 00:03:05.450
+khi tốc độ phân rã bằng 1 và epoch-num là 1.
+
+62
+00:03:05.450 --> 00:03:07.025
+Với epoch thứ hai,
+
+63
+00:03:07.025 --> 00:03:10.505
+learning rate của bạn giảm xuống còn 0.67
+
+64
+00:03:10.505 --> 00:03:12.975
+Với cái thứ ba là 0.5,
+
+65
+00:03:12.975 --> 00:03:16.050
+thứ tư là 0.4,...
+
+66
+00:03:16.050 --> 00:03:17.190
+Bạn hãy tự mình đánh giá
+
+67
+00:03:17.190 --> 00:03:18.740
+những giá trị này và bạn có thể cảm thấy rằng
+
+68
+00:03:18.740 --> 00:03:22.040
+đó là một hàm số lượng epoch,
+
+69
+00:03:22.040 --> 00:03:25.220
+learning rate của bạn giảm dần
+
+70
+00:03:25.220 --> 00:03:29.735
+theo công thức này ở trên.
+
+71
+00:03:29.735 --> 00:03:32.720
+Nếu bạn muốn làm giảm learning rate,
+
+72
+00:03:32.720 --> 00:03:35.420
+thì điều bạn có thể làm là thử nhiều giá trị,
+
+73
+00:03:35.420 --> 00:03:38.690
+kể cả siêu tham số alpha 0
+
+74
+00:03:38.690 --> 00:03:41.750
+cũng như siêu tham số tốc độ phân rã này,
+
+75
+00:03:41.750 --> 00:03:44.465
+sau đó cố gắng tìm giá trị nào hoạt động tốt.
+
+76
+00:03:44.465 --> 00:03:46.850
+Ngoài công thức làm giảm learning rate tập này,
+
+77
+00:03:46.850 --> 00:03:48.850
+có một vài cách khác
+mà mọi người sử dụng.
+
+78
+00:03:48.850 --> 00:03:52.100
+Ví dụ, cái này được gọi là phân rã theo cấp số nhân.
+
+79
+00:03:52.100 --> 00:03:57.875
+Trong đó alpha bằng một số nhỏ hơn 1,
+
+80
+00:03:57.875 --> 00:04:04.635
+chẳng hạn như 0.95 nhân epoch-num,
+nhân alpha 0.
+
+81
+00:04:04.635 --> 00:04:10.190
+Làm theo cách này sẽ nhanh chóng làm giảm learning rate theo cấp số nhân.
+
+82
+00:04:10.190 --> 00:04:12.665
+Các công thức khác mà mọi người
+sử dụng là những công thức như
+
+83
+00:04:12.665 --> 00:04:15.410
+alpha bằng một số hằng số
+
+84
+00:04:15.410 --> 00:04:22.130
+trên căn bậc hai của epoch-num nhân với alpha 0.
+
+85
+00:04:22.130 --> 00:04:26.900
+hoặc một số hằng số k, một siêu tham số khác
+
+86
+00:04:26.900 --> 00:04:32.865
+chia cho mini batch căn bậc 2 của t và nhân với alpha 0.
+
+87
+00:04:32.865 --> 00:04:34.805
+Đôi khi bạn cũng nhìn thấy mọi người
+
+88
+00:04:34.805 --> 00:04:38.735
+learning rate tập giảm xuống theo các bước rời rạc
+
+89
+00:04:38.735 --> 00:04:41.330
+cho một số bước,
+
+90
+00:04:41.330 --> 00:04:43.175
+bạn có một số learning rate tập,
+
+91
+00:04:43.175 --> 00:04:44.450
+và sau một thời gian,
+
+92
+00:04:44.450 --> 00:04:46.490
+bạn giảm nó một nửa, sau một thời gian,
+
+93
+00:04:46.490 --> 00:04:48.005
+giảm một nửa, sau một thời gian,
+
+94
+00:04:48.005 --> 00:04:49.190
+giảm một nửa, và cứ như vậy,
+
+95
+00:04:49.190 --> 00:04:53.550
+đây là một cầu thang rời rạc.
+
+96
+00:04:54.970 --> 00:04:58.580
+Cho đến nay, chúng ta đã nói về việc sử dụng
+
+97
+00:04:58.580 --> 00:05:02.805
+một số công thức để điều chỉnh cách alpha,
+
+98
+00:05:02.805 --> 00:05:04.785
+learning rate thay đổi theo thời gian.
+
+99
+00:05:04.785 --> 00:05:08.890
+Một điều khác mà mọi người đôi khi làm,
+là phân rã thủ công.
+
+100
+00:05:08.890 --> 00:05:11.640
+Nếu bạn đang huấn luyện lần lượt từng mô hình,
+
+101
+00:05:11.640 --> 00:05:13.180
+và nếu mô hình
+
+102
+00:05:13.180 --> 00:05:15.770
+mất nhiều giờ hoặc thậm chí nhiều ngày để huấn luyện,
+
+103
+00:05:15.770 --> 00:05:18.490
+những gì một số người có lẽ sẽ chỉ xem mô hình của bạn là
+
+104
+00:05:18.490 --> 00:05:21.240
+khi nó huấn luyện trong nhiều ngày.
+
+105
+00:05:21.240 --> 00:05:23.320
+Và sau đó
+
+106
+00:05:23.320 --> 00:05:25.090
+có vẻ như learning rate chậm lại,
+
+107
+00:05:25.090 --> 00:05:26.890
+Tôi sẽ giảm alpha một chút.
+
+108
+00:05:26.890 --> 00:05:29.905
+Tất nhiên điều này có tác dụng,
+điều này có thể kiểm soát thủ công alpha,
+
+109
+00:05:29.905 --> 00:05:33.449
+thực sự điều chỉnh alpha thủ công, từng giờ, từng ngày.
+
+110
+00:05:33.449 --> 00:05:35.060
+Điều này chỉ hoạt động nếu
+bạn đang huấn luyện
+
+111
+00:05:35.060 --> 00:05:36.770
+ít mô hình,
+
+112
+00:05:36.770 --> 00:05:38.945
+nhưng đôi khi mọi người cũng làm như vậy.
+
+113
+00:05:38.945 --> 00:05:40.940
+Vì vậy, bây giờ bạn có thêm một vài tùy chọn về
+
+114
+00:05:40.940 --> 00:05:43.205
+cách kiểm soát learning rate alpha.
+
+115
+00:05:43.205 --> 00:05:45.110
+Bây giờ, trong trường hợp bạn đang
+suy nghĩ,
+
+116
+00:05:45.110 --> 00:05:46.580
+có rất nhiều siêu tham số.
+
+117
+00:05:46.580 --> 00:05:49.070
+Làm cách nào để chọn trong số tất cả
+tùy chọn khác nhau này?
+
+118
+00:05:49.070 --> 00:05:51.815
+Đừng lo lắng về điều đó. Trong tuần tới,
+
+119
+00:05:51.815 --> 00:05:52.910
+chúng ta sẽ nói thêm về cách
+
+120
+00:05:52.910 --> 00:05:56.015
+chọn các siêu tham số một cách có hệ thống.
+
+121
+00:05:56.015 --> 00:05:58.340
+Tôi muốn nói rằng
+
+122
+00:05:58.340 --> 00:05:59.960
+việc giảm learning rate thường giảm đi
+
+123
+00:05:59.960 --> 00:06:01.835
+danh sách những thứ tôi thử.
+
+124
+00:06:01.835 --> 00:06:04.250
+Đặt Alpha chỉ là một giá trị cố định của alpha
+
+125
+00:06:04.250 --> 00:06:06.770
+và điều chỉnh nó thật tốt có tác động rất lớn.
+
+126
+00:06:06.770 --> 00:06:08.780
+Giảm learning rate có thể giúp chúng ta rất nhiều.
+
+127
+00:06:08.780 --> 00:06:10.820
+Đôi khi nó thực sự giúp tăng tốc độ huấn luyện,
+
+128
+00:06:10.820 --> 00:06:12.350
+sẽ làm giảm
+
+129
+00:06:12.350 --> 00:06:15.455
+danh sách những thứ tôi sẽ thử.
+
+130
+00:06:15.455 --> 00:06:17.960
+Nhưng vào tuần tới,
+khi chúng ta nói về điều chỉnh siêu tham số,
+
+131
+00:06:17.960 --> 00:06:20.720
+bạn thấy các cách có hệ thống hơn để tổ chức tất cả
+
+132
+00:06:20.720 --> 00:06:22.340
+các siêu tham số này và cách
+
+133
+00:06:22.340 --> 00:06:24.280
+tìm kiếm hiệu quả
+trong số chúng.
+
+134
+00:06:24.280 --> 00:06:27.300
+Đó là toàn bộ nội dung về phân rã learning rate tập
+
+135
+00:06:27.300 --> 00:06:29.735
+Cuối cùng, tôi cũng muốn nói một chút
+
+136
+00:06:29.735 --> 00:06:32.360
+về điểm tối ưu cục bộ và điểm yên ngựa
+
+137
+00:06:32.360 --> 00:06:33.830
+trong neural network để bạn có thể có
+
+138
+00:06:33.830 --> 00:06:36.125
+trực giác tốt hơn về các loại
+
+139
+00:06:36.125 --> 00:06:39.050
+vấn đề tối ưu hóa mà thuật toán tối ưu hóa
+
+140
+00:06:39.050 --> 00:06:40.340
+đang cố gắng giải quyết số
+khi bạn đang cố gắng
+
+141
+00:06:40.340 --> 00:06:41.660
+huấn luyện các neural network này.
+
+142
+00:06:41.660 --> 00:06:44.640
+Hãy cùng xem video tiếp theo để thấy điều đó.

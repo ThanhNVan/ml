@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:01.440 --> 00:00:06.640
+Hãy bắt đầu để chính thức hóa các vấn đề của việc học một từ tốt embedding.
+
+2
+00:00:06.640 --> 00:00:09.230
+Khi bạn thực hiện một thuật toán để tìm hiểu một từ để embedding,
+
+3
+00:00:09.230 --> 00:00:12.698
+những gì bạn kết thúc học tập là một ma trận embedding.
+
+4
+00:00:12.698 --> 00:00:14.285
+Chúng ta hãy nhìn vào những gì có nghĩa là.
+
+5
+00:00:14.285 --> 00:00:19.005
+Chúng ta hãy nói, như thường lệ chúng tôi sử dụng từ vựng 10.000 từ chúng tôi.
+
+6
+00:00:19.005 --> 00:00:21.412
+Vì vậy, các từ vựng có A, a-rôn,
+
+7
+00:00:21.412 --> 00:00:29.750
+Màu da cam, Zulu, có lẽ cũng không biết chữ là một mã thông báo.
+
+8
+00:00:29.750 --> 00:00:34.475
+Những gì chúng tôi sẽ làm là tìm hiểu embedding matrix E,
+
+9
+00:00:34.475 --> 00:00:43.900
+đó sẽ là một 300 chiều bởi ma trận chiều 10.000,
+
+10
+00:00:43.900 --> 00:00:48.933
+Nếu bạn có 10.000 từ vựng hoặc có lẽ 10,001 mã thông báo từ chúng tôi,
+
+11
+00:00:48.933 --> 00:00:51.105
+đó là một mã thông báo thêm.
+
+12
+00:00:51.105 --> 00:00:54.675
+Và các cột của ma trận này sẽ khác nhau embeddings
+
+13
+00:00:54.675 --> 00:00:58.245
+khác nhau từ 10.000 bạn có trong từ vựng của bạn.
+
+14
+00:00:58.245 --> 00:01:05.475
+Vì vậy, cam là chữ số 6257 trong vốn từ vựng của chúng tôi 10,000 từ.
+
+15
+00:01:05.475 --> 00:01:12.300
+Vì vậy, một phần của chúng tôi sẽ sử dụng ký hiệu là 06257
+
+16
+00:01:12.300 --> 00:01:20.995
+Bể một vector với Zero ở khắp mọi nơi và một ở vị trí 6257.
+
+17
+00:01:20.995 --> 00:01:27.690
+Và vì vậy, đây sẽ là một véc tơ chiều 10.000 với một trong những chỉ là một vị trí.
+
+18
+00:01:27.690 --> 00:01:29.430
+Vì vậy, đây không phải là khá quy mô rút ra.
+
+19
+00:01:29.430 --> 00:01:34.220
+Vâng, điều này cần như cao như ma trận embedding bên trái là rộng.
+
+20
+00:01:34.220 --> 00:01:40.530
+Và nếu các ma trận embedding được gọi là vốn E sau đó thông báo rằng nếu bạn
+
+21
+00:01:40.530 --> 00:01:49.140
+có E và nhân nó bởi chỉ một bể vector 0 6257,
+
+22
+00:01:49.140 --> 00:01:54.045
+sau đó nó sẽ là một vector 300-chiều.
+
+23
+00:01:54.045 --> 00:02:02.170
+Vì vậy, E là 300 10,000 và 0 là 10.000 bằng 1.
+
+24
+00:02:02.170 --> 00:02:06.700
+Vì vậy, sản phẩm sẽ là 300 bởi 1,
+
+25
+00:02:06.700 --> 00:02:10.060
+Vì vậy, với chiều 300 vector và thông báo đó
+
+26
+00:02:10.060 --> 00:02:13.840
+để tính toán các yếu tố đầu tiên của vector này,
+
+27
+00:02:13.840 --> 00:02:15.385
+của vectơ này chiều 300,
+
+28
+00:02:15.385 --> 00:02:21.565
+những gì bạn làm là bạn sẽ nhân hàng đầu của ma trận E với điều này.
+
+29
+00:02:21.565 --> 00:02:24.535
+Nhưng tất cả những yếu tố này là zero trừ cho
+
+30
+00:02:24.535 --> 00:02:27.970
+yếu tố 6257 và vì vậy bạn kết thúc với zero lần này,
+
+31
+00:02:27.970 --> 00:02:30.490
+Zero lần này, zero lần này và vì vậy on.
+
+32
+00:02:30.490 --> 00:02:34.270
+Và sau đó, 1 lần này là bất cứ điều gì,
+
+33
+00:02:34.270 --> 00:02:37.060
+và zero lần này, zero lần này, thời gian không và vân vân.
+
+34
+00:02:37.060 --> 00:02:44.350
+Và vì vậy, bạn đã kết thúc với các yếu tố đầu tiên là bất cứ điều gì đó là lên đó, các yếu tố
+
+35
+00:02:44.350 --> 00:02:46.235
+cột màu da cam.
+
+36
+00:02:46.235 --> 00:02:50.169
+Và sau đó, cho phần tử thứ hai của véc tơ chiều 300 này chúng ta đang tính toán,
+
+37
+00:02:50.169 --> 00:02:52.210
+bạn sẽ có các véc tơ
+
+38
+00:02:52.210 --> 00:02:57.555
+0657 và nhân nó bằng hàng thứ hai với ma trận E. Vì vậy, một lần nữa,
+
+39
+00:02:57.555 --> 00:03:00.010
+bạn có 0 lần này,
+
+40
+00:03:00.010 --> 00:03:01.835
+cộng với zero lần này,
+
+41
+00:03:01.835 --> 00:03:07.855
+cộng thêm thời gian bằng không tất cả những là những yếu tố và sau đó một lần này,
+
+42
+00:03:07.855 --> 00:03:10.330
+và sau đó zero lần tất cả mọi thứ khác và thêm rằng với nhau.
+
+43
+00:03:10.330 --> 00:03:19.795
+Vì vậy bạn kết thúc với điều này và như bạn đi xuống phần còn lại của cột này.
+
+44
+00:03:19.795 --> 00:03:25.485
+Vì vậy, đó là lý do tại sao thời gian ma trận E embedding nóng nhất này đây vector gió lên
+
+45
+00:03:25.485 --> 00:03:32.430
+lựa chọn trong cột chiều 300 này tương ứng với chữ màu da cam.
+
+46
+00:03:32.430 --> 00:03:38.870
+Vì vậy, điều này có được bằng E 6257 mà
+
+47
+00:03:38.870 --> 00:03:41.245
+là các ký hiệu, chúng tôi sẽ sử dụng để đại diện cho
+
+48
+00:03:41.245 --> 00:03:46.345
+embedding các vector đó 300 một chiều vector từ Orange.
+
+49
+00:03:46.345 --> 00:03:49.658
+Và nói chung, E cho một từ cụ thể W,
+
+50
+00:03:49.658 --> 00:03:56.195
+Điều này sẽ embedding cho một từ W. Và nói chung,
+
+51
+00:03:56.195 --> 00:03:59.583
+E thời gian thay thế O J,
+
+52
+00:03:59.583 --> 00:04:02.500
+Bể một vectơ với một trong những vị trí J,
+
+53
+00:04:02.500 --> 00:04:05.090
+Điều này có là E_J và đó sẽ
+
+54
+00:04:05.090 --> 00:04:11.695
+Các word embedding J trong từ vựng.
+
+55
+00:04:11.695 --> 00:04:16.325
+Vì vậy, điều cần nhớ từ slide này là
+
+56
+00:04:16.325 --> 00:04:21.650
+mục tiêu của chúng tôi sẽ là để tìm hiểu một ma trận embedding E và những gì bạn thấy trong đoạn video tiếp theo
+
+57
+00:04:21.650 --> 00:04:24.460
+là bạn khởi tạo E ngẫu nhiên và bạn đang thẳng
+
+58
+00:04:24.460 --> 00:04:27.725
+tinh thần để tìm hiểu tất cả các thông số này 300 bởi
+
+59
+00:04:27.725 --> 00:04:35.105
+10.000 chiều ma trận và E lần vector một bể này cung cấp cho bạn các embedding các vector.
+
+60
+00:04:35.105 --> 00:04:37.390
+Bây giờ chỉ cần một lưu ý,
+
+61
+00:04:37.390 --> 00:04:38.742
+Khi chúng tôi đang viết phương trình,một
+
+62
+00:04:38.742 --> 00:04:41.750
+nó sẽ thuận tiện để viết này loại ký hiệu mà bạn có
+
+63
+00:04:41.750 --> 00:04:45.726
+ma trận E và nhân nó bằng bể một vector O.
+
+64
+00:04:45.726 --> 00:04:49.095
+Nhưng nếu khi bạn đang thực hiện điều này,
+
+65
+00:04:49.095 --> 00:04:52.400
+nó không phải là hiệu quả thực sự thực hiện điều này như là
+
+66
+00:04:52.400 --> 00:04:56.627
+một ma trận khối lượng vector nhân vì nóng một vectơ,
+
+67
+00:04:56.627 --> 00:05:01.355
+bây giờ đây là một véc tơ chiều tương đối cao và hầu hết những yếu tố zero.
+
+68
+00:05:01.355 --> 00:05:03.560
+Vì vậy, đó là thực sự không hiệu quả sử dụng
+
+69
+00:05:03.560 --> 00:05:06.770
+một phép nhân ma trận véc tơ để thực hiện điều này bởi vì nếu
+
+70
+00:05:06.770 --> 00:05:10.070
+chúng tôi nhân một bó toàn bộ điều bởi Zero và do đó các thực hành,
+
+71
+00:05:10.070 --> 00:05:12.950
+bạn thực sự muốn sử dụng một chức năng đặc biệt để chỉ tìm kiếm
+
+72
+00:05:12.950 --> 00:05:17.335
+một cột E ma trận chứ không phải là làm điều này với phép nhân ma trận.
+
+73
+00:05:17.335 --> 00:05:20.945
+Nhưng văn bản của bản đồ, chỉ cần thuận tiện để viết nó ra bằng cách này.
+
+74
+00:05:20.945 --> 00:05:24.545
+Vì vậy, trong của Cara ví dụ đó là
+
+75
+00:05:24.545 --> 00:05:29.637
+một lớp embedding và chúng tôi sử dụng các lớp embedding sau đó
+
+76
+00:05:29.637 --> 00:05:33.970
+nhiều hơn nữa hiệu quả chỉ cần kéo ra các cột bạn muốn embedding ma thay
+
+77
+00:05:33.970 --> 00:05:38.638
+hơn nó với một nhiều chậm hơn vector phép nhân ma trận.
+
+78
+00:05:38.638 --> 00:05:40.870
+Vì vậy, trong video này bạn đã thấy các notations được sử dụng để
+
+79
+00:05:40.870 --> 00:05:43.740
+Mô tả các thuật toán để học hỏi những embeddings và
+
+80
+00:05:43.740 --> 00:05:45.220
+Các thuật ngữ quan trọng là
+
+81
+00:05:45.220 --> 00:05:50.265
+ma trận thủ đô này E có chứa tất cả các embeddings cho các từ của từ vựng.
+
+82
+00:05:50.265 --> 00:05:53.590
+Trong video tiếp theo, chúng tôi sẽ bắt đầu nói về thuật toán cụ thể
+
+83
+00:05:53.590 --> 00:05:57.030
+cho việc học tập này ma trận E. Chúng ta hãy đi vào video tiếp theo.

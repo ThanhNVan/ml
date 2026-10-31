@@ -1,0 +1,102 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.880
+So what does deep learning have to do with the brain? At the risk of giving away the punch line,
+
+00:00:04.880 --> 00:00:10.240
+I would say not a whole lot. But let's take a quick look at why people keep making the analogy
+
+00:00:10.240 --> 00:00:16.080
+between deep learning and the human brain. When you implement a neural network, this is what you do,
+
+00:00:16.080 --> 00:00:22.160
+board prop and back prop. And I think because it's been difficult to convey intuitions about what
+
+00:00:22.160 --> 00:00:28.160
+these equations are doing, really gradient descent on a very complex function, the analogy that is
+
+00:00:28.160 --> 00:00:34.320
+like the brain has become really an oversimplified explanation for what this is doing. But the
+
+00:00:34.320 --> 00:00:40.560
+simplicity of this makes it kind of seductive for people to just say it publicly, as well as for
+
+00:00:40.560 --> 00:00:46.080
+media to report it. And the survey called the popular imagination. And there is a very loose
+
+00:00:46.080 --> 00:00:53.600
+analogy between, let's say, a logistic regression unit with a sigmoid activation function. And
+
+00:00:53.600 --> 00:01:00.160
+here's a cartoon of a single neuron in the brain. In this picture of a biological neuron,
+
+00:01:01.440 --> 00:01:07.200
+this neuron, which is a cell in your brain, receives electric signals from other neurons,
+
+00:01:07.760 --> 00:01:12.640
+x1, x2, x3, or maybe from other neurons, a1, a2, a3. There's a simple,
+
+00:01:12.640 --> 00:01:18.720
+thresholded computation. And then if this neuron fires, it sends a pulse of electricity
+
+00:01:18.720 --> 00:01:26.240
+down the axon, down this long wire, perhaps to other neurons. So there is a very simplistic
+
+00:01:26.240 --> 00:01:31.040
+analogy between a single logistic unit, between a single neuron in the neural network,
+
+00:01:31.040 --> 00:01:37.360
+and a biological neuron like that shown on the right. But I think that today, even neuroscientists
+
+00:01:37.360 --> 00:01:43.280
+have almost no idea what even a single neuron is doing. A single neuron appears to be much more
+
+00:01:43.280 --> 00:01:49.920
+complex than we are able to characterize with neuroscience. And while some of what it's doing
+
+00:01:49.920 --> 00:01:55.760
+is a little bit like logistic regression, there's still a lot about what even a single neuron does
+
+00:01:55.760 --> 00:02:01.600
+that no one that no human today understands. For example, exactly how neurons in the human brain
+
+00:02:01.600 --> 00:02:08.320
+learns is still a very mysterious process. And it's completely unclear today whether the human brain
+
+00:02:08.320 --> 00:02:12.960
+uses an algorithm does anything like back propagation or gradient descent, or if there's some
+
+00:02:12.960 --> 00:02:19.840
+fundamentally different learning principle that the human brain uses. So when I think of deep
+
+00:02:19.840 --> 00:02:25.680
+learning, I think of it as being very good at learning very flexible functions, very complex
+
+00:02:25.680 --> 00:02:31.680
+functions, to learn x to y mappings, to learn input output mappings in supervised learning.
+
+00:02:32.320 --> 00:02:38.240
+And whereas the is like the brain analogy, maybe that was useful once, I think the field has
+
+00:02:38.240 --> 00:02:44.000
+moved to the point where that analogy is breaking down, and I tend not to use that analogy much
+
+00:02:44.000 --> 00:02:50.160
+anymore. So that's it for neural networks and their brain. I do think that maybe the field of
+
+00:02:50.160 --> 00:02:55.600
+computer vision has taken a bit more inspiration from the human brain than other disciplines that
+
+00:02:55.600 --> 00:03:01.040
+also apply deep learning. But I personally use the analogy, you know, to the human brain less
+
+00:03:01.040 --> 00:03:07.520
+than I used to. So that's it for this video. You now know how to implement forward prop and
+
+00:03:07.520 --> 00:03:12.080
+back prop and gradient descent even for deep neural networks. Best of luck with the program
+
+00:03:12.080 --> 00:03:16.720
+exercise. And I look forward to sharing more of these ideas of you in the second course.

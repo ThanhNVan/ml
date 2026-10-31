@@ -1,0 +1,205 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.550
+Hi, chào mừng bạn đến với khóa học này về cách cấu trúc dự án machine learning của bạn,
+
+2
+00:00:05.550 --> 00:00:08.740
+đó là về chiến lược machine learning.
+
+3
+00:00:08.740 --> 00:00:11.490
+Tôi hy vọng rằng thông qua khóa học này, bạn sẽ tìm hiểu làm thế nào để
+
+4
+00:00:11.490 --> 00:00:15.235
+nhanh chóng và hiệu quả hơn nhiều hệ thống machine learning của bạn hoạt động.
+
+5
+00:00:15.235 --> 00:00:17.915
+Vì vậy, chiến lược machine learning là gì.
+
+6
+00:00:17.915 --> 00:00:20.640
+Hãy bắt đầu với một ví dụ thúc đẩy.
+
+7
+00:00:20.640 --> 00:00:23.755
+Giả sử bạn đang làm việc trên tập tin chi phí mèo của bạn.
+
+8
+00:00:23.755 --> 00:00:26.060
+Và sau khi làm việc nó trong một thời gian,
+
+9
+00:00:26.060 --> 00:00:29.013
+bạn đã nhận được hệ thống của bạn để có độ chính xác 90%,
+
+10
+00:00:29.013 --> 00:00:31.985
+nhưng điều này là không đủ tốt cho ứng dụng của bạn.
+
+11
+00:00:31.985 --> 00:00:34.980
+Sau đó bạn có thể có rất nhiều ý tưởng về làm thế nào để cải thiện hệ thống của bạn.
+
+12
+00:00:34.980 --> 00:00:39.060
+Ví dụ: bạn có thể nghĩ tốt, hãy thu thập nhiều dữ liệu hơn, nhiều training data hơn.
+
+13
+00:00:39.060 --> 00:00:40.315
+Hoặc bạn có thể nói,
+
+14
+00:00:40.315 --> 00:00:42.880
+có thể tập huấn của bạn chưa đủ đa dạng,
+
+15
+00:00:42.880 --> 00:00:46.050
+bạn nên thu thập hình ảnh của mèo ở những tư thế đa dạng hơn,
+
+16
+00:00:46.050 --> 00:00:49.335
+hoặc có thể là một bộ ví dụ tiêu cực đa dạng hơn.
+
+17
+00:00:49.335 --> 00:00:52.552
+Vâng có lẽ bạn muốn đào tạo thuật toán lâu hơn với gradient descent.
+
+18
+00:00:52.552 --> 00:00:54.923
+Hoặc có thể bạn muốn thử một thuật toán tối ưu hóa khác nhau,
+
+19
+00:00:54.923 --> 00:00:57.455
+giống như thuật toán tối ưu hóa Adam.
+
+20
+00:00:57.455 --> 00:01:01.230
+Hoặc có thể cố gắng một mạng lớn hơn hoặc một mạng nhỏ hơn hoặc có thể bạn
+
+21
+00:01:01.230 --> 00:01:05.160
+muốn cố gắng bỏ học hoặc có thể L2 thường xuyên.
+
+22
+00:01:05.160 --> 00:01:06.360
+Hoặc có thể bạn muốn thay đổi
+
+23
+00:01:06.360 --> 00:01:09.660
+kiến trúc mạng chẳng hạn như thay đổi chức năng kích hoạt,
+
+24
+00:01:09.660 --> 00:01:12.420
+thay đổi số lượng các đơn vị ẩn và vân vân.
+
+25
+00:01:12.420 --> 00:01:15.040
+Khi cố gắng cải thiện một hệ thống deep learning,
+
+26
+00:01:15.040 --> 00:01:19.238
+bạn thường có rất nhiều ý tưởng hoặc những thứ bạn có thể thử.
+
+27
+00:01:19.238 --> 00:01:21.680
+Và vấn đề là nếu bạn chọn kém,
+
+28
+00:01:21.680 --> 00:01:25.080
+hoàn toàn có thể là bạn bỏ ra sáu tháng tính phí theo
+
+29
+00:01:25.080 --> 00:01:29.785
+một hướng nào đó chỉ để nhận ra sau sáu tháng rằng điều đó không làm được gì tốt.
+
+30
+00:01:29.785 --> 00:01:33.810
+Ví dụ, tôi đã thấy một số đội dành sáu tháng để thu thập
+
+31
+00:01:33.810 --> 00:01:36.120
+dữ liệu nhiều hơn chỉ để nhận ra sau
+
+32
+00:01:36.120 --> 00:01:40.260
+sáu tháng rằng nó hầu như không cải thiện hiệu suất của hệ thống của họ.
+
+33
+00:01:40.260 --> 00:01:43.355
+Vì vậy, giả sử bạn không có sáu tháng để lãng phí vấn đề của mình,
+
+34
+00:01:43.355 --> 00:01:46.290
+sẽ không tốt nếu bạn có cách nhanh chóng và hiệu quả để
+
+35
+00:01:46.290 --> 00:01:50.070
+tìm ra những ý tưởng nào trong số tất cả những ý tưởng này và thậm chí cả những ý tưởng khác,
+
+36
+00:01:50.070 --> 00:01:54.365
+đáng theo đuổi và những ý tưởng nào bạn có thể loại bỏ một cách an toàn.
+
+37
+00:01:54.365 --> 00:01:59.190
+Vì vậy, những gì tôi hy vọng làm trong khóa học này là dạy cho bạn một số chiến lược, đó là,
+
+38
+00:01:59.190 --> 00:02:02.365
+cách phân tích một vấn đề machine learning sẽ
+
+39
+00:02:02.365 --> 00:02:06.570
+chỉ ra bạn theo hướng của những điều hứa hẹn nhất để thử.
+
+40
+00:02:06.570 --> 00:02:08.267
+Điều tôi sẽ làm trong khóa học này cũng là chia sẻ với các
+
+41
+00:02:08.267 --> 00:02:09.930
+bạn một số bài học mà tôi đã học được thông qua việc
+
+42
+00:02:09.930 --> 00:02:13.700
+xây dựng và vận chuyển một số lượng lớn các sản phẩm deep learning.
+
+43
+00:02:13.700 --> 00:02:17.755
+Và tôi nghĩ những tài liệu này thực sự khá độc đáo đối với khóa học này.
+
+44
+00:02:17.755 --> 00:02:20.280
+Tôi không thấy nhiều ý tưởng này được giảng dạy
+
+45
+00:02:20.280 --> 00:02:23.970
+trong các khóa học deep learning của các trường đại học chẳng hạn.
+
+46
+00:02:23.970 --> 00:02:26.880
+Nó cũng chỉ ra rằng chiến lược machine learning đang
+
+47
+00:02:26.880 --> 00:02:29.850
+thay đổi trong kỷ nguyên của deep learning vì những điều bạn có thể
+
+48
+00:02:29.850 --> 00:02:32.745
+làm bây giờ khác với các thuật toán deep learning
+
+49
+00:02:32.745 --> 00:02:36.255
+hơn so với thế hệ trước của các thuật toán machine learning.
+
+50
+00:02:36.255 --> 00:02:39.330
+Tôi hy vọng rằng những ý tưởng này sẽ giúp bạn trở nên
+
+51
+00:02:39.330 --> 00:02:42.390
+hiệu quả hơn trong việc làm cho các hệ thống deep learning của mình hoạt động.

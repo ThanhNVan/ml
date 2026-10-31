@@ -1,0 +1,52 @@
+Chào mừng bạn đã trở lại.
+Trong tuần này, bạn đã học cách triển khai
+một mạng nơ-ron nhân tạo. Trước khi đi sâu vào
+các chi tiết kỹ thuật, trong video này, tôi muốn cung cấp cho bạn một cái nhìn nhanh về
+những gì bạn sẽ học trong video của tuần này. Và nếu bạn không theo dõi tất cả
+mọi chi tiết trong video này, thì đừng lo lắng, chúng ta sẽ đi sâu vào các
+chi tiết kỹ thuật trong một vài video tiếp theo. Bây giờ, tôi sẽ đưa ra một cái nhìn tổng quan
+nhanh về cách bạn triển khai trong mạng của mình. Tuần trước, chúng ta
+đã nói về hồi quy logistic, và chúng ta đã thấy mô hình này
+tương ứng với phác thảo tính toán như sau, bạn không đặt các
+tính năng x và tham số w và b cho phép bạn tính z mà
+sau đó được sử dụng để tính a, và chúng ta sử dụng a thay cho đầu ra y mũ và sau đó bạn
+có thể tính toán hàm loss,L. Một mạng nơ-ron
+nhân tạo trông như thế này. Như tôi đã đề cập trước đây, bạn có thể xây dựng một mạng nơ-ron nhân tạo
+bằng cách xếp chồng nhiều đơn vị sigmoid nhỏ. Trong khi trước đây, nút này
+tương ứng với hai bước để tính toán. Bước đầu tiên là tính giá trị z, bước thứ hai là tính giá trị a này. Trong mạng nơ-ron nhân tạo này, chồng nốt này sẽ tương ứng
+với phép tính tương tự z như thế này, cũng như, một phép tính tương tự a. Sau đó, nút đó sẽ tương ứng với
+một phép tính tương tự z và a khác. Và ký hiệu mà tôi sẽ giới thiệu
+thì giống như thế này. Đầu tiên, chúng ta sẽ
+nhập các tính năng, x, cùng với một số tham số w và b, và điều này sẽ
+cho phép bạn tính z một. Và ký hiệu mới mà
+chúng ta sẽ sử dụng là 1 trong dấu ngoặc
+vuông ([1]) để đề cập tới số lượng liên kết với chồng nút
+này, nó được gọi là một lớp. Sau đó, chúng ta sẽ sử dụng
+2 trong dấu ngoặc vuông ([2]) để chỉ số lượng
+liên kết với nút đó. Đó gọi là một lớp khác
+của mạngnơ-ron nhân tạo. Dấu ngoặc vuông như chúng ta có ở đây, bạn đừng nhầm lẫn với dấu ngoặc tròn mà chúng ta sử dụng
+để chỉ các ví dụ đào tạo riêng lẻ. Và nếu x với chỉ số trên (i) đề cập
+đến ví dụ đào tạo thứ i, thì [1] và [2] đề cập đến
+các lớp khác nhau này; lớp một và lớp hai trong
+mạng nơ-ron nhân tạo này. Và cứ như vậy, sau khi tính toán z_[1]
+tương tự như hồi quy logistic, sẽ có một phép tính để tính a_[1], và đó là sigmoid của z_[1], và sau đó bạn tính z_[2] bằng một phương trình
+tuyến tính khác và sau đó tính a_[2]. a_[2] là đầu ra cuối cùng của mạng nơ-ron nhân tạo và cũng
+sẽ được sử dụng thay thế y mũ. Tôi biết là có rất nhiều
+chi tiết nhưng điều bạn cần phải nhớ là đối với
+hồi quy logistic, chúng ta có theo sau z
+này là một phép tính a. Trong mạng nơ-ron nhân tạo này, ở đây chúng ta
+làm điều đó nhiều lần, như là sau một z
+là một phép tính a, và sau một z là
+một phép tính a, và cuối cùng bạn tính
+được hàm loss ở cuối. Hãy nhớ rằng
+đối với hồi quy logistic, chúng ta đã tính toán ngược để tính toán các đạo hàm
+hoặc khi bạn tính da, dz và v.v. Và, tương tự như vậy, một mạng nơ-ron nhân tạo
+sẽ tính toán ngược như này, trong đó bạn tính da_[2], dz_[2], cho phép
+bạn tính toán dw_[2], db_[2], v.v. Phép tính ngược từ phải sang trái
+được biểu thị bằng các mũi tên màu đỏ. Và điều này cung cấp cho bạn một
+cái nhìn nhanh về mạng nơ-ron nhân tạo. Về cơ bản, nó đã thực hiện
+hồi quy logistic và lặp lại hai lần. Tôi biết là có rất
+nhiều ký hiệu mới, chi tiết mới, nhưng đừng
+lo lắng về việc ghi nhớ chúng, theo dõi mọi chi tiết, chúng ta sẽ
+đi vào chi tiết trong vài video tiếp theo. Hãy nhớ xem video tiếp theo. Chúng ta sẽ nói về đại diện
+mạng nơ-ron nhân tạo.

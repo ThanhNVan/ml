@@ -1,0 +1,693 @@
+WEBVTT
+
+1
+00:00:00.300 --> 00:00:04.530
+Trong video cuối cùng, bạn đã thấy làm thế nào bạn có thể học một mô hình
+
+2
+00:00:04.530 --> 00:00:07.220
+ngôn ngữ thần kinh để có được word embedding tốt.
+
+3
+00:00:07.220 --> 00:00:11.870
+Trong video này, bạn sẽ thấy thuật toán Word2Vec đó là
+
+4
+00:00:11.870 --> 00:00:15.750
+cách đơn giản và thoải mái hơn hiệu quả để tìm hiểu các loại embedding này.
+
+5
+00:00:15.750 --> 00:00:16.610
+Chúng ta hãy xem.
+
+6
+00:00:16.610 --> 00:00:20.749
+Hầu hết các ý tưởng tôi sẽ trình bày trong video này là do Tomas Mikolov, Kai Chen, Greg Corrado, và Jeff Dean.
+
+7
+00:00:20.749 --> 00:00:27.038
+Giả sử bạn được đưa ra câu này trong tập huấn của bạn.
+
+8
+00:00:27.038 --> 00:00:33.040
+Trong mô hình bỏ qua, những gì chúng tôi sẽ làm là đưa ra một vài bối cảnh để
+
+9
+00:00:33.040 --> 00:00:38.540
+nhắm mục tiêu lỗi để tạo ra vấn đề học tập được giám sát của chúng tôi.
+
+10
+00:00:39.680 --> 00:00:44.140
+Vì vậy, thay vì có bối cảnh luôn là bốn từ cuối cùng hoặc
+
+11
+00:00:44.140 --> 00:00:48.980
+những từ kết thúc cuối cùng ngay trước từ mục tiêu, điều tôi sẽ làm là, nói,
+
+12
+00:00:48.980 --> 00:00:51.340
+ngẫu nhiên chọn một từ để trở thành từ ngữ cảnh.
+
+13
+00:00:51.340 --> 00:00:53.590
+Và giả sử chúng tôi đã chọn từ màu cam.
+
+14
+00:00:54.840 --> 00:00:59.080
+Và những gì chúng ta sẽ làm là chọn ngẫu nhiên một từ khác trong một cửa sổ nào đó.
+
+15
+00:00:59.080 --> 00:01:00.750
+Nói cộng trừ năm từ hoặc
+
+16
+00:01:00.750 --> 00:01:05.240
+cộng trừ mười từ của từ ngữ cảnh và chúng ta chọn đó là từ mục tiêu.
+
+17
+00:01:05.240 --> 00:01:10.140
+Vì vậy, có lẽ chỉ một cách tình cờ bạn có thể chọn nước trái cây để trở thành một từ mục tiêu,
+
+18
+00:01:10.140 --> 00:01:12.280
+đó chỉ là một từ sau.
+
+19
+00:01:12.280 --> 00:01:14.592
+Hoặc bạn có thể chọn hai từ trước đây.
+
+20
+00:01:14.592 --> 00:01:21.745
+Vì vậy, bạn có một cặp khác nơi mục tiêu có thể là thủy tinh hoặc,
+
+21
+00:01:25.030 --> 00:01:29.809
+Có lẽ chỉ là tình cờ bạn chọn từ của tôi là mục tiêu.
+
+22
+00:01:29.809 --> 00:01:35.281
+Và vì vậy chúng tôi sẽ thiết lập một vấn đề học tập có giám sát nơi đưa ra từ ngữ cảnh,
+
+23
+00:01:35.281 --> 00:01:40.673
+bạn được yêu cầu dự đoán một từ được chọn ngẫu nhiên trong câu nói, một cộng trừ
+
+24
+00:01:40.673 --> 00:01:46.250
+mười từ cửa sổ, hoặc cộng trừ năm hoặc mười từ cửa sổ từ ngữ cảnh đầu vào đó.
+
+25
+00:01:46.250 --> 00:01:51.378
+Và rõ ràng, đây không phải là một vấn đề học tập dễ dàng, bởi vì trong
+
+26
+00:01:51.378 --> 00:01:56.860
+cộng trừ đi 10 từ của từ cam, nó có thể là rất nhiều từ khác nhau.
+
+27
+00:01:56.860 --> 00:02:00.385
+Nhưng một cô gái đang thiết lập vấn đề học tập có giám sát này,
+
+28
+00:02:00.385 --> 00:02:03.652
+không phải là làm tốt về vấn đề học tập có giám sát,
+
+29
+00:02:03.652 --> 00:02:07.830
+mà là chúng ta muốn sử dụng vấn đề học tập này để học cách word embedding tốt.
+
+30
+00:02:09.360 --> 00:02:11.370
+Vì vậy, đây là các chi tiết của mô hình.
+
+31
+00:02:11.370 --> 00:02:16.670
+Hãy nói rằng chúng ta sẽ tiếp tục để vocab của chúng tôi 10.000 từ.
+
+32
+00:02:16.670 --> 00:02:21.050
+Và một số đã có kích thước vocab vượt quá một triệu từ.
+
+33
+00:02:21.050 --> 00:02:25.730
+Nhưng vấn đề học tập giám sát cơ bản chúng ta sẽ giải quyết là chúng ta muốn
+
+34
+00:02:25.730 --> 00:02:33.340
+tìm hiểu bản đồ từ một số Context c, chẳng hạn như từ cam đến một số
+
+35
+00:02:33.340 --> 00:02:38.464
+mục tiêu, mà chúng ta sẽ gọi là t, mà có thể là từ nước trái cây hoặc
+
+36
+00:02:38.464 --> 00:02:43.825
+từ kính hoặc từ của tôi, nếu chúng ta sử dụng ví dụ từ slide trước.
+
+37
+00:02:43.825 --> 00:02:47.665
+Vì vậy, trong từ vựng của chúng tôi, cam là từ 6257, và từ
+
+38
+00:02:48.845 --> 00:02:55.015
+nước ép là từ 4834 trong vocab của chúng tôi là 10.000 từ.
+
+39
+00:02:55.015 --> 00:03:00.222
+Vì vậy, để
+
+40
+00:03:00.222 --> 00:03:05.028
+đại diện cho đầu vào như từ cam, bạn có thể bắt đầu với một số
+
+41
+00:03:05.028 --> 00:03:08.255
+vector nóng mà sẽ được viết như O subscript C, do
+
+42
+00:03:08.255 --> 00:03:11.235
+đó, có một vector nóng cho các từ ngữ cảnh.
+
+43
+00:03:11.235 --> 00:03:15.656
+Và sau đó tương tự như những gì bạn nhìn thấy trên video cuối cùng, bạn có thể lấy
+
+44
+00:03:15.656 --> 00:03:20.696
+ma trận embedding E, nhân E với vector O subscript C, và
+
+45
+00:03:20.696 --> 00:03:25.560
+điều này cung cấp cho bạn vector embedding của bạn cho từ ngữ ngữ cảnh đầu vào,
+
+46
+00:03:25.560 --> 00:03:29.820
+vì vậy ở đây EC bằng vốn E lần mà một vector nóng.
+
+47
+00:03:29.820 --> 00:03:34.905
+Sau đó, trong mạng lưới mới mà chúng tôi hình thành, chúng tôi sẽ lấy vector EC này và
+
+48
+00:03:34.905 --> 00:03:36.950
+đưa nó vào một đơn vị softmax.
+
+49
+00:03:36.950 --> 00:03:40.950
+Vì vậy, tôi đã vẽ đơn vị softmax như một nút trong một neural network.
+
+50
+00:03:40.950 --> 00:03:43.830
+Đó không phải là o, đó là một đơn vị softmax.
+
+51
+00:03:43.830 --> 00:03:48.330
+Và sau đó có một sự sụt giảm trong đơn vị softmax để đầu ra y hat.
+
+52
+00:03:49.770 --> 00:03:52.740
+Vì vậy, để viết ra mô hình này một cách chi tiết.
+
+53
+00:03:52.740 --> 00:03:57.648
+Đây là mô hình, mô hình softmax,
+
+54
+00:03:57.648 --> 00:04:02.411
+xác suất của các từ tanka khác nhau
+
+55
+00:04:02.411 --> 00:04:07.615
+cho từ ngữ ngữ cảnh đầu vào như e đến e,
+
+56
+00:04:07.615 --> 00:04:10.761
+theta t transpose, ec.
+
+57
+00:04:10.761 --> 00:04:14.169
+Chia cho một số trên tất cả các từ, vì vậy chúng tôi sẽ nói,
+
+58
+00:04:14.169 --> 00:04:19.260
+tổng từ J bằng một đến tất cả 10.000 từ e đến theta j transposed ec.
+
+59
+00:04:19.260 --> 00:04:25.686
+Vì vậy, ở đây theta T là tham số liên kết với,
+
+60
+00:04:25.686 --> 00:04:31.041
+tôi sẽ đặt t, nhưng thực sự có một cơ hội
+
+61
+00:04:31.041 --> 00:04:36.710
+của một từ cụ thể, t, là nhãn.
+
+62
+00:04:39.970 --> 00:04:43.490
+Vì vậy, tôi đã từ bỏ thuật ngữ thiên vị để giải quyết khối lượng nhưng
+
+63
+00:04:43.490 --> 00:04:45.470
+chúng tôi cũng có thể bao gồm điều đó nếu chúng tôi muốn.
+
+64
+00:04:49.220 --> 00:04:56.520
+Và sau đó cuối cùng chức năng mất mát cho softmax sẽ là bình thường.
+
+65
+00:04:57.840 --> 00:05:02.000
+Vì vậy, chúng tôi sử dụng y để đại diện cho từ mục tiêu.
+
+66
+00:05:02.000 --> 00:05:05.600
+Và chúng tôi sử dụng một đại diện nóng cho y mũ và y ở đây.
+
+67
+00:05:05.600 --> 00:05:10.921
+Sau đó, bị mất sẽ là Log tiêu cực
+
+68
+00:05:10.921 --> 00:05:16.025
+liklihood, vì vậy tổng hợp từ i bằng 1
+
+69
+00:05:16.025 --> 00:05:20.960
+đến 10.000 yi log yi hat.
+
+70
+00:05:20.960 --> 00:05:24.410
+Vì vậy, đó là một sự mất mát thông thường cho softmax nơi
+
+71
+00:05:24.410 --> 00:05:29.720
+chúng tôi đang đại diện cho mục tiêu y như một vector nóng.
+
+72
+00:05:29.720 --> 00:05:34.790
+Vì vậy, đây sẽ là một vector nóng chỉ với 1 1 và các số không còn lại.
+
+73
+00:05:34.790 --> 00:05:42.290
+Và nếu từ mục tiêu là nước trái cây, thì nó sẽ là nguyên tố 4834 từ trên này.
+
+74
+00:05:42.290 --> 00:05:44.670
+Đó là bằng 1 và phần còn lại sẽ bằng 0.
+
+75
+00:05:44.670 --> 00:05:50.433
+Và tương tự mũ Y sẽ là một đầu ra vector 10.000 chiều bởi các
+
+76
+00:05:50.433 --> 00:05:55.850
+đơn vị softmax với xác suất cho tất cả 10.000 từ mục tiêu có thể.
+
+77
+00:05:55.850 --> 00:06:00.890
+Tóm lại, đây là mô hình tổng thể nhỏ,
+
+78
+00:06:00.890 --> 00:06:06.832
+neural network nhỏ với cơ bản tìm kiếm sự embedding và sau đó chỉ là một đơn vị tối đa mềm.
+
+79
+00:06:06.832 --> 00:06:11.888
+Và ma trận E sẽ có rất nhiều tham số, vì vậy ma trận E có các tham số
+
+80
+00:06:11.888 --> 00:06:16.320
+tương ứng với tất cả các vectơ embedding, E subscript C.
+
+81
+00:06:16.320 --> 00:06:21.381
+Và sau đó đơn vị softmax cũng có các tham số cung cấp cho các
+
+82
+00:06:21.381 --> 00:06:27.270
+tham số theta T nhưng nếu bạn tối ưu hóa chức năng mất này đối với tất cả các
+
+83
+00:06:27.270 --> 00:06:33.790
+các tham số này, bạn thực sự có được một tập hợp khá tốt các vectơ embedding.
+
+84
+00:06:33.790 --> 00:06:38.637
+Vì vậy, điều này được gọi là mô hình bỏ qua bởi vì đang lấy như đầu vào một từ
+
+85
+00:06:38.637 --> 00:06:43.563
+như màu cam và sau đó cố gắng để dự đoán một số từ bỏ qua một vài từ từ
+
+86
+00:06:43.563 --> 00:06:45.740
+bên trái hoặc bên phải.
+
+87
+00:06:45.740 --> 00:06:50.150
+Để dự đoán những gì đến chút ít trước một chút sau những từ ngữ ngữ cảnh.
+
+88
+00:06:50.150 --> 00:06:54.670
+Bây giờ, hóa ra có một vài vấn đề với việc sử dụng thuật toán này.
+
+89
+00:06:54.670 --> 00:06:58.770
+Và vấn đề chính là tốc độ tính toán.
+
+90
+00:06:58.770 --> 00:07:03.732
+Đặc biệt, đối với mô hình softmax, mỗi khi bạn muốn đánh giá
+
+91
+00:07:03.732 --> 00:07:09.641
+xác suất này, bạn cần phải thực hiện một khoản tiền trên tất cả 10.000 từ trong vốn từ vựng của bạn.
+
+92
+00:07:09.641 --> 00:07:12.001
+Và có lẽ 10.000 không phải là quá tệ, nhưng
+
+93
+00:07:12.001 --> 00:07:16.341
+nếu bạn đang sử dụng từ vựng có kích thước 100.000 hay 1.000.000,
+
+94
+00:07:16.341 --> 00:07:20.130
+nó sẽ thực sự chậm để tổng hợp lại mẫu số này mỗi lần.
+
+95
+00:07:20.130 --> 00:07:24.583
+Và, trên thực tế, 10.000 đã thực sự là khá chậm, nhưng
+
+96
+00:07:24.583 --> 00:07:27.910
+nó làm cho thậm chí còn khó khăn hơn để mở rộng các từ vựng lớn hơn.
+
+97
+00:07:27.910 --> 00:07:32.600
+Vì vậy, có một vài giải pháp cho điều này, một giải pháp mà bạn thấy trong tài liệu
+
+98
+00:07:32.600 --> 00:07:36.870
+là sử dụng một bộ classification softmax phân cấp.
+
+99
+00:07:36.870 --> 00:07:38.160
+Và điều đó có nghĩa là,
+
+100
+00:07:38.160 --> 00:07:44.160
+thay vì cố gắng classification thứ gì đó vào tất cả 10.000 người mang theo một lần.
+
+101
+00:07:44.160 --> 00:07:46.570
+Hãy tưởng tượng nếu bạn có một bộ classification,
+
+102
+00:07:46.570 --> 00:07:51.680
+nó cho bạn biết là từ mục tiêu trong 5.000 từ đầu tiên trong từ vựng?
+
+103
+00:07:51.680 --> 00:07:54.049
+Hoặc là trong 5.000 từ thứ hai trong từ vựng?
+
+104
+00:07:54.049 --> 00:07:58.828
+Và cho phép nói chi phí nhị phân này mà nó cho bạn biết điều này là trong 5.000
+
+105
+00:07:58.828 --> 00:08:03.456
+từ đầu tiên, nghĩ đến lớp thứ hai để nói với bạn rằng điều này trong 2.500
+
+106
+00:08:03.456 --> 00:08:07.507
+từ đầu tiên của vocab hoặc trong 2.500 từ thứ hai vocab và vân vân.
+
+107
+00:08:07.507 --> 00:08:12.802
+Cho đến khi cuối cùng bạn nhận được để classification chính xác từ
+
+108
+00:08:12.802 --> 00:08:18.460
+đó là gì, để lá của cây này, và do đó có một cây của các nhà classification như thế này, có
+
+109
+00:08:18.460 --> 00:08:25.230
+nghĩa là mỗi nút truy xuất của cây có thể chỉ là một bộ classification ràng buộc.
+
+110
+00:08:25.230 --> 00:08:28.625
+Và vì vậy bạn không cần phải tổng hợp hơn 10.000 từ hoặc
+
+111
+00:08:28.625 --> 00:08:32.460
+nếu không nó sẽ capsize để thực hiện một classification duy nhất.
+
+112
+00:08:32.460 --> 00:08:35.110
+Trong thực tế, cây classification tính toán như thế này
+
+113
+00:08:35.110 --> 00:08:40.040
+quy mô như nhật ký của kích thước vocab chứ không phải là tuyến tính trong kích thước vocab.
+
+114
+00:08:40.040 --> 00:08:44.020
+Vì vậy, đây được gọi là một classification softmax phân cấp.
+
+115
+00:08:44.020 --> 00:08:48.960
+Tôi nên đề cập đến trong thực tế, classification softmax phân cấp không
+
+116
+00:08:48.960 --> 00:08:54.340
+sử dụng một cây cân bằng hoàn hảo hoặc cây đối xứng hoàn hảo này,
+
+117
+00:08:54.340 --> 00:08:58.090
+với số lượng bằng nhau của các từ ở bên trái và bên phải của mỗi nhánh.
+
+118
+00:08:58.090 --> 00:09:03.469
+Trong thực tế, bộ classification phần mềm phân cấp có thể được phát triển sao cho
+
+119
+00:09:03.469 --> 00:09:06.377
+các từ thông dụng có xu hướng nằm trên đầu trang,
+
+120
+00:09:06.377 --> 00:09:12.299
+trong khi đó các từ ít phổ biến hơn như sầu riêng có thể được chôn sâu hơn nhiều trong cây.
+
+121
+00:09:12.299 --> 00:09:15.244
+Bởi vì bạn nhìn thấy các từ phổ biến hơn thường xuyên hơn, và vì vậy
+
+122
+00:09:15.244 --> 00:09:19.530
+bạn có thể chỉ cần một vài bước đi để có được những từ phổ biến như và của.
+
+123
+00:09:19.530 --> 00:09:22.995
+Trong khi bạn thấy những từ ít thường xuyên hơn như sầu riêng ít thường xuyên hơn, vì vậy nó nói không
+
+124
+00:09:22.995 --> 00:09:26.530
+sao mà được chôn sâu trong cây vì bạn không cần phải đi sâu như vậy.
+
+125
+00:09:26.530 --> 00:09:28.962
+Vì vậy, có rất nhiều heuristics khác nhau để
+
+126
+00:09:28.962 --> 00:09:34.000
+xây dựng cây như thế nào bạn đã sử dụng để xây dựng các chóp phần mềm phân cấp.
+
+127
+00:09:36.250 --> 00:09:38.557
+Đây là một ý tưởng mà bạn thấy trong tài liệu,
+
+128
+00:09:38.557 --> 00:09:40.945
+đẩy nhanh quá trình classification softmax.
+
+129
+00:09:44.165 --> 00:09:47.465
+Nhưng tôi sẽ không dành nhiều thời gian hơn.
+
+130
+00:09:48.695 --> 00:09:53.670
+Và bạn có thể đọc thêm chi tiết về điều này
+
+131
+00:09:53.670 --> 00:09:58.491
+trên tờ báo mà tôi đã tham khảo bởi Thomas
+
+132
+00:09:59.580 --> 00:10:03.952
+và những người khác, trên trang chiếu đầu tiên.
+
+133
+00:10:03.952 --> 00:10:05.750
+Nhưng tôi sẽ không dành nhiều thời gian cho việc này đâu.
+
+134
+00:10:05.750 --> 00:10:09.420
+Bởi vì trong đoạn video tiếp theo, nơi cô nói về một phương pháp khác,
+
+135
+00:10:09.420 --> 00:10:13.730
+gọi là lấy mẫu mật hoa, mà tôi nghĩ thậm chí còn đơn giản hơn.
+
+136
+00:10:13.730 --> 00:10:17.720
+Và cũng hoạt động thực sự tốt để tăng tốc trình classification softmax và
+
+137
+00:10:17.720 --> 00:10:23.420
+vấn đề cần tổng trên toàn bộ kích thước nắp trong mẫu số.
+
+138
+00:10:23.420 --> 00:10:25.450
+Vì vậy, bạn sẽ thấy nhiều hơn trong đoạn video tiếp theo.
+
+139
+00:10:25.450 --> 00:10:27.084
+Nhưng trước khi tiếp tục,
+
+140
+00:10:27.084 --> 00:10:32.168
+một chủ đề nhanh mà tôi muốn bạn hiểu là làm thế nào để lấy mẫu ngữ cảnh C.
+
+141
+00:10:32.168 --> 00:10:36.871
+Vì vậy, một khi bạn lấy mẫu ngữ cảnh C, mục tiêu T có thể được lấy mẫu trong
+
+142
+00:10:36.871 --> 00:10:40.600
+, ví dụ, một cộng trừ mười từ cửa sổ của ngữ cảnh C, nhưng
+
+143
+00:10:40.600 --> 00:10:42.810
+làm thế nào để bạn chọn ngữ cảnh C?
+
+144
+00:10:42.810 --> 00:10:46.239
+Một điều bạn có thể làm là lấy mẫu đồng nhất, một cách ngẫu nhiên,
+
+145
+00:10:46.239 --> 00:10:47.860
+từ bộ phận huấn luyện của bạn.
+
+146
+00:10:47.860 --> 00:10:52.770
+Khi chúng tôi làm điều đó, bạn thấy rằng có một số từ như, of, a,
+
+147
+00:10:52.770 --> 00:10:57.660
+và, để và như vậy xuất hiện cực kỳ thường xuyên.
+
+148
+00:10:57.660 --> 00:11:02.890
+Và vì vậy, nếu bạn làm điều đó, bạn thấy rằng trong bối cảnh của bạn để nhắm mục tiêu các cặp ánh xạ chỉ có
+
+149
+00:11:02.890 --> 00:11:06.915
+những loại từ này cực kỳ thường xuyên, trong khi đó có những từ khác
+
+150
+00:11:06.915 --> 00:11:12.905
+như cam, táo, và sầu riêng không xuất hiện thường xuyên như vậy.
+
+151
+00:11:12.905 --> 00:11:16.775
+Và có lẽ bạn không muốn trang web đào tạo của bạn bị chi phối bởi những
+
+152
+00:11:16.775 --> 00:11:22.120
+từ cực kỳ thường xuyên hoặc hiện tại, bởi vì sau đó bạn dành gần như tất cả các nỗ lực cập nhật
+
+153
+00:11:22.120 --> 00:11:24.628
+ec, cho những từ thường xuyên xảy ra.
+
+154
+00:11:24.628 --> 00:11:28.620
+Nhưng bạn muốn đảm bảo rằng bạn dành thời gian cập nhật embedding, ngay cả đối với
+
+155
+00:11:28.620 --> 00:11:32.600
+những từ ít phổ biến hơn như e sầu riêng.
+
+156
+00:11:32.600 --> 00:11:37.200
+Vì vậy, trong thực tế việc phân phối các từ pc không được thực hiện
+
+157
+00:11:37.200 --> 00:11:41.190
+chỉ hoàn toàn thống nhất một cách ngẫu nhiên cho mục đích đào tạo thiết lập, nhưng
+
+158
+00:11:41.190 --> 00:11:46.180
+thay vào đó có các heuristics khác nhau mà bạn có thể sử dụng để cân bằng ra
+
+159
+00:11:46.180 --> 00:11:49.350
+một cái gì đó từ các từ phổ biến cùng với các từ ít phổ biến hơn.
+
+160
+00:11:50.700 --> 00:11:54.540
+Vì vậy, đó là nó cho mô hình bỏ qua Word2Vec.
+
+161
+00:11:54.540 --> 00:11:59.318
+Nếu bạn đọc bài báo gốc mà tôi đã tham khảo trước đó, bạn thấy rằng
+
+162
+00:11:59.318 --> 00:12:04.040
+giấy đó thực sự có hai phiên bản của mô hình Word2Vec này, gram bỏ qua là một.
+
+163
+00:12:04.040 --> 00:12:07.730
+Và cái còn lại được gọi là CBow, mô hình ngược liên tục
+
+164
+00:12:07.730 --> 00:12:10.700
+, lấy bối cảnh xung quanh từ giữa, và
+
+165
+00:12:10.700 --> 00:12:13.410
+sử dụng các từ xung quanh để cố gắng dự đoán từ giữa,
+
+166
+00:12:13.410 --> 00:12:17.560
+và thuật toán đó cũng hoạt động, nó có một số ưu điểm và nhược điểm.
+
+167
+00:12:17.560 --> 00:12:21.910
+Nhưng vấn đề quan trọng với thuật toán này với mô hình skip-gram như được trình bày cho
+
+168
+00:12:21.910 --> 00:12:26.995
+đến nay là bước softmax rất tốn kém để tính toán bởi vì cần
+
+169
+00:12:26.995 --> 00:12:32.740
+tổng hợp toàn bộ kích thước từ vựng của bạn vào mẫu số của các gói mềm.
+
+170
+00:12:32.740 --> 00:12:37.660
+Trong video tiếp theo, tôi chỉ cho bạn một thuật toán sửa đổi mục tiêu đào tạo
+
+171
+00:12:37.660 --> 00:12:41.800
+mà làm cho nó chạy hiệu quả hơn nhiều do đó cho phép bạn áp dụng điều này trong một
+
+172
+00:12:41.800 --> 00:12:46.090
+bộ phù hợp lớn hơn nhiều và do đó tìm hiểu word embedding tốt hơn nhiều.
+
+173
+00:12:46.090 --> 00:12:47.080
+Cho phép đi vào video tiếp theo.

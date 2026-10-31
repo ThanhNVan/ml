@@ -1,0 +1,324 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.580
+One of the challenges with building machine learning systems is that there are so many things you could try,
+
+00:00:04.580 --> 00:00:10.000
+so many things you could change, including, for example, so many hyperparameters you could tune.
+
+00:00:10.640 --> 00:00:14.560
+One of the things I've noticed about the most effective machine learning people is
+
+00:00:14.560 --> 00:00:19.920
+their very clear eyes about what to tune in order to try to achieve what effect.
+
+00:00:19.920 --> 00:00:24.000
+This is a process we call orthogonalization. Let me tell you what I mean.
+
+00:00:24.960 --> 00:00:33.600
+Here's a picture of an old-school television with a lot of knobs that you could tune to adjust the picture in various ways.
+
+00:00:34.560 --> 00:00:41.600
+So for these old TV sets, maybe there was one knob to adjust how tall vertically your image is,
+
+00:00:41.600 --> 00:00:48.800
+another knob to adjust how wide it is, maybe another knob to adjust how neotropizoidal it is,
+
+00:00:49.040 --> 00:00:52.880
+another knob to adjust how much to move the picture left and right,
+
+00:00:52.880 --> 00:00:56.960
+another one to adjust how much the picture is rotated, and so on.
+
+00:00:58.480 --> 00:01:03.360
+And what TV designers had spent a lot of time doing was to build the circuitry,
+
+00:01:03.360 --> 00:01:08.160
+really often analog circuitry back then, to make sure that each of the knobs had a
+
+00:01:08.160 --> 00:01:13.680
+relatively interpretable function, such as one knob to tune this, one knob to tune this,
+
+00:01:13.680 --> 00:01:22.400
+one knob to tune this, and so on. In contrast, imagine if you had a knob that tunes 0.1 times
+
+00:01:22.400 --> 00:01:31.520
+how tall the image is plus 0.3 times how wide the image is minus 1.7 times how trapezoidal the image
+
+00:01:31.520 --> 00:01:40.000
+is plus 0.8 times the position of the image on the horizontal axis, and so on. If you tune this knob,
+
+00:01:40.000 --> 00:01:44.480
+then the height of the image, the width of the image, how trapezoidal it is, how much it shifts,
+
+00:01:44.480 --> 00:01:49.760
+it all changes all at the same time. If you had a knob like that, it'd be almost impossible
+
+00:01:49.760 --> 00:01:53.760
+to tune the TV so that the picture gets centered in the display area.
+
+00:01:54.880 --> 00:02:02.800
+So in this context, orthogonalization refers to that the TV designers had designed the knobs,
+
+00:02:02.800 --> 00:02:08.800
+so that each knob kind of does only one thing, and this makes it much easier to tune the TV
+
+00:02:08.800 --> 00:02:16.240
+so that the picture gets centered where you want it to be. Here's another example of orthogonalization.
+
+00:02:16.960 --> 00:02:23.440
+If you think about learning to drive a car, a car has three main controls which are steering,
+
+00:02:23.440 --> 00:02:32.000
+steering wheel decides how much you go left or right, acceleration, and braking. So these three
+
+00:02:32.000 --> 00:02:39.360
+controls, already one control for steering and another two controls for your speed, it makes it
+
+00:02:39.360 --> 00:02:45.840
+relatively interpretable what your different actions through different controls will do to your car.
+
+00:02:46.560 --> 00:02:53.200
+But now imagine if someone were to build a car so that there was a joystick where one axis of
+
+00:02:53.200 --> 00:03:01.280
+the joystick controls 0.3 times your steering angle minus 0.8 times your speed, and you had
+
+00:03:01.280 --> 00:03:11.840
+a different control that controls two times the steering angle plus 0.9 times the speed of your car.
+
+00:03:12.400 --> 00:03:18.160
+In theory, by tuning these two knobs, you could get your car to steer the angle and at the speed
+
+00:03:18.160 --> 00:03:23.200
+you want, but it's much harder than if you had just one single control for controlling your
+
+00:03:23.200 --> 00:03:27.840
+steering angle and a separate distinct set of controls for controlling your speed.
+
+00:03:28.480 --> 00:03:33.280
+So the concept of orthogonalization refers to that if you think of one dimension of what you
+
+00:03:33.280 --> 00:03:38.640
+want to do as controlling your steering angle and another dimension as controlling your speed,
+
+00:03:39.760 --> 00:03:47.200
+then you want one knob to just affect the steering angle as much as possible, and another knob in
+
+00:03:47.200 --> 00:03:52.000
+the case of the car is really acceleration and braking that controls your speed. But if you have
+
+00:03:52.000 --> 00:03:57.440
+the control that mixes the two together like a control like this one that affects both your
+
+00:03:57.440 --> 00:04:02.640
+steering angle and your speed, something that changes both at the same time, then it becomes
+
+00:04:02.640 --> 00:04:08.080
+much harder to set the car to the speed and angle you want. And by having orthogonal,
+
+00:04:08.640 --> 00:04:13.360
+orthogonal means at 90 degrees to each other, but having orthogonal controls
+
+00:04:14.640 --> 00:04:19.280
+that are ideally aligned with the things you actually want to control, it makes it much easier
+
+00:04:19.280 --> 00:04:23.760
+to tune the knobs you have to tune to tune the steering wheel angle and your accelerator
+
+00:04:23.760 --> 00:04:31.040
+you're braking to get the car to do what you want. So how does this relate to machine learning?
+
+00:04:32.000 --> 00:04:37.360
+For a supervised learning system to do well, you usually need to tune the knobs of your system to
+
+00:04:37.360 --> 00:04:42.480
+make sure that four things are true. First is that you usually have to make sure that you're
+
+00:04:42.480 --> 00:04:47.840
+at least doing well on the training set. So performance on the training set needs to pass
+
+00:04:47.840 --> 00:04:56.000
+some acceptability effecture. For some applications, this might mean doing comparably to human level
+
+00:04:56.000 --> 00:05:00.640
+performance. But this will depend on your application. And we'll talk more about
+
+00:05:00.640 --> 00:05:07.120
+comparing to human level performance next week. But after doing well on the training set,
+
+00:05:07.120 --> 00:05:14.320
+you then hope that this leads to also doing well on the dev set. And you then hope that this also
+
+00:05:14.320 --> 00:05:19.600
+does well on the test set. And finally, you hope that doing well on the test set and the cost
+
+00:05:19.600 --> 00:05:26.160
+function results in your system performing in the real world. So you hope that this results in,
+
+00:05:26.160 --> 00:05:35.840
+you know, happy cat picture app users, for example. So to relate back to the TV tuning example,
+
+00:05:35.840 --> 00:05:41.840
+if the picture of your TV was either too wide or too narrow, you wanted one knob to tune in
+
+00:05:41.840 --> 00:05:46.320
+order to adjust that you don't want to carefully adjust five different knobs, which are also
+
+00:05:46.320 --> 00:05:51.680
+also affect different things you want one knob to just affect the width of your TV image.
+
+00:05:52.320 --> 00:05:58.560
+So in a similar way, if your algorithm is not fitting the training set well on the cost function,
+
+00:05:58.560 --> 00:06:03.520
+you want, you know, one knob, yes, that's my attempt to draw a knob, or maybe one specific
+
+00:06:03.520 --> 00:06:09.440
+set of knobs you can use to make sure you can tune your algorithm to make it fit well on the
+
+00:06:09.440 --> 00:06:15.440
+training set. So the knobs you use to tune this are, you might train a bigger network,
+
+00:06:16.480 --> 00:06:23.600
+or you might switch to a better optimization algorithm like the Adam optimization algorithm,
+
+00:06:23.600 --> 00:06:27.520
+and so on. And there's some other options we'll discuss later this week and next week.
+
+00:06:28.240 --> 00:06:34.320
+In contrast, if you find that the algorithm is not fitting the dev set well, then there's a
+
+00:06:34.800 --> 00:06:39.680
+separate set of knobs. I guess that's my not very artistic rendering of another knob.
+
+00:06:40.720 --> 00:06:46.960
+You want to have a distinct set of knobs to try. So for example, if your algorithm is not doing
+
+00:06:46.960 --> 00:06:51.200
+well on the dev set, it's doing well on the training set, but not on the dev set, then you
+
+00:06:51.200 --> 00:06:56.720
+have a set of knobs around regularization that you could use to try to make it satisfy the
+
+00:06:56.720 --> 00:07:02.000
+second criteria. So the analogy is now, now that you've tuned the width of your TV set, if
+
+00:07:02.000 --> 00:07:07.360
+the height of the image isn't quite right, then you want a different knob in order to tune the
+
+00:07:07.360 --> 00:07:12.080
+height of the TV image. And you want to do this hopefully without affecting the width of your TV
+
+00:07:12.080 --> 00:07:22.400
+image too much. And getting a bigger training set would be another knob you could use that helps
+
+00:07:22.400 --> 00:07:27.920
+your learning algorithm generalize better to the dev set. Now having adjusted, you know,
+
+00:07:28.000 --> 00:07:33.040
+the width and height of your TV image, well, what if it doesn't meet the third criteria? What if
+
+00:07:33.040 --> 00:07:39.600
+you do well on the dev set, but not on the test set? If that happens, then the knob you tune is,
+
+00:07:39.600 --> 00:07:45.360
+you probably want to get a bigger dev set. Because if it does well on the dev set,
+
+00:07:45.360 --> 00:07:49.600
+but not on the test set, it probably means you've overtuned to a dev set, you need to go back
+
+00:07:49.600 --> 00:07:56.320
+and find a bigger dev set. And finally, if it does well on the test set, but it isn't
+
+00:07:56.320 --> 00:08:03.600
+delivering to you a happy cat picture app user, then what that means is that you want to go back
+
+00:08:03.600 --> 00:08:16.060
+and change either the dev set or the cost function. Because if doing well on the test set
+
+00:08:16.060 --> 00:08:21.020
+according to some cost function doesn't correspond to your algorithm doing what you needed to do in
+
+00:08:21.020 --> 00:08:26.940
+the real world, then it means that either your dev test set distribution isn't set correctly,
+
+00:08:26.940 --> 00:08:32.300
+or your cost function isn't measuring the right thing. I know I'm going over these examples quite
+
+00:08:32.300 --> 00:08:39.500
+quickly, but we'll go much more into detail on these specific knobs later this week and next week.
+
+00:08:39.500 --> 00:08:43.420
+So if you aren't following all the details right now, don't worry about it. But I want to give you
+
+00:08:43.420 --> 00:08:49.580
+a sense of this authorization process that you want to be very clear about which of these maybe
+
+00:08:49.580 --> 00:08:54.700
+four issues, the different things you could tune are trying to address. And when I train a neural
+
+00:08:54.700 --> 00:09:00.780
+network, I tend not to use early stopping. It's not a bad technique. Quite a lot of people do it,
+
+00:09:00.780 --> 00:09:05.900
+but I personally find early stopping difficult to think about because this is a knob that
+
+00:09:05.900 --> 00:09:11.180
+simultaneously affects how well you fit the training set. Because if you stop early,
+
+00:09:11.180 --> 00:09:17.500
+you fit the training set less well. But it also simultaneously is often done to improve your dev
+
+00:09:17.500 --> 00:09:22.780
+set performance. So this is one knob that is you know, less orthogonalized because it
+
+00:09:22.780 --> 00:09:28.220
+simultaneously affects two things. It's like a knob that simultaneously affects both the width
+
+00:09:28.220 --> 00:09:33.260
+and the height of your TV image. And it doesn't mean it's a bad knob to use, you could use it if
+
+00:09:33.260 --> 00:09:38.700
+you want. But when you have more orthogonalized controls, such as these other ones that I'm
+
+00:09:38.700 --> 00:09:43.420
+writing down here, then it just makes the process of tuning your network much easier.
+
+00:09:44.060 --> 00:09:48.300
+So I hope that gives you a sense of what orthogonalization means. Just like when you
+
+00:09:48.300 --> 00:09:52.780
+look at the TV image, it's nice if you can say, oh, my TV image is too wide, so I'm going to
+
+00:09:52.780 --> 00:09:57.340
+tune this knob, or it's too tall, so I'm going to tune that knob, or it's too trapezoidal,
+
+00:09:57.340 --> 00:10:00.860
+so I'm going to have to tune that knob. In machine learning, it's nice if you can look
+
+00:10:00.860 --> 00:10:04.460
+at your system and say, oh, this piece of it is wrong. It's not doing it on the training set,
+
+00:10:04.460 --> 00:10:08.380
+it's not doing it on the dev set, it's not doing it on the test set, or it's doing it on the test
+
+00:10:08.380 --> 00:10:12.700
+set, but it's not in real world. But figure out exactly what's wrong and then have exactly one
+
+00:10:12.780 --> 00:10:18.300
+knob or a specific set of knobs that helps you just solve that problem that is limiting the
+
+00:10:18.300 --> 00:10:22.380
+performance with the machine learning system. So what we're going to do this week and next week
+
+00:10:22.380 --> 00:10:27.980
+is go through how to diagnose what exactly is the bottleneck to your system's performance,
+
+00:10:27.980 --> 00:10:32.380
+as well as identify the specific set of knobs you could use to tune your system
+
+00:10:32.380 --> 00:10:37.740
+to improve that aspect of its performance. So let's start going more into the details of this process.

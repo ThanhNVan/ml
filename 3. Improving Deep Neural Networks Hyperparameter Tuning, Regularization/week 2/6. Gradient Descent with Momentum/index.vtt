@@ -1,0 +1,375 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.050 --> 00:00:06.050
+There's an algorithm called Momentum or Gradient Descent with Momentum that almost always works
+
+00:00:06.050 --> 00:00:09.690
+faster than the standard gradient descent algorithm.
+
+00:00:09.690 --> 00:00:14.290
+In one sentence, the basic idea is to compute an exponentially weighted average of your
+
+00:00:14.290 --> 00:00:18.890
+gradients and then to use that gradient to update your weights instead.
+
+00:00:18.890 --> 00:00:23.530
+In this video, let's unpack that one sentence description and see how you can actually implement
+
+00:00:23.530 --> 00:00:24.530
+this.
+
+00:00:24.530 --> 00:00:28.730
+As the most of an example, let's say that you're trying to optimize a cost function
+
+00:00:28.730 --> 00:00:30.650
+which has contours like this.
+
+00:00:30.650 --> 00:00:34.550
+So the red dot denotes the position of the minimum.
+
+00:00:34.550 --> 00:00:40.730
+Maybe you start a gradient descent here and if you take one iteration of gradient descent,
+
+00:00:40.730 --> 00:00:44.730
+either batch or mini batch gradient descent, maybe you end up heading there.
+
+00:00:44.730 --> 00:00:48.930
+But now you're on the other side of this ellipse, you kind of, and if you take another step
+
+00:00:48.930 --> 00:00:51.890
+of gradient descent, maybe you end up doing that.
+
+00:00:51.890 --> 00:00:55.730
+And then another step, another step, and so on.
+
+00:00:55.730 --> 00:01:00.930
+And you see that gradient descents will sort of take a lot of steps, right?
+
+00:01:00.930 --> 00:01:07.370
+Just slowly oscillate toward the minimum.
+
+00:01:07.370 --> 00:01:12.730
+And these up and down oscillations slows down gradient descent and prevents you from using
+
+00:01:12.730 --> 00:01:14.690
+a much larger learning rate.
+
+00:01:14.690 --> 00:01:19.370
+In particular, if you were to use a much larger learning rate, you might end up overshooting
+
+00:01:19.370 --> 00:01:21.810
+and end up diverging like so.
+
+00:01:21.810 --> 00:01:26.770
+And so the need to prevent the oscillations from getting too big forces you to use a learning
+
+00:01:26.770 --> 00:01:29.910
+rate that's not itself too large.
+
+00:01:29.910 --> 00:01:35.090
+Another way of viewing this problem is that on the vertical axis, you want your learning
+
+00:01:35.090 --> 00:01:39.090
+to be a bit slower because you don't want those oscillations.
+
+00:01:39.090 --> 00:01:46.190
+But on the horizontal axis, you want faster learning, right?
+
+00:01:46.190 --> 00:01:50.250
+Because you want it to aggressively move from left to right toward that minimum, toward
+
+00:01:50.250 --> 00:01:52.050
+that red dot.
+
+00:01:52.050 --> 00:01:58.870
+So here's what you can do if you implement gradient descents with momentum.
+
+00:01:58.870 --> 00:02:08.910
+On each iteration, or more specifically, during iteration t, you would compute the usual
+
+00:02:08.910 --> 00:02:16.190
+derivatives, dW, dB, I'll omit the super, super square bracket L's, but you compute
+
+00:02:16.190 --> 00:02:19.310
+dW, dB on the current mini batch.
+
+00:02:19.310 --> 00:02:23.030
+And if you're using batch gradient descent, then, you know, the current mini batch would
+
+00:02:23.030 --> 00:02:24.310
+be just your whole batch.
+
+00:02:24.310 --> 00:02:26.790
+And this works as well for batch gradient descent.
+
+00:02:26.790 --> 00:02:31.630
+So if your current mini batch is your entire training set, this works fine as well.
+
+00:02:31.630 --> 00:02:46.030
+And then what you do is you compute V, dW, to be beta VdW plus 1 minus beta dW.
+
+00:02:46.030 --> 00:02:53.670
+So this is similar to when we were previously computing V theta equals beta V theta plus
+
+00:02:53.670 --> 00:02:55.990
+1 minus beta theta t.
+
+00:02:55.990 --> 00:03:02.750
+So it's computing a moving average of the derivatives for W you're getting.
+
+00:03:02.750 --> 00:03:14.100
+And then you similarly compute V, dB equals that plus 1 minus beta times dB.
+
+00:03:14.100 --> 00:03:20.940
+And then you would update your weights using W, gets updated as W minus the learning rate
+
+00:03:20.940 --> 00:03:26.860
+times, instead of updating it with dW with the derivative, you would update it with V,
+
+00:03:26.860 --> 00:03:28.300
+dW.
+
+00:03:28.300 --> 00:03:35.700
+And similarly, B gets updated as B minus alpha times V, dB.
+
+00:03:35.700 --> 00:03:41.300
+So what this does is smooth out the steps of gradient descent.
+
+00:03:41.300 --> 00:03:46.860
+For example, let's say that in the last few derivatives you computed were this, this, this,
+
+00:03:46.860 --> 00:03:48.420
+this, this.
+
+00:03:48.420 --> 00:03:52.940
+If you average out these gradients, you find that the oscillations in the vertical direction
+
+00:03:52.940 --> 00:03:55.760
+will tend to average out to something closer to zero.
+
+00:03:55.760 --> 00:04:01.780
+So in the vertical direction, where you want to slow things down, this will average out
+
+00:04:01.780 --> 00:04:03.180
+positive and negative numbers.
+
+00:04:03.180 --> 00:04:05.580
+So the average will be closer to zero.
+
+00:04:05.580 --> 00:04:09.900
+Whereas on the horizontal direction, all the derivatives are pointing to the right in
+
+00:04:09.900 --> 00:04:11.100
+the horizontal direction.
+
+00:04:11.100 --> 00:04:14.420
+So the average in the horizontal direction will still be pretty big.
+
+00:04:14.420 --> 00:04:19.700
+So that's why with this algorithm, with a few iterations, you find that the gradient descent
+
+00:04:19.700 --> 00:04:26.320
+with momentum ends up eventually just taking steps that are much smaller oscillations
+
+00:04:26.320 --> 00:04:31.580
+in the vertical direction, but are more directed to what the horizontal, to just moving
+
+00:04:31.580 --> 00:04:33.780
+quickly in the horizontal direction.
+
+00:04:33.780 --> 00:04:37.660
+And so this allows your algorithm to, you know, take a more straightforward path or
+
+00:04:37.660 --> 00:04:43.060
+less to damp out the oscillations in its path to the minimum.
+
+00:04:43.060 --> 00:04:49.180
+One intuition for this momentum, which works for some people and not for everyone, is that
+
+00:04:49.180 --> 00:04:53.580
+if you're trying to minimize, you know, a bow shape function, right, this, this is
+
+00:04:53.580 --> 00:04:58.020
+really the contours of a bow, um, I guess I'm not very good at drawing, but you're
+
+00:04:58.020 --> 00:05:04.380
+trying to minimize this type of bow shape function, then these derivative terms, you
+
+00:05:04.380 --> 00:05:11.660
+can think of as providing acceleration to a ball that you're rolling downhill.
+
+00:05:11.660 --> 00:05:21.220
+And these momentum terms you can think of as representing the velocity.
+
+00:05:21.220 --> 00:05:27.100
+And so imagine that you have a bow and you take a ball and the derivative imparts
+
+00:05:27.100 --> 00:05:28.940
+acceleration to this little ball.
+
+00:05:28.940 --> 00:05:32.540
+It's a little ball that's rolling down this hill, right?
+
+00:05:32.540 --> 00:05:38.860
+And so it rolls faster and faster because of acceleration and beta, because this
+
+00:05:38.860 --> 00:05:43.620
+number a little bit less than one, this plays a role of friction and it prevents
+
+00:05:43.620 --> 00:05:47.500
+your ball from, you know, speeding up without limit.
+
+00:05:47.500 --> 00:05:52.420
+But so rather than gradient descent, just taking every single step independently
+
+00:05:52.420 --> 00:05:57.420
+of all previous steps, now your little ball can roll downhill and gain momentum,
+
+00:05:57.420 --> 00:06:01.460
+but you can accelerate down this bow and therefore gain momentum.
+
+00:06:01.460 --> 00:06:05.780
+I find that this ball rolling down a bow analogy, it seems to work for some
+
+00:06:05.780 --> 00:06:08.980
+people who enjoy physics intuitions, but it doesn't work for everyone.
+
+00:06:08.980 --> 00:06:13.940
+So if this analogy of a ball rolling down a bow doesn't work for you, don't
+
+00:06:13.940 --> 00:06:14.900
+worry about it.
+
+00:06:14.900 --> 00:06:18.140
+Finally, let's look at some details on how you implement this.
+
+00:06:18.140 --> 00:06:19.220
+Here's the algorithm.
+
+00:06:19.220 --> 00:06:26.020
+And so you now have two hyper parameters, the learning rate alpha, as well as this
+
+00:06:26.020 --> 00:06:30.460
+parameter beta, which controls your exponentially weighted average.
+
+00:06:30.460 --> 00:06:33.100
+The most common value for beta is 0.9.
+
+00:06:33.100 --> 00:06:35.620
+We're averaging over the last 10 days temperature.
+
+00:06:35.620 --> 00:06:39.780
+So this is like averaging over the last 10 iterations gradients.
+
+00:06:39.780 --> 00:06:43.060
+And in practice, beta equals 0.9 works very well.
+
+00:06:43.060 --> 00:06:47.980
+Feel free to try different values and do some hyper parameter search, but 0.9
+
+00:06:47.980 --> 00:06:50.020
+appears to be a pretty robust value.
+
+00:06:50.020 --> 00:06:52.020
+Well, and how about bias correction, right?
+
+00:06:52.020 --> 00:06:58.060
+So do you want to take VdW and Vdb and divide it by 1 minus beta to the T?
+
+00:06:58.060 --> 00:07:03.100
+In practice, people don't usually do this because after just 10 iterations, your
+
+00:07:03.100 --> 00:07:06.420
+moving average will have warmed up and there's no longer a bias estimate.
+
+00:07:06.420 --> 00:07:11.820
+So in practice, I don't really see people bothering with bias correction
+
+00:07:11.820 --> 00:07:14.780
+when implementing gradient descent or momentum.
+
+00:07:14.780 --> 00:07:18.900
+And of course, this process initializes with VdW equals 0.
+
+00:07:18.900 --> 00:07:24.260
+Note that this is a matrix of zeros with the same dimension as dW, which is
+
+00:07:24.260 --> 00:07:30.620
+the same dimension as W. And Vdb is also initialized to a vector of 0.
+
+00:07:30.620 --> 00:07:35.300
+So the same dimension as dB, which in turn has the same dimension as B.
+
+00:07:35.300 --> 00:07:41.740
+Finally, I just mentioned that if you read the literature on gradient descent with momentum,
+
+00:07:41.740 --> 00:07:48.580
+often you see it with this term omitted, with this 1 minus beta term omitted.
+
+00:07:48.580 --> 00:07:57.020
+So you end up with VdW equals beta, VdW plus dW.
+
+00:07:57.020 --> 00:08:02.780
+And the net effect of using this version in purple is that VdW ends up being scaled
+
+00:08:02.780 --> 00:08:07.340
+by a factor of 1 minus beta, or really 1 over 1 minus beta.
+
+00:08:07.340 --> 00:08:11.780
+And so when you're performing these gradient descent updates, alpha just needs to change
+
+00:08:11.780 --> 00:08:16.180
+by corresponding value of, or 1 over 1 minus beta.
+
+00:08:16.180 --> 00:08:18.740
+In practice, both of these will work just fine.
+
+00:08:18.740 --> 00:08:23.700
+It just affects what's the best value of the learning rate alpha.
+
+00:08:23.700 --> 00:08:30.100
+But I find that this particular formulation is a little less intuitive, because one impact
+
+00:08:30.100 --> 00:08:34.260
+of this is that if you end up tuning the hyperparameter beta, then this affects
+
+00:08:34.260 --> 00:08:37.740
+the scaling of VdW and Vdb as well.
+
+00:08:37.740 --> 00:08:42.660
+And so you end up needing to retune the learning rate alpha as well, maybe.
+
+00:08:42.660 --> 00:08:47.380
+So I personally prefer the formulation that I had written here on the left, rather than
+
+00:08:47.380 --> 00:08:49.500
+leaving out the 1 minus beta term.
+
+00:08:49.500 --> 00:08:54.940
+So I tend to use the formula on the left, the printed formula, with the 1 minus beta term.
+
+00:08:54.940 --> 00:09:00.180
+But both versions, having beta equals 0.9 is a common choice of hyperparameter.
+
+00:09:00.180 --> 00:09:03.300
+It's just that alpha, the learning rate, will need to be tuned differently
+
+00:09:03.300 --> 00:09:04.780
+for these two different versions.
+
+00:09:04.780 --> 00:09:07.460
+So that's it for gradient descent with momentum.
+
+00:09:07.460 --> 00:09:12.140
+This will almost always work better than the straightforward gradient descent algorithm
+
+00:09:12.140 --> 00:09:13.140
+without momentum.
+
+00:09:13.140 --> 00:09:17.100
+But there's still other things we could do to speed up your learning algorithm.
+
+00:09:17.100 --> 00:09:19.980
+Let's continue talking about these in the next couple of videos.

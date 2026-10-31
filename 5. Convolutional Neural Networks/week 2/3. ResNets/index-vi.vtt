@@ -1,0 +1,461 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.390
+Rất khó huấn luyện các mạng nơron rất sâu vì
+
+2
+00:00:03.390 --> 00:00:07.215
+vấn đề vanishing/ exploding gradient (biến mất đạo hàm).
+
+3
+00:00:07.215 --> 00:00:08.790
+Trong video này, mọi người sẽ tìm hiểu về
+
+4
+00:00:08.790 --> 00:00:12.150
+kết nối tắt (skip connection) cho phép mọi người lấy activation từ
+
+5
+00:00:12.150 --> 00:00:17.498
+một layer và đột nhiên nạp nó đến một layer khác thậm chí còn sâu hơn nhiều trong neural network.
+
+6
+00:00:17.498 --> 00:00:22.600
+Và bằng cách sử dụng nó, mọi người sẽ xây dựng ResNet, cho phép mọi người huấn luyện các mạng rất sâu.
+
+7
+00:00:22.600 --> 00:00:26.865
+Đôi khi thậm chí có mạng hơn 100 layer. Chúng ta hãy xem xét nhé.
+
+8
+00:00:26.865 --> 00:00:30.390
+ResNets được xây dựng từ một thứ gọi là khối dư (residual block),
+
+9
+00:00:30.390 --> 00:00:33.185
+đầu tiên tôi sẽ mô tả nó là gì.
+
+10
+00:00:33.185 --> 00:00:35.370
+Đây là hai layer của neural network, mọi người
+
+11
+00:00:35.370 --> 00:00:38.005
+bắt đầu với một số activaion trong layer a [l],
+
+12
+00:00:38.005 --> 00:00:43.940
+sau đó là [l + 1] và sau đó deactivation của hai layer sau đó là [l + 2].
+
+13
+00:00:43.940 --> 00:00:48.798
+Vì vậy, hãy xem qua các bước trong phép tính này, mọi người có a[l],
+
+14
+00:00:48.798 --> 00:00:54.459
+và điều đầu tiên mọi người làm là áp dụng toán tử tuyến tính này cho nó,
+
+15
+00:00:54.459 --> 00:00:57.660
+được điều chỉnh bởi phương trình này.
+
+16
+00:00:57.660 --> 00:01:01.690
+Vì vậy, mọi người đi từ a[l] để tính z [l+1]
+
+17
+00:01:01.690 --> 00:01:07.975
+bằng cách nhân với ma trận trọng số và cộng vectơ bias đó.
+
+18
+00:01:07.975 --> 00:01:17.945
+Sau đó, mọi người áp dụng tính phi tuyến ReLU, để có được a[l + 1].
+
+19
+00:01:17.945 --> 00:01:24.750
+Và điều đó được điều chỉnh bởi phương trình này trong đó a[l+1] là g(z[l+1]).
+
+20
+00:01:24.750 --> 00:01:26.280
+Sau đó, trong layer tiếp theo,
+
+21
+00:01:26.280 --> 00:01:30.540
+mọi người áp dụng lại bước tuyến tính này,
+
+22
+00:01:30.540 --> 00:01:33.432
+bị chi phối bởi phương trình đó.
+
+23
+00:01:33.432 --> 00:01:38.040
+Vì vậy, điều này khá giống với phương trình này mà chúng ta đã thấy ở bên trái.
+
+24
+00:01:38.040 --> 00:01:43.890
+Và cuối cùng, mọi người áp dụng một phép tính ReLU khác
+
+25
+00:01:43.890 --> 00:01:52.105
+bây giờ bị chi phối bởi phương trình đó trong đó G ở đây sẽ là phi tuyến tính ReLU.
+
+26
+00:01:52.105 --> 00:01:56.880
+Và ta được kết quả là a[l + 2].
+
+27
+00:01:56.880 --> 00:01:57.900
+Vì thế, nói cách khác,
+
+28
+00:01:57.900 --> 00:02:03.035
+để thông tin từ a[l] có thể truyền sang a [l + 2],
+
+29
+00:02:03.035 --> 00:02:07.455
+nó cần phải trải qua tất cả các bước mà tôi sẽ gọi là
+
+30
+00:02:07.455 --> 00:02:13.140
+đường dẫn chính của tập hợp các layer này.
+
+31
+00:02:13.140 --> 00:02:14.550
+Trong một mạng thặng dư (residual network),
+
+32
+00:02:14.550 --> 00:02:16.900
+chúng ta sẽ thay đổi cái này
+
+33
+00:02:16.900 --> 00:02:18.495
+Chúng ta sẽ lấy a[l],
+
+34
+00:02:18.495 --> 00:02:22.805
+và chỉ cần chuyển tiếp nó, sao chép nó,
+
+35
+00:02:22.805 --> 00:02:26.200
+kết hợp sâu hơn với neural network ở đây,
+
+36
+00:02:26.200 --> 00:02:28.860
+và chỉ cần thêm a[l],
+
+37
+00:02:28.860 --> 00:02:34.080
+trước khi áp dụng cho tính phi tuyến tính, tính phi tuyến tính của ReLU.
+
+38
+00:02:34.080 --> 00:02:37.730
+Và tôi sẽ gọi đây là lối tắt.
+
+39
+00:02:37.730 --> 00:02:40.725
+Vì vậy, thay vì đi theo con đường chính,
+
+40
+00:02:40.725 --> 00:02:43.335
+thông tin từ a[l] bây giờ có thể theo
+
+41
+00:02:43.335 --> 00:02:46.910
+lối tắt để đi sâu hơn nhiều vào neural network.
+
+42
+00:02:46.910 --> 00:02:49.680
+Và điều đó có nghĩa là phương trình cuối cùng này
+
+43
+00:02:49.680 --> 00:02:52.760
+biến mất và thay vào đó chúng ta có đầu ra
+
+44
+00:02:52.760 --> 00:03:00.810
+a [l + 2] là độ phi tuyến tính của ReLU g áp dụng cho z [l + 2] như trước đây,
+
+45
+00:03:00.810 --> 00:03:02.830
+nhưng bây giờ cộng với a[l].
+
+46
+00:03:02.830 --> 00:03:05.515
+Vì vậy, việc cộng thêm a[l] này ở đây,
+
+47
+00:03:05.515 --> 00:03:07.355
+khiến nó trở thành một khối dư.
+
+48
+00:03:07.355 --> 00:03:11.070
+Và trong hình ảnh, mọi người cũng có thể sửa đổi hình ảnh trên
+
+49
+00:03:11.070 --> 00:03:15.945
+trên cùng bằng cách vẽ lối tắt hình ảnh này để đi tới đây.
+
+50
+00:03:15.945 --> 00:03:20.805
+Và chúng ta sẽ vẽ nó khi nó đi vào layer thứ hai ở đây
+
+51
+00:03:20.805 --> 00:03:26.220
+bởi vì lối tắt được thêm vào trước phi tuyến tính ReLU.
+
+52
+00:03:26.220 --> 00:03:27.570
+Vì vậy, mỗi nút ở đây,
+
+53
+00:03:27.570 --> 00:03:30.560
+áp dụng một hàm tuyến tính và một ReLU.
+
+54
+00:03:30.560 --> 00:03:34.320
+Vì vậy, a[l] đang được đưa vào sau phần tuyến tính nhưng trước phần ReLU.
+
+55
+00:03:34.320 --> 00:03:37.815
+Và đôi khi thay vì từ lối tắt
+
+56
+00:03:37.815 --> 00:03:40.485
+mọi người cũng nghe thấy thuật ngữ kết nối tắt,
+
+57
+00:03:40.485 --> 00:03:44.835
+và điều đó đề cập đến a[l] bỏ qua một layer hoặc bỏ qua
+
+58
+00:03:44.835 --> 00:03:51.090
+gần như hai layer để xử lý thông tin sâu hơn trong neural network.
+
+59
+00:03:51.090 --> 00:03:54.030
+Vì vậy, những gì các nhà phát minh ra ResNet,
+
+60
+00:03:54.030 --> 00:03:55.950
+tức là Kaiming He, Xiangyu Zhang,
+
+61
+00:03:55.950 --> 00:03:58.925
+Shaoqing Ren và Jian Sun.
+
+62
+00:03:58.925 --> 00:04:02.010
+Những gì họ nhận thấy là việc dụng các khối dư
+
+63
+00:04:02.010 --> 00:04:05.920
+cho phép mọi người huấn luyện các neural network sâu hơn nhiều.
+
+64
+00:04:05.920 --> 00:04:10.785
+Và cách mọi người xây dựng ResNet là lấy nhiều khối dư này,
+
+65
+00:04:10.785 --> 00:04:15.695
+các khối như thế này và xếp chúng lại với nhau để tạo thành một mạng sâu.
+
+66
+00:04:15.695 --> 00:04:18.150
+Vì vậy, chúng ta hãy nhìn vào mạng này.
+
+67
+00:04:18.150 --> 00:04:19.730
+Đây không phải là mạng thặng dư,
+
+68
+00:04:19.730 --> 00:04:22.950
+đây được gọi là một mạng thuần túy (plain network).
+
+69
+00:04:22.950 --> 00:04:26.830
+Đây là thuật ngữ của nghiên cứu về ResNet.
+
+70
+00:04:26.830 --> 00:04:28.675
+Để biến nó thành ResNet,
+
+71
+00:04:28.675 --> 00:04:31.050
+mọi người phải thêm tất cả những
+
+72
+00:04:31.050 --> 00:04:36.475
+kết nối tắt ngay cả những kết nối ngắn hơn như thế này
+
+73
+00:04:36.475 --> 00:04:39.875
+Vì vậy, cứ hai layer sẽ có một
+
+74
+00:04:39.875 --> 00:04:44.710
+thay đổi bổ sung mà chúng ta đã thấy trên
+
+75
+00:04:44.710 --> 00:04:49.520
+slide trước để biến mỗi cái này thành khối dư.
+
+76
+00:04:49.520 --> 00:04:53.770
+Vì vậy, hình ảnh này cho thấy năm khối còn lại được xếp chồng lên nhau,
+
+77
+00:04:53.770 --> 00:04:56.565
+và đây là một mạng thặng dư.
+
+78
+00:04:56.565 --> 00:04:59.615
+Và nó chỉ ra rằng nếu mọi người sử dụng
+
+79
+00:04:59.615 --> 00:05:02.620
+thuật toán tối ưu hóa tiêu chuẩn chẳng hạn như
+
+80
+00:05:02.620 --> 00:05:04.120
+thuật toán gradient descent hoặc một trong số
+
+81
+00:05:04.120 --> 00:05:07.340
+các thuật toán tối ưu hóa lạ hơn cho mạng huấn luyện hoặc mạng thuần túy.
+
+82
+00:05:07.340 --> 00:05:10.270
+Vì vậy, không có dư thừa,
+
+83
+00:05:10.270 --> 00:05:14.030
+không có tất cả các lối tắt bổ sung hoặc các kết nối tắt mà tôi vừa vẽ.
+
+84
+00:05:14.030 --> 00:05:18.965
+Theo kinh nghiệm, mọi người thấy rằng khi mọi người tăng số lượng layer,
+
+85
+00:05:18.965 --> 00:05:21.100
+training error sẽ có xu hướng giảm sau
+
+86
+00:05:21.100 --> 00:05:24.240
+một thời gian nhưng sau đó chúng sẽ có xu hướng tăng trở lại.
+
+87
+00:05:24.240 --> 00:05:29.170
+Và về lý thuyết, khi mọi người tạo ra một neural network sâu hơn,
+
+88
+00:05:29.170 --> 00:05:32.935
+nó sẽ hoạt động ngày càng tốt hơn trong training set.
+
+89
+00:05:32.935 --> 00:05:35.155
+Đúng. Vì vậy, về lý thuyết, về lý thuyết,
+
+90
+00:05:35.155 --> 00:05:37.815
+có một mạng lưới sâu hơn chắc chắn sẽ hữu ích
+
+91
+00:05:37.815 --> 00:05:40.435
+Nhưng trong thực tế,
+
+92
+00:05:40.435 --> 00:05:42.925
+có một mạng thuần túy, vì vậy không có ResNet ,
+
+93
+00:05:42.925 --> 00:05:45.890
+có một mạng thuần túy rất sâu có nghĩa là
+
+94
+00:05:45.890 --> 00:05:50.220
+tất cả thuật toán tối ưu hóa của mọi người sẽ gặp nhiều khó khăn trong huấn luyện.
+
+95
+00:05:50.220 --> 00:05:51.685
+Và như vậy, trong thực tế,
+
+96
+00:05:51.685 --> 00:05:55.865
+training error của mọi người trở nên tồi tệ hơn nếu mọi người chọn một mạng quá sâu.
+
+97
+00:05:55.865 --> 00:06:01.530
+Nhưng điều xảy ra với ResNet là ngay cả khi số lượng layer ngày càng sâu,
+
+98
+00:06:01.530 --> 00:06:06.120
+hiệu suất của mọi người có thể tiếp tục gỉam do training error
+
+99
+00:06:06.120 --> 00:06:10.030
+Ngay cả khi chúng ta huấn luyện một mạng với hơn một trăm layer.
+
+100
+00:06:10.030 --> 00:06:12.820
+Và bây giờ một số người đang thử nghiệm với mạng
+
+101
+00:06:12.820 --> 00:06:17.845
+hơn một nghìn layer mặc dù tôi không thấy rằng nó được sử dụng nhiều trong thực tế.
+
+102
+00:06:17.845 --> 00:06:20.230
+Nhưng bằng cách dunhf những activation này, tức là X trong số
+
+103
+00:06:20.230 --> 00:06:24.950
+những activation trung gian này và cho phép nó đi sâu hơn nhiều vào neural network,
+
+104
+00:06:24.950 --> 00:06:30.355
+điều này thực sự hữu ích với các vấn đề về vanishing hay exploding gradient
+
+105
+00:06:30.355 --> 00:06:31.930
+và cho phép ta huấn luyện
+
+106
+00:06:31.930 --> 00:06:36.220
+neural network sâu hơn nhiều mà không làm giảm hiệu suất đáng kể,
+
+107
+00:06:36.220 --> 00:06:39.370
+và có thể đến một lúc nào đó, nó sẽ ổn định, nó sẽ được làm phẳng,
+
+108
+00:06:39.370 --> 00:06:43.090
+và nó không giúp ích cho các mạng ngày càng sâu hơn.
+
+109
+00:06:43.090 --> 00:06:49.120
+Nhưng ResNet thậm chí không hiệu quả trong việc giúp huấn luyện các mạng rất sâu.
+
+110
+00:06:49.120 --> 00:06:52.645
+Vì vậy, bây giờ mọi người đã có một cái nhìn tổng quan về cách hoạt động của ResNets.
+
+111
+00:06:52.645 --> 00:06:55.495
+Và trên thực tế, trong bài tập lập trình tuần này,
+
+112
+00:06:55.495 --> 00:06:59.205
+mọi người có thể thực hiện những ý tưởng này và thấy nó hiệu quả cho chính mình.
+
+113
+00:06:59.205 --> 00:07:02.350
+Nhưng tiếp theo, tôi muốn chia sẻ với mọi người lý do rõ ràng hơn hoặc
+
+114
+00:07:02.350 --> 00:07:06.160
+nhiều lý do hơn nữa về lý do tại sao ResNets hoạt động rất tốt,
+
+115
+00:07:06.160 --> 00:07:07.730
+Hãy đón xem video tiếp theo.

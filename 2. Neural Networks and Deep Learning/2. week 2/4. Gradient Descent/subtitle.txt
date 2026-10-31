@@ -1,0 +1,135 @@
+Bạn đã thấy mô hình hồi quy logistic,
+bạn đã thấy hàm mất mát đo lường mức độ hiệu quả công việc
+bạn đang làm trên một mẫu huấn luyện. Bạn cũng đã học về hàm chi phí đo
+mức độ hiệu quả của tham số w và b trên toàn bộ tập
+huấn luyện của bạn. Bây giờ hãy nói về cách bạn có thể sử dụng
+thuật toán gradient descent để huấn luyện, để tìm hiểu các tham số
+w trên tập huấn luyện của bạn. Tóm lại, đây là thuật toán
+hồi quy logistic quen thuộc. Và trên dòng thứ hai
+chúng ta có hàm chi phí, J, một hàm của các tham số w và b. Và điều đó được định nghĩa là giá trị trung bình
+là một trên m của hàm mất mát này. Và do đó, hàm mất mát sẽ đo lường
+đầu ra của các thuật toán tốt như thế nào. y mũ i trên mỗi mẫu huấn luyện
+xếp chồng lên so với nhãn gốc y(i) trên mỗi
+mẫu huấn luyện và công thức đầy đủ được mở rộng ở bên phải. Như vậy, hàm chi phí đo lường
+mức độ hiệu quả mà tham số w và b đang thực hiện
+trên tập huấn luyện. Vì vậy, để tìm hiểu tập hợp
+của các tham số w và b, có vẻ tự nhiên là chúng ta
+muốn tìm w và b. Điều đó làm cho hàm chi phí J(w,b) càng nhỏ càng tốt. Như vậy, đây là một minh họa
+về thuật toán gradient descent. Trong biểu đồ này, trục hoành
+đại diện cho các tham số không gian w và b. Trong thực tế, w có thể
+cao hơn nhiều, nhưng để vẽ đồ thị, thì hãy minh họa w là một số thực
+duy nhất và b là một số thực duy nhất. Hàm chi phí J của w, b là một mặt nào đó nằm trên
+trục hoành w và b. Như vậy, chiều cao của bề mặt biểu thị
+giá trị của J (w, b) tại một điểm nhất định. Và điều mà chúng ta muốn làm
+là tìm thấy giá trị của w và b tương ứng với mức
+tối thiểu của hàm chi phí J. Nó chỉ ra rằng
+cụ thể này J là một hàm lồi. Như vậy, nó giống như một cái
+bát lớn, và đây là một hàm lồi và điều này trái ngược với các
+hàm trông như thế này, không lồi và
+có rất nhiều tối ưu cục bộ khác nhau. Vì vậy, thực tế là hàm chi phí J của w,
+b như được định nghĩa ở đây là lồi, là một trong những lý do lớn tại sao chúng tôi sử dụng
+hàm chi phí cụ thể này J cho hồi quy logistic Thế nên để tìm một
+giá trị tốt cho các tham số, những gì chúng tôi sẽ làm là khởi tạo w và b đến giá trị ban đầu nào đó có thể là
+được biểu thị bằng chấm nhỏ màu đỏ đó. Và đối với hồi quy logistic, hầu hết mọi
+phương thức khởi chạy đều hiệu quả, Thông thường bạn Khởi tạo các giá trị bằng 0. Khởi tạo ngẫu nhiên cũng hoạt động,
+nhưng mọi người thường không làm điều đó cho hồi quy logistic Nhưng vì hàm này lồi, nên
+bất kể là bạn khởi chạy ở đâu, thì bạn nên đến cùng một điểm
+hoặc gần như cùng một điểm. Và những gì mà kỹ thuật gradient descent
+thực hiện là nó bắt đầu từ điểm ban đầu đó và sau đó đi xuống một bước
+theo hướng thẳng đứng. Như vậy, sau một bước đi xuống,
+bạn có thể kết thúc ở đó, bởi vì nó đang cố gắng đi xuống
+theo hướng dốc nhất hoặc càng nhanh càng tốt. Vì vậy, đó là một lần lặp
+của gradient descent. Và sau bước 2, với 1 bước giảm lớn bạn có thể bước ở đó ba lần lặp,... Tôi đoán bây giờ các lần lặp đến cuối cùng
+đã bị che mất rồi, hy vọng bạn hội tụ về một điểm tối ưu toàn cục này hoặc
+đến một cái gì đó gần với điểm tối ưu toàn cục. Vì vậy, hình ảnh này minh họa
+các thuật toán gradient descent. Hãy viết thêm một chút về
+chi tiết với mục đích minh họa, giả sử rằng có một số hàm
+J của w mà bạn muốn giảm thiểu và có thể hàm đó trông giống như
+để dễ vẽ hơn. Tôi sẽ bỏ qua b vì chỉ để biến điều này thành một đồ thị
+một chiều thay vì một đồ thị nhiều chiều. Như vậy, thuật toán gradient
+descent sẽ làm điều này, chúng ta sẽ liên tục
+thực hiện cập nhật sau đây. Chúng tôi sẽ lấy giá trị của w và cập nhật. sử dụng dấu hai chấm
+để thể hiện cập nhật w. Vì vậy, thiết lập w thành
+w trừ alpha lần và đây là một đạo hàm d của J wd w. Và chúng tôi lặp lại số
+đó cho đến khi thuật toán hội tụ. Như vậy, ký hiệu alpha
+ở đây, là tỷ lệ học tập, và kiểm soát độ lớn của từng bước chúng ta thực hiện trên
+mỗi lần lặp lại hoặc gradient descent chúng ta sẽ nói sau về một số cách để
+chọn tốc độ học tập, alpha và thứ hai đại lượng này ở đây,
+đây là một đạo hàm. Về cơ bản, đây là bản cập nhật hoặc thay đổi
+bạn muốn thực hiện cho các tham số w. khi chúng ta bắt đầu viết mã để triển khai gradient descent, chúng ta sẽ sử dụng quy ước là
+tên biến trong mã của chúng ta dw sẽ được sử dụng để đại diện
+cho số hạng đạo hàm này. Vì vậy, khi bạn viết mã,
+bạn viết một cái gì đó như w bằng hoặc bằng w trừ d w của thời gian alpha. Và vì vậy chúng ta sử dụng dw là tên biến
+để biểu thị thuật ngữ đạo hàm này. Bây giờ, hãy chắc chắn rằng bản
+cập nhật gradient descent này có nghĩa. Giả sử w đã kết thúc ở đây. Như vậy, bạn đang ở điểm
+này trên hàm chi phí J (w). Hãy nhớ rằng định nghĩa
+của đạo hàm là hệ số góc của một hàm tại điểm. Vì vậy, độ dốc của hàm thực sự là, chiều cao chia cho chiều rộng
+bên phải của tam giác dưới. Ở đây, tại thời điểm đó lực căng bằng
+J của w. Và như vậy, ở đây
+đạo hàm là dương. w được cập nhật là w trừ đi tỷ lệ
+học tập nhân với đạo hàm. đạo hàm là số dương. Và vì vậy bạn kết thúc trừ w. Vì vậy, bạn kết thúc một bước sang bên trái
+và quá tuyệt vời và bất đồng với, làm cho thuật toán của bạn từ từ
+giảm tham số. Nếu bạn đã bắt đầu với
+giá trị lớn này của w. Một ví dụ khác, nếu w
+đã kết thúc ở đây, thì tại thời điểm này độ dốc ở đây hoặc
+dJ sẽ là số âm. Và vì vậy, gradient cập nhật với
+trừ alpha lần một số âm. Và do đó, kết thúc từ từ tăng w. Vì vậy, bạn cuối cùng bạn đang làm cho w lớn hơn và lớn hơn với
+thế hệ liên tiếp của gradient giảm dần. Vì vậy, hy vọng rằng cho dù bạn
+khởi tạo ở bên trái, tự hỏi bên phải, tạo thành trung tâm di chuyển bạn
+hướng tới mức tối thiểu toàn cầu này tại đây. Nếu bạn không quen thuộc với
+đạo hàm của phép tính và thuật ngữ d J của wdw này có nghĩa là gì. Đừng lo lắng quá nhiều về điều đó. Chúng ta sẽ nói thêm về các
+đạo hàm trong video tiếp theo. Nếu bạn hiểu sâu về tính toán, bạn có thể có hiểu biết sâu sắc hơn về cách thức
+hoạt động của các mạng nơ-ron nhân tạo. Nhưng ngay cả khi bạn không quen thuộc
+với phép tính trong một vài video tiếp theo sẽ cung cấp cho bạn đủ trực giác
+về các dẫn xuất và về tính toán mà bạn sẽ có thể sử dụng
+các mạng nơ-ron nhân tạo hiệu quả. Nhưng kiến thức tổng quát bây giờ là thuật ngữ này đại diện cho
+độ dốc của hàm và chúng tôi muốn biết độ dốc của hàm tại
+, cài đặt hiện tại của các thông số để để chúng ta có thể thực hiện những bước đi
+xuống dốc nhất, để chúng ta biết cần bước theo hướng nào để đi xuống dốc
+trên hàm chi phí J. Vì vậy, chúng tôi đã viết gradient descent của chúng tôi cho
+J của w. Nếu chỉ có w là tham số
+của bạn trong hồi quy logistic. Hàm chi phí của bạn là
+một hàm trên w và b. Trong trường hợp đó, vòng lặp gốc đó là điều này ở đây, điều mà bạn
+phải lặp lại sẽ trở thành như sau. Bạn kết thúc cập nhật w là
+w trừ đi tỷ lệ học tập nhân với đạo hàm
+J của wb đối với w và Và bạn cập nhật b là
+b trừ đi (số lần học nhân đạo hàm của
+hàm chi phí của b). Vì vậy, hai phương trình này ở cuối
+cập nhật thực tế mà bạn triển khai như trong bên cạnh, tôi chỉ muốn đề cập đến một
+, tất cả các quy ước và phép tính. Điều đó hơi khó hiểu đối với một số người. Tôi không nghĩ việc bạn hiểu tính toán
+là cực kỳ quan trọng, nhưng khi bạn thấy điều này tôi muốn chắc chắn
+rằng bạn không suy nghĩ quá nhiều. Đó là trong phép tính số hạng
+ở đây chúng tôi thực sự viết như sau, biểu tượng ngoằn ngoèo vui nhộn đó. Vì vậy, biểu tượng này,
+, đây thực sự chỉ là giá trị thấp hơn trường hợp d trong một phông chữ lạ mắt,
+trong một phông chữ cách điệu. Nhưng khi bạn nhìn thấy biểu thức này,
+tất cả điều này có nghĩa là đây là J của w, b hoặc
+thực sự là hệ số góc của hàm J của w, b bằng bao nhiêu để hàm
+dốc theo phương w. Và quy tắc của ký hiệu và phép tính,
+mà tôi nghĩ là hoàn toàn logic. nhưng quy tắc trong ký hiệu cho phép tính,
+mà tôi nghĩ là nó chỉ làm cho mọi thứ trở nên phức tạp hơn cái bạn cần là
+nếu J là hàm của hai hoặc nhiều biến hơn,
+thì thay vì sử dụng chữ thường d. Bạn sử dụng biểu tượng vui nhộn này. Đây được gọi là
+, nhưng đừng lo lắng về điều này. và nếu J là hàm chỉ có một biến,
+thì bạn sử dụng chữ d thường. Vì vậy, sự khác biệt duy nhất giữa việc bạn
+sử dụng biểu tượng đạo hàm riêng vui nhộn này hay không hoặc chữ thường d. Như chúng ta đã làm ở trên là liệu J là
+một chức năng của hai hay nhiều biến. Trong trường hợp đó, bạn sử dụng biểu tượng
+này, ký hiệu đạo hàm một phần hoặc J chỉ là một hàm của một biến. Sau đó, bạn sử dụng chữ thường d. Đây là một trong những quy tắc ký hiệu số phép tính mà tôi nghĩ chỉ làm cho mọi thứ
+so với mức cần thiết. Nhưng nếu bạn thấy ký hiệu đạo hàm riêng tất cả điều đó có nghĩa là bạn đang đo
+độ dốc của hàm với đối với một trong các biến,
+và tương tự với, chính thức đúng ký hiệu toán học
+vì ở đây J có hai đầu vào. Không chỉ một, Điều này ở phía dưới nên được viết
+bằng ký hiệu đạo hàm một phần này. Nhưng nó có nghĩa tương tự
+như, gần giống như chữ d thường. Cuối cùng, khi bạn triển khai
+điều này trong mã, chúng ta sẽ sử dụng quy ước
+rằng số lượng này thực sự là số lượng Chúc bạn cập nhật w sẽ biểu thị
+là biến dw trong mã của bạn. Và số lượng này, đúng,
+số lượng mà bạn muốn để cập nhật b với ghi chú bằng
+biến db trong mã của bạn. Bây giờ, đó là cách bạn có thể
+triển khai gradient descent. Bây giờ nếu bạn đã không học tính toán trong
+một vài năm, tôi biết rằng có lẽ đã có quá nhiều đạo hàm trong tính toán
+này mà khiến bạn không quen lắm. Nhưng nếu bạn đang cảm thấy
+như vậy, thì đừng lo lắng về điều đó. Trong video tiếp theo, chúng tôi sẽ cung cấp
+cho bạn nhiều kiến thức về các đạo hàm. Và thậm chí bạn không cần có hiểu biết
+toán học sâu sắc về tính toán, chỉ với hiểu biết trực quan về tính toán bạn sẽ có thể làm cho
+mạng của mình hoạt động hiệu quả để chúng ta hãy đi vào video tiếp theo, chúng ta sẽ
+nói thêm một chút về các dẫn xuất.

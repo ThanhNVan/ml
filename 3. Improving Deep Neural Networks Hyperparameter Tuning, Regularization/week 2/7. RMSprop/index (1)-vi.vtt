@@ -1,0 +1,501 @@
+WEBVTT
+
+1
+00:00:00.470 --> 00:00:03.955
+Bạn đã thấy cách sử dụng momentum
+có thể tăng gradient descent.
+
+2
+00:00:03.955 --> 00:00:06.230
+Có một thuật toán khác được gọi là RMSprop,
+
+3
+00:00:06.230 --> 00:00:10.490
+là viết tắt của root mean square prop (lan truyền căn bậc hai trung bình bình phương),
+cũng có thể tăng gradient descent.
+
+4
+00:00:10.490 --> 00:00:11.800
+Hãy xem nó hoạt động như thế nào.
+
+5
+00:00:11.800 --> 00:00:16.313
+Nhớ lại ví dụ của chúng ta trước đây,
+rằng nếu bạn triển khai gradient descent,
+
+6
+00:00:16.313 --> 00:00:20.252
+bạn có thể kết thúc với các dao động lớn
+theo phương thẳng đứng,
+
+7
+00:00:20.252 --> 00:00:24.569
+ngay cả khi nó đang cố gắng thực hiện các bước tiến theo phương ngang.
+
+8
+00:00:24.569 --> 00:00:29.214
+Để cung cấp trực giác cho
+ví dụ này, hãy giả sử rằng
+
+9
+00:00:29.214 --> 00:00:34.733
+trục tung là tham số b và
+trục hoành là tham số w.
+
+10
+00:00:34.733 --> 00:00:39.614
+Nó có thể là w1 và w2 trong đó một số trong số
+tham số trung tâm được đặt tên là b và
+
+11
+00:00:39.614 --> 00:00:42.090
+w vì lợi ích của trực giác.
+
+12
+00:00:42.090 --> 00:00:46.690
+Và do đó, bạn muốn làm chậm lại
+quá trình học theo hướng b, hoặc
+
+13
+00:00:46.690 --> 00:00:48.400
+theo phương thẳng đứng.
+
+14
+00:00:48.400 --> 00:00:54.830
+Và tăng learning rate, hoặc ít nhất không làm chậm nó theo hướng ngang.
+
+15
+00:00:54.830 --> 00:00:59.411
+Vì vậy, đây là những gì thuật toán RMSprop
+làm để thực hiện điều này.
+
+16
+00:00:59.411 --> 00:01:07.237
+Trong lần lặp t, nó sẽ tính
+như thường lệ với đạo hàm dW,
+
+17
+00:01:07.237 --> 00:01:11.387
+db trên mini batch hiện tại.
+
+18
+00:01:15.464 --> 00:01:19.400
+Vì vậy, tôi sẽ giữ mức trung bình trọng số theo cấp số nhân này.
+
+19
+00:01:19.400 --> 00:01:22.890
+Thay vì VdW,
+, tôi sẽ sử dụng ký hiệu mới SdW.
+
+20
+00:01:22.890 --> 00:01:28.954
+Vì vậy, SdW bằng beta nhân với giá trị
+
+21
+00:01:28.954 --> 00:01:34.181
+phía trước + 1- beta nhân bình phương dW.
+
+22
+00:01:34.181 --> 00:01:41.130
+Đôi khi viết là dW**2 để biểu thị dW bình phương.
+
+23
+00:01:41.130 --> 00:01:48.530
+Vì vậy, để rõ ràng, phép toán bình phương
+này là một phép toán bình phương từng thành phần.
+
+24
+00:01:48.530 --> 00:01:52.170
+Vì vậy, những gì điều này đang làm thực sự là
+giữ trung bình trọng số theo cấp số nhân
+
+25
+00:01:52.170 --> 00:01:56.230
+của bình phương các đạo hàm.
+
+26
+00:01:56.230 --> 00:02:04.368
+Và tương tự, chúng ta cũng có Sdb bằng
+beta Sdb + 1- beta, db bình phương.
+
+27
+00:02:04.368 --> 00:02:08.031
+Và một lần nữa,
+bình phương là một phép toán từng thành phần.
+
+28
+00:02:08.031 --> 00:02:13.330
+Tiếp theo, RMSprop cập nhật
+các tham số như sau.
+
+29
+00:02:13.330 --> 00:02:17.875
+W được cập nhật thành W trừ đi
+learning rate và
+
+30
+00:02:17.875 --> 00:02:22.580
+trong khi trước đây chúng ta có alpha nhân dW,
+bây giờ là
+
+31
+00:02:22.580 --> 00:02:27.596
+dW chia cho căn bậc hai của SdW.
+
+32
+00:02:27.596 --> 00:02:33.322
+Và b được cập nhật là b trừ đi
+lần learning rate,
+
+33
+00:02:33.322 --> 00:02:38.080
+thay vì chỉ gradient, đây cũng là
+chia cho, bây giờ chia cho Sdb.
+
+34
+00:02:39.600 --> 00:02:42.970
+Vì vậy, chúng ta hãy có được một số trực giác
+về cách hoạt động của nó.
+
+35
+00:02:42.970 --> 00:02:45.750
+Nhớ lại rằng theo phương ngang hoặc
+
+36
+00:02:45.750 --> 00:02:50.380
+trong ví dụ này, theo hướng W
+chúng ta muốn việc học diễn ra khá nhanh.
+
+37
+00:02:50.380 --> 00:02:54.819
+Trong khi theo phương thẳng đứng hoặc
+trong ví dụ này theo hướng b,
+
+38
+00:02:54.819 --> 00:02:59.137
+chúng ta muốn làm chậm mọi dao động
+theo phương thẳng đứng.
+
+39
+00:02:59.137 --> 00:03:01.737
+Vì vậy, với số hạng này SdW một Sdb,
+
+40
+00:03:01.737 --> 00:03:06.729
+điều chúng ta hy vọng là SdW
+sẽ tương đối nhỏ,
+
+41
+00:03:06.729 --> 00:03:11.836
+vì vậy ở đây chúng ta đang chia
+cho một số tương đối nhỏ.
+
+42
+00:03:11.836 --> 00:03:16.851
+Trong khi Sdb sẽ tương đối lớn, do đó
+ở đây chúng ta đang chia yt cho một
+
+43
+00:03:16.851 --> 00:03:21.226
+số tương đối lớn để làm chậm
+cập nhật theo chiều dọc.
+
+44
+00:03:21.226 --> 00:03:25.518
+Và thực sự nếu bạn nhìn vào các đạo hàm,
+các đạo hàm này
+
+45
+00:03:25.518 --> 00:03:30.340
+lớn hơn theo phương thẳng đứng
+so với phương ngang.
+
+46
+00:03:30.340 --> 00:03:33.720
+Vậy độ dốc rất lớn
+theo phương b phải không?
+
+47
+00:03:33.720 --> 00:03:40.790
+Vì vậy, với các đạo hàm như thế này, đây là
+một db rất lớn và một dw tương đối nhỏ.
+
+48
+00:03:40.790 --> 00:03:45.350
+Bởi vì hàm này dốc hơn
+theo phương thẳng đứng hơn là
+
+49
+00:03:45.350 --> 00:03:50.870
+theo phương b, theo phương w
+, hay theo phương ngang.
+
+50
+00:03:50.870 --> 00:03:53.008
+Và như vậy, bình phương
+db sẽ tương đối lớn.
+
+51
+00:03:53.008 --> 00:03:58.010
+Vì vậy, Sdb sẽ tương đối lớn, trong khi
+so với dW thì vẫn nhỏ hơn,
+
+52
+00:03:58.010 --> 00:04:02.080
+hoặc dW bình phương sẽ nhỏ hơn,
+và do đó SdW sẽ nhỏ hơn.
+
+53
+00:04:02.080 --> 00:04:06.600
+Vì vậy, hiệu quả thực sự của việc này là
+ngày tăng của bạn theo hướng thẳng đứng
+
+54
+00:04:06.600 --> 00:04:11.230
+được chia cho một số lớn hơn nhiều, để giảm thiểu các dao động.
+
+55
+00:04:11.230 --> 00:04:15.440
+Trong khi các cập nhật theo phương
+nằm ngang được chia cho một số nhỏ hơn.
+
+56
+00:04:15.440 --> 00:04:19.470
+Vì vậy, tác động thực của việc sử dụng RMSprop
+là các bản cập nhật của bạn sẽ
+
+57
+00:04:19.470 --> 00:04:20.750
+trông giống như thế này.
+
+58
+00:04:22.750 --> 00:04:27.587
+Đó là cập nhật theo phương thẳng đứng
+
+59
+00:04:27.587 --> 00:04:32.370
+và sau đó là phương ngang
+bạn có thể tiếp tục.
+
+60
+00:04:32.370 --> 00:04:36.890
+Và một tác động của điều này là bạn
+có thể sử dụng learning rate alpha
+
+61
+00:04:36.890 --> 00:04:41.540
+lớn hơn và học nhanh hơn mà không phân kỳ
+theo phương thẳng đứng.
+
+62
+00:04:41.540 --> 00:04:45.223
+Bây giờ, để rõ ràng hơn, tôi sẽ gọi phương b và w lần lượt
+
+63
+00:04:45.223 --> 00:04:48.348
+là phương thẳng đứng và phương ngang chỉ để minh họa điều này.
+
+64
+00:04:48.348 --> 00:04:53.188
+Trên thực tế, bạn đang ở trong không gian
+chiều rất cao của các tham số,
+
+65
+00:04:53.188 --> 00:04:57.383
+vì vậy, ở chiều thẳng đứng, nơi bạn đang cố gắng loại bỏ các
+
+66
+00:04:57.383 --> 00:05:01.757
+dao động là tập hợp tổng
+của các tham số, w1, w2, w17.
+
+67
+00:05:01.757 --> 00:05:07.223
+Và chiều ngang có thể là w3,
+w4, v.v., phải không ?.
+
+68
+00:05:07.223 --> 00:05:11.150
+Và như vậy, sự phân tách có
+WMP chỉ là một minh họa.
+
+69
+00:05:11.150 --> 00:05:15.330
+Trong thực tế, dW là một véc tơ tham số có chiều rất cao.
+
+70
+00:05:15.330 --> 00:05:18.620
+Db cũng là vectơ tham số
+chiều rất cao, nhưng
+
+71
+00:05:18.620 --> 00:05:22.830
+trực giác của bạn là trong các chiều, nơi bạn nhận được các dao động
+
+72
+00:05:22.830 --> 00:05:26.570
+bạn sẽ tính được một tổng lớn.
+
+73
+00:05:26.570 --> 00:05:29.406
+Trung bình trọng số cho
+các bình phương và đạo hàm này, v.v.
+
+74
+00:05:29.406 --> 00:05:33.080
+vậy nên bạn sẽ giảm thiểu các chiều mà ở đó có dao động.
+
+75
+00:05:33.080 --> 00:05:39.680
+Vì vậy, đó là RMSprop, và nó là viết tắt của
+root mean squared prop, bởi vì ở đây
+
+76
+00:05:39.680 --> 00:05:44.110
+bạn bình phương các đạo hàm, và sau đó
+bạn lấy căn bậc hai ở đây ở cuối.
+
+77
+00:05:44.110 --> 00:05:48.560
+Và cuối cùng, đây là một số chi tiết về thuật toán này trước khi chúng ta chuyển sang phần khác.
+
+78
+00:05:49.870 --> 00:05:55.420
+Trong video tiếp theo, chúng tôi đang thực sự sẽ
+kết hợp RMSprop cùng với momentum.
+
+79
+00:05:55.420 --> 00:06:00.540
+Vì vậy, thay vì sử dụng beta siêu tham số
+, mà chúng ta đã sử dụng trong momentum,
+
+80
+00:06:00.540 --> 00:06:05.188
+Tôi sẽ gọi đây là siêu tham số
+beta 2 chỉ để không bị trùng
+
+81
+00:06:05.188 --> 00:06:09.350
+Cùng một siêu tham số cho
+cả momentum và RMSprop.
+
+82
+00:06:09.350 --> 00:06:13.540
+Và cũng để đảm bảo rằng thuật toán
+của bạn không chia cho 0.
+
+83
+00:06:13.540 --> 00:06:17.910
+Điều gì xảy ra nếu căn bậc hai của SdW,
+phải, rất gần với 0.
+
+84
+00:06:17.910 --> 00:06:19.730
+Sau đó, mọi thứ có thể nổ tung.
+
+85
+00:06:19.730 --> 00:06:24.320
+Mục đích là để đảm bảo sự ổn định về số,
+khi bạn triển khai điều này trong thực tế, bạn
+
+86
+00:06:24.320 --> 00:06:28.200
+thêm một epsilon rất,
+rất nhỏ vào mẫu số.
+
+87
+00:06:28.200 --> 00:06:30.760
+Việc sử dụng epsilon nào thực sự không quan trọng lắm.
+
+88
+00:06:30.760 --> 00:06:34.948
+10 mũ -8 sẽ là
+mặc định hợp lý, nhưng điều này chỉ đảm bảo
+
+89
+00:06:34.948 --> 00:06:39.202
+ổn định về số hơn một chút do các số làm tròn hay bất kể lí do gì,
+
+90
+00:06:39.202 --> 00:06:43.030
+bạn sẽ không chia cho một số rất rất nhỏ.
+
+91
+00:06:43.030 --> 00:06:47.870
+Vì vậy, đó là RMSprop và
+tương tự như momentum, có các tác động
+
+92
+00:06:47.870 --> 00:06:52.910
+làm giảm các dao động trong gradient
+descent hay mini-batch gradient descent.
+
+93
+00:06:52.910 --> 00:06:56.510
+Và cho phép bạn có thể sử dụng learning rate tập alpha lớn hơn.
+
+94
+00:06:56.510 --> 00:07:01.920
+Và chắc chắn tăng tốc
+độ học của thuật toán của bạn.
+
+95
+00:07:01.920 --> 00:07:05.350
+Vì vậy, bây giờ bạn đã biết triển khai RMSprop,
+và đây sẽ là một cách khác để
+
+96
+00:07:05.350 --> 00:07:07.920
+bạn để tăng tốc thuật toán học tập của mình.
+
+97
+00:07:07.920 --> 00:07:09.554
+Một sự thật thú vị về RMSprop,
+
+98
+00:07:09.554 --> 00:07:13.572
+đó là nó thực ra được đề xuất lần đầu không phải trên các tờ báo nghiên cứu học thuật mà
+
+99
+00:07:13.572 --> 00:07:17.947
+trong một khóa học Coursera mà Jeff Hinton
+đã dạy nhiều năm trước.
+
+100
+00:07:17.947 --> 00:07:22.108
+Tôi đoán Coursera đã không có ý định trở thành một nền tảng để phổ cập
+
+101
+00:07:22.108 --> 00:07:26.214
+các nghiên cứu hàn lâm mới lạ, nhưng
+nó hoạt động khá tốt trong trường hợp đó.
+
+102
+00:07:26.214 --> 00:07:30.126
+Và thực sự từ khóa học Coursera
+, RMSprop bắt đầu được biết đến
+
+103
+00:07:30.126 --> 00:07:31.790
+rộng rãi và nó thực sự đã thành công.
+
+104
+00:07:31.790 --> 00:07:32.970
+Chúng ta đã nói về momentum.
+
+105
+00:07:32.970 --> 00:07:34.330
+Chúng ta đã nói về RMSprop.
+
+106
+00:07:34.330 --> 00:07:37.970
+Hóa ra nếu bạn đặt chúng
+lại cùng nhau, bạn có thể có được một
+
+107
+00:07:37.970 --> 00:07:39.530
+thuật toán tối ưu hóa thậm chí còn tốt hơn.
+
+108
+00:07:39.530 --> 00:07:41.040
+Hãy nói về điều đó trong video tiếp theo.

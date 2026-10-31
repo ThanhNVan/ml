@@ -1,0 +1,214 @@
+One way to learn the parameters
+of the neural network, so that it gives
+you a good encoding for your pictures of faces, is to define and apply gradient descent on the
+triplet loss function. Let's see what that means. To apply the triplet loss you need to compare pairs of images. For example, given this picture, to learn the parameters
+of the neural network, you have to look at several
+pictures at the same time. For example, given
+this pair of images, you want their encodings to be similar because these
+are the same person. Whereas given this
+pair of images, you want their
+encodings to be quite different because these
+are different persons. In the terminology
+of the triplet loss, what you're going
+to do is always look at one anchor image, and then you want
+to distance between the anchor and a positive image, really a positive example, meaning is the same
+person, to be similar. Whereas you want the anchor when pairs are compared to have a negative example for their distances to be
+much further apart. This is what gives rise
+to the term triplet loss, which is that you
+always be looking at three images at a time. You'll be looking
+at an anchor image, a positive image, as well
+as a negative image. I'm going to abbreviate
+anchor, positive, and negative as A, P, and N. To formalize this, what you want is for
+the parameters of your neural network
+or for your encoding to have the following property; which is that you
+want the encoding between the anchor minus the encoding of the
+positive example, you want this to be
+small, and in particular, you want this to be
+less than or equal to the distance or the squared norm between the encoding of the anchor and the
+encoding of the negative, whereof course this is d of A, P and this is d of A, N. You can think of d
+as a distance function, which is why we named it
+with the alphabet d. Now, if we move the term from the right side of this
+equation to the left side, what you end up with is f of A minus f of P squared minus, I'm going to take the
+right-hand side now, minus f of N squared, you want it to be less
+than or equal to zero. But now we're going to
+make a slight change to this expression, which is; one trivial way to make
+sure this is satisfied is to just learn
+everything equals zero. If f always output zero, then this is 0 minus
+0, which is 0, this is 0 minus 0, which
+is 0, and so, well, by saying f of any image
+equals a vector of all zero's, you can see almost trivially
+satisfy this equation. To make sure that
+the neural network doesn't just output zero, for all the encodings, or to make sure
+that it doesn't set all the encodings
+equal to each other. Another way for
+the neural network to give a trivial outputs is if the encoding for
+every image was identical to the encoding
+to every other image, in which case you
+again get 0 minus 0. To prevent your neural
+network from doing that, what we're going to do is
+modify this objective to say that this doesn't need to be just less than equal to zero, it needs to be quite a
+bit smaller than zero. In particular, if we
+say this needs to be less than negative Alpha, where Alpha is another
+hyperparameter then this prevents
+a neural network from outputting the
+trivial solutions. By convention, usually, we write plus Alpha instead of
+negative Alpha there. This is also called a margin, which is terminology that
+you'd be familiar with if you've also seen
+the literature on support vector machines, but don't worry about
+it if you haven't. We can also modify
+this equation on top by adding this margin parameter. Given example, let's say
+the margin is set to 0.2. If in this example d of the anchor and the
+positive is equal to 0.5, then you won't be satisfied if d between the anchor
+and the negative, was just a little bit
+bigger, say 0.51. Of one. Even though 0.51
+is bigger than 0.5, you're saying that's
+not good enough. We want d of A,N to be
+much bigger than d of A,P. In particular, you
+want this to be at least 0.7 or higher. Alternatively, to achieve this margin or
+this gap of at least 0.2, you could either push
+this up or push this down so that there is at
+least this gap of this hyperparameter
+Alpha 0.2 between the distance between
+the anchor and the positive versus the
+anchor and the negative. That's what having a margin
+parameter here does. Which is it pushes the anchor-positive pair and the anchor-negative pair
+further away from each other. Let's take this equation
+we have here at the bottom and on
+the next slide, formalize it and define
+the triplet loss function. The triplet loss function is defined on triples of images. Given three images: A, P, and N, the anchor positive
+and negative examples, so the positive examples is of the same person as the anchor, but the negative is of a different person
+than the anchor. We're going to define
+the loss as follows. The loss on this example, which is really defined on
+a triplet of images is, let me first copy over what
+we had on the previous slide. That was f A minus f P squared minus f A minus f N squared, and then plus alpha,
+the margin parameter. What you want is for this to be less than or equal to zero. To define the loss function, let's take the max
+between this and zero. The effect of taking
+the max here is that so long as this is
+less than zero, then the loss is zero because the max is
+something less than equal to zero with zero is
+going to be zero. So long as you
+achieve the goal of making this thing I've
+underlined in green, so long as you've
+achieved the objective of making that less than
+or equal to zero, then the loss on this
+example is equal to zero. But if on the other hand, if this is greater than zero, then if you take the max, the max will end up selecting this thing I've underlined in green and so you'd
+have a positive loss. By trying to minimize this, this has the effect
+of trying to send this thing to be zero or
+less than equal to zero. Then so long as this zero
+or less than equal to zero, the neural network doesn't care how much further negative it is. This is how you
+define the loss on a single triplet and the overall cost function for
+your neural network can be sum over a training set of these individual losses
+on different triplets. If you have a
+training set of say, 10,000 pictures with
+1,000 different persons, what you'd have to
+do is take your 10,000 pictures and
+use it to generate, to select triplets like this, and then train your
+learning algorithm using gradient descent on this
+type of cost function, which is really
+defined on triplets of images drawn from
+your training set. Notice that in order to define
+this dataset of triplets, you do need some
+pairs of A and P, pairs of pictures
+of the same person. For the purpose of
+training your system, you do need a dataset where you have multiple pictures
+of the same person. That's why in this example
+I said if you have 10,000 pictures of 1,000
+different persons, so maybe you have ten pictures, on average of each of your 1,000 persons to make
+up your entire dataset. If you had just one
+picture of each person, then you can't actually
+train this system. But of course, after
+having trained a system, you can then apply it to your one-shot learning problem where for your face
+recognition system, maybe you have only
+a single picture of someone you might be
+trying to recognize. But for your training set, you do need to
+make sure you have multiple images of
+the same person, at least for some people
+in your training set, so that you can have pairs of
+anchor and positive images. Now, how do you actually choose these triplets to
+form your training set? One of the problems
+is if you choose A, P, and N randomly from
+your training set, subject to A and P being the same person and A and
+N being different persons, one of the problems is that if you choose them so
+that they're random, then this constraint is
+very easy to satisfy. Because given two randomly
+chosen pictures of people, chances are A and N are much
+different than A and P. I hope you still
+recognize this notation. Does d (A, P) will be high written on the last few
+slides of these encoding. This is equal to this squared norm
+distance between the encodings that we had
+on the previous line. But if A and N are two randomly
+chosen different persons, then there's a very
+high chance that this will be much bigger, more than the margin helper, than that term on the left and the Neural Network won't
+learn much from it. To construct your training set, what you want to do is
+to choose triplets, A, P, and N, they're the
+''hard'' to train on. In particular, what you
+want is for all triplets that this constraint
+be satisfied. A triplet that is
+''hard'' would be if you choose values for A, P, and N so that may be d (A, P) is actually quite
+close to d (A, N). In that case, the
+learning algorithm has to try extra hard to take
+this thing on the right and try to push it up or take this thing on the left
+and try to push it down so that there is at
+least a margin of alpha between the left
+side and the right side. The effect of choosing
+these triplets is that it increases the
+computational efficiency of your learning algorithm. If you choose the
+triplets randomly, then too many triplets would be really easy and gradient descent won't do anything because
+you're Neural Network would get them right pretty
+much all the time. It's only by choosing
+''hard'' to triplets that the gradient
+descent procedure has to do some work
+to try to push these quantities further
+away from those quantities. If you're interested,
+the details are presented in this paper
+by Florian Schroff, Dmitry Kalenichenko,
+and James Philbin, where they have a
+system called FaceNet, which is where a lot
+of the ideas I'm presenting in this
+video had come from. By the way, this is
+also a fun fact about how algorithms are often named in the Deep
+Learning World, which is if you work
+in a certain domain, then we call that Blank. You often have a system called
+Blank Net or Deep Blank. We've been talking
+about Face recognition. This paper is called FaceNet, and in the last video, you just saw Deep Face. But this idea of Blank
+Net or Deep Blank is a very popular way of naming algorithms in the
+Deep Learning World. You should feel free
+to take a look at that paper if you
+want to learn some of these other details
+for speeding up your algorithm by choosing the most useful
+triplets to train on; it is a nice paper. Just to wrap up, to
+train on triplet loss, you need to take
+your training set and map it to a lot of triples. Here is a triple with an
+Anchor and a Positive, both of the same person and a Negative of a
+different person. Here's another one where the Anchor and Positive
+are of the same person, but the Anchor and Negative are of different persons and so on. What you do, having to find this training set of
+Anchor, Positive, and Negative triples is use
+gradient descent to try to minimize the cost function J we defined on
+an earlier slide. That will have the effect of backpropagating to
+all the parameters of the Neural Network in order to learn an
+encoding so that d of two images
+will be small when these two images are of the
+same person and they'll be large when these are two
+images of different persons. That's it for the triplet loss and how you can use it to train a Neural Network to output a good encoding for
+face recognition. Now, it turns out that today's
+Face recognition systems, especially the large-scale commercial face
+recognition systems are trained on very
+large datasets. Datasets north of a million
+images are not uncommon. Some companies are
+using north of 10 million images
+and some companies have north of a100
+million images with which they try to
+train these systems. These are very large datasets, even by modern standards, these dataset assets are
+not easy to acquire. Fortunately, some of these
+companies have trained these large networks and
+posted parameters online. Rather than trying to train one of these networks from scratch, this is one domain
+where because of the sheer data volumes sizes, it might be useful
+for you to download someone else's pre-trained model rather than do everything
+from scratch yourself. But even if you do download someone else's
+pre-trained model, I think it's still
+useful to know how these algorithms
+were trained in case you need to apply
+these ideas from scratch yourself for
+some application. That's it for the triplet loss. In the next video, I
+want to show you also some other variations on Siamese networks and how
+to train these systems. Let's go on to the next video.

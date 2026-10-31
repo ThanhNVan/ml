@@ -1,0 +1,80 @@
+Trong video này, tôi muốn
+giúp bạn có thêm kiến thức về giải tích và đạo hàm. Bây giờ, có lẽ bạn đang nghĩ rằng bạn đã
+không đụng đến giải tích từ thời đại học, và còn tùy vào thời điểm
+bạn tốt nghiệp, có lẽ phải mất một chút
+thời gian để học lại. Nếu bây giờ bạn đang nghĩ
+như vậy thì cũng đừng lo lắng, bạn không cần hiểu biết
+quá sâu về giải tích để ứng dụng hiệu quả các
+mạng nơ-ron nhân tạo và học sâu. Vì vậy, nếu bạn đang xem video này hoặc
+một số video sau này và bạn đang tự hỏi, công cụ này thực sự dành cho tôi ư, giải tích trông thật là phức tạp. Lời khuyên của tôi
+dành cho bạn là hãy xem video và rồi
+nếu bạn có thể làm bài tập về nhà và hoàn thành
+tốt bài tập lập trình thì bạn sẽ có thể
+áp dụng học tập sâu. Trong thực tế, trong
+tuần bốn, bạn sẽ thấy là chúng ta sẽ xác định một
+vài loại hàm mà giúp bạn tóm lược mọi thứ cần
+phải làm trong giải tích, và các hàm này được gọi
+là hàm thuận và hàm ngược. Bạn sẽ có thể ứng dụng mọi thứ bạn
+cần biết về giải tích thành các hàm này, và bạn không cần phải
+lo lắng về chúng nữa. Nhưng tôi nghĩ rằng khi đi sâu
+vào kỹ thuật học sâu trong tuần này, chúng ta nên mở hộp và nhìn sâu
+hơn một chút vào chi tiết của giải tích. Nhưng thực sự thì tất cả những gì
+bạn cần là hiểu biết cơ bản về điều này để xây dựng và áp dụng
+thành công các thuật toán này. Cuối cùng, nếu bạn nằm trong một
+nhóm nhỏ các chuyên gia về giải tích, nếu bạn rất quen thuộc
+với các đạo hàm tính toán, bạn có thể bỏ qua video này. Nhưng đối với những
+bạn khác, hãy đào sâu vào, và cố gắng để có được
+hiểu biết cơ bản về các đạo hàm. Ở đây tôi vẽ hàm f (a) bằng 3a. Như vậy, đây chỉ là
+một đường thẳng. Để hiểu được đạo hàm, hãy nhìn vào một vài
+điểm trên hàm này. Giả sử a = 2. Trong trường hợp này, f (a), bằng ba lần a và bằng 6. Vậy, nếu a bằng 2, thì f(a) sẽ bằng 6. Giả sử chúng ta tăng
+giá trị của a lên một chút. Tôi sẽ chỉ tăng a lên một chút, bây giờ a là 2.001. Như vậy, tôi sẽ nhích a
+về bên phải một chút. Bây giờ, là 2.001, hãy vẽ điều này vào đồ thị, 2,001, sự khác biệt 0,001 này là
+quá nhỏ để hiển thị trên đồ thị này, chỉ cần đặt nó vào bên phải. Bây giờ, f (a), bằng ba lần số đó. Và bằng 6,003, thế nên
+chúng ta đặt nó ở đây. Đây không phải để
+đo tỉ lệ, đây là 6,003. Vì vậy, nếu bạn nhìn vào hình tam
+giác nhỏ màu xanh lá cây này ở đây, bạn sẽ thấy là nếu tôi
+nhích a thêm 0,001 sang phải, thì f (a) tăng 0,003. Lượng f (a), đã tăng lên gấp ba lần lượng
+mà tôi nhích a sang phải. Thế nên, chúng tôi sẽ nói rằng, độ dốc hoặc đạo hàm của hàm f (a), tại a bằng 2 hoặc khi
+a bằng 2 thì độ dốc là ba. Về cơ bản đạo hàm
+có nghĩa là độ dốc, chỉ là từ “đạo hàm” thì
+nghe có vẻ đáng sợ hơn đáng ngại hơn, trong khi độ dốc là một từ
+thân thiện hơn để mô tả khái niệm đạo hàm. Do đó, bất cứ khi nào bạn
+nghe thấy từ đạo hàm, thì chỉ cần nghĩ đó
+là độ dốc của hàm. Chính thức hơn thì, độ dốc
+được xác định bằng chiều cao chia cho chiều rộng của
+tam giác nhỏ màu xanh lá cây này. Như vậy, đây là 0,003 trên 0,001, và thực tế là độ dốc bằng
+ba hoặc đạo hàm bằng ba, chỉ thể hiện là khi bạn nhích a
+sang phải 0,001, với số lượng nhỏ, số lượng tại f (a) tăng lên gấp
+ba lần lượng mà bạn tăng lên, khi bạn nhích a
+theo hướng ngang. Như vậy, đó là tất cả về
+độ dốc của một đường. Bây giờ, hãy xem xét
+hàm này ở một điểm khác. Giả sử bây giờ a bằng 5. Trong trường hợp này, f (a), bằng ba lần a, bằng 15. Hãy xem lại một chút, tăng a lên một chút về bên phải. Một chút thôi, giờ nó
+đã tăng lên tới 5,001, f (a) bằng ba lần a. Vậy, f (a) bằng 15.003. Một lần nữa, khi tôi
+nhích a về bên phải, tăng a thêm 0,001, f(a) tăng gấp ba lần. Như vậy, một lần nữa
+độ dốc, tại a = 5, cũng là ba. Thế nên chúng ta viết như thế này, độ dốc của hàm f bằng ba: Chúng ta nói, d f (a)/da, nghĩa là, độ dốc của hàm f (a) khi bạn tăng biến a, thêm một chút, thì bằng ba. Có một cách khác để viết
+công thức đạo hàm này như sau. Bạn cũng có thể viết là, d/da của f (a). Vì vậy, cho dù bạn đặt f (a) lên đầu hay bạn viết nó
+xuống đây, thì điều đó cũng không thành vấn đề. Nhưng phương trình này có nghĩa là, nếu tôi tăng a sang phải một chút, thì tôi muốn f (a) sẽ tăng gấp
+ba lần so với giá trị của a. Trong video này tôi đã
+giải thích về các đạo hàm, nói về điều gì sẽ xảy ra nếu
+chúng ta tăng biến a thêm 0,001. Nếu bạn muốn biết một định nghĩa
+toán học chính thức của đạo hàm thì đó là: Đạo hàm được xác định với giá trị thậm chí
+nhỏ hơn lượng giá trị mà bạn tăng thêm cho a. Như vậy, không phải là 0,001. Cũng không phải là 0,000001. Cũng không phải là 0,000000…1. Nó thậm chí còn nhỏ hơn thế, và định nghĩa chính thức
+của đạo hàm nói rằng bất cứ khi nào bạn tăng
+a thêm một lượng vô hạn, về cơ bản là một
+số lượng vô cùng nhỏ. Nếu bạn làm điều đó,
+f (a) này tăng gấp ba lần số lượng nhỏ mà bạn tăng a lên. Như vậy đây chính là định nghĩa
+chính thức của đạo hàm. Nhưng mục đích của chúng ta
+là hiểu biết trực quan, mà tôi nói về việc tăng a
+thêm một lượng nhỏ 0.001 này. Thậm chí 0,001 không phải
+chính xác là một vi phân cực nhỏ. Bây giờ, một thuộc tính
+của đạo hàm là, bất kể bạn lấy độ dốc
+của hàm này ở đâu thì nó cũng bằng ba cho dù a bằng hai
+hay a bằng năm. Độ dốc của hàm này bằng ba, có nghĩa là với bất cứ
+giá trị nào của a, nếu bạn tăng nó lên 0,001, giá trị của f (a) tăng gấp ba lần. Như vậy hàm này có độ dốc
+an toàn ở khắp mọi nơi. Một cách để thấy như vậy là, khi bạn vẽ hình tam giác
+nhỏ này ở bất cứ đâu. Chiều cao, chia cho chiều rộng, luôn có tỷ lệ 3:1. Thế nên, tôi hy vọng điều này
+giúp bạn hiểu về độ dốc hoặc đạo hàm của hàm có
+nghĩa là một đường thẳng, trong đó, trong ví dụ này, độ dốc
+của hàm bằng ba ở mọi nơi. Trong video tiếp theo, chúng ta sẽ
+xem một ví dụ phức tạp hơn một chút, trong đó độ dốc của hàm có thể
+khác nhau tại các điểm khác nhau trên hàm.

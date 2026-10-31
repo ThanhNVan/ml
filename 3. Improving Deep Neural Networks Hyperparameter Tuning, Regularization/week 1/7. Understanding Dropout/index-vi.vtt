@@ -1,0 +1,436 @@
+WEBVTT
+
+00:00:00.110 --> 00:00:03.150
+Dropout thực hiện điều có vẻ điên rồ này là
+
+00:00:03.150 --> 00:00:06.190
+loại ngẫu nhiên các đơn vị trong mạng của bạn.
+
+00:00:06.190 --> 00:00:08.470
+Tại sao nó hoạt động tốt như một công cụ điều
+chỉnh?
+
+00:00:08.470 --> 00:00:10.930
+Chúng ta hãy đạt được một số trực giác tốt
+hơn.
+
+00:00:10.930 --> 00:00:14.297
+Trong video trước, tôi đã đưa ra trực giác
+rằng Dropout ngẫu
+
+00:00:14.297 --> 00:00:17.663
+nhiên loại bỏ các đơn vị trong mạng của bạn để
+cứ như thể mỗi
+
+00:00:17.663 --> 00:00:21.030
+lần lặp lại bạn đang làm việc với một
+neural network nhỏ hơn.
+
+00:00:21.030 --> 00:00:23.830
+Và vì vậy, việc sử dụng neural network
+
+00:00:23.830 --> 00:00:26.630
+nhỏ hơn có vẻ như sẽ có tác dụng điều chỉnh.
+
+00:00:26.630 --> 00:00:33.910
+Đây là trực giác thứ hai, bạn biết đấy, hãy
+nhìn nó từ góc độ của một đơn vị.
+
+00:00:33.910 --> 00:00:34.910
+Hãy nói điều này.
+
+00:00:34.910 --> 00:00:38.190
+Bây giờ, để đơn vị này thực hiện công việc của
+mình, nó
+
+00:00:38.190 --> 00:00:41.470
+có bốn đầu vào và nó cần tạo ra một số đầu ra
+có ý nghĩa.
+
+00:00:41.470 --> 00:00:46.390
+Giờ đây với Dropout, đầu vào có thể được loại
+bỏ một cách ngẫu nhiên.
+
+00:00:46.390 --> 00:00:50.810
+Đôi khi hai đơn vị đó sẽ bị loại, đôi khi một
+đơn vị khác sẽ bị loại.
+
+00:00:50.810 --> 00:00:54.443
+Vậy điều này có nghĩa là đơn vị này, mà tôi
+đang khoanh tròn màu tím, nó
+
+00:00:54.443 --> 00:00:58.077
+không thể dựa vào bất kỳ một feature nào bởi
+vì bất kỳ feature nào cũng
+
+00:00:58.077 --> 00:01:01.710
+có thể biến mất một cách ngẫu nhiên hoặc bất
+kỳ đầu vào nào của chính nó
+
+00:01:01.710 --> 00:01:04.070
+có thể biến mất một cách ngẫu nhiên.
+
+00:01:04.070 --> 00:01:07.470
+Vì vậy, đặc biệt, sẽ rất miễn cưỡng khi đặt
+tất cả các khoản
+
+00:01:07.470 --> 00:01:10.870
+đặt cược của mình vào chỉ thông tin đầu vào
+này, phải không?
+
+00:01:10.870 --> 00:01:13.550
+Các trọng số sẽ không muốn đặt quá nhiều trọng
+
+00:01:13.550 --> 00:01:16.230
+số vào bất kỳ đầu vào nào vì nó có thể biến
+mất.
+
+00:01:16.230 --> 00:01:21.310
+Vì vậy, đơn vị này sẽ có động lực hơn để phân
+bổ trọng lượng của nó và cung cấp cho
+
+00:01:21.310 --> 00:01:26.390
+bạn một chút trọng lượng đối với từng đầu vào
+trong số bốn đầu vào của đơn vị này.
+
+00:01:26.390 --> 00:01:30.830
+Và bằng cách trải rộng các trọng số, điều này
+sẽ có
+
+00:01:30.830 --> 00:01:35.270
+xu hướng làm giảm chuẩn bình phương của các
+trọng số.
+
+00:01:35.270 --> 00:01:38.977
+Và tương tự như những gì chúng ta đã thấy với
+regularization L2, tác
+
+00:01:38.977 --> 00:01:42.683
+dụng của việc triển khai Dropout là nó tăng
+cường các trọng số và thực
+
+00:01:42.683 --> 00:01:46.390
+hiện tương tự như regularization L2 giúp ngăn
+ngừa việc overfitting.
+
+00:01:46.390 --> 00:01:50.043
+Nhưng hóa ra Dropout chính thức có thể được
+coi là một dạng
+
+00:01:50.043 --> 00:01:53.697
+thích ứng của regularization L2, nhưng hình
+phạt L2 đối với
+
+00:01:53.697 --> 00:01:57.350
+các trọng số khác nhau là khác nhau tùy thuộc
+vào quy mô kích hoạt
+
+00:01:57.350 --> 00:01:58.990
+được nhân với trọng lượng đó.
+
+00:01:58.990 --> 00:02:06.990
+Nhưng tóm lại, có thể chỉ ra rằng Dropout có
+tác dụng tương tự như việc chuẩn hóa L2.
+
+00:02:06.990 --> 00:02:10.340
+Chỉ việc regularization L2 được áp dụng cho
+các trọng số khác nhau mới có thể
+
+00:02:10.340 --> 00:02:13.690
+khác một chút và thậm chí còn thích ứng hơn
+với quy mô của các đầu vào khác nhau.
+
+00:02:13.690 --> 00:02:16.110
+Thêm một chi tiết nữa khi bạn triển khai
+Dropout.
+
+00:02:16.110 --> 00:02:19.630
+Đây là mạng nơi bạn có ba feature đầu vào.
+
+00:02:19.630 --> 00:02:24.790
+Đây là bảy đơn vị ẩn ở đây, bảy, ba, hai, một.
+
+00:02:24.790 --> 00:02:28.230
+Vì vậy, một trong những tham số chúng tôi phải
+chọn là
+
+00:02:28.230 --> 00:02:31.670
+Keep Prop, đây là cơ hội giữ một đơn vị trong
+mỗi lớp.
+
+00:02:31.670 --> 00:02:36.710
+Vì vậy, việc thay đổi Keep Prop theo từng lớp
+cũng khả thi.
+
+00:02:36.710 --> 00:02:42.590
+Vì vậy, đối với lớp đầu tiên, ma trận W1 của
+bạn sẽ là 7 x 3.
+
+00:02:42.590 --> 00:02:46.070
+Ma trận trọng số thứ hai của bạn sẽ là 7 x 7.
+
+00:02:46.070 --> 00:02:50.510
+W3 sẽ là 3 x 7, v.v.
+
+00:02:50.510 --> 00:02:53.950
+Và như vậy W2 thực sự là ma trận có trọng số
+lớn nhất, phải không?
+
+00:02:53.950 --> 00:02:58.870
+Bởi vì chúng thực sự là tập hợp tham số lớn
+nhất là W2, tức là 7 x 7.
+
+00:02:58.870 --> 00:03:03.030
+Vì vậy, để ngăn chặn, để giảm bớt việc trang
+bị quá mức của
+
+00:03:03.030 --> 00:03:07.190
+ma trận đó, có thể đối với lớp này, tôi đoán
+đây là lớp 2,
+
+00:03:07.190 --> 00:03:11.350
+bạn có thể có Keep Prop tương đối thấp, chẳng
+hạn là 0,5.
+
+00:03:11.350 --> 00:03:16.190
+Trong khi đối với các lớp khác mà bạn có thể
+bớt lo lắng hơn về việc trang bị
+
+00:03:16.190 --> 00:03:21.030
+quá mức, bạn có thể có Keep Prop cao hơn, có
+thể chỉ 0,7, có thể đây là 0,7.
+
+00:03:21.030 --> 00:03:23.510
+Và đối với các lớp mà bạn không lo lắng về
+việc
+
+00:03:23.510 --> 00:03:25.990
+overfitting, bạn có thể có Keep Prop là
+1.0.
+
+00:03:25.990 --> 00:03:31.270
+Để cho rõ ràng, đây là những con số tôi vẽ
+trong các ô màu tím.
+
+00:03:31.270 --> 00:03:35.150
+Đây có thể là Keep Props khác nhau cho các lớp
+khác nhau.
+
+00:03:35.150 --> 00:03:39.050
+Lưu ý rằng Keep Prop của 1.0 có nghĩa là bạn
+đang giữ mọi đơn vị và
+
+00:03:39.050 --> 00:03:42.950
+do đó bạn thực sự không sử dụng phần bỏ học
+mang theo cho lớp đó.
+
+00:03:42.950 --> 00:03:46.017
+Nhưng đối với các lớp mà bạn lo lắng hơn về
+việc trang bị
+
+00:03:46.017 --> 00:03:49.083
+quá mức, thực sự là các lớp có nhiều tham số,
+bạn có thể
+
+00:03:49.083 --> 00:03:52.150
+đặt Keep Prop nhỏ hơn để áp dụng hình thức bỏ
+học mạnh mẽ hơn.
+
+00:03:52.150 --> 00:03:56.010
+Nó giống như tăng cường tham số chính quy,
+Lambda cho regularization L2,
+
+00:03:56.010 --> 00:03:59.870
+trong đó bạn cố gắng regularization một số lớp
+nhiều hơn các lớp khác.
+
+00:03:59.870 --> 00:04:03.830
+Và về mặt kỹ thuật, bạn cũng có thể áp dụng
+feature bỏ học cho lớp đầu vào, nơi bạn
+
+00:04:03.830 --> 00:04:07.790
+có thể có một số cơ hội, bạn biết đấy, chỉ cần
+loại bỏ một hoặc nhiều feature đầu vào.
+
+00:04:07.790 --> 00:04:12.070
+Mặc dù trong thực tế, thường không làm điều đó
+thường xuyên.
+
+00:04:12.070 --> 00:04:15.750
+Và do đó, Keep Prop 1.0 khá phổ biến đối với
+lớp đầu vào.
+
+00:04:15.750 --> 00:04:18.510
+Bạn cũng có thể sử dụng giá trị rất cao, có
+thể là 0,9.
+
+00:04:18.510 --> 00:04:23.230
+Nhưng bạn biết đấy, ít có khả năng bạn muốn
+loại bỏ một nửa số feature đầu vào.
+
+00:04:23.230 --> 00:04:27.910
+Vì vậy, thông thường, Keep Prop, nếu bạn áp
+dụng nó, sẽ là một con
+
+00:04:27.910 --> 00:04:32.590
+số gần bằng một nếu bạn thậm chí áp dụng
+dropout cho lớp đầu vào.
+
+00:04:32.590 --> 00:04:36.690
+Vì vậy, tóm lại, nếu bạn lo lắng về việc một
+số lớp overfitting so với
+
+00:04:36.690 --> 00:04:40.790
+các lớp khác, bạn có thể đặt Keep Prop cho một
+số lớp thấp hơn các lớp khác.
+
+00:04:40.790 --> 00:04:43.110
+Nhược điểm là điều này cung cấp cho bạn nhiều
+siêu
+
+00:04:43.110 --> 00:04:45.430
+tham số hơn để tìm kiếm bằng cách sử dụng xác
+thực chéo.
+
+00:04:45.430 --> 00:04:49.097
+Một giải pháp thay thế khác có thể là có một
+số lớp nơi bạn áp dụng
+
+00:04:49.097 --> 00:04:52.763
+loại bỏ và một số lớp mà bạn không áp dụng
+loại bỏ và sau đó chỉ có
+
+00:04:52.763 --> 00:04:56.430
+một siêu tham số, đó là Keep Prop cho các lớp
+mà bạn áp dụng loại bỏ.
+
+00:04:56.430 --> 00:04:59.750
+Và trước khi chúng ta kết thúc, chỉ là một vài
+mẹo cấy ghép.
+
+00:04:59.750 --> 00:05:04.510
+Nhiều triển khai thành công đầu tiên của việc
+bỏ học là về thị giác máy tính.
+
+00:05:04.590 --> 00:05:07.390
+Vì vậy, trong thị giác máy tính, kích thước
+đầu vào rất lớn.
+
+00:05:07.390 --> 00:05:11.830
+Bạn đang nhập tất cả các pixel này mà bạn gần
+như không bao giờ có đủ dữ liệu.
+
+00:05:11.830 --> 00:05:15.430
+Và do đó, hiện tượng bỏ học được sử dụng rất
+thường xuyên trong thị giác máy tính.
+
+00:05:15.430 --> 00:05:17.990
+Và có một số nhà nghiên cứu thị giác máy
+
+00:05:17.990 --> 00:05:20.550
+tính gần như luôn sử dụng nó như một mặc định.
+
+00:05:20.550 --> 00:05:25.310
+Nhưng thực sự, điều cần nhớ là bỏ học là một
+kỹ thuật regularization.
+
+00:05:25.310 --> 00:05:27.590
+Nó giúp ngăn ngừa việc overfitting.
+
+00:05:27.590 --> 00:05:30.790
+Và vì vậy trừ khi thuật toán của tôi được
+trang bị quá
+
+00:05:30.790 --> 00:05:33.990
+mức, tôi thực sự sẽ không bận tâm đến việc sử
+dụng bỏ học.
+
+00:05:33.990 --> 00:05:37.470
+Vì vậy, nó được sử dụng ít thường xuyên hơn
+trong các lĩnh vực ứng dụng khác.
+
+00:05:37.470 --> 00:05:39.030
+Nó chỉ dành cho thị giác máy tính.
+
+00:05:39.030 --> 00:05:42.990
+Bạn thường không có đủ dữ liệu, vì vậy bạn hầu
+như luôn overfitting, đó là
+
+00:05:42.990 --> 00:05:46.950
+lý do tại sao có một số nhà nghiên cứu về thị
+giác máy tính thường bị bỏ học.
+
+00:05:46.950 --> 00:05:53.150
+Nhưng tôi nghĩ, trực giác không phải lúc nào
+cũng khái quát hóa cho các ngành khác.
+
+00:05:53.150 --> 00:06:01.110
+Một nhược điểm lớn của việc bỏ học là
+cost function j không còn được xác định rõ
+ràng.
+
+00:06:01.110 --> 00:06:07.390
+Trong mỗi lần lặp lại, bạn ngẫu nhiên cuộn
+tròn một loạt nút.
+
+00:06:07.390 --> 00:06:11.363
+Và vì vậy, nếu bạn đang kiểm tra kỹ hiệu suất
+của việc
+
+00:06:11.363 --> 00:06:15.337
+gradient descent, thì thực sự khó hơn để kiểm
+tra kỹ xem
+
+00:06:15.337 --> 00:06:19.310
+bạn có cost function được xác định rõ j đang
+đi xuống hay không
+
+00:06:19.310 --> 00:06:21.190
+trên mỗi lần lặp.
+
+00:06:21.190 --> 00:06:24.630
+Bởi vì cost function j mà bạn đang tối ưu hóa
+thực sự
+
+00:06:24.630 --> 00:06:28.070
+chưa được xác định rõ ràng hoặc chắc chắn là
+khó tính toán.
+
+00:06:28.070 --> 00:06:32.510
+Vì vậy, bạn mất công cụ gỡ lỗi này để vẽ bản
+nháp như thế này.
+
+00:06:32.510 --> 00:06:35.510
+Vì vậy, những gì tôi thường làm là tắt bỏ học.
+
+00:06:35.510 --> 00:06:41.550
+Bạn sẽ đặt keyprop bằng 1, sau đó chạy mã của
+tôi và đảm bảo rằng nó giảm đơn điệu j.
+
+00:06:41.550 --> 00:06:44.550
+Sau đó bật feature bỏ học và hy vọng rằng tôi
+đã không
+
+00:06:44.550 --> 00:06:47.550
+đưa phần lớn mã của mình vào trong quá trình
+bỏ học.
+
+00:06:47.550 --> 00:06:50.577
+Tôi đoán là vì bạn cần những cách khác, nhưng
+không vẽ đồ thị
+
+00:06:50.577 --> 00:06:53.603
+những số liệu này để đảm bảo rằng mã của bạn
+đang hoạt động,
+
+00:06:53.603 --> 00:06:56.630
+quá trình gradient descent đang hoạt động,
+ngay cả khi bị bỏ học.
+
+00:06:56.710 --> 00:07:02.470
+Vì vậy, vẫn còn một số kỹ thuật regularization
+nữa mà chúng tôi cảm thấy đã biết.
+
+00:07:02.470 --> 00:07:05.065
+Hãy nói về một vài kỹ thuật như vậy trong
+video tiếp theo.

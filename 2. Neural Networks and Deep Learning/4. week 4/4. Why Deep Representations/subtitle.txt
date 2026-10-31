@@ -1,0 +1,118 @@
+Tất cả chúng ta đều đã biết rằng mạng
+nơ-ron nhân tạo sâu giải quyết được rất nhiều vấn đề, và chúng
+không chỉ là mạng nơ-ron lớn, mà cụ thể là, chúng cần phải sâu
+hoặc là có nhiều lớp ẩn. Vậy tại sao lại thế? Chúng ta hãy cùng xem một
+vài ví dụ và cố gắng hiểu lý do tại sao các mạng sâu lại có
+thể hoạt động tốt như vậy. Đầu tiên, một mạng sâu thì tính những gì? Nếu bạn đang xây dựng một
+hệ thống nhận dạng khuôn mặt hoặc nhận diện khuôn mặt, thì đây là những gì
+mà một mạng nơ-ron nhân tạo sâu có thể làm. Bạn nhập vào hình ảnh của một khuôn mặt,
+tiếp theo là lớp đầu tiên của mạng nơ-ron nhân tạo, bạn có thể nghĩ tới một máy dò
+tính năng hoặc máy dò cạnh. Trong ví dụ này, tôi đang vẽ một mạng
+nơ-ron nhân tạo với khoảng 20 đơn vị ẩn, và đang cố gắng tính toán trên hình ảnh này. Và 20 đơn vị ẩn được minh họa
+bởi các hình vuông nhỏ này. Ví dụ, hình vuông nhỏ này đại diện
+cho một đơn vị ẩn mà đang cố gắng tìm ra vị trí các cạnh
+của hướng đó trong hình ảnh. Và có thể đơn vị ẩn này đang cố gắng tìm ra các cạnh ngang trong hình này. Và khi chúng ta học về các mạng
+nơ-ron tích chập trong một khóa học sau này, thì hình biểu diễn này sẽ
+dễ hiểu hơn một chút. Nhưng về hình thức, bạn có thể nghĩ về lớp
+đầu tiên của mạng nơ-ron nhân tạo khi nhìn vào hình ảnh và cố gắng tìm ra vị trí
+của các cạnh trong hình này. Bây giờ, hãy nghĩ về vị trí các cạnh
+trong hình này bằng cách nhóm các pixel lại với nhau để tạo thành các cạnh. Sau đó, nó có thể phát hiện các cạnh và nhóm
+các cạnh với nhau để tạo thành các phần trên khuôn mặt. Ví dụ, bạn có một nơ-ron thấp đang
+cố gắng xem liệu nó có tìm thấy mắt không, hoặc một nơ-ron khác đang cố
+gắng tìm một phần mũi. Và do đó, bằng cách nhóm nhiều cạnh, thì nó có thể bắt đầu nhận diện được
+các phần khác nhau trên khuôn mặt. Và cuối cùng, bằng cách ghép lại
+các phần khác nhau trên khuôn mặt, như mắt,mũi, tai hay cằm,
+thì nó có thể nhận ra hoặc nhận dạng các kiểu khuôn mặt khác nhau. Vì vậy, bạn có thể coi là các lớp
+trước của mạng nơ-ron nhân tạo phát hiện các hàm đơn giản, như các cạnh. Và rồi kết hợp chúng lại với nhau trong
+các lớp sau của mạng nơ-ron nhân tạo để nó có thể học được
+nhiều hàm phức tạp hơn. Những minh họa này sẽ có dễ hiểu hơn
+khi chúng ta học về mạng tích chập. Và một chi tiết kỹ thuật của
+hình minh họa này, các máy dò cạnh đang tìm kiếm trong các
+khu vực tương đối nhỏ trong hình ảnh, những vùng rất nhỏ như thế này. Và sau đó bạn có thể thấy là các máy dò khuôn
+mặt thì tìm trong các khu vực hình ảnh lớn hơn nhiều. Nhưng bài học chính bạn rút ra từ đây
+chỉ là tìm kiếm những điều đơn giản như các cạnh và sau đó xây chúng lên. Kết hợp chúng lại với nhau để nhận dạng
+những thứ phức tạp hơn như mắt hoặc mũi sau đó kết hợp những thứ đó lại với nhau để
+tìm ra những thứ thậm chí phức tạp hơn nữa. Và kiểu biểu diễn phân cấp từ đơn
+giản đến phức tạp này, còn gọi là biểu diễn thành phần, thì còn được áp dụng trong các loại dữ liệu
+khác ngoài hình ảnh và nhận dạng khuôn mặt. Ví dụ: nếu bạn đang muốn xây dựng
+một hệ thống nhận dạng giọng nói, thì khó để biểu diễn lại lời nói nhưng nếu bạn nhập vào một clip âm thanh thì có
+thể cấp đầu tiên của mạng nơ-ron nhân tạo có thể học để nhận dạng các tính năng dạng sóng âm
+thanh mức thấp, chẳng hạn như âm này có tăng lên không? Âm này thì hạ xuống? Có phải tiếng ồn trắng hay là
+âm thanh phát ra như . Và tông là gì? Khi nói đến đó, nhận dạng các đặc
+điểm dạng sóng mức thấp như thế. Và sau đó bằng cách tổng hợp
+các dạng sóng mức thấp, có lẽ bạn sẽ học được cách phát
+hiện các đơn vị âm thanh cơ bản. Trong ngôn ngữ học,
+chúng được gọi là âm vị. Nhưng, ví dụ, trong từ cat,
+C là âm vị, A là âm vị, T là một âm vị khác. Học để tìm các đơn vị cơ bản của âm thanh và sau đó kết hợp chúng với nhau có thể
+học cách nhận ra các từ trong âm thanh. Và sau đó có thể kết hợp
+những từ đó lại với nhau, để nhận dạng toàn bộ cụm từ hoặc câu. Như vậy, mạng nơ-ron nhân tạo
+sâu với nhiều lớp ẩn có thể có thể có các lớp trước học các đặc điểm
+đơn giản ở cấp độ thấp hơn và rồi có các lớp sâu hơn sau đó kết hợp
+những thứ đơn giản vừa được phát hiện để phát hiện ra những điều phức tạp
+hơn như nhận ra các từ cụ thể hoặc thậm chí là cụm từ hoặc câu. Thốt ra là để thực hiện nhận dạng giọng nói. Và chúng ta có thể thấy là trong
+khi các lớp khác đang tính toán, các hàm tương đối đơn giản của
+đầu vào, chẳng hạn như vị trí của cạnh, khi bạn tiến sâu vào mạng thì bạn thực sự
+có thể làm những điều phức tạp đáng kinh ngạc. Chẳng hạn như nhận diện khuôn mặt
+hoặc nhận dạng từ hoặc cụm từ hoặc câu. Một số người thích so sánh
+giữa các mạng nơ-ron sâu và bộ não con người, mà ở đó chúng ta,
+hoặc các nhà thần kinh học tin rằng, bộ não con người cũng bắt đầu nhận
+dạng những thứ đơn giản như các cạnh mà bạn nhìn thấy, rồi dần dần từ
+đó nhận dạng những thứ phức tạp hơn như khuôn mặt. Tôi nghĩ rằng sự tương đồng giữa học sâu và bộ não con người thì đôi khi
+hơi nguy hiểm một chút. Nhưng sự thật thì, đây là cách chúng
+ta nghĩ bộ não con người hoạt động và bộ não con người có thể phát hiện ra
+những thứ đơn giản như các cạnh đầu tiên, sau đó đặt chúng lại với nhau để hình thành
+nên các đối tượng ngày càng phức tạp hơn để mà trở thành một nguồn cảm hứng cho học sâu. Chúng ta sẽ nói thêm một chút về
+bộ não con người hay là bộ não sinh học trong video cuối tuần này. Sau đây là một lý do khác
+giải thích tại sao các mạng sâu thì làm việc tốt. Kết quả này xuất phát từ lý thuyết
+mạch gắn liền với ý tưởng về những loại hàm mà bạn
+có thể tính toán với các cổng AND khác nhau, cổng OR, cổng NOT
+khác nhau, về cơ bản là các cổng logic. Và theo một cách không chính thức, các hàm của họ
+thì thực hiện tính toán với một mạng nơ-ron nhân tạo tương đối nhỏ nhưng sâu, ý tôi là
+số lượng các đơn vị ẩn tương đối nhỏ. Nhưng nếu bạn muốn tính toán
+hàm tương tự với một mạng nông, và nếu không có đủ các lớp ẩn, thì bạn có thể yêu cầu nhiều đơn vị
+ẩn hơn, theo cấp số nhân, để tính toán. Tôi sẽ cho bạn xem một ví dụ và minh họa
+điều này theo cách hơi không chính thức một chút. Nhưng giả sử bạn đang
+cố gắng tính exclusive OR, hoặc tính chẵn lẻ của tất cả các
+tính năng đầu vào của bạn. Và bạn đang cố gắng tính X1, XOR, X2, XOR, X3, XOR, đến Xn nếu bạn
+có n hoặc n tính năng X. Nếu bạn xây sơ đồ cây XOR như
+thế này, thì nó tính XOR của X1 và X2, sau đó lấy X3 và X4 và
+tính XOR của chúng. Và về lý thuyết, nếu bạn chỉ sử dụng
+cổng AND hoặc NOT, bạn có thể cần vài lớp để tính toán hàm XOR
+chứ không chỉ là một lớp, nhưng với một mạch tương đối nhỏ, bạn
+có thể tính XOR, v.v. Và sau đó bạn có thể xây
+được một cây XOR như vậy, cho đến cuối cùng, bạn có một
+mạch ở đây mà đầu ra, gọi là Y. Đầu ra của Y mũ bằng Y. Exclusive OR,, tính chẵn lẻ của tất
+cả các bit đầu vào này. Để tính XOR, độ sâu của mạng sẽ
+theo cấp lệnh log N (O(log n)). Chúng ta sẽ chỉ có một cây XOR. Như vậy, số lượng nút hoặc số
+lượng các thành phần mạch hoặc số lượng cổng trong mạng này không lớn. Bạn không cần nhiều cổng
+để tính exclusive OR. Nhưng bây giờ, nếu bạn không được
+phép sử dụng mạng nơ-ron nhân tạo với nhiều lớp ẩn, trong ví dụ này,
+với order log và các lớp ẩn, nếu bạn buộc phải tính toán
+hàm này chỉ với một lớp ẩn, và bạn có tất cả những điều này
+đi vào các đơn vị ẩn. Và sau đó những cái này sẽ xuất Y. Sau đó, để tính hàm XOR này, lớp ẩn này sẽ cần phải lớn theo cấp số nhân,
+bởi vì về cơ bản, bạn cần liệt kê đầy đủ cấu hình 2 mũ n. Theo O( 2 mũ n), các cấu hình khả thi của các bit đầu vào dẫn đến
+exclusive OR trở thành 1 hoặc 0. Vì vậy, cuối cùng bạn cần
+một lớp ẩn lớn với số lượng bit lớn theo cấp số nhân. Về mặt lý thuyết, tôi nghĩ bạn
+có thể làm điều này với 2 mũ (n-1) đơn vị ẩn. Nhưng đó là 2 mũ n cũ, và số lượng
+bit sẽ tăng lên theo cấp số nhân. Tôi hy vọng điều này điều này giúp
+bạn hiểu rằng có những hàm toán học thì tính toán với các mạng sâu dễ dàng
+hơn nhiều so với các mạng nông. Trên thực tế, cá nhân tôi thấy kết quả
+từ lý thuyết mạch thì không hữu ích để giúp bạn hiểu lắm, nhưng đây là một trong
+những kết quả mà mọi người thường trích dẫn này khi giải thích giá trị của việc
+có mạng nơ-ron sâu. Bây giờ, ngoài lý do này khiến mọi người thích mạng nơ-ron sâu ra, thì thực sự là tôi nghĩ rằng những lý do khác khiến thuật
+ngữ học sâu nổi lên chỉ là về mặt nhãn hiệu. Chúng ta gọi những thứ này là các mạng
+nơ-ron nhân tạo với rất nhiều lớp ẩn, nhưng cụm từ “deep learning” (Học sâu) là một
+nhãn hiệu tuyệt vời, nó rất sâu sắc. Và tôi nghĩ rằng một khi thuật ngữ đó trở nên
+phổ biến mà các mạng nơ-ron nhân tạo được đổi tên nhãn hoặc mạng nơ-ron nhân tạo với
+nhiều lớp ẩn được đổi tên, thì thuật ngữ đó sẽ luôn hiện
+hữu trong tâm trí mọi người . Dù cho là tên nhãn hiệu PR,
+nhưng mạng sâu vẫn hoạt động hiệu quả. Đôi khi mọi người quá tích cực và khăng
+khăng sử dụng hàng tấn các lớp ẩn. Nhưng khi khởi đầu một vấn đề mới,
+tôi thường bắt đầu với hồi quy logistic rồi sau đó mới
+thử một cái gì đó với một hoặc hai lớp ẩn và sử dụng nó như là một siêu tham số Sử dụng thông số đó như tham số hoặc
+siêu tham số và bạn điều chỉnh nó để tìm ra độ sâu phù hợp cho mạng
+nơ-ron nhân tạo của bạn. Nhưng trong vài năm qua một xu hướng
+đã xuất hiện, mọi người tìm thấy rằng đối với một số ứng dụng, các mạng
+nơ ron rất, rất sâu ở đây với hàng chục lớp đôi khi có thể là
+mô hình tốt nhất cho một vấn đề. Và nó là lời giải thích cho lý do tại sao học sâu hoạt động hiệu quả. Bây giờ chúng ta hãy cùng xem
+các cơ chế về cách triển khai truyền xuôi và truyền ngược.

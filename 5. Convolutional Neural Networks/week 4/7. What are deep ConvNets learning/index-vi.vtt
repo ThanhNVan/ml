@@ -1,0 +1,477 @@
+WEBVTT
+
+1
+00:00:00.570 --> 00:00:03.330
+ConvNet sâu thực sự học được gì?
+
+2
+00:00:03.330 --> 00:00:07.420
+Trong video này, tôi muốn chia sẻ với bạn một số hình ảnh hóa sẽ giúp bạn tr
+
+3
+00:00:07.420 --> 00:00:11.900
+au dồi trực giác của bạn về những gì các lớp sâu hơn của một ConvNet thực sự đang làm.
+
+4
+00:00:11.900 --> 00:00:14.845
+Và điều này sẽ giúp chúng tôi suy nghĩ thông qua cách bạn có thể thực hiện
+
+5
+00:00:14.845 --> 00:00:17.015
+truyền phong cách thần kinh là tốt.
+
+6
+00:00:17.015 --> 00:00:18.735
+Hãy bắt đầu với một ví dụ.
+
+7
+00:00:18.735 --> 00:00:23.895
+Cho phép nói rằng bạn đã đào tạo một ConvNet, đây là một mạng lưới alex như,
+
+8
+00:00:23.895 --> 00:00:28.885
+và bạn muốn hình dung những gì các đơn vị ẩn trong các lớp khác nhau đang tính toán.
+
+9
+00:00:28.885 --> 00:00:30.255
+Đây là những gì bạn có thể làm.
+
+10
+00:00:30.255 --> 00:00:33.920
+Hãy bắt đầu với một đơn vị ẩn trong lớp 1.
+
+11
+00:00:33.920 --> 00:00:38.790
+Và giả sử bạn quét qua các bộ đào tạo của bạn và tìm hiểu những hình ảnh hoặc
+
+12
+00:00:38.790 --> 00:00:43.960
+những bản vá hình ảnh nào tối đa hóa kích hoạt của đơn vị đó.
+
+13
+00:00:43.960 --> 00:00:49.260
+Nói cách khác, tạm dừng việc đào tạo của bạn thông qua neural network của bạn, và tìm
+
+14
+00:00:49.260 --> 00:00:55.250
+ra hình ảnh tối đa hóa kích hoạt của đơn vị cụ thể đó là gì.
+
+15
+00:00:55.250 --> 00:00:58.130
+Bây giờ, chú ý rằng một đơn vị ẩn trong lớp 1,
+
+16
+00:00:58.130 --> 00:01:02.750
+sẽ chỉ thấy một phần tương đối nhỏ của neural network.
+
+17
+00:01:02.750 --> 00:01:08.170
+Và nếu bạn hình dung ra, nếu bạn vẽ những gì kích hoạt của đơn vị,
+
+18
+00:01:08.170 --> 00:01:11.360
+nó có ý nghĩa để vẽ chỉ một bản vá lỗi hình ảnh nhỏ,
+
+19
+00:01:11.360 --> 00:01:15.190
+bởi vì tất cả các hình ảnh mà đơn vị cụ thể đó nhìn thấy.
+
+20
+00:01:15.190 --> 00:01:20.220
+Vì vậy, nếu bạn chọn một đơn vị ẩn và tìm 9 hình ảnh đầu vào để tối đa hóa
+
+21
+00:01:20.220 --> 00:01:25.380
+kích hoạt của đơn vị đó, bạn có thể tìm thấy 9 bản vá hình ảnh như thế này.
+
+22
+00:01:25.380 --> 00:01:30.293
+Vì vậy, trông như thế trong khu vực thấp hơn của một hình ảnh mà
+
+23
+00:01:30.293 --> 00:01:34.691
+đơn vị ẩn đặc biệt này nhìn thấy, nó đang tìm kiếm một egde hoặc một đường thẳng trông như thế.
+
+24
+00:01:34.691 --> 00:01:39.091
+Vì vậy, đó là 9 bản vá lỗi hình ảnh kích hoạt tối đa
+
+25
+00:01:39.091 --> 00:01:41.559
+một thiết bị ẩn.
+
+26
+00:01:41.559 --> 00:01:47.055
+Bây giờ, sau đó bạn có thể chọn một đơn vị ẩn khác nhau trong lớp 1 và làm điều tương tự.
+
+27
+00:01:47.055 --> 00:01:51.149
+Vì vậy, đó là một đơn vị ẩn khác nhau, và trông giống như cái thứ hai này,
+
+28
+00:01:51.149 --> 00:01:54.170
+đại diện bởi những 9 bản vá lỗi hình ảnh ở đây.
+
+29
+00:01:54.170 --> 00:01:58.679
+Có vẻ như đơn vị ẩn này đang tìm kiếm một dòng loại trong phần đó của
+
+30
+00:01:58.679 --> 00:02:02.540
+khu vực đầu vào của nó, chúng tôi cũng sẽ gọi trường tiếp nhận này.
+
+31
+00:02:02.540 --> 00:02:07.075
+Và nếu bạn làm điều này cho các đơn vị ẩn khác, bạn sẽ tìm thấy các đơn vị ẩn khác,
+
+32
+00:02:07.075 --> 00:02:11.140
+có xu hướng kích hoạt trong các bản vá hình ảnh trông như thế.
+
+33
+00:02:11.140 --> 00:02:15.180
+Điều này dường như có một sở thích cho một cạnh ánh sáng thẳng đứng, nhưng
+
+34
+00:02:15.180 --> 00:02:18.710
+với một sở thích rằng phía bên trái của nó là màu xanh lá cây.
+
+35
+00:02:18.710 --> 00:02:23.882
+Điều này thực sự thích màu cam, và đây là một bản vá hình ảnh thú vị.
+
+36
+00:02:23.882 --> 00:02:29.730
+Màu đỏ và màu xanh lá cây này cùng nhau sẽ tạo ra một màu nâu hoặc nâu cam,
+
+37
+00:02:29.730 --> 00:02:34.294
+nhưng tế bào thần kinh vẫn vui vẻ kích hoạt với điều đó, và vân vân.
+
+38
+00:02:34.294 --> 00:02:38.399
+Đây là 9 tế bào thần kinh đại diện khác nhau và cho
+
+39
+00:02:38.399 --> 00:02:43.369
+mỗi tế bào thần kinh 9 mảng hình ảnh mà chúng kích hoạt tối đa.
+
+40
+00:02:43.369 --> 00:02:48.066
+Vì vậy, điều này cho bạn một cảm giác rằng, các đơn vị, đào tạo các đơn vị ẩn trong lớp 1,
+
+41
+00:02:48.066 --> 00:02:49.868
+họ thường tìm kiếm
+
+42
+00:02:49.868 --> 00:02:55.010
+các feature tương đối đơn giản như cạnh hoặc một màu sắc cụ thể.
+
+43
+00:02:55.010 --> 00:02:57.920
+Và tất cả các ví dụ tôi đang sử dụng trong
+
+44
+00:02:57.920 --> 00:03:01.160
+video này đến từ bài báo này của Mathew Zeiler và
+
+45
+00:03:01.160 --> 00:03:06.440
+Rob Fergus, với tiêu đề hình dung và hiểu biết các mạng phức tạp.
+
+46
+00:03:06.440 --> 00:03:10.689
+Và tôi sẽ sử dụng một trong những cách đơn giản hơn để hình dung
+
+47
+00:03:10.689 --> 00:03:14.680
+những gì một đơn vị ẩn trong một neural network đang tính toán.
+
+48
+00:03:14.680 --> 00:03:18.706
+Nếu bạn đọc bài báo của họ, họ có một số cách phức tạp hơn để
+
+49
+00:03:18.706 --> 00:03:21.480
+hình dung khi ConvNet đang chạy là tốt.
+
+50
+00:03:22.520 --> 00:03:26.064
+Nhưng bây giờ bạn đã lặp lại quy trình này nhiều lần cho
+
+51
+00:03:26.064 --> 00:03:28.380
+chín đơn vị ẩn trong lớp 1.
+
+52
+00:03:28.380 --> 00:03:29.900
+Điều gì sẽ xảy ra nếu bạn làm điều này cho
+
+53
+00:03:29.900 --> 00:03:33.790
+một số đơn vị ẩn trong các lớp sâu hơn của neural network.
+
+54
+00:03:33.790 --> 00:03:37.950
+Và những gì làm neural network sau đó học ở một lớp sâu hơn.
+
+55
+00:03:37.950 --> 00:03:43.120
+Vì vậy, trong các lớp sâu hơn, một đơn vị ẩn sẽ thấy một vùng lớn hơn của hình ảnh.
+
+56
+00:03:43.120 --> 00:03:46.540
+Nơi ở cuối cùng mỗi điểm ảnh
+
+57
+00:03:46.540 --> 00:03:51.560
+có thể giả thuyết ảnh hưởng đến đầu ra của các lớp sau này của neural network.
+
+58
+00:03:51.560 --> 00:03:55.040
+Vì vậy, các đơn vị sau này thực sự được nhìn thấy các bản vá hình ảnh lớn hơn,
+
+59
+00:03:55.040 --> 00:03:59.580
+tôi vẫn sẽ vẽ các bản vá hình ảnh như cùng kích thước trên các slide này.
+
+60
+00:03:59.580 --> 00:04:04.370
+Nhưng nếu chúng ta lặp lại quy trình này, đây là những gì bạn đã có trước đây cho lớp 1,
+
+61
+00:04:04.370 --> 00:04:09.610
+và đây là một hình dung của những gì kích hoạt tối đa chín
+
+62
+00:04:09.610 --> 00:04:12.320
+đơn vị ẩn khác nhau trong lớp 2.
+
+63
+00:04:12.320 --> 00:04:15.416
+Vì vậy, tôi muốn rõ ràng về hình dung này là gì.
+
+64
+00:04:15.416 --> 00:04:20.864
+Đây là chín bản vá lỗi khiến cho một đơn vị ẩn được kích hoạt cao.
+
+65
+00:04:20.864 --> 00:04:25.471
+Và sau đó mỗi nhóm, đây là một tập hợp 9 bản vá lỗi hình ảnh khác nhau
+
+66
+00:04:25.471 --> 00:04:27.940
+khiến cho một đơn vị ẩn được kích hoạt.
+
+67
+00:04:27.940 --> 00:04:32.630
+Vì vậy, hình dung này cho thấy chín đơn vị ẩn trong lớp 2, và
+
+68
+00:04:32.630 --> 00:04:36.700
+cho mỗi người trong số họ cho thấy chín bản vá hình ảnh khiến
+
+69
+00:04:36.700 --> 00:04:39.890
+cho đơn vị ẩn đó có một đầu ra rất lớn, một sự kích hoạt rất lớn.
+
+70
+00:04:39.890 --> 00:04:44.120
+Và bạn có thể lặp lại những thứ này cho các lớp sâu hơn là tốt.
+
+71
+00:04:44.120 --> 00:04:46.980
+Bây giờ, trên slide này, tôi biết rất khó để thấy những
+
+72
+00:04:46.980 --> 00:04:49.188
+bản vá lỗi nhỏ bé này, vì vậy hãy để tôi phóng to một vài bản vá lỗi trong đó.
+
+73
+00:04:49.188 --> 00:04:52.170
+Đối với lớp 1, đây là những gì bạn đã thấy.
+
+74
+00:04:52.170 --> 00:04:58.270
+Ví dụ, đây là đơn vị đầu tiên mà chúng tôi thấy nó được kích hoạt cao, nếu
+
+75
+00:04:58.270 --> 00:05:03.840
+trong khu vực của hình ảnh đầu vào, bạn có thể thấy có một cạnh có thể ở góc đó.
+
+76
+00:05:03.840 --> 00:05:08.350
+Bây giờ chúng ta hãy phóng to cho lớp 2, để trực quan hóa đó.
+
+77
+00:05:08.350 --> 00:05:09.750
+Vì vậy, điều này là thú vị,
+
+78
+00:05:09.750 --> 00:05:14.030
+lớp 2 có vẻ nó phát hiện các hình dạng và mẫu phức tạp hơn.
+
+79
+00:05:14.030 --> 00:05:17.300
+Ví dụ, đơn vị ẩn này trông giống như nó đang tìm kiếm
+
+80
+00:05:17.300 --> 00:05:21.110
+một kết cấu thẳng đứng với rất nhiều đường thẳng đứng.
+
+81
+00:05:21.110 --> 00:05:24.150
+Đơn vị ẩn này trông giống như được kích hoạt cao khi
+
+82
+00:05:24.150 --> 00:05:27.730
+có hình tròn hơn ở phần bên trái của ảnh.
+
+83
+00:05:27.730 --> 00:05:33.690
+Đây là một trong đó đang tìm kiếm các đường thẳng đứng rất mỏng và vân vân.
+
+84
+00:05:33.690 --> 00:05:38.810
+Và vì vậy các feature mà lớp thứ hai đang phát hiện đang trở nên phức tạp hơn.
+
+85
+00:05:38.810 --> 00:05:39.980
+Còn lớp 3 thì sao?
+
+86
+00:05:39.980 --> 00:05:43.476
+Hãy phóng to vào đó, trên thực tế hãy để tôi phóng to hơn nữa, vì vậy
+
+87
+00:05:43.476 --> 00:05:48.156
+bạn có thể thấy điều này tốt hơn, đây là những thứ kích hoạt tối đa lớp 3.
+
+88
+00:05:48.156 --> 00:05:52.806
+Nhưng chúng ta hãy phóng to hơn nữa, và điều này lại khá thú vị nữa.
+
+89
+00:05:52.806 --> 00:05:57.139
+Có vẻ như có một đơn vị ẩn mà dường như phản ứng rất cao
+
+90
+00:05:57.139 --> 00:06:01.981
+với một hình dạng tròn hơn ở phần tay trái dưới của hình ảnh, có thể.
+
+91
+00:06:01.981 --> 00:06:06.523
+Điều đó kết thúc phát hiện ra rất nhiều xe hơi, chó và
+
+92
+00:06:06.523 --> 00:06:10.735
+kỳ quan thậm chí bắt đầu phát hiện ra con người.
+
+93
+00:06:10.735 --> 00:06:15.593
+Và cái này trông giống như nó đang phát hiện một số kết cấu như hình tổ ong,
+
+94
+00:06:15.593 --> 00:06:18.358
+hoặc hình vuông, kết cấu bất thường này.
+
+95
+00:06:18.358 --> 00:06:22.356
+Và một số trong số này rất khó để nhìn vào và tự tìm ra những gì nó
+
+96
+00:06:22.356 --> 00:06:26.900
+phát hiện, nhưng rõ ràng nó bắt đầu phát hiện ra các mẫu phức tạp hơn.
+
+97
+00:06:26.900 --> 00:06:27.880
+Làm thế nào về lớp tiếp theo?
+
+98
+00:06:27.880 --> 00:06:30.903
+Vâng, đây là lớp 4, và bạn sẽ thấy rằng các feature hoặc
+
+99
+00:06:30.903 --> 00:06:33.508
+các mẫu đang phát hiện hoặc thậm chí phức tạp hơn.
+
+100
+00:06:33.508 --> 00:06:37.410
+Có vẻ như điều này đã học được gần như một máy dò chó, nhưng
+
+101
+00:06:37.410 --> 00:06:39.250
+tất cả những chú chó này tương tự, phải không?
+
+102
+00:06:39.250 --> 00:06:42.770
+Có phải đây, tôi không biết đây là loài chó hay giống chó nào.
+
+103
+00:06:42.770 --> 00:06:47.700
+Nhưng bây giờ tất cả đều là chó, nhưng chúng trông tương đối giống như chó đi.
+
+104
+00:06:47.700 --> 00:06:51.680
+Có vẻ như đơn vị ẩn này và do đó nó đang phát hiện nước.
+
+105
+00:06:53.130 --> 00:06:58.440
+Điều này có vẻ như nó thực sự đang phát hiện chân của một con chim và vân vân.
+
+106
+00:06:58.440 --> 00:07:02.740
+Và sau đó lớp 5 đang phát hiện những thứ phức tạp hơn.
+
+107
+00:07:02.740 --> 00:07:07.396
+Vì vậy, bạn sẽ nhận thấy cũng có một nơ-ron dường như là một máy dò chó,
+
+108
+00:07:07.396 --> 00:07:12.450
+nhưng bộ chó phát hiện ở đây dường như đa dạng hơn.
+
+109
+00:07:12.450 --> 00:07:17.610
+Và sau đó điều này dường như được phát hiện bàn phím và những thứ với một bàn phím
+
+110
+00:07:17.610 --> 00:07:22.360
+như kết cấu, mặc dù có thể rất nhiều dấu chấm so với nền.
+
+111
+00:07:22.360 --> 00:07:27.950
+Tôi nghĩ nơ-ron ở đây có thể phát hiện văn bản, lúc nào cũng khó có thể chắc chắn.
+
+112
+00:07:27.950 --> 00:07:31.520
+Và rồi cái này ở đây phát hiện ra những bông hoa.
+
+113
+00:07:31.520 --> 00:07:35.430
+Vì vậy, chúng tôi đã đi một chặng đường dài từ việc phát hiện những thứ tương đối đơn giản
+
+114
+00:07:35.430 --> 00:07:38.135
+như các cạnh trong lớp 1 đến các kết cấu trong lớp 2,
+
+115
+00:07:38.135 --> 00:07:43.780
+đến việc phát hiện các vật thể rất phức tạp trong các lớp sâu hơn.
+
+116
+00:07:43.780 --> 00:07:48.420
+Vì vậy, tôi hy vọng điều này cung cấp cho bạn một số trực giác tốt hơn về những gì các
+
+117
+00:07:48.420 --> 00:07:52.120
+lớp nông và sâu hơn của một neural network đang tính toán.
+
+118
+00:07:52.120 --> 00:07:56.763
+Tiếp theo, chúng ta hãy sử dụng trực giác này để bắt đầu xây dựng một
+
+119
+00:07:56.763 --> 00:07:57.530
+thuật toán truyền kiểu thần kinh.

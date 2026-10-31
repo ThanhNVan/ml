@@ -1,0 +1,448 @@
+WEBVTT
+
+00:00:01.170 --> 00:00:07.170
+Việc lựa chọn learning rate alpha sẽ có tác
+động rất lớn đến hiệu quả của
+
+00:00:07.170 --> 00:00:13.170
+việc triển khai gradient descent và nếu alpha,
+learning rate, được chọn kém,
+
+00:00:13.170 --> 00:00:15.850
+việc gradient descent thậm chí có thể không
+hoạt động.
+
+00:00:15.850 --> 00:00:19.730
+Trong video này, chúng ta hãy xem xét kỹ hơn
+về learning rate tập.
+
+00:00:19.730 --> 00:00:22.830
+Điều này cũng sẽ giúp bạn chọn learning rate
+
+00:00:22.830 --> 00:00:25.930
+tập tốt hơn cho việc triển khai
+gradient descent.
+
+00:00:25.930 --> 00:00:29.970
+Vì vậy, đây lại là quy tắc gradient descent.
+
+00:00:29.970 --> 00:00:35.870
+W được cập nhật thành W trừ đi learning rate
+alpha nhân với số hạng đạo hàm.
+
+00:00:35.870 --> 00:00:40.600
+Để tìm hiểu thêm về hoạt động của
+learning rate alpha, hãy xem điều
+
+00:00:40.600 --> 00:00:45.330
+gì có thể xảy ra nếu learning rate alpha quá
+nhỏ hoặc nếu nó quá lớn.
+
+00:00:45.330 --> 00:00:50.770
+Đối với trường hợp learning rate quá nhỏ, đây
+là biểu
+
+00:00:50.770 --> 00:00:56.210
+đồ trong đó trục hoành là W và trục tung là
+chi phí J.
+
+00:00:56.210 --> 00:01:01.410
+Và đây là đồ thị của hàm J của W.
+
+00:01:01.410 --> 00:01:05.210
+Hãy bắt đầu gradient descent tại thời điểm này
+ở đây.
+
+00:01:05.210 --> 00:01:10.250
+Nếu learning rate quá nhỏ, thì điều xảy ra là
+bạn nhân
+
+00:01:10.250 --> 00:01:15.290
+số hạng đạo hàm của mình với một số thực sự
+rất nhỏ.
+
+00:01:15.290 --> 00:01:23.470
+Vì vậy, bạn sẽ nhân với một số alpha rất nhỏ,
+như 0,0000001.
+
+00:01:23.470 --> 00:01:28.470
+Và thế là cuối cùng bạn thực hiện một bước đi
+rất nhỏ bé như thế.
+
+00:01:28.470 --> 00:01:31.350
+Sau đó, từ thời điểm này, bạn sẽ thực hiện một
+
+00:01:31.350 --> 00:01:34.230
+bước khác, bạn biết đấy, một bước nhỏ bé nhỏ
+bé.
+
+00:01:34.230 --> 00:01:40.470
+Nhưng vì learning rate quá nhỏ nên bước thứ
+hai cũng chỉ rất nhỏ.
+
+00:01:40.470 --> 00:01:47.430
+Kết quả của quá trình này là cuối cùng bạn sẽ
+giảm được chi phí J, nhưng cực kỳ chậm.
+
+00:01:47.430 --> 00:01:51.110
+Vì vậy, đây là một bước nữa, một bước nữa, một
+
+00:01:51.110 --> 00:01:54.790
+bước nhỏ nữa, cho đến khi bạn đạt đến mức tối
+thiểu.
+
+00:01:54.790 --> 00:01:59.550
+Nhưng như bạn có thể nhận thấy, bạn sẽ cần rất
+nhiều bước để đạt được mức tối thiểu.
+
+00:01:59.550 --> 00:02:06.350
+Vì vậy, tóm lại, nếu learning rate quá nhỏ thì
+việc gradient descent sẽ hoạt động.
+
+00:02:06.350 --> 00:02:12.110
+Nhưng nó sẽ chậm, sẽ mất một thời gian rất dài
+vì nó sẽ phải thực hiện những
+
+00:02:12.110 --> 00:02:17.870
+bước nhỏ xíu này, và nó sẽ cần rất nhiều bước
+trước khi đạt đến gần mức tối thiểu.
+
+00:02:17.870 --> 00:02:20.990
+Bây giờ chúng ta hãy xem xét một trường hợp
+khác.
+
+00:02:20.990 --> 00:02:23.550
+Điều gì xảy ra nếu learning rate tập quá lớn?
+
+00:02:23.550 --> 00:02:26.910
+Đây là một biểu đồ khác của cost function.
+
+00:02:26.910 --> 00:02:32.470
+Và giả sử chúng ta bắt đầu gradient descent
+với W ở giá trị này ở đây.
+
+00:02:32.470 --> 00:02:37.550
+Vì vậy, nó thực sự đã khá gần với mức tối
+thiểu.
+
+00:02:37.550 --> 00:02:40.510
+Vậy đạo hàm hướng về bên phải.
+
+00:02:40.510 --> 00:02:46.170
+Nhưng nếu learning rate quá lớn thì bạn sẽ
+
+00:02:46.170 --> 00:02:51.830
+cập nhật W một bước khổng lồ để đến được đây.
+
+00:02:51.830 --> 00:02:56.430
+Và đó là điểm này trên hàm J.
+
+00:02:56.430 --> 00:03:02.070
+Vì vậy, bạn di chuyển từ điểm này ở bên trái
+đến điểm này ở bên phải.
+
+00:03:02.070 --> 00:03:04.790
+Và bây giờ chi phí đã thực sự trở nên tồi tệ
+hơn.
+
+00:03:04.790 --> 00:03:08.710
+Nó đã tăng lên vì nó đã bắt đầu ở mức giá này
+ở đây.
+
+00:03:08.710 --> 00:03:13.790
+Và sau một bước, nó thực sự đã tăng lên giá
+trị này ở đây.
+
+00:03:13.790 --> 00:03:19.590
+Bây giờ đạo hàm tại điểm mới này có nghĩa là
+giảm W.
+
+00:03:19.590 --> 00:03:23.750
+Nhưng khi learning rate tập quá lớn, thì bạn
+có
+
+00:03:23.750 --> 00:03:27.910
+thể phải tiến một bước dài từ đây đến tận đây.
+
+00:03:27.910 --> 00:03:30.910
+Vì vậy, bây giờ bạn đã đi đến điểm này ở đây.
+
+00:03:30.910 --> 00:03:35.070
+Và một lần nữa, nếu learning rate tập quá lớn,
+thì bạn sẽ thực hiện một
+
+00:03:35.070 --> 00:03:39.230
+bước tiến lớn khác trong lần lặp tiếp theo và
+lại vượt quá mức tối thiểu.
+
+00:03:39.230 --> 00:03:41.510
+Vậy bây giờ bạn đang ở điểm này bên phải.
+
+00:03:41.510 --> 00:03:46.670
+Và một lần nữa, bạn thực hiện một bản cập nhật
+khác và kết thúc ở đây.
+
+00:03:46.670 --> 00:03:51.390
+Và vì vậy bây giờ bạn đang ở thời điểm này.
+
+00:03:51.390 --> 00:03:57.330
+Vì vậy, như bạn có thể nhận thấy, thực tế là
+bạn đang ngày càng rời xa mức tối thiểu.
+
+00:03:57.330 --> 00:04:01.680
+Vì vậy, nếu learning rate quá lớn thì
+gradient descent có thể
+
+00:04:01.680 --> 00:04:06.030
+vượt quá mức và có thể không bao giờ đạt đến
+mức tối thiểu.
+
+00:04:06.030 --> 00:04:10.480
+Và một cách khác để nói đó là gradient descent
+
+00:04:10.480 --> 00:04:14.930
+có thể không hội tụ và thậm chí có thể phân
+kỳ.
+
+00:04:14.930 --> 00:04:19.270
+Vì vậy, đây là một câu hỏi khác mà bạn có thể
+đang thắc mắc.
+
+00:04:19.270 --> 00:04:24.410
+Một trong các tham số W của bạn đã có tại thời
+điểm
+
+00:04:24.410 --> 00:04:29.550
+này, do đó chi phí J của bạn đã ở mức tối
+thiểu cục bộ.
+
+00:04:29.550 --> 00:04:35.870
+Bạn nghĩ một bước gradient descent sẽ làm gì
+nếu bạn đã đạt đến mức tối thiểu?
+
+00:04:36.190 --> 00:04:39.070
+Vì vậy, đây là một trong những khó khăn.
+
+00:04:39.070 --> 00:04:41.430
+Khi tôi lần đầu tiên học những thứ này, tôi
+
+00:04:41.430 --> 00:04:43.790
+thực sự đã mất rất nhiều thời gian để tìm ra
+nó.
+
+00:04:43.790 --> 00:04:46.070
+Nhưng chúng ta hãy cùng nhau giải quyết vấn đề
+này.
+
+00:04:46.070 --> 00:04:50.310
+Giả sử bạn có một số cost function J.
+
+00:04:50.310 --> 00:04:54.830
+Và cái bạn thấy ở đây không phải là
+cost function sai số bình phương.
+
+00:04:54.830 --> 00:04:58.690
+Và cost function này có hai cực tiểu cục bộ
+
+00:04:58.690 --> 00:05:02.550
+tương ứng với hai giá trị mà bạn thấy ở đây.
+
+00:05:03.030 --> 00:05:08.310
+Bây giờ, giả sử rằng sau một số bước
+
+00:05:08.310 --> 00:05:13.590
+gradient descent, tham số W của bạn ở đây,
+chẳng hạn bằng 5.
+
+00:05:13.590 --> 00:05:16.590
+Và đây là giá trị hiện tại của W.
+
+00:05:16.590 --> 00:05:20.210
+Điều này có nghĩa là tại thời điểm này bạn
+đang sử
+
+00:05:20.210 --> 00:05:23.830
+dụng cost function J và đó là mức tối thiểu
+cục bộ.
+
+00:05:23.830 --> 00:05:27.310
+Hóa ra nếu bạn vẽ một tiếp tuyến của hàm số
+
+00:05:27.310 --> 00:05:30.790
+tại điểm này thì hệ số góc của đường này là 0.
+
+00:05:30.790 --> 00:05:37.550
+Và do đó, số hạng đạo hàm ở đây bằng 0 đối với
+giá trị hiện tại của W.
+
+00:05:37.550 --> 00:05:44.250
+Và do đó, bản cập nhật gradient descent của
+bạn trở thành W được cập nhật
+
+00:05:44.250 --> 00:05:50.950
+thành W trừ đi learning rate nhân 0, trong đó
+ở đây là do số hạng đạo hàm bằng 0.
+
+00:05:50.950 --> 00:05:57.150
+Và điều này cũng giống như nói hãy đặt W bằng
+W.
+
+00:05:57.150 --> 00:06:02.990
+Vì vậy, điều này có nghĩa là nếu bạn đã ở mức
+tối thiểu cục bộ, độ dốc giảm sẽ
+
+00:06:02.990 --> 00:06:08.830
+không thay đổi W vì nó chỉ cập nhật giá trị
+mới của W thành giá trị cũ chính xác
+
+00:06:08.830 --> 00:06:10.870
+của W
+
+00:06:10.870 --> 00:06:19.990
+Vì vậy, cụ thể hơn, giả sử nếu giá trị hiện
+tại của W là 5 và alpha là 0,1
+
+00:06:19.990 --> 00:06:29.110
+thì sau một lần lặp, bạn cập nhật W thành W
+trừ alpha nhân 0 và nó vẫn bằng 5.
+
+00:06:29.110 --> 00:06:33.430
+Vì vậy, nếu các tham số của bạn đã đưa bạn đến
+mức tối thiểu cục bộ,
+
+00:06:33.430 --> 00:06:37.750
+thì các bước gradient descent tiếp theo hoàn
+toàn không có tác dụng gì.
+
+00:06:37.750 --> 00:06:41.030
+Nó không thay đổi các tham số, đó là điều bạn
+muốn,
+
+00:06:41.030 --> 00:06:44.310
+bởi vì nó giữ giải pháp ở mức tối thiểu cục bộ
+đó.
+
+00:06:44.310 --> 00:06:47.610
+Điều này cũng giải thích tại sao việc
+gradient descent có thể đạt
+
+00:06:47.610 --> 00:06:50.910
+đến mức tối thiểu cục bộ ngay cả với
+learning rate tập cố định alpha.
+
+00:06:50.910 --> 00:06:53.310
+Đây là điều tôi muốn nói.
+
+00:06:53.310 --> 00:06:57.390
+Để minh họa điều này, chúng ta hãy xem một ví
+dụ khác.
+
+00:06:57.390 --> 00:07:02.590
+Đây là cost function J của W mà chúng ta muốn
+cực tiểu hóa.
+
+00:07:02.590 --> 00:07:07.470
+Hãy bắt đầu quá trình gradient descent ở đây
+vào thời điểm này.
+
+00:07:07.470 --> 00:07:14.150
+Nếu chúng tôi thực hiện một bước cập nhật, có
+thể nó sẽ đưa chúng tôi đến điểm đó.
+
+00:07:14.150 --> 00:07:17.950
+Và bởi vì đạo hàm này khá lớn nên việc
+
+00:07:17.950 --> 00:07:21.750
+gradient descent có một bước tương đối lớn,
+phải không?
+
+00:07:21.750 --> 00:07:26.870
+Bây giờ, chúng ta đang ở điểm thứ hai, nơi
+chúng ta tiến thêm một bước nữa.
+
+00:07:26.870 --> 00:07:30.430
+Và bạn có thể nhận thấy rằng hệ số góc không
+
+00:07:30.430 --> 00:07:33.990
+còn sâu như lúc đầu, nên đạo hàm không lớn.
+
+00:07:33.990 --> 00:07:39.550
+Và như vậy bước cập nhật tiếp theo sẽ không
+lớn bằng bước đầu tiên đó.
+
+00:07:39.550 --> 00:07:45.300
+Bây giờ, chúng ta đang ở điểm thứ ba, và đạo
+hàm nhỏ hơn ở bước
+
+00:07:45.300 --> 00:07:51.050
+trước, và chúng ta sẽ thực hiện một bước thậm
+chí còn nhỏ hơn.
+
+00:07:51.050 --> 00:07:55.270
+Khi chúng ta tiến tới mức tối thiểu, đạo hàm
+ngày càng tiến gần
+
+00:07:55.270 --> 00:07:59.490
+đến 0, vì vậy khi chúng ta chạy
+gradient descent, cuối cùng chúng
+
+00:07:59.490 --> 00:08:03.710
+ta sẽ thực hiện các bước rất nhỏ cho đến khi
+cuối cùng bạn đạt được
+
+00:08:03.710 --> 00:08:05.210
+mức tối thiểu cục bộ.
+
+00:08:05.210 --> 00:08:09.340
+Tóm lại, khi chúng ta tiến gần đến mức tối
+thiểu cục bộ,
+
+00:08:09.340 --> 00:08:13.470
+việc gradient descent sẽ tự động thực hiện các
+bước nhỏ hơn.
+
+00:08:13.470 --> 00:08:19.250
+Và đó là bởi vì khi chúng ta tiến gần đến mức
+tối thiểu cục bộ, đạo hàm sẽ tự động
+
+00:08:19.250 --> 00:08:25.030
+nhỏ hơn và điều đó có nghĩa là các bước cập
+nhật cũng tự động nhỏ hơn ngay cả khi
+
+00:08:25.030 --> 00:08:28.790
+learning rate tập alpha được giữ ở một số giá
+trị cố định.
+
+00:08:28.790 --> 00:08:31.810
+Vì vậy, đó là thuật toán gradient descent.
+
+00:08:31.810 --> 00:08:35.083
+Bạn có thể sử dụng nó để cố gắng giảm thiểu
+bất kỳ
+
+00:08:35.083 --> 00:08:38.357
+cost function j nào, không chỉ cost function
+sai số bình
+
+00:08:38.357 --> 00:08:41.630
+phương trung bình mà chúng ta đang sử dụng cho
+linear regression.
+
+00:08:41.630 --> 00:08:46.900
+Trong video tiếp theo, chúng ta sẽ lấy hàm j
+và đặt nó trở lại chính xác là
+
+00:08:46.900 --> 00:08:52.170
+cost function của mô hình linear regression,
+cost function sai số bình phương trung bình
+
+00:08:52.170 --> 00:08:54.690
+mà chúng tôi đã nghĩ ra trước đó.
+
+00:08:54.690 --> 00:08:58.830
+Và kết hợp việc gradient descent với
+cost function này, nó sẽ cung
+
+00:08:58.830 --> 00:09:02.970
+cấp cho bạn thuật toán học đầu tiên, thuật
+toán linear regression.

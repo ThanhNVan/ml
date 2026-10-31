@@ -1,0 +1,234 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.280
+When implementing a deep neural network, one of the debugging tools I often use to check the
+
+00:00:05.280 --> 00:00:10.640
+curricula in my code is to pull a piece of paper and just work through the dimensions and matrix
+
+00:00:10.640 --> 00:00:15.520
+I'm working with. So let me show you how to do that since I hope this will make it easier for
+
+00:00:15.520 --> 00:00:21.440
+you to implement your deep nets as well. So capital L is equal to 5 and count down quickly,
+
+00:00:21.440 --> 00:00:27.440
+not counting the input layer. There are five layers here, so 400 layers and one output layer.
+
+00:00:27.440 --> 00:00:37.600
+And so if you implement forward propagation, the first step will be Z1 equals W1 times the input
+
+00:00:37.600 --> 00:00:47.920
+features X plus B1. So let's ignore the bias terms B for now and focus on the parameters W.
+
+00:00:47.920 --> 00:00:57.040
+Now this first hidden layer has three hidden units. So this is layer 0, layer 1, layer 2,
+
+00:00:57.120 --> 00:01:02.880
+layer 3, layer 4, and layer 5. So using the notation we had from the previous video,
+
+00:01:02.880 --> 00:01:09.760
+we have that N1, which is the number of hidden units on layer 1, is equal to 3. And here we
+
+00:01:09.760 --> 00:01:23.040
+would have that N2 is equal to 5, N3 is equal to 4, N4 is equal to 2, and N5 is equal to 1.
+
+00:01:23.040 --> 00:01:28.240
+And so far we've only seen neural networks with a single output unit, but later, in later
+
+00:01:28.240 --> 00:01:32.960
+causes we'll talk about neural networks with multiple output units as well. And finally,
+
+00:01:34.080 --> 00:01:41.920
+for the input layer, we also have N0 equals Nx is equal to 2. So now let's think about the
+
+00:01:41.920 --> 00:01:51.200
+dimensions of Z, W, and X. Z is the vector of activations for this first hidden layer.
+
+00:01:51.200 --> 00:01:59.840
+So Z is going to be 3 by 1. It's going to be a three-dimensional vector. So I'm going to write
+
+00:01:59.840 --> 00:02:07.280
+to it as a N1 by 1 dimensional vector, N1 by 1 dimensional matrix, right? It's 3 by 1 in this
+
+00:02:07.280 --> 00:02:14.080
+case. Now how about the input features X? X, we have two input features. So X is, in this example,
+
+00:02:14.080 --> 00:02:22.320
+2 by 1. But more generally, it will be N0 by 1. So what we need is for the matrix W1 to be something
+
+00:02:22.320 --> 00:02:31.120
+that when we multiply an N0 by 1 vector to it, we get an N1 by 1 vector. So you have sort of a
+
+00:02:33.200 --> 00:02:40.560
+three-dimensional vector equals something times a two-dimensional vector. And so by the rules of
+
+00:02:40.560 --> 00:02:49.980
+matrix multiplication, this has got to be a 3 by 2 matrix, right? Because a 3 by 2 matrix
+
+00:02:49.980 --> 00:02:57.260
+times a 2 by 1 matrix or times a 2 by 1 vector that gives you a 3 by 1 vector. And more generally,
+
+00:02:57.260 --> 00:03:04.700
+this is going to be an N1 by N0 dimensional matrix. So what we've figured out here is that the
+
+00:03:04.700 --> 00:03:18.940
+dimensions of W1 has to be N1 by N0. And more generally, the dimensions of WL must be NL by
+
+00:03:18.940 --> 00:03:32.140
+NL minus 1. So for example, the dimensions of W2, for this it will have to be 5 by 3 or it will be N2
+
+00:03:32.220 --> 00:03:49.020
+by N1. Because we're going to compute Z2 as W2 times a1. And again, let's ignore the bias
+
+00:03:49.020 --> 00:03:59.500
+for now. But so this is going to be 3 by 1. And we need this to be 5 by 1. And so this had better be
+
+00:04:00.620 --> 00:04:12.380
+5 by 3. And similarly, W3 will be is really the dimension of the next layer comma the dimension
+
+00:04:12.380 --> 00:04:29.500
+of the previous layer. So this is going to be 4 by 5. W4 is going to be 2 by 4. And W5
+
+00:04:30.300 --> 00:04:38.300
+is going to be 1 by 2. Okay? So the general formula to check is that when you're implementing
+
+00:04:38.380 --> 00:04:47.420
+the matrix for a layer L, the dimension of that matrix be NL by NL minus 1.
+
+00:04:48.540 --> 00:04:58.140
+Now let's think about the dimension of this vector B. This is going to be a 3 by 1 vector.
+
+00:04:58.780 --> 00:05:06.140
+So you have to add that to another 3 by 1 vector in order to get a 3 by 1 vector as the output.
+
+00:05:07.100 --> 00:05:14.780
+Or in this example, you need to add this. This is going to be 5 by 1. So it's going to be another 5 by 1 vector
+
+00:05:14.780 --> 00:05:21.260
+in order for the sum of these two things that have in the boxes to be itself a 5 by 1 vector.
+
+00:05:22.860 --> 00:05:32.460
+So the more general rule is that in the example on the left, B1 is N1 by 1. That's 3 by 1.
+
+00:05:33.420 --> 00:05:43.740
+And in the second example, it is this is N2 by 1. And so the more general case is that
+
+00:05:44.300 --> 00:05:54.220
+BL should be NL by 1 dimensional. So hopefully these two equations help you to double check that
+
+00:05:54.220 --> 00:06:01.420
+the dimensions of your matrices W as well as of your vectors B are the correct dimensions.
+
+00:06:01.980 --> 00:06:07.020
+And of course, if you're implementing back propagation, then the dimensions of
+
+00:06:07.020 --> 00:06:16.780
+DW should be the same as dimension of W. So DW should be the same dimension as W and DB
+
+00:06:18.460 --> 00:06:25.580
+should be the same dimension as B. Now the other key set of quantities whose dimensions to check
+
+00:06:26.140 --> 00:06:36.540
+are these Z, X, as well as A of L, which we didn't talk too much about here. But because Z of L is
+
+00:06:36.540 --> 00:06:44.940
+equal to G of A of L applied element wise, then Z and A should have the same dimension in these
+
+00:06:44.940 --> 00:06:50.620
+types of networks. Now let's see what happens when you have a vectorized implementation that
+
+00:06:50.700 --> 00:06:56.460
+looks at multiple examples at a time. Even for vectorized implementation, of course, the dimensions
+
+00:06:56.460 --> 00:07:06.300
+of W, B, DW and DB will stay the same. But the dimensions of Z, A as well as X will change a bit
+
+00:07:06.300 --> 00:07:23.020
+in your vectorized implementation. So previously we had Z1 equals W1 times X plus B1, where this was
+
+00:07:23.660 --> 00:07:43.020
+N1 by 1, this was N1 by N0, X was N0 by 1, and B was N1 by 1. Now in a vectorized implementation,
+
+00:07:43.740 --> 00:07:58.620
+you would have Z1 equals W1 times X plus B1, where now Z1 is obtained by taking the Z1s for the
+
+00:07:58.620 --> 00:08:09.260
+individual examples, so there's Z11, Z12, up to Z1M and stacking them as follows and this gives you
+
+00:08:09.260 --> 00:08:17.660
+Z1. So the dimension of Z1 is that instead of being N1 by 1, it ends up being N1 by M,
+
+00:08:17.660 --> 00:08:24.060
+if M is the size of your training set. The dimensions of W1 stays the same, so it's still
+
+00:08:24.060 --> 00:08:33.420
+N1 by N0, and X, instead of being N0 by 1, is now all your training examples stacked horizontally,
+
+00:08:33.420 --> 00:08:41.900
+so it's now N0 by M. And so you notice that when you take a N1 by N0 matrix and multiply that by an
+
+00:08:41.900 --> 00:08:49.420
+N0 by M matrix, that together they actually give you an N1 by M dimensional matrix as expected.
+
+00:08:50.220 --> 00:08:58.380
+Now the final detail is that B1 is still N1 by 1, but when you take this and add it to B,
+
+00:08:58.940 --> 00:09:06.380
+then through Python broadcasting, this will get duplicated into an N1 by M matrix and then added
+
+00:09:06.380 --> 00:09:14.140
+element wise. So on the previous slide, we talked about the dimensions of W, B, D, W and D, B.
+
+00:09:15.020 --> 00:09:25.660
+Here what we see is that whereas ZL as well as AL are of dimension NL by 1,
+
+00:09:25.900 --> 00:09:38.380
+we have now instead that capital ZL as well as capital AL are NL by M, and the special case of
+
+00:09:38.380 --> 00:09:46.940
+this is when L is equal to 0, in which case A0, which is equal to just your training set input
+
+00:09:47.900 --> 00:09:57.100
+features X, is going to be equal to N0 by M as expected. And of course when you're implementing this
+
+00:10:00.060 --> 00:10:06.780
+in backpropagation, we'll see later you end up computing DZ as well as
+
+00:10:07.740 --> 00:10:14.620
+DA, and so these will of course have the same dimension as Z and A.
+
+00:10:15.500 --> 00:10:20.140
+So I hope the little exercise went through helps clarify the dimensions of the various
+
+00:10:20.140 --> 00:10:24.380
+matrices you'll be working with. When you implement backpropagation for a deep neural
+
+00:10:24.380 --> 00:10:28.540
+network, so long as you work through your code and make sure that all the matrices
+
+00:10:28.540 --> 00:10:34.060
+dimensions are consistent, that will usually help you go some ways toward eliminating some
+
+00:10:34.060 --> 00:10:39.420
+class of possible bugs. So I hope that exercise for figuring out the dimensions of the various
+
+00:10:39.420 --> 00:10:44.060
+matrices you'll be working with is helpful. When you implement a deep neural network,
+
+00:10:44.060 --> 00:10:48.060
+if you keep straight the dimensions of these various matrices and vectors you're working with,
+
+00:10:48.060 --> 00:10:53.100
+hopefully that'll help you eliminate some class of possible bugs. It certainly helps me get my
+
+00:10:53.100 --> 00:11:00.140
+code right. So next, we've now seen some of the mechanics of how to do forward propagation
+
+00:11:00.140 --> 00:11:05.340
+in a neural network. But why are deep neural networks so effective and why do they do better
+
+00:11:05.340 --> 00:11:09.580
+than shallow representations? Let's spend a few minutes in the next video to discuss.

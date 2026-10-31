@@ -1,0 +1,38 @@
+Dropout thực hiện những điều có vẻ điên rồ này một cách ngẫu nhiên,
+đánh sập các unit trên mạng lưới của bạn. Tại sao nó hoạt động? Với một bộ điều chuẩn, chúng ta cùng tìm hiểu nhé. Trong video trước đó, Tôi đã từng nói dropout sẽ loại bỏ ngẫu nhiên các unit trong mạng của bạn. Vì vậy, cứ như thể trong mỗi lần lặp lại, bạn đang làm việc với một mạng nơ-ron nhỏ hơn, Và do đó, việc sử dụng một mạng nơ-ron nên có tác dụng điều chuẩn. Đây là trực giác thứ hai, chúng ta hãy nhìn nó từ góc độ của một unit. Hãy nói điều này. Bây giờ, unit này thực hiện
+công việc của mình như đối với input và nó cần tạo ra một số output có ý nghĩa. Bây giờ với dropout, các input có thể bị loại bỏ ngẫu nhiên. Đôi khi hai unit đó sẽ bị loại bỏ, đôi khi một unit khác sẽ bị loại. Vì vậy, điều này có nghĩa là unit này, cái tôi đang khoanh tròn trong màu tím, nó không thể dựa vào bất kỳ đặc trưng nào vì
+bất kỳ đặc trưng nào cũng có thể biến mất ngẫu nhiên hoặc bất kỳ input nào cũng có thể biến mất một cách ngẫu nhiên. Cụ thể, Tôi sẽ miễn cưỡng đặt tất cả cá cược của nó vào các input này Trọng số, chúng ta miễn cưỡng đặt quá nhiều
+trọng số lên bất kỳ input nào vì nó có thể biến mất. Vì vậy, unit này sẽ có nhiều động lực hơn để trải rộng theo cách này cung cấp cho bạn một chút trọng số của mỗi một trong bốn input của unit này. Và bằng cách dàn trải tất cả các trọng số,
+điều này sẽ có xu hướng có tác động thu nhỏ chuẩn bình phương của các trọng số. Và như vậy, tương tự như những gì chúng ta đã thấy với việc điều chuẩn L2, hiệu quả của dropout là nó thu hẹp lại trọng số và tương tự như điều chuẩn L2,
+nó giúp ngăn chặn overfitting, nhưng hóa ra dropout có thể chính thức được hiển thị là
+một dạng thích ứng mà không cần điều chuẩn. Nhưng lượng phạt L2 trên các trọng số khác nhau
+là khác nhau, tùy thuộc vào kích thước kích hoạt được nhân lên theo cách đó. Nhưng tóm lại, có thể thấy rằng dropout có tác dụng tương tự với điều chuẩn L2. Chỉ điều chuẩn L2 được áp dụng cho các cách khác nhau có thể hơi khác một chút và thậm chí thích ứng hơn
+với quy mô của các input khác nhau. Một chi tiết nữa khi bạn thực hiện dropout. Đây là mạng có ba đặc trưng input. Đây là bảy unit ẩn ở đây, 7, 3, 2, 1, vì vậy
+một trong những tham số chúng ta phải chọn là cheap.prop có cơ hội giữ một unit trong mỗi lớp. Vì vậy, nó cũng khả thi để
+đa dạng hóa key prop theo từng lớp. Vì vậy, đối với lớp đầu tiên,
+ma trận W1 sẽ là 7 x 3. Ma trận trọng số thứ hai sẽ là 7 x 7. W3 sẽ là 3 x 7,... Và như vậy W2 thực sự là ma trận trọng số bởi vì chúng thực sự là tập hợp tham số lớn nhất sẽ ở trong W2 là 7 x 7. Vì vậy, để ngăn chặn overfitting của ma trận đó, có thể đối với lớp này, tôi đoán đây là lớp 2, bạn có thể có một key prop tương đối thấp, là 0.5 trong khi đối với các lớp
+khác nhau, nơi bạn có thể ít lo lắng về overfitting bạn có thể có key prop cao hơn, Có thể chỉ là 0.7, có thể đây là 0.7. Và nếu một lớp, chúng ta không lo lắng về overfitting, bạn có thể có một key prop chính là một điểm 1.0 Chúng ta có thể ăn mừng được chưa nhỉ? Rõ ràng, đây là những con số tôi đang vẽ trên các hộp màu tím. Đây có thể là các key prop khác nhau cho các lớp khác nhau. Lưu ý rằng key prop quan trọng của điểm 1.0
+có nghĩa là bạn đang giữ mọi unit và như vậy, bạn thực sự không sử dụng dropout cho lớp đó. Nhưng đối với các lớp mà bạn lo lắng hơn về overfitting với các lớp với nhiều tham số, bạn có thể đặt key prop nhỏ hơn để áp dụng hình thức dropout mạnh mẽ hơn. Nó giống như quây tham số điều chuẩn L2 lambda.
+nơi bạn cố gắng điều chỉnh một số lớp hơn những lớp khác. Và về mặt kỹ thuật, bạn cũng có thể áp dụng dropout cho lớp input, nơi bạn có thể có một số cơ hội chỉ sử dụng tối đa một hoặc nhiều đặc trưng input. mặc dù trong thực tế,
+thường không làm điều đó thường xuyên. Và vì vậy, keyprop của 1.0 khá phổ biến đối với input ở đó. Bạn cũng có thể sử dụng một giá trị rất cao,
+có thể là 0.9 nhưng ít có khả năng bạn muốn loại bỏ một nửa các đặc trưng input, nên thường giữ key prop, Nếu bạn áp dụng, tất cả
+sẽ là một số gần bằng 1. Nếu bạn thậm chí áp dụng droppout
+cho lớp đầu vào. Vì vậy, tóm lại, nếu bạn có nhiều
+lo lắng về một số lớp quá khớp hơn so với những lớp khác, bạn có thể key prop
+thấp hơn cho một số lớp so với những lớp khác. Nhược điểm là điều này cung cấp cho bạn thậm chí
+nhiều siêu tham số hơn để tìm kiếm sử dụng kiểm định chéo. Một cách thay thế khác có thể là có một số lớp nơi bạn áp dụng dropout và một số lớp mà bạn không áp dụng dropout thì chỉ cần có một siêu tham số,
+đó là key prop chính cho các lớp mà bạn áp dụng dropout và trước khi kết thúc,
+tôi sẽ nói về một vài mẹo triển khai. Nhiều triển khai thành công đầu tiên của phương pháp dropout là nhờ vào thị giác máy tính, vì vậy
+trong thị giác máy tính, kích thước input quá lớn, nhập tất cả các pixel này mà bạn hầu như không bao giờ có đủ dữ liệu. Và do đó, dropout rất thường xuyên
+được sử dụng bởi thị giác máy tính. Và có một số nhà nghiên cứu thị giác máy tính luôn sử dụng nó, gần như là một mặc định. Nhưng thực sự điều cần nhớ là dropout là một kỹ thuật điều chuẩn, nó giúp ngăn ngừa overfitting. Và như vậy trừ khi thuật toán overfitting,
+tôi thực sự sẽ không bận tâm đến việc sử dụng dropout. Vì vậy, nó ít được sử dụng thường xuyên hơn
+so với các lĩnh vực ứng dụng khác. Chỉ với thị giác máy tính,
+bạn thường không có đủ dữ liệu nên bạn hầu như luôn overfitting,
+đó là lý do tại sao đó là lý do tại sao có một số
+nhà nghiên cứu thị giác máy tính dùng dropout Nhưng trực giác của họ không phải lúc nào cũng khái quát được những gì tôi nghĩ về các lĩnh vực khác. Một nhược điểm lớn của drop out
+là hàm chi phí J không còn được định nghĩa rõ ràng trên mỗi lần lặp. Bạn ngẫu nhiên,
+gọi một loạt các ghi chú. Và vì vậy nếu bạn kiểm tra kỹ
+thì hiệu suất của gradient descent là sẽ thực sự khó để kiểm tra lại xem bạn có một hàm chi phí J được xác định rõ ràng sẽ xuống dốc sau mỗi lần lặp vì hàm chi phí J mà bạn đang tối ưu hóa thực sự ít hơn Ít được xác định rõ hơn, hoặc chắc chắn là khó tính toán. Vì vậy, bạn mất công cụ gỡ lỗi
+để có một biểu đồ như thế này. Vì vậy, những gì tôi thường làm là tắt bỏ dropout và đặt key prop bằng một, tôi chạy mã của mình và đảm bảo rằng nó đang giảm J, và sau đó bật dropout và hy vọng rằng tôi đã không đưa lỗi vào code khi chạy dropout, vì bạn cần những cách khác, tôi đoán vậy, nhưng không vẽ những số liệu này
+để đảm bảo rằng code của bạn hoạt động đến mức tuyệt vời và nó hoạt động ngay cả với dropout. Vì vậy, với điều đó, vẫn còn một vài
+kỹ thuật điều chuẩn khác đáng để bạn biết. Hãy nói về một vài kỹ thuật như vậy trong video tiếp theo.

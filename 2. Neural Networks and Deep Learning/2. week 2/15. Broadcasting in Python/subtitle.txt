@@ -1,0 +1,136 @@
+Trong video trước, tôi
+đã nói rằng truyền phát là một kỹ thuật khác mà bạn có thể sử dụng
+để làm cho mã Python chạy nhanh hơn. Trong video này, chúng ta sẽ tìm hiểu kỹ hơn
+cách hoạt động của truyền phát trong Python. Hãy cùng xem ví dụ sau. Trong ma trận này, tôi đã chỉ ra
+số lượng calo từ carbohydrate, protein và chất béo trong 100 gram
+của bốn loại thực phẩm khác nhau. Ví dụ, trong 100 gram táo, có 56 calo từ carbs, và lượng calo từ
+protein và chất béo thì ít hơn nhiều. Trong khi đó, ngược lại, 100 gram
+thịt bò có 104 calo từ protein và 135 calo từ chất béo. Bây giờ, giả sử mục tiêu của bạn
+là tính toán tỷ lệ phần trăm calo từ carbs, protein và chất béo cho
+mỗi loại trong bốn loại thực phẩm này. Như vậy, nếu bạn
+nhìn vào cột này và cộng các số trong cột đó
+bạn sẽ có được 100 gram táo có 56 cộng 1,2 cộng
+1,8 bằng 59 calo. Và như vậy là
+tỷ lệ phần trăm của calo từ carbohydrate
+trong một quả táo sẽ là 56 trên 59,
+khoảng 94,9%. Như vậy, hầu hết lượng calo trong một
+quả táo là từ carbs, trong khi ngược lại, hầu hết lượng calo của thịt bò
+là từ protein và chất béo và v.v. Vì vậy, phép tính mà bạn muốn
+là cộng tất cả các số trong mỗi cột của ma trận này để có được
+tổng số calo trong 100 gram táo, thịt bò, trứng và khoai tây. Và sau đó thực hiện
+phép chia trong ma trận, để có được tỷ lệ phần trăm
+calo từ carbs, protein và chất béo cho mỗi loại
+trong bốn loại thực phẩm. Như vậy, câu hỏi là liệu bạn có thể làm điều này
+mà không có một vòng lặp for tường minh không? Hãy cùng xem cách
+bạn có thể làm điều đó. Tôi sẽ chỉ bạn cách
+mà bạn có thể thiết lập, ma trận này là ma trận A(3,4). Và rồi với một dòng mã Python,
+chúng ta sẽ tổng hợp các cột. Như vậy, chúng ta sẽ nhận được
+bốn số tương ứng với tổng lượng calo trong bốn
+loại thực phẩm khác nhau, trong 100 gram của bốn
+loại thực phẩm khác nhau. Và tôi sẽ sử dụng một dòng mã
+Python thứ hai để chia từng cột trên tổng tương ứng của chúng. Nếu chỉ mô tả bằng lời nói
+thì không được rõ ràng lắm, tôi mong hy vọng nó sẽ rõ ràng
+hơn khi chúng ta xem mã Python. Ở đây chúng ta đang ở
+trong Jupiter notebook. Tôi đã viết đoạn mã đầu tiên
+này để chuẩn bị trước ma trận A với các số chúng ta vừa có,
+và chúng ta sẽ nhấn shift enter và chỉ cần chạy nó,
+và ta có ma trận A. Và bây giờ đây là
+hai dòng mã Python. Đầu tiên, chúng ta sẽ tính
+cal bằng a. sum(axis=0). Và axis=0 nghĩa là tính
+tổng theo chiều dọc. Chúng ta sẽ nói
+thêm về điều đó sau. Và rồi print(cal). Như vậy, chúng ta sẽ
+tính tổng theo chiều dọc. Bây giờ 59 là tổng lượng
+calo trong quả táo, 239 là tổng calo trong thịt bò
+và trứng và khoai tây và v.v. Và rồi với tỷ lệ
+phần trăm (percentage) được tính bằng
+A / cal.reshape(1,4). Trên thực tế chúng ta muốn có tỷ lệ
+phần trăm, nên nhân với 100 ở đây. Và sau đó print (percentage). Hãy chạy nào. Và như vậy, lệnh đó là
+chúng ta đã lấy ma trận A và chia nó cho một ma trận(1,4). Và điều này cho chúng ta
+ma trận tỷ lệ phần trăm. Như vậy, khi chúng ta tính
+bằng tay thì trong quả táo cột đầu tiên 94,9%
+lượng calo là từ carbs. Chúng ta hãy quay
+trở lại các slide. Như vậy, chỉ cần lặp lại hai
+dòng mã chúng ta đã có, thì đây là những gì được viết ra
+trong Jupiter notebook. Để nói thêm về tham số này, thì(axis = 0), có nghĩa là bạn muốn
+Python tổng hợp theo chiều dọc. Và nếu đây là trục 0, thì có
+nghĩa là tổng hợp theo chiều dọc, trong đó trục hoành là trục 1. Vì vậy, có thể viết là trục 1 hoặc tổng theo
+chiều ngang thay vì tổng theo chiều dọc. Và lệnh ở đây, là một ví dụ về truyền phát
+Python khi bạn lấy ma trận A. Đây là một ma trận(3,4) và bạn
+chia nó cho một ma trận(1,4). Và về mặt kỹ thuật, sau dòng
+mã cal đầu tiên này, biến cal, đã là ma trận (1,4). Vì vậy, về mặt kỹ thuật, bạn không
+cần phải viết lại reshape ở đây, và viết điều đó hơi thừa. Nhưng khi tôi viết mã Python nếu tôi không
+hoàn toàn chắc chắn về loại ma trận, về các kích thước của ma trận thì tôi thường
+chỉ gọi một lệnh định hình lại (reshape) chỉ để đảm bảo rằng đó là vectơ cột
+bên phải hoặc vectơ hàng hoặc bất cứ điều gì bạn muốn. Lệnh định hình lại (reshape)
+là một loại không đổi. Đó là một lệnh bậc 1
+mà rất dễ để gọi. Vì vậy, đừng ngại sử dụng lệnh định
+hình lại để đảm bảo rằng ma trận của bạn có kích thước bạn cần. Bây giờ, hãy nói kỹ hơn về cách thức
+hoạt động của loại phép toán này. Chúng ta có một ma trận (3,4) và
+chúng ta chia nó cho một ma trận (1,4). Như vậy, bạn làm thế nào để có thể
+chia ma trận (3,4) cho ma trận (1,4)? Hoặc cho vector (1,4)? Chúng ta hãy xem qua
+một vài ví dụ về truyền phát. Nếu bạn lấy một vectơ (4,1)
+và cộng thêm một số, thì Python sẽ lấy số này
+và tự động mở rộng nó thành một
+vector (4,1), như sau. Và vì vậy, vectơ [1, 2, 3, 4] cộng với số 100 bằng
+với vectơ bên phải. Bạn đang cộng thêm 100 cho mọi phần tử
+và trên thực tế, chúng ta sử dụng hình thức truyền phát mà có hằng số là
+tham số b trong một video trước đó. Và loại truyền phát này hoạt động
+với cả vectơ cột và vectơ hàng, và trên thực tế, chúng ta sử dụng một hình thức
+truyền phát tương tự trước đó, với hằng số mà chúng ta thêm vào một vectơ
+là tham số b trong hồi quy logistic. Đay là một ví dụ khác. Giả sử bạn có
+một ma trận 2x3 và bạn cộng nó với
+ma trận 1xn này. Và trường hợp chung sẽ là nếu bạn có một số ma trận
+(m, n) ở đây và bạn cộng nó với
+ma trận (1, n). Thì Python sẽ sao chép
+ma trận này m lần để biến nó thành ma trận
+(m,n), vì vậy trong ví dụ này, ma trận (1,3) này sẽ được sao chép
+hai lần và biến thành thế này. Thành ma trận (2,3) và
+chúng ta sẽ cộng chúng lại và bạn sẽ có kết quả
+tổng như bên phải. Như vậy, bạn đã thêm
+100 vào cột đầu tiên, thêm 200 và cột thứ hai,
+thêm 300 vào cột thứ ba. Và đây là những gì chúng ta
+đã thực hiện trên slide trước, nhưng lúc đó chúng ta sử dụng một
+phép toán chia thay vì một phép toán cộng. Và một ví dụ cuối cùng,
+bạn có ma trận (m, n) và bạn cộng nó với một
+vectơ (m, 1), ma trận (m, 1). Sau đó chỉ cần sao chép ma trận
+(m,1) lên n lần theo chiều ngang. Và bạn sẽ có một ma trận (m, n). Vì vậy, như bạn biết, bạn sao chép
+nó ba lần theo chiều ngang. Và bạn cộng 2 ma trận này lại. Và khi bạn cộng lại, bạn
+có kết quả như này. Và chúng ta đã cộng 100 vào hàng
+đầu tiên và cộng 200 vào hàng thứ hai. Đây là nguyên tắc tổng quát hơn
+của truyền phát trong Python. Nếu bạn có ma trận
+(m, n) và bạn cộng hoặc trừ hoặc nhân hoặc
+chia với ma trận (1, n), thì ma trận (1,n) sẽ sao chép m
+lần thành một ma trận (m, n). Và sau đó áp dụng
+phép cộng, phép trừ và phép nhân, chia phần tử. Nếu ngược lại, bạn lấy ma trận
+(m,n) và cộng, trừ, nhân, chia cho một ma trận (m, 1), thì
+ma trận (m,1) sẽ sao chép n lần. Và biến thành một ma trận (m, n) và sau đó
+áp dụng các phép toán cho từng phần tử. Có một phần trong truyền phát,
+đó là nếu bạn có ma trận (m, 1), và đó là một vectơ cột
+như [1,2,3] và bạn cộng, trừ, nhân hoặc chia
+cho một số hàng. Có thể là một ma trận (1,1). Và, cộng với 100, sau đó
+bạn sẽ sao chép số thực này n lần cho đến khi bạn
+cũng nhận được ma trận (n, 1) khác. Và sau đó bạn thực hiện phép toán
+như phép cộng với từng phần tử. Và điều này cũng áp dụng
+tương tự với các vectơ hàng. Phiên bản khái quát của truyền phát
+có thể làm nhiều hơn một chút so với điều này. Nếu bạn quan tâm, bạn
+có thể đọc tài liệu về NumPy, và xem truyền phát
+trong tài liệu đó. Thậm chí nó đưa ra một định nghĩa
+còn tổng quát hơn về truyền phát. Nhưng những điều trên slide là
+hình thức truyền phát chính mà bạn cần sử dụng khi bạn triển khai
+một mạng nơ-ron nhân tạo. Trước khi kết thúc, tôi có
+một lời cuối cùng, dành cho những bạn đã từng lập trình
+trong MATLAB hoặc Octave, nếu bạn đã từng sử dụng
+hàm MATLAB hoặc hàm Octave bsxfun, trong lập trình mạng nơ-ron nhân tạo, bsxfun thì
+tương tự, nhưng lại không hoàn toàn giống nhau. Nhưng nó thường được sử dụng với mục đích giống
+với mục đích chúng ta sử dụng truyền phát trong Python. Nhưng điều này chỉ dành
+cho người dùng MATLAB và Octave rất nâng cao, nếu bạn chưa
+nghe về điều này thì đừng lo lắng. Bạn không cần phải biết điều đó khi bạn
+mã hóa các mạng nơ-ron nhân tạo trong Python. Như vậy, đó là
+truyền phát trong Python. Tôi hy vọng rằng khi bạn làm bài tập
+lập trình, truyền phát sẽ không chỉ giúp bạn làm cho mã chạy nhanh hơn, mà còn giúp bạn thực hiện điều
+bạn muốn với ít dòng mã hơn. Trước khi bạn đi sâu vào bài tập
+lập trình, tôi muốn chia sẻ thêm với bạn về một số ý tưởng, đó là
+một số lời khuyên và các thủ thuật mà tôi có để làm
+giảm số lượng lỗi trong mã Python và tôi hy vọng nó cũng
+sẽ hữu ích với bạn. Và hãy xem điều đó
+trong video tiếp theo.

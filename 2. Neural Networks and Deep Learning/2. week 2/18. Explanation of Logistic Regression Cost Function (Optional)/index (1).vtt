@@ -1,0 +1,225 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.260
+In an earlier video, I've written down the form for the cost function for logistic regression.
+
+00:00:05.260 --> 00:00:10.200
+In this optional video, I want to give you a quick justification for why we like to
+
+00:00:10.200 --> 00:00:13.500
+use that cost function for logistic regression.
+
+00:00:13.500 --> 00:00:19.000
+To quickly recap, in logistic regression, we have that the prediction y-hat is sigmoid
+
+00:00:19.000 --> 00:00:27.840
+of w transpose x plus b, where sigmoid is this familiar function.
+
+00:00:27.840 --> 00:00:35.840
+And we said that we want to interpret y-hat as the probability that y is equal to 1
+
+00:00:35.840 --> 00:00:41.840
+given x. So we want our algorithm to output y-hat as the chance that y is equal to 1
+
+00:00:41.840 --> 00:00:48.840
+for a given set of input features x. So another way to say this is that if y is
+
+00:00:48.840 --> 00:00:56.840
+equal to 1, then the chance of y given x is equal to y-hat. And conversely, if y
+
+00:00:56.840 --> 00:01:05.840
+is equal to 0, then the chance that y was 0 was 1 minus y-hat. So if y-hat was
+
+00:01:05.840 --> 00:01:11.840
+the chance that y is equal to 1, then 1 minus y-hat is the chance that y is equal
+
+00:01:11.840 --> 00:01:16.840
+to 0. So let me take these last two equations and just copy them to the next
+
+00:01:16.840 --> 00:01:21.840
+slide. So what I'm going to do is take these two equations, which basically
+
+00:01:21.840 --> 00:01:27.840
+define p of y given x for the two cases of y equals 0 or y equals 1, and then
+
+00:01:27.840 --> 00:01:32.840
+take these two equations and summarize them into a single equation. And just
+
+00:01:32.840 --> 00:01:36.840
+to point out, y has to be either 0 or 1 because we're in binary classifications,
+
+00:01:36.840 --> 00:01:41.840
+so y equals 0 or 1 are the only two possible cases. But someone take these
+
+00:01:41.840 --> 00:01:44.840
+two equations and summarize them as follows. Let me just write out what it
+
+00:01:44.840 --> 00:01:49.840
+looks like, then we'll explain why it looks like that. So 1 minus y-hat
+
+00:01:49.840 --> 00:01:55.840
+to the power of 1 minus y. So it turns out this one line summarizes the two
+
+00:01:55.840 --> 00:02:02.840
+equations on top. Let me explain why. So in the first case, suppose y is equal to
+
+00:02:02.840 --> 00:02:10.840
+1, right? So if y is equal to 1, then this term ends up being y-hat because
+
+00:02:10.840 --> 00:02:16.840
+that's y-hat to the power of 1. This term ends up being 1 minus y-hat to the
+
+00:02:16.840 --> 00:02:22.840
+power of 1 minus 1, so that's the power of 0. But anything to the power of 0 is
+
+00:02:22.840 --> 00:02:28.840
+equal to 1, so that goes away. And so this equation just says p of y given x
+
+00:02:28.840 --> 00:02:36.840
+equals y-hat when y is equal to 1. So that's exactly what we wanted.
+
+00:02:36.840 --> 00:02:42.840
+Now how about the second case? What if y equals 0? If y is equal to 0, then this
+
+00:02:42.840 --> 00:02:48.840
+equation above is p of y given x equals y-hat to the 0, but anything to the power
+
+00:02:48.840 --> 00:02:55.840
+of 0 is equal to 1, so that's just equal to 1, times 1 minus y-hat to the power
+
+00:02:55.840 --> 00:03:02.840
+of 1 minus y. So 1 minus y is 1 minus 0, so this is just 1. And so this is equal
+
+00:03:02.840 --> 00:03:10.840
+to 1 times 1 minus y-hat, which is just equal to 1 minus y-hat. And so here we
+
+00:03:10.840 --> 00:03:18.840
+have that if y equals 0, p of y given x is 0 with 1 minus y-hat, which is exactly
+
+00:03:18.840 --> 00:03:25.840
+what we wanted above. So what we've just shown is that this equation is a, you know,
+
+00:03:25.840 --> 00:03:33.840
+correct definition for p of y given x. Now finally, because the log function is
+
+00:03:33.840 --> 00:03:38.840
+a strictly monotonically increasing function, you're maximizing log of p of
+
+00:03:38.840 --> 00:03:44.840
+y given x should give you a similar result as optimizing p of y given x. And if
+
+00:03:44.840 --> 00:03:50.840
+you compute log of p of y given x, that's equal to log of y-hat to the power of y,
+
+00:03:50.840 --> 00:04:00.840
+1 minus y-hat to the power of 1 minus y. And so that simplifies to y log y-hat
+
+00:04:00.840 --> 00:04:09.840
+plus 1 minus y times log 1 minus y-hat. And so this is actually negative of the
+
+00:04:09.840 --> 00:04:14.840
+loss function that we had defined previously. And there's a negative sign
+
+00:04:14.840 --> 00:04:18.840
+there because usually if you're training a learning algorithm, you want to make
+
+00:04:18.840 --> 00:04:23.840
+probabilities large, whereas in logistic regression, we're expressing this, we want
+
+00:04:23.840 --> 00:04:28.840
+to minimize the loss function. So minimizing the loss corresponds to maximizing
+
+00:04:28.840 --> 00:04:32.840
+the log of the probability. So this is what the loss function on a single
+
+00:04:32.840 --> 00:04:37.840
+example looks like. How about the cost function, the overall cost function on the
+
+00:04:37.840 --> 00:04:42.840
+entire training set on m examples? Let's figure that out. So the probability of
+
+00:04:42.840 --> 00:04:46.840
+all the labels in the training set, right, I think this is a little bit
+
+00:04:46.840 --> 00:04:50.840
+informally is if you assume that the training examples are drawn independently
+
+00:04:50.840 --> 00:04:55.840
+or drawn IID, identically independently distributed, then the probability of the
+
+00:04:55.840 --> 00:04:59.840
+examples is the product of probability. So the product from i equals 1 through m
+
+00:04:59.840 --> 00:05:06.840
+of p of yi given xi. And so if you want to carry out maximum likelihood
+
+00:05:06.840 --> 00:05:12.840
+estimation, right, then you want to maximize the find the parameters that
+
+00:05:12.840 --> 00:05:18.840
+maximizes the chance of your observations in training set. But maximizing, this
+
+00:05:18.840 --> 00:05:23.840
+is the same as maximizing the logs. So we should put logs on both sides. So log
+
+00:05:23.840 --> 00:05:28.840
+of the probability of the labels in the training set is equal to log of a
+
+00:05:28.840 --> 00:05:36.840
+product is the sum of a log. So that sum from i equals 1 through m of log p of yi
+
+00:05:36.840 --> 00:05:42.840
+given xi. And we had previously figured out on the previous slide that this is
+
+00:05:42.840 --> 00:05:50.840
+negative L of y hat i yi. And so in statistics, there's a principle called
+
+00:05:50.840 --> 00:05:56.840
+the principle of maximum likelihood estimation, which just means to choose the
+
+00:05:56.840 --> 00:06:02.840
+parameters that maximizes this thing or in other words that maximizes, you know,
+
+00:06:02.840 --> 00:06:08.840
+this thing, right negative sum from i equals 1 through m L of y hat i yi.
+
+00:06:08.840 --> 00:06:12.840
+And I just moved the negative sign outside the summation. So this justifies
+
+00:06:12.840 --> 00:06:22.840
+the cost we had for logistic regression, which was j of wb of this. And because we
+
+00:06:22.840 --> 00:06:28.840
+now want to minimize the cost, instead of maximizing the likelihood, we've gotten
+
+00:06:28.840 --> 00:06:33.840
+rid of the minus sign. And then finally for convenience, so to make sure that our
+
+00:06:33.840 --> 00:06:38.840
+quantities are better scaled, we just add a 1 over m extra scaling factor there.
+
+00:06:38.840 --> 00:06:43.840
+But so to summarize, by minimizing this cost function j of wb, we're really
+
+00:06:43.840 --> 00:06:47.840
+carrying out maximum likelihood estimation with the logistic regression model
+
+00:06:47.840 --> 00:06:52.840
+under the assumption that our training examples were iid or identically and
+
+00:06:52.840 --> 00:06:57.840
+independently distributed. So thank you for watching this video, even though
+
+00:06:57.840 --> 00:07:02.840
+this is optional. I hope this gives you a sense of why we use the cost function
+
+00:07:02.840 --> 00:07:06.840
+we do for logistic regression. And with that, I hope you go on to the
+
+00:07:06.840 --> 00:07:10.840
+exercises, the program exercise and the quiz questions for this week.
+
+00:07:10.840 --> 00:07:14.817
+Best of luck with both the quizzes and their program exercise.

@@ -1,0 +1,330 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.180 --> 00:00:07.380
+So far you've seen an RNN architecture where the number of inputs, Tx, is equal to the number of outputs, Ty.
+
+00:00:07.620 --> 00:00:14.360
+It turns out that for other applications, Tx and Ty may not always be the same and in this video
+
+00:00:14.360 --> 00:00:18.020
+you see a much richer family of RNN architectures.
+
+00:00:18.420 --> 00:00:23.160
+You might remember this slide from the first video of this week where
+
+00:00:23.780 --> 00:00:29.280
+the input x and the output y can be many different types and
+
+00:00:29.640 --> 00:00:36.440
+it's not always the case that Tx has to be equal to Ty. In particular, in this example
+
+00:00:36.680 --> 00:00:43.860
+Tx can be length 1 or even an empty set and then in example like movie sentiment classification
+
+00:00:43.960 --> 00:00:49.840
+the output y could be just an integer from 1 to 5 whereas the input is a sequence.
+
+00:00:50.160 --> 00:00:57.240
+And in name entity recognition in the example we're using the input length and the output length are identical
+
+00:00:57.320 --> 00:01:03.040
+but there are also some problems where the input length and the output length can be different. They're both are sequences
+
+00:01:03.040 --> 00:01:09.440
+but have different lengths such as machine translation where a French sentence and an English sentence
+
+00:01:09.520 --> 00:01:13.680
+can have can meet different numbers of words to say the same thing.
+
+00:01:13.840 --> 00:01:20.420
+So it turns out that we could modify the basic RNN architecture to address all of these problems.
+
+00:01:20.420 --> 00:01:25.980
+And the presentation in this video was inspired by a blog post by Andre Karpathy
+
+00:01:26.300 --> 00:01:30.200
+titled the unreasonable effectiveness of recurrent neural networks.
+
+00:01:30.620 --> 00:01:35.760
+Let's go through some examples. The example you've seen so far use Tx equals
+
+00:01:36.380 --> 00:01:42.440
+Ty where we had an input sequence x1, x2 up to x
+
+00:01:43.060 --> 00:01:47.540
+Tx and we had a recurrent neural network that
+
+00:01:48.060 --> 00:01:50.140
+worked as follows where we would
+
+00:01:51.060 --> 00:01:53.060
+input x1 to compute
+
+00:01:53.340 --> 00:01:54.940
+y1,
+
+00:01:54.940 --> 00:02:00.380
+y2 and so on up to y hat Ty
+
+00:02:02.020 --> 00:02:04.020
+as follows.
+
+00:02:06.060 --> 00:02:12.780
+In earlier diagrams I was drawing a bunch of circles here to denote neurons, but I'm just gonna omit those little circles
+
+00:02:13.580 --> 00:02:16.540
+for most of this video just to make the notation simpler.
+
+00:02:17.100 --> 00:02:20.740
+So this is what you might call a many to
+
+00:02:21.500 --> 00:02:23.140
+many
+
+00:02:23.220 --> 00:02:31.020
+architecture because the input sequence has many inputs as a sequence and the output sequence is also has many outputs.
+
+00:02:31.260 --> 00:02:35.520
+Now let's look at a different example. Let's say you want to address
+
+00:02:36.460 --> 00:02:38.460
+sentiment classification.
+
+00:02:38.460 --> 00:02:41.700
+Here x might be a piece of text
+
+00:02:42.580 --> 00:02:46.900
+such as it might be a movie review that says there is nothing to like in this movie.
+
+00:02:46.900 --> 00:02:53.300
+So x is going to be a sequence and y might be a number from 1 to 5 or maybe 0 or 1.
+
+00:02:53.300 --> 00:02:57.760
+This is a positive review or a negative review or it could be a number from 1 to 5.
+
+00:02:57.760 --> 00:03:02.260
+Do you think this is a 1 star, 2 star, 3, 4 or 5 star review?
+
+00:03:02.700 --> 00:03:09.380
+So in this case we can simplify the neural network architecture as follows. We could have an input x1,
+
+00:03:11.540 --> 00:03:14.820
+x2, so input the words one at a time.
+
+00:03:15.820 --> 00:03:20.900
+So if the input text was you know, there is nothing to like in this movie.
+
+00:03:20.900 --> 00:03:25.780
+So there is nothing to like in this movie would be the input.
+
+00:03:25.780 --> 00:03:30.380
+And then rather than having to use an output at every single time step,
+
+00:03:30.420 --> 00:03:38.100
+we can then just have the RNN read in the entire sentence and have it output y at the last time step when it has already
+
+00:03:38.540 --> 00:03:42.740
+input the entire sentence. So this neural network would be a
+
+00:03:43.380 --> 00:03:52.340
+many to one architecture because it has many inputs, it inputs many words and it just outputs one number.
+
+00:03:54.060 --> 00:03:56.060
+For the sake of completeness
+
+00:03:56.380 --> 00:03:58.380
+there is also a
+
+00:03:58.540 --> 00:04:03.780
+1 to 1 architecture. So this one is maybe not terribly
+
+00:04:05.020 --> 00:04:09.260
+So this one is maybe less interesting. It's more like a standard neural network
+
+00:04:09.260 --> 00:04:12.020
+where you have some input x and just have some output y.
+
+00:04:12.020 --> 00:04:17.980
+And so this would be the type of neural network that we covered in the first two clauses in this sequence.
+
+00:04:18.100 --> 00:04:24.020
+Now in addition to many to one, you can also have a one to many architecture.
+
+00:04:24.340 --> 00:04:27.260
+So an example of a one to
+
+00:04:28.300 --> 00:04:32.060
+many neural network architecture will be music
+
+00:04:32.820 --> 00:04:36.140
+generation. And in fact you get to implement this yourself
+
+00:04:36.500 --> 00:04:43.860
+in one of the primary exercises for this course where you go is have a neural network output a set of notes
+
+00:04:45.300 --> 00:04:47.300
+corresponding to a piece of
+
+00:04:47.980 --> 00:04:54.020
+music. And the input x could be maybe just an integer telling it what genre of music you want
+
+00:04:54.020 --> 00:04:59.500
+or what's the first note of the music you want. And if you don't want to input anything x could be a null input
+
+00:04:59.660 --> 00:05:01.740
+could always be the vector of zeros as well.
+
+00:05:02.140 --> 00:05:08.140
+For that the neural network architecture would be the input x and then have your
+
+00:05:08.900 --> 00:05:11.460
+RNN output the first value and
+
+00:05:12.500 --> 00:05:14.500
+then have that
+
+00:05:14.620 --> 00:05:20.500
+with no further inputs output the second value and then go on to output
+
+00:05:20.900 --> 00:05:23.460
+the third value and so on
+
+00:05:24.260 --> 00:05:28.740
+until you've synthesized the last note of the musical piece.
+
+00:05:30.460 --> 00:05:33.620
+If you want you can have this input a zero as well.
+
+00:05:34.580 --> 00:05:41.220
+One technical note what you see in a later video is that when you're actually generating sequences often you take this
+
+00:05:41.380 --> 00:05:49.300
+first synthesized output and feed it to the next layer as well. So the network architecture actually ends up looking like that.
+
+00:05:50.180 --> 00:05:55.380
+So we've talked about many to many many to one one to many as well as one to one.
+
+00:05:55.620 --> 00:06:02.900
+It turns out there's one more interesting example of many to many which is worth describing
+
+00:06:03.340 --> 00:06:06.940
+which is when the input and the output lengths are different.
+
+00:06:06.940 --> 00:06:13.900
+So in the many to many example you saw just now the input length and the output length have to be exactly the same.
+
+00:06:14.340 --> 00:06:17.100
+But for an application like machine translation
+
+00:06:17.540 --> 00:06:23.620
+the number of words in the input sentence say a French sentence and the number of words in the output sentence say the
+
+00:06:23.860 --> 00:06:25.700
+translation into English
+
+00:06:25.700 --> 00:06:32.740
+those sentences could be different lengths. So here's an alternative neural network architecture where you might have a neural network
+
+00:06:33.460 --> 00:06:34.580
+first
+
+00:06:34.580 --> 00:06:36.580
+reading the sentence
+
+00:06:36.580 --> 00:06:44.860
+so first reading the input say French sentence that you want to translate to English and having done that you then have the neural network
+
+00:06:45.620 --> 00:06:51.300
+output the translation as follows
+
+00:06:52.020 --> 00:06:58.940
+y-hat t y and so with this architecture t x and t y can be different lengths
+
+00:06:59.860 --> 00:07:06.980
+and again you could draw on the a z or there if you want to know and so this preliminary network architecture has two distinct parts
+
+00:07:07.420 --> 00:07:09.420
+there's the encoder
+
+00:07:09.500 --> 00:07:13.980
+which takes those inputs say a French sentence and then there's a decoder
+
+00:07:14.580 --> 00:07:19.860
+which having read in the sentence outputs the translation into a different language.
+
+00:07:20.300 --> 00:07:25.060
+So this would be an example of a many to many architecture.
+
+00:07:25.860 --> 00:07:28.740
+So by the end of this week you have a good understanding of
+
+00:07:29.420 --> 00:07:33.700
+all the components needed to build these types of architectures
+
+00:07:34.900 --> 00:07:35.820
+and
+
+00:07:35.820 --> 00:07:43.220
+then technically there's one other architecture which we'll talk about only in week four which is attention based architectures
+
+00:07:43.220 --> 00:07:46.980
+which maybe isn't clearly captured by one of the diagrams withdrawn so far.
+
+00:07:47.420 --> 00:07:57.070
+So to summarize the wide range of RNN architectures there is one to one
+
+00:07:59.220 --> 00:08:04.540
+although if it's one to one we could just get rid of this and this is just a standard generic neural network
+
+00:08:04.540 --> 00:08:06.980
+I really don't need an RNN for this but
+
+00:08:07.660 --> 00:08:09.660
+there is one to many
+
+00:08:10.180 --> 00:08:14.820
+so this was music generation or sequence generation as example and
+
+00:08:15.540 --> 00:08:21.140
+then there is a many to one that would be an example of sentiment classification where you might want to
+
+00:08:21.300 --> 00:08:25.980
+read as input all the text with a movie review and then try to figure out
+
+00:08:25.980 --> 00:08:27.980
+you know did they like the movie or not.
+
+00:08:28.500 --> 00:08:35.940
+There is many to many so the name entity recognition example we're using was this where TX is equal to
+
+00:08:36.940 --> 00:08:38.260
+TY and
+
+00:08:38.260 --> 00:08:44.460
+then finally there's this other version of many to many where for applications like machine translation
+
+00:08:45.260 --> 00:08:48.300
+TX and TY no longer have to be the same.
+
+00:08:48.580 --> 00:08:54.380
+So now you know most of the building blocks for building pretty much all of these neural networks
+
+00:08:54.500 --> 00:09:00.500
+except that there are some subtleties with sequence generation which is what we'll discuss in the next video.
+
+00:09:01.020 --> 00:09:05.940
+So I hope you saw from this video that using the basic building blocks of an RNN
+
+00:09:05.940 --> 00:09:10.340
+there's already a wide range of models that you might be able to put together
+
+00:09:10.820 --> 00:09:17.780
+but as I mentioned there are some subtleties to sequence generation which you get to implement yourself as well in this week's
+
+00:09:17.780 --> 00:09:25.500
+program exercise where you implement a language model and hopefully generate some fun sequences or some fun pieces of text.
+
+00:09:25.700 --> 00:09:33.460
+So what I want to do in the next video is go deeper into sequence generation. Let's see the details in the next video.

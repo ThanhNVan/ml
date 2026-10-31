@@ -1,0 +1,399 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.430 --> 00:00:06.430
+The data for your supervised learning problem comprises input x and output labels y.
+
+00:00:06.950 --> 00:00:12.070
+What if you're going through your data and you find that some of these output labels y are incorrect?
+
+00:00:12.070 --> 00:00:18.030
+They have data which is incorrectly labeled. Is it worth your while to go in to fix up some of these labels?
+
+00:00:18.190 --> 00:00:24.710
+Let's take a look. In the cat classification problem, y equals 1 for cats and 0 for non-cats.
+
+00:00:25.030 --> 00:00:30.050
+So let's say you're looking through some data and there's a cat, there's not a cat, there's a cat.
+
+00:00:30.430 --> 00:00:35.390
+There's a cat, there's not a cat, there's a cat. No wait, there's actually not a cat.
+
+00:00:35.390 --> 00:00:40.510
+So this is an example with an incorrect label.
+
+00:00:41.470 --> 00:00:47.710
+So I've used the term mislabeled examples to refer to if your learning algorithm outputs the wrong value of y.
+
+00:00:48.110 --> 00:00:54.190
+But I'm going to say incorrectly labeled examples when to refer to if in the data set you have.
+
+00:00:54.190 --> 00:01:00.670
+In the training set or the depth set or the test set, the label for y, whatever human label assigned to this piece of data,
+
+00:01:00.670 --> 00:01:05.950
+is actually incorrect. And that's actually a dog, so that y really should have been 0.
+
+00:01:07.150 --> 00:01:09.550
+But maybe the label got that one wrong.
+
+00:01:10.030 --> 00:01:15.790
+So if you find that your data has some incorrectly labeled examples, what should you do?
+
+00:01:16.430 --> 00:01:20.510
+Well first, let's consider the training set.
+
+00:01:21.470 --> 00:01:27.550
+It turns out that deep learning algorithms are quite robust to random errors in the training set.
+
+00:01:27.550 --> 00:01:35.470
+So long as your errors or your incorrectly labeled examples, so long as those errors are not too far from random,
+
+00:01:35.470 --> 00:01:41.470
+you know, maybe sometimes the laborer just wasn't paying attention or they accidentally
+
+00:01:41.470 --> 00:01:46.990
+randomly hit the wrong key on the keyboard. If the errors are reasonably random, then
+
+00:01:47.070 --> 00:01:52.750
+it's probably okay to just leave the errors as they are and not spend too much time fixing them.
+
+00:01:53.310 --> 00:01:57.150
+There's certainly no harm to going into your training set and reexamining the labels and
+
+00:01:57.150 --> 00:02:02.190
+fixing them. Sometimes that is worth doing. But your algorithm might be okay even if you don't,
+
+00:02:02.190 --> 00:02:08.750
+so long as the total data set size is big enough and the actual percentage of errors is,
+
+00:02:08.750 --> 00:02:13.950
+you know, maybe not too high. So I see a lot of machine learning algorithms that are trained even
+
+00:02:13.950 --> 00:02:19.870
+when we know that there are few mistakes in the training set labels and usually it works okay.
+
+00:02:20.990 --> 00:02:28.910
+There is one caveat to this, which is that deep learning algorithms are robust to random errors.
+
+00:02:28.910 --> 00:02:38.750
+They are less robust to systematic errors. So for example, if your label is consistently labeled
+
+00:02:38.750 --> 00:02:44.350
+white dogs as cats, then that is a problem because you classifier will learn to classify
+
+00:02:44.350 --> 00:02:51.790
+all white colored dogs as cats. But random errors or near random errors are usually not too bad for
+
+00:02:51.790 --> 00:02:57.950
+most deep learning algorithms. Now, this discussion has focused on what to do about
+
+00:02:57.950 --> 00:03:02.830
+incorrectly labeled examples in your training set. How about incorrectly labeled examples in
+
+00:03:02.830 --> 00:03:08.750
+your depth set or test set? If you're worried about the impact of incorrectly labeled examples
+
+00:03:08.750 --> 00:03:15.230
+on your depth set or test set, what I recommend you do is during error analysis to add one extra
+
+00:03:15.230 --> 00:03:21.470
+column so that you can also count up the number of examples where the label Y was incorrect.
+
+00:03:22.030 --> 00:03:29.070
+So for example, maybe when you count up the impact on a hundred mislabeled depth set examples,
+
+00:03:29.070 --> 00:03:34.270
+so you're going to find a hundred examples where your classifier output disagrees with the label
+
+00:03:34.270 --> 00:03:40.270
+in your depth set. And sometimes for a few of those examples, your classifier disagrees with
+
+00:03:40.270 --> 00:03:44.910
+the label because the label was wrong rather than because your classifier was wrong. So maybe in
+
+00:03:44.910 --> 00:03:51.230
+this example, you find that the label miss a cat in the background. So, um, you put a check
+
+00:03:51.230 --> 00:03:56.990
+mark there to signify that example 98 had an incorrect label. And maybe for this one,
+
+00:03:57.950 --> 00:04:02.670
+the picture is actually a picture of a drawing of a cat rather than a row cat. And maybe you want
+
+00:04:02.670 --> 00:04:08.350
+the labor to have labeled that Y equals zero rather than Y equals one. And so, um, you put
+
+00:04:08.350 --> 00:04:14.110
+another check mark there. And just as you count up the percent of errors due to other categories,
+
+00:04:14.110 --> 00:04:18.750
+like we saw in the previous video, you'd also count up the fraction of percentage of errors
+
+00:04:18.750 --> 00:04:25.230
+due to incorrect labels. Whether Y value in your depth set was wrong and that accounted for Y
+
+00:04:25.310 --> 00:04:30.750
+you're learning algorithm made the prediction that differed from what the label on your data says.
+
+00:04:32.350 --> 00:04:36.670
+So the question now is, is it worthwhile going in to try to fix up,
+
+00:04:36.670 --> 00:04:44.350
+you know, this 6% of incorrectly labeled examples? My advice is if it makes a significant difference
+
+00:04:44.350 --> 00:04:48.910
+to your ability to evaluate algorithms on your depth set, then go ahead and spend the time
+
+00:04:48.910 --> 00:04:53.630
+to fix the incorrect labels. But if it doesn't make a significant difference to your ability
+
+00:04:53.630 --> 00:04:58.670
+to use the depth set to evaluate classifiers, then it might not be the best use of your time.
+
+00:04:58.670 --> 00:05:04.030
+Let me show you an example that illustrates what I mean by this. So three numbers I recommend you
+
+00:05:04.030 --> 00:05:08.750
+look at to try to decide if it's worth going in and reducing the number of mislabeled examples
+
+00:05:08.750 --> 00:05:14.270
+out of the following. I recommend you look at the overall depth set error. And so in the example
+
+00:05:14.270 --> 00:05:20.670
+we had from the previous video, we said that maybe your system has 90% overall accuracy,
+
+00:05:20.670 --> 00:05:29.150
+so 10% error. Then you should look at the number of errors or the percentage of errors that are due
+
+00:05:29.150 --> 00:05:35.630
+to incorrect labels. So it looks like in this case, 6% of the errors are due to incorrect labels.
+
+00:05:35.630 --> 00:05:46.510
+So 6% of 10% is 0.6%. And then you should look at errors due to all other causes. So if you
+
+00:05:46.590 --> 00:05:51.790
+made 10% error on your depth set and if 0.6% of those are because the labels is wrong, then the
+
+00:05:51.790 --> 00:05:58.430
+remainder, 9.4% of them are due to other causes, such as misrecognizing dogs, great cats, great
+
+00:05:58.430 --> 00:06:06.830
+cats, and blurry images. So in this case, I would say there's 9.4% worth of error that you
+
+00:06:06.830 --> 00:06:12.990
+could focus on fixing, whereas, you know, the errors due to incorrect labels is a relatively
+
+00:06:12.990 --> 00:06:19.550
+small fraction of the overall set of errors. So by all means, go in and fix these incorrect
+
+00:06:19.550 --> 00:06:23.310
+labels if you want, but this may be not the most important thing to do right now.
+
+00:06:24.350 --> 00:06:29.550
+Now let's take another example. Suppose you've made a lot more progress on your learning
+
+00:06:29.550 --> 00:06:36.750
+problem. So instead of 10% error, let's say you brought the errors down to 2%, but still
+
+00:06:37.710 --> 00:06:45.310
+0.6% of your overall errors are due to incorrect labels. So now if you were to examine a set of
+
+00:06:45.310 --> 00:06:52.270
+mislabeled depth set images, so that comes from just 2% of depth set data you're mislabeling,
+
+00:06:52.830 --> 00:07:01.790
+then a very large fraction of them, 0.6 divided by 2%, so that's actually 30% rather than 6%
+
+00:07:02.590 --> 00:07:08.670
+of your labels. Of your incorrect examples are actually due to incorrectly labeled examples.
+
+00:07:09.230 --> 00:07:19.470
+And so errors due to other causes are now 1.4%. When such a high fraction of your mistakes,
+
+00:07:19.470 --> 00:07:25.390
+at least as measured on your depth set, are due to incorrect labels, then it's maybe seems much
+
+00:07:25.470 --> 00:07:32.190
+more worthwhile to fix up the incorrect labels in your depth set. And if you remember the goal of the
+
+00:07:32.190 --> 00:07:36.670
+depth set, the main purpose of the depth set is you want to really use it to help you select
+
+00:07:36.670 --> 00:07:42.670
+between two classifiers A and B. So if you're trying out two classifiers A and B, and one has
+
+00:07:44.430 --> 00:07:51.230
+2.1% error and the other has 1.9% error on your depth set, but you don't trust your depth set
+
+00:07:51.230 --> 00:07:57.070
+anymore to be correctly telling you whether this classifier is actually better than this because
+
+00:07:57.070 --> 00:08:03.870
+your 0.6% of these mistakes are due to incorrect labels, then there's a good reason to go in and
+
+00:08:03.870 --> 00:08:09.150
+fix the incorrect labels in your depth set. Because in this example on the right is just
+
+00:08:09.150 --> 00:08:14.110
+having a very large impact on the overall assessments of the errors of the algorithm.
+
+00:08:14.110 --> 00:08:18.350
+Whereas in the example on the left, the percentage impact is having on your algorithm
+
+00:08:18.350 --> 00:08:26.110
+is still smaller. Now, if you decide to go into your depth set and manually reexamine the labels
+
+00:08:26.110 --> 00:08:32.590
+and try to fix up some of the labels, here are a few additional guidelines or principles to consider.
+
+00:08:33.550 --> 00:08:39.710
+First, I would encourage you to apply whatever process you apply to both your depth and test
+
+00:08:39.710 --> 00:08:45.310
+sets at the same time. We've talked previously about why you want your depth and test sets to
+
+00:08:45.390 --> 00:08:49.790
+come from the same distribution. The depth set is sort of telling you where to aim the target,
+
+00:08:49.790 --> 00:08:55.470
+and when you hit it, you want that to generalize to the test set. So your team really works more
+
+00:08:55.470 --> 00:09:00.510
+efficiently if the depth and test sets come from the same distribution. So if you're going in to
+
+00:09:00.510 --> 00:09:04.750
+fix up your depth set, I would apply the same process to the test set to make sure that they
+
+00:09:04.750 --> 00:09:09.630
+continue to come from the same distribution. So if you hire someone to examine the labels
+
+00:09:09.630 --> 00:09:15.710
+more carefully, do that for both your depth and test sets. Second, I would urge you to consider
+
+00:09:15.710 --> 00:09:22.270
+examining examples your algorithm got right as was once it got wrong. It is easy to look at the
+
+00:09:22.270 --> 00:09:27.870
+examples your algorithm got wrong and just see if any of those need to be fixed. But it's possible
+
+00:09:27.870 --> 00:09:32.030
+that there's some examples that your algorithm got right that should also be fixed. And if
+
+00:09:32.030 --> 00:09:37.230
+you only fix ones that your algorithms got wrong, you end up with a more biased estimate of the
+
+00:09:37.230 --> 00:09:41.710
+error of your algorithm. It kind of gives you an algorithm that's a little bit of an unfair
+
+00:09:41.710 --> 00:09:47.310
+advantage if you just try to double check what it got wrong, but you don't also double check what
+
+00:09:47.310 --> 00:09:53.230
+it got right, because it might have gotten something right that it was just lucky on fixing
+
+00:09:53.230 --> 00:10:00.510
+the label would cause it to go from being right to being wrong on that example. The second bullet
+
+00:10:00.510 --> 00:10:05.870
+isn't always easy to do, so it's not always done. The reason it's not always done is because
+
+00:10:05.870 --> 00:10:11.950
+if your classifier is very accurate, then it's getting a lot fewer things wrong than right. So
+
+00:10:11.950 --> 00:10:17.870
+if your classifier has your 98 percent accuracy, then it's getting 2 percent of things wrong and
+
+00:10:17.870 --> 00:10:24.350
+98 percent of things right. So it's much easier to examine and validate the labels on 2 percent of
+
+00:10:24.350 --> 00:10:30.830
+the data, and it takes much longer to validate the labels on 98 percent of the data. So this
+
+00:10:30.830 --> 00:10:38.000
+isn't always done, but it's just something to consider. Finally, if you go into your depth and
+
+00:10:38.000 --> 00:10:43.920
+test data to correct some of the labels there, you may or may not decide to go and apply the
+
+00:10:43.920 --> 00:10:48.560
+same process for the training set. Remember we said at the start of this video, there's actually
+
+00:10:48.560 --> 00:10:53.280
+less important to correct the labels in your training set, and it's quite possible you decide
+
+00:10:53.280 --> 00:10:58.320
+to just correct the labels in your depth and test set, which are also often smaller than the
+
+00:10:58.320 --> 00:11:03.840
+training set, and you might not invest all the extra effort needed to correct the labels in a
+
+00:11:03.840 --> 00:11:10.720
+much larger training set. This is actually okay, and we'll talk later this week about some
+
+00:11:10.720 --> 00:11:16.080
+processes for handling when your training data is different in distribution than your depth and
+
+00:11:16.080 --> 00:11:21.840
+test data. Learning algorithms are quite robust to that. It's super important that your depth and
+
+00:11:21.840 --> 00:11:27.520
+test sets come from the same distribution, but if your training set comes from a slightly different
+
+00:11:27.600 --> 00:11:32.160
+distribution, often that's a pretty reasonable thing to do, and we'll talk more about how to
+
+00:11:32.160 --> 00:11:37.920
+handle this later this week. So I'd like to wrap up with just a couple pieces of advice.
+
+00:11:37.920 --> 00:11:42.720
+First, deep learning researchers sometimes like to say things like, oh, I just fed the data to
+
+00:11:42.720 --> 00:11:46.480
+the algorithm and I trained it and it worked. And, you know, there is a lot of truth to that.
+
+00:11:46.480 --> 00:11:51.280
+In the deep learning era, there is more of feeding data to an algorithm and just training it
+
+00:11:51.280 --> 00:11:56.640
+and doing less hand engineering and using less human insight. But I think that in building
+
+00:11:56.640 --> 00:12:02.720
+practical systems, often there's also more manual analysis and more human insight that goes into
+
+00:12:02.720 --> 00:12:08.640
+these systems than sometimes deep learning researchers like to acknowledge. Second is that
+
+00:12:08.640 --> 00:12:14.320
+somehow I've seen some engineers and researchers be reluctant to manually look at examples.
+
+00:12:14.320 --> 00:12:18.560
+Maybe it's not the most interesting thing to do, to sit down and look at a hundred or a couple
+
+00:12:18.560 --> 00:12:23.760
+hundred examples to counter the number of errors. But this is something that I still do myself
+
+00:12:23.760 --> 00:12:27.200
+when I'm leading a machine learning team and I want to understand what mistakes is making.
+
+00:12:27.200 --> 00:12:31.760
+I will actually go in and look at the data myself and try to counter the fraction of errors.
+
+00:12:31.760 --> 00:12:37.200
+And I think that because these, you know, minutes or maybe a small number of hours of counting data
+
+00:12:37.200 --> 00:12:42.320
+can really help you prioritize where to go next. I find this a very good use of your time and I
+
+00:12:42.320 --> 00:12:46.720
+urge you to consider doing it if you've built a machine learning system and you're trying to
+
+00:12:46.720 --> 00:12:54.800
+decide what ideas or what directions to prioritize things. So that's it for the error analysis
+
+00:12:54.800 --> 00:13:00.320
+process. In the next video, I want to share with you some thoughts on how error analysis fits
+
+00:13:00.320 --> 00:13:04.960
+into how you might go about starting out on a new machine learning project.

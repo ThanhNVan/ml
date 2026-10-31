@@ -1,0 +1,448 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.987
+Tất cả chúng ta đều đã biết rằng mạng nơ-ron nhân tạo sâu giải quyết được rất nhiều vấn
+
+00:00:05.987 --> 00:00:09.841
+đề, và chúng không chỉ là mạng nơ-ron lớn, mà cụ thể là,
+
+00:00:09.841 --> 00:00:12.800
+chúng cần phải sâu hoặc là có nhiều lớp ẩn.
+
+00:00:12.800 --> 00:00:14.176
+Vậy tại sao lại thế?
+
+00:00:14.176 --> 00:00:20.301
+Chúng ta hãy cùng xem một vài ví dụ và cố gắng hiểu lý do tại sao các mạng sâu lại có thể
+
+00:00:20.301 --> 00:00:21.814
+hoạt động tốt như vậy.
+
+00:00:21.814 --> 00:00:24.636
+Đầu tiên, một mạng sâu thì tính những gì?
+
+00:00:24.636 --> 00:00:30.141
+Nếu bạn đang xây dựng một hệ thống nhận dạng khuôn mặt hoặc nhận diện khuôn mặt,
+
+00:00:30.141 --> 00:00:34.476
+thì đây là những gì mà một mạng nơ-ron nhân tạo sâu có thể làm.
+
+00:00:34.476 --> 00:00:37.229
+Bạn nhập vào hình ảnh của một khuôn mặt,
+
+00:00:37.229 --> 00:00:40.739
+tiếp theo là lớp đầu tiên của mạng nơ-ron nhân tạo,
+
+00:00:40.739 --> 00:00:44.730
+bạn có thể nghĩ tới một máy dò tính năng hoặc máy dò cạnh.
+
+00:00:44.730 --> 00:00:50.098
+Trong ví dụ này, tôi đang vẽ một mạng nơ-ron nhân tạo với khoảng 20 đơn vị ẩn,
+
+00:00:50.098 --> 00:00:53.125
+và đang cố gắng tính toán trên hình ảnh này.
+
+00:00:53.125 --> 00:00:57.048
+Và 20 đơn vị ẩn được minh họa bởi các hình vuông nhỏ này.
+
+00:00:57.048 --> 00:01:02.966
+Ví dụ, hình vuông nhỏ này đại diện cho một đơn vị ẩn mà đang cố gắng tìm ra vị trí các
+
+00:01:02.966 --> 00:01:05.237
+cạnh của hướng đó trong hình ảnh.
+
+00:01:05.237 --> 00:01:10.329
+Và có thể đơn vị ẩn này đang cố gắng tìm ra các cạnh ngang trong hình này.
+
+00:01:10.329 --> 00:01:15.559
+Và khi chúng ta học về các mạng nơ-ron tích chập trong một khóa học sau này,
+
+00:01:15.559 --> 00:01:18.794
+thì hình biểu diễn này sẽ dễ hiểu hơn một chút.
+
+00:01:18.794 --> 00:01:24.918
+Nhưng về hình thức, bạn có thể nghĩ về lớp đầu tiên của mạng nơ-ron nhân tạo khi nhìn vào
+
+00:01:24.918 --> 00:01:29.185
+hình ảnh và cố gắng tìm ra vị trí của các cạnh trong hình này.
+
+00:01:29.185 --> 00:01:35.309
+Bây giờ, hãy nghĩ về vị trí các cạnh trong hình này bằng cách nhóm các pixel lại với nhau
+
+00:01:35.309 --> 00:01:36.823
+để tạo thành các cạnh.
+
+00:01:36.823 --> 00:01:42.948
+Sau đó, nó có thể phát hiện các cạnh và nhóm các cạnh với nhau để tạo thành các phần trên
+
+00:01:42.948 --> 00:01:43.636
+khuôn mặt.
+
+00:01:43.636 --> 00:01:48.935
+Ví dụ, bạn có một nơ-ron thấp đang cố gắng xem liệu nó có tìm thấy mắt không,
+
+00:01:48.935 --> 00:01:52.444
+hoặc một nơ-ron khác đang cố gắng tìm một phần mũi.
+
+00:01:52.444 --> 00:01:54.922
+Và do đó, bằng cách nhóm nhiều cạnh,
+
+00:01:54.922 --> 00:01:59.807
+thì nó có thể bắt đầu nhận diện được các phần khác nhau trên khuôn mặt.
+
+00:01:59.807 --> 00:02:05.313
+Và cuối cùng, bằng cách ghép lại các phần khác nhau trên khuôn mặt, như mắt,mũi,
+
+00:02:05.313 --> 00:02:10.749
+tai hay cằm, thì nó có thể nhận ra hoặc nhận dạng các kiểu khuôn mặt khác nhau.
+
+00:02:10.749 --> 00:02:16.667
+Vì vậy, bạn có thể coi là các lớp trước của mạng nơ-ron nhân tạo phát hiện các hàm đơn
+
+00:02:16.667 --> 00:02:17.975
+giản, như các cạnh.
+
+00:02:17.975 --> 00:02:24.099
+Và rồi kết hợp chúng lại với nhau trong các lớp sau của mạng nơ-ron nhân tạo để nó có thể
+
+00:02:24.099 --> 00:02:26.301
+học được nhiều hàm phức tạp hơn.
+
+00:02:26.301 --> 00:02:31.256
+Những minh họa này sẽ có dễ hiểu hơn khi chúng ta học về mạng tích chập.
+
+00:02:31.256 --> 00:02:34.490
+Và một chi tiết kỹ thuật của hình minh họa này,
+
+00:02:34.490 --> 00:02:39.789
+các máy dò cạnh đang tìm kiếm trong các khu vực tương đối nhỏ trong hình ảnh,
+
+00:02:39.789 --> 00:02:41.922
+những vùng rất nhỏ như thế này.
+
+00:02:41.922 --> 00:02:47.978
+Và sau đó bạn có thể thấy là các máy dò khuôn mặt thì tìm trong các khu vực hình ảnh lớn
+
+00:02:47.978 --> 00:02:48.666
+hơn nhiều.
+
+00:02:48.666 --> 00:02:54.791
+Nhưng bài học chính bạn rút ra từ đây chỉ là tìm kiếm những điều đơn giản như các cạnh và
+
+00:02:54.791 --> 00:02:56.236
+sau đó xây chúng lên.
+
+00:02:56.236 --> 00:03:02.154
+Kết hợp chúng lại với nhau để nhận dạng những thứ phức tạp hơn như mắt hoặc mũi sau đó
+
+00:03:02.154 --> 00:03:07.659
+kết hợp những thứ đó lại với nhau để tìm ra những thứ thậm chí phức tạp hơn nữa.
+
+00:03:07.659 --> 00:03:13.784
+Và kiểu biểu diễn phân cấp từ đơn giản đến phức tạp này, còn gọi là biểu diễn thành phần,
+
+00:03:13.784 --> 00:03:19.771
+thì còn được áp dụng trong các loại dữ liệu khác ngoài hình ảnh và nhận dạng khuôn mặt.
+
+00:03:19.771 --> 00:03:24.381
+Ví dụ: nếu bạn đang muốn xây dựng một hệ thống nhận dạng giọng nói,
+
+00:03:24.381 --> 00:03:30.437
+thì khó để biểu diễn lại lời nói nhưng nếu bạn nhập vào một clip âm thanh thì có thể cấp
+
+00:03:30.437 --> 00:03:36.218
+đầu tiên của mạng nơ-ron nhân tạo có thể học để nhận dạng các tính năng dạng sóng âm
+
+00:03:36.218 --> 00:03:40.002
+thanh mức thấp, chẳng hạn như âm này có tăng lên không?
+
+00:03:40.002 --> 00:03:41.379
+Âm này thì hạ xuống?
+
+00:03:41.379 --> 00:03:44.957
+Có phải tiếng ồn trắng hay là âm thanh phát ra như .
+
+00:03:44.957 --> 00:03:45.921
+Và tông là gì?
+
+00:03:45.921 --> 00:03:50.462
+Khi nói đến đó, nhận dạng các đặc điểm dạng sóng mức thấp như thế.
+
+00:03:50.462 --> 00:03:54.041
+Và sau đó bằng cách tổng hợp các dạng sóng mức thấp,
+
+00:03:54.041 --> 00:03:58.445
+có lẽ bạn sẽ học được cách phát hiện các đơn vị âm thanh cơ bản.
+
+00:03:58.445 --> 00:04:01.473
+Trong ngôn ngữ học, chúng được gọi là âm vị.
+
+00:04:01.473 --> 00:04:06.428
+Nhưng, ví dụ, trong từ cat, C là âm vị, A là âm vị, T là một âm vị khác.
+
+00:04:06.428 --> 00:04:12.277
+Học để tìm các đơn vị cơ bản của âm thanh và sau đó kết hợp chúng với nhau có thể học
+
+00:04:12.277 --> 00:04:14.685
+cách nhận ra các từ trong âm thanh.
+
+00:04:14.685 --> 00:04:20.741
+Và sau đó có thể kết hợp những từ đó lại với nhau, để nhận dạng toàn bộ cụm từ hoặc câu.
+
+00:04:20.741 --> 00:04:26.866
+Như vậy, mạng nơ-ron nhân tạo sâu với nhiều lớp ẩn có thể có thể có các lớp trước học các
+
+00:04:26.866 --> 00:04:32.784
+đặc điểm đơn giản ở cấp độ thấp hơn và rồi có các lớp sâu hơn sau đó kết hợp những thứ
+
+00:04:32.784 --> 00:04:38.908
+đơn giản vừa được phát hiện để phát hiện ra những điều phức tạp hơn như nhận ra các từ cụ
+
+00:04:38.908 --> 00:04:41.455
+thể hoặc thậm chí là cụm từ hoặc câu.
+
+00:04:41.455 --> 00:04:44.482
+Thốt ra là để thực hiện nhận dạng giọng nói.
+
+00:04:44.482 --> 00:04:48.955
+Và chúng ta có thể thấy là trong khi các lớp khác đang tính toán,
+
+00:04:48.955 --> 00:04:53.772
+các hàm tương đối đơn giản của đầu vào, chẳng hạn như vị trí của cạnh,
+
+00:04:53.772 --> 00:04:59.828
+khi bạn tiến sâu vào mạng thì bạn thực sự có thể làm những điều phức tạp đáng kinh ngạc.
+
+00:04:59.828 --> 00:05:04.852
+Chẳng hạn như nhận diện khuôn mặt hoặc nhận dạng từ hoặc cụm từ hoặc câu.
+
+00:05:04.852 --> 00:05:11.045
+Một số người thích so sánh giữa các mạng nơ-ron sâu và bộ não con người, mà ở đó chúng ta,
+
+00:05:11.045 --> 00:05:13.522
+hoặc các nhà thần kinh học tin rằng,
+
+00:05:13.522 --> 00:05:19.647
+bộ não con người cũng bắt đầu nhận dạng những thứ đơn giản như các cạnh mà bạn nhìn thấy,
+
+00:05:19.647 --> 00:05:24.120
+rồi dần dần từ đó nhận dạng những thứ phức tạp hơn như khuôn mặt.
+
+00:05:24.120 --> 00:05:30.038
+Tôi nghĩ rằng sự tương đồng giữa học sâu và bộ não con người thì đôi khi hơi nguy hiểm
+
+00:05:30.038 --> 00:05:30.657
+một chút.
+
+00:05:30.657 --> 00:05:36.507
+Nhưng sự thật thì, đây là cách chúng ta nghĩ bộ não con người hoạt động và bộ não con
+
+00:05:36.507 --> 00:05:41.117
+người có thể phát hiện ra những thứ đơn giản như các cạnh đầu tiên,
+
+00:05:41.117 --> 00:05:47.104
+sau đó đặt chúng lại với nhau để hình thành nên các đối tượng ngày càng phức tạp hơn để
+
+00:05:47.104 --> 00:05:50.132
+mà trở thành một nguồn cảm hứng cho học sâu.
+
+00:05:50.132 --> 00:05:56.257
+Chúng ta sẽ nói thêm một chút về bộ não con người hay là bộ não sinh học trong video cuối
+
+00:05:56.257 --> 00:05:56.876
+tuần này.
+
+00:05:56.876 --> 00:06:02.037
+Sau đây là một lý do khác giải thích tại sao các mạng sâu thì làm việc tốt.
+
+00:06:02.037 --> 00:06:08.093
+Kết quả này xuất phát từ lý thuyết mạch gắn liền với ý tưởng về những loại hàm mà bạn có
+
+00:06:08.093 --> 00:06:12.910
+thể tính toán với các cổng AND khác nhau, cổng OR, cổng NOT khác nhau,
+
+00:06:12.910 --> 00:06:14.837
+về cơ bản là các cổng logic.
+
+00:06:14.837 --> 00:06:17.177
+Và theo một cách không chính thức,
+
+00:06:17.177 --> 00:06:23.164
+các hàm của họ thì thực hiện tính toán với một mạng nơ-ron nhân tạo tương đối nhỏ nhưng
+
+00:06:23.164 --> 00:06:26.673
+sâu, ý tôi là số lượng các đơn vị ẩn tương đối nhỏ.
+
+00:06:26.673 --> 00:06:30.802
+Nhưng nếu bạn muốn tính toán hàm tương tự với một mạng nông,
+
+00:06:30.802 --> 00:06:35.894
+và nếu không có đủ các lớp ẩn, thì bạn có thể yêu cầu nhiều đơn vị ẩn hơn,
+
+00:06:35.894 --> 00:06:38.028
+theo cấp số nhân, để tính toán.
+
+00:06:38.028 --> 00:06:44.221
+Tôi sẽ cho bạn xem một ví dụ và minh họa điều này theo cách hơi không chính thức một chút.
+
+00:06:44.221 --> 00:06:47.524
+Nhưng giả sử bạn đang cố gắng tính exclusive OR,
+
+00:06:47.524 --> 00:06:51.584
+hoặc tính chẵn lẻ của tất cả các tính năng đầu vào của bạn.
+
+00:06:51.584 --> 00:06:55.094
+Và bạn đang cố gắng tính X1, XOR, X2, XOR, X3, XOR,
+
+00:06:55.094 --> 00:06:57.778
+đến Xn nếu bạn có n hoặc n tính năng X.
+
+00:06:57.778 --> 00:07:02.457
+Nếu bạn xây sơ đồ cây XOR như thế này, thì nó tính XOR của X1 và X2,
+
+00:07:02.457 --> 00:07:05.347
+sau đó lấy X3 và X4 và tính XOR của chúng.
+
+00:07:05.347 --> 00:07:09.132
+Và về lý thuyết, nếu bạn chỉ sử dụng cổng AND hoặc NOT,
+
+00:07:09.132 --> 00:07:13.880
+bạn có thể cần vài lớp để tính toán hàm XOR chứ không chỉ là một lớp,
+
+00:07:13.880 --> 00:07:17.941
+nhưng với một mạch tương đối nhỏ, bạn có thể tính XOR, v.v.
+
+00:07:17.941 --> 00:07:22.689
+Và sau đó bạn có thể xây được một cây XOR như vậy, cho đến cuối cùng,
+
+00:07:22.689 --> 00:07:25.579
+bạn có một mạch ở đây mà đầu ra, gọi là Y.
+
+00:07:25.579 --> 00:07:27.162
+Đầu ra của Y mũ bằng Y.
+
+00:07:27.162 --> 00:07:31.222
+Exclusive OR,, tính chẵn lẻ của tất cả các bit đầu vào này.
+
+00:07:31.222 --> 00:07:35.557
+Để tính XOR, độ sâu của mạng sẽ theo cấp lệnh log N (O(log n)).
+
+00:07:35.557 --> 00:07:37.690
+Chúng ta sẽ chỉ có một cây XOR.
+
+00:07:37.690 --> 00:07:43.815
+Như vậy, số lượng nút hoặc số lượng các thành phần mạch hoặc số lượng cổng trong mạng này
+
+00:07:43.815 --> 00:07:44.503
+không lớn.
+
+00:07:44.503 --> 00:07:47.669
+Bạn không cần nhiều cổng để tính exclusive OR.
+
+00:07:47.669 --> 00:07:53.518
+Nhưng bây giờ, nếu bạn không được phép sử dụng mạng nơ-ron nhân tạo với nhiều lớp ẩn,
+
+00:07:53.518 --> 00:07:56.615
+trong ví dụ này, với order log và các lớp ẩn,
+
+00:07:56.615 --> 00:08:00.400
+nếu bạn buộc phải tính toán hàm này chỉ với một lớp ẩn,
+
+00:08:00.400 --> 00:08:04.047
+và bạn có tất cả những điều này đi vào các đơn vị ẩn.
+
+00:08:04.047 --> 00:08:06.386
+Và sau đó những cái này sẽ xuất Y.
+
+00:08:06.386 --> 00:08:11.410
+Sau đó, để tính hàm XOR này, lớp ẩn này sẽ cần phải lớn theo cấp số nhân,
+
+00:08:11.410 --> 00:08:15.332
+bởi vì về cơ bản, bạn cần liệt kê đầy đủ cấu hình 2 mũ n.
+
+00:08:15.332 --> 00:08:21.388
+Theo O( 2 mũ n), các cấu hình khả thi của các bit đầu vào dẫn đến exclusive OR trở thành
+
+00:08:21.388 --> 00:08:22.008
+1 hoặc 0.
+
+00:08:22.008 --> 00:08:27.444
+Vì vậy, cuối cùng bạn cần một lớp ẩn lớn với số lượng bit lớn theo cấp số nhân.
+
+00:08:27.444 --> 00:08:32.674
+Về mặt lý thuyết, tôi nghĩ bạn có thể làm điều này với 2 mũ (n-1) đơn vị ẩn.
+
+00:08:32.674 --> 00:08:37.353
+Nhưng đó là 2 mũ n cũ, và số lượng bit sẽ tăng lên theo cấp số nhân.
+
+00:08:37.353 --> 00:08:43.409
+Tôi hy vọng điều này điều này giúp bạn hiểu rằng có những hàm toán học thì tính toán với
+
+00:08:43.409 --> 00:08:46.987
+các mạng sâu dễ dàng hơn nhiều so với các mạng nông.
+
+00:08:46.987 --> 00:08:52.906
+Trên thực tế, cá nhân tôi thấy kết quả từ lý thuyết mạch thì không hữu ích để giúp bạn
+
+00:08:52.906 --> 00:08:59.030
+hiểu lắm, nhưng đây là một trong những kết quả mà mọi người thường trích dẫn này khi giải
+
+00:08:59.030 --> 00:09:01.920
+thích giá trị của việc có mạng nơ-ron sâu.
+
+00:09:01.920 --> 00:09:06.462
+Bây giờ, ngoài lý do này khiến mọi người thích mạng nơ-ron sâu ra,
+
+00:09:06.462 --> 00:09:12.449
+thì thực sự là tôi nghĩ rằng những lý do khác khiến thuật ngữ học sâu nổi lên chỉ là về
+
+00:09:12.449 --> 00:09:13.413
+mặt nhãn hiệu.
+
+00:09:13.413 --> 00:09:18.643
+Chúng ta gọi những thứ này là các mạng nơ-ron nhân tạo với rất nhiều lớp ẩn,
+
+00:09:18.643 --> 00:09:24.285
+nhưng cụm từ “deep learning” (Học sâu) là một nhãn hiệu tuyệt vời, nó rất sâu sắc.
+
+00:09:24.285 --> 00:09:30.272
+Và tôi nghĩ rằng một khi thuật ngữ đó trở nên phổ biến mà các mạng nơ-ron nhân tạo được
+
+00:09:30.272 --> 00:09:35.021
+đổi tên nhãn hoặc mạng nơ-ron nhân tạo với nhiều lớp ẩn được đổi tên,
+
+00:09:35.021 --> 00:09:39.081
+thì thuật ngữ đó sẽ luôn hiện hữu trong tâm trí mọi người .
+
+00:09:39.081 --> 00:09:43.622
+Dù cho là tên nhãn hiệu PR, nhưng mạng sâu vẫn hoạt động hiệu quả.
+
+00:09:43.622 --> 00:09:48.715
+Đôi khi mọi người quá tích cực và khăng khăng sử dụng hàng tấn các lớp ẩn.
+
+00:09:48.715 --> 00:09:51.055
+Nhưng khi khởi đầu một vấn đề mới,
+
+00:09:51.055 --> 00:09:57.179
+tôi thường bắt đầu với hồi quy logistic rồi sau đó mới thử một cái gì đó với một hoặc hai
+
+00:09:57.179 --> 00:10:03.097
+lớp ẩn và sử dụng nó như là một siêu tham số Sử dụng thông số đó như tham số hoặc siêu
+
+00:10:03.097 --> 00:10:09.084
+tham số và bạn điều chỉnh nó để tìm ra độ sâu phù hợp cho mạng nơ-ron nhân tạo của bạn.
+
+00:10:09.084 --> 00:10:12.525
+Nhưng trong vài năm qua một xu hướng đã xuất hiện,
+
+00:10:12.525 --> 00:10:17.273
+mọi người tìm thấy rằng đối với một số ứng dụng, các mạng nơ ron rất,
+
+00:10:17.273 --> 00:10:22.916
+rất sâu ở đây với hàng chục lớp đôi khi có thể là mô hình tốt nhất cho một vấn đề.
+
+00:10:22.916 --> 00:10:27.664
+Và nó là lời giải thích cho lý do tại sao học sâu hoạt động hiệu quả.
+
+00:10:27.664 --> 00:10:33.720
+Bây giờ chúng ta hãy cùng xem các cơ chế về cách triển khai truyền xuôi và truyền ngược.

@@ -1,0 +1,118 @@
+Trong video trước,
+bạn đã thấy thuật toán beam search (tìm kiếm chùm tia) cơ bản. Trong video này, bạn sẽ tìm hiểu một số ít
+thay đổi mà làm cho nó làm việc tốt hơn. Chuẩn hóa độ dài là một thay đổi nhỏ đối với
+thuật toán beam search có thể giúp bạn nhận được nhiều kết quả tốt hơn. Đây là những gì nó được. Beam search tối đa hóa
+xác suất này. Và sản phẩm này ở đây chỉ thể hiện quan sát rằng P (y1) đến y (Ty), x cho trước, có thể được biểu thị dưới dạng P (y1) đã cho x nhân với P (y2), cho trước x và y1 nhần với chấm chấm chấm, theo tôi đoán là p của y Ty cho trước x và y1 đến y t1-1. Có thể ký hiệu này là
+đáng sợ hơn một chút và đáng sợ hơn mức cần thiết, nhưng đây là xác suất
+mà bạn thấy trước đây. Bây giờ, nếu bạn đang triển khai các xác suất này, các xác suất
+này đều là các số nhỏ hơn 1. Thường thì chúng nhỏ hơn 1. Và nhân nhiều số nhỏ hơn
+với 1 sẽ tạo ra một số nhỏ,
+có thể dẫn đến dòng số dưới. Có nghĩa là nó quá nhỏ đối với phần biểu diễn phần nổi trong
+máy tính của bạn để lưu trữ chính xác. Vì vậy, trong thực tế, thay vì tối đa hóa sản phẩm này
+, chúng tôi sẽ lấy các bản ghi. Và nếu bạn chèn một nhật ký vào đó, thì nhật ký
+của một sản phẩm sẽ trở thành tổng của một nhật ký, và việc tối đa hóa tổng xác suất log
+này sẽ cho bạn kết quả tương tự về
+chọn câu có nhiều khả năng nhất là y. Vì vậy, bằng cách ghi nhật ký,
+, bạn sẽ có thuật toán nhỏ hơn
+dễ bị lỗi làm tròn, lỗi làm tròn số hoặc
+đến dòng dưới số thực sự. Và bởi vì hàm log,
+đó là hàm logarit, đây là hàm tăng
+đơn điệu, đạt cực đại P (y). Và bởi vì hàm logarit, đây là hàm log, là một hàm tăng đơn điệu hoàn toàn
+, chúng ta biết rằng cực đại log
+P (y) cho trước x nên cho bạn cùng kết quả với
+tối đa hóa P (y) cho trước x. Như trong cùng một giá trị của y mà giá trị này lớn nhất bằng
+thì điều này cũng sẽ tối đa hóa điều đó. Vì vậy, trong hầu hết các triển khai,
+bạn theo dõi tổng log xác suất thay vì
+giao thức xác suất. Bây giờ, có một thay đổi khác
+đối với hàm mục tiêu này điều đó làm cho thuật toán máy dịch
+hoạt động tốt hơn. Đó là, nếu bạn đề cập đến
+mục tiêu ban đầu này ở đây, nếu bạn có một câu rất dài, xác suất của câu đó là sẽ thấp, bởi vì bạn là
+nhân với nhiều số hạng ở đây. Rất nhiều số nhỏ hơn 1 đến
+ước lượng xác suất của câu đó. Và vì vậy nếu bạn nhân tất cả các số
+nhỏ hơn 1 với nhau, bạn chỉ có xu hướng kết thúc bằng
+với xác suất nhỏ hơn. Và do đó, hàm mục tiêu
+này có tác dụng không mong muốn, rằng có lẽ nó không tự nhiên có xu hướng
+thích bản dịch rất ngắn. Nó có xu hướng thích đầu ra rất ngắn. Bởi vì xác suất của một câu
+ngắn được xác định chỉ bằng cách nhân ít hơn các số này nhỏ hơn 1. Và do đó, sản phẩm sẽ
+không nhỏ như vậy. Và nhân tiện,
+điều tương tự cũng đúng cho điều này. Log xác suất của chúng ta là
+luôn nhỏ hơn hoặc bằng 1. Bạn thực sự đang ở trong phạm vi này của nhật ký. Vì vậy, bạn càng có nhiều thuật ngữ cùng nhau,
+thì điều này càng trở nên tiêu cực. Vì vậy, có một thay đổi khác đối với thuật toán
+giúp nó hoạt động tốt hơn, thay vì sử dụng mục tiêu này làm mục tiêu
+mà bạn đang cố gắng tối đa hóa, một điều bạn có thể làm là chuẩn hóa điều này bằng
+số từ trong bản dịch của bạn. Và vì vậy điều này lấy trung bình của log
+xác suất của mỗi từ. Và điều này làm giảm đáng kể vấn đề
+xuất bản dịch dài hơn. Và trong thực tế, như một heuristic thay vì
+chia cho Ty, cho số từ trong câu đầu ra,
+đôi khi bạn sử dụng cách tiếp cận nhẹ nhàng hơn. Ta có Ty theo lũy thừa của alpha,
+trong đó có thể alpha bằng 0,7. Vì vậy, nếu alpha bằng 1, thì vâng,
+hoàn toàn chuẩn hóa theo độ dài. Nếu alpha bằng 0, thì tốt, Ty đến 0 sẽ là 1,
+thì bạn không bình thường hóa chút nào. Và điều này nằm giữa chuẩn hóa hoàn toàn
+và không chuẩn hóa, và alpha là một siêu tham số khác mà bạn
+có trong đó bạn có thể điều chỉnh cố gắng đạt kết quả tốt nhất. Và phải thừa nhận rằng, sử dụng alpha theo cách này,
+đây là một cuộc phỏng đoán hoặc đây là một hack. Không có một lý thuyết vĩ đại
+biện minh cho nó, nhưng mọi người thấy cách này hoạt động tốt. Mọi người nhận thấy rằng nó hoạt động tốt trong
+thực tế, vì vậy nhiều nhóm sẽ làm điều này. Và bạn có thể thử các giá trị
+khác nhau của alpha và xem cái nào mang lại cho bạn kết quả tốt nhất. Vì vậy, chỉ để tóm tắt cách
+bạn chạy beam search, khi bạn chạy beam search, bạn thấy rất nhiều
+câu có độ dài bằng 1, rất nhiều câu có độ dài bằng 2,
+rất nhiều câu có độ dài bằng 3. Và tiếp tục, và
+có thể bạn chạy beam search trong 30 bước và bạn xem xét đầu ra các câu từ
+đến độ dài 30, giả sử. Và như vậy với chùm có chiều rộng 3,
+, bạn sẽ giữ theo dõi ba khả năng hàng đầu cho
+mỗi độ dài câu có thể có, 1, 2, 3, 4, v.v., lên đến 30. Sau đó, bạn sẽ xem xét tất cả đầu ra các câu và cho điểm
+so với điểm này. Và vì vậy bạn có thể lấy các câu hàng đầu của mình và
+chỉ cần tính toán hàm mục tiêu vào các câu mà bạn
+đã thấy trong quá trình beam search. Và cuối cùng, trong số
+câu mà bạn xác nhận theo cách này, bạn chọn cái đạt được
+giá trị cao nhất trên log chuẩn hóa này mục tiêu xác suất. Đôi khi nó được gọi là mục tiêu khả năng xảy ra log được chuẩn hóa
+. Và đó sẽ là bản dịch
+cuối cùng, kết quả đầu ra của bạn. Vì vậy, đó là cách bạn triển khai beam search,
+và bạn có thể tự làm bài này
+trong bài tập tuần này. Cuối cùng, một vài chi tiết triển khai,
+làm thế nào để bạn chọn chiều rộng chùm B? B càng lớn thì càng có nhiều
+khả năng bạn đang xem xét và câu
+bạn có thể tìm thấy càng tốt. Nhưng B càng lớn,
+thì tính toán của bạn càng đắt thuật toán là, bởi vì bạn cũng
+giữ nhiều khả năng hơn. Tốt. Cuối cùng, chúng ta hãy kết lại với một số
+cách chọn chiều rộng chùm tia B. Vì vậy, đây là ưu và nhược điểm của việc đặt
+B là rất lớn so với rất nhỏ. Nếu chiều rộng chùm tia rất lớn, sau đó bạn xem xét rất nhiều khả năng,
+và vì vậy bạn có xu hướng đạt được kết quả tốt hơn bởi vì bạn đang tiêu tốn rất nhiều
+tùy chọn khác nhau, nhưng nó sẽ chậm hơn. Và các yêu cầu bộ nhớ cũng sẽ tăng
+, về mặt thành phần cũng sẽ chậm hơn. Trong khi nếu bạn sử dụng chiều rộng chùm
+rất nhỏ, thì bạn sẽ nhận được kết quả kém hơn vì bạn chỉ cần lưu ý đến ít khả năng
+khi thuật toán đang chạy. Nhưng bạn nhận được kết quả nhanh hơn và yêu cầu bộ nhớ
+cũng sẽ thấp hơn. Vì vậy, trong video trước, chúng ta đã sử dụng trong ví dụ chạy
+của mình, chiều rộng chùm tia là ba, vì vậy chúng tôi đang lưu ý ba
+khả năng. Trong thực tế, đó là phần nhỏ. Trong các hệ thống sản xuất, ta dễ xem được
+độ rộng chùm tia có lẽ khoảng 10, và tôi nghĩ chiều rộng chùm 100
+sẽ được coi là rất lớn đối với một hệ thống sản xuất,
+tùy thuộc vào ứng dụng. Nhưng đối với các hệ thống nghiên cứu nơi mọi người
+muốn tận dụng tối đa hiệu năng để xuất
+kết quả tốt nhất có thể. Không có gì lạ khi thấy những người
+sử dụng độ rộng chùm là 1.000 hoặc 3.000, nhưng cách ứng dụng này không cố định,
+đó là lý do tại sao nó là một miền phụ thuộc. Vì vậy, tôi sẽ nói hãy thử nhiều giá trị khác nhau
+của B khi bạn làm việc thông qua ứng dụng của mình. Nhưng khi B rất lớn,
+thường có kết quả giảm dần. Vì vậy, đối với nhiều ứng dụng, tôi sẽ
+kỳ vọng rằng bạn sẽ đạt được lợi nhuận lớn khi từ độ rộng chùm là 1, tìm kiếm rất tham lam
+, đến 3, có thể là 10. Nhưng lợi ích khi bạn đi từ 1.000 đến
+3.000 chiều rộng chùm tia có thể không lớn bằng. Và đối với những người đã tham gia có thể
+khóa học về khoa học máy tính trước đây, nếu bạn đã quen với các thuật toán tìm kiếm khoa học máy tính
+như BFS, Tìm kiếm đầu tiên theo chiều rộng, hoặc
+DFS, Tìm kiếm đầu tiên theo chiều sâu. Cách nghĩ về beam search là
+, không giống như các thuật toán khác bạn đã học về trong một khóa học thuật toán khoa học máy tính
+và đừng lo lắng về điều đó nếu bạn đã
+không nghe nói về các thuật toán. Nhưng nếu bạn đã nghe nói về Breadth First Search(Tìm kiếm theo chiều rộng)
+và Depth First Search (Tìm kiếm theo chiều sâu) thì không giống như các thuật toán đó,
+là các thuật toán tìm kiếm chính xác. Chùm tìm kiếm chạy nhanh hơn nhiều nhưng không
+đảm bảo để tìm chính xác cho tối đa lập luận này tối đa mà bạn muốn tìm. Nếu bạn chưa nghe nói về tìm kiếm đầu tiên theo chiều rộng
+hoặc tìm kiếm theo chiều sâu đầu tiên, đừng lo lắng về điều đó,
+điều đó không quan trọng đối với mục đích của chúng tôi. Nhưng nếu bạn có, đây là cách beam search
+liên quan đến các thuật toán đó. Vì vậy, đó là beam search,
+là một thuật toán được sử dụng rộng rãi trong nhiều hệ thống sản xuất, hoặc
+trong nhiều hệ thống thương mại. Bây giờ, trong các vòng tròn trong chuỗi
+của các khóa học về học sâu, chúng ta đã nói rất nhiều về phân tích lỗi. Hóa ra, một trong những công cụ
+hữu ích nhất mà tôi tìm thấy là có thể làm phân tích lỗi trên beam search. Vì vậy, bạn đôi khi tự hỏi,
+Tôi nên tăng độ rộng chùm của tôi? Chiều rộng chùm tia của ta có hoạt động đủ tốt không? Và có một số điều đơn giản
+bạn có thể tính toán để cung cấp cho bạn hướng dẫn về việc bạn có cần nỗ lực
+cải thiện thuật toán tìm kiếm của mình hay không. Hãy nói về điều đó trong video tiếp theo.

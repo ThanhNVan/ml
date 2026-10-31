@@ -1,0 +1,124 @@
+{
+  "name": "vscode-video-player",
+  "displayName": "vscode-video-player",
+  "description": "Play MP4, MOV, M4V and WebM videos inside VS Code with sound. ffmpeg extracts the audio and keeps it in sync with the muted video, working around the missing AAC codec in the VS Code webview \u2014 audio that actually plays, and stays in sync.",
+  "version": "1.0.1",
+  "publisher": "local",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yutabee/vscode-unmute-video.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yutabee/vscode-unmute-video/issues"
+  },
+  "homepage": "https://yutabee.github.io/vscode-unmute-video/",
+  "qna": "https://github.com/yutabee/vscode-unmute-video/issues",
+  "sponsor": {
+    "url": "https://github.com/sponsors/yutabee"
+  },
+  "pricing": "Free",
+  "galleryBanner": {
+    "color": "#241b3a",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "extensionKind": [
+    "workspace"
+  ],
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": "limited",
+      "description": "MP4/MOV/M4V audio is extracted with ffmpeg and stays muted in untrusted workspaces until you trust them; WebM plays with native audio and needs no ffmpeg."
+    },
+    "virtualWorkspaces": {
+      "supported": false,
+      "description": "Playback needs a real on-disk file path and a local ffmpeg."
+    }
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "video player",
+    "sound",
+    "mp4",
+    "audio",
+    "aac",
+    "video",
+    "mp4 player",
+    "play video",
+    "no sound",
+    "no audio",
+    "mute",
+    "unmute",
+    "silent",
+    "mov",
+    "m4v",
+    "webm",
+    "playwright",
+    "screen recording",
+    "quicktime",
+    "h264",
+    "hevc",
+    "mpeg-4",
+    "movie",
+    "media",
+    "player",
+    "preview",
+    "viewer",
+    "ffmpeg",
+    "codec",
+    "watch video"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "vscode-video-player",
+      "properties": {
+        "unmuteVideo.ffmpegPath": {
+          "type": "string",
+          "default": "",
+          "scope": "machine",
+          "markdownDescription": "Absolute path to an [ffmpeg](https://ffmpeg.org/download.html) binary. Leave empty to auto-detect ffmpeg."
+        },
+        "unmuteVideo.seekStep": {
+          "type": "number",
+          "default": 10,
+          "minimum": 0.1,
+          "markdownDescription": "Seek step in seconds for the J/L keys and left/right arrows."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "unmuteVideo.open",
+        "title": "Open with vscode-video-player"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "unmuteVideo.viewer",
+        "displayName": "vscode-video-player",
+        "priority": "default",
+        "selector": [
+          {
+            "filenamePattern": "**/*.{mp4,MP4}"
+          },
+          {
+            "filenamePattern": "**/*.{mov,MOV}"
+          },
+          {
+            "filenamePattern": "**/*.{m4v,M4V}"
+          },
+          {
+            "filenamePattern": "**/*.{webm,WEBM}"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,444 @@
+WEBVTT
+
+00:00:02.130 --> 00:00:05.130
+Chào mừng trở lại. Trong tuần này, chúng ta sẽ
+học cách
+
+00:00:05.130 --> 00:00:08.130
+thực hiện linear regression nhanh hơn và mạnh
+mẽ hơn nhiều.
+
+00:00:08.130 --> 00:00:10.630
+Và đến cuối tuần này, bạn sẽ đi được 2/3
+
+00:00:10.630 --> 00:00:13.130
+chặng đường để hoàn thành khóa học đầu tiên
+này.
+
+00:00:13.130 --> 00:00:17.130
+Hãy bắt đầu bằng cách xem xét một phiên bản
+linear regression có
+
+00:00:17.130 --> 00:00:21.130
+thể xem xét không chỉ một feature mà còn nhiều
+feature khác nhau.
+
+00:00:21.130 --> 00:00:22.130
+Chúng ta hãy xem xét.
+
+00:00:23.130 --> 00:00:29.130
+Trong phiên bản gốc của linear regression, bạn
+có một đặc điểm duy nhất
+
+00:00:29.130 --> 00:00:35.130
+là x, kích thước của thân tàu và bạn có thể dự
+đoán y, giá của thân tàu.
+
+00:00:35.130 --> 00:00:42.130
+Vậy mô hình là f wb của x bằng wx cộng b.
+
+00:00:43.130 --> 00:00:46.130
+Nhưng bây giờ điều gì sẽ xảy ra nếu bạn không
+chỉ lấy
+
+00:00:46.130 --> 00:00:49.130
+kích thước của thân tàu làm đặc điểm để cố
+gắng dự đoán giá.
+
+00:00:49.130 --> 00:00:55.130
+Nhưng nếu bạn cũng biết số phòng ngủ, số tầng
+và tuổi của ngôi nhà theo năm,
+
+00:00:55.130 --> 00:01:01.130
+có vẻ như điều này sẽ cung cấp cho bạn nhiều
+thông tin hơn để dự đoán giá.
+
+00:01:01.130 --> 00:01:07.130
+Để giới thiệu một chút ký hiệu mới, chúng ta
+sẽ sử dụng các biến x chỉ số dưới
+
+00:01:07.130 --> 00:01:13.130
+1, x chỉ số dưới 2, x chỉ số dưới 3 và x chỉ
+số dưới 4 để biểu thị bốn feature.
+
+00:01:13.130 --> 00:01:18.130
+Và để đơn giản, hãy giới thiệu thêm một chút
+ký hiệu.
+
+00:01:18.130 --> 00:01:22.130
+Chúng ta sẽ viết x chỉ số j, hoặc đôi khi tôi
+sẽ chỉ
+
+00:01:22.130 --> 00:01:26.130
+viết tắt x sub j để thể hiện danh sách các đặc
+điểm.
+
+00:01:26.130 --> 00:01:31.130
+Vì vậy, ở đây j sẽ đi từ 1 đến 4 vì chúng ta
+có bốn đặc điểm.
+
+00:01:31.130 --> 00:01:37.130
+Tôi sẽ sử dụng chữ thường n để biểu thị tổng
+số feature.
+
+00:01:37.130 --> 00:01:40.130
+Vì vậy, trong ví dụ này, n bằng 4.
+
+00:01:40.130 --> 00:01:48.130
+Như trước đây, chúng ta sẽ sử dụng x chỉ số
+trên i để biểu thị ví dụ huấn luyện thứ i.
+
+00:01:48.130 --> 00:01:55.130
+Vì vậy, ở đây, x chỉ số trên i thực sự sẽ là
+một danh sách gồm bốn số.
+
+00:01:55.130 --> 00:01:59.630
+Hoặc đôi khi chúng ta sẽ gọi đây là một vectơ
+bao
+
+00:01:59.630 --> 00:02:04.130
+gồm tất cả các đặc điểm của ví dụ huấn luyện
+thứ i.
+
+00:02:04.130 --> 00:02:09.630
+Vì vậy, như một ví dụ cụ thể, x chỉ số trên
+trong ngoặc
+
+00:02:09.630 --> 00:02:15.130
+đơn 2 sẽ là một vectơ feature cho ví dụ huấn
+luyện thứ hai.
+
+00:02:15.130 --> 00:02:20.130
+Vậy nó sẽ bằng 1, 4, 1, 6, 3, 2 và 40.
+
+00:02:20.130 --> 00:02:24.130
+Và về mặt kỹ thuật, tôi đang viết những con số
+này thành một
+
+00:02:24.130 --> 00:02:28.130
+hàng, nên đôi khi nó được gọi là vectơ hàng
+chứ không phải vectơ cột.
+
+00:02:28.130 --> 00:02:31.130
+Nhưng nếu bạn không biết sự khác biệt là gì,
+đừng lo lắng về điều đó.
+
+00:02:31.130 --> 00:02:34.130
+Nó không quan trọng lắm cho mục đích này.
+
+00:02:34.130 --> 00:02:39.630
+Và để đề cập đến một feature cụ thể trong ví
+dụ huấn
+
+00:02:39.630 --> 00:02:45.130
+luyện thứ i, tôi sẽ viết x chỉ số trên i chỉ
+số dưới j.
+
+00:02:45.130 --> 00:02:50.630
+Vì vậy, ví dụ x chỉ số trên 2 chỉ số dưới 3 sẽ
+là giá trị của
+
+00:02:50.630 --> 00:02:56.130
+đặc điểm thứ ba, tức là số tầng trong ví dụ
+huấn luyện thứ hai.
+
+00:02:56.130 --> 00:03:00.130
+Và vì vậy nó sẽ bằng 2.
+
+00:03:00.130 --> 00:03:05.463
+Đôi khi để nhấn mạnh rằng x2 này không phải là
+một số, mà thực ra
+
+00:03:05.463 --> 00:03:10.797
+nó là một danh sách các số là một vectơ, chúng
+ta sẽ vẽ một mũi
+
+00:03:10.797 --> 00:03:16.130
+tên lên trên đó chỉ để thể hiện trực quan rằng
+đó là một vectơ.
+
+00:03:16.130 --> 00:03:18.130
+Và ở đây nữa.
+
+00:03:18.130 --> 00:03:22.130
+Nhưng bạn không cần phải vẽ mũi tên này trong
+ký hiệu của mình.
+
+00:03:22.130 --> 00:03:26.630
+Bạn có thể coi mũi tên như một ký hiệu tùy
+chọn mà đôi khi chỉ
+
+00:03:26.630 --> 00:03:31.130
+dùng để nhấn mạnh rằng đây là một vectơ chứ
+không phải một số.
+
+00:03:31.130 --> 00:03:36.130
+Bây giờ chúng ta có nhiều feature, hãy xem mô
+hình sẽ trông như thế nào.
+
+00:03:36.130 --> 00:03:39.630
+Trước đây, đây là cách chúng tôi xác định mô
+hình, trong đó x
+
+00:03:39.630 --> 00:03:43.130
+là một đối tượng địa lý duy nhất, do đó là một
+số duy nhất.
+
+00:03:43.130 --> 00:03:48.130
+Nhưng bây giờ với nhiều feature, chúng ta sẽ
+định nghĩa nó theo cách khác.
+
+00:03:48.130 --> 00:03:55.130
+Thay vào đó, mô hình sẽ là f wb của x bằng w1
+
+00:03:55.130 --> 00:04:02.130
+x1 cộng w2 x2 cộng w3 x3 cộng w4 x4 cộng b.
+
+00:04:02.130 --> 00:04:08.630
+Cụ thể, để dự đoán giá nhà ở, một mô hình khả
+thi có thể là
+
+00:04:08.630 --> 00:04:15.130
+chúng ta ước tính giá vỏ tàu là 0,1 lần x1,
+kích thước của vỏ tàu,
+
+00:04:15.130 --> 00:04:21.130
+cộng 4 nhân x2 số phòng ngủ, cộng 10 nhân x3
+số
+
+00:04:21.130 --> 00:04:27.130
+tầng, trừ 2 nhân x4 tuổi tàu tính bằng năm
+cộng 80.
+
+00:04:27.130 --> 00:04:31.130
+Hãy suy nghĩ một chút về cách bạn có thể diễn
+giải những thông số này.
+
+00:04:31.130 --> 00:04:37.130
+Nếu mô hình đang cố gắng dự đoán giá của thân
+tàu bằng hàng nghìn đô la, bạn có thể
+
+00:04:37.130 --> 00:04:43.130
+coi b này bằng 80 khi nói rằng giá cơ bản của
+thân tàu bắt đầu ở khoảng 80.000 đô
+
+00:04:43.130 --> 00:04:49.130
+la, giả sử nó không có kích thước, không có
+phòng ngủ, không có sàn và không có tuổi.
+
+00:04:49.130 --> 00:04:55.630
+Và bạn có thể coi 0,1 này có nghĩa là có thể
+với mỗi foot vuông
+
+00:04:55.630 --> 00:05:02.130
+tăng thêm, giá sẽ tăng thêm 0,1000 đô la hoặc
+thêm 100 đô la,
+
+00:05:02.130 --> 00:05:07.130
+bởi vì chúng ta đang nói rằng với mỗi foot
+vuông, giá
+
+00:05:07.130 --> 00:05:12.130
+tăng 0,1, bạn biết đấy, nhân 1000 đô la, tức
+là 100 đô la.
+
+00:05:12.130 --> 00:05:17.130
+Và có thể với mỗi phòng tắm bổ sung, giá có
+thể tăng thêm 4000
+
+00:05:17.130 --> 00:05:22.130
+USD, và với mỗi tầng bổ sung, giá có thể tăng
+thêm 10.000 USD.
+
+00:05:22.130 --> 00:05:31.130
+Và cứ thêm mỗi năm tuổi của thân tàu, giá có
+thể giảm 2000 USD vì tham số âm 2.
+
+00:05:31.130 --> 00:05:38.130
+Và nói chung, nếu bạn có n đặc điểm thì mô
+hình sẽ như thế này.
+
+00:05:38.130 --> 00:05:44.820
+Đây một lần nữa là định nghĩa của mô hình với
+n đặc điểm.
+
+00:05:44.820 --> 00:05:48.320
+Điều chúng ta sẽ làm tiếp theo là giới thiệu
+một chút ký hiệu để
+
+00:05:48.320 --> 00:05:51.820
+viết lại biểu thức này theo cách đơn giản hơn
+nhưng tương đương.
+
+00:05:52.820 --> 00:05:57.320
+Hãy định nghĩa w là một danh sách các số
+
+00:05:57.320 --> 00:06:01.820
+liệt kê các tham số w1, w2, w3, cho đến hết
+wn.
+
+00:06:01.820 --> 00:06:04.820
+Trong toán học, đây được gọi là vectơ.
+
+00:06:04.820 --> 00:06:08.820
+Và đôi khi để chỉ ra đây là một vectơ, nghĩa
+là một
+
+00:06:08.820 --> 00:06:12.820
+danh sách các số, tôi sẽ vẽ một mũi tên nhỏ
+lên trên.
+
+00:06:12.820 --> 00:06:15.820
+Không phải lúc nào bạn cũng phải vẽ mũi tên
+này và bạn có
+
+00:06:15.820 --> 00:06:18.820
+thể làm như vậy hoặc không bằng ký hiệu của
+riêng mình.
+
+00:06:19.820 --> 00:06:22.820
+Vì vậy, bạn có thể coi mũi tên nhỏ này chỉ là
+một ký
+
+00:06:22.820 --> 00:06:25.820
+hiệu tùy chọn để nhắc nhở chúng ta rằng đây là
+một vectơ.
+
+00:06:25.820 --> 00:06:29.820
+Nếu trước đây bạn đã học một lớp đại số tuyến
+tính, bạn có
+
+00:06:29.820 --> 00:06:33.820
+thể nhận ra rằng đây là vectơ hàng chứ không
+phải vectơ cột.
+
+00:06:33.820 --> 00:06:35.820
+Nhưng nếu bạn không biết những thuật ngữ đó
+nghĩa
+
+00:06:35.820 --> 00:06:37.820
+là gì thì bạn không cần phải lo lắng về điều
+đó.
+
+00:06:37.820 --> 00:06:42.820
+Tiếp theo, giống như trước, b là một số chứ
+không phải một vectơ.
+
+00:06:42.820 --> 00:06:50.820
+Và vectơ w này, cùng với số b này, là các tham
+số của mô hình.
+
+00:06:51.820 --> 00:06:57.820
+Tôi cũng hãy viết x dưới dạng một danh sách
+hoặc một vectơ, một lần
+
+00:06:57.820 --> 00:07:03.820
+nữa, một vectơ hàng, liệt kê tất cả các đặc
+điểm x1, x2, x3 từ xn.
+
+00:07:04.820 --> 00:07:12.820
+Đây lại là một vectơ, vì vậy tôi sẽ thêm một
+mũi tên nhỏ lên trên để biểu thị.
+
+00:07:12.820 --> 00:07:20.820
+Vì vậy, trong ký hiệu ở trên, chúng ta cũng có
+thể thêm các mũi tên nhỏ ở đây và ở đây
+
+00:07:20.820 --> 00:07:28.820
+để biểu thị rằng w và x thực sự là những danh
+sách các số thực sự là những vectơ này.
+
+00:07:29.820 --> 00:07:36.487
+Vì vậy, với ký hiệu này, mô hình bây giờ có
+thể được viết lại
+
+00:07:36.487 --> 00:07:43.153
+ngắn gọn hơn thành f(x) bằng vectơ w chấm, và
+dấu chấm này biểu
+
+00:07:43.153 --> 00:07:49.820
+thị tích chấm từ đại số tuyến tính, của x
+vectơ cộng với số b.
+
+00:07:49.820 --> 00:07:52.820
+Vậy tích chấm này có ý nghĩa gì?
+
+00:07:52.820 --> 00:08:02.487
+Chà, tích vô hướng của hai vectơ của hai danh
+sách số, w và x, được tính bằng
+
+00:08:02.487 --> 00:08:12.153
+cách lấy các cặp số tương ứng, w1 và x1, nhân
+số đó, w2, x2, nhân số đó, w3,
+
+00:08:12.153 --> 00:08:21.820
+x3, nhân số đó, cho đến wn, xn, nhân số đó,
+rồi tính tổng tất cả các tích này.
+
+00:08:23.820 --> 00:08:34.820
+Viết nó ra, điều này có nghĩa là tích chấm
+bằng w1, x1 cộng w2, x2 cộng
+
+00:08:34.820 --> 00:08:45.820
+w3, x3 cộng cho đến wn, xn, và cuối cùng chúng
+ta cộng lại b ở trên cùng.
+
+00:08:45.820 --> 00:08:48.980
+Và bạn nhận thấy rằng điều này mang lại cho
+chúng
+
+00:08:48.980 --> 00:08:52.140
+ta biểu thức giống hệt như chúng ta đã có ở
+trên.
+
+00:08:53.140 --> 00:08:57.140
+Vì vậy, ký hiệu tích chấm cho phép bạn viết
+
+00:08:57.140 --> 00:09:01.140
+mô hình ở dạng nhỏ gọn hơn, với ít ký tự hơn.
+
+00:09:01.140 --> 00:09:04.640
+Tên của loại mô hình linear regression với
+nhiều
+
+00:09:04.640 --> 00:09:08.140
+đặc điểm đầu vào này là linear regression bội.
+
+00:09:08.140 --> 00:09:13.140
+Điều này trái ngược với regression đơn biến,
+vốn chỉ có một đặc điểm.
+
+00:09:13.140 --> 00:09:18.140
+Và nhân tiện, bạn có thể nghĩ thuật toán này
+được gọi là regression đa biến, nhưng
+
+00:09:18.140 --> 00:09:23.140
+thuật ngữ đó thực sự đề cập đến một thứ khác
+mà chúng ta sẽ không sử dụng ở đây.
+
+00:09:23.140 --> 00:09:27.140
+Vì vậy, tôi sẽ gọi mô hình này là
+linear regression bội.
+
+00:09:27.140 --> 00:09:30.640
+Và thế là xong đối với linear regression với
+
+00:09:30.640 --> 00:09:34.140
+nhiều feature, còn được gọi là
+linear regression bội.
+
+00:09:35.140 --> 00:09:38.473
+Để thực hiện điều này, có một thủ thuật thực
+sự thú vị được
+
+00:09:38.473 --> 00:09:41.807
+gọi là vector hóa, nó sẽ giúp việc thực hiện
+thuật toán này
+
+00:09:41.807 --> 00:09:45.140
+và nhiều thuật toán học tập khác trở nên đơn
+giản hơn nhiều.
+
+00:09:45.140 --> 00:09:50.140
+Chúng ta hãy chuyển sang video tiếp theo để
+tìm hiểu vector hóa là gì.

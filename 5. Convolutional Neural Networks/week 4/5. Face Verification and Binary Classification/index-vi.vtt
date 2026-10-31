@@ -1,0 +1,365 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.580
+Triplet Loss là một cách tốt để học
+
+2
+00:00:02.580 --> 00:00:05.950
+các tham số của CNN (neural network convolution) để nhận dạng khuôn mặt (face recognition).
+
+3
+00:00:05.950 --> 00:00:08.490
+Có một cách khác để tìm hiểu các tham số này.
+
+4
+00:00:08.490 --> 00:00:11.475
+Hãy để tôi chỉ cho bạn cách nhận dạng khuôn mặt cũng có thể được coi
+
+5
+00:00:11.475 --> 00:00:15.175
+như một bài toán classification nhị phân.
+
+6
+00:00:15.175 --> 00:00:17.085
+Một cách khác để đào tạo neural network,
+
+7
+00:00:17.085 --> 00:00:19.740
+là lấy cặp neural network này và lấy
+
+8
+00:00:19.740 --> 00:00:25.260
+mạng Siamese này và cả hai đều tính toán embedding (embedding),
+
+9
+00:00:25.260 --> 00:00:27.255
+có thể embedding 128 chiều,
+
+10
+00:00:27.255 --> 00:00:28.770
+thậm chí có thể có nhiều chiều hơn,
+
+11
+00:00:28.770 --> 00:00:31.530
+và sau đó yêu cầu chúng được nhập vào
+
+12
+00:00:31.530 --> 00:00:36.375
+một đơn vị logistic regression (logistic regression unit)để sau đó đưa ra dự đoán.
+
+13
+00:00:36.375 --> 00:00:42.705
+Đầu ra mục tiêu sẽ là một nếu cả hai đều là người giống nhau,
+
+14
+00:00:42.705 --> 00:00:46.530
+và bằng không nếu cả hai của hai người khác nhau.
+
+15
+00:00:46.530 --> 00:00:52.960
+Đây là một cách để coi nhận dạng khuôn mặt giống như một bài toán classification nhị phân.
+
+16
+00:00:52.960 --> 00:00:58.890
+Và đây là một giải pháp thay thế cho triplet loss để training một hệ thống như thế này.
+
+17
+00:00:58.890 --> 00:01:03.405
+Bây giờ, đơn vị logistic regression cuối cùng này thực sự làm gì?
+
+18
+00:01:03.405 --> 00:01:08.400
+Đầu ra y mũ sẽ là một hàm sigmoid,
+
+19
+00:01:08.400 --> 00:01:12.750
+được áp dụng cho một số bộ feature nhưng thay vì chỉ cung cấp,
+
+20
+00:01:12.750 --> 00:01:18.690
+những mã hóa này, những gì bạn có thể làm là lấy sự khác biệt giữa các mã hóa.
+
+21
+00:01:18.690 --> 00:01:20.795
+Hãy để tôi chỉ cho các bạn xem tôi muốn nói gì.
+
+22
+00:01:20.795 --> 00:01:30.020
+Giả sử, tôi viết một tổng trên K bằng 1 đến 128 giá trị tuyệt đối,
+
+23
+00:01:30.020 --> 00:01:35.525
+lấy element wise (phép toán cộng và trừ với ma trận) hai bảng mã khác nhau.
+
+24
+00:01:35.525 --> 00:01:39.930
+Hãy để tôi viết xong điều này và sau đó chúng ta sẽ xem điều này có nghĩa là gì.
+
+25
+00:01:39.930 --> 00:01:45.335
+Trong ký hiệu này, f(xi) là mã hóa của hình ảnh xi
+
+26
+00:01:45.335 --> 00:01:52.210
+và k thay thế có nghĩa là chọn ra các thành phần k của vectơ này.
+
+27
+00:01:52.210 --> 00:01:59.625
+Đây là hiệu của phần tử Y trong giá trị tuyệt đối của hai bảng mã này.
+
+28
+00:01:59.625 --> 00:02:03.240
+Và những gì bạn có thể làm là nghĩ về 128 con số này
+
+29
+00:02:03.240 --> 00:02:07.140
+dưới dạng các feature (feature) mà sau đó bạn sẽ đưa vào logistic regression (logistic regression).
+
+30
+00:02:07.140 --> 00:02:11.350
+Và, bạn sẽ thấy rằng regression nhỏ có các tham số bổ sung w,
+
+31
+00:02:11.350 --> 00:02:16.030
+i, và b tương tự như một đơn vị logistic regression thông thường.
+
+32
+00:02:16.030 --> 00:02:21.990
+Và bạn sẽ train tính trọng số (weighting) thích hợp của 128 feature này
+
+33
+00:02:21.990 --> 00:02:24.105
+để dự đoán xem liệu
+
+34
+00:02:24.105 --> 00:02:28.225
+hai hình ảnh này là của cùng một người hay của hai người khác nhau.
+
+35
+00:02:28.225 --> 00:02:31.035
+Vì vậy, đây sẽ là một cách khá hữu ích để
+
+36
+00:02:31.035 --> 00:02:37.300
+học cách dự đoán số không hoặc số một cho dù đây là cùng một người hay những người khác nhau.
+
+37
+00:02:37.300 --> 00:02:40.230
+Và có một số biến thể khác về cách bạn có thể
+
+38
+00:02:40.230 --> 00:02:44.220
+tính công thức này mà tôi đã gạch chân bằng màu xanh lá cây.
+
+39
+00:02:44.220 --> 00:02:51.405
+Ví dụ, một công thức khác có thể là k - f(xj),
+
+40
+00:02:51.405 --> 00:02:56.220
+k bình phương chia cho f(xi)
+
+41
+00:02:56.220 --> 00:03:02.980
+trên cộng f(xj) k. Đây đôi khi được gọi là dạng kiểm định chi bình phương (chi square).
+
+42
+00:03:02.980 --> 00:03:05.700
+Đây là chữ cái Hy Lạp.
+
+43
+00:03:05.700 --> 00:03:08.874
+Nhưng nó đôi khi được gọi là "chi square similarity".
+
+44
+00:03:08.874 --> 00:03:15.810
+Và điều này và các biến thể khác được khám phá trong bài báo chuyên sâu này,
+
+45
+00:03:15.810 --> 00:03:18.015
+mà tôi cũng đã tham khảo trước đó.
+
+46
+00:03:18.015 --> 00:03:20.760
+Vì vậy, trong công thức học tập này,
+
+47
+00:03:20.760 --> 00:03:23.801
+đầu vào là một cặp hình ảnh,
+
+48
+00:03:23.801 --> 00:03:28.920
+đây thực sự là đầu vào training x và đầu ra y
+
+49
+00:03:28.920 --> 00:03:32.085
+bằng không hoặc bằng một tùy thuộc vào việc bạn đang nhập
+
+50
+00:03:32.085 --> 00:03:35.680
+một cặp hình ảnh giống nhau hoặc không giống nhau.
+
+51
+00:03:35.680 --> 00:03:37.070
+Và giống như trước đây,
+
+52
+00:03:37.070 --> 00:03:40.065
+bạn đang train Siamese Network nên điều đó có nghĩa là,
+
+53
+00:03:40.065 --> 00:03:44.035
+neural network ở đây có các tham số
+
+54
+00:03:44.035 --> 00:03:48.455
+thực sự gắn liền với các tham số trong neural network ở dưới này.
+
+55
+00:03:48.455 --> 00:03:52.235
+Và hệ thống này cũng có thể hoạt động khá tốt.
+
+56
+00:03:52.235 --> 00:03:53.420
+Cuối cùng, để đề cập đến
+
+57
+00:03:53.420 --> 00:03:58.905
+một thủ thuật tính toán có thể giúp triển khai nơ ron đáng kể, đó là
+
+58
+00:03:58.905 --> 00:04:00.375
+nếu đây là hình ảnh mới,
+
+59
+00:04:00.375 --> 00:04:03.910
+đây là một nhân viên đang đi hy vọng rằng cửa quay
+
+60
+00:04:03.910 --> 00:04:08.815
+sẽ mở ra cho họ và đây là từ hình ảnh cơ sở dữ liệu của bạn.
+
+61
+00:04:08.815 --> 00:04:11.190
+Sau đó, thay vì phải tính toán,
+
+62
+00:04:11.190 --> 00:04:17.520
+embedding (embedding) này mỗi lần,
+
+63
+00:04:17.520 --> 00:04:20.970
+thật ra bạn có thể tính toán trước điều đó,
+
+64
+00:04:20.970 --> 00:04:22.970
+vậy khi nhân viên mới bước vào,
+
+65
+00:04:22.970 --> 00:04:29.500
+những gì bạn có thể làm là sử dụng CNN (neural network convolution) phía trên này để tính toán mã hóa đó và sử dụng nó,
+
+66
+00:04:29.500 --> 00:04:31.020
+sau đó so sánh nó với
+
+67
+00:04:31.020 --> 00:04:36.730
+mã hóa được tính toán trước của bạn và sau đó sử dụng mã đó để đưa ra dự đoán y mũ.
+
+68
+00:04:36.730 --> 00:04:40.770
+Bởi vì bạn không cần lưu trữ hình ảnh thô và
+
+69
+00:04:40.770 --> 00:04:44.880
+cũng bởi vì nếu bạn có một cơ sở dữ liệu rất lớn về nhân viên,
+
+70
+00:04:44.880 --> 00:04:50.935
+bạn không cần phải tính toán các mã hóa này mỗi lần cho mọi cơ sở dữ liệu nhân viên.
+
+71
+00:04:50.935 --> 00:04:52.980
+Ý tưởng về tính toán tự do,
+
+72
+00:04:52.980 --> 00:04:56.880
+một số bảng mã này có thể tiết kiệm một lượng tính toán đáng kể.
+
+73
+00:04:56.880 --> 00:05:00.775
+Và loại tính toán trước này hoạt động cho cả loại
+
+74
+00:05:00.775 --> 00:05:02.950
+Kiến trúc Siamese Central mà bạn
+
+75
+00:05:02.950 --> 00:05:07.485
+coi nhận dạng khuôn mặt như một bài toán classification nhị phân (binary classification problem),
+
+76
+00:05:07.485 --> 00:05:11.160
+cũng như, khi bạn học mã hóa, có thể sử dụng
+
+77
+00:05:11.160 --> 00:05:15.070
+chức năng Triplet Loss như được mô tả trong vài video cuối cùng.
+
+78
+00:05:15.070 --> 00:05:16.760
+Để kết thúc bài học hôm nay,
+
+79
+00:05:16.760 --> 00:05:19.530
+để xử lý xác minh khuôn mặt (face verification) bằng học giám sát (supervised learning),
+
+80
+00:05:19.530 --> 00:05:23.460
+bạn tạo một tập training chỉ gồm các cặp hình ảnh bây giờ là
+
+81
+00:05:23.460 --> 00:05:28.045
+bộ ba của các cặp hình ảnh trong đó nhãn đích là một.
+
+82
+00:05:28.045 --> 00:05:34.366
+Khi đây là một cặp ảnh của cùng một người và nhãn thẻ bằng 0,
+
+83
+00:05:34.366 --> 00:05:38.880
+khi đây là những bức ảnh của những người khác nhau và bạn sử dụng
+
+84
+00:05:38.880 --> 00:05:40.845
+các cặp khác nhau để train
+
+85
+00:05:40.845 --> 00:05:45.660
+neural network để train các nhà khoa học đang sử dụng truyền ngược (back propagation).
+
+86
+00:05:45.660 --> 00:05:49.755
+Phiên bản mà bạn vừa xem về xử lý xác minh khuôn mặt (face verification)
+
+87
+00:05:49.755 --> 00:05:53.918
+và bằng cách mở rộng nhận dạng khuôn mặt(face recognition) như một bài toán classification nhị phân,
+
+88
+00:05:53.918 --> 00:05:55.645
+điều này cũng hoạt động khá tốt.
+
+89
+00:05:55.645 --> 00:05:57.645
+Và với điều đó, tôi hy vọng rằng bây giờ bạn biết,
+
+90
+00:05:57.645 --> 00:05:59.490
+cần những gì để train
+
+91
+00:05:59.490 --> 00:06:05.000
+xác minh khuôn mặt (face verification) hoặc hệ thống nhận dạng khuôn mặt (face recognition), hệ thống mà có thể thực hiện học một lần (one shot learning).

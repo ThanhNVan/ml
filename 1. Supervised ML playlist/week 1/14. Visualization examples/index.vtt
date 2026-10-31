@@ -1,0 +1,222 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.660 --> 00:00:07.460
+Let's look at some more visualizations of w and b.
+
+00:00:07.460 --> 00:00:09.660
+Here's one example.
+
+00:00:09.660 --> 00:00:17.180
+Over here, you have a particular point on the graph J. For this point, w equals about
+
+00:00:17.180 --> 00:00:22.660
+negative 0.15 and b equals about 800.
+
+00:00:22.660 --> 00:00:28.500
+So this point corresponds to one pair of values for w and b that yields a particular
+
+00:00:28.500 --> 00:00:35.220
+cost J. And in fact, this particular pair of values for w and b corresponds to this
+
+00:00:35.220 --> 00:00:41.140
+function, f of x, which is this line that you can see on the left.
+
+00:00:41.140 --> 00:00:48.540
+This line intersects the vertical axis at 800 because b equals 800 and the slope of the
+
+00:00:48.540 --> 00:00:54.500
+line is negative 0.15 because w equals negative 0.15.
+
+00:00:54.500 --> 00:00:58.820
+Now if you look at the data points in the training set, you may notice that this line
+
+00:00:58.820 --> 00:01:01.740
+is not a good fit to the data.
+
+00:01:01.740 --> 00:01:08.980
+For this function f of x, with these values of w and b, many of the predictions for the
+
+00:01:08.980 --> 00:01:16.620
+value of y are quite far from the actual target value of y that is in the training data.
+
+00:01:16.620 --> 00:01:21.780
+Because this line is not a good fit, if you look at the graph of J, the cost of this
+
+00:01:21.780 --> 00:01:27.100
+line is out here, which is pretty far from the minimum.
+
+00:01:27.100 --> 00:01:32.580
+It's a pretty high cost because this choice of w and b is just not that good a fit to
+
+00:01:32.580 --> 00:01:35.420
+the training set.
+
+00:01:35.420 --> 00:01:42.140
+Now let's look at another example with a different choice of w and b.
+
+00:01:42.140 --> 00:01:46.620
+Now here is another function that is, you know, still not a great fit for the data
+
+00:01:46.620 --> 00:01:49.100
+but maybe slightly less bad.
+
+00:01:49.100 --> 00:01:55.340
+So this point here represents the cost for this particular pair of w and b that creates
+
+00:01:55.340 --> 00:01:57.340
+that line.
+
+00:01:57.340 --> 00:02:04.260
+The value of w is equal to 0 and the value of b is about 360.
+
+00:02:04.260 --> 00:02:09.380
+This pair of parameters corresponds to this function which is a flat line because f of
+
+00:02:09.380 --> 00:02:13.780
+x equals 0 times x plus 360.
+
+00:02:13.780 --> 00:02:15.660
+I hope that makes sense.
+
+00:02:16.220 --> 00:02:18.300
+Let's look at yet another example.
+
+00:02:18.300 --> 00:02:24.900
+Here's one more choice for w and b and with these values you end up with this line f of
+
+00:02:24.900 --> 00:02:25.900
+x.
+
+00:02:25.900 --> 00:02:27.580
+Again, not a great fit to the data.
+
+00:02:27.580 --> 00:02:33.180
+It's actually further away from the minimum compared to the previous example.
+
+00:02:33.180 --> 00:02:39.020
+And remember that the minimum is at the center of that smallest ellipse.
+
+00:02:39.020 --> 00:02:40.380
+Last example.
+
+00:02:40.380 --> 00:02:47.020
+If you look at f of x on the left, this looks like a pretty good fit to the training set.
+
+00:02:47.020 --> 00:02:55.140
+You can see on the right, this point representing the cost is very close to the center of the
+
+00:02:55.140 --> 00:02:56.140
+small ellipse.
+
+00:02:56.140 --> 00:03:00.260
+It's not quite exactly the minimum but it's pretty close.
+
+00:03:00.260 --> 00:03:06.940
+For this value of w and b, you get this line f of x.
+
+00:03:06.940 --> 00:03:11.380
+You can see that if you measure the vertical distances between the data points and the
+
+00:03:11.380 --> 00:03:18.740
+predicted values on the straight line, you get the error for each data point.
+
+00:03:18.740 --> 00:03:25.420
+The sum of squared errors for all of these data points is pretty close to the minimum possible
+
+00:03:25.420 --> 00:03:30.740
+sum of squared errors among all possible straight line fits.
+
+00:03:30.740 --> 00:03:35.300
+I hope that by looking at these figures, you can get a better sense of how different
+
+00:03:35.300 --> 00:03:42.460
+choices of the parameters affect the line f of x and how this corresponds to different
+
+00:03:42.460 --> 00:03:45.740
+values for the cost j.
+
+00:03:45.740 --> 00:03:52.140
+And hopefully you can see how the better fit lines correspond to points on the graph of
+
+00:03:52.140 --> 00:04:01.740
+j that are closer to the minimum possible cost for this cost function j of w and b.
+
+00:04:01.740 --> 00:04:07.220
+In the optional lab that follows this video, you get to run some code.
+
+00:04:07.220 --> 00:04:11.980
+And remember, all of the code is given so you just need to hit shift enter to run it and
+
+00:04:11.980 --> 00:04:13.620
+take a look at it.
+
+00:04:13.620 --> 00:04:18.740
+And the lab will show you how the cost function is implemented in code.
+
+00:04:18.740 --> 00:04:23.820
+And given a small training set and different choices for the parameters, you'll be able
+
+00:04:23.820 --> 00:04:29.780
+to see how the cost varies depending on how well the model fits the data.
+
+00:04:29.820 --> 00:04:33.940
+In the optional lab, you also can play with an interactive console plot.
+
+00:04:33.940 --> 00:04:35.420
+Check this out.
+
+00:04:35.420 --> 00:04:40.420
+You can use your mouse cursor to click anywhere on the console plot, and you will see the
+
+00:04:40.420 --> 00:04:45.700
+straight line defined by the values you chose for the parameters w and b.
+
+00:04:45.700 --> 00:04:51.500
+You see a dot appear, also on the 3D surface plot showing the cost.
+
+00:04:51.500 --> 00:04:58.020
+Finally, the optional lab also has a 3D surface plot that you can manually rotate
+
+00:04:58.020 --> 00:05:03.100
+and spin around using your mouse cursor to take a better look at what the cost function
+
+00:05:03.100 --> 00:05:04.780
+looks like.
+
+00:05:04.780 --> 00:05:07.900
+I hope you enjoy playing with the optional lab.
+
+00:05:07.900 --> 00:05:13.300
+Now in linear regression, rather than having to manually try to read a console plot for
+
+00:05:13.300 --> 00:05:18.140
+the best value for w and b, which isn't really a good procedure and also won't work
+
+00:05:18.140 --> 00:05:23.420
+once we get to more complex machine learning models, what you really want is an efficient
+
+00:05:23.420 --> 00:05:29.740
+algorithm that you can write in code for automatically finding the values of parameters w and b that
+
+00:05:29.740 --> 00:05:35.260
+gives you the best fit line that minimizes the cost function j.
+
+00:05:35.260 --> 00:05:38.980
+There is an algorithm for doing this called gradient descent.
+
+00:05:38.980 --> 00:05:43.460
+This algorithm is one of the most important algorithms in machine learning.
+
+00:05:43.460 --> 00:05:48.220
+Gradient descent and variations on gradient descent are used to train not just linear
+
+00:05:48.220 --> 00:05:53.620
+regression, but some of the biggest and most complex models in all of AI.
+
+00:05:53.620 --> 00:05:58.980
+So let's go to the next video to dive into this really important algorithm called gradient
+
+00:05:58.980 --> 00:05:59.500
+descent.

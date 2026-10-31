@@ -1,0 +1,403 @@
+WEBVTT
+
+00:00:01.260 --> 00:00:04.180
+Trong video này, chúng ta sẽ tìm hiểu cách làm
+cho
+
+00:00:04.180 --> 00:00:07.100
+gradient descent hoạt động với
+linear regression chính quy.
+
+00:00:07.100 --> 00:00:08.100
+Hãy nhảy vào.
+
+00:00:08.100 --> 00:00:11.340
+Đây là cost function mà chúng tôi đã nghĩ ra
+
+00:00:11.340 --> 00:00:14.580
+trong video trước về linear regression chính
+quy.
+
+00:00:14.580 --> 00:00:18.760
+Phần đầu tiên là cost function lỗi bình phương
+thông thường.
+
+00:00:18.760 --> 00:00:22.170
+Và bây giờ bạn có thuật ngữ chính quy bổ
+
+00:00:22.170 --> 00:00:25.580
+sung này, trong đó lambda là tham số chính
+quy.
+
+00:00:25.580 --> 00:00:32.500
+Và bạn muốn tìm các tham số w và b làm giảm
+thiểu cost function chính quy.
+
+00:00:32.500 --> 00:00:37.920
+Trước đây, chúng tôi đã sử dụng phương pháp
+gradient descent cho cost function ban
+
+00:00:37.920 --> 00:00:43.340
+đầu, chỉ là số hạng đầu tiên trước khi chúng
+tôi thêm số hạng chính quy thứ hai đó.
+
+00:00:43.340 --> 00:00:49.800
+Và trước đây, chúng ta có thuật toán
+gradient descent sau, đó là chúng ta cập
+
+00:00:49.800 --> 00:00:56.260
+nhật liên tục các tham số wj và b cho j bằng 1
+đến n theo công thức này, và
+
+00:00:56.260 --> 00:00:58.700
+b cũng được cập nhật tương tự.
+
+00:00:58.700 --> 00:01:04.180
+Một lần nữa, alpha là một số dương rất nhỏ
+được gọi là learning rate tập.
+
+00:01:04.180 --> 00:01:08.920
+Trên thực tế, các bản cập nhật cho
+linear regression chính quy trông giống
+
+00:01:08.920 --> 00:01:13.660
+hệt nhau, ngoại trừ việc bây giờ chi phí j
+được xác định hơi khác một chút.
+
+00:01:14.060 --> 00:01:20.680
+Trước đây, đạo hàm của j theo wj được tính
+bằng biểu thức
+
+00:01:20.680 --> 00:01:27.300
+ở đây, và đạo hàm theo b được tính bằng biểu
+thức ở đây.
+
+00:01:27.300 --> 00:01:33.220
+Bây giờ chúng ta đã thêm số hạng
+regularization bổ sung này, điều duy nhất
+
+00:01:33.220 --> 00:01:39.140
+thay đổi là biểu thức đạo hàm theo wj kết thúc
+bằng một số hạng bổ sung.
+
+00:01:39.140 --> 00:01:44.260
+Cái này cộng với lambda trên m lần wj.
+
+00:01:44.260 --> 00:01:50.400
+Và đặc biệt, đối với định nghĩa mới của hàm
+giá j, hai
+
+00:01:50.400 --> 00:01:56.540
+biểu thức ở đây, đây là đạo hàm mới của j theo
+wj, và đạo hàm
+
+00:01:56.540 --> 00:01:59.060
+của j đối với b.
+
+00:01:59.060 --> 00:02:04.460
+Hãy nhớ rằng chúng ta không regularization b,
+vì vậy chúng ta không cố gắng thu nhỏ b.
+
+00:02:04.460 --> 00:02:10.600
+Đó là lý do tại sao b được cập nhật vẫn giữ
+nguyên như trước, trong khi w được
+
+00:02:10.600 --> 00:02:16.740
+cập nhật thay đổi vì thuật ngữ regularization
+khiến chúng ta cố gắng thu nhỏ wj.
+
+00:02:16.740 --> 00:02:22.900
+Vì vậy, hãy lấy các định nghĩa này cho đạo hàm
+và đặt chúng trở lại biểu thức
+
+00:02:22.900 --> 00:02:29.060
+bên trái để viết ra thuật toán
+gradient descent cho linear regression chính
+quy.
+
+00:02:29.060 --> 00:02:32.960
+Vì vậy, để triển khai việc gradient descent
+cho linear regression
+
+00:02:32.960 --> 00:02:36.860
+chính quy, đây là những gì bạn sẽ yêu cầu mã
+của mình thực hiện.
+
+00:02:36.860 --> 00:02:42.820
+Đây là bản cập nhật cho wj với j bằng 1 đến n
+và đây là bản cập nhật cho b.
+
+00:02:42.820 --> 00:02:50.460
+Và như thường lệ, hãy nhớ thực hiện cập nhật
+đồng thời cho tất cả các thông số này.
+
+00:02:50.460 --> 00:02:55.780
+Bây giờ, để thuật toán này hoạt động, đây là
+tất cả những gì bạn cần biết.
+
+00:02:55.780 --> 00:03:00.553
+Nhưng điều tôi muốn làm trong phần còn lại của
+video này là xem qua một số tài
+
+00:03:00.553 --> 00:03:05.327
+liệu tùy chọn để truyền đạt trực giác sâu hơn
+một chút về tác dụng thực sự của
+
+00:03:05.327 --> 00:03:10.100
+công thức này, cũng như trò chuyện ngắn gọn về
+cách các đạo hàm này được tạo ra.
+
+00:03:10.100 --> 00:03:12.500
+Phần còn lại của video này là hoàn toàn tùy
+chọn.
+
+00:03:12.500 --> 00:03:16.780
+Hoàn toàn không sao nếu bạn bỏ qua phần còn
+lại của video này.
+
+00:03:16.780 --> 00:03:19.780
+Nhưng nếu bạn có niềm đam mê mãnh liệt với
+toán học thì hãy gắn bó với tôi.
+
+00:03:19.780 --> 00:03:22.180
+Thật vui khi được đi chơi với bạn ở đây.
+
+00:03:22.180 --> 00:03:25.940
+Và thông qua những phương trình này, có lẽ bạn
+có thể xây dựng một
+
+00:03:25.940 --> 00:03:29.700
+trực giác sâu sắc hơn về tác dụng của toán học
+cũng như đạo hàm.
+
+00:03:29.700 --> 00:03:32.380
+Vì vậy chúng ta hãy xem xét.
+
+00:03:32.380 --> 00:03:37.620
+Hãy xem quy tắc cập nhật cho wj và viết lại nó
+theo cách khác.
+
+00:03:37.620 --> 00:03:49.380
+Chúng tôi đang cập nhật wj là 1 nhân wj trừ
+alpha nhân lambda trên m nhân wj.
+
+00:03:49.380 --> 00:03:55.380
+Vì vậy, tôi đã chuyển số hạng từ cuối lên đầu
+ở đây, rồi trừ
+
+00:03:55.380 --> 00:04:01.380
+alpha nhân 1 trên m, và phần còn lại của số
+hạng đó ở đằng kia.
+
+00:04:01.380 --> 00:04:04.620
+Vì vậy chúng tôi chỉ sắp xếp lại các điều
+khoản một chút.
+
+00:04:04.620 --> 00:04:12.320
+Và nếu chúng ta đơn giản hóa, thì chúng ta
+đang nói rằng wj được cập nhật
+
+00:04:12.320 --> 00:04:20.020
+là wj nhân 1 trừ alpha nhân lambda trên m trừ
+alpha nhân số hạng khác ở đây.
+
+00:04:20.020 --> 00:04:24.080
+Và bạn có thể nhận ra số hạng thứ hai này là
+bản cập nhật
+
+00:04:24.080 --> 00:04:28.140
+gradient descent thông thường cho
+linear regression không chính quy.
+
+00:04:28.140 --> 00:04:32.700
+Đây là bản cập nhật cho linear regression
+trước khi chúng tôi regularization.
+
+00:04:32.700 --> 00:04:37.420
+Và đây là thuật ngữ chúng ta đã thấy trong
+tuần thứ hai của khóa học này.
+
+00:04:37.420 --> 00:04:42.753
+Và do đó, thay đổi duy nhất khi bạn thêm
+regularization là
+
+00:04:42.753 --> 00:04:48.087
+thay vì wj được đặt bằng wj trừ alpha nhân số
+hạng này bây
+
+00:04:48.087 --> 00:04:53.420
+giờ bằng w nhân số này trừ đi bản cập nhật
+thông thường.
+
+00:04:53.420 --> 00:04:56.520
+Đây là những gì chúng ta đã có trong tuần đầu
+tiên của khóa học này.
+
+00:04:56.520 --> 00:04:59.900
+Vậy thuật ngữ đầu tiên ở đây là gì?
+
+00:04:59.900 --> 00:05:05.660
+Vâng, alpha là một số dương rất nhỏ, chẳng hạn
+như 0,01.
+
+00:05:05.660 --> 00:05:11.340
+Lambda thường là một số nhỏ, có thể là một
+hoặc có thể là 10.
+
+00:05:11.420 --> 00:05:18.220
+Giả sử lambda là một trong ví dụ này và m là
+kích thước training set, chẳng hạn là 50.
+
+00:05:18.220 --> 00:05:28.820
+Và vì vậy khi bạn nhân alpha lambda với m, ví
+dụ 0,01 nhân 1 chia cho 50, số hạng này
+
+00:05:28.820 --> 00:05:34.940
+cuối cùng là một số dương nhỏ, chẳng hạn như
+0,0002.
+
+00:05:34.940 --> 00:05:40.820
+Và do đó, 1 trừ alpha lambda trên m sẽ là một
+số chỉ nhỏ hơn 1 một chút.
+
+00:05:40.820 --> 00:05:44.020
+Trong trường hợp này là 0,9998.
+
+00:05:44.020 --> 00:05:49.400
+Và do đó, tác dụng của thuật ngữ này là ở mỗi
+lần lặp
+
+00:05:49.400 --> 00:05:54.780
+lại gradient descent, bạn lấy wj và nhân nó
+với 0,9998.
+
+00:05:54.780 --> 00:06:00.220
+Đó là một số nhỏ hơn 1 một chút trước khi thực
+hiện cập nhật thông thường.
+
+00:06:00.220 --> 00:06:04.607
+Vì vậy, việc regularization đang thực hiện
+trên mỗi lần lặp
+
+00:06:04.607 --> 00:06:08.993
+đơn lẻ là bạn đang nhân w với một số nhỏ hơn 1
+một chút và
+
+00:06:08.993 --> 00:06:13.380
+điều đó có tác dụng làm giảm giá trị của wj
+chỉ một chút.
+
+00:06:13.380 --> 00:06:17.800
+Vì vậy, điều này cho chúng ta một cái nhìn
+khác về lý do tại sao việc
+
+00:06:17.800 --> 00:06:22.220
+regularization lại có tác dụng thu nhỏ các
+tham số wj một chút sau mỗi lần lặp.
+
+00:06:22.220 --> 00:06:25.740
+Và đó là cách hoạt động của chính quy.
+
+00:06:25.740 --> 00:06:30.900
+Nếu bạn tò mò về cách tính các số hạng đạo hàm
+này, tôi chỉ có một
+
+00:06:30.900 --> 00:06:36.060
+slide tùy chọn cuối cùng trình bày một chút về
+cách tính số hạng đạo hàm.
+
+00:06:36.060 --> 00:06:38.593
+Xin nhắc lại, trang trình bày này và phần còn
+lại của video
+
+00:06:38.593 --> 00:06:41.127
+này hoàn toàn không bắt buộc, nghĩa là bạn sẽ
+không cần bất
+
+00:06:41.127 --> 00:06:43.660
+kỳ thứ gì trong số này để làm bài tập thực
+hành và câu hỏi.
+
+00:06:45.340 --> 00:06:48.220
+Vì vậy chúng ta hãy nhanh chóng thực hiện phép
+tính đạo hàm.
+
+00:06:49.020 --> 00:06:54.540
+Đạo hàm của j theo wj trông như thế này.
+
+00:07:06.530 --> 00:07:11.050
+Hãy nhớ lại rằng f(x) cho linear regression
+được định
+
+00:07:11.050 --> 00:07:15.570
+nghĩa là w chấm x cộng b, hoặc w chấm tích x
+cộng b.
+
+00:07:16.450 --> 00:07:21.170
+Và hóa ra theo quy luật tính toán, đạo hàm
+trông như thế này.
+
+00:07:21.170 --> 00:07:36.210
+Đây là 1 trên 2m nhân tổng i bằng 1 đến m của
+w chấm x cộng b trừ y nhân 2xj
+
+00:07:36.210 --> 00:07:44.770
+cộng với đạo hàm của số hạng chính quy, là
+lambda trên 2m nhân 2wj.
+
+00:07:45.330 --> 00:07:52.050
+Lưu ý rằng số hạng thứ hai không còn có số
+hạng tổng từ j bằng 1 đến n nữa.
+
+00:07:52.690 --> 00:07:57.570
+Số 2 hủy bỏ ở đây và ở đây, và cả ở đây và ở
+đây.
+
+00:07:59.010 --> 00:08:02.370
+Và vì thế nó đơn giản hóa biểu thức ở đây.
+
+00:08:03.170 --> 00:08:11.700
+Và cuối cùng, hãy nhớ rằng wx cộng b bằng
+f(x).
+
+00:08:11.940 --> 00:08:15.780
+Và vì vậy bạn có thể viết lại nó dưới dạng
+biểu thức này ở đây.
+
+00:08:16.340 --> 00:08:19.580
+Vì vậy, đây là lý do tại sao biểu thức này
+được sử
+
+00:08:19.580 --> 00:08:22.820
+dụng để tính độ dốc trong linear regression
+chính quy.
+
+00:08:23.780 --> 00:08:28.100
+Vậy là bây giờ bạn đã biết cách thực hiện
+linear regression chính quy.
+
+00:08:28.100 --> 00:08:31.700
+Bằng cách này, bạn thực sự giảm thiểu việc
+overfitting khi bạn có
+
+00:08:31.700 --> 00:08:35.300
+nhiều feature và training set tương đối nhỏ.
+Và điều này sẽ cho phép
+
+00:08:35.300 --> 00:08:38.900
+bạn có được linear regression để giải quyết
+nhiều vấn đề tốt hơn nhiều.
+
+00:08:39.780 --> 00:08:42.460
+Trong video tiếp theo, chúng ta sẽ lấy ý tưởng
+
+00:08:42.460 --> 00:08:45.140
+regularization này và áp dụng nó vào
+logistic regression.
+
+00:08:45.780 --> 00:08:48.580
+Để tránh overfitting cho
+
+00:08:48.580 --> 00:08:51.380
+logistic regression. Chúng ta hãy xem điều đó
+trong video tiếp theo.

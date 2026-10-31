@@ -1,0 +1,276 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:03.840
+In this video, I want to show you a slightly more complex example where the slope of the
+
+00:00:03.840 --> 00:00:08.000
+function can be different at different points in the function. Let's start with an example.
+
+00:00:08.000 --> 00:00:13.360
+Here I plotted the function f of a equals a squared. Let's again look at the point
+
+00:00:14.160 --> 00:00:22.320
+a equals 2. So a squared, so f of a is equal to 4. Let's nudge a slightly to the right.
+
+00:00:22.320 --> 00:00:29.600
+So now a is equal to 2.001. f of a, which is a squared, is going to be approximately
+
+00:00:29.680 --> 00:00:35.440
+4.004. It turns out that the exact value, if you put on a calculator and configure this out,
+
+00:00:35.440 --> 00:00:43.680
+is actually 4.004001. But I'm just going to say 4.004 is close enough. So what this means is that
+
+00:00:43.680 --> 00:00:50.240
+when a is equal to 2, let's draw this on the plot. So what we're saying is that if a is equal to 2,
+
+00:00:50.240 --> 00:00:56.960
+then f of a is equal to 4, and here the x and y axes are not drawn to scale. Technically,
+
+00:00:56.960 --> 00:01:01.680
+this vertical height should be much higher than this horizontal height, so the x and y axes are
+
+00:01:01.680 --> 00:01:10.880
+not on the same scale. But if I now nudge a to 2.001, then f of a becomes roughly 4.004.
+
+00:01:10.880 --> 00:01:16.480
+So if you draw this little triangle again, what this means is that if I nudge a to the right by
+
+00:01:16.480 --> 00:01:25.680
+0.001, f of a goes up four times as much by 0.004. So in the language of calculus, we say
+
+00:01:25.680 --> 00:01:35.600
+that the slope, that is the derivative of f of a at a equals 2 is 4. Or to write this out with our
+
+00:01:35.600 --> 00:01:43.760
+calculus notation, we say that dda of f of a is equal to 4 when a is equal to 2. Now one thing
+
+00:01:43.760 --> 00:01:49.440
+about this function f of a equals a squared is that the slope is different for different values of a.
+
+00:01:49.440 --> 00:01:54.880
+This is different than the example we saw on the previous slide. So let's look at a different
+
+00:01:54.880 --> 00:02:02.000
+point. If a is equal to 5, so instead of a equals 2, we now have a equals 5, then a squared is equal
+
+00:02:02.000 --> 00:02:09.360
+to 25, so that's f of a. If I nudge a to the right again, it's a tiny little nudge to the a. So now
+
+00:02:09.360 --> 00:02:22.880
+a is 5.001, then f of a will be approximately 25.010. So what we see is that by nudging a up by 0.001,
+
+00:02:22.880 --> 00:02:31.360
+f of a goes up 10 times as much. So we have that dda f of a is equal to 10 when a is equal to 5,
+
+00:02:31.360 --> 00:02:37.760
+because f of a goes up 10 times as much as a does when I make a tiny little nudge to a. So one way to
+
+00:02:37.760 --> 00:02:42.320
+see why the derivative is different at different points is that if you draw that near a little
+
+00:02:42.320 --> 00:02:48.720
+triangle at different locations on this, you see that the ratio of the height of the triangle
+
+00:02:48.720 --> 00:02:54.720
+over the width of the triangle is very different at different points on the curve. So here the slope
+
+00:02:54.720 --> 00:03:01.360
+is equal to 4 when a is equal to 2, but is equal to 10 when a is equal to 5. Now if you pull up a
+
+00:03:01.360 --> 00:03:07.920
+calculus textbook, a calculus textbook will tell you that dda of f of a, so f of a is equal to a
+
+00:03:07.920 --> 00:03:12.720
+squared, so that's dda of a squared. One of the formulas you find in the calculus textbook is that
+
+00:03:12.720 --> 00:03:17.680
+this thing, the slope of the function a squared, is equal to 2a. Not going to prove this, but the
+
+00:03:17.680 --> 00:03:23.520
+way you find this out is that you open up a calculus textbook to the table of formulas and
+
+00:03:23.520 --> 00:03:30.720
+it'll tell you the derivative of a squared is equal to 2a. And indeed this is consistent with what
+
+00:03:30.720 --> 00:03:37.920
+we've worked out. Namely, when a is equal to 2, the slope of the function 2a is 2 times 2 is
+
+00:03:37.920 --> 00:03:44.320
+therefore equal to 4. And when a is equal to 5, then the slope of the function 2 times a is 2
+
+00:03:44.320 --> 00:03:50.720
+times 5 is equal to 10. So if you ever pull up a calculus textbook and you see this formula,
+
+00:03:50.720 --> 00:03:57.600
+that the derivative of a squared is equal to 2a, all that means is that for any given value of a,
+
+00:03:57.600 --> 00:04:06.560
+if you nudge it up with by 0.001, already a tiny little value, you would expect f of a
+
+00:04:06.560 --> 00:04:15.200
+to go up by 2a. That is the slope of the derivative times however much you had nudged to the right,
+
+00:04:15.200 --> 00:04:20.960
+the value of a. Now one tiny little detail, you know, I had used these approximate symbols here
+
+00:04:20.960 --> 00:04:27.920
+and this wasn't exactly 4.004. There's an extra 0.001 hanging out there. It turns out that this
+
+00:04:27.920 --> 00:04:35.440
+extra 0.001, this little thing here, is because we were nudging a to the right by 0.001. If we're
+
+00:04:35.440 --> 00:04:42.160
+instead nudging it to the right by this infinitesimally small value, then this extra ever term
+
+00:04:42.800 --> 00:04:49.840
+will go away. And you find that the amount that f of a goes up is exactly equal to the derivative
+
+00:04:49.840 --> 00:04:56.960
+times the amount that you nudge a to the right. And the reason why it's not 4.004 exactly is because
+
+00:04:56.960 --> 00:05:04.560
+derivatives are defined using these infinitesimally small nudges to a rather than, you know, 0.001,
+
+00:05:04.560 --> 00:05:11.120
+which isn't. And while 0.001 is small, it's not infinitesimally small. So that's why the amount
+
+00:05:11.120 --> 00:05:16.720
+that f of a went up isn't exactly given by the formula, but it's only kind of approximately given
+
+00:05:16.720 --> 00:05:21.840
+by the derivative. To wrap up this video, let's just go through a few more quick examples.
+
+00:05:21.840 --> 00:05:29.680
+The example you've already seen is that if f of a equals a squared, then a calculus textbooks
+
+00:05:30.320 --> 00:05:36.160
+formula table will tell you that the derivative is equal to 2a. And so the example we went through
+
+00:05:36.160 --> 00:05:43.440
+was that if a is equal to 2, f of a equals 4. And if we nudge a, so it's a little bit bigger,
+
+00:05:43.440 --> 00:05:49.920
+then f of a is about 4.004. And so f of a went up four times as much. And indeed,
+
+00:05:50.480 --> 00:05:56.000
+when a is equal to 2, the derivative is equal to 4. Let's look at some other examples. Let's say
+
+00:05:56.000 --> 00:06:01.840
+instead that f of a is equal to a cubed. If you go to a calculus textbook and look up the
+
+00:06:01.840 --> 00:06:07.120
+table of formulas, you see that the slope of this function, again, the derivative of this
+
+00:06:07.120 --> 00:06:13.760
+function is equal to 3a squared. So you can get this formula out of a calculus textbook.
+
+00:06:14.480 --> 00:06:20.480
+So what this means, so the way to interpret this is as follows. Let's take a equals 2
+
+00:06:20.480 --> 00:06:27.520
+as an example again. So f of a, or a cubed, is equal to 8. That's 2 to the power of 3.
+
+00:06:27.520 --> 00:06:37.120
+So if we give a tiny little nudge, you find that f of a is about 8.012. And feel free to check this.
+
+00:06:37.120 --> 00:06:44.240
+Take 2.001 to the power of 3. You find that it's very close to 8.012. And indeed, when a
+
+00:06:44.240 --> 00:06:51.120
+is equal to 2, that's 3 times 2 squared. That's equal to 3 times 4, which is equal to 12. So the
+
+00:06:51.120 --> 00:06:56.240
+derivative formula predicts that if you nudge a to the right by a tiny little bit, f of a should go
+
+00:06:56.240 --> 00:07:04.080
+up 12 times as much. And indeed, this is true. When a went up by .001, f of a went up 12 times
+
+00:07:04.080 --> 00:07:10.800
+as much by .012. Just one last example, and then we'll wrap up. Let's say the f of a is equal to
+
+00:07:10.800 --> 00:07:17.520
+the log function. So I'm going to write log of a, and I'm going to use this as the base e logarithm.
+
+00:07:17.520 --> 00:07:23.120
+So some people write that as log log of a. So if you go to calculus textbook, you find that when
+
+00:07:23.120 --> 00:07:30.640
+you take the derivative of log of a, so this is a function that just looks like that. The slope of
+
+00:07:30.640 --> 00:07:39.280
+this function is given by 1 over a. So the way to interpret this is that if a is any value,
+
+00:07:39.360 --> 00:07:46.960
+again, let's just keep using a equals 2 as an example, and you nudge a to the right by .001,
+
+00:07:46.960 --> 00:07:54.880
+you would expect f of a to go up by 1 over a, that is by the derivative, times the amount
+
+00:07:54.880 --> 00:08:02.240
+that you increased a. So in fact, if you put up a calculator, you find that if a is equal to 2,
+
+00:08:02.960 --> 00:08:21.920
+f of a is about 0.69315, and if you increase a to 2.001, then f of a is about 0.69365.
+
+00:08:22.640 --> 00:08:31.200
+So it's gone up by 0.0005. And indeed, if you look at the formula for the derivative, when a is equal
+
+00:08:31.280 --> 00:08:40.240
+to 2, dda f of a is equal to 1 half. So this derivative formula predicts that if you bump up a
+
+00:08:40.240 --> 00:08:49.040
+by .001, you would expect f of a to go up by only 1 half as much, and 1 half of .001 is 0.0005,
+
+00:08:49.600 --> 00:08:56.720
+which is exactly what we got, right? That when a goes up by .001, going from a equals 2 to a equals
+
+00:08:56.720 --> 00:09:04.400
+2.001, f of a goes up by half as much, so it ends up going up by approximately .0005.
+
+00:09:04.960 --> 00:09:12.000
+So if you draw that little triangle, if you will, is that if on the horizontal axis this goes up by .001,
+
+00:09:12.000 --> 00:09:21.760
+on the vertical axis, log of a goes up by half of that, so .0005. And so that 1 over a, or 1 half,
+
+00:09:21.760 --> 00:09:26.800
+in this case, when a is equal to 2, that's just the slope of this line when a is equal to 2.
+
+00:09:27.760 --> 00:09:32.800
+So that's it for derivatives. There are just two take-home messages from this video.
+
+00:09:32.800 --> 00:09:38.480
+First is that the derivative of a function just means the slope of a function. And the slope of
+
+00:09:38.480 --> 00:09:43.440
+a function can be different at different points on the function. In our first example, where f of a
+
+00:09:43.440 --> 00:09:48.000
+equals 3a, that was a straight line, the derivative was the same everywhere. It was 3
+
+00:09:48.000 --> 00:09:53.040
+everywhere. But for other functions like f of a equals a squared or f of a equals log of a,
+
+00:09:53.040 --> 00:09:57.680
+the slope of the line varies. And so the slope or the derivative can be different
+
+00:09:57.680 --> 00:10:02.240
+at different points on the curve. So that's the first takeaway. Derivative just means slope of
+
+00:10:02.240 --> 00:10:07.280
+a line. Second takeaway is that if you want to look up the derivative of a function, you can
+
+00:10:07.280 --> 00:10:12.800
+flip open your calculus textbook or look up Wikipedia and often get a formula for the
+
+00:10:12.800 --> 00:10:18.080
+slope of these functions at different points. So that I hope you have an intuitive understanding
+
+00:10:18.080 --> 00:10:22.800
+of derivatives or slopes of lines. Let's go on to the next video. We'll start to talk about
+
+00:10:22.800 --> 00:10:27.636
+the computation draft and how to use that to compute derivatives of more complex functions.

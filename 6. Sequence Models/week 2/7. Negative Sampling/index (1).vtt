@@ -1,0 +1,321 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:06.320
+In the last video, you saw how the skip-dram model allows you to construct a supervised learning task
+
+00:00:06.320 --> 00:00:12.000
+where you map from context to target words and how that allows you to learn a useful word embedding.
+
+00:00:12.000 --> 00:00:16.640
+But the downside of that was the softmax objective was slow to compute.
+
+00:00:16.640 --> 00:00:23.120
+In this video, you see a modified learning problem called negative sampling that allows you to do
+
+00:00:23.120 --> 00:00:29.600
+something similar to the skip-dram model you saw just now but with a much more efficient learning algorithm.
+
+00:00:29.680 --> 00:00:34.240
+Let's see how you could do that. Most of the ideas presented in this video are due to Thomas
+
+00:00:34.240 --> 00:00:40.720
+Michalov, your sasuke, Eric, Kai Chen, Gregorado, and Jeff Dean. So what we're going to do in this
+
+00:00:40.720 --> 00:00:46.320
+algorithm is create a new supervised learning problem. And the problem is given a pair of words
+
+00:00:46.320 --> 00:00:57.680
+like orange and juice, we're going to predict is this a context target pair. So in this example,
+
+00:00:57.680 --> 00:01:05.840
+orange juice was a positive example. And how about orange and king? Well, that's a negative example.
+
+00:01:06.400 --> 00:01:12.160
+So I'm going to write 0 for the target. So what we're going to do is we're actually going to sample
+
+00:01:12.160 --> 00:01:18.800
+a context and a target word. So in this case, we had orange and juice and we'll put an associate
+
+00:01:18.800 --> 00:01:25.440
+that with a label of 1. So let me just put words in the middle. And then having generated a positive
+
+00:01:25.440 --> 00:01:31.440
+example. So the positive example is generated exactly how we generated it in the previous videos,
+
+00:01:31.440 --> 00:01:37.040
+sample a context word, look around a window of say plus minus 10 words and pick a target word.
+
+00:01:37.040 --> 00:01:42.960
+So that's how you generate the first row of this table with orange juice 1. And then to generate
+
+00:01:42.960 --> 00:01:47.040
+the negative examples, you're going to take the same context word and then just pick a word at
+
+00:01:47.040 --> 00:01:52.080
+random from the dictionary. So in this case, I chose the word king at random, and we'll label
+
+00:01:52.080 --> 00:01:58.640
+that as zero. And then let's take orange. And let's pick another random word from the dictionary.
+
+00:01:59.200 --> 00:02:03.760
+Under the assumption that we pick a random word, it probably won't be associated with the word
+
+00:02:03.760 --> 00:02:12.720
+orange. So orange book, zero. And let's pick a few others orange, maybe just by chance we'll pick
+
+00:02:12.720 --> 00:02:21.040
+the zero, and then orange and maybe just by chance we'll pick the word of and we'll put a zero there.
+
+00:02:22.560 --> 00:02:28.320
+And notice that of is labeled as zero, even though the word of actually appears next to
+
+00:02:28.320 --> 00:02:37.200
+orange as well. So to summarize, the way we generated this data set is we'll pick a context word
+
+00:02:38.000 --> 00:02:46.000
+and then pick a target word. And that is the first row of this table that gives us a positive
+
+00:02:46.000 --> 00:02:52.160
+example. So context, target, and then give that a label of one. And then what we'll do is for some
+
+00:02:52.160 --> 00:02:58.960
+number of times, say, k times, we're going to take the same context word, and then pick random words
+
+00:02:58.960 --> 00:03:04.720
+from the dictionary, king, book, D, whatever comes out of random from dictionary, and label all those
+
+00:03:05.280 --> 00:03:13.010
+zero. And those would be our negative examples. And it's okay if just by chance one of those
+
+00:03:13.010 --> 00:03:18.130
+words we pick the random from the dictionary happens to appear in a window in a plus minus
+
+00:03:18.130 --> 00:03:25.010
+10 word window, say, next to the context word orange. Then we're going to create a supervised
+
+00:03:25.010 --> 00:03:32.210
+learning problem where the learning algorithm inputs x, inputs this pair of words, and then has to
+
+00:03:32.210 --> 00:03:40.930
+predict the target label to predict the output y. So the problem is really given a pair of words
+
+00:03:40.930 --> 00:03:46.210
+like orange and juice, do you think they appear together? Do you think I got these two words by
+
+00:03:46.210 --> 00:03:52.690
+sampling two words close to each other? Or do you think I got them as one word from the text and
+
+00:03:52.690 --> 00:03:58.130
+one word chosen in random from the dictionary? It's really to try to distinguish between these
+
+00:03:58.130 --> 00:04:04.290
+two types of distributions from which you might sample a pair of words. So this is how you
+
+00:04:04.290 --> 00:04:14.050
+generate the training set. How do you choose k? Mikulov at all recommend that maybe k is 5 to 20
+
+00:04:14.050 --> 00:04:21.090
+for smaller data sets. And if you have a very large data set, then choose k to be smaller. So
+
+00:04:21.090 --> 00:04:34.830
+k equals 2 to 5 for larger data sets and larger values of k for smaller data sets. And in this
+
+00:04:34.830 --> 00:04:42.030
+example, I've just used k equals 4. Next, let's describe the supervised learning model for learning
+
+00:04:42.030 --> 00:04:50.350
+and mapping from x to y. So here was the softmax model you saw from the previous video. And here
+
+00:04:50.350 --> 00:04:56.270
+is the training set we got from the previous slide where again, this is going to be the new input x
+
+00:04:56.270 --> 00:05:01.470
+and this is going to be the value of y you're trying to predict. So to define the model,
+
+00:05:01.470 --> 00:05:07.630
+I'm going to use this to denote this with c for the context word, this to denote the possible
+
+00:05:07.630 --> 00:05:15.710
+target word t and this I'll use y to denote 01. This is a context target pair. So what we're going
+
+00:05:15.710 --> 00:05:21.470
+to do is to find a logistic regression model. We say that the chance that y is equal to 1,
+
+00:05:22.030 --> 00:05:29.070
+given the input c comma t pair, we're going to model this as basically a logistic regression
+
+00:05:29.070 --> 00:05:36.110
+model. But the specific formula we use is sigmoid applied to theta transpose, theta t transpose,
+
+00:05:36.670 --> 00:05:45.390
+ec. So the parameters are similar as before. You have one parameter vector theta for each
+
+00:05:46.110 --> 00:05:51.710
+possible target word and a separate parameter vector, really the embedding vector for each
+
+00:05:51.710 --> 00:05:58.990
+possible context word. And we're going to use this formula to estimate the probability that y
+
+00:05:59.150 --> 00:06:07.550
+is equal to 1. So if you have k examples here, then you can think of this as having
+
+00:06:08.750 --> 00:06:15.230
+a k to 1 ratio of negative to positive examples. So for every positive examples, you have k
+
+00:06:15.950 --> 00:06:20.670
+negative examples with which to train this logistic regression like model.
+
+00:06:21.630 --> 00:06:32.590
+And so to draw this as a neural network, if the input word is orange, which is word 6257,
+
+00:06:33.950 --> 00:06:43.150
+then what you do is you input the one hot vector, pass it through e, do that multiplication to get
+
+00:06:43.150 --> 00:06:51.390
+the embedding vector 6257. And then what you have is really 10,000 possible logistic regression
+
+00:06:52.110 --> 00:07:00.430
+classification problems, where one of these will be the classifier corresponding to, well, is the
+
+00:07:01.470 --> 00:07:06.270
+target word juice or not. And then there'll be other words. For example, there might be
+
+00:07:06.270 --> 00:07:11.710
+one somewhere down here, which is predicting is the word king or not, and so on. For these
+
+00:07:11.710 --> 00:07:19.790
+are possible words in your vocabulary. So think of this as having 10,000 binary logistic
+
+00:07:19.870 --> 00:07:25.710
+regression classifiers. But instead of training all 10,000 of them on every iteration, we're only
+
+00:07:25.710 --> 00:07:29.150
+going to train five of them. We're going to train the one corresponding to the actual
+
+00:07:29.150 --> 00:07:37.390
+target word we got, and then train four randomly chosen negative examples. And this is for the
+
+00:07:37.390 --> 00:07:46.110
+case where k is equal to four. So instead of having one giant 10,000 way softmax,
+
+00:07:46.190 --> 00:07:53.710
+which is very expensive to compute, we've instead turned it into 10,000 binary classification
+
+00:07:53.710 --> 00:08:00.990
+problems, each of which is quite cheap to compute. And on every iteration, we're only going to train
+
+00:08:00.990 --> 00:08:06.430
+five of them or more generally k plus one of them with k negative examples and one positive
+
+00:08:06.430 --> 00:08:11.390
+examples. And this is why the computational cost of this algorithm is much lower because
+
+00:08:11.870 --> 00:08:17.710
+you're updating k plus one logistic units k plus one binary classification problems,
+
+00:08:18.350 --> 00:08:24.430
+which is relatively cheap to do on every iteration, rather than updating a 10,000 way
+
+00:08:24.430 --> 00:08:30.910
+softmax classifier. So this technique is called negative sampling, because what you're doing is
+
+00:08:30.910 --> 00:08:36.750
+you had a positive example, the orange and juice, and then you would go out and deliberately
+
+00:08:36.750 --> 00:08:42.430
+generate a bunch of negative examples, negative sampling, sensitive negative sampling, which
+
+00:08:42.430 --> 00:08:51.470
+wish to train for more of these binary classifiers. And on every iteration, you choose four different
+
+00:08:52.270 --> 00:08:57.870
+random negative words with which to train your algorithm. Now before wrapping up, one more
+
+00:08:57.870 --> 00:09:03.870
+important detail this algorithm is how do you choose the negative examples. So after having
+
+00:09:03.870 --> 00:09:09.790
+chosen the context word orange, how do you sample these words to generate the negative examples.
+
+00:09:11.710 --> 00:09:17.390
+So one thing you could do is sample the words in the middle, the candidate
+
+00:09:18.990 --> 00:09:24.910
+target words. One thing you could do is sample it according to the empirical frequency of words
+
+00:09:24.910 --> 00:09:30.350
+in your corpus. So just sample it according to, you know, how often different words appear.
+
+00:09:30.350 --> 00:09:35.150
+But the problem with that is that you end up with a very high representation of words like
+
+00:09:35.150 --> 00:09:41.790
+be of and so on. One other extreme will be to say you use, you know, one over the
+
+00:09:41.790 --> 00:09:46.510
+vocabulary sample, the negative examples uniformly random, but that's also very
+
+00:09:46.510 --> 00:09:53.230
+non-representative of the distribution of English words. So the authors, Mikloff et al,
+
+00:09:53.230 --> 00:09:58.190
+reported that empirically what they found to work best was to take this heuristic value,
+
+00:09:58.190 --> 00:10:04.830
+which is a little bit in between the two extremes of sampling from the empirical frequencies from
+
+00:10:04.830 --> 00:10:09.550
+meaning from whatever is the observed distribution in English text to the uniform distribution.
+
+00:10:09.550 --> 00:10:16.990
+And what they did was they sampled proportional to their frequency of a word to the power of
+
+00:10:16.990 --> 00:10:24.670
+the force. So if f of wi is the observed frequency of a particular word in the English
+
+00:10:24.670 --> 00:10:29.790
+language on your training set corpus, then by taking it to the power of three fourths,
+
+00:10:30.510 --> 00:10:37.710
+this is somewhere in between the extreme of taking uniform distribution and the other extreme of just
+
+00:10:37.710 --> 00:10:40.670
+taking whatever was the observed distribution in your training set.
+
+00:10:42.190 --> 00:10:47.470
+And so I'm not sure this is very theoretically justified, but multiple researchers are now using
+
+00:10:47.470 --> 00:10:52.910
+this heuristic and it seems to work decently well. So to summarize, you've seen how you can
+
+00:10:52.910 --> 00:10:56.750
+learn word vectors of a softmax classifier, but that's very computationally expensive.
+
+00:10:56.750 --> 00:11:01.950
+And in this video, you saw how by changing that to a bunch of binary classification problems,
+
+00:11:01.950 --> 00:11:07.230
+you can very efficiently learn word vectors. And if you run this algorithm, you will be able to
+
+00:11:07.230 --> 00:11:12.750
+learn pretty good word vectors. Now, of course, as is the case in other areas of deep learning as
+
+00:11:12.750 --> 00:11:17.390
+well, there are open source implementations. And there are also pre-trained word vectors that
+
+00:11:17.390 --> 00:11:22.510
+others have trained and released online under permissive licenses. And so if you want to get
+
+00:11:22.510 --> 00:11:29.390
+going quickly on a NLP problem, it'd be reasonable to download someone else's word vectors and use
+
+00:11:29.390 --> 00:11:36.270
+that as a starting point. So that's it for the skip RAM model. In the next video, I want to share
+
+00:11:36.270 --> 00:11:41.630
+with you yet another version of a word embedding learning algorithm that is maybe even simpler than
+
+00:11:41.630 --> 00:11:46.190
+what you've seen so far. So in the next video, let's learn about the glove algorithm.

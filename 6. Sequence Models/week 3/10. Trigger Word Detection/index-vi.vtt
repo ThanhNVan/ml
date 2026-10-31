@@ -1,0 +1,254 @@
+WEBVTT
+
+00:00:00.020 --> 00:00:03.953
+Bây giờ bạn đã học được rất nhiều về mô hình
+trình tự và
+
+00:00:03.953 --> 00:00:07.887
+deep learning đến mức chúng ta thực sự có thể
+mô tả hệ thống từ kích
+
+00:00:07.887 --> 00:00:11.820
+hoạt khá đơn giản, chỉ trên một trang trình
+bày như bạn thấy trong video này.
+
+00:00:11.820 --> 00:00:14.660
+Nhưng với sự phát triển của nhận dạng giọng
+nói, ngày càng
+
+00:00:14.660 --> 00:00:17.500
+có nhiều thiết bị có thể đánh thức bằng giọng
+nói của bạn và
+
+00:00:17.500 --> 00:00:20.340
+chúng đôi khi được gọi là hệ thống phát hiện
+từ kích hoạt.
+
+00:00:20.340 --> 00:00:24.180
+Vậy hãy xem bạn có thể xây dựng một hệ thống
+từ kích hoạt như thế nào.
+
+00:00:24.180 --> 00:00:29.760
+Ví dụ về hệ thống từ kích hoạt bao gồm Amazon
+Echo, được chia thành từ Alexa, các
+
+00:00:29.760 --> 00:00:35.340
+thiết bị hỗ trợ hệ điều hành kép của Baidu,
+được chia thành cụm từ Xiao Dooning Hao,
+
+00:00:35.340 --> 00:00:40.500
+Apple Siri, đã chia tay với Hey Siri và Google
+Home, đã chia tay với OK Google.
+
+00:00:40.500 --> 00:00:45.240
+Vì vậy, nó có nghĩa là kích hoạt feature phát
+hiện từ rằng nếu bạn có Amazon Echo
+
+00:00:45.240 --> 00:00:49.980
+trong phòng khách, bạn có thể bước vào phòng
+khách và chỉ cần nói, Alexa, mấy giờ rồi?
+
+00:00:49.980 --> 00:00:53.100
+Và yêu cầu nó thức dậy hoặc được kích hoạt bởi
+từ
+
+00:00:53.100 --> 00:00:56.220
+Alexa và trả lời truy vấn bằng giọng nói của
+bạn.
+
+00:00:56.220 --> 00:01:00.700
+Vì vậy, nếu bạn có thể xây dựng một hệ thống
+phát hiện từ kích hoạt, có thể bạn có
+
+00:01:00.700 --> 00:01:05.180
+thể khiến máy tính của mình làm điều gì đó
+bằng cách yêu cầu máy tính kích hoạt.
+
+00:01:05.180 --> 00:01:09.420
+Một người bạn của tôi cũng đang bật và tắt một
+chiếc đèn cụ
+
+00:01:09.420 --> 00:01:13.660
+thể bằng cách sử dụng từ kích hoạt, giống như
+một dự án thú vị.
+
+00:01:13.660 --> 00:01:16.020
+Nhưng điều tôi muốn chỉ cho bạn là cách bạn có
+
+00:01:16.020 --> 00:01:18.380
+thể xây dựng một hệ thống phát hiện từ kích
+hoạt.
+
+00:01:18.380 --> 00:01:21.740
+Tài liệu về thuật toán phát hiện từ kích hoạt
+vẫn đang được phát triển.
+
+00:01:21.740 --> 00:01:24.320
+Vì vậy, vẫn chưa có sự đồng thuận rộng rãi về
+
+00:01:24.320 --> 00:01:26.900
+thuật toán tốt nhất để phát hiện từ kích hoạt.
+
+00:01:26.900 --> 00:01:31.060
+Vì vậy, tôi sẽ chỉ cho bạn một ví dụ về thuật
+toán mà bạn có thể sử dụng.
+
+00:01:31.060 --> 00:01:33.700
+Bây giờ bạn đã thấy RNN như thế này.
+
+00:01:33.700 --> 00:01:37.607
+Và những gì chúng tôi thực sự làm là lấy một
+đoạn âm thanh, có thể
+
+00:01:37.607 --> 00:01:41.513
+tính toán các đặc điểm của biểu đồ phổ và tạo
+ra các đặc điểm, X1,
+
+00:01:41.513 --> 00:01:45.420
+X2, X3, các đặc điểm âm thanh, X1, X2, X3, mà
+bạn truyền qua RNN.
+
+00:01:45.420 --> 00:01:51.620
+Và vì vậy tất cả những gì còn lại phải làm là
+xác định nhãn mục tiêu Y.
+
+00:01:51.620 --> 00:01:56.047
+Vì vậy, nếu điểm này trong clip âm thanh là
+khi ai đó vừa
+
+00:01:56.047 --> 00:02:00.473
+nói xong từ kích hoạt, chẳng hạn như Alexa
+hoặc Sayadunihao
+
+00:02:00.473 --> 00:02:04.900
+hoặc Hey Siri hoặc Ok Google, thì trong
+training set, bạn
+
+00:02:04.900 --> 00:02:09.980
+có thể đặt nhãn mục tiêu bằng 0 cho mọi thứ
+trước thời điểm đó.
+
+00:02:09.980 --> 00:02:14.620
+Và ngay sau đó, đặt nhãn mục tiêu cho một.
+
+00:02:14.620 --> 00:02:20.660
+Và sau đó, bạn biết đấy, sau một thời gian
+ngắn, từ kích hoạt được đặt lại và từ
+
+00:02:20.660 --> 00:02:26.700
+kích hoạt được đặt ở thời điểm này, thì bạn có
+thể đặt lại nhãn mục tiêu thành đúng
+
+00:02:26.700 --> 00:02:29.020
+sau đó.
+
+00:02:29.020 --> 00:02:34.500
+Bạn biết đấy, kiểu kế hoạch ghi nhãn này cho
+RNN có thể hoạt động.
+
+00:02:34.500 --> 00:02:38.440
+Trên thực tế, điều này thực sự sẽ hoạt động
+khá tốt.
+
+00:02:38.440 --> 00:02:42.820
+Một nhược điểm nhỏ của việc này là nó tạo ra
+một training set rất mất cân bằng.
+
+00:02:43.020 --> 00:02:45.420
+Vì vậy, nhiều số không hơn những số một.
+
+00:02:45.420 --> 00:02:50.440
+Vì vậy, một điều khác bạn có thể làm đó là
+hack một chút, nhưng có thể làm
+
+00:02:50.440 --> 00:02:55.460
+cho mô hình dễ huấn luyện hơn một chút thay vì
+chỉ cài đặt một lần duy nhất
+
+00:02:55.460 --> 00:03:00.180
+được đặt thành đầu ra một, bạn thực sự có thể
+tạo một vài đầu ra
+
+00:03:00.180 --> 00:03:04.900
+trong vài lần hoặc trong một khoảng thời gian
+cố định trước khi trở về 0.
+
+00:03:04.900 --> 00:03:15.180
+Vì vậy, điều đó làm cân bằng tỷ lệ số một và
+số không một chút.
+
+00:03:15.180 --> 00:03:17.140
+Nhưng đây là một chút hack.
+
+00:03:17.140 --> 00:03:21.780
+Nhưng nếu đây là lúc trong clip âm thanh, một
+từ kích hoạt
+
+00:03:21.780 --> 00:03:26.420
+được đặt thì ngay sau đó, bạn có thể đặt nhãn
+đích thành một.
+
+00:03:26.420 --> 00:03:30.460
+Và nếu đây lại là từ kích hoạt được đặt lại,
+thì
+
+00:03:30.460 --> 00:03:34.500
+ngay sau đó là lúc bạn muốn RNN xuất ra một
+từ.
+
+00:03:36.420 --> 00:03:40.100
+Vì vậy, bạn cũng có thể sử dụng nhiều nội dung
+này hơn trong bài tập lập trình.
+
+00:03:40.100 --> 00:03:44.020
+Nhưng tôi nghĩ bạn nên cảm thấy khá tự hào về
+bản thân mình.
+
+00:03:44.020 --> 00:03:48.220
+Bạn đã tìm hiểu đủ về deep learning đến mức
+chỉ cần một bức ảnh và một
+
+00:03:48.220 --> 00:03:52.420
+trang trình bày để mô tả một điều gì đó phức
+tạp như phát hiện từ kích hoạt.
+
+00:03:53.420 --> 00:03:56.580
+Và dựa trên điều này, tôi hy vọng bạn sẽ có
+thể triển khai
+
+00:03:56.580 --> 00:03:59.740
+điều gì đó hiệu quả và cho phép bạn phát hiện
+các từ kích hoạt.
+
+00:04:01.140 --> 00:04:04.260
+Nhưng bạn sẽ thấy điều này nhiều hơn trong bài
+tập lập trình.
+
+00:04:04.260 --> 00:04:07.620
+Trong khóa học về mô hình trình tự này, bạn
+
+00:04:07.620 --> 00:04:10.980
+đã tìm hiểu về RNN, bao gồm cả GRU và LSTM.
+
+00:04:10.980 --> 00:04:14.280
+Và trong tuần thứ hai, bạn đã học được rất
+nhiều về
+
+00:04:14.280 --> 00:04:17.580
+cách word embedding và cách học cách diễn đạt
+của từ.
+
+00:04:17.580 --> 00:04:21.880
+Và trong tuần này, bạn đã tìm hiểu về mô hình
+chú ý
+
+00:04:21.880 --> 00:04:26.180
+cũng như cách sử dụng nó để xử lý dữ liệu âm
+thanh.
+
+00:04:26.180 --> 00:04:28.800
+Và tôi hy vọng bạn vui vẻ thực hiện tất cả
+
+00:04:28.800 --> 00:04:31.420
+những ý tưởng này trong bài tập lập trình tuần
+này.

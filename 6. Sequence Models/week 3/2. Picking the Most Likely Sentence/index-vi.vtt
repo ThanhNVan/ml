@@ -1,0 +1,586 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.525
+Có một số điểm tương đồng giữa mô hình dịch máy chuỗi sang chuỗi
+(sequence to sequence translation model)
+
+2
+00:00:05.525 --> 00:00:11.058
+và các mô hình ngôn ngữ mà bạn đã làm việc trong tuần đầu tiên của khóa học này,
+
+3
+00:00:11.058 --> 00:00:14.060
+nhưng cũng có một số khác biệt đáng kể.
+
+4
+00:00:14.060 --> 00:00:16.335
+Chúng ta hãy xem. Vì vậy, bạn có thể nghĩ về
+
+5
+00:00:16.335 --> 00:00:20.625
+dịch máy khi xây dựng một mô hình ngôn ngữ có điều kiện.
+
+6
+00:00:20.625 --> 00:00:23.378
+Ý của tôi là, trong mô hình ngôn ngữ,
+
+7
+00:00:23.378 --> 00:00:27.473
+đây là mạng chúng tôi đã xây dựng trong tuần đầu tiên.
+
+8
+00:00:27.473 --> 00:00:35.350
+Và mô hình này cho phép bạn ước tính xác suất của một câu.
+
+9
+00:00:35.350 --> 00:00:38.175
+Đó là những gì một mô hình ngôn ngữ làm.
+
+10
+00:00:38.175 --> 00:00:42.235
+Và bạn cũng có thể sử dụng điều này để tạo ra các câu mới,
+
+11
+00:00:42.235 --> 00:00:46.450
+và đôi khi khi bạn viết x1 và x2 ở đây,
+
+12
+00:00:46.450 --> 00:00:47.740
+trong ví dụ này ở đâu,
+
+13
+00:00:47.740 --> 00:00:53.210
+x2 sẽ bằng y1 hoặc bằng y và 1 chỉ là phản hồi.
+
+14
+00:00:53.210 --> 00:00:56.040
+Nhưng x1, x2, v.v. không quan trọng.
+
+15
+00:00:56.040 --> 00:00:57.950
+Vì vậy, để làm gọn cho slide này,
+
+16
+00:00:57.950 --> 00:00:59.800
+Tôi sẽ chỉ bỏ những cái này đi3.
+
+17
+00:00:59.800 --> 00:01:02.660
+X1 có thể là vectơ của tất cả các số không và x2,
+
+18
+00:01:02.660 --> 00:01:06.995
+x3 chỉ là output trước đó bạn đang tạo.
+
+19
+00:01:06.995 --> 00:01:09.243
+Đó là mô hình ngôn ngữ.
+
+20
+00:01:09.243 --> 00:01:12.315
+Mô hình dịch máy trông như sau,
+
+21
+00:01:12.315 --> 00:01:14.200
+và ta sẽ sử dụng một vài màu khác nhau,
+
+22
+00:01:14.200 --> 00:01:17.490
+xanh lá cây và tím, để biểu thị tương ứng
+
+23
+00:01:17.490 --> 00:01:22.369
+mạng được mã hóa có màu xanh lục và mạng được giải mã có màu tím.
+
+24
+00:01:22.369 --> 00:01:27.820
+Và bạn nhận thấy rằng mạng được giải mã trông khá nhiều
+
+25
+00:01:27.820 --> 00:01:33.938
+giống với mô hình ngôn ngữ mà chúng ta đã có ở đó.
+
+26
+00:01:33.938 --> 00:01:35.520
+Vậy mô hình dịch máy là
+
+27
+00:01:35.520 --> 00:01:38.715
+rất giống với mô hình ngôn ngữ,
+
+28
+00:01:38.715 --> 00:01:43.690
+ngoại trừ việc thay vì luôn bắt đầu cùng với vectơ của tất cả các số không,
+
+29
+00:01:43.690 --> 00:01:46.385
+thay vào đó nó có một mạng được mã hóa
+
+30
+00:01:46.385 --> 00:01:49.960
+tìm ra một số đại diện cho câu đầu vào (input sentence),
+
+31
+00:01:49.960 --> 00:01:54.425
+và nó nhận câu đầu vào đó và bắt đầu từ mạng được giải mã với
+
+32
+00:01:54.425 --> 00:02:01.915
+đại diện cho câu đầu vào thay vì đại diện cho tất cả các số không.
+
+33
+00:02:01.915 --> 00:02:07.355
+Vì vậy, đó là lý do tại sao tôi gọi đây là mô hình ngôn ngữ có điều kiện,
+
+34
+00:02:07.355 --> 00:02:11.345
+và thay vì mô hình hóa xác suất của bất kỳ câu nào,
+
+35
+00:02:11.345 --> 00:02:14.790
+nó hiện đang lập mô hình xác suất, giả sử,
+
+36
+00:02:14.790 --> 00:02:17.490
+bản dịch tiếng Anh đầu ra,
+
+37
+00:02:17.490 --> 00:02:22.745
+điều kiện về một số câu tiếng Pháp đầu vào.
+
+38
+00:02:22.745 --> 00:02:28.780
+Nói cách khác, bạn đang cố gắng ước tính xác suất của một bản dịch tiếng Anh.
+
+39
+00:02:28.780 --> 00:02:33.795
+Như, cơ hội dịch là "Jane sẽ đến thăm châu Phi vào tháng 9",
+
+40
+00:02:33.795 --> 00:02:38.870
+nhưng các điều kiện đối với các nhà kiểm duyệt đầu vào của Pháp như,
+
+41
+00:02:38.870 --> 00:02:42.271
+"Jane nhìn thấy I'Afrique en septembre."
+
+42
+00:02:42.271 --> 00:02:46.830
+Vì vậy, đây thực sự là xác suất của một câu tiếng Anh với điều kiện
+
+43
+00:02:46.830 --> 00:02:51.710
+một câu tiếng Pháp đầu vào, đó là lý do tại sao nó là một mô hình ngôn ngữ có điều kiện.
+
+44
+00:02:51.710 --> 00:02:54.830
+Bây giờ, nếu bạn muốn áp dụng mô hình này để thực sự
+
+45
+00:02:54.830 --> 00:02:58.790
+dịch một câu từ tiếng Pháp sang tiếng Anh,
+
+46
+00:02:58.790 --> 00:03:02.045
+đưa ra câu tiếng Pháp đầu vào này,
+
+47
+00:03:02.045 --> 00:03:05.285
+mô hình có thể cho bạn biết xác suất là gì
+
+48
+00:03:05.285 --> 00:03:08.550
+sự khác biệt trong các bản dịch tiếng Anh tương ứng.
+
+49
+00:03:08.550 --> 00:03:11.900
+Vì vậy, x là câu tiếng Pháp,
+
+50
+00:03:11.900 --> 00:03:13.669
+"Jane, visite l'Afrique en giới".
+
+51
+00:03:13.669 --> 00:03:17.330
+Và, điều này bây giờ cho bạn biết xác suất của
+
+52
+00:03:17.330 --> 00:03:22.058
+các bản dịch tiếng Anh khác nhau của đầu vào tiếng Pháp đó.
+
+53
+00:03:22.058 --> 00:03:28.235
+Và, bạn không nên lấy mẫu đầu ra một cách ngẫu nhiên.
+
+54
+00:03:28.235 --> 00:03:31.970
+Nếu bạn lấy mẫu các từ từ bản phân phối này,
+
+55
+00:03:31.970 --> 00:03:36.343
+p của y cho x, có thể một lúc nào đó bạn sẽ nhận được một bản dịch khá hay,
+
+56
+00:03:36.343 --> 00:03:38.081
+"Jane sẽ đến thăm Châu Phi vào tháng Chín."
+
+57
+00:03:38.081 --> 00:03:40.850
+Nhưng, có thể lúc khác bạn sẽ nhận được một bản dịch khác,
+
+58
+00:03:40.850 --> 00:03:42.770
+"Jane sẽ đến thăm châu Phi vào tháng 9."
+
+59
+00:03:42.770 --> 00:03:46.805
+Nghe có vẻ hơi kì quặc nhưng không phải là một bản dịch tệ hại,
+
+60
+00:03:46.805 --> 00:03:48.120
+chỉ không phải là tốt nhất.
+
+61
+00:03:48.120 --> 00:03:49.970
+Và đôi khi, chỉ do tình cờ,
+
+62
+00:03:49.970 --> 00:03:52.432
+bạn nhận được, nói, những người khác: "Vào tháng 9,
+
+63
+00:03:52.432 --> 00:03:54.055
+Jane sẽ đến thăm châu Phi. "
+
+64
+00:03:54.055 --> 00:03:55.580
+Và có thể, một cách tình cờ,
+
+65
+00:03:55.580 --> 00:03:57.930
+đôi khi bạn lấy mẫu một bản dịch rất tồi:
+
+66
+00:03:57.930 --> 00:04:00.055
+"Người bạn châu Phi của cô ấy đã chào đón Jane vào tháng Chín."
+
+67
+00:04:00.055 --> 00:04:04.475
+Vì vậy, khi bạn đang sử dụng mô hình này để dịch máy,
+
+68
+00:04:04.475 --> 00:04:08.810
+bạn không cố gắng lấy mẫu ngẫu nhiên từ bản phân phối này.
+
+69
+00:04:08.810 --> 00:04:13.130
+Thay vào đó, những gì bạn muốn là tìm câu tiếng Anh,
+
+70
+00:04:13.130 --> 00:04:16.910
+y, tối đa hóa xác suất có điều kiện đó.
+
+71
+00:04:16.910 --> 00:04:20.660
+Vì vậy, trong việc phát triển hệ thống dịch máy,
+
+72
+00:04:20.660 --> 00:04:25.910
+một trong những điều bạn cần làm là nghĩ ra một thuật toán có thể tìm thấy
+
+73
+00:04:25.910 --> 00:04:31.805
+giá trị của y tối đa hóa số hạng này ở đây.
+
+74
+00:04:31.805 --> 00:04:34.810
+Thuật toán phổ biến nhất để thực hiện điều này được gọi là beam search,
+
+75
+00:04:34.810 --> 00:04:37.565
+và đó là thứ bạn sẽ thấy trong video tiếp theo.
+
+76
+00:04:37.565 --> 00:04:39.730
+Tuy nhiên, trước khi chuyển sang mô tả beam search,
+
+77
+00:04:39.730 --> 00:04:43.700
+bạn có thể tự hỏi, tại sao không chỉ sử dụng tìm kiếm tham lam? Vậy, tìm kiếm tham lam là gì?
+
+78
+00:04:43.700 --> 00:04:49.310
+Chà, tìm kiếm tham lam là một thuật toán từ khoa machine learning tính nói rằng tạo ra
+
+79
+00:04:49.310 --> 00:04:50.960
+từ đầu tiên chỉ cần chọn bất cứ điều gì là
+
+80
+00:04:50.960 --> 00:04:55.390
+từ đầu tiên có nhiều khả năng nhất theo mô hình ngôn ngữ có điều kiện của bạn.
+
+81
+00:04:55.390 --> 00:05:01.160
+Chuyển đến mô hình dịch máy của bạn và sau đó sau khi chọn từ đầu tiên,
+
+82
+00:05:01.160 --> 00:05:04.685
+sau đó bạn chọn bất kỳ từ thứ hai nào có vẻ giống nhất,
+
+83
+00:05:04.685 --> 00:05:07.335
+sau đó chọn từ thứ ba dường như có nhiều khả năng nhất.
+
+84
+00:05:07.335 --> 00:05:10.685
+Thuật toán này được gọi là tìm kiếm tham lam.
+
+85
+00:05:10.685 --> 00:05:16.759
+Và, những gì bạn thực sự muốn là chọn toàn bộ chuỗi từ, y1, y2,
+
+86
+00:05:16.759 --> 00:05:21.973
+tùy thuộc vào yTy, đó là ở đó,
+
+87
+00:05:21.973 --> 00:05:27.705
+tối đa hóa xác suất chung của toàn bộ điều đó.
+
+88
+00:05:27.705 --> 00:05:30.176
+Và hóa ra là trong cách tiếp cận tham lam,
+
+89
+00:05:30.176 --> 00:05:31.620
+bạn chỉ cần chọn từ đầu tiên tốt nhất,
+
+90
+00:05:31.620 --> 00:05:34.280
+và sau đó, sau khi chọn từ đầu tiên hay nhất,
+
+91
+00:05:34.280 --> 00:05:36.104
+cố gắng chọn từ thứ hai tốt nhất,
+
+92
+00:05:36.104 --> 00:05:37.395
+và sau đó, sau đó,
+
+93
+00:05:37.395 --> 00:05:39.318
+cố gắng chọn từ thứ ba tốt nhất,
+
+94
+00:05:39.318 --> 00:05:41.545
+cách tiếp cận đó không thực sự hiệu quả.
+
+95
+00:05:41.545 --> 00:05:44.990
+Để chứng minh điều đó, chúng ta hãy xem xét hai bản dịch sau đây.
+
+96
+00:05:44.990 --> 00:05:46.920
+Cái đầu tiên là một bản dịch tốt hơn,
+
+97
+00:05:46.920 --> 00:05:50.610
+rất hy vọng, trong mô hình dịch máy của chúng ta,
+
+98
+00:05:50.610 --> 00:05:56.330
+nó sẽ nói rằng p của y cho trước x cao hơn cho câu đầu tiên.
+
+99
+00:05:56.330 --> 00:05:59.907
+Nó chỉ là một bản dịch tốt hơn, ngắn gọn hơn của đầu vào tiếng Pháp.
+
+100
+00:05:59.907 --> 00:06:02.394
+Cái thứ hai không phải là một bản dịch tồi,
+
+101
+00:06:02.394 --> 00:06:03.665
+nó chỉ dài dòng hơn,
+
+102
+00:06:03.665 --> 00:06:05.970
+nó có nhiều từ không cần thiết hơn.
+
+103
+00:06:05.970 --> 00:06:10.485
+Tuy nhiên, nếu thuật toán đã chọn "Jane is" làm hai từ đầu tiên,
+
+104
+00:06:10.485 --> 00:06:14.298
+bởi vì "going" là một từ tiếng Anh phổ biến hơn,
+
+105
+00:06:14.298 --> 00:06:21.930
+có thể là cơ hội "Jane sẽ đi", với đầu vào tiếng Pháp,
+
+106
+00:06:21.930 --> 00:06:26.610
+điều này thực sự có thể cao hơn cơ hội "Jane là
+
+107
+00:06:26.610 --> 00:06:32.710
+đến thăm, ”cho câu tiếng Pháp.
+
+108
+00:06:32.710 --> 00:06:35.760
+Vì vậy, rất có thể nếu bạn chỉ chọn
+
+109
+00:06:35.760 --> 00:06:40.215
+từ thứ ba dựa trên bất cứ điều gì tối đa hóa xác suất của chỉ ba từ đầu tiên,
+
+110
+00:06:40.215 --> 00:06:43.670
+cuối cùng bạn chọn tùy chọn số hai.
+
+111
+00:06:43.670 --> 00:06:50.710
+Nhưng, điều này cuối cùng dẫn đến một câu kém tối ưu hơn,
+
+112
+00:06:50.710 --> 00:06:55.325
+trong một câu kém hay hơn được đo bằng mô hình này cho p của y đã cho
+
+113
+00:06:55.325 --> 00:07:01.280
+x. Tôi biết đây có thể là một lập luận hơi phiến diện,
+
+114
+00:07:01.280 --> 00:07:05.110
+nhưng, đây là một ví dụ về một hiện tượng rộng lớn hơn,
+
+115
+00:07:05.110 --> 00:07:08.860
+nơi nếu bạn muốn tìm chuỗi các từ, y1, y2,
+
+116
+00:07:08.860 --> 00:07:13.822
+cho đến từ cuối cùng cùng tối đa hóa xác suất,
+
+117
+00:07:13.822 --> 00:07:17.845
+không phải lúc nào cũng tối ưu nếu chỉ chọn một từ một lúc.
+
+118
+00:07:17.845 --> 00:07:21.730
+Và tất nhiên, tổng số kết hợp của
+
+119
+00:07:21.730 --> 00:07:25.660
+các từ trong câu tiếng Anh lớn hơn theo cấp số nhân.
+
+120
+00:07:25.660 --> 00:07:30.365
+Vì vậy, nếu bạn chỉ có 10.000 từ trong từ điển và nếu bạn
+
+121
+00:07:30.365 --> 00:07:35.211
+xem xét các bản dịch dài tới mười từ,
+
+122
+00:07:35.211 --> 00:07:42.085
+thì có thể có 10000 đến mười câu có độ dài mười từ.
+
+123
+00:07:42.085 --> 00:07:44.955
+Chọn các từ từ kích thước từ vựng,
+
+124
+00:07:44.955 --> 00:07:47.970
+kích thước từ điển 10000 từ.
+
+125
+00:07:47.970 --> 00:07:51.260
+Vì vậy, đây chỉ là một khoảng trống lớn của các câu có thể,
+
+126
+00:07:51.260 --> 00:07:53.455
+và không thể đánh giá tất cả,
+
+127
+00:07:53.455 --> 00:08:00.880
+đó là lý do tại sao điều phổ biến nhất cần làm là sử dụng tìm kiếm gần đúng trong số chúng.
+
+128
+00:08:00.880 --> 00:08:02.540
+Và thuật toán tìm kiếm gần đúng
+
+129
+00:08:02.540 --> 00:08:03.724
+sẽ cố gắng,
+
+130
+00:08:03.724 --> 00:08:05.135
+tuy không phải lúc nào cũng thành công,
+
+131
+00:08:05.135 --> 00:08:07.737
+nhưng nó sẽ chọn câu y,
+
+132
+00:08:07.737 --> 00:08:11.900
+tối đa hóa xác suất có điều kiện đó.
+
+133
+00:08:11.900 --> 00:08:16.925
+Và, mặc dù nó không được đảm bảo để tìm giá trị của y tối đa hóa điều này,
+
+134
+00:08:16.925 --> 00:08:19.025
+nó thường thực hiện công việc khá tốt.
+
+135
+00:08:19.025 --> 00:08:20.570
+Tóm lại, trong video này,
+
+136
+00:08:20.570 --> 00:08:26.430
+bạn đã thấy cách dịch máy có thể được coi là một vấn đề lập mô hình ngôn ngữ có điều kiện.
+
+137
+00:08:26.430 --> 00:08:28.880
+Nhưng một điểm khác biệt chính giữa điều này và
+
+138
+00:08:28.880 --> 00:08:31.460
+các vấn đề về mô hình ngôn ngữ trước đó là
+
+139
+00:08:31.460 --> 00:08:34.313
+thay vì muốn tạo một câu một cách ngẫu nhiên,
+
+140
+00:08:34.313 --> 00:08:37.910
+bạn có thể muốn cố gắng tìm câu tiếng Anh có khả năng xảy ra nhất,
+
+141
+00:08:37.910 --> 00:08:40.130
+rất có thể là bản dịch tiếng Anh.
+
+142
+00:08:40.130 --> 00:08:43.655
+Nhưng tập hợp tất cả các câu tiếng Anh có độ dài nhất định
+
+143
+00:08:43.655 --> 00:08:47.420
+quá lớn để liệt kê đầy đủ.
+
+144
+00:08:47.420 --> 00:08:51.155
+Vì vậy, chúng ta phải dùng đến một thuật toán tìm kiếm.
+
+145
+00:08:51.155 --> 00:08:53.369
+Vì vậy, với điều đó, hãy chuyển sang video tiếp theo,
+
+146
+00:08:53.369 --> 00:08:56.000
+bạn sẽ học về thuật toán beam search.

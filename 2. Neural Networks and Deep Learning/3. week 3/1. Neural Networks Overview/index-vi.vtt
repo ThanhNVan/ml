@@ -1,0 +1,340 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.190
+Chào mừng bạn đã trở lại.
+ Trong tuần này,
+
+2
+00:00:02.190 --> 00:00:04.530
+bạn đã học cách triển khai 
+một neural network nhân tạo.
+
+3
+00:00:04.530 --> 00:00:06.885
+Trước khi đi sâu vào 
+các chi tiết kỹ thuật,
+
+4
+00:00:06.885 --> 00:00:08.070
+trong video này, tôi muốn
+
+5
+00:00:08.070 --> 00:00:12.000
+cung cấp cho bạn một cái nhìn nhanh về 
+những gì bạn sẽ học trong video của tuần này.
+
+6
+00:00:12.000 --> 00:00:14.910
+Và nếu bạn không theo dõi tất cả 
+mọi chi tiết trong video này, thì
+
+7
+00:00:14.910 --> 00:00:18.810
+đừng lo lắng, chúng ta sẽ đi sâu vào các 
+chi tiết kỹ thuật trong một vài video tiếp theo.
+
+8
+00:00:18.810 --> 00:00:23.490
+Bây giờ, tôi sẽ đưa ra một cái nhìn tổng quan
+ nhanh về cách bạn triển khai trong mạng của mình.
+
+9
+00:00:23.490 --> 00:00:26.250
+Tuần trước, chúng ta
+ đã nói về logistic regression,
+
+10
+00:00:26.250 --> 00:00:31.965
+và chúng ta đã thấy mô hình này 
+tương ứng với phác thảo tính toán như sau,
+
+11
+00:00:31.965 --> 00:00:35.640
+bạn không đặt các 
+feature x và tham số
+
+12
+00:00:35.640 --> 00:00:40.140
+w và b cho phép bạn tính z mà 
+sau đó được sử dụng để tính a,
+
+13
+00:00:40.140 --> 00:00:43.280
+và chúng ta sử dụng a thay cho
+
+14
+00:00:43.280 --> 00:00:48.065
+đầu ra y mũ và sau đó bạn 
+có thể tính toán hàm loss,L.
+
+15
+00:00:48.065 --> 00:00:51.390
+Một neural network 
+nhân tạo trông như thế này.
+
+16
+00:00:51.390 --> 00:00:53.415
+Như tôi đã đề cập trước đây,
+
+17
+00:00:53.415 --> 00:00:58.640
+bạn có thể xây dựng một neural network nhân tạo 
+bằng cách xếp chồng nhiều đơn vị sigmoid nhỏ.
+
+18
+00:00:58.640 --> 00:01:03.785
+Trong khi trước đây, nút này 
+tương ứng với hai bước để tính toán.
+
+19
+00:01:03.785 --> 00:01:05.975
+Bước đầu tiên là tính giá trị z,
+
+20
+00:01:05.975 --> 00:01:08.630
+bước thứ hai là tính giá trị a này.
+
+21
+00:01:08.630 --> 00:01:10.460
+Trong neural network nhân tạo này,
+
+22
+00:01:10.460 --> 00:01:16.565
+chồng nốt này sẽ tương ứng 
+với phép tính tương tự z như thế này,
+
+23
+00:01:16.565 --> 00:01:20.165
+cũng như, một phép tính tương tự a.
+
+24
+00:01:20.165 --> 00:01:26.270
+Sau đó, nút đó sẽ tương ứng với 
+một phép tính tương tự z và a khác.
+
+25
+00:01:26.270 --> 00:01:30.380
+Và ký hiệu mà tôi sẽ giới thiệu 
+thì giống như thế này.
+
+26
+00:01:30.380 --> 00:01:33.365
+Đầu tiên, chúng ta sẽ
+ nhập các feature, x,
+
+27
+00:01:33.365 --> 00:01:36.190
+cùng với một số tham số w và b,
+
+28
+00:01:36.190 --> 00:01:39.840
+và điều này sẽ 
+cho phép bạn tính z một.
+
+29
+00:01:39.840 --> 00:01:43.625
+Và ký hiệu mới mà 
+chúng ta sẽ sử dụng là
+
+30
+00:01:43.625 --> 00:01:47.060
+1 trong dấu ngoặc 
+vuông ([1]) để đề cập tới
+
+31
+00:01:47.060 --> 00:01:51.185
+số lượng liên kết với chồng nút
+ này, nó được gọi là một lớp.
+
+32
+00:01:51.185 --> 00:01:54.080
+Sau đó, chúng ta sẽ sử dụng
+ 2 trong dấu ngoặc vuông ([2])
+
+33
+00:01:54.080 --> 00:01:58.355
+để chỉ số lượng
+ liên kết với nút đó.
+
+34
+00:01:58.355 --> 00:02:01.445
+Đó gọi là một lớp khác
+ của mạngnơ-ron nhân tạo.
+
+35
+00:02:01.445 --> 00:02:03.680
+Dấu ngoặc vuông
+
+36
+00:02:03.680 --> 00:02:05.135
+như chúng ta có ở đây,
+
+37
+00:02:05.135 --> 00:02:06.905
+bạn đừng nhầm lẫn với
+
+38
+00:02:06.905 --> 00:02:12.980
+dấu ngoặc tròn mà chúng ta sử dụng
+ để chỉ các ví dụ đào tạo riêng lẻ.
+
+39
+00:02:12.980 --> 00:02:17.885
+Và nếu x với chỉ số trên (i) đề cập
+ đến ví dụ đào tạo thứ i, thì
+
+40
+00:02:17.885 --> 00:02:23.180
+[1] và [2] đề cập đến 
+các lớp khác nhau này;
+
+41
+00:02:23.180 --> 00:02:27.530
+lớp một và lớp hai trong
+ neural network nhân tạo này.
+
+42
+00:02:27.530 --> 00:02:33.920
+Và cứ như vậy, sau khi tính toán z_[1]
+ tương tự như logistic regression,
+
+43
+00:02:33.920 --> 00:02:37.715
+sẽ có một phép tính để tính a_[1],
+
+44
+00:02:37.715 --> 00:02:40.970
+và đó là sigmoid của z_[1],
+
+45
+00:02:40.970 --> 00:02:51.530
+và sau đó bạn tính z_[2] bằng một phương trình
+ tuyến tính khác và sau đó tính a_[2].
+
+46
+00:02:51.530 --> 00:02:55.325
+a_[2] là đầu ra cuối cùng
+
+47
+00:02:55.325 --> 00:02:59.270
+của neural network nhân tạo và cũng 
+sẽ được sử dụng thay thế y mũ.
+
+48
+00:02:59.270 --> 00:03:02.390
+Tôi biết là có rất nhiều 
+chi tiết nhưng điều bạn cần
+
+49
+00:03:02.390 --> 00:03:05.925
+phải nhớ là đối với
+ logistic regression,
+
+50
+00:03:05.925 --> 00:03:09.435
+chúng ta có theo sau z 
+này là một phép tính a.
+
+51
+00:03:09.435 --> 00:03:10.665
+Trong neural network nhân tạo này,
+
+52
+00:03:10.665 --> 00:03:12.830
+ở đây chúng ta 
+làm điều đó nhiều lần,
+
+53
+00:03:12.830 --> 00:03:14.870
+như là sau một z 
+là một phép tính a,
+
+54
+00:03:14.870 --> 00:03:17.745
+và sau một z là
+ một phép tính a,
+
+55
+00:03:17.745 --> 00:03:21.590
+và cuối cùng bạn tính 
+được hàm loss ở cuối.
+
+56
+00:03:21.590 --> 00:03:24.200
+Hãy nhớ rằng 
+đối với logistic regression,
+
+57
+00:03:24.200 --> 00:03:27.800
+chúng ta đã tính toán ngược
+
+58
+00:03:27.800 --> 00:03:32.045
+để tính toán các đạo hàm 
+hoặc khi bạn tính da,
+
+59
+00:03:32.045 --> 00:03:33.365
+dz và v.v.
+
+60
+00:03:33.365 --> 00:03:34.805
+Và, tương tự như vậy,
+
+61
+00:03:34.805 --> 00:03:38.990
+một neural network nhân tạo
+ sẽ tính toán ngược
+
+62
+00:03:38.990 --> 00:03:47.370
+như này, trong đó bạn tính da_[2],
+
+63
+00:03:47.370 --> 00:03:51.060
+dz_[2], cho phép 
+bạn tính toán dw_[2],
+
+64
+00:03:51.060 --> 00:03:56.130
+db_[2], v.v.
+
+65
+00:03:56.130 --> 00:04:04.060
+Phép tính ngược từ phải sang trái
+ được biểu thị bằng các mũi tên màu đỏ.
+
+66
+00:04:04.060 --> 00:04:08.750
+Và điều này cung cấp cho bạn một 
+cái nhìn nhanh về neural network nhân tạo.
+
+67
+00:04:08.750 --> 00:04:12.470
+Về cơ bản, nó đã thực hiện 
+logistic regression và lặp lại hai lần.
+
+68
+00:04:12.470 --> 00:04:14.780
+Tôi biết là có rất 
+nhiều ký hiệu mới,
+
+69
+00:04:14.780 --> 00:04:16.910
+chi tiết mới, nhưng đừng 
+lo lắng về việc ghi nhớ chúng,
+
+70
+00:04:16.910 --> 00:04:21.575
+theo dõi mọi chi tiết, chúng ta sẽ
+ đi vào chi tiết trong vài video tiếp theo.
+
+71
+00:04:21.575 --> 00:04:23.060
+Hãy nhớ xem video tiếp theo.
+
+72
+00:04:23.060 --> 00:04:26.270
+Chúng ta sẽ nói về đại diện
+ neural network nhân tạo.

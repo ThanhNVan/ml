@@ -1,0 +1,442 @@
+WEBVTT
+
+00:00:01.300 --> 00:00:05.480
+Convolution có bước là một phần khác của khối
+xây dựng cơ bản
+
+00:00:05.480 --> 00:00:09.660
+của convolution được sử dụng trong
+neural network convolution.
+
+00:00:09.660 --> 00:00:11.580
+Hãy để tôi chỉ cho bạn một ví dụ.
+
+00:00:11.580 --> 00:00:17.740
+Giả sử bạn muốn kết hợp hình ảnh 7x7 này với
+bộ lọc 3x3 này, ngoại trừ việc thay vì
+
+00:00:17.740 --> 00:00:23.900
+thực hiện theo cách thông thường, chúng ta sẽ
+thực hiện điều đó với bước nhảy là 2.
+
+00:00:23.900 --> 00:00:29.960
+Điều đó có nghĩa là bạn lấy tích theo phần tử
+như thường lệ ở vùng 3x3
+
+00:00:29.960 --> 00:00:36.020
+phía trên bên trái này, sau đó nhân và cộng,
+và kết quả là bạn có 91.
+
+00:00:36.020 --> 00:00:38.880
+Nhưng sau đó thay vì bước qua hộp màu xanh
+
+00:00:38.880 --> 00:00:41.740
+lam một bước, chúng ta sẽ bước nó lên hai
+bước.
+
+00:00:41.740 --> 00:00:47.060
+Vì vậy, chúng ta sẽ thực hiện nó qua hai bước
+như vậy.
+
+00:00:47.060 --> 00:00:53.260
+Chú ý góc trên bên trái đã đi từ chấm này đến
+chấm này, nhảy qua một vị trí.
+
+00:00:53.260 --> 00:00:56.320
+Và sau đó bạn thực hiện phép nhân và tính tổng
+theo
+
+00:00:56.320 --> 00:00:59.380
+từng phần tử thông thường, và kết quả là, kết
+quả là 100.
+
+00:00:59.380 --> 00:01:01.980
+Và bây giờ chúng ta sẽ làm lại điều đó và
+
+00:01:01.980 --> 00:01:04.580
+làm cho chiếc hộp màu xanh nhảy qua hai bước.
+
+00:01:04.580 --> 00:01:08.500
+Vì vậy, bạn kết thúc ở đó, và kết quả là bạn
+có 83.
+
+00:01:08.500 --> 00:01:11.800
+Và bây giờ khi bạn sang hàng tiếp theo, bạn
+
+00:01:11.800 --> 00:01:15.100
+lại thực sự bước hai bước thay vì một bước.
+
+00:01:15.100 --> 00:01:18.180
+Vì vậy chúng ta sẽ di chuyển hộp màu xanh tới
+đó.
+
+00:01:18.180 --> 00:01:25.340
+Hãy chú ý cách chúng ta bỏ qua một trong các
+vị trí và sau đó kết quả là 69.
+
+00:01:25.340 --> 00:01:28.100
+Và bây giờ bạn đã đạt được bước qua hai bước.
+
+00:01:28.100 --> 00:01:30.580
+Điều này mang lại cho bạn 91, v.v.
+
+00:01:30.580 --> 00:01:31.580
+Đó là 127.
+
+00:01:31.580 --> 00:01:38.580
+Và rồi đến hàng cuối cùng, 44, 72 và 74.
+
+00:01:38.580 --> 00:01:44.140
+Vì vậy, trong ví dụ này, chúng ta convolution
+ma trận
+
+00:01:44.140 --> 00:01:49.700
+7x7 với ma trận 3x3 và chúng ta nhận được đầu
+ra 3x3.
+
+00:01:49.700 --> 00:01:54.260
+Vì vậy, kích thước đầu vào và đầu ra hóa ra
+được điều chỉnh bởi công thức sau.
+
+00:01:54.260 --> 00:02:04.140
+Nếu bạn có một hình ảnh n-by-n mà bạn kết hợp
+với bộ lọc f-by-f và nếu bạn sử dụng
+
+00:02:04.140 --> 00:02:14.020
+phần đệm p và sải bước, thì trong ví dụ này, s
+bằng 2, thì bạn sẽ có kết quả đầu ra
+
+00:02:14.020 --> 00:02:18.340
+là n cộng 2p trừ f.
+
+00:02:18.340 --> 00:02:24.180
+Và bây giờ vì bạn đang bước từng bước một thay
+vì chỉ từng bước
+
+00:02:24.180 --> 00:02:30.020
+một, nên bạn chia cho s cộng 1, và sau đó bạn
+sẽ mua thứ tương tự.
+
+00:02:30.020 --> 00:02:37.555
+Vì vậy, trong ví dụ của chúng ta, chúng ta có
+7 cộng
+
+00:02:37.555 --> 00:02:45.090
+0 trừ 3 chia cho 2, đó là một sải chân, cộng 1
+bằng,
+
+00:02:45.090 --> 00:02:50.235
+xem nào, đó là 4 trên 2 cộng 1 bằng 3, đó là
+lý
+
+00:02:50.235 --> 00:02:55.380
+do vì sao chúng ta kết thúc với kết quả 3x3
+này.
+
+00:02:55.380 --> 00:03:02.260
+Nhưng chỉ một chi tiết cuối cùng, nếu phân số
+này không phải là số nguyên thì sao?
+
+00:03:02.260 --> 00:03:05.860
+Trong trường hợp đó, chúng ta sẽ làm tròn số
+này xuống.
+
+00:03:05.860 --> 00:03:08.980
+Vì vậy, ký hiệu này biểu thị tầng của một cái
+gì đó.
+
+00:03:08.980 --> 00:03:14.540
+Vì vậy đây còn được gọi là sàn của Z.
+
+00:03:14.540 --> 00:03:18.420
+Nó có nghĩa là lấy Z và làm tròn xuống số
+nguyên gần nhất.
+
+00:03:18.420 --> 00:03:24.000
+Và nếu cách thực hiện điều này là bạn lấy kiểu
+nhân hộp màu xanh lam này, chỉ khi
+
+00:03:24.000 --> 00:03:29.580
+hộp màu xanh lam được chứa hoàn toàn trong
+hình ảnh hoặc hình ảnh cộng với phần đệm.
+
+00:03:29.580 --> 00:03:32.960
+Và nếu bất kỳ phần nào của hộp màu xanh này
+treo
+
+00:03:32.960 --> 00:03:36.340
+bên ngoài, thì bạn không cần thực hiện phép
+tính đó.
+
+00:03:36.340 --> 00:03:42.260
+Sau đó, hóa ra nếu đó là quy ước thì bộ lọc
+3x3 của bạn phải nằm hoàn toàn trong
+
+00:03:42.260 --> 00:03:48.180
+hình ảnh của bạn hoặc hình ảnh cộng với vùng
+đệm trước khi có đầu ra tương ứng
+
+00:03:48.180 --> 00:03:49.180
+máy phát điện.
+
+00:03:49.180 --> 00:03:53.500
+Vì vậy, nếu bạn định thực hiện quy ước này,
+thì điều đúng
+
+00:03:53.500 --> 00:03:57.820
+đắn cần làm để tính thứ nguyên đầu ra là làm
+tròn xuống
+
+00:03:57.820 --> 00:04:02.140
+trong trường hợp n cộng 2p trừ f trên s không
+phải là số nguyên.
+
+00:04:02.140 --> 00:04:07.020
+Vì vậy, chỉ để tóm tắt các kích thước, nếu bạn
+có ma trận n x n
+
+00:04:07.020 --> 00:04:11.900
+hoặc hình ảnh n x n mà bạn kết hợp với ma trận
+f x f, bộ lọc f x f
+
+00:04:11.900 --> 00:04:16.780
+có phần đệm p và sải chân, thì kích thước đầu
+ra sẽ có thứ nguyên này.
+
+00:04:16.860 --> 00:04:22.940
+Thật tuyệt khi bạn có thể chọn tất cả những số
+này sao cho đó là số nguyên,
+
+00:04:22.940 --> 00:04:29.020
+mặc dù đôi khi bạn không cần phải làm điều đó
+và làm tròn xuống cũng tốt.
+
+00:04:29.020 --> 00:04:35.560
+Tuy nhiên, vui lòng tự mình xem qua một số ví
+dụ về các giá trị của n, f, p và s
+
+00:04:35.560 --> 00:04:42.100
+để thuyết phục bản thân nếu bạn muốn rằng công
+thức này đúng với kích thước đầu ra.
+
+00:04:42.100 --> 00:04:45.500
+Bây giờ trước khi tiếp tục, có một nhận xét kỹ
+thuật mà
+
+00:04:45.500 --> 00:04:48.900
+tôi muốn đưa ra về mối tương quan chéo và
+convolution.
+
+00:04:48.900 --> 00:04:52.633
+Và điều này sẽ không ảnh hưởng đến những gì
+bạn phải làm để
+
+00:04:52.633 --> 00:04:56.367
+triển khai neural network convolution, nhưng
+tùy thuộc vào việc
+
+00:04:56.367 --> 00:05:00.100
+bạn đọc sách giáo khoa toán hay sách giáo khoa
+xử lý tín hiệu khác,
+
+00:05:00.100 --> 00:05:03.833
+có thể có một điểm không nhất quán khác trong
+ký hiệu, đó là nếu
+
+00:05:03.833 --> 00:05:07.567
+bạn nhìn vào một cuốn sách giáo khoa toán
+thông thường, bạn sẽ
+
+00:05:07.567 --> 00:05:11.300
+thấy cách xác định phép convolution, trước khi
+thực hiện phép tính
+
+00:05:11.300 --> 00:05:16.480
+tích và tính tổng theo phần tử, thực tế có một
+bước khác mà trước tiên bạn phải thực
+
+00:05:16.480 --> 00:05:21.660
+hiện, đó là convolution ma trận 6x6 này với bộ
+lọc 3x3, trước tiên bạn sẽ thực hiện
+
+00:05:21.660 --> 00:05:28.660
+3x3 và lật nó theo chiều ngang cũng như trục
+dọc.
+
+00:05:28.660 --> 00:05:40.070
+Vậy 3, 4, 5, 1, 0, 2, trừ 1, 9, 7 sẽ trở thành
+3 đi đây, 4 đi kia, 5 đi
+
+00:05:40.070 --> 00:05:48.070
+đó, rồi đến hàng thứ hai, 2, 0, 1, trừ 1, 9,
+7.
+
+00:05:48.070 --> 00:05:53.275
+Nhưng điều này thực sự là sử dụng bộ lọc 3x3
+và
+
+00:05:53.275 --> 00:05:58.480
+phản chiếu nó trên cả trục dọc và trục ngang.
+
+00:05:58.480 --> 00:06:03.720
+Và sau đó bạn sẽ sao chép ma trận lật này vào
+đây.
+
+00:06:03.720 --> 00:06:09.120
+Vì vậy, để tính kết quả đầu ra, bạn sẽ lấy 2
+nhân 7, v.v.
+
+00:06:11.060 --> 00:06:18.460
+Và bạn thực sự nhân các phần tử của ma trận
+đảo ngược này để
+
+00:06:18.460 --> 00:06:25.860
+tính hầu hết các phần tử phía trên bên trái
+của đầu ra 4x4 như sau.
+
+00:06:25.860 --> 00:06:29.080
+Và sau đó bạn lấy chín số đó và dịch chuyển
+chúng
+
+00:06:29.080 --> 00:06:32.300
+từng số một, dịch chuyển chúng từng số một,
+v.v.
+
+00:06:32.300 --> 00:06:35.920
+Vì vậy, cách chúng tôi xác định thao tác
+convolution trong
+
+00:06:35.920 --> 00:06:39.540
+các video này là chúng tôi đã bỏ qua thao tác
+phản chiếu này.
+
+00:06:39.780 --> 00:06:45.120
+Và về mặt kỹ thuật, những gì chúng tôi thực sự
+đang làm, thực sự là thao tác chúng
+
+00:06:45.120 --> 00:06:50.460
+tôi đã sử dụng cho vài video gần đây, đôi khi
+là tương quan chéo thay vì convolution.
+
+00:06:50.460 --> 00:06:54.200
+Nhưng trong tài liệu deep learning, theo quy
+
+00:06:54.200 --> 00:06:57.940
+ước, chúng tôi gọi đây là phép toán
+convolution.
+
+00:06:57.940 --> 00:07:01.880
+Vì vậy, tóm lại, theo quy ước trong
+machine learning,
+
+00:07:01.880 --> 00:07:05.820
+chúng ta thường không bận tâm đến thao tác lật
+này.
+
+00:07:05.820 --> 00:07:10.620
+Và về mặt kỹ thuật, hoạt động này có lẽ tốt
+hơn nên được gọi là tương quan chéo.
+
+00:07:10.620 --> 00:07:16.020
+Nhưng hầu hết các tài liệu về deep learning
+chỉ sử dụng toán tử convolution.
+
+00:07:16.020 --> 00:07:19.460
+Và vì vậy tôi cũng sẽ sử dụng quy ước đó trong
+những video này.
+
+00:07:19.460 --> 00:07:24.820
+Và nếu bạn đọc nhiều tài liệu về
+machine learning, bạn sẽ thấy hầu hết mọi
+
+00:07:24.820 --> 00:07:30.180
+người chỉ gọi đây là toán tử convolution mà
+không thèm sử dụng những phép lật này.
+
+00:07:31.180 --> 00:07:36.680
+Và hóa ra là trong xử lý tín hiệu hoặc trong
+một số ngành toán học, việc
+
+00:07:36.680 --> 00:07:42.180
+thực hiện việc đảo ngược định nghĩa
+convolution sẽ gây ra toán tử convolution
+
+00:07:42.180 --> 00:07:46.680
+để được hưởng tính chất này là A convolution
+với B
+
+00:07:46.680 --> 00:07:51.180
+convolution với C bằng A convolution với B
+convolution với C.
+
+00:07:51.180 --> 00:07:54.180
+Và điều này được gọi là tính kết hợp trong
+toán học.
+
+00:07:54.180 --> 00:07:57.180
+Và điều này rất tốt cho một số ứng dụng xử lý
+tín hiệu.
+
+00:07:57.180 --> 00:08:00.180
+Nhưng đối với neural network sâu, điều đó
+thực sự không thành vấn đề.
+
+00:08:00.180 --> 00:08:04.680
+Và do đó, việc bỏ qua thao tác sao chép kép
+này chỉ giúp
+
+00:08:04.680 --> 00:08:09.180
+đơn giản hóa mã và làm cho neural network
+hoạt động tốt.
+
+00:08:09.180 --> 00:08:13.980
+Và theo quy ước, hầu hết chúng ta chỉ gọi đây
+là convolution,
+
+00:08:13.980 --> 00:08:18.780
+mặc dù đôi khi các nhà toán học thích gọi đây
+là tương quan chéo.
+
+00:08:18.780 --> 00:08:23.170
+Nhưng điều này sẽ không ảnh hưởng đến bất cứ
+điều gì bạn
+
+00:08:23.170 --> 00:08:27.560
+phải thực hiện trong các bài tập lập trình và
+không ảnh
+
+00:08:27.560 --> 00:08:31.950
+hưởng đến khả năng đọc và hiểu tài liệu
+deep learning của bạn.
+
+00:08:33.950 --> 00:08:37.450
+Vậy là bây giờ bạn đã biết cách thực hiện các
+phép cuộn và bạn đã
+
+00:08:37.450 --> 00:08:40.950
+biết cách sử dụng phần đệm cũng như các bước
+cho các phép cuộn.
+
+00:08:40.950 --> 00:08:43.950
+Nhưng cho đến nay, tất cả những gì chúng ta
+đang sử
+
+00:08:43.950 --> 00:08:46.950
+dụng là convolution trên ma trận, như trên ma
+trận 6x6.
+
+00:08:46.950 --> 00:08:48.950
+Trong video tiếp theo, bạn sẽ biết cách thực
+
+00:08:48.950 --> 00:08:50.950
+hiện phép tính convolution theo khối lượng.
+
+00:08:50.950 --> 00:08:53.450
+Và điều này sẽ làm cho những gì bạn có thể làm
+
+00:08:53.450 --> 00:08:55.950
+với phép cuộn đột nhiên trở nên mạnh mẽ hơn
+nhiều.
+
+00:08:55.950 --> 00:08:56.950
+Chúng ta hãy chuyển sang video tiếp theo.

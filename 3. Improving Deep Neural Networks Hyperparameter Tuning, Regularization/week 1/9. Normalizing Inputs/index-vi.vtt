@@ -1,0 +1,501 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.740
+Khi huấn luyện neural network,
+
+2
+00:00:01.740 --> 00:00:03.210
+một trong những kỹ thuật để tăng tốc độ
+
+3
+00:00:03.210 --> 00:00:05.790
+huấn luyện là chuẩn hóa đầu vào.
+
+4
+00:00:05.790 --> 00:00:07.350
+Hãy xem điều đó có nghĩa là gì.
+
+5
+00:00:07.350 --> 00:00:10.440
+Hãy xem xét các training set với hai feature đầu vào.
+
+6
+00:00:10.440 --> 00:00:13.320
+Các feature đầu vào x là feature hai chiều
+
+7
+00:00:13.320 --> 00:00:16.275
+và đây là biểu đồ của training set.
+
+8
+00:00:16.275 --> 00:00:20.190
+Chuẩn hóa đầu vào gồm hai bước,
+
+9
+00:00:20.190 --> 00:00:26.160
+đầu tiên là trừ đi trung bình,
+
+10
+00:00:26.160 --> 00:00:29.385
+đặt μ = 1/m,
+
+11
+00:00:29.385 --> 00:00:33.900
+tổng trên i của x(i).
+
+12
+00:00:33.900 --> 00:00:36.620
+Đây là một vectơ, sau đó
+
+13
+00:00:36.620 --> 00:00:39.215
+x = x - μ cho mọi mẫu huấn luyện.
+
+14
+00:00:39.215 --> 00:00:41.210
+Điều này có nghĩa là bạn chỉ cần di chuyển
+
+15
+00:00:41.210 --> 00:00:44.360
+tập huấn cho đến khi nó có trung bình là 0.
+
+16
+00:00:44.360 --> 00:00:49.665
+Sau đó, bước thứ hai là chuẩn hóa các variance.
+
+17
+00:00:49.665 --> 00:00:52.130
+Chú ý ở đây feature x1
+
+18
+00:00:52.130 --> 00:00:55.310
+có variance lớn hơn nhiều so với feature x2 ở đây.
+
+19
+00:00:55.310 --> 00:00:59.300
+Chúng ta đặt σ bằng 1/m
+
+20
+00:00:59.300 --> 00:01:04.095
+tổng của x(i)**2
+
+21
+00:01:04.095 --> 00:01:06.990
+Tôi đoán đây là bình phương từng phần tử.
+
+22
+00:01:06.990 --> 00:01:09.740
+Bây giờ σ bình phương là một vectơ
+
+23
+00:01:09.740 --> 00:01:12.830
+với các variance của từng feature.
+
+24
+00:01:12.830 --> 00:01:14.960
+Lưu ý rằng chúng ta đã trừ đi giá trị trung bình,
+
+25
+00:01:14.960 --> 00:01:19.355
+vì vậy x(i) bình phương theo phần tử chỉ là các variance.
+
+26
+00:01:19.355 --> 00:01:23.775
+Bạn tính từng mẫu một và chia nó cho vector σ này.
+
+27
+00:01:23.775 --> 00:01:28.415
+Trong một số hình ảnh, bạn được kết quả như sau, trong đó
+
+28
+00:01:28.415 --> 00:01:34.860
+variance của x1 và x2 đều bằng 1.
+
+29
+00:01:34.860 --> 00:01:39.695
+Một mẹo nhỏ: nếu bạn sử dụng điều này để mở rộng training data,
+
+30
+00:01:39.695 --> 00:01:42.530
+thì hãy sử dụng cùng một μ và σ để chuẩn hóa test set của bạn,
+
+31
+00:01:42.530 --> 00:01:45.950
+thì hãy sử dụng cùng một μ và σ để chuẩn hóa test set của bạn,
+
+32
+00:01:45.950 --> 00:01:48.305
+đặc biệt là nếu bạn không muốn chuẩn hóa riêng biệt training set và test set.
+
+33
+00:01:48.305 --> 00:01:51.065
+đặc biệt là nếu bạn không muốn chuẩn hóa riêng biệt training set và test set.
+
+34
+00:01:51.065 --> 00:01:53.750
+Dù giá trị này và giá trị này ra sao,
+
+35
+00:01:53.750 --> 00:01:56.975
+hãy sử dụng chúng trong hai công thức này
+
+36
+00:01:56.975 --> 00:01:59.000
+để mở rộng quy mô test set
+
+37
+00:01:59.000 --> 00:02:01.460
+theo đúng cách đó hơn là ước tính riêng biệt μ và σ bình phương
+
+38
+00:02:01.460 --> 00:02:02.960
+theo đúng cách đó hơn là ước tính riêng biệt μ và σ bình phương
+
+39
+00:02:02.960 --> 00:02:04.580
+trên training set và test set của bạn,
+
+40
+00:02:04.580 --> 00:02:06.320
+bởi vì bạn muốn dữ liệu của mình,
+
+41
+00:02:06.320 --> 00:02:08.705
+cả mẫu huấn luyện và kiểm tra
+
+42
+00:02:08.705 --> 00:02:11.330
+đều trải qua cùng một phép biến đổi được định nghĩa theo cùng
+
+43
+00:02:11.330 --> 00:02:12.965
+μ và σ bình phương
+
+44
+00:02:12.965 --> 00:02:15.235
+được tính toán trên training data.
+
+45
+00:02:15.235 --> 00:02:16.670
+Tại sao phải làm như vậy?
+
+46
+00:02:16.670 --> 00:02:19.520
+Tại sao cần chuẩn hóa các feature đầu vào?
+
+47
+00:02:19.520 --> 00:02:21.230
+Nhớ lại định nghĩa cost function
+
+48
+00:02:21.230 --> 00:02:23.950
+như được viết ở góc phía trên bên phải.
+
+49
+00:02:23.950 --> 00:02:28.370
+Theo đó, nếu bạn sử dụng các feature đầu vào không được chuẩn hóa,
+
+50
+00:02:28.370 --> 00:02:29.600
+rất có khả năng
+
+51
+00:02:29.600 --> 00:02:31.370
+cost function của bạn sẽ trông như thế này,
+
+52
+00:02:31.370 --> 00:02:33.890
+cost function bị kéo dài,
+
+53
+00:02:33.890 --> 00:02:36.120
+cost function bị kéo dài,
+
+54
+00:02:36.120 --> 00:02:37.870
+trong đó tối thiểu thứ bạn cố gắng tìm kiếm ở đằng kia.
+
+55
+00:02:37.870 --> 00:02:39.580
+trong đó tối thiểu thứ bạn cố gắng tìm kiếm ở đằng kia.
+
+56
+00:02:39.580 --> 00:02:43.115
+Nhưng nếu các feature của bạn theo các quy mô khác nhau,
+
+57
+00:02:43.115 --> 00:02:45.320
+giả sử feature x1
+
+58
+00:02:45.320 --> 00:02:50.500
+từ 1-1000 và feature x2 nằm trong khoảng từ 0-1,
+
+59
+00:02:50.500 --> 00:02:52.860
+thì tỷ lệ
+
+60
+00:02:52.860 --> 00:02:55.250
+hoặc phạm vi giá trị cho các tham số
+
+61
+00:02:55.250 --> 00:02:57.260
+w1 và w2 sẽ nhận các giá trị rất khác nhau.
+
+62
+00:02:57.260 --> 00:03:00.890
+w1 và w2 sẽ nhận các giá trị rất khác nhau.
+
+63
+00:03:00.890 --> 00:03:03.920
+Có thể là những trục này, w1 và w2,
+
+64
+00:03:03.920 --> 00:03:06.020
+nhưng theo biểu đồ trực quan, w và b,
+
+65
+00:03:06.020 --> 00:03:09.410
+cost function có thể sẽ thon dài như thế.
+
+66
+00:03:09.410 --> 00:03:12.665
+Nếu bạn vẽ các đường bao cho hàm này,
+
+67
+00:03:12.665 --> 00:03:15.770
+bạn có thể có được hàm dài như vậy.
+
+68
+00:03:15.770 --> 00:03:17.960
+Trong khi nếu chuẩn hóa các feature,
+
+69
+00:03:17.960 --> 00:03:20.030
+thì cost function của bạn
+
+70
+00:03:20.030 --> 00:03:23.150
+nhìn chung sẽ đối xứng hơn.
+
+71
+00:03:23.150 --> 00:03:24.970
+Nếu bạn đang chạy gradient descent
+
+72
+00:03:24.970 --> 00:03:26.990
+trên một cost function như hàm bên trái,
+
+73
+00:03:26.990 --> 00:03:28.430
+thì bạn phải sử dụng learning rate rất nhỏ vì nếu bạn ở đây,
+
+74
+00:03:28.430 --> 00:03:30.545
+thì bạn phải sử dụng learning rate rất nhỏ vì nếu bạn ở đây,
+
+75
+00:03:30.545 --> 00:03:32.570
+gradient descent có thể
+
+76
+00:03:32.570 --> 00:03:34.670
+sẽ cần rất nhiều bước để dao động qua lại
+
+77
+00:03:34.670 --> 00:03:38.990
+trước khi nó tìm ra cách tới cực tiểu.
+
+78
+00:03:38.990 --> 00:03:42.920
+Trong khi đó, nếu bạn có đường bao hình cầu hơn,
+
+79
+00:03:42.920 --> 00:03:44.210
+thì bất kể bạn bắt đầu ở đâu,
+
+80
+00:03:44.210 --> 00:03:46.100
+gradient descent đều có thể
+
+81
+00:03:46.100 --> 00:03:47.530
+đi thẳng tới cực tiểu.
+
+82
+00:03:47.530 --> 00:03:49.160
+Bạn có thể thực hiện các bước lớn hơn nhiều
+
+83
+00:03:49.160 --> 00:03:50.585
+nếu gradient descent cần,
+
+84
+00:03:50.585 --> 00:03:51.875
+thay vì phải dao động xung quanh như hình bên trái.
+
+85
+00:03:51.875 --> 00:03:54.590
+thay vì phải dao động xung quanh như hình bên trái.
+
+86
+00:03:54.590 --> 00:03:55.790
+Tất nhiên, trong thực tế,
+
+87
+00:03:55.790 --> 00:03:58.190
+w là một vectơ nhiều chiều.
+
+88
+00:03:58.190 --> 00:04:00.650
+Và việc cố gắng vẽ điều này trong 2D
+
+89
+00:04:00.650 --> 00:04:02.860
+không thể truyền tải trực quan chính xác.
+
+90
+00:04:02.860 --> 00:04:05.090
+Nhưng qua trực quan thì cost function
+
+91
+00:04:05.090 --> 00:04:06.575
+sẽ ở nhiều vòng
+
+92
+00:04:06.575 --> 00:04:08.330
+và dễ tối ưu hóa hơn
+
+93
+00:04:08.330 --> 00:04:10.690
+khi các feature có cùng quy mô.
+
+94
+00:04:10.690 --> 00:04:13.880
+Không phải từ 1-1000, 0-1,
+
+95
+00:04:13.880 --> 00:04:16.100
+mà chủ yếu là từ -1 đến 1
+
+96
+00:04:16.100 --> 00:04:19.235
+hoặc variance tương tự nhau.
+
+97
+00:04:19.235 --> 00:04:21.160
+Điều đó chỉ khiến cho cost function j
+
+98
+00:04:21.160 --> 00:04:23.785
+dễ và nhanh tối ưu hóa hơn.
+
+99
+00:04:23.785 --> 00:04:25.880
+Trong thực tế, nếu một feature,
+
+100
+00:04:25.880 --> 00:04:31.300
+giả sử x1 với phạm vi từ 0-1 và x2 nằm trong khoảng từ -1 đến 1,
+
+101
+00:04:31.300 --> 00:04:33.765
+và x3 nằm trong khoảng từ 1-2,
+
+102
+00:04:33.765 --> 00:04:35.870
+đây là những phạm vi khá giống nhau,
+
+103
+00:04:35.870 --> 00:04:37.310
+vì vậy điều này sẽ hoạt động tốt
+
+104
+00:04:37.310 --> 00:04:39.815
+khi chúng đang ở các phạm vi khác nhau đáng kể như
+
+105
+00:04:39.815 --> 00:04:42.500
+từ 1-1000 và từ 0-1.
+
+106
+00:04:42.500 --> 00:04:44.900
+Điều đó thực sự ảnh hướng tới thuật toán tối ưu hóa.
+
+107
+00:04:44.900 --> 00:04:47.510
+Nhưng bằng cách đặt tất cả trung bình của chúng bằng 0
+
+108
+00:04:47.510 --> 00:04:50.390
+và variance là 1 như chúng ta đã làm trong slide trước
+
+109
+00:04:50.390 --> 00:04:52.390
+sẽ đảm bảo rằng tất cả các feature của bạn đều ở cùng một quy mô
+
+110
+00:04:52.390 --> 00:04:53.960
+sẽ đảm bảo rằng tất cả các feature của bạn đều ở cùng một quy mô
+
+111
+00:04:53.960 --> 00:04:56.680
+và giúp thuật toán chạy nhanh hơn.
+
+112
+00:04:56.680 --> 00:05:00.050
+Nếu các feature đầu vào ở các quy mô rất khác nhau,
+
+113
+00:05:00.050 --> 00:05:01.730
+một số feature có thể là từ 0-1,
+
+114
+00:05:01.730 --> 00:05:03.560
+1-1000 thì cần chuẩn hóa các feature của bạn.
+
+115
+00:05:03.560 --> 00:05:06.230
+1-1000 thì cần chuẩn hóa các feature của bạn.
+
+116
+00:05:06.230 --> 00:05:08.350
+Nếu các feature của bạn có quy mô tương tự,
+
+117
+00:05:08.350 --> 00:05:11.030
+thì bước chuẩn hóa này ít quan trọng hơn
+
+118
+00:05:11.030 --> 00:05:12.305
+mặc dù loại chuẩn hóa này gần như không bao giờ gây hại.
+
+119
+00:05:12.305 --> 00:05:14.195
+mặc dù loại chuẩn hóa này gần như không bao giờ gây hại.
+
+120
+00:05:14.195 --> 00:05:16.040
+Thường thì bạn sẽ có nhiều hướng để thực hiện,
+
+121
+00:05:16.040 --> 00:05:18.305
+tôi không chắc liệu nó có giúp ích gì cho việc tăng tốc huấn luyện thuật toán của bạn không.
+
+122
+00:05:18.305 --> 00:05:21.155
+tôi không chắc liệu nó có giúp ích gì cho việc tăng tốc huấn luyện thuật toán của bạn không.
+
+123
+00:05:21.155 --> 00:05:24.260
+Đó là nội dung về việc chuẩn hóa các feature đầu vào.
+
+124
+00:05:24.260 --> 00:05:26.390
+Tiếp theo, chúng ta sẽ tìm hiểu những cách tăng tốc độ huấn luyện cho neural network.
+
+125
+00:05:26.390 --> 00:05:29.460
+Tiếp theo, chúng ta sẽ tìm hiểu những cách tăng tốc độ huấn luyện cho neural network.

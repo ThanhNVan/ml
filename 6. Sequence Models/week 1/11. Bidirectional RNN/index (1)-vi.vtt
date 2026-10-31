@@ -1,0 +1,391 @@
+WEBVTT
+
+00:00:00.270 --> 00:00:04.990
+Đến bây giờ, bạn đã thấy hầu hết các khối xây
+dựng chính của RNN.
+
+00:00:04.990 --> 00:00:10.190
+Nhưng chỉ có hai ý tưởng nữa cho phép bạn xây
+dựng những mô hình mạnh mẽ hơn nhiều.
+
+00:00:10.190 --> 00:00:13.830
+Một là RNN hai chiều, cho phép bạn lấy thông
+tin
+
+00:00:13.830 --> 00:00:17.470
+từ cả trước và sau trong chuỗi tại một thời
+điểm.
+
+00:00:17.470 --> 00:00:19.870
+Vì vậy chúng ta sẽ nói về điều đó trong video
+này.
+
+00:00:19.870 --> 00:00:24.030
+Và thứ hai là RNN sâu, bạn sẽ thấy trong video
+tiếp theo.
+
+00:00:24.030 --> 00:00:27.250
+Vì vậy, hãy bắt đầu với RNN hai chiều.
+
+00:00:27.250 --> 00:00:31.550
+Vì vậy, để thúc đẩy RNN hai chiều, hãy xem xét
+mạng này mà bạn đã
+
+00:00:31.550 --> 00:00:35.850
+thấy vài lần trước đây trong bối cảnh nhận
+dạng thực thể được đặt tên.
+
+00:00:35.850 --> 00:00:39.263
+Và một trong những vấn đề của mạng lưới này là
+việc xác định
+
+00:00:39.263 --> 00:00:42.677
+xem từ thứ ba Teddy có phải là một phần trong
+tên của một
+
+00:00:42.677 --> 00:00:46.090
+người hay không là không đủ nếu chỉ nhìn vào
+phần đầu tiên của nó.
+
+00:00:46.090 --> 00:00:47.090
+câu đó.
+
+00:00:47.090 --> 00:00:52.330
+Vì vậy, để biết Y3 nên là 0 hay 1, bạn cần
+nhiều thông tin hơn chỉ
+
+00:00:52.330 --> 00:00:57.570
+ba từ đầu tiên, vì ba từ đầu tiên không cho
+bạn biết họ đang nói về
+
+00:00:57.570 --> 00:01:03.850
+Gấu Teddy hay nói về cựu Tổng thống Mỹ Teddy
+Roosevelt.
+
+00:01:03.850 --> 00:01:09.250
+Vì vậy, đây là RNN một chiều hoặc bốn hướng.
+
+00:01:09.250 --> 00:01:15.870
+Và nhận xét này tôi vừa đưa ra là đúng, cho dù
+các ô này là khối
+
+00:01:15.870 --> 00:01:22.490
+RNN tiêu chuẩn hay chúng là đơn vị GRU hay
+chúng là khối LSTM.
+
+00:01:22.570 --> 00:01:27.170
+Nhưng tất cả các khối này đều chỉ hướng về
+phía trước.
+
+00:01:27.170 --> 00:01:33.570
+Vì vậy, RNN hai chiều hoặc BRNN làm gì để khắc
+phục vấn đề này.
+
+00:01:33.570 --> 00:01:36.450
+Vì vậy, RNN hai chiều hoạt động như sau.
+
+00:01:36.450 --> 00:01:43.330
+Và tôi sẽ sử dụng 4 đầu vào được đơn giản hóa,
+hoặc có thể là một câu có 4 từ.
+
+00:01:43.330 --> 00:01:48.010
+Vì vậy, chúng tôi có bốn đầu vào, X1 đến X4.
+
+00:01:48.010 --> 00:01:53.930
+Vì vậy, lớp ẩn của mạng này sẽ có thành phần
+định kỳ chuyển tiếp.
+
+00:01:53.930 --> 00:02:07.860
+Vì vậy tôi sẽ gọi đây là A1, A2, A3 và A4.
+
+00:02:07.860 --> 00:02:15.460
+Và tôi sẽ vẽ một mũi tên phải lên đó để biểu
+thị đây là thành phần regression xuôi.
+
+00:02:15.460 --> 00:02:21.260
+Và vì vậy chúng sẽ được kết nối như sau.
+
+00:02:21.340 --> 00:02:35.760
+Và do đó, mỗi đơn vị trong số bốn đơn vị định
+kỳ này nhập X hiện tại và sau đó nạp vào
+
+00:02:35.760 --> 00:02:46.600
+giúp dự đoán Y hat 1, Y hat 2, Y hat 3 và Y
+hat 4.
+
+00:02:46.600 --> 00:02:48.240
+Cho đến nay tôi chưa làm gì cả.
+
+00:02:48.240 --> 00:02:52.340
+Về cơ bản, chúng tôi đã vẽ RNN từ slide trước
+nhưng
+
+00:02:52.340 --> 00:02:56.440
+với các mũi tên được đặt ở những vị trí hơi
+buồn cười.
+
+00:02:56.520 --> 00:03:00.560
+Nhưng tôi đã vẽ các mũi tên ở những vị trí hơi
+buồn cười này
+
+00:03:00.560 --> 00:03:04.600
+vì những gì chúng ta sắp làm là thêm một lớp
+lặp lại ngược.
+
+00:03:04.600 --> 00:03:12.860
+Vì vậy, chúng ta sẽ có A1, mũi tên trái để
+biểu thị đây là
+
+00:03:12.860 --> 00:03:21.120
+kết nối ngược, sau đó là A2, ngược, A3, ngược
+và A4, ngược.
+
+00:03:21.120 --> 00:03:24.080
+Vì vậy mũi tên trái biểu thị đây là kết nối
+ngược.
+
+00:03:24.080 --> 00:03:30.680
+Và vì vậy chúng ta sẽ kết nối mạng như sau.
+
+00:03:30.680 --> 00:03:39.840
+Và những kết nối ngược A này sẽ được kết nối
+với nhau theo chiều ngược thời gian.
+
+00:03:39.840 --> 00:03:46.720
+Vì vậy, hãy lưu ý rằng mạng này xác định biểu
+đồ tuần hoàn.
+
+00:03:46.720 --> 00:03:50.227
+Và do đó, với một chuỗi đầu vào, từ X1 đến X4,
+chuỗi chuyển
+
+00:03:50.227 --> 00:03:53.733
+tiếp trước tiên sẽ tính A4 ở mức 1, sau đó sử
+dụng chuỗi đó
+
+00:03:53.733 --> 00:03:57.240
+để tính A4 ở mức 2, sau đó là A4 ở mức 3, rồi
+A4 ở mức 4.
+
+00:03:57.240 --> 00:04:00.620
+Trong khi đó, trình tự lùi sẽ bắt đầu bằng
+cách
+
+00:04:00.620 --> 00:04:04.000
+tính A lùi 4 và sau đó quay lại và tính A lùi
+3.
+
+00:04:04.000 --> 00:04:06.600
+Và lưu ý rằng bạn đang tính toán kích hoạt
+mạng.
+
+00:04:06.600 --> 00:04:08.640
+Đây không phải là chỗ dựa phía sau, đây là chỗ
+dựa phía trước.
+
+00:04:08.640 --> 00:04:12.107
+Nhưng phần chống đỡ phía trước diễn ra một
+phần, nhưng phần
+
+00:04:12.107 --> 00:04:15.573
+chống đỡ phía trước có một phần tính toán đi
+từ trái sang
+
+00:04:15.573 --> 00:04:19.040
+phải và một phần tính toán đi từ phải sang
+trái trong sơ đồ này.
+
+00:04:19.120 --> 00:04:22.240
+Nhưng sau khi tính A lùi 3, bạn có thể sử dụng
+các
+
+00:04:22.240 --> 00:04:25.360
+kích hoạt đó, tính A lùi 2 và sau đó là A lùi
+1.
+
+00:04:25.360 --> 00:04:28.940
+Và cuối cùng, sau khi tính toán tất cả các
+kích
+
+00:04:28.940 --> 00:04:32.520
+hoạt ẩn của bạn, bạn có thể đưa ra dự đoán của
+mình.
+
+00:04:32.520 --> 00:04:40.660
+Và vì vậy, chẳng hạn, để đưa ra dự đoán, mạng
+của bạn sẽ có thứ gì đó giống như Y
+
+00:04:40.660 --> 00:04:48.800
+hat tại thời điểm t là activation function
+được áp dụng cho WY với cả chuyển tiếp
+
+00:04:48.880 --> 00:05:01.430
+kích hoạt tại thời điểm t và kích hoạt ngược
+tại thời điểm t được đưa vào để thực hiện
+
+00:05:01.430 --> 00:05:03.630
+dự đoán đó tại thời điểm t.
+
+00:05:05.030 --> 00:05:10.850
+Vì vậy, nếu bạn nhìn vào dự đoán ở thời điểm
+tập 3 chẳng hạn, thì
+
+00:05:10.850 --> 00:05:16.670
+thông tin từ X1 có thể chảy qua đây, chuyển
+tiếp 1 sang chuyển tiếp 2.
+
+00:05:16.750 --> 00:05:22.070
+Điều đó cũng lấy thông tin ở đây để chuyển
+tiếp 3 tới Y hat 3.
+
+00:05:22.070 --> 00:05:27.110
+Như vậy các thông tin từ X1, X2, X3 đều được
+tính đến.
+
+00:05:27.110 --> 00:05:35.070
+Trong khi đó thông tin từ X4 có thể truyền
+ngược từ 4 đến ngược 3 đến Y3.
+
+00:05:35.070 --> 00:05:40.490
+Vì vậy, điều này cho phép dự đoán tại thời
+điểm thứ 3 lấy đầu vào của
+
+00:05:40.490 --> 00:05:45.910
+nó, cả thông tin từ quá trình cũng như thông
+tin từ hiện tại, đi vào cả
+
+00:05:45.910 --> 00:05:52.160
+những điều tiến và lùi ở bước này, cũng như
+thông tin từ tương lai.
+
+00:05:52.160 --> 00:05:57.920
+Vì vậy, cụ thể, đưa ra một cụm từ như anh ấy
+
+00:05:57.920 --> 00:06:03.680
+đã nói, Teddy Roosevelt dot dot dot, để dự
+đoán
+
+00:06:03.680 --> 00:06:08.420
+Nếu Teddy là một phần trong tên của một người,
+bạn
+
+00:06:08.420 --> 00:06:13.160
+sẽ có thể tính đến thông tin từ quá khứ và
+tương lai.
+
+00:06:13.160 --> 00:06:17.320
+Vì vậy, đây là neural network tái phát
+hai chiều.
+
+00:06:17.320 --> 00:06:21.760
+Và các khối này ở đây có thể không chỉ là khối
+RNN
+
+00:06:21.760 --> 00:06:26.200
+tiêu chuẩn mà còn có thể là khối G-R-U hoặc
+khối LSTM.
+
+00:06:26.200 --> 00:06:32.360
+Trên thực tế, đối với nhiều vấn đề về NLP, đối
+với nhiều văn bản về các vấn đề
+
+00:06:32.360 --> 00:06:38.520
+xử lý ngôn ngữ tự nhiên, RNN hai chiều với
+LSTM dường như được sử dụng phổ biến.
+
+00:06:38.520 --> 00:06:43.453
+Vì vậy, nếu bạn gặp vấn đề về NLP và bạn có
+một câu hoàn chỉnh, bạn
+
+00:06:43.453 --> 00:06:48.387
+đang cố gắng gắn nhãn các thứ trong câu, RNN
+hai chiều với các khối
+
+00:06:48.387 --> 00:06:53.320
+LSTM, cả tiến và lùi, sẽ là điều khá hợp lý
+đầu tiên bạn nên thử.
+
+00:06:53.320 --> 00:06:56.480
+Vậy là xong đối với RNN hai chiều.
+
+00:06:56.480 --> 00:07:00.060
+Và đây là một sửa đổi mà họ có thể thực hiện
+đối
+
+00:07:00.060 --> 00:07:03.640
+với kiến trúc RNN cơ bản hoặc G-R-U hoặc LSTM.
+
+00:07:03.640 --> 00:07:08.000
+Và bằng cách thực hiện thay đổi này, bạn có
+thể có một mô hình sử dụng
+
+00:07:08.000 --> 00:07:12.360
+RNN hoặc G-R-U hoặc LSTM và có thể đưa ra dự
+đoán ở bất kỳ đâu, ngay cả
+
+00:07:12.360 --> 00:07:16.720
+ở giữa chuỗi, bằng cách tính đến thông tin có
+thể có từ toàn bộ chuỗi.
+
+00:07:16.720 --> 00:07:20.680
+Nhược điểm của RNN hai chiều là bạn cần toàn
+bộ chuỗi
+
+00:07:20.680 --> 00:07:24.640
+dữ liệu trước khi có thể đưa ra dự đoán ở bất
+kỳ đâu.
+
+00:07:24.640 --> 00:07:28.720
+Vì vậy, ví dụ: nếu bạn đang xây dựng hệ thống
+nhận dạng
+
+00:07:28.720 --> 00:07:32.800
+giọng nói thì B-RNN sẽ cho phép bạn tính đến
+toàn bộ lời nói.
+
+00:07:32.800 --> 00:07:36.653
+Nhưng nếu sử dụng cách triển khai đơn giản
+này, bạn cần đợi
+
+00:07:36.653 --> 00:07:40.507
+người đó ngừng nói để hiểu toàn bộ câu nói
+trước khi bạn
+
+00:07:40.507 --> 00:07:44.360
+thực sự có thể xử lý nó và đưa ra dự đoán nhận
+dạng giọng nói.
+
+00:07:44.360 --> 00:07:47.827
+Vì vậy, đối với các ứng dụng nhận dạng giọng
+nói theo thời
+
+00:07:47.827 --> 00:07:51.293
+gian thực, cũng có những mô hình phức tạp hơn
+thay vì chỉ
+
+00:07:51.293 --> 00:07:54.760
+sử dụng RNN hai chiều tiêu chuẩn như bạn đang
+thấy ở đây.
+
+00:07:54.760 --> 00:07:59.680
+Nhưng đối với nhiều ứng dụng xử lý ngôn ngữ tự
+nhiên nơi bạn có thể nhận
+
+00:07:59.680 --> 00:08:04.600
+được toàn bộ câu cùng lúc, thuật toán B-RNN
+tiêu chuẩn thực sự rất hiệu quả.
+
+00:08:04.600 --> 00:08:06.360
+Vậy là xong đối với B-RNN.
+
+00:08:06.360 --> 00:08:09.840
+Trong video tiếp theo và cũng là video cuối
+cùng của tuần này, chúng ta
+
+00:08:09.840 --> 00:08:13.320
+hãy nói về cách sử dụng tất cả các ý tưởng,
+RNN, LSTM hoặc GRU cũng như
+
+00:08:13.320 --> 00:08:16.800
+các phiên bản hai chiều này và xây dựng các
+phiên bản sâu sắc của chúng.

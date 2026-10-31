@@ -1,0 +1,399 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:02.640
+Alright, I think this will be an exciting video.
+
+00:00:02.640 --> 00:00:07.240
+In this video, you'll see how to implement gradient descent for your neural network with
+
+00:00:07.240 --> 00:00:08.800
+one hidden layer.
+
+00:00:08.800 --> 00:00:13.080
+In this video, I'm going to just give you the equations you need to implement in order
+
+00:00:13.080 --> 00:00:16.640
+to get backpropagation or to get gradient descent working.
+
+00:00:16.640 --> 00:00:21.180
+And then in the video after this one, I'll give some more intuition about why these
+
+00:00:21.180 --> 00:00:26.040
+particular equations are the accurate equations or the correct equations for computing the
+
+00:00:26.040 --> 00:00:28.900
+gradients you need for your neural network.
+
+00:00:28.900 --> 00:00:37.380
+So your neural network with a single hidden layer for now will have parameters W1, B1,
+
+00:00:37.380 --> 00:00:39.500
+W2 and B2.
+
+00:00:39.500 --> 00:00:50.140
+And so as a reminder, if you have an x or alternatively, N0 input features and N1
+
+00:00:50.140 --> 00:00:56.380
+hidden units and N2 output units.
+
+00:00:56.380 --> 00:00:59.940
+In our example, so far we've only had N2 equals 1.
+
+00:00:59.940 --> 00:01:06.380
+Then the matrix W1 will be N1 by N0.
+
+00:01:06.380 --> 00:01:08.780
+B1 will be an N1 dimensional vector.
+
+00:01:08.780 --> 00:01:14.260
+So you can write that as an N1 by 1 dimensional matrix, really a column vector.
+
+00:01:14.340 --> 00:01:25.940
+The dimensions of W2 will be N2 by N1 and the dimension of B2 will be N2 by 1.
+
+00:01:25.940 --> 00:01:29.380
+Where again, so far we've only seen examples where N2 is equal to 1 where you have just
+
+00:01:29.380 --> 00:01:32.940
+one single hidden unit.
+
+00:01:32.940 --> 00:01:39.380
+So you also have a cost function for your neural network.
+
+00:01:39.380 --> 00:01:43.820
+And for now, I'm just going to assume that you're doing binary classification.
+
+00:01:43.820 --> 00:01:49.820
+So in that case, the cost of your parameters as follows.
+
+00:01:49.820 --> 00:01:56.620
+It's going to be 1 over m of the average of that loss function.
+
+00:01:56.620 --> 00:02:02.580
+And so L here is the loss when your neural network predicts y hat, right?
+
+00:02:02.580 --> 00:02:06.420
+This is really a 2 when the ground truth label is equal to y.
+
+00:02:06.420 --> 00:02:10.460
+And if you're doing binary classification, the loss function can be exactly what you
+
+00:02:10.460 --> 00:02:13.580
+use for logistic progression earlier.
+
+00:02:13.660 --> 00:02:20.460
+So to train the parameters of your algorithm, you need to perform gradient descent.
+
+00:02:20.460 --> 00:02:23.940
+When training a neural network, it's important to initialize the parameters
+
+00:02:23.940 --> 00:02:26.780
+randomly, routed into all zeros.
+
+00:02:26.780 --> 00:02:28.380
+We'll see later why that's the case.
+
+00:02:28.380 --> 00:02:32.140
+But after initializing the parameters to something, each loop of gradient
+
+00:02:32.140 --> 00:02:35.020
+descent would compute the predictions.
+
+00:02:35.020 --> 00:02:42.060
+So you basically compute y hat i for i equals 1 through m, say.
+
+00:02:42.060 --> 00:02:44.460
+And then you need to compute the derivatives.
+
+00:02:44.460 --> 00:02:48.540
+So you need to compute dw1.
+
+00:02:48.540 --> 00:02:53.060
+And that's basically the derivative of the cost function with respect to the
+
+00:02:53.060 --> 00:02:54.340
+parameter w1.
+
+00:02:54.340 --> 00:02:58.700
+You need to compute another variable, which we're going to call db1,
+
+00:02:58.700 --> 00:03:03.380
+which is the derivative or the slope of the cost function with respect to the
+
+00:03:03.380 --> 00:03:06.140
+variable b1, and so on.
+
+00:03:06.140 --> 00:03:09.740
+Similarly for the other parameters w2 and b2.
+
+00:03:09.740 --> 00:03:16.980
+And then finally, the gradient descent update would be to update w1 as w1 minus
+
+00:03:16.980 --> 00:03:21.580
+alpha, the learning rate times dw1.
+
+00:03:21.580 --> 00:03:28.100
+b1 gets updated as b1 minus the learning rate times db1.
+
+00:03:28.100 --> 00:03:32.500
+And similarly for w2 and b2.
+
+00:03:32.500 --> 00:03:37.740
+And sometimes I use colon equals and sometimes equals as either notation works fine.
+
+00:03:37.740 --> 00:03:40.820
+And so this would be one iteration of gradient descent.
+
+00:03:40.820 --> 00:03:44.260
+And then you repeat this some number of times until your parameters look like
+
+00:03:44.260 --> 00:03:45.100
+they're converging.
+
+00:03:45.100 --> 00:03:49.060
+So in previous videos, we talked about how to compute the predictions,
+
+00:03:49.060 --> 00:03:50.340
+how to compute the outputs.
+
+00:03:50.340 --> 00:03:53.100
+And we saw how to do that in a vectorized way as well.
+
+00:03:53.100 --> 00:03:57.780
+So the key is to know how to compute these partial derivative terms,
+
+00:03:57.780 --> 00:04:03.580
+the dw1, db1, as well as the derivatives, dw2 and db2.
+
+00:04:03.580 --> 00:04:09.620
+So what I'd like to do is just give you the equations you need in order to compute
+
+00:04:09.620 --> 00:04:11.020
+these derivatives.
+
+00:04:11.020 --> 00:04:15.660
+And I'll defer to the next video, which is an optional video, to go greater into
+
+00:04:15.660 --> 00:04:19.460
+depth about how we came up with those formulas.
+
+00:04:19.460 --> 00:04:25.900
+So let me just summarize again the equations for a propagation.
+
+00:04:25.900 --> 00:04:32.860
+So you have z1 equals w1x plus b1.
+
+00:04:32.860 --> 00:04:38.620
+And then a1 equals the activation function in that layer,
+
+00:04:38.620 --> 00:04:42.940
+applied element-wise of z1.
+
+00:04:42.940 --> 00:04:50.860
+And then z2 equals w2 a1 plus b2.
+
+00:04:50.860 --> 00:04:55.260
+And then finally, this is all vectorized across your training set, right?
+
+00:04:55.260 --> 00:05:00.740
+a2 is equal to g2 of z2.
+
+00:05:00.740 --> 00:05:03.540
+Again, for now, if we assume you're doing binary classification,
+
+00:05:03.540 --> 00:05:07.060
+then this activation function really should be the sigmoid function.
+
+00:05:07.060 --> 00:05:09.140
+So I'm just throw that in here.
+
+00:05:09.140 --> 00:05:13.860
+So that's the forward propagation or the left to right forward computation for
+
+00:05:13.860 --> 00:05:14.900
+your neural network.
+
+00:05:14.900 --> 00:05:16.820
+Next, let's compute the derivatives.
+
+00:05:16.820 --> 00:05:22.260
+So this is the back propagation step.
+
+00:05:22.260 --> 00:05:31.300
+Gonna compute dz2 equals a2 minus the ground truth y.
+
+00:05:31.300 --> 00:05:35.060
+And just as a reminder, all this is vectorized across examples.
+
+00:05:35.060 --> 00:05:43.140
+So the matrix y is this 1 by m matrix that lists all of your m examples stacked
+
+00:05:43.140 --> 00:05:44.980
+horizontally.
+
+00:05:44.980 --> 00:05:50.900
+Then it turns out dw2 is equal to this.
+
+00:05:50.900 --> 00:05:58.340
+In fact, these first three equations are very similar to gradient descent for
+
+00:05:58.340 --> 00:05:59.460
+logistic regression.
+
+00:05:59.460 --> 00:06:08.740
+comma x is equals 1, comma keep dms equals true.
+
+00:06:08.740 --> 00:06:15.540
+And just a little detail, this np.sum is a Python NumPy command for
+
+00:06:15.540 --> 00:06:21.460
+summing across one dimension of a matrix, in this case, summing horizontally.
+
+00:06:21.460 --> 00:06:26.580
+And what keep dms does is it prevents Python from outputting one of those
+
+00:06:27.300 --> 00:06:33.060
+funny rank 1 arrays where the dimensions was n, comma.
+
+00:06:33.620 --> 00:06:40.100
+So by having keep dms equals true, this ensures that Python outputs for db2 a
+
+00:06:40.100 --> 00:06:43.060
+vector that is n by 1.
+
+00:06:43.060 --> 00:06:47.060
+In fact, technically this will be, I guess, n2 by 1.
+
+00:06:47.060 --> 00:06:51.060
+In this case, it's just a 1 by 1 number, so maybe it doesn't matter.
+
+00:06:52.180 --> 00:06:54.500
+But later on, we'll see when it really matters.
+
+00:06:55.860 --> 00:06:59.300
+So, so far what we've done is very similar to logistic regression.
+
+00:06:59.940 --> 00:07:05.620
+But now as you compute, to run back propagation, you would compute this.
+
+00:07:06.340 --> 00:07:16.040
+dz2 times g1 prime of z1.
+
+00:07:16.680 --> 00:07:22.520
+So this quantity g1 prime is the derivative of what was the activation function you use
+
+00:07:22.520 --> 00:07:23.960
+for the hidden layer.
+
+00:07:23.960 --> 00:07:28.120
+And for the output layer, I assume that you're doing binary classification
+
+00:07:28.120 --> 00:07:29.320
+with the sigmoid function.
+
+00:07:29.320 --> 00:07:31.880
+So that's already baked into that formula for dz2.
+
+00:07:32.600 --> 00:07:36.920
+And this times is element-wise product.
+
+00:07:37.880 --> 00:07:43.000
+So this here is going to be an n1 by m matrix.
+
+00:07:43.880 --> 00:07:51.320
+And this here, this element-wise derivative thing is also going to be an n1 by m matrix.
+
+00:07:51.320 --> 00:07:55.160
+And so this times there is an element-wise product of two matrices.
+
+00:07:56.120 --> 00:08:00.040
+Then finally, dw1 is equal to that.
+
+00:08:01.240 --> 00:08:05.480
+And db1 is equal to this.
+
+00:08:07.720 --> 00:08:15.400
+And p dot sum dz1 axis equals 1.
+
+00:08:17.000 --> 00:08:20.200
+Keep dims equals true.
+
+00:08:21.080 --> 00:08:26.280
+So whereas previously, the keep dims may be matter less if n2 is equal to 1.
+
+00:08:26.280 --> 00:08:28.040
+So it's just a 1 by 1 thing.
+
+00:08:28.040 --> 00:08:28.920
+It's just a real number.
+
+00:08:29.720 --> 00:08:36.200
+Here, db1 will be a n1 by 1 vector.
+
+00:08:36.200 --> 00:08:40.680
+And so you want Python, you want np dot sum to output something of this dimension
+
+00:08:40.680 --> 00:08:45.320
+rather than a funny rank 1 array of that dimension,
+
+00:08:45.320 --> 00:08:49.720
+which could end up messing up some of your later calculations.
+
+00:08:49.720 --> 00:08:52.920
+The other way would be to not have to keep dim parameters,
+
+00:08:52.920 --> 00:08:56.280
+but to explicitly call, you know, reshape,
+
+00:08:56.280 --> 00:09:00.600
+to reshape the output of np dot sum into this dimension,
+
+00:09:01.880 --> 00:09:03.960
+which you would like db to have.
+
+00:09:05.160 --> 00:09:09.560
+So that was boy propagation in, I guess, four equations
+
+00:09:09.560 --> 00:09:13.400
+and back propagation in, I guess, six equations.
+
+00:09:13.400 --> 00:09:17.960
+I know I just wrote down these equations, but in the next optional video,
+
+00:09:17.960 --> 00:09:21.800
+let's go over some intuitions for how the six equations
+
+00:09:21.800 --> 00:09:24.680
+for the back propagation algorithm were derived.
+
+00:09:24.680 --> 00:09:26.360
+Please feel free to watch that or not.
+
+00:09:26.360 --> 00:09:28.760
+But either way, if you implement these algorithms,
+
+00:09:28.760 --> 00:09:33.240
+you will have a correct implementation of for a profit and back prop.
+
+00:09:33.240 --> 00:09:35.720
+And you'll be able to compute the derivatives you need
+
+00:09:35.720 --> 00:09:39.880
+in order to apply gradient descent to learn the parameters of your neural network.
+
+00:09:40.520 --> 00:09:43.640
+It is possible to implement this algorithm and get it to work
+
+00:09:43.640 --> 00:09:45.960
+without deeply understanding the calculus.
+
+00:09:46.040 --> 00:09:48.840
+A lot of successful deep learning practitioners do so.
+
+00:09:49.800 --> 00:09:52.360
+But if you want, you can also watch the next video
+
+00:09:52.360 --> 00:09:57.320
+just to get a bit more intuition about the derivation of these equations.

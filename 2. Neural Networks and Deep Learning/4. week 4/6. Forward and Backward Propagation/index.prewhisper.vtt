@@ -1,0 +1,382 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.289
+Trong video trước, bạn đã thấy các khối cơ bản của việc triển khai một mạng nơ-ron sâu,
+
+00:00:07.289 --> 00:00:14.411
+một bước truyền bá về phía trước cho mỗi lớp và một bước truyền lùi Hãy cùng xem cách
+
+00:00:14.411 --> 00:00:16.338
+thực hiện các bước này.
+
+00:00:16.338 --> 00:00:19.858
+Chúng ta sẽ bắt đầu với truyền xuôi trước.
+
+00:00:19.858 --> 00:00:26.896
+Nhớ lại rằng điều này sẽ là nhập a ^ l trừ 1, và xuất ra a ^ l và bộ nhớ đệm, z ^ l.
+
+00:00:26.896 --> 00:00:34.185
+Chúng tôi chỉ nói rằng, từ quan điểm triển khai có thể chúng tôi cũng sẽ lưu vào bộ nhớ
+
+00:00:34.185 --> 00:00:41.307
+cache w ^ l và b ^ l, chỉ để thực hiện lệnh gọi của hàm dễ hơn một chút trong bài tập
+
+00:00:41.307 --> 00:00:46.586
+chương trình Các phương trình cho điều này đã trông quen thuộc.
+
+00:00:46.586 --> 00:00:53.791
+Cách triển khai chuyển tiếp chỉ là thế này, bằng w ^ l lần a ^ l trừ 1 cộng với b ^ l,
+
+00:00:53.791 --> 00:00:57.143
+và sau đó a ^ l bằng được áp dụng cho z.
+
+00:00:57.143 --> 00:01:03.008
+Nếu bạn muốn triển khai thì nó chỉ là nhân lần a ^ l trừ 1 cộng với b,
+
+00:01:03.008 --> 00:01:10.549
+b là một chương trình phát sóng Python, và a ^ l bằng g, áp dụng phần tử khôn ngoan cho z.
+
+00:01:10.549 --> 00:01:17.587
+Bạn nhớ rằng, trên cho bước thứ 4, chúng ta đã có chuỗi các hộp truyền xuôi như này,
+
+00:01:17.587 --> 00:01:22.614
+vì vậy bạn khởi tạo số bằng cách cho ăn trong a ^ 0, bằng x.
+
+00:01:22.614 --> 00:01:27.809
+Vì vậy, bạn khởi tạo điều này với, đầu vào cho đầu tiên là gì?
+
+00:01:27.809 --> 00:01:35.182
+Nó thực sự là ^ 0, là đầu vào các tính năng cho một ví dụ đào tạo nếu bạn đang thực hiện
+
+00:01:35.182 --> 00:01:40.796
+từng ví dụ một, hoặc ^ 0 nếu bạn đang xử lý toàn bộ tập huấn luyện.
+
+00:01:40.796 --> 00:01:45.069
+Đó là đầu vào cho chuyển tiếp đầu tiên trong chuỗi,
+
+00:01:45.069 --> 00:01:52.526
+và sau đó chỉ cần lặp lại điều này cho phép bạn tính toán truyền thuận từ trái sang phải.
+
+00:01:52.526 --> 00:01:55.459
+Tiếp theo, hãy nói về truyền ngược.
+
+00:01:55.459 --> 00:02:02.832
+Ở đây, mục tiêu của bạn là nhập vào da [l], và xuất ra da ^ l trừ 1 và dw ^ l và db ^ l.
+
+00:02:02.832 --> 00:02:07.943
+Hãy để tôi viết ra các bước bạn cần phải tính những điều này.
+
+00:02:07.943 --> 00:02:12.970
+Dz ^ l bằng da ^ l nguyên tố, với g của l nguyên tố z của l.
+
+00:02:12.970 --> 00:02:18.500
+Sau đó, để tính các đạo hàm, dw ^ l bằng dz ^ l lần a của l trừ 1.
+
+00:02:18.500 --> 00:02:24.533
+Tôi không rõ ràng đặt trong bộ nhớ cache, nhưng hóa ra bạn cần điều này.
+
+00:02:24.533 --> 00:02:27.884
+Khi đó db ^ l bằng dz ^ l, và cuối cùng,
+
+00:02:27.884 --> 00:02:32.074
+da của l trừ đi 1 bằng w ^ l chuyển vị lần dz ^ l.
+
+00:02:32.074 --> 00:02:35.760
+Tôi không muốn đi qua chi tiết cho điều này,
+
+00:02:35.760 --> 00:02:41.877
+nhưng nó chỉ ra rằng nếu bạn lấy định nghĩa này cho da và cắm nó vào đây,
+
+00:02:41.877 --> 00:02:47.909
+sau đó bạn nhận được cùng một công thức như chúng tôi đã ở đó trước đây,
+
+00:02:47.909 --> 00:02:53.104
+cho cách bạn tính toán dz ^ l như một hàm của dz ^ l trước đó.
+
+00:02:53.104 --> 00:02:56.540
+Trên thực tế, nếu tôi chỉ cắm nó vào đây,
+
+00:02:56.540 --> 00:03:03.745
+bạn kết thúc rằng dz ^ l bằng thành w ^ l cộng với 1 chuyển vị dz ^ l cộng 1 lần g ^ l
+
+00:03:03.745 --> 00:03:05.253
+nguyên tố z của l.
+
+00:03:05.253 --> 00:03:09.024
+Tôi biết điều này có vẻ như rất nhiều đại số.
+
+00:03:09.024 --> 00:03:16.481
+Bạn thực sự có thể kiểm tra kỹ bản thân rằng này là phương trình chúng tôi đã viết ra lần
+
+00:03:16.481 --> 00:03:19.330
+tuyên truyền ngược vào tuần trước,
+
+00:03:19.330 --> 00:03:24.524
+khi chúng tôi làm một mạng nơ-ron chỉ với một lớp ẩn duy nhất.
+
+00:03:24.524 --> 00:03:28.295
+Xin nhắc lại, lần này là sản phẩm khôn ngoan,
+
+00:03:28.295 --> 00:03:35.249
+vì vậy tất cả những gì bạn cần là bốn phương trình đó để thực hiện hàm lùi của bạn.
+
+00:03:35.249 --> 00:03:39.774
+Và cuối cùng, tôi sẽ viết ra một phiên bản véc tơ hóa.
+
+00:03:39.774 --> 00:03:47.231
+Vì vậy, dòng đầu tiên trở thành dz ^ l bằng da ^ l tích nguyên tố với g ^ l nguyên tố của
+
+00:03:47.231 --> 00:03:50.331
+z ^ l, Cũng không có gì bất ngờ ở đó.
+
+00:03:50.331 --> 00:03:55.358
+Dw ^ l trở thành 1 trên m, dz ^ l lần a ^ l trừ 1 chuyển vị.
+
+00:03:55.358 --> 00:03:59.296
+Khi đó db ^ l trở thành 1 trên m np.sum dz ^ l.
+
+00:03:59.296 --> 00:04:02.564
+Khi đó trục bằng 1, keepdims bằng true.
+
+00:04:02.564 --> 00:04:08.345
+Chúng tôi đã nói về việc sử dụng np.sum trong tuần trước, để tính db.
+
+00:04:08.345 --> 00:04:12.870
+Cuối cùng, da ^ l trừ 1 là w ^ l lần hoán vị dz của l.
+
+00:04:12.870 --> 00:04:16.305
+Cái này cho phép bạn nhập này, da, ở đây.
+
+00:04:16.305 --> 00:04:22.338
+Xuất ra dW ^ l, dp ^ l, dẫn xuất bạn cần, cũng như da ^ l trừ 1 như sau.
+
+00:04:22.338 --> 00:04:24.181
+và dA [l-1], đúng chứ?
+
+00:04:24.181 --> 00:04:25.019
+Như ở đây.
+
+00:04:25.019 --> 00:04:32.308
+Chỉ để tóm tắt, lấy đầu vào x, bạn có thể có lớp đầu tiên có thể có chức năng kích hoạt
+
+00:04:32.308 --> 00:04:32.727
+ReLU.
+
+00:04:32.727 --> 00:04:38.090
+Rồi đến lớp thứ hai, có thể sử dụng một hàm kích hoạt ReLU khác,
+
+00:04:38.090 --> 00:04:45.463
+đi đến thứ ba có thể có một chức năng kích hoạt sigmoid Nếu bạn đang thực hiện phân loại
+
+00:04:45.463 --> 00:04:48.395
+nhị phân, và điều này tạo ra y-hat.
+
+00:04:48.395 --> 00:04:53.004
+Sau đó, sử dụng y-hat, bạn có thể tính toán sự mất mát.
+
+00:04:53.004 --> 00:04:56.607
+và điều này cho phép bạn bắt đầu lặp ngược.
+
+00:04:56.607 --> 00:04:58.953
+Tôi sẽ vẽ các mũi tên trước.
+
+00:04:58.953 --> 00:05:03.226
+Tôi đoán tôi không cần phải bút thay đổi quá nhiều.
+
+00:05:03.226 --> 00:05:10.683
+Sau đó bạn sẽ ở đâu có backprop tính toán các dẫn xuất, tính toán dW ^ 3, db ^ 3, dW ^ 2,
+
+00:05:10.683 --> 00:05:12.610
+db ^ 2, dW ^ 1, db ^ 1.
+
+00:05:12.610 --> 00:05:16.799
+Trên đường đi bạn sẽ là tính toán so với tiền mặt.
+
+00:05:16.799 --> 00:05:20.067
+Chúng ta sẽ chuyển z ^ 1, z ^ 2, z ^ 3.
+
+00:05:20.067 --> 00:05:23.418
+Ở đây bạn chuyển ngược da ^ 2 và da ^ 1.
+
+00:05:23.418 --> 00:05:29.200
+Điều này có thể tính da [0], nhưng chúng tôi sẽ không sử dụng mà để ,
+
+00:05:29.200 --> 00:05:31.378
+bạn có thể chỉ loại bỏ đó.
+
+00:05:31.378 --> 00:05:38.584
+Đây là cách bạn triển khai tiến lùi và hỗ trợ lùi cho một mạng nơ-ron nhân tạo ba lớp.
+
+00:05:38.584 --> 00:05:45.873
+cuối cùng này mà tôi chưa nói về cái đó là cho phép đệ quy chuyển tiếp chúng ta sẽ khởi
+
+00:05:45.873 --> 00:05:48.303
+tạo nó với dữ liệu đầu vào X.
+
+00:05:48.303 --> 00:05:50.314
+Thế còn về đệ quy ngược?
+
+00:05:50.314 --> 00:05:55.509
+Nó chỉ ra rằng da của l khi bạn đang sử dụng hồi quy logistic,
+
+00:05:55.509 --> 00:06:02.631
+Nếu bạn đang thực hiện phân loại nhị phân, bằng với y hơn a cộng 1 trừ y hơn 1 trừ a.
+
+00:06:02.631 --> 00:06:09.837
+Nó chỉ ra rằng đạo hàm của hàm mất mát liên quan đến đầu ra liên quan đến y-hat có thể
+
+00:06:09.837 --> 00:06:11.345
+được hiển thị là .
+
+00:06:11.345 --> 00:06:18.634
+nếu bạn quen với giải tích, nếu bạn tra cứu hàm mất mát lấy các đạo hàm đối với đối với
+
+00:06:18.634 --> 00:06:24.416
+y-hat đối với a, bạn có thể chứng minh rằng bạn có được công thức đó.
+
+00:06:24.416 --> 00:06:29.945
+Đây là công thức bạn nên sử dụng cho da, cho lớp cuối cùng, vốn L.
+
+00:06:29.945 --> 00:06:36.146
+Tất nhiên nếu bạn phải có một triển khai sau đó bạn khởi tạo đệ quy ngược,
+
+00:06:36.146 --> 00:06:43.435
+không phải với điều này, nhưng với da hoa A cho lớp L sẽ là điều tương tự đối với ví dụ
+
+00:06:43.435 --> 00:06:44.273
+khác nhau.
+
+00:06:44.273 --> 00:06:51.730
+Trên một cho chuyến tàu đầu tiên ví dụ cộng với 1 trừ y cho ví dụ về 1 trừ A cho ví dụ về
+
+00:06:51.730 --> 00:06:57.176
+chuyến tàu đầu tiên, dot-dot-dot xuống ví dụ về chuyến tàu thứ n.
+
+00:06:57.176 --> 00:06:59.439
+Vì vậy, 1 trừ đi một của M.
+
+00:06:59.439 --> 00:07:02.706
+Đó là cách bạn sẽ triển khai vectơ hóa.
+
+00:07:02.706 --> 00:07:08.152
+Đó là cách bạn khởi tạo phiên bản vectơ hóa của lan truyền ngược.
+
+00:07:08.152 --> 00:07:15.442
+Bây giờ chúng ta đã thấy khối xây dựng cơ bản của cả truyền xuôi cũng như truyền ngược.
+
+00:07:15.442 --> 00:07:18.710
+Nếu bạn thực hiện các phương trình này,
+
+00:07:18.710 --> 00:07:25.999
+bạn sẽ có một triển khai chuyển tiếp prop và backprop tới giúp bạn có được cụ phái sinh
+
+00:07:25.999 --> 00:07:26.921
+mà bạn cần.
+
+00:07:26.921 --> 00:07:30.775
+Bạn có thể nghĩ, đó là rất nhiều phương trình.
+
+00:07:30.775 --> 00:07:32.116
+Tôi hơi bối rối.
+
+00:07:32.116 --> 00:07:39.321
+Tôi không chắc là tôi thấy cách này hoạt động như thế nào và nếu bạn đang cảm thấy như
+
+00:07:39.321 --> 00:07:44.851
+vậy, lời khuyên của tôi là khi bạn bài tập lập trình của tuần này,
+
+00:07:44.851 --> 00:07:51.889
+bạn sẽ có thể triển khai những điều này cho bản thân bạn và chúng sẽ bằng cụ thể hơn
+
+00:07:51.889 --> 00:07:52.392
+nhiều.
+
+00:07:52.392 --> 00:07:56.162
+Tôi biết những là một rất nhiều phương trình,
+
+00:07:56.162 --> 00:08:00.938
+và có thể một số phương trình không có ý nghĩa hoàn toàn,
+
+00:08:00.938 --> 00:08:06.720
+nhưng nếu bạn làm việc thông qua phép tính toán và không hề đơn giản,
+
+00:08:06.720 --> 00:08:14.009
+và hãy cứ thoải mái thử, nhưng đó thực sự là một trong những các dẫn xuất khó trong học
+
+00:08:14.009 --> 00:08:14.344
+máy.
+
+00:08:14.344 --> 00:08:21.718
+Hóa ra các phương trình mà chúng tôi đã viết ra là chỉ là các phương trình giải tích đạo
+
+00:08:21.718 --> 00:08:23.226
+hàm tự nhiên nhất.
+
+00:08:23.226 --> 00:08:27.080
+đặc biệt là trong backprop, nhưng một lần nữa,
+
+00:08:27.080 --> 00:08:31.018
+nếu điều này cảm thấy một chút trừu tượng chút,
+
+00:08:31.018 --> 00:08:37.386
+hoặc khó hiểu lời khuyên của tôi là khi bạn đã hoàn thành bài tập lập trình,
+
+00:08:37.386 --> 00:08:40.653
+thì bạn sẽ thấy nó cụ thể hơn một chút.
+
+00:08:40.653 --> 00:08:47.273
+Mặc dù tôi phải nói, ngay cả hôm nay khi tôi triển khai một thuật toán học tập,
+
+00:08:47.273 --> 00:08:54.646
+đôi khi thậm chí tôi ngạc nhiên khi triển khai thuật toán học tập hoạt động và đó là bởi
+
+00:08:54.646 --> 00:09:00.930
+vì rất nhiều sự phức tạp của máy học đến từ dữ liệu thay vì từ các dòng mã.
+
+00:09:00.930 --> 00:09:05.538
+Đôi khi bạn cảm thấy như bạn thực hiện một vài dòng mã,
+
+00:09:05.538 --> 00:09:12.912
+và không chắc chắn về những gì nó đã thực hiện, nhưng nó lại hoạt động một cách kỳ diệu,
+
+00:09:12.912 --> 00:09:20.201
+và đó là bởi vì rất nhiều thực sự không có trong đoạn mã bạn viết thường không quá dài.
+
+00:09:20.201 --> 00:09:26.317
+Nó không hằn là đơn giản, nhưng nó không phải là 10.000, 100.000 dòng mã,
+
+00:09:26.317 --> 00:09:33.691
+nhưng bạn cung cấp cho nó quá nhiều dữ liệu đôi khi mặc dù tôi đã làm việc với máy trong
+
+00:09:33.691 --> 00:09:40.896
+một thời gian dài, đôi khi nó vẫn gây ngạc nhiên cho tôi một chút khi học của tôi hoạt
+
+00:09:40.896 --> 00:09:48.270
+động, bởi vì rất nhiều độ phức tạp của thuật toán học tập của bạn đến từ dữ liệu thay vì
+
+00:09:48.270 --> 00:09:52.962
+nhất thiết phải từ bạn viết hàng nghìn và nghìn dòng mã.
+
+00:09:52.962 --> 00:09:56.397
+Đó là cách bạn triển khai mạng nơron sâu.
+
+00:09:56.397 --> 00:10:03.938
+Một lần nữa, điều này sẽ trở nên nhiều hơn cụ thể khi bạn đã hoàn thành bài tập lập trình.
+
+00:10:03.938 --> 00:10:08.462
+Trước khi tiếp tục bài học, thì trong video tiếp theo,
+
+00:10:08.462 --> 00:10:11.981
+tôi sẽ nói về các tham số và siêu tham số.
+
+00:10:11.981 --> 00:10:15.417
+Trên thực tế khi bạn huấn luyện mạng sâu,
+
+00:10:15.417 --> 00:10:22.706
+việc có thể tổ chức tốt các siêu tham số sẽ giúp bạn hiệu quả hơn trong việc phát triển
+
+00:10:22.706 --> 00:10:23.795
+mạng của bạn.
+
+00:10:23.795 --> 00:10:29.493
+Trong video tiếp theo, chúng ta hãy bàn xem điều đó chính xác là gì.

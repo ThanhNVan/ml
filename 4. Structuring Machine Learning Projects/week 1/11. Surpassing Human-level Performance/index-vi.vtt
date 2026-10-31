@@ -1,0 +1,429 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.075
+[không nghe được] các đội thường thấy nó thú vị để vượt qua
+
+2
+00:00:03.075 --> 00:00:07.305
+hiệu suất của con người trên nhiệm vụ classification giải trí cụ thể.
+
+3
+00:00:07.305 --> 00:00:12.355
+Chúng ta hãy nói về một số điều bạn thấy nếu bạn cố gắng thực hiện điều này cho mình.
+
+4
+00:00:12.355 --> 00:00:15.570
+Chúng tôi đã thảo luận trước khi tiến trình machine learning trở nên
+
+5
+00:00:15.570 --> 00:00:19.895
+khó khăn hơn như thế nào khi bạn tiếp cận hoặc thậm chí vượt qua hiệu suất của con người.
+
+6
+00:00:19.895 --> 00:00:23.480
+Hãy nói về một ví dụ nữa về lý do tại sao đó là trường hợp.
+
+7
+00:00:23.480 --> 00:00:26.820
+Giả sử bạn có một vấn đề mà một nhóm người thảo luận và
+
+8
+00:00:26.820 --> 00:00:30.105
+tranh luận đạt được lỗi 0.5%,
+
+9
+00:00:30.105 --> 00:00:32.465
+một lỗi 1% của con người,
+
+10
+00:00:32.465 --> 00:00:38.785
+và bạn có một thuật toán của 0.6% lỗi đào tạo và 0.8% lỗi dev.
+
+11
+00:00:38.785 --> 00:00:40.440
+Vì vậy, trong trường hợp này,
+
+12
+00:00:40.440 --> 00:00:46.093
+thiên vị tránh được là gì?
+
+13
+00:00:46.093 --> 00:00:50.460
+Vì vậy, điều này là tương đối dễ dàng hơn để trả lời,
+
+14
+00:00:50.460 --> 00:00:53.420
+0,5% là ước tính của
+
+15
+00:00:53.420 --> 00:00:54.990
+bạn về lỗi cơ bản, vì vậy thiên vị tránh được của
+
+16
+00:00:54.990 --> 00:00:57.360
+bạn là, bạn sẽ không sử dụng số 1% này làm tham chiếu,
+
+17
+00:00:57.360 --> 00:00:58.625
+bạn có thể sử dụng sự khác biệt này,
+
+18
+00:00:58.625 --> 00:01:06.360
+vì vậy có thể bạn ước tính thiên vị tránh của bạn là ít nhất 0,1% và variance của bạn là 0,2%.
+
+19
+00:01:06.360 --> 00:01:13.805
+Vì vậy, có lẽ có nhiều việc phải làm để giảm variance của bạn hơn là thiên vị tránh khỏi của bạn có lẽ.
+
+20
+00:01:13.805 --> 00:01:16.795
+Nhưng bây giờ chúng ta hãy lấy một ví dụ khó hơn, giả sử,
+
+21
+00:01:16.795 --> 00:01:20.730
+một nhóm của con người và hiệu suất duy nhất của con người, giống như trước đây,
+
+22
+00:01:20.730 --> 00:01:24.300
+nhưng thuật toán của bạn nhận được lỗi đào tạo 0,3%,
+
+23
+00:01:24.300 --> 00:01:28.635
+và lỗi dev 0,4%.
+
+24
+00:01:28.635 --> 00:01:31.405
+Bây giờ, sự thiên vị có thể tránh khỏi là gì?
+
+25
+00:01:31.405 --> 00:01:34.425
+Bây giờ thật sự khó trả lời điều đó hơn nhiều.
+
+26
+00:01:34.425 --> 00:01:36.940
+Thực tế là lỗi đào tạo của bạn,
+
+27
+00:01:36.940 --> 00:01:41.415
+0,3%, điều này có nghĩa là bạn đã quá trang bị bởi 0,2%,
+
+28
+00:01:41.415 --> 00:01:44.505
+hoặc là lỗi cơ bản, thực sự 0,1%,
+
+29
+00:01:44.505 --> 00:01:46.740
+hoặc có thể là lỗi cơ bản 0,2%,
+
+30
+00:01:46.740 --> 00:01:49.455
+hoặc có thể là lỗi cơ bản là 0,3%?
+
+31
+00:01:49.455 --> 00:01:51.564
+Bạn không thực sự biết,
+
+32
+00:01:51.564 --> 00:01:56.935
+nhưng dựa trên thông tin được đưa ra trong ví dụ này,
+
+33
+00:01:56.935 --> 00:02:01.150
+bạn thực sự không có đủ thông tin
+
+34
+00:02:01.150 --> 00:02:05.845
+để biết nếu bạn nên tập trung vào việc giảm thiên vị hoặc giảm variance trong thuật toán của bạn.
+
+35
+00:02:05.845 --> 00:02:10.810
+Vì vậy, điều đó làm chậm hiệu quả mà bạn nên tiến bộ.
+
+36
+00:02:10.810 --> 00:02:15.005
+Hơn nữa, nếu lỗi
+
+37
+00:02:15.005 --> 00:02:20.020
+của bạn đã tốt hơn ngay cả một nhóm người nhìn vào và thảo luận và tranh luận về nhãn hiệu phù hợp,
+
+38
+00:02:20.020 --> 00:02:25.150
+ví dụ, thì nó cũng khó hơn để dựa vào trực giác của con người để
+
+39
+00:02:25.150 --> 00:02:27.939
+nói cho thuật toán của bạn những cách mà thuật toán của bạn
+
+40
+00:02:27.939 --> 00:02:30.970
+vẫn có thể cải thiện hiệu suất?
+
+41
+00:02:30.970 --> 00:02:32.275
+Vì vậy, trong ví dụ này,
+
+42
+00:02:32.275 --> 00:02:35.950
+một khi bạn đã vượt qua ngưỡng 0.5% này, các
+
+43
+00:02:35.950 --> 00:02:38.920
+tùy chọn của bạn, cách của bạn để tiến
+
+44
+00:02:38.920 --> 00:02:43.540
+bộ về vấn đề machine learning chỉ là ít rõ ràng hơn.
+
+45
+00:02:43.540 --> 00:02:45.207
+Nó không có nghĩa là bạn không thể đạt được tiến bộ,
+
+46
+00:02:45.207 --> 00:02:48.655
+bạn vẫn có thể đạt được tiến bộ đáng kể,
+
+47
+00:02:48.655 --> 00:02:51.130
+nhưng một số công cụ bạn có để
+
+48
+00:02:51.130 --> 00:02:55.720
+chỉ bạn theo một hướng rõ ràng chỉ không hoạt động.
+
+49
+00:02:55.720 --> 00:02:58.690
+Bây giờ, có rất nhiều vấn đề mà machine learning
+
+50
+00:02:58.690 --> 00:03:02.365
+vượt qua đáng kể hiệu suất của con người.
+
+51
+00:03:02.365 --> 00:03:03.970
+Ví dụ, tôi nghĩ,
+
+52
+00:03:03.970 --> 00:03:08.515
+quảng cáo trực tuyến, ước tính khả năng ai đó nhấp vào đó như thế nào.
+
+53
+00:03:08.515 --> 00:03:12.685
+Có lẽ, các thuật toán học làm điều đó tốt hơn nhiều so với bất kỳ con người nào có thể,
+
+54
+00:03:12.685 --> 00:03:14.505
+hoặc đưa ra đề xuất sản phẩm,
+
+55
+00:03:14.505 --> 00:03:17.690
+giới thiệu phim hoặc sách cho bạn.
+
+56
+00:03:17.690 --> 00:03:20.290
+Tôi nghĩ rằng các trang web ngày nay có thể làm
+
+57
+00:03:20.290 --> 00:03:23.510
+tốt hơn nhiều so với những người bạn thân nhất của bạn có thể.
+
+58
+00:03:23.510 --> 00:03:26.800
+Tất cả hậu cần dự đoán bạn sẽ mất bao lâu để lái xe từ A đến
+
+59
+00:03:26.800 --> 00:03:30.580
+B hoặc dự đoán bao lâu để đi một phương tiện giao hàng để lái từ A đến B,
+
+60
+00:03:30.580 --> 00:03:34.795
+hoặc cố gắng dự đoán liệu ai đó sẽ trả nợ,
+
+61
+00:03:34.795 --> 00:03:39.155
+và do đó, bạn có nên chấp thuận một đề nghị vay tiền hay không.
+
+62
+00:03:39.155 --> 00:03:42.430
+Tất cả những điều này là những vấn đề mà tôi nghĩ ngày nay máy
+
+63
+00:03:42.430 --> 00:03:46.930
+học vượt xa hiệu suất của một con người.
+
+64
+00:03:46.930 --> 00:03:49.450
+Chú ý một điều gì đó về bốn ví dụ này.
+
+65
+00:03:49.450 --> 00:03:53.970
+Tất cả bốn ví dụ này thực sự là học hỏi từ dữ liệu có cấu trúc,
+
+66
+00:03:53.970 --> 00:03:58.250
+nơi bạn có thể có một cơ sở dữ liệu về những gì người dùng đã nhấp vào,
+
+67
+00:03:58.250 --> 00:04:00.520
+cơ sở dữ liệu hỗ trợ thích hợp cho,
+
+68
+00:04:00.520 --> 00:04:03.022
+cơ sở dữ liệu cần bao lâu để có được từ A đến B,
+
+69
+00:04:03.022 --> 00:04:07.825
+cơ sở dữ liệu của các ứng dụng vay trước đó và kết quả của họ.
+
+70
+00:04:07.825 --> 00:04:11.740
+Và đây không phải là vấn đề nhận thức tự nhiên,
+
+71
+00:04:11.740 --> 00:04:14.395
+vì vậy đây không phải là tầm nhìn máy tính,
+
+72
+00:04:14.395 --> 00:04:18.980
+hoặc nhận dạng giọng nói, hoặc nhiệm vụ xử lý ngôn ngữ tự nhiên.
+
+73
+00:04:18.980 --> 00:04:23.260
+Con người có xu hướng rất tốt trong nhiệm vụ nhận thức tự nhiên.
+
+74
+00:04:23.260 --> 00:04:25.090
+Vì vậy, nó là có thể,
+
+75
+00:04:25.090 --> 00:04:27.580
+nhưng nó chỉ là một chút khó khăn hơn cho máy tính để
+
+76
+00:04:27.580 --> 00:04:31.275
+vượt qua hiệu suất của con người trên nhiệm vụ nhận thức tự nhiên.
+
+77
+00:04:31.275 --> 00:04:34.360
+Và cuối cùng, tất cả đều là những vấn đề mà có những
+
+78
+00:04:34.360 --> 00:04:38.555
+đội có quyền truy cập vào số lượng lớn dữ liệu.
+
+79
+00:04:38.555 --> 00:04:43.480
+Ví dụ, các hệ thống tốt nhất cho cả bốn ứng dụng này có lẽ đã
+
+80
+00:04:43.480 --> 00:04:49.075
+xem xét nhiều dữ liệu của ứng dụng đó hơn bất kỳ con người nào có thể nhìn vào.
+
+81
+00:04:49.075 --> 00:04:51.910
+Và như vậy, điều đó cũng làm cho nó tương đối
+
+82
+00:04:51.910 --> 00:04:56.450
+dễ dàng cho một máy tính vượt qua hiệu suất của con người.
+
+83
+00:04:56.450 --> 00:04:59.910
+Thực tế là có quá nhiều dữ liệu mà máy tính có thể kiểm tra,
+
+84
+00:04:59.910 --> 00:05:04.525
+vì vậy nó có thể hóa đá được gọi là mô hình hơn cả tâm trí con người.
+
+85
+00:05:04.525 --> 00:05:06.650
+Khác với những vấn đề này,
+
+86
+00:05:06.650 --> 00:05:12.340
+ngày nay có những hệ thống nhận dạng giọng nói có thể vượt qua hiệu suất của con người.
+
+87
+00:05:12.340 --> 00:05:15.340
+Và cũng có một số tầm nhìn máy tính,
+
+88
+00:05:15.340 --> 00:05:17.740
+một số nhiệm vụ nhận dạng hình ảnh,
+
+89
+00:05:17.740 --> 00:05:21.670
+nơi mà máy tính đã vượt qua hiệu suất của con người.
+
+90
+00:05:21.670 --> 00:05:25.060
+Nhưng bởi vì con người rất giỏi trong nhiệm vụ nhận thức tự nhiên này,
+
+91
+00:05:25.060 --> 00:05:28.160
+tôi nghĩ rằng máy tính trở nên khó khăn hơn.
+
+92
+00:05:28.160 --> 00:05:30.595
+Và sau đó có một số nhiệm vụ y tế,
+
+93
+00:05:30.595 --> 00:05:34.585
+ví dụ, đọc ECG hoặc chẩn đoán ung thư da,
+
+94
+00:05:34.585 --> 00:05:37.570
+hoặc một số nhiệm vụ phóng xạ hẹp,
+
+95
+00:05:37.570 --> 00:05:40.300
+nơi mà máy tính đang trở nên thực sự tốt và
+
+96
+00:05:40.300 --> 00:05:44.310
+có thể vượt qua một hiệu suất duy nhất của con người.
+
+97
+00:05:44.310 --> 00:05:46.510
+Và tôi đoán một trong những điều thú vị về những
+
+98
+00:05:46.510 --> 00:05:48.970
+tiến bộ gần đây trong deep learning là ngay cả đối với
+
+99
+00:05:48.970 --> 00:05:53.935
+những nhiệm vụ này chúng ta có thể vượt qua hiệu suất của con người trong một số trường hợp,
+
+100
+00:05:53.935 --> 00:05:56.650
+nhưng nó đã khó hơn một chút bởi vì con người
+
+101
+00:05:56.650 --> 00:06:00.070
+có xu hướng rất giỏi trong nhiệm vụ nhận thức tự nhiên này.
+
+102
+00:06:00.070 --> 00:06:04.285
+Vì vậy, vượt qua hiệu suất ở cấp độ con người thường không dễ dàng,
+
+103
+00:06:04.285 --> 00:06:08.290
+nhưng với đủ dữ liệu, có rất nhiều hệ thống deep learning
+
+104
+00:06:08.290 --> 00:06:12.455
+đã vượt qua hiệu suất ở cấp độ con người trên một vấn đề giám sát duy nhất.
+
+105
+00:06:12.455 --> 00:06:15.120
+Vì vậy, điều đó có ý nghĩa cho một ứng dụng bạn đang làm việc trên.
+
+106
+00:06:15.120 --> 00:06:17.660
+Tôi hy vọng rằng có lẽ một ngày nào đó bạn quản lý để có được
+
+107
+00:06:17.660 --> 00:06:21.300
+hệ thống deep learning của bạn cũng vượt qua hiệu suất của con người.

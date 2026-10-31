@@ -1,0 +1,519 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.110 --> 00:00:04.750
+In the last video, we worked through an example of using a computation graph to compute a
+
+00:00:04.750 --> 00:00:05.750
+function j.
+
+00:00:05.750 --> 00:00:10.250
+Now, let's take a cleaned up version of that computation graph and show how you can use
+
+00:00:10.250 --> 00:00:15.270
+it to figure out derivative calculations for that function j.
+
+00:00:15.270 --> 00:00:17.450
+So here's our computation graph.
+
+00:00:17.450 --> 00:00:23.310
+Let's say you want to compute the derivative of j with respect to v.
+
+00:00:23.310 --> 00:00:24.310
+So what is that?
+
+00:00:24.310 --> 00:00:29.650
+Well, this says if we were to take this value of v and change it a little bit, how would
+
+00:00:29.650 --> 00:00:31.930
+the value of j change?
+
+00:00:31.930 --> 00:00:37.770
+Well, j is defined as 3 times v.
+
+00:00:37.770 --> 00:00:42.930
+And right now, v is equal to 11.
+
+00:00:42.930 --> 00:00:52.050
+So if we were to bump up v by a little bit to 11.001, then j, which is 3v, so currently 33,
+
+00:00:52.050 --> 00:00:56.850
+will get bumped up to 33.003.
+
+00:00:56.850 --> 00:01:02.690
+So here we've increased v by 0.001, and the net result of that is that j goes up 3 times
+
+00:01:02.690 --> 00:01:09.090
+as much, so the derivative of j with respect to v is equal to 3, because the increase in
+
+00:01:09.090 --> 00:01:13.290
+j is 3 times the increase in v.
+
+00:01:13.290 --> 00:01:18.930
+And in fact, this is very analogous to the example we had in the previous video, where
+
+00:01:18.930 --> 00:01:24.650
+we had f of a equals 3a.
+
+00:01:24.650 --> 00:01:33.690
+And so we then derived that df dA, which would slightly simplify a slightly sloppy notation,
+
+00:01:33.690 --> 00:01:36.850
+you can write as df dA was equal to 3.
+
+00:01:36.850 --> 00:01:45.490
+So instead, here we have j equals 3v, and so dj dv is equal to 3.
+
+00:01:45.490 --> 00:01:55.790
+And so we have here j playing the row of f and v playing the row of a in this previous
+
+00:01:55.790 --> 00:01:59.070
+example that we had from an earlier video.
+
+00:01:59.070 --> 00:02:05.990
+So in the terminology of backpropagation, what we're seeing is that if you want to compute
+
+00:02:05.990 --> 00:02:12.990
+the derivative of this final output variable, which usually is a variable you care most about,
+
+00:02:12.990 --> 00:02:18.990
+with respect to v, then we've done, you know, sort of one step of backpropagation, so we've
+
+00:02:18.990 --> 00:02:22.230
+gone one step backwards in this graph.
+
+00:02:22.230 --> 00:02:24.350
+Now let's look at another example.
+
+00:02:24.350 --> 00:02:28.150
+What is dj dA?
+
+00:02:28.150 --> 00:02:34.270
+In other words, if we bump up the value of A, how does that affect the value of j?
+
+00:02:34.270 --> 00:02:36.950
+Well, let's go through the example.
+
+00:02:36.950 --> 00:02:39.830
+Right now A is equal to 5.
+
+00:02:39.830 --> 00:02:43.070
+So let's bump it up to 5.001.
+
+00:02:43.070 --> 00:02:49.350
+The net impact of that is that v, which was A plus u, so that was previous 11, this would
+
+00:02:49.350 --> 00:03:01.830
+get increased to 11.001, and then we've already seen as above that j now gets bump up to 33.003.
+
+00:03:01.830 --> 00:03:08.990
+So what we're seeing is that if you increase A by 0.001, j increases by 0.003, and by increase
+
+00:03:08.990 --> 00:03:14.310
+A, I mean if you were to take this value 5 and just plug in a new value, right, then
+
+00:03:14.310 --> 00:03:19.030
+the change to A will propagate to the right of the computation graph, so that j ends
+
+00:03:19.030 --> 00:03:23.390
+up being 33.003.
+
+00:03:23.390 --> 00:03:30.430
+And so the increase to j is 3 times the increase to A, so that means this derivative is equal
+
+00:03:30.430 --> 00:03:32.030
+to 3.
+
+00:03:32.030 --> 00:03:38.590
+And one way to break this down is to say that if you change A, then that would change
+
+00:03:38.590 --> 00:03:43.790
+v, and through changing v, that would change j.
+
+00:03:43.790 --> 00:03:50.630
+And so the net change to the value of j when you bump up the value, when you nudge the
+
+00:03:50.630 --> 00:04:02.140
+value of A up a little bit, is that first, by changing A, you end up increasing v.
+
+00:04:02.140 --> 00:04:05.260
+Well, how much does v increase?
+
+00:04:05.260 --> 00:04:15.220
+It will increase by an amount that's determined by dv, dA, and then the change in v will cause
+
+00:04:15.220 --> 00:04:19.940
+the value of j to also increase.
+
+00:04:19.940 --> 00:04:28.300
+So in calculus, this is actually called the chain rule, that if A affects v, affects j,
+
+00:04:28.300 --> 00:04:36.740
+then the amount that j changes when you nudge A is the product of how much v changes when
+
+00:04:36.740 --> 00:04:42.060
+you nudge A times how much j changes when you nudge v.
+
+00:04:42.060 --> 00:04:46.460
+So in calculus, again, this is called the chain rule.
+
+00:04:46.460 --> 00:04:54.100
+And what we saw from this calculation is that if you increase A by 0.001, v changes
+
+00:04:54.100 --> 00:04:59.700
+by the same amount, so dv, dA is equal to 1.
+
+00:04:59.700 --> 00:05:08.900
+So in fact, if you plug in what we have worked out previously, dv, dj is equal to 3, and dv,
+
+00:05:08.900 --> 00:05:14.340
+dA is equal to 1, so the product of v is 3 times 1.
+
+00:05:14.340 --> 00:05:18.820
+That actually gives you the correct value, that dj, dA is equal to 3.
+
+00:05:18.820 --> 00:05:26.460
+So this illustration shows how by having computed dj, dv as a derivative with respect to this
+
+00:05:26.460 --> 00:05:34.060
+variable, it can then help you to compute dj, dA.
+
+00:05:34.060 --> 00:05:37.380
+And so that's another step of this backward calculation.
+
+00:05:37.380 --> 00:05:47.280
+I just want to introduce one more new notation convention, which is that when you're writing
+
+00:05:47.280 --> 00:05:53.360
+codes to implement backpropagation, there'll usually be some final output variable that you
+
+00:05:53.360 --> 00:05:54.360
+really care about.
+
+00:05:54.360 --> 00:06:00.880
+So a final output variable that you really care about or you want to optimize.
+
+00:06:00.880 --> 00:06:06.480
+And in this case, this final output variable is j, is really the last node in your computation
+
+00:06:06.480 --> 00:06:07.520
+graph.
+
+00:06:07.520 --> 00:06:12.840
+And so a lot of computations will be trying to compute the derivative of that final output
+
+00:06:12.840 --> 00:06:17.360
+variable, so d of this final output variable, with respect to some other variable.
+
+00:06:17.360 --> 00:06:21.960
+Let me just call that dv.
+
+00:06:21.960 --> 00:06:27.320
+So a lot of the computations you have will be to compute the derivative of the final
+
+00:06:27.320 --> 00:06:32.680
+output variable, really j in this case, with various intermediate variables such as a, b,
+
+00:06:32.680 --> 00:06:34.640
+c, u, or v.
+
+00:06:34.640 --> 00:06:41.280
+And when you implement this in software, what do you call this variable name?
+
+00:06:41.280 --> 00:06:46.680
+One thing you could do is in Python, you could write, you know, give us a very long variable
+
+00:06:46.680 --> 00:06:50.480
+name like d final output var over d var.
+
+00:06:50.480 --> 00:06:51.760
+But there's a very long variable name.
+
+00:06:51.760 --> 00:06:54.680
+You could call this, I guess, dj dvar.
+
+00:06:54.680 --> 00:06:59.920
+But because you're always taking derivatives with respect to dj, with respect to this
+
+00:06:59.920 --> 00:07:05.680
+final output variable, I'm going to introduce a new notation where in code, when you're
+
+00:07:05.680 --> 00:07:12.360
+computing this thing, in the code you write, we're just going to use the variable name
+
+00:07:12.360 --> 00:07:17.040
+dvar in order to represent that quantity.
+
+00:07:17.040 --> 00:07:23.240
+So dvar in the code you write will represent the derivative of the final output variable
+
+00:07:23.240 --> 00:07:29.400
+you care about, such as j, or sometimes the loss l, with respect to the various intermediate
+
+00:07:29.400 --> 00:07:32.160
+quantities you're computing in your code.
+
+00:07:32.160 --> 00:07:38.520
+So this thing here, in your code, you use dv to denote this value.
+
+00:07:38.520 --> 00:07:42.680
+So dv would be equal to 3.
+
+00:07:42.680 --> 00:07:48.400
+And in your code, you represent this as dA, right, which is, we also figured out to be
+
+00:07:48.400 --> 00:07:51.440
+equal to 3.
+
+00:07:51.440 --> 00:07:58.360
+So we've done back propagation partially through this computation graph.
+
+00:07:58.360 --> 00:08:02.200
+Let's go through the rest of this example on the next slide.
+
+00:08:02.200 --> 00:08:07.280
+So let's go to a cleaned up copy of the computation graph.
+
+00:08:07.280 --> 00:08:13.680
+And just to recap, what we've done so far is go backward here and figure out that dv
+
+00:08:13.680 --> 00:08:14.680
+is equal to 3.
+
+00:08:14.680 --> 00:08:19.800
+And again, the definition of dv, that's just the variable name of the code is really dj
+
+00:08:19.800 --> 00:08:20.800
+dv.
+
+00:08:20.800 --> 00:08:24.440
+And we figured out that dA is equal to 3.
+
+00:08:24.440 --> 00:08:32.360
+And again, dA is the variable name in your code, and that's really the value of dj dA.
+
+00:08:32.360 --> 00:08:39.400
+And we're sort of hand wave how we've gone backwards on these two edges like so.
+
+00:08:39.400 --> 00:08:41.640
+Now let's keep computing derivatives.
+
+00:08:41.640 --> 00:08:44.280
+Let's look at the value u.
+
+00:08:44.280 --> 00:08:47.680
+So what is dj d u?
+
+00:08:47.680 --> 00:08:53.000
+Well, through a similar calculation as what we did before, we start off with u equals
+
+00:08:53.000 --> 00:08:54.880
+6.
+
+00:08:54.880 --> 00:09:02.680
+If you bump up u to 6.001, then v, which is previous 11, goes up to 11.001.
+
+00:09:02.680 --> 00:09:08.240
+And so j goes from 33 to 33.003.
+
+00:09:08.240 --> 00:09:10.400
+And so the increase in j is 3x.
+
+00:09:10.400 --> 00:09:12.360
+So this is equal.
+
+00:09:12.360 --> 00:09:16.840
+And the analysis for u is very similar to the analysis we did for a.
+
+00:09:16.840 --> 00:09:28.760
+This is actually computed as dj dv times dv du, where this we had already figured out was
+
+00:09:28.760 --> 00:09:29.760
+3.
+
+00:09:29.760 --> 00:09:34.280
+And this turns out to be equal to 1.
+
+00:09:34.280 --> 00:09:42.480
+So with kind of one more step of back propagation, we end up computing that du is also equal
+
+00:09:42.480 --> 00:09:43.480
+to 3.
+
+00:09:43.480 --> 00:09:47.240
+And du is of course just dj du.
+
+00:09:47.240 --> 00:09:51.600
+Now we'll just step through one last example in detail.
+
+00:09:51.600 --> 00:09:54.200
+So what is dj dv?
+
+00:09:54.200 --> 00:09:59.280
+So imagine if you are allowed to change the value of b and you want to tweak b a little
+
+00:09:59.280 --> 00:10:04.120
+bit in order to minimize or maximize the value of j.
+
+00:10:04.120 --> 00:10:09.840
+So what is the derivative or what's the slope of this function j when you change the value
+
+00:10:09.840 --> 00:10:11.880
+of b a little bit?
+
+00:10:11.880 --> 00:10:17.840
+It turns out that using the chain rule for calculus, this can be written as the product
+
+00:10:17.840 --> 00:10:18.840
+of two things.
+
+00:10:18.840 --> 00:10:24.920
+This is dj du times du dv.
+
+00:10:24.920 --> 00:10:34.400
+And the reasoning is if you change b a little bit, so b goes from 3 to say 3.001.
+
+00:10:34.400 --> 00:10:38.000
+The way it will affect j is it will first affect u.
+
+00:10:38.000 --> 00:10:40.160
+So how much does it affect u?
+
+00:10:40.160 --> 00:10:44.200
+Well u is defined as b times c.
+
+00:10:44.200 --> 00:10:58.440
+So this will go from 6 when b is equal to 3 to now 6.002 because c is equal to 2 in our
+
+00:10:58.440 --> 00:10:59.680
+example here.
+
+00:10:59.680 --> 00:11:09.560
+And so this tells us that du dv is equal to 2 because when you bump up b by 0.001, u increases
+
+00:11:09.560 --> 00:11:10.560
+twice as much.
+
+00:11:10.560 --> 00:11:15.400
+So du dv, this is equal to 2.
+
+00:11:15.400 --> 00:11:21.480
+And now we know that u has gone up twice as much as b has gone up.
+
+00:11:21.480 --> 00:11:24.520
+Well what is dj du?
+
+00:11:24.520 --> 00:11:27.680
+We've already figured out that this is equal to 3.
+
+00:11:27.680 --> 00:11:33.120
+And so by multiplying these two out, we find that dj dv is equal to 6.
+
+00:11:33.120 --> 00:11:37.560
+And again here's the reasoning for the second part of the argument which is we want to
+
+00:11:37.560 --> 00:11:43.360
+know when u goes up by 0.002, how does that affect j?
+
+00:11:43.360 --> 00:11:52.440
+The fact that dj du is equal to 3, that tells us that when u goes up by 0.002, j goes up
+
+00:11:52.440 --> 00:11:54.360
+3 times as much.
+
+00:11:54.360 --> 00:11:59.400
+So j should go up by 0.006.
+
+00:11:59.400 --> 00:12:05.760
+So that comes from the fact that dj du is equal to 3.
+
+00:12:05.760 --> 00:12:13.000
+And if you check the math in detail, you will find that if b becomes 3.001, then u becomes
+
+00:12:13.000 --> 00:12:20.400
+6.002, v becomes 11.002.
+
+00:12:20.400 --> 00:12:23.880
+So that's a plus u, so that's 5 plus u.
+
+00:12:23.880 --> 00:12:33.440
+And then j, which is equal to 3 times v, that ends up being equal to 33.006.
+
+00:12:33.440 --> 00:12:38.400
+And so that's how you get that dj dv is equal to 6.
+
+00:12:38.400 --> 00:12:43.800
+And to fill that in, this is if we go backwards, so this is dv is equal to 6.
+
+00:12:43.800 --> 00:12:50.640
+And dv really is the Python code variable name for, you know, dj dv.
+
+00:12:50.640 --> 00:12:55.920
+And I won't go through the last example in great detail, but it turns out that if you
+
+00:12:55.920 --> 00:13:07.120
+also compute out dj, this turns out to be dj du times du, and this turns out to be 9.
+
+00:13:07.120 --> 00:13:10.040
+This turns out to be 3 times 3.
+
+00:13:10.040 --> 00:13:14.200
+I won't go through that example in detail, but so through this last step, you know, it
+
+00:13:14.200 --> 00:13:20.080
+is possible to derive that dc is equal to...
+
+00:13:20.080 --> 00:13:24.840
+So the key takeaway from this video, from this example, is that when computing derivatives
+
+00:13:24.840 --> 00:13:31.080
+and computing all of these derivatives, the most efficient way to do so is through a right-to-left
+
+00:13:31.080 --> 00:13:34.160
+computation following the direction of the red arrows.
+
+00:13:34.160 --> 00:13:39.360
+And in particular, we'll first compute the derivative with respect to v, and then that
+
+00:13:39.360 --> 00:13:43.360
+becomes useful for computing the derivative with respect to a and the derivative with
+
+00:13:43.360 --> 00:13:45.240
+respect to u.
+
+00:13:45.240 --> 00:13:50.720
+And then the derivative with respect to u, for example, this term over here and this
+
+00:13:50.720 --> 00:13:54.840
+term over here, those in turn become useful for computing the derivative with respect
+
+00:13:54.840 --> 00:13:57.480
+to b and the derivative with respect to c.
+
+00:13:57.480 --> 00:14:03.160
+So that was the computation drop and how there's a forward or left-to-right calculation to
+
+00:14:03.160 --> 00:14:08.560
+compute the cost function, such as j that you might want to optimize, and a backwards
+
+00:14:08.560 --> 00:14:13.040
+or a right-to-left calculation to compute derivatives.
+
+00:14:13.040 --> 00:14:17.040
+If you're not familiar with calculus or the chain rule, I know some of those details
+
+00:14:17.040 --> 00:14:20.680
+might have gone by really quickly, but you didn't follow all the details, don't worry
+
+00:14:20.680 --> 00:14:21.680
+about it.
+
+00:14:21.680 --> 00:14:26.560
+In the next video, we'll go over this again in the context of logistic regression and show
+
+00:14:26.560 --> 00:14:31.520
+you exactly what you need to do in order to implement the computations you need to compute
+
+00:14:31.520 --> 00:14:33.680
+the derivatives for the logistic regression model.

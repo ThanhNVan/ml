@@ -1,0 +1,285 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.100 --> 00:00:07.100
+So, you've learned about gradient descent, about multiple linear regression, and also
+
+00:00:07.100 --> 00:00:08.100
+vectorization.
+
+00:00:08.100 --> 00:00:13.040
+Let's put it all together to implement gradient descent for multiple linear regression with
+
+00:00:13.040 --> 00:00:14.340
+vectorization.
+
+00:00:14.340 --> 00:00:15.340
+This would be cool.
+
+00:00:15.340 --> 00:00:19.440
+Let's quickly review what multiple linear regression looks like.
+
+00:00:19.440 --> 00:00:23.940
+Using our previous notation, let's see how you can write it more succinctly using vector
+
+00:00:23.940 --> 00:00:25.080
+notation.
+
+00:00:25.080 --> 00:00:29.320
+We have parameters w1 to wn, as well as b.
+
+00:00:29.320 --> 00:00:36.320
+But instead of thinking of w1 to wn as separate numbers, that is, separate parameters, let's
+
+00:00:36.320 --> 00:00:44.920
+instead collect all of the w's into a vector w, so that now w is a vector of length n.
+
+00:00:44.920 --> 00:00:51.080
+So we're just going to think of the parameters of this model as a vector w, as well as b,
+
+00:00:51.080 --> 00:00:54.480
+where b is still a number, same as before.
+
+00:00:54.480 --> 00:00:59.000
+For us before, we had defined multiple linear regression like this.
+
+00:00:59.000 --> 00:01:07.360
+Now using vector notation, we can write the model as f sub wb of x equals the vector w
+
+00:01:07.360 --> 00:01:11.080
+dot product with the vector x plus b.
+
+00:01:11.080 --> 00:01:15.320
+And remember that this dot here means dot product.
+
+00:01:15.320 --> 00:01:21.320
+Our cost function can be defined as j of w1 through wn, comma, b.
+
+00:01:21.640 --> 00:01:28.240
+But instead of just thinking of j as a function of these n different parameters wj, as well
+
+00:01:28.240 --> 00:01:36.520
+as b, we're going to write j as a function of parameter vector w and the number b.
+
+00:01:36.520 --> 00:01:45.800
+So this w1 through wn is replaced by this vector w, and j now takes its input, a vector
+
+00:01:45.800 --> 00:01:50.400
+w and a number b, and returns a number.
+
+00:01:50.480 --> 00:01:52.600
+So this is what gradient descent looks like.
+
+00:01:52.600 --> 00:01:59.560
+We're going to repeatedly update each parameter wj to be wj minus alpha times the derivative
+
+00:01:59.560 --> 00:02:08.200
+of the cost j, where j has parameters w1 through wn and b, and once again we just write this
+
+00:02:08.200 --> 00:02:13.840
+as j of vector w and number b.
+
+00:02:13.840 --> 00:02:18.320
+Let's see what this will look like when you implement gradient descent, and in particular,
+
+00:02:18.320 --> 00:02:21.600
+let's take a look at the derivative term.
+
+00:02:21.600 --> 00:02:26.520
+We'll see that gradient descent becomes just a little bit different with multiple features
+
+00:02:26.520 --> 00:02:29.320
+compared to just one feature.
+
+00:02:29.320 --> 00:02:33.640
+Here's what we had when we had gradient descent with one feature.
+
+00:02:33.640 --> 00:02:40.080
+We had an update rule for w and a separate update rule for b, so hopefully these look
+
+00:02:40.080 --> 00:02:42.160
+familiar to you.
+
+00:02:42.160 --> 00:02:48.240
+And this term here is the derivative of the cost function j with respect to the parameter
+
+00:02:48.240 --> 00:02:55.600
+w, and similarly we have an update rule for parameter b with univariate regression, we
+
+00:02:55.600 --> 00:02:58.120
+had only one feature.
+
+00:02:58.120 --> 00:03:02.720
+We call that feature xi without any subscript.
+
+00:03:02.720 --> 00:03:09.200
+Now here's the new notation for when we have n features where n is two or more.
+
+00:03:09.200 --> 00:03:12.760
+We get this update rule for gradient descent.
+
+00:03:12.760 --> 00:03:21.520
+We get w1 to be w1 minus alpha times this expression here, and this formula is actually
+
+00:03:21.520 --> 00:03:27.320
+the derivative of the cost j with respect to w1.
+
+00:03:27.320 --> 00:03:33.080
+The formula for the derivative of j with respect to w1 on the right looks very similar to the
+
+00:03:33.080 --> 00:03:36.320
+case of one feature on the left.
+
+00:03:36.320 --> 00:03:41.960
+The error term still takes a prediction, f of x minus the target y.
+
+00:03:41.960 --> 00:03:49.480
+One difference is that w and x are now vectors, and just as w on the left has now become
+
+00:03:49.480 --> 00:03:57.920
+w1 here on the right, xi here on the left is now instead xi subscript 1 here on the
+
+00:03:57.920 --> 00:04:05.040
+right, and this is just for j equals 1.
+
+00:04:05.040 --> 00:04:12.480
+For multiple linear regression, we have j ranging from 1 through n, and so we'll update
+
+00:04:12.480 --> 00:04:24.240
+the parameters w1, w2 all the way up to wn, and then as before we'll update b.
+
+00:04:24.240 --> 00:04:29.640
+And if you implement this, you get gradient descent for multiple regression.
+
+00:04:29.640 --> 00:04:34.600
+So that's it for gradient descent for multiple regression.
+
+00:04:34.600 --> 00:04:41.200
+Before moving on from this video, I want to make a quick aside or a quick side note on
+
+00:04:41.200 --> 00:04:48.560
+an alternative way for finding w and b for linear regression, and this method is called
+
+00:04:48.560 --> 00:04:51.320
+the normal equation.
+
+00:04:51.320 --> 00:04:56.160
+Whereas it turns out gradient descent is a great method for minimizing the cost function
+
+00:04:56.160 --> 00:05:03.600
+j to find w and b, there is one other algorithm that works only for linear regression, and
+
+00:05:03.600 --> 00:05:08.560
+pretty much none of the other algorithms you see in this specialization for solving for
+
+00:05:08.560 --> 00:05:09.840
+w and b.
+
+00:05:09.840 --> 00:05:15.960
+And this other method does not need an iterative gradient descent algorithm.
+
+00:05:15.960 --> 00:05:20.800
+Called the normal equation method, it turns out to be possible to use an advanced linear
+
+00:05:20.800 --> 00:05:27.260
+algebra library to just solve for w and b all in one go without iterations.
+
+00:05:27.260 --> 00:05:32.620
+Some disadvantages of the normal equation method are, first, unlike gradient descent,
+
+00:05:32.620 --> 00:05:37.220
+this does not generalize to other learning algorithms, such as the logistic regression
+
+00:05:37.220 --> 00:05:41.940
+algorithm that you learn about next week, or the neural networks or other algorithms
+
+00:05:41.940 --> 00:05:44.520
+you see later in this specialization.
+
+00:05:44.520 --> 00:05:50.980
+The normal equation method is also quite slow if the number of features n is large.
+
+00:05:50.980 --> 00:05:56.780
+Almost no machine learning practitioners should implement the normal equation method themselves.
+
+00:05:56.780 --> 00:06:03.380
+But if you are using a mature machine learning library and call linear regression, there is
+
+00:06:03.380 --> 00:06:08.580
+a chance that on the back end, it will be using this to solve for w and b.
+
+00:06:08.580 --> 00:06:12.980
+So if you are ever in a job interview and hear the term normal equation, that's what
+
+00:06:12.980 --> 00:06:15.320
+this refers to.
+
+00:06:15.320 --> 00:06:18.620
+Don't worry about the details of how the normal equation works.
+
+00:06:18.620 --> 00:06:24.540
+Just be aware that some machine learning libraries may use this complicated method in the back
+
+00:06:24.540 --> 00:06:26.700
+end to solve for w and b.
+
+00:06:26.700 --> 00:06:32.260
+But for most learning algorithms, including how you implement linear regression yourself,
+
+00:06:32.260 --> 00:06:36.300
+gradient descent is often a better way to get the job done.
+
+00:06:36.300 --> 00:06:41.540
+In the optional lab that follows this video, you see how to define a multiple regression
+
+00:06:41.540 --> 00:06:48.140
+model in code, and also how to calculate the prediction f of x.
+
+00:06:48.140 --> 00:06:53.620
+You also see how to calculate the cost and implement gradient descent for a multiple
+
+00:06:53.620 --> 00:06:55.620
+linear regression model.
+
+00:06:55.620 --> 00:06:58.740
+This will be using Python's NumPy library.
+
+00:06:58.740 --> 00:07:02.500
+So if any of the code looks very new, that's okay.
+
+00:07:02.500 --> 00:07:08.300
+But you should feel free also to take a look at the previous optional lab that introduces
+
+00:07:08.300 --> 00:07:14.380
+NumPy and vectorization for a refresher of NumPy functions and how to implement those in
+
+00:07:14.380 --> 00:07:15.960
+code.
+
+00:07:15.960 --> 00:07:17.120
+So that's it.
+
+00:07:17.120 --> 00:07:19.760
+You now know multiple linear regression.
+
+00:07:19.760 --> 00:07:24.680
+This is probably the single most widely used learning algorithm in the world today.
+
+00:07:24.680 --> 00:07:26.040
+But there's more.
+
+00:07:26.040 --> 00:07:30.980
+With just a few tricks, such as picking and scaling features appropriately, and also choosing
+
+00:07:30.980 --> 00:07:35.820
+the learning rate alpha appropriately, you will make this work much better.
+
+00:07:35.820 --> 00:07:38.400
+So just a few more videos to go for this week.
+
+00:07:38.400 --> 00:07:42.840
+Let's go on to the next video to see those little tricks that'll help you make multiple
+
+00:07:42.840 --> 00:07:44.840
+linear regression work much better.

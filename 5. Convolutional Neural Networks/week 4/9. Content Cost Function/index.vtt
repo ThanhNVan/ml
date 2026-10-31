@@ -1,0 +1,84 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:07.600
+The cost function of the neural style transfer algorithm had a content cost component and a style cost component.
+
+00:00:07.600 --> 00:00:11.200
+Let's start by defining the content cost component.
+
+00:00:11.200 --> 00:00:17.400
+Remember that this is the overall cost function of the neural style transfer algorithm.
+
+00:00:17.400 --> 00:00:21.600
+So let's figure out what should the content cost function be.
+
+00:00:21.600 --> 00:00:26.200
+Let's say that you use hidden layer L to compute the content cost.
+
+00:00:26.400 --> 00:00:37.800
+If L is a very small number, if you use hidden layer 1, then it will really force your generated image to have pixel values very similar to your content image.
+
+00:00:37.800 --> 00:00:45.800
+Whereas if you use a very deep layer, then it's just asking, well, if there's a dog in your content image, then make sure there's a dog somewhere in your generated image.
+
+00:00:45.800 --> 00:00:50.200
+So in practice, the layer L chosen is somewhere in between.
+
+00:00:50.200 --> 00:00:53.800
+It's neither too shallow nor too deep in the neural network.
+
+00:00:54.000 --> 00:01:04.600
+And because you play with this yourself in the programming exercise that ended this week, I'll leave you to gain some intuitions with the concrete examples in the programming exercise as well.
+
+00:01:04.600 --> 00:01:12.300
+But usually L is chosen to be somewhere in the middle of the layers of the neural network, neither too shallow nor too deep.
+
+00:01:12.300 --> 00:01:20.000
+What you can do is then use a pre-trained continent, maybe a VGG network or it could be some other neural network as well.
+
+00:01:20.000 --> 00:01:29.000
+And now you want to measure, given a content image and given a generated image, how similar are they in content?
+
+00:01:29.700 --> 00:01:41.800
+So let's let this A, super, super square bracket L, round bracket C, and this be the activations of layer L on these two images, on the images C and G.
+
+00:01:42.500 --> 00:01:51.700
+So if these two activations are similar, then that would seem to imply that both images have similar content.
+
+00:01:52.400 --> 00:02:05.100
+So what we'll do is define J content C, G as just how different, how similar, how different are these two activations.
+
+00:02:05.400 --> 00:02:19.900
+So we'll take the element-wise difference between these hidden unit activations in layer L, between when you pass in the content image compared to when you pass in the generated image and take that squared.
+
+00:02:20.100 --> 00:02:26.500
+And you could have a normalization constant in front or not, so just one of the two or something else, it doesn't really matter.
+
+00:02:28.200 --> 00:02:33.300
+Since this will be, can be adjusted as well by this hyperparameter alpha.
+
+00:02:36.020 --> 00:02:42.520
+So just be clear, I'm using this notation as if both of these have been unrolled into vectors.
+
+00:02:42.520 --> 00:02:51.020
+So then this becomes the squared of the L2 norm between this and this, after you've unrolled down both into vectors.
+
+00:02:52.220 --> 00:02:58.120
+But it's really just the element-wise sum of squared differences between these two activation.
+
+00:02:59.120 --> 00:03:08.920
+But it's really just the element-wise sum of squares of differences between the activations in layer L, between the images C and G.
+
+00:03:09.920 --> 00:03:18.920
+And so when later you perform gradient descent on J of G to try to find a value of G so that the overall cost is low,
+
+00:03:18.920 --> 00:03:27.920
+this will incentivize the algorithm to find an image G so that these hidden layer activations are similar to what you got for the content.
+
+00:03:29.120 --> 00:03:33.920
+So that's how you define the content cost function for neural style transfer.
+
+00:03:33.920 --> 00:03:36.920
+Next, let's move on to the style cost function.

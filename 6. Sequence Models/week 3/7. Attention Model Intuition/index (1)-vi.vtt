@@ -1,0 +1,597 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.910
+Đối với hầu hết tuần này,
+
+2
+00:00:01.910 --> 00:00:07.100
+bạn đã sử dụng một kiến trúc mã hóa - giải mã cho máy dịch.
+
+3
+00:00:07.100 --> 00:00:11.805
+Trong khi đó R và N lần đọc một câu và sau đó khác nhau một kết quả đầu ra một câu.
+
+4
+00:00:11.805 --> 00:00:15.538
+Đó là một sửa đổi này được gọi là Attention Model (mô hình chú ý),
+
+5
+00:00:15.538 --> 00:00:18.425
+giúp cho tất cả các công việc tốt hơn nhiều.
+
+6
+00:00:18.425 --> 00:00:21.050
+Ý tưởng thuật toán Attention đã
+
+7
+00:00:21.050 --> 00:00:23.855
+là một trong những ý tưởng có ảnh hưởng nhất trong học tập sâu.
+
+8
+00:00:23.855 --> 00:00:26.410
+Chúng ta hãy xem cách thực hiện nó.
+
+9
+00:00:26.410 --> 00:00:29.770
+Ta nhận được một câu tiếng Pháp rất dài như thế này.
+
+10
+00:00:29.770 --> 00:00:33.800
+Chúng ta yêu cầu mã hóa màu xanh lá cây này trong mạng của bạn
+
+11
+00:00:33.800 --> 00:00:36.230
+đọc toàn bộ câu và sau đó ghi nhớ
+
+12
+00:00:36.230 --> 00:00:40.755
+toàn bộ câu và lưu trữ nó trong việc kích hoạt chuyển tải ở đây.
+
+13
+00:00:40.755 --> 00:00:42.670
+Sau đó cho các mạng màu tím,
+
+14
+00:00:42.670 --> 00:00:44.720
+bộ giải mã mạng đến đó
+
+15
+00:00:44.720 --> 00:00:47.727
+tạo ra bản dịch tiếng Anh.
+
+16
+00:00:47.727 --> 00:00:50.702
+Jane đã đi đến châu Phi cuối tháng chín và thưởng thức văn hóa và đã gặp nhiều người tuyệt vời;
+
+17
+00:00:50.702 --> 00:00:52.355
+cô ấy đã trở lại kể về chuyến đi tuyệt vời của mình,
+
+18
+00:00:52.355 --> 00:00:53.687
+và lôi kéo tôi đi cùng.
+
+19
+00:00:53.687 --> 00:00:56.855
+Bây giờ, cách một người dịch giả
+
+20
+00:00:56.855 --> 00:01:00.260
+dịch này câu không phải là đầu tiên đọc
+
+21
+00:01:00.260 --> 00:01:02.390
+toàn bộ các câu tiếng Pháp và sau đó ghi nhớ
+
+22
+00:01:02.390 --> 00:01:06.215
+toàn bộ và sau đó viết lại một câu tiếng Anh từ đầu.
+
+23
+00:01:06.215 --> 00:01:11.686
+Thay vào đó, những gì người phiên dịch sẽ làm là đọc phần đầu tiên của nó,
+
+24
+00:01:11.686 --> 00:01:14.430
+có thể tạo ra một phần của bản dịch.
+
+25
+00:01:14.430 --> 00:01:17.270
+Nhìn vào phần thứ hai, tạo thêm một vài từ,
+
+26
+00:01:17.270 --> 00:01:18.960
+nhìn vào một vài từ nữa,
+
+27
+00:01:18.960 --> 00:01:20.305
+tạo thêm một vài từ, v.v.
+
+28
+00:01:20.305 --> 00:01:23.105
+Bạn làm việc từng phần từng câu một,
+
+29
+00:01:23.105 --> 00:01:29.041
+bởi vì nó thực sự khó để ghi nhớ toàn bộ câu dài như vậy.
+
+30
+00:01:29.041 --> 00:01:34.835
+Những gì bạn thấy đối với kiến trúc Encoder-Decoder ở trên là,
+
+31
+00:01:34.835 --> 00:01:37.760
+nó hoạt động khá tốt cho các câu ngắn,
+
+32
+00:01:37.760 --> 00:01:40.225
+vì vậy chúng tôi có thể đạt được điểm Bleu tương đối cao,
+
+33
+00:01:40.225 --> 00:01:43.215
+nhưng đối với những câu rất dài,
+
+34
+00:01:43.215 --> 00:01:45.440
+có thể dài hơn 30 hoặc 40 từ,
+
+35
+00:01:45.440 --> 00:01:47.320
+hiệu suất giảm.
+
+36
+00:01:47.320 --> 00:01:51.346
+Điểm Bleu có thể trông giống như thế này vì câu thay đổi
+
+37
+00:01:51.346 --> 00:01:56.219
+và các câu ngắn rất khó dịch,
+
+38
+00:01:56.219 --> 00:01:59.015
+khó để có được tất cả các từ, phải không?
+
+39
+00:01:59.015 --> 00:02:03.080
+Nó không xử lý tốt câu dài vì nó khó
+
+40
+00:02:03.080 --> 00:02:07.138
+vào mạng của bạn để ghi nhớ một câu rất dài.
+
+41
+00:02:07.138 --> 00:02:08.990
+Ở video tiếp theo
+
+42
+00:02:08.990 --> 00:02:14.705
+bạn sẽ thấy Attention Model có thể dịch giống con người hơn một chút,
+
+43
+00:02:14.705 --> 00:02:19.030
+xem xét từng phần của câu và với Attention Model,
+
+44
+00:02:19.030 --> 00:02:22.508
+hiệu suất hệ thống dịch máy có thể trông như thế này,
+
+45
+00:02:22.508 --> 00:02:26.255
+bởi vì bằng cách làm việc một phần của câu tại một thời điểm,
+
+46
+00:02:26.255 --> 00:02:29.000
+bạn không thấy sự sụt giảm lớn này
+
+47
+00:02:29.000 --> 00:02:32.060
+thực sự đo khả năng ghi nhớ của neural network
+
+48
+00:02:32.060 --> 00:02:38.606
+một câu dài có lẽ không phải là điều chúng ta cần neural network nhất để làm.
+
+49
+00:02:38.606 --> 00:02:43.325
+Trong video này, tôi muốn cung cấp cho bạn một số trực giác về
+
+50
+00:02:43.325 --> 00:02:49.149
+Attention hoạt động như thế nào và sau đó chúng ta sẽ trình bày chi tiết trong video tiếp theo.
+
+51
+00:02:49.149 --> 00:02:53.190
+Attention Model do Dimitri, Bahdanau, Camcrun Cho,
+
+52
+00:02:53.190 --> 00:03:00.060
+Yoshe Bengio và mặc dù rõ ràng nó đã được phát triển để dịch máy,
+
+53
+00:03:00.060 --> 00:03:03.685
+nó cũng sử dụng trong nhiều lĩnh vực ứng dụng khác.
+
+54
+00:03:03.685 --> 00:03:06.480
+Điều này thực sự có ảnh hưởng rất lớn,
+
+55
+00:03:06.480 --> 00:03:10.580
+Tôi nghĩ rằng là bài rất quan trọng trong deep learning.
+
+56
+00:03:10.580 --> 00:03:14.385
+Hãy minh họa điều này bằng một câu ngắn,
+
+57
+00:03:14.385 --> 00:03:18.840
+mặc dù những ý tưởng này có thể được phát triển nhiều hơn cho các câu dài,
+
+58
+00:03:18.840 --> 00:03:22.440
+nhưng sẽ dễ dàng hơn để minh họa những ý tưởng này bằng một ví dụ đơn giản.
+
+59
+00:03:22.440 --> 00:03:24.165
+Chúng ta có câu thông thường,
+
+60
+00:03:24.165 --> 00:03:26.470
+Jane visite l'Afrique en Septembre.
+
+61
+00:03:26.470 --> 00:03:30.200
+Giả sử rằng chúng ta sử dụng R và N,
+
+62
+00:03:30.200 --> 00:03:34.140
+và trong trường hợp này, tôi sẽ sử dụng R và N hai chiều,
+
+63
+00:03:34.140 --> 00:03:37.845
+để tính toán một số tập hợp
+
+64
+00:03:37.845 --> 00:03:42.925
+các feature cho từng từ đầu vào và bạn phải hiểu nó,
+
+65
+00:03:42.925 --> 00:03:46.555
+hai chiều R và N với đầu ra Y1 đến Y3
+
+66
+00:03:46.555 --> 00:03:51.240
+và cứ tiếp tục như vậy lên đến Y5 nhưng chúng tôi không dịch từ,
+
+67
+00:03:51.240 --> 00:03:54.497
+hãy để tôi thoát khỏi chữ Y trên đầu trang.
+
+68
+00:03:54.497 --> 00:03:56.220
+Nhưng sử dụng R và N hai chiều,
+
+69
+00:03:56.220 --> 00:03:59.580
+những gì chúng tôi đã làm là với mỗi từ,
+
+70
+00:03:59.580 --> 00:04:02.528
+cho mỗi vị trí trong số năm vị trí trong câu,
+
+71
+00:04:02.528 --> 00:04:06.475
+bạn có thể tính toán một tập hợp các feature rất phong phú về
+
+72
+00:04:06.475 --> 00:04:12.060
+các từ trong câu và có thể các từ xung quanh ở mọi vị trí.
+
+73
+00:04:12.060 --> 00:04:17.125
+Bây giờ, hãy tiếp tục và tạo bản dịch tiếng Anh.
+
+74
+00:04:17.125 --> 00:04:21.690
+Chúng tôi sẽ sử dụng một R và N khác để tạo các bản dịch tiếng Anh.
+
+75
+00:04:21.690 --> 00:04:29.055
+Đây là ghi chú R và N của tôi như thường lệ và thay vì sử dụng A để biểu thị kích hoạt,
+
+76
+00:04:29.055 --> 00:04:32.830
+để tránh nhầm lẫn với các kích hoạt dưới đây,
+
+77
+00:04:32.830 --> 00:04:34.605
+Tôi sẽ sử dụng một ký hiệu khác,
+
+78
+00:04:34.605 --> 00:04:39.915
+Tôi sẽ sử dụng S để biểu thị trạng thái ẩn trong R và N ở đây,
+
+79
+00:04:39.915 --> 00:04:45.270
+vì vậy thay vì viết A1, tôi sẽ viết sang phải S1 và như vậy
+
+80
+00:04:45.270 --> 00:04:50.750
+chúng tôi hy vọng trong mô hình này rằng từ đầu tiên nó tạo ra sẽ là Jane,
+
+81
+00:04:50.750 --> 00:04:54.277
+để tạo ra Jane đến thăm Châu Phi vào tháng 9.
+
+82
+00:04:54.277 --> 00:04:57.120
+Bây giờ, câu hỏi là,
+
+83
+00:04:57.120 --> 00:04:59.835
+khi bạn đang cố tạo từ đầu tiên này,
+
+84
+00:04:59.835 --> 00:05:05.720
+đầu ra này, bạn nên xem phần nào của câu tiếng Pháp đầu vào?
+
+85
+00:05:05.720 --> 00:05:07.960
+Có vẻ như bạn nên chủ yếu xem xét từ đầu tiên này,
+
+86
+00:05:07.960 --> 00:05:11.385
+có thể một vài từ khác gần đó,
+
+87
+00:05:11.385 --> 00:05:15.100
+nhưng bạn không cần phải nhìn vào cuối câu.
+
+88
+00:05:15.100 --> 00:05:18.875
+Attention Model sẽ được tính toán là gì là một tập hợp của
+
+89
+00:05:18.875 --> 00:05:25.350
+trọng số chú ý và chúng tôi sẽ sử dụng Alpha một, một
+
+90
+00:05:25.350 --> 00:05:29.670
+để biểu thị khi bạn đang tạo những từ đầu tiên,
+
+91
+00:05:29.670 --> 00:05:36.145
+bạn nên chú ý đến phần thông tin đầu tiên này ở đây.
+
+92
+00:05:36.145 --> 00:05:41.525
+Và sau đó chúng ta cũng sẽ đưa ra cái thứ hai tạm gọi là Attention Weight (Trọng lượng chú ý),
+
+93
+00:05:41.525 --> 00:05:46.360
+Alpha một, hai cho chúng ta biết những gì chúng ta đang cố gắng tính toán tác phẩm đầu tiên của Jane,
+
+94
+00:05:46.360 --> 00:05:51.740
+chúng tôi chú ý mức độ nào
+
+95
+00:05:51.740 --> 00:05:57.050
+cho tác phẩm thứ hai này từ các đầu vào, v.v. và Alpha một, ba, v.v.,
+
+96
+00:05:57.050 --> 00:06:02.147
+và điều này sẽ cho chúng ta biết
+
+97
+00:06:02.147 --> 00:06:08.610
+chính xác là ngữ cảnh từ mẫu C mà chúng ta nên chú ý đến,
+
+98
+00:06:08.610 --> 00:06:14.990
+và đó là đầu vào cho đơn vị R và N này để sau đó cố gắng tạo ra các từ đầu tiên.
+
+99
+00:06:14.990 --> 00:06:16.590
+Đó là một bước của R và N,
+
+100
+00:06:16.590 --> 00:06:19.880
+chúng ta sẽ làm rõ tất cả những chi tiết này trong video tiếp theo.
+
+101
+00:06:19.880 --> 00:06:23.366
+Bước thứ hai của R và N,
+
+102
+00:06:23.366 --> 00:06:25.755
+chúng ta có
+
+103
+00:06:25.755 --> 00:06:31.585
+trạng thái ẩn mới S 2 và chúng tôi sẽ có một tập mới của trọng chú ý.
+
+104
+00:06:31.585 --> 00:06:38.325
+Chúng tôi đang gonna có Alpha hai, một cho chúng tôi biết khi chúng tôi tạo ra từ lần thứ hai.
+
+105
+00:06:38.325 --> 00:06:42.065
+Tôi đoán điều này sẽ là lượt truy cập có thể đã là mặt đất trip nhãn.
+
+106
+00:06:42.065 --> 00:06:47.760
+Bao nhiêu nên chúng tôi chú ý đến chữ đầu tiên trong các đầu vào Pháp và ngoài ra,
+
+107
+00:06:47.760 --> 00:06:50.880
+Alpha hai, hai và vì vậy on.
+
+108
+00:06:50.880 --> 00:06:53.020
+Bao nhiêu nên chúng tôi chú ý từ visite,
+
+109
+00:06:53.020 --> 00:06:55.851
+bao nhiêu nên chúng tôi chú ý đến tự do và như vậy trên.
+
+110
+00:06:55.851 --> 00:07:01.054
+Và tất nhiên, từ đầu tiên chúng tôi tạo ra trong Jane cũng là một đầu vào này,
+
+111
+00:07:01.054 --> 00:07:05.850
+và sau đó chúng tôi có một số bối cảnh mà chúng tôi đang chú ý đến và bước thứ hai,
+
+112
+00:07:05.850 --> 00:07:09.646
+chỗ ở này cũng có một đầu vào và có với nhau sẽ tạo ra từ thứ hai và
+
+113
+00:07:09.646 --> 00:07:14.930
+mà dẫn chúng ta đến bước thứ ba, S ba,
+
+114
+00:07:14.930 --> 00:07:19.700
+nơi này là một đầu vào và chúng tôi có một số bối cảnh mới C mà
+
+115
+00:07:19.700 --> 00:07:24.730
+phụ thuộc vào Alpha 3 khác nhau cho các bộ thời gian khác nhau,
+
+116
+00:07:24.730 --> 00:07:27.860
+mà cho chúng ta biết bao nhiêu nên chúng tôi chú ý đến
+
+117
+00:07:27.860 --> 00:07:32.633
+các từ khác nhau từ đầu vào pháp câu và vì vậy on.
+
+118
+00:07:32.633 --> 00:07:35.365
+Vì vậy, một số điều tôi đã không chỉ định được nêu ra,
+
+119
+00:07:35.365 --> 00:07:38.650
+nhưng đó sẽ đi xa hơn vào các chi tiết trong đoạn video sau này,
+
+120
+00:07:38.650 --> 00:07:43.750
+làm thế nào chính xác các bối cảnh này định nghĩa và mục tiêu của bối cảnh
+
+121
+00:07:43.750 --> 00:07:46.300
+từ thứ ba là thực sự nên nắm bắt mà
+
+122
+00:07:46.300 --> 00:07:50.720
+có lẽ chúng ta nên nhìn xung quanh thành phố đây là một phần của câu.
+
+123
+00:07:50.720 --> 00:07:55.710
+Công thức bạn sử dụng để làm điều đó sẽ hoãn đến
+
+124
+00:07:55.710 --> 00:08:01.177
+video tiếp theo cũng như cách bạn tính toán những trọng chú ý.
+
+125
+00:08:01.177 --> 00:08:05.000
+Và bạn nhìn thấy trong đoạn video sau đó T Alpha 3,
+
+126
+00:08:05.000 --> 00:08:07.300
+đó là, khi bạn đang cố gắng để tạo ra từ thứ ba,
+
+127
+00:08:07.300 --> 00:08:11.390
+Tôi đoán điều này sẽ là Phi, chỉ nhận được đầu ra đúng.
+
+128
+00:08:11.390 --> 00:08:16.306
+Số tiền này R và N bước
+
+129
+00:08:16.306 --> 00:08:21.640
+nên chú ý đến từ Pháp thời gian T,
+
+130
+00:08:21.640 --> 00:08:27.749
+điều đó phụ thuộc vào kích hoạt hai chiều R và N tại thời điểm T,
+
+131
+00:08:27.749 --> 00:08:32.677
+Tôi đoán nó phụ thuộc vào kích hoạt thứ tư và,
+
+132
+00:08:32.677 --> 00:08:37.900
+lạc hậu kích hoạt tại thời điểm T và nó sẽ phụ thuộc vào nhà nước từ các bước trước đó,
+
+133
+00:08:37.900 --> 00:08:39.420
+nó sẽ phụ thuộc vào S 2 và những điều này với nhau sẽ ảnh hưởng đến,
+
+134
+00:08:39.420 --> 00:08:47.640
+bao nhiêu bạn chú ý đến một từ cụ thể trong pháp câu đầu vào.
+
+135
+00:08:47.640 --> 00:08:49.250
+Nhưng chúng tôi sẽ xác thịt ra tất cả những chi tiết này trong video tiếp theo.
+
+136
+00:08:49.250 --> 00:08:52.775
+Nhưng đó là trực giác quan trọng để mang đi
+
+137
+00:08:52.775 --> 00:08:58.510
+bằng cách này R và N cuộc tuần hành về phía trước tạo ra một từ tại một thời gian,
+
+138
+00:08:58.510 --> 00:09:04.275
+cho đến khi cuối cùng nó tạo ra có lẽ EOS và tại mỗi bước,
+
+139
+00:09:04.275 --> 00:09:06.445
+không có những quan tâm nặng.
+
+140
+00:09:06.445 --> 00:09:09.100
+Alpha T.T. thủ tướng chính phủ mà nói
+
+141
+00:09:09.100 --> 00:09:11.340
+Khi bạn đang cố gắng để tạo ra các T, chữ tiếng Anh,
+
+142
+00:09:11.340 --> 00:09:16.915
+bao nhiêu nên bạn chú ý đến từ Pháp tố T.
+
+143
+00:09:16.915 --> 00:09:20.710
+Và điều này cho phép nó trên mỗi bước thời gian để xem xét có lẽ chỉ
+
+144
+00:09:20.710 --> 00:09:24.835
+trong cửa sổ địa phương của Pháp câu phải chú ý đến,
+
+145
+00:09:24.835 --> 00:09:28.135
+Khi tạo ra một từ cụ thể tiếng Anh.
+
+146
+00:09:28.135 --> 00:09:31.210
+Tôi hy vọng video này truyền tải một số trực giác
+
+147
+00:09:31.210 --> 00:09:34.825
+về attention của mô hình và rằng chúng ta có một cảm giác thô
+
+148
+00:09:34.825 --> 00:09:36.590
+có lẽ các thuật toán như thế.
+
+149
+00:09:36.590 --> 00:09:41.000
+Hãy video tiếp theo để xác thịt ra các chi tiết của mô hình của attention.

@@ -1,0 +1,675 @@
+WEBVTT
+
+00:00:01.780 --> 00:00:05.680
+Chúng ta đã thấy định nghĩa toán học của
+cost function.
+
+00:00:05.680 --> 00:00:10.200
+Bây giờ, hãy xây dựng một số trực giác về chức
+năng thực sự của cost function.
+
+00:00:10.200 --> 00:00:13.920
+Trong video này, chúng ta sẽ xem qua một ví dụ
+để biết cách sử dụng
+
+00:00:13.920 --> 00:00:17.640
+cost function nhằm tìm ra các thông số tốt
+nhất cho mô hình của bạn.
+
+00:00:17.640 --> 00:00:20.150
+Tôi biết video này dài hơn những video khác
+một
+
+00:00:20.150 --> 00:00:22.660
+chút, nhưng hãy kiên nhẫn, tôi nghĩ nó sẽ có
+giá trị.
+
+00:00:22.660 --> 00:00:26.880
+Tóm lại, đây là những gì chúng ta đã thấy về
+cost function cho đến nay.
+
+00:00:26.880 --> 00:00:31.340
+Bạn muốn khớp một đường thẳng với
+training data, vì
+
+00:00:31.340 --> 00:00:35.800
+vậy bạn có mô hình này, fwB của x là w nhân x
+cộng b.
+
+00:00:35.800 --> 00:00:40.040
+Và ở đây, tham số của mô hình là w và b.
+
+00:00:40.040 --> 00:00:43.580
+Bây giờ tùy thuộc vào các giá trị được chọn
+cho các tham số
+
+00:00:43.580 --> 00:00:47.120
+này, bạn sẽ có được các đường thẳng khác nhau
+như thế này.
+
+00:00:47.120 --> 00:00:54.400
+Và bạn muốn tìm các giá trị của w và b sao cho
+đường thẳng vừa khít với training data.
+
+00:00:54.400 --> 00:01:03.280
+Để đo lường mức độ lựa chọn w và b phù hợp với
+training data, bạn có cost function j.
+
+00:01:03.280 --> 00:01:08.400
+Và chức năng của cost function j là nó đo
+lường sự khác
+
+00:01:08.400 --> 00:01:13.520
+biệt giữa dự đoán của mô hình và giá trị thực
+tế của y.
+
+00:01:13.520 --> 00:01:18.420
+Những gì bạn thấy sau này là linear regression
+sẽ cố gắng
+
+00:01:18.420 --> 00:01:23.320
+tìm các giá trị của w và b làm cho j của w
+càng nhỏ càng tốt.
+
+00:01:23.320 --> 00:01:25.760
+Trong toán học, chúng ta viết nó như thế này.
+
+00:01:25.760 --> 00:01:33.440
+Chúng ta muốn cực tiểu hóa j dưới dạng hàm của
+w và b.
+
+00:01:33.440 --> 00:01:37.780
+Vì vậy, bây giờ, để chúng ta hình dung rõ hơn
+cost function j,
+
+00:01:37.780 --> 00:01:42.120
+hãy làm việc với phiên bản đơn giản của mô
+hình linear regression.
+
+00:01:42.120 --> 00:01:48.920
+Chúng ta sẽ sử dụng mô hình fw của x là w nhân
+x.
+
+00:01:49.080 --> 00:01:53.620
+Bạn có thể coi điều này giống như lấy mô hình
+ban đầu ở
+
+00:01:53.620 --> 00:01:58.160
+bên trái và loại bỏ tham số b hoặc đặt tham số
+b bằng 0.
+
+00:01:58.160 --> 00:02:01.280
+Vì vậy, nó chỉ đi ra khỏi phương trình.
+
+00:02:01.280 --> 00:02:05.320
+Vậy f bây giờ chỉ là w nhân x.
+
+00:02:05.320 --> 00:02:11.500
+Vì vậy, bây giờ bạn chỉ có một tham số w và
+cost function j của bạn trông
+
+00:02:11.500 --> 00:02:17.680
+giống như trước đây, lấy hiệu và bình phương
+nó, ngoại trừ việc bây giờ, f bằng
+
+00:02:17.680 --> 00:02:25.320
+đến w nhân xi, và j bây giờ là hàm của w.
+
+00:02:25.320 --> 00:02:28.940
+Và đường đi cũng trở nên khác một chút, bởi vì
+
+00:02:28.940 --> 00:02:32.560
+bạn chỉ có một tham số w, không phải w và b.
+
+00:02:32.560 --> 00:02:37.220
+Vì vậy, với mô hình đơn giản hóa này, việc cần
+làm là
+
+00:02:37.220 --> 00:02:41.880
+tìm một giá trị của w sao cho j của w cực tiểu
+hóa.
+
+00:02:41.880 --> 00:02:46.200
+Để thấy điều này một cách trực quan, điều này
+có nghĩa là nếu
+
+00:02:46.200 --> 00:02:50.520
+b được đặt thành 0 thì f xác định một đường
+trông như thế này.
+
+00:02:50.520 --> 00:02:54.460
+Và bạn thấy rằng đường thẳng đi qua gốc tọa độ
+ở
+
+00:02:54.460 --> 00:02:58.400
+đây, bởi vì khi x bằng 0, vâng, f(x) cũng bằng
+0.
+
+00:02:58.400 --> 00:03:02.820
+Bây giờ, bằng cách sử dụng mô hình đơn giản
+hóa này, hãy xem
+
+00:03:02.820 --> 00:03:07.240
+cost function thay đổi như thế nào khi bạn
+chọn các giá trị khác nhau cho tham số w.
+
+00:03:07.240 --> 00:03:13.880
+Cụ thể, hãy nhìn vào đồ thị của mô hình f của
+x và cost function j.
+
+00:03:13.880 --> 00:03:18.060
+Tôi sẽ vẽ những cái này cạnh nhau và bạn sẽ có
+
+00:03:18.060 --> 00:03:22.240
+thể thấy chúng có liên quan với nhau như thế
+nào.
+
+00:03:22.240 --> 00:03:28.920
+Đầu tiên chú ý rằng với f chỉ số w, khi tham
+số w cố định,
+
+00:03:28.920 --> 00:03:35.600
+nghĩa là luôn là một giá trị không đổi thì fw
+chỉ là hàm của x.
+
+00:03:35.760 --> 00:03:43.000
+Điều đó có nghĩa là giá trị ước tính của y phụ
+thuộc vào giá trị của đầu vào x.
+
+00:03:43.000 --> 00:03:49.120
+Ngược lại, nhìn sang bên phải, cost function j
+là hàm của w,
+
+00:03:49.120 --> 00:03:55.240
+trong đó w điều khiển độ dốc của đường được
+xác định bởi fw.
+
+00:03:55.240 --> 00:03:59.580
+Vì vậy, chi phí được xác định bởi j phụ thuộc
+vào
+
+00:03:59.580 --> 00:04:03.920
+một tham số, trong trường hợp này là tham số
+w.
+
+00:04:03.920 --> 00:04:09.840
+Vì vậy, chúng ta hãy tiếp tục và vẽ các hàm fw
+của x và j của w
+
+00:04:09.840 --> 00:04:15.760
+cạnh nhau, để bạn có thể thấy chúng liên quan
+với nhau như thế nào.
+
+00:04:15.760 --> 00:04:22.600
+Chúng ta sẽ bắt đầu với mô hình là hàm fw của
+x ở bên trái.
+
+00:04:22.600 --> 00:04:31.000
+Ở đây, feature đầu vào x nằm trên trục hoành
+và giá trị đầu ra y nằm trên trục tung.
+
+00:04:31.080 --> 00:04:40.520
+Đây là biểu đồ gồm ba điểm thể hiện
+training set ở các vị trí 1, 1, 2, 2 và 3, 3.
+
+00:04:40.520 --> 00:04:44.960
+Hãy chọn một giá trị cho w, giả sử w là 1.
+
+00:04:44.960 --> 00:04:50.180
+Vì vậy, với sự lựa chọn w này, hàm fw trông
+
+00:04:50.180 --> 00:04:55.400
+giống như đường thẳng này với độ dốc bằng 1.
+
+00:04:55.400 --> 00:05:03.500
+Bây giờ điều bạn có thể làm tiếp theo là tính
+chi phí j khi w bằng 1.
+
+00:05:03.500 --> 00:05:06.770
+Vì vậy, bạn có thể nhớ lại rằng cost function
+được
+
+00:05:06.770 --> 00:05:10.040
+định nghĩa như sau, là cost function sai số
+bình phương.
+
+00:05:10.040 --> 00:05:17.580
+Vì vậy, nếu bạn thay thế fw của xi bằng w nhân
+xi, cost function sẽ
+
+00:05:17.580 --> 00:05:25.120
+trông như thế này, trong đó biểu thức này bây
+giờ là w nhân xi trừ yi.
+
+00:05:25.120 --> 00:05:31.440
+Vì vậy, với giá trị w này, hóa ra sai số bên
+trong
+
+00:05:31.440 --> 00:05:37.760
+cost function, w nhân xi trừ yi bằng 0 cho mỗi
+điểm trong số ba điểm dữ liệu.
+
+00:05:37.760 --> 00:05:42.240
+Bởi vì đối với tập dữ liệu này, khi x là 1 thì
+y là 1.
+
+00:05:42.240 --> 00:05:46.960
+Khi w cũng bằng 1 thì f của x bằng 1.
+
+00:05:46.960 --> 00:05:53.440
+Vì vậy f(x bằng y) cho ví dụ huấn luyện đầu
+tiên này và hiệu là 0.
+
+00:05:53.440 --> 00:05:57.960
+Thay cái này vào cost function j, bạn sẽ nhận
+được 0 bình phương.
+
+00:05:57.960 --> 00:06:04.920
+Tương tự, khi x bằng 2 thì y bằng 2 và f của x
+cũng bằng 2.
+
+00:06:04.920 --> 00:06:09.200
+Vì vậy, một lần nữa, f(x bằng y) cho ví dụ
+huấn luyện thứ hai.
+
+00:06:09.200 --> 00:06:15.360
+Trong cost function, sai số bình phương ở ví
+dụ thứ hai cũng bằng 0 bình phương.
+
+00:06:15.600 --> 00:06:22.880
+Cuối cùng, khi x bằng 3 thì y bằng 3 và f(3)
+cũng bằng 3.
+
+00:06:22.880 --> 00:06:27.280
+Trong cost function, số hạng sai số bình
+phương thứ ba cũng bằng 0 bình phương.
+
+00:06:27.280 --> 00:06:32.140
+Vì vậy, với cả ba ví dụ trong training set
+
+00:06:32.140 --> 00:06:37.000
+này, f của xi bằng yi cho mỗi ví dụ huấn luyện
+i.
+
+00:06:37.000 --> 00:06:43.080
+Vậy f của xi trừ yi bằng 0.
+
+00:06:43.320 --> 00:06:52.760
+Vì vậy, đối với tập dữ liệu cụ thể này, khi w
+bằng 1 thì chi phí j bằng 0.
+
+00:06:52.760 --> 00:06:58.280
+Bây giờ điều bạn có thể làm ở bên phải là vẽ
+cost function j.
+
+00:06:58.280 --> 00:07:06.880
+Và lưu ý rằng vì cost function là hàm của tham
+số w nên trục hoành bây giờ
+
+00:07:06.880 --> 00:07:15.480
+được gắn nhãn w chứ không phải x, và trục tung
+bây giờ là j chứ không phải y.
+
+00:07:15.480 --> 00:07:20.520
+Vậy bạn có j của 1 bằng 0.
+
+00:07:20.520 --> 00:07:27.080
+Nói cách khác, khi w bằng 1 thì j của w bằng
+0.
+
+00:07:27.080 --> 00:07:30.800
+Vì vậy, hãy để tôi tiếp tục và âm mưu đó.
+
+00:07:30.800 --> 00:07:36.600
+Bây giờ hãy xem f và j thay đổi như thế nào
+đối với các giá trị khác nhau của w.
+
+00:07:36.600 --> 00:07:38.660
+W có thể nhận nhiều giá trị, phải không?
+
+00:07:38.660 --> 00:07:46.040
+Vì vậy w có thể nhận giá trị âm, w có thể bằng
+0 và nó cũng có thể nhận giá trị dương.
+
+00:07:46.040 --> 00:07:50.760
+Vậy nếu w bằng 0,5 thay vì 1 thì sao?
+
+00:07:50.760 --> 00:07:53.880
+Khi đó những biểu đồ này sẽ trông như thế nào?
+
+00:07:53.880 --> 00:07:55.520
+Chúng ta hãy tiếp tục và âm mưu đó.
+
+00:07:55.520 --> 00:08:02.500
+Vì vậy, hãy đặt w bằng 0,5, và trong trường
+hợp này, hàm f của x
+
+00:08:02.500 --> 00:08:09.480
+bây giờ trông như thế này, được căn chỉnh với
+hệ số góc bằng 0,5.
+
+00:08:09.480 --> 00:08:16.800
+Và hãy tính chi phí j khi w bằng 0,5.
+
+00:08:16.800 --> 00:08:24.460
+Hãy nhớ lại rằng cost function đang đo sai số
+bình phương hoặc chênh lệch giữa
+
+00:08:24.460 --> 00:08:32.120
+giá trị ước tính, đó là y hat i, là f của xi,
+và giá trị thực, đó là yi, với
+
+00:08:32.120 --> 00:08:34.480
+mỗi ví dụ tôi.
+
+00:08:34.480 --> 00:08:38.733
+Vì vậy, về mặt trực quan, bạn có thể thấy rằng
+lỗi hoặc sự
+
+00:08:38.733 --> 00:08:42.987
+khác biệt bằng với chiều cao của đường thẳng
+đứng này ở
+
+00:08:42.987 --> 00:08:47.240
+đây khi x bằng 1, bởi vì đường nhỏ này là
+khoảng cách giữa
+
+00:08:47.240 --> 00:08:55.440
+giá trị thực của y và giá trị mà hàm f dự
+đoán, nằm xa hơn một chút ở phía dưới.
+
+00:08:55.440 --> 00:09:03.280
+Vì vậy, với ví dụ đầu tiên này, khi x bằng 1,
+f của x là 0,5, do
+
+00:09:03.280 --> 00:09:11.120
+đó sai số bình phương ở ví dụ đầu tiên là 0,5
+trừ 1 bình phương.
+
+00:09:11.120 --> 00:09:15.880
+Hãy nhớ rằng cost function sẽ tính tổng tất cả
+các mẫu huấn luyện trong training set.
+
+00:09:15.880 --> 00:09:19.640
+Vì vậy, hãy chuyển sang ví dụ đào tạo thứ hai.
+
+00:09:19.640 --> 00:09:30.040
+Khi x bằng 2, mô hình dự đoán f của x là 1 và
+giá trị thực của y là 2.
+
+00:09:30.040 --> 00:09:36.220
+Vậy sai số trong ví dụ thứ hai bằng với chiều
+cao của đoạn thẳng nhỏ này
+
+00:09:36.220 --> 00:09:42.400
+ở đây, và sai số bình phương là bình phương
+chiều dài của đoạn thẳng này.
+
+00:09:42.400 --> 00:09:46.760
+Vậy bạn nhận được 1 trừ 2 bình phương.
+
+00:09:46.760 --> 00:09:48.800
+Hãy làm ví dụ thứ ba.
+
+00:09:48.800 --> 00:09:53.920
+Lặp lại quá trình này, sai số ở đây, cũng được
+thể
+
+00:09:53.920 --> 00:09:59.040
+hiện qua đoạn thẳng này, là 1,5 trừ 3 bình
+phương.
+
+00:09:59.040 --> 00:10:06.200
+Tiếp theo, chúng tôi tổng hợp tất cả các số
+hạng này, kết quả là bằng 3,5.
+
+00:10:06.200 --> 00:10:10.840
+Sau đó, chúng tôi nhân số hạng này với 1
+
+00:10:10.840 --> 00:10:15.480
+trên 2m, trong đó m là số lượng mẫu huấn
+luyện.
+
+00:10:15.480 --> 00:10:20.280
+Vì có ba ví dụ huấn luyện nên m bằng 3.
+
+00:10:20.280 --> 00:10:29.880
+Vậy cái này bằng 1 trên 2 nhân 3, trong đó m ở
+đây bằng 3.
+
+00:10:29.880 --> 00:10:35.800
+Nếu chúng ta tính toán, kết quả là 3,5 chia
+cho 6.
+
+00:10:35.800 --> 00:10:40.680
+Vậy chi phí j là khoảng 0,58.
+
+00:10:40.680 --> 00:10:45.360
+Chúng ta hãy tiếp tục và vẽ biểu đồ ở đằng kia
+bên phải.
+
+00:10:45.360 --> 00:10:48.640
+Bây giờ hãy thử thêm một giá trị nữa cho w.
+
+00:10:48.640 --> 00:10:57.560
+Thế còn nếu w bằng 0 thì đồ thị của f và j
+trông như thế nào khi w bằng 0?
+
+00:10:57.560 --> 00:11:07.280
+Hóa ra là nếu w bằng 0, thì f(x) chính là
+đường nằm ngang nằm chính xác trên trục x.
+
+00:11:07.280 --> 00:11:12.280
+Và do đó, lỗi trong mỗi ví dụ là một đường đi
+từ
+
+00:11:12.280 --> 00:11:17.280
+mỗi điểm xuống đường ngang biểu thị f(x bằng
+0).
+
+00:11:17.280 --> 00:11:26.880
+Vậy chi phí j khi w bằng 0 là 1 trên 2m nhân
+với số lượng 1 bình cộng
+
+00:11:26.880 --> 00:11:36.480
+2 bình cộng 3 bình, và nó bằng 1 trên 6 nhân
+14, tức là khoảng 2,33.
+
+00:11:36.480 --> 00:11:45.280
+Vậy hãy vẽ điểm này với w bằng 0 và j bằng 0
+là 2,33 ở đây.
+
+00:11:45.280 --> 00:11:48.480
+Và bạn có thể tiếp tục làm điều này với các
+giá trị khác của w.
+
+00:11:48.480 --> 00:11:53.920
+Vì w có thể là số bất kỳ nên nó cũng có thể là
+giá trị âm.
+
+00:11:53.920 --> 00:12:03.080
+Vậy nếu w âm 0,5 thì đường f là đường dốc
+xuống như thế này.
+
+00:12:03.080 --> 00:12:09.000
+Hóa ra là khi w âm 0,5, thì bạn sẽ có chi phí
+thậm
+
+00:12:09.000 --> 00:12:14.920
+chí còn cao hơn khoảng 5,25, chính là điểm ở
+trên đây.
+
+00:12:14.920 --> 00:12:18.460
+Và bạn có thể tiếp tục tính cost function cho
+các giá trị
+
+00:12:18.460 --> 00:12:22.000
+khác nhau của w, v.v. và vẽ đồ thị các giá trị
+này, phải không?
+
+00:12:22.000 --> 00:12:25.880
+Vì vậy, hóa ra là bằng cách tính toán một loạt
+các giá trị,
+
+00:12:25.880 --> 00:12:29.760
+bạn có thể từ từ tìm ra cost function j trông
+như thế nào.
+
+00:12:29.760 --> 00:12:32.620
+Và đó chính là j.
+
+00:12:32.620 --> 00:12:38.170
+Tóm lại, mỗi giá trị của tham số w tương ứng
+với một
+
+00:12:38.170 --> 00:12:43.720
+đường thẳng phù hợp khác nhau, f của x trên
+biểu đồ bên trái.
+
+00:12:43.720 --> 00:12:48.980
+Và đối với training set đã cho, lựa chọn giá
+trị w đó
+
+00:12:48.980 --> 00:12:54.240
+tương ứng với một điểm, một điểm trên biểu đồ
+bên phải.
+
+00:12:54.240 --> 00:12:59.960
+Bởi vì với mỗi giá trị của w, bạn có thể tính
+được giá trị j của w.
+
+00:12:59.960 --> 00:13:08.240
+Ví dụ: khi w bằng 1, điều này tương ứng với
+đường thẳng này phù hợp với dữ liệu.
+
+00:13:08.240 --> 00:13:13.680
+Và nó cũng tương ứng với điểm này trên đồ thị
+của
+
+00:13:13.680 --> 00:13:19.120
+j, trong đó w bằng 1 và chi phí j của 1 bằng
+0.
+
+00:13:19.160 --> 00:13:26.400
+Trong khi w bằng 0,5, điều này sẽ cho bạn
+đường thẳng này có độ dốc nhỏ hơn.
+
+00:13:26.400 --> 00:13:31.820
+Và dòng này kết hợp với training set tương ứng
+với
+
+00:13:31.820 --> 00:13:37.240
+điểm này trên đồ thị cost function tại w bằng
+0,5.
+
+00:13:37.240 --> 00:13:41.020
+Vì vậy, với mỗi giá trị của w, bạn sẽ có một
+
+00:13:41.020 --> 00:13:44.800
+dòng khác nhau và giá trị j tương ứng của w.
+
+00:13:44.800 --> 00:13:49.040
+Và bạn có thể sử dụng những điểm này để vẽ đồ
+thị bên phải.
+
+00:13:49.040 --> 00:13:57.160
+Với điều này, làm thế nào bạn có thể chọn giá
+trị của w để hàm f phù hợp với dữ liệu?
+
+00:13:57.160 --> 00:14:01.700
+Vâng, như bạn có thể tưởng tượng, việc chọn
+một giá trị của w làm
+
+00:14:01.700 --> 00:14:06.240
+cho j của w càng nhỏ càng tốt có vẻ như là một
+sự đánh cược tốt.
+
+00:14:06.240 --> 00:14:11.240
+j là cost function đo lường mức độ sai số bình
+phương.
+
+00:14:11.360 --> 00:14:14.900
+Vì vậy, việc chọn w để giảm thiểu các sai số
+bình phương này,
+
+00:14:14.900 --> 00:14:18.440
+làm cho chúng càng nhỏ càng tốt, sẽ cho chúng
+ta một mô hình tốt.
+
+00:14:18.440 --> 00:14:23.880
+Trong ví dụ này, nếu bạn chọn giá trị của w để
+tạo ra giá trị j
+
+00:14:23.880 --> 00:14:29.320
+nhỏ nhất có thể có của w, thì cuối cùng bạn sẽ
+chọn w bằng 1.
+
+00:14:29.320 --> 00:14:32.040
+Và như bạn có thể thấy, đó thực sự là một lựa
+chọn khá tốt.
+
+00:14:32.040 --> 00:14:36.960
+Điều này dẫn đến một đường rất phù hợp với
+training data.
+
+00:14:36.960 --> 00:14:41.820
+Vì vậy, đó là cách trong linear regression,
+bạn sử
+
+00:14:41.820 --> 00:14:46.680
+dụng hàm giá để tìm giá trị của w sao cho j
+cực tiểu.
+
+00:14:46.680 --> 00:14:52.670
+Hoặc trong trường hợp tổng quát hơn, khi chúng
+ta có các tham số w và b
+
+00:14:52.670 --> 00:14:58.660
+thay vì chỉ w, bạn sẽ tìm thấy các giá trị của
+w và b làm giảm thiểu j.
+
+00:14:58.660 --> 00:15:02.280
+Vì vậy, để tóm tắt, bạn giải các đồ thị của cả
+f và
+
+00:15:02.280 --> 00:15:05.900
+j và tìm hiểu xem cả hai có liên quan như thế
+nào.
+
+00:15:05.900 --> 00:15:10.940
+Khi bạn thay đổi w hoặc thay đổi w và b, bạn
+sẽ có các đường thẳng khác nhau.
+
+00:15:10.940 --> 00:15:16.480
+Và khi đường thẳng đó đi gần đến dữ liệu thì
+chi phí j sẽ nhỏ.
+
+00:15:16.480 --> 00:15:21.650
+Vì vậy, mục tiêu của linear regression là tìm
+các tham số w
+
+00:15:21.650 --> 00:15:26.820
+hoặc w và b mang lại giá trị nhỏ nhất có thể
+cho cost function j.
+
+00:15:26.820 --> 00:15:29.960
+Bây giờ trong video này, chúng ta đã giải
+quyết ví
+
+00:15:29.960 --> 00:15:33.100
+dụ của mình với một vấn đề đơn giản chỉ sử
+dụng w.
+
+00:15:33.180 --> 00:15:37.580
+Trong video tiếp theo, chúng ta hãy hình dung
+cost function trông như
+
+00:15:37.580 --> 00:15:41.980
+thế nào đối với phiên bản đầy đủ của
+linear regression sử dụng cả w và b.
+
+00:15:41.980 --> 00:15:44.700
+Và bạn thấy một số đồ thị 3D thú vị.
+
+00:15:44.700 --> 00:15:45.700
+Chúng ta hãy đi đến video tiếp theo.

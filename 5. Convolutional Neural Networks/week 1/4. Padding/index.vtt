@@ -1,0 +1,336 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.030 --> 00:00:08.030
+In order to build deep neural networks, one modification to the basic convolutional operation
+
+00:00:08.030 --> 00:00:10.390
+that you need to really use is padding.
+
+00:00:10.390 --> 00:00:12.790
+Let's see how it works.
+
+00:00:12.790 --> 00:00:17.790
+What we saw in earlier videos is that if you take a 6x6 image and convolve it with
+
+00:00:17.790 --> 00:00:23.990
+a 3x3 filter, you end up with a 4x4 output with a 4x4 matrix.
+
+00:00:23.990 --> 00:00:29.150
+And that's because the number of possible positions for your 3x3 filter, they're only
+
+00:00:29.230 --> 00:00:37.910
+4x4 possible positions for the 3x3 filter to fit in your 6x6 matrix.
+
+00:00:37.910 --> 00:00:43.870
+And the math for this turns out to be that if you have an nxn image and convolve that
+
+00:00:43.870 --> 00:00:58.520
+with an fxf filter, then the dimension of the output would be n-f plus 1 by n-f plus 1.
+
+00:00:58.520 --> 00:01:07.600
+And in this example, 6 minus v plus 1 is equal to 4, which is why you wound up with a 4x4 output.
+
+00:01:07.600 --> 00:01:09.560
+So there are two downsides to this.
+
+00:01:09.560 --> 00:01:14.880
+One is that if every time you apply a convolutional operator, your image shrinks.
+
+00:01:14.880 --> 00:01:17.480
+So we've gone from 6x6 down to 4x4.
+
+00:01:17.480 --> 00:01:21.880
+Then you can only do this a few times before your image starts getting really small.
+
+00:01:21.880 --> 00:01:24.040
+Maybe it shrinks down to 1x1 or something.
+
+00:01:24.560 --> 00:01:29.840
+Maybe you don't want your image to shrink every time you detect edges or detect other features on it.
+
+00:01:29.840 --> 00:01:31.680
+So there's one downside.
+
+00:01:31.680 --> 00:01:36.760
+And the second downside is that if you look at the pixel at the corner of the edge,
+
+00:01:36.760 --> 00:01:43.840
+this pixel is touchless used only in one of the outputs because it touches that 3x3 region.
+
+00:01:43.840 --> 00:01:49.320
+Whereas if you take a pixel in the middle, say this pixel,
+
+00:01:49.320 --> 00:01:54.360
+then there are a lot of 3x3 regions that overlap that pixel.
+
+00:01:54.360 --> 00:02:01.440
+And so it's as if pixels on the corners around the edges are used much less in the output.
+
+00:02:01.440 --> 00:02:06.440
+So you're throwing away a lot of the information near the edge of the image.
+
+00:02:06.440 --> 00:02:13.120
+So to solve both of these problems, both the shrinking output...
+
+00:02:13.120 --> 00:02:15.440
+And when we build really deep neural networks,
+
+00:02:15.440 --> 00:02:18.560
+you see why you don't want the image to shrink on every step.
+
+00:02:18.560 --> 00:02:22.200
+Because if you have maybe a 100 layer deep net,
+
+00:02:22.200 --> 00:02:27.960
+then if it shrinks a bit on every layer, then after 100 layers, you end up with a very small image.
+
+00:02:27.960 --> 00:02:29.040
+So that was one problem.
+
+00:02:29.040 --> 00:02:38.280
+The other is throwing away a lot of information from the edges of the image.
+
+00:02:38.280 --> 00:02:40.760
+So in order to fix both of these problems,
+
+00:02:40.760 --> 00:02:44.840
+what you can do is before applying the convolutional operation,
+
+00:02:44.840 --> 00:02:46.880
+you can pad the image.
+
+00:02:46.880 --> 00:03:00.800
+So in this case, let's say you pad the image with an additional border of one pixel or around the edges.
+
+00:03:00.800 --> 00:03:09.000
+So if you do that, then instead of a 6x6 image, you've now padded this to an 8x8 image.
+
+00:03:09.000 --> 00:03:14.120
+And if you convolve an 8x8 image with a 3x3 image, you now get back out.
+
+00:03:14.120 --> 00:03:16.880
+Now the 4x4, but a 6x6 image.
+
+00:03:16.880 --> 00:03:23.640
+And so you managed to preserve the original input size of 6x6.
+
+00:03:23.640 --> 00:03:28.000
+So by convention, when you pad, you pad it with zeros.
+
+00:03:28.000 --> 00:03:33.400
+And if p is the padding amount.
+
+00:03:33.400 --> 00:03:37.360
+So in this case, p is equal to 1.
+
+00:03:37.360 --> 00:03:41.280
+Because we're padding all around with an extra border of one pixel,
+
+00:03:41.360 --> 00:03:54.350
+then the output becomes n plus 2p minus f plus 1 by n plus 2p minus f by 1.
+
+00:03:54.350 --> 00:04:02.550
+So this becomes 6 plus 2 times 1 minus d plus 1 by the same thing.
+
+00:04:02.550 --> 00:04:06.470
+So 6 plus 2 minus d plus 1, that's equal to 6.
+
+00:04:06.470 --> 00:04:12.990
+So you end up with a 6x6 image that's preserving the size of the original input.
+
+00:04:12.990 --> 00:04:21.390
+So this green pixel actually influences all of these cells of the output.
+
+00:04:21.390 --> 00:04:27.630
+And so this effect of maybe not quite throwing away, but counting less the information from
+
+00:04:27.630 --> 00:04:33.030
+the edge or from the corner of the edge of the image is reduced.
+
+00:04:33.030 --> 00:04:38.270
+And I've shown here the effect of padding the border with just one pixel.
+
+00:04:38.270 --> 00:04:41.750
+If you want, you can also pad the border with two pixels.
+
+00:04:41.750 --> 00:04:45.910
+In which case, I guess you add on another border here.
+
+00:04:45.910 --> 00:04:51.510
+And in fact, you can pad it with even more pixels if you choose.
+
+00:04:51.510 --> 00:04:58.980
+So I guess what I'm drawing here, this would be a pad of equal 2 or p equals 2.
+
+00:04:58.980 --> 00:05:04.340
+In terms of how much to pad, it turns out there are two common choices that I call
+
+00:05:04.340 --> 00:05:07.380
+valid convolutions and same convolutions.
+
+00:05:07.380 --> 00:05:10.940
+I'm not sure these are great names, but in a valid convolution,
+
+00:05:10.940 --> 00:05:15.560
+this basically means no padding.
+
+00:05:15.560 --> 00:05:22.720
+And so in this case, you might have an n by n image convolved with an f by f filter.
+
+00:05:22.720 --> 00:05:30.160
+And this would give you an n minus f plus 1 by n minus f plus 1 dimensional output.
+
+00:05:30.160 --> 00:05:34.680
+So this is like the example we had previously from the previous videos where
+
+00:05:34.680 --> 00:05:39.000
+we had an n by n image convolved with a 3 by 3 filter.
+
+00:05:39.000 --> 00:05:44.580
+And that gave you a 4 by 4 output.
+
+00:05:44.580 --> 00:05:50.500
+The other most common choice of padding is called the same convolution.
+
+00:05:50.500 --> 00:06:00.110
+And that means when you pad, so the output size is the same as the input size.
+
+00:06:00.110 --> 00:06:04.190
+So if you actually look at this formula, when you pad by p pixels,
+
+00:06:04.190 --> 00:06:08.710
+then it's as if n goes to n plus 2p.
+
+00:06:08.710 --> 00:06:15.820
+And then you have from the rest of this, minus f plus 1.
+
+00:06:15.820 --> 00:06:22.460
+So when you have an n by n image and a padding of a border of p pixels all around,
+
+00:06:22.460 --> 00:06:30.520
+then the output size ends up being this dimension, n plus 2p minus f plus 1.
+
+00:06:30.520 --> 00:06:36.280
+And so if you want n plus 2p minus f plus 1 to be equal to 1, so
+
+00:06:36.280 --> 00:06:41.200
+that the output size is the same as the input size, if you take this and
+
+00:06:41.200 --> 00:06:46.920
+solve for, I guess n cancels out on both sides, and if you solve for p,
+
+00:06:46.920 --> 00:06:54.410
+this implies that p is equal to f minus 1 over 2.
+
+00:06:54.410 --> 00:06:59.050
+So when f is odd, by choosing the padding size to be as follows,
+
+00:06:59.050 --> 00:07:03.010
+you can make sure that the output size is the same as the input size.
+
+00:07:05.010 --> 00:07:08.890
+And that's why, for example, when the filter was 3 by 3,
+
+00:07:08.890 --> 00:07:12.810
+as in the example in the previous slide, the padding that would make the output
+
+00:07:12.810 --> 00:07:21.730
+size the same as the input size was 3 minus 1 over 2, which is 1.
+
+00:07:21.730 --> 00:07:30.050
+And as another example, if your filter was 5 by 5, so if f is equal to 5,
+
+00:07:30.050 --> 00:07:34.250
+then if you plug it into that equation, you find that the padding of 2 is
+
+00:07:34.250 --> 00:07:40.290
+required to keep the output size the same as the input size when the filter
+
+00:07:40.290 --> 00:07:44.530
+is 5 by 5.
+
+00:07:44.530 --> 00:07:50.170
+And by convention in computer vision, f is usually odd.
+
+00:07:50.170 --> 00:07:55.660
+It's actually almost always odd.
+
+00:07:55.660 --> 00:08:03.260
+And you rarely see even number filters, filter widths using computer vision.
+
+00:08:03.260 --> 00:08:05.300
+And I think there are two reasons for that.
+
+00:08:05.300 --> 00:08:10.540
+One is that if f was even, then you need some asymmetric padding.
+
+00:08:10.540 --> 00:08:14.380
+It's only if f is odd that this type of same convolution gives it a natural
+
+00:08:14.380 --> 00:08:16.900
+padding, where you can pad the same dimension all around,
+
+00:08:16.900 --> 00:08:22.060
+and then pad more on the left and pad less on the right, so something asymmetric.
+
+00:08:22.060 --> 00:08:29.100
+And then second, when you have an odd dimension filter, such as 3 by 3 or 5
+
+00:08:29.100 --> 00:08:32.020
+by 5, then it has a central position.
+
+00:08:32.020 --> 00:08:37.660
+And sometimes in computer vision, it's nice to have a pixel.
+
+00:08:37.660 --> 00:08:43.660
+You can call it a central pixel, so you can talk about the position of the filter.
+
+00:08:43.700 --> 00:08:48.660
+Maybe none of these is a great reason for using f to be pretty much always odd.
+
+00:08:48.660 --> 00:08:53.660
+But if you look at the computer vision literature, you see 3 by 3 filters are very common.
+
+00:08:53.660 --> 00:08:56.900
+You see some 5 by 5, 7 by 7s.
+
+00:08:56.900 --> 00:09:00.500
+And actually, sometimes later, we'll also talk about 1 by 1 filters
+
+00:09:00.500 --> 00:09:02.220
+and when that makes sense.
+
+00:09:02.220 --> 00:09:08.460
+But just by convention, I recommend you just use odd number filters as well.
+
+00:09:08.460 --> 00:09:12.540
+I think that you can probably get just fine performance, even if you were to use
+
+00:09:12.540 --> 00:09:18.460
+an even number value for f, but if you stick to the common computer vision convention,
+
+00:09:18.460 --> 00:09:22.700
+I usually just use odd number f.
+
+00:09:22.700 --> 00:09:25.940
+So you've now seen how to use padded convolutions.
+
+00:09:25.940 --> 00:09:31.940
+To specify the padding for convolutional operation, you can either specify the value for p,
+
+00:09:31.940 --> 00:09:36.580
+or you can just say that this is a valid convolution, which means p equals 0,
+
+00:09:36.580 --> 00:09:40.380
+or you can say this is a same convolution, which means pad as much as you need
+
+00:09:40.380 --> 00:09:44.020
+to make sure the output has the same dimension as the input.
+
+00:09:44.020 --> 00:09:45.020
+So that's it for padding.
+
+00:09:45.020 --> 00:09:49.180
+In the next video, let's talk about how you can implement strided convolutions.

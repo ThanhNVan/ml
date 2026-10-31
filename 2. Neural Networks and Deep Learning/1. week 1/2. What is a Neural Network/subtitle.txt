@@ -1,0 +1,92 @@
+Thuật ngữ Deep Learning (Học sâu), đề cập
+đến việc huấn luyện Mạng nơ ron nhân tạo, đôi khi là những mạng nơ ron rất lớn. Vậy chính xác thì mạng
+nơ-ron nhân tạo là gì? Trong video này, chúng tôi sẽ cố gắng
+cung cấp cho bạn một số kiến thức cơ bản. Hãy bắt đầu với ví dụ
+Dự đoán giá nhà đất. Giả sử bạn có một bộ dữ liệu với sáu ngôi nhà,
+như vậy bạn biết kích thước của các ngôi nhà tính bằng feet vuông hoặc mét vuông
+và bạn biết giá nhà và bạn muốn sử dụng một tiêu chuẩn để dự đoán
+giá của các ngôi nhà, chức năng kích thước. Vì vậy, nếu bạn đã quen với
+hồi quy tuyến tính, bạn có thể nghĩ, hãy đặt một đường thẳng cho những dữ liệu này và
+chúng ta sẽ có được một đường thẳng như thế này. Nhưng theo một cách lý tưởng, bạn
+có thể nghĩ rằng, chúng ta biết rằng giá cả không bao giờ có thể âm, đúng không. Như vậy, thay vì đường thẳng
+phù hợp vốn sẽ phải âm, thì hãy uốn cong ở đây. Như vậy, nó chỉ kết thúc
+bằng không ở đây. Vì vậy, dòng màu xanh dày mà
+bạn cho là tiêu chuẩn phù hợp bạn dùng để dự đoán giá
+nhà sẽ được đặt ở đây. Trong khi 0 ở đây và sau đó có một
+đường thẳng phù hợp ở bên phải. Vì vậy, bạn có thể coi tiêu chuẩn
+mà bạn vừa sử dụng cho giá nhà đất như một mạng nơ ron
+nhân tạo rất đơn giản. Nó gần như là đơn giản
+như mạng nơ ron nhân tạo. Hãy để tôi vẽ minh họa ở đây. Chúng ta có đầu vào cho mạng nơ-ron nhân tạo là
+kích thước của một ngôi nhà mà chúng ta gọi là x. Nó đi vào nút này,
+hình tròn nhỏ này và sau đó nó đưa ra giá
+mà chúng ta gọi là y. Như vậy, hình tròn nhỏ này, là một nơron
+duy nhất trong mạng nơ ron nhân tạo, thực hiện chức năng này mà
+chúng ta đã vẽ bên trái. Và tất cả những gì mà các nơ-ron làm là nhập
+kích thước, tính toán hàm tuyến tính này, lấy tối đa bằng 0, và sau đó
+đưa ra giá ước tính. Và nhân tiện trong tài liệu nơ ron nhân tạo,
+bạn sẽ thấy chức năng này rất nhiều. Hàm này đôi khi về 0 và sau đó nó sẽ đi lên
+thành một đường thẳng. Hàm này được gọi là
+hàm ReLU, viết tắt của các đơn vị tuyến tính tinh chỉnh. Là R-E-L-U. Và tinh chỉnh có nghĩa là lấy tối đa bằng 0, đó là lý do
+tại sao bạn có được hình dạng hàm như thế này. Bạn không cần phải nghĩ
+về các đơn vị ReLU lúc này Bởi bạn sẽ gặp lại nó
+sau trong khóa học này. Như vậy, nếu đây là một nơron,
+mạng nơ-ron nhân tạo, một mạng nơ-ron cực kỳ nhỏ bé, thì
+một mạng nơ-ron nhân tạo lớn hơn sẽ được hình thành bằng cách lấy nhiều
+nơ-ron đơn lẻ và xếp chúng lại với nhau. Nếu bạn coi nơ-ron này giống
+như một viên gạch Lego, thì bạn sẽ có được một mạng nơ-ron lớn hơn bằng
+cách ráp nhiều viên gạch Lego này lại với nhau. Chúng ta hãy xem một ví dụ. Giả sử thay vì dự đoán giá của
+một ngôi nhà chỉ từ kích thước, bây giờ bạn có các đặc điểm khác. Bạn biết những điều khác về chủ nhà,
+chẳng hạn như số lượng phòng ngủ, Tôi nên viết là #phòng ngủ, và bạn
+cũng có thể cho là một trong những yếu tố mà thực sự ảnh hưởng đến giá của
+một ngôi nhà là quy mô gia đình, đúng chứ? Như vậy, ngôi nhà này có thể phù hợp với
+gia đình ba người, hoặc gia đình bốn, hoặc gia đình năm người? Và nó thực sự dựa trên kích thước tính
+bằng feet vuông hoặc mét vuông, và số lượng phòng ngủ quyết định liệu một ngôi nhà có thể phù hợp với
+quy mô gia đình của bạn hay không. Và sau đó có thể bạn biết mã zip, ở các quốc gia khác, nó được
+gọi là mã bưu chính của một ngôi nhà. Và mã zip cũng có thể nói với bạn về một
+điều trong tương lai, như là khả năng đi bộ? Vì vậy, khu phố này dễ đi bộ? Như là đi bộ tới các cửa hàng tạp hóa? Đi bộ đến trường? Bạn có cần lái xe không? Và một số người thích
+các khu phố dễ đi bộ. Và sau đó, cũng như mã zip, mức độ
+giàu có cũng sẽ cho bạn biết, đúng chứ. Chắc chắn là ở Hoa Kỳ cũng
+như ở một số nước khác. Cho bạn biết chất lượng
+trường học tốt như thế nào. Vì vậy, mỗi hình tròn nhỏ mà tôi
+đang vẽ, có thể là một trong những ReLU đó, tinh chỉnh đơn vị tuyến tính hoặc một
+số chức năng không tuyến tính khác. Vì vậy, dựa trên kích thước
+và số lượng phòng ngủ, bạn có thể ước tính quy mô gia đình,
+mã zip của họ, dựa trên khả năng đi bộ, dựa trên mã zip và mức độ giàu có
+có thể ước tính chất lượng trường học. Và cuối cùng, bạn có thể nghĩ rằng
+cách mà mọi người quyết định là họ sẽ trả bao nhiêu cho một ngôi nhà, là họ
+nhìn vào những điều thực sự quan trọng với họ. Trong trường hợp này quy mô gia đình,
+khả năng đi lại, và chất lượng trường học và điều đó giúp bạn dự đoán giá. Vì vậy, trong ví dụ thì x là
+tất cả bốn đầu vào này. Và y là giá bạn đang
+cố gắng dự đoán. Và do đó, bằng cách xếp chồng một vài nơ-ron
+đơn lẻ hoặc các yếu tố dự đoán đơn giản chúng ta có từ slide trước, bây giờ chúng ta có
+một mạng nơ ron nhân tạo lớn hơn một chút. Cách bạn quản lý mạng nơ-ron
+nhân tạo là khi bạn triển khai nó, bạn cần cung cấp
+cho nó đầu vào x và đầu ra y cho một số ví dụ
+trong tập huấn luyện của bạn và tất cả những điều này
+ở giữa, chúng sẽ tự tính ra. Vì vậy, những gì bạn
+thực sự thực hiện là điều này. Ở đây, bạn có một mạng nơ-ron
+nhân tạo với bốn đầu vào. Vì vậy, các tính năng đầu vào
+có thể là kích thước, số phòng ngủ, mã zip hoặc mã bưu chính, và
+mức độ giàu có của khu phố. Và do đó, với các
+tính năng đầu vào, công việc của mạng nơ-ron
+sẽ là dự đoán giá y. Và hãy nhớ là mỗi hình tròn này
+được gọi là các đơn vị ẩn trong mạng nơ-ron nhân tạo, mỗi mạng
+đều có cả bốn tính năng đầu vào. Ví dụ, thay vì nói các nút đầu tiên
+này đại diện cho quy mô gia đình và kích thước gia đình chỉ phụ thuộc
+vào các tính năng X1 và X2. Thay vào đó, chúng ta sẽ nói,
+mạng nơ-ron nhân tạo, bạn là người quyết định
+cách gọi tên điều này. Và chúng tôi sẽ cung cấp cho bạn tất cả bốn
+tính năng để hoàn thành bất cứ điều gì bạn muốn. Vì vậy, chúng ta nói rằng các lớp,
+mà đây là lớp đầu vào và lớp này ở giữa mạng nơ-ron
+nhân tạo được kết nối mật độ. Bởi vì mọi tính năng
+đầu vào được kết nối với mọi hình tròn ở giữa. Và điều đáng lưu ý về các mạng nơ-ron
+nhân tạo là, khi được cung cấp đủ dữ liệu về x và y, được cung cấp đủ ví dụ huấn
+luyện với cả x và y, mạng nơ-ron nhân tạo đặc biệt hiệu quả trong việc tìm ra
+các hàm mà ánh xạ chính xác từ x đến y. Như vậy, đó là một mạng
+nơ-ron nhân tạo cơ bản. Hóa ra khi bạn xây dựng mạng
+nơ-ron nhân tạo của riêng mình, bạn sẽ có thể thấy chúng
+hữu ích nhất, mạnh mẽ nhất trong các khuyến khích học tập có giám sát,
+có nghĩa là bạn đang cố lấy đầu vào x và ánh xạ nó tới một số đầu ra y, như chúng ta
+vừa thấy trong ví dụ dự đoán giá nhà đất. Trong video tiếp theo, hãy xem thêm
+một số ví dụ về học tập có giám sát và một số ví dụ về nơi mà bạn có thể thấy
+mạng nơ-ron của mình cực kỳ hữu ích đối với các ứng dụng của bạn.

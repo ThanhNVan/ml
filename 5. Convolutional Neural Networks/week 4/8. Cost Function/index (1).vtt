@@ -1,0 +1,117 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.520
+To build a neural style transfer system, let's define a cost function for the generated image.
+
+00:00:05.520 --> 00:00:12.160
+What you see later is that it will be by minimizing this cost function that you can generate the image that you want.
+
+00:00:12.160 --> 00:00:17.280
+So remember what the problem formulation is. You're given a content image C,
+
+00:00:17.280 --> 00:00:21.840
+given a style image S, and your goal is to generate a new image G.
+
+00:00:22.640 --> 00:00:27.520
+So in order to implement neural style transfer, what you're going to do is
+
+00:00:28.080 --> 00:00:34.320
+what you're going to do is define a cost function J of G that measures how good is a
+
+00:00:34.320 --> 00:00:41.120
+particular generated image, and we'll use gradient descent to minimize J of G in order to generate
+
+00:00:41.120 --> 00:00:47.520
+this image. So how good is a particular image? Well, we're going to define two parts to this cost
+
+00:00:47.520 --> 00:00:54.240
+function. The first part is called the content cost. This is a function of the content image
+
+00:00:54.240 --> 00:00:59.840
+and of the generated image. And what it does is it measures how similar is the content of the
+
+00:00:59.840 --> 00:01:07.360
+generated image to the content of the content image C. And then going to add that to a style
+
+00:01:08.080 --> 00:01:14.480
+cost function, which is now a function of S comma G. And what this does is it measures how similar
+
+00:01:14.480 --> 00:01:21.680
+is the style of the image G to the style of the image S. Finally, we'll weight these with two
+
+00:01:21.680 --> 00:01:27.840
+hyper parameters, alpha and beta to specify the relative weighting between the content cost and the
+
+00:01:27.840 --> 00:01:34.560
+style cost. It seems redundant to use two different hyper parameters to specify their relative weighting
+
+00:01:35.200 --> 00:01:42.080
+seems that you don't need one hyper. It seems redundant to use two hyper parameters to specify
+
+00:01:42.080 --> 00:01:47.120
+the relative cost of the weighting one hyper parameter seems like it'd be enough. But the
+
+00:01:47.120 --> 00:01:52.240
+original authors of the neural style transfer algorithm use two different hyper parameters.
+
+00:01:52.240 --> 00:01:57.680
+And so I'm just going to follow their convention here. And the neural style transfer algorithm
+
+00:01:57.680 --> 00:02:03.680
+I'm going to present in the next few videos is due to Leon Gatti's Alexandra Ecker and Mathives.
+
+00:02:04.400 --> 00:02:09.920
+And their paper is not too hard to read. So after watching these videos, if you wish,
+
+00:02:09.920 --> 00:02:13.360
+certainly encourage you to take a look at their paper as well if you want.
+
+00:02:14.320 --> 00:02:20.880
+So the way the algorithm will run is as follows. Having defined the cost function JFG,
+
+00:02:20.880 --> 00:02:24.240
+in order to actually generate a new image, what you do is the following.
+
+00:02:25.520 --> 00:02:32.160
+You would initialize the generated image G randomly. So it might be 100 by 100 by 3,
+
+00:02:32.160 --> 00:02:38.640
+or 500 by 500 by 3, or whatever dimensions you want it to be. Then we've defined the cost
+
+00:02:38.720 --> 00:02:45.360
+function JFG on their previous slide. So what you can now do is use gradient descent to minimize
+
+00:02:45.360 --> 00:02:53.440
+this so you can update G as G minus the derivative with respect to the cost function of JFG. So in
+
+00:02:53.440 --> 00:03:00.480
+this process, you're actually updating the pixel values of this image G, which is a 100 by 100 by
+
+00:03:00.480 --> 00:03:08.480
+3, maybe RGB channel image. So here's an example. Let's say you start with this content image,
+
+00:03:08.480 --> 00:03:15.840
+and this style image, this is another power Picasso image. Then when you initialize G randomly,
+
+00:03:15.840 --> 00:03:22.720
+your initial randomly generated image is just this white noise image with each pixel value chosen
+
+00:03:22.720 --> 00:03:29.520
+at random. And then as you run gradient descent, you minimize the cost function JFG. You slowly
+
+00:03:29.520 --> 00:03:36.320
+tweak the pixel values, so then you get slowly an image that looks more and more like your
+
+00:03:36.320 --> 00:03:43.760
+content image, but rendered in the style of your style image. So in this video, you saw the overall
+
+00:03:43.760 --> 00:03:48.960
+outline of the neural style transfer algorithm, where you define a cost function for the generated
+
+00:03:48.960 --> 00:03:55.520
+image G and minimize it. Next, we need to see how to define the content cost function, as well as
+
+00:03:55.520 --> 00:03:59.440
+the style cost function. Let's take a look at that starting in the next video.

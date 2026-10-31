@@ -1,0 +1,701 @@
+WEBVTT
+
+00:00:00.270 --> 00:00:04.070
+Chào mừng bạn đến với khóa học này về các khía
+cạnh thực tế của deep learning.
+
+00:00:04.070 --> 00:00:07.670
+Có lẽ bây giờ bạn đã học được cách triển khai
+neural network.
+
+00:00:07.670 --> 00:00:11.083
+Trong tuần này, bạn sẽ tìm hiểu các khía cạnh
+thực tế về cách làm cho
+
+00:00:11.083 --> 00:00:14.497
+neural network của bạn hoạt động tốt, từ những
+việc như điều chỉnh siêu
+
+00:00:14.497 --> 00:00:17.910
+tham số cho đến cách thiết lập dữ liệu của bạn
+cũng như cách thực hiện
+
+00:00:17.910 --> 00:00:21.050
+đảm bảo thuật toán tối ưu hóa của bạn chạy
+nhanh để bạn có thể
+
+00:00:21.050 --> 00:00:24.190
+học thuật toán học tập của mình trong một
+khoảng thời gian hợp lý.
+
+00:00:24.190 --> 00:00:27.603
+Trong tuần đầu tiên này, trước tiên chúng ta
+sẽ nói về cách thiết lập vấn đề
+
+00:00:27.603 --> 00:00:31.017
+machine learning của bạn, sau đó chúng ta sẽ
+nói về việc regularization và chúng ta
+
+00:00:31.017 --> 00:00:34.430
+sẽ nói về một số thủ thuật để đảm bảo việc
+triển khai neural network của bạn là chính
+xác.
+
+00:00:34.430 --> 00:00:36.310
+Cùng với đó, hãy bắt đầu.
+
+00:00:36.310 --> 00:00:39.577
+Việc đưa ra những lựa chọn đúng đắn về cách
+bạn thiết lập các
+
+00:00:39.577 --> 00:00:42.843
+training set, phát triển và kiểm tra có thể
+tạo ra sự khác biệt lớn
+
+00:00:42.843 --> 00:00:46.110
+trong việc giúp bạn nhanh chóng tìm được
+neural network hiệu suất cao tốt.
+
+00:00:46.110 --> 00:00:49.803
+Khi đào tạo neural network, bạn phải đưa ra
+rất nhiều quyết định, chẳng
+
+00:00:49.803 --> 00:00:53.497
+hạn như neural network của bạn sẽ có bao nhiêu
+lớp và bạn muốn mỗi lớp
+
+00:00:53.497 --> 00:00:57.190
+có bao nhiêu đơn vị ẩn, learning rate và
+learning rate là bao nhiêu.
+
+00:00:57.190 --> 00:01:01.150
+Và các chức năng kích hoạt bạn muốn sử dụng
+cho các lớp khác nhau là gì.
+
+00:01:01.150 --> 00:01:04.497
+Khi bạn bắt đầu sử dụng một ứng dụng mới, hầu
+như không thể đoán
+
+00:01:04.497 --> 00:01:07.843
+chính xác các giá trị phù hợp cho tất cả các
+giá trị này và cho
+
+00:01:07.843 --> 00:01:11.190
+các lựa chọn siêu tham số khác trong lần đầu
+tiên bạn sử dụng.
+
+00:01:11.190 --> 00:01:12.190
+cố gắng.
+
+00:01:12.190 --> 00:01:15.560
+Vì vậy, trong thực tế, áp dụng
+machine learning là một quá trình có tính
+
+00:01:15.560 --> 00:01:18.930
+lặp lại cao, trong đó bạn thường bắt đầu bằng
+một ý tưởng, chẳng hạn như
+
+00:01:18.930 --> 00:01:22.300
+bạn muốn xây dựng một neural network gồm
+một số lớp nhất định, một
+
+00:01:22.300 --> 00:01:25.670
+số đơn vị ẩn nhất định, có thể trên một số bộ
+dữ liệu nhất định, v.v.
+
+00:01:25.670 --> 00:01:28.190
+Và sau đó bạn chỉ cần viết mã và thử nó.
+
+00:01:28.190 --> 00:01:32.890
+Bằng cách chạy mã, bạn chạy thử nghiệm và nhận
+lại kết quả cho bạn
+
+00:01:32.890 --> 00:01:37.590
+biết mạng cụ thể này hoặc cấu hình cụ thể này
+hoạt động tốt như thế nào.
+
+00:01:37.590 --> 00:01:41.790
+Và dựa trên kết quả, bạn có thể tinh chỉnh ý
+tưởng và thay
+
+00:01:41.790 --> 00:01:45.990
+đổi lựa chọn của mình, đồng thời có thể tiếp
+tục lặp lại để
+
+00:01:45.990 --> 00:01:50.190
+cố gắng tìm ra một neural network ngày
+càng tốt hơn.
+
+00:01:50.190 --> 00:01:55.810
+Ngày nay, deep learning đã đạt được thành công
+lớn trong nhiều lĩnh vực, từ xử lý
+
+00:01:55.810 --> 00:02:01.430
+ngôn ngữ tự nhiên đến thị giác máy tính, nhận
+dạng giọng nói cho đến rất nhiều ứng dụng.
+
+00:02:01.430 --> 00:02:04.750
+trên dữ liệu có cấu trúc.
+
+00:02:04.750 --> 00:02:09.470
+Và dữ liệu có cấu trúc bao gồm mọi thứ từ
+quảng cáo đến tìm
+
+00:02:09.470 --> 00:02:14.190
+kiếm trên web, không chỉ là các công cụ tìm
+kiếm trên internet.
+
+00:02:14.190 --> 00:02:18.337
+Ví dụ: đó cũng là các trang web mua sắm hoặc
+thực sự là bất
+
+00:02:18.337 --> 00:02:22.483
+kỳ trang web nào muốn mang lại kết quả tìm
+kiếm tuyệt vời
+
+00:02:22.483 --> 00:02:26.630
+khi bạn nhập cụm từ vào thanh tìm kiếm, bảo
+mật máy tính, để
+
+00:02:26.630 --> 00:02:34.910
+hậu cần, chẳng hạn như tìm ra nơi để cử tài xế
+đến nhận và trả đồ cho nhiều nơi khác.
+
+00:02:34.910 --> 00:02:38.710
+Vì vậy, điều tôi thấy là đôi khi một nhà
+nghiên cứu có nhiều kinh nghiệm về
+
+00:02:38.710 --> 00:02:42.510
+NLP có thể tham gia, bạn biết đấy, có thể thử
+làm điều gì đó trong thị giác
+
+00:02:42.510 --> 00:02:46.310
+máy tính, hoặc có thể một nhà nghiên cứu có
+nhiều kinh nghiệm về nhận dạng
+
+00:02:46.310 --> 00:02:50.110
+giọng nói có thể, bạn biết đấy, nhảy vào và cố
+gắng làm điều gì đó về quảng cáo
+
+00:02:50.110 --> 00:02:54.670
+hoặc ai đó từ bộ phận an ninh có thể muốn nhảy
+vào và làm gì đó về hậu cần.
+
+00:02:54.670 --> 00:02:58.790
+Và điều tôi thấy là trực giác từ một miền hoặc
+từ một lĩnh vực
+
+00:02:58.790 --> 00:03:02.910
+ứng dụng thường không chuyển sang các lĩnh vực
+ứng dụng khác.
+
+00:03:02.910 --> 00:03:08.230
+Và những lựa chọn tốt nhất có thể phụ thuộc
+vào lượng dữ liệu bạn có, số feature
+
+00:03:08.230 --> 00:03:13.550
+đầu vào bạn có, cấu hình máy tính của bạn và
+liệu bạn đang đào tạo về GPU hay CPU,
+
+00:03:13.550 --> 00:03:18.310
+và nếu có thì chính xác cấu hình GPU, CPU và
+nhiều thứ khác.
+
+00:03:18.310 --> 00:03:21.883
+Vì vậy, đối với nhiều ứng dụng, tôi nghĩ điều
+đó gần như là không
+
+00:03:21.883 --> 00:03:25.457
+thể, ngay cả những người rất có kinh nghiệm về
+deep learning cũng
+
+00:03:25.457 --> 00:03:29.030
+thấy gần như không thể đoán chính xác lựa chọn
+siêu tham số tốt nhất
+
+00:03:29.030 --> 00:03:30.310
+ngay lần đầu tiên.
+
+00:03:30.310 --> 00:03:34.683
+Và vì vậy, ngày nay, deep learning ứng dụng là
+một quá trình lặp
+
+00:03:34.683 --> 00:03:39.057
+đi lặp lại, trong đó bạn chỉ cần thực hiện lại
+chu trình này nhiều
+
+00:03:39.057 --> 00:03:43.430
+lần để hy vọng tìm được lựa chọn mạng tốt cho
+ứng dụng của mình.
+
+00:03:43.630 --> 00:03:47.617
+Vì vậy, một trong những điều quyết định bạn có
+thể đạt được tiến bộ nhanh như
+
+00:03:47.617 --> 00:03:51.603
+thế nào là bạn có thể thực hiện chu trình một
+cách hiệu quả như thế nào và
+
+00:03:51.603 --> 00:03:55.590
+thiết lập tốt bộ dữ liệu của mình trong quá
+trình phát triển đoàn tàu của bạn
+
+00:03:55.590 --> 00:03:59.030
+và các bộ kiểm tra có thể giúp bạn làm việc đó
+hiệu quả hơn nhiều.
+
+00:03:59.030 --> 00:04:04.217
+Vì vậy, nếu đây là training data của bạn, hãy
+vẽ nó thành một
+
+00:04:04.217 --> 00:04:09.403
+hộp lớn, thì theo truyền thống, bạn có thể lấy
+tất cả dữ liệu
+
+00:04:09.403 --> 00:04:14.590
+mình có và chia một phần dữ liệu đó làm
+training data của mình
+
+00:04:14.590 --> 00:04:23.430
+được đặt, một phần trong số đó sẽ là bộ xác
+thực chéo của tổ chức của bạn.
+
+00:04:23.430 --> 00:04:30.390
+Và điều này đôi khi còn được gọi là bộ phát
+triển.
+
+00:04:30.390 --> 00:04:33.710
+Và để cho ngắn gọn, tôi sẽ gọi đây là dev set,
+nhưng
+
+00:04:33.710 --> 00:04:37.030
+tất cả các thuật ngữ này đều có nghĩa gần
+giống nhau.
+
+00:04:37.030 --> 00:04:39.510
+Và sau đó bạn có thể lấy ra một số phần cuối
+
+00:04:39.510 --> 00:04:41.990
+cùng của nó để làm bộ thử nghiệm của mình.
+
+00:04:41.990 --> 00:04:45.590
+Và do đó, quy trình làm việc là bạn tiếp tục
+huấn luyện các thuật toán
+
+00:04:45.590 --> 00:04:49.190
+trên training set của mình và sử dụng dev set
+hoặc validation set chéo
+
+00:04:49.190 --> 00:04:52.790
+nắm giữ của bạn để xem mô hình nào trong số
+nhiều mô hình khác nhau hoạt động
+
+00:04:52.790 --> 00:04:54.830
+tốt nhất trên nhóm phát triển của bạn.
+
+00:04:54.830 --> 00:04:59.297
+Và sau khi thực hiện việc này đủ lâu, khi bạn
+có mô hình cuối cùng mà bạn muốn đánh
+
+00:04:59.297 --> 00:05:03.763
+giá, bạn có thể lấy mô hình tốt nhất mà bạn đã
+tìm thấy và đánh giá nó trên test set
+
+00:05:03.763 --> 00:05:08.230
+của mình để có được ước tính khách quan về mức
+độ hiệu quả của thuật toán của bạn.
+
+00:05:08.230 --> 00:05:14.990
+Vì vậy, trong kỷ nguyên machine learning trước
+đây, thông thường là lấy tất
+
+00:05:14.990 --> 00:05:21.750
+cả dữ liệu của bạn và chia theo tỷ lệ 70, 30%
+mà mọi người thường nói về 70,
+
+00:05:21.750 --> 00:05:23.270
+30 đợt thử nghiệm tàu.
+
+00:05:23.270 --> 00:05:28.510
+Nếu bạn không có dev set rõ ràng hoặc có thể
+chia 60,
+
+00:05:28.510 --> 00:05:33.750
+20, 20% cho 60% đào tạo, 20% phát triển và 20%
+kiểm tra.
+
+00:05:33.750 --> 00:05:38.910
+Và vài năm trước, đây được coi là phương pháp
+hay nhất trong machine learning.
+
+00:05:38.910 --> 00:05:44.370
+Nếu bạn có, bạn biết đấy, tổng cộng có thể là
+một trăm ví dụ, có thể là một nghìn ví
+
+00:05:44.370 --> 00:05:49.830
+dụ, có thể lên tới 10.000 ví dụ, những loại tỷ
+lệ này là những quy tắc hoàn toàn hợp lý
+
+00:05:49.830 --> 00:05:50.830
+của ngón tay cái.
+
+00:05:50.830 --> 00:05:56.283
+Nhưng trong kỷ nguyên dữ liệu lớn hiện đại,
+chẳng hạn, nơi
+
+00:05:56.283 --> 00:06:01.737
+bạn có thể có tổng cộng một triệu ví dụ, thì
+xu hướng là các
+
+00:06:01.737 --> 00:06:07.190
+dev set và test set của bạn ngày càng trở nên
+nhỏ hơn nhiều.
+
+00:06:07.190 --> 00:06:09.550
+tỷ lệ phần trăm của tổng số.
+
+00:06:09.550 --> 00:06:13.470
+Bởi vì hãy nhớ rằng, mục tiêu của nhóm phát
+triển, nhóm phát triển, là bạn sẽ thử
+
+00:06:13.470 --> 00:06:17.390
+nghiệm các thuật toán khác nhau trên đó và xem
+thuật toán nào hoạt động tốt hơn.
+
+00:06:17.390 --> 00:06:20.457
+Vì vậy, nhóm nhà phát triển chỉ cần đủ lớn để
+bạn có thể đánh giá,
+
+00:06:20.457 --> 00:06:23.523
+chẳng hạn như hai lựa chọn thuật toán khác
+nhau hoặc 10 lựa chọn thuật
+
+00:06:23.523 --> 00:06:26.590
+toán khác nhau và nhanh chóng quyết định xem
+cái nào hoạt động tốt hơn.
+
+00:06:26.590 --> 00:06:30.510
+Và bạn có thể không cần toàn bộ 20% dữ liệu
+của mình cho việc đó.
+
+00:06:30.510 --> 00:06:34.043
+Vì vậy, ví dụ: nếu bạn có một triệu ví dụ huấn
+luyện, bạn có
+
+00:06:34.043 --> 00:06:37.577
+thể quyết định rằng chỉ cần có 10.000 ví dụ
+trong dev set của
+
+00:06:37.577 --> 00:06:41.110
+mình là quá đủ để đánh giá, bạn biết đấy, cái
+nào trong số đó là
+
+00:06:41.110 --> 00:06:43.270
+hai thuật toán làm tốt hơn.
+
+00:06:43.270 --> 00:06:47.570
+Và theo cách tương tự, mục tiêu chính của bộ
+thử nghiệm của bạn là đưa ra bộ
+
+00:06:47.570 --> 00:06:51.870
+classification cuối cùng để cung cấp cho bạn
+ước tính khá tự tin về mức độ hoạt động của
+nó.
+
+00:06:51.870 --> 00:06:56.910
+Và một lần nữa, nếu bạn có một triệu ví dụ, có
+thể bạn sẽ quyết định rằng 10.000 ví
+
+00:06:56.910 --> 00:07:01.950
+dụ là quá đủ để đánh giá một bộ classification
+duy nhất và đưa ra ước tính tốt cho bạn
+
+00:07:01.950 --> 00:07:03.670
+về việc nó hoạt động tốt như thế nào.
+
+00:07:03.670 --> 00:07:07.830
+Vì vậy, trong ví dụ này, khi bạn có một triệu
+ví dụ, nếu bạn
+
+00:07:07.830 --> 00:07:11.990
+chỉ cần 10.000 cho nhà phát triển và 10.000
+cho bài kiểm tra
+
+00:07:11.990 --> 00:07:16.150
+của mình thì tỷ lệ của bạn sẽ giống như 10.000
+này là 1% của
+
+00:07:16.270 --> 00:07:23.270
+1 triệu. Vậy là bạn có 98% train, 1% dev, 1%
+test.
+
+00:07:23.310 --> 00:07:27.017
+Và tôi cũng đã thấy các ứng dụng mà nếu bạn có
+thậm chí hơn một
+
+00:07:27.017 --> 00:07:30.723
+triệu ví dụ, bạn có thể kết thúc với 99,5% đào
+tạo và 0,25% nhà
+
+00:07:30.723 --> 00:07:34.430
+phát triển, 0,25% kiểm tra hoặc có thể là 0,4%
+nhà phát triển,
+
+00:07:38.750 --> 00:07:42.070
+Kiểm tra 0,1%.
+
+00:07:42.110 --> 00:07:46.030
+Tóm lại, khi thiết lập vấn đề về
+machine learning của bạn, tôi
+
+00:07:46.030 --> 00:07:49.950
+thường thiết lập nó thành các training set,
+dev set và test set. Và
+
+00:07:49.950 --> 00:07:53.870
+nếu bạn có một tập dữ liệu tương đối nhỏ,
+những dữ liệu truyền thống này
+
+00:07:53.870 --> 00:07:57.817
+tỷ lệ có thể ổn. Nhưng nếu bạn có tập dữ liệu
+lớn hơn nhiều,
+
+00:07:57.817 --> 00:08:01.763
+bạn cũng có thể đặt dev set và test set nhỏ
+hơn nhiều so với,
+
+00:08:01.763 --> 00:08:05.710
+bạn biết đấy, 20% hoặc thậm chí 1% hoặc 10% dữ
+liệu của bạn.
+
+00:08:05.710 --> 00:08:09.057
+Chúng tôi sẽ đưa ra hướng dẫn cụ thể hơn về
+kích thước của
+
+00:08:09.057 --> 00:08:12.403
+dev set và test set sau trong cuộc trò chuyện
+này. Một xu hướng
+
+00:08:12.403 --> 00:08:15.750
+khác mà chúng ta đang thấy trong kỷ nguyên
+deep learning hiện đại là
+
+00:08:15.750 --> 00:08:19.363
+ngày càng có nhiều người đào tạo trên các đợt
+phân phối bài kiểm tra
+
+00:08:19.363 --> 00:08:22.977
+và đào tạo không khớp. Giả sử bạn đang xây
+dựng một ứng dụng cho
+
+00:08:22.977 --> 00:08:26.590
+phép người dùng tải lên nhiều ảnh. Và mục tiêu
+của bạn là tìm hình ảnh
+
+00:08:26.590 --> 00:08:30.443
+về mèo để hiển thị cho người dùng của bạn, có
+thể là tất cả người dùng và
+
+00:08:30.443 --> 00:08:34.297
+những người yêu mèo của bạn. Có thể
+training set của bạn đến từ hình ảnh con
+
+00:08:34.297 --> 00:08:38.150
+mèo được tải xuống từ internet, nhưng nhà phát
+triển và bài kiểm tra của bạn
+
+00:08:38.150 --> 00:08:41.510
+bộ có thể bao gồm hình ảnh mèo từ người dùng
+sử dụng ứng dụng của chúng
+
+00:08:41.510 --> 00:08:44.870
+tôi. Vì vậy, có thể training set của bạn có
+rất nhiều hình ảnh được thu
+
+00:08:44.870 --> 00:08:48.230
+thập từ internet. Nhưng dev set và test set là
+hình ảnh được tải lên
+
+00:08:48.230 --> 00:08:52.070
+bởi người dùng. Hóa ra rất nhiều trang web có
+hình ảnh mèo có độ phân giải
+
+00:08:52.070 --> 00:08:55.910
+rất cao, rất chuyên nghiệp, được đóng khung
+rất đẹp. Nhưng bạn biết đấy, có
+
+00:08:55.910 --> 00:08:59.750
+thể người dùng của bạn đang tải lên những hình
+ảnh có độ phân giải thấp hơn
+
+00:08:59.750 --> 00:09:03.590
+được chụp bằng máy ảnh điện thoại di động ở
+điều kiện thông thường hơn. Và thế là
+
+00:09:03.590 --> 00:09:10.147
+hai phân phối dữ liệu này có thể khác nhau.
+Nguyên tắc chung
+
+00:09:10.147 --> 00:09:16.703
+mà tôi khuyến khích bạn tuân theo trong trường
+hợp này là
+
+00:09:16.703 --> 00:09:23.260
+đảm bảo rằng dev set và test set đến từ cùng
+một phân phối.
+
+00:09:23.260 --> 00:09:26.530
+Chúng tôi cũng sẽ nói nhiều hơn về hướng dẫn
+cụ thể này. Nhưng vì
+
+00:09:26.530 --> 00:09:29.800
+bạn sẽ sử dụng nhóm phát triển nên bạn đã thêm
+rất nhiều mô hình
+
+00:09:29.800 --> 00:09:33.070
+khác nhau và thực sự cố gắng cải thiện hiệu
+suất trên nhóm phát
+
+00:09:33.070 --> 00:09:36.340
+triển. Thật tuyệt nếu bộ phát triển của bạn
+đến từ cùng một bản phân phối
+
+00:09:36.340 --> 00:09:40.193
+như bộ thử nghiệm của bạn. Nhưng vì các thuật
+toán
+
+00:09:40.193 --> 00:09:44.047
+deep learning rất cần training data nên tôi
+nhận thấy một xu
+
+00:09:44.047 --> 00:09:47.900
+hướng là bạn có thể sử dụng tất cả các loại
+chiến thuật sáng tạo như
+
+00:09:47.900 --> 00:09:52.500
+thu thập dữ liệu các trang web để có được
+training set lớn hơn nhiều so với những gì
+
+00:09:52.500 --> 00:09:57.100
+bạn có. Ngay cả khi một phần chi phí đó là do
+dữ liệu training set của bạn có thể
+
+00:09:57.100 --> 00:10:01.700
+không đến từ cùng một phân phối với dev set và
+test set của bạn. Nhưng bạn thấy vậy
+
+00:10:01.700 --> 00:10:06.927
+miễn là bạn tuân theo quy tắc chung này thì
+tiến trình trong thuật toán
+
+00:10:06.927 --> 00:10:12.153
+machine learning của bạn sẽ nhanh hơn. Và tôi
+cũng sẽ đưa ra lời giải thích chi tiết
+
+00:10:12.153 --> 00:10:17.380
+hơn cho quy tắc ngón tay cái cụ thể này sau
+trong chuyên ngành này. Cuối cùng, có thể
+không có
+
+00:10:17.380 --> 00:10:22.287
+một bộ thử nghiệm. Hãy nhớ rằng mục tiêu của
+bộ kiểm tra là cung cấp cho bạn
+
+00:10:22.287 --> 00:10:27.193
+ước tính khách quan về hiệu suất của mạng cuối
+cùng mà bạn đã chọn. Nhưng nếu
+
+00:10:27.193 --> 00:10:32.100
+bạn không cần ước tính khách quan đó thì có
+thể không có bộ kiểm tra. Vì vậy
+
+00:10:32.100 --> 00:10:36.833
+Điều bạn làm nếu chỉ có dev set chứ không có
+test set là bạn huấn luyện trên
+
+00:10:36.833 --> 00:10:41.567
+training set và sau đó thử các kiến trúc mô
+hình khác nhau, đánh giá chúng trên
+
+00:10:41.567 --> 00:10:46.300
+dev set, sau đó sử dụng tập đó để lặp lại và
+cố gắng đạt được một mô hình tốt. Bởi vì
+
+00:10:46.300 --> 00:10:48.940
+bạn điều chỉnh dữ liệu của mình cho phù hợp
+với nhóm phát triển, điều này
+
+00:10:48.940 --> 00:10:51.580
+không còn mang lại cho bạn ước tính hiệu suất
+một cách khách quan nữa
+
+00:10:51.580 --> 00:10:54.220
+nhưng nếu bạn không cần thì điều đó có thể
+hoàn toàn ổn. Trong thế giới
+
+00:10:54.220 --> 00:10:56.860
+machine learning khi bạn chỉ có một đoàn tàu
+và một bộ phát triển nhưng không có
+
+00:10:56.860 --> 00:11:01.993
+test set riêng biệt, hầu hết mọi người sẽ gọi
+đây là training set và họ sẽ gọi
+
+00:11:01.993 --> 00:11:07.127
+dev set là test set. Nhưng điều cuối cùng họ
+thực sự làm là sử dụng bộ thử nghiệm
+
+00:11:07.127 --> 00:11:12.260
+làm bộ xác thực chéo loại trừ, điều này có thể
+không hoàn toàn là một ý tưởng tuyệt vời.
+
+00:11:12.260 --> 00:11:16.940
+sử dụng thuật ngữ vì khi đó chúng sẽ được
+overfitting cho test set. Vì vậy, khi
+
+00:11:16.940 --> 00:11:21.620
+một đội nói với bạn rằng họ chỉ có một đoàn
+tàu và một bộ thử nghiệm, bạn biết đấy,
+
+00:11:21.620 --> 00:11:26.300
+tôi sẽ thận trọng và nghĩ, liệu họ có thực sự
+có một đoàn tàu phát triển không vì
+
+00:11:26.300 --> 00:11:30.900
+họ đang overfitting cho bộ thử nghiệm. Về
+mặt văn hóa, có thể khó thay
+
+00:11:30.900 --> 00:11:35.500
+đổi một số thuật ngữ của các nhóm này và khiến
+họ gọi nó là bộ phát triển xe
+
+00:11:35.500 --> 00:11:40.100
+lửa thay vì bộ thử nghiệm xe lửa. Mặc dù tôi
+nghĩ gọi nó là một chuyến tàu và
+
+00:11:40.100 --> 00:11:44.020
+bộ phát triển sẽ là thuật ngữ chính xác hơn và
+đây thực sự là một cách
+
+00:11:44.020 --> 00:11:47.940
+thực hành ổn nếu bạn không cần ước tính hoàn
+toàn khách quan về hiệu
+
+00:11:47.940 --> 00:11:51.860
+suất của thuật toán. Vì vậy, việc thiết lập
+một dev set và kiểm tra tàu sẽ
+
+00:11:51.860 --> 00:11:55.807
+cho phép bạn lặp lại nhanh hơn. Nó cũng sẽ cho
+phép bạn đo lường hiệu
+
+00:11:55.807 --> 00:11:59.753
+quả hơn bias và variance của thuật toán để họ
+có thể chọn cách cải
+
+00:11:59.753 --> 00:12:03.700
+thiện thuật toán của bạn hiệu quả hơn. Hãy bắt
+đầu nói về điều đó trong
+
+00:12:03.700 --> 00:12:04.556
+video tiếp theo.

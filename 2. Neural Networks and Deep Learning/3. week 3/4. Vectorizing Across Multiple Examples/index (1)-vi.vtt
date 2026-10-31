@@ -1,0 +1,533 @@
+WEBVTT
+
+1
+00:00:00.360 --> 00:00:04.530
+Trong video trước, bạn đã thấy
+cách để tính toán dự đoán trên một mạng nơ‑ron,
+
+2
+00:00:04.530 --> 00:00:06.610
+khi có một mẫu huấn luyện đơn cho trước.
+
+3
+00:00:06.610 --> 00:00:11.520
+Trong video này, bạn sẽ thấy cách để
+vector hóa trên nhiều mẫu huấn luyện.
+
+4
+00:00:11.520 --> 00:00:15.350
+Và kết quả sẽ khá giống với 
+ những gì bạn đã thấy cho logistic regression.
+
+5
+00:00:15.350 --> 00:00:19.050
+Trong đó việc xếp chồng nhiều mẫu huấn luyện
+khác nhau trong các cột khác nhau của
+
+6
+00:00:19.050 --> 00:00:23.630
+ma trận, bạn có thể lấy các phương trình
+bạn đã có từ video trước.
+
+7
+00:00:23.630 --> 00:00:27.860
+Và với rất ít sửa đổi, thay đổi 
+ chúng để neural network tính toán
+
+8
+00:00:27.860 --> 00:00:32.340
+các đầura trên tất cả các mẫu
+gần như là cùng một lúc.
+
+9
+00:00:32.340 --> 00:00:35.080
+Vậy hãy cùng tìm hiểu chi tiết cách để thực thi điều này.
+
+10
+00:00:35.080 --> 00:00:40.192
+Đây là 4 phương trình chúng ta có từ video trước
+là cách để bạn tính z1,
+
+11
+00:00:40.192 --> 00:00:41.348
+a1, z2 và a2.
+
+12
+00:00:41.348 --> 00:00:46.867
+Và chúng chỉ bạn cách, đưa một
+đầu vào là vector feature x,
+
+13
+00:00:46.867 --> 00:00:53.810
+bạn có thể dùng chúng để tính a2=y^
+cho một mẫu huấn luyện đơn.
+
+14
+00:00:54.920 --> 00:01:00.050
+Giờ nếu bạn có m mẫu huấn luyện,
+bạn cần lặp lại quy trình này cho
+
+15
+00:01:00.050 --> 00:01:01.870
+mẫu huấn luyện đầu tiên.
+
+16
+00:01:01.870 --> 00:01:06.600
+X(1) để tính
+
+17
+00:01:06.600 --> 00:01:11.062
+y^(1) để dự đoán
+trên mẫu huấn luyệnđầu tiên của bạn.
+
+18
+00:01:11.062 --> 00:01:16.537
+Sau đó, X(2) sử dụng nó để tạo ra một dự đoán y^(2).
+
+19
+00:01:16.537 --> 00:01:23.050
+Và cứ thể tiếp tục đến X(m) để tạo ra một dự đoán y^(m).
+
+20
+00:01:23.050 --> 00:01:28.349
+Và như vậy, trong tất cả những ký hiệu activation function này,
+
+21
+00:01:28.349 --> 00:01:31.669
+Tôi sẽ viết là a[2](1).
+
+22
+00:01:31.669 --> 00:01:36.676
+Và đây là a[2](2),
+
+23
+00:01:36.676 --> 00:01:40.640
+và a[2](m), vậy nên
+
+24
+00:01:40.640 --> 00:01:46.830
+ký hiệu này ở đây sẽ là a[2](i).
+
+25
+00:01:46.830 --> 00:01:52.520
+Chữ i trong ngoặc tròn ám chỉ mẫu huấn luyện thứ i,
+
+26
+00:01:52.520 --> 00:01:57.220
+và số 2 trong ngoặc vuông ám chỉ lớp thứ 2, okay.
+
+27
+00:01:58.530 --> 00:02:02.460
+Và đó là ý nghĩa của các chỉ số
+nằm trong ngoặc vuông và ngoặc tròn.
+
+28
+00:02:04.170 --> 00:02:07.920
+Và do đó, chúng gợi ý rằng
+nếu bạn không thực thi việc vector hóa và
+
+29
+00:02:07.920 --> 00:02:11.000
+muốn tính các dự đoán
+của toàn bộ mẫu huấn luyện,
+
+30
+00:02:11.000 --> 00:02:15.630
+bạn cần phải tính từ i=1 đến m.
+
+31
+00:02:15.630 --> 00:02:18.260
+Và về cơ bản là thực thi 4 phương trình này,
+phải không?
+
+32
+00:02:18.260 --> 00:02:24.162
+Bạn cần tính z[1](i)
+
+33
+00:02:24.162 --> 00:02:30.064
+= W[1]x(i) + b[1],
+
+34
+00:02:30.064 --> 00:02:38.253
+a[1](i) = sigmoid(z[1](i)).
+
+35
+00:02:38.253 --> 00:02:43.683
+z[2](i) = W[2]a[1](i) + b[2]
+
+36
+00:02:43.683 --> 00:02:50.099
+và
+
+37
+00:02:50.099 --> 00:02:56.686
+a[2](i) = sigmoid(z[2](i)).
+
+38
+00:02:56.686 --> 00:03:03.172
+Vậy về cơ bản, 4 phương trình này
+được thêm mũ [i]
+
+39
+00:03:03.172 --> 00:03:08.788
+trên tất cả các biến
+và i phụ thuộc vào các mẫu huấn luyện.
+
+40
+00:03:08.788 --> 00:03:12.612
+Vì vậy hãy thêm mũ [i] vào X, z và a
+
+41
+00:03:12.612 --> 00:03:18.570
+nếu bạn muốn tính toàn tất cả các đầu ra
+trên m mẫu huấn luyện của bạn.
+
+42
+00:03:18.570 --> 00:03:23.930
+Những gì chúng ta muốn làm là vector hóa toàn bộ tính toán, để loại bỏ vòng lặp for.
+
+43
+00:03:23.930 --> 00:03:27.680
+Và nhân tiện, trong trường hợp có vẻ
+tôi đang có cả tá
+
+44
+00:03:27.680 --> 00:03:31.170
+đại số tuyến tính,
+hóa ra việc có thể thực thi chúng
+
+45
+00:03:31.170 --> 00:03:34.580
+một cách chính xác lại rất quan trọng
+trong kỷ nguyên deep learning.
+
+46
+00:03:34.580 --> 00:03:38.160
+Và chúng tôi đã chọn lựa rất cẩn thận
+ ký hiệu cho khóa học này và
+
+47
+00:03:38.160 --> 00:03:41.460
+làm các bước vector hóa này 
+đơn giản nhất có thể.
+
+48
+00:03:41.460 --> 00:03:46.140
+Và tôi hy vọng rằng việc học được
+ kiến thức cốt lõi này này sẽ giúp bạn
+
+49
+00:03:46.140 --> 00:03:49.750
+triển khai chính xác các thuật toán m
+ột cách nhanh chóng hơn.
+
+50
+00:03:51.060 --> 00:03:56.210
+Được rồi, tôi sẽ sao chép toàn bộ 
+khối mã này sang slide tiếp theo và
+
+51
+00:03:56.210 --> 00:03:57.880
+rồi chúng ta sẽ xem làm
+ thế nào để vector hóa điều này.
+
+52
+00:03:59.130 --> 00:04:02.154
+Đây là cái chúng ta có từ slide trước với
+
+53
+00:04:02.154 --> 00:04:04.324
+vòng lặp for trên m ví dụ
+ huấn luyện của chúng ta.
+
+54
+00:04:04.324 --> 00:04:09.769
+Hãy nhớ rằng chúng ta 
+đã xác định ma trận x bằng
+
+55
+00:04:09.769 --> 00:04:16.860
+các ví dụ huấn luyện của chúng ta
+ xếp lên nhau trong các cột như này.
+
+56
+00:04:16.860 --> 00:04:20.180
+Hãy lấy các ví dụ huấn luyện
+ và xếp chúng trong các cột.
+
+57
+00:04:20.180 --> 00:04:23.220
+Và điều này trở thành một n, hoặc
+
+58
+00:04:23.220 --> 00:04:27.860
+có thể là ma trận (nx, m).
+
+59
+00:04:29.198 --> 00:04:32.630
+Tôi sẽ chỉ đưa ra dòng cần thiết và cho 
+bạn biết những gì bạn cần thực hiện trong
+
+60
+00:04:32.630 --> 00:04:35.760
+để có một triển khai
+ véc tơ hóa của vòng lặp for này.
+
+61
+00:04:35.760 --> 00:04:41.394
+Thực tế, những gì bạn cần làm là tính
+
+62
+00:04:41.394 --> 00:04:46.035
+Z [1] = W [1] X + b [1],
+
+63
+00:04:46.035 --> 00:04:50.692
+A [1] = sigmoid của z [1].
+
+64
+00:04:50.692 --> 00:04:56.157
+Thì Z [2] = w [2]
+
+65
+00:04:56.157 --> 00:05:01.348
+A [1] + b [2] và
+
+66
+00:05:01.348 --> 00:05:10.100
+A [2] = sigmoid của Z [2].
+
+67
+00:05:10.100 --> 00:05:16.440
+Vì vậy, nếu bạn muốn phép tính tương tự 
+thì chúng ta đã đi từ các vectơ x thường
+
+68
+00:05:16.440 --> 00:05:23.480
+tới ma trận X hoa bằng cách xếp 
+chồng x thường trong các cột khác nhau.
+
+69
+00:05:23.480 --> 00:05:28.494
+Nếu bạn làm điều tương tự với z, ví dụ,
+
+70
+00:05:28.494 --> 00:05:33.509
+nếu bạn lấy z [1] (i), z [1] (2), và cứ như vậy
+
+71
+00:05:33.509 --> 00:05:40.290
+và đây là tất cả các vectơ cột, tới z [1] (m).
+
+72
+00:05:40.290 --> 00:05:46.270
+Đây là số lượng đầu tiên mà có tất 
+cả m số, và xếp chúng trong các cột.
+
+73
+00:05:46.270 --> 00:05:50.045
+Sau đó, nó sẽ cung cấp
+ cho bạn ma trận z [1].
+
+74
+00:05:50.045 --> 00:05:55.299
+Và tương tự bạn nhìn 
+vào số lượng này và
+
+75
+00:05:55.299 --> 00:06:00.957
+lấy a[1] (1), a[1] (2), v.v.
+
+76
+00:06:00.957 --> 00:06:06.980
+a [1] (m) và xếp chúng thành các cột.
+
+77
+00:06:06.980 --> 00:06:11.610
+Sau đó, giống như cách chúng ta 
+đã đi từ x thường sang chữ X hoa và
+
+78
+00:06:11.610 --> 00:06:13.280
+z thường đến Z hoa.
+
+79
+00:06:13.280 --> 00:06:20.920
+Điều này đi từ a thường, là
+ vectơ cho A hoa[1] này,
+
+80
+00:06:20.920 --> 00:06:26.685
+là ở đây và tương tự, cho z [2] và [2].
+
+81
+00:06:26.685 --> 00:06:30.141
+Cũng có thể tạo chúng bằng 
+cách lấy các vectơ này và
+
+82
+00:06:30.141 --> 00:06:32.016
+xếp chúng theo chiều ngang.
+
+83
+00:06:32.016 --> 00:06:37.326
+Và lấy các vectơ này và xếp 
+chúng theo chiều ngang,
+
+84
+00:06:37.326 --> 00:06:40.840
+để có được Z [2] và A [2].
+
+85
+00:06:40.840 --> 00:06:44.042
+Một trong những đặc điểm 
+của ký hiệu này có thể giúp
+
+86
+00:06:44.042 --> 00:06:47.391
+bạn coi điều này là ma trận Z và A,
+
+87
+00:06:47.391 --> 00:06:51.420
+theo chiều ngang, chúng ta sẽ 
+lập chỉ mục qua các ví dụ huấn luyện.
+
+88
+00:06:51.420 --> 00:06:55.631
+Và đó là lý do tại sao chỉ số ngang tương 
+ứng với ví dụ huấn luyện khác nhau,
+
+89
+00:06:55.631 --> 00:06:59.730
+khi bạn đi từ trái sang phải bạn, 
+quét qua training set.
+
+90
+00:06:59.730 --> 00:07:04.617
+Và theo chiều dọc, chỉ số dọc này
+ tương ứng với các nút khác nhau trong
+
+91
+00:07:04.617 --> 00:07:06.130
+neural network nhân tạo.
+
+92
+00:07:06.130 --> 00:07:11.077
+Ví dụ, nút này, giá trị này ở trên cùng,
+
+93
+00:07:11.077 --> 00:07:16.554
+trên cùng góc bên trái
+ tương ứng với kích hoạt
+
+94
+00:07:16.554 --> 00:07:21.633
+của đơn vị ẩn đầu tiên trên
+ ví dụ huấn luyện đầu tiên.
+
+95
+00:07:21.633 --> 00:07:25.812
+Một giá trị dưới tương ứng với 
+kích hoạt trong đơn vị ẩn thứ hai trên
+
+96
+00:07:25.812 --> 00:07:27.525
+ví dụ huấn luyện đầu tiên,
+
+97
+00:07:27.525 --> 00:07:31.505
+sau đó đơn vị ẩn thứ ba trên 
+mẫu huấn luyện đầu tiên và như vậy.
+
+98
+00:07:31.505 --> 00:07:37.540
+Khi bạn quét xuống, đây là chỉ 
+mục của bạn với số đơn vị ẩn.
+
+99
+00:07:39.670 --> 00:07:42.564
+Trong khi đó, nếu bạn di chuyển theo
+ chiều ngang, thì bạn sẽ đi từ đơn vị ẩn đầu tiên.
+
+100
+00:07:42.564 --> 00:07:45.450
+Và từ đơn vị ẩn đầu tiên trong
+ ví dụ huấn luyện đầu đầu tiên tới
+
+101
+00:07:45.450 --> 00:07:48.240
+ví dụ thứ hai, ví dụ thứ ba.
+
+102
+00:07:48.240 --> 00:07:53.718
+Và như vậy cho đến nút này 
+ở đây tương ứng với việc kích hoạt
+
+103
+00:07:53.718 --> 00:07:59.030
+đơn vị ẩn đầu tiên trên ví dụ huấn luyện 
+cuối cùng và ví dụ huấn luyện thứ m.
+
+104
+00:08:00.760 --> 00:08:07.663
+Và theo chiều ngang ma trận A
+ đi qua các ví dụ đào tạo khác nhau.
+
+105
+00:08:10.150 --> 00:08:14.195
+Và theo chiều dọc các chỉ số
+ khác nhau trong ma trận
+
+106
+00:08:14.195 --> 00:08:17.589
+A tương ứng với các đơn vị ẩn khác nhau.
+
+107
+00:08:22.342 --> 00:08:26.870
+Và điều này cũng đúng với 
+ma trận Z cũng như cho
+
+108
+00:08:26.870 --> 00:08:31.840
+X trong đó chiều ngang tương ứng
+ với các ví dụ đào tạo khác nhau.
+
+109
+00:08:31.840 --> 00:08:36.227
+Và theo chiều dọc, nó tương ứng với các 
+feature đầu vào khác nhau, những cái mà
+
+110
+00:08:36.227 --> 00:08:41.180
+thực sự khác biệt so với lớp 
+đầu vào của neural network.
+
+111
+00:08:42.750 --> 00:08:46.600
+Và trong các phương trình này, bây 
+giờ bạn biết cách triển khai véc tơ hóa
+
+112
+00:08:46.600 --> 00:08:51.320
+trong mạng của mình, đó
+ là vector hóa trên nhiều ví dụ.
+
+113
+00:08:51.320 --> 00:08:55.130
+Trong video tiếp theo tôi
+ muốn giải thích về lý do tại sao
+
+114
+00:08:55.130 --> 00:08:59.070
+đây là một cách triển khai
+ đúng của loại vector hóa này.
+
+115
+00:08:59.070 --> 00:09:03.468
+Hóa ra cách giải thích cũng sẽ tương tự 
+như những gì bạn đã thấy trước đó.
+
+116
+00:09:03.468 --> 00:09:05.300
+Hãy đón xem video tiếp theo.

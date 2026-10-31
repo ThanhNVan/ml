@@ -1,0 +1,378 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.110 --> 00:00:06.190
+Dropout does this seemingly crazy thing of randomly knocking out units in your network.
+
+00:00:06.190 --> 00:00:08.470
+Why does it work so well as a regularizer?
+
+00:00:08.470 --> 00:00:10.930
+Let's gain some better intuition.
+
+00:00:10.930 --> 00:00:16.030
+In the previous video, I gave this intuition that Dropout randomly knocks out units in
+
+00:00:16.030 --> 00:00:21.030
+your network so it's as if on every iteration you're working with a smaller neural network.
+
+00:00:21.030 --> 00:00:26.630
+And so using a smaller neural network seems like it should have a regularizing effect.
+
+00:00:26.630 --> 00:00:31.230
+Here's a second intuition, which is, you know, let's look at it from the perspective of a
+
+00:00:31.230 --> 00:00:33.910
+single unit.
+
+00:00:33.910 --> 00:00:34.910
+Let's say this one.
+
+00:00:34.910 --> 00:00:40.190
+Now for this unit to do its job, it has four inputs and it needs to generate some meaningful
+
+00:00:40.190 --> 00:00:41.470
+output.
+
+00:00:41.470 --> 00:00:46.390
+Now with Dropout, the inputs can get randomly eliminated.
+
+00:00:46.390 --> 00:00:50.810
+Sometimes those two units will get eliminated, sometimes a different unit will get eliminated.
+
+00:00:50.810 --> 00:00:55.190
+So what this means is that this unit, which I'm circling in purple, it can't rely on
+
+00:00:55.190 --> 00:01:01.710
+any one feature because any one feature could go away at random or any one of its own inputs
+
+00:01:01.710 --> 00:01:04.070
+could go away at random.
+
+00:01:04.070 --> 00:01:09.870
+So in particular, it would be reluctant to put all of its bets on say just this input,
+
+00:01:09.870 --> 00:01:10.870
+right?
+
+00:01:10.870 --> 00:01:15.070
+The weights will be reluctant to put too much weight on any one input because it could
+
+00:01:15.070 --> 00:01:16.230
+go away.
+
+00:01:16.230 --> 00:01:20.710
+So this unit will be more motivated to spread out its weights and give you a little bit
+
+00:01:20.710 --> 00:01:26.390
+of weight to each of the four inputs to this unit.
+
+00:01:26.390 --> 00:01:32.230
+And by spreading out the weights, this will tend to have an effect of shrinking the squared
+
+00:01:32.230 --> 00:01:35.270
+norm of the weights.
+
+00:01:35.270 --> 00:01:41.150
+And so similar to what we saw with L2 regularization, the effect of implementing Dropout is that it
+
+00:01:41.150 --> 00:01:46.390
+strengths the weights and does similar to L2 regularization that helps to prevent overfitting.
+
+00:01:46.390 --> 00:01:52.310
+But it turns out that Dropout can formally be shown to be an adaptive form of L2 regularization,
+
+00:01:52.310 --> 00:01:57.350
+but the L2 penalty on different weights are different depending on the size of the activations
+
+00:01:57.350 --> 00:01:58.990
+being multiplied into that weight.
+
+00:01:58.990 --> 00:02:06.990
+But to summarize, it is possible to show that Dropout has a similar effect to L2 regularization.
+
+00:02:06.990 --> 00:02:10.830
+Only the L2 regularization applied to different weights can be a little bit different and
+
+00:02:10.830 --> 00:02:13.690
+even more adaptive to the scale of different inputs.
+
+00:02:13.690 --> 00:02:16.110
+One more detail for when you're implementing Dropout.
+
+00:02:16.110 --> 00:02:19.630
+Here's a network where you have three input features.
+
+00:02:19.630 --> 00:02:24.790
+This is seven hidden units here, seven, three, two, one.
+
+00:02:24.790 --> 00:02:29.670
+So one of the parameters we had to choose was the Keep Prop, which is a chance of keeping
+
+00:02:29.670 --> 00:02:31.670
+a unit in each layer.
+
+00:02:31.670 --> 00:02:36.710
+So it is also feasible to vary Keep Prop by layer.
+
+00:02:36.710 --> 00:02:42.590
+So for the first layer, your matrix W1 will be 7 by 3.
+
+00:02:42.590 --> 00:02:46.070
+Your second weight matrix will be 7 by 7.
+
+00:02:46.070 --> 00:02:50.510
+W3 will be 3 by 7, and so on.
+
+00:02:50.510 --> 00:02:53.950
+And so W2 is actually the biggest weight matrix, right?
+
+00:02:53.950 --> 00:02:58.870
+Because they're actually the largest set of parameters being W2, which is 7 by 7.
+
+00:02:58.870 --> 00:03:04.470
+So to prevent, to reduce overfitting of that matrix, maybe for this layer, I guess
+
+00:03:04.470 --> 00:03:11.350
+this is layer 2, you might have a Keep Prop that's relatively low, say 0.5.
+
+00:03:11.350 --> 00:03:14.350
+Whereas for different layers where you might worry less about overfitting,
+
+00:03:14.350 --> 00:03:21.030
+you could have a higher Keep Prop, maybe just 0.7, maybe this is 0.7.
+
+00:03:21.030 --> 00:03:23.230
+And then for layers where you don't worry about overfitting at all,
+
+00:03:23.230 --> 00:03:25.990
+you can have a Keep Prop of 1.0.
+
+00:03:25.990 --> 00:03:31.270
+So for clarity, these are numbers I'm drawing in the purple boxes.
+
+00:03:31.270 --> 00:03:35.150
+These could be different Keep Props for different layers.
+
+00:03:35.150 --> 00:03:38.950
+Notice that the Keep Prop of 1.0 means that you're keeping every unit,
+
+00:03:38.950 --> 00:03:42.950
+and so you're really not using brought dropout for that layer.
+
+00:03:42.950 --> 00:03:45.910
+But for layers where you're more worried about overfitting, really the layers
+
+00:03:45.910 --> 00:03:50.230
+with a lot of parameters, you could set Keep Prop to be smaller to apply
+
+00:03:50.230 --> 00:03:52.150
+a more powerful form of dropout.
+
+00:03:52.150 --> 00:03:55.070
+It's kind of like cranking up the regularization parameter,
+
+00:03:55.070 --> 00:03:59.870
+Lambda for L2 regularization, where you try to regularize some layers more than others.
+
+00:03:59.870 --> 00:04:03.350
+And technically, you can also apply dropout to the input layer,
+
+00:04:03.350 --> 00:04:04.950
+where you can have some chance of, you know,
+
+00:04:04.950 --> 00:04:07.790
+just axing out one or more of the input features.
+
+00:04:07.790 --> 00:04:12.070
+Although in practice, usually don't do that that often.
+
+00:04:12.070 --> 00:04:15.750
+And so a Keep Prop of 1.0 is quite common for the input layer.
+
+00:04:15.750 --> 00:04:18.510
+You might also use a very high value, maybe 0.9.
+
+00:04:18.510 --> 00:04:20.830
+But it's much less likely that, you know,
+
+00:04:20.830 --> 00:04:23.230
+you want to eliminate half of the input features.
+
+00:04:23.230 --> 00:04:26.150
+So usually, a Keep Prop, if you apply it at all,
+
+00:04:26.150 --> 00:04:31.270
+will be a number close to one if you even apply dropout at all
+
+00:04:31.270 --> 00:04:32.590
+to the input layer.
+
+00:04:32.590 --> 00:04:35.670
+So just to summarize, if you're more worried about some layers
+
+00:04:35.670 --> 00:04:39.110
+overfitting than others, you can set a lower Keep Prop
+
+00:04:39.110 --> 00:04:40.790
+for some layers than others.
+
+00:04:40.790 --> 00:04:43.310
+The downside is this gives you even more hyperparameters
+
+00:04:43.310 --> 00:04:45.430
+to search for using cross-validation.
+
+00:04:45.430 --> 00:04:49.430
+One other alternative might be to have some layers where you apply dropout
+
+00:04:49.430 --> 00:04:51.230
+and some layers where you don't apply dropout
+
+00:04:51.230 --> 00:04:53.270
+and then just have one hyperparameter,
+
+00:04:53.270 --> 00:04:56.430
+which is a Keep Prop for the layers for which you do apply dropout.
+
+00:04:56.430 --> 00:04:59.750
+And before we wrap up, just a couple of implantational tips.
+
+00:04:59.750 --> 00:05:02.430
+Many of the first successful implementations of dropout
+
+00:05:02.430 --> 00:05:04.510
+were to computer vision.
+
+00:05:04.590 --> 00:05:07.390
+So in computer vision, the input size is so big.
+
+00:05:07.390 --> 00:05:09.430
+You're inputting all these pixels
+
+00:05:09.430 --> 00:05:11.830
+that you almost never have enough data.
+
+00:05:11.830 --> 00:05:15.430
+And so dropout is very frequently used by in computer vision.
+
+00:05:15.430 --> 00:05:17.150
+And there are some computer vision researchers
+
+00:05:17.150 --> 00:05:20.550
+that pretty much always use it almost as a default.
+
+00:05:20.550 --> 00:05:22.070
+But really, the thing to remember
+
+00:05:22.070 --> 00:05:25.310
+is that dropout is a regularization technique.
+
+00:05:25.310 --> 00:05:27.590
+It helps prevent overfitting.
+
+00:05:27.590 --> 00:05:31.870
+And so unless my algorithm is overfitting,
+
+00:05:31.870 --> 00:05:33.990
+I wouldn't actually bother to use dropout.
+
+00:05:33.990 --> 00:05:37.470
+So it's used somewhat less often in other application areas.
+
+00:05:37.470 --> 00:05:39.030
+It's just for computer vision.
+
+00:05:39.030 --> 00:05:41.110
+You usually just don't have enough data,
+
+00:05:41.110 --> 00:05:42.630
+so you're almost always overfitting,
+
+00:05:42.630 --> 00:05:45.750
+which is why there tend to be some computer vision researchers
+
+00:05:45.750 --> 00:05:46.950
+that are just squared by dropout.
+
+00:05:46.950 --> 00:05:51.110
+But the intuition doesn't always generalize, I think,
+
+00:05:51.110 --> 00:05:53.150
+to other disciplines.
+
+00:05:53.150 --> 00:05:58.790
+One big downside of dropout is that the cost function j
+
+00:05:58.790 --> 00:06:01.110
+is no longer well-defined.
+
+00:06:01.110 --> 00:06:04.430
+On every iteration, you're randomly
+
+00:06:04.430 --> 00:06:07.390
+curling off a bunch of nodes.
+
+00:06:07.390 --> 00:06:10.790
+And so if you're double-checking the performance of gradient
+
+00:06:10.790 --> 00:06:15.110
+descent, it's actually harder to double-check that you have
+
+00:06:15.110 --> 00:06:19.310
+a well-defined cost function j that is going downhill
+
+00:06:19.310 --> 00:06:21.190
+on every iteration.
+
+00:06:21.190 --> 00:06:23.550
+Because the cost function j that you're optimizing
+
+00:06:23.550 --> 00:06:26.230
+is actually less well-defined, or is it
+
+00:06:26.230 --> 00:06:28.070
+certainly hard to calculate.
+
+00:06:28.070 --> 00:06:30.790
+So you lose this debugging tool to either plot
+
+00:06:30.790 --> 00:06:32.510
+a draft like this.
+
+00:06:32.510 --> 00:06:35.510
+So what I usually do is turn off dropout.
+
+00:06:35.510 --> 00:06:38.590
+You will set keyprop equals 1, and then run my code
+
+00:06:38.590 --> 00:06:41.550
+and make sure that it is monotonically decreasing j.
+
+00:06:41.550 --> 00:06:43.430
+And then turn on dropout and hope
+
+00:06:43.430 --> 00:06:47.550
+that I didn't introduce the bulk into my code during dropout.
+
+00:06:47.550 --> 00:06:49.670
+Because you need other ways, I guess,
+
+00:06:49.670 --> 00:06:51.910
+but not plotting these figures to make sure
+
+00:06:51.910 --> 00:06:54.470
+that your code is working, the gradient descent is working,
+
+00:06:54.470 --> 00:06:56.630
+even with dropout.
+
+00:06:56.710 --> 00:07:00.590
+So with that, there are still a few more regularization
+
+00:07:00.590 --> 00:07:02.470
+techniques that we're feeling knowing.
+
+00:07:02.470 --> 00:07:06.350
+Let's talk about a few more such techniques in the next video.

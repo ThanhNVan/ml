@@ -1,0 +1,298 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.370
+Chào mừng các bạn trở lại; tuần này,
+
+2
+00:00:02.370 --> 00:00:04.560
+đầu tiên, tôi sẽ giới thiệu với mọi người một số
+
+3
+00:00:04.560 --> 00:00:08.430
+case study về neural network convolution.
+
+4
+00:00:08.430 --> 00:00:10.110
+Tại sao lại xem xét các case study này?
+
+5
+00:00:10.110 --> 00:00:12.510
+Tuần trước, chúng ta đã học về các thành phần cơ bản
+
+6
+00:00:12.510 --> 00:00:14.580
+như layer convolution, pooling layer
+
+7
+00:00:14.580 --> 00:00:16.905
+và các layer kết nối đầy đủ của neural network convolution.
+
+8
+00:00:16.905 --> 00:00:19.230
+Hóa ra, trong những năm gần đây,
+
+9
+00:00:19.230 --> 00:00:21.600
+các nghiên cứu về thị giác máy tính tập trung vào vấn đề
+
+10
+00:00:21.600 --> 00:00:23.970
+làm thế nào để kết hợp những thành phần cơ bản này với nhau
+
+11
+00:00:23.970 --> 00:00:26.370
+để tạo ra neural network convolution hiệu quả.
+
+12
+00:00:26.370 --> 00:00:29.070
+Và một trong những cách tốt nhất để mọi người hiểu rõ hơn
+
+13
+00:00:29.070 --> 00:00:31.980
+là tìm hiểu những ví dụ sau đây.
+
+14
+00:00:31.980 --> 00:00:34.425
+Tôi nghĩ rằng cũng giống như các bạn từng học
+
+15
+00:00:34.425 --> 00:00:37.070
+cách viết code bằng cách đọc code do người khác viết,
+
+16
+00:00:37.070 --> 00:00:38.840
+tôi cho rằng một cách tốt
+
+17
+00:00:38.840 --> 00:00:41.240
+để tìm hiểu cách để xây dựng neural network convolution
+
+18
+00:00:41.240 --> 00:00:45.910
+là xem các ví dụ neural network convolution hiệu quả khác.
+
+19
+00:00:45.910 --> 00:00:48.075
+Và hóa ra là,
+
+20
+00:00:48.075 --> 00:00:50.090
+kiến trúc neural network hoạt động tốt trên
+
+21
+00:00:50.090 --> 00:00:51.815
+một nhiệm vụ thị giác máy tính
+
+22
+00:00:51.815 --> 00:00:54.200
+thường thực hiện tốt những nhiệm vụ khác,
+
+23
+00:00:54.200 --> 00:00:55.715
+chẳng hạn như nhiệm vụ của bạn.
+
+24
+00:00:55.715 --> 00:00:57.440
+Vì vậy, nếu mọi người đang huấn luyện
+
+25
+00:00:57.440 --> 00:00:58.970
+neural network,
+
+26
+00:00:58.970 --> 00:01:00.665
+giả sử muốn kiến trúc neural network
+
+27
+00:01:00.665 --> 00:01:02.150
+nhận dạng được
+
+28
+00:01:02.150 --> 00:01:03.785
+chó, mèo và con người
+
+29
+00:01:03.785 --> 00:01:05.810
+nhưng mỗi người lại có một nhiệm vụ khác về thị giác máy tính,
+
+30
+00:01:05.810 --> 00:01:07.900
+như xây dựng xe tự lái.
+
+31
+00:01:07.900 --> 00:01:08.930
+Các bạn cũng có thể có thể dùng
+
+32
+00:01:08.930 --> 00:01:10.910
+kiến trúc neural network của một người khác
+
+33
+00:01:10.910 --> 00:01:13.805
+và áp dụng nó để giải quyết vấn đề của bạn.
+
+34
+00:01:13.805 --> 00:01:16.355
+Cuối cùng, sau một số video tiếp theo,
+
+35
+00:01:16.355 --> 00:01:18.050
+các bạn sẽ có thể đọc một số
+
+36
+00:01:18.050 --> 00:01:20.785
+tài liệu nghiên cứu từ lĩnh vực thị giác máy tính.
+
+37
+00:01:20.785 --> 00:01:24.320
+Tôi hy vọng rằng các bạn sẽ thấy hài lòng.
+
+38
+00:01:24.320 --> 00:01:26.030
+Các bạn không cần coi đây là một lớp học quá nghiêm túc,
+
+39
+00:01:26.030 --> 00:01:27.755
+các bạn có thể thỏa mái tham dự ở đây,
+
+40
+00:01:27.755 --> 00:01:29.330
+có thể đọc một số
+
+41
+00:01:29.330 --> 00:01:31.670
+tài liệu nghiên cứu về thị giác máy tính
+
+42
+00:01:31.670 --> 00:01:34.235
+thấy mình có thể hiểu chúng.
+
+43
+00:01:34.235 --> 00:01:36.275
+Chúng ta hãy bắt đầu bài học
+
+44
+00:01:36.275 --> 00:01:39.500
+Tôi sẽ giới thiệu qua những gì chúng ta sẽ làm trong vài video tiếp theo,
+
+45
+00:01:39.500 --> 00:01:43.720
+trước tiên chúng ta sẽ tìm hiểu
+một vài mạng kinh điển.
+
+46
+00:01:43.720 --> 00:01:46.680
+mạng LeNEt-5 xuất hiện từ những năm 1980,
+
+47
+00:01:46.680 --> 00:01:49.410
+AlexNet thường
+
+48
+00:01:49.410 --> 00:01:52.410
+được nhắc tới trong mạng VGG và
+
+49
+00:01:52.410 --> 00:01:56.070
+đây là những ví dụ về neural network khá hiệu quả
+
+50
+00:01:56.070 --> 00:01:58.400
+và các bạn sẽ tìm thấy một số ý tưởng hữu ích
+
+51
+00:01:58.400 --> 00:02:01.475
+cho các tác vụ của bạn.
+
+52
+00:02:01.475 --> 00:02:03.740
+Sau đó, chúng ta
+
+53
+00:02:03.740 --> 00:02:06.890
+sẽ tìm hiểu ResNet (Residual Network).
+
+54
+00:02:06.890 --> 00:02:08.810
+Có thể các bạn từng nghe đâu đó rằng neural network
+
+55
+00:02:08.810 --> 00:02:10.400
+đang càng ngày càng sâu,
+
+56
+00:02:10.400 --> 00:02:13.500
+mạng ResNet huấn luyện được
+
+57
+00:02:13.500 --> 00:02:16.815
+neural network vô cùng sâu: 152 layer.
+
+58
+00:02:16.815 --> 00:02:18.665
+Và có một số thủ thuật rất thú vị,
+
+59
+00:02:18.665 --> 00:02:21.200
+những ý tưởng về cách thực hiện sao cho hiệu quả.
+
+60
+00:02:21.200 --> 00:02:23.990
+Cuối cùng, chúng ta sẽ thấy
+
+61
+00:02:23.990 --> 00:02:27.900
+một case study về neural network Inception.
+
+62
+00:02:27.900 --> 00:02:29.615
+Sau khi thấy các neural network này,
+
+63
+00:02:29.615 --> 00:02:32.164
+tôi nghĩ rằng mọi người đã nắm được tổng quan tốt hơn nhiều
+
+64
+00:02:32.164 --> 00:02:33.605
+về cách xây dựng
+
+65
+00:02:33.605 --> 00:02:36.170
+neural network convolution hiệu quả.
+
+66
+00:02:36.170 --> 00:02:39.350
+Thậm chí nếu các bạn không làm việc liên quan đến thị giác máy tính,
+
+67
+00:02:39.350 --> 00:02:42.845
+các bạn cũng có thể rút ra nhiều ý tưởng từ các ví dụ này
+
+68
+00:02:42.845 --> 00:02:44.740
+chẳng hạn như mạng ResNet Inception,
+
+69
+00:02:44.740 --> 00:02:46.994
+nhiều ý tưởng trong số này đang được phát triển
+
+70
+00:02:46.994 --> 00:02:49.640
+và áp dụng vào các ngành khác.
+
+71
+00:02:49.640 --> 00:02:51.230
+Vì vậy, ngay cả khi các bạn không tự xây dựng
+
+72
+00:02:51.230 --> 00:02:52.865
+ứng dụng thị giác máy tính,
+
+73
+00:02:52.865 --> 00:02:54.620
+tôi nghĩ rằng các bạn cũng sẽ tìm thấy những ý tưởng
+
+74
+00:02:54.620 --> 00:02:57.510
+rất thú vị và hữu ích cho công việc của mình.

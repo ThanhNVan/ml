@@ -1,0 +1,422 @@
+WEBVTT
+
+00:00:01.260 --> 00:00:04.930
+Trong video trước, bạn đã thấy một hình ảnh
+
+00:00:04.930 --> 00:00:08.600
+trực quan về cost function j của w hoặc j của
+wb.
+
+00:00:08.600 --> 00:00:12.600
+Hãy xem xét một số hình ảnh trực quan phong
+phú hơn để
+
+00:00:12.600 --> 00:00:16.600
+bạn có thể hiểu rõ hơn về chức năng của
+cost function.
+
+00:00:16.600 --> 00:00:18.720
+Đây là những gì chúng ta đã thấy cho đến nay.
+
+00:00:18.720 --> 00:00:25.620
+Có mô hình, các tham số w và b của mô hình,
+cost function j của w và b, cũng
+
+00:00:25.620 --> 00:00:32.520
+như mục tiêu của linear regression, đó là giảm
+thiểu cost function j của w và b
+
+00:00:32.520 --> 00:00:35.560
+trên các tham số w và b.
+
+00:00:35.560 --> 00:00:42.240
+Trong video trước, chúng tôi đã tạm thời đặt b
+thành 0 để đơn giản hóa việc hiển thị.
+
+00:00:42.240 --> 00:00:46.460
+Nhưng bây giờ chúng ta hãy quay lại mô hình
+ban
+
+00:00:46.460 --> 00:00:50.680
+đầu với cả hai tham số w và b mà không đặt b
+bằng 0.
+
+00:00:50.680 --> 00:00:55.507
+Tương tự như lần trước, chúng ta muốn hiểu
+trực quan về hàm
+
+00:00:55.507 --> 00:01:00.333
+mô hình f của x, được hiển thị ở bên trái ở
+đây và cách nó
+
+00:01:00.333 --> 00:01:05.160
+liên quan đến cost function j của wb, được
+hiển thị ở đây trên
+
+00:01:05.160 --> 00:01:06.160
+bên phải.
+
+00:01:06.160 --> 00:01:10.760
+Đây là training set về quy mô và giá nhà.
+
+00:01:10.760 --> 00:01:14.960
+Giả sử bạn chọn một hàm có thể có của x, như
+hàm này.
+
+00:01:14.960 --> 00:01:20.480
+Ở đây tôi đã đặt w thành 0,06 và b thành 50.
+
+00:01:20.480 --> 00:01:25.800
+Vậy f(x) là 0,06 nhân x cộng 50.
+
+00:01:25.800 --> 00:01:28.560
+Lưu ý rằng đây không phải là mô hình đặc biệt
+tốt cho training set này.
+
+00:01:28.560 --> 00:01:30.440
+Thực sự đây là một mô hình khá tệ.
+
+00:01:30.440 --> 00:01:35.280
+Nó dường như liên tục đánh giá thấp giá nhà
+đất.
+
+00:01:35.280 --> 00:01:39.020
+Với các giá trị này của w và b, chúng ta hãy
+xem
+
+00:01:39.020 --> 00:01:42.760
+cost function j của w và b có thể trông như
+thế nào.
+
+00:01:42.760 --> 00:01:47.480
+Hãy nhớ lại điều chúng ta đã thấy lần trước là
+khi bạn chỉ có
+
+00:01:47.480 --> 00:01:52.200
+w, vì chúng ta tạm thời đặt b thành 0 để đơn
+giản hóa mọi thứ.
+
+00:01:52.200 --> 00:01:56.280
+Hồi đó, chúng tôi đã nghĩ ra một đồ thị của
+
+00:01:56.280 --> 00:02:00.360
+cost function trông như thế này chỉ là hàm của
+w.
+
+00:02:00.360 --> 00:02:04.600
+Vì vậy, khi chúng ta chỉ có một tham số w,
+cost function có
+
+00:02:04.600 --> 00:02:08.840
+đường cong hình chữ u này, có hình dạng hơi
+giống một cái bát súp.
+
+00:02:08.840 --> 00:02:11.240
+Nghe có vẻ ngon đấy.
+
+00:02:11.240 --> 00:02:17.660
+Bây giờ, trong ví dụ về giá nhà đất mà chúng
+ta có trên slide này, chúng
+
+00:02:17.660 --> 00:02:24.080
+ta có hai tham số, w và b, và do đó đồ thị trở
+nên phức tạp hơn một chút.
+
+00:02:24.080 --> 00:02:29.500
+Hóa ra cost function cũng có hình dạng tương
+tự, giống
+
+00:02:29.500 --> 00:02:34.920
+như một cái bát súp, ngoại trừ ba chiều thay
+vì hai chiều.
+
+00:02:34.920 --> 00:02:37.880
+Trên thực tế, tùy thuộc vào training set của
+
+00:02:37.880 --> 00:02:40.840
+bạn, cost function sẽ trông giống như thế này.
+
+00:02:40.840 --> 00:02:45.480
+Đối với tôi, cái này trông giống như một tô
+súp, có lẽ vì tôi hơi đói.
+
+00:02:45.480 --> 00:02:50.840
+Hoặc có thể với bạn, nó trông giống như một
+chiếc đĩa ăn cong, hoặc một chiếc võng.
+
+00:02:50.840 --> 00:02:55.880
+Thực ra điều đó nghe cũng có vẻ thư giãn, và
+đây là nước dừa của bạn.
+
+00:02:55.880 --> 00:02:58.780
+Có lẽ khi kết thúc khóa học này, bạn nên tự
+thưởng cho
+
+00:02:58.780 --> 00:03:01.680
+mình một kỳ nghỉ và thư giãn trên chiếc võng
+như thế này.
+
+00:03:01.680 --> 00:03:05.240
+Những gì bạn thấy ở đây là một biểu đồ bề
+
+00:03:05.240 --> 00:03:08.800
+mặt 3D trong đó các trục được gắn nhãn w và b.
+
+00:03:08.800 --> 00:03:13.980
+Vì vậy, khi bạn thay đổi w và b, là hai tham
+số của mô hình, bạn
+
+00:03:13.980 --> 00:03:19.160
+sẽ nhận được các giá trị khác nhau cho
+cost function j của w và b.
+
+00:03:19.160 --> 00:03:23.400
+Điều này rất giống với đường cong hình chữ u
+mà bạn đã thấy
+
+00:03:23.400 --> 00:03:27.640
+trong video trước, ngoại trừ việc thay vì có
+một tham số w làm
+
+00:03:27.640 --> 00:03:31.880
+đầu vào trong j, giờ đây bạn có hai tham số w
+và b làm đầu vào cho
+
+00:03:31.880 --> 00:03:35.720
+bát canh này hay chức năng hình võng này j.
+
+00:03:35.720 --> 00:03:39.680
+Và tôi chỉ muốn chỉ ra rằng bất kỳ điểm nào
+trên bề
+
+00:03:39.680 --> 00:03:43.640
+mặt này đều đại diện cho một lựa chọn cụ thể
+của w và b.
+
+00:03:43.800 --> 00:03:51.880
+Ví dụ: nếu w là âm 10 và b là âm 15 thì chiều
+cao của bề mặt
+
+00:03:51.880 --> 00:03:59.960
+phía trên điểm này là giá trị của j khi w là
+âm 10 và b là âm 15.
+
+00:03:59.960 --> 00:04:05.820
+Bây giờ, để xem xét kỹ hơn các điểm cụ thể, có
+một cách khác để vẽ đồ
+
+00:04:05.820 --> 00:04:11.680
+thị cost function j sẽ hữu ích cho việc trực
+quan hóa, thay vì sử dụng
+
+00:04:11.680 --> 00:04:17.480
+những biểu đồ bề mặt 3D này, tôi muốn lấy
+chính xác hàm j này, vì vậy tôi không
+
+00:04:17.480 --> 00:04:23.280
+thay đổi hàm j chút nào, và vẽ nó bằng cách sử
+dụng một thứ gọi là biểu đồ đường viền.
+
+00:04:23.280 --> 00:04:27.347
+Và nếu bạn đã từng xem một bản đồ địa hình cho
+thấy các ngọn núi
+
+00:04:27.347 --> 00:04:31.413
+khác nhau có độ cao như thế nào thì các đường
+nét trong bản đồ
+
+00:04:31.413 --> 00:04:35.480
+địa hình về cơ bản là những lát cắt ngang của
+phong cảnh chẳng hạn.
+
+00:04:35.480 --> 00:04:36.840
+một ngọn núi.
+
+00:04:36.840 --> 00:04:40.320
+Hình ảnh này là của núi Phú Sĩ ở Nhật Bản.
+
+00:04:40.320 --> 00:04:44.040
+Tôi vẫn nhớ gia đình tôi đã đến thăm núi Phú
+Sĩ
+
+00:04:44.040 --> 00:04:47.760
+khi tôi còn là một thiếu niên với nhiều cảnh
+đẹp.
+
+00:04:47.760 --> 00:04:53.960
+Và nếu bạn bay thẳng phía trên ngọn núi, bản
+đồ đường viền này sẽ trông như thế nào.
+
+00:04:53.960 --> 00:04:59.960
+Nó hiển thị tất cả các điểm có cùng độ cao cho
+các độ cao khác nhau.
+
+00:04:59.960 --> 00:05:05.200
+Ở cuối slide này là biểu đồ bề mặt 3D của
+cost function j.
+
+00:05:05.200 --> 00:05:09.160
+Tôi biết nó trông không giống hình chiếc nơ
+lắm, nhưng thực ra nó
+
+00:05:09.160 --> 00:05:13.120
+là một chiếc nơ rất căng ra, đó là lý do tại
+sao nó trông như vậy.
+
+00:05:13.120 --> 00:05:18.300
+Trong bản đồ tùy chọn sắp ra mắt, bạn sẽ có
+thể nhìn thấy điều này ở chế độ 3D
+
+00:05:18.300 --> 00:05:23.480
+và quay xung quanh để tự nổi lên và nó sẽ
+trông rõ ràng hơn hình cánh cung ở đó.
+
+00:05:23.480 --> 00:05:28.020
+Tiếp theo, ở phía trên bên phải là biểu đồ
+đường viền
+
+00:05:28.020 --> 00:05:32.560
+của cost function này giống hệt như biểu đồ ở
+phía dưới.
+
+00:05:32.560 --> 00:05:41.560
+Hai trục trên biểu đồ đường viền này là b trên
+trục tung và w trên trục hoành.
+
+00:05:41.560 --> 00:05:46.800
+Những gì mỗi hình bầu dục này còn được gọi là
+hình elip
+
+00:05:46.800 --> 00:05:52.040
+thể hiện là tập hợp các điểm trên bề mặt 3D có
+cùng độ cao.
+
+00:05:52.040 --> 00:05:58.160
+Nói cách khác, tập hợp các điểm có cùng giá
+trị cho cost function j.
+
+00:05:58.160 --> 00:06:03.340
+Vì vậy, để có được đường viền, bạn lấy bề mặt
+
+00:06:03.340 --> 00:06:08.520
+3D ở phía dưới và dùng dao cắt theo chiều
+ngang.
+
+00:06:08.520 --> 00:06:15.240
+Bạn lấy các lát cắt ngang của bề mặt 3D đó và
+lấy tất cả các điểm có cùng độ cao.
+
+00:06:15.240 --> 00:06:20.140
+Do đó, mỗi lát cắt ngang cuối cùng được hiển
+thị dưới dạng một
+
+00:06:20.140 --> 00:06:25.040
+trong những hình elip hoặc một trong những
+hình bầu dục này.
+
+00:06:25.040 --> 00:06:32.480
+Vì vậy, cụ thể, nếu bạn lấy điểm đó và điểm đó
+và điểm đó, tất cả ba điểm
+
+00:06:32.480 --> 00:06:39.920
+này có cùng một giá trị cho cost function j
+mặc dù chúng có giá trị khác nhau.
+
+00:06:39.920 --> 00:06:43.920
+giá trị của w và b.
+
+00:06:43.920 --> 00:06:50.140
+Và trong hình phía trên bên trái, bạn cũng
+thấy rằng ba điểm này tương ứng
+
+00:06:50.140 --> 00:06:56.360
+với các hàm f khác nhau, cả ba hàm này thực sự
+khá tệ cho việc dự đoán nhà ở
+
+00:06:56.360 --> 00:06:58.600
+giá trong trường hợp này.
+
+00:06:58.600 --> 00:07:05.300
+Bây giờ đáy thuyền nơi cost function j ở mức
+tối thiểu
+
+00:07:05.300 --> 00:07:12.000
+chính là điểm này ngay tại tâm của hình bầu
+dục đồng tâm này.
+
+00:07:12.000 --> 00:07:16.107
+Nếu bạn chưa từng nhìn thấy đồ thị đường viền
+nhiều lần trước đây,
+
+00:07:16.107 --> 00:07:20.213
+tôi muốn bạn hãy tưởng tượng nếu bạn muốn, bạn
+đang bay cao phía
+
+00:07:20.213 --> 00:07:24.320
+trên mũi tàu trong một chiếc máy bay hoặc
+trong một con tàu tên lửa và
+
+00:07:24.320 --> 00:07:26.760
+bạn đang nhìn thẳng vào nó.
+
+00:07:26.760 --> 00:07:30.653
+Vì vậy, điều đó giống như khi bạn đặt màn hình
+máy tính
+
+00:07:30.653 --> 00:07:34.547
+phẳng trên bàn hướng lên trên và hình chiếc nơ
+xuất hiện
+
+00:07:34.547 --> 00:07:38.440
+trực tiếp từ màn hình, nhô lên phía trên bàn
+làm việc của bạn.
+
+00:07:38.440 --> 00:07:43.013
+Hãy tưởng tượng rằng hình chiếc nơ mọc ra từ
+đường màn hình máy
+
+00:07:43.013 --> 00:07:47.587
+tính của bạn phẳng như thế sao cho mỗi hình
+bầu dục này có cùng
+
+00:07:47.587 --> 00:07:52.160
+chiều cao so với màn hình của bạn và chiều cao
+tối thiểu của chiếc nơ là
+
+00:07:52.160 --> 00:07:57.000
+ngay dưới đó, chính giữa hình bầu dục nhỏ
+nhất.
+
+00:07:57.000 --> 00:08:02.440
+Vì vậy, hóa ra các biểu đồ đường viền là một
+cách thuận tiện để trực
+
+00:08:02.440 --> 00:08:07.880
+quan hóa cost function 3D j nhưng theo cách
+được vẽ chỉ ở dạng 2D.
+
+00:08:07.880 --> 00:08:12.140
+Trong video này, bạn đã thấy cách biểu đồ bề
+mặt hình cánh
+
+00:08:12.140 --> 00:08:16.400
+cung 3D cũng có thể được hiển thị dưới dạng
+biểu đồ đường viền.
+
+00:08:16.400 --> 00:08:20.227
+Bằng cách sử dụng công cụ trực quan này, trong
+video tiếp theo, hãy hình
+
+00:08:20.227 --> 00:08:24.053
+dung một số lựa chọn cụ thể của WMB trong mô
+hình linear regression để
+
+00:08:24.053 --> 00:08:27.880
+chúng ta có thể thấy những lựa chọn khác nhau
+này ảnh hưởng như thế nào
+
+00:08:27.880 --> 00:08:30.600
+đường thẳng bạn đang khớp với dữ liệu.
+
+00:08:30.600 --> 00:08:32.080
+Chúng ta hãy chuyển sang video tiếp theo.

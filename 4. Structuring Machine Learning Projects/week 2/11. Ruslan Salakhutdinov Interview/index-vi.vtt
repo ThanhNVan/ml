@@ -1,0 +1,1040 @@
+WEBVTT
+
+00:00:02.770 --> 00:00:04.270
+Chào mừng, Russ. Tôi thực sự vui mừng vì bạn
+có
+
+00:00:04.270 --> 00:00:05.770
+thể tham gia cùng chúng tôi ở đây ngày hôm
+nay.
+
+00:00:05.770 --> 00:00:07.770
+Cảm ơn bạn. Cảm ơn, Andrew.
+
+00:00:07.770 --> 00:00:11.770
+Vì vậy, bạn biết đấy, hiện nay bạn là giám đốc
+nghiên cứu của Apple,
+
+00:00:11.770 --> 00:00:15.770
+đồng thời bạn cũng có giảng viên và giáo sư
+tại Đại học Carnegie Mellon.
+
+00:00:15.770 --> 00:00:19.770
+Vì vậy tôi rất muốn nghe một chút về câu
+chuyện cá nhân của bạn.
+
+00:00:19.770 --> 00:00:23.770
+Bạn đã thực hiện công việc deep learning này
+như thế nào?
+
+00:00:23.770 --> 00:00:27.270
+Vâng, thực ra, ở một mức độ nào đó, tôi bắt
+đầu
+
+00:00:27.270 --> 00:00:30.770
+deep learning, ở một mức độ nào đó, là do may
+mắn.
+
+00:00:30.770 --> 00:00:34.770
+Tôi đã lấy bằng thạc sĩ ở Toronto và sau đó
+tôi nghỉ việc một năm.
+
+00:00:34.770 --> 00:00:38.770
+Thực ra tôi đang làm việc trong lĩnh vực tài
+chính. Đó là một chút ngạc nhiên.
+
+00:00:38.770 --> 00:00:42.770
+Và vào thời điểm đó, tôi không chắc liệu mình
+có muốn học tiến sĩ hay không.
+
+00:00:42.770 --> 00:00:45.770
+Và rồi một điều gì đó đã xảy ra, một điều đáng
+ngạc nhiên đã xảy ra.
+
+00:00:45.770 --> 00:00:49.770
+Một buổi sáng nọ, tôi đang đi làm và tình cờ
+gặp Jeff Hinton.
+
+00:00:49.770 --> 00:00:53.770
+Và Jeff nói với tôi, này, tôi có ý tưởng tuyệt
+vời này.
+
+00:00:53.770 --> 00:00:55.770
+Hãy đến văn phòng của tôi. Tôi sẽ chỉ cho bạn.
+
+00:00:55.770 --> 00:01:00.103
+Và vì vậy về cơ bản chúng tôi đã đi bộ cùng
+nhau, và anh ấy bắt đầu kể
+
+00:01:00.103 --> 00:01:04.437
+cho tôi nghe về những cỗ máy Boltzmann, sự
+phân kỳ tương phản và một
+
+00:01:04.437 --> 00:01:08.770
+số thủ thuật mà lúc đó tôi không hiểu rõ anh
+ấy đang nói về điều gì.
+
+00:01:08.770 --> 00:01:11.770
+Nhưng điều đó thực sự, thực sự rất phấn khích,
+
+00:01:11.770 --> 00:01:14.770
+điều đó rất thú vị và thực sự làm tôi phấn
+khích.
+
+00:01:14.770 --> 00:01:20.770
+Và về cơ bản, trong vòng ba tháng, tôi bắt đầu
+học Tiến sĩ với Jeff.
+
+00:01:20.770 --> 00:01:27.770
+Vì vậy, nó giống như sự khởi đầu, bởi vì đó là
+vào năm 2005, 2006.
+
+00:01:27.770 --> 00:01:32.770
+Và đây là lúc một số thuật toán deep learning
+trong khu vực sử dụng máy
+
+00:01:32.770 --> 00:01:37.770
+Boltzmann bị hạn chế và hệ thống quản lý dữ
+liệu có giám sát đã xuất hiện.
+
+00:01:37.770 --> 00:01:39.770
+Và đó là cách tôi bắt đầu.
+
+00:01:39.770 --> 00:01:44.270
+Bạn biết đấy, thực sự đó là một buổi sáng đặc
+biệt, khi tôi tình cờ gặp
+
+00:01:44.270 --> 00:01:48.770
+Jeff, nó đã thay đổi hoàn toàn sự nghiệp tương
+lai của tôi trong tương lai.
+
+00:01:48.770 --> 00:01:52.437
+Và sau đó, trên thực tế, bạn là đồng tác giả
+của, bạn biết đấy, một
+
+00:01:52.437 --> 00:01:56.103
+trong những bài báo đầu tiên về máy Boltzmann
+bị hạn chế đã thực sự
+
+00:01:56.103 --> 00:01:59.770
+giúp ích cho nghiên cứu về neural network
+và deep learning này.
+
+00:01:59.770 --> 00:02:03.770
+Hãy kể cho tôi nghe thêm một chút về cảm giác
+làm việc trong buổi hội thảo đó.
+
+00:02:03.770 --> 00:02:07.770
+Vâng, đây thực sự là một năm thú vị.
+
+00:02:07.770 --> 00:02:13.770
+Đó là năm đầu tiên tôi làm nghiên cứu sinh
+tiến sĩ, Jeff và tôi đang cố gắng khám phá
+
+00:02:13.770 --> 00:02:19.770
+những ý tưởng sử dụng máy Boltzmann bị hạn chế
+và sử dụng các thủ thuật đào tạo trước
+
+00:02:19.770 --> 00:02:21.770
+để đào tạo nhiều lớp.
+
+00:02:21.770 --> 00:02:24.770
+Và đặc biệt, chúng tôi đang cố gắng tập trung
+vào bộ mã hóa tự động.
+
+00:02:24.770 --> 00:02:28.770
+Bạn biết đấy, làm thế nào để chúng ta mở rộng
+PCA phi tuyến tính một cách hiệu quả?
+
+00:02:28.770 --> 00:02:31.770
+Và điều đó thật thú vị vì chúng tôi đã làm cho
+những hệ
+
+00:02:31.770 --> 00:02:34.770
+thống này hoạt động trên các chữ số MNIST,
+điều đó thật thú vị.
+
+00:02:34.770 --> 00:02:38.270
+Nhưng bước tiếp theo đối với chúng tôi là xem
+liệu chúng tôi
+
+00:02:38.270 --> 00:02:41.770
+có thể mở rộng những mô hình này để xử lý
+khuôn mặt hay không.
+
+00:02:41.770 --> 00:02:44.770
+Tôi nhớ chúng tôi có tập dữ liệu khuôn mặt
+nâng cao này.
+
+00:02:44.770 --> 00:02:47.770
+Và sau đó chúng tôi bắt đầu xem xét liệu chúng
+tôi có thể nén tài liệu không?
+
+00:02:47.770 --> 00:02:50.770
+Vì vậy, chúng tôi bắt đầu xem xét tất cả các
+dữ liệu khác
+
+00:02:50.770 --> 00:02:53.770
+nhau này, bạn biết đấy, giá trị thực, số đếm,
+nhị phân.
+
+00:02:53.770 --> 00:02:58.270
+Và trong suốt một năm đó, tôi là nghiên cứu
+sinh tiến sĩ năm
+
+00:02:58.270 --> 00:03:02.770
+thứ nhất, vì vậy đó là một trải nghiệm học hỏi
+lớn đối với tôi.
+
+00:03:02.770 --> 00:03:06.770
+Nhưng thực sự, trong vòng sáu hoặc bảy tháng,
+chúng tôi đã có thể
+
+00:03:06.770 --> 00:03:10.770
+nhận được những kết quả thực sự thú vị và thực
+sự tốt, điều mà bạn
+
+00:03:10.770 --> 00:03:14.770
+biết đấy, chúng tôi đã có thể đào tạo những bộ
+mã hóa tự động rất sâu này.
+
+00:03:14.770 --> 00:03:18.270
+Đây là điều mà bạn không thể làm được vào thời
+điểm đó
+
+00:03:18.270 --> 00:03:21.770
+bằng cách sử dụng các kỹ thuật tối ưu hóa
+truyền thống.
+
+00:03:21.770 --> 00:03:24.770
+Và sau đó, bạn biết đấy, nó trở thành một
+
+00:03:24.770 --> 00:03:27.770
+bài báo thực sự rất thú vị đối với chúng tôi.
+
+00:03:27.770 --> 00:03:33.770
+Đó là một năm cực kỳ thú vị vì nó mang lại cho
+tôi rất nhiều điều học hỏi.
+
+00:03:33.770 --> 00:03:37.770
+Nhưng đồng thời, bạn biết đấy, kết quả lại
+thực sự rất ấn
+
+00:03:37.770 --> 00:03:41.770
+tượng đối với những gì chúng tôi đang cố gắng
+thực hiện.
+
+00:03:41.770 --> 00:03:46.770
+Vì vậy, trong những ngày đầu của sự hồi sinh
+của deep learning, rất nhiều hoạt
+
+00:03:46.770 --> 00:03:51.770
+động tập trung vào các máy Boltzmann bị hạn
+chế và sau đó là các máy Boltzmann sâu.
+
+00:03:51.770 --> 00:03:54.437
+Vẫn còn rất nhiều nghiên cứu thú vị đang được
+thực hiện, bao
+
+00:03:54.437 --> 00:03:57.103
+gồm cả một số nghiên cứu trong nhóm của bạn,
+nhưng điều gì
+
+00:03:57.103 --> 00:03:59.770
+đang xảy ra với máy Boltzmann và máy Boltzmann
+bị hạn chế?
+
+00:03:59.770 --> 00:04:01.770
+Vâng, đó là một câu hỏi rất hay.
+
+00:04:01.770 --> 00:04:06.103
+Tôi nghĩ rằng trong những ngày đầu, cách chúng
+tôi sử dụng các máy
+
+00:04:06.103 --> 00:04:10.437
+Boltzmann bị hạn chế là bạn có thể tưởng tượng
+việc huấn luyện một loạt
+
+00:04:10.437 --> 00:04:14.770
+các máy Boltzmann bị hạn chế này sẽ cho phép
+bạn học hiệu quả từng lớp một.
+
+00:04:14.770 --> 00:04:17.770
+Và có một lý thuyết hay đằng sau, bạn biết
+đấy, khi bạn thêm một lớp cụ thể,
+
+00:04:17.770 --> 00:04:20.770
+nó sẽ cải thiện sự biến đổi của giới hạn, v.v.
+trong những điều kiện nhất định.
+
+00:04:20.770 --> 00:04:24.770
+Vì vậy, có cơ sở lý luận về mặt lý thuyết và
+những mô hình này
+
+00:04:24.770 --> 00:04:28.770
+đã hoạt động khá tốt về khả năng đào tạo trước
+các hệ thống này.
+
+00:04:28.770 --> 00:04:32.770
+Và sau đó vào khoảng năm 2009, 2010, khi máy
+tính bắt đầu
+
+00:04:32.770 --> 00:04:36.770
+xuất hiện, bạn biết đấy, GPU, thì rất nhiều
+người trong
+
+00:04:36.770 --> 00:04:40.770
+chúng tôi bắt đầu nhận ra rằng thực sự tối ưu
+hóa trực tiếp
+
+00:04:40.770 --> 00:04:44.270
+bạn biết đấy, những neural network sâu
+này đã
+
+00:04:44.270 --> 00:04:47.770
+cho kết quả tương tự, hoặc thậm chí còn tốt
+hơn.
+
+00:04:47.770 --> 00:04:51.770
+Vì vậy, backprop đó là về việc đào tạo trước
+hoặc máy Boltzmann bị hạn chế?
+
+00:04:51.770 --> 00:04:52.770
+Đúng vậy, đúng vậy.
+
+00:04:52.770 --> 00:04:56.103
+Và điều đó gần như đã kết thúc, bạn biết đấy,
+ba hoặc bốn năm, và điều đó
+
+00:04:56.103 --> 00:04:59.437
+thật thú vị đối với cả cộng đồng vì mọi người
+nghĩ rằng, ồ, bạn thực sự có
+
+00:04:59.437 --> 00:05:02.770
+thể đào tạo những mô hình sâu này bằng cách sử
+dụng các cơ chế đào tạo trước này.
+
+00:05:02.770 --> 00:05:06.103
+Và sau đó, bạn biết đấy, với nhiều máy tính
+hơn, mọi người bắt đầu nhận
+
+00:05:06.103 --> 00:05:09.437
+ra rằng về cơ bản bạn có thể thực hiện điều
+hướng backprop tiêu chuẩn,
+
+00:05:09.437 --> 00:05:12.770
+điều mà chúng tôi không thể làm vào năm 2005
+hoặc, bạn biết đấy, 2004,
+
+00:05:12.770 --> 00:05:16.770
+bởi vì chúng tôi sẽ mất hàng tháng để làm điều
+đó trên CPU.
+
+00:05:16.770 --> 00:05:20.770
+Và đó là một sự thay đổi lớn.
+
+00:05:20.770 --> 00:05:24.437
+Một điều nữa mà tôi nghĩ là chúng ta vẫn chưa
+thực sự biết phải làm gì với,
+
+00:05:24.437 --> 00:05:28.103
+bạn biết đấy, máy Boltzmann và máy Boltzmann
+sâu, tôi tin rằng chúng là
+
+00:05:28.103 --> 00:05:31.770
+những mô hình rất mạnh mẽ vì bạn có thể coi
+chúng như những mô hình tổng quát.
+
+00:05:31.770 --> 00:05:35.770
+Bạn biết đấy, họ cố gắng lập mô hình phân phối
+phức tạp trong dữ liệu.
+
+00:05:35.770 --> 00:05:40.103
+Nhưng khi chúng ta bắt đầu xem xét các thuật
+toán học, các thuật toán học ngay
+
+00:05:40.103 --> 00:05:44.437
+bây giờ, chúng yêu cầu sử dụng, bạn biết đấy,
+chuỗi Markov Monte Carlo và học
+
+00:05:44.437 --> 00:05:48.770
+biến phân, v.v., đây không phải là khả năng mở
+rộng như thuật toán backpropagation.
+
+00:05:48.770 --> 00:05:53.270
+Vì vậy, chúng ta vẫn phải tìm ra những cách
+hiệu quả hơn để
+
+00:05:53.270 --> 00:05:57.770
+huấn luyện các mô hình này cũng như cách sử
+dụng convolution.
+
+00:05:57.770 --> 00:06:02.770
+Đó là điều khá khó để tích hợp vào các mô hình
+này.
+
+00:06:02.770 --> 00:06:07.437
+Tôi nhớ một số công việc của bạn về việc sử
+dụng lực kéo của Mark
+
+00:06:07.437 --> 00:06:12.103
+xác suất để xây dựng các mô hình tổng quát của
+các đối tượng khác
+
+00:06:12.103 --> 00:06:16.770
+nhau và việc sử dụng những ý tưởng convolution
+này cũng rất thú vị.
+
+00:06:16.770 --> 00:06:19.770
+Nhưng đồng thời, việc đào tạo những người mẫu
+này vẫn vô cùng khó khăn.
+
+00:06:19.770 --> 00:06:21.770
+Khả năng làm việc là như thế nào?
+
+00:06:21.770 --> 00:06:22.770
+Vâng, khả năng làm việc như thế nào, phải
+không?
+
+00:06:22.770 --> 00:06:26.770
+Vì vậy, chúng ta vẫn phải tìm hiểu xem mặt
+khác là gì, chẳng hạn
+
+00:06:26.770 --> 00:06:30.770
+như một số công việc gần đây sử dụng bộ mã hóa
+biến phân, có thể
+
+00:06:30.770 --> 00:06:34.770
+được xem dưới dạng phiên bản được định hướng
+của máy Boltzmann.
+
+00:06:34.770 --> 00:06:39.770
+Bạn biết đấy, chúng tôi đã tìm ra cách đào tạo
+những mô hình này là công trình
+
+00:06:39.770 --> 00:06:44.770
+của Max Welling và Dirk Kingma về việc sử dụng
+các thủ thuật tái tham số hóa.
+
+00:06:44.770 --> 00:06:48.770
+Và bây giờ chúng ta có thể sử dụng thuật toán
+backpropagation trong hệ
+
+00:06:48.770 --> 00:06:52.770
+thống ngẫu nhiên, thuật toán này hiện đang
+thúc đẩy rất nhiều tiến bộ.
+
+00:06:52.770 --> 00:06:57.770
+Nhưng chúng tôi vẫn chưa tìm ra cách thực hiện
+điều đó trong trường hợp máy Boltzmann.
+
+00:06:57.770 --> 00:07:04.270
+Vì vậy, đó thực sự là một quan điểm rất thú vị
+mà tôi thực sự không biết đến, đó là
+
+00:07:04.270 --> 00:07:10.770
+vào thời kỳ trước khi máy tính chậm hơn, việc
+đào tạo trước RBM thực sự quan trọng.
+
+00:07:10.770 --> 00:07:16.770
+Chỉ có khả năng tính toán nhanh hơn mới thúc
+đẩy việc chuyển sang backprop tiêu chuẩn.
+
+00:07:16.770 --> 00:07:20.437
+Bạn biết đấy, xét về sự phát triển của tư duy
+cộng đồng trong
+
+00:07:20.437 --> 00:07:24.103
+deep learning, một chủ đề khác mà tôi biết bạn
+đã dành rất nhiều thời
+
+00:07:24.103 --> 00:07:27.770
+gian để suy nghĩ là các phương pháp tiếp cận
+tổng quát, không giám sát và có giám sát.
+
+00:07:27.770 --> 00:07:29.770
+Bạn có muốn chia sẻ một chút về suy nghĩ của
+bạn về
+
+00:07:29.770 --> 00:07:31.770
+điều đó đã phát triển như thế nào theo thời
+gian không?
+
+00:07:31.770 --> 00:07:37.270
+Vâng, tôi nghĩ đó thực sự là một chủ đề rất
+quan trọng, đặc biệt nếu
+
+00:07:37.270 --> 00:07:42.770
+chúng ta nghĩ về các mô hình không giám sát,
+bán giám sát hoặc tổng quát,
+
+00:07:42.770 --> 00:07:46.270
+vì ở một mức độ nào đó, rất nhiều thành công
+mà
+
+00:07:46.270 --> 00:07:49.770
+chúng ta thấy gần đây là nhờ
+supervised learning.
+
+00:07:49.770 --> 00:07:54.770
+Và quay lại những ngày đầu, việc
+unsupervised learning chủ yếu được coi là đào
+tạo
+
+00:07:54.770 --> 00:07:59.770
+trước không giám sát vì chúng tôi không biết
+cách đào tạo các hệ thống nhiều lớp này.
+
+00:07:59.770 --> 00:08:03.103
+Và thậm chí ngày nay, nếu bạn đang làm việc
+trong một môi trường có rất
+
+00:08:03.103 --> 00:08:06.437
+nhiều dữ liệu chưa được gắn nhãn và một phần
+nhỏ các ví dụ được gắn
+
+00:08:06.437 --> 00:08:09.770
+nhãn, bạn biết đấy, những mô hình đào tạo
+trước không được giám sát này,
+
+00:08:09.770 --> 00:08:12.770
+vì vậy, bạn biết đấy, việc xây dựng các mô
+hình tổng
+
+00:08:12.770 --> 00:08:15.770
+quát này có thể giúp ích cho các nhiệm vụ được
+giám sát.
+
+00:08:15.770 --> 00:08:19.437
+Vì vậy, tôi nghĩ rằng rất nhiều người trong
+cộng đồng chúng ta, bạn
+
+00:08:19.437 --> 00:08:23.103
+biết đấy, giống như niềm tin rằng, khi tôi bắt
+đầu học tiến sĩ, tất
+
+00:08:23.103 --> 00:08:26.770
+cả đều là về các mô hình sáng tạo và cố gắng
+học hỏi những mô hình này,
+
+00:08:26.770 --> 00:08:30.770
+vì đó là cách duy nhất để chúng tôi đào tạo
+những hệ thống này.
+
+00:08:30.770 --> 00:08:35.770
+Ngày nay, có rất nhiều công việc về mô hình
+tổng quát.
+
+00:08:35.770 --> 00:08:38.770
+Bạn biết đấy, nếu bạn nhìn vào mạng lưới đối
+thủ tổng hợp, nếu
+
+00:08:38.770 --> 00:08:41.770
+bạn nhìn vào khóa đào tạo đa dạng, các mô hình
+năng lượng sâu
+
+00:08:41.770 --> 00:08:44.770
+là thứ mà phòng thí nghiệm của tôi hiện cũng
+đang nghiên cứu.
+
+00:08:44.770 --> 00:08:47.770
+Tôi nghĩ đó là một nghiên cứu rất thú vị,
+nhưng chúng
+
+00:08:47.770 --> 00:08:50.770
+tôi chưa làm được, có lẽ chúng tôi chưa hiểu
+rõ về nó.
+
+00:08:50.770 --> 00:08:54.103
+Một lần nữa, đối với nhiều bạn đang nghĩ đến
+việc tham gia vào lĩnh
+
+00:08:54.103 --> 00:08:57.437
+vực deep learning, đây là một lĩnh vực mà tôi
+nghĩ chúng ta, bạn
+
+00:08:57.437 --> 00:09:00.770
+biết đấy, sẽ đạt được nhiều tiến bộ, hy vọng
+là trong tương lai gần.
+
+00:09:00.770 --> 00:09:01.770
+Vì vậy, học tập không giám sát.
+
+00:09:01.770 --> 00:09:02.770
+Học tập không giám sát, đúng vậy.
+
+00:09:02.770 --> 00:09:03.770
+Tiêu đề.
+
+00:09:03.770 --> 00:09:07.437
+Hoặc có thể bạn có thể coi đó là
+unsupervised learning
+
+00:09:07.437 --> 00:09:11.103
+hoặc học bán giám sát ở nơi bạn có, tôi sẽ cho
+bạn một số
+
+00:09:11.103 --> 00:09:14.770
+gợi ý hoặc một số ví dụ về ý nghĩa của những
+điều khác nhau,
+
+00:09:14.770 --> 00:09:17.770
+và tôi ném cho bạn rất nhiều dữ liệu chưa được
+gắn nhãn.
+
+00:09:17.770 --> 00:09:20.437
+Vì vậy, bạn biết đấy, đó thực sự là một hiểu
+biết rất quan
+
+00:09:20.437 --> 00:09:23.103
+trọng rằng trong kỷ nguyên deep learning trước
+đây khi máy
+
+00:09:23.103 --> 00:09:25.770
+tính chậm hơn, máy Boltzmann bị hạn chế và máy
+Boltzmann sâu,
+
+00:09:25.770 --> 00:09:29.770
+điều đó là cần thiết để khởi tạo các trọng số
+neural network, nhưng khi máy tính
+
+00:09:29.770 --> 00:09:33.770
+ngày càng nhanh hơn, backprop thẳng cũng không
+bắt đầu hoạt động tốt hơn nhiều.
+
+00:09:34.770 --> 00:09:38.103
+Vì vậy, bạn biết đấy, một chủ đề khác mà tôi
+biết bạn đã
+
+00:09:38.103 --> 00:09:41.437
+dành nhiều thời gian để suy nghĩ là
+supervised learning so
+
+00:09:41.437 --> 00:09:44.770
+với các mô hình sinh sản, các phương pháp
+unsupervised learning.
+
+00:09:44.770 --> 00:09:48.270
+Vì vậy, bạn thế nào, hãy cho tôi biết một chút
+suy nghĩ của bạn
+
+00:09:48.270 --> 00:09:51.770
+về cuộc tranh luận đó đã phát triển theo thời
+gian như thế nào.
+
+00:09:51.770 --> 00:09:56.770
+Tôi nghĩ rằng tất cả chúng ta đều tin rằng
+chúng ta sẽ có thể đạt được tiến bộ ở đó.
+
+00:09:56.770 --> 00:10:01.770
+Chỉ là, bạn biết đấy, tất cả công việc trên
+máy Boltzmann, bộ mã hóa biến
+
+00:10:01.770 --> 00:10:06.770
+thiên, GAN, bạn có thể nghĩ rất nhiều mô hình
+này là mô hình tổng quát,
+
+00:10:06.770 --> 00:10:11.770
+nhưng chúng tôi vẫn chưa tìm ra cách thực sự
+làm cho chúng
+
+00:10:11.770 --> 00:10:16.770
+hoạt động và làm cách nào bạn có thể sử dụng
+các mô hình lớn.
+
+00:10:16.770 --> 00:10:21.103
+Và thậm chí, tôi thấy rất nhiều lĩnh vực CNTT,
+bạn biết đấy,
+
+00:10:21.103 --> 00:10:25.437
+các công ty có rất rất nhiều dữ liệu, rất
+nhiều dữ liệu chưa
+
+00:10:25.437 --> 00:10:29.770
+được gắn nhãn, có rất nhiều nỗ lực để xem qua
+các chú thích
+
+00:10:29.770 --> 00:10:32.770
+vì đó là cách duy nhất để chúng ta tiến bộ lúc
+này.
+
+00:10:32.770 --> 00:10:37.770
+Và có vẻ như, bạn biết đấy, chúng ta có thể sử
+dụng dữ liệu chưa được gắn
+
+00:10:37.770 --> 00:10:42.770
+nhãn vì nó quá dồi dào và chúng ta vẫn chưa
+tìm ra cách để làm điều đó.
+
+00:10:43.770 --> 00:10:47.270
+Vì vậy, bạn đã đề cập đến những người muốn
+tham gia nghiên cứu
+
+00:10:47.270 --> 00:10:50.770
+deep learning, bạn biết đấy, học tập không
+giám sát là một lĩnh vực thú vị.
+
+00:10:50.770 --> 00:10:55.770
+Ngày nay, có rất nhiều người muốn tham gia
+deep learning, nghiên cứu hoặc ứng dụng.
+
+00:10:55.770 --> 00:10:58.270
+Vậy, đối với cộng đồng toàn cầu này, dù là
+
+00:10:58.270 --> 00:11:00.770
+nghiên cứu hay ứng dụng, bạn có lời khuyên gì?
+
+00:11:00.770 --> 00:11:05.770
+Vâng, tôi nghĩ rằng một trong những lời khuyên
+quan trọng mà tôi
+
+00:11:05.770 --> 00:11:10.770
+nên đưa ra là những người tham gia vào lĩnh
+vực đó, tôi sẽ khuyến
+
+00:11:10.770 --> 00:11:15.770
+khích họ thử những điều khác nhau và đừng ngại
+thử những điều mới
+
+00:11:15.770 --> 00:11:17.770
+và không ngại thử đổi mới.
+
+00:11:17.770 --> 00:11:21.437
+Tôi có thể cho bạn một ví dụ, đó là khi tôi
+còn là sinh viên
+
+00:11:21.437 --> 00:11:25.103
+tốt nghiệp, bạn biết đấy, chúng tôi đang xem
+xét mạng lưới thần
+
+00:11:25.103 --> 00:11:28.770
+kinh và đây là những hệ thống không lồi cao và
+khó tối ưu hóa.
+
+00:11:28.770 --> 00:11:32.770
+Và tôi nhớ đã nói chuyện với bạn bè của tôi
+trong cộng đồng tối ưu
+
+00:11:32.770 --> 00:11:36.770
+hóa và phản hồi luôn là, à, bạn không có cách
+nào giải quyết được
+
+00:11:36.770 --> 00:11:40.770
+những vấn đề này vì chúng không lồi, chúng tôi
+không hiểu tối ưu hóa,
+
+00:11:40.770 --> 00:11:45.770
+bạn biết đấy, làm sao bạn có thể làm được điều
+đó so với việc tối ưu hóa truyện tranh?
+
+00:11:45.770 --> 00:11:49.270
+Và thật ngạc nhiên vì trong phòng thí nghiệm
+của chúng tôi, bạn biết
+
+00:11:49.270 --> 00:11:52.770
+đấy, chúng tôi chưa bao giờ thực sự quan tâm
+nhiều đến những vấn đề
+
+00:11:52.770 --> 00:11:56.270
+cụ thể đó, chúng tôi đang nghĩ về cách chúng
+tôi có thể tối ưu hóa
+
+00:11:56.270 --> 00:11:59.770
+chúng, liệu chúng tôi có thể đạt được những
+kết quả thú vị hay không.
+
+00:11:59.770 --> 00:12:02.770
+Và điều đó đã thúc đẩy cộng đồng một cách hiệu
+quả.
+
+00:12:02.770 --> 00:12:07.770
+Vì vậy, chúng tôi không sợ hãi, có thể ở một
+mức độ nào đó vì chúng tôi không
+
+00:12:07.770 --> 00:12:12.770
+sợ hãi, có thể vì chúng tôi thực sự thiếu lý
+thuyết đằng sau việc tối ưu hóa.
+
+00:12:12.770 --> 00:12:15.770
+Nhưng tôi khuyến khích mọi người hãy cố gắng
+và
+
+00:12:15.770 --> 00:12:18.770
+không ngại cố gắng giải quyết những vấn đề khó
+khăn.
+
+00:12:18.770 --> 00:12:21.770
+Vâng, và tôi nhớ bạn đã từng nói, đừng học
+viết mã chỉ ở cấp độ
+
+00:12:21.770 --> 00:12:24.770
+cao, bạn biết đấy, các framework
+deep learning, mà hãy thực sự hiểu.
+
+00:12:24.770 --> 00:12:28.770
+Vâng, đúng vậy. Tôi nghĩ rằng, một trong những
+điều tôi cố gắng
+
+00:12:28.770 --> 00:12:32.770
+làm khi dạy một lớp deep learning là một trong
+những bài tập về
+
+00:12:32.770 --> 00:12:36.770
+nhà, tôi yêu cầu mọi người thực sự mã hóa
+thuật toán backpropagation
+
+00:12:36.770 --> 00:12:38.770
+cho neural network convolution.
+
+00:12:38.770 --> 00:12:43.770
+Và bạn biết đấy, điều đó thật đau đớn, nhưng
+đồng thời, nếu bạn làm điều đó một
+
+00:12:43.770 --> 00:12:48.770
+lần, bạn sẽ thực sự hiểu cách các hệ thống này
+vận hành và cách chúng hoạt động
+
+00:12:48.770 --> 00:12:52.770
+và cách bạn có thể triển khai chúng một cách
+hiệu quả trên GPU.
+
+00:12:52.770 --> 00:12:57.270
+Và tôi nghĩ điều quan trọng đối với bạn là khi
+bạn bước vào lĩnh vực nghiên cứu hoặc
+
+00:12:57.270 --> 00:13:01.770
+công nghiệp, bạn phải thực sự hiểu rõ về những
+gì các hệ thống này đang hoạt động.
+
+00:13:01.770 --> 00:13:04.770
+Vì vậy, nó quan trọng, tôi nghĩ, bạn biết đấy.
+
+00:13:04.770 --> 00:13:09.103
+Vì bạn có cả kinh nghiệm học tập với tư cách
+là giáo sư và kinh nghiệm làm việc
+
+00:13:09.103 --> 00:13:13.437
+trong công ty, nên tôi tò mò liệu ai đó có
+phải là một thực thể học tập hay không,
+
+00:13:13.437 --> 00:13:17.770
+những ưu và nhược điểm của việc lấy bằng tiến
+sĩ so với việc gia nhập công ty là gì?
+
+00:13:17.770 --> 00:13:21.770
+Vâng, tôi nghĩ đó thực sự là một câu hỏi rất
+hay.
+
+00:13:21.770 --> 00:13:24.770
+Trong phòng thí nghiệm cụ thể của tôi, tôi có
+nhiều sinh viên.
+
+00:13:24.770 --> 00:13:27.770
+Một số sinh viên muốn đi theo con đường học
+thuật.
+
+00:13:27.770 --> 00:13:31.770
+Một số sinh viên muốn đi theo con đường công
+nghiệp.
+
+00:13:31.770 --> 00:13:35.103
+Và nó đang trở nên rất thách thức vì bạn có
+thể thực hiện
+
+00:13:35.103 --> 00:13:38.437
+những nghiên cứu tuyệt vời trong công nghiệp
+và bạn cũng
+
+00:13:38.437 --> 00:13:41.770
+có thể thực hiện những nghiên cứu tuyệt vời
+trong học viện.
+
+00:13:41.770 --> 00:13:46.770
+Nhưng xét về mặt ưu và nhược điểm, trong giới
+học thuật, tôi
+
+00:13:46.770 --> 00:13:51.770
+cảm thấy bạn có nhiều tự do hơn để giải quyết
+các vấn đề dài hạn.
+
+00:13:51.770 --> 00:13:55.770
+Hoặc nếu bạn nghĩ về một vấn đề điên rồ nào
+đó, bạn có thể giải quyết nó.
+
+00:13:55.770 --> 00:13:58.770
+Vì vậy, bạn có thêm một chút tự do.
+
+00:13:58.770 --> 00:14:04.270
+Đồng thời, nghiên cứu mà bạn thực hiện trong
+ngành cũng rất thú vị vì trong nhiều
+
+00:14:04.270 --> 00:14:09.770
+trường hợp, với nghiên cứu của mình, bạn có
+thể tác động đến hàng triệu người dùng.
+
+00:14:09.770 --> 00:14:14.770
+Nếu bạn phát triển công nghệ AI cốt lõi và rõ
+ràng là
+
+00:14:14.770 --> 00:14:19.770
+trong ngành, bạn sẽ có nhiều tài nguyên hơn về
+mặt tính toán.
+
+00:14:19.770 --> 00:14:24.770
+và có thể làm được những điều thực sự tuyệt
+vời.
+
+00:14:24.770 --> 00:14:27.770
+Vì vậy, có những điểm cộng và điểm trừ.
+
+00:14:27.770 --> 00:14:29.770
+Nó thực sự phụ thuộc vào những gì bạn muốn
+làm.
+
+00:14:29.770 --> 00:14:34.770
+Và hiện tại, đó là một môi trường thú vị nơi
+các học giả chuyển sang công
+
+00:14:34.770 --> 00:14:39.770
+nghiệp, và sau đó những người từ công nghiệp
+chuyển sang học viện, nhưng không nhiều.
+
+00:14:39.770 --> 00:14:44.770
+Và vì vậy, đó là thời gian rất thú vị.
+
+00:14:44.770 --> 00:14:47.270
+Có vẻ như machine learning học thuật là tuyệt
+vời
+
+00:14:47.270 --> 00:14:49.770
+và machine learning doanh nghiệp cũng tuyệt
+vời.
+
+00:14:49.770 --> 00:14:53.770
+Và điều quan trọng nhất là cứ nhảy vào. Hoặc
+một trong hai, cứ nhảy vào.
+
+00:14:53.770 --> 00:14:56.270
+Vì vậy, điều đó thực sự phụ thuộc vào sở thích
+của bạn vì
+
+00:14:56.270 --> 00:14:58.770
+bạn có thể thực hiện những nghiên cứu tuyệt
+vời ở cả hai nơi.
+
+00:14:58.770 --> 00:15:01.270
+Vì vậy, bạn đã đề cập đến việc
+
+00:15:01.270 --> 00:15:03.770
+unsupervised learning như một lĩnh vực nghiên
+cứu thú vị.
+
+00:15:03.770 --> 00:15:07.770
+Có lĩnh vực nào khác mà bạn coi là lĩnh vực
+nghiên cứu thú vị không?
+
+00:15:07.770 --> 00:15:08.770
+Vâng, hoàn toàn.
+
+00:15:08.770 --> 00:15:12.270
+Tôi nghĩ rằng những gì tôi thấy trong cộng
+đồng của chúng ta hiện
+
+00:15:12.270 --> 00:15:15.770
+nay, đặc biệt là trong cộng đồng
+deep learning, có một số xu hướng.
+
+00:15:15.770 --> 00:15:21.770
+Một lĩnh vực cụ thể mà tôi nghĩ thực sự thú vị
+là lĩnh vực
+
+00:15:21.770 --> 00:15:27.770
+reinforcement learning sâu vì chúng tôi có thể
+tìm ra cách có thể đào tạo lứa tuổi trong thế
+giới ảo
+
+00:15:27.770 --> 00:15:32.103
+và đây là điều mà chỉ trong vài năm gần đây,
+bạn sẽ thấy rất nhiều tiến bộ về cách
+
+00:15:32.103 --> 00:15:36.437
+chúng ta có thể mở rộng quy mô các hệ thống
+này, cách chúng ta có thể phát triển
+
+00:15:36.437 --> 00:15:40.770
+các thuật toán mới, cách chúng ta có thể tạo
+ra nhiều lứa tuổi để giao tiếp với nhau.
+
+00:15:40.770 --> 00:15:45.770
+Và tôi nghĩ lĩnh vực đó và nói chung, bối cảnh
+
+00:15:45.770 --> 00:15:50.770
+nơi bạn tương tác với môi trường là cực kỳ thú
+vị.
+
+00:15:50.770 --> 00:15:55.270
+Lĩnh vực khác mà tôi nghĩ cũng thực sự thú vị
+
+00:15:55.270 --> 00:15:59.770
+là lĩnh vực lý luận và hiểu ngôn ngữ tự nhiên.
+
+00:15:59.770 --> 00:16:02.770
+Vì vậy, chúng ta có thể xây dựng các hệ thống
+dựa trên đối thoại không?
+
+00:16:02.770 --> 00:16:07.270
+Liệu chúng ta có thể xây dựng những hệ thống
+có thể suy luận, có thể
+
+00:16:07.270 --> 00:16:11.770
+đọc văn bản và có thể trả lời các câu hỏi một
+cách thông minh không?
+
+00:16:11.770 --> 00:16:16.770
+Tôi nghĩ đây là điều mà rất nhiều nghiên cứu
+đang tập trung vào hiện nay.
+
+00:16:16.770 --> 00:16:21.270
+Và sau đó còn có một loại lĩnh vực phụ khác
+
+00:16:21.270 --> 00:16:25.770
+là lĩnh vực có thể học hỏi từ ít ví dụ hơn.
+
+00:16:25.770 --> 00:16:30.770
+Vì vậy, thông thường, mọi người nghĩ đó là học
+một lần hoặc học
+
+00:16:30.770 --> 00:16:35.770
+chuyển tiếp, một môi trường nơi bạn học được
+điều gì đó về thế giới
+
+00:16:35.770 --> 00:16:40.770
+và tôi giao cho bạn một nhiệm vụ mới và bạn có
+thể giải quyết nhiệm vụ này
+
+00:16:40.770 --> 00:16:45.770
+rất nhanh, giống như con người làm mà không
+cần rất nhiều ví dụ được dán nhãn.
+
+00:16:45.770 --> 00:16:49.770
+Và đây là điều mà rất nhiều người trong cộng
+đồng chúng tôi đang cố
+
+00:16:49.770 --> 00:16:53.770
+gắng tìm ra cách chúng tôi có thể làm được
+điều đó và làm cách nào
+
+00:16:53.770 --> 00:16:57.770
+chúng tôi có thể tiến gần hơn đến khả năng học
+tập giống như con người.
+
+00:16:57.770 --> 00:17:00.770
+Cảm ơn Russ vì đã chia sẻ tất cả những nhận
+xét và hiểu biết sâu sắc.
+
+00:17:00.770 --> 00:17:04.770
+Thật thú vị khi nghe câu chuyện về những ngày
+đầu bạn làm phần giới thiệu này.
+
+00:17:04.770 --> 00:17:07.770
+Cảm ơn, Andre. Cảm ơn vì đã có tôi.

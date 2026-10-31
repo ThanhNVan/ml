@@ -1,0 +1,363 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.020 --> 00:00:05.820
+Language modeling is one of the most basic and important tasks in natural language processing.
+
+00:00:05.820 --> 00:00:09.460
+There's also one that RNNs do very well.
+
+00:00:09.460 --> 00:00:14.420
+In this video, you'll learn about how to build a language model using an RNN.
+
+00:00:14.420 --> 00:00:18.500
+And this will lead up to what a fun programming exercise at the end of this week,
+
+00:00:18.500 --> 00:00:24.420
+where you build a language model and use it to generate Shakespeare-like texts and other types of texts.
+
+00:00:24.420 --> 00:00:25.540
+Let's get started.
+
+00:00:25.540 --> 00:00:27.860
+So what is a language model?
+
+00:00:28.020 --> 00:00:31.620
+Let's say you're building a speech recognition system and you hear the sentence,
+
+00:00:31.620 --> 00:00:34.180
+the apple and pear salad was delicious.
+
+00:00:34.900 --> 00:00:37.300
+So what did you just hear me say?
+
+00:00:37.300 --> 00:00:40.100
+Did I say the apple and pear salad?
+
+00:00:40.100 --> 00:00:43.540
+Or did I say the apple and pear salad?
+
+00:00:45.140 --> 00:00:49.300
+You probably think the second sentence is much more likely.
+
+00:00:49.300 --> 00:00:53.220
+And in fact, that's what a good speech recognition system would output,
+
+00:00:53.220 --> 00:00:56.420
+even though these two sentences sound exactly the same.
+
+00:00:57.940 --> 00:01:03.700
+And the way a speech recognition system picks the second sentence is by using a language model,
+
+00:01:03.700 --> 00:01:08.180
+which tells it what is the probability of either of these two sentences.
+
+00:01:08.180 --> 00:01:12.740
+For example, a language model might say that the chance of the first sentence is
+
+00:01:13.300 --> 00:01:16.100
+3.2 by 10 to the negative 13.
+
+00:01:16.100 --> 00:01:21.860
+And the chance of the second sentence is, say, 5.7 by 10 to the negative 10.
+
+00:01:22.340 --> 00:01:28.500
+And so with these probabilities, the second sentence is much more likely by over a factor
+
+00:01:28.500 --> 00:01:32.020
+of 10 to the 3 compared to the first sentence.
+
+00:01:32.020 --> 00:01:35.700
+And that's why a speech recognition system would pick the second choice.
+
+00:01:36.820 --> 00:01:40.340
+So what a language model does is given any sentence,
+
+00:01:40.340 --> 00:01:46.580
+it's job is to tell you what is the probability of a sentence, of that particular sentence.
+
+00:01:46.580 --> 00:01:51.940
+And by probability of sentence, I mean if you were to pick up a random newspaper,
+
+00:01:51.940 --> 00:01:56.660
+open a random email, or pick a random web page, or listen to the next thing someone says,
+
+00:01:56.660 --> 00:02:00.740
+the friend of you says, what is the chance that the next sentence you read somewhere out
+
+00:02:00.740 --> 00:02:05.220
+there in the world will be a particular sentence like the apple and pear salad?
+
+00:02:08.100 --> 00:02:13.140
+And this is a fundamental component for both speech recognition systems, as you've just seen,
+
+00:02:13.140 --> 00:02:18.740
+as well as for machine translation systems, where translation systems want to output only
+
+00:02:18.740 --> 00:02:20.660
+sentences that are likely.
+
+00:02:21.620 --> 00:02:27.140
+And so the basic job of a language model is to input a sentence, which I'm going to write
+
+00:02:27.140 --> 00:02:33.540
+as a sequence, y1, y2, up to yty.
+
+00:02:34.100 --> 00:02:40.500
+And for language model, it will be useful to represent the sentences as outputs y rather
+
+00:02:40.500 --> 00:02:41.700
+than as inputs x.
+
+00:02:42.180 --> 00:02:48.900
+But what a language model does is it estimates the probability of that particular sequence of words.
+
+00:02:53.500 --> 00:03:02.540
+So how do you build a language model? To build such a model using a RNN, you would first need a
+
+00:03:02.540 --> 00:03:08.700
+training set comprising a large corpus of English text, or text from whatever language you want to
+
+00:03:08.700 --> 00:03:15.260
+build a language model of. And the word corpus is an NLP terminology that just means a large body
+
+00:03:15.340 --> 00:03:18.700
+or a very large set of English text of English sentences.
+
+00:03:19.260 --> 00:03:24.460
+So let's say you get a sentence in your training set, as follows, cut average 15 hours of sleep a
+
+00:03:24.460 --> 00:03:31.420
+day. The first thing you would do is tokenize the sentence. And that means you would form
+
+00:03:31.420 --> 00:03:39.100
+a vocabulary as we saw in an earlier video, and then map each of these words to, say,
+
+00:03:39.100 --> 00:03:44.060
+one-hot vectors or to indices in your vocabulary.
+
+00:03:44.060 --> 00:03:50.140
+One thing you might also want to do is model when sentences end. So another common thing to do
+
+00:03:50.140 --> 00:03:57.820
+is to add an extra token called EOS that stands for end of sentence that can help you figure out
+
+00:03:58.620 --> 00:04:04.060
+when a sentence ends. We'll talk more about this later. But the EOS token can be appended to the
+
+00:04:04.060 --> 00:04:09.260
+end of every sentence in your training set if you want your model to explicitly capture
+
+00:04:09.260 --> 00:04:15.660
+when sentences end. We won't use the end of sentence token for the promo exercise at the
+
+00:04:15.660 --> 00:04:21.020
+end of this week. But for some applications, you might want to use this. And we'll say later where
+
+00:04:21.020 --> 00:04:30.220
+this comes in handy. So in this example, we have y1, y2, y3, 4567, 899 inputs in this example,
+
+00:04:30.220 --> 00:04:34.700
+if you append the end of sentence token to the end. And doing the tokenization step,
+
+00:04:34.700 --> 00:04:38.940
+you can decide whether or not the period should be a token as well. In this example,
+
+00:04:38.940 --> 00:04:45.020
+I'm just ignoring punctuation. So I'm just using day as another token and omitting the period,
+
+00:04:45.020 --> 00:04:50.700
+but you want to treat the period or other punctuation as explicit token, then you can
+
+00:04:50.700 --> 00:04:56.940
+add the period to your vocabulary as well. Now, one other detail would be what if some of the
+
+00:04:56.940 --> 00:05:02.220
+words in your training set are not in your vocabulary. So if your vocabulary uses 10,000
+
+00:05:02.220 --> 00:05:07.660
+words, maybe the 10,000 most common words in English, then the term Mao as in description,
+
+00:05:07.660 --> 00:05:13.020
+Mao is a breed of cat that might not be in one of your top 10,000 tokens. So in that case,
+
+00:05:13.020 --> 00:05:19.980
+you can take the word Mao and replace it with a unique token called UNK, which stands for unknown
+
+00:05:19.980 --> 00:05:25.260
+word, and we just model the chance of the unknown word instead of the specific word Mao.
+
+00:05:27.330 --> 00:05:31.650
+Having carried out the tokenization step, which basically means taking the input sentence and
+
+00:05:31.650 --> 00:05:36.530
+mapping out to the individual tokens or the individual words in your vocabulary. Next,
+
+00:05:36.610 --> 00:05:40.210
+let's build an RNN to model the chance of these different sequences.
+
+00:05:41.490 --> 00:05:46.770
+And one of the things we'll see on the next slide is that you end up setting the inputs x t
+
+00:05:47.410 --> 00:05:54.610
+to be equal to y of t minus one, but you see that in a little bit. So let's go on to build
+
+00:05:54.610 --> 00:05:59.810
+the RNN model. And I'm going to continue to use this sentence as the running example.
+
+00:05:59.810 --> 00:06:08.770
+This will be the RNN architecture at time zero, you're going to end up computing some
+
+00:06:08.770 --> 00:06:14.930
+activation a one as a function of some input x one, and x one would just be
+
+00:06:15.650 --> 00:06:23.810
+set it to the set of all zeros to zero vector. And the previous a zero by convention also said that
+
+00:06:23.810 --> 00:06:30.930
+to event of zeros. But what a one does is it will make a softmax prediction to try to figure out
+
+00:06:31.890 --> 00:06:39.250
+what is the probability of the first word y. And so that's going to be y one.
+
+00:06:40.690 --> 00:06:46.450
+So what this step does is really, it has a softmax that's trying to predict what is the probability
+
+00:06:46.450 --> 00:06:51.730
+of any word in addition, what's the chance that the first word is a was a chance of the first
+
+00:06:51.730 --> 00:06:59.890
+word is Aaron. And then what's the chance of the first word is cats all the way up to what's
+
+00:06:59.890 --> 00:07:05.010
+the chance of the first word is Zulu, or what's the chance of the first word is an unknown word,
+
+00:07:05.010 --> 00:07:09.250
+or what's the first chance that you know, the first word is the sentence though,
+
+00:07:09.250 --> 00:07:16.690
+shouldn't happen. Right. So y hat one is output according to a softmax, it just predicts what's
+
+00:07:16.690 --> 00:07:20.850
+the chance of the first word being whatever it ends up being. And then in our example,
+
+00:07:21.010 --> 00:07:27.570
+one that being the word cats. So this would be a 10,000 way softmax output. If you have a
+
+00:07:27.570 --> 00:07:34.130
+10,000 word vocabulary or 10,002, I guess, we call unknown word and the sentence is two additional
+
+00:07:34.130 --> 00:07:43.650
+tokens. Then the RNN steps forward to the next step and has some activation a to next step. And
+
+00:07:43.650 --> 00:07:50.610
+at this step, his job is try to figure out what is the second word. But now we will also
+
+00:07:50.610 --> 00:07:59.410
+give it the correct first word. So we'll tell it that gee, in reality, the first word was actually
+
+00:07:59.410 --> 00:08:10.690
+cats. So that's why one. So tell it cats. And this is why why one is equal to x two. And so at the
+
+00:08:10.690 --> 00:08:16.530
+second step, the output is getting predicted by a softmax. The RNN is jobs to predict what's the
+
+00:08:16.530 --> 00:08:22.610
+chance of it being whatever word it is, is it a or Aaron or cats or Zulu, unknown word or EOS or
+
+00:08:22.610 --> 00:08:29.810
+whatever, given what had come previously. So in this case, I guess the right answer was average
+
+00:08:29.810 --> 00:08:35.730
+since the sentence starts with cats average. And then you go on to the next step of the RNN,
+
+00:08:36.370 --> 00:08:43.570
+where you now compute a three. But to predict what is the third word, which is 15, we can now give
+
+00:08:43.650 --> 00:08:49.330
+it the first two words, we're going to tell it cats average, or the first two words. So this next input
+
+00:08:49.330 --> 00:08:57.330
+here, x three will be equal to y two. So the word averages input. And this job is to figure out
+
+00:08:57.890 --> 00:09:01.410
+what is the next word in the sequence. So in other words, try to figure out what is the
+
+00:09:01.410 --> 00:09:06.770
+probability of any word in the dictionary, given that what just came before was cats
+
+00:09:06.850 --> 00:09:16.370
+average. And in this case, the right answer is 15. And so on. Until at the end, you end up at,
+
+00:09:17.250 --> 00:09:28.690
+I guess, time step nine, you end up feeding it x nine, which is equal to y eight, which is the word
+
+00:09:29.490 --> 00:09:40.690
+day. And then this has a nine, and its job is output y hat nine. And this happens to be the EOS token. So
+
+00:09:40.690 --> 00:09:46.130
+what's the chance of whatever it is given, you know, everything that's come before, and hopefully
+
+00:09:46.130 --> 00:09:51.890
+you'll predict that there's a high chance of an EOS in the sentence token. But so each step in the
+
+00:09:51.890 --> 00:09:58.930
+RNN will look at some set of preceding words, such as given the first three words, what is the
+
+00:09:58.930 --> 00:10:05.250
+distribution over the next word. And so this RNN learns to predict one word at a time going from
+
+00:10:05.250 --> 00:10:10.930
+left to right. Next, to train this neural network, we're going to define the cost function.
+
+00:10:10.930 --> 00:10:19.490
+So at a certain time t, if the true word was y t, and the neural network softmax predicted some
+
+00:10:19.490 --> 00:10:25.490
+y hat t, then this is the softmax loss function that you already be familiar with. And then the
+
+00:10:25.490 --> 00:10:31.570
+overall loss is just the sum over all time steps of the losses associated with the individual
+
+00:10:31.570 --> 00:10:37.250
+predictions. And if you train this RNN on a loss training set, what it will be able to do is,
+
+00:10:37.250 --> 00:10:44.050
+given any initial set of words, such as cats average 15 or cats average 15 hours of,
+
+00:10:44.050 --> 00:10:53.010
+it can predict what is the chance of the next word. And given a new sentence, say, y1, y2,
+
+00:10:54.210 --> 00:11:00.290
+y3, with just three words for simplicity, the way you can figure out what is the chance of this
+
+00:11:00.290 --> 00:11:05.090
+entire sentence would be, well, the first softmax tells you what's the chance of y1.
+
+00:11:06.130 --> 00:11:11.250
+That would be this first output. And then the second one can tell you what's the chance of
+
+00:11:11.650 --> 00:11:24.210
+y2 given y1. And then the third one tells you what's the chance of y3 given y1 and y2. And
+
+00:11:24.210 --> 00:11:30.370
+so it's by multiplying out these three probabilities. And you see much more of the details of this in the
+
+00:11:30.370 --> 00:11:35.330
+promo exercise because by multiplying out these three that you end up with the probability of
+
+00:11:35.330 --> 00:11:42.290
+this three sentence of this three word sentence. So that's the basic structure of how you can train
+
+00:11:42.290 --> 00:11:47.970
+a language model using an RNN. If some of these ideas still seem a little bit abstract,
+
+00:11:47.970 --> 00:11:52.530
+don't worry about it, you get to practice all of these ideas in the promo exercise.
+
+00:11:52.530 --> 00:11:56.370
+But next, it turns out one of the most fun things you could do with a language model
+
+00:11:56.370 --> 00:12:00.770
+is to sample sequences from the model. Let's take a look at that in the next video.

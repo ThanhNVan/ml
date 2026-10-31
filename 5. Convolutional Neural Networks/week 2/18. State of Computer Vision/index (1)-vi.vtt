@@ -1,0 +1,805 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.650
+Người ta đã áp dụng thành công
+
+2
+00:00:01.650 --> 00:00:03.850
+deep learning cho thị giác máy tính, xử lý ngôn ngữ tự nhiên,
+
+3
+00:00:03.850 --> 00:00:05.990
+nhận dạng giọng nói, quảng cáo trực tuyến,
+
+4
+00:00:05.990 --> 00:00:08.550
+logistics, nhiều, nhiều, nhiều vấn đề.
+
+5
+00:00:08.550 --> 00:00:10.470
+Có một số điều độc đáo về
+
+6
+00:00:10.470 --> 00:00:12.990
+việc áp dụng của deep learning vào thị giác máy tính,
+
+7
+00:00:12.990 --> 00:00:15.570
+về tình trạng của thị giác máy tính.
+
+8
+00:00:15.570 --> 00:00:20.160
+Trong video này, tôi sẽ chia sẻ với mọi người một số quan sát của tôi về deep learning được
+
+9
+00:00:20.160 --> 00:00:25.335
+áp dụng cho thị giác máy tính và tôi hy vọng rằng điều đó sẽ giúp mọi người điều hướng tài liệu tốt hơn,
+
+10
+00:00:25.335 --> 00:00:27.270
+và tập hợp các ý tưởng của nhiều người khác nhau
+
+11
+00:00:27.270 --> 00:00:31.880
+và cách mọi người tự xây dựng các hệ thống này cho thị giác máy tính.
+
+12
+00:00:31.880 --> 00:00:38.180
+vậy, mọi người có thể nghĩ rằng hầu hết các vấn đề về machine learning đều ở đâu đó
+
+13
+00:00:38.180 --> 00:00:40.730
+trong phạm vi là mọi người có tương đối ít dữ liệu
+
+14
+00:00:40.730 --> 00:00:45.585
+và mọi người có nhiều dữ liệu.
+
+15
+00:00:45.585 --> 00:00:50.840
+vậy, ví dụ, tôi nghĩ rằng ngày nay chúng ta có một lượng kha khá
+
+16
+00:00:50.840 --> 00:00:57.230
+dữ liệu để nhận dạng giọng nói và nó liên quan đến mức độ phức tạp của vấn đề.
+
+17
+00:00:57.230 --> 00:00:59.540
+Và mặc dù ngày nay, có
+
+18
+00:00:59.540 --> 00:01:05.315
+tập hợp dữ liệu khá lớn để nhận dạng hình ảnh hoặc classification hình ảnh,
+
+19
+00:01:05.315 --> 00:01:07.460
+bởi vì nhận dạng hình ảnh là
+
+20
+00:01:07.460 --> 00:01:11.222
+một vấn đề phức tạp để xem xét tất cả các pixel đó và xác định xem nó là gì.
+
+21
+00:01:11.222 --> 00:01:16.250
+Cảm giác như mặc dù tập dữ liệu trực tuyến khá lớn, khoảng hơn một triệu hình ảnh,
+
+22
+00:01:16.250 --> 00:01:20.098
+thì chúng ta vẫn muốn có nhiều dữ liệu hơn.
+
+23
+00:01:20.098 --> 00:01:28.006
+Và có một số vấn đề như object detection khi chúng ta thậm chí có ít dữ liệu hơn.
+
+24
+00:01:28.006 --> 00:01:31.340
+vậy, tôi phải nhắc lại là, cũng giống như nhận dạng hình ảnh là vấn đề khi
+
+25
+00:01:31.340 --> 00:01:34.912
+nhìn vào một hình ảnh và xác định xem đây có phải là gia súc hay không.
+
+26
+00:01:34.912 --> 00:01:39.590
+Trong khi đó, object detection bằng cách xem xét ảnh và thực ra mọi người đang đặt
+
+27
+00:01:39.590 --> 00:01:41.948
+các bounding box cho mọi người biết vị trí trong
+
+28
+00:01:41.948 --> 00:01:44.935
+hình ảnh có các đối tượng chẳng hạn như ô tô.
+
+29
+00:01:44.935 --> 00:01:46.760
+Và do đó, chi phí để dùng
+
+30
+00:01:46.760 --> 00:01:52.470
+các bounding box đắt hơn so với việc gắn nhãn các đối tượng và các bounding box.
+
+31
+00:01:52.470 --> 00:01:57.905
+vậy, với object detection, chúng ta thường có ít dữ liệu hơn so với nhận dạng hình ảnh.
+
+32
+00:01:57.905 --> 00:02:02.083
+Và chúng ta sẽ tìm hiểu về object detection vào tuần tới.
+
+33
+00:02:02.083 --> 00:02:06.605
+vậy, nếu mọi người xem xét một loạt các vấn đề về machine learning,
+
+34
+00:02:06.605 --> 00:02:12.095
+trung bình mọi người thấy rằng khi có nhiều dữ liệu, mọi người thường thấy người khác
+
+35
+00:02:12.095 --> 00:02:18.300
+chỉ cần sử dụng các thuật toán đơn giản hơn cũng như ít kỹ thuật thủ công hơn.
+
+36
+00:02:18.300 --> 00:02:23.480
+vậy, mọi người chỉ cần thiết kế cẩn thận các đặc điểm cho bài toán của mình,
+
+37
+00:02:23.480 --> 00:02:25.910
+nhưng thay vào đó, mọi người có thể có một neural network khổng lồ, thậm chí
+
+38
+00:02:25.910 --> 00:02:28.507
+một kiến trúc đơn giản hơn và có neural network.
+
+39
+00:02:28.507 --> 00:02:32.415
+Chỉ cần tìm hiểu xem chúng ta có muốn học hay không khi chúng ta có rất nhiều dữ liệu.
+
+40
+00:02:32.415 --> 00:02:36.560
+Ngược lại khi mọi người không có nhiều dữ liệu đến mức đó thì
+
+41
+00:02:36.560 --> 00:02:41.713
+trung bình, mọi người thấy mọi người sử dụng kỹ thuật thủ công nhiều hơn.
+
+42
+00:02:41.713 --> 00:02:46.660
+Và nếu mọi người khéo léo một chút thì mọi người có thể thấy rằng có nhiều mẹo
+
+43
+00:02:46.660 --> 00:02:49.880
+Nhưng tôi nghĩ khi mọi người không có nhiều dữ liệu thì
+
+44
+00:02:49.880 --> 00:02:54.809
+kỹ thuật thủ công thực sự là cách tốt nhất để đạt được hiệu suất tốt.
+
+45
+00:02:54.809 --> 00:02:59.435
+vậy, khi tôi xem xét các ứng dụng machine learning
+
+46
+00:02:59.435 --> 00:03:04.595
+Tôi nghĩ rằng thông thường chúng ta có thuật toán học với hai nguồn kiến thức.
+
+47
+00:03:04.595 --> 00:03:07.430
+Một nguồn kiến thức là dữ liệu được gắn nhãn,
+
+48
+00:03:07.430 --> 00:03:11.525
+tức là các cặp (x, y) mà mọi người sử dụng để supervised learning.
+
+49
+00:03:11.525 --> 00:03:14.652
+Và nguồn kiến thức thứ hai là kỹ thuật thủ công.
+
+50
+00:03:14.652 --> 00:03:17.045
+Và có rất nhiều cách để thiết kế một hệ thống theo cách thủ công
+
+51
+00:03:17.045 --> 00:03:20.435
+Nó có thể là từ việc thiết kế các đặc điểm một cách cẩn thận,
+
+52
+00:03:20.435 --> 00:03:22.281
+cẩn thận thiết kế thủ công
+
+53
+00:03:22.281 --> 00:03:26.485
+kiến trúc mạng, và có thể là các thành phần khác trong hệ thống của mọi người.
+
+54
+00:03:26.485 --> 00:03:28.880
+Và vậy khi mọi người không có nhiều dữ liệu được gắn nhãn, mọi người
+
+55
+00:03:28.880 --> 00:03:32.270
+phải phụ thuộc nhiều hơn vào kỹ thuật thủ công.
+
+56
+00:03:32.270 --> 00:03:38.165
+Và vậy tôi nghĩ rằng thị giác máy tính đang cố gắng học một hàm thực sự phức tạp.
+
+57
+00:03:38.165 --> 00:03:42.815
+Và thường thì chúng ta cảm thấy như mình không có đủ dữ liệu cho thị giác máy tính.
+
+58
+00:03:42.815 --> 00:03:45.362
+Mặc dù tập dữ liệu ngày càng lớn hơn,
+
+59
+00:03:45.362 --> 00:03:48.845
+thường thì chúng ta vẫn cần nhiều dữ liệu hơn
+
+60
+00:03:48.845 --> 00:03:52.100
+Và đây là lý do tại sao thị giác của máy tính dữ liệu này ngày xưa và
+
+61
+00:03:52.100 --> 00:03:57.178
+thậm chí ngày nay đã phụ thuộc nhiều hơn vào kỹ thuật thủ công.
+
+62
+00:03:57.178 --> 00:04:00.425
+Và tôi nghĩ đây cũng là lý do tại sao thị giác máy tính
+
+63
+00:04:00.425 --> 00:04:05.040
+đã phát triển các kiến trúc mạng khá phức tạp,
+
+64
+00:04:05.040 --> 00:04:08.720
+là vì trong trường hợp không có thêm dữ liệu
+
+65
+00:04:08.720 --> 00:04:13.400
+cách để đạt được hiệu suất tốt là dành nhiều thời gian hơn cho việc xây dựng kiến trúc,
+
+66
+00:04:13.400 --> 00:04:17.130
+hoặc thử nghiệm với kiến trúc mạng.
+
+67
+00:04:17.130 --> 00:04:19.340
+Và nếu mọi người nghĩ rằng tôi đang
+
+68
+00:04:19.340 --> 00:04:23.525
+coi thường kỹ thuật thủ công thì ý tôi không phải vậy đâu nhé.
+
+69
+00:04:23.525 --> 00:04:27.830
+Khi mọi người không có đủ dữ liệu thì kỹ thuật thủ công là một việc rất khó,
+
+70
+00:04:27.830 --> 00:04:32.135
+nhiệm vụ khó đòi hỏi nhiều kiến thức sâu
+
+71
+00:04:32.135 --> 00:04:36.875
+Và một người hiểu biết sâu sắc về kỹ thuật thủ công sẽ có hiệu suất tốt hơn,
+
+72
+00:04:36.875 --> 00:04:39.590
+và khi mọi người thực hiện kỹ thuật thủ công
+
+73
+00:04:39.590 --> 00:04:43.085
+khi không có đủ dữ liệu thì quả là một đóng góp to lớn cho dự án.
+
+74
+00:04:43.085 --> 00:04:47.150
+Chỉ là khi có nhiều dữ liệu thì tôi sẽ không dành thời gian để tự tay làm
+
+75
+00:04:47.150 --> 00:04:52.588
+Thay vào đó, tôi sẽ dành thời gian xây dựng hệ thống học
+
+76
+00:04:52.588 --> 00:04:57.610
+Nhưng tôi nghĩ về ngày xưa, lĩnh vực thị giác máy tính đã sử dụng các tập dữ liệu rất nhỏ,
+
+77
+00:04:57.610 --> 00:04:59.965
+và ngày xưa, tài liệu về thị giác máy tính
+
+78
+00:04:59.965 --> 00:05:02.700
+phụ thuộc rất nhiều vào kỹ thuật thủ công.
+
+79
+00:05:02.700 --> 00:05:06.640
+Và mặc dù trong vài năm qua, lượng dữ liệu
+
+80
+00:05:06.640 --> 00:05:10.540
+với nhiệm vụ thị giác máy tính phù hợp đã tăng lên đáng kể,
+
+81
+00:05:10.540 --> 00:05:12.580
+Tôi nghĩ rằng điều đó đã khiến
+
+82
+00:05:12.580 --> 00:05:17.185
+số lượng kỹ thuật thủ công đang được thực hiện bị giảm đi đáng kể.
+
+83
+00:05:17.185 --> 00:05:21.480
+Nhưng vẫn còn rất nhiều kỹ thuật thủ công của kiến trúc mạng và thị giác máy tính.
+
+84
+00:05:21.480 --> 00:05:26.890
+Đó là lý do tại sao mọi người thấy những lựa chọn siêu điên cuồng, rất phức tạp trong thị giác máy tính,
+
+85
+00:05:26.890 --> 00:05:31.294
+phức tạp hơn so với nhiều lĩnh vực khác.
+
+86
+00:05:31.294 --> 00:05:33.550
+Và trên thực tế, bởi vì mọi người thường có
+
+87
+00:05:33.550 --> 00:05:38.050
+tập dữ liệu object detection nhỏ hơn so với tập dữ liệu nhận dạng hình ảnh,
+
+88
+00:05:38.050 --> 00:05:43.360
+khi chúng ta nói về nhiệm vụ object detection như thế này vào tuần tới.
+
+89
+00:05:43.360 --> 00:05:48.280
+mọi người thấy rằng các thuật toán
+
+90
+00:05:48.280 --> 00:05:54.040
+trở nên phức tạp hơn và thậm chí có nhiều thành phần chuyên biệt hơn.
+
+91
+00:05:54.040 --> 00:06:00.100
+May mắn thay, có một điều sẽ giúp ích rất nhiều khi mọi người có ít dữ liệu là học chuyển giao.
+
+92
+00:06:00.100 --> 00:06:10.395
+Và với ví dụ từ slide trước về bài toán phát hiện ra Tigger
+
+93
+00:06:10.395 --> 00:06:13.850
+Misty và neither
+
+94
+00:06:13.850 --> 00:06:18.666
+mọi người có dữ liệu hòa tan vì thế học chuyển giao sẽ rất hữu ích
+
+95
+00:06:18.666 --> 00:06:21.120
+Và đó là một tập hợp các kỹ thuật khác được sử dụng
+
+96
+00:06:21.120 --> 00:06:24.255
+rất nhiều khi mọi người có tương đối ít dữ liệu.
+
+97
+00:06:24.255 --> 00:06:27.100
+Nếu mọi người xem tài liệu về thị giác máy tính,
+
+98
+00:06:27.100 --> 00:06:29.243
+và xem xét các loại ý tưởng của những người khác
+
+99
+00:06:29.243 --> 00:06:32.293
+mọi người cũng thấy rằng người ta đều rất hăng say
+
+100
+00:06:32.293 --> 00:06:34.800
+Họ thực sự đang làm tốt với
+
+101
+00:06:34.800 --> 00:06:38.730
+bộ dữ liệu kiểm chuẩn được chuẩn hóa và họ đã chiến thắng nhiều cuộc thi
+
+102
+00:06:38.730 --> 00:06:41.925
+Và đối với các nhà nghiên cứu thị giác máy tính, nếu mọi người
+
+103
+00:06:41.925 --> 00:06:45.395
+thực hiện tốt việc kiểm chuẩn thì nghiên cứu sẽ dễ được xuất bản hơn.
+
+104
+00:06:45.395 --> 00:06:49.155
+vậy, chỉ cần chú ý nhiều đến việc thực hiện tốt những điểm chuẩn này.
+
+105
+00:06:49.155 --> 00:06:51.615
+Mặt tích cực của điều này là,
+
+106
+00:06:51.615 --> 00:06:56.125
+nó giúp cả cộng đồng tìm ra các thuật toán hiệu quả nhất.
+
+107
+00:06:56.125 --> 00:07:02.475
+Nhưng mọi người cũng thấy trong các nghiên cứu, người ta làm những để hỗ trợ thực hiện kiểm chuẩn tốt hơn,
+
+108
+00:07:02.475 --> 00:07:04.310
+nhưng thực ra, mọi người sẽ không sử dụng
+
+109
+00:07:04.310 --> 00:07:08.665
+một sản phẩm hoặc một hệ thống mà mọi người triển khai trong một ứng dụng thực tế.
+
+110
+00:07:08.665 --> 00:07:11.379
+vậy, đây là một vài mẹo để thực hiện kiểm chuẩn tốt hơn
+
+111
+00:07:11.379 --> 00:07:15.960
+Đây là những thứ mà bản thân tôi không bao giờ sử dụng nếu tôi
+
+112
+00:07:15.960 --> 00:07:20.940
+sản xuất một hệ thống để phục vụ khách hàng.
+
+113
+00:07:20.940 --> 00:07:23.105
+Việc đầu tiên là kết hợp (ensembling)
+
+114
+00:07:23.105 --> 00:07:24.870
+Ý nghĩa của việc này là
+
+115
+00:07:24.870 --> 00:07:27.410
+sau khi mọi người đã tìm ra neural network mà mình muốn,
+
+116
+00:07:27.410 --> 00:07:33.120
+huấn luyện độc lập một số neural network và tính trung bình các kết quả đầu ra của chúng.
+
+117
+00:07:33.120 --> 00:07:35.610
+vậy, hãy khởi tạo 3 hoặc 5 chẳng hạn,
+
+118
+00:07:35.610 --> 00:07:40.095
+hoặc 7 neural network ngẫu nhiên và huấn luyện tất cả các neural network này,
+
+119
+00:07:40.095 --> 00:07:41.890
+và sau đó tính trung bình kết quả đầu ra của chúng.
+
+120
+00:07:41.890 --> 00:07:44.943
+Và nhân tiện, điều quan trọng là phải tính trung bình kết quả đầu ra ŷ của chúng
+
+121
+00:07:44.943 --> 00:07:47.660
+Đừng tính trung bình trọng số, như vậy sẽ không được đâu
+
+122
+00:07:47.660 --> 00:07:50.410
+Mọi người có thể thấy bảy neural network
+
+123
+00:07:50.410 --> 00:07:53.348
+có bảy dự đoán khác nhau và tính trung bình chúng.
+
+124
+00:07:53.348 --> 00:07:57.725
+Và điều này sẽ khiến mọi người có thể làm tốt hơn 1% hoặc tốt hơn 2%.
+
+125
+00:07:57.725 --> 00:08:02.015
+vậy, thực hiện kiểm chuẩn tốt hơn một chút.
+
+126
+00:08:02.015 --> 00:08:04.569
+Và điều này sẽ khiến mọi người làm tốt hơn một chút.
+
+127
+00:08:04.569 --> 00:08:11.544
+Có thể đôi khi chỉ là 1 hoặc 2% nhưng có thể giúp ta giành chiến thắng trong một cuộc thi.
+
+128
+00:08:11.544 --> 00:08:15.200
+Nhưng bởi vì kết hợp có nghĩa là để kiểm tra trên mỗi hình ảnh,
+
+129
+00:08:15.200 --> 00:08:17.810
+mọi người có thể cần chạy một hình ảnh trong tất cả
+
+130
+00:08:17.810 --> 00:08:21.965
+từ 3 đến 15 mạng khác nhau, đây là con số khá điển hình.
+
+131
+00:08:21.965 --> 00:08:25.570
+Điều này làm chậm thời gian chạy của mọi người theo hệ số từ 3 đến 15,
+
+132
+00:08:25.570 --> 00:08:26.885
+hoặc đôi khi thậm chí nhiều hơn.
+
+133
+00:08:26.885 --> 00:08:29.655
+Và vậy, kết hợp là một trong những mẹo mà mọi người
+
+134
+00:08:29.655 --> 00:08:33.111
+sử dụng để thực hiện tốt kiểm chuẩn và để giành chiến thắng trong các cuộc thi.
+
+135
+00:08:33.111 --> 00:08:38.275
+Nhưng tôi nghĩ nó hầu như không bao giờ được sử dụng khi sản xuất để phục vụ khách hàng trong thực tế.
+
+136
+00:08:38.275 --> 00:08:41.400
+Tôi đoán trừ khi mọi người có ngân sách tính toán lớn và không
+
+137
+00:08:41.400 --> 00:08:44.996
+bận tâm nhiều về việc dùng nhiều ngân sách trên mỗi hình ảnh khách hàng.
+
+138
+00:08:44.996 --> 00:08:50.195
+Trong các nghiên cứu, cũng có thể thấy một thông tin thực sự hữu ích về kiểm chuẩn,
+
+139
+00:08:50.195 --> 00:08:52.690
+là multi-crop tại thời điểm kiểm tra.
+
+140
+00:08:52.690 --> 00:08:58.055
+vậy, ý của tôi là, mọi người đã thấy cách để tăng cường dữ liệu.
+
+141
+00:08:58.055 --> 00:09:04.910
+Và multi-crop cũng là một hình thức áp dụng tăng cường dữ liệu cho hình ảnh kiểm tra của mọi người.
+
+142
+00:09:04.910 --> 00:09:07.470
+Ví dụ, hãy xem một hình ảnh con mèo
+
+143
+00:09:07.470 --> 00:09:12.155
+và chỉ cần sao chép nó bốn lần bao gồm hai phiên bản phản chiếu
+
+144
+00:09:12.155 --> 00:09:14.585
+Có một kỹ thuật được gọi là 10-crop,
+
+145
+00:09:14.585 --> 00:09:19.460
+về cơ bản, giả sử mọi người lấy phần giữa này, phần cắt này
+
+146
+00:09:19.460 --> 00:09:22.097
+và chạy nó qua classifier (trình classification) của mọi người.
+
+147
+00:09:22.097 --> 00:09:24.830
+Và sau đó lấy phần cắt phía trên bên trái chạy qua một classifier
+
+148
+00:09:24.830 --> 00:09:27.145
+phần phía trên bên phải được hiển thị bằng màu xanh lá cây,
+
+149
+00:09:27.145 --> 00:09:30.980
+phía dưới bên trái hiển thị bằng màu vàng,
+
+150
+00:09:30.980 --> 00:09:33.162
+phía dưới bên phải hiển thị bằng màu cam,
+
+151
+00:09:33.162 --> 00:09:34.950
+và chạy nó qua classifier
+
+152
+00:09:34.950 --> 00:09:37.060
+Và sau đó làm điều tương tự với hình ảnh được phản chiếu.
+
+153
+00:09:37.060 --> 00:09:38.743
+Đúng. vậy, tôi sẽ lấy phần cắt ở trung tâm,
+
+154
+00:09:38.743 --> 00:09:41.670
+sau đó lấy bốn phần cắt ở góc.
+
+155
+00:09:41.670 --> 00:09:44.165
+vậy, đó là một trong những phần cắt trung tâm ở đây và ở đây,
+
+156
+00:09:44.165 --> 00:09:46.210
+có bốn phần cắt ở góc ở đây và ở đây.
+
+157
+00:09:46.210 --> 00:09:49.540
+Và nếu mọi người cộng 10 phần cắt khác nhau mà ta đã nhắc đến.
+
+158
+00:09:49.540 --> 00:09:51.600
+Do đó nó có tên là 10-crop.
+
+159
+00:09:51.600 --> 00:09:54.980
+Và mọi người sẽ cho chạy 10 hình ảnh này qua
+
+160
+00:09:54.980 --> 00:09:59.360
+classifier và sau đó trung bình các kết quả.
+
+161
+00:09:59.360 --> 00:10:02.660
+vậy, nếu mọi người có ngân sách tính toán, mọi người có thể làm điều này.
+
+162
+00:10:02.660 --> 00:10:04.530
+Có thể mọi người không cần nhiều đến 10-crop
+
+163
+00:10:04.530 --> 00:10:05.900
+mọi người có thể sử dụng một phần cắt thôi
+
+164
+00:10:05.900 --> 00:10:10.960
+Và nhờ nó thì mọi người có hiệu suất tốt hơn một chút trong hệ thống sản xuất.
+
+165
+00:10:10.960 --> 00:10:16.190
+Từ sản xuất mà tôi vừa nhắc đến là một hệ thống mọi người đang triển khai cho người dùng thực tế.
+
+166
+00:10:16.190 --> 00:10:19.760
+Nhưng kỹ thuật này được sử dụng nhiều hơn để
+
+167
+00:10:19.760 --> 00:10:24.110
+thực hiển kiểm chuẩn tốt hơn so với các hệ thống sản xuất thực tế.
+
+168
+00:10:24.110 --> 00:10:27.550
+Và một trong những vấn đề lớn của việc kết hợp là
+
+169
+00:10:27.550 --> 00:10:30.575
+mọi người cần giữ tất cả các mạng khác nhau này.
+
+170
+00:10:30.575 --> 00:10:33.835
+Và như vậy nó sẽ chiếm nhiều bộ nhớ máy tính hơn.
+
+171
+00:10:33.835 --> 00:10:37.600
+Đối với multi-crop, tôi đoán là ít nhất mọi người chỉ giữ một mạng thôi.
+
+172
+00:10:37.600 --> 00:10:41.155
+vậy, nó không chiếm nhiều bộ nhớ,
+
+173
+00:10:41.155 --> 00:10:46.235
+nhưng nó vẫn làm chậm thời gian chạy của mọi người một chút.
+
+174
+00:10:46.235 --> 00:10:52.240
+vậy, đây là những mẹo nhỏ mọi người có thể dùng và các tài liệu nghiên cứu cũng sẽ đề cập những mẹo này
+
+175
+00:10:52.240 --> 00:10:56.940
+Nhưng cá nhân tôi thì không thường xuyên sử dụng các phương pháp này khi xây dựng
+
+176
+00:10:56.940 --> 00:10:59.535
+hệ thống sản xuất mặc dù chúng rất hữu ích để
+
+177
+00:10:59.535 --> 00:11:03.205
+thực hiện kiểm chuẩn tốt hơn và chiến thắng trong các cuộc thi.
+
+178
+00:11:03.205 --> 00:11:08.345
+Bởi vì rất nhiều vấn đề về thị giác máy tính thì ở chế độ dữ liệu nhỏ,
+
+179
+00:11:08.345 --> 00:11:12.620
+những người khác đã thực hiện rất nhiều kỹ thuật thủ công của kiến trúc mạng.
+
+180
+00:11:12.620 --> 00:11:17.400
+Và một neural network giải quyết tốt một vấn đề thị giác, ngạc nhiên thay,
+
+181
+00:11:17.400 --> 00:11:21.010
+chúng cũng thường giải quyết được các vấn đề thị giác khác.
+
+182
+00:11:21.010 --> 00:11:25.295
+vậy, để xây dựng một hệ thống thực tế, mọi người sẽ thực hiện dễ dàng
+
+183
+00:11:25.295 --> 00:11:29.796
+hơn bằng cách bắt đầu tốt với kiến trúc neural network của người khác.
+
+184
+00:11:29.796 --> 00:11:32.810
+Và nếu có thể, mọi người có thể sử dụng triển khai mã nguồn mở,
+
+185
+00:11:32.810 --> 00:11:35.770
+bởi vì việc triển khai mã nguồn mở có thể đã tìm ra
+
+186
+00:11:35.770 --> 00:11:39.120
+tất cả các chi tiết phức tạp như learning rate tập,
+
+187
+00:11:39.120 --> 00:11:42.478
+bộ lập lịch trường hợp và các siêu tham số khác.
+
+188
+00:11:42.478 --> 00:11:46.350
+Và cuối cùng, có người có thể đã dành hàng tuần để huấn luyện một mô hình
+
+189
+00:11:46.350 --> 00:11:51.926
+trên 6 GPU và trên một triệu hình ảnh.
+
+190
+00:11:51.926 --> 00:11:56.565
+Và do đó, bằng cách sử dụng mô hình được huấn luyện trước của người khác và tinh chỉnh tập dữ liệu của mọi người,
+
+191
+00:11:56.565 --> 00:12:00.610
+thường thì mọi người thường có thể tạo ứng dụng nhanh hơn nhiều.
+
+192
+00:12:00.610 --> 00:12:05.048
+Nhưng tất nhiên nếu mọi người có tài nguyên để tính toán và có quyết tâm
+
+193
+00:12:05.048 --> 00:12:09.840
+thì hãy cứ huấn luyện mạng của mọi người từ đầu.
+
+194
+00:12:09.840 --> 00:12:14.326
+Và trên thực tế, nếu mọi người muốn phát minh ra thuật toán thị giác máy tính của riêng mình,
+
+195
+00:12:14.326 --> 00:12:16.840
+có lẽ mọi người sẽ phải huấn luyện từ đầu thật
+
+196
+00:12:16.840 --> 00:12:18.920
+vậy, video tuần này đến đây là hết,
+
+197
+00:12:18.920 --> 00:12:20.960
+Tôi hy vọng rằng nhìn thấy một số
+
+198
+00:12:20.960 --> 00:12:24.605
+kiến trúc thị giác máy tính giúp mọi người hiểu được cái gì sẽ hoạt động tốt.
+
+199
+00:12:24.605 --> 00:12:28.055
+Trong các bài tập lập trình của tuần này, mọi người sẽ học
+
+200
+00:12:28.055 --> 00:12:32.740
+một framework lập trình khác và sử dụng nó để triển khai resonance (cộng hưởng)
+
+201
+00:12:32.740 --> 00:12:37.970
+Vậy, tôi hy vọng mọi người sẽ thích bài tập lập trình đó và tôi mong được gặp lại mọi người vào tuần sau.

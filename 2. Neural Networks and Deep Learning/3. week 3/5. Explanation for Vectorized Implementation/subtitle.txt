@@ -1,0 +1,73 @@
+Trong video trước đó, chúng ta đã thấy khi đặt các ví dụ huấn luyện
+cạnh nhau theo chiều ngang trong ma trận X, thì bạn có thể suy ra một triển khai vector
+hóa của bước truyền xuôi qua mạng nơ-ron nhân tạo. Chúng ta sẽ nói thêm một chút về lý do
+tại sao các phương trình chúng ta đã viết lại là một triển khai vector
+hóa trên nhiều ví dụ chính xác. Hãy cùng xem một phần của phép toán
+lan truyền trong một số ví dụ sau. Ví dụ là với ví dụ huấn luyện đầu tiên, bạn đã tính xong phép toán x1 cộng với b1 và sau đó
+trong ví dụ huấn luyện thứ hai, bạn tính xong phép toán x2 cộng với b1 và rồi trong ví dụ huấn luyện thứ ba, bạn tính xong phép toán
+x3 cộng với b1 này. Và để giải thích một cách đơn giản
+trên slide này, tôi sẽ bỏ qua b. Và để đơn giản hóa lời giải
+thích này thì giả sử b bằng 0. Nhưng đối số chúng ta
+sẽ đưa ra sẽ hoạt động khi xuất hiện một chút thay
+đổi ngay cả khi b khác không. Chỉ là nó sẽ giúp mô tả
+trên slide dễ hiểu hơn một chút. Bây giờ, w1 sẽ là một
+ma trận, đúng chứ? Và tôi có một số hàng
+trong ma trận này. Nếu bạn nhìn vào phép tính này x1, bạn có w1 nhân x1, cung cấp cho bạn một số
+vectơ cột mà bạn phải vẽ như thế này. Và tương tự, nếu bạn nhìn
+vào vectơ x2 này, bạn có w1 nhân x2 đưa ra một số vectơ
+cột khác, đúng chứ? Và nó cung cấp cho bạn z12 này. Và cuối cùng, nếu bạn nhìn vào x3, bạn có w1 nhân x3, cung cấp cho bạn một số
+vectơ cột thứ ba, đó là z13. Bây giờ, nếu bạn xem
+xét tập huấn luyện X, mà chúng ta hình thành bằng cách đặt tất
+cả các ví dụ huấn luyện của chúng ta cạnh nhau. Vì vậy, ma trận X được hình
+thành bằng cách lấy vectơ x1 và xếp nó theo chiều dọc
+với x2 và sau đó là x3. Đây là nếu chúng ta chỉ
+có ba ví dụ đào tạo. Nếu bạn có nhiều ví dụ hơn, thì chúng sẽ tiếp
+tục được đặt cạnh nhau theo chiều ngang như thế này. Nhưng nếu bây giờ bạn lấy ma trận X này
+và nhân nó với w thì cuối cùng bạn sẽ có, nếu bạn nghĩ về cách hoạt
+động của phép nhân ma trận, thì với cột đầu tiên bạn sẽ có những giá trị tương tự mà
+tôi đã vẽ bằng màu tím. Cột thứ hai sẽ là bốn giá trị tương tự. Và cột thứ ba sẽ là chính là
+những giá trị màu cam cái mà chúng sẽ chuyển thành Nhưng tất nhiên điều này
+chỉ bằng với z11 dưới dạng một vectơ cột, tiếp đến là z12 được biểu
+thị dưới dạng vectơ cột, theo sau là z13, cũng được biểu thị dưới
+dạng một vectơ cột. Và đây là nếu bạn có ba ví dụ đào tạo. Nếu bạn có thêm ví dụ thì
+bạn sẽ có nhiều cột hơn. Và như vậy, đây là ma
+trận Z1 của chúng ta. Và tôi hy vọng điều này giúp bạn
+hiểu tại sao trước đây chúng ta có w1 nhân xi bằng z1i khi xem xét ví dụ huấn
+luyện duy nhất tại thời điểm đó. Khi bạn lấy các ví dụ đào tạo khác nhau và
+xếp chúng cạnh nhau trong các cột khác nhau, rồi kết quả tương ứng bạn nhận được là z cũng được xếp cạnh nhau ở các cột. Và tôi sẽ không vẽ ra, nhưng bạn có thể tự
+hiểu là nếu bạn làm điều này với truyền phát Python, nếu bạn thêm lại các giá trị này b này, thì
+các giá trị vẫn đúng. Và thực tế là, khi bạn kết
+thúc truyền phát Python, cuối cùng bạn sẽ thêm b[i] cho
+từng cột của ma trận này. Vì vậy, trên slide này, tôi
+chỉ chứng minh rằng z1 bằng w1x cộng với b1 là một vector hóa chính xác của bước đầu tiên trong bốn bước
+chúng ta có trong slide trước, nhưng hóa ra là cũng có một
+phân tích tương tự cho phép bạn trình bày các bước khác
+bằng cách sử dụng một logic tương tự, trong đó nếu bạn xếp các
+đầu vào cạnh nhau trong các cột thì sau phương trình, bạn nhận được các đầu ra tương ứng cũng
+được xếp cạnh nhau nhau trong các cột. Cuối cùng, hãy cùng tóm lại bài học
+mà chúng ta đã nói trong video này. Nếu đây là mạng nơ-ron nhân tạo của bạn, thì chúng ta đã nói rằng đây là những gì
+bạn cần làm nếu bạn thực hiện bước truyền xuôi, một ví dụ huấn luyện tại một thời điểm đi
+từ i bằng 1 đến m. Và sau đó chúng ta nói, hãy xếp các ví dụ đào tạo cạnh nhau trong
+các cột như vậy và với mỗi giá trị z1, a1, z2, a2 này, hãy xếp các cột
+tương ứng cạnh nhau như sau. Đây là một ví dụ cho a1
+nhưng cũng đúng với z1, a1, z2 và a2. Sau đó, trên slide trước đó,
+chúng ta đã trình bày là dòng này cho phép bạn vector hóa điều
+này trên tất cả m các ví dụ cùng một lúc. Và với lý do tương tự, bạn có thể chỉ ra rằng
+tất cả các dòng khác là vector hóa chính xác của
+cả bốn dòng mã này. Và hãy nhớ là, bởi vì x cũng bằng a0 vì bạn hãy nhớ rằng vectơ đặc trưng đầu vào x
+bằng a0, do đó xi bằng a0i. Và thực sự thì có một phép
+đối xứng nhất định để những phương trình mà trong đó,
+phương trình đầu tiên này cũng có thể là viết z1 bằng w1 a0 cộng với b1. Và do đó, bạn thấy rằng
+cặp phương trình này và cặp phương trình này trông rất giống nhau
+nhưng chỉ là tất cả các chỉ số tăng lên một. Vì vậy, điều này cho thấy các lớp khác
+nhau của mạng nơ-ron nhân tạo thì gần như là làm điều giống nhau hoặc
+làm cùng một phép toán lặp đi lặp lại. Và ở đây chúng ta có mạng nơ-ron
+nhân tạo hai lớp và chúng ta sẽ học về một mạng nơ-ron nhân tạo sâu hơn
+nhiều trong các video của tuần tới. Bạn sẽ thấy rằng về cơ bản, kể cả các
+mạng nơ-ron sâu hơn cũng thực hiện hai bước này nhưng sẽ thực
+hiện chúng nhiều lần hơn. Và đó là cách bạn có thể vector hóa mạng
+nơ-ron nhân tạo qua nhiều ví dụ huấn luyện. Cho đến nay chúng ta đã sử dụng các hàm
+sigmoid trên khắp các mạng nơ-ron nhân tạo. Nhưng trên thực tế, đó không
+phải là sự lựa chọn tốt nhất. Trong video tiếp theo, hãy cùng tìm hiểu kỹ hơn nữa về cách bạn có thể
+sử dụng các hàm kích hoạt khác nhau, trong đó chức năng sigmoid
+chỉ là một lựa chọn có thể chấp nhận được.

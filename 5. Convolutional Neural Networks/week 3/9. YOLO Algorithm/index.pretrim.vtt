@@ -1,0 +1,186 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.920
+You've already seen most of the components of object detection. In this video, let's put all
+
+00:00:05.920 --> 00:00:11.840
+the components together to form the YOLO object detection algorithm. First, let's see how you
+
+00:00:11.840 --> 00:00:17.120
+construct your training set. Suppose you're trying to train an algorithm to detect three objects,
+
+00:00:17.120 --> 00:00:22.400
+pedestrians, cars, and motorcycles, and you won't need to explicitly have the fourth background
+
+00:00:22.400 --> 00:00:30.560
+class. So just three class labels here. If you're using two anchor boxes, then the outputs Y will be
+
+00:00:30.560 --> 00:00:37.840
+3 by 3 because you're using a 3 by 3 grid cell by 2. This is the number of anchors by 8 because
+
+00:00:37.840 --> 00:00:46.800
+that's the dimension of this. 8 is actually 5 which is plus the number of classes. So 5 because you have
+
+00:00:46.800 --> 00:00:54.480
+PC and in the bounding boxes, that's 5. And then C1, C2, C3, dimension is equal to the number of
+
+00:00:54.480 --> 00:01:04.000
+classes. And you can either view this as 3 by 3 by 2 by 8 or 3 by 3 by 16. So to construct the training
+
+00:01:04.000 --> 00:01:10.240
+set, you go through each of these nine grid cells and form the appropriate target vector Y.
+
+00:01:10.240 --> 00:01:15.920
+So take this first grid cell. There's nothing worth detecting in that grid cell. None of the
+
+00:01:15.920 --> 00:01:23.200
+three classes pedestrian car or motorcycle appear in the upper left grid cell. And so the target Y
+
+00:01:23.200 --> 00:01:31.120
+corresponding to that grid cell will be equal to this where PC for the first anchor box is 0 because
+
+00:01:31.120 --> 00:01:37.040
+there's nothing associated with the first anchor box and is also 0 for the second anchor box. And so
+
+00:01:37.680 --> 00:01:44.400
+all of these other values are don't cares. Now most of the grid cells have nothing in them,
+
+00:01:44.400 --> 00:01:54.400
+but for that box over there, you would have this target vector Y. So assuming that your training set
+
+00:01:54.400 --> 00:02:01.520
+has a bounding box like this for the car, it's just a little bit wider than it is tall. And so if your
+
+00:02:01.520 --> 00:02:08.080
+anchor boxes are that this is anchor box 1, this is anchor box 2, then the red box has just slightly
+
+00:02:08.080 --> 00:02:15.680
+higher IOU with anchor box 2. And so the car gets associated with this lower portion of the vector.
+
+00:02:16.400 --> 00:02:24.080
+So notice then that PC associate anchor box 1 is 0. So you have don't care as all these components.
+
+00:02:24.080 --> 00:02:31.040
+Then you have this PC is equal to 1. Then you should use these to specify the position of the
+
+00:02:31.040 --> 00:02:41.280
+red bounding box and then specify that the correct object is class 2, right? That it is a car. So you
+
+00:02:41.280 --> 00:02:45.680
+go through this and for each of your nine grid positions for each of your three by three grid
+
+00:02:45.680 --> 00:02:51.600
+positions, you would come up with a vector like this come up with a 16 dimensional vector. And
+
+00:02:51.600 --> 00:03:01.040
+so that's why the final output volume is going to be 3 by 3 by 16. And as usual for simplicity on
+
+00:03:01.040 --> 00:03:08.880
+this slide, I've used a 3 by 3 grid. In practice, it might be more like a 19 by 19 by 16. Or in
+
+00:03:08.880 --> 00:03:18.080
+fact, if you use more anchor boxes, maybe 19 by 19 by 5 times 8 is 5 times 8 is 40. So it'd be 19 by 19
+
+00:03:18.080 --> 00:03:26.800
+by 40. That's if you use five anchor boxes. So that's training and you train a confident that
+
+00:03:26.800 --> 00:03:35.520
+inputs an image, maybe 100 by 100 by 3. And your confidence would then finally output this
+
+00:03:36.480 --> 00:03:44.880
+output volume in our example, 3 by 3 by 16 or 3 by 3 by 2 by 8. Next, let's look at how your algorithm
+
+00:03:44.880 --> 00:03:52.400
+can make predictions. Given an image, your neural network will output this 3 by 3 by 2 by 8 volume,
+
+00:03:52.400 --> 00:03:58.800
+where for each of the nine grid cells, you get a vector like that. So for the grid cell here on
+
+00:03:58.800 --> 00:04:04.640
+the upper left, if there's no object there, hopefully your neural network will output zero
+
+00:04:04.640 --> 00:04:09.920
+here and zero here and output some of the values. Your neural network can't output a question
+
+00:04:09.920 --> 00:04:15.120
+mark, you can't output a don't care. So output some numbers for the rest. But these numbers will
+
+00:04:15.120 --> 00:04:19.760
+basically ignore it because the neural network is telling you that there's no object there. So it
+
+00:04:19.760 --> 00:04:24.560
+doesn't really matter whether outputs is a bounding box or is a clause. It'll basically just be some
+
+00:04:24.560 --> 00:04:32.320
+set of numbers, more or less noise. In contrast, for this box over here, hopefully the value of
+
+00:04:32.320 --> 00:04:38.720
+y to the output for that box at the bottom left, hopefully it'll be something like zero for
+
+00:04:38.720 --> 00:04:45.120
+bounding box one and then just output a bunch of numbers, just noise. Hopefully you'll also output
+
+00:04:45.120 --> 00:04:51.520
+a set of numbers that corresponds to specifying a pretty accurate bounding box for the car.
+
+00:04:52.080 --> 00:04:57.920
+So that's how the neural network will make predictions. Finally, you would run this through
+
+00:04:57.920 --> 00:05:04.400
+nonmax suppression. So just to make it interesting, let's look at a new test set image. Here's how
+
+00:05:04.480 --> 00:05:11.280
+you would run nonmax suppression. If you're using two anchor boxes, then for each of the nine grid
+
+00:05:11.280 --> 00:05:17.040
+cells, you get two predicted bounding boxes. Some of them will have very low probability,
+
+00:05:17.040 --> 00:05:23.200
+very low PC, but you still get two predicted bounding boxes for each of the nine grid cells.
+
+00:05:23.200 --> 00:05:28.560
+So let's say those are the bounding boxes you get. And notice that some of the bounding boxes
+
+00:05:28.560 --> 00:05:35.920
+can go outside the height and width of the grid cell that it came from. Next, you then get rid of
+
+00:05:35.920 --> 00:05:40.960
+the low probability predictions. So get rid of the ones that even neural networks says, gee,
+
+00:05:40.960 --> 00:05:47.520
+this object probably isn't there. So get rid of those. And then finally, if you have three
+
+00:05:47.520 --> 00:05:52.640
+classes you're trying to detect, you're trying to detect pedestrians, cars and motorcycles,
+
+00:05:52.640 --> 00:05:58.960
+what you do is for each of the three classes independently run nonmax suppression for the
+
+00:05:58.960 --> 00:06:05.200
+objects that were predicted to come from that class. But use nonmax suppression for predictions
+
+00:06:05.200 --> 00:06:10.160
+of the pedestrian class, run nonmax suppression for the car class and run nonmax suppression
+
+00:06:10.160 --> 00:06:16.880
+for the motorcycle class. But run that basically three times to generate the final predictions.
+
+00:06:16.880 --> 00:06:21.920
+And so the output of this is hopefully that you will have detected all the cars and all
+
+00:06:21.920 --> 00:06:28.240
+the pedestrians in this image. So that's it for the YOLO object detection algorithm,
+
+00:06:28.240 --> 00:06:34.160
+which is really one of the most effective object detection algorithms that also encompasses many of
+
+00:06:34.160 --> 00:06:40.480
+the best ideas across the entire computer vision literature that relate to object detection. And
+
+00:06:40.480 --> 00:06:45.920
+you get a chance to practice implementing many components of this yourself in this week's program
+
+00:06:45.920 --> 00:06:51.920
+exercise.

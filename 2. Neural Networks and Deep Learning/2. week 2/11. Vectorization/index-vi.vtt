@@ -1,0 +1,578 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.195
+>> Chào mừng bạn đã quay lại.
+Về cơ bản thì véc tơ hóa là một
+
+2
+00:00:03.195 --> 00:00:07.315
+nghệ thuật loại bỏ các thư mục
+tường minh trong mã của bạn.
+
+3
+00:00:07.315 --> 00:00:11.835
+Trong thời đại deep learning, an toàn
+trong deep learning trong thực tế,
+
+4
+00:00:11.835 --> 00:00:15.210
+bạn thường được đào tạo về
+các tập dữ liệu tương đối lớn,
+
+5
+00:00:15.210 --> 00:00:18.475
+bởi vì đó là khi các thuật toán
+deep learning trở nên nổi bật.
+
+6
+00:00:18.475 --> 00:00:22.790
+Vì vậy, quan trọng là mã của
+bạn phải rất nhanh nếu không thì,
+
+7
+00:00:22.790 --> 00:00:24.525
+nếu nó chạy trên
+một tập dữ liệu lớn,
+
+8
+00:00:24.525 --> 00:00:27.000
+mã của bạn có thể tốn nhiều
+thời gian để chạy, sau đó bạn sẽ
+
+9
+00:00:27.000 --> 00:00:30.255
+phải chờ đợi rất lâu
+để có được kết quả.
+
+10
+00:00:30.255 --> 00:00:32.035
+Thế nên, trong thời đại deep learning,
+
+11
+00:00:32.035 --> 00:00:37.490
+tôi cho rằng khả năng thực hiện véc-tơ
+hóa đã trở thành một kỹ năng quan trọng.
+
+12
+00:00:37.490 --> 00:00:40.010
+Hãy bắt đầu với một ví dụ.
+
+13
+00:00:40.010 --> 00:00:42.225
+Vậy thì Vector hóa là gì?
+
+14
+00:00:42.225 --> 00:00:48.780
+Trong logistic regression, bạn cần
+tính z bằng w chuyển vị x cộng với b,
+
+15
+00:00:48.780 --> 00:00:55.405
+trong đó, w là vectơ cột
+này và x cũng là vectơ này.
+
+16
+00:00:55.405 --> 00:00:58.000
+Có thể có những vectơ rất lớn
+nếu bạn có nhiều feature.
+
+17
+00:00:58.000 --> 00:01:07.080
+Vì vậy, cả w và
+x đều thuộc Rnx.
+
+18
+00:01:07.080 --> 00:01:10.170
+Như vậy, để tính
+w chuyển vị x,
+
+19
+00:01:10.170 --> 00:01:15.660
+nếu bạn có một triển khai
+không vector hóa,
+
+20
+00:01:15.660 --> 00:01:18.725
+bạn sẽ để z bằng không.
+
+21
+00:01:18.725 --> 00:01:24.860
+Và sau đó for i trong
+phạm vi của (n-x).
+
+22
+00:01:24.860 --> 00:01:27.330
+Với i bằng 1,… nx,
+
+23
+00:01:27.330 --> 00:01:34.040
+z+ bằng w(i) nhân x(i).
+
+24
+00:01:34.040 --> 00:01:37.100
+Và sau đó bạn có thể
+có z cộng bằng b.
+
+25
+00:01:37.100 --> 00:01:39.855
+Đó là một triển khai
+không vector hóa.
+
+26
+00:01:39.855 --> 00:01:43.090
+Và rồi, bạn sẽ thấy
+rằng nó rất chậm.
+
+27
+00:01:43.090 --> 00:01:48.560
+Ngược lại, một triển khai được vector
+hóa sẽ trực tiếp tính w chuyển vị x.
+
+28
+00:01:48.560 --> 00:01:52.085
+Trong Python hoặc một numpy,
+
+29
+00:01:52.085 --> 00:02:01.428
+lệnh bạn sử dụng cho
+nó là z bằng np.dot(w,x)
+
+30
+00:02:01.428 --> 00:02:06.270
+do đó, tính w chuyển vị x.
+
+31
+00:02:06.270 --> 00:02:09.075
+Và bạn chỉ cần trực tiếp thêm b vào.
+
+32
+00:02:09.075 --> 00:02:12.400
+Và bạn thấy rằng điều
+này nhanh hơn nhiều.
+
+33
+00:02:12.400 --> 00:02:17.075
+Tôi sẽ minh họa điều này
+với một bản demo nhỏ.
+
+34
+00:02:17.075 --> 00:02:21.960
+Đây là Jupiter notebook của tôi,
+trong đó tôi sẽ viết một số mã Python.
+
+35
+00:02:21.960 --> 00:02:28.041
+Trước tiên, hãy để
+tôi nhập numpy as
+
+36
+00:02:28.041 --> 00:02:30.000
+np. Và ví dụ,
+
+37
+00:02:30.000 --> 00:02:36.570
+tôi có thể tạo mảng a như sau.
+
+38
+00:02:36.570 --> 00:02:39.560
+print(a).
+
+39
+00:02:39.560 --> 00:02:41.160
+Bây giờ, sau khi đã
+viết đoạn mã này,
+
+40
+00:02:41.160 --> 00:02:43.170
+nếu tôi nhấn shift,
+
+41
+00:02:43.170 --> 00:02:44.847
+thì nó sẽ thực thi mã.
+
+42
+00:02:44.847 --> 00:02:47.970
+Và như vậy, nó đã
+tạo ra mảng a và nó in ra.
+
+43
+00:02:47.970 --> 00:02:50.580
+Bây giờ, hãy làm bản demo
+Véc tơ hóa (Vectorization).
+
+44
+00:02:50.580 --> 00:02:51.990
+Tôi sẽ nhập time,
+
+45
+00:02:51.990 --> 00:02:53.580
+chúng ta sử dụng nó,
+
+46
+00:02:53.580 --> 00:02:56.565
+để tính thời gian thực thi
+các phép tính khác nhau.
+
+47
+00:02:56.565 --> 00:02:59.139
+Chúng có thể tạo
+một mảng a không?
+
+48
+00:02:59.139 --> 00:03:02.905
+random.rand.
+
+49
+00:03:02.905 --> 00:03:10.065
+Điều này tạo ra một mảng hàng
+triệu chiều với các giá trị ngẫu nhiên.
+
+50
+00:03:10.065 --> 00:03:13.300
+b = np.random.rand.
+
+51
+00:03:13.300 --> 00:03:16.120
+Một mảng hàng triệu chiều khác.
+
+52
+00:03:16.120 --> 00:03:20.810
+Và, bây giờ, tic = time.time,
+như vậy cái này đo thời gian hiện tại,
+
+53
+00:03:20.810 --> 00:03:26.395
+c = np.dot (a, b).
+
+54
+00:03:26.395 --> 00:03:28.649
+toc = time.time.
+
+55
+00:03:28.649 --> 00:03:31.950
+Và bản in này,
+
+56
+00:03:31.950 --> 00:03:34.857
+nó là phiên bản vector hóa.
+
+57
+00:03:34.857 --> 00:03:37.685
+Đây là một phiên bản vector hóa.
+
+58
+00:03:37.685 --> 00:03:41.985
+Hãy in nó ra.
+
+59
+00:03:41.985 --> 00:03:45.060
+Hãy xem lần cuối cùng,
+
+60
+00:03:45.060 --> 00:03:48.330
+vì vậy có toc - tic x 1000,
+
+61
+00:03:48.330 --> 00:03:52.075
+và chúng ta có thể diễn đạt điều này
+trong một phần nghìn giây(mili giây).
+
+62
+00:03:52.075 --> 00:03:54.075
+Vì vậy, ms là mili giây.
+
+63
+00:03:54.075 --> 00:03:56.435
+Tôi sẽ nhấn Shift Enter.
+
+64
+00:03:56.435 --> 00:04:01.890
+Và mã đó mất khoảng ba phần
+nghìn giây hoặc là ở lần này là 1,5,
+
+65
+00:04:01.890 --> 00:04:06.170
+có thể khoảng 1,5 hoặc
+3,5 phần nghìn giây mỗi lần.
+
+66
+00:04:06.170 --> 00:04:08.370
+Khi tôi chạy nó thì nó
+thay đổi theo từng lần,
+
+67
+00:04:08.370 --> 00:04:12.085
+nhưng có vẻ như trung bình
+nó chỉ mất 1,5 mili giây,
+
+68
+00:04:12.085 --> 00:04:15.665
+có lẽ là hai mili giây
+khi tôi chạy cái này.
+
+69
+00:04:15.665 --> 00:04:16.967
+Tốt.
+
+70
+00:04:16.967 --> 00:04:19.005
+Hãy tiếp tục thêm
+vào khối mã này.
+
+71
+00:04:19.005 --> 00:04:22.270
+Bây giờ hãy triển khai
+phiên bản không vector hóa.
+
+72
+00:04:22.270 --> 00:04:24.151
+Hãy viết, c = 0,
+
+73
+00:04:24.151 --> 00:04:27.750
+sau đó tic = time.time.
+
+74
+00:04:27.750 --> 00:04:29.335
+Bây giờ, hãy triển khai một vòng lặp for.
+
+75
+00:04:29.335 --> 00:04:35.348
+For i trong phạm vi 1 triệu,
+
+76
+00:04:35.348 --> 00:04:38.676
+tôi có rất nhiều số
+không, phải không?
+
+77
+00:04:38.676 --> 00:04:43.936
+c + = (a, i) x (b,i)
+
+78
+00:04:43.936 --> 00:04:50.775
+và sau đó toc = time.time.
+
+79
+00:04:50.775 --> 00:04:57.725
+Cuối cùng, print(“for loop:”).
+
+80
+00:04:57.725 --> 00:05:15.225
+Thời gian cần thiết là
+1000 x toc - tic + "ms"
+
+81
+00:05:15.225 --> 00:05:17.505
+để hiểu rằng chúng ta đang làm
+điều này trong một phần nghìn giây.
+
+82
+00:05:17.505 --> 00:05:19.735
+Hãy làm thêm một điều nữa.
+
+83
+00:05:19.735 --> 00:05:22.802
+Chúng ta hãy in ra
+giá trị của c, chúng ta
+
+84
+00:05:22.802 --> 00:05:27.960
+tính nó để đảm bảo rằng nó có
+cùng giá trị trong cả hai trường hợp.
+
+85
+00:05:27.960 --> 00:05:35.770
+Tôi sẽ nhấn shift để
+chạy cái này và kiểm tra xem.
+
+86
+00:05:35.770 --> 00:05:38.305
+Trong cả hai trường hợp,
+phiên bản vector hóa
+
+87
+00:05:38.305 --> 00:05:41.125
+và phiên bản không vector hóa
+tính ra các giá trị tương tự,
+
+88
+00:05:41.125 --> 00:05:45.355
+như bạn thấy, 2.50 đến 6,99, v.v.
+
+89
+00:05:45.355 --> 00:05:48.670
+Phiên bản véc-tơ hóa
+mất 1,5 mili giây.
+
+90
+00:05:48.670 --> 00:05:57.555
+Phiên bản vòng lặp for tường minh và không
+vector hóa mất khoảng 400, gần 500 mili giây.
+
+91
+00:05:57.555 --> 00:06:01.285
+Phiên bản không vector hóa tốn nhiều
+thời gian hơn, lâu hơn khoảng 300
+
+92
+00:06:01.285 --> 00:06:05.660
+lần phiên bản vector hóa.
+
+93
+00:06:05.660 --> 00:06:11.230
+Trong ví dụ này, bạn thấy rằng chỉ cần
+bạn nhớ phải vectơ hóa mã của bạn, thì
+
+94
+00:06:11.230 --> 00:06:15.120
+mã của bạn sẽ chạy
+nhanh hơn 300 lần.
+
+95
+00:06:15.120 --> 00:06:16.540
+Hãy chạy lại đi.
+
+96
+00:06:16.540 --> 00:06:18.930
+Chạy lại lần nữa.
+
+97
+00:06:18.930 --> 00:06:22.235
+Vâng. Phiên bản vector hóa 1,5
+mili giây giây và vòng lặp for.
+
+98
+00:06:22.235 --> 00:06:25.960
+Một lần nữa, 480 mili giây,
+
+99
+00:06:25.960 --> 00:06:29.535
+chậm hơn khoảng 300 lần để
+triển khai vòng lặp for tường minh.
+
+100
+00:06:29.535 --> 00:06:30.980
+Nếu x chậm lại,
+
+101
+00:06:30.980 --> 00:06:33.880
+đấy chính là điểm khác biệt giữa việc
+mã của bạn mất khoảng một phút để
+
+102
+00:06:33.880 --> 00:06:37.615
+chạy so với mất năm giờ để chạy.
+
+103
+00:06:37.615 --> 00:06:41.410
+Và khi bạn đang triển khai
+các thuật toán deep learning,
+
+104
+00:06:41.410 --> 00:06:43.300
+bạn có thể nhận được
+kết quả trả về nhanh hơn.
+
+105
+00:06:43.300 --> 00:06:46.590
+Sẽ nhanh hơn nhiều nếu
+bạn vector hóa mã của bạn.
+
+106
+00:06:46.590 --> 00:06:49.300
+Một số bạn có thể đã
+nghe nói rằng rất nhiều
+
+107
+00:06:49.300 --> 00:06:54.260
+triển khai deep learning mở rộng được
+thực hiện trên GPU (Bộ xử lý đồ họa).
+
+108
+00:06:54.260 --> 00:06:59.515
+Nhưng tất cả các bản demo mà tôi làm tới giờ
+trong Jupiter notebook thì diễn ra trên CPU.
+
+109
+00:06:59.515 --> 00:07:04.530
+Trên thực tế, cả GPU và CPU
+đều có hướng dẫn song song.
+
+110
+00:07:04.530 --> 00:07:07.530
+Đôi khi chúng được gọi
+là hướng dẫn SIMD.
+
+111
+00:07:07.530 --> 00:07:11.190
+Đây là từ viết tắt của một hướng dẫn đơn dòng lệnh,
+đa luồng dữ liệu (single instruction multiple data).
+
+112
+00:07:11.190 --> 00:07:13.045
+Nhưng về cơ bản
+thì điều này nghĩa là,
+
+113
+00:07:13.045 --> 00:07:16.835
+nếu bạn sử dụng
+các hàm cài sẵn như
+
+114
+00:07:16.835 --> 00:07:23.495
+np.function hoặc các hàm khác không yêu cầu
+bạn thực hiện rõ ràng một vòng lặp for.
+
+115
+00:07:23.495 --> 00:07:28.150
+Nó cho phép Phyton Numpy tận dụng
+
+116
+00:07:28.150 --> 00:07:33.640
+tính song song tốt hơn nhiều để làm
+các tính toán của bạn nhanh hơn nhiều.
+
+117
+00:07:33.640 --> 00:07:38.610
+Và điều này đúng cả về tính toán
+trên CPU và tính toán trên GPU.
+
+118
+00:07:38.610 --> 00:07:41.070
+Chỉ là GPU đặc biệt tốt trong
+
+119
+00:07:41.070 --> 00:07:44.980
+những tính toán SIMD này
+nhưng CPU thì cũng không quá tệ.
+
+120
+00:07:44.980 --> 00:07:47.510
+Chỉ là không tốt như GPU.
+
+121
+00:07:47.510 --> 00:07:51.660
+Bạn đang thấy cách vector hóa
+có thể tăng tốc đáng kể mã của bạn.
+
+122
+00:07:51.660 --> 00:07:54.685
+Một nguyên tắc cần nhớ là
+bất cứ khi nào có thể, thì hãy
+
+123
+00:07:54.685 --> 00:07:57.425
+tránh sử dụng các
+vòng lặp for tường minh.
+
+124
+00:07:57.425 --> 00:07:59.980
+Hãy xem video tiếp theo để
+xem thêm một số ví dụ về
+
+125
+00:07:59.980 --> 00:08:04.000
+vector hóa và bắt đầu
+vector hóa logistic regression.

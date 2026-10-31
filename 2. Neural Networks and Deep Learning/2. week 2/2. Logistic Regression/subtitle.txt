@@ -1,0 +1,67 @@
+Trong video này, chúng ta
+sẽ học về hồi quy logistic. Đây là một thuật toán mà bạn
+sử dụng khi tất cả nhãn đầu ra y trong một bài toán học
+có giám sát là 0 hoặc 1, cho các bài toán
+phân loại nhị phân. Với một vectơ đặc trưng
+đầu vào x có thể tương ứng với một hình ảnh mà bạn muốn nhận dạng
+là hình ảnh con mèo hoặc không, bạn muốn có một thuật toán
+mà có thể đưa ra một dự đoán, mà chúng ta sẽ gọi là y mũ, đó là dự đoán của bạn về Y. Chính xác hơn, bạn muốn
+y mũ là xác suất mà y =1 với đặc trưng đầu vào x. Nói cách khác, nếu x
+là một hình ảnh, như chúng ta đã thấy
+trong video trước, bạn muốn y mũ cho bạn biết xác suất đây là một hình ảnh
+con mèo là bao nhiêu? Như vậy, như chúng ta đã
+nói trong video trước, x là một vectơ x chiều, khi các tham số của
+hồi quy logistic là w cũng là một vectơ x chiều, cùng với b là một số thực. Như vậy, với một đầu vào
+x và các tham số w và b, làm thế nào để chúng ta
+tạo ra đầu ra y mũ? Chà, có một điều bạn có thể thử,
+nhưng nó không hiệu quả, là y mũ bằng w
+chuyển vị x cộng b, đây là một loại hàm
+tuyến tính của đầu vào x. Và trên thực tế, đây là những gì mà bạn
+sử dụng nếu bạn thực hiện hồi quy tuyến tính. Nhưng đây không phải là một thuật
+toán hiệu quả để phân loại nhị phân bởi vì bạn muốn y mũ
+là xác suất mà Y bằng 1. Vì vậy, y mũ nên nằm
+trong khoảng giữa 0 và 1, và rất khó để triển khai
+điều đó bởi vì w chuyển vị x cộng với b có thể lớn hơn nhiều so
+với một hoặc thậm chí có thể âm và âm thì vô nghĩa
+đối với xác suất. Bạn muốn nó nằm
+trong khoảng từ 0 đến 1. Vì vậy, trong hồi quy logistic, thay
+vào đó, đầu ra của chúng ta là y mũ bằng hàm sigmoid
+áp dụng với đại lượng này. Đây là hàm sigmoid. Nếu trên trục hoành tôi đặt z, thì
+hàm sigmoid của z trông như thế này. Như vậy, nó đi liền mạch từ 0 đến 1. Hãy để tôi gán nhãn
+cho trục của tôi ở đây, đây là 0 và nó đi
+qua trục tung ở 0,5. Như vậy, hàm sigmoid của z trông như thế này. Và
+chúng ta sẽ sử dụng z để biểu diễn đại lượng này, w chuyển vị x cộng b. Đây là công thức của hàm sigmoid. Hàm Sigmoid của z,
+trong đó z là số thực, bằng 1 trên 1 cộng
+với e mũ âm z. Thế nên, hãy chú ý một vài điều sau. Nếu z cực lớn thì e mũ âm z
+sẽ gần bằng không. Vậy hàm sigmoid
+của z sẽ bằng xấp xỉ 1 trên 1 cộng với một
+cái gì đó rất gần với không, bởi vì e với số mũ âm rất
+lớn thì sẽ gần bằng không. Như vậy, hàm này xấp xỉ bằng 1. Và thực sự thì, nếu bạn
+nhìn vào phía bên trái, nếu z cực lớn thì hàm
+sigmoid của z rất gần với một. Ngược lại, nếu z cực nhỏ, hoặc nó là một số âm cực lớn, thì hàm sigmoid của z trở thành
+1 trên 1 cộng với e mũ âm z, và e mũ âm z trở thành
+một con số khổng lồ. Như vậy, hàm này sẽ xấp xỉ
+1 trên 1 cộng với một số rất, rất lớn, và vì vậy, hàm này gần bằng không. Và trên thực tế, bạn thấy rằng khi
+z trở thành một số âm cực lớn, thì hàm sigmoid của z rất gần với không. Vì vậy, khi bạn triển khai
+hồi quy logistic, công việc của bạn là cố gắng
+học các tham số w và b để y mũ trở thành một dự đoán
+tốt về xác suất để y bằng 1. Trước khi tiếp tục với bài học tiếp theo,
+thì tôi có một lưu ý khác về ký hiệu. Khi chúng ta lập trình
+mạng nơ-ron nhân tạo, chúng ta thường giữ thông số
+w và tham số b riêng biệt, ở đây, b tương ứng với một phổ. Trong một số khóa học khác, có thể bạn sẽ thấy
+một ký hiệu xử lý khác. Trong một số quy ước, bạn xác định một
+đặc trưng bổ sung gọi là X0 và nó bằng 1. Như vậy, bây giờ X thuộc
+tập R mũ nx cộng 1. Và sau đó, bạn xác định y mũ bằng
+hàm sigmoid của theta chuyển vị x. Trong quy ước ký hiệu thay thế này, bạn có thông số vector theta không, theta một, theta hai, đến theta nx. Và như vậy, ở theta 0, đặt một dòng b, là một số thực, và theta một đến theta nx
+đóng vai trò của w. Khi bạn triển khai mạng
+nơ-ron nhân tạo của mình, bạn sẽ thấy dễ dàng hơn nếu giữ b
+và w như các tham số riêng biệt. Và vì vậy, trong khóa học này, chúng ta sẽ không sử dụng bất kỳ quy ước
+ký hiệu nào mà tôi vừa viết bằng màu đỏ. Nếu bạn chưa từng thấy ký hiệu này trước đây trong
+các khóa học khác, thì cũng đừng lo lắng về nó. Đối với những bạn đã từng
+thấy ký hiệu này tôi chỉ muốn nói rõ rằng chúng tôi không sử dụng
+ký hiệu đó trong khóa học này. Nhưng nếu bạn chưa thấy
+điều này trước đây, thì nó cũng không quan trọng và
+bạn không cần phải lo lắng về nó. Như vậy, bây giờ bạn đã thấy mô hình
+hồi quy logistic trông như thế nào. Tiếp theo để thay đổi các tham số w
+và b, bạn cần xác định hàm chi phí. Hãy cùng học về điều đó
+trong video tiếp theo.

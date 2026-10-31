@@ -1,0 +1,595 @@
+WEBVTT
+
+1
+00:00:01.090 --> 00:00:06.380
+Sau khi bạn train một mô hình chuỗi, một
+cách bạn có thể hiểu một cách chính thức về
+
+2
+00:00:06.380 --> 00:00:09.950
+những gì học được là
+lấy mẫu chuỗi mới.
+
+3
+00:00:09.950 --> 00:00:11.330
+Hãy cùng xem cách
+bạn có thể làm điều đó.
+
+4
+00:00:12.520 --> 00:00:17.550
+Hãy nhớ rằng một mô hình chuỗi,
+mô hình hóa cơ hội của bất kỳ
+
+5
+00:00:17.550 --> 00:00:22.860
+chuỗi các từ cụ thể như sau,
+và vì vậy những gì chúng ta muốn làm là
+
+6
+00:00:22.860 --> 00:00:27.610
+lấy mẫu từ phân phối này để
+tạo ra các chuỗi từ.
+
+7
+00:00:28.980 --> 00:00:35.850
+Vì vậy, mạng được train bằng cách sử dụng
+cấu trúc này được hiển thị ở trên cùng.
+
+8
+00:00:35.850 --> 00:00:40.830
+Nhưng để lấy mẫu, bạn làm điều gì đó khác
+một chút, vì vậy những gì bạn muốn
+
+9
+00:00:40.830 --> 00:00:45.790
+làm là mẫu đầu tiên là
+từ đầu tiên bạn muốn mô hình của mình tạo ra.
+
+10
+00:00:45.790 --> 00:00:50.380
+Và vì vậy, bạn nhập thông thường
+x1 bằng 0, a0 bằng 0.
+
+11
+00:00:50.380 --> 00:00:54.010
+Và bây giờ timestep đầu tiên của bạn
+
+12
+00:00:54.010 --> 00:00:58.720
+sẽ có một số xác suất tối đa
+trên các đầu ra có thể.
+
+13
+00:00:58.720 --> 00:01:05.690
+Vì vậy, những gì bạn làm là bạn lấy mẫu
+ngẫu nhiên theo phân phối soft max này.
+
+14
+00:01:05.690 --> 00:01:09.740
+Vì vậy, những gì mà phân phối soft max mang lại cho bạn
+là nó cho bạn biết đâu là khả năng
+
+15
+00:01:09.740 --> 00:01:13.850
+mà nó đề cập đến "a",
+khả năng mà nó đề cập đến "Aaron"?
+
+16
+00:01:13.850 --> 00:01:16.570
+Khả năng nó đề cập đến Zulu là gì,
+
+17
+00:01:16.570 --> 00:01:20.350
+khả năng mà
+từ đầu tiên là mã thông báo là UNK là bao nhiêu.
+
+18
+00:01:20.350 --> 00:01:23.840
+Có lẽ có khả năng nó là mã thông báo cuối câu.
+
+19
+00:01:23.840 --> 00:01:29.418
+Và sau đó bạn lấy vectơ này và
+sử dụng, ví dụ, lệnh numpy
+
+20
+00:01:29.418 --> 00:01:35.090
+np.random.choice để lấy mẫu
+theo phân phối
+
+21
+00:01:35.090 --> 00:01:40.850
+được xác định bởi vectơ xác suất này và
+cho phép bạn lấy mẫu các từ đầu tiên.
+
+22
+00:01:40.850 --> 00:01:45.765
+Tiếp theo, bạn chuyển sang
+bước thời gian thứ hai và
+
+23
+00:01:45.765 --> 00:01:53.690
+bây giờ hãy nhớ rằng bước
+thời gian thứ hai đang mong đợi y1 này làm đầu vào.
+
+24
+00:01:53.690 --> 00:01:58.660
+Nhưng những gì bạn làm là bạn lấy
+y1^ mà bạn vừa lấy mẫu và
+
+25
+00:01:58.660 --> 00:02:02.718
+chuyền nó vào đây làm đầu vào
+cho bước thời gian tiếp theo.
+
+26
+00:02:02.718 --> 00:02:03.450
+Bất kể điều gì có hiệu quả,
+
+27
+00:02:03.450 --> 00:02:08.570
+bạn chỉ chọn bước thời gian đầu tiên chuyền
+đầu vào này ở vị trí thứ hai
+
+28
+00:02:08.570 --> 00:02:14.227
+thì giá trị soft max này sẽ làm cho
+dự đoán cho y^2 là gì.
+
+29
+00:02:14.227 --> 00:02:17.000
+Ví dụ, giả sử rằng sau khi
+bạn lấy mẫu từ đầu tiên,
+
+30
+00:02:17.000 --> 00:02:21.850
+từ đầu tiên xảy ra là z,
+là lựa chọn rất phổ biến của từ đầu tiên.
+
+31
+00:02:21.850 --> 00:02:26.112
+Sau đó, bạn chuyển vào v là x2,
+
+32
+00:02:26.112 --> 00:02:32.420
+bây giờ bằng y^1.
+
+33
+00:02:32.420 --> 00:02:37.260
+Và bây giờ bạn đang cố gắng tìm ra
+khả năng
+
+34
+00:02:37.260 --> 00:02:40.500
+từ thứ hai là gì khi cho trước
+từ đầu tiên là d.
+
+35
+00:02:40.500 --> 00:02:42.830
+Và đây sẽ là y^2.
+
+36
+00:02:42.830 --> 00:02:48.610
+Sau đó, bạn lại sử dụng loại hàm lấy mẫu
+để lấy mẫu y^2.
+
+37
+00:02:48.610 --> 00:02:51.130
+Và sau đó ở bước thời gian tiếp theo,
+
+38
+00:02:51.130 --> 00:02:55.940
+bạn chọn bất kỳ lựa chọn nào mà bạn có
+để biểu diễn như một one-hot encoding (biễu diễn one-hot).
+
+39
+00:02:55.940 --> 00:03:00.220
+Và chuyền nó sang bước thời gian tiếp theo và
+
+40
+00:03:00.220 --> 00:03:05.480
+sau đó bạn lấy mẫu từ
+thứ ba cho bất kỳ từ nào bạn đã chọn, và
+
+41
+00:03:05.480 --> 00:03:08.990
+bạn tiếp tục cho đến khi bạn
+đến bước thời gian cuối cùng.
+
+42
+00:03:08.990 --> 00:03:11.900
+Làm thế nào để bạn biết khi nào chuỗi kết thúc?
+
+43
+00:03:11.900 --> 00:03:16.940
+Một điều bạn có thể làm là nếu
+mã thông báo cuối câu là một phần
+
+44
+00:03:16.940 --> 00:03:21.970
+từ vựng của bạn, bạn có thể giữ
+lấy mẫu cho đến khi tạo mã thông báo EOS.
+
+45
+00:03:21.970 --> 00:03:25.140
+Và điều đó cho bạn biết rằng bạn đã đạt đến
+cuối câu và bạn có thể dừng lại.
+
+46
+00:03:25.140 --> 00:03:28.650
+Hoặc cách khác, nếu bạn không
+bao gồm từ này trong vốn từ vựng của bạn
+
+47
+00:03:28.650 --> 00:03:33.520
+sau đó, bạn cũng có thể quyết định lấy mẫu
+20 từ hoặc 100 từ hoặc đại loại thế, và
+
+48
+00:03:33.520 --> 00:03:37.300
+sau đó tiếp tục cho đến khi bạn đạt đến số bước thời gian
+đó.
+
+49
+00:03:37.300 --> 00:03:43.260
+Và thủ tục đặc biệt này sẽ
+đôi khi tạo ra một mã thông báo UNK.
+
+50
+00:03:43.260 --> 00:03:47.710
+Nếu bạn muốn đảm bảo rằng thuật toán
+của bạn không bao giờ tạo mã thông báo này,
+
+51
+00:03:47.710 --> 00:03:51.360
+một điều bạn có thể làm là từ chối bất kỳ
+
+52
+00:03:51.360 --> 00:03:55.540
+mẫu xuất hiện dưới dạng mã thông báo UNK
+và chỉ tiếp tục lấy mẫu lại từ phần còn lại của
+
+53
+00:03:55.540 --> 00:03:59.240
+từ vựng cho đến khi bạn nhận được
+một từ không phải là UNK.
+
+54
+00:03:59.240 --> 00:04:02.860
+Hoặc bạn có thể để nó ở đầu ra
+nếu bạn không phiền khi có UNK
+
+55
+00:04:02.860 --> 00:04:04.260
+làm đầu ra.
+
+56
+00:04:04.260 --> 00:04:08.580
+Đây là cách bạn tạo ra
+một câu được chọn ngẫu nhiên
+
+57
+00:04:08.580 --> 00:04:11.280
+từ mô hình ngôn ngữ RNN của bạn.
+
+58
+00:04:11.280 --> 00:04:15.150
+Bây giờ,
+cho đến nay chúng ta đã xây dựng RNN cấp từ,
+
+59
+00:04:15.150 --> 00:04:19.840
+theo đó ý tôi là từ vựng
+là các từ tiếng Anh.
+
+60
+00:04:19.840 --> 00:04:21.640
+Tùy thuộc vào ứng dụng của bạn,
+
+61
+00:04:21.640 --> 00:04:26.070
+một điều bạn có thể làm là
+xây dựng RNN cấp ký tự.
+
+62
+00:04:26.070 --> 00:04:30.168
+Trong trường hợp này, từ vựng
+của bạn sẽ chỉ là các bảng chữ cái.
+
+63
+00:04:30.168 --> 00:04:35.990
+Lên đến z và cũng như có thể là dấu cách,
+
+64
+00:04:35.990 --> 00:04:40.820
+dấu câu nếu bạn muốn,
+các chữ số từ 0 đến 9.
+
+65
+00:04:40.820 --> 00:04:44.370
+Và nếu bạn muốn phân biệt
+chữ hoa và chữ thường,
+
+66
+00:04:44.370 --> 00:04:47.990
+bạn cũng có thể bao gồm các bảng chữ cái viết hoa và
+
+67
+00:04:47.990 --> 00:04:52.800
+có một điều bạn có thể làm là
+xem xét tập training của bạn và
+
+68
+00:04:52.800 --> 00:04:57.250
+nhìn vào các ký tự xuất hiện ở đó
+và sử dụng ký tự đó để xác định từ vựng.
+
+69
+00:04:57.250 --> 00:05:02.250
+Và nếu bạn xây dựng mô hình ngôn ngữ cấp ký tự
+thay vì
+
+70
+00:05:02.250 --> 00:05:06.779
+mô hình ngôn ngữ cấp độ từ,
+rồi đến chuỗi của bạn y1, y2, y3,
+
+71
+00:05:06.779 --> 00:05:12.440
+sẽ là
+ký tự riêng lẻ trong dữ liệu train của bạn,
+
+72
+00:05:12.440 --> 00:05:15.430
+thay vì
+từ riêng lẻ trong dữ liệu train của bạn.
+
+73
+00:05:15.430 --> 00:05:22.950
+Vì vậy, đối với ví dụ trước của chúng ta, câu
+"mèo trung bình ngủ 15 giờ mỗi ngày".
+
+74
+00:05:22.950 --> 00:05:27.160
+Trong ví dụ này,
+c sẽ là y1, a sẽ là y2,
+
+75
+00:05:27.160 --> 00:05:33.050
+t sẽ là y3,
+không gian sẽ là y4, v.v.
+
+76
+00:05:33.050 --> 00:05:37.080
+Sử dụng mô hình ngôn ngữ cấp độ ký tự
+có một số ưu và nhược điểm.
+
+77
+00:05:37.080 --> 00:05:40.760
+Một là bạn không bao giờ phải
+lo lắng về các mã thông báo UNK.
+
+78
+00:05:40.760 --> 00:05:44.246
+Đặc biệt,
+một mô hình ngôn ngữ cấp độ ký tự
+
+79
+00:05:44.246 --> 00:05:48.811
+có thể gán một chuỗi như "mau",
+là một xác suất khác không.
+
+80
+00:05:48.811 --> 00:05:53.419
+Trong khi nếu "mau" không có trong từ vựng
+của bạn đối với mô hình ngôn ngữ cấp độ từ,
+
+81
+00:05:53.419 --> 00:05:56.451
+bạn chỉ cần gán cho nó
+mã thông báo UNK.
+
+82
+00:05:56.451 --> 00:06:01.051
+Nhưng nhược điểm chính của
+mô hình ngôn ngữ cấp ký tự
+
+83
+00:06:01.051 --> 00:06:04.570
+là bạn kết thúc với
+chuỗi dài hơn nhiều.
+
+84
+00:06:04.570 --> 00:06:08.450
+Vì vậy, nhiều câu tiếng anh
+sẽ có 10 đến 20 từ nhưng
+
+85
+00:06:08.450 --> 00:06:11.640
+có thể có nhiều, hàng tá ký tự.
+
+86
+00:06:11.640 --> 00:06:16.850
+Và các mô hình ngôn ngữ ký tự như vậy không
+tốt như mô hình ngôn ngữ cấp từ khi
+
+87
+00:06:16.850 --> 00:06:19.567
+nắm bắt phạm vi dài
+phụ thuộc giữa
+
+88
+00:06:19.567 --> 00:06:23.650
+các phần trước của câu
+ảnh hưởng đến phần sau của câu như thế nào.
+
+89
+00:06:23.650 --> 00:06:28.730
+Và các mô hình cấp độ ký tự cũng chỉ tốn kém hơn
+về mặt tính toán để train.
+
+90
+00:06:28.730 --> 00:06:32.500
+Vì vậy, xu hướng mà tôi đã thấy trong xử lý ngôn ngữ tự nhiên
+là cho
+
+91
+00:06:32.500 --> 00:06:36.510
+phần lớn, mô hình ngôn ngữ cấp độ từ
+vẫn được sử dụng, nhưng
+
+92
+00:06:36.510 --> 00:06:41.710
+như là khi máy tính nhanh hơn, thì có nhiều
+và nhiều hơn nữa các ứng dụng mà mọi người,
+
+93
+00:06:41.710 --> 00:06:47.460
+ít nhất trong một số trường hợp đặc biệt, bắt đầu
+xem xét nhiều mô hình cấp độ ký tự hơn.
+
+94
+00:06:47.460 --> 00:06:50.410
+Nhưng thường sẽ khó hơn nhiều,
+và tốn khá nhiều tính toán để train,
+
+95
+00:06:50.410 --> 00:06:53.690
+vì vậy chúng không được sử dụng rộng rãi ngày nay.
+
+96
+00:06:53.690 --> 00:06:57.810
+Ngoại trừ các ứng dụng chuyên biệt
+mà bạn có thể cần phải xử lý
+
+97
+00:06:57.810 --> 00:07:00.210
+UNK hoặc
+từ vựng khác rất nhiều.
+
+98
+00:07:00.210 --> 00:07:02.340
+Hoặc nó cũng được sử dụng
+ứng dụng chuyên biệt hơn nơi bạn
+
+99
+00:07:02.340 --> 00:07:06.460
+có vốn từ vựng chuyên ngành hơn.
+
+100
+00:07:06.460 --> 00:07:08.890
+Vì vậy, theo các phương pháp này,
+
+101
+00:07:08.890 --> 00:07:13.356
+những gì bạn có thể làm bây giờ là xây dựng một RNN để
+xem kho ngữ liệu tiếng Anh,
+
+102
+00:07:13.356 --> 00:07:18.682
+xây dựng mô hình ngôn ngữ cấp độ từ, cấp độ ký tự
+
+103
+00:07:18.682 --> 00:07:23.610
+lấy mẫu từ
+mô hình ngôn ngữ mà bạn đã train.
+
+104
+00:07:23.610 --> 00:07:27.930
+Đây là một số ví dụ về văn bản
+ví dụ từ mô hình ngôn ngữ,
+
+105
+00:07:27.930 --> 00:07:30.690
+thực ra từ một mô hình ngôn ngữ cấp
+văn hóa.
+
+106
+00:07:30.690 --> 00:07:34.080
+Và bạn có thể tự mình thực hiện điều gì đó giống như
+thế này trong bài tập.
+
+107
+00:07:34.080 --> 00:07:36.850
+Nếu mô hình được train trên các bài báo,
+
+108
+00:07:36.850 --> 00:07:39.240
+sau đó nó tạo ra các văn bản
+được hiển thị ở bên trái.
+
+109
+00:07:39.240 --> 00:07:44.460
+Và điều này trông mơ hồ giống như văn bản tin tức,
+không đúng ngữ pháp,
+
+110
+00:07:44.460 --> 00:07:48.630
+nhưng có thể hơi giống như
+thứ có thể xuất hiện trên tin tức,
+
+111
+00:07:48.630 --> 00:07:50.490
+"concussion epidemic, to be examined".
+
+112
+00:07:50.490 --> 00:07:52.394
+Và nó đã được train trên
+văn bản Shakespear và
+
+113
+00:07:52.394 --> 00:07:55.750
+sau đó nó tạo ra những thứ nghe có vẻ
+giống như Shakespeare có thể đã viết ra nó.
+
+114
+00:07:55.750 --> 00:07:57.510
+The mortal moon hath her eclipse in love. (Vầng trăng trần thế đã yêu nàng nhật thực).
+
+115
+00:07:57.510 --> 00:08:00.100
+And subject of this thou
+art another this fold.
+
+116
+00:08:00.100 --> 00:08:02.210
+When besser be my love to me see sabl's.
+
+117
+00:08:02.210 --> 00:08:04.910
+For whose are ruse of mine eyes heaves.
+
+118
+00:08:06.390 --> 00:08:11.470
+Vì vậy, đó là RNN cơ bản và cách
+bạn có thể xây dựng mô hình ngôn ngữ bằng cách sử dụng nó,
+
+119
+00:08:11.470 --> 00:08:15.680
+lấy mẫu từ mô hình ngôn ngữ
+mà bạn đã train.
+
+120
+00:08:15.680 --> 00:08:20.180
+Trong vài video tiếp theo, tôi muốn thảo luận
+thêm một số thách thức khi train
+
+121
+00:08:20.180 --> 00:08:24.908
+RNN, cũng như cách điều chỉnh một số
+những thách thức này, đặc biệt là t tiêu biến
+
+122
+00:08:24.908 --> 00:08:28.780
+gradient bằng cách xây dựng thêm
+mô hình có sức ảnh hưởng lớn của RNN.
+
+123
+00:08:28.780 --> 00:08:32.760
+Vì vậy, trong video tiếp theo, chúng ta hãy nói về
+vấn đề làm biến mất gradient và
+
+124
+00:08:32.760 --> 00:08:38.300
+chúng ta sẽ tiếp tục nói về GRU, Gate Recurring Unit
+cũng như các mô hình LSTM.

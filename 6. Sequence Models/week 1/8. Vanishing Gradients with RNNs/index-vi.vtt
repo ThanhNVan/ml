@@ -1,0 +1,350 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.670
+Bạn đã tìm hiểu về cách hoạt động của RNN và
+cách chúng có thể được áp
+
+00:00:04.670 --> 00:00:09.340
+dụng cho các vấn đề như nhận dạng thực thể tên
+cũng như mô hình hóa ngôn ngữ.
+
+00:00:09.340 --> 00:00:13.200
+Và bạn đã thấy cách truyền ngược có thể được
+sử dụng để huấn luyện RNN.
+
+00:00:13.200 --> 00:00:16.890
+Hóa ra một trong những vấn đề với thuật toán
+
+00:00:16.890 --> 00:00:20.580
+RNN cơ bản là nó gặp phải vấn đề biến mất độ
+dốc.
+
+00:00:20.580 --> 00:00:23.730
+Hãy cùng thảo luận về vấn đề đó và trong một
+số video tiếp theo,
+
+00:00:23.730 --> 00:00:26.880
+chúng ta sẽ nói về một số giải pháp giúp giải
+quyết vấn đề này.
+
+00:00:26.960 --> 00:00:30.700
+Vậy là bạn đã thấy những bức ảnh về RNN trông
+như thế này.
+
+00:00:30.700 --> 00:00:34.640
+Và hãy lấy một ví dụ về mô hình hóa ngôn ngữ.
+
+00:00:34.640 --> 00:00:47.280
+Giả sử bạn nhìn thấy câu này, con mèo đã ăn
+rồi và có thể đã ăn rất nhiều đồ ăn ngon,
+
+00:00:47.280 --> 00:00:50.000
+đã đầy.
+
+00:00:50.000 --> 00:00:55.040
+Và như vậy để nhất quán là vì cat là số ít nên
+phải là cat was.
+
+00:00:55.040 --> 00:01:06.720
+Trong khi đó, những con mèo đã ăn rất nhiều
+thức ăn, rất ngon và táo, lê, v.v. đều no.
+
+00:01:06.720 --> 00:01:14.400
+Vì vậy, để nhất quán, nó phải là cat was hoặc
+cats was.
+
+00:01:14.400 --> 00:01:19.600
+Và đây là một ví dụ về thời điểm ngôn ngữ có
+thể có sự phụ thuộc rất lâu dài trong
+
+00:01:19.600 --> 00:01:24.800
+đó một từ đến sớm hơn nhiều có thể ảnh hưởng
+đến những gì cần đến muộn hơn nhiều
+
+00:01:24.800 --> 00:01:26.160
+trong câu.
+
+00:01:26.160 --> 00:01:29.680
+Nhưng hóa ra RNN cơ bản mà chúng ta đã thấy
+cho đến nay lại
+
+00:01:29.680 --> 00:01:33.200
+không hiệu quả trong việc nắm bắt các mối phụ
+thuộc dài hạn.
+
+00:01:33.200 --> 00:01:36.587
+Để giải thích lý do tại sao, bạn có thể nhớ từ
+các cuộc thảo
+
+00:01:36.587 --> 00:01:39.973
+luận ban đầu của chúng ta về việc huấn luyện
+mạng lưới thần
+
+00:01:39.973 --> 00:01:43.360
+kinh rất sâu, chúng ta đã nói về vấn đề biến
+thiên gradient.
+
+00:01:43.360 --> 00:01:46.907
+Vì vậy, đây là một neural network rất
+sâu, chẳng hạn
+
+00:01:46.907 --> 00:01:50.453
+như 100 lớp hoặc thậm chí sâu hơn nhiều, sau
+đó bạn sẽ mang
+
+00:01:50.453 --> 00:01:54.000
+một điểm tựa về phía trước từ trái sang phải,
+rồi quay lại.
+
+00:01:54.000 --> 00:01:58.480
+Và chúng tôi đã nói rằng nếu đây là một mạng
+lưới thần kinh rất sâu thì độ
+
+00:01:58.480 --> 00:02:02.960
+dốc từ đầu ra Y này sẽ rất khó truyền trở lại
+để tác động đến trọng số của
+
+00:02:02.960 --> 00:02:07.440
+các lớp trước đó và ảnh hưởng đến việc tính
+toán trong các lớp trước đó.
+
+00:02:07.440 --> 00:02:10.240
+Và đối với RNN, chúng tôi gặp vấn đề tương tự.
+
+00:02:10.240 --> 00:02:14.120
+Bạn có chỗ dựa phía trước đi từ trái sang phải
+
+00:02:14.120 --> 00:02:18.000
+và sau đó chỗ dựa phía sau đi từ phải sang
+trái.
+
+00:02:18.000 --> 00:02:23.400
+Và nó có thể khá khó khăn do vấn đề độ dốc
+biến mất tương tự đối với
+
+00:02:23.400 --> 00:02:28.800
+đầu ra của các lỗi liên quan đến các bước thời
+gian sau đó ảnh hưởng đến
+
+00:02:28.800 --> 00:02:32.400
+các tính toán trước đó.
+
+00:02:32.400 --> 00:02:35.560
+Và vì vậy trong thực tế, điều này có nghĩa là
+có thể khó
+
+00:02:35.560 --> 00:02:38.720
+khiến neural network nhận ra rằng nó cần
+phải ghi nhớ.
+
+00:02:38.720 --> 00:02:43.920
+Bạn đã thấy danh từ số ít hay danh từ số nhiều
+để sau này trong chuỗi
+
+00:02:43.920 --> 00:02:49.120
+có thể tạo ra was hoặc were tùy thuộc vào việc
+nó là số ít hay số nhiều.
+
+00:02:49.120 --> 00:02:53.760
+Và lưu ý rằng trong tiếng Anh, phần ở giữa có
+thể dài tùy ý, phải không?
+
+00:02:53.760 --> 00:02:58.560
+Vì vậy, bạn có thể cần phải ghi nhớ số nhiều
+số ít trong
+
+00:02:58.560 --> 00:03:03.360
+một thời gian rất dài trước khi sử dụng được
+thông tin đó.
+
+00:03:03.360 --> 00:03:10.640
+Vì vậy, vì vấn đề này mà mô hình RNN cơ bản có
+nhiều ảnh hưởng cục bộ,
+
+00:03:10.640 --> 00:03:17.920
+nghĩa là đầu ra Y hat 3 chủ yếu bị ảnh hưởng
+bởi các giá trị gần với Y hat 3.
+
+00:03:18.720 --> 00:03:23.200
+Và giá trị ở đây chủ yếu bị ảnh hưởng bởi các
+yếu tố đầu vào gần giống nhau.
+
+00:03:23.200 --> 00:03:29.520
+Và rất khó để đầu ra ở đây bị ảnh hưởng mạnh
+bởi đầu vào ở rất sớm trong chuỗi.
+
+00:03:30.160 --> 00:03:36.000
+Và điều này là do bất kể đầu ra là gì, dù nó
+đúng hay sai, rất
+
+00:03:36.000 --> 00:03:41.840
+khó để lỗi có thể lùi nó đến đầu chuỗi và do
+đó phải sửa đổi cách
+
+00:03:41.840 --> 00:03:45.200
+neural network đang thực hiện các tính
+toán trước đó trong chuỗi.
+
+00:03:45.760 --> 00:03:49.680
+Vì vậy, đây là điểm yếu của thuật toán RNN cơ
+bản, điểm yếu mà
+
+00:03:49.680 --> 00:03:53.600
+chúng tôi sẽ bắt đầu giải quyết trong một số
+video tiếp theo.
+
+00:03:53.600 --> 00:03:57.040
+Nhưng nếu chúng ta không giải quyết nó thì RNN
+có xu hướng
+
+00:03:57.040 --> 00:04:00.480
+không hiệu quả trong việc nắm bắt các phần phụ
+thuộc tầm xa.
+
+00:04:01.120 --> 00:04:04.853
+Và mặc dù cuộc thảo luận này tập trung vào
+việc biến đổi độ dốc,
+
+00:04:04.853 --> 00:04:08.587
+bạn vẫn nhớ khi chúng ta nói về mạng lưới thần
+kinh rất sâu, chúng
+
+00:04:08.587 --> 00:04:12.320
+ta cũng đã nói về việc bùng nổ độ dốc, trong
+đó thực hiện backprop,
+
+00:04:12.320 --> 00:04:15.400
+độ dốc không chỉ giảm theo cấp số nhân mà còn
+có
+
+00:04:15.400 --> 00:04:18.480
+thể tăng theo cấp số nhân theo số lớp bạn trải
+qua.
+
+00:04:18.480 --> 00:04:23.280
+Hóa ra độ dốc biến mất có xu hướng là vấn đề
+lớn hơn khi đào tạo RNN.
+
+00:04:24.000 --> 00:04:28.133
+Mặc dù khi sự bùng nổ độ dốc xảy ra, nó có thể
+là một thảm họa vì độ
+
+00:04:28.133 --> 00:04:32.267
+dốc lớn theo cấp số nhân có thể khiến các tham
+số của bạn trở nên
+
+00:04:32.267 --> 00:04:36.400
+lớn đến mức các tham số neural network của bạn
+thực sự bị rối tung.
+
+00:04:36.400 --> 00:04:41.333
+Vì vậy, hóa ra là độ dốc bùng nổ dễ phát hiện
+hơn vì các tham số chỉ
+
+00:04:41.333 --> 00:04:46.267
+tăng lên và bạn có thể thường thấy NAN hoặc
+không ở dạng số, nghĩa
+
+00:04:46.267 --> 00:04:51.200
+là kết quả của việc tràn số trong tính toán
+neural network của bạn.
+
+00:04:51.200 --> 00:04:54.200
+Và nếu bạn thấy độ dốc bùng nổ, một giải pháp
+
+00:04:54.200 --> 00:04:57.200
+cho vấn đề đó là áp dụng feature cắt độ dốc.
+
+00:04:57.200 --> 00:05:01.227
+Và điều đó thực sự có nghĩa là gì, tất cả điều
+đó có nghĩa là hãy
+
+00:05:01.227 --> 00:05:05.253
+nhìn vào các vectơ gradient của bạn và nếu nó
+lớn hơn một ngưỡng nào
+
+00:05:05.253 --> 00:05:09.280
+đó, hãy định cỡ lại một số vectơ gradient của
+bạn để nó không quá lớn,
+
+00:05:09.280 --> 00:05:12.880
+để nó được cắt bớt theo một giá trị tối đa nào
+đó.
+
+00:05:12.880 --> 00:05:16.720
+Vì vậy, nếu bạn thấy độ dốc bùng nổ, nếu các
+dẫn xuất của
+
+00:05:16.720 --> 00:05:20.560
+bạn phát nổ hoặc bạn thấy NAN, chỉ cần áp dụng
+cắt độ dốc.
+
+00:05:20.560 --> 00:05:26.080
+Và đó là một giải pháp tương đối mạnh mẽ sẽ
+giải quyết được vấn đề bùng nổ độ dốc.
+
+00:05:26.080 --> 00:05:29.280
+Nhưng việc biến mất độ dốc khó giải quyết hơn
+
+00:05:29.280 --> 00:05:32.480
+nhiều và nó sẽ là chủ đề của một số video tiếp
+theo.
+
+00:05:33.360 --> 00:05:37.280
+Vì vậy, để tóm tắt, trong khóa học trước, bạn
+đã thấy nếu đang huấn
+
+00:05:37.280 --> 00:05:41.200
+luyện một neural network rất sâu, bạn có
+thể gặp phải các vấn
+
+00:05:41.200 --> 00:05:45.120
+đề về độ dốc biến mất hoặc độ dốc bùng nổ với
+đạo hàm, hoặc giảm
+
+00:05:45.120 --> 00:05:49.040
+theo cấp số nhân hoặc tăng theo cấp số nhân
+như một hàm số của số lớp.
+
+00:05:49.040 --> 00:05:54.280
+Và RNN, giả sử RNN xử lý dữ liệu qua một nghìn
+lần bước hoặc hơn 10.000 lần
+
+00:05:54.280 --> 00:05:59.520
+bước, về cơ bản đó là mạng 1.000 lớp hoặc
+giống như neural network 10.000 lớp.
+
+00:05:59.600 --> 00:06:02.880
+Và do đó nó cũng gặp phải những loại vấn đề
+này.
+
+00:06:03.440 --> 00:06:06.027
+Khi bùng nổ các gradient, bạn có thể giải
+quyết các con lửng
+
+00:06:06.027 --> 00:06:08.613
+bằng cách chỉ sử dụng feature cắt gradient,
+nhưng việc biến
+
+00:06:08.613 --> 00:06:11.200
+mất các gradient sẽ mất nhiều công sức hơn để
+giải quyết.
+
+00:06:11.200 --> 00:06:14.620
+Vì vậy, những gì chúng ta sẽ làm trong video
+tiếp theo là nói về
+
+00:06:14.620 --> 00:06:18.040
+GRU hoặc các đơn vị lặp lại lớn hơn, đây là
+một giải pháp rất hiệu
+
+00:06:18.040 --> 00:06:21.460
+quả để giải quyết vấn đề độ dốc biến mất và sẽ
+cho phép
+
+00:06:21.460 --> 00:06:24.880
+neural network của bạn nắm bắt được các phụ
+thuộc ở phạm vi dài hơn nhiều.
+
+00:06:24.880 --> 00:06:26.400
+Vậy chúng ta hãy chuyển sang video tiếp theo.

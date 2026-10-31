@@ -1,0 +1,374 @@
+WEBVTT
+
+00:00:03.860 --> 00:00:07.520
+Xin chào và chào mừng trở lại. Trong khóa học
+này, bạn đã tìm
+
+00:00:07.520 --> 00:00:11.180
+hiểu về object recognition, trong đó mục tiêu
+là nhập hình ảnh
+
+00:00:11.180 --> 00:00:14.840
+và tìm ra nội dung trong hình ảnh, chẳng hạn
+như đây có phải là một
+
+00:00:14.840 --> 00:00:19.027
+mèo hay không. Bạn đã tìm hiểu về cách phát
+hiện đối tượng, trong
+
+00:00:19.027 --> 00:00:23.213
+đó mục tiêu là đặt thêm một bounding box xung
+quanh
+
+00:00:23.213 --> 00:00:27.400
+đối tượng. Trong video này, bạn tìm hiểu về
+một tập hợp các thuật toán
+
+00:00:27.400 --> 00:00:31.413
+thậm chí còn phức tạp hơn một bước, đó là phân
+đoạn ngữ
+
+00:00:31.413 --> 00:00:35.427
+nghĩa, trong đó mục tiêu là vẽ đường viền cẩn
+thận xung
+
+00:00:35.427 --> 00:00:39.440
+quanh đối tượng được phát hiện để bạn biết
+chính xác đối tượng nào
+
+00:00:39.440 --> 00:00:43.467
+pixel thuộc về đối tượng và pixel nào không
+thuộc về đối
+
+00:00:43.467 --> 00:00:47.493
+tượng. Loại thuật toán này, phân đoạn ngữ
+nghĩa, rất hữu ích
+
+00:00:47.493 --> 00:00:51.520
+cho nhiều ứng dụng thương mại cũng như ngày
+nay. Hãy đi sâu vào.
+
+00:00:51.520 --> 00:00:55.267
+Vậy semantic segmentation là gì? Giả sử bạn đang
+chế tạo một
+
+00:00:55.267 --> 00:00:59.013
+chiếc ô tô tự lái và bạn nhìn thấy hình ảnh
+đầu vào như thế
+
+00:00:59.013 --> 00:01:02.760
+này và bạn muốn phát hiện vị trí của những
+chiếc ô tô khác.
+
+00:01:02.760 --> 00:01:06.690
+Nếu bạn sử dụng thuật toán phát hiện đối
+tượng, mục tiêu có thể là
+
+00:01:06.690 --> 00:01:10.620
+vẽ các bounding box như thế này xung quanh các
+phương tiện khác.
+
+00:01:10.620 --> 00:01:14.550
+Điều này có thể đủ tốt cho một chiếc ô tô tự
+lái, nhưng nếu bạn muốn
+
+00:01:14.550 --> 00:01:18.480
+thuật toán học tập của mình tìm ra từng pixel
+trong hình ảnh này là gì,
+
+00:01:18.480 --> 00:01:24.440
+thì bạn có thể sử dụng thuật toán phân đoạn
+ngữ nghĩa với mục tiêu là đưa ra kết
+
+00:01:24.440 --> 00:01:30.400
+quả này, ví dụ: thay vì phát hiện đường và cố
+gắng vẽ một bounding box xung quanh
+
+00:01:30.400 --> 00:01:35.120
+đường, điều này sẽ không hữu ích lắm, với sự
+phân đoạn theo ngữ nghĩa,
+
+00:01:35.120 --> 00:01:39.840
+thuật toán sẽ cố gắng gắn nhãn cho từng pixel
+xem đây có phải là con
+
+00:01:39.840 --> 00:01:44.560
+đường có thể lái được hay không, được biểu thị
+bằng màu xanh đậm ở đó.
+
+00:01:44.560 --> 00:01:50.760
+Một trong những công dụng của phân đoạn ngữ
+nghĩa là nó được một số nhóm xe tự lái
+
+00:01:50.760 --> 00:01:56.960
+sử dụng để tìm ra chính xác những pixel nào an
+toàn để lái qua vì chúng đại diện cho
+
+00:01:56.960 --> 00:02:01.387
+một bề mặt có thể lái được. Hãy xem xét một số
+ứng dụng khác.
+
+00:02:01.387 --> 00:02:05.813
+Đây là một vài hình ảnh từ các tài liệu nghiên
+cứu của
+
+00:02:05.813 --> 00:02:10.240
+Novikov et al. và bởi Đông và cộng sự. Trong
+hình ảnh y tế, đưa ra
+
+00:02:10.240 --> 00:02:13.627
+chụp X-quang ngực, bạn có thể muốn chẩn đoán
+xem ai đó có mắc một
+
+00:02:13.627 --> 00:02:17.013
+tình trạng nào đó hay không. Nhưng điều có thể
+hữu ích hơn nữa đối
+
+00:02:17.013 --> 00:02:20.400
+với các bác sĩ là nếu bạn có thể phân đoạn
+chính xác trong hình ảnh
+
+00:02:20.400 --> 00:02:27.340
+pixel nào tương ứng với các phần nhất định
+trên cơ thể bệnh nhân. Trong hình ảnh bên
+
+00:02:27.340 --> 00:02:34.280
+trái, phổi, tim và xương đòn, cũng như xương
+đòn, được phân chia bằng cách sử dụng
+
+00:02:34.280 --> 00:02:39.387
+màu sắc khác nhau. Việc phân đoạn này có thể
+giúp phát hiện những
+
+00:02:39.387 --> 00:02:44.493
+bất thường và chẩn đoán các bệnh nghiêm trọng
+dễ dàng hơn, đồng
+
+00:02:44.493 --> 00:02:49.600
+thời giúp bác sĩ phẫu thuật lên kế hoạch phẫu
+thuật. Trong ví dụ này,
+
+00:02:49.600 --> 00:02:55.467
+quét MRI não được sử dụng để phát hiện khối u
+não. Việc phân
+
+00:02:55.467 --> 00:03:01.333
+chia khối u này theo cách thủ công rất tốn
+thời gian và công
+
+00:03:01.333 --> 00:03:07.200
+sức. Nhưng nếu một thuật toán học có thể tự
+động phân chia khối u,
+
+00:03:07.200 --> 00:03:11.133
+điều này giúp các bác sĩ X quang tiết kiệm rất
+nhiều thời gian và đây cũng
+
+00:03:11.133 --> 00:03:15.067
+là thông tin đầu vào hữu ích cho việc lập kế
+hoạch phẫu thuật. Thuật toán
+
+00:03:15.067 --> 00:03:19.000
+được sử dụng để tạo ra kết quả này là thuật
+toán có tên UNET, thuật toán này
+
+00:03:19.000 --> 00:03:25.260
+bạn tìm hiểu trong phần còn lại của video này.
+Hãy cùng tìm hiểu xem phân đoạn
+
+00:03:25.260 --> 00:03:31.520
+ngữ nghĩa thực sự có tác dụng gì. Để đơn giản,
+hãy sử dụng ví dụ về phân đoạn
+
+00:03:31.520 --> 00:03:35.573
+một chiếc xe hơi từ một số nền tảng. Giả sử
+bây giờ điều
+
+00:03:35.573 --> 00:03:39.627
+duy nhất bạn quan tâm là phân đoạn chiếc xe
+trong hình ảnh
+
+00:03:39.627 --> 00:03:43.680
+này. Trong trường hợp đó, bạn có thể quyết
+định có hai lớp
+
+00:03:43.680 --> 00:03:51.440
+nhãn, một cho ô tô và số không cho ô tô. Trong
+trường hợp này, công việc
+
+00:03:51.440 --> 00:03:59.200
+của thuật toán phân đoạn của thuật toán UNET
+sẽ là xuất ra 1 hoặc 0 cho mỗi
+
+00:03:59.200 --> 00:04:03.267
+pixel trong hình ảnh này, trong đó pixel phải
+được gắn nhãn 1
+
+00:04:03.267 --> 00:04:07.333
+nếu nó là một phần của ô tô và được gắn nhãn 0
+nếu nó không
+
+00:04:07.333 --> 00:04:11.400
+phải là một phần của ô tô. Ngoài ra, nếu bạn
+muốn phân đoạn này
+
+00:04:11.400 --> 00:04:15.160
+hình ảnh tinh tế hơn một chút, bạn có thể
+quyết định rằng
+
+00:04:15.160 --> 00:04:18.920
+bạn muốn gắn nhãn cho chiếc ô tô, cũng có thể
+muốn biết các
+
+00:04:18.920 --> 00:04:22.680
+tòa nhà ở đâu, trong trường hợp đó bạn sẽ có
+loại thứ hai,
+
+00:04:22.680 --> 00:04:29.700
+hạng hai của tòa nhà. Và cuối cùng, mặt đất
+hoặc đường, lớp ba, trong trường
+
+00:04:29.700 --> 00:04:36.720
+hợp đó, công việc của thuật toán học sẽ là gắn
+nhãn cho từng pixel như sau.
+
+00:04:36.720 --> 00:04:41.520
+Và do đó, lấy nhãn trên mỗi pixel và chuyển nó
+sang bên phải,
+
+00:04:41.520 --> 00:04:46.320
+đây là kết quả đầu ra mà chúng tôi muốn đào
+tạo UNET để bắt
+
+00:04:46.320 --> 00:04:51.120
+đầu. Vì vậy, đây là rất nhiều kết quả đầu ra.
+Thay vì chỉ đưa
+
+00:04:51.120 --> 00:04:55.373
+một nhãn lớp duy nhất, hoặc có thể là nhãn lớp
+và tọa độ
+
+00:04:55.373 --> 00:04:59.627
+cần thiết để chỉ định các quả bóng giới hạn,
+neural network
+
+00:04:59.627 --> 00:05:03.880
+UNET trong trường hợp này phải tạo ra toàn bộ
+ma trận nhãn.
+
+00:05:03.880 --> 00:05:08.440
+Vậy kiến trúc neural network phù hợp để
+làm điều đó là
+
+00:05:08.440 --> 00:05:13.000
+gì? Hãy bắt đầu với kiến ​​trúc neural network
+nhận dạng đối
+
+00:05:13.000 --> 00:05:17.560
+tượng mà bạn đã quen thuộc. Và hãy tìm cách
+sửa đổi điều này
+
+00:05:17.560 --> 00:05:22.040
+để làm cho neural network này xuất ra
+toàn bộ ma trận các
+
+00:05:22.040 --> 00:05:26.520
+nhãn lớp. Đây là kiến trúc neural network
+convolution quen thuộc,
+
+00:05:26.520 --> 00:05:31.000
+trong đó bạn nhập một hình ảnh, hình ảnh này
+được đưa về phía trước
+
+00:05:31.000 --> 00:05:37.080
+qua nhiều lớp để tạo ra một nhãn lớp y hat. Để
+thay đổi kiến trúc này thành kiến
+
+00:05:37.080 --> 00:05:43.160
+trúc phân đoạn theo ngữ nghĩa, chúng ta hãy
+loại bỏ một số kiến trúc cuối cùng
+
+00:05:43.160 --> 00:05:47.933
+các lớp. Và một bước quan trọng của phân đoạn
+ngữ nghĩa là
+
+00:05:47.933 --> 00:05:52.707
+trong khi kích thước của hình ảnh nhìn chung
+ngày càng nhỏ
+
+00:05:52.707 --> 00:05:57.480
+hơn, khi chúng ta đi từ trái sang phải, giờ
+đây nó cần phải lớn hơn,
+
+00:05:57.480 --> 00:06:00.880
+để họ có thể dần dần phóng nó trở lại thành
+hình ảnh có
+
+00:06:00.880 --> 00:06:04.280
+kích thước đầy đủ, đó là kích thước bạn muốn
+cho đầu ra.
+
+00:06:05.240 --> 00:06:12.000
+Cụ thể, kiến trúc UNET trông như thế này. Khi
+chúng ta đi sâu hơn vào UNET,
+
+00:06:12.000 --> 00:06:18.760
+chiều cao và chiều rộng sẽ tăng trở lại trong
+khi số lượng kênh sẽ giảm. Vì vậy UNET
+
+00:06:18.760 --> 00:06:24.920
+kiến trúc trông như thế này cho đến khi bạn có
+được bản đồ phân đoạn của con mèo.
+
+00:06:25.000 --> 00:06:28.680
+Bây giờ, một thao tác mà chúng ta chưa thực
+hiện đó
+
+00:06:28.680 --> 00:06:32.360
+là việc làm cho hình ảnh lớn hơn trông như thế
+nào.
+
+00:06:32.920 --> 00:06:36.280
+Để giải thích cách thức hoạt động của nó, bạn
+
+00:06:36.280 --> 00:06:39.640
+phải biết cách triển khai convolution chuyển
+vị.
+
+00:06:40.200 --> 00:06:43.360
+Vì vậy, semantic segmentation là một thuật toán
+
+00:06:43.360 --> 00:06:46.520
+rất hữu ích cho nhiều ứng dụng thị giác máy
+tính.
+
+00:06:46.520 --> 00:06:51.960
+Và ý tưởng chính là bạn phải lấy từng pixel và
+gắn nhãn cho từng pixel riêng lẻ
+
+00:06:51.960 --> 00:06:57.400
+bằng nhãn lớp thích hợp. Như bạn đã thấy trong
+video này, một bước quan trọng để
+
+00:06:57.400 --> 00:07:00.560
+làm điều đó là thực sự lấy một nhóm kích hoạt
+nhỏ
+
+00:07:00.560 --> 00:07:03.720
+và nâng nó lên thành một nhóm kích hoạt lớn
+hơn.
+
+00:07:04.360 --> 00:07:08.920
+Để làm được điều đó, bạn phải triển khai một
+thứ gọi là convolution chuyển
+
+00:07:08.920 --> 00:07:13.480
+vị, đây là một thao tác quan trọng được sử
+dụng nhiều lần trong kiến trúc UNET.
+
+00:07:14.280 --> 00:07:19.240
+Vì vậy, hãy chuyển sang video tiếp theo nơi
+bạn tìm hiểu về convolution chuyển vị.
+
+00:07:19.240 --> 00:07:21.690
+Tôi sẽ gặp bạn trong video tiếp theo.

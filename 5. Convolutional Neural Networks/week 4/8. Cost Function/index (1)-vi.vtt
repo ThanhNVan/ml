@@ -1,0 +1,237 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.400
+Để xây dựng một hệ thống truyền phong cách thần kinh,
+
+2
+00:00:02.400 --> 00:00:05.730
+hãy xác định một cost function cho hình ảnh được tạo ra.
+
+3
+00:00:05.730 --> 00:00:09.953
+Những gì bạn thấy sau đó là bằng cách giảm thiểu chức năng chi phí này,
+
+4
+00:00:09.953 --> 00:00:12.270
+bạn có thể tạo ra hình ảnh mà bạn muốn.
+
+5
+00:00:12.270 --> 00:00:15.231
+Hãy nhớ những gì các vấn đề xây dựng là.
+
+6
+00:00:15.231 --> 00:00:17.400
+Bạn được cung cấp một hình ảnh nội dung C,
+
+7
+00:00:17.400 --> 00:00:21.510
+cho một hình ảnh phong cách S và bạn mục tiêu là để tạo ra một hình ảnh mới
+
+8
+00:00:21.510 --> 00:00:26.180
+G. Để thực hiện truyền phong cách thần kinh,
+
+9
+00:00:26.180 --> 00:00:34.080
+những gì bạn sẽ làm là xác định một cost function J của G đo mức độ tốt là
+
+10
+00:00:34.080 --> 00:00:37.920
+một hình ảnh được tạo ra cụ thể và chúng tôi sẽ sử dụng gradient để
+
+11
+00:00:37.920 --> 00:00:42.425
+gốc để giảm thiểu J của G để tạo ra hình ảnh này.
+
+12
+00:00:42.425 --> 00:00:44.490
+Làm thế nào tốt là một hình ảnh cụ thể?
+
+13
+00:00:44.490 --> 00:00:48.460
+Vâng, chúng ta sẽ xác định hai phần cho chức năng chi phí này.
+
+14
+00:00:48.460 --> 00:00:52.190
+Phần đầu tiên được gọi là chi phí nội dung.
+
+15
+00:00:52.190 --> 00:00:56.480
+Đây là một chức năng của hình ảnh nội dung và hình ảnh được tạo ra và
+
+16
+00:00:56.480 --> 00:01:00.960
+những gì nó làm là nó đo lường tương tự như thế nào là nội dung của hình ảnh được tạo ra với
+
+17
+00:01:00.960 --> 00:01:05.495
+nội dung của hình ảnh nội dung C. Và sau đó sẽ
+
+18
+00:01:05.495 --> 00:01:10.345
+thêm vào một chức năng chi phí phong cách mà bây giờ là một chức năng của
+
+19
+00:01:10.345 --> 00:01:14.720
+S, G và những gì này không là nó đo như thế nào tương tự là
+
+20
+00:01:14.720 --> 00:01:20.547
+phong cách của hình ảnh G với phong cách của hình ảnh S. Cuối cùng,
+
+21
+00:01:20.547 --> 00:01:24.180
+chúng tôi sẽ cân nặng những với hai thông số siêu alpha và beta để
+
+22
+00:01:24.180 --> 00:01:29.610
+xác định trọng số tương đối giữa các chi phí nội dung và chi phí phong cách.
+
+23
+00:01:29.610 --> 00:01:33.405
+Có vẻ như dư thừa để sử dụng hai tham số siêu khác nhau để xác
+
+24
+00:01:33.405 --> 00:01:44.370
+định chi phí tương đối của trọng số.
+
+25
+00:01:44.370 --> 00:01:47.070
+Một tham số siêu có vẻ như nó sẽ là đủ nhưng
+
+26
+00:01:47.070 --> 00:01:50.230
+các tác giả ban đầu của thuật toán truyền phong cách thần kinh,
+
+27
+00:01:50.230 --> 00:01:52.410
+sử dụng hai tham số siêu khác nhau.
+
+28
+00:01:52.410 --> 00:01:55.278
+Tôi sẽ làm theo quy ước của họ ở đây.
+
+29
+00:01:55.278 --> 00:01:57.925
+Thuật toán chuyển phong cách thần kinh tôi
+
+30
+00:01:57.925 --> 00:02:00.810
+sẽ trình bày trong vài video tiếp theo là do Leon Gatys,
+
+31
+00:02:00.810 --> 00:02:04.200
+Alexander Ecker và Matthias.
+
+32
+00:02:04.200 --> 00:02:09.630
+Nếu bạn muốn,
+
+33
+00:02:09.630 --> 00:02:14.550
+tôi chắc chắn khuyến khích bạn cũng nên xem bài báo của họ nếu bạn muốn.
+
+34
+00:02:14.550 --> 00:02:17.910
+Cách thuật toán sẽ chạy như sau,
+
+35
+00:02:17.910 --> 00:02:21.300
+phải tìm cost function J của G
+
+36
+00:02:21.300 --> 00:02:25.030
+để thực sự tạo ra một hình ảnh mới những gì bạn làm là như sau.
+
+37
+00:02:25.030 --> 00:02:29.035
+Bạn sẽ khởi tạo hình ảnh được tạo ra
+
+38
+00:02:29.035 --> 00:02:30.720
+G một cách ngẫu nhiên vì vậy nó có thể là 100 x 100 x 3 hoặc 500 x 500
+
+39
+00:02:30.720 --> 00:02:37.200
+x 3 hoặc bất cứ kích thước nào bạn muốn nó được.
+
+40
+00:02:37.200 --> 00:02:41.885
+Sau đó, chúng ta sẽ xác định cost function J của G trên slide trước đó.
+
+41
+00:02:41.885 --> 00:02:47.805
+Những gì bạn có thể làm là sử dụng gradient gốc để giảm thiểu điều này, do đó bạn có thể cập nhật
+
+42
+00:02:47.805 --> 00:02:54.300
+G như G trừ đi sự tôn trọng phái sinh đến các chức năng chi phí của J của G Trong quá trình này,
+
+43
+00:02:54.300 --> 00:02:58.770
+bạn đang thực sự cập nhật các giá trị điểm ảnh của hình ảnh này G đó là
+
+44
+00:02:58.770 --> 00:03:04.175
+một 100 bởi 100 bởi 3 có lẽ rgb hình ảnh kênh.
+
+45
+00:03:04.175 --> 00:03:10.215
+Dưới đây là một ví dụ, giả sử bạn bắt đầu với hình ảnh nội dung này và hình ảnh phong cách này.
+
+46
+00:03:10.215 --> 00:03:13.365
+Đây là một hình ảnh khác có lẽ Picasso.
+
+47
+00:03:13.365 --> 00:03:15.855
+Sau đó, khi bạn khởi tạo G một cách ngẫu nhiên,
+
+48
+00:03:15.855 --> 00:03:18.535
+bạn đang ban đầu tạo ra hình ảnh ngẫu nhiên
+
+49
+00:03:18.535 --> 00:03:24.110
+chỉ là hình ảnh nhiễu trắng này với mỗi giá trị điểm ảnh được chọn ngẫu nhiên.
+
+50
+00:03:24.110 --> 00:03:25.905
+Khi bạn chạy gradient descent,
+
+51
+00:03:25.905 --> 00:03:32.325
+bạn giảm thiểu cost function J của G từ từ thông qua giá trị điểm ảnh để sau đó bạn có được
+
+52
+00:03:32.325 --> 00:03:36.030
+từ từ một hình ảnh trông giống như hình
+
+53
+00:03:36.030 --> 00:03:40.755
+ảnh nội dung của bạn được hiển thị theo phong cách của hình ảnh phong cách của bạn.
+
+54
+00:03:40.755 --> 00:03:44.690
+Trong video này, bạn đã thấy phác thảo tổng thể
+
+55
+00:03:44.690 --> 00:03:47.530
+của thuật toán truyền phong cách thần kinh nơi bạn xác định
+
+56
+00:03:47.530 --> 00:03:51.420
+một cost function cho hình ảnh được tạo ra G và giảm thiểu nó.
+
+57
+00:03:51.420 --> 00:03:53.420
+Tiếp theo, chúng ta cần xem làm thế nào để xác
+
+58
+00:03:53.420 --> 00:03:57.210
+định cost function nội dung cũng như cost function phong cách.
+
+59
+00:03:57.210 --> 00:03:59.530
+Chúng ta hãy nhìn vào điều đó bắt đầu trong đoạn video tiếp theo.

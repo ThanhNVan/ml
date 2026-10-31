@@ -1,0 +1,534 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.990 --> 00:00:05.790
+Welcome, Yan-Ting, I'm really glad you could join us today.
+
+00:00:05.790 --> 00:00:06.790
+Sure.
+
+00:00:06.790 --> 00:00:13.350
+So, you know, today you're the head of my research and when the Chinese government,
+
+00:00:13.350 --> 00:00:19.110
+the government of China, was looking for someone to start up and build a national deep learning
+
+00:00:19.110 --> 00:00:23.430
+research lab, they tapped you to help start this thing.
+
+00:00:23.430 --> 00:00:29.270
+So arguably, I think maybe you're the number one deep learning person in the entire country
+
+00:00:29.270 --> 00:00:31.470
+of China.
+
+00:00:31.470 --> 00:00:35.710
+So I'd love to ask you a lot of questions about your work, but before that, I want to hear about
+
+00:00:35.710 --> 00:00:37.230
+your personal story.
+
+00:00:37.230 --> 00:00:41.310
+So how did you end up getting to do this work that you do?
+
+00:00:41.310 --> 00:00:49.390
+Yeah, so actually, before my PhD program, my major was in kind of optics, so it's more like
+
+00:00:49.390 --> 00:00:50.990
+in physics.
+
+00:00:50.990 --> 00:00:57.550
+I think I had a fairly good background on math.
+
+00:00:57.550 --> 00:01:03.870
+I came to the US and I was thinking like, what kind of major I'm going to take for my
+
+00:01:03.870 --> 00:01:05.950
+PhD program.
+
+00:01:05.950 --> 00:01:11.030
+I was thinking that, well, I could go for the optics or go for something else.
+
+00:01:11.030 --> 00:01:17.310
+Because back to like early 2000, I think that non-linear technology was really, really
+
+00:01:17.310 --> 00:01:18.310
+hard.
+
+00:01:18.310 --> 00:01:24.350
+But I was thinking that probably I should look at something even more exciting.
+
+00:01:24.350 --> 00:01:29.310
+And there was a good chance that I was taking some classes at UPenn.
+
+00:01:29.310 --> 00:01:34.150
+And I got to know Dan Lee, so later he became my PhD advisor.
+
+00:01:34.150 --> 00:01:38.390
+And I was thinking like machine learning was a great thing to do.
+
+00:01:38.390 --> 00:01:39.910
+And I got really excited.
+
+00:01:39.910 --> 00:01:49.510
+I kind of changed my major, so I did my PhD at UPenn, majoring in machine learning.
+
+00:01:49.510 --> 00:01:57.110
+And so actually, I was there for five years, and that was kind of really exciting.
+
+00:01:57.110 --> 00:02:03.750
+And I think I learned lots of things from scratch, lots of algorithms, even like PCAs.
+
+00:02:03.750 --> 00:02:06.270
+I didn't know those before.
+
+00:02:06.270 --> 00:02:08.470
+I feel like I was learning new things every day.
+
+00:02:08.470 --> 00:02:10.950
+So it was a really, really exciting experience for me.
+
+00:02:10.950 --> 00:02:15.150
+As well, one of those themes of a lot of stars, although you know, just did a lot of
+
+00:02:15.150 --> 00:02:18.150
+work and it was underappreciated for this time.
+
+00:02:18.150 --> 00:02:19.150
+Right.
+
+00:02:19.470 --> 00:02:23.030
+So I think NGC was an exciting place.
+
+00:02:23.030 --> 00:02:26.030
+I was there at the beginning as a researcher.
+
+00:02:26.030 --> 00:02:31.750
+Again, I also feel like, wow, I learned lots of things.
+
+00:02:31.750 --> 00:02:36.910
+And actually, later at NGC, I kind of started working on computer vision.
+
+00:02:36.910 --> 00:02:43.830
+I actually started working on computer vision very late, relatively late.
+
+00:02:43.830 --> 00:02:48.870
+And the first thing I did was I participated in the ImageNet Challenge.
+
+00:02:48.870 --> 00:02:51.630
+It was the first year of ImageNet Challenge.
+
+00:02:51.630 --> 00:02:56.910
+I was kind of managing a team to work on the project.
+
+00:02:56.910 --> 00:03:01.390
+It was lucky, quite lucky, we were quite strong.
+
+00:03:01.390 --> 00:03:08.470
+And at the end, we actually got the number one place, overwhelming number one place in
+
+00:03:08.470 --> 00:03:09.470
+the context.
+
+00:03:09.470 --> 00:03:12.590
+So you were the first ever in the world ImageNet competition with?
+
+00:03:12.590 --> 00:03:13.590
+Right, right, right.
+
+00:03:13.590 --> 00:03:14.590
+Yeah.
+
+00:03:14.590 --> 00:03:18.230
+And I was the president, I did the presentation at the workshop.
+
+00:03:18.230 --> 00:03:21.510
+So it was really nice experience for me.
+
+00:03:21.510 --> 00:03:28.990
+And that actually gave me into this really large scale computer vision tasks.
+
+00:03:28.990 --> 00:03:34.630
+And so I have been working on this really large scale problem since then.
+
+00:03:34.630 --> 00:03:43.870
+And so when this New York Cat pavement, New York Times Cat came out and also later on
+
+00:03:43.870 --> 00:03:46.950
+like this AlexNet came out, it really broke my mind.
+
+00:03:46.950 --> 00:03:52.390
+I thought, wow, deep learning is so powerful.
+
+00:03:52.390 --> 00:03:58.430
+And I think since then, I've lost my effort, I think, to work on those.
+
+00:03:58.430 --> 00:04:03.310
+So as a head of China's National Lab, National Research Lab on Deep Learning, there must be
+
+00:04:03.310 --> 00:04:06.110
+a lot of exciting activities going on there.
+
+00:04:06.110 --> 00:04:10.630
+So for the global audience watching this, what should they know about what's happening
+
+00:04:10.630 --> 00:04:12.190
+with this National Lab?
+
+00:04:12.190 --> 00:04:19.190
+The mission of this National Engineering Lab is to build a really large deep learning platform.
+
+00:04:19.190 --> 00:04:24.030
+And probably hope to be the biggest one, at least the biggest one in China.
+
+00:04:24.030 --> 00:04:30.350
+And on this platform, we would offer people like a deep learning framework like PADO, PADO.
+
+00:04:30.350 --> 00:04:34.830
+And we offer people the really large scale computing resource.
+
+00:04:34.830 --> 00:04:40.950
+And we also offer people very large, like very big kind of data.
+
+00:04:40.950 --> 00:04:46.990
+And if people are able to develop or research or develop a kind of good technology on this
+
+00:04:46.990 --> 00:04:50.790
+platform, we also offer them like big applications.
+
+00:04:50.790 --> 00:04:55.750
+So for example, the technology can be plugged into some big applications in PADO so that
+
+00:04:55.750 --> 00:04:59.270
+the technology could get iterated and improved.
+
+00:04:59.270 --> 00:05:07.230
+So we believe that combining those with this kind of resource altogether, I think this
+
+00:05:07.230 --> 00:05:09.350
+is going to be a really powerful platform.
+
+00:05:09.910 --> 00:05:12.790
+Let me also give you one example on this.
+
+00:05:12.790 --> 00:05:19.030
+For example, right now, if we publish a paper, let's say a research or publish a paper,
+
+00:05:19.030 --> 00:05:25.830
+if someone wants to reproduce it, the best thing could be probably the person who provides
+
+00:05:25.830 --> 00:05:30.830
+the code somewhere and you could download the code to your computer.
+
+00:05:30.830 --> 00:05:33.630
+And you also try to find the data set somewhere.
+
+00:05:33.630 --> 00:05:40.510
+And you probably also need to get the good compilation of your computing resources to
+
+00:05:40.510 --> 00:05:42.590
+run smoothly.
+
+00:05:42.590 --> 00:05:46.510
+So this easily kind of takes some effort.
+
+00:05:46.510 --> 00:05:51.270
+At the LASER National Lab, things will become much easier.
+
+00:05:51.270 --> 00:05:56.670
+So if someone is using this platform to write the paper, to do the work and write the paper,
+
+00:05:56.670 --> 00:06:03.470
+and they will have the code on this platform, and the computing structure is already set
+
+00:06:03.470 --> 00:06:06.470
+up for this code, and the data is led to.
+
+00:06:06.470 --> 00:06:09.910
+So basically, you just need a common line to reproduce the result.
+
+00:06:09.910 --> 00:06:18.070
+So this is a huge, I think it's a big, big kind of relief for lots of reproducibility
+
+00:06:18.070 --> 00:06:19.910
+issues in computer science.
+
+00:06:19.910 --> 00:06:26.630
+So easily, just a few seconds, you start learning something like you see in the paper.
+
+00:06:26.630 --> 00:06:27.910
+So this is truly powerful.
+
+00:06:28.830 --> 00:06:35.750
+So this is just one example that we are working on, to make sure that we are providing really
+
+00:06:35.750 --> 00:06:39.670
+powerful platform to the community and to the industry.
+
+00:06:39.670 --> 00:06:40.670
+That's amazing.
+
+00:06:40.670 --> 00:06:43.350
+That really speeds up deep learning research.
+
+00:06:43.350 --> 00:06:44.350
+Yeah.
+
+00:06:44.350 --> 00:06:51.110
+And then can you give a sense of how much measles the Chinese government is putting
+
+00:06:51.110 --> 00:06:54.030
+to back you for this deep learning national lab?
+
+00:06:54.030 --> 00:07:00.270
+So I think for Lise, National Engineering Lab, I think the government is going to invest
+
+00:07:00.270 --> 00:07:04.430
+some funding into here to build up the infrastructure.
+
+00:07:04.430 --> 00:07:11.510
+But I think more importantly would be, Lise is going to be a flagship in China that is
+
+00:07:11.510 --> 00:07:20.510
+going to lead lots of deep learning efforts, including a national project and lots of policies
+
+00:07:20.510 --> 00:07:21.510
+and things.
+
+00:07:21.510 --> 00:07:24.150
+So Lise actually is truly powerful.
+
+00:07:24.150 --> 00:07:29.110
+And I think of what Baidu, we are really honored to get Lise's lab.
+
+00:07:29.110 --> 00:07:32.310
+You're somewhat at the heart of deep learning in China.
+
+00:07:32.310 --> 00:07:37.430
+So there's a lot of activity in China that the global audience isn't aware of yet and
+
+00:07:37.430 --> 00:07:38.790
+hasn't seen yet.
+
+00:07:38.790 --> 00:07:44.190
+So what should people outside China know about deep learning in China?
+
+00:07:44.190 --> 00:07:51.470
+Yeah, I think in China, especially in the past few years, I think
+
+00:07:51.470 --> 00:07:58.150
+deep learning powered product service is really booming.
+
+00:07:58.150 --> 00:08:08.790
+Coming ranging from search engines to face recognition to surveillance to e-commerce,
+
+00:08:08.790 --> 00:08:15.750
+lots of places, I think they are investing big effort in the deep learning and also they
+
+00:08:15.750 --> 00:08:23.350
+are really making use of those technologies to make the business much more powerful.
+
+00:08:23.350 --> 00:08:33.230
+And Lise actually is very important for developing AI technology in general.
+
+00:08:33.230 --> 00:08:38.950
+I think for myself and also lots of people share this, we believe that actually it's
+
+00:08:38.950 --> 00:08:43.150
+very important to have Lise, which is often called positive loop.
+
+00:08:43.150 --> 00:08:50.270
+For example, when we start out to think of building some technology, we will have some
+
+00:08:50.270 --> 00:08:52.990
+initial data and we try to develop some initial algorithm.
+
+00:08:52.990 --> 00:08:56.750
+We launch some initial product for our service.
+
+00:08:56.750 --> 00:09:00.790
+Then the other day we will get the data from users.
+
+00:09:00.790 --> 00:09:09.430
+And the other day we get more data and we will develop better algorithms.
+
+00:09:09.430 --> 00:09:13.030
+Because we see more data, we know there will be a better algorithm.
+
+00:09:13.030 --> 00:09:18.510
+So we have more data and better algorithms, we are able to have better technology for the
+
+00:09:18.510 --> 00:09:19.510
+product service.
+
+00:09:19.510 --> 00:09:24.670
+Then definitely we hope to be able to attract more users because the product, the technology
+
+00:09:24.670 --> 00:09:26.990
+is better and we will get more data.
+
+00:09:26.990 --> 00:09:35.030
+So Lise is a very good positive loop and it's very special actually for AI related technologies.
+
+00:09:35.030 --> 00:09:41.590
+For traditional technology like laser, like laser that I was working on before.
+
+00:09:41.590 --> 00:09:46.270
+So it's more like the growth of the technology will be more linear.
+
+00:09:46.270 --> 00:09:51.750
+But for this AI technology, because of this positive loop, you can imagine that definitely
+
+00:09:51.750 --> 00:09:56.710
+at a certain point you can with very fast growth of the technology.
+
+00:09:56.710 --> 00:10:04.270
+And Lise is actually super important when we design the research and when we design
+
+00:10:04.270 --> 00:10:06.430
+our R&D.
+
+00:10:06.430 --> 00:10:14.190
+We work on the direction that we are able to get to this quick improving period.
+
+00:10:14.190 --> 00:10:25.390
+If our business is not able to find this positive loop, or if we are not able to find this
+
+00:10:25.390 --> 00:10:30.670
+strong positive loop, then this direction probably should not work out.
+
+00:10:30.670 --> 00:10:34.830
+Because someone else who has a strong business to find this strong loop and they will get
+
+00:10:34.830 --> 00:10:38.870
+to this kind of phase much more quickly than you are.
+
+00:10:38.870 --> 00:10:44.910
+So Lise is actually a very important logic for us when we are looking at it like I said
+
+00:10:44.910 --> 00:10:48.870
+hey, in this company what direction we should work on and what direction should not work
+
+00:10:48.870 --> 00:10:49.870
+on.
+
+00:10:49.870 --> 00:10:52.070
+This definitely is a very important factor we should look at.
+
+00:10:52.070 --> 00:10:57.670
+Today both in China and in the US and globally there are a lot of people wanting to enter
+
+00:10:57.670 --> 00:11:00.790
+deep learning and wanting to enter AI.
+
+00:11:00.790 --> 00:11:03.870
+What advice would you have for someone that wants to get into this field?
+
+00:11:04.870 --> 00:11:11.510
+So nowadays definitely I think people who start with open source frameworks are less
+
+00:11:11.510 --> 00:11:16.150
+truly powerful to many startups.
+
+00:11:16.150 --> 00:11:23.590
+I think when I was studying my deep learning study, there was not much open source resource.
+
+00:11:23.590 --> 00:11:31.230
+I think nowadays in AI, especially in deep learning, there is a very good community outlet
+
+00:11:31.230 --> 00:11:38.230
+and there are multiple, very good deep learning frameworks to start with like TensorFlow,
+
+00:11:38.230 --> 00:11:43.230
+Caffe, now we call Caffe2.
+
+00:11:43.230 --> 00:11:46.230
+In China we have very good Paddle Paddle.
+
+00:11:46.230 --> 00:11:56.590
+Even for most of those online, they have lots of causes to teach you how to use those.
+
+00:11:56.590 --> 00:12:04.590
+And nowadays there are many publicly available benchmarks and people could see really kind
+
+00:12:04.590 --> 00:12:09.590
+of skillful, really experienced people, like how well they could do on those benchmarks.
+
+00:12:09.590 --> 00:12:13.430
+So basically, I took to get familiar with deep learning.
+
+00:12:13.430 --> 00:12:15.910
+I think those are very good starting points.
+
+00:12:15.910 --> 00:12:18.430
+How did you gain that understanding?
+
+00:12:18.430 --> 00:12:20.750
+So actually I do it in an opposite way.
+
+00:12:20.750 --> 00:12:29.070
+I kind of learned, I learned TCA, I learned LDA, all those, like before I learned deep learning
+
+00:12:29.070 --> 00:12:30.070
+actually.
+
+00:12:30.070 --> 00:12:36.790
+So basically, that also is a good way I feel.
+
+00:12:36.790 --> 00:12:40.230
+We kind of lay down lots of foundations.
+
+00:12:40.230 --> 00:12:42.070
+We learn graphical model.
+
+00:12:42.070 --> 00:12:43.670
+So these are all kind of important.
+
+00:12:43.670 --> 00:12:47.710
+All right now, deep learning is very dominant.
+
+00:12:47.710 --> 00:12:53.790
+But knowing those, I should give you very good intuition about how deep learning works.
+
+00:12:53.790 --> 00:13:00.990
+And one day probably there's a connection of deep learning to those, like a framework or
+
+00:13:00.990 --> 00:13:01.990
+approach.
+
+00:13:01.990 --> 00:13:04.310
+I think there's already lots of connections.
+
+00:13:04.310 --> 00:13:07.550
+And the loads actually make deep learning richer.
+
+00:13:07.550 --> 00:13:12.350
+I mean, there are richer ways of doing deep learning.
+
+00:13:12.350 --> 00:13:18.550
+So I feel like it's good to start with loads, kind of open source platforms.
+
+00:13:18.550 --> 00:13:21.950
+Loads are definitely extremely powerful resource.
+
+00:13:21.950 --> 00:13:27.790
+But meanwhile, I would suggest that you also do learn those basic things about machine learning.
+
+00:13:27.790 --> 00:13:28.790
+So thank you.
+
+00:13:28.790 --> 00:13:29.790
+That was fascinating.
+
+00:13:29.790 --> 00:13:32.310
+Even though I've known you for a long time, there are a lot of details you're thinking
+
+00:13:32.310 --> 00:13:33.790
+of that I didn't realize until now.
+
+00:13:33.790 --> 00:13:34.790
+So thank you very much.
+
+00:13:34.790 --> 00:13:36.190
+Thank you so much for having me.

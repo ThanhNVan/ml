@@ -1,0 +1,394 @@
+WEBVTT
+
+00:00:02.100 --> 00:00:05.100
+Như vậy, bạn đã tìm hiểu về phương pháp
+
+00:00:05.100 --> 00:00:08.100
+gradient descent, về linear regression bội và
+cả vectơ hóa.
+
+00:00:08.100 --> 00:00:11.220
+Chúng ta hãy kết hợp tất cả lại với nhau để
+triển khai phương pháp
+
+00:00:11.220 --> 00:00:14.340
+gradient descent cho linear regression đa biến
+bằng phương pháp vector hóa.
+
+00:00:14.340 --> 00:00:15.340
+Điều này sẽ rất tuyệt.
+
+00:00:15.340 --> 00:00:19.440
+Chúng ta hãy nhanh chóng xem xét
+linear regression bội trông như thế nào.
+
+00:00:19.440 --> 00:00:22.260
+Sử dụng ký hiệu trước đây của chúng tôi, hãy
+xem cách bạn
+
+00:00:22.260 --> 00:00:25.080
+có thể viết nó ngắn gọn hơn bằng cách sử dụng
+ký hiệu vectơ.
+
+00:00:25.080 --> 00:00:29.320
+Chúng ta có các tham số w1 đến wn, cũng như b.
+
+00:00:29.320 --> 00:00:34.520
+Nhưng thay vì nghĩ w1 đến wn là các số riêng
+biệt, tức là các
+
+00:00:34.520 --> 00:00:39.720
+tham số riêng biệt, thay vào đó chúng ta hãy
+tập hợp tất cả các
+
+00:00:39.720 --> 00:00:44.920
+w thành một vectơ w, sao cho bây giờ w là một
+vectơ có độ dài n.
+
+00:00:44.920 --> 00:00:49.700
+Vì vậy, chúng ta sẽ coi các tham số của mô
+hình này là một
+
+00:00:49.700 --> 00:00:54.480
+vectơ w, cũng như b, trong đó b vẫn là một số,
+giống như trước đây.
+
+00:00:54.480 --> 00:00:56.740
+Đối với chúng tôi trước đây, chúng tôi đã
+
+00:00:56.740 --> 00:00:59.000
+định nghĩa linear regression bội như thế này.
+
+00:00:59.000 --> 00:01:05.040
+Bây giờ bằng cách sử dụng ký hiệu vectơ, chúng
+ta có thể viết mô hình
+
+00:01:05.040 --> 00:01:11.080
+dưới dạng f sub wb của x bằng vectơ w tích
+chấm với vectơ x cộng b.
+
+00:01:11.080 --> 00:01:15.320
+Và hãy nhớ rằng dấu chấm này ở đây có nghĩa là
+tích chấm.
+
+00:01:15.320 --> 00:01:21.320
+Cost function của chúng ta có thể được định
+nghĩa là j của w1 đến wn, dấu phẩy, b.
+
+00:01:21.640 --> 00:01:29.080
+Nhưng thay vì chỉ coi j là hàm của n tham số
+khác nhau wj, cũng
+
+00:01:29.080 --> 00:01:36.520
+như b, chúng ta sẽ viết j là hàm của vectơ
+tham số w và số b.
+
+00:01:36.520 --> 00:01:43.460
+Vì vậy, w1 đến wn này được thay thế bằng vectơ
+w này, và j bây
+
+00:01:43.460 --> 00:01:50.400
+giờ lấy đầu vào của nó, một vectơ w và một số
+b, rồi trả về một số.
+
+00:01:50.480 --> 00:01:52.600
+Vì vậy, độ dốc giảm trông như thế này.
+
+00:01:52.600 --> 00:01:57.800
+Chúng ta sẽ cập nhật liên tục mỗi tham số wj
+thành wj trừ
+
+00:01:57.800 --> 00:02:03.000
+alpha nhân đạo hàm của chi phí j, trong đó j
+có các tham số
+
+00:02:03.000 --> 00:02:08.200
+từ w1 đến wn và b, và một lần nữa chúng ta chỉ
+viết điều này
+
+00:02:08.200 --> 00:02:13.840
+là j của vectơ w và số b.
+
+00:02:13.840 --> 00:02:17.720
+Hãy xem điều này sẽ trông như thế nào khi bạn
+triển khai
+
+00:02:17.720 --> 00:02:21.600
+việc gradient descent và cụ thể là hãy xem xét
+số hạng đạo hàm.
+
+00:02:21.600 --> 00:02:25.460
+Chúng ta sẽ thấy rằng việc gradient descent
+trở nên khác
+
+00:02:25.460 --> 00:02:29.320
+biệt một chút với nhiều feature so với chỉ một
+feature.
+
+00:02:29.320 --> 00:02:33.640
+Đây là những gì chúng tôi có khi
+gradient descent với một feature.
+
+00:02:33.640 --> 00:02:37.900
+Chúng tôi đã có quy tắc cập nhật cho w và quy
+tắc cập nhật riêng
+
+00:02:37.900 --> 00:02:42.160
+cho b, vì vậy hy vọng những quy tắc này sẽ
+quen thuộc với bạn.
+
+00:02:42.160 --> 00:02:48.880
+Và số hạng này ở đây là đạo hàm của hàm giá j
+đối với tham số w, và
+
+00:02:48.880 --> 00:02:55.600
+tương tự ta có quy tắc cập nhật cho tham số b
+với regression một biến, ta
+
+00:02:55.600 --> 00:02:58.120
+chỉ có một feature.
+
+00:02:58.120 --> 00:03:02.720
+Chúng ta gọi đặc điểm đó là xi mà không có chỉ
+số dưới nào.
+
+00:03:02.720 --> 00:03:05.960
+Bây giờ đây là ký hiệu mới khi chúng ta có n
+
+00:03:05.960 --> 00:03:09.200
+đặc điểm trong đó n bằng hai hoặc nhiều hơn.
+
+00:03:09.200 --> 00:03:12.760
+Chúng tôi nhận được quy tắc cập nhật này cho
+việc gradient descent.
+
+00:03:12.760 --> 00:03:20.040
+Chúng ta nhận được w1 bằng w1 trừ alpha nhân
+với biểu thức này ở
+
+00:03:20.040 --> 00:03:27.320
+đây, và công thức này thực sự là đạo hàm của
+chi phí j đối với w1.
+
+00:03:27.320 --> 00:03:31.820
+Công thức đạo hàm của j theo w1 ở bên phải
+trông
+
+00:03:31.820 --> 00:03:36.320
+rất giống với trường hợp của một đặc điểm ở
+bên trái.
+
+00:03:36.320 --> 00:03:41.960
+Thuật ngữ lỗi vẫn lấy dự đoán, f(x) trừ y
+đích.
+
+00:03:41.960 --> 00:03:47.280
+Một điểm khác biệt là w và x bây giờ là các
+vectơ, và giống
+
+00:03:47.280 --> 00:03:52.600
+như w ở bên trái bây giờ đã trở thành w1 ở đây
+ở bên phải, xi
+
+00:03:52.600 --> 00:03:57.920
+ở đây ở bên trái bây giờ thay vào đó là xi chỉ
+số 1 ở đây trên
+
+00:03:57.920 --> 00:04:05.040
+đúng, và điều này chỉ đúng với j bằng 1.
+
+00:04:05.040 --> 00:04:11.440
+Đối với linear regression bội, chúng ta có j
+nằm trong khoảng
+
+00:04:11.440 --> 00:04:17.840
+từ 1 đến n và vì vậy chúng ta sẽ cập nhật các
+tham số w1, w2
+
+00:04:17.840 --> 00:04:24.240
+cho đến wn và sau đó như trước đây chúng ta sẽ
+cập nhật b.
+
+00:04:24.240 --> 00:04:29.640
+Và nếu bạn thực hiện điều này, bạn sẽ nhận
+được gradient descent cho regression bội.
+
+00:04:29.640 --> 00:04:34.600
+Vậy là xong phần gradient descent cho
+regression bội.
+
+00:04:34.600 --> 00:04:41.580
+Trước khi tiếp tục từ video này, tôi muốn tóm
+tắt nhanh hoặc ghi chú nhanh về
+
+00:04:41.580 --> 00:04:48.560
+một cách khác để tìm w và b cho
+linear regression, và phương pháp này được gọi
+là
+
+00:04:48.560 --> 00:04:51.320
+phương trình bình thường.
+
+00:04:51.320 --> 00:04:57.460
+Trong khi hóa ra, gradient descent là một
+phương pháp tuyệt vời để giảm thiểu hàm
+
+00:04:57.460 --> 00:05:03.600
+giá j để tìm w và b, có một thuật toán khác
+chỉ hoạt động cho linear regression và
+
+00:05:03.600 --> 00:05:06.720
+hầu như không có thuật toán nào khác mà bạn
+
+00:05:06.720 --> 00:05:09.840
+thấy trong chuyên ngành này để giải w và b.
+
+00:05:09.840 --> 00:05:15.960
+Và phương pháp khác này không cần thuật toán
+gradient descent lặp.
+
+00:05:15.960 --> 00:05:21.610
+Được gọi là phương pháp phương trình thông
+thường, hóa ra là có thể sử dụng thư viện
+
+00:05:21.610 --> 00:05:27.260
+đại số tuyến tính nâng cao để giải tất cả w và
+b trong một lần mà không cần lặp lại.
+
+00:05:27.260 --> 00:05:30.930
+Một số nhược điểm của phương pháp phương trình
+thông thường là, trước tiên,
+
+00:05:30.930 --> 00:05:34.600
+không giống như phương pháp gradient descent,
+phương pháp này không khái quát
+
+00:05:34.600 --> 00:05:38.270
+hóa cho các thuật toán học tập khác, chẳng hạn
+như thuật toán
+
+00:05:38.270 --> 00:05:41.940
+logistic regression mà bạn sẽ tìm hiểu vào
+tuần tới hoặc neural network hoặc các
+thuật toán khác
+
+00:05:41.940 --> 00:05:44.520
+bạn sẽ thấy sau trong chuyên ngành này.
+
+00:05:44.520 --> 00:05:50.980
+Phương pháp phương trình thông thường cũng khá
+chậm nếu số lượng feature n lớn.
+
+00:05:50.980 --> 00:05:53.880
+Hầu như không có người thực hành
+machine learning nào nên
+
+00:05:53.880 --> 00:05:56.780
+tự mình thực hiện phương pháp phương trình
+thông thường.
+
+00:05:56.780 --> 00:06:02.680
+Nhưng nếu bạn đang sử dụng một thư viện
+machine learning hoàn thiện và gọi
+
+00:06:02.680 --> 00:06:08.580
+linear regression, thì có khả năng ở mặt sau,
+nó sẽ sử dụng thư viện này để giải w và b.
+
+00:06:08.580 --> 00:06:11.950
+Vì vậy, nếu bạn đã từng tham gia một cuộc
+phỏng vấn việc làm và nghe thấy
+
+00:06:11.950 --> 00:06:15.320
+thuật ngữ phương trình chuẩn tắc, thì đó chính
+là điều mà điều này đề cập đến.
+
+00:06:15.320 --> 00:06:18.620
+Đừng lo lắng về các chi tiết về cách thức hoạt
+động của phương trình thông thường.
+
+00:06:18.620 --> 00:06:22.660
+Chỉ cần lưu ý rằng một số thư viện
+machine learning có thể
+
+00:06:22.660 --> 00:06:26.700
+sử dụng phương pháp phức tạp này ở phần sau để
+giải w và b.
+
+00:06:26.700 --> 00:06:31.500
+Nhưng đối với hầu hết các thuật toán học tập,
+bao gồm cả cách bạn tự triển khai
+
+00:06:31.500 --> 00:06:36.300
+linear regression, gradient descent thường là
+cách tốt hơn để hoàn thành công việc.
+
+00:06:36.300 --> 00:06:42.220
+Trong phòng thí nghiệm tùy chọn theo sau video
+này, bạn sẽ thấy cách xác
+
+00:06:42.220 --> 00:06:48.140
+định mô hình regression bội trong mã cũng như
+cách tính dự đoán f của x.
+
+00:06:48.140 --> 00:06:51.880
+Bạn cũng thấy cách tính chi phí và triển khai
+
+00:06:51.880 --> 00:06:55.620
+gradient descent cho mô hình linear regression
+bội.
+
+00:06:55.620 --> 00:06:58.740
+Điều này sẽ sử dụng thư viện NumPy của Python.
+
+00:06:58.740 --> 00:07:02.500
+Vì vậy, nếu bất kỳ mã nào trông rất mới thì
+không sao cả.
+
+00:07:02.500 --> 00:07:08.440
+Tuy nhiên, bạn cũng nên xem qua phòng thí
+nghiệm tùy chọn trước đó giới thiệu
+
+00:07:08.440 --> 00:07:14.380
+NumPy và vector hóa để làm mới các hàm NumPy
+cũng như cách triển khai các hàm đó trong
+
+00:07:14.380 --> 00:07:15.960
+mã.
+
+00:07:15.960 --> 00:07:17.120
+Thế là xong.
+
+00:07:17.120 --> 00:07:19.760
+Bây giờ bạn đã biết linear regression bội.
+
+00:07:19.760 --> 00:07:24.680
+Đây có lẽ là thuật toán học tập được sử dụng
+rộng rãi nhất trên thế giới hiện nay.
+
+00:07:24.680 --> 00:07:26.040
+Nhưng còn nhiều hơn thế nữa.
+
+00:07:26.040 --> 00:07:29.300
+Chỉ với một vài thủ thuật, chẳng hạn như chọn
+và chia tỷ lệ các
+
+00:07:29.300 --> 00:07:32.560
+feature một cách thích hợp cũng như chọn
+learning rate tập alpha một
+
+00:07:32.560 --> 00:07:35.820
+cách thích hợp, bạn sẽ làm cho công việc này
+hoạt động tốt hơn nhiều.
+
+00:07:35.820 --> 00:07:38.400
+Vì vậy, chỉ còn một vài video nữa cho tuần
+này.
+
+00:07:38.400 --> 00:07:41.620
+Hãy chuyển sang video tiếp theo để xem những
+thủ thuật nhỏ
+
+00:07:41.620 --> 00:07:44.840
+giúp bạn thực hiện linear regression bội hoạt
+động tốt hơn nhiều.

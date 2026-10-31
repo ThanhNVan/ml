@@ -1,0 +1,323 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.030
+Vậy deep learning có liên quan gì với bộ não?
+
+2
+00:00:03.030 --> 00:00:04.290
+Sắp kết thúc khóa học rồi,
+
+3
+00:00:04.290 --> 00:00:06.840
+tôi sẽ nói là không nhiều lắm.
+
+4
+00:00:06.840 --> 00:00:09.720
+Nhưng hãy cùng xem nhanh
+tại sao mọi người lại
+
+5
+00:00:09.720 --> 00:00:13.110
+cứ so sánh deep learning với bộ não con người.
+
+6
+00:00:13.110 --> 00:00:15.105
+Khi bạn triển khai một
+neural network nhân tạo,
+
+7
+00:00:15.105 --> 00:00:16.245
+bạn sẽ làm như sau,
+
+8
+00:00:16.245 --> 00:00:18.060
+truyền xuôi và truyền ngược.
+
+9
+00:00:18.060 --> 00:00:20.520
+Tôi nghĩ, bởi vì thật khó
+để truyền đạt lại
+
+10
+00:00:20.520 --> 00:00:23.730
+thông tin mà những gì
+các phương trình này đang làm,
+
+11
+00:00:23.730 --> 00:00:26.625
+thực hiên gradient descent trên một hàm rất phức tạp,
+
+12
+00:00:26.625 --> 00:00:29.700
+suy luận “ Cái này giống như bộ não vậy” đã
+
+13
+00:00:29.700 --> 00:00:33.120
+trở thành một lời giải thích
+đơn giản hóa quá mức
+
+14
+00:00:33.120 --> 00:00:34.155
+cho những gì điều này đang làm.
+
+15
+00:00:34.155 --> 00:00:37.430
+Nhưng sự đơn giản của
+điều này làm cho nó trở nên quyến rũ
+
+16
+00:00:37.430 --> 00:00:39.170
+để mọi người chỉ nói điều đó
+
+17
+00:00:39.170 --> 00:00:42.040
+cũng như khiến phương tiện
+truyền thông thông báo về nó,
+
+18
+00:00:42.040 --> 00:00:44.590
+và chắc chắn là mọi người đều
+có thể tưởng tượng ra nó.
+
+19
+00:00:44.590 --> 00:00:48.320
+Có một điểm hơi giống nhau nữa,
+
+20
+00:00:48.320 --> 00:00:50.615
+giả sử một đơn vị logistic regression
+
+21
+00:00:50.615 --> 00:00:53.760
+giả sử một đơn vị logistic regression
+
+22
+00:00:53.930 --> 00:00:57.890
+và đây là hình ảnh một tế bào
+thần kinh đơn trong não.
+
+23
+00:00:57.890 --> 00:01:02.330
+Trong hình minh họa của một tế bào
+thần kinh sinh học, tế bào thần kinh này,
+
+24
+00:01:02.330 --> 00:01:03.665
+đây là một tế bào trong não của bạn,
+
+25
+00:01:03.665 --> 00:01:07.645
+nhận tín hiệu điện từ các tế
+bào thần kinh khác,
+
+26
+00:01:07.645 --> 00:01:10.860
+X1, X2, X3 hoặc có thể từ
+nơ-ron khác, A1, A2,
+
+27
+00:01:10.860 --> 00:01:14.360
+A_3, thực hiện một phép
+tính ngưỡng đơn giản,
+
+28
+00:01:14.360 --> 00:01:16.880
+và sau đó nếu tế bào thần kinh này nóng lên,
+
+29
+00:01:16.880 --> 00:01:19.880
+nó gửi một xung điện xuống sợi trục,
+
+30
+00:01:19.880 --> 00:01:21.335
+xuống dây dài này,
+
+31
+00:01:21.335 --> 00:01:23.155
+có lẽ tới các tế bào thần kinh khác.
+
+32
+00:01:23.155 --> 00:01:26.940
+Như vậy, có một điểm
+tương đồng đơn giản giữa
+
+33
+00:01:26.940 --> 00:01:30.980
+một nơ-ron duy nhất
+trong một neural network,
+
+34
+00:01:30.980 --> 00:01:34.315
+và một nơ-ron sinh học như
+được hiển thị ở bên phải.
+
+35
+00:01:34.315 --> 00:01:37.625
+nhưng tôi nghĩ rằng ngày nay
+ngay cả các nhà thần kinh học cũng
+
+36
+00:01:37.625 --> 00:01:41.150
+hầu như không biết một tế bào
+thần kinh đang làm những gì.
+
+37
+00:01:41.150 --> 00:01:43.880
+Một tế bào thần kinh đơn dường như là phức tạp
+
+38
+00:01:43.880 --> 00:01:47.290
+hơn nhiều điều mà chúng ta có thể
+mô tả trong khoa học thần kinh,
+
+39
+00:01:47.290 --> 00:01:49.630
+và trong khi một số thứ
+
+40
+00:01:49.630 --> 00:01:52.355
+đang vận hành hơi giống như logistic regression, thì
+
+41
+00:01:52.355 --> 00:01:55.460
+con người vẫn còn nhiều điều chưa biết về
+
+42
+00:01:55.460 --> 00:01:58.565
+những gì mà một tế bào thần kinh đơn làm.
+
+43
+00:01:58.565 --> 00:02:00.950
+Ví dụ như các tế bào thần kinh
+
+44
+00:02:00.950 --> 00:02:02.510
+trong não người học như thế nào,
+
+45
+00:02:02.510 --> 00:02:04.840
+vẫn là một quá trình rất bí ẩn
+
+46
+00:02:04.840 --> 00:02:07.235
+Đến nay, người ta vẫn không rõ
+
+47
+00:02:07.235 --> 00:02:09.200
+liệu bộ não con người có sử dụng thuật toán hay không,
+
+48
+00:02:09.200 --> 00:02:11.030
+có thực hiện những thứ như backpropagation
+
+49
+00:02:11.030 --> 00:02:12.350
+hay gradient descent hay
+
+50
+00:02:12.350 --> 00:02:15.230
+có các nguyên tắc học khác
+
+51
+00:02:15.230 --> 00:02:17.795
+mà bộ não con người sử dụng.
+
+52
+00:02:17.795 --> 00:02:20.405
+Khi tôi nghĩ về deep learning,
+
+53
+00:02:20.405 --> 00:02:22.325
+tôi nghĩ rằng nó rất
+
+54
+00:02:22.325 --> 00:02:24.910
+giỏi trong việc học các hàm linh hoạt,
+
+55
+00:02:24.910 --> 00:02:28.850
+các hàm rất phức tạp để học ánh xạ X đến Y,
+
+56
+00:02:28.850 --> 00:02:32.075
+để học ánh xạ đầu vào-đầu
+ra trong supervised learning.
+
+57
+00:02:32.075 --> 00:02:34.984
+Khác với suy luận
+“Điều này thì giống như bộ não”
+
+58
+00:02:34.984 --> 00:02:36.715
+có lẽ đó là những thứ hữu ích
+
+59
+00:02:36.715 --> 00:02:39.230
+Tôi nghĩ rằng lĩnh vực này đã đi đến
+
+60
+00:02:39.230 --> 00:02:41.690
+điểm mà nó không còn suy luận này nữa
+
+61
+00:02:41.690 --> 00:02:44.890
+và tôi có xu hướng không sử dụng suy luận
+đó nhiều nữa.
+
+62
+00:02:44.890 --> 00:02:48.380
+Đó là về các neural network nhân tạo và não.
+
+63
+00:02:48.380 --> 00:02:50.120
+Tôi nghĩ rằng
+có thể là lĩnh vực
+
+64
+00:02:50.120 --> 00:02:51.590
+thị giác máy tính đã lấy
+
+65
+00:02:51.590 --> 00:02:54.215
+nhiều cảm hứng từ bộ não con người hơn
+
+66
+00:02:54.215 --> 00:02:57.050
+các quy tắc khác cũng áp dụng deep learning
+
+67
+00:02:57.050 --> 00:02:58.850
+nhưng cá nhân tôi sử dụng
+
+68
+00:02:58.850 --> 00:03:02.420
+sự tương tự với bộ não của con người ít hơn tôi trước đây.
+
+69
+00:03:02.420 --> 00:03:04.850
+Đó là toàn bộ nội dung video này.
+
+70
+00:03:04.850 --> 00:03:07.700
+Bây giờ bạn đã biết cách
+truyền xuôi, truyền ngược và
+
+71
+00:03:07.700 --> 00:03:10.705
+gradient descent. ngay cả đối với
+các neural network nhân tạo sâu.
+
+72
+00:03:10.705 --> 00:03:12.665
+Chúc bạn may mắn với bài tập lập trình
+
+73
+00:03:12.665 --> 00:03:14.450
+và tôi mong sẽ được chia sẻ nhiều hơn
+
+74
+00:03:14.450 --> 00:03:17.580
+những ý tưởng này với bạn
+trong khóa học thứ hai.

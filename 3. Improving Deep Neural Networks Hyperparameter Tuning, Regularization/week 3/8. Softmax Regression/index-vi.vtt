@@ -1,0 +1,772 @@
+WEBVTT
+
+1
+00:00:00.990 --> 00:00:04.140
+Cho đến nay, các ví dụ classification
+mà chúng ta đã đề cập đã sử dụng luyện
+
+2
+00:00:04.140 --> 00:00:08.410
+classification nhị phân,
+trong đó bạn có hai nhãn có thể có, 0 hoặc 1.
+
+3
+00:00:08.410 --> 00:00:10.520
+Nó là một con mèo, hay nó không phải là một con mèo?
+
+4
+00:00:10.520 --> 00:00:13.050
+Điều gì sẽ xảy ra nếu chúng ta có nhiều lớp khả thi?
+
+5
+00:00:13.050 --> 00:00:17.140
+Có một tổng quát của logistic regression
+được gọi là regression Softmax (softmax regression).
+
+6
+00:00:17.140 --> 00:00:21.130
+Bạn càng ít đưa ra dự đoán trong đó
+mà bạn đang cố gắng nhận ra một trong C hoặc
+
+7
+00:00:21.130 --> 00:00:26.280
+một trong nhiều lớp,
+thay vì chỉ nhận ra hai lớp.
+
+8
+00:00:26.280 --> 00:00:26.915
+Chúng ta cùng xem nào.
+
+9
+00:00:26.915 --> 00:00:31.264
+Giả sử rằng thay vì chỉ nhận ra
+con mèo, bạn muốn nhận ra mèo, chó và
+
+10
+00:00:31.264 --> 00:00:31.984
+gà con.
+
+11
+00:00:31.984 --> 00:00:38.050
+Vì vậy, tôi sẽ gọi mèo là lớp 1,
+chó là lớp 2, gà con là lớp 3.
+
+12
+00:00:38.050 --> 00:00:40.914
+Và nếu không có cái nào ở trên,
+thì có cái khác hoặc
+
+13
+00:00:40.914 --> 00:00:44.406
+không có lớp nào ở trên,
+mà tôi sẽ gọi là lớp 0.
+
+14
+00:00:44.406 --> 00:00:49.900
+Vì vậy, đây là một ví dụ về các hình ảnh và
+các lớp mà chúng thuộc về.
+
+15
+00:00:49.900 --> 00:00:52.680
+Đó là hình ảnh gà con,
+nên lớp là 3.
+
+16
+00:00:52.680 --> 00:00:57.395
+Mèo là lớp 1, chó là lớp 2,
+Tôi đoán đó là gấu túi, vì vậy
+
+17
+00:00:57.395 --> 00:01:02.498
+nó không thuộc lớp nào cả, vì vậy
+đó là lớp 0, lớp 3, v.v.
+
+18
+00:01:02.498 --> 00:01:07.554
+Kí hiệu mà chúng ta sẽ sử dụng, tôi sẽ sử dụng chữ C viết hoa để
+
+19
+00:01:07.554 --> 00:01:13.340
+biểu thị số lớp mà bạn
+đang cố gắng classification input.
+
+20
+00:01:13.340 --> 00:01:17.628
+Và trong trường hợp này, bạn có thể có bốn lớp
+, bao gồm cả lớp kia hoặc
+
+21
+00:01:17.628 --> 00:01:19.298
+không có lớp nào ở trên.
+
+22
+00:01:19.298 --> 00:01:23.921
+Vì vậy, khi bạn có bốn lớp,
+các số chỉ mục
+
+23
+00:01:23.921 --> 00:01:28.660
+của các lớp của bạn sẽ từ 0 đến C-1.
+
+24
+00:01:28.660 --> 00:01:31.550
+Hay nói cách khác, nó sẽ là 0, 1 , 2 hay 3.
+
+25
+00:01:31.550 --> 00:01:36.653
+Trong trường hợp này, chúng ta sẽ tạo một
+XY mới, trong đó lớp trên có bốn,
+
+26
+00:01:36.653 --> 00:01:40.870
+hoặc trong trường hợp này, là các đơn vị có chữ C viết hoa ở phía trên.
+
+27
+00:01:43.140 --> 00:01:48.908
+Vậy N, số đơn vị lớp trên
+là lớp L sẽ bằng 4 hoặc
+
+28
+00:01:48.908 --> 00:01:51.807
+nói chung là sẽ bằng C.
+
+29
+00:01:51.807 --> 00:01:56.619
+Và những gì chúng ta muốn là số lượng các đơn vị ở lớp trên cho
+
+30
+00:01:56.619 --> 00:02:00.860
+chúng ta biết xác suất của
+mỗi lớp trong số bốn lớp này là bao nhiêu.
+
+31
+00:02:00.860 --> 00:02:04.320
+Vì vậy, nút đầu tiên ở đây là output hoặc
+
+32
+00:02:04.320 --> 00:02:08.110
+chúng ta muốn nó xuất ra xác suất
+là lớp khác,
+
+33
+00:02:08.110 --> 00:02:12.840
+với input x, điều này sẽ cho ra xác suất có một con mèo.
+
+34
+00:02:12.840 --> 00:02:16.980
+Giả xử X sẽ đưa ra xác xuất một con chó.
+
+35
+00:02:16.980 --> 00:02:20.170
+Cho một x,
+sẽ xuất ra xác suất.
+
+36
+00:02:20.170 --> 00:02:27.910
+Tôi sẽ viết tắt baby
+chick thành baby C, với input là x.
+
+37
+00:02:29.160 --> 00:02:36.600
+Vì vậy, ở đây,các output được gắn nhãn y hat sẽ
+véc tơ (4;1) chiều
+
+38
+00:02:36.600 --> 00:02:41.760
+bởi vì bây giờ nó phải xuất ra bốn số,
+cho bạn bốn xác suất này.
+
+39
+00:02:42.850 --> 00:02:48.070
+Và bởi vì xác suất phải tổng bằng
+một, bốn số trong output y hat,
+
+40
+00:02:48.070 --> 00:02:48.980
+chúng nên cộng lại thành một.
+
+41
+00:02:50.630 --> 00:02:55.390
+Mô hình chuẩn để khiến mạng
+của bạn thực hiện điều này sử dụng cái gọi là
+
+42
+00:02:55.390 --> 00:03:00.170
+một lớp Softmax và lớp output
+để tạo ra các output này.
+
+43
+00:03:00.170 --> 00:03:02.040
+Sau đó, viết ra bản đồ,
+rồi bạn có thể quay lại và
+
+44
+00:03:02.040 --> 00:03:04.680
+có được một số trực giác về những gì
+Softmax ở đó đang làm.
+
+45
+00:03:06.610 --> 00:03:08.940
+Vì vậy, trong lớp
+cuối cùng của neural network,
+
+46
+00:03:08.940 --> 00:03:13.360
+bạn sẽ tính như bình thường
+phần tuyến tính của các lớp.
+
+47
+00:03:13.360 --> 00:03:17.800
+Vì vậy, z, L, đó là biến z cho
+lớp cuối cùng.
+
+48
+00:03:17.800 --> 00:03:21.980
+Vì vậy, hãy nhớ đây là L.
+
+49
+00:03:21.980 --> 00:03:26.619
+Vì vậy, như thường lệ, bạn tính
+đó là wL nhân với kích hoạt
+
+50
+00:03:26.619 --> 00:03:32.170
+lớp trước cộng với các độc chệch cho
+lớp cuối cùng đó.
+
+51
+00:03:32.170 --> 00:03:33.180
+Bây giờ có máy tính z,
+
+52
+00:03:33.180 --> 00:03:37.690
+bây giờ bạn cần áp dụng cái gọi là
+,activation function Softmax.
+
+53
+00:03:38.880 --> 00:03:43.340
+Vì vậy, chức năng kích hoạt đó hơi
+bất thường đối với lớp Softmax, nhưng
+
+54
+00:03:43.340 --> 00:03:44.150
+đây là những gì nó làm.
+
+55
+00:03:45.380 --> 00:03:50.081
+Đầu tiên, chúng ta sẽ tính
+một biến tạm thời,
+
+56
+00:03:50.081 --> 00:03:54.180
+mà chúng ta sẽ gọi là t,
+là e mũ z L.
+
+57
+00:03:54.180 --> 00:03:56.119
+Vì vậy, đây là một phần riêng biệt của từng thành phần.
+
+58
+00:03:56.119 --> 00:04:00.824
+Vì vậy, zL ở đây, trong ví dụ của chúng ta,
+zL sẽ là (4;1)
+
+59
+00:04:00.824 --> 00:04:03.470
+Đây là một vectơ bốn chiều.
+
+60
+00:04:03.470 --> 00:04:08.720
+Vì vậy, bản thân t là e^zL là lũy thừa từng phần tử.
+
+61
+00:04:08.720 --> 00:04:13.100
+T cũng sẽ là một vector 4,1 chiều.
+
+62
+00:04:13.100 --> 00:04:14.825
+Sau đó, đầu ra aL,
+
+63
+00:04:14.825 --> 00:04:20.415
+về cơ bản vectơ
+t sẽ được chuẩn hóa thành tổng bằng 1.
+
+64
+00:04:20.415 --> 00:04:28.673
+Vì vậy, aL sẽ là e ^zL chia
+cho tổng từ J bằng 1 đến 4,
+
+65
+00:04:28.673 --> 00:04:33.994
+bởi vì chúng ta có bốn lớp Ti.
+
+66
+00:04:33.994 --> 00:04:40.082
+Nói cách khác, chúng ta đang nói rằng
+aL cũng là một vectơ (4;1)
+
+67
+00:04:40.082 --> 00:04:44.780
+và phần tử i của vectơ
+bốn chiều này.
+
+68
+00:04:44.780 --> 00:04:50.885
+Hãy viết điều đó, aL (i)
+
+69
+00:04:50.885 --> 00:04:56.660
+sẽ bằng với ti/ tổng ti, được chứ?
+
+70
+00:04:56.660 --> 00:04:58.690
+Trong trường hợp phép toán không được rõ ràng này,
+
+71
+00:04:58.690 --> 00:05:02.320
+chúng ta sẽ làm một ví dụ thật nhanh
+để làm rõ hơn điều này.
+
+72
+00:05:02.320 --> 00:05:03.835
+Vì vậy, trong trường hợp phép toán này không rõ ràng,
+
+73
+00:05:03.835 --> 00:05:06.775
+Chúng ta hãy đi qua một ví dụ cụ thể
+sẽ làm rõ hơn điều này.
+
+74
+00:05:06.775 --> 00:05:10.905
+Giả sử rằng máy tính của bạn zL và
+
+75
+00:05:10.905 --> 00:05:18.277
+zL là một vectơ bốn chiều,
+giả sử là 5, 2, -1, 3.
+
+76
+00:05:18.277 --> 00:05:22.256
+Những gì chúng ta sẽ làm là sử dụng lũy thừa
+từng thành phần này để
+
+77
+00:05:22.256 --> 00:05:23.665
+tính vectơ này t.
+
+78
+00:05:23.665 --> 00:05:29.465
+Vì vậy, t sẽ là e ^5,
+e ^2, e ^-1, e ^ 3.
+
+79
+00:05:29.465 --> 00:05:32.529
+Và nếu bạn đưa nó vào máy tính,
+đây là những giá trị bạn nhận được.
+
+80
+00:05:32.529 --> 00:05:38.750
+E ^ 5 là 1484,
+e bình phương là khoảng 7,4,
+
+81
+00:05:38.750 --> 00:05:44.697
+e ^ -1 là 0,4, và e lập phương là 20,1.
+
+82
+00:05:44.697 --> 00:05:49.519
+Và như vậy, cách chúng ta đi từ vectơ
+t đến vectơ aL chỉ là
+
+83
+00:05:49.519 --> 00:05:52.910
+để chuẩn hóa các mục nhập này thành một.
+
+84
+00:05:52.910 --> 00:05:56.808
+Vì vậy, nếu bạn tính tổng các phần tử của t,
+
+85
+00:05:56.808 --> 00:06:03.232
+nếu bạn chỉ cộng 4 số đó, thì kết quả là 176,3.
+
+86
+00:06:03.232 --> 00:06:09.565
+Vì vậy, cuối cùng,
+aL sẽ là vectơ này t,
+
+87
+00:06:09.565 --> 00:06:14.515
+dưới dạng vectơ, chia cho 176,3.
+
+88
+00:06:14.515 --> 00:06:18.580
+Ví dụ: nút đầu tiên này ở đây,
+
+89
+00:06:18.580 --> 00:06:23.885
+nó sẽ cho ra e ^ 5 chia cho 176,3.
+
+90
+00:06:23.885 --> 00:06:27.777
+Và đó hóa ra là 0,842.
+
+91
+00:06:27.777 --> 00:06:32.675
+Vì vậy, đối với hình ảnh này,
+nếu đây là giá trị của z bạn nhận được,
+
+92
+00:06:32.675 --> 00:06:36.434
+khả năng nó là 0 là 84,2%.
+
+93
+00:06:36.434 --> 00:06:42.192
+Và sau đó các nút tiếp theo cho ra e^2 176,3,
+
+94
+00:06:42.192 --> 00:06:48.200
+hóa ra là 0,042,
+vì vậy đây là 4,2% cơ hội.
+
+95
+00:06:48.200 --> 00:06:53.449
+tiếp theo sẽ là e^-1 trên 176.3
+
+96
+00:06:53.449 --> 00:06:56.891
+là 0,042.
+
+97
+00:06:56.891 --> 00:07:04.235
+Và cuối cùng là e^3 / 176.3
+là 0,114.
+
+98
+00:07:04.235 --> 00:07:08.312
+Vì vậy, có 11,4% khả năng
+đây là lớp số ba,
+
+99
+00:07:08.312 --> 00:07:10.683
+đó là lớp bé C, phải không?
+
+100
+00:07:10.683 --> 00:07:15.568
+Vì vậy đều có cơ hội đó là lớp 0, lớp 1, lớp 2, lớp 3.
+
+101
+00:07:15.568 --> 00:07:21.930
+Vì vậy, output của mạng nơron aL,
+đây cũng là y hat.
+
+102
+00:07:21.930 --> 00:07:25.170
+Đây là một vectơ (4;1) trong đó các phần tử
+
+103
+00:07:25.170 --> 00:07:29.800
+của vectơ (4;1) này sẽ là
+là bốn số này.
+
+104
+00:07:29.800 --> 00:07:31.060
+Sau đó, chúng ta chỉ cần tính toán nó.
+
+105
+00:07:31.060 --> 00:07:38.077
+Vì vậy, thuật toán này nhận vectơ zL và
+là bốn xác suất tổng bằng 1.
+
+106
+00:07:38.077 --> 00:07:43.013
+Và nếu chúng ta tóm tắt những gì chúng ta
+vừa làm để toán từ zL đến aL,
+
+107
+00:07:43.013 --> 00:07:47.741
+toàn bộ phép tính này
+lũy thừa khó hiểu thành
+
+108
+00:07:47.741 --> 00:07:52.469
+lấy biến tạm thời t và
+rồi chuẩn hóa,
+
+109
+00:07:52.469 --> 00:07:57.827
+chúng ta có thể tóm tắt điều này thành
+một activation function Softmax và
+
+110
+00:07:57.827 --> 00:08:03.625
+giả sử aL bằng hàm
+kích hoạt g áp dụng cho vectơ zL.
+
+111
+00:08:03.625 --> 00:08:08.379
+Điều bất thường về
+activation function cụ thể này là,
+
+112
+00:08:08.379 --> 00:08:12.654
+activation function này g,
+nó nhận input là một vectơ (4;1) và
+
+113
+00:08:12.654 --> 00:08:15.060
+nó xuất ra một vectơ (4;1).
+
+114
+00:08:15.060 --> 00:08:19.280
+Vì vậy, trước đây, các activation function
+của chúng ta được sử dụng để nhận một input giá trị hàng duy nhất.
+
+115
+00:08:19.280 --> 00:08:20.875
+Vì vậy, ví dụ, sigmoid và
+
+116
+00:08:20.875 --> 00:08:24.840
+các activation function giá trị nhập vào các số thực và xuất ra một số thực.
+
+117
+00:08:24.840 --> 00:08:28.255
+Điều bất thường về activation function Softmax
+là,
+
+118
+00:08:28.255 --> 00:08:32.262
+vì nó cần chuẩn hóa trên các output khả thi khác nhau,
+
+119
+00:08:32.262 --> 00:08:35.365
+và cần lấy một vectơ và
+đưa vào output của vectơ.
+
+120
+00:08:35.365 --> 00:08:39.219
+Vì vậy, một trong những điều mà lớp chéo Softmax
+có thể biểu diễn,
+
+121
+00:08:39.219 --> 00:08:43.383
+Tôi sẽ chỉ cho bạn một số ví dụ
+trong đó bạn có input x1, x2.
+
+122
+00:08:43.383 --> 00:08:48.435
+Và những nguồn cấp dữ liệu trực tiếp đến
+một lớp Softmax có ba hoặc
+
+123
+00:08:48.435 --> 00:08:53.500
+bốn hoặc thêm
+các nút output sau đó xuất ra y hat.
+
+124
+00:08:53.500 --> 00:08:58.801
+Vì vậy, tôi sẽ cho bạn thấy một mạng
+mới không có lớp ẩn,
+
+125
+00:08:58.801 --> 00:09:04.777
+và tất cả những gì nó làm là tính z1
+bằng w1 nhân với input x cộng với b.
+
+126
+00:09:04.777 --> 00:09:07.359
+Và sau đó output a1, hoặc
+
+127
+00:09:07.359 --> 00:09:13.210
+y hat chỉ là activation function Softmax
+được áp dụng cho z1.
+
+128
+00:09:13.210 --> 00:09:15.615
+Vì vậy, trong neural network
+không có lớp ẩn,
+
+129
+00:09:15.615 --> 00:09:20.260
+nó sẽ cho bạn biết kiểu hàm Softmax có thể biểu diễn.
+
+130
+00:09:20.260 --> 00:09:23.677
+Vì vậy, đây là một ví dụ với
+input thô x1 và x2.
+
+131
+00:09:23.677 --> 00:09:28.662
+Một lớp Softmax với C bằng
+3 lớp trên có thể biểu diễn
+
+132
+00:09:28.662 --> 00:09:31.661
+loại decision boundary này.
+
+133
+00:09:31.661 --> 00:09:35.289
+Lưu ý kiểu decision boundary tuyến tính này
+
+134
+00:09:35.289 --> 00:09:39.223
+nhưng nó cho phép tách dữ liệu thành 3 lớp.
+
+135
+00:09:39.223 --> 00:09:44.126
+Và trong sơ đồ này, những gì chúng ta đã làm
+là chúng ta thực sự lấy training set
+
+136
+00:09:44.126 --> 00:09:47.335
+hiển thị trong hình này và
+
+137
+00:09:47.335 --> 00:09:52.079
+huấn luyện ngọn crossfire Softmax với
+nhãn trên trên dữ liệu.
+
+138
+00:09:52.079 --> 00:09:54.750
+Và sau đó màu trên
+biểu đồ này cho thấy
+
+139
+00:09:54.750 --> 00:09:59.330
+hướng lên trên của crossfire Softmax
+và tô màu
+
+140
+00:09:59.330 --> 00:10:03.790
+căn cứ input, trong đó, một trong 3 output có xác xuất cao nhất.
+
+141
+00:10:03.790 --> 00:10:07.917
+Vì vậy, chúng ta có thể thấy rằng số
+này giống như một sự khái quát hóa regression
+
+142
+00:10:07.917 --> 00:10:11.182
+logistic với kiểu decision boundary tuyến tính
+, nhưng
+
+143
+00:10:11.182 --> 00:10:16.065
+với nhiều hơn hai lớp ngoài lớp 0, 1, lớp có thể là 0, 1 hoặc 2.
+
+144
+00:10:16.065 --> 00:10:20.238
+Đây là một ví dụ khác về decision boundary
+mà crossfire Softmax
+
+145
+00:10:20.238 --> 00:10:23.625
+biểu diễn 3 tập dữ liệu thông thường với 3 lớp.
+
+146
+00:10:23.625 --> 00:10:28.731
+Và đây là một cái khác, rIght, vì vậy
+đây là một, nhưng một trực giác là
+
+147
+00:10:28.731 --> 00:10:34.211
+rằng decision boundary giữa
+bất kỳ hai lớp nào sẽ tuyến tính hơn.
+
+148
+00:10:34.211 --> 00:10:38.325
+Đó là lý do tại sao bạn thấy chẳng hạn như decision boundary
+giữa màu vàng và
+
+149
+00:10:38.325 --> 00:10:42.312
+các lớp khác nhau, đó là ranh giới
+tuyến tính nơi tuyến tính màu tím và đỏ
+
+150
+00:10:42.312 --> 00:10:46.949
+trong ranh giới giữa màu tím và
+màu vàng và decision boundary tuyến tính khác.
+
+151
+00:10:46.949 --> 00:10:49.729
+Nhưng có thể sử dụng
+hàm tuyến tính khác nhau này
+
+152
+00:10:49.729 --> 00:10:52.660
+để tách
+không gian thành ba lớp.
+
+153
+00:10:52.660 --> 00:10:55.460
+Hãy xem một số ví dụ
+với nhiều lớp hơn.
+
+154
+00:10:55.460 --> 00:10:58.199
+Vì vậy, đó là một ví dụ với C bằng 4, vì vậy
+
+155
+00:10:58.199 --> 00:11:03.096
+lớp màu xanh lá cây và Softmax
+có thể tiếp tục đại diện cho các loại
+
+156
+00:11:03.096 --> 00:11:07.280
+decision boundary tuyến tính
+giữa nhiều lớp.
+
+157
+00:11:07.280 --> 00:11:11.796
+Vì vậy, đây là một ví dụ khác
+với C bằng 5 lớp và
+
+158
+00:11:11.796 --> 00:11:15.190
+đây là một ví dụ cuối cùng với C bằng 6.
+
+159
+00:11:15.190 --> 00:11:20.184
+Vì vậy, điều này cho thấy những việc mà
+Softmax crossfire có thể làm khi không có
+
+160
+00:11:20.184 --> 00:11:24.545
+lớp ẩn của lớp,
+thậm chí neural network sâu hơn nhiều với x và
+
+161
+00:11:24.545 --> 00:11:28.860
+sau đó là một số đơn vị ẩn, và
+rồi đến các đơn vị ẩn khác, v.v.
+
+162
+00:11:28.860 --> 00:11:32.850
+Sau đó, bạn có thể tìm hiểu các decision boundary phi tuyến tính khác
+phức tạp hơn để phân tách
+
+163
+00:11:32.850 --> 00:11:34.065
+ra nhiều lớp khác nhau.
+
+164
+00:11:35.240 --> 00:11:37.990
+Vì vậy, tôi hy vọng điều này giúp bạn hiểu về lớp Softmax hoặc
+
+165
+00:11:37.990 --> 00:11:41.820
+activation function Softmax
+trong neural network có thể làm được.
+
+166
+00:11:41.820 --> 00:11:42.650
+Ở video tiếp theo,
+
+167
+00:11:42.650 --> 00:11:46.940
+chúng ta hãy xem cách bạn có thể huấn luyện một neural network
+sử dụng lớp Softmax.

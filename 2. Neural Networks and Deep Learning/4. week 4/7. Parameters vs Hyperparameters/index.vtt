@@ -1,0 +1,261 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.270 --> 00:00:08.110
+Being effective in developing your deep neural nets requires that you not only organize your parameters well, but also your hyper parameters
+
+00:00:08.230 --> 00:00:14.870
+So what are hyper parameters? Let's take a look. So the parameters of your model are W and B and
+
+00:00:15.670 --> 00:00:18.950
+There are other things you need to tell your learning algorithm
+
+00:00:19.630 --> 00:00:21.190
+such as
+
+00:00:21.190 --> 00:00:23.190
+the learning rate alpha
+
+00:00:24.690 --> 00:00:28.950
+Because you need to set alpha and that in turn will
+
+00:00:29.590 --> 00:00:32.150
+determine how your parameters evolve or
+
+00:00:32.790 --> 00:00:37.190
+Maybe the number of iterations of gradient descent you carry out
+
+00:00:37.670 --> 00:00:44.470
+Your learning algorithm has other you know numbers that you need to set such as the number of hidden layers
+
+00:00:46.270 --> 00:00:50.410
+So we call that capital L or the number of hidden units
+
+00:00:51.110 --> 00:00:52.590
+right
+
+00:00:52.590 --> 00:00:57.030
+Such as you know and one and two and so on
+
+00:00:57.750 --> 00:01:00.070
+And then you also have the choice of
+
+00:01:00.750 --> 00:01:02.470
+activation function
+
+00:01:02.470 --> 00:01:07.390
+Do you want to use a relu or tanh or a sigmoid or something especially in the hidden layers?
+
+00:01:07.390 --> 00:01:14.340
+And so all of these things are things that you need to tell your learning algorithm
+
+00:01:14.340 --> 00:01:17.100
+And so these are parameters that
+
+00:01:17.820 --> 00:01:24.460
+Control the ultimate parameters W and B and so we call all of these things below hyper parameters
+
+00:01:25.300 --> 00:01:32.940
+Because these things like alpha the learning rate the number of iterations number of hidden layers and so on these are all parameters
+
+00:01:33.700 --> 00:01:38.300
+That control W and B. So we call these things hyper parameters
+
+00:01:39.740 --> 00:01:47.440
+Because it is the hyper parameters that you know somehow determine the final value of the parameters W and B that you end up with
+
+00:01:48.300 --> 00:01:52.240
+In fact deep learning has a lot of different hyper parameters
+
+00:01:53.040 --> 00:01:58.840
+Later in the later course, we'll see other hyper parameters as well such as the momentum term
+
+00:01:59.400 --> 00:02:01.400
+the mini bash size
+
+00:02:05.670 --> 00:02:11.580
+Various forms of regularization parameters and so on and
+
+00:02:12.300 --> 00:02:17.360
+If none of these terms at the bottom makes sense yet, don't worry about it. We'll talk about them in the second course
+
+00:02:18.100 --> 00:02:24.260
+Because deep learning has so many hyper parameters in contrast to earlier errors of machine learning
+
+00:02:24.980 --> 00:02:32.180
+I'm going to try to be very consistent in calling the learning rate alpha a hyper parameter rather than calling a parameter
+
+00:02:32.180 --> 00:02:36.500
+I think in earlier errors of machine learning when we didn't have so many hyper parameters
+
+00:02:37.180 --> 00:02:43.940
+most of us used to be a bit sloppier and just call alpha a parameter and technically alpha is a parameter but it's a
+
+00:02:44.340 --> 00:02:49.120
+parameter that determines the real parameters. I've tried to be consistent in calling
+
+00:02:49.820 --> 00:02:53.620
+These things like alpha the number of iterations and so on hyper parameters
+
+00:02:53.700 --> 00:02:56.100
+So when you're training a deep net for your own application
+
+00:02:56.300 --> 00:03:02.400
+You find that there may be a lot of possible settings for the hyper parameters that you need to just try out
+
+00:03:02.540 --> 00:03:08.260
+So apply deep learning today is a very empirical process where often you might have an idea
+
+00:03:08.660 --> 00:03:12.660
+For example, you might have an idea for the best value for the learning rate
+
+00:03:12.660 --> 00:03:19.020
+You might say well, maybe alpha equals 0.01. I want to try that then you implement it
+
+00:03:19.300 --> 00:03:24.060
+Try it out and then see how that works and then based on that outcome you might say, you know what?
+
+00:03:24.060 --> 00:03:27.460
+I've changed my mind. I want to increase the learning rate to 0.05
+
+00:03:27.460 --> 00:03:32.100
+And so if you're not sure what's the best value for the learning rate to use?
+
+00:03:32.260 --> 00:03:38.100
+You might try one value of the learning rate alpha and see the cost function j go down like this
+
+00:03:38.380 --> 00:03:44.020
+Then you might try a larger value for the learning rate alpha and see the cost function blow up and diverge
+
+00:03:44.020 --> 00:03:47.340
+Then you might try another version and see it go down really fast
+
+00:03:47.340 --> 00:03:51.540
+But converge to a higher value and you might try another version and see it
+
+00:03:51.540 --> 00:03:56.040
+You know see the cost function j do that then after trying to set the values you might say, okay
+
+00:03:56.040 --> 00:04:03.700
+It looks like this the value of alpha gives me a pretty fast learning and allows me to converge to a lower cost function j
+
+00:04:03.700 --> 00:04:05.700
+So I'm going to use this value of alpha
+
+00:04:05.900 --> 00:04:09.380
+You saw in the previous slide that there are a lot of different hyper parameters
+
+00:04:09.380 --> 00:04:12.180
+And it turns out that when you're starting on the new application
+
+00:04:12.500 --> 00:04:18.620
+I actually find it very difficult to know in advance exactly what's the best value of the hyper parameters
+
+00:04:18.820 --> 00:04:24.340
+So what often happen is you just have to try out many different values and go around the cycle
+
+00:04:24.340 --> 00:04:28.940
+You try out some value maybe try five hidden layers with this many number of hidden units
+
+00:04:29.100 --> 00:04:32.500
+Implement that see if it works and then iterate so
+
+00:04:33.060 --> 00:04:40.060
+The title of the slide is that apply deep learning is a very empirical process and the empirical process is maybe a fancy way of saying
+
+00:04:40.060 --> 00:04:42.780
+You just have to try out a lot of things and see what works
+
+00:04:43.580 --> 00:04:50.380
+Another effect I've seen is that deep learning today is applied to so many problems ranging from computer vision to speech recognition
+
+00:04:51.020 --> 00:04:57.860
+to natural language processing to a lot of structured data applications such as maybe a online advertising or
+
+00:04:58.500 --> 00:05:00.300
+web search or
+
+00:05:00.300 --> 00:05:05.900
+product recommendations and so on and what I've seen is that first I've seen
+
+00:05:06.140 --> 00:05:13.500
+researchers from one discipline any one of these try to go to a different one and sometimes the intuition is about hyper parameters carries over and
+
+00:05:13.700 --> 00:05:19.180
+Sometimes it doesn't so I often advise people especially when starting on a new problem to just
+
+00:05:19.740 --> 00:05:25.260
+Try out a range of values and see what works and the next course will see a systematic way
+
+00:05:25.260 --> 00:05:29.140
+We'll see some systematic ways for trying out a range of values
+
+00:05:29.260 --> 00:05:33.620
+Right and second even if you're working on one application for a long time, you know
+
+00:05:33.620 --> 00:05:38.460
+Maybe you're working on online advertising as you make progress on the problem
+
+00:05:38.460 --> 00:05:43.520
+It's quite possible that the best value for the learning rate the number of fitness units and so on might change
+
+00:05:43.520 --> 00:05:48.780
+So even if you've tuned your system to the best value of hyper parameters today
+
+00:05:48.820 --> 00:05:53.100
+It's possible you find that the best value might change a year from now
+
+00:05:53.100 --> 00:05:59.380
+Maybe because the compute infrastructure be it, you know CPUs or the type of GP or running on or something has changed
+
+00:05:59.380 --> 00:06:02.260
+But so maybe one rule of thumb is you know every now and then
+
+00:06:02.700 --> 00:06:06.860
+Maybe every few months if you're working on a problem for an extended period of time for many years
+
+00:06:07.100 --> 00:06:11.100
+just try a few values for the hyper parameters and double check if there's a
+
+00:06:11.220 --> 00:06:16.820
+better value for the hyper parameters and as you do so you slowly gain intuition as well about the
+
+00:06:16.900 --> 00:06:19.420
+hyper parameters that work best for your problem and
+
+00:06:19.940 --> 00:06:26.660
+I know that this might seem like an unsatisfying part of deep learning that you just have to try a lot of value for these hyper parameters
+
+00:06:27.140 --> 00:06:32.740
+But maybe this is one area where deep learning research is still advancing and maybe over time
+
+00:06:32.740 --> 00:06:36.540
+We'll be able to give better guidance for the best hyper parameters to use
+
+00:06:36.860 --> 00:06:42.860
+but it's also possible that because CPUs and GPUs and networks and data sets are all changing and
+
+00:06:43.220 --> 00:06:47.020
+It's possible that the guidance won't converge for some time
+
+00:06:47.020 --> 00:06:51.060
+And you just need to keep trying out different values and evaluate them on a hold-on-trucks
+
+00:06:51.140 --> 00:06:54.540
+validation set or something and pick the value that works with your problem
+
+00:06:54.540 --> 00:06:58.860
+So that was a brief discussion of hyper parameters in the second course
+
+00:06:58.860 --> 00:07:04.040
+We'll also give some suggestions for how to systematically explore the space of hyper parameters
+
+00:07:04.700 --> 00:07:08.880
+But by now you actually have pretty much all the tools you need to do their program exercise
+
+00:07:09.100 --> 00:07:12.380
+Before you do that just a share of you one more set of ideas
+
+00:07:12.380 --> 00:07:16.660
+Which is I often am asked what does deep learning have to do with the human brain?

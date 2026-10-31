@@ -1,0 +1,87 @@
+Chào mừng bạn đến với khóa học. Trong khóa học này, chúng ta sẽ tìm hiểu những vấn đề thực tiễn của Deep Learning. Có lẽ bạn đã biết cách lập trình một mạng neuron. Vậy nên trong tuần này chúng ta sẽ đi vào những vấn đề thực tiễn để có thể làm cho mạng neuron của bạn hoạt động hiệu quả hơn Các vấn đề bao gồm từ việc lựa chọn các hyperparameter, cách bạn thiết kế dữ liệu, cho đến việc làm sao để đảm bảo thuật toán optimization của bạn chạy nhanh hơn để hệ thống của bạn có thể hoàn thành việc học trong một khoảng thời gian hợp lý Trong tuần đầu tiên, chúng ta sẽ nói về cách thiết lập các vấn đề về Machine Learning, sau đó đến Regularization, tiếp theo sẽ là một số mẹo để đảm bảo mạng neuron của bạn được lập trình đúng cách. Chúng ta hãy bắt đầu bài học Đưa ra lựa chọn đúng đắn trong việc thiết kế dữ liệu training, dữ liệu development và dữ liệu test có thể tạo nên sự khác biệt lớn trong việc giúp bạn nhanh chóng tìm ra mạng neuron có hiệu suất cao. Khi huấn luyện một mạng neuron, bạn phải đưa ra rất nhiều lựa chọn như là mạng của bạn sẽ có bao nhiêu lớp (layers), mỗi lớp sẽ có bao nhiêu nút (hidden units), learning rate là bao nhiêu, và sử dụng activation function nào cho từng layer? Khi bạn bắt đầu lập trình một mạng neuron, bạn hầu như không thể đoán được chính xác giá trị của các tham số trên, cũng như nhiều tham số khác trong lần thử đầu tiên. Vì vậy trên thực tế, việc ứng dụng Machine learning là một quá trình có tính lặp lại cao Thông thường bạn sẽ bắt đầu với một ý tưởng, ví dụ bạn muốn xây dựng một mạng neuron với một số lượng layers, một số lượng hidden units, trên một số bộ dữ liệu nhất định,... Sau đó bạn lập trình và chạy thử chương trình của bạn Sau khi chạy và thử nghiệm, bạn nhận được các kết quả và biết được hiệu suất hoạt động của mạng cũng như các tham số hiện tại Dựa vào các kết quả đó, bạn chỉnh sửa ý tưởng ban đầu, tinh chỉnh các lựa chọn và tiếp tục vòng lặp để tìm kiếm mô hình mạng tốt hơn. Ngày nay, Deep Learning mang đến thành công lớn cho rất nhiều lĩnh vực từ Xử lý ngôn ngữ tự nhiên, Thị giác máy tính, Nhận diện giọng nói đến các ứng dụng trên dữ liệu có cấu trúc khác. Dữ liệu có cấu trúc bao gồm mọi thứ từ quảng cáo đến dữ liệu tìm kiếm, không chỉ là tìm kiếm trên các Search engines mà còn là tìm kiếm, ví dụ, trên các websit bán hàng Đã có website muốn truyền tải các kết quả tìm kiếm tốt nhất khi bạn nhập từ khoá tìm kiếm vào thanh tìm kiếm. Để bảo mật máy tính, để hậu cần,
+như tìm ra nơi để gửi trình điều khiển để nhận và
+thả mọi thứ, đến nhiều hơn nữa. Vì vậy, những gì tôi đang thấy là đôi khi
+một nhà nghiên cứu có nhiều kinh nghiệm trong NLP có thể cố gắng làm
+cái gì đó trong thị giác máy tính. Hoặc có thể một nhà nghiên cứu có nhiều kinh nghiệm
+trong nhận dạng giọng nói có thể nhảy vào và
+cố gắng làm một cái gì đó trên quảng cáo. Hoặc ai đó từ an ninh có thể muốn
+nhảy vào và làm một cái gì đó về hậu cần. Và những gì tôi đã thấy là
+trực giác từ một tên miền hoặc từ một khu vực ứng dụng thường không chuyển
+sang khu vực ứng dụng khác. Và các lựa chọn tốt nhất có thể phụ thuộc
+vào lượng dữ liệu bạn có, số lượng tính năng đầu vào bạn có
+thông qua cấu hình máy tính của bạn và cho dù bạn đang đào tạo về GPU hay CPU. Và nếu vậy, chính xác cấu hình của
+GPU và CPU, và nhiều thứ khác. Vì vậy, đối với rất nhiều các ứng dụng tôi
+nghĩ đó là hầu như không thể. Ngay cả những người có rất nhiều kinh nghiệm với học sâu đều thấy không thể đoán đúng sự lựa chọn tốt nhất của
+siêu tham số ngay lần đầu tiên. Và vì vậy, ngày nay,
+học sâu áp dụng là một cách rất thường xuyên quá trình bạn chỉ cần
+để đi vòng quanh chu kỳ này nhiều lần để hy vọng tìm thấy một lựa chọn tốt
+của mạng cho ứng dụng của bạn. Vì vậy, một trong những điều quyết định
+bạn có thể tiến bộ nhanh như thế nào Làm thế nào để có thể chạy lại chu kì này thật hiệu quả. Và việc thiết lập tập dữ liệu của bạn sao cho hoạt động tốt trong các tập huấn luyện, phất triển và thử nghiệm có thể đạt được hiệu quả cao hơn. Vì vậy, nếu đây là dữ liệu huấn luyện của bạn,
+hãy vẽ nó như một hộp lớn. Sau đó, bình thường thì, bạn có thể lấy
+dữ liệu bạn có và cắt một số phần của
+nó thành tập huấn luyện của bạn. Một phần trong số đó là tập xác thực chéo theo phương thức holdout của bạn và điều này đôi khi cũng
+được gọi là tập phát triển. Và để cho ngắn gọn, tôi sẽ chuyển sang
+gọi đây là tập dev, nhưng tất cả những khái niệm này đại khái nghĩa là cùng một thứ. Và sau đó bạn có thể khắc một phần
+cuối cùng của nó thành tập thử nghiệm của bạn. Và vì vậy, quy trình làm việc là bạn giữ
+thuật toán huấn luyện trên các tập huấn luyện của bạn. Và sử dụng tập dev của bạn hoặc tập xác thực chéo theo phương thức holdout để xem cái nào trong số nhiều mô hình khác nhau hoạt động tốt nhất trên tập dev. Và sau khi
+làm điều này đủ lâu, khi có một mô hình cuối cùng
+mà bạn muốn đánh giá, bạn có thể lấy mô hình tốt nhất bạn tìm thấy và đánh giá nó trên tập thử nghiệm của bạn. Để có được ước tính không thiên vị
+về việc thuật toán của bạn hoạt động tốt như thế nào. Vì vậy, trong thời đại trước đây của học máy
+, khi đó rất thịnh hành việc lấy tất cả dữ liệu của bạn và chia
+dữ liệu theo tỷ lệ có thể là 70/30% /giống như con người vẫn nói về phân chia thử nghiệm huấn luyện 70/30. Nếu bạn không có tập dev rõ ràng hoặc
+có thể là phân chia 60/20/20% theo tỷ lệ 60% huấn luyện,
+20% phát triển và 20% thử nghiệm. Và vài năm trước đây thì nó được coi là tốt nhất cho học máy. Nếu bạn có tổng cộng khoảng 100 ví dụ. có thể tổng cộng 1000 ví dụ,
+có thể sau 10.000 ví dụ. Những loại tỷ lệ này hoàn toàn là
+quy tắc hợp lý. Nhưng trong kỷ nguyên dữ liệu lớn hiện đại, ví dụ bạn có thể có tổng cộng một triệu ví dụ, thì xu hướng là tập phát triển và thử nghiệm của bạn đã trở thành một tỉ lệ nhỏ hơn nhiều. Hãy nhớ rằng, mục tiêu của tập phát triển là bạn sẽ thử các thuật toán khác nhau trên đó và xem thuật toán nào hoạt động tốt hơn. Vì vậy, tập dev chỉ cần đủ lớn để bạn đánh giá, giả sử,
+hai lựa chọn thuật toán khác nhau hoặc mười lựa chọn thuật toán khác nhau và
+nhanh chóng quyết định cái nào làm tốt hơn. Và bạn có thể không cần toàn bộ
+20% dữ liệu của mình cho việc đó. Vì vậy, ví dụ, nếu bạn có một triệu
+ví dụ huấn luyện bạn có thể quyết định rằng chỉ cần có 10.000 ví dụ trong
+tập dev của bạn là quá đủ để đánh giá một hoặc
+hai thuật toán nào làm tốt hơn. Và theo cách tương tự, mục tiêu chính
+của bộ thử nghiệm là đưa ra bộ phân loại, để cung cấp cho bạn một ước tính
+khá tự tin về mức độ hoạt động của nó. Và một lần nữa, nếu bạn có một triệu ví dụ
+bạn có thể quyết định rằng 10.000 các ví dụ là quá đủ để
+để đánh giá một bộ phân loại và cung cấp cho bạn một ước tính tốt
+về mức độ hoạt động của nó. Vì vậy, trong ví dụ này, nơi bạn
+có một triệu ví dụ, nếu bạn chỉ cần 10.000 cho dev và 10.000 cho test của bạn, tỷ lệ của bạn sẽ giống như thế này
+10.000 là 1% của 1 triệu bạn sẽ có 98% train, 1% dev, 1% test. Và tôi cũng đã thấy các ứng dụng, nếu bạn có thậm chí hơn một triệu
+ví dụ, bạn có thể sẽ có 99,5% train và
+0,25% dev, 0,25% test. Hoặc có thể là 0.4% dev, 0.1% test. Vì vậy, tóm lại, khi thiết lập
+vấn đề máy học của bạn, Tôi thường thiết lập nó thành các tập huấn luyện, dev và test và nếu bạn có một tập dữ liệu tương đối nhỏ,
+các tỷ lệ truyền thống này có thể ổn. Nhưng nếu bạn có một bộ dữ liệu lớn hơn nhiều,
+thì nên thiết lập dev và test nhỏ hơn nhiều so với
+20% hoặc thậm chí 10% dữ liệu của bạn. Chúng ta sẽ đưa ra
+nguyên tắc cụ thể hơn về kích thước của các tập phát triển và test sau này trong chuyên môn này. Một xu hướng khác mà chúng ta đang thấy trong kỷ nguyên
+của học sâu hiện đại là ngày càng nhiều người hơn huấn luyện với train không khớp và phân phối test. Giả sử bạn đang xây dựng một ứng dụng
+cho phép người dùng tải lên nhiều hình ảnh và mục tiêu của bạn là tìm hình ảnh của
+con mèo để hiển thị cho người dùng. Có thể tất cả người dùng của bạn là những người yêu mèo. Có thể tập huấn luyện của bạn đến từ những bức ảnh mèo
+tải xuống từ Internet, nhưng tập phát triển và tập kiểm tra có thể bao gồm
+hình ảnh mèo từ người dùng sử dụng ứng dụng của chúng ta. Vì vậy, có thể tập huấn luyện của bạn có rất nhiều hình ảnh
+thu thập từ Internet nhưng tập phát triển và test
+là hình ảnh do người dùng tải lên. Hóa ra rất nhiều các trang web có rất
+độ phân giải cao, có những bức hình mèo được đóng khung rất đẹp và chuyên nghiệp. Nhưng có thể người dùng
+của bạn đang tải lên các hình ảnh mờ hơn, có độ phân giải thấp hơn vừa được chụp bằng camera điện thoại di động
+trong điều kiện bình thường hơn. Và do đó, hai bản phân phối
+của dữ liệu này có thể khác nhau. Nguyên tắc chung mà tôi khuyến khích
+bạn làm theo trong trường hợp này là đảm bảo rằng tập phát triển và test đến từ cùng một phân phối. Chúng ta cũng sẽ nói thêm về
+hướng dẫn cụ thể này, nhưng vì bạn sẽ sử dụng tập phát triển để đánh giá rất nhiều mô hình khác nhau và thực sự cố gắng để cải thiện hiệu suất của tập phát triển. Thật tuyệt nếu tập phát triển của bạn đến từ
+cùng phân phối với tập kiểm tra. Nhưng vì các thuật toán học sâu rất quan râm đến dữ liệu huấn luyện, một xu hướng mà tôi thấy là bạn có thể
+sử dụng tất cả các loại chiến thuật sáng tạo, chẳng hạn như thu thập thông tin các trang web, để có được tập huấn luyện lớn hơn nhiều so với những gì bạn sẽ có. Ngay cả khi một phần chi phí của điều đó là dữ liệu tập huấn luyện có thể không đến từ cùng một phân phối
+như tập phát triển và tập kiểm tra. Nhưng bạn phát hiện ra miễn là bạn tuân theo quy tắc chung thì tiến trình trong thuật toán học máy
+của bạn sẽ nhanh hơn. Và tôi sẽ đưa ra
+lời giải thích chi tiết hơn cho quy tắc chung trong chuyên môn này sau. Cuối cùng, không có tập kiểm tra cũng không sao. Hãy nhớ mục tiêu của tập kiểm tra
+là cung cấp cho bạn một ước tính không thiên vị hiệu suất của mạng cuối cùng của bạn,
+của mạng mà bạn đã chọn. Nhưng nếu bạn không cần
+ước tính không thiên vị đó, thì không có tập kiểm tra cũng không sao. Vì vậy, những gì bạn làm, nếu bạn chỉ có tập phát triển mà không có tập kiểm tra, là bạn huấn luyện trên tập huấn luyện và sau đó thử các kiến trúc mô hình khác nhau. Đánh giá chúng trên tập phát triển,
+và sau đó sử dụng nó để lặp lại và cố gắng đạt được một mô hình tốt. Vì bạn đã khớp dữ liệu
+của mình vào tập phát triển, thì điều này không còn cung cấp cho bạn ước tính
+không thiên vị về hiệu suất. Nhưng nếu bạn không cần, thì cũng ổn thôi. Trong thế giới học máy,
+khi bạn vừa có một tập huấn luyện và tập phát triển nhưng không có tập kiểm tra riêng. Hầu hết mọi người sẽ gọi
+đây là một tập huấn luyện và họ sẽ gọi tập phát triển là tập kiểm tra. Nhưng những gì họ thực sự làm cuối cùng là sử dụng tập kiểm tra dưới dạng một tập kiểm định chéo theo phương thức holdout. có thể đây không phải là một thuật ngữ hay bởi vì chúng quá khớp với tập kiểm tra. Vì vậy, khi nhóm nói với bạn rằng họ
+chỉ có một tập huấn luện và một tập phát triển, Tôi sẽ chỉ thận trọng và nghĩ, liệu họ thực sự có một tập phát triển huấn luyện? Bởi vì họ đang quá khớp với bộ thử nghiệm. Về mặt văn hóa, nó có thể là khó khăn để
+thay đổi một số thuật ngữ của đội và bắt họ gọi một tập phát triển huấn luyện là một tập thử nghiệm huấn luyện. Mặc dù tôi nghĩ gọi nó là tập phát triển và huấn luyện sẽ đúng hơn để gọi thuât ngữ này. Không vấn đề gì cả, bạn không nhất thiết phải có ước tính không thiên vị về
+hiệu suất của thuật toán. Vì vậy, việc thiết lập một tập huấn luyện và tập thử nghiệm
+sẽ cho phép bạn tích hợp nhanh hơn. Nó cũng sẽ cho phép bạn đo lường hiệu quả hơn
+độ chệch và phương sai của thuật toán để bạn có thể chọn cách hiệu quả hơn
+cách để cải thiện thuật toán của mình. Hãy bắt đầu nói về điều đó trong video tiếp theo.

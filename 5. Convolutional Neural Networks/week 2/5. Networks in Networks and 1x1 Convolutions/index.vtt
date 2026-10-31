@@ -1,0 +1,228 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.660 --> 00:00:06.580
+In terms of designing confident architectures, one of the ideas that really helps is using
+
+00:00:06.580 --> 00:00:09.260
+a one by one convolution.
+
+00:00:09.260 --> 00:00:13.100
+Now you might be wondering, what does a one by one convolution do?
+
+00:00:13.100 --> 00:00:15.300
+Isn't that just multiplying by a number?
+
+00:00:15.300 --> 00:00:17.380
+That seems like a funny thing to do.
+
+00:00:17.380 --> 00:00:19.020
+Turns out it's not quite like that.
+
+00:00:19.020 --> 00:00:20.020
+Let's take a look.
+
+00:00:20.020 --> 00:00:23.420
+Here's a one by one filter.
+
+00:00:23.420 --> 00:00:25.220
+Put a number two there.
+
+00:00:25.220 --> 00:00:29.980
+And if you take this six by six image, six by six by one, and convolve it with this one
+
+00:00:29.980 --> 00:00:34.100
+by one by one filter, you end up just taking the image and multiplying it by two.
+
+00:00:34.100 --> 00:00:40.540
+So one, two, three ends up being two, four, six, and so on.
+
+00:00:40.540 --> 00:00:45.420
+And so a convolution by a one by one filter doesn't seem politically useful.
+
+00:00:45.420 --> 00:00:48.100
+You just multiply it by some number.
+
+00:00:48.100 --> 00:00:53.840
+But that's the case of six by six by one channel images.
+
+00:00:53.840 --> 00:01:01.240
+If you have a six by six by 32 instead of by one, then a convolution with a one by one
+
+00:01:01.240 --> 00:01:05.200
+filter can do something that makes much more sense.
+
+00:01:05.200 --> 00:01:11.840
+And in particular, what a one by one convolution will do is it will look at each of the 36
+
+00:01:11.840 --> 00:01:14.040
+different positions here.
+
+00:01:14.040 --> 00:01:20.320
+And it will take the element wise product between 32 numbers on the left and the 32 numbers
+
+00:01:20.320 --> 00:01:26.440
+in the filter and then apply a relu nonlinearity to it after that.
+
+00:01:26.440 --> 00:01:34.200
+So to look at one of the 36 positions, maybe one slice through this volume, you take these
+
+00:01:34.200 --> 00:01:41.920
+36 numbers, multiply it by, you know, one by one slice through the volume like that.
+
+00:01:41.920 --> 00:01:48.800
+And you end up with a single real number, which then gets plotted in one of the outputs
+
+00:01:48.800 --> 00:01:50.600
+like that.
+
+00:01:50.600 --> 00:01:55.840
+And in fact, one way to think about the 32 numbers you have in this one by one by 32
+
+00:01:55.840 --> 00:02:04.500
+filter is that is as if you have one neuron that is taking as input 32 numbers, multiplying
+
+00:02:04.500 --> 00:02:10.640
+each of these 32 numbers in one slice in the same position height and width, but these
+
+00:02:10.640 --> 00:02:17.020
+32 different channels, multiplying them by 32 weights, and then applying a relu nonlinearity
+
+00:02:17.020 --> 00:02:23.460
+to it and then outputting the corresponding thing over there.
+
+00:02:23.460 --> 00:02:31.300
+And more generally, if you have not just one filter, but if you have multiple filters, then
+
+00:02:31.300 --> 00:02:39.020
+it's as if you have not just one unit, but multiple units that are taking as input all
+
+00:02:39.020 --> 00:02:47.980
+the numbers in one slice, and then building them up into an output that is 6 by 6 by number
+
+00:02:47.980 --> 00:02:49.700
+of filters.
+
+00:02:49.700 --> 00:02:57.420
+So one way to think about a one by one convolution is that it is basically having a fully connected
+
+00:02:57.420 --> 00:03:04.020
+neural network that applies to each of the 62 different positions.
+
+00:03:04.220 --> 00:03:10.100
+And what this fully connected neural network does is it inputs 32 numbers and outputs, you
+
+00:03:10.100 --> 00:03:13.420
+know, number of filters, outputs.
+
+00:03:13.420 --> 00:03:19.860
+So I guess depending on notation, this is really NC of L plus 1 if that's the next layer.
+
+00:03:19.860 --> 00:03:24.740
+And by doing this at each of the 36 positions, each of the 6 by 6 positions, you end up with
+
+00:03:24.740 --> 00:03:30.020
+an output that is 6 by 6 by the number of filters.
+
+00:03:30.020 --> 00:03:36.140
+And this can carry out a pretty non-trivial computation on your input volume.
+
+00:03:36.140 --> 00:03:42.780
+And this idea is often called a one by one convolution, but it's sometimes also called
+
+00:03:42.780 --> 00:03:47.220
+network in network.
+
+00:03:47.220 --> 00:03:53.740
+And it's described in this paper by Min Lin, Tian Chen, and Shui Chen Yang.
+
+00:03:53.740 --> 00:03:59.300
+And even though the details of the architecture in this paper are used widely, this idea
+
+00:03:59.300 --> 00:04:04.540
+of a one by one convolution or this sometimes called network in network idea has been very
+
+00:04:04.540 --> 00:04:09.380
+influential as influence many other neural network architectures, including the inception
+
+00:04:09.380 --> 00:04:12.500
+network, which we'll see in the next video.
+
+00:04:12.500 --> 00:04:17.100
+But to give you an example of where a one by one convolution is useful, here's something
+
+00:04:17.100 --> 00:04:19.260
+you could do with it.
+
+00:04:19.260 --> 00:04:23.500
+Let's say you have a 28 by 28 by 192 volume.
+
+00:04:23.500 --> 00:04:27.820
+If you want to shrink the height and width, you can use a pooling layer so we know how
+
+00:04:27.820 --> 00:04:28.980
+to do that.
+
+00:04:28.980 --> 00:04:34.620
+But what if the number of channels has gotten too big and you want to shrink that?
+
+00:04:34.620 --> 00:04:40.220
+How do you shrink it to a 28 by 28 by 32 dimensional volume?
+
+00:04:40.220 --> 00:04:48.180
+Well, what you can do is use 32 filters that are one by one.
+
+00:04:48.180 --> 00:04:54.740
+And technically, each filter would be of dimension one by one by 192 because the number
+
+00:04:54.740 --> 00:04:59.620
+of channels in your filter has to match the number of channels in the input volume.
+
+00:04:59.620 --> 00:05:08.260
+But you use 32 filters and the output of this process will be a 28 by 28 by 32 volume.
+
+00:05:08.260 --> 00:05:13.580
+So this is a way to let you shrink and see as well.
+
+00:05:13.580 --> 00:05:19.140
+Whereas pooling layers are used just to shrink and H and Nw the height and width of these
+
+00:05:19.140 --> 00:05:20.820
+volumes.
+
+00:05:20.900 --> 00:05:27.420
+And we'll see later how this idea of one by one convolutions allows you to shrink the number
+
+00:05:27.420 --> 00:05:31.620
+of channels and therefore save on computation in some networks.
+
+00:05:31.620 --> 00:05:37.540
+But of course, if you want to keep the number of channels to the 192, that's fine too.
+
+00:05:37.540 --> 00:05:41.140
+And the effect of a one by one convolution is it just adds nonlinearity.
+
+00:05:41.140 --> 00:05:47.100
+It allows you to learn a more complex function of your network by adding another layer.
+
+00:05:47.100 --> 00:05:52.900
+The inputs 20 by 20 by 192 and outputs 20 by 20 by 192.
+
+00:05:52.900 --> 00:05:59.180
+So you've now seen how a one by one convolution operation is actually doing a pretty non-trivial
+
+00:05:59.180 --> 00:06:04.820
+operation and allows you to shrink the number of channels in your volumes or keep it the
+
+00:06:04.820 --> 00:06:07.580
+same or even increase it if you want.
+
+00:06:07.580 --> 00:06:13.140
+In the next video, you see that this can be used to help build up to the inception
+
+00:06:13.140 --> 00:06:14.140
+network.
+
+00:06:14.140 --> 00:06:15.580
+Let's go on to the next video.

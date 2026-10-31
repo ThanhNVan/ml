@@ -1,0 +1,465 @@
+WEBVTT
+
+00:00:02.060 --> 00:00:05.780
+Ở phần sau của chuyên ngành, chúng ta sẽ nói
+về cách gỡ lỗi
+
+00:00:05.780 --> 00:00:09.500
+và chẩn đoán những vấn đề có thể xảy ra khi
+học thuật toán.
+
+00:00:09.500 --> 00:00:13.000
+Bạn cũng tìm hiểu về các công cụ cụ thể để
+nhận biết khi nào
+
+00:00:13.000 --> 00:00:16.500
+có thể xảy ra tình trạng overfitting và
+thiếu trang bị.
+
+00:00:16.500 --> 00:00:19.520
+Nhưng hiện tại, khi bạn cho rằng đã xảy ra
+hiện tượng trang bị quá
+
+00:00:19.520 --> 00:00:22.540
+mức, hãy nói về những gì bạn có thể làm để
+giải quyết vấn đề đó.
+
+00:00:22.540 --> 00:00:26.220
+Giả sử bạn phù hợp với một mô hình và nó có
+variance cao.
+
+00:00:26.220 --> 00:00:27.820
+Nó overfitting.
+
+00:00:27.820 --> 00:00:32.260
+Đây là một mô hình dự đoán giá nhà
+overfitting.
+
+00:00:32.260 --> 00:00:37.080
+Một cách để giải quyết vấn đề này là thu thập
+thêm training data.
+
+00:00:37.080 --> 00:00:39.180
+Vì vậy, đó là một lựa chọn.
+
+00:00:39.180 --> 00:00:43.473
+Nếu bạn có thể nhận được nhiều dữ liệu hơn, đó
+là nhiều ví
+
+00:00:43.473 --> 00:00:47.767
+dụ đào tạo hơn về kích thước và giá nhà, thì
+với
+
+00:00:47.767 --> 00:00:52.060
+training set lớn hơn, thuật toán học sẽ học
+cách phù hợp với một hàm
+
+00:00:52.060 --> 00:00:54.140
+ít lung lay hơn.
+
+00:00:54.140 --> 00:00:57.180
+Vì vậy, bạn có thể tiếp tục khớp một đa thức
+
+00:00:57.180 --> 00:01:00.220
+bậc cao hoặc một số hàm khác với nhiều
+feature.
+
+00:01:00.220 --> 00:01:04.860
+Và nếu bạn có đủ ví dụ huấn luyện thì vẫn ổn.
+
+00:01:04.860 --> 00:01:08.550
+Vì vậy, tóm lại, công cụ số một bạn có thể sử
+dụng để chống
+
+00:01:08.550 --> 00:01:12.240
+lại tình trạng overfitting là lấy thêm
+training data.
+
+00:01:12.240 --> 00:01:15.180
+Bây giờ nhận được nhiều dữ liệu hơn không phải
+lúc nào cũng là một lựa chọn.
+
+00:01:15.180 --> 00:01:18.620
+Có lẽ chỉ có rất nhiều ngôi nhà được bán ở vị
+trí này.
+
+00:01:18.620 --> 00:01:21.740
+Vì vậy, có lẽ không còn nhiều dữ liệu nữa.
+
+00:01:21.740 --> 00:01:24.780
+Nhưng khi có sẵn dữ liệu, điều này có thể hoạt
+động rất tốt.
+
+00:01:24.780 --> 00:01:28.180
+Tùy chọn thứ hai để giải quyết tình trạng
+overfitting
+
+00:01:28.180 --> 00:01:31.580
+là xem liệu bạn có thể sử dụng ít feature hơn
+hay không.
+
+00:01:31.580 --> 00:01:38.000
+Trong video trước, các feature của mô hình của
+chúng tôi bao gồm kích
+
+00:01:38.000 --> 00:01:44.420
+thước x cũng như kích thước bình phương và sáu
+bình phương, xq và x4, v.v.
+
+00:01:44.420 --> 00:01:47.980
+Đây là rất nhiều feature đa thức.
+
+00:01:47.980 --> 00:01:51.740
+Vì vậy, trong trường hợp đó, một cách để giảm
+việc trang
+
+00:01:51.740 --> 00:01:55.500
+bị quá mức là không sử dụng quá nhiều feature
+đa thức này.
+
+00:01:55.500 --> 00:01:58.380
+Nhưng bây giờ hãy xem một ví dụ khác.
+
+00:01:58.380 --> 00:02:03.340
+Có thể bạn có nhiều đặc điểm khác nhau của một
+ngôi nhà để cố gắng dự
+
+00:02:03.340 --> 00:02:08.300
+đoán giá của nó, từ số lượng phòng ngủ, số
+tầng, tuổi, thu nhập trung
+
+00:02:08.300 --> 00:02:13.260
+bình của khu phố, v.v. cho đến khoảng cách đến
+quán cà phê gần nhất.
+
+00:02:13.260 --> 00:02:18.740
+Hóa ra là nếu bạn có nhiều feature như thế này
+nhưng không có đủ training data
+
+00:02:18.740 --> 00:02:24.220
+thì thuật toán học của bạn cũng có thể
+overfitting với training set của bạn.
+
+00:02:24.220 --> 00:02:28.513
+Bây giờ thay vì sử dụng tất cả 100 feature,
+nếu chúng ta chỉ
+
+00:02:28.513 --> 00:02:32.807
+chọn một tập hợp con những feature hữu ích
+nhất, có thể là
+
+00:02:32.807 --> 00:02:37.100
+kích thước, phòng ngủ và tuổi của ngôi nhà,
+nếu bạn nghĩ đó là
+
+00:02:37.100 --> 00:02:41.860
+các feature phù hợp nhất, sau đó chỉ sử dụng
+tập hợp con các feature nhỏ
+
+00:02:41.860 --> 00:02:46.620
+hơn đó, bạn có thể thấy rằng mô hình của mình
+không còn overfitting nữa.
+
+00:02:46.620 --> 00:02:49.700
+Việc lựa chọn bộ feature thích hợp nhất để sử
+
+00:02:49.700 --> 00:02:52.780
+dụng đôi khi còn được gọi là lựa chọn feature.
+
+00:02:52.780 --> 00:02:57.220
+Một cách bạn có thể làm là sử dụng trực giác
+của mình để chọn những gì
+
+00:02:57.220 --> 00:03:01.660
+bạn cho là tập hợp feature tốt nhất, những gì
+phù hợp nhất để dự đoán giá.
+
+00:03:01.660 --> 00:03:07.460
+Bây giờ, một nhược điểm của việc lựa chọn đặc
+điểm là khi chỉ sử dụng một tập hợp
+
+00:03:07.460 --> 00:03:13.260
+con các đặc điểm, thuật toán sẽ loại bỏ một số
+thông tin bạn có về các ngôi nhà.
+
+00:03:13.260 --> 00:03:16.800
+Ví dụ: có thể tất cả các feature này hoặc 100
+feature
+
+00:03:16.800 --> 00:03:20.340
+trong số đó thực sự hữu ích để dự đoán giá một
+ngôi nhà.
+
+00:03:20.340 --> 00:03:26.660
+Vì vậy, có thể bạn không muốn vứt bỏ một số
+thông tin bằng cách vứt bỏ một số feature.
+
+00:03:26.660 --> 00:03:31.160
+Ở phần sau của khóa học thứ hai, bạn cũng sẽ
+thấy một số thuật toán để
+
+00:03:31.160 --> 00:03:35.660
+tự động chọn bộ feature thích hợp nhất để sử
+dụng cho các tác vụ dự đoán.
+
+00:03:35.660 --> 00:03:39.740
+Bây giờ điều này đưa chúng ta đến lựa chọn thứ
+ba để giảm việc overfitting.
+
+00:03:39.740 --> 00:03:43.470
+Kỹ thuật này mà chúng ta sẽ xem xét sâu hơn
+
+00:03:43.470 --> 00:03:47.200
+trong video tiếp theo, được gọi là
+regularization.
+
+00:03:47.200 --> 00:03:51.630
+Nếu bạn nhìn vào một mô hình overfit, đây là
+mô hình sử
+
+00:03:51.630 --> 00:03:56.060
+dụng các feature đa thức, x x bình phương, x
+lập phương, v.v.
+
+00:03:56.060 --> 00:04:00.300
+Bạn thấy rằng các thông số thường tương đối
+lớn.
+
+00:04:00.300 --> 00:04:06.710
+Bây giờ nếu bạn loại bỏ một số feature này,
+giả sử nếu bạn loại
+
+00:04:06.710 --> 00:04:13.120
+bỏ feature x 4, điều đó tương ứng với việc đặt
+tham số này về 0.
+
+00:04:13.120 --> 00:04:17.090
+Vì vậy, việc đặt tham số về 0 tương đương với
+việc loại bỏ
+
+00:04:17.090 --> 00:04:21.060
+một feature, đó là những gì chúng ta đã thấy
+trên slide trước.
+
+00:04:21.060 --> 00:04:26.720
+Hóa ra, việc regularization là một cách để
+giảm bớt tác động của một số feature một
+
+00:04:26.720 --> 00:04:32.380
+cách nhẹ nhàng hơn mà không phải làm điều gì
+khắc nghiệt như loại bỏ nó hoàn toàn.
+
+00:04:32.380 --> 00:04:38.200
+Việc regularization thực hiện là khuyến khích
+thuật toán học thu nhỏ các giá
+
+00:04:38.200 --> 00:04:44.020
+trị của tham số mà không nhất thiết yêu cầu
+tham số đó được đặt chính xác về 0.
+
+00:04:44.020 --> 00:04:48.033
+Và hóa ra là ngay cả khi bạn phù hợp với đa
+thức bậc cao hơn
+
+00:04:48.033 --> 00:04:52.047
+như thế này, miễn là bạn có thể có được thuật
+toán để sử dụng
+
+00:04:52.047 --> 00:04:56.060
+các giá trị tham số nhỏ hơn, w1, w2, w3, w4,
+bạn sẽ kết thúc với
+
+00:04:56.060 --> 00:05:00.860
+một đường cong phù hợp với training data hơn
+nhiều.
+
+00:05:00.860 --> 00:05:04.673
+Vì vậy, việc regularization có tác dụng là nó
+cho phép bạn
+
+00:05:04.673 --> 00:05:08.487
+giữ lại tất cả các feature của mình, nhưng nó
+chỉ ngăn các
+
+00:05:08.487 --> 00:05:12.300
+feature đó có tác động quá lớn, đó là điều đôi
+khi có thể gây ra
+
+00:05:12.300 --> 00:05:13.300
+overfitting.
+
+00:05:13.300 --> 00:05:18.360
+Nhân tiện, theo quy ước, chúng ta thường chỉ
+
+00:05:18.360 --> 00:05:23.420
+giảm kích thước của tham số wj từ w1 đến wn.
+
+00:05:23.420 --> 00:05:29.260
+Nó không tạo ra sự khác biệt lớn cho dù bạn có
+regularization tham số b hay không.
+
+00:05:29.260 --> 00:05:31.540
+Bạn có thể làm như vậy nếu muốn hoặc không.
+
+00:05:31.540 --> 00:05:36.620
+Tôi thường không làm như vậy, và việc quy
+chuẩn hóa w1, w2, cho đến tận wn
+
+00:05:36.620 --> 00:05:41.700
+cũng là điều bình thường, nhưng không thực sự
+khuyến khích b trở nên nhỏ hơn.
+
+00:05:41.700 --> 00:05:47.860
+Trong thực tế, sẽ có rất ít sự khác biệt cho
+dù bạn có regularization b hay không.
+
+00:05:47.860 --> 00:05:49.620
+Vì vậy, để tóm tắt lại.
+
+00:05:49.620 --> 00:05:54.460
+Đây là ba cách bạn đã thấy trong video này để
+giải quyết tình trạng overfitting.
+
+00:05:54.460 --> 00:05:55.780
+1.
+
+00:05:55.780 --> 00:05:57.260
+Thu thập thêm dữ liệu.
+
+00:05:57.260 --> 00:05:59.900
+Nếu bạn có thể lấy được nhiều dữ liệu hơn,
+điều này
+
+00:05:59.900 --> 00:06:02.540
+thực sự có thể giúp giảm tình trạng trang bị
+quá mức.
+
+00:06:02.540 --> 00:06:07.860
+Đôi khi điều đó là không thể, trong trường hợp
+đó một số tùy chọn của họ là 2.
+
+00:06:07.860 --> 00:06:12.180
+Hãy thử chọn và chỉ sử dụng một tập hợp con
+các feature.
+
+00:06:12.180 --> 00:06:16.620
+Bạn tìm hiểu thêm về lựa chọn feature trong
+khóa học 2.
+
+00:06:16.980 --> 00:06:17.980
+3.
+
+00:06:17.980 --> 00:06:23.740
+Giảm kích thước của các tham số bằng cách sử
+dụng chính quy.
+
+00:06:23.740 --> 00:06:27.140
+Đây cũng sẽ là chủ đề của video tiếp theo.
+
+00:06:27.140 --> 00:06:29.900
+Riêng đối với bản thân tôi, tôi luôn sử dụng
+tính chính quy.
+
+00:06:29.900 --> 00:06:34.400
+Vì vậy, đây là một kỹ thuật rất hữu ích để đào
+tạo các thuật toán học tập, bao
+
+00:06:34.400 --> 00:06:38.900
+gồm cả neural network mà bạn sẽ thấy cụ
+thể ở phần sau của chuyên ngành này.
+
+00:06:38.900 --> 00:06:44.340
+Tôi hy vọng bạn cũng tham khảo phòng thí
+nghiệm tùy chọn về overfitting.
+
+00:06:44.340 --> 00:06:48.760
+Trong phòng thí nghiệm, bạn sẽ thấy các ví dụ
+khác nhau về overfitting
+
+00:06:48.760 --> 00:06:53.180
+và điều chỉnh các ví dụ đó bằng cách nhấp vào
+các tùy chọn trong biểu đồ.
+
+00:06:53.180 --> 00:06:57.310
+Bạn cũng có thể thêm các điểm dữ liệu của
+riêng mình bằng cách nhấp
+
+00:06:57.310 --> 00:07:01.440
+vào biểu đồ và xem điều đó thay đổi đường cong
+phù hợp như thế nào.
+
+00:07:01.440 --> 00:07:07.670
+Bạn cũng có thể thử các ví dụ cho cả
+regression và classification, đồng thời
+
+00:07:07.670 --> 00:07:13.900
+bạn sẽ thay đổi bậc của đa thức thành x, x
+bình phương, x lập phương, v.v.
+
+00:07:13.900 --> 00:07:16.590
+Phòng thí nghiệm cũng cho phép bạn thử nghiệm
+với
+
+00:07:16.590 --> 00:07:19.280
+hai tùy chọn khác nhau để điều chỉnh trang bị
+quá mức.
+
+00:07:19.280 --> 00:07:23.233
+Bạn có thể thêm training data bổ sung để giảm
+tình trạng trang bị
+
+00:07:23.233 --> 00:07:27.187
+quá mức và bạn cũng có thể chọn những feature
+sẽ bao gồm hoặc loại
+
+00:07:27.187 --> 00:07:31.140
+trừ như một cách khác để cố gắng giảm tình
+trạng overfitting.
+
+00:07:31.140 --> 00:07:35.660
+Vì vậy, vui lòng xem qua phòng thí nghiệm, tôi
+hy vọng sẽ giúp bạn xây dựng trực
+
+00:07:35.660 --> 00:07:40.180
+giác của mình về việc overfitting cũng
+như một số phương pháp để điều chỉnh nó.
+
+00:07:40.180 --> 00:07:43.080
+Trong video này, bạn cũng đã thấy ý tưởng về
+
+00:07:43.080 --> 00:07:45.980
+việc regularization ở mức độ tương đối cao.
+
+00:07:45.980 --> 00:07:50.033
+Tôi nhận thấy rằng tất cả các chi tiết về
+regularization này có thể
+
+00:07:50.033 --> 00:07:54.087
+chưa hoàn toàn có ý nghĩa với bạn, nhưng trong
+video tiếp theo,
+
+00:07:54.087 --> 00:07:58.140
+chúng ta sẽ bắt đầu trình bày chính xác cách
+áp dụng regularization và
+
+00:07:58.140 --> 00:08:00.140
+regularization nghĩa là gì.
+
+00:08:00.140 --> 00:08:03.540
+Và sau đó chúng ta sẽ bắt đầu tìm ra cách làm
+cho điều này hoạt động
+
+00:08:03.540 --> 00:08:06.940
+với các thuật toán học tập của chúng ta để
+thực hiện linear regression
+
+00:08:06.940 --> 00:08:10.340
+và logistic regression, cũng như các thuật
+toán khác trong tương lai
+
+00:08:10.340 --> 00:08:12.220
+tránh overfitting.
+
+00:08:12.220 --> 00:08:14.060
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

@@ -1,0 +1,180 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:06.000
+It's not always easy to combine all the things you care about into a single row number evaluation metric.
+
+00:00:06.000 --> 00:00:12.000
+In those cases, I found it sometimes useful to set up satisficing as well as optimizing metrics.
+
+00:00:12.000 --> 00:00:14.000
+Let me show you what I mean.
+
+00:00:14.000 --> 00:00:20.000
+Let's say that you've decided you care about the classification accuracy of your cat classifier.
+
+00:00:20.000 --> 00:00:25.000
+This could have been F1 score or some other measure of accuracy.
+
+00:00:25.000 --> 00:00:29.000
+But let's say that in addition to accuracy, you also care about the running time.
+
+00:00:29.000 --> 00:00:32.000
+So how long it takes to classify an image.
+
+00:00:32.000 --> 00:00:39.000
+And classifier A takes 80 milliseconds, B takes 95 milliseconds, and C takes 1,500 milliseconds.
+
+00:00:39.000 --> 00:00:42.000
+That's 1.5 seconds to classify an image.
+
+00:00:42.000 --> 00:00:48.000
+So one thing you could do is combine accuracy and running time into an overall evaluation metric.
+
+00:00:48.000 --> 00:00:58.000
+And so the cost, such as maybe the overall cost, is accuracy minus 0.5 times running time.
+
+00:00:58.000 --> 00:01:05.000
+But maybe it seems a bit artificial to combine accuracy and running time using a formula like this,
+
+00:01:05.000 --> 00:01:08.000
+like a linear weighted sum of these two things.
+
+00:01:08.000 --> 00:01:13.000
+So here's something else you could do instead, which is that you might want to choose a classifier
+
+00:01:13.000 --> 00:01:22.340
+that maximizes accuracy, but subject to that the running time,
+
+00:01:22.340 --> 00:01:33.540
+that is the time it takes to classify an image, that that has to be less than or equal to 100 milliseconds.
+
+00:01:33.540 --> 00:01:41.690
+So in this case, we would say that accuracy is an optimizing metric,
+
+00:01:41.690 --> 00:01:47.690
+because you want to maximize accuracy. You want to do as well as possible on accuracy.
+
+00:01:47.690 --> 00:01:53.690
+But that running time is what we call a satisficing metric,
+
+00:01:53.690 --> 00:01:57.690
+meaning that it just has to be good enough. It just needs to be less than 100 milliseconds.
+
+00:01:57.690 --> 00:02:03.690
+And beyond that, you don't really care. Or at least you don't care that much.
+
+00:02:03.690 --> 00:02:11.690
+So this would be a pretty reasonable way to trade off or to put together accuracy as well as running time.
+
+00:02:11.690 --> 00:02:15.690
+And it may be the case that so long as the running time is less than 100 milliseconds,
+
+00:02:15.690 --> 00:02:21.690
+your users won't care that much, whether it's 100 milliseconds or 50 milliseconds or even faster.
+
+00:02:21.690 --> 00:02:29.690
+And by defining, optimizing as well as satisfying metrics, this gives you a clear way to pick the quote, best classifier,
+
+00:02:29.690 --> 00:02:36.690
+which in this case would be classified B because of all the ones with a running time better than 100 milliseconds,
+
+00:02:36.690 --> 00:02:45.690
+it has the best accuracy. So more generally, if you have n metrics that you care about,
+
+00:02:45.690 --> 00:02:53.690
+it's sometimes reasonable to pick one of them to be optimizing. So you want to do as well as possible on that one
+
+00:02:53.690 --> 00:02:59.690
+and then n minus one to be satisficing, meaning that so long as they reach some threshold,
+
+00:02:59.690 --> 00:03:03.690
+such as running times faster than 100 milliseconds, but as long as they reach some threshold,
+
+00:03:03.690 --> 00:03:08.690
+you don't care how much better it is in that threshold, but they have to reach that threshold.
+
+00:03:09.690 --> 00:03:18.690
+Here's another example. Let's say you're building a system to detect wake words, also called trigger words.
+
+00:03:18.690 --> 00:03:26.690
+So this refers to the voice control devices, like the Amazon Echo, which you wake up by saying Alexa,
+
+00:03:26.690 --> 00:03:32.690
+or some Google devices, which wake up by saying, OK, Google, or some Apple devices,
+
+00:03:32.690 --> 00:03:39.690
+which wake up by saying, hey Siri, or some Baidu devices, which wake up by saying, you know,
+
+00:03:39.690 --> 00:03:47.690
+Ni hao Baidu, or I guess you already Chinese, that's Ni hao Baidu.
+
+00:03:47.690 --> 00:03:54.690
+So these are the wake words you use to tell one of these voice control devices to wake up
+
+00:03:54.690 --> 00:04:00.690
+and listen to something you want to say. But these are the Chinese characters for Ni hao Baidu.
+
+00:04:00.690 --> 00:04:08.000
+So you might care about the accuracy of your trigger word detection system.
+
+00:04:08.000 --> 00:04:13.000
+So when someone says one of these trigger words, how likely are you to actually wake up your device?
+
+00:04:13.000 --> 00:04:17.000
+And you might also care about the number of false positives.
+
+00:04:17.000 --> 00:04:22.000
+So when no one actually said this trigger word, how often does it randomly wake up?
+
+00:04:23.000 --> 00:04:32.000
+So in this case, maybe one reasonable way of combining these two evaluation metrics might be to maximize accuracy.
+
+00:04:32.000 --> 00:04:37.000
+So when someone says one of the trigger words, maximize the chance that your device wakes up,
+
+00:04:37.000 --> 00:04:50.430
+and subject to that you have at most one false positive, you know, every 24 hours of operation.
+
+00:04:50.430 --> 00:04:56.430
+So that your device randomly wakes up only once per day on average when no one is actually talking to it.
+
+00:04:56.430 --> 00:05:01.430
+So in this case, accuracy is the optimizing metric.
+
+00:05:01.430 --> 00:05:08.430
+And the number of false positives every 24 hours is the satisfying metric where you be satisfied
+
+00:05:08.430 --> 00:05:14.430
+so long as there's at most one false positive every 24 hours.
+
+00:05:14.430 --> 00:05:17.430
+To summarize, if there are multiple things you care about,
+
+00:05:17.430 --> 00:05:21.430
+by setting up one as the optimizing metric that you want to do as well as possible on,
+
+00:05:21.430 --> 00:05:27.430
+and one or more as satisfying metrics where you be satisfied so long as it does better than some threshold,
+
+00:05:27.430 --> 00:05:33.430
+you can now have an automatic way, almost automatic way of quickly looking at multiple classifiers
+
+00:05:33.430 --> 00:05:35.430
+and picking the quote, best one.
+
+00:05:35.430 --> 00:05:42.430
+Now, these evaluation metrics must be evaluated or calculated on a training set or a development set
+
+00:05:42.430 --> 00:05:43.430
+or maybe on a test set.
+
+00:05:43.430 --> 00:05:49.430
+So one of the things you also need to do is set up training dev or development as well as test sets.
+
+00:05:49.430 --> 00:05:55.430
+In the next video, I want to share with you some guidelines for how to set up training dev and test sets.
+
+00:05:55.430 --> 00:05:57.430
+So let's go on to the next video.

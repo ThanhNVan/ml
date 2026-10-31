@@ -1,0 +1,521 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.250
+Chào mừng trở lại. Trong video này,
+
+2
+00:00:02.250 --> 00:00:04.980
+Trong video này,chúng ta sẽ 
+nói về cách tính đạo hàm để
+
+3
+00:00:04.980 --> 00:00:08.330
+triển khai Gradient Descent
+ cho logistic regression.
+
+4
+00:00:08.330 --> 00:00:11.040
+Bạn sẽ học được những 
+kiến thức cần thiết.
+
+5
+00:00:11.040 --> 00:00:13.230
+Đó là, các phương trình
+ quan trọng cần thiết để
+
+6
+00:00:13.230 --> 00:00:17.725
+thực hiện Gradient descent 
+cho logistic regression.
+
+7
+00:00:17.725 --> 00:00:22.185
+Trong video này, tôi muốn thực hiện
+ phép tính này bằng đồ thị tính toán.
+
+8
+00:00:22.185 --> 00:00:25.320
+Tôi phải thừa nhận là việc 
+sử dụng đồ thị tính toán là hơi
+
+9
+00:00:25.320 --> 00:00:29.342
+quá mức cần thiết để tạo ra 
+Gradient descent cho logistic regression,
+
+10
+00:00:29.342 --> 00:00:31.183
+nhưng tôi muốn giải thích 
+mọi thứ theo cách này
+
+11
+00:00:31.183 --> 00:00:33.975
+để bạn làm quen với 
+những ý tưởng này,
+
+12
+00:00:33.975 --> 00:00:38.370
+tôi hy vọng là nó sẽ dễ hiểu hơn một chút khi 
+chúng ta học về các neural network nhân tạo hoàn chỉnh.
+
+13
+00:00:38.370 --> 00:00:44.235
+Hãy cùng nghiên cứu kỹ lưỡng về 
+gradient descent cho logistic regression.
+
+14
+00:00:44.235 --> 00:00:49.070
+Tóm lại, chúng ta đã thiết lập
+ logistic regression như sau,
+
+15
+00:00:49.070 --> 00:00:53.220
+dự đoán của bạn, y_mũ,
+ được định nghĩa như sau,
+
+16
+00:00:53.220 --> 00:00:56.490
+và z là như thế này.
+
+17
+00:00:56.490 --> 00:01:01.800
+Nếu bây giờ chúng ta chỉ tập trung vào
+ một ví dụ, thì hàm loss (loss function),
+
+18
+00:01:01.800 --> 00:01:03.630
+hoặc là trong ví dụ đó,
+
+19
+00:01:03.630 --> 00:01:05.190
+được định nghĩa như sau,
+
+20
+00:01:05.190 --> 00:01:07.855
+trong đó a là đầu ra 
+của logistic regression,
+
+21
+00:01:07.855 --> 00:01:10.535
+và y là nhãn thật sự.
+
+22
+00:01:10.535 --> 00:01:15.735
+Hãy viết nó ra dưới dạng đồ thị 
+tính toán và trong ví dụ này,
+
+23
+00:01:15.735 --> 00:01:20.520
+giả sử chúng ta chỉ có
+ hai feature, x1 và x2.
+
+24
+00:01:20.520 --> 00:01:22.860
+Để tính z,
+
+25
+00:01:22.860 --> 00:01:27.030
+chúng ta sẽ cần nhập w1,
+
+26
+00:01:27.030 --> 00:01:31.130
+w2 và b, ngoài các 
+giá trị feature x1, x2.
+
+27
+00:01:31.130 --> 00:01:33.705
+Trong một đồ thị 
+tính toán, những cái này
+
+28
+00:01:33.705 --> 00:01:36.910
+dùng để tính z, 
+z bằng w1x1
+
+29
+00:01:36.910 --> 00:01:41.588
++ w2x2 + b,
+
+30
+00:01:41.588 --> 00:01:45.380
+vẽ hộp hình chữ nhật bao quanh.
+
+31
+00:01:45.380 --> 00:01:48.555
+Sau đó, chúng ta tính y_mũ,
+
+32
+00:01:48.555 --> 00:01:52.244
+bằng a = Sigma_của_z,
+
+33
+00:01:52.244 --> 00:01:55.740
+đây là bước tiếp theo trong 
+đồ thị tính toán, và cuối cùng,
+
+34
+00:01:55.740 --> 00:01:58.725
+chúng ta tính L(a,y)
+
+35
+00:01:58.725 --> 00:02:01.840
+và tôi sẽ không chép
+ lại công thức lần nữa.
+
+36
+00:02:01.840 --> 00:02:06.900
+Trong logistic regression, chúng ta 
+sẽ muốn sửa đổi các tham số,
+
+37
+00:02:06.900 --> 00:02:12.830
+w và b, để giảm hàm loss
+ (loss function) này.
+
+38
+00:02:12.830 --> 00:02:15.870
+Chúng tôi đã mô tả 
+bước truyền xuôi về cách
+
+39
+00:02:15.870 --> 00:02:19.280
+tính hàm loss trong một 
+ví dụ huấn luyện duy nhất,
+
+40
+00:02:19.280 --> 00:02:23.940
+bây giờ chúng ta sẽ nói về cách bạn có thể 
+tính các đạo hàm theo hướng ngược lại.
+
+41
+00:02:23.940 --> 00:02:26.025
+Đây là một phiên bản
+ sơ đồ sạch đẹp.
+
+42
+00:02:26.025 --> 00:02:30.690
+Bởi vì chúng ta muốn tính các 
+đạo hàm liên quan đến hàm loss này
+
+43
+00:02:30.690 --> 00:02:33.570
+nên điều đầu tiên chúng ta 
+muốn làm khi tính ngược là
+
+44
+00:02:33.570 --> 00:02:38.010
+tính đạo hàm của
+ hàm loss này với
+
+45
+00:02:38.010 --> 00:02:41.940
+tập lệnh ở đó, với biến a.
+
+46
+00:02:41.940 --> 00:02:43.570
+Vì vậy, trong mã,
+
+47
+00:02:43.570 --> 00:02:49.000
+bạn chỉ cần sử dụng 
+“da” để biểu diễn biến này.
+
+48
+00:02:49.000 --> 00:02:52.725
+Trên thực tế, nếu bạn 
+quen với giải tích,
+
+49
+00:02:52.725 --> 00:03:02.004
+bạn có thể chỉ ra rằng kết quả 
+của cái này là y/a + (1-y)/(1-a).
+
+50
+00:03:02.004 --> 00:03:06.185
+Và bạn làm điều đó bằng cách 
+lấy công thức cho hàm loss và,
+
+51
+00:03:06.185 --> 00:03:07.535
+nếu bạn quen với giải tích,
+
+52
+00:03:07.535 --> 00:03:10.515
+bạn có thể tính 
+đạo hàm đối với biến
+
+53
+00:03:10.515 --> 00:03:12.792
+a, và bạn có được công thức này.
+
+54
+00:03:12.792 --> 00:03:15.280
+Nhưng nếu bạn không quen với 
+giải tích thì cũng đừng lo lắng về nó.
+
+55
+00:03:15.280 --> 00:03:17.960
+Chúng tôi sẽ cung cấp 
+các dạng đạo hàm,
+
+56
+00:03:17.960 --> 00:03:20.100
+mà bạn cần, trong 
+suốt khóa học này.
+
+57
+00:03:20.100 --> 00:03:21.185
+Nếu bạn là một 
+chuyên gia về giải tích,
+
+58
+00:03:21.185 --> 00:03:24.590
+tôi mong bạn sẽ tìm 
+công thức của hàm loss từ
+
+59
+00:03:24.590 --> 00:03:29.504
+video trước và thử lấy đạo hàm
+ với biến a sử dụng giải tích,
+
+60
+00:03:29.504 --> 00:03:32.635
+nhưng nếu bạn không có đủ kiến thức về
+ giải tích để làm điều đó thì cũng đừng lo lắng.
+
+61
+00:03:32.635 --> 00:03:35.491
+Bây giờ, sau khi tính 
+được số lượng da này và
+
+62
+00:03:35.491 --> 00:03:38.825
+đạo hàm hoặc biến alpha 
+cuối cùng của bạn với biến a,
+
+63
+00:03:38.825 --> 00:03:40.715
+sau đó bạn có thể tính ngược lại.
+
+64
+00:03:40.715 --> 00:03:45.525
+Thực tế là bạn có thể hiển thị dz,
+
+65
+00:03:45.525 --> 00:03:47.648
+đây là tên biến,
+
+66
+00:03:47.648 --> 00:03:51.200
+và đây là đạo hàm của hàm loss,
+
+67
+00:03:51.200 --> 00:03:53.618
+dL/dz,
+
+68
+00:03:53.618 --> 00:03:59.850
+bạn có thể viết hàm loss với a và y rõ ràng
+ là tham số hay không, đúng chứ?
+
+69
+00:03:59.850 --> 00:04:04.230
+Cả hai loại ký hiệu đều 
+được chấp nhận như nhau.
+
+70
+00:04:04.230 --> 00:04:09.605
+Chúng ta có thể chỉ ra rằng 
+điều này tương đương với a-y.
+
+71
+00:04:09.605 --> 00:04:14.685
+Đây chỉ là một số diễn giải cho
+ những bạn chuyên về giải tích,
+
+72
+00:04:14.685 --> 00:04:16.795
+nếu bạn không phải chuyên gia 
+về giải tích thì đừng lo lắng quá.
+
+73
+00:04:16.795 --> 00:04:20.320
+Nhưng hóa ra, dL/dz,
+
+74
+00:04:20.320 --> 00:04:27.850
+có thể được biểu thị dưới 
+dạng dL/da nhân da/dz,
+
+75
+00:04:27.850 --> 00:04:29.940
+và hóa ra da/dz,
+
+76
+00:04:29.940 --> 00:04:33.755
+bằng a nhân với (1-a),
+
+77
+00:04:33.755 --> 00:04:37.800
+và với dL/da , chúng ta 
+đã thực hiện trước đây,
+
+78
+00:04:37.800 --> 00:04:41.530
+nếu bạn lấy hai lượng này, dL/da,
+
+79
+00:04:41.530 --> 00:04:43.846
+là cái này, cùng với da/dz,
+
+80
+00:04:43.846 --> 00:04:47.165
+là cái này, và chỉ cần lấy hai lượng 
+này và nhân chúng với nhau.
+
+81
+00:04:47.165 --> 00:04:51.915
+Bạn có thể chỉ ra rằng phương trình
+ được đơn giản hóa thành a-y.
+
+82
+00:04:51.915 --> 00:04:53.220
+Đó là cách bạn lấy 
+được công thức này,
+
+83
+00:04:53.220 --> 00:04:57.390
+và đây chính là quy tắc chuỗi mà
+ nhanh chóng tóm gọn biểu mẫu.
+
+84
+00:04:57.390 --> 00:05:02.770
+Hãy tự mình làm phép tính đó 
+nếu bạn có kiến thức về giải tích,
+
+85
+00:05:02.770 --> 00:05:05.345
+nhưng nếu bạn không có thì tất cả
+ những gì bạn cần biết là bạn có thể tính
+
+86
+00:05:05.345 --> 00:05:09.365
+dz bằng a-y và chúng tôi đã
+ thực hiện phép tính đó cho bạn.
+
+87
+00:05:09.365 --> 00:05:13.010
+Sau đó, bước cuối cùng trong
+ tính toán đó là quay trở lại
+
+88
+00:05:13.010 --> 00:05:17.480
+tính số lượng cần thiết
+ để thay đổi w và b.
+
+89
+00:05:17.480 --> 00:05:24.610
+Cụ thể là, bạn có thể chỉ ra
+ rằng đạo hàm với biến w1 và
+
+90
+00:05:24.610 --> 00:05:31.810
+“dw1”,bằng x1 nhân dz.
+
+91
+00:05:31.810 --> 00:05:36.485
+Sau đó, tương tự như vậy, dw2, là 
+số lượng bạn muốn thay đổi w2,
+
+92
+00:05:36.485 --> 00:05:39.455
+bằng x2 nhân dz nhân b,
+
+93
+00:05:39.455 --> 00:05:42.585
+xin lỗi, nhân dB, bằng dz.
+
+94
+00:05:42.585 --> 00:05:47.375
+Nếu bạn muốn thực hiện 
+gradient descent trong ví dụ này,
+
+95
+00:05:47.375 --> 00:05:49.280
+bạn sẽ làm như sau;
+
+96
+00:05:49.280 --> 00:05:52.640
+bạn sẽ sử dụng công thức
+ này để tính dz,
+
+97
+00:05:52.640 --> 00:05:56.707
+và sau đó sử dụng các 
+công thức này để tính dw1, dw2,
+
+98
+00:05:56.707 --> 00:06:01.170
+và db, và sau đó bạn 
+thực hiện các cập nhật này.
+
+99
+00:06:01.170 --> 00:06:04.538
+w1 được cập nhật thành w1 trừ đi
+
+100
+00:06:04.538 --> 00:06:06.575
+(learning rate tập alpha nhân dw1).
+
+101
+00:06:06.575 --> 00:06:09.245
+w2 được cập nhật giống như vậy,
+
+102
+00:06:09.245 --> 00:06:14.170
+và b được đặt là b trừ đi 
+(learning rate tập alpha nhân với db).
+
+103
+00:06:14.170 --> 00:06:18.860
+Và vì vậy, đây sẽ là một bước của
+ gradient descent trong một ví dụ duy nhất.
+
+104
+00:06:18.860 --> 00:06:22.130
+Bạn thấy được cách 
+tính đạo hàm và thực hiện
+
+105
+00:06:22.130 --> 00:06:27.200
+gradient descent cho regression 
+logistic trong một ví dụ đào tạo duy nhất.
+
+106
+00:06:27.200 --> 00:06:28.987
+Nhưng đào tạo mô hình
+ logistic regression,
+
+107
+00:06:28.987 --> 00:06:34.700
+bạn không chỉ có một ví dụ đào tạo
+ mà bạn có m ví dụ huấn luyện.
+
+108
+00:06:34.700 --> 00:06:36.120
+Ở video tiếp theo,
+
+109
+00:06:36.120 --> 00:06:39.350
+hãy xem cách bạn có thể tiếp thu những
+ ý tưởng này và áp dụng chúng vào việc học,
+
+110
+00:06:39.350 --> 00:06:40.760
+không chỉ từ một ví dụ,
+
+111
+00:06:40.760 --> 00:06:42.400
+mà là từ toàn bộ
+ training set.

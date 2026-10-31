@@ -1,0 +1,57 @@
+Với lượng kiến thức bạn đã
+có được thì bây giờ bạn đã sẵn sàng thực hành
+bài tập lập trình đầu tiên. Trước khi làm điều đó, tôi sẽ cung cấp cho bạn một
+cái nhìn nhanh về iPython notebooks trong Coursera. Đây là Jupiter iPython notebook mà
+bạn có thể truy cập trên Coursera. Tôi sẽ cho bạn thấy
+nhanh một vài tính năng. Các hướng dẫn được viết bằng chữ
+ngay tại đây trong iPython notebook. Và những khối màu xám nhạt
+dài này là những khối mã. Thỉnh thoảng, bạn sẽ thấy những khối này là START CODE HERE (MÃ BẮT ĐẦU
+TẠI ĐÂY) và END CODE HERE (KẾT THÚC MÃ Ở ĐÂY). Để làm bài tập thì
+hãy chắc chắn rằng bạn viết mã ở giữa START
+CODE HERE và END CODE HERE. Ví dụ, print Hello world. Và sau đó để thực thi một khối mã, bạn có thể nhấn shift + enter
+và thực thi khối mã này, tôi nghĩ là chúng ta
+chỉ viết print Hello world. Và nó in Hello World. Để chạy một khối, bạn cũng có thể, để chạy một
+khối trong các khối mã ô này, bạn cũng có thể nhấp vào Cell và
+sau đó chọn Run Cell. Đó là cách thực thi. Có thể là trên máy tính của bạn, phím tắt cho Cell, Run Cell có thể
+không phải là shift + enter. Nhưng trên cả máy Mac cũng như
+trên PC của tôi đều có shift + enter, máy của bạn cũng
+có thể giống như vậy. Bây giờ khi bạn
+đang đọc hướng dẫn, nếu bạn vô tình nhấp
+đúp chuột vào nó, bạn có thể có
+ngôn ngữ đánh dấu này. Nếu bạn nhận được một
+văn bản hài hước này, thì để chuyển nó trở lại văn bản
+dễ nhìn, chỉ cần chạy khối này. Vì vậy, bạn có thể đi tới Cell, Run
+Cell hoặc tôi sẽ nhấn shift + enter và về cơ bản là nó sẽ thực thi ngôn ngữ đánh dấu
+này và biến nó trở lại thành mã dễ nhìn. Tôi còn có thêm
+một số lời khuyên nữa. Khi bạn thực thi
+mã như thế này, nó sẽ chạy trên
+một kernel(nhân), trên một đoạn mã
+chạy trên máy chủ. Nếu bạn đang thực hiện một
+công việc quá lớn hoặc nếu bạn rời máy tính trong một khoảng thời gian
+rất dài hoặc có sự cố xảy ra như là kết nối internet của bạn bị
+gián đoạn hoặc một cái gì đó, thì có thể một kernel ở back end
+(phần lập trình trên server) có thể tắt, và trong trường hợp này, chỉ cần nhấp
+vào Kernel và chọn Restart Kernel. Và hy vọng là điều đó sẽ khởi động
+lại kernel và khiến nó hoạt động trở lại. Và điều đó thì không nên xảy ra
+nếu bạn chỉ đang thực hiện một công việc tương đối nhỏ và bạn chỉ
+mới bắt đầu sử dụng iPython notebook. Nếu bạn thấy một thông báo lỗi rằng
+Kernel đã tắt hoặc một cái gì đó, bạn có thể thử Kernel, Restart. Cuối cùng, trong iPython notebook, như thế này, có thể
+có nhiều khối mã. Thế nên, ngay cả khi một khối mã trước đó
+không có bất kỳ tạo mã nào, thì hãy chắc chắn thực thi
+khối mã này bởi vì, trong ví dụ này, nó
+nhập numpy như np, v.v. và thiết lập một số biến
+mà có thể bạn sẽ cần để thực hiện các khối mã phía dưới. Vì vậy, hãy thực thi những cái trên đầu ngay cả khi
+bạn không được yêu cầu viết bất kỳ mã nào trong đó. Và cuối cùng, khi bạn
+hoàn thành bài của mình, có nút gửi bài màu xanh này ở
+phía trên bên phải và chúng ta nhấp vào đó để
+gửi bài để chấm điểm. Tôi đã thấy rằng
+bản chất lệnh tương tác của iPython notebooks
+rất hữu ích để học nhanh, thực thi một vài dòng mã, nhận kết quả, học hỏi
+và thêm rất nhanh Và vì vậy tôi hy vọng rằng
+từ các bài tập ở Coursera, Jupyter iPython notebooks sẽ
+giúp bạn nhanh chóng học hỏi và thử nghiệm và xem cách
+thực hiện các thuật toán này. Vẫn còn một video
+nữa trong tuần này. Đây là một video không bắt buộc về hàm chi phí cho hồi quy logistic.
+Bạn có thể xem hoặc không Thế nào cũng được. Nhưng dùng thế nào thì tôi cũng chúc bạn
+may mắn với bài tập lập trình trong tuần 2. Và tôi rất mong được gặp lại
+bạn trong bài mở đầu tuần 3.

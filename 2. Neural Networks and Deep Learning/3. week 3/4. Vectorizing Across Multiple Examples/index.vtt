@@ -1,0 +1,288 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.640
+In the last video, you saw how to compute the prediction on the neural network, given
+
+00:00:04.640 --> 00:00:06.680
+a single training example.
+
+00:00:06.680 --> 00:00:11.720
+In this video, you see how to vectorize across multiple training examples.
+
+00:00:11.720 --> 00:00:15.640
+And the outcome would be quite similar to what you saw for logistic regression, whereby
+
+00:00:15.640 --> 00:00:20.440
+stacking up different training examples in different columns of a matrix, you'd be able
+
+00:00:20.440 --> 00:00:25.700
+to take the equations you had from the previous video and with very low modification, change
+
+00:00:25.700 --> 00:00:30.980
+them to make the neural network compute the outputs on all the examples pretty much all
+
+00:00:30.980 --> 00:00:32.380
+at the same time.
+
+00:00:32.380 --> 00:00:35.220
+So let's see the details of how to do that.
+
+00:00:35.220 --> 00:00:40.140
+These were the four equations we had from the previous video of how you compute Z1, A1,
+
+00:00:40.140 --> 00:00:42.260
+Z2, and A2.
+
+00:00:42.260 --> 00:00:51.020
+And they tell you how, given an input feature vector x, you can use them to generate A2
+
+00:00:51.020 --> 00:00:54.940
+equals y hat for a single training example.
+
+00:00:54.940 --> 00:01:00.500
+Now if you have M training examples, you need to repeat this process for, say, the first
+
+00:01:00.500 --> 00:01:08.180
+training example, x superscript ground brackets 1, to compute y hat 1.
+
+00:01:08.180 --> 00:01:11.700
+That's the prediction on your first training example.
+
+00:01:11.700 --> 00:01:20.140
+Then x2, use that to generate a prediction, y hat 2, and so on down to xM to generate
+
+00:01:20.140 --> 00:01:23.100
+a prediction, y hat M.
+
+00:01:23.100 --> 00:01:27.460
+And so in order to write this with the activation function notation as well, I'm going to write
+
+00:01:27.460 --> 00:01:31.340
+this as A2 square brackets, round bracket 1.
+
+00:01:31.340 --> 00:01:40.220
+And this is A2, 2, and A2M.
+
+00:01:40.220 --> 00:01:49.060
+So this notation, A square bracket 2, round bracket i, the round bracket i refers to
+
+00:01:49.060 --> 00:01:58.540
+training example i, and the square bracket 2 refers to layer 2.
+
+00:01:58.540 --> 00:02:04.380
+So that's how the square bracket and the round bracket indices work.
+
+00:02:04.380 --> 00:02:09.020
+And so this suggests that if you have an unvectorized implementation and want to compute the predictions
+
+00:02:09.020 --> 00:02:16.340
+for all your training examples, you need to do for i equals 1 to M, then basically
+
+00:02:16.340 --> 00:02:18.300
+implement these four equations.
+
+00:02:18.300 --> 00:02:42.460
+So you need to, I guess, Z1i equals W1 xi plus B1 a1i equals sigmoid of Z1i, Z2i equals
+
+00:02:42.460 --> 00:02:57.140
+W2 a1i plus B2, and a2i equals sigmoid of Z2i.
+
+00:02:57.140 --> 00:03:03.060
+So it's basically these four equations on top and adding the superscript round bracket
+
+00:03:03.060 --> 00:03:08.980
+i to all the variables that depend on the training example.
+
+00:03:08.980 --> 00:03:15.940
+So adding the superscript round bracket i to xz and a if you want to compute all the outputs
+
+00:03:15.940 --> 00:03:18.620
+on your M training examples.
+
+00:03:18.620 --> 00:03:23.300
+What we like to do is vectorize this whole computation so as to get rid of this for
+
+00:03:23.300 --> 00:03:24.300
+loop.
+
+00:03:24.300 --> 00:03:29.100
+And by the way, in case it seems like I'm getting a lot of nitty gritty linear algebra,
+
+00:03:29.100 --> 00:03:33.460
+it turns out that being able to implement this correctly is important in the deep learning
+
+00:03:33.460 --> 00:03:34.740
+error.
+
+00:03:34.740 --> 00:03:39.140
+And we actually chose the notation very carefully for this class to make these vectorization
+
+00:03:39.140 --> 00:03:41.500
+steps as easy as possible.
+
+00:03:41.500 --> 00:03:47.460
+So I hope that going through this nitty gritty will actually help you to more quickly get
+
+00:03:47.460 --> 00:03:50.300
+correct implementations of these algorithms working.
+
+00:03:50.300 --> 00:03:56.380
+All right, so let me just copy this whole block of code to the next slide, and then
+
+00:03:56.380 --> 00:03:59.180
+we'll see how to vectorize this.
+
+00:03:59.180 --> 00:04:03.340
+So here's what we had from the previous slide with a for loop going over all M training
+
+00:04:03.340 --> 00:04:04.980
+examples.
+
+00:04:04.980 --> 00:04:13.660
+So recall that we defined the matrix x to be equal to our training examples stacked up
+
+00:04:13.660 --> 00:04:17.380
+in these columns like so.
+
+00:04:17.380 --> 00:04:20.260
+So take the training examples, stack them in columns.
+
+00:04:20.260 --> 00:04:29.020
+So this becomes a n or maybe nx by M dimensional matrix.
+
+00:04:29.020 --> 00:04:32.820
+I'm just going to give away the punchline and tell you what you need to implement in order
+
+00:04:32.820 --> 00:04:36.660
+to have a vectorized implementation of this for loop.
+
+00:04:36.660 --> 00:04:48.060
+Turns out what you need to do is compute capital Z1 equals W1 x plus B1.
+
+00:04:48.060 --> 00:04:52.940
+Capital A1 equals sigmoid of Z1.
+
+00:04:52.940 --> 00:05:02.900
+Then capital Z2 equals W2 times A1 plus B2.
+
+00:05:02.900 --> 00:05:10.130
+And then A2 equals sigmoid of Z2.
+
+00:05:10.130 --> 00:05:17.890
+So if you want the analogy is that we went from lowercase vector axis to this capital
+
+00:05:17.890 --> 00:05:23.490
+K's x matrix by stacking up the lowercase axis in different columns.
+
+00:05:23.490 --> 00:05:33.650
+If you do the same thing for the Z, so for example, if you take Z1, 1, Z1, 2, and so
+
+00:05:33.650 --> 00:05:43.290
+on, these are all column vectors up to Z1 M. So that's this first quantity, but all
+
+00:05:43.290 --> 00:05:50.270
+M of them and stack them in columns, then this gives you the matrix Z1.
+
+00:05:50.270 --> 00:06:02.970
+And similarly, if you look at say this quantity, you can take A1 1, A1 2, and so on and A1 M
+
+00:06:02.970 --> 00:06:07.090
+and stack them up in columns.
+
+00:06:07.090 --> 00:06:12.610
+Then this just as we went from lowercase x to capital K's x and low K's Z to capital
+
+00:06:12.610 --> 00:06:21.450
+K's Z, this goes from the lowercase a which are vectors to this capital A1 that's over
+
+00:06:21.450 --> 00:06:22.450
+there.
+
+00:06:22.450 --> 00:06:27.810
+And similarly for Z2 and A2.
+
+00:06:27.810 --> 00:06:33.010
+They're also obtained by taking these vectors and stacking them horizontally and taking these
+
+00:06:33.010 --> 00:06:41.410
+vectors and stacking them horizontally in order to get capital Z2 and capital A2.
+
+00:06:41.410 --> 00:06:45.730
+One of the properties of this notation that might help you to think about it is that these
+
+00:06:45.730 --> 00:06:51.890
+matrices say Z and A, horizontally we're going to index across training samples.
+
+00:06:51.890 --> 00:06:56.610
+So that's why the horizontal index corresponds to different training samples.
+
+00:06:56.610 --> 00:07:00.330
+And you sweep from left to right, you're scanning through the training set.
+
+00:07:00.330 --> 00:07:06.170
+And vertically, this vertical index corresponds to different nodes in the neural network.
+
+00:07:06.930 --> 00:07:15.630
+For example, this node, this value at the top leftmost corner of the matrix corresponds to
+
+00:07:15.630 --> 00:07:21.910
+the activation of the first hidden unit on the first training sample.
+
+00:07:21.910 --> 00:07:26.750
+One value down corresponds to the activation in the second hidden unit on the first training
+
+00:07:26.750 --> 00:07:31.510
+sample, then the third hidden unit on the first training sample, and so on.
+
+00:07:31.510 --> 00:07:39.720
+So as you scan down, this is your indexing into the hidden unit number.
+
+00:07:39.720 --> 00:07:43.400
+Whereas if you move horizontally, then you're going from the first hidden unit in the first
+
+00:07:43.400 --> 00:07:47.640
+training sample to now the first hidden unit in the second training sample, the third
+
+00:07:47.640 --> 00:07:54.400
+training sample, and so on until this node here corresponds to the activation of the first
+
+00:07:54.400 --> 00:08:01.000
+hidden unit in the final training sample and the M training sample.
+
+00:08:01.000 --> 00:08:11.440
+So the horizontally, the matrix A goes over different training samples, and vertically,
+
+00:08:11.440 --> 00:08:22.640
+the different indices in the matrix A corresponds to different hidden units.
+
+00:08:22.640 --> 00:08:29.280
+And a similar intuition holds true for the matrix Z as well, as well as for X, where
+
+00:08:29.280 --> 00:08:34.360
+horizontally it corresponds to different training samples, and vertically it corresponds to
+
+00:08:34.360 --> 00:08:40.440
+different input features, which are really different nodes of the input layer of the
+
+00:08:40.440 --> 00:08:42.800
+neural network.
+
+00:08:42.800 --> 00:08:47.880
+So with these equations, you now know how to implement a neural network with vectorization
+
+00:08:47.880 --> 00:08:51.320
+that is vectorization across multiple examples.
+
+00:08:51.320 --> 00:08:55.960
+In the next video, I want to show you a bit more justification about why this is a correct
+
+00:08:55.960 --> 00:08:59.080
+implementation of this type of vectorization.
+
+00:08:59.080 --> 00:09:04.120
+It turns out the justification will be similar to whether you have seen for logistic regression.
+
+00:09:04.120 --> 00:09:05.240
+Let's go on to the next video.

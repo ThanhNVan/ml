@@ -1,0 +1,453 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.270 --> 00:00:04.070
+Welcome to this course on the practical aspects of deep learning.
+
+00:00:04.070 --> 00:00:07.670
+Perhaps now you've learned how to implement a neural network.
+
+00:00:07.670 --> 00:00:12.670
+In this week, you'll learn the practical aspects of how to make your neural network work well,
+
+00:00:12.670 --> 00:00:17.910
+ranging from things like hyperparameter tuning to how to set up your data to how to make
+
+00:00:17.910 --> 00:00:22.110
+sure your optimization algorithm runs quickly so that you get your learning algorithm to
+
+00:00:22.110 --> 00:00:24.190
+learn in a reasonable amount of time.
+
+00:00:24.190 --> 00:00:27.350
+In this first week, we'll first talk about how to set up your machine learning problem,
+
+00:00:27.350 --> 00:00:31.390
+then we'll talk about regularization, and we'll talk about some tricks for making sure
+
+00:00:31.390 --> 00:00:34.430
+your neural network implementation is correct.
+
+00:00:34.430 --> 00:00:36.310
+With that, let's get started.
+
+00:00:36.310 --> 00:00:40.750
+Making good choices in how you set up your training, development, and test sets can make
+
+00:00:40.750 --> 00:00:46.110
+a huge difference in helping you quickly find a good high-performance neural network.
+
+00:00:46.110 --> 00:00:50.030
+When training a neural network, you have to make a lot of decisions, such as how many
+
+00:00:50.030 --> 00:00:54.390
+layers will your neural network have, and how many hidden units do you want each layer
+
+00:00:54.390 --> 00:00:57.190
+to have, and what's the learning rate, and what's the learning rate.
+
+00:00:57.190 --> 00:01:01.150
+And what are the activation functions you want to use for the different layers.
+
+00:01:01.150 --> 00:01:06.150
+When you're starting on a new application, it's almost impossible to correctly guess
+
+00:01:06.150 --> 00:01:11.190
+the right values for all of these, and for other hyperparameter choices on your first
+
+00:01:11.190 --> 00:01:12.190
+attempt.
+
+00:01:12.190 --> 00:01:16.710
+So in practice, applying machine learning is a highly iterative process, in which you
+
+00:01:16.710 --> 00:01:21.230
+often start with an idea, such as you want to build a neural network of a certain number
+
+00:01:21.230 --> 00:01:25.670
+of layers, a certain number of hidden units, maybe on certain data sets and so on.
+
+00:01:25.670 --> 00:01:28.190
+And then you just have to code up and try it.
+
+00:01:28.190 --> 00:01:33.710
+By running your code, you run an experiment, and you get back the result that tells you
+
+00:01:33.710 --> 00:01:37.590
+how well this particular network or this particular configuration works.
+
+00:01:37.590 --> 00:01:43.830
+And based on the outcome, you might then refine your ideas and change your choices,
+
+00:01:43.830 --> 00:01:50.190
+and maybe keep iterating in order to try to find a better and a better neural network.
+
+00:01:50.190 --> 00:01:55.310
+Today, deep learning has found great success in a lot of areas, ranging from natural
+
+00:01:55.310 --> 00:02:01.430
+language processing to computer vision to speech recognition to a lot of applications
+
+00:02:01.430 --> 00:02:04.750
+on also structured data.
+
+00:02:04.750 --> 00:02:12.670
+And structured data includes everything from advertisement to web search, which isn't
+
+00:02:12.670 --> 00:02:14.190
+just internet search engines.
+
+00:02:14.190 --> 00:02:19.590
+It's also, for example, shopping websites, or really any websites that wants to deliver
+
+00:02:19.590 --> 00:02:26.630
+great search results when you enter terms into a search bar, to computer security, to
+
+00:02:26.630 --> 00:02:33.910
+logistics, such as figuring out where to send drivers to pick up and drop off things to many
+
+00:02:33.910 --> 00:02:34.910
+more.
+
+00:02:34.910 --> 00:02:40.590
+So what I've seen is that sometimes a researcher with a lot of experience in NLP might enter,
+
+00:02:40.590 --> 00:02:44.710
+you know, might try to do something in computer vision, or maybe a researcher with a lot of
+
+00:02:44.710 --> 00:02:50.110
+experience in speech recognition might, you know, jump in and try to do something on advertising
+
+00:02:50.110 --> 00:02:54.670
+or someone from security might want to jump and do something on logistics.
+
+00:02:54.670 --> 00:02:59.390
+And what I've seen is that intuitions from one domain or from one application area often
+
+00:02:59.390 --> 00:03:02.910
+do not transfer to other application areas.
+
+00:03:02.910 --> 00:03:07.950
+And the best choices may depend on the amount of data you have, the number of input features
+
+00:03:07.950 --> 00:03:13.550
+you have, your computer configuration, and whether you're training on GPUs or CPUs,
+
+00:03:13.550 --> 00:03:18.310
+and if so exactly what configuration of GPUs and CPUs, and many other things.
+
+00:03:18.310 --> 00:03:23.010
+So for a lot of applications, I think it's almost impossible, even very experienced deep
+
+00:03:23.010 --> 00:03:29.030
+learning people find it almost impossible to correctly guess the best choice of hyperparameters
+
+00:03:29.030 --> 00:03:30.310
+the very first time.
+
+00:03:30.310 --> 00:03:35.910
+And so today, applied deep learning is a very iterative process where you just have to
+
+00:03:35.910 --> 00:03:43.430
+go around this cycle many times to hopefully find a good choice of network for your application.
+
+00:03:43.630 --> 00:03:49.190
+So one of the things that determine how quickly you can make progress is how efficiently you
+
+00:03:49.190 --> 00:03:55.590
+can go around the cycle and setting up your data sets well in terms of your train development
+
+00:03:55.590 --> 00:03:59.030
+and test sets can make you much more efficient at that.
+
+00:03:59.030 --> 00:04:07.590
+So if this is your training data, let's draw that as a big box, then traditionally you
+
+00:04:07.630 --> 00:04:14.590
+might take all the data you have and carve off some portion of it to be your training
+
+00:04:14.590 --> 00:04:23.430
+set, some portion of it to be your holdout cross validation set.
+
+00:04:23.430 --> 00:04:30.390
+And this is sometimes also called the development set.
+
+00:04:30.390 --> 00:04:35.150
+And for brevity, I'm just going to call this the dev set, but all of these terms mean
+
+00:04:35.150 --> 00:04:37.030
+roughly the same thing.
+
+00:04:37.030 --> 00:04:41.990
+And then you might carve out some final portion of it to be your test set.
+
+00:04:41.990 --> 00:04:47.070
+And so the workflow is that you keep on training algorithms on your training set and use your
+
+00:04:47.070 --> 00:04:52.790
+dev set or your holdout cross validation set to see which of many different models performs
+
+00:04:52.790 --> 00:04:54.830
+best on your dev set.
+
+00:04:54.830 --> 00:04:59.030
+And then after having done this long enough, when you have a final model that you want
+
+00:04:59.030 --> 00:05:02.750
+to evaluate, you can take the best model you have found and evaluate it on your test
+
+00:05:02.750 --> 00:05:08.230
+set in order to get an unbiased estimate of how well your algorithm is doing.
+
+00:05:08.230 --> 00:05:14.390
+So in the previous era of machine learning, it was common practice to take all your data
+
+00:05:14.390 --> 00:05:21.750
+and split it according to maybe a 70, 30% in terms of people often talk about the 70,
+
+00:05:21.750 --> 00:05:23.270
+30 train test splits.
+
+00:05:23.270 --> 00:05:30.070
+If you don't have an explicit dev set or maybe a 60, 20, 20% split in terms of 60%
+
+00:05:30.070 --> 00:05:33.750
+train, 20% dev and 20% test.
+
+00:05:33.750 --> 00:05:38.910
+And several years ago, this was widely considered best practice in machine learning.
+
+00:05:38.910 --> 00:05:43.830
+If you have, you know, maybe a hundred examples in total, maybe a thousand examples in total,
+
+00:05:43.830 --> 00:05:49.830
+maybe up to 10,000 examples, these sorts of ratios were perfectly reasonable rules
+
+00:05:49.830 --> 00:05:50.830
+of thumb.
+
+00:05:50.830 --> 00:05:59.030
+But in the modern big data era, where, for example, you might have a million examples
+
+00:05:59.030 --> 00:06:07.190
+in total, then the trend is that your dev and test sets have been becoming a much smaller
+
+00:06:07.190 --> 00:06:09.550
+percentage of the total.
+
+00:06:09.550 --> 00:06:13.510
+Because remember, the goal of the dev set, the development set, is that you're going
+
+00:06:13.510 --> 00:06:17.390
+to test different algorithms on it and see which algorithm works better.
+
+00:06:17.390 --> 00:06:22.670
+So the dev set just needs to be big enough for you to evaluate, say, two different algorithm
+
+00:06:22.670 --> 00:06:26.590
+choices or 10 different algorithm choices and quickly decide which one is doing better.
+
+00:06:26.590 --> 00:06:30.510
+And you might not need a whole 20% of your data for that.
+
+00:06:30.510 --> 00:06:34.590
+So for example, if you have a million training examples, you might decide that just having
+
+00:06:34.590 --> 00:06:41.110
+10,000 examples in your dev set is more than enough to evaluate, you know, which one of
+
+00:06:41.110 --> 00:06:43.270
+two algorithms does better.
+
+00:06:43.270 --> 00:06:47.870
+And in a similar vein, the main goal of your test set is given your final classifier
+
+00:06:47.870 --> 00:06:51.870
+to give you a pretty confident estimate of how well it's doing.
+
+00:06:51.870 --> 00:06:56.830
+And again, if you have a million examples, maybe you might decide that 10,000 examples
+
+00:06:56.830 --> 00:07:01.950
+is more than enough in order to evaluate a single classifier and give you a good estimate
+
+00:07:01.950 --> 00:07:03.670
+of how well it's doing.
+
+00:07:03.670 --> 00:07:09.310
+So in this example, where you have a million examples, if you need just 10,000 for your
+
+00:07:09.310 --> 00:07:16.150
+dev and 10,000 for your test, your ratio would be more like this 10,000 is 1% of
+
+00:07:16.270 --> 00:07:23.270
+1 million. So you have 98% train, 1% dev, 1% test.
+
+00:07:23.310 --> 00:07:27.430
+And I've also seen applications where if you have even more than a million examples, you
+
+00:07:27.430 --> 00:07:34.430
+might end up with, you know, 99.5% train and 0.25% dev, 0.25% test or maybe a 0.4% dev,
+
+00:07:38.750 --> 00:07:42.070
+0.1% test.
+
+00:07:42.110 --> 00:07:47.790
+So just to recap, when setting up your machine learning problem, I'll often set it up into
+
+00:07:47.790 --> 00:07:53.870
+a train, dev and test sets. And if you have a relatively small data set, these traditional
+
+00:07:53.870 --> 00:07:59.150
+ratios might be okay. But if you have a much larger data set, it's also fine to set your
+
+00:07:59.150 --> 00:08:05.710
+dev and test sets to be much smaller than, you know, 20% or even 1% or 10% of your data.
+
+00:08:05.710 --> 00:08:10.270
+We'll give more specific guidelines on the sizes of dev and test sets later in this
+
+00:08:10.270 --> 00:08:15.750
+conversation. One other trend we're seeing in the era of modern deep learning is that
+
+00:08:15.750 --> 00:08:20.510
+more and more people train on mismatched train and test distributions. Let's say you're
+
+00:08:20.510 --> 00:08:26.590
+building an app that lets users upload a lot of pictures. And your goal is to find pictures
+
+00:08:26.590 --> 00:08:32.030
+of cats in order to show your users, maybe all your users and cat lovers. Maybe your
+
+00:08:32.030 --> 00:08:38.150
+training set comes from cat pictures downloaded off the internet of, but your dev and test
+
+00:08:38.150 --> 00:08:43.390
+sets might comprise cat pictures from users using our app. So maybe your training set
+
+00:08:43.390 --> 00:08:48.230
+has a lot of pictures crawled off the internet. But the dev and test sets are pictures uploaded
+
+00:08:48.230 --> 00:08:53.510
+by users. Turns out a lot of web pages have very high resolution, very professional, very
+
+00:08:53.510 --> 00:08:58.150
+nicely framed pictures of cats. But maybe your users are uploading, you know, blurrier
+
+00:08:58.150 --> 00:09:03.590
+lower res images just taken with a cellphone camera in a more casual condition. And so
+
+00:09:03.590 --> 00:09:10.110
+these two distributions of data may be different. The rule of thumb I'd encourage you to follow
+
+00:09:10.110 --> 00:09:23.260
+in this case is to make sure that the dev and test sets come from the same distribution.
+
+00:09:23.260 --> 00:09:28.140
+We'll say more about this particular guideline as well. But because you will be using the
+
+00:09:28.140 --> 00:09:31.660
+dev sets, you've added a lot of different models and trying really hard to improve
+
+00:09:31.660 --> 00:09:36.340
+performance on the dev set. It's nice if your dev set comes from the same distribution
+
+00:09:36.340 --> 00:09:42.220
+as your test set. But because deep learning algorithms have such a huge hunger for training
+
+00:09:42.220 --> 00:09:47.900
+data, one trend I'm seeing is that you might use all sorts of creative tactics such as
+
+00:09:47.900 --> 00:09:52.740
+crawling web pages in order to acquire a much bigger training set than you would otherwise
+
+00:09:52.740 --> 00:09:57.820
+have. Even if part of the cost of that is then that your training set data might
+
+00:09:57.820 --> 00:10:01.700
+not come from the same distribution as your dev and test sets. But you find that so
+
+00:10:01.700 --> 00:10:06.660
+long as you follow this rule of thumb that progress in your machine learning
+
+00:10:06.660 --> 00:10:11.260
+algorithm will be faster. And I'll give a more detailed explanation for this particular rule
+
+00:10:11.260 --> 00:10:17.380
+of thumb later in this specialization as well. Finally, it might be okay to not have
+
+00:10:17.380 --> 00:10:22.900
+a test set. Remember the goal of the test set is to give you an unbiased estimate of
+
+00:10:22.900 --> 00:10:27.220
+the performance of your final network of the network that you selected. But if you
+
+00:10:27.220 --> 00:10:32.100
+don't need that unbiased estimate, then it might be okay to not have a test set. So
+
+00:10:32.100 --> 00:10:36.100
+what you do if you have only a dev set but not a test set is you train on the
+
+00:10:36.100 --> 00:10:41.100
+training set and then you try different model architectures, evaluate them on the
+
+00:10:41.100 --> 00:10:46.300
+dev set and then use that to iterate and try to get to a good model. Because
+
+00:10:46.300 --> 00:10:49.820
+you fit your data to the dev set, this no longer gives you an unbiased estimate
+
+00:10:49.820 --> 00:10:53.740
+of performance but if you don't need one that might be perfectly fine. In the
+
+00:10:53.740 --> 00:10:56.860
+machine learning world when you have just a train and a dev set but no
+
+00:10:56.860 --> 00:11:02.260
+separate test set, most people will call this the training set and they will call
+
+00:11:02.260 --> 00:11:06.700
+the dev set the test set. But what they actually end up doing is using the test
+
+00:11:06.700 --> 00:11:12.260
+set as a holdout cross validation set, which maybe isn't completely a great
+
+00:11:12.260 --> 00:11:17.580
+use of terminology because they're then overfitting to the test set. So when a
+
+00:11:17.580 --> 00:11:21.700
+team tells you that they have only a train and a test set, you know, I would
+
+00:11:21.700 --> 00:11:26.300
+just be cautious and think, do they really have a train dev set because
+
+00:11:26.300 --> 00:11:30.620
+they're overfitting to the test set. Culturally it might be difficult to
+
+00:11:30.620 --> 00:11:36.060
+change some of these teams terminology and get them to call it a train dev set
+
+00:11:36.060 --> 00:11:40.100
+rather than a train test set. Even though I think calling it a train and
+
+00:11:40.100 --> 00:11:44.260
+development set would be more correct terminology and this is actually okay
+
+00:11:44.260 --> 00:11:46.980
+practice if you don't need a completely unbiased estimate of the
+
+00:11:46.980 --> 00:11:51.860
+performance of your algorithm. So having set up a train dev and test set will
+
+00:11:51.860 --> 00:11:55.860
+allow you to iterate more quickly. It will also allow you to more efficiently
+
+00:11:55.860 --> 00:11:59.460
+measure the bias and variance of your algorithm so they can more efficiently
+
+00:11:59.460 --> 00:12:03.700
+select ways to improve your algorithm. Let's start to talk about that in the
+
+00:12:03.700 --> 00:12:06.180
+next video.

@@ -1,0 +1,315 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.080 --> 00:00:03.280
+So, why do ResNets work so well?
+
+00:00:03.280 --> 00:00:08.500
+Let's go through one example that illustrates why ResNets work so well, at least in the
+
+00:00:08.500 --> 00:00:13.900
+sense of how you can make them deeper and deeper without really hurting your ability
+
+00:00:13.900 --> 00:00:17.760
+to at least get them to do well on the training set.
+
+00:00:17.760 --> 00:00:22.540
+And hopefully, as you've understood from the third course in this sequence, doing
+
+00:00:22.540 --> 00:00:28.100
+well on the training set is usually a prerequisite to doing well on your holdout or on your
+
+00:00:28.860 --> 00:00:35.000
+test sets, so being able to at least train a ResNet to do well on a training set is a
+
+00:00:35.000 --> 00:00:39.300
+good first step toward that. Let's look at an example.
+
+00:00:39.300 --> 00:00:44.800
+What we saw in the last video was that if you make a network deeper, it can hurt your
+
+00:00:44.800 --> 00:00:50.020
+ability to train the network to do well on the training set. And that's why
+
+00:00:50.020 --> 00:00:54.900
+sometimes you don't want a network that is too deep. But this is not true, or at
+
+00:00:54.940 --> 00:00:59.740
+least it's much less true when you're training a ResNet. So let's go through an
+
+00:00:59.740 --> 00:01:07.020
+example. Let's say you have X feeding in to some big neural network and this
+
+00:01:07.020 --> 00:01:14.300
+outputs some activation AL. Let's say for this example that you're going to modify
+
+00:01:14.300 --> 00:01:21.140
+the neural network to make it a little bit deeper. So you're the same, big Nn, and
+
+00:01:21.540 --> 00:01:28.220
+this outputs AL. And we're going to add a couple extra layers to this network. So
+
+00:01:28.220 --> 00:01:35.220
+let's add one layer there and another layer there. And this will output AL
+
+00:01:37.300 --> 00:01:44.060
+plus two. Only let's make this a ResNet block, a residual block with that extra
+
+00:01:44.060 --> 00:01:48.900
+shortcut. And for the sake of argument, let's say throughout this network
+
+00:01:48.900 --> 00:01:55.540
+we're using the ReLU activation function. So all the activations are going
+
+00:01:55.540 --> 00:02:00.460
+to be, you know, greater than or equal to zero with the positive exception of
+
+00:02:00.500 --> 00:02:05.580
+the input X. Right, because the ReLU activation outputs numbers that are
+
+00:02:05.620 --> 00:02:10.740
+either zero or positive. Now let's look at what AL plus two will be. To
+
+00:02:10.740 --> 00:02:17.740
+copy the expression from the previous video, AL plus two will be ReLU
+
+00:02:17.820 --> 00:02:24.820
+applied to ZL plus two and then plus AL, where this addition of AL comes from
+
+00:02:27.100 --> 00:02:32.380
+the short circuit, from the skip connection that we just added. And if we
+
+00:02:32.380 --> 00:02:39.380
+expand this out, this is equal to G of WL plus two times A of L plus one
+
+00:02:40.380 --> 00:02:47.380
+plus B L plus two, so that's ZL plus two is equal to that, plus AL. Now notice
+
+00:02:49.300 --> 00:02:53.940
+something, if you're using L2 regularization or weight to K, that will
+
+00:02:53.940 --> 00:02:59.940
+tend to shrink the value of WL plus two. If you're applying weight to K to
+
+00:03:00.260 --> 00:03:03.820
+B, that will also shrink this, although I guess in practice sometimes you
+
+00:03:03.820 --> 00:03:07.940
+do and sometimes you don't apply weight to K to B. But W is really the
+
+00:03:08.020 --> 00:03:15.020
+key term to pay attention to here. And if WL plus two is equal to zero, and
+
+00:03:16.340 --> 00:03:21.620
+let's say for the sake of argument that B is also equal to zero, then
+
+00:03:22.380 --> 00:03:28.380
+these terms go away because they're equal to zero, and then G of AL,
+
+00:03:29.140 --> 00:03:35.340
+this is just equal to AL, right, because we assumed we're using the
+
+00:03:35.340 --> 00:03:38.860
+ReLU activation function, and so all the activations are non-negative,
+
+00:03:38.860 --> 00:03:44.180
+and so G of AL is the ReLU applied to a non-negative quantity, so you
+
+00:03:44.180 --> 00:03:51.180
+just get back AL. So what this shows is that the identity function is
+
+00:03:51.900 --> 00:03:58.900
+easy for residual block to learn, and it's easy to get AL plus two equal
+
+00:03:59.020 --> 00:04:06.020
+to AL because of this skip connection. And what that means is that adding
+
+00:04:06.260 --> 00:04:09.660
+these two layers to the neural network, it doesn't really hurt your neural
+
+00:04:09.660 --> 00:04:15.380
+network's ability to do as well as this simpler network without these two
+
+00:04:15.380 --> 00:04:19.420
+extra layers, because it's quite easy for it to learn the identity
+
+00:04:19.420 --> 00:04:24.620
+function, to just copy AL to AL plus two using despite the addition of
+
+00:04:24.620 --> 00:04:30.780
+these two layers. And this is why adding two extra layers, adding this
+
+00:04:30.780 --> 00:04:36.620
+residual block to the, somewhere in the middle or to the end of this big
+
+00:04:36.620 --> 00:04:41.980
+neural network, it doesn't hurt performance. But of course, our goal is
+
+00:04:41.980 --> 00:04:45.860
+to not just not hurt performance, it's to help performance, and so you
+
+00:04:45.860 --> 00:04:50.460
+can imagine that if all of these hidden units, if they actually learn
+
+00:04:50.460 --> 00:04:54.340
+something useful, then maybe you can do even better than learning the
+
+00:04:54.340 --> 00:04:59.820
+identity function. And what goes wrong in very deep play nets, in very
+
+00:04:59.820 --> 00:05:04.380
+deep networks without these residual, these skip connections is that when
+
+00:05:04.380 --> 00:05:07.900
+you make the network deeper and deeper, it's actually very difficult
+
+00:05:07.900 --> 00:05:13.020
+for it to choose parameters that learn even the identity function, which
+
+00:05:13.020 --> 00:05:17.140
+is why a lot of layers end up making your result worse, rather than
+
+00:05:17.140 --> 00:05:21.420
+making your result better. And I think the main reason the residual
+
+00:05:21.420 --> 00:05:25.260
+network works is that it's so easy for these extra layers to learn the
+
+00:05:25.260 --> 00:05:29.260
+residual to learn the identity function, that you're kind of guaranteed
+
+00:05:29.260 --> 00:05:32.820
+that it doesn't hurt performance. And then you know, a lot of time you
+
+00:05:32.820 --> 00:05:36.700
+maybe get lucky and it even helps performance, or at least it's easier
+
+00:05:36.700 --> 00:05:41.060
+to go from a decent baseline of not hurting performance, and then
+
+00:05:41.060 --> 00:05:45.020
+gradient descent can only improve the solution from there. So one more
+
+00:05:45.020 --> 00:05:48.740
+detail on the residual network that's worth discussing, which is
+
+00:05:48.740 --> 00:05:53.540
+through this addition here, we're assuming that ZL plus two and AL have
+
+00:05:53.540 --> 00:05:59.540
+the same dimension. And so what you see in res nets is a lot of use of
+
+00:05:59.540 --> 00:06:04.740
+same convolutions so that the dimension of this is equal to the
+
+00:06:04.740 --> 00:06:08.820
+dimension, I guess, of this layer or of the output layer. So you can
+
+00:06:08.820 --> 00:06:13.700
+actually do this short circuit connection, because the same
+
+00:06:13.700 --> 00:06:17.620
+convolution preserves dimensions. And so it makes it easier for you to,
+
+00:06:17.620 --> 00:06:21.540
+you know, carry out to have this short circuit and then carry out this
+
+00:06:21.540 --> 00:06:28.500
+addition of two equal dimension vectors. In case the input and output
+
+00:06:28.500 --> 00:06:33.380
+have different dimensions. So for example, if this is 128 dimensional
+
+00:06:33.380 --> 00:06:41.300
+and Z, or therefore AL is 256 dimensional, as an example, what you
+
+00:06:41.300 --> 00:06:47.620
+would do is add an extra matrix, we call that WS over here. And WS in
+
+00:06:47.620 --> 00:06:56.900
+this example would be a 256 by 128 dimensional matrix. So then WS times AL
+
+00:06:56.900 --> 00:07:02.820
+becomes 256 dimensional. And this addition is now between two 256
+
+00:07:02.820 --> 00:07:06.260
+dimensional vectors. And a few things you could do with WS, it could be a
+
+00:07:06.260 --> 00:07:09.940
+matrix of parameters to be learned. It could be a fixed matrix that just
+
+00:07:10.020 --> 00:07:16.580
+implements zero padding. So it takes AL and then zero pads it to be 256
+
+00:07:16.580 --> 00:07:20.740
+dimensional. And either of those versions, I guess, could work. So finally,
+
+00:07:20.740 --> 00:07:24.980
+let's take a look at ResNet on images. So these are images I got from
+
+00:07:24.980 --> 00:07:33.140
+the paper by Herr et al. This is an example of a plain network. And in
+
+00:07:33.140 --> 00:07:38.500
+which you input an image and then have a number of conv layers
+
+00:07:39.380 --> 00:07:45.540
+until eventually, you have a softmax output at the end. To turn this into a
+
+00:07:45.540 --> 00:07:52.180
+ResNet, you add those extra skip connections. And I just mentioned a
+
+00:07:52.180 --> 00:07:56.420
+few details. There are a lot of three by three convolutions here. And all
+
+00:07:56.420 --> 00:08:02.260
+these most of these are three by three, same convolutions. And that's
+
+00:08:02.260 --> 00:08:07.140
+why you're adding your equal dimension feature vectors. So rather than a
+
+00:08:07.220 --> 00:08:10.340
+fully connected layer, these are actually convolutional layers, but because
+
+00:08:10.340 --> 00:08:15.700
+they're same convolutions, the dimension is preserved. And so the ZL
+
+00:08:15.700 --> 00:08:23.460
+plus two plus AL edition makes sense. And similar to what you've seen in
+
+00:08:23.460 --> 00:08:28.260
+a lot of networks before, you have a bunch of convolutional layers. And
+
+00:08:28.260 --> 00:08:32.900
+then there are occasionally pulling layers as well, or pulling or
+
+00:08:32.900 --> 00:08:36.340
+pulling like layers. And whenever one of those things happen, then you
+
+00:08:36.340 --> 00:08:41.060
+need to make an adjustment to the dimension, which we saw on the
+
+00:08:41.060 --> 00:08:46.020
+previous slide, you can do with the matrix WS. And then as is common in
+
+00:08:46.020 --> 00:08:49.220
+these networks, you have conv, conv, conv, pull, conv, conv, conv, pull,
+
+00:08:49.220 --> 00:08:52.420
+conv, conv, conv, pull. And then at the end, you know, have a fully
+
+00:08:52.420 --> 00:08:56.180
+connected layer that then makes a prediction using a softmax.
+
+00:08:56.900 --> 00:09:02.580
+So that's it for ResNets. Next, there's a very interesting idea behind
+
+00:09:02.580 --> 00:09:06.420
+using neural networks with one by one filters, one by one
+
+00:09:06.420 --> 00:09:10.660
+convolutions. So what good is a one by one convolution? Let's take a
+
+00:09:10.660 --> 00:09:11.860
+look at the next video.

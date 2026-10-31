@@ -1,0 +1,621 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.810
+Trong video trước, bạn đã thấy
+ cách tính đạo hàm và thực hiện
+
+2
+00:00:03.810 --> 00:00:08.325
+gradient descent chỉ trong một
+ ví dụ đào tạo cho logistic regression.
+
+3
+00:00:08.325 --> 00:00:11.370
+Bây giờ, chúng ta muốn làm
+ điều đó cho m ví dụ huấn luyện.
+
+4
+00:00:11.370 --> 00:00:15.420
+Để bắt đầu bài học, bạn hãy tự
+ nhớ lại định nghĩa của cost function
+
+5
+00:00:15.420 --> 00:00:19.815
+J. Cost function của w, b, bạn sẽ
+ quan tâm tới mức trung bình này,
+
+6
+00:00:19.815 --> 00:00:23.505
+một trên m tổng từ i 
+bằng một đến m của
+
+7
+00:00:23.505 --> 00:00:28.545
+hàm loss khi thuật toán
+ xuất ra a(i) trong ví dụ y,
+
+8
+00:00:28.545 --> 00:00:36.450
+trong đó a(i) là dự đoán về ví dụ
+ đào tạo thứ i, là sigma của z(i),
+
+9
+00:00:36.450 --> 00:00:45.270
+bằng với sigma của w 
+chuyển vị x(i) cộng với b.
+
+10
+00:00:45.270 --> 00:00:49.835
+Vì vậy, trong slide trước chúng ta đã
+ học về đối với bất kỳ ví dụ đào tạo nào,
+
+11
+00:00:49.835 --> 00:00:57.005
+làm thế nào để tính các đạo hàm 
+khi bạn chỉ có một ví dụ đào tạo.
+
+12
+00:00:57.005 --> 00:01:02.460
+Như vậy, dw1(i), dw2(i) và db(i),
+
+13
+00:01:02.460 --> 00:01:04.670
+Với chỉ số trên (i) để biểu thị 
+các giá trị tương ứng
+
+14
+00:01:04.670 --> 00:01:09.140
+bạn nhận được nếu bạn đang thực hiện những gì
+ mà chúng ta đã thực hiện trên slide trước đó,
+
+15
+00:01:09.140 --> 00:01:12.665
+nhưng chỉ sử dụng một ví dụ đào tạo,
+
+16
+00:01:12.665 --> 00:01:15.065
+x_i y_i, xin lỗi,
+
+17
+00:01:15.065 --> 00:01:16.840
+thiếu một (i) ở đây.
+
+18
+00:01:16.840 --> 00:01:22.110
+Bây giờ bạn có thể thấy các toàn bộ
+ cost function là một tổng thực sự trung bình,
+
+19
+00:01:22.110 --> 00:01:25.805
+bởi vì một trên m của 
+các hàm loss riêng lẻ.
+
+20
+00:01:25.805 --> 00:01:28.865
+Như vậy, hóa ra đạo hàm,
+
+21
+00:01:28.865 --> 00:01:35.435
+với biến w1 của cost function 
+tổng thể cũng sẽ là
+
+22
+00:01:35.435 --> 00:01:45.100
+trung bình của các đạo hàm với 
+biến w1 của các hàm loss riêng lẻ.
+
+23
+00:01:45.100 --> 00:01:51.420
+Nhưng trước đây, chúng ta đã chỉ ra
+ cách tính số hạng này là dw1(i),
+
+24
+00:01:52.100 --> 00:01:55.530
+mà trên slide trước, chúng tôi đã
+
+25
+00:01:55.530 --> 00:01:58.275
+chỉ ra cách tính số hạng này trong
+ một ví dụ huấn luyện duy nhất.
+
+26
+00:01:58.275 --> 00:02:00.635
+Như vậy, những gì 
+bạn cần làm là tính
+
+27
+00:02:00.635 --> 00:02:06.020
+các đạo hàm như chúng tôi đã chỉ ra trên ví dụ 
+huấn luyện trước đó và tính trung bình chúng,
+
+28
+00:02:06.020 --> 00:02:07.280
+và điều này sẽ cung cấp cho bạn
+
+29
+00:02:07.280 --> 00:02:12.005
+gradient tổng thể mà bạn có thể 
+sử dụng để thực hiện gradient descent.
+
+30
+00:02:12.005 --> 00:02:14.330
+Tôi biết là có rất nhiều chi tiết,
+
+31
+00:02:14.330 --> 00:02:17.180
+nhưng chúng ta hãy lấy tất cả
+ những điều này và tổng hợp nó thành
+
+32
+00:02:17.180 --> 00:02:19.760
+một thuật toán
+ cố định cho đến khi bạn
+
+33
+00:02:19.760 --> 00:02:23.480
+thực hiện logistic regression
+ sử dụng gradient descent.
+
+34
+00:02:23.480 --> 00:02:29.105
+Bạn có thể làm như sau: 
+hãy khởi tạo j bằng 0,
+
+35
+00:02:29.105 --> 00:02:38.650
+dw1 bằng 0, dw2 bằng 0, db bằng 0.
+
+36
+00:02:38.650 --> 00:02:43.580
+Chúng ta sẽ sử dụng một vòng lặp
+ “for” trên training set,
+
+37
+00:02:43.580 --> 00:02:47.995
+và tính đạo hàm theo từng ví dụ 
+huấn luyện và rồi tăng chúng lên.
+
+38
+00:02:47.995 --> 00:02:50.340
+Chúng ta làm điều này 
+như sau, với i bằng một đến m,
+
+39
+00:02:50.340 --> 00:02:52.320
+m là số ví dụ đào tạo,
+
+40
+00:02:52.320 --> 00:02:56.705
+chúng ta tính z(i) bằng 
+w chuyển vị x(i) cộng b.
+
+41
+00:02:56.705 --> 00:03:00.650
+Dự đoán a(i) bằng sigma của z(i),
+
+42
+00:03:00.650 --> 00:03:03.590
+và sau đó hãy thêm J,
+
+43
+00:03:03.590 --> 00:03:11.580
+J cộng bằng (y(i) log a(i)
+ + (1-y(i))log(1-a(i))
+
+44
+00:03:11.580 --> 00:03:14.405
+và sau đó đặt dấu âm
+ trước toàn bộ biểu thức này,
+
+45
+00:03:14.405 --> 00:03:15.710
+và rồi như chúng ta
+ đã thấy trước đó,
+
+46
+00:03:15.710 --> 00:03:20.615
+chúng ta có dz(i), 
+bằng a(i) trừ y(i),
+
+47
+00:03:20.615 --> 00:03:25.910
+và dw1 cộng bằng x1(i) dz(i),
+
+48
+00:03:25.910 --> 00:03:32.065
+dw2 cộng bằng x2(i) dz(i),
+
+49
+00:03:32.065 --> 00:03:36.640
+và tôi đang thực hiện phép toán này với 
+giả định rằng bạn chỉ có hai feature,
+
+50
+00:03:36.640 --> 00:03:38.530
+sao cho n bằng 2, mặt khác,
+
+51
+00:03:38.530 --> 00:03:39.849
+bạn thực hiện điều này với dw1,
+
+52
+00:03:39.849 --> 00:03:41.755
+dw2, dw3, v.v.
+
+53
+00:03:41.755 --> 00:03:44.750
+và sau đó db cộng bằng dz(i),
+
+54
+00:03:44.750 --> 00:03:47.445
+và tôi đoán đó là 
+kết thúc của vòng lặp for.
+
+55
+00:03:47.445 --> 00:03:50.815
+Cuối cùng, sau khi đã làm điều này
+ cho tất cả m ví dụ huấn luyện,
+
+56
+00:03:50.815 --> 00:03:55.720
+bạn vẫn sẽ cần chia cho m vì
+ chúng ta đang tính trung bình.
+
+57
+00:03:55.720 --> 00:03:58.870
+Thế nên, dw1 chia bằng m,
+
+58
+00:03:58.870 --> 00:04:01.465
+dw2 chia bằng m,
+
+59
+00:04:01.465 --> 00:04:03.520
+db chia bằng m,
+
+60
+00:04:03.520 --> 00:04:05.200
+để tính trung bình.
+
+61
+00:04:05.200 --> 00:04:08.080
+Như vậy, với tất cả 
+các phép toán này,
+
+62
+00:04:08.080 --> 00:04:11.710
+bạn vừa tính toán các 
+đạo hàm của cost function J với
+
+63
+00:04:11.710 --> 00:04:15.595
+từng tham số w1, w2 và b.
+
+64
+00:04:15.595 --> 00:04:17.685
+Cụ thể thì những gì 
+chúng ta đang làm là,
+
+65
+00:04:17.685 --> 00:04:24.250
+chúng ta đang coi dw1 và
+ dw2 và db là bộ cộng tích lũy,
+
+66
+00:04:24.250 --> 00:04:26.450
+để mà sau phép tính này,
+
+67
+00:04:26.450 --> 00:04:30.700
+dw1 bằng đạo hàm của
+
+68
+00:04:30.700 --> 00:04:36.160
+cost function tổng thể với biến
+ w1 và tương tự với dw2 và db.
+
+69
+00:04:36.160 --> 00:04:39.880
+Như vậy, hãy lưu ý rằng dw1 
+và dw2 không có chỉ số trên i,
+
+70
+00:04:39.880 --> 00:04:41.620
+bởi vì chúng ta đang sử dụng 
+chúng trong mã này như là
+
+71
+00:04:41.620 --> 00:04:44.300
+bộ cộng tích lũy để tổng hợp 
+trên toàn bộ training set.
+
+72
+00:04:44.300 --> 00:04:46.595
+Trong khi đó, ngược lại, dz(i) ở đây,
+
+73
+00:04:46.595 --> 00:04:51.190
+đây là dz trong một
+ ví dụ huấn luyện duy nhất.
+
+74
+00:04:51.190 --> 00:04:55.030
+Vì vậy, đó là lý do tại sao nó có
+ chỉ số trên i để chỉ một ví dụ đào tạo,
+
+75
+00:04:55.030 --> 00:04:56.710
+(i) là đã được lưu trữ
+ trong máy tính .
+
+76
+00:04:56.710 --> 00:04:59.745
+Như vậy, sau khi đã hoàn thành
+ tất cả các phép tính này,
+
+77
+00:04:59.745 --> 00:05:02.080
+để thực hiện một bước
+ của gradient descent
+
+78
+00:05:02.080 --> 00:05:03.730
+bạn sẽ triển khai w1,
+
+79
+00:05:03.730 --> 00:05:08.300
+được cập nhật thành w1
+ trừ đi (learning rate tập nhân dw_1),
+
+80
+00:05:08.300 --> 00:05:12.515
+w2, thành w2 trừ đi 
+(learning rate tập nhân dw2),
+
+81
+00:05:12.515 --> 00:05:17.390
+và b được cập nhật thành b 
+trừ đi (learning rate tập nhân db),
+
+82
+00:05:17.390 --> 00:05:22.250
+trong đó dw1, dw2 và db 
+được tính như nhau.
+
+83
+00:05:22.250 --> 00:05:27.530
+Cuối cùng, J ở đây cũng sẽ là một giá trị 
+chính xác cho cost function của bạn.
+
+84
+00:05:27.530 --> 00:05:32.150
+Mọi thứ trên slide chỉ thực hiện một
+ bước duy nhất trong gradient descent,
+
+85
+00:05:32.150 --> 00:05:35.270
+và vì vậy bạn phải lặp lại 
+mọi thứ trên slide này
+
+86
+00:05:35.270 --> 00:05:38.815
+nhiều lần để thực hiện 
+nhiều bước gradient descent.
+
+87
+00:05:38.815 --> 00:05:42.700
+Trong trường hợp mà những chi tiết
+ này có vẻ quá phức tạp thì một lần nữa,
+
+88
+00:05:42.700 --> 00:05:44.485
+đừng lo lắng quá nhiều về nó, tôi
+
+89
+00:05:44.485 --> 00:05:47.215
+hy vọng tất cả điều này 
+sẽ rõ ràng hơn khi bạn
+
+90
+00:05:47.215 --> 00:05:49.850
+tiếp tục và thực hiện điều này
+ trong các bài tập lập trình.
+
+91
+00:05:49.850 --> 00:05:53.425
+Nhưng thực tế là
+ có hai điểm yếu
+
+92
+00:05:53.425 --> 00:05:57.975
+trong phép tính mà 
+chúng ta đã thực hiện ở đây,
+
+93
+00:05:57.975 --> 00:06:01.180
+đó là, để thực hiện regression
+ logistic theo cách này,
+
+94
+00:06:01.180 --> 00:06:03.250
+bạn cần phải viết 
+hai vòng lặp “for”.
+
+95
+00:06:03.250 --> 00:06:06.340
+Vòng lặp đầu tiên là vòng lặp
+ “for” cho m ví dụ huấn luyện,
+
+96
+00:06:06.340 --> 00:06:11.360
+và vòng lặp for thứ hai là vòng lặp
+ for cho tất cả các feature ở đây.
+
+97
+00:06:11.360 --> 00:06:12.600
+Trong ví dụ này,
+
+98
+00:06:12.600 --> 00:06:14.040
+chúng ta chỉ có hai 
+feature; vì thế,
+
+99
+00:06:14.040 --> 00:06:16.695
+n bằng hai và x bằng hai,
+
+100
+00:06:16.695 --> 00:06:18.240
+nhưng nếu chúng ta 
+có nhiều feature hơn,
+
+101
+00:06:18.240 --> 00:06:20.940
+bạn có thể viết dw1 dw2 ở đây,
+
+102
+00:06:20.940 --> 00:06:23.295
+và bạn tính tương tự với dwt,
+
+103
+00:06:23.295 --> 00:06:25.275
+và như vậy cho đến dwn.
+
+104
+00:06:25.275 --> 00:06:31.310
+Như vậy, có vẻ như bạn cần phải có một 
+vòng lặp for cho các feature, cho n feature.
+
+105
+00:06:31.310 --> 00:06:34.415
+Khi bạn thực hiện các 
+thuật toán deep learning,
+
+106
+00:06:34.415 --> 00:06:37.070
+bạn sẽ thấy rằng có các 
+vòng lặp for rõ ràng trong
+
+107
+00:06:37.070 --> 00:06:41.255
+mã của bạn khiến thuật toán 
+của bạn chạy ít hiệu quả hơn.
+
+108
+00:06:41.255 --> 00:06:43.130
+Thế nên, trong thời đại deep learning,
+
+109
+00:06:43.130 --> 00:06:46.130
+chúng ta sẽ chuyển đến 
+một bộ dữ liệu lớn hơn nữa,
+
+110
+00:06:46.130 --> 00:06:50.180
+và vì vậy việc có thể thực hiện các thuật toán 
+mà không cần sử dụng các vòng lặp “for”rõ ràng
+
+111
+00:06:50.180 --> 00:06:54.800
+là cực kỳ quan trọng và sẽ giúp bạn mở rộng
+ phạm vi tới các bộ dữ liệu lớn hơn nhiều.
+
+112
+00:06:54.800 --> 00:06:58.550
+Trên thực tế, có một tập hợp các kỹ thuật 
+được gọi là các kỹ thuật vector hóa
+
+113
+00:06:58.550 --> 00:07:03.610
+cho phép bạn loại bỏ các vòng lặp
+ for rõ ràng này trong mã của mình.
+
+114
+00:07:03.610 --> 00:07:06.570
+Tôi nghĩ rằng trong 
+thời đại tiền deep learning,
+
+115
+00:07:06.570 --> 00:07:08.595
+đó là trước sự nổi lên của deep learning,
+
+116
+00:07:08.595 --> 00:07:10.810
+thì thật tốt khi có vector hóa,
+
+117
+00:07:10.810 --> 00:07:14.780
+đôi khi bạn có thể làm điều đó để tăng tốc 
+mã của bạn và đôi khi thì không cần.
+
+118
+00:07:14.780 --> 00:07:17.450
+Nhưng trong thời đại 
+deep learning, vector hóa,
+
+119
+00:07:17.450 --> 00:07:19.250
+là loại bỏ các vòng lặp for,
+
+120
+00:07:19.250 --> 00:07:20.920
+như thế này và như thế này
+
+121
+00:07:20.920 --> 00:07:22.930
+đã trở nên thực sự quan trọng,
+
+122
+00:07:22.930 --> 00:07:26.350
+bởi vì chúng ta càng ngày càng 
+huấn luyện nhiều bộ dữ liệu cực lớn
+
+123
+00:07:26.350 --> 00:07:28.975
+và thế nên bạn rất cần mã
+ của mình chạy hiệu quả.
+
+124
+00:07:28.975 --> 00:07:30.680
+Trong một vài video tới,
+
+125
+00:07:30.680 --> 00:07:33.590
+chúng ta sẽ nói về vector 
+hóa và làm thế nào để
+
+126
+00:07:33.590 --> 00:07:38.485
+thực hiện tất cả điều này mà không
+ sử dụng một vòng lặp “for” nào cả.
+
+127
+00:07:38.485 --> 00:07:41.660
+Như vậy, với video này, tôi hy vọng
+ bạn đã hiểu được làm thế nào để
+
+128
+00:07:41.660 --> 00:07:45.305
+thực hiện logistic regression hoặc là thực hiện 
+gradient descent cho logistic regression.
+
+129
+00:07:45.305 --> 00:07:48.515
+Mọi thứ sẽ rõ ràng hơn khi 
+bạn làm bài tập lập trình.
+
+130
+00:07:48.515 --> 00:07:51.170
+Nhưng trước khi bắt tay
+ vào làm bài tập lập trình,
+
+131
+00:07:51.170 --> 00:07:55.580
+thì đầu tiên hãy xem về vector hóa để 
+bạn có thể thực hiện toàn bộ điều này,
+
+132
+00:07:55.580 --> 00:08:00.210
+thực hiện một bước lặp gradient descent duy nhất 
+mà không sử dụng bất kỳ vòng lặp “for” nào.

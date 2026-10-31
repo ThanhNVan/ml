@@ -1,0 +1,608 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.440
+Trong video trước,
+
+2
+00:00:01.440 --> 00:00:05.700
+bạn đã thấy cách sử dụng vector
+ hóa để tính toán dự đoán.
+
+3
+00:00:05.700 --> 00:00:11.485
+Chữ a thường cho toàn bộ
+ training set cùng một lúc.
+
+4
+00:00:11.485 --> 00:00:15.030
+Trong video này, bạn sẽ thấy cách 
+bạn có thể sử dụng vector hóa để
+
+5
+00:00:15.030 --> 00:00:19.205
+triển khai các phép toán
+ gradient cho m ví dụ huấn luyện.
+
+6
+00:00:19.205 --> 00:00:21.380
+Một lần nữa, tất cả cùng một lúc.
+
+7
+00:00:21.380 --> 00:00:22.890
+Và trong phần
+ cuối của video này,
+
+8
+00:00:22.890 --> 00:00:26.175
+chúng ta sẽ kết hợp 
+tất cả lại với nhau và bạn sẽ
+
+9
+00:00:26.175 --> 00:00:29.730
+thấy cách thực hiện regression
+ logistic vô cùng hiệu quả.
+
+10
+00:00:29.730 --> 00:00:32.505
+Và có thể bạn biết rằng 
+đối với phép toán gradient,
+
+11
+00:00:32.505 --> 00:00:36.910
+những gì chúng ta đã làm là chúng ta
+ đã tính dz1 cho ví dụ đầu tiên,
+
+12
+00:00:36.910 --> 00:00:43.870
+có thể là a1 trừ y1 
+và sau đó dz2 bằng
+
+13
+00:00:43.870 --> 00:00:52.134
+a2 trừ y2, v.v.
+
+14
+00:00:52.134 --> 00:00:56.425
+Và như vậy cho 
+tất cả m ví dụ đào tạo.
+
+15
+00:00:56.425 --> 00:01:01.218
+Và rồi chúng ta sẽ 
+xác định một biến mới,
+
+16
+00:01:01.218 --> 00:01:08.595
+dZ sẽ là dz1, dz2, dzm.
+
+17
+00:01:08.595 --> 00:01:13.910
+Một lần nữa, tất cả các biến dz thường
+ được đặt cạnh nhau theo chiều ngang.
+
+18
+00:01:13.910 --> 00:01:21.200
+Và đây sẽ là ma trận 1xm hoặc thay
+ vào đó là một vectơ hàng m chiều.
+
+19
+00:01:21.200 --> 00:01:23.520
+Bây giờ hãy nhớ lại 
+trong slide trước,
+
+20
+00:01:23.520 --> 00:01:28.405
+chúng ta đã tìm ra cách 
+tính A hoa như sau: a1
+
+21
+00:01:28.405 --> 00:01:36.735
+đến am và chúng ta 
+xác định Y hoa là y1 tới ym.
+
+22
+00:01:36.735 --> 00:01:39.200
+và xếp chúng theo chiều ngang.
+
+23
+00:01:39.200 --> 00:01:42.780
+Và dựa trên các công thức này,
+
+24
+00:01:42.780 --> 00:01:46.770
+bạn có thể tự thấy rằng
+ dz có thể được tính bằng
+
+25
+00:01:46.770 --> 00:01:52.750
+A trừ Y vì nó sẽ bằng a1 - y1.
+
+26
+00:01:52.750 --> 00:01:55.670
+Là phần tử đầu tiên, a2 - y2,
+
+27
+00:01:55.670 --> 00:01:59.980
+phần tử thứ hai và cứ thế.
+
+28
+00:01:59.980 --> 00:02:06.115
+Vì vậy phần tử đầu tiên a1 - y1 
+này chính là công thức của dz1.
+
+29
+00:02:06.115 --> 00:02:11.670
+Phần tử thứ hai chính xác 
+là định nghĩa của dz2, v.v.
+
+30
+00:02:11.670 --> 00:02:13.965
+Như vậy, chỉ với một dòng mã,
+
+31
+00:02:13.965 --> 00:02:20.095
+bạn có thể tính tất cả những
+ điều này cùng một lúc.
+
+32
+00:02:20.095 --> 00:02:24.010
+Bây giờ, trong lần triển khai trước,
+
+33
+00:02:24.010 --> 00:02:27.695
+chúng ta đã loại bỏ một vòng lặp 
+for nhưng chúng ta vẫn có
+
+34
+00:02:27.695 --> 00:02:31.600
+vòng lặp for thứ hai 
+này trong hơn 20 ví dụ.
+
+35
+00:02:31.600 --> 00:02:35.440
+Thế nên, chúng ta khởi tạo dw 
+bằng 0, thành một vectơ số không.
+
+36
+00:02:35.440 --> 00:02:38.905
+Nhưng rồi chúng ta vẫn phải lặp lại
+ hơn 20 ví dụ trong đó chúng ta có
+
+37
+00:02:38.905 --> 00:02:43.015
+dw cộng bằng x1 nhân dz1,
+
+38
+00:02:43.015 --> 00:02:50.440
+trong ví dụ huấn luyện đầu tiên 
+dw cộng bằng x2 nhân dz2, v.v.
+
+39
+00:02:50.440 --> 00:02:56.980
+Và chúng ta thực hiện m lần và rồi dw/ bằng
+ m và cũng tương tự với biến b, đúng chứ?
+
+40
+00:02:56.980 --> 00:03:03.370
+db được khởi tạo là 0
+ và db cộng bằng dz1.
+
+41
+00:03:03.370 --> 00:03:09.120
+db cộng bằng dz2 đến
+
+42
+00:03:09.120 --> 00:03:16.835
+dz (m) và db/ bằng m. Đó là những gì 
+chúng ta có trong lần triển khai trước.
+
+43
+00:03:16.835 --> 00:03:18.700
+Chúng ta đã loại bỏ
+ một vòng lặp for.
+
+44
+00:03:18.700 --> 00:03:25.045
+Như vậy, ít nhất bây giờ thì dw là một vectơ 
+và chúng ta đã cập nhật riêng biệt dw1,
+
+45
+00:03:25.045 --> 00:03:26.850
+dw2, v.v.
+
+46
+00:03:26.850 --> 00:03:29.860
+Và dù đã loại bỏ điều đó
+ rồi nhưng chúng ta vẫn
+
+47
+00:03:29.860 --> 00:03:33.630
+có vòng lặp for trên m
+ ví dụ trong training set.
+
+48
+00:03:33.630 --> 00:03:36.290
+Thế nên hãy triển khai các 
+phép toán này và vector hóa chúng.
+
+49
+00:03:36.290 --> 00:03:38.380
+Đây là những gì 
+chúng ta có thể làm,
+
+50
+00:03:38.380 --> 00:03:42.745
+để triển khai vectơ hóa của db,
+ về cơ bản là tổng hợp,
+
+51
+00:03:42.745 --> 00:03:47.940
+tất cả các dz này và
+ sau đó chia cho m.
+
+52
+00:03:47.940 --> 00:03:51.580
+Vì vậy, db bằng một trên m,
+
+53
+00:03:51.580 --> 00:03:56.530
+tổng từ i bằng 1 đến m, dzi và
+
+54
+00:03:56.530 --> 00:04:03.055
+tất cả các dz nằm trong 
+vectơ hàng đó và trong Python,
+
+55
+00:04:03.055 --> 00:04:04.765
+bạn sẽ triển khai,
+
+56
+00:04:04.765 --> 00:04:08.155
+1 trên m nhân np.
+
+57
+00:04:08.155 --> 00:04:12.210
+sum (dz).
+
+58
+00:04:12.210 --> 00:04:15.115
+Vì vậy, bạn chỉ cần lấy 
+biến này và gọi hàm np.sum
+
+59
+00:04:15.115 --> 00:04:19.195
+trên nó và nó sẽ 
+cung cấp cho bạn db.
+
+60
+00:04:19.195 --> 00:04:22.330
+Thế còn dw? Tôi sẽ chỉ viết
+
+61
+00:04:22.330 --> 00:04:26.375
+ra các phương trình chính xác, mà
+ có thể xác minh chính là điều nên làm.
+
+62
+00:04:26.375 --> 00:04:28.164
+Hóa ra dw là một trên m,
+
+63
+00:04:28.164 --> 00:04:34.485
+nhân với ma trận
+ X nhân dz chuyển vị.
+
+64
+00:04:34.485 --> 00:04:37.990
+Và, hãy cùng xem tại sao
+ điều này lại xảy ra.
+
+65
+00:04:37.990 --> 00:04:41.806
+Điều này bằng với một 
+trên m nhân ma trận X,
+
+66
+00:04:41.806 --> 00:04:48.325
+x1 đến xm xếp trong
+ các cột như thế và dz
+
+67
+00:04:48.325 --> 00:04:56.040
+chuyển vị sẽ là dz1
+ đến dz (m) như này.
+
+68
+00:04:56.040 --> 00:05:00.900
+Và vì vậy, kết quả của 
+ma trận nhân vectơ này,
+
+69
+00:05:00.900 --> 00:05:05.585
+thì bằng một trên m nhân x1
+
+70
+00:05:05.585 --> 00:05:12.523
+dz1 cộng ... cộng với xm dzm.
+
+71
+00:05:12.523 --> 00:05:21.405
+Vì vậy, đây là một vectơ nx1 và 
+đây là những gì bạn nhận được,
+
+72
+00:05:21.405 --> 00:05:24.725
+dw vì dw đã lấy,
+
+73
+00:05:24.725 --> 00:05:27.710
+xi dzi và cộng chúng lại và đó chính là
+
+74
+00:05:27.710 --> 00:05:32.300
+việc mà phép nhân vectơ ma trận 
+này đang làm và một lần nữa,
+
+75
+00:05:32.300 --> 00:05:35.655
+với một dòng mã
+ bạn có thể tính dw.
+
+76
+00:05:35.655 --> 00:05:40.010
+Vì vậy, việc triển khai véc tơ hóa 
+của các phép tính đạo hàm chỉ là,
+
+77
+00:05:40.010 --> 00:05:44.540
+bạn sử dụng dòng này 
+để triển khai db và sử dụng
+
+78
+00:05:44.540 --> 00:05:50.540
+dòng này để triển khai dw và lưu ý rằng không cần
+ sử dụng các vòng lặp for trên training set,
+
+79
+00:05:50.540 --> 00:05:55.265
+giờ đây bạn có thể tính toán các cập nhật
+ bạn muốn đối với thông số của bạn.
+
+80
+00:05:55.265 --> 00:06:01.185
+Bây giờ, hãy tổng hợp tất cả vào
+ cách bạn thực hiện logistic regression.
+
+81
+00:06:01.185 --> 00:06:02.550
+Đây là triển khai
+
+82
+00:06:02.550 --> 00:06:07.866
+không vector hóa ban đầu, 
+không hiệu quả cao của chúng ta.
+
+83
+00:06:07.866 --> 00:06:11.775
+Và điều đầu tiên mà chúng ta thực hiện trong
+ video trước là loại bỏ tập này đúng chứ?
+
+84
+00:06:11.775 --> 00:06:14.400
+Và, thay vì lặp qua dw1,
+
+85
+00:06:14.400 --> 00:06:15.755
+dw2, v.v.,
+
+86
+00:06:15.755 --> 00:06:23.595
+chúng ta đã thay thế giá trị này 
+bằng giá trị vectơ dw là dw + = xi,
+
+87
+00:06:23.595 --> 00:06:28.775
+giờ là vectơ nhân dz (i).
+
+88
+00:06:28.775 --> 00:06:32.000
+Nhưng bây giờ, chúng ta sẽ 
+thấy rằng chúng ta không chỉ loại bỏ
+
+89
+00:06:32.000 --> 00:06:36.670
+vòng lặp for bên dưới mà còn
+ loại bỏ được vòng lặp for này.
+
+90
+00:06:36.670 --> 00:06:38.654
+Và đây là cách 
+bạn làm điều đó.
+
+91
+00:06:38.654 --> 00:06:42.925
+Bằng cách sử dụng những gì 
+chúng ta có từ các trang slide trước,
+
+92
+00:06:42.925 --> 00:06:46.085
+ta có, Z hoa,
+
+93
+00:06:46.085 --> 00:06:57.625
+Z bằng w chuyển vị X + b và mã 
+bạn viết là Z hoa bằng np.dot
+
+94
+00:06:57.625 --> 00:07:07.315
+w chuyển vị X + b và sau đó
+ là một sigmoid bằng Z hoa.
+
+95
+00:07:07.315 --> 00:07:12.710
+Và bây giờ bạn đã tính tất cả những điều này và
+ tất cả những điều này đối với tất cả các giá trị của i.
+
+96
+00:07:12.710 --> 00:07:14.715
+Tiếp theo trên slide trước,
+
+97
+00:07:14.715 --> 00:07:21.070
+chúng ta đã nói rằng 
+bạn sẽ tính z bằng A - Y.
+
+98
+00:07:21.070 --> 00:07:24.460
+Vậy nên, bây giờ bạn đã tính tất cả những
+ điều này đối với tất cả các giá trị của i.
+
+99
+00:07:24.460 --> 00:07:31.495
+Và, cuối cùng 
+dw bằng 1 / m x
+
+100
+00:07:31.495 --> 00:07:39.700
+dz chuyển vị và
+ db bằng 1 / m, np.
+
+101
+00:07:39.700 --> 00:07:43.328
+sum (dz).
+
+102
+00:07:43.328 --> 00:07:49.120
+Vì vậy, bạn vừa thực hiện 
+truyền xuôi và truyền ngược,
+
+103
+00:07:49.120 --> 00:07:53.030
+tính toán các dự đoán
+ và tính các đạo hàm trên
+
+104
+00:07:53.030 --> 00:07:57.340
+tất cả m ví dụ huấn luyện mà 
+không cần sử dụng vòng lặp for nào.
+
+105
+00:07:57.340 --> 00:08:00.835
+Và vì vậy, bản cập nhật
+ gradient descent sẽ là W
+
+106
+00:08:00.835 --> 00:08:04.462
+được cập nhật thành 
+w trừ đi learning rate
+
+107
+00:08:04.462 --> 00:08:12.020
+nhân dw vừa được tính ở trên và b được 
+cập nhật thành b trừ đi learning rate nhân db.
+
+108
+00:08:12.020 --> 00:08:17.341
+Đôi khi khá đẽ để nhận thấy
+ rằng đó là một bài tập,
+
+109
+00:08:17.341 --> 00:08:21.675
+nhưng tôi nghĩ là tôi không
+ hoàn toàn nhất quán với ký hiệu đó.
+
+110
+00:08:21.675 --> 00:08:25.450
+Nhưng với điều này, 
+bạn vừa triển khai
+
+111
+00:08:25.450 --> 00:08:29.635
+một bản gradient descent nâng cao
+ duy nhất cho logistic regression.
+
+112
+00:08:29.635 --> 00:08:32.308
+Bây giờ, tôi biết là tôi đã nói
+ rằng chúng ta nên loại bỏ
+
+113
+00:08:32.308 --> 00:08:35.260
+các vòng lặp for tường minh bất cứ
+ khi nào có thể nhưng nếu bạn muốn
+
+114
+00:08:35.260 --> 00:08:38.230
+thực hiện nhiều điều chỉnh như
+
+115
+00:08:38.230 --> 00:08:42.880
+như gradient descent thì bạn vẫn
+ cần một vòng lặp for qua số lần lặp.
+
+116
+00:08:42.880 --> 00:08:47.860
+Vì vậy, nếu bạn muốn có một 
+nghìn lần lặp gradient descent,
+
+117
+00:08:47.860 --> 00:08:53.675
+bạn vẫn có thể cần một 
+vòng lặp for trên số lần lặp.
+
+118
+00:08:53.675 --> 00:08:55.870
+Có một vòng lặp for 
+ngoài cùng như vậy
+
+119
+00:08:55.870 --> 00:08:59.210
+và tôi không nghĩ là chúng ta
+ có thể loại bỏ vòng lặp for đó.
+
+120
+00:08:59.210 --> 00:09:02.390
+Nhưng tôi nghĩ thật tuyệt vời 
+khi bạn có thể thực hiện
+
+121
+00:09:02.390 --> 00:09:07.117
+ít nhất một lần lặp gradient descent mà
+ không cần phải sử dụng một vòng lặp for.
+
+122
+00:09:07.117 --> 00:09:09.880
+Và bây giờ bạn có một 
+triển khai gradient descent
+
+123
+00:09:09.880 --> 00:09:14.745
+được vector hóa và hiệu quả
+ cao cho logistic regression.
+
+124
+00:09:14.745 --> 00:09:18.850
+Chỉ còn một điều nữa mà tôi muốn
+ nói trong video tiếp theo, đó là
+
+125
+00:09:18.850 --> 00:09:24.155
+trong mô tả của chúng tôi ở đây, tôi đã trình bày
+ ngắn gọn về kỹ thuật truyền phát (broadcasting).
+
+126
+00:09:24.155 --> 00:09:28.240
+Truyền phát là một kỹ thuật mà
+ Python và numpy cho phép
+
+127
+00:09:28.240 --> 00:09:32.915
+bạn sử dụng để làm cho một số phần nhất định
+ trong mã của bạn trở nên hiệu quả hơn nhiều.
+
+128
+00:09:32.915 --> 00:09:37.000
+Thế nên, hãy xem thêm về 
+truyền phát trong video tiếp theo nhé.

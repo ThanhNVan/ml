@@ -1,0 +1,219 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.000
+In the last video, we talked about exponentially weighted averages.
+
+00:00:04.000 --> 00:00:10.000
+This will turn out to be a key component of several optimization algorithms that you use to train your neural networks.
+
+00:00:10.000 --> 00:00:16.000
+So in this video, I want to delve a little bit deeper into intuitions for what this algorithm is really doing.
+
+00:00:16.000 --> 00:00:21.000
+Recall that this is the key equation for implementing exponentially weighted averages.
+
+00:00:21.000 --> 00:00:24.000
+And so if beta equals 0.9, you got the red line.
+
+00:00:24.000 --> 00:00:28.000
+If it was much closer to 1, it was 0.98.
+
+00:00:28.000 --> 00:00:34.000
+You get the green line. And if it's much smaller, maybe 0.5, you get the yellow line.
+
+00:00:34.000 --> 00:00:40.000
+Let's look at a bit more at the math to understand how this is computing averages of the daily temperature.
+
+00:00:40.000 --> 00:00:42.000
+So here's that equation again.
+
+00:00:42.000 --> 00:00:48.000
+And let's set beta equals 0.9 and write out a few equations that this corresponds to.
+
+00:00:48.000 --> 00:00:55.000
+So whereas when implementing it, you'd have t going from 0 to 1 to 2 to 3 increasing values of t.
+
+00:00:55.000 --> 00:00:59.000
+To analyze it, I've written it with decreasing values of t.
+
+00:00:59.000 --> 00:01:01.000
+And this goes on.
+
+00:01:01.000 --> 00:01:06.000
+So let's take this first equation here and understand what V100 really is.
+
+00:01:06.000 --> 00:01:12.000
+So V100 is going to be, let me reverse these two terms.
+
+00:01:12.000 --> 00:01:19.000
+This is going to be 0.1 times theta 100 plus 0.9 times whatever the value was on the previous day.
+
+00:01:19.000 --> 00:01:24.000
+But what is V99? Well, we just plugged it in from this equation.
+
+00:01:24.000 --> 00:01:30.000
+So this is just going to be 0.1 times theta 99.
+
+00:01:30.000 --> 00:01:38.000
+And again, I've reversed these two terms plus 0.9 times V98.
+
+00:01:38.000 --> 00:01:41.000
+But then what is V98? Well, you just get that from here.
+
+00:01:41.000 --> 00:01:52.000
+So you can just plug in here 0.1 times theta 98 plus 0.9 times V97 and so on.
+
+00:01:52.000 --> 00:02:00.000
+And if you multiply all of these terms out, you can show that V100 is 0.1 times theta 100 plus.
+
+00:02:00.000 --> 00:02:03.000
+Now let's look at coefficient on theta 99.
+
+00:02:03.000 --> 00:02:09.000
+It's going to be 0.1 times 0.9 times theta 99.
+
+00:02:09.000 --> 00:02:12.000
+Now let's look at the coefficient on theta 98.
+
+00:02:12.000 --> 00:02:17.000
+There's a 0.1 here times 0.9 times 0.9.
+
+00:02:17.000 --> 00:02:27.000
+So if you expand out the algebra, this becomes 0.1 times 0.9 squared times theta 98.
+
+00:02:27.000 --> 00:02:38.000
+And if you keep expanding this out, you find that this becomes 0.1 times 0.9 cubed, theta 97 plus 0.1 times 0.9 to the 4th times theta 96.
+
+00:02:38.000 --> 00:02:46.000
+Plus dot, dot, dot. So this is really a weighted sum, a thus a weighted average of theta 100,
+
+00:02:46.000 --> 00:02:53.000
+which is the current day's temperature. We're looking for a perspective of V100, which you calculate on the hundredth day of the year.
+
+00:02:53.000 --> 00:03:02.000
+But so it's a sum of theta 100, theta 99, theta 98, theta 97, theta 96, and so on.
+
+00:03:02.000 --> 00:03:09.000
+So one way to draw this in pictures would be if, let's say we have some number of days of temperature.
+
+00:03:09.000 --> 00:03:18.000
+So this is theta and this is T. So theta 100 would be some value, then theta 99 would be some value, theta 98.
+
+00:03:18.000 --> 00:03:26.000
+So these are, so this is T equals 100, 99, 98, and so on. So you have some number of days of temperature.
+
+00:03:26.000 --> 00:03:44.000
+And what we have is then an exponentially decaying function. So starting from 0.1 to 0.9 times 0.1 to 0.9 squared times 0.1 to, and so on.
+
+00:03:44.000 --> 00:03:54.000
+So you have this exponentially decaying function. And the way you compute V100 is you take the element-wise product between these two functions
+
+00:03:54.000 --> 00:04:08.000
+and sum it up. So you take this value, theta 100 times 0.1, times this value, theta 99 times 0.1 times 0.9, that's the second term, and so on.
+
+00:04:08.000 --> 00:04:14.000
+So it's really taking the daily temperature, multiplying with this exponentially decaying function, and then summing it up.
+
+00:04:15.000 --> 00:04:32.000
+And this becomes your V100. It turns out that up to details, I'll talk about later, but all of these coefficients add up to 1, or add up to very close to 1, up to a detail called bias correction, which I'll talk about in the next video.
+
+00:04:32.000 --> 00:04:41.000
+But because of that, this really is an exponentially weighted average. And finally, you might wonder, you know, how many days temperature is this averaging over?
+
+00:04:41.000 --> 00:04:54.000
+Well, it turns out that 0.9, right, to the power of 10, is about 0.35, and this turns out to be about 1 over E, one of the base of natural logarithms.
+
+00:04:54.000 --> 00:05:08.000
+And more generally, if you have 1 minus epsilon, so in this example, epsilon would be 0.1, so if this was 0.9, then 1 minus epsilon to the 1 over epsilon, this is about 1 over E.
+
+00:05:08.000 --> 00:05:24.000
+This is about 0.34, 0.35. And so, in other words, it takes about 10 days for the height of this to decay to, you know, around one third, already 1 over E of the peak.
+
+00:05:25.000 --> 00:05:40.000
+So it's because of this that when beta equals 0.9, we say that it takes, this is as if you're computing an exponentially weighted average that focuses on just the last 10 days temperature,
+
+00:05:40.000 --> 00:05:48.000
+because it's sort of after 10 days, that the weight decays to, you know, less than about a third of the weight of the current day.
+
+00:05:48.000 --> 00:05:59.000
+Whereas in contrast, if beta was equal to 0.98, then well, what do you need 0.98 to the power of in order for this to be really small?
+
+00:05:59.000 --> 00:06:07.000
+It turns out that 0.98 to the power of 50 will be approximately equal to 1 over E, so the weight will be pretty big.
+
+00:06:07.000 --> 00:06:12.000
+It will be bigger than 1 over E for the first 50 days, and then it will decay quite rapidly over that.
+
+00:06:12.000 --> 00:06:25.000
+So intuitively, this is a hard and fast thing. You can think of this as averaging over about 50 days temperature, because in this example, to use the notation here on the left is as if epsilon is equal to 0.02.
+
+00:06:25.000 --> 00:06:35.000
+So 1 over epsilon is 50. And this, by the way, is how we got the formula that we're averaging over 1 over 1 minus beta, also days.
+
+00:06:35.000 --> 00:06:45.000
+Right here, epsilon, we place a row of 1 minus beta. It tells you up to some constant roughly how many days temperature you should think of this as averaging over.
+
+00:06:45.000 --> 00:06:51.000
+But this is just a rule of thumb for how to think about it and is in a formal mathematical statement.
+
+00:06:51.000 --> 00:07:01.000
+Finally, let's talk about how you actually implement this. Recall that we start off with V0, initialize a 0, then you compute V1 on the first day, V2, and so on.
+
+00:07:02.000 --> 00:07:09.000
+Now, to explain the algorithm, it was useful to write down V0, V1, V2, and so on as distinct variables.
+
+00:07:09.000 --> 00:07:15.000
+But if you're implementing this in practice, this is what you do. You initialize V to be equal to 0.
+
+00:07:15.000 --> 00:07:25.000
+And then on day 1, you would set V equals beta times V plus 1 minus beta times theta 1.
+
+00:07:25.000 --> 00:07:35.000
+And then on the next day, you would update V to be equal to beta V plus 1 minus beta theta 2, and so on.
+
+00:07:35.000 --> 00:07:46.000
+And sometimes we use this notation V subscript theta to denote that V is computing this exponentially weighted average of the parameter theta.
+
+00:07:47.000 --> 00:08:01.000
+So just to say this again, but in a for loop format, you set V theta equals 0, and then repeatedly, and if on each day, you would get next theta t,
+
+00:08:01.000 --> 00:08:12.000
+and then set V theta gives updated as beta times the old value of V theta plus 1 minus beta times the current value of V theta.
+
+00:08:12.000 --> 00:08:17.000
+So one of the advantages of this exponentially weighted average formula is that it takes very little memory.
+
+00:08:17.000 --> 00:08:27.000
+You just need to keep this one real number in computing memory, and you keep on overwriting it with this formula based on the latest value that you got.
+
+00:08:27.000 --> 00:08:38.000
+And it's really this reason, the efficiency, it just takes one line of code basically, and just storage and memory for a single real number to compute this exponentially weighted average.
+
+00:08:38.000 --> 00:08:42.000
+It's really not the best way, not the most accurate way to compute an average.
+
+00:08:42.000 --> 00:08:53.000
+If you were to compute a moving window where you explicitly sum over the last 10 days, the last 50 days temperature, and just divide by 10 or divide by 50, that usually gives you a better estimate.
+
+00:08:53.000 --> 00:09:04.000
+But the disadvantage of that, of explicitly keeping all the temperatures around and summing the last 10 days, is it requires more memory, and it's just more complicated to implement, and it's computationally more expensive.
+
+00:09:04.000 --> 00:09:12.000
+So for things, we'll see some examples in the next few videos, where you need to compute averages of a lot of variables.
+
+00:09:12.000 --> 00:09:20.000
+This is a very efficient way to do so, both from a computation and memory efficiency point of view, which is why it's used a lot in machine learning.
+
+00:09:20.000 --> 00:09:24.000
+Not to mention that it's just one line of code, which is maybe another advantage.
+
+00:09:24.000 --> 00:09:28.000
+So now you know how to implement exponentially weighted averages.
+
+00:09:28.000 --> 00:09:33.000
+There's one more technical detail that's worth you knowing about called bias correction.
+
+00:09:33.000 --> 00:09:41.000
+Let's see that in the next video. And then after that, you'll be able to use this to build a better optimization algorithm than the straightforward gradient descent.

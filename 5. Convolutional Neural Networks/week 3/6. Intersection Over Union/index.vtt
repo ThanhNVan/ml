@@ -1,0 +1,174 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.080 --> 00:00:04.800
+So how do you tell if your object detection algorithm is working well?
+
+00:00:04.800 --> 00:00:10.080
+In this video, you learn about a function called Intersection Over Union,
+
+00:00:10.080 --> 00:00:14.240
+and this will use both for evaluating your object detection algorithm,
+
+00:00:14.240 --> 00:00:16.400
+as well as in the next video,
+
+00:00:16.400 --> 00:00:22.320
+using it to add another component to your object detection algorithm to make it work even better.
+
+00:00:22.320 --> 00:00:23.520
+Let's get started.
+
+00:00:23.520 --> 00:00:28.640
+In the object detection task, you're expected to localize the object as well.
+
+00:00:28.800 --> 00:00:31.760
+So if that's the ground truth bounding box,
+
+00:00:31.760 --> 00:00:35.200
+and if your algorithm outputs this bounding box in purple,
+
+00:00:36.240 --> 00:00:38.320
+is this a good outcome or a bad one?
+
+00:00:38.960 --> 00:00:48.400
+So what the Intersection Over Union function does, or IOU, does is it computes
+
+00:00:49.440 --> 00:00:52.880
+the Intersection Over Union of these two bounding boxes.
+
+00:00:53.600 --> 00:00:58.320
+So the union of these two bounding boxes is this area,
+
+00:00:59.760 --> 00:01:05.440
+is really the area that is contained in either bounding boxes,
+
+00:01:06.320 --> 00:01:10.640
+whereas the intersection is this smaller region here.
+
+00:01:11.440 --> 00:01:17.920
+So what the Intersection Over Union does is it computes the size of the intersection,
+
+00:01:19.280 --> 00:01:22.000
+so that's an orange-shaded area.
+
+00:01:22.720 --> 00:01:30.320
+And divided by the size of the union, which is that green-shaded area.
+
+00:01:30.880 --> 00:01:36.320
+And by convention, a lot of computer vision tasks will judge that the answer is correct
+
+00:01:36.320 --> 00:01:38.960
+if the IOU is greater than 0.5.
+
+00:01:39.520 --> 00:01:45.280
+And if the predicted and the ground truth bounding boxes overlapped perfectly,
+
+00:01:45.280 --> 00:01:50.080
+the IOU would be 1, because the intersection would equal to the union.
+
+00:01:50.080 --> 00:01:55.280
+But in general, so long as the IOU is greater than or equal to 0.5,
+
+00:01:55.280 --> 00:01:58.960
+then the answer will look okay, it will look pretty decent.
+
+00:01:59.680 --> 00:02:07.360
+And by convention, very often 0.5 is used as a threshold to judge as whether the predicted
+
+00:02:07.360 --> 00:02:09.280
+bounding box is correct or not.
+
+00:02:10.080 --> 00:02:11.520
+This is just a convention.
+
+00:02:11.520 --> 00:02:14.720
+If you want to be more stringent, you can judge an answer as correct,
+
+00:02:14.720 --> 00:02:19.360
+only if the IOU is greater than or equal to 0.6 or some other number.
+
+00:02:19.840 --> 00:02:23.600
+But the higher the IOUs, the more accurate the bounding box.
+
+00:02:24.320 --> 00:02:30.560
+And so this is one way to map localization to accuracy, where you just count up the number
+
+00:02:30.560 --> 00:02:36.240
+of times an algorithm correctly detects and localizes an object where you could use a
+
+00:02:36.240 --> 00:02:41.760
+definition like this of whether or not the object is correctly localized.
+
+00:02:42.320 --> 00:02:46.080
+And again, 0.5 is just a human chosen convention.
+
+00:02:46.720 --> 00:02:49.360
+There's no particularly deep theoretical reason for it.
+
+00:02:49.360 --> 00:02:53.440
+You can also choose some other threshold like 0.6 if you want to be more stringent.
+
+00:02:54.560 --> 00:03:00.000
+I sometimes see people use more stringent criteria like 0.6 or maybe 0.7.
+
+00:03:00.000 --> 00:03:03.600
+I rarely see people drop the threshold below 0.5.
+
+00:03:04.560 --> 00:03:10.960
+Now, we've motivated the definition of IOU as a way to evaluate whether or not your object
+
+00:03:10.960 --> 00:03:14.000
+localization algorithm is accurate or not.
+
+00:03:14.000 --> 00:03:19.600
+But more generally, IOU is a measure of the overlap between two bounding boxes.
+
+00:03:20.720 --> 00:03:25.600
+Where if you have two boxes, you can compute the intersection, compute the union,
+
+00:03:25.600 --> 00:03:27.840
+and take the ratio of the two areas.
+
+00:03:29.040 --> 00:03:35.120
+And so this is also a way of measuring how similar two boxes are to each other.
+
+00:03:35.120 --> 00:03:38.720
+And we'll see this used again this way in the next video,
+
+00:03:38.720 --> 00:03:40.800
+when we talk about non-max suppression.
+
+00:03:41.760 --> 00:03:46.240
+So that's it for IOU or intersection over union.
+
+00:03:46.240 --> 00:03:50.000
+Not to be confused with the promissory node concept of IOU.
+
+00:03:50.000 --> 00:03:53.360
+Where if you lend someone money, they write you a note that says,
+
+00:03:53.360 --> 00:03:54.720
+oh, I owe you this much money.
+
+00:03:54.720 --> 00:03:56.720
+So that's also called an IOU.
+
+00:03:56.720 --> 00:03:58.000
+It's a totally different concept.
+
+00:03:58.000 --> 00:04:02.480
+But maybe it's cool that these two names, these two things have a similar name.
+
+00:04:03.360 --> 00:04:07.760
+So now armed with this definition of IOU, intersection over union,
+
+00:04:07.760 --> 00:04:11.920
+in the next video, I want to discuss with you non-max suppression,
+
+00:04:11.920 --> 00:04:16.640
+which is a tool you can use to make the outputs of YOLO work even better.
+
+00:04:16.640 --> 00:04:18.560
+So let's go on to the next video.

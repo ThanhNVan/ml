@@ -1,0 +1,435 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:06.800
+So whereas in transfer learning, you have a sequential process where you learn from task A and then transfer that to task B,
+
+00:00:06.800 --> 00:00:13.320
+in multi-task learning, you start off simultaneously trying to have one neural network do several things at the same time,
+
+00:00:13.320 --> 00:00:17.160
+and then each of these tasks helps hopefully all of the other tasks.
+
+00:00:17.160 --> 00:00:18.720
+Let's look at an example.
+
+00:00:19.720 --> 00:00:23.840
+Let's say you're building an autonomous vehicle, building a self-driving car,
+
+00:00:23.840 --> 00:00:27.280
+then your self-driving car will need to detect several different things,
+
+00:00:27.280 --> 00:00:42.340
+such as pedestrians, detect other cars, detect stop signs, and also detect traffic lights, and also other things.
+
+00:00:42.340 --> 00:00:49.420
+So for example, in this example on the left, there is a stop sign in this image and there is a car in this image,
+
+00:00:49.420 --> 00:00:53.020
+but there aren't any pedestrians or traffic lights.
+
+00:00:53.340 --> 00:01:02.620
+So if this image is an input, for example, xi, then instead of having one label yi, you would actually have four labels.
+
+00:01:02.620 --> 00:01:08.700
+In this example, there are no pedestrians, there is a car, there is a stop sign, and there are no traffic lights.
+
+00:01:08.700 --> 00:01:12.540
+And if you're trying to detect other things, then maybe yi has even more dimensions.
+
+00:01:12.540 --> 00:01:14.340
+But for now, let's take a look at these four.
+
+00:01:14.340 --> 00:01:17.940
+So yi is a four by one vector.
+
+00:01:18.020 --> 00:01:22.980
+And if you look at the training sets labels as a whole, then, you know,
+
+00:01:22.980 --> 00:01:30.500
+similar to before, we'll stack the training data's labels horizontally as follows.
+
+00:01:30.500 --> 00:01:34.860
+y1 up to ym, except that now yi is a four by one vector.
+
+00:01:34.860 --> 00:01:39.300
+So each of these is a tall column vector.
+
+00:01:39.300 --> 00:01:44.220
+And so y, this matrix capital Y, is now a four by m matrix.
+
+00:01:44.220 --> 00:01:49.620
+Whereas previously, when y was a single row number, this would have been a one by m matrix.
+
+00:01:49.620 --> 00:01:54.980
+So what you can do is now train a neural network to predict these values of y.
+
+00:01:54.980 --> 00:02:00.780
+So you can have a neural network input x and output now a four dimensional value for y.
+
+00:02:00.780 --> 00:02:04.340
+Notice here for the output layer, I've drawn four nodes.
+
+00:02:04.340 --> 00:02:10.540
+And so the first node, when we try to predict, is there a pedestrian in this picture?
+
+00:02:10.540 --> 00:02:13.340
+The second output will predict is there a car here?
+
+00:02:13.340 --> 00:02:15.580
+Predict is there a stop sign?
+
+00:02:15.580 --> 00:02:20.700
+And this will predict maybe is there a traffic light?
+
+00:02:20.700 --> 00:02:25.940
+So y hat here is four dimensional.
+
+00:02:25.940 --> 00:02:31.860
+So to train this neural network, you now need to define the loss for the neural network.
+
+00:02:31.860 --> 00:02:39.060
+And so given a predicted output y hat i, which is four by one dimensional,
+
+00:02:39.060 --> 00:02:46.380
+the loss average over your entire training set would be one over m,
+
+00:02:46.380 --> 00:02:59.020
+sum from i equals one through m, sum from j equals one through four of the losses of the individual predictions.
+
+00:02:59.020 --> 00:03:04.220
+So it's just summing over the four components of pedestrian, car, stop sign, traffic light.
+
+00:03:04.220 --> 00:03:14.440
+And this script L is the usual logistic loss.
+
+00:03:14.440 --> 00:03:31.660
+So just to write this out, this is negative y j i log y hat j i minus one minus y log one minus y hat.
+
+00:03:31.660 --> 00:03:40.380
+And the main difference compared to the earlier binary classification examples is that you're now summing over j equals one through four.
+
+00:03:40.380 --> 00:03:46.020
+And the main difference between this and softmax regression is that unlike softmax regression,
+
+00:03:46.020 --> 00:03:55.260
+which assigned a single label to single example, this one image can have multiple labels.
+
+00:03:55.260 --> 00:04:04.620
+So you're not saying that each image is either a picture of a pedestrian or picture of a car, picture of a stop sign, picture of a traffic light.
+
+00:04:04.620 --> 00:04:09.420
+You're asking for each picture, does it have a pedestrian or a car stop sign or traffic light?
+
+00:04:09.420 --> 00:04:11.780
+And multiple objects could appear in the same image.
+
+00:04:11.780 --> 00:04:19.220
+In fact, in the example on the previous slide, we had both a car and a stop sign in that image, but no pedestrians and traffic lights.
+
+00:04:19.220 --> 00:04:22.460
+So you're not assigning a single label to an image.
+
+00:04:22.460 --> 00:04:31.220
+You're going through the different classes and asking, you know, for each of the classes, does that class, does that type of object appear in the image?
+
+00:04:31.220 --> 00:04:37.940
+So that's why I'm saying that with this setting, one image can have multiple labels.
+
+00:04:37.940 --> 00:04:45.780
+If you train a neural network to minimize this cost function, you are carrying out multitask learning.
+
+00:04:45.780 --> 00:04:53.700
+Because what you're doing is building a single neural network that is looking at each image and basically solving four problems.
+
+00:04:53.700 --> 00:05:00.020
+It's trying to tell you, does each image have each of these four objects in it?
+
+00:05:00.020 --> 00:05:06.500
+And one other thing you could have done is just train four separate neural networks instead of train one network to do four things.
+
+00:05:06.500 --> 00:05:12.420
+But if some of the earlier features in your network can be shared between these different types of objects,
+
+00:05:12.420 --> 00:05:22.820
+then you find that training one neural network to do four things results in better performance than training four completely separate neural networks to do the four tasks separately.
+
+00:05:22.820 --> 00:05:26.500
+So that's the power of multitask learning.
+
+00:05:26.500 --> 00:05:33.220
+And one other detail, you know, so far I've described this algorithm as if every image had every single label.
+
+00:05:33.220 --> 00:05:39.220
+It turns out that multitask learning also works even if some of the images were labeled only with some of the objects.
+
+00:05:39.220 --> 00:05:45.220
+So the first training example, let's say someone, your laborer had told you there's a pedestrian, there's no car,
+
+00:05:45.220 --> 00:05:48.900
+but they didn't bother to label whether or not there's a stop sign or whether or not there's a traffic light.
+
+00:05:48.900 --> 00:05:55.220
+And maybe for the second example, there is a pedestrian, there is a car, but again the laborer, when they looked at that image,
+
+00:05:55.220 --> 00:05:59.620
+they just didn't label it with whether it had a stop sign or whether the traffic light and so on.
+
+00:05:59.620 --> 00:06:05.860
+And maybe some examples are fully labeled and maybe some examples, they were just labeling for the presence and absence of cars.
+
+00:06:05.860 --> 00:06:08.660
+So there are some question marks and so on.
+
+00:06:08.660 --> 00:06:14.980
+So with a dataset like this, you can still train your learning algorithm to do four tasks at the same time,
+
+00:06:14.980 --> 00:06:21.060
+even when some images have only a subset of the labels and others are sort of question marks or don't cares.
+
+00:06:21.060 --> 00:06:26.100
+And the way you train your algorithm, even when some of these labels are question marks are really unlabeled,
+
+00:06:26.100 --> 00:06:41.160
+is that in this sum over j from 1 to 4, you would sum only over values of j with a 0 or 1 label.
+
+00:06:41.160 --> 00:06:46.520
+So whenever there's a question mark, you just omit that term from summation,
+
+00:06:46.520 --> 00:06:50.440
+but just sum over only the values where there is a label.
+
+00:06:51.240 --> 00:06:53.800
+And so that allows you to use datasets like this as well.
+
+00:06:54.520 --> 00:06:57.240
+So when does multitask learning make sense?
+
+00:06:57.240 --> 00:06:59.320
+So when does multitask learning make sense?
+
+00:06:59.320 --> 00:07:03.320
+I say it makes sense usually when three things hold true.
+
+00:07:03.320 --> 00:07:08.280
+One is if you're training on a set of tasks that could benefit from having shared low-level features.
+
+00:07:08.280 --> 00:07:15.080
+So for the autonomous driving example, it makes sense that recognizing traffic lights and cars and pedestrians,
+
+00:07:15.080 --> 00:07:21.400
+those should have similar features that could also help you recognize stop signs because these are all features of roads.
+
+00:07:21.640 --> 00:07:25.800
+Second, this is less of a hard and fast rule, so this isn't always true,
+
+00:07:25.800 --> 00:07:33.640
+but what I see for a lot of successful multitask learning settings is that the amount of data you have for each task is quite similar.
+
+00:07:33.640 --> 00:07:40.200
+So if you recall from transfer learning, you learn from some task A and transfer it to some task B.
+
+00:07:40.200 --> 00:07:47.720
+So if you have a million examples for task A, then and 1000 examples for task B,
+
+00:07:48.680 --> 00:07:55.240
+then all the knowledge you learn from that million examples could really help augment the much smaller data set you have for task B.
+
+00:07:56.200 --> 00:07:58.360
+Well, how about multitask learning?
+
+00:07:58.360 --> 00:08:03.960
+In multitask learning, you usually have a lot more tasks than just two, so maybe previously we had four tasks,
+
+00:08:03.960 --> 00:08:10.120
+but let's say you have a hundred tasks and you're going to do multitask learning to try to recognize
+
+00:08:10.120 --> 00:08:12.520
+a hundred different types of objects at the same time.
+
+00:08:12.520 --> 00:08:17.240
+So what you might find is that you might have a thousand examples per task,
+
+00:08:18.440 --> 00:08:23.400
+and so if you focus on the performance of just one task, let's focus on the performance on the hundredth task,
+
+00:08:23.400 --> 00:08:25.640
+which you can call A100.
+
+00:08:25.640 --> 00:08:28.440
+If you had trained to do this final task in isolation,
+
+00:08:28.440 --> 00:08:34.200
+you would have had just a thousand examples to train on this one task, this one of a hundred tasks,
+
+00:08:34.200 --> 00:08:42.200
+but by training on these 99 other tasks, these in aggregate have 99,000 training examples.
+
+00:08:42.520 --> 00:08:47.560
+Which could be a big boost, could give a lot of knowledge to augment this otherwise relatively small
+
+00:08:47.560 --> 00:08:52.360
+1000 example training set that you have for task A100.
+
+00:08:52.360 --> 00:08:57.480
+And symmetrically, every one of the other 99 tasks can provide some data or provide some knowledge
+
+00:08:57.480 --> 00:09:01.080
+to help every one of the other tasks in this list of 100 tasks.
+
+00:09:02.440 --> 00:09:09.560
+So the second bullet isn't a hard and fast rule, but what I tend to look at is if you focus on any one task,
+
+00:09:10.360 --> 00:09:15.400
+for that to get a big boost for multi-task learning, the other tasks in aggregate need to have
+
+00:09:15.400 --> 00:09:18.040
+quite a lot more data than for that one task.
+
+00:09:18.040 --> 00:09:23.240
+And so one way to satisfy that is if you've logged a task, like we have in this example on the right,
+
+00:09:23.240 --> 00:09:25.960
+and if the amount of data you have on each task is quite similar.
+
+00:09:26.760 --> 00:09:31.560
+But the key really is that if you already have a thousand examples for one task,
+
+00:09:31.560 --> 00:09:35.800
+then for all of the other tasks, you better have a lot more than 1000 examples
+
+00:09:35.800 --> 00:09:39.880
+if those other tasks are meant to help you do better on this final task.
+
+00:09:40.440 --> 00:09:45.160
+And finally, multi-task learning tends to make more sense when you can train a big enough neural
+
+00:09:45.160 --> 00:09:47.400
+network to do well on all the tasks.
+
+00:09:47.400 --> 00:09:51.720
+So the alternative to multi-task learning would be to train a separate neural network
+
+00:09:51.720 --> 00:09:55.880
+for each task. So rather than training one neural net for pedestrian, car, stop sign,
+
+00:09:55.880 --> 00:09:59.080
+and traffic light detection, you could have trained one neural network for pedestrian
+
+00:09:59.080 --> 00:10:03.480
+detection, one neural network for car detection, one neural network for stop sign detection,
+
+00:10:03.480 --> 00:10:05.480
+and one neural network for traffic light detection.
+
+00:10:06.440 --> 00:10:11.800
+So what a researcher, Rich Karaner, found many years ago was that the only times that multi-task
+
+00:10:11.800 --> 00:10:16.680
+learning hurts performance compared to training separate neural networks is if your neural
+
+00:10:16.680 --> 00:10:21.400
+network isn't big enough. But if you can train a big enough neural network, then multi-task
+
+00:10:21.400 --> 00:10:27.080
+learning certainly should not or should very rarely hurt performance, but hopefully it will
+
+00:10:27.080 --> 00:10:31.560
+actually help performance compared to if you are training neural networks to do these different
+
+00:10:31.640 --> 00:10:32.600
+tasks in isolation.
+
+00:10:33.400 --> 00:10:37.960
+So that's it for multi-task learning. In practice, multi-task learning is used much
+
+00:10:37.960 --> 00:10:42.520
+less often than transfer learning. I see a lot of applications of transfer learning
+
+00:10:42.520 --> 00:10:46.600
+where you have a problem you want to solve with a small amount of data. So you find a
+
+00:10:46.600 --> 00:10:50.840
+related problem where you have a lot of data to learn something and transfer that to this new
+
+00:10:50.840 --> 00:10:55.880
+problem. But multi-task learning is just more rare that you have a huge set of tasks you
+
+00:10:55.880 --> 00:11:00.120
+want to use, that you want to do well on. You can train all of those tasks at the same time.
+
+00:11:00.120 --> 00:11:05.320
+Maybe the one example is computer vision. In object detection, I see more applications of
+
+00:11:05.320 --> 00:11:09.240
+multi-task learning where one neural network trained to detect a whole bunch of objects at
+
+00:11:09.240 --> 00:11:12.680
+the same time works better than different neural networks trained separately to detect
+
+00:11:12.680 --> 00:11:17.000
+different objects. But I would say that on average, transfer learning is used much
+
+00:11:17.000 --> 00:11:21.880
+more today than multi-task learning. But both are useful tools to have in your arsenal.
+
+00:11:22.440 --> 00:11:27.400
+So to summarize, multi-task learning enables you to train one neural network to do many
+
+00:11:27.400 --> 00:11:31.800
+tasks and this can give you better performance than you would to do the tasks in isolation.
+
+00:11:32.440 --> 00:11:38.360
+Now one note of caution. In practice, I see that transfer learning is used much more often than
+
+00:11:38.360 --> 00:11:42.280
+multi-task learning. So I do see a lot of tasks where if you want to solve a machine
+
+00:11:42.280 --> 00:11:46.920
+learning problem but you have a relatively small data set, then transfer learning can really help
+
+00:11:46.920 --> 00:11:50.920
+where if you find a related problem but you have a much bigger data set, you can train a neural
+
+00:11:50.920 --> 00:11:54.680
+network from there and then transfer it to the problem where you have very low data.
+
+00:11:54.680 --> 00:11:59.560
+So transfer learning is used a lot today. There are some applications of transfer of
+
+00:11:59.560 --> 00:12:04.280
+multi-task learning as well but multi-task learning I think is used much less often than
+
+00:12:04.280 --> 00:12:09.720
+transfer learning. And maybe the one exception is computer vision object detection where I do see
+
+00:12:09.720 --> 00:12:13.800
+a lot of applications of training a neural network to detect lots of different objects
+
+00:12:13.800 --> 00:12:17.960
+and that works better than training separate neural networks to detect individual objects.
+
+00:12:17.960 --> 00:12:22.680
+But on average, I think that even though transfer learning and multi-task learning often
+
+00:12:22.680 --> 00:12:28.360
+are presented in a similar way, in practice I've seen a lot more applications of transfer learning
+
+00:12:28.360 --> 00:12:33.320
+than a multi-task learning. I think because often it's just difficult to set up or to find
+
+00:12:33.320 --> 00:12:37.320
+so many different tasks that you would actually want to train a single neural network for. Again,
+
+00:12:37.320 --> 00:12:42.200
+with some sort of computer vision object detection examples being the most notable exception.
+
+00:12:42.840 --> 00:12:47.560
+So that's it for multi-task learning. Multi-task learning and transfer learning are both
+
+00:12:47.560 --> 00:12:53.080
+important tools to have in your tool bank. And finally, I'd like to move on to discuss
+
+00:12:53.080 --> 00:12:57.880
+end-to-end deep learning. So let's go on to the next video to discuss end-to-end learning.

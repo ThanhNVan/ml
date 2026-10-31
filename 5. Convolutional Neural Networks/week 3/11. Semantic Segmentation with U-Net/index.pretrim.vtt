@@ -1,0 +1,210 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.860 --> 00:00:09.560
+Hi and welcome back. In this course, you've learned about object recognition, where the
+
+00:00:09.560 --> 00:00:14.840
+goal is to input a picture and figure out what is in the picture, such as is this a
+
+00:00:14.840 --> 00:00:20.720
+cat or not. You've learned about object detection, where the goal is to further put a bounding
+
+00:00:20.720 --> 00:00:27.400
+box around the object's sound. In this video, you learn about a set of algorithms that's
+
+00:00:27.400 --> 00:00:33.000
+even one step more sophisticated, which is semantic segmentation, where the goal is to
+
+00:00:33.000 --> 00:00:39.440
+draw a careful outline around the object that is detected, so that you know exactly which
+
+00:00:39.440 --> 00:00:46.000
+pixels belong to the object and which pixels don't. This type of algorithm, semantic segmentation,
+
+00:00:46.000 --> 00:00:51.520
+is useful for many commercial applications as well as today. Let's dive in.
+
+00:00:51.520 --> 00:00:56.960
+So what is semantic segmentation? Let's say you're building a self-driving car and you
+
+00:00:56.960 --> 00:01:02.760
+see an input image like this, and you like to detect the position of the other cars.
+
+00:01:02.760 --> 00:01:07.720
+If you use an object detection algorithm, the goal may be to draw bounding boxes like
+
+00:01:07.720 --> 00:01:12.400
+these around the other vehicles. This might be good enough for a self-driving car, but
+
+00:01:12.400 --> 00:01:18.480
+if you want your learning algorithm to figure out what is every single pixel in this image,
+
+00:01:18.480 --> 00:01:25.200
+then you may use a semantic segmentation algorithm whose goal is to output this, where, for
+
+00:01:25.200 --> 00:01:30.400
+example, rather than detecting the road and trying to draw a bounding box around the
+
+00:01:30.400 --> 00:01:36.480
+road, which isn't going to be that useful, with semantic segmentation, the algorithm attempts
+
+00:01:36.480 --> 00:01:44.560
+to label every single pixel as is this drivable road or not, indicated by the dark green there.
+
+00:01:44.560 --> 00:01:50.040
+One of the uses of semantic segmentation is that it is used by some self-driving car
+
+00:01:50.040 --> 00:01:56.960
+teams to figure out exactly which pixels are safe to drive over because they represent
+
+00:01:56.960 --> 00:02:03.400
+a drivable surface. Let's look at some other applications. These are a couple of images
+
+00:02:03.400 --> 00:02:10.240
+from research papers by Novikov et al. and by Dong et al. In medical imaging, given
+
+00:02:10.240 --> 00:02:15.000
+a chest x-ray, you may want to diagnose if someone has a certain condition. But what
+
+00:02:15.000 --> 00:02:20.400
+may be even more helpful to doctors is if you can segment out in the image exactly
+
+00:02:20.400 --> 00:02:26.920
+which pixels correspond to certain parts of the patient's anatomy. In the image on the
+
+00:02:26.920 --> 00:02:34.280
+left, the lungs, the heart, and the clavicle, so the collarbones, are segmented out using
+
+00:02:34.280 --> 00:02:40.800
+different colors. This segmentation can make it easier to spot irregularities and diagnose
+
+00:02:40.800 --> 00:02:49.600
+serious diseases and also help surgeons with planning out surgeries. In this example,
+
+00:02:49.600 --> 00:02:59.360
+a brain MRI scan is used for brain tumor detection. Manually segmenting out this tumor is very
+
+00:02:59.360 --> 00:03:07.200
+time-consuming and laborious. But if a learning algorithm can segment out the tumor automatically,
+
+00:03:07.200 --> 00:03:12.920
+this saves radiologists a lot of time and this is a useful input as well for surgical
+
+00:03:12.920 --> 00:03:19.000
+planning. The algorithm used to generate this result is an algorithm called UNET, which
+
+00:03:19.000 --> 00:03:25.600
+you learn about in the remainder of this video. Let's dig into what semantic segmentation
+
+00:03:25.600 --> 00:03:31.520
+actually does. For the sake of simplicity, let's use the example of segmenting out
+
+00:03:31.520 --> 00:03:37.800
+a car from some background. Let's say for now that the only thing you care about is
+
+00:03:37.800 --> 00:03:43.680
+segmenting out the car in this image. In that case, you may decide to have two class
+
+00:03:43.680 --> 00:03:52.960
+labels, one for car and zero for not car. In this case, the job of the segmentation
+
+00:03:52.960 --> 00:03:59.200
+algorithm of the UNET algorithm will be to output either one or zero for every single
+
+00:03:59.200 --> 00:04:04.840
+pixel in this image, where a pixel should be labeled one if it's part of the car and
+
+00:04:04.840 --> 00:04:11.400
+labeled zero if it's not part of the car. Alternatively, if you want to segment this
+
+00:04:11.400 --> 00:04:18.000
+image a little bit more finely, you may decide that you want to label the car one, maybe
+
+00:04:18.000 --> 00:04:22.680
+also want to know where the buildings are, in which case you would have a second class,
+
+00:04:22.680 --> 00:04:30.160
+class two of the building. And then finally, the ground or the road, class three, in which
+
+00:04:30.160 --> 00:04:36.720
+case the job of the learning algorithm will be to label every pixel as follows instead.
+
+00:04:36.720 --> 00:04:43.960
+And so taking the per pixel labels and shifting it to the right, this is the output that we
+
+00:04:43.960 --> 00:04:51.120
+would like to train a UNET to begin. So this is a lot of outputs. Instead of just giving
+
+00:04:51.120 --> 00:04:57.200
+a single class label, or maybe a class label and coordinates needed to specify bounding
+
+00:04:57.200 --> 00:05:03.880
+balls, the neural network UNET in this case, has to generate a whole matrix of labels.
+
+00:05:03.880 --> 00:05:11.440
+So what's the right neural network architecture to do that? Let's start with the object recognition
+
+00:05:11.440 --> 00:05:17.560
+neural network architecture that you're familiar with. And let's figure out how to modify this
+
+00:05:17.560 --> 00:05:23.400
+in order to make this neural network output a whole matrix of class labels. Here's a
+
+00:05:23.400 --> 00:05:31.000
+familiar convolutional neural network architecture, where you input an image, which is fed forward
+
+00:05:31.000 --> 00:05:36.920
+through multiple layers in order to generate a class label y hat. In order to change this
+
+00:05:36.920 --> 00:05:43.160
+architecture into a semantic segmentation architecture, let's get rid of the last few
+
+00:05:43.160 --> 00:05:51.400
+layers. And one key step of semantic segmentation is that whereas the dimensions of the image
+
+00:05:51.400 --> 00:05:57.480
+have been generally getting smaller, as we go from left to right, it now needs to get bigger,
+
+00:05:57.480 --> 00:06:04.280
+so they can gradually blow it back up to a full size image, which is the size you want for the output.
+
+00:06:05.240 --> 00:06:11.880
+So specifically, this is what a UNET architecture looks like. As we go deeper into the UNET,
+
+00:06:11.880 --> 00:06:18.760
+the height and width will go back up, while the number of channels will decrease. So the UNET
+
+00:06:18.760 --> 00:06:24.920
+architecture looks like this until eventually you get your segmentation map of the cat.
+
+00:06:25.000 --> 00:06:32.360
+Now one operation we had not yet covered is what does this look like to make the image bigger.
+
+00:06:32.920 --> 00:06:39.640
+To explain how that works, you have to know how to implement a transpose convolution.
+
+00:06:40.200 --> 00:06:46.520
+So that semantic segmentation, a very useful algorithm for many computer vision applications.
+
+00:06:46.520 --> 00:06:51.400
+And where the key idea is you have to take every single pixel and label every single
+
+00:06:51.400 --> 00:06:57.400
+pixel individually with the appropriate class label. As you seen in this video, a key step to
+
+00:06:57.400 --> 00:07:03.720
+do that is to really take a small set of activations and to blow it up to a bigger set of activations.
+
+00:07:04.360 --> 00:07:09.080
+In order to do that, you have to implement something called the transpose convolution,
+
+00:07:09.080 --> 00:07:13.480
+which is an important operation that is used multiple times in the UNET architecture.
+
+00:07:14.280 --> 00:07:19.240
+So let's go on to the next video where you learn about the transpose convolution.
+
+00:07:19.240 --> 00:07:28.280
+I'll see you in the next video.

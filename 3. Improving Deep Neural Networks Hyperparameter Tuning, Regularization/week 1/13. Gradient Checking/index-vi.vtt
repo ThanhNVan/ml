@@ -1,0 +1,413 @@
+WEBVTT
+
+1
+00:00:00.400 --> 00:00:04.000
+Kiểm tra Gradient là một kỹ thuật giúp tôi tiết kiệm hàng tấn thời gian, và
+
+2
+00:00:04.000 --> 00:00:08.500
+giúp tôi tìm thấy lỗi trong việc triển khai tuyên truyền trở lại của tôi nhiều lần.
+
+3
+00:00:08.500 --> 00:00:10.890
+Hãy xem làm thế nào bạn có thể sử dụng nó quá để gỡ lỗi, hoặc
+
+4
+00:00:10.890 --> 00:00:14.885
+để xác minh rằng thực hiện và quá trình quay lại của bạn đúng.
+
+5
+00:00:14.885 --> 00:00:20.975
+Vì vậy, mạng mới của bạn sẽ có một số loại tham số, W1, B1 và như vậy lên đến WL BL.
+
+6
+00:00:20.975 --> 00:00:23.935
+Vì vậy, để thực hiện kiểm tra gradient, điều đầu tiên bạn nên làm là lấy tất cả các
+
+7
+00:00:23.935 --> 00:00:28.835
+tham số của bạn và định hình lại chúng thành một dữ liệu vector khổng lồ.
+
+8
+00:00:28.835 --> 00:00:34.860
+Vì vậy, những gì bạn nên làm là lấy W là một ma trận, và định hình lại nó thành một vector.
+
+9
+00:00:34.860 --> 00:00:39.850
+Bạn phải lấy tất cả những Ws này và định hình lại chúng thành vectơ, và sau đó nối
+
+10
+00:00:39.850 --> 00:00:45.170
+tất cả những thứ này, để bạn có một theta vector khổng lồ.
+
+11
+00:00:45.170 --> 00:00:47.020
+Véc-tơ khổng lồ phát âm như theta.
+
+12
+00:00:47.020 --> 00:00:52.720
+Vì vậy, chúng tôi nói rằng chức năng cos J là một hàm của W
+
+13
+00:00:52.720 --> 00:00:58.380
+s và Bs, bây giờ bạn sẽ có cost function J là chỉ là một hàm của theta.
+
+14
+00:00:58.380 --> 00:01:02.160
+Tiếp theo, với W và B ra lệnh theo cùng một cách,
+
+15
+00:01:02.160 --> 00:01:07.740
+bạn cũng có thể lấy dW [1], db [1] và
+
+16
+00:01:07.740 --> 00:01:12.200
+như vậy, và bắt đầu chúng vào lớn, vector khổng lồ d theta của cùng chiều với theta.
+
+17
+00:01:12.200 --> 00:01:17.210
+Vì vậy, giống như trước đây, chúng ta định hình dW [1] thành ma trận, db [1] đã là một vector.
+
+18
+00:01:17.210 --> 00:01:21.220
+Chúng tôi định hình dW [L], tất cả các dW đều là ma trận.
+
+19
+00:01:21.220 --> 00:01:24.632
+Hãy nhớ rằng, DW1 có kích thước tương tự như W1.
+
+20
+00:01:24.632 --> 00:01:27.080
+db1 có kích thước tương tự như b1.
+
+21
+00:01:27.080 --> 00:01:31.252
+Vì vậy, cùng một loại hoạt động định hình lại và nối,
+
+22
+00:01:31.252 --> 00:01:36.343
+sau đó bạn có thể định hình lại tất cả các dẫn xuất này thành một vector khổng lồ d theta. Trong
+
+23
+00:01:36.343 --> 00:01:38.750
+đó có kích thước tương tự như theta.
+
+24
+00:01:38.750 --> 00:01:43.780
+Vì vậy, câu hỏi đặt ra là, bây giờ, là theta gradient hay
+
+25
+00:01:43.780 --> 00:01:47.310
+độ dốc của hàm cos J?
+
+26
+00:01:47.310 --> 00:01:49.620
+Vì vậy, đây là cách bạn thực hiện kiểm tra gradient, và
+
+27
+00:01:49.620 --> 00:01:52.740
+thường viết tắt kiểm tra gradient để kiểm tra grad.
+
+28
+00:01:52.740 --> 00:01:57.690
+Vì vậy, trước tiên chúng ta nhớ rằng J bây giờ là một hàm của tham số khổng lồ,
+
+29
+00:01:57.690 --> 00:01:58.277
+theta, phải không?
+
+30
+00:01:58.277 --> 00:02:04.750
+Vì vậy, mở rộng để j là một hàm của theta 1, theta 2, theta 3, và vân vân.
+
+31
+00:02:06.880 --> 00:02:11.618
+Bất cứ thứ gì là kích thước của vector tham số khổng lồ này theta.
+
+32
+00:02:11.618 --> 00:02:18.519
+Vì vậy, để thực hiện kiểm tra grad, những gì bạn sẽ làm là thực hiện một vòng lặp để
+
+33
+00:02:18.519 --> 00:02:23.008
+cho mỗi I, vì vậy cho mỗi thành phần của theta,
+
+34
+00:02:23.008 --> 00:02:26.416
+chúng ta hãy tính toán D theta khoảng i đến b
+
+35
+00:02:26.416 --> 00:02:28.170
+Và để tôi có một sự khác biệt hai mặt.
+
+36
+00:02:28.170 --> 00:02:30.100
+Vì vậy, tôi sẽ lấy J của Theta.
+
+37
+00:02:30.100 --> 00:02:34.440
+Theta 1, theta 2, lên đến theta i,
+
+38
+00:02:34.440 --> 00:02:38.380
+và chúng ta sẽ đẩy theta i để thêm epsilon vào này.
+
+39
+00:02:38.380 --> 00:02:42.970
+Vì vậy, chỉ cần tăng theta i bởi epsilon, và giữ mọi thứ khác như nhau.
+
+40
+00:02:42.970 --> 00:02:46.164
+Và bởi vì chúng ta đang có một sự khác biệt hai mặt,
+
+41
+00:02:46.164 --> 00:02:51.226
+chúng ta sẽ làm tương tự ở phía bên kia với theta i, nhưng bây giờ trừ epsilon.
+
+42
+00:02:51.226 --> 00:02:54.520
+Và sau đó tất cả các yếu tố khác của theta đều bị bỏ lại một mình.
+
+43
+00:02:54.520 --> 00:02:59.690
+Và sau đó chúng tôi sẽ lấy cái này, và chúng tôi sẽ chia nó cho 2 theta.
+
+44
+00:02:59.690 --> 00:03:04.772
+Và những gì chúng ta thấy từ video trước đó là
+
+45
+00:03:04.772 --> 00:03:10.270
+điều này phải xấp xỉ bằng d theta i
+
+46
+00:03:10.270 --> 00:03:15.609
+Trong đó được cho là đạo hàm một phần của J hoặc tôn trọng,
+
+47
+00:03:15.609 --> 00:03:21.320
+Tôi đoán theta i, nếu d theta i là đạo hàm của cost function J.
+
+48
+00:03:21.320 --> 00:03:25.130
+Vì vậy, những gì bạn sẽ làm là bạn sẽ tính toán này cho mọi giá trị của tôi
+
+49
+00:03:25.130 --> 00:03:28.360
+Và cuối cùng, bây giờ bạn kết thúc với hai vectơ.
+
+50
+00:03:28.360 --> 00:03:31.793
+Bạn kết thúc với điều này d theta khoảng, và
+
+51
+00:03:31.793 --> 00:03:35.860
+điều này sẽ là cùng một kích thước như d theta.
+
+52
+00:03:35.860 --> 00:03:39.373
+Và cả hai trong số này lần lượt có cùng chiều không gian như theta.
+
+53
+00:03:39.373 --> 00:03:43.183
+Và những gì bạn muốn làm là kiểm tra xem các vectơ này có xấp xỉ bằng nhau hay không
+
+54
+00:03:43.183 --> 00:03:44.130
+.
+
+55
+00:03:44.130 --> 00:03:47.310
+Vì vậy, chi tiết, làm thế nào bạn xác định hay
+
+56
+00:03:47.310 --> 00:03:50.910
+không hai vectơ có thực sự gần nhau một cách hợp lý?
+
+57
+00:03:50.910 --> 00:03:52.593
+Những gì tôi làm là những điều sau đây.
+
+58
+00:03:52.593 --> 00:03:57.297
+Tôi sẽ tính toán khoảng cách giữa hai vectơ này,
+
+59
+00:03:57.297 --> 00:04:02.100
+d theta khoảng trừ d theta, vì vậy chỉ tiêu o2 của điều này.
+
+60
+00:04:02.100 --> 00:04:03.851
+Chú ý không có hình vuông trên đầu trang, vì vậy
+
+61
+00:04:03.851 --> 00:04:06.788
+đây là tổng bình phương của các phần tử của sự khác biệt, và
+
+62
+00:04:06.788 --> 00:04:09.857
+sau đó bạn lấy một căn bậc hai, khi bạn nhận được khoảng cách Euclide.
+
+63
+00:04:09.857 --> 00:04:15.512
+Và sau đó chỉ để bình thường hóa bởi độ dài của các vectơ,
+
+64
+00:04:15.512 --> 00:04:19.150
+chia cho d theta khoảng cộng với d theta.
+
+65
+00:04:19.150 --> 00:04:22.620
+Chỉ cần lấy độ dài Euclide của các vectơ này.
+
+66
+00:04:22.620 --> 00:04:28.044
+Và hàng cho mẫu số chỉ là trong trường hợp bất kỳ của các vectơ này thực sự nhỏ
+
+67
+00:04:28.044 --> 00:04:32.860
+hoặc thực sự lớn, mẫu số của bạn biến công thức này thành một tỷ lệ.
+
+68
+00:04:32.860 --> 00:04:35.202
+Vì vậy, chúng tôi thực hiện điều này trong thực tế,
+
+69
+00:04:35.202 --> 00:04:39.898
+tôi sử dụng epsilon bằng có thể 10 đến trừ 7, vì vậy trừ 7.
+
+70
+00:04:39.898 --> 00:04:44.644
+Và với phạm vi epsilon này, nếu bạn thấy rằng công thức này cung cấp cho bạn
+
+71
+00:04:44.644 --> 00:04:49.460
+một giá trị như 10 đến trừ 7 hoặc nhỏ hơn, thì đó là tuyệt vời.
+
+72
+00:04:49.460 --> 00:04:53.302
+Nó có nghĩa là xấp xỉ đạo hàm của bạn là rất có thể chính xác.
+
+73
+00:04:53.302 --> 00:04:55.330
+Đây chỉ là một giá trị rất nhỏ.
+
+74
+00:04:55.330 --> 00:05:00.790
+Nếu nó có thể trên phạm vi của 10 đến -5, Tôi sẽ có một cái nhìn cẩn thận.
+
+75
+00:05:00.790 --> 00:05:02.148
+Có lẽ chuyện này không sao.
+
+76
+00:05:02.148 --> 00:05:05.239
+Nhưng tôi có thể kiểm tra lại các thành phần của vector này, và
+
+77
+00:05:05.239 --> 00:05:07.862
+đảm bảo rằng không có thành phần nào quá lớn.
+
+78
+00:05:07.862 --> 00:05:10.649
+Và nếu một số thành phần của sự khác biệt này là rất lớn,
+
+79
+00:05:10.649 --> 00:05:12.860
+sau đó có thể bạn có một lỗi ở đâu đó.
+
+80
+00:05:12.860 --> 00:05:17.719
+Và nếu công thức này bên trái là ở bên kia là -3, sau đó tôi sẽ bất cứ nơi nào bạn
+
+81
+00:05:17.719 --> 00:05:21.728
+có sẽ được nhiều hơn lo ngại rằng có lẽ có một lỗi ở đâu đó.
+
+82
+00:05:21.728 --> 00:05:25.083
+Nhưng bạn thực sự nên nhận được các giá trị nhỏ hơn nhiều sau đó 10 trừ 3.
+
+83
+00:05:25.083 --> 00:05:29.690
+Nếu bất kỳ lớn hơn 10 đến trừ 3, sau đó tôi sẽ khá quan tâm.
+
+84
+00:05:29.690 --> 00:05:32.970
+Tôi sẽ nghiêm túc lo lắng rằng có thể có một lỗi.
+
+85
+00:05:32.970 --> 00:05:37.204
+Và tôi sẽ sau đó, bạn nên nhìn vào các
+
+86
+00:05:37.204 --> 00:05:41.799
+thành phần riêng lẻ của dữ liệu để xem liệu có một giá trị cụ thể của i
+
+87
+00:05:41.799 --> 00:05:45.960
+mà d theta qua i là rất khác với d theta i
+
+88
+00:05:45.960 --> 00:05:47.867
+Và sử dụng nó để cố gắng theo dõi liệu có hay
+
+89
+00:05:47.867 --> 00:05:51.040
+không một số tính toán đạo hàm của bạn có thể không chính xác hay không.
+
+90
+00:05:51.040 --> 00:05:54.970
+Và sau một số lượng gỡ lỗi, nó cuối cùng, nó kết thúc là
+
+91
+00:05:54.970 --> 00:05:59.820
+loại giá trị rất nhỏ, sau đó bạn có thể có một thực hiện chính xác.
+
+92
+00:05:59.820 --> 00:06:01.320
+Vì vậy, khi thực hiện một neural network,
+
+93
+00:06:01.320 --> 00:06:04.840
+những gì thường xảy ra là tôi sẽ thực hiện foreprop, thực hiện backprop.
+
+94
+00:06:04.840 --> 00:06:08.612
+Và sau đó tôi có thể thấy rằng tấm séc này có một giá trị tương đối lớn.
+
+95
+00:06:08.612 --> 00:06:12.460
+Và sau đó tôi sẽ nghi ngờ rằng phải có một lỗi, đi vào gỡ lỗi, gỡ lỗi, gỡ lỗi.
+
+96
+00:06:12.460 --> 00:06:16.310
+Và sau khi gỡ lỗi trong một thời gian, Nếu tôi thấy rằng nó vượt qua kiểm tra grad với một
+
+97
+00:06:16.310 --> 00:06:20.110
+giá trị nhỏ, sau đó bạn có thể tự tin hơn nhiều rằng nó sau đó chính xác.
+
+98
+00:06:20.110 --> 00:06:22.310
+Vì vậy, bây giờ bạn đã biết cách kiểm tra gradient hoạt động.
+
+99
+00:06:22.310 --> 00:06:24.850
+Điều này đã giúp tôi tìm thấy rất nhiều lỗi trong việc triển khai neural network của tôi,
+
+100
+00:06:24.850 --> 00:06:27.330
+và tôi hy vọng nó sẽ giúp bạn quá.
+
+101
+00:06:27.330 --> 00:06:29.970
+Trong video tiếp theo, tôi muốn chia sẻ với bạn một số mẹo hoặc một
+
+102
+00:06:29.970 --> 00:06:33.490
+số ghi chú về cách thực sự thực hiện kiểm tra gradient.
+
+103
+00:06:33.490 --> 00:06:34.640
+Chúng ta hãy xem video tiếp theo.

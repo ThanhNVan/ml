@@ -1,0 +1,207 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.480
+Whether you're tuning hyperparameters or trying out different ideas for learning algorithms
+
+00:00:04.480 --> 00:00:07.840
+or just trying out different options for building a machine learning system,
+
+00:00:07.840 --> 00:00:13.520
+you find that your progress will be much faster if you have a single real number evaluation metric
+
+00:00:13.520 --> 00:00:18.240
+that lets you quickly tell if the new thing you just tried is working better or worse
+
+00:00:18.240 --> 00:00:23.360
+than your last idea. So when teams are starting on the machine learning project,
+
+00:00:23.360 --> 00:00:28.640
+I often recommend that you set up a single real number evaluation metric for your problem.
+
+00:00:29.280 --> 00:00:35.760
+Let's look at an example. You've heard me say before that applying machine learning is a very empirical
+
+00:00:35.760 --> 00:00:39.680
+process. We often have an idea, code it up, run the experiment to see how it did,
+
+00:00:40.320 --> 00:00:45.440
+and then use the outcome of the experiment to refine your ideas and then keep going around this
+
+00:00:45.440 --> 00:00:50.480
+loop as you keep on improving your algorithm. So let's say for your CAD classifier, you have
+
+00:00:50.480 --> 00:00:56.400
+previously built some classifier A, and by changing the hyperparameters or the training sets or some
+
+00:00:56.400 --> 00:01:04.080
+other thing, you've now trained a new classifier B. So one reasonable way to evaluate the performance
+
+00:01:04.080 --> 00:01:10.560
+of your classifiers is to look at this precision and recall. The exact details of what's precision
+
+00:01:10.560 --> 00:01:16.080
+and recall don't matter too much for this example, but briefly the definition precision is
+
+00:01:16.080 --> 00:01:26.770
+of the examples that your classifier recognized as cats, what percentage actually are cats.
+
+00:01:32.460 --> 00:01:38.380
+So if classifier A has 95% precision, this means that when classifier A says something as a cat,
+
+00:01:38.380 --> 00:01:45.500
+there's a 95% chance it really is a cat. And recall is of all the images that really are cats,
+
+00:01:46.140 --> 00:01:53.340
+what percentage were correctly recognized by your classifier? So what percentage of actual cats
+
+00:01:55.940 --> 00:02:08.770
+are correctly recognized? So if classifier A has 90% recall, this means that of all of the images
+
+00:02:08.770 --> 00:02:14.770
+in say your death set that really are cats, classifier A accurately pulled out 90% of them.
+
+00:02:15.490 --> 00:02:20.130
+So don't worry too much about the definitions of precision and recall, but it turns out that
+
+00:02:20.130 --> 00:02:27.570
+there's often a trade-off between precision and recall. And you care about both. You want that
+
+00:02:27.570 --> 00:02:32.210
+when a classifier says something as a cat, there's a high chance it really is a cat. But of all the
+
+00:02:32.210 --> 00:02:36.770
+images that are cats, you also want it to pull out a large fraction of them as cats.
+
+00:02:37.730 --> 00:02:43.250
+So it might be reasonable to try to evaluate the classifiers in terms of this precision and this
+
+00:02:43.250 --> 00:02:50.850
+recall. The problem with using precision recalls the evaluation metric is that if classifier A does
+
+00:02:50.850 --> 00:02:58.130
+better on recall, which it does here, but classifier B does better on precision, then you're not sure
+
+00:02:58.130 --> 00:03:06.290
+which classifier is better. And if you're trying out a lot of different ideas, a lot of different
+
+00:03:06.290 --> 00:03:12.210
+hyperparameters, you want to quickly try out not just two classifiers, but maybe a dozen classifiers
+
+00:03:12.210 --> 00:03:20.340
+and quickly pick out the quote best ones so you can keep on iterating from there. And with two
+
+00:03:20.340 --> 00:03:26.660
+evaluation metrics, it's difficult to know how to quickly pick one of the two or quickly pick one
+
+00:03:26.660 --> 00:03:33.860
+of the ten or one. So what I recommend is rather than using two numbers, precision and recall,
+
+00:03:33.860 --> 00:03:40.340
+to pick a classifier, you instead define a new evaluation metric that combines precision and recall.
+
+00:03:41.460 --> 00:03:45.300
+In the machine learning literature, the standard way to combine precision and recall is something
+
+00:03:45.300 --> 00:03:52.820
+called an F1 score, and the details of F1 score aren't too important, but informally you can
+
+00:03:52.820 --> 00:04:02.100
+think of this as the average of precision P and recall R. Formally, the F1 score is defined by
+
+00:04:02.180 --> 00:04:09.460
+dysformulas, 2 over 1 over precision plus 1 over recall. And in mathematics, this is called the
+
+00:04:10.180 --> 00:04:17.700
+dysfunction, it's called the harmonic mean of precision P and recall R. But less formally,
+
+00:04:17.700 --> 00:04:24.020
+you can think of this as some way that averages precision and recall. Only instead of taking the
+
+00:04:24.020 --> 00:04:28.980
+arithmetic mean, you take the harmonic mean, which is defined by dysformulas. And it has
+
+00:04:28.980 --> 00:04:34.820
+some advantages in terms of trading off precision and recall. But in this example, you can then see
+
+00:04:34.820 --> 00:04:42.340
+right away that classifier A has a better F1 score, and assuming F1 score is a reasonable way
+
+00:04:42.340 --> 00:04:46.900
+to combine precision and recall, you can then quickly select classifier A over classifier B.
+
+00:04:47.940 --> 00:04:51.940
+So what I found for a lot of machine learning teams is that having a well-defined dev set,
+
+00:04:52.580 --> 00:04:59.700
+which is how you're measuring precision and recall, plus a single number evaluation metric,
+
+00:05:00.900 --> 00:05:07.860
+sometimes I'll call it single real number evaluation metric, allows you to quickly tell
+
+00:05:07.860 --> 00:05:14.260
+if classifier A or classifier B is better. And therefore, having a dev set plus single number
+
+00:05:14.260 --> 00:05:23.920
+evaluation metric, this tends to speed up iterating. It speeds up this iterative process
+
+00:05:24.400 --> 00:05:29.520
+of improving your machine learning algorithm. Let's look at another example. Let's say you're
+
+00:05:29.520 --> 00:05:37.920
+building a cat app for cat lovers in four major geographies, you know, the US, China, India,
+
+00:05:37.920 --> 00:05:43.680
+and other, the rest of the world. And let's say that your two classifiers achieve different errors
+
+00:05:45.200 --> 00:05:50.960
+in these in data from these four different geographies. So algorithm A achieves 3% error
+
+00:05:50.960 --> 00:05:58.720
+on pictures submitted by US users and so on. So it might be reasonable to keep track of how well
+
+00:05:58.720 --> 00:06:04.160
+your classifiers do in these different markers or these different geographies. But by tracking four
+
+00:06:04.160 --> 00:06:08.240
+numbers, it's very difficult to look at these numbers and quickly decide if algorithm A or
+
+00:06:08.240 --> 00:06:14.080
+algorithm B is superior. And if you're testing a lot of different classifiers, then it's just
+
+00:06:14.080 --> 00:06:18.960
+difficult to look at all these numbers and quickly pick one. So what I recommend in this
+
+00:06:18.960 --> 00:06:24.560
+example is in addition to tracking your performance in the four different geographies
+
+00:06:24.560 --> 00:06:30.400
+to also compute the average and assuming that average performance is a reasonable single real
+
+00:06:30.400 --> 00:06:36.320
+number evaluation metric, by computing the average you can quickly tell that it looks like algorithm
+
+00:06:36.320 --> 00:06:41.360
+C has the lowest average error and we might then go ahead with that one if you have to pick an
+
+00:06:41.360 --> 00:06:46.880
+algorithm to keep on iterating from. So your workflow in machine learning is often you have
+
+00:06:46.880 --> 00:06:51.200
+an idea, you implement it and try it out and you want to know whether your idea helped.
+
+00:06:51.760 --> 00:06:57.200
+So what we've seen in this video is that having a single number evaluation metric can really
+
+00:06:57.200 --> 00:07:01.200
+improve your efficiency or the efficiency of your team in making those decisions.
+
+00:07:02.000 --> 00:07:07.360
+Now we're not yet done with the discussion on how to effectively set up evaluation metrics.
+
+00:07:07.360 --> 00:07:12.560
+In the next video, I want to share with you how to set up optimizing as well as satisfying
+
+00:07:12.560 --> 00:07:16.002
+metrics. So let's take a look at the next video.

@@ -1,0 +1,569 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.836
+Hầu hết các nhiệm vụ thị giác máy tính có thể sử dụng nhiều dữ liệu hơn.
+
+2
+00:00:03.836 --> 00:00:07.350
+Và do đó, tăng cường dữ liệu (data augmentation) là một trong những kỹ thuật
+
+3
+00:00:07.350 --> 00:00:11.995
+thường được sử dụng để cải thiện hiệu suất của hệ thống thị giác máy tính.
+
+4
+00:00:11.995 --> 00:00:15.535
+Tôi nghĩ rằng thị giác máy tính là một nhiệm vụ khá phức tạp.
+
+5
+00:00:15.535 --> 00:00:16.745
+mọi người phải nhập hình ảnh này,
+
+6
+00:00:16.745 --> 00:00:21.870
+tất cả các pixel này và sau đó tìm ra xem trong hình này có gì.
+
+7
+00:00:21.870 --> 00:00:26.615
+Và có vẻ như mọi người cần phải học hàm khá phức tạp để làm điều đó.
+
+8
+00:00:26.615 --> 00:00:32.160
+Và trên thực tế, hầu như tất cả các nhiệm vụ về thị giác máy tính có nhiều dữ liệu hơn thì sẽ hữu ích hơn.
+
+9
+00:00:32.160 --> 00:00:36.580
+Nó khác với một số domain khác, với các domain đó, đôi khi mọi người có thể nhận đủ dữ liệu,
+
+10
+00:00:36.580 --> 00:00:39.610
+chúng không cảm thấy rằng mình phải có thêm nhiều dữ liệu hơn nữa.
+
+11
+00:00:39.610 --> 00:00:42.428
+Nhưng tôi nghĩ ngày nay, với thị giác máy tính dữ liệu này,
+
+12
+00:00:42.428 --> 00:00:44.655
+đối với phần lớn các vấn đề về thị giác máy tính,
+
+13
+00:00:44.655 --> 00:00:47.655
+chúng ta cảm thấy như chúng ta vẫn thiếu dữ liệu.
+
+14
+00:00:47.655 --> 00:00:50.783
+Và điều này không đúng với tất cả các ứng dụng của machine learning,
+
+15
+00:00:50.783 --> 00:00:53.490
+nhưng cảm giác như nó lại đúng với thị giác máy tính.
+
+16
+00:00:53.490 --> 00:00:57.120
+Vậy, điều đó có nghĩa là khi mọi người đang huấn luyện trong mô hình thị giác máy tính,
+
+17
+00:00:57.120 --> 00:00:59.880
+thường thì tăng cường dữ liệu sẽ hữu ích.
+
+18
+00:00:59.880 --> 00:01:02.520
+Và điều này vẫn đúng cho dù mọi người đang sử dụng phương pháp học chuyển giao hay
+
+19
+00:01:02.520 --> 00:01:05.720
+sử dụng các trọng số được huấn luyện trước của người khác để bắt đầu làm,
+
+20
+00:01:05.720 --> 00:01:09.055
+hoặc liệu mọi người đang cố gắng tự huấn luyện cái gì đó từ đầu.
+
+21
+00:01:09.055 --> 00:01:13.755
+Chúng ta hãy xem xét tăng cường dữ liệu thường gặp trong thị giác máy tính.
+
+22
+00:01:13.755 --> 00:01:19.920
+Có lẽ phương pháp tăng cường dữ liệu đơn giản nhất là phản chiếu (mirroring) trên trục tung,
+
+23
+00:01:19.920 --> 00:01:22.995
+nếu mọi người có ví dụ này trong training set của mình,
+
+24
+00:01:22.995 --> 00:01:27.045
+mọi người lật nó theo chiều ngang để có được hình ảnh đó ở bên phải.
+
+25
+00:01:27.045 --> 00:01:29.300
+Và đối với hầu hết các nhiệm vụ về thị giác máy tính,
+
+26
+00:01:29.300 --> 00:01:33.475
+nếu hình bên trái là một con mèo thì phản chiếu nó vẫn là một con mèo.
+
+27
+00:01:33.475 --> 00:01:35.610
+Và nếu thao tác phản chiếu
+
+28
+00:01:35.610 --> 00:01:38.890
+giữ nguyên bất cứ thứ gì ta đang cố nhận dạng trong hình ảnh,
+
+29
+00:01:38.890 --> 00:01:43.395
+đây sẽ là một kỹ thuật tăng cường dữ liệu tốt mà mọi người có thể dùng
+
+30
+00:01:43.395 --> 00:01:47.035
+Một kỹ thuật thường được sử dụng khác là cắt xén ngẫu nhiên (random cropping).
+
+31
+00:01:47.035 --> 00:01:48.725
+Vì vậy, với tập dữ liệu này,
+
+32
+00:01:48.725 --> 00:01:50.190
+chúng ta hãy chọn một vài cắt xén ngẫu nhiên.
+
+33
+00:01:50.190 --> 00:01:51.536
+Vì vậy, mọi người có thể chọn phần này,
+
+34
+00:01:51.536 --> 00:01:56.442
+và cắt nó ra như thế này hoặc mọi người có thể chọn phần này, cắt nó ra như thế này,
+
+35
+00:01:56.442 --> 00:01:59.460
+chọn phần này, cắt nó ra như thế này, và nó
+
+36
+00:01:59.460 --> 00:02:02.508
+cho mọi người các ví dụ khác nhau để nạp mẫu huấn luyện của mọi người,
+
+37
+00:02:02.508 --> 00:02:04.350
+các hình ảnh cắt ngẫu nhiên khác nhau trong bộ dữ liệu của mọi người.
+
+38
+00:02:04.350 --> 00:02:08.310
+Vậy, việc cắt xén ngẫu nhiên không phải là cách tăng cường dữ liệu hoàn hảo.
+
+39
+00:02:08.310 --> 00:02:14.760
+Điều gì sẽ xảy ra nếu mọi người ngẫu nhiên lại dùng hình ảnh cắt đó trông giống như
+
+40
+00:02:14.760 --> 00:02:18.110
+một con mèo nhưng trong thực tế thì vẫn ổn miễn là
+
+41
+00:02:18.110 --> 00:02:21.920
+hình ảnh cắt ngẫu nhiên của mọi người là các tập hợp con lớn ở mức hợp lý của hình ảnh gốc
+
+42
+00:02:21.920 --> 00:02:26.700
+Vì vậy, phản chiếu và cắt xén ngẫu nhiên thường được sử dụng và trên lý thuyết,
+
+43
+00:02:26.700 --> 00:02:29.580
+mọi người cũng có thể sử dụng những thứ như xoay,
+
+44
+00:02:29.580 --> 00:02:31.086
+cắt hình ảnh,
+
+45
+00:02:31.086 --> 00:02:34.233
+vì vậy nếu mọi người làm điều này với hình ảnh,
+
+46
+00:02:34.233 --> 00:02:35.883
+bóp méo nó theo cách đó,
+
+47
+00:02:35.883 --> 00:02:39.130
+dùng các dạng cong vênh cục bộ khác nhau và v.v.
+
+48
+00:02:39.130 --> 00:02:42.253
+Và thực sự nếu thử tất cả những điều này thì cũng không sao đâu,
+
+49
+00:02:42.253 --> 00:02:45.805
+mặc dù trong thực tế, chúng dường như được sử dụng ít hơn một chút,
+
+50
+00:02:45.805 --> 00:02:48.159
+hoặc có lẽ vì sự phức tạp của chúng.
+
+51
+00:02:48.159 --> 00:02:58.345
+Loại tăng cường dữ liệu thứ hai thường được sử dụng là chuyển màu.
+
+52
+00:02:58.345 --> 00:03:01.080
+Vậy, có một bức tranh như thế này,
+
+53
+00:03:01.080 --> 00:03:04.950
+giả sử mọi người tăng ở kênh R,
+
+54
+00:03:04.950 --> 00:03:09.783
+Kênh G và B các biến dạng khác.
+
+55
+00:03:09.783 --> 00:03:12.260
+Trong ví dụ này, chúng ta đang tăng
+
+56
+00:03:12.260 --> 00:03:16.410
+các kênh màu đỏ và xanh lam và giảm kênh màu xanh lá cây.
+
+57
+00:03:16.410 --> 00:03:20.320
+Vậy, màu đỏ và xanh lam tạo nên màu tím.
+
+58
+00:03:20.320 --> 00:03:23.360
+Vậy, nó khiến cho toàn bộ hình ảnh có màu tím hơn một chút và
+
+59
+00:03:23.360 --> 00:03:27.080
+tạo ra một hình ảnh méo mó cho training set.
+
+60
+00:03:27.080 --> 00:03:29.435
+để minh họa, tôi đang tạo
+
+61
+00:03:29.435 --> 00:03:32.775
+những thay đổi khá đáng kể về màu sắc và để thực hành,
+
+62
+00:03:32.775 --> 00:03:39.720
+ta kéo R, G và B từ một số phân phối có thể khá nhỏ.
+
+63
+00:03:39.720 --> 00:03:43.608
+Mọi người sẽ lấy các giá trị khác nhau của R,
+
+64
+00:03:43.608 --> 00:03:46.410
+G, và B và sử dụng chúng để làm biến dạng các kênh màu.
+
+65
+00:03:46.410 --> 00:03:48.480
+Vì vậy, trong ví dụ thứ hai,
+
+66
+00:03:48.480 --> 00:03:50.695
+chúng ta đang khiến hình ảnh có ít màu đỏ hơn,
+
+67
+00:03:50.695 --> 00:03:52.415
+và nhiều xanh lá cây hơn và xanh dương hơn,
+
+68
+00:03:52.415 --> 00:03:57.109
+để làm cho hình ảnh của chúng ta có màu hơi vàng hơn một chút.
+
+69
+00:03:57.109 --> 00:04:01.407
+Và ở đây, chúng ta đang làm cho nó có màu xanh dương hơn nhiều,
+
+70
+00:04:01.407 --> 00:04:03.155
+chỉ một chút nữa thôi.
+
+71
+00:04:03.155 --> 00:04:04.868
+Nhưng trên thực tế, các giá trị R,
+
+72
+00:04:04.868 --> 00:04:09.465
+G và B, được rút ra từ một số phân phối xác suất.
+
+73
+00:04:09.465 --> 00:04:15.370
+Và động lực cho điều này là nếu ánh sáng mặt trời
+
+74
+00:04:15.370 --> 00:04:20.187
+hơi vàng hoặc có thể ánh sáng trong khung thành có màu vàng hơn một chút,
+
+75
+00:04:20.187 --> 00:04:23.730
+có thể dễ dàng thay đổi màu sắc của hình ảnh,
+
+76
+00:04:23.730 --> 00:04:27.745
+nhưng danh tính của con mèo hoặc danh tính của nội dung,
+
+77
+00:04:27.745 --> 00:04:30.840
+nhãn y, vẫn giữ nguyên.
+
+78
+00:04:30.840 --> 00:04:35.798
+Và do đó, thêm những biến dạng màu sắc này hoặc bằng cách chuyển màu,
+
+79
+00:04:35.798 --> 00:04:46.435
+điều này làm cho thuật toán học mạnh mẽ hơn với những thay đổi về màu sắc của hình ảnh.
+
+80
+00:04:46.435 --> 00:04:54.880
+Tôi muốn nói một điều với những người học nâng cao trong khóa học này,
+
+81
+00:04:54.880 --> 00:04:59.997
+Không sao cả nếu mọi người không hiểu những gì tôi sắp nói khi sử dụng màu đỏ.
+
+82
+00:04:59.997 --> 00:05:04.280
+Có nhiều cách khác nhau để lấy mẫu R, G và B.
+
+83
+00:05:04.280 --> 00:05:08.790
+Một trong những cách để thực hiện biến dạng màu sắc là sử dụng một thuật toán gọi là PCA.
+
+84
+00:05:08.790 --> 00:05:11.465
+PCA là viết tắt của Phân tích Thành phần Chính,
+
+85
+00:05:11.465 --> 00:05:14.345
+mà tôi đã nói đến trong
+
+86
+00:05:14.345 --> 00:05:22.750
+ml-class.org Khóa học Machine Learning trên Coursera.
+
+87
+00:05:22.750 --> 00:05:29.080
+Trong nghiên cứu AlexNet có đề cập đến các chi tiết của thuật toán
+
+88
+00:05:29.080 --> 00:05:36.080
+và đôi khi được gọi là PCA Color Augmentation (Tăng cường màu).
+
+89
+00:05:36.080 --> 00:05:41.585
+Nhưng lúc đó, ý tưởng sơ lược của PCA Color Augmentation là ví dụ,
+
+90
+00:05:41.585 --> 00:05:44.160
+nếu hình ảnh của mọi người chủ yếu là màu tím,
+
+91
+00:05:44.160 --> 00:05:47.540
+nếu nó chủ yếu có màu đỏ và xanh lam,
+
+92
+00:05:47.540 --> 00:05:49.010
+và có rất ít màu xanh lá cây,
+
+93
+00:05:49.010 --> 00:05:52.399
+thì PCA Color Augmentation
+
+94
+00:05:52.399 --> 00:05:55.120
+sẽ cộng và trừ rất nhiều cho màu đỏ và xanh lam,
+
+95
+00:05:55.120 --> 00:05:56.510
+và nó cân bằng màu xanh lá
+
+96
+00:05:56.510 --> 00:06:01.770
+vì vậy nó vẫn giữ nguyên màu tổng thể của tông màu.
+
+97
+00:06:01.770 --> 00:06:05.390
+Nếu mọi người không hiểu những gì tôi nói, đừng lo lắng nhé.
+
+98
+00:06:05.390 --> 00:06:09.677
+Nhưng mọi người có thể lên mạng tìm hiểu thêm
+
+99
+00:06:09.677 --> 00:06:13.905
+mọi người có thể và mọi người cũng có thể đọc chi tiết về nó trong nghiên cứu AlexNet,
+
+100
+00:06:13.905 --> 00:06:18.500
+và mọi người cũng có thể tìm thấy một số triển khai mã nguồn mở của PCA Color Augmentation,
+
+101
+00:06:18.500 --> 00:06:21.685
+và sử dụng nó.
+
+102
+00:06:21.685 --> 00:06:30.010
+Vì vậy, mọi người có thể lưu trữ training data trong đĩa cứng và sử dụng biểu tượng
+
+103
+00:06:30.010 --> 00:06:33.705
+biểu tượng thùng tròn này để đại diện cho đĩa cứng của mọi người.
+
+104
+00:06:33.705 --> 00:06:36.000
+Và nếu mọi người có một training set nhỏ,
+
+105
+00:06:36.000 --> 00:06:38.336
+mọi người có thể làm hầu hết mọi thứ và mọi thứ sẽ ổn.
+
+106
+00:06:38.336 --> 00:06:42.785
+Nhưng training set cuối cùng và đây là cách người ta thường triển khai,
+
+107
+00:06:42.785 --> 00:06:52.705
+đó là mọi người có thể có một luồng CPU liên tục tải hình ảnh của đĩa cứng của mọi người.
+
+108
+00:06:52.705 --> 00:07:00.235
+Vậy, mọi người có luồng hình ảnh này đến từ đĩa cứng của mọi người.
+
+109
+00:07:00.235 --> 00:07:08.535
+Và mọi người có thể sử dụng một luồng CPU để triển khai các biến dạng,
+
+110
+00:07:08.535 --> 00:07:11.000
+nhưng sự cắt xén ngẫu nhiên,
+
+111
+00:07:11.000 --> 00:07:13.795
+hoặc chuyển màu, hoặc phản chiếu,
+
+112
+00:07:13.795 --> 00:07:16.710
+nhưng đối với mỗi hình ảnh,
+
+113
+00:07:16.710 --> 00:07:21.000
+sau đó mọi người có thể nhận được một số phiên bản bị bóp méo của nó.
+
+114
+00:07:21.000 --> 00:07:22.950
+Vậy, chúng ta hãy xem hình ảnh này,
+
+115
+00:07:22.950 --> 00:07:28.310
+Tôi sẽ phản chiếu nó và nếu mọi người cũng triển khai biến dạng màu sắc, v.v.
+
+116
+00:07:28.310 --> 00:07:35.120
+Và nếu hình ảnh này bị chuyển màu,
+
+117
+00:07:35.120 --> 00:07:41.470
+thì mọi người có một số con mèo màu khác nhau.
+
+118
+00:07:41.470 --> 00:07:48.395
+Và do đó, luồng CPU của mọi người liên tục tải dữ liệu cũng như triển khai xem
+
+119
+00:07:48.395 --> 00:07:56.810
+liệu các biến dạng có cần thiết để tạo thành một lô hay là nhiều lô dữ liệu.
+
+120
+00:07:56.810 --> 00:08:05.045
+Và dữ liệu này sau đó liên tục được chuyển đến một số chuỗi khác hoặc một số quy trình khác để
+
+121
+00:08:05.045 --> 00:08:08.815
+triển khai huấn luyện và điều này có thể được thực hiện trên CPU và
+
+122
+00:08:08.815 --> 00:08:14.075
+ngày càng phổ biến trên GPU nếu mọi người có một neural network lớn để huấn luyện.
+
+123
+00:08:14.075 --> 00:08:17.710
+Và do đó, một cách khá phổ biến để triển khai
+
+124
+00:08:17.710 --> 00:08:22.235
+tăng cường dữ liệu là dùng một luồng,
+
+125
+00:08:22.235 --> 00:08:26.540
+gần như là 4 luồng, chúng
+
+126
+00:08:26.540 --> 00:08:30.635
+chịu trách nhiệm tải dữ liệu và triển khai các biến dạng,
+
+127
+00:08:30.635 --> 00:08:32.840
+và sau đó truyền nó sang một số luồng khác hoặc
+
+128
+00:08:32.840 --> 00:08:35.935
+một số quy trình khác sau đó thực hiện huấn luyện.
+
+129
+00:08:35.935 --> 00:08:38.435
+Và thường thì, cái này và cái này,
+
+130
+00:08:38.435 --> 00:08:39.650
+có thể chạy song song.
+
+131
+00:08:39.650 --> 00:08:46.121
+Vì vậy, đó là mọi thứ tôi muốn nói về tăng cường dữ liệu.
+
+132
+00:08:46.121 --> 00:08:49.970
+Và tương tự như các phần khác của việc huấn luyện một neural network sâu,
+
+133
+00:08:49.970 --> 00:08:55.250
+quá trình tăng cường dữ liệu cũng có một vài siêu tham số chẳng hạn như
+
+134
+00:08:55.250 --> 00:09:00.965
+mọi người triển khai bao nhiêu chuyển màu và mọi người sử dụng những thông số nào để cắt xén ngẫu nhiên?
+
+135
+00:09:00.965 --> 00:09:03.500
+Vậy, tương tự như trong thị giác máy tính,
+
+136
+00:09:03.500 --> 00:09:06.335
+mọi người có thể bắt đầu bằng cách sử dụng
+
+137
+00:09:06.335 --> 00:09:10.920
+triển khai mã nguồn mở của người khác để biết cách họ sử dụng tăng cường dữ liệu thế nào.
+
+138
+00:09:10.920 --> 00:09:15.640
+Nhưng tất nhiên, nếu mọi người muốn nắm bắt nhiều hơn các variance,
+
+139
+00:09:15.640 --> 00:09:19.235
+thì mọi người nghĩ rằng việc triển khai mã nguồn mở của người khác sẽ không,
+
+140
+00:09:19.235 --> 00:09:24.230
+cũng có thể hợp lý nếu mọi người tự sử dụng siêu tham số.
+
+141
+00:09:24.230 --> 00:09:27.980
+Vậy, tôi mong rằng mọi người sẽ sử dụng tăng cường dữ liệu,
+
+142
+00:09:27.980 --> 00:09:31.250
+để các ứng dụng thị giác máy tính của mọi người hoạt động tốt hơn.

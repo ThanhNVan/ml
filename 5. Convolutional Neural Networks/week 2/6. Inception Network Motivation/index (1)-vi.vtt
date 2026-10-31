@@ -1,0 +1,633 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.370
+Khi thiết kế một layer cho Mạng convolution (CNN), mọi người có thể phải chọn,
+
+2
+00:00:03.370 --> 00:00:05.430
+xem mình muốn một bộ lọc 1 x 3,
+
+3
+00:00:05.430 --> 00:00:07.385
+hoặc 3 x 3, hay 5 x 5,
+
+4
+00:00:07.385 --> 00:00:09.180
+hay mọi người muốn một pooling layer (layer gộp)?
+
+5
+00:00:09.180 --> 00:00:11.920
+Nhiệm vụ của mạng Inception là, nó nói rằng
+
+6
+00:00:11.920 --> 00:00:13.095
+tại sao mọi người nên dùng tất cả chúng?
+
+7
+00:00:13.095 --> 00:00:16.255
+Và điều này làm cho kiến trúc mạng phức tạp hơn,
+
+8
+00:00:16.255 --> 00:00:18.380
+nhưng nó cũng hoạt động rất tốt.
+
+9
+00:00:18.380 --> 00:00:19.720
+Vậy hãy xem nó hoạt động ra sao
+
+10
+00:00:19.720 --> 00:00:23.380
+Ví dụ, giả sử rằng mọi người đã nhập một
+
+11
+00:00:23.380 --> 00:00:26.990
+hình khối với kích thước 28 x 28 x 192.
+
+12
+00:00:26.990 --> 00:00:32.500
+Vậy mạng Inception hay layer Inception sẽ nói rằng
+
+13
+00:00:32.500 --> 00:00:36.600
+thay vì chọn kích thước bộ lọc mọi người muốn trong layer convolution,
+
+14
+00:00:36.600 --> 00:00:40.205
+hoặc thậm chí chọn xem mọi người muốn một layer convolution hay một pooling layer?
+
+15
+00:00:40.205 --> 00:00:46.795
+Hãy dùng tất cả nhé. Vì vậy, điều gì sẽ xảy ra nếu mọi người có thể sử dụng phép chập 1 x 1,
+
+16
+00:00:46.795 --> 00:00:50.750
+và điều đó sẽ xuất ra 28 x 28 x một số nào đó
+
+17
+00:00:50.750 --> 00:00:56.180
+Giả sử đầu ra là 28 x 28 x 64,
+
+18
+00:00:56.180 --> 00:00:58.405
+và mọi người có một hình khối ở đó.
+
+19
+00:00:58.405 --> 00:01:06.510
+Nhưng có thể mọi người cũng muốn thử 3 x 3 và nó có thể xuất ra 20 x 20 x 128.
+
+20
+00:01:06.510 --> 00:01:13.975
+Và sau đó mọi người xếp hình khối thứ hai này lên bên cạnh hình khối đầu tiên.
+
+21
+00:01:13.975 --> 00:01:16.415
+Và để làm cho các kích thước khớp với nhau,
+
+22
+00:01:16.415 --> 00:01:19.470
+chúng ta hãy biến nó thành một phép chập giống nhau.
+
+23
+00:01:19.470 --> 00:01:23.500
+Vì vậy, kích thước đầu ra vẫn là 28 x 28,
+
+24
+00:01:23.500 --> 00:01:26.965
+giống như kích thước đầu vào về chiều cao và chiều rộng.
+
+25
+00:01:26.965 --> 00:01:31.300
+Nhưng 28 x 28 x 128 ở trong ví dụ này.
+
+26
+00:01:31.300 --> 00:01:34.510
+Và có thể mọi người có thể nói chà, tôi muốn thử nghiệm nhiều hơn
+
+27
+00:01:34.510 --> 00:01:36.710
+Có lẽ bộ lọc 5 x 5 hoạt động tốt hơn.
+
+28
+00:01:36.710 --> 00:01:44.755
+Vì vậy, hãy dùng cả nó nữa và có đầu ra là 28 x 28 x 32.
+
+29
+00:01:44.755 --> 00:01:49.435
+Và một lần nữa, mọi người sử dụng cùng một convolution để giữ cho các kích thước giống nhau.
+
+30
+00:01:49.435 --> 00:01:52.715
+Và có thể mọi người không muốn layer convolution
+
+31
+00:01:52.715 --> 00:01:58.560
+Hãy áp dụng pooling, và nó có một số đầu ra khác và hãy xếp chồng chúng lên nhau.
+
+32
+00:01:58.560 --> 00:02:05.070
+Và ở đây đầu ra pooling là 28 x 28 x 32.
+
+33
+00:02:05.070 --> 00:02:09.195
+Bây giờ để làm cho tất cả các kích thước khớp với nhau,
+
+34
+00:02:09.195 --> 00:02:12.560
+mọi người thực sự cần sử dụng padding (đệm) cho max pooling
+
+35
+00:02:12.560 --> 00:02:15.950
+Vì vậy, đây là một pooling chính thức bất thường bởi vì nếu mọi người muốn
+
+36
+00:02:15.950 --> 00:02:19.985
+đầu vào có giá trị cao hơn 28 x 28 và có đầu ra,
+
+37
+00:02:19.985 --> 00:02:24.395
+mọi người sẽ phải để kích thước với mọi thứ khác cũng bằng 28 x 28,
+
+38
+00:02:24.395 --> 00:02:31.020
+thì mọi người cần sử dụng cùng một padding cũng như một stride (bước nhảy) cho pooling
+
+39
+00:02:31.020 --> 00:02:34.230
+Bây giờ, chi tiết này có vẻ hơi buồn cười đối với mọi người
+
+40
+00:02:34.230 --> 00:02:35.520
+nhưng chúng ta hãy tiếp tục nhé.
+
+41
+00:02:35.520 --> 00:02:39.310
+Và chúng ta sẽ làm cho tất cả chúng hoạt động sau.
+
+42
+00:02:39.310 --> 00:02:43.170
+Nhưng với một mô-đun Inception như thế này,
+
+43
+00:02:43.170 --> 00:02:46.080
+mọi người có thể nhập một hình khối và đầu ra.
+
+44
+00:02:46.080 --> 00:02:48.640
+Trong trường hợp này, tôi đoán nếu mọi người cộng tất cả những con số này,
+
+45
+00:02:48.640 --> 00:02:51.705
+32 cộng 32 cộng 128 cộng 64,
+
+46
+00:02:51.705 --> 00:02:54.915
+kết quả bằng 256.
+
+47
+00:02:54.915 --> 00:03:01.515
+Vì vậy, mọi người sẽ có một đầu vào mô-đun Inception 28 x 28 x 192,
+
+48
+00:03:01.515 --> 00:03:06.275
+và xuất 28 x 28 x 256.
+
+49
+00:03:06.275 --> 00:03:11.300
+Và đây là trung tâm của mạng Inception do
+
+50
+00:03:11.300 --> 00:03:13.260
+cho Christian Szegedy, Wei Liu,
+
+51
+00:03:13.260 --> 00:03:15.130
+Yangqing Jia, Pierre Sermanet,
+
+52
+00:03:15.130 --> 00:03:17.750
+Scott Reed, Dragomir Anguelov, Dumitru Erhan,
+
+53
+00:03:17.750 --> 00:03:20.660
+Vincent Vanhoucke và Andrew Rabinovich.
+
+54
+00:03:20.660 --> 00:03:23.950
+Và ý tưởng cơ bản là thay vì
+
+55
+00:03:23.950 --> 00:03:30.000
+chọn một trong những kích thước bộ lọc này hoặc pooling mọi người muốn và chỉ dùng thứ mình đã chọn,
+
+56
+00:03:30.000 --> 00:03:33.200
+mọi người có thể dùng tất cả và chỉ cần nối tất cả các đầu ra,
+
+57
+00:03:33.200 --> 00:03:36.270
+và cho phép mạng học bất kỳ tham số nào nó muốn sử dụng,
+
+58
+00:03:36.270 --> 00:03:40.050
+bất kỳ sự kết hợp của các kích thước bộ lọc mà nó muốn.
+
+59
+00:03:40.050 --> 00:03:42.420
+Bây giờ hóa ra là có một vấn đề
+
+60
+00:03:42.420 --> 00:03:44.745
+với layer Inception như chúng ta đã mô tả ở đây,
+
+61
+00:03:44.745 --> 00:03:46.795
+là chi phí tính toán.
+
+62
+00:03:46.795 --> 00:03:48.060
+Trên slide tiếp theo,
+
+63
+00:03:48.060 --> 00:03:54.485
+hãy cùng tìm ra chi phí tính toán của bộ lọc 5 x 5 này
+
+64
+00:03:54.485 --> 00:03:56.655
+trong khối này ở đây.
+
+65
+00:03:56.655 --> 00:04:02.735
+Vì vậy, chỉ cần tập trung vào phần 5 x 5 trên slide trước,
+
+66
+00:04:02.735 --> 00:04:07.010
+chúng ta đã có đầu vào là khối 28 x 28 x 192,
+
+67
+00:04:07.010 --> 00:04:14.620
+và mọi người vẫn triển khai phép chập 5 x 5 của 32 bộ lọc để xuất ra 28 x 28 x 32.
+
+68
+00:04:14.620 --> 00:04:18.750
+Trên slide trước, tôi đã vẽ nó như một lát cắt mỏng màu tím.
+
+69
+00:04:18.750 --> 00:04:23.035
+Vì vậy, tôi sẽ vẽ nó như một khối màu xanh lam trông bình thường hơn ở đây.
+
+70
+00:04:23.035 --> 00:04:30.700
+Vậy, hãy xem xét chi phí tính toán của việc xuất 20 x 20 x 32 này.
+
+71
+00:04:30.700 --> 00:04:38.065
+Vì vậy, mọi người có 32 bộ lọc vì đầu ra có 32 kênh,
+
+72
+00:04:38.065 --> 00:04:44.805
+và mỗi bộ lọc sẽ là 5 x 5 x 192.
+
+73
+00:04:44.805 --> 00:04:48.410
+Và kích thước đầu ra là 20 x 20 x 32,
+
+74
+00:04:48.410 --> 00:04:53.600
+và do đó mọi người cần tính 28 x 28 x 32 số.
+
+75
+00:04:53.600 --> 00:04:58.685
+Và đối với mỗi số đó, mọi người cần thực hiện nhiều phép nhân này, phải không?
+
+76
+00:04:58.685 --> 00:05:01.185
+5 x 5 x 192.
+
+77
+00:05:01.185 --> 00:05:03.550
+Vì vậy, tổng số phép nhân mọi người cần
+
+78
+00:05:03.550 --> 00:05:07.010
+là số lượng phép nhân mọi người cần để tính toán mỗi
+
+79
+00:05:07.010 --> 00:05:12.615
+giá trị đầu ra nhân với số giá trị đầu ra mọi người cần tính.
+
+80
+00:05:12.615 --> 00:05:15.330
+Và nếu mọi người nhân tất cả những con số này,
+
+81
+00:05:15.330 --> 00:05:18.790
+kết quả bằng 120 triệu.
+
+82
+00:05:18.790 --> 00:05:24.725
+Và như vậy, trong khi mọi người có thể thực hiện 120 triệu phép nhân trên máy tính hiện đại,
+
+83
+00:05:24.725 --> 00:05:27.385
+đây vẫn là một hoạt động khá tốn kém.
+
+84
+00:05:27.385 --> 00:05:32.390
+Trên slide tiếp theo, mọi người sẽ thấy tác dụng của việc sử dụng ý tưởng về phép chập 1 x 1,
+
+85
+00:05:32.390 --> 00:05:34.210
+mà mọi người đã học trong video trước,
+
+86
+00:05:34.210 --> 00:05:38.630
+mọi người sẽ có thể giảm chi phí tính toán với khoảng cơ số 10.
+
+87
+00:05:38.630 --> 00:05:44.400
+Từ khoảng 120 triệu phép nhân thành chỉ còn khoảng một phần mười .
+
+88
+00:05:44.400 --> 00:05:48.575
+Vì vậy các mọi người hãy nhớ số 120 để có thể so sánh
+
+89
+00:05:48.575 --> 00:05:52.045
+với những gì mọi người thấy trong slide tiếp theo nhé, 120 triệu.
+
+90
+00:05:52.045 --> 00:05:58.540
+Đây là một kiến trúc thay thế để nhập 28 x 28 x 192,
+
+91
+00:05:58.540 --> 00:06:03.020
+và xuất ra 28 x 28 x 32, nó giảm đi.
+
+92
+00:06:03.020 --> 00:06:05.175
+mọi người sẽ nhập hình khối,
+
+93
+00:06:05.175 --> 00:06:14.580
+sử dụng phép chập 1 x 1 để giảm hình khối xuống 16 kênh thay vì 192 kênh,
+
+94
+00:06:14.580 --> 00:06:17.370
+và sau đó trên hình khối nhỏ hơn nhiều này,
+
+95
+00:06:17.370 --> 00:06:21.915
+chạy phép chập 5 x 5 của mọi người để có được đầu ra cuối cùng.
+
+96
+00:06:21.915 --> 00:06:24.665
+Vì vậy, hãy chú ý rằng kích thước đầu vào và đầu ra vẫn giống nhau.
+
+97
+00:06:24.665 --> 00:06:31.280
+mọi người nhập 28 x 28 x 192 và đầu ra 28 x 28 x 32,
+
+98
+00:06:31.280 --> 00:06:33.865
+giống như slide trước.
+
+99
+00:06:33.865 --> 00:06:37.340
+Chúng ta đã sử dụng hình khối khổng lồ mà chúng ta có ở bên trái,
+
+100
+00:06:37.340 --> 00:06:42.110
+và chúng ta thu nhỏ nó thành hình khối trung gian nhỏ hơn nhiều này,
+
+101
+00:06:42.110 --> 00:06:46.740
+chỉ có 16 thay vì 192 kênh.
+
+102
+00:06:46.740 --> 00:06:53.000
+Đôi khi nó được gọi là một layer nút cổ chai, nhỉ?
+
+103
+00:06:53.600 --> 00:06:59.890
+Tôi đoán vì nút cổ chai thường là phần nhỏ nhất của cái gì đó, phải không?
+
+104
+00:06:59.890 --> 00:07:04.820
+Vì vậy, tôi đoán nếu mọi người có một chai thủy tinh trông như thế này,
+
+105
+00:07:04.820 --> 00:07:09.065
+sau đó mọi người biết đây là nút của chai
+
+106
+00:07:09.065 --> 00:07:13.615
+Và nút cổ chai là phần nhỏ nhất của chai này.
+
+107
+00:07:13.615 --> 00:07:18.035
+Vì vậy, cũng như vậy, layer nút cổ chai là phần nhỏ nhất của mạng này.
+
+108
+00:07:18.035 --> 00:07:22.625
+chúng ta thu nhỏ hình biểu diễn trước khi tăng kích thước trở lại.
+
+109
+00:07:22.625 --> 00:07:26.945
+Bây giờ chúng ta hãy xem xét các chi phí tính toán liên quan.
+
+110
+00:07:26.945 --> 00:07:30.320
+Để áp dụng phép chập 1 x 1 này,
+
+111
+00:07:30.320 --> 00:07:32.510
+chúng ta có 16 bộ lọc.
+
+112
+00:07:32.510 --> 00:07:37.145
+Mỗi bộ lọc sẽ có kích thước 1 x 1 x 192,
+
+113
+00:07:37.145 --> 00:07:40.170
+192 này khớp với 192.
+
+114
+00:07:40.170 --> 00:07:43.300
+Và do đó, chi phí tính toán hình khối
+
+115
+00:07:43.300 --> 00:07:45.870
+này 28 x 28 x 16 sẽ là,
+
+116
+00:07:45.870 --> 00:07:48.205
+mọi người cần nhiều đầu ra này,
+
+117
+00:07:48.205 --> 00:07:54.900
+và với mỗi đầu ra, mọi người cần thực hiện 192 phép nhân.
+
+118
+00:07:54.900 --> 00:07:58.515
+Tôi có thể viết 1 x 1 x 192, phải không?
+
+119
+00:07:58.515 --> 00:08:00.960
+Đó là cái này. Và nếu mọi người nhân nó ra,
+
+120
+00:08:00.960 --> 00:08:02.650
+đây là 2,4 triệu,
+
+121
+00:08:02.650 --> 00:08:04.370
+nó khoảng 2,4 triệu.
+
+122
+00:08:04.370 --> 00:08:05.655
+Còn cái thứ hai thì sao?
+
+123
+00:08:05.655 --> 00:08:11.325
+Vậy, đó là chi phí của layer convolution đầu tiên này.
+
+124
+00:08:11.325 --> 00:08:15.670
+Chi phí của layer phức hợp thứ hai này sẽ là,
+
+125
+00:08:15.670 --> 00:08:17.290
+mọi người có nhiều kết quả đầu ra.
+
+126
+00:08:17.290 --> 00:08:19.340
+Vậy, 28 x 28 x 32.
+
+127
+00:08:19.340 --> 00:08:28.200
+Và sau đó đối với mỗi đầu ra, mọi người phải áp dụng bộ lọc có kích thước 5 x 5 x 16
+
+128
+00:08:28.200 --> 00:08:31.305
+Và như vậy là 5 x 5 x 16.
+
+129
+00:08:31.305 --> 00:08:36.520
+Và mọi người nhân thì được kết quả là 10,0.
+
+130
+00:08:36.520 --> 00:08:41.160
+Và do đó, tổng số phép nhân mọi người cần tính là tổng của chúng
+
+131
+00:08:41.160 --> 00:08:45.020
+tức là 12,4 triệu phép nhân.
+
+132
+00:08:45.020 --> 00:08:47.955
+Và mọi người so sánh số này với những gì chúng ta đã có trên slide trước,
+
+133
+00:08:47.955 --> 00:08:53.095
+mọi người giảm chi phí tính toán từ khoảng 120 triệu phép nhân,
+
+134
+00:08:53.095 --> 00:08:55.810
+xuống khoảng một phần mười trong của số đó,
+
+135
+00:08:55.810 --> 00:08:59.335
+thành 12,4 triệu phép nhân.
+
+136
+00:08:59.335 --> 00:09:02.345
+Và số phép cộng mọi người cần tính thì
+
+137
+00:09:02.345 --> 00:09:06.305
+gần giống với số phép nhân mọi người cần tính
+
+138
+00:09:06.305 --> 00:09:10.230
+Vì vậy, đó là lý do tại sao tôi chỉ đếm số phép nhân.
+
+139
+00:09:10.230 --> 00:09:13.490
+Tóm lại, nếu mọi người đang xây dựng một layer
+
+140
+00:09:13.490 --> 00:09:16.140
+của một neural network và mọi người không muốn phải quyết định,
+
+141
+00:09:16.140 --> 00:09:17.820
+mọi người muốn pooling layer
+
+142
+00:09:17.820 --> 00:09:20.095
+có kích thước 1 x 1, hoặc 3 x 3, hoặc 5 x 5
+
+143
+00:09:20.095 --> 00:09:23.560
+mô-đun Inception, giả sử mọi người muốn tính tất cả,
+
+144
+00:09:23.560 --> 00:09:25.645
+và nối các kết quả lại.
+
+145
+00:09:25.645 --> 00:09:28.720
+Và sau đó chúng ta xem xét vấn đề chi phí tính toán.
+
+146
+00:09:28.720 --> 00:09:32.460
+Và mọi người có thể thấy ở đây là bằng cách sử dụng phép chập 1 x 1,
+
+147
+00:09:32.460 --> 00:09:34.585
+mọi người có thể tạo layer nút cổ chai này
+
+148
+00:09:34.585 --> 00:09:38.115
+nhờ đó giảm chi phí tính toán đáng kể.
+
+149
+00:09:38.115 --> 00:09:39.725
+Bây giờ, mọi người có thể thắc mắc
+
+150
+00:09:39.725 --> 00:09:43.370
+liệu thu nhỏ kích thước biểu diễn xuống đáng kể
+
+151
+00:09:43.370 --> 00:09:46.730
+thì có ảnh hưởng đến hiệu suất của neural network của mọi người không?
+
+152
+00:09:46.730 --> 00:09:52.440
+Hóa ra là miễn là mọi người triển khai layer nút cổ chai này một cách hợp lý
+
+153
+00:09:52.440 --> 00:09:56.530
+mọi người có thể thu nhỏ kích thước của biểu diễn xuống đáng kể,
+
+154
+00:09:56.530 --> 00:09:59.240
+và nó dường như không ảnh hưởng đến hiệu suất,
+
+155
+00:09:59.240 --> 00:10:01.700
+nhưng giúp mọi người tiết kiệm rất nhiều việc tính toán.
+
+156
+00:10:01.700 --> 00:10:07.835
+Vậy, đây là những ý tưởng chính trong mô-đun Inception
+
+157
+00:10:07.835 --> 00:10:09.790
+Hãy kết hợp chúng với nhau và trong
+
+158
+00:10:09.790 --> 00:10:14.100
+video tiếp theo, tôi sẽ cho mọi người thấy mạng Inception trông như thế nào.

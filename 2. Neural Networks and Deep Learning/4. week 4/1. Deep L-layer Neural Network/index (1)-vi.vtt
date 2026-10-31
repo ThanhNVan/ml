@@ -1,0 +1,381 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.389
+Chào mừng đến với tuần 
+thứ tư của khóa học.
+
+2
+00:00:02.389 --> 00:00:06.354
+Cho đến giờ, bạn đã thấy
+ truyền xuôi và truyền ngược
+
+3
+00:00:06.354 --> 00:00:10.807
+trong một neural network nhân tạo, với một 
+lớp ẩn duy nhất, cũng như logistic regression và
+
+4
+00:00:10.807 --> 00:00:13.064
+bạn đã học về vector hóa, và hiểu rằng
+
+5
+00:00:13.064 --> 00:00:15.936
+khi nào thì cần khởi tạo ngẫu 
+nhiên các phương pháp.
+
+6
+00:00:15.936 --> 00:00:19.417
+Nếu bạn đã hoàn thành bài tập về nhà trong 
+vài tuần vừa rồi, thì bạn cũng đã thực hiện và
+
+7
+00:00:19.417 --> 00:00:21.378
+tự hiểu được những ý tưởng này.
+
+8
+00:00:21.378 --> 00:00:21.977
+Vậy nên bây giờ,
+
+9
+00:00:21.977 --> 00:00:26.718
+bạn đã có được hầu hết các kiến thức cần 
+thiết để triển khai một neural network nhân tạo sâu.
+
+10
+00:00:26.718 --> 00:00:30.453
+Trong tuần này, chúng ta sẽ lấy những ý 
+tưởng đó và kết hợp chúng lại với nhau
+
+11
+00:00:30.453 --> 00:00:33.669
+và bạn sẽ có thể triển khai neural network
+ nhân tạo sâu của riêng mình.
+
+12
+00:00:33.669 --> 00:00:36.406
+Bởi vì bài tập tuần này dài hơn,
+
+13
+00:00:36.406 --> 00:00:39.457
+chỉ là có nhiều công việc
+ hơn, tôi sẽ để các video
+
+14
+00:00:39.457 --> 00:00:43.784
+tuần này ngắn hơn, để bạn
+ có thể xem video nhanh hơn và
+
+15
+00:00:43.784 --> 00:00:48.107
+sau đó có nhiều thời gian hơn để thực hiện 
+một bài tập lớn khi kết thúc, và tôi hy vọng điều nà
+
+16
+00:00:48.107 --> 00:00:52.537
+sẽ giúp bạn suy nghĩ kỹ về neural network 
+nhân tạo, nếu bạn cảm thấy tự hào về nó.
+
+17
+00:00:52.537 --> 00:00:55.576
+Vậy một neural network nhân tạo sâu là gì?
+
+18
+00:00:55.576 --> 00:00:59.225
+Bạn đã nhìn thấy hình ảnh này 
+cho logistic regression và
+
+19
+00:00:59.225 --> 00:01:03.439
+bạn cũng đã thấy các mạng 
+nơ-ron nhân tạo với một lớp ẩn duy nhất.
+
+20
+00:01:03.439 --> 00:01:07.925
+Và đây là một ví dụ về một mạng
+ nơ-ron nhân tạo với hai lớp ẩn và
+
+21
+00:01:07.925 --> 00:01:10.661
+một neural network nhân tạo với 5 lớp ẩn.
+
+22
+00:01:10.661 --> 00:01:15.744
+Chúng ta nói rằng logistic regression 
+là một mô hình rất "nông",
+
+23
+00:01:15.744 --> 00:01:19.947
+trong khi đây là một mô 
+hình sâu hơn nhiều, và
+
+24
+00:01:19.947 --> 00:01:23.585
+độ nông và độ sâu thì liên quan đến mức độ.
+
+25
+00:01:23.585 --> 00:01:26.952
+Vậy nên neural network nhân
+ tạo của một lớp ẩn duy nhất,
+
+26
+00:01:26.952 --> 00:01:30.052
+đây sẽ là một neural network nhân tạo 2 lớp.
+
+27
+00:01:30.052 --> 00:01:34.880
+Hãy nhớ là khi chúng ta đếm các lớp trong mạng
+ nơ-ron, chúng ta không đếm lớp đầu vào,
+
+28
+00:01:34.880 --> 00:01:38.076
+chúng ta chỉ đếm các lớp ẩn và lớp đầu ra.
+
+29
+00:01:38.076 --> 00:01:42.849
+Vậy đây sẽ là một neural network
+ nhân tạo 2 lớp, và vẫn còn khá nông,
+
+30
+00:01:42.849 --> 00:01:45.961
+nhưng không nông bằng logistic regression.
+
+31
+00:01:45.961 --> 00:01:50.086
+Về lý thuyết, logistic regression là
+ một neural network nhân tạo một lớp,
+
+32
+00:01:50.086 --> 00:01:53.536
+nhưng trong vài năm qua,
+
+33
+00:01:53.536 --> 00:01:58.561
+trong cộng đồng machine learning, AI đã nhận 
+ra rằng có những hàm mà
+
+34
+00:01:58.561 --> 00:02:03.590
+neural network nhân tạo rất sâu thì có thể học được 
+nhưng các mô hình nông hơn thì lại thường không thể.
+
+35
+00:02:03.590 --> 00:02:08.119
+Mặc dù là đối với bất kỳ vấn đề nào, bạn cũng
+ có thể gặp khó khăn khi dự đoán chính xác
+
+36
+00:02:08.119 --> 00:02:10.163
+độ sâu của neural network mà bạn muốn.
+
+37
+00:02:10.163 --> 00:02:14.305
+Vậy nên, sẽ thật hợp lý khi thử regression 
+logistic, thử một rồi
+
+38
+00:02:14.305 --> 00:02:19.200
+hai lớp ẩn và xem số lớp ẩn như là một siêu 
+
+39
+00:02:19.200 --> 00:02:22.739
+tham số khác mà bạn có thể
+ thử nhiều giá trị và
+
+40
+00:02:22.739 --> 00:02:27.515
+đánh giá tất cả qua dữ liệu hợp lệ 
+hoặc trên bộ phát triển của bạn.
+
+41
+00:02:27.515 --> 00:02:29.447
+Chúng ta có thể xem thêm về điều đó sau.
+
+42
+00:02:29.447 --> 00:02:33.998
+Bây giờ chúng ta sẽ xem qua ký hiệu mà được 
+sử dụng để mô tả các neural network nhân tạo sâu.
+
+43
+00:02:33.998 --> 00:02:39.147
+Đây là một neural network nhân
+ tạo một, hai, ba, bốn lớp,
+
+44
+00:02:40.974 --> 00:02:45.729
+Với ba lớp ẩn và tôi đoán số lượng
+ đơn vị trong các lớp ẩn này là
+
+45
+00:02:45.729 --> 00:02:50.842
+5, 5, 3, và rồi có một đơn vị ở lớp đầu ra.
+
+46
+00:02:50.842 --> 00:02:52.731
+Vậy là ký hiệu chúng ta sẽ sử dụng,
+
+47
+00:02:52.731 --> 00:02:56.591
+sẽ là L viết hoa, để biểu
+ thị số lớp trong mạng.
+
+48
+00:02:56.591 --> 00:03:03.881
+Trong trường hợp này, số lớp là L = 4, và
+
+49
+00:03:03.881 --> 00:03:11.880
+chúng ta sẽ sử dụng n với chỉ
+ số trên [l] để biểu thị số lượng nút,
+
+50
+00:03:11.880 --> 00:03:17.101
+hoặc số lượng đơn vị trong lớp l viết thường.
+
+51
+00:03:17.101 --> 00:03:22.501
+Vì vậy, nếu chúng ta đánh số,
+ thì đầu vào là lớp "0".
+
+52
+00:03:22.501 --> 00:03:28.950
+Đây là lớp 1, đây là lớp 2, đây là
+ lớp 3 và đây là lớp 4.
+
+53
+00:03:28.950 --> 00:03:33.822
+Sau đó, ví dụ chúng ta có 
+n [1], đó sẽ là cái này,
+
+54
+00:03:33.822 --> 00:03:39.529
+đầu tiên ở đó sẽ bằng 5, bởi vì
+ chúng ta có 5 đơn vị ẩn ở đó.
+
+55
+00:03:39.529 --> 00:03:43.623
+Đối với cái này, chúng ta có n [2],
+
+56
+00:03:43.623 --> 00:03:48.810
+số lượng đơn vị trong lớp ẩn thứ hai
+
+57
+00:03:48.810 --> 00:03:53.315
+cũng bằng 5, n [3] = 3 và
+
+58
+00:03:53.315 --> 00:03:59.459
+n [4] = n [L] số lượng đơn vị
+ ở lớp đầu ra là 1,
+
+59
+00:03:59.459 --> 00:04:04.101
+bởi vì L của bạn bằng bốn,
+
+60
+00:04:04.101 --> 00:04:08.878
+và chúng ta cũng sẽ có ở đây
+
+61
+00:04:08.878 --> 00:04:13.003
+lớp đầu vào n [0] = nx = 3.
+
+62
+00:04:13.003 --> 00:04:17.879
+Và đó là ký hiệu chúng ta sử dụng để 
+mô tả số lượng nút chúng ta có ở các lớp
+
+63
+00:04:17.879 --> 00:04:18.463
+khác nhau.
+
+64
+00:04:18.463 --> 00:04:23.913
+Đối với mỗi lớp L, chúng ta cũng sẽ sử dụng
+
+65
+00:04:23.913 --> 00:04:30.196
+a [l] để biểu thị các kích hoạt trong lớp l.
+
+66
+00:04:30.196 --> 00:04:34.669
+Và rồi sau đó trong truyền xuôi,
+
+67
+00:04:34.669 --> 00:04:40.791
+bạn tính a[l] là kích hoạt g (z [l]) và
+
+68
+00:04:40.791 --> 00:04:46.440
+có lẽ kích hoạt cũng được đánh số bởi lớp l,
+
+69
+00:04:46.440 --> 00:04:51.736
+và sau đó chúng ta sẽ sử dụng 
+W [l] để biểu thị, các trọng số để
+
+70
+00:04:51.736 --> 00:04:55.973
+tính giá trị z [l] trong lớp l và
+
+71
+00:04:55.973 --> 00:05:00.714
+tương tự, b [l] được sử dụng để tính z [l].
+
+72
+00:05:00.714 --> 00:05:07.114
+Cuối cùng, tóm lại, các tính
+ năng đầu vào được gọi là x,
+
+73
+00:05:07.114 --> 00:05:12.215
+nhưng x cũng là kích hoạt 
+của lớp 0, vậy nên a [0] = x,
+
+74
+00:05:12.215 --> 00:05:17.133
+và kích hoạt lớp cuối cùng, a [L] = y-mũ.
+
+75
+00:05:17.133 --> 00:05:25.275
+Vì vậy, [L] bằng với đầu ra dự đoán, 
+dự đoán y-mũ cho neural network nhân tạo.
+
+76
+00:05:25.275 --> 00:05:28.200
+Bây giờ bạn biết được một neural network 
+nhân tạo sâu thì trông như thế nào,
+
+77
+00:05:28.200 --> 00:05:32.427
+cũng như là ký hiệu chúng ta sẽ sử dụng
+ để mô tả và tính toán với các mạng sâu.
+
+78
+00:05:32.427 --> 00:05:36.457
+Tôi biết là chúng tôi đã giới thiệu rất nhiều ký
+ hiệu trong video này, nhưng nếu bạn quên
+
+79
+00:05:36.457 --> 00:05:40.916
+ý nghĩa của một số ký hiệu, thì chúng tôi cũng
+ đã đăng trên trang web của khóa học, một bảng ký hiệu hoặc
+
+80
+00:05:40.916 --> 00:05:45.089
+một chỉ dẫn ký hiệu, mà bạn có thể
+ sử dụng để tra cứu các biểu tượng này.
+
+81
+00:05:45.089 --> 00:05:48.958
+Tiếp đến, tôi muốn bạn biết
+ truyền xuôi trong loại mạng này
+
+82
+00:05:48.958 --> 00:05:49.620
+có hình dạng ra sao.
+
+83
+00:05:49.620 --> 00:05:51.019
+Hãy cùng xem video tiếp theo.

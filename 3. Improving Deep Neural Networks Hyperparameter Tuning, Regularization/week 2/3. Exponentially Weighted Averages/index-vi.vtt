@@ -1,0 +1,339 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.500
+Tôi muốn cho bạn thấy một số thuật toán tối
+
+00:00:02.500 --> 00:00:05.000
+ưu hóa nhanh hơn thuật toán gradient descent.
+
+00:00:05.000 --> 00:00:08.667
+Để hiểu các thuật toán đó, bạn cần có khả năng
+sử dụng một thứ
+
+00:00:08.667 --> 00:00:12.333
+gọi là trung bình có trọng số theo cấp số
+nhân, còn được gọi là
+
+00:00:12.333 --> 00:00:16.000
+trung bình di chuyển có trọng số theo cấp số
+nhân trong thống kê.
+
+00:00:16.000 --> 00:00:18.880
+Trước tiên hãy nói về điều đó và sau đó chúng
+ta sẽ sử dụng
+
+00:00:18.880 --> 00:00:21.760
+điều này để xây dựng các thuật toán tối ưu hóa
+phức tạp hơn.
+
+00:00:21.760 --> 00:00:25.720
+Vì vậy, mặc dù hiện tại tôi sống ở Hoa Kỳ
+nhưng tôi sinh ra ở London.
+
+00:00:25.720 --> 00:00:31.340
+Vì vậy, trong ví dụ này, tôi nhận được nhiệt
+độ hàng ngày ở London từ năm ngoái.
+
+00:00:31.340 --> 00:00:34.640
+Vì vậy, vào ngày 1 tháng 1, nhiệt độ là 40 độ
+F.
+
+00:00:34.640 --> 00:00:37.930
+Và tôi biết hầu hết thế giới sử dụng hệ thống
+độ C,
+
+00:00:37.930 --> 00:00:41.220
+nhưng tôi đoán tôi sống ở Hoa Kỳ, nơi sử dụng
+độ F.
+
+00:00:41.220 --> 00:00:44.620
+Vậy đó là 4 độ C.
+
+00:00:44.620 --> 00:00:48.880
+Và vào ngày 2 tháng 1, nhiệt độ là 9 độ C,
+v.v.
+
+00:00:48.880 --> 00:00:51.880
+Và rồi khoảng nửa năm, một năm có 365 ngày.
+
+00:00:51.880 --> 00:00:56.520
+Vì vậy, đây sẽ là một ngày nào đó, ngày thứ
+180, tôi đoán là vào khoảng cuối tháng 5.
+
+00:00:56.520 --> 00:01:01.040
+Vậy nhiệt độ là 60 độ F, tức là 15 độ C, v.v.
+
+00:01:01.040 --> 00:01:05.760
+Vì vậy, trời bắt đầu ấm hơn vào mùa hè và lạnh
+hơn vào tháng Giêng.
+
+00:01:05.760 --> 00:01:11.750
+Vì vậy, bạn vẽ biểu đồ dữ liệu, bạn sẽ có kết
+quả này, với ngày đầu tiên vào
+
+00:01:11.750 --> 00:01:17.740
+khoảng tháng 1, đó là đầu mùa hè và đó là cuối
+năm, gần như là cuối tháng 12.
+
+00:01:17.740 --> 00:01:21.370
+Vì vậy, đây sẽ là tháng 1, ngày 1 tháng 1 là
+giữa
+
+00:01:21.370 --> 00:01:25.000
+năm sắp đến mùa hè và đây sẽ là dữ liệu từ
+cuối năm.
+
+00:01:25.000 --> 00:01:26.940
+Vì vậy, dữ liệu này có vẻ hơi ồn ào.
+
+00:01:26.940 --> 00:01:32.600
+Và nếu bạn muốn tính toán xu hướng, loại trung
+bình cục bộ hoặc
+
+00:01:32.600 --> 00:01:38.260
+trung bình động của nhiệt độ, đây là những gì
+bạn có thể làm.
+
+00:01:38.260 --> 00:01:41.940
+Hãy khởi tạo V0 bằng 0.
+
+00:01:41.940 --> 00:01:47.860
+Và sau đó vào mỗi ngày, chúng ta sẽ tính trung
+bình nó với trọng số
+
+00:01:47.860 --> 00:01:53.780
+là 0,9 lần giá trị trước đó cộng với 0,1 lần
+nhiệt độ ngày hôm đó.
+
+00:01:53.780 --> 00:01:57.460
+Vậy theta 1 ở đây sẽ là nhiệt độ của ngày đầu
+tiên.
+
+00:01:57.460 --> 00:02:02.860
+Và vào ngày thứ hai, chúng ta lại lấy giá trị
+trung bình có trọng số, tức
+
+00:02:02.860 --> 00:02:08.260
+là 0,9 lần giá trị trước đó cộng với 0,1 lần
+nhiệt độ ngày hôm nay, v.v.
+
+00:02:08.260 --> 00:02:13.700
+V2 cộng 0,1 nhân dữ liệu 3, v.v.
+
+00:02:13.700 --> 00:02:19.720
+Và công thức tổng quát hơn là V của một ngày
+nhất định là 0,9 lần
+
+00:02:19.720 --> 00:02:25.740
+V của ngày hôm trước cộng với 0,1 lần nhiệt độ
+của ngày hôm đó.
+
+00:02:25.740 --> 00:02:29.720
+Vì vậy, nếu bạn tính cái này và vẽ nó bằng màu
+đỏ, đây là kết quả bạn nhận được.
+
+00:02:29.720 --> 00:02:33.250
+Bạn nhận được mức trung bình động, hay còn gọi
+là mức
+
+00:02:33.250 --> 00:02:36.780
+trung bình theo cấp số nhân của nhiệt độ hàng
+ngày.
+
+00:02:36.780 --> 00:02:39.700
+Vì vậy, hãy nhìn vào phương trình chúng ta có
+từ slide trước.
+
+00:02:39.700 --> 00:02:47.260
+Nó bằng VT, trước đây chúng ta có 0,9, nhưng
+bây giờ biến nó thành tham số beta.
+
+00:02:47.260 --> 00:02:52.010
+Beta nhân VT trừ 1 cộng, và trước đó chúng ta
+có 0,1,
+
+00:02:52.010 --> 00:02:56.760
+nhưng bây giờ biến nó thành 1 trừ beta nhân
+theta T.
+
+00:02:56.760 --> 00:03:00.380
+Vì vậy, trước đây chúng tôi có phiên bản beta
+bằng 0,9.
+
+00:03:00.380 --> 00:03:08.013
+Hóa ra là vì những lý do mà chúng ta sẽ đề cập
+sau, khi bạn
+
+00:03:08.013 --> 00:03:15.647
+tính toán điều này, bạn có thể nghĩ VT gần như
+lấy trung bình
+
+00:03:15.647 --> 00:03:23.280
+trên một khoảng nào đó như 1 trên 1 trừ nhiệt
+độ của ngày beta.
+
+00:03:23.280 --> 00:03:29.750
+Vì vậy, ví dụ, khi beta bằng 0,9, bạn có thể
+coi đây là giá trị
+
+00:03:29.750 --> 00:03:36.220
+trung bình của nhiệt độ trong 10 ngày qua và
+đó là đường màu đỏ.
+
+00:03:36.220 --> 00:03:37.440
+Bây giờ hãy thử cái gì khác.
+
+00:03:37.440 --> 00:03:39.400
+Hãy đặt phiên bản beta rất gần với 1.
+
+00:03:39.400 --> 00:03:42.000
+Giả sử nó là 0,98.
+
+00:03:42.000 --> 00:03:48.200
+Sau đó, nếu bạn nhìn vào 1 trên 1 trừ 0,98, nó
+bằng 50.
+
+00:03:48.200 --> 00:03:54.440
+Vì vậy, bạn biết đấy, hãy coi đây là nhiệt độ
+trung bình trong khoảng 50 ngày qua.
+
+00:03:54.440 --> 00:03:58.660
+Và nếu bạn vẽ đồ thị đó, bạn sẽ có được đường
+màu xanh lá cây này.
+
+00:03:58.660 --> 00:04:00.000
+Vì vậy hãy chú ý một vài điều.
+
+00:04:00.000 --> 00:04:03.920
+Với giá trị beta rất cao này, cốt truyện bạn
+có được sẽ mượt mà hơn
+
+00:04:03.920 --> 00:04:07.840
+nhiều vì hiện bạn đang tính trung bình cho
+nhiều ngày nhiệt độ hơn.
+
+00:04:07.840 --> 00:04:11.080
+Vì vậy, đường cong, bạn biết đấy, ít lắc lư
+hơn, bây giờ mượt mà hơn.
+
+00:04:11.080 --> 00:04:15.140
+Nhưng mặt khác, đường cong hiện đã dịch chuyển
+xa hơn về bên phải vì
+
+00:04:15.140 --> 00:04:19.200
+bạn hiện đang tính trung bình trên một khoảng
+nhiệt độ lớn hơn nhiều.
+
+00:04:19.200 --> 00:04:23.640
+Và bằng cách tính trung bình trên một cửa sổ
+lớn hơn, công thức này, công thức
+
+00:04:23.640 --> 00:04:28.080
+tính trung bình theo cấp số nhân này, nó thích
+ứng chậm hơn khi nhiệt độ thay đổi.
+
+00:04:28.080 --> 00:04:30.000
+Vì vậy, chỉ có độ trễ hơn một chút.
+
+00:04:30.000 --> 00:04:33.447
+Và lý do cho điều đó là khi phiên bản beta là
+0,98, thì nó sẽ
+
+00:04:33.447 --> 00:04:36.893
+có trọng số lớn hơn cho giá trị trước đó và
+trọng số nhỏ hơn
+
+00:04:36.893 --> 00:04:40.340
+nhiều, chỉ 0,02, cho bất cứ thứ gì bạn đang
+thấy đúng không
+
+00:04:40.340 --> 00:04:41.340
+bây giờ.
+
+00:04:41.340 --> 00:04:45.280
+Vì vậy, khi nhiệt độ thay đổi, khi nhiệt độ
+tăng hoặc giảm, mức trung bình
+
+00:04:45.280 --> 00:04:49.220
+có trọng số theo cấp số nhân này chỉ thích ứng
+chậm hơn khi beta quá lớn.
+
+00:04:49.220 --> 00:04:50.700
+Bây giờ hãy thử một giá trị khác.
+
+00:04:50.700 --> 00:04:55.100
+Nếu bạn đặt hệ số beta ở một mức cực đoan
+khác, giả sử nó là
+
+00:04:55.100 --> 00:04:59.500
+0,5, thì cái này, theo công thức chúng ta có ở
+bên phải, nó
+
+00:04:59.500 --> 00:05:03.900
+giống như tính trung bình của nhiệt độ chỉ
+trong hai ngày.
+
+00:05:03.900 --> 00:05:06.660
+Và bạn vẽ đồ thị đó, bạn sẽ có được đường màu
+vàng này.
+
+00:05:06.660 --> 00:05:09.740
+Và bằng cách chỉ tính trung bình nhiệt độ
+trong hai ngày, điều đó giống
+
+00:05:09.740 --> 00:05:12.820
+như thể bạn đang tính trung bình cho một
+khoảng thời gian ngắn hơn nhiều.
+
+00:05:12.820 --> 00:05:15.780
+Vì vậy, bạn ồn ào hơn nhiều, dễ bị ảnh hưởng
+bởi những ngoại lệ hơn.
+
+00:05:15.780 --> 00:05:19.860
+Nhưng điều này thích ứng nhanh hơn nhiều với
+sự thay đổi nhiệt độ.
+
+00:05:19.860 --> 00:05:24.300
+Vì vậy, công thức này là cách bạn thực hiện
+mức trung bình theo cấp số nhân.
+
+00:05:24.300 --> 00:05:26.560
+Một lần nữa, nó được gọi là đường trung bình
+
+00:05:26.560 --> 00:05:28.820
+động có trọng số mũ trong tài liệu thống kê.
+
+00:05:28.820 --> 00:05:32.260
+Và tôi sẽ gọi tắt là trung bình trọng số mũ.
+
+00:05:32.260 --> 00:05:35.060
+Và bằng cách thay đổi tham số này, hoặc sau
+này chúng ta sẽ
+
+00:05:35.060 --> 00:05:37.860
+thấy nó thực sự là một siêu tham số trong
+thuật toán học tập
+
+00:05:37.860 --> 00:05:40.660
+của bạn, bạn có thể nhận được các hiệu ứng hơi
+khác nhau.
+
+00:05:40.660 --> 00:05:44.007
+Và thường sẽ có một số giá trị ở giữa không
+gian làm việc đó
+
+00:05:44.007 --> 00:05:47.353
+mang lại cho bạn đường cong màu đỏ, có thể
+trông giống nhiệt
+
+00:05:47.353 --> 00:05:50.700
+độ trung bình tốt hơn đường cong màu xanh lá
+cây hoặc màu vàng.
+
+00:05:50.700 --> 00:05:54.540
+Bây giờ bạn đã biết những điều cơ bản về cách
+tính trung bình theo cấp số nhân.
+
+00:05:54.540 --> 00:05:57.820
+Trong video tiếp theo, chúng ta hãy trực giác
+hơn một chút về những gì nó đang làm.

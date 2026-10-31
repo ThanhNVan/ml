@@ -1,0 +1,117 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.390 --> 00:00:06.030
+The choice of features can have a huge impact on your learning algorithm's performance.
+
+00:00:06.030 --> 00:00:11.030
+In fact, for many practical applications, choosing or entering the right features is
+
+00:00:11.030 --> 00:00:14.510
+a critical step to making the algorithm work well.
+
+00:00:14.510 --> 00:00:18.670
+In this video, let's take a look at how you can choose or engineer the most appropriate
+
+00:00:18.670 --> 00:00:21.670
+features for your learning algorithm.
+
+00:00:21.670 --> 00:00:25.870
+Let's take a look at feature engineering by revisiting the example of predicting the
+
+00:00:25.870 --> 00:00:28.630
+price of a house.
+
+00:00:28.630 --> 00:00:31.510
+Say you have two features for each house.
+
+00:00:31.510 --> 00:00:37.670
+X1 is the width of the lot size of the plot of land that the house is built on.
+
+00:00:37.670 --> 00:00:42.670
+This in real estate is also called the frontage of the lot.
+
+00:00:42.670 --> 00:00:48.950
+And the second feature, X2 is the depth of the lot size of, let's assume, the rectangular
+
+00:00:48.950 --> 00:00:51.990
+plot of land that the house was built on.
+
+00:00:51.990 --> 00:00:57.310
+Given these two features, X1 and X2, you might build a model like this, where f of
+
+00:00:57.310 --> 00:01:08.190
+x is w1 x1 plus w2 x2 plus b, where x1 is the frontage or width and x2 is the depth.
+
+00:01:08.190 --> 00:01:10.510
+And this model might work okay.
+
+00:01:10.510 --> 00:01:14.550
+But here's another option for how you might choose a different way to use these features
+
+00:01:14.550 --> 00:01:17.310
+in the model that could be even more effective.
+
+00:01:17.310 --> 00:01:22.550
+You might notice that the area of the land can be calculated as the frontage or width
+
+00:01:22.550 --> 00:01:24.630
+times the depth.
+
+00:01:24.630 --> 00:01:30.350
+And you may have an intuition that the area of the land is more predictive of the price
+
+00:01:30.350 --> 00:01:34.190
+than the frontage and depth as separate features.
+
+00:01:34.190 --> 00:01:39.930
+So you might define a new feature, X3 as X1 times X2.
+
+00:01:39.930 --> 00:01:45.510
+So this new feature X3 is equal to the area of the plot of land.
+
+00:01:45.510 --> 00:01:55.230
+From this feature, you can then have a model f wb of x equals w1 x1 plus w2 x2 plus w3 x3
+
+00:01:55.230 --> 00:02:02.790
+plus b, so that the model can now choose parameters w1, w2, and w3 depending on whether the data
+
+00:02:02.790 --> 00:02:09.510
+shows the frontage or the depth, or the area X3 of the lot turns out to be the most important
+
+00:02:09.510 --> 00:02:12.990
+thing for predicting the price of the house.
+
+00:02:12.990 --> 00:02:19.510
+What we just did, creating a new feature is an example of what's called feature engineering,
+
+00:02:19.510 --> 00:02:24.750
+in which you might use your knowledge or intuition about the problem to design new features,
+
+00:02:24.750 --> 00:02:29.630
+usually by transforming or combining the original features of the problem in order to make
+
+00:02:29.630 --> 00:02:33.830
+it easier for the learning algorithm to make accurate predictions.
+
+00:02:33.830 --> 00:02:38.590
+So depending on what insights you may have into the application, rather than just taking
+
+00:02:38.590 --> 00:02:43.990
+the features that you happen to start off with, sometimes by defining new features,
+
+00:02:43.990 --> 00:02:47.750
+you might be able to get a much better model.
+
+00:02:47.750 --> 00:02:51.150
+So that's feature engineering.
+
+00:02:51.150 --> 00:02:55.590
+And it turns out that there's one flavor of feature engineering that allow you to fit
+
+00:02:55.590 --> 00:03:00.510
+not just straight lines, but curves, nonlinear functions to your data.
+
+00:03:00.510 --> 00:03:03.150
+Let's take a look in the next video at how you can do that.

@@ -1,0 +1,271 @@
+WEBVTT
+
+00:00:01.300 --> 00:00:08.020
+Trong video trước, bạn đã thấy loss function
+và cost function cho logistic regression.
+
+00:00:08.020 --> 00:00:11.633
+Trong video này, bạn sẽ thấy một cách đơn giản
+hơn một chút để viết
+
+00:00:11.633 --> 00:00:15.247
+ra các hàm tổn thất và chi phí để việc triển
+khai có thể đơn giản
+
+00:00:15.247 --> 00:00:18.860
+hơn một chút khi chúng ta chuyển sang
+gradient descent để điều chỉnh
+
+00:00:18.860 --> 00:00:21.860
+các tham số của mô hình logistic regression.
+
+00:00:21.860 --> 00:00:23.660
+Chúng ta hãy xem xét.
+
+00:00:23.660 --> 00:00:27.200
+Xin nhắc lại, đây là loss function mà chúng ta
+đã
+
+00:00:27.200 --> 00:00:30.740
+xác định trong video trước cho
+logistic regression.
+
+00:00:31.140 --> 00:00:34.180
+Bây giờ, vì chúng ta vẫn đang giải quyết vấn
+
+00:00:34.180 --> 00:00:37.220
+đề classification nhị phân, y là 0 hoặc 1.
+
+00:00:38.260 --> 00:00:44.340
+Vì y là 0 hoặc 1 và không thể nhận bất kỳ giá
+trị nào ngoài 0 hoặc 1, nên
+
+00:00:44.340 --> 00:00:50.420
+chúng ta có thể nghĩ ra một cách đơn giản hơn
+để viết loss function này.
+
+00:00:50.420 --> 00:00:53.540
+Bạn có thể viết loss function như sau.
+
+00:00:53.540 --> 00:01:01.860
+Với dự đoán f của x và nhãn đích y, tổn thất
+bằng âm
+
+00:01:01.860 --> 00:01:10.180
+y nhân log của f trừ 1 trừ y nhân log của 1
+trừ f.
+
+00:01:10.180 --> 00:01:15.360
+Và hóa ra phương trình mà chúng ta vừa viết
+thành một dòng này
+
+00:01:15.360 --> 00:01:20.540
+hoàn toàn tương đương với công thức phức tạp
+hơn ở trên đây.
+
+00:01:20.540 --> 00:01:22.100
+Hãy xem tại sao lại như vậy.
+
+00:01:23.860 --> 00:01:30.220
+Bây giờ, hãy nhớ rằng, y chỉ có thể nhận các
+giá trị 1 hoặc 0.
+
+00:01:31.980 --> 00:01:36.060
+Trong trường hợp đầu tiên, giả sử y bằng 1.
+
+00:01:36.060 --> 00:01:46.380
+Y đầu tiên ở đây là 1, và 1 trừ y này bằng 1
+trừ 1, do đó bằng 0.
+
+00:01:46.380 --> 00:01:54.980
+Và do đó, tổn thất trở thành âm 1 nhân log của
+f x trừ 0 nhân một loạt thứ.
+
+00:01:54.980 --> 00:01:58.580
+Nó trở thành 0 và biến mất.
+
+00:01:58.580 --> 00:02:03.380
+Và vì vậy khi y bằng 1, sự mất mát thực sự
+
+00:02:03.380 --> 00:02:08.180
+là số hạng đầu tiên ở trên, log âm của f(x).
+
+00:02:08.180 --> 00:02:14.340
+Hãy xem trường hợp thứ hai khi y bằng 0.
+
+00:02:14.340 --> 00:02:18.620
+Trong trường hợp này, y ở đây bằng 0.
+
+00:02:18.620 --> 00:02:21.700
+Vậy là học kỳ đầu tiên này sẽ biến mất.
+
+00:02:21.700 --> 00:02:29.930
+Và số hạng thứ hai là 1 trừ 0 nhân số hạng
+logarit đó.
+
+00:02:29.930 --> 00:02:38.850
+Vì vậy, tổn thất trở thành âm 1 nhân log của 1
+trừ f của x.
+
+00:02:38.850 --> 00:02:44.450
+Và nó bằng với số hạng thứ hai ở trên đây.
+
+00:02:44.450 --> 00:02:48.830
+Và như vậy trong trường hợp y bằng 0 thì ta
+cũng
+
+00:02:48.830 --> 00:02:53.210
+lấy lại loss function ban đầu như định nghĩa ở
+trên.
+
+00:02:53.210 --> 00:02:58.310
+Vì vậy, những gì bạn thấy là dù y là 1 hay 0,
+biểu thức
+
+00:02:58.310 --> 00:03:03.410
+đơn ở đây tương đương với biểu thức phức tạp
+hơn ở đây,
+
+00:03:03.410 --> 00:03:06.930
+đó là lý do tại sao điều này mang lại cho
+chúng ta một cách
+
+00:03:06.930 --> 00:03:10.450
+đơn giản hơn để viết phần mất chỉ bằng một
+phương trình mà
+
+00:03:10.450 --> 00:03:13.970
+không cần tách riêng hai trường hợp này như
+chúng ta đã làm ở trên.
+
+00:03:13.970 --> 00:03:18.180
+Sử dụng loss function đơn giản hóa này, chúng
+ta hãy
+
+00:03:18.180 --> 00:03:22.390
+quay lại và viết cost function cho
+logistic regression.
+
+00:03:22.390 --> 00:03:27.030
+Vì vậy, đây lại là loss function được đơn giản
+hóa.
+
+00:03:27.030 --> 00:03:31.570
+Và nhớ lại rằng chi phí J chỉ là tổn thất
+trung
+
+00:03:31.570 --> 00:03:36.110
+bình, trung bình trên toàn bộ training set của
+m mẫu.
+
+00:03:36.110 --> 00:03:43.150
+Vậy nó là 1 trên m nhân tổng tổn thất từ i
+bằng 1 đến m.
+
+00:03:43.150 --> 00:03:48.250
+Bây giờ, nếu bạn thay định nghĩa tổn thất đơn
+giản ở trên vào,
+
+00:03:48.250 --> 00:03:53.350
+thì nó trông như thế này, 1 trên m nhân tổng
+của số hạng ở trên.
+
+00:03:53.350 --> 00:03:57.050
+Và nếu bạn mang những dấu hiệu tiêu cực và di
+chuyển
+
+00:03:57.050 --> 00:04:00.750
+chúng ra ngoài, thì bạn sẽ có biểu thức này ở
+đây.
+
+00:04:00.750 --> 00:04:04.810
+Và đây là cost function, cost function mà hầu
+hết
+
+00:04:04.810 --> 00:04:08.870
+mọi người sử dụng để huấn luyện
+logistic regression.
+
+00:04:08.870 --> 00:04:13.490
+Bây giờ, bạn có thể thắc mắc, tại sao chúng
+tôi lại chọn hàm đặc biệt
+
+00:04:13.490 --> 00:04:18.110
+này khi có thể có rất nhiều cost function khác
+mà chúng tôi có thể chọn?
+
+00:04:18.110 --> 00:04:22.443
+Mặc dù chúng ta sẽ không có thời gian để đi
+sâu vào chi tiết về điều này
+
+00:04:22.443 --> 00:04:26.777
+trong lớp học này, nhưng tôi chỉ muốn đề cập
+rằng cost function đặc biệt
+
+00:04:26.777 --> 00:04:31.110
+này được lấy từ số liệu thống kê sử dụng
+nguyên tắc thống kê được gọi là
+
+00:04:31.110 --> 00:04:35.810
+ước tính khả năng tối đa, là ý tưởng từ số
+liệu thống kê về
+
+00:04:35.810 --> 00:04:40.510
+cách tìm thông số một cách hiệu quả cho các mô
+hình khác nhau.
+
+00:04:40.510 --> 00:04:46.670
+Và cost function này có một đặc tính hay là nó
+lồi.
+
+00:04:46.670 --> 00:04:50.550
+Nhưng đừng lo lắng về việc tìm hiểu chi tiết
+về khả năng xảy ra tối đa.
+
+00:04:50.550 --> 00:04:57.950
+Nó cộng thêm một lý do và sự biện minh sâu sắc
+hơn đằng sau cost function cụ thể này.
+
+00:04:57.950 --> 00:05:01.390
+Phòng thí nghiệm tùy chọn sắp tới sẽ chỉ cho
+bạn
+
+00:05:01.390 --> 00:05:04.830
+cách triển khai cost function hậu cần trong
+mã.
+
+00:05:04.830 --> 00:05:09.350
+Tôi khuyên bạn nên xem qua nó vì bạn sẽ thực
+hiện điều
+
+00:05:09.350 --> 00:05:13.870
+này sau trong phòng thí nghiệm thực hành vào
+cuối tuần.
+
+00:05:13.870 --> 00:05:18.210
+Phòng thí nghiệm tùy chọn sắp ra mắt này cũng
+cho bạn thấy hai lựa chọn
+
+00:05:18.210 --> 00:05:22.550
+tham số khác nhau sẽ dẫn đến các phép tính chi
+phí khác nhau như thế nào.
+
+00:05:22.550 --> 00:05:28.310
+Vì vậy, bạn có thể thấy trong biểu đồ rằng
+decision boundary màu xanh
+
+00:05:28.310 --> 00:05:34.070
+phù hợp hơn có chi phí thấp hơn so với
+decision boundary màu đỏ tươi.
+
+00:05:34.070 --> 00:05:37.870
+Vì vậy, với cost function được đơn giản hóa,
+giờ đây chúng ta đã sẵn
+
+00:05:37.870 --> 00:05:41.670
+sàng bắt đầu áp dụng phương pháp
+gradient descent cho logistic regression.
+
+00:05:41.670 --> 00:05:44.750
+Chúng ta hãy xem điều đó trong video tiếp
+theo.

@@ -1,0 +1,545 @@
+WEBVTT
+
+1
+00:00:02.026 --> 00:00:06.778
+Mọi người đã thấy cách phép toán convolution
+cho phép ta triển khai một máy
+
+2
+00:00:06.778 --> 00:00:07.800
+dò cạnh dọc
+
+3
+00:00:07.800 --> 00:00:12.285
+Trong video này, ta sẽ tìm hiểu sự khác biệt
+giữa các cạnh dương và âm,
+
+4
+00:00:12.285 --> 00:00:16.432
+tức là, sự khác biệt giữa chuyển cạnh từ sáng sang tối
+so với chuyển đổi cạnh tối sang sáng.
+
+5
+00:00:16.432 --> 00:00:19.384
+Và ta cũng sẽ thấy
+loại máy dò cạnh khác,
+
+6
+00:00:19.384 --> 00:00:21.731
+cũng như cách yêu cầu một thuật toán phải học,
+
+7
+00:00:21.731 --> 00:00:26.500
+chứ không phải để chúng ta tự viết code cho một bộ dò cạnh
+như từ trước đến nay ta vẫn làm.
+
+8
+00:00:26.500 --> 00:00:28.456
+Hãy cùng bắt đầu bài học.
+
+9
+00:00:31.612 --> 00:00:36.050
+Đây là ví dụ ta đã thấy từ
+video trước, ta có hình ảnh này,
+
+10
+00:00:36.050 --> 00:00:39.377
+6 x 6, bên trái là màu sáng và
+bên phải là màu tối,
+
+11
+00:00:39.377 --> 00:00:43.752
+và convolve nó với bộ lọc phát hiện cạnh dọc
+nhờ đó phát hiện
+
+12
+00:00:43.752 --> 00:00:46.390
+cạnh dọc ở
+giữa hình ảnh.
+
+13
+00:00:47.710 --> 00:00:51.400
+Điều gì xảy ra trong một hình ảnh
+mà các màu bị lật,
+
+14
+00:00:51.400 --> 00:00:55.108
+ở bên trái nó tối hơn và
+ở bên phải thì sáng hơn chăng?
+
+15
+00:00:55.108 --> 00:00:59.930
+Vì vậy, 10s hiện ở trên nửa bên phải
+của hình ảnh và 0s bên trái.
+
+16
+00:00:59.930 --> 00:01:03.240
+Nếu ta convolve nó với
+cùng một bộ lọc phát hiện cạnh,
+
+17
+00:01:03.240 --> 00:01:07.835
+ta sẽ được -30s,
+thay vì 30 giữa và
+
+18
+00:01:07.835 --> 00:01:12.820
+ta có thể vẽ biểu đồ đó dưới dạng hình
+trông như thế này.
+
+19
+00:01:12.820 --> 00:01:15.566
+Vì vậy, bởi vì trong quá trình chuyển đổi
+màu bị đảo ngược,
+
+20
+00:01:15.566 --> 00:01:18.290
+nên 30s bây giờ cũng bị đảo ngược.
+
+21
+00:01:18.290 --> 00:01:21.160
+Và -30s
+
+22
+00:01:21.160 --> 00:01:26.790
+cho thấy rằng đây là chuyển từ tối sang sáng
+chứ không phải là sự chuyển đổi từ sáng sang tối.
+
+23
+00:01:26.790 --> 00:01:30.689
+Và nếu ta không quan tâm
+nó là trường hợp nào
+
+24
+00:01:30.689 --> 00:01:34.780
+ta có thể nhận các giá trị
+tuyệt đối của ma trận đầu ra này.
+
+25
+00:01:34.780 --> 00:01:39.364
+Nhưng với bộ lọc đặc biệt này, có
+một sự khác biệt giữa các cạnh sáng sang tối
+
+26
+00:01:39.364 --> 00:01:41.340
+so với các cạnh tối sang sáng.
+
+27
+00:01:42.500 --> 00:01:45.190
+Hãy xem một vài
+ví dụ nữa về phát hiện cạnh.
+
+28
+00:01:45.190 --> 00:01:49.640
+Bộ lọc 3 x 3 này mà chúng ta đã thấy
+cho phép ta phát hiện các cạnh dọc.
+
+29
+00:01:49.640 --> 00:01:53.470
+Vì vậy, có lẽ đây không phải là
+điều ngạc nhiên rằng
+
+30
+00:01:53.470 --> 00:01:58.160
+bộ lọc 3 x 3 sẽ cho phép
+ta phát hiện các cạnh ngang.
+
+31
+00:01:58.160 --> 00:02:02.450
+Vậy, xin nhắc lại, theo bộ lọc này,
+cạnh thẳng đứng là vùng 3 x 3
+
+32
+00:02:02.450 --> 00:02:06.130
+nơi các pixel
+tương đối sáng ở phần bên trái và
+
+33
+00:02:06.130 --> 00:02:08.580
+tương đối tối ở phần bên phải.
+
+34
+00:02:08.580 --> 00:02:13.080
+Vì vậy, tương tự, một cạnh ngang sẽ là
+một vùng 3 x 3 với các pixel
+
+35
+00:02:13.080 --> 00:02:18.510
+tương đối sáng ở hàng trên và
+tương đối tối ở hàng dưới.
+
+36
+00:02:18.510 --> 00:02:22.392
+Đây là một ví dụ,
+đây là một ví dụ phức tạp hơn,
+
+37
+00:02:22.392 --> 00:02:27.967
+ta có 10s ở góc phía trên
+bên trái và góc dưới bên phải.
+
+38
+00:02:27.967 --> 00:02:32.559
+Vậy, nếu ta vẽ nó dưới dạng một hình ảnh, thì
+hình ảnh này sẽ
+
+39
+00:02:32.559 --> 00:02:37.379
+tối hơn ở những nơi có số 0, vì vậy tôi
+sẽ tô ở những vùng tối hơn và
+
+40
+00:02:37.379 --> 00:02:41.459
+sau đó các vùng sáng hơn ở góc trên bên trái và
+góc dưới bên phải.
+
+41
+00:02:41.459 --> 00:02:47.190
+Và nếu ta convolve nó với một máy dò cạnh
+nằm ngang, ta sẽ nhận được cái này
+
+42
+00:02:48.470 --> 00:02:51.462
+Và để lấy một vài ví dụ,
+
+43
+00:02:51.462 --> 00:02:55.774
+30 ở đây tương ứng với
+vùng 3 x 3 này
+
+44
+00:02:55.774 --> 00:03:01.407
+vùng này có các điểm ảnhpixel sáng
+ở trên và các pixel tối hơn ở dưới cùng.
+
+45
+00:03:01.407 --> 00:03:04.110
+Nó ở đằng này.
+
+46
+00:03:04.110 --> 00:03:08.391
+Và vì vậy
+nó tìm thấy một cạnh dương rất rõ ở đó.
+
+47
+00:03:08.391 --> 00:03:12.309
+Và -30 ở đây
+tương ứng với vùng này,
+
+48
+00:03:12.309 --> 00:03:16.987
+nó sáng hơn ở
+phía dưới và tối hơn ở phía trên.
+
+49
+00:03:16.987 --> 00:03:21.210
+Vậy, trong ví dụ này
+nó là một cạnh âm
+
+50
+00:03:21.210 --> 00:03:26.124
+Và một lần nữa, đây là một giả thuyết
+rằng chúng ta đang làm việc
+
+51
+00:03:26.124 --> 00:03:31.300
+với hình ảnh tương đối nhỏ,
+rằng đây chỉ là hình ảnh 6 x 6.
+
+52
+00:03:31.300 --> 00:03:34.210
+Nhưng các giá trị trung gian này,
+chẳng hạn như -10,
+
+53
+00:03:34.210 --> 00:03:39.150
+chỉ phản ánh là
+mà bộ lọc ở đây, bộ lọc bao gồm một phần
+
+54
+00:03:39.150 --> 00:03:44.020
+của cạnh dương ở bên trái và một phần
+của cạnh âm ở bên phải, và
+
+55
+00:03:44.020 --> 00:03:47.120
+trộn chúng lại với nhau mang lại cho
+cho ta một giá trị trung gian.
+
+56
+00:03:47.120 --> 00:03:49.050
+Nhưng nếu nó quá lớn,
+
+57
+00:03:49.050 --> 00:03:54.160
+hình ảnh 1000 x 1000 chẳng hạn với
+kiểu bàn cờ này,
+
+58
+00:03:54.160 --> 00:03:58.176
+thì ta sẽ không thấy
+vùng chuyển tiếp của 10s này.
+
+59
+00:03:58.176 --> 00:04:02.950
+Các giá trị trung gian sẽ được khá nhỏ
+so với kích thước của hình ảnh.
+
+60
+00:04:02.950 --> 00:04:10.220
+Vì vậy, tóm lại, các bộ lọc khác nhau cho phép ta
+tìm các cạnh dọc và ngang.
+
+61
+00:04:10.220 --> 00:04:15.320
+Hóa ra là bộ lọc phát hiện cạnh dọc 3 x 3
+
+62
+00:04:15.320 --> 00:04:17.870
+chúng ta chỉ sử dụng một sự lựa chọn khả thi.
+
+63
+00:04:17.870 --> 00:04:20.470
+Và từ trước đến nay,
+trong tài liệu về thị giác máy tính,
+
+64
+00:04:20.470 --> 00:04:24.750
+đã có rất nhiều tranh luận xem
+dùng bộ số nào là tốt nhất
+
+65
+00:04:24.750 --> 00:04:29.513
+Vì vậy, ta có thể sử dụng một thứ khác,
+có thể là 1, 2,
+
+66
+00:04:29.513 --> 00:04:32.840
+1, 0, 0, 0, -1, -2, -1.
+
+67
+00:04:32.840 --> 00:04:35.670
+Đây được gọi là bộ lọc Sobel.
+
+68
+00:04:35.670 --> 00:04:40.981
+Và lợi thế của nó là nó đặt thêm
+một chút trọng số vào hàng giữa
+
+69
+00:04:40.981 --> 00:04:46.620
+pixel trung tâm và điều này làm cho
+có thể mạnh hơn một chút.
+
+70
+00:04:46.620 --> 00:04:50.711
+Nhưng các nhà nghiên cứu thị giác máy tính
+cũng sẽ sử dụng bộ số khác
+
+71
+00:04:50.711 --> 00:04:54.950
+có thể thay vì 1, 2, 1,
+thì họ dùng 3, 10, 3, phải không?
+
+72
+00:04:54.950 --> 00:04:59.330
+Và sau đó là -3, -10, -3.
+
+73
+00:04:59.330 --> 00:05:01.931
+Và đây được gọi là bộ lọc Scharr.
+
+74
+00:05:01.931 --> 00:05:06.752
+Và nó có những thuộc tính
+hơi khác một chút.
+
+75
+00:05:06.752 --> 00:05:10.235
+Và đây là chỉ là với
+phát hiện cạnh dọc.
+
+76
+00:05:10.235 --> 00:05:13.043
+Và nếu ta lật nó 90 độ,
+ta sẽ nhận được feature phát hiện cạnh ngang.
+
+77
+00:05:13.043 --> 00:05:18.350
+Và với sự tiến bộ của deep learning,
+một trong những điều ta học được là khi
+
+78
+00:05:18.350 --> 00:05:23.743
+ta muốn phát hiện các cạnh trong một số hình ảnh
+phức tạp, có thể ta không
+
+79
+00:05:23.743 --> 00:05:29.319
+cần các nhà nghiên cứu thị giác máy tính
+phải chọn ra 9 con số này.
+
+80
+00:05:29.319 --> 00:05:33.855
+Có lẽ ta chỉ có thể học chúng và
+coi 9 số của ma trận này
+
+81
+00:05:33.855 --> 00:05:37.745
+như các tham số, sau đó ta có thể
+học thêm bằng cách sử dụng truyền ngược.
+
+82
+00:05:37.745 --> 00:05:42.095
+Và mục tiêu là tìm hiểu 9 tham số
+để khi ta dùng ảnh,
+
+83
+00:05:42.095 --> 00:05:46.373
+hình ảnh 6 x 6 và convolve
+hình ảnh đó với bộ lọc 3 x 3
+
+84
+00:05:46.373 --> 00:05:48.935
+ta sẽ tạo ra được một máy dò cạnh tốt.
+
+85
+00:05:50.030 --> 00:05:54.840
+Và những gì các bạn thấy trong các video sau là
+bằng cách coi 9 số này là
+
+86
+00:05:54.840 --> 00:05:59.571
+tham số, nếu truyền ngược muốn thì nó
+có thể chọn để học
+
+87
+00:05:59.571 --> 00:06:04.680
+1, 1, 1, 0, 0, 0,-1, -1, hoặc học bộ lọc Sobel
+hoặc học bộ lọc Scharr,
+
+88
+00:06:04.680 --> 00:06:08.364
+thậm chí có thể nó còn học được thứ
+khác thậm chí còn nắm bắt
+
+89
+00:06:08.364 --> 00:06:13.210
+thống kê dữ liệu tốt hơn
+so với bất kỳ bộ lọc được mã hóa thủ công nào này.
+
+90
+00:06:13.210 --> 00:06:17.005
+Và thay vì chỉ có cạnh dọc và
+cạnh ngang,
+
+91
+00:06:17.005 --> 00:06:21.219
+có thể nó có thể học cách phát hiện
+cạnh nằm ở 45 độ hoặc
+
+92
+00:06:21.219 --> 00:06:26.127
+70 độ hoặc 73 độ hoặc
+ở bất kỳ hướng nào nó chọn.
+
+93
+00:06:26.127 --> 00:06:30.597
+Và do đó, ta chỉ cần để tất cả các số
+này là tham số và học chúng
+
+94
+00:06:30.597 --> 00:06:35.356
+tự động từ dữ liệu, ta thấy rằng
+neural network có thể học các feature cấp thấp
+
+95
+00:06:35.356 --> 00:06:39.970
+có thể học các đặc điểm
+chẳng hạn như các cạnh, thậm chí còn mạnh mẽ hơn
+
+96
+00:06:39.970 --> 00:06:45.467
+so với các nhà nghiên cứu thị giác máy tính
+có thể viết code cho những thứ này bằng tay.
+
+97
+00:06:45.467 --> 00:06:51.404
+Nhưng cơ bản của tất cả các phép tính
+này vẫn là phép toán convolution
+
+98
+00:06:51.404 --> 00:06:56.773
+Nó cho phép truyền ngược học
+bất cứ bộ lọc 3 x 3 nào mà nó muốn
+
+99
+00:06:56.773 --> 00:07:02.788
+và sau đó áp dụng bộ lọc cho toàn bộ hình ảnh
+, tại vị trí này, tại vị trí này,
+
+100
+00:07:02.788 --> 00:07:08.266
+tại vị trí này, để xuất ra
+bất kỳ đặc điểm nào nó muốn phát hiện.
+
+101
+00:07:08.266 --> 00:07:13.296
+Có thể là các cạnh dọc, cạnh ngang,
+hoặc các cạnh ở một số góc khác hoặc
+
+102
+00:07:13.296 --> 00:07:18.260
+thậm chí một số bộ lọc khác
+thậm chí không có tên bằng tiếng Anh.
+
+103
+00:07:19.370 --> 00:07:22.945
+Vì vậy, ta có thể coi
+9 số này là các tham số để
+
+104
+00:07:22.945 --> 00:07:26.890
+học là một trong
+ý tưởng hữu ích nhất trong thị giác máy tính.
+
+105
+00:07:26.890 --> 00:07:31.654
+Và phần sau của khóa học này, vào cuối tuần này,
+chúng ta sẽ nói về các chi tiết của
+
+106
+00:07:31.654 --> 00:07:36.034
+cách sử dụng ruyền ngược
+để học 9 con số này.
+
+107
+00:07:36.034 --> 00:07:39.638
+Nhưng trước tiên, hãy nói về một số
+chi tiết khác, một số biến thể khác,
+
+108
+00:07:39.638 --> 00:07:41.890
+về phép toán convolution cơ bản.
+
+109
+00:07:41.890 --> 00:07:46.219
+Trong 2 video tiếp theo, tôi muốn thảo luận
+với các bạn cách để sử dụng padding cũng như
+
+110
+00:07:46.219 --> 00:07:48.510
+những bước tiến khác nhau đối với convolution.
+
+111
+00:07:48.510 --> 00:07:52.943
+Và 2 điều này sẽ trở thành những mảnh ghép quan trọng số
+của khối xây dựng của
+
+112
+00:07:52.943 --> 00:07:55.130
+neural network convolution
+
+113
+00:07:55.130 --> 00:07:56.420
+Nào, cùng tiếp tục trong video tiếp theo nhé!

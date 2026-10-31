@@ -1,0 +1,163 @@
+WEBVTT
+
+00:00:01.390 --> 00:00:03.710
+Việc lựa chọn các feature có thể có tác động
+
+00:00:03.710 --> 00:00:06.030
+rất lớn đến hiệu suất thuật toán học tập của
+bạn.
+
+00:00:06.030 --> 00:00:10.270
+Trên thực tế, đối với nhiều ứng dụng thực tế,
+việc chọn hoặc nhập
+
+00:00:10.270 --> 00:00:14.510
+đúng feature là một bước quan trọng để thuật
+toán hoạt động tốt.
+
+00:00:14.510 --> 00:00:18.090
+Trong video này, chúng ta hãy xem cách bạn có
+thể chọn hoặc
+
+00:00:18.090 --> 00:00:21.670
+thiết kế các feature phù hợp nhất cho thuật
+toán học tập của mình.
+
+00:00:21.670 --> 00:00:28.630
+Chúng ta hãy xem kỹ thuật feature bằng cách
+xem lại ví dụ về dự đoán giá một ngôi nhà.
+
+00:00:28.630 --> 00:00:31.510
+Giả sử bạn có hai feature cho mỗi ngôi nhà.
+
+00:00:31.510 --> 00:00:37.670
+X1 là chiều rộng của lô đất xây dựng ngôi nhà.
+
+00:00:37.670 --> 00:00:42.670
+Điều này trong bất động sản còn được gọi là
+mặt tiền của lô đất.
+
+00:00:42.670 --> 00:00:47.330
+Và đặc điểm thứ hai, X2 là chiều sâu của kích
+thước lô đất,
+
+00:00:47.330 --> 00:00:51.990
+giả sử, mảnh đất hình chữ nhật mà ngôi nhà
+được xây trên đó.
+
+00:00:51.990 --> 00:00:57.390
+Với hai đặc điểm này, X1 và X2, bạn có thể xây
+dựng một mô
+
+00:00:57.390 --> 00:01:02.790
+hình như thế này, trong đó f của x là w1 x1
+cộng w2 x2 cộng
+
+00:01:02.790 --> 00:01:08.190
+b, trong đó x1 là mặt tiền hoặc chiều rộng và
+x2 là chiều sâu.
+
+00:01:08.190 --> 00:01:10.510
+Và mô hình này có thể hoạt động tốt.
+
+00:01:10.510 --> 00:01:13.910
+Nhưng đây là một tùy chọn khác về cách bạn có
+thể chọn một cách khác
+
+00:01:13.910 --> 00:01:17.310
+để sử dụng các feature này trong mô hình mà
+thậm chí còn hiệu quả hơn.
+
+00:01:17.310 --> 00:01:20.970
+Bạn có thể nhận thấy rằng diện tích đất có thể
+được
+
+00:01:20.970 --> 00:01:24.630
+tính bằng mặt tiền hoặc chiều rộng nhân với
+chiều sâu.
+
+00:01:24.630 --> 00:01:29.410
+Và bạn có thể có trực giác rằng diện tích đất
+có thể dự đoán giá
+
+00:01:29.410 --> 00:01:34.190
+tốt hơn so với mặt tiền và chiều sâu như những
+đặc điểm riêng biệt.
+
+00:01:34.190 --> 00:01:39.930
+Vì vậy, bạn có thể định nghĩa một feature mới,
+X3 là X1 nhân X2.
+
+00:01:39.930 --> 00:01:45.510
+Vậy đặc điểm mới X3 này bằng diện tích của
+thửa đất.
+
+00:01:45.510 --> 00:01:51.270
+Từ feature này, sau đó bạn có thể có một mô
+hình f wb của x bằng w1
+
+00:01:51.270 --> 00:01:57.030
+x1 cộng w2 x2 cộng w3 x3 cộng b, để mô hình
+bây giờ có thể chọn các
+
+00:01:57.030 --> 00:02:02.790
+tham số w1, w2 và w3 tùy thuộc vào việc dữ
+liệu có phù hợp hay không.
+
+00:02:02.790 --> 00:02:07.890
+cho thấy mặt tiền hoặc chiều sâu, hoặc diện
+tích X3 của lô
+
+00:02:07.890 --> 00:02:12.990
+đất hóa ra lại là điều quan trọng nhất để dự
+đoán giá căn nhà.
+
+00:02:12.990 --> 00:02:16.910
+Điều chúng ta vừa làm, tạo ra một feature mới
+là một ví dụ về cái
+
+00:02:16.910 --> 00:02:20.830
+được gọi là kỹ thuật feature, trong đó bạn có
+thể sử dụng kiến
+
+00:02:20.830 --> 00:02:24.750
+thức hoặc trực giác của mình về vấn đề để
+thiết kế các feature mới,
+
+00:02:24.750 --> 00:02:29.290
+thường bằng cách biến đổi hoặc kết hợp các đặc
+điểm ban đầu của bài
+
+00:02:29.290 --> 00:02:33.830
+toán để giúp thuật toán học dễ dàng đưa ra dự
+đoán chính xác hơn.
+
+00:02:33.830 --> 00:02:37.217
+Vì vậy, tùy thuộc vào những hiểu biết sâu sắc
+mà bạn có thể
+
+00:02:37.217 --> 00:02:40.603
+có về ứng dụng, thay vì chỉ sử dụng các
+feature mà bạn tình
+
+00:02:40.603 --> 00:02:43.990
+cờ bắt đầu, đôi khi bằng cách xác định các
+feature mới,
+
+00:02:43.990 --> 00:02:47.750
+bạn có thể có được một mô hình tốt hơn nhiều.
+
+00:02:47.750 --> 00:02:51.150
+Đó là kỹ thuật feature.
+
+00:02:51.150 --> 00:02:55.830
+Và hóa ra có một loại kỹ thuật feature cho
+phép bạn khớp không chỉ các
+
+00:02:55.830 --> 00:03:00.510
+đường thẳng mà cả các đường cong, các hàm phi
+tuyến vào dữ liệu của bạn.
+
+00:03:00.510 --> 00:03:03.150
+Chúng ta hãy xem video tiếp theo về cách bạn
+có thể làm điều đó.

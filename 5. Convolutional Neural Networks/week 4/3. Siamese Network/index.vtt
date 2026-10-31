@@ -1,0 +1,165 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.840
+The job of the function D, which you learned about in the last video, is to input two faces
+
+00:00:05.840 --> 00:00:08.720
+and tell you how similar or how different they are.
+
+00:00:08.720 --> 00:00:12.360
+A good way to do this is to use a Siamese network.
+
+00:00:12.360 --> 00:00:15.120
+Let's take a look.
+
+00:00:15.120 --> 00:00:20.640
+You're used to seeing pictures of confidence like these, where you input an image, let's say x1,
+
+00:00:20.640 --> 00:00:25.360
+and through a sequence of convolutional and pooling and fully connected layers,
+
+00:00:25.360 --> 00:00:30.400
+you end up with a feature vector like that.
+
+00:00:30.400 --> 00:00:36.600
+And sometimes this is fed to a softmax unit to make a classification, but we're not going
+
+00:00:36.600 --> 00:00:38.600
+to use that in this video.
+
+00:00:38.600 --> 00:00:46.640
+Instead, we're going to focus on this vector of, let's say, 128 numbers computed by some
+
+00:00:46.640 --> 00:00:51.120
+fully connected layer that is deeper in the network.
+
+00:00:51.120 --> 00:00:56.200
+And I'm going to give this list of 128 numbers a name.
+
+00:00:56.200 --> 00:01:05.640
+I'm going to call this f of x1, and you should think of f of x1 as an encoding of the input
+
+00:01:05.640 --> 00:01:08.480
+image x1.
+
+00:01:08.480 --> 00:01:13.800
+So let's take the input image here, this picture of Qian, and it's re-representing it
+
+00:01:13.800 --> 00:01:17.840
+as a vector of 128 numbers.
+
+00:01:17.840 --> 00:01:23.880
+The way you can build a face recognition system is then that if you want to compare two pictures,
+
+00:01:23.880 --> 00:01:29.200
+let's say this first picture with this second picture here, what you can do is feed the
+
+00:01:29.200 --> 00:01:35.680
+second picture to the same neural network with the same parameters and get a different
+
+00:01:35.680 --> 00:01:41.040
+vector of 128 numbers, which represents or which encodes the second picture.
+
+00:01:41.040 --> 00:01:44.680
+So I'm going to call this second picture.
+
+00:01:44.680 --> 00:01:51.160
+I'm going to call this encoding of this second picture f of x2.
+
+00:01:51.160 --> 00:01:55.720
+And here I'm using x1 and x2 just to denote two input images.
+
+00:01:55.720 --> 00:01:59.800
+They don't necessarily have to be the first and second examples in your training sets.
+
+00:01:59.800 --> 00:02:02.000
+It can be any two pictures.
+
+00:02:02.000 --> 00:02:09.040
+Finally, if you believe that these encodings are a good representation of these two images,
+
+00:02:09.040 --> 00:02:20.160
+what you can do is then define the image d of distance between x1 and x2 as the norm
+
+00:02:20.160 --> 00:02:27.120
+of the difference between the encodings of these two images.
+
+00:02:27.120 --> 00:02:33.480
+So this idea of running two identical convolutional neural networks on two different inputs and
+
+00:02:33.480 --> 00:02:39.680
+then comparing them, sometimes that's called a Siamese neural network architecture.
+
+00:02:39.680 --> 00:02:46.000
+And many of the ideas I'm presenting here came from a paper due to Yaniv Taqman, Min Yang,
+
+00:02:46.000 --> 00:02:53.240
+Marco Rilyo-Ronzato, and Lior Wolf in a system that they developed called DeepFace.
+
+00:02:53.240 --> 00:02:56.760
+So how do you train this Siamese neural network?
+
+00:02:56.760 --> 00:03:01.420
+Remember that these two neural networks have the same parameters.
+
+00:03:01.420 --> 00:03:05.700
+So what you want to do is really train the neural network so that the encoding that it
+
+00:03:05.700 --> 00:03:12.100
+computes results in a function d that tells you when two pictures are of the same person.
+
+00:03:12.100 --> 00:03:18.020
+So more formally, the parameters of the neural network define an encoding f of xi.
+
+00:03:18.020 --> 00:03:24.980
+So given any input image xi, the neural network outputs this 128-dimensional encoding
+
+00:03:24.980 --> 00:03:26.660
+f of xi.
+
+00:03:26.660 --> 00:03:34.300
+So more formally, what you want to do is learn parameters so that if two pictures xi and xj
+
+00:03:34.300 --> 00:03:40.820
+are of the same person, then you want that distance between their encodings to be small.
+
+00:03:40.820 --> 00:03:47.220
+And in the previous slide, I was using x1 and x2, but it's really any pair xi and xj
+
+00:03:47.220 --> 00:03:48.820
+from your training set.
+
+00:03:48.820 --> 00:03:55.460
+And in contrast, if xi and xj are of different persons, then you want that distance between
+
+00:03:55.460 --> 00:03:58.060
+their encodings to be large.
+
+00:03:58.060 --> 00:04:03.740
+So as you vary the parameters in all of these layers of the neural network, you end up with
+
+00:04:03.740 --> 00:04:05.740
+different encodings.
+
+00:04:05.740 --> 00:04:11.120
+And what you can do is use backpropagation to vary all those parameters in order to make
+
+00:04:11.120 --> 00:04:14.300
+sure these conditions are satisfied.
+
+00:04:14.300 --> 00:04:19.460
+So you've learned about the Siamese network architecture and have a sense of what you
+
+00:04:19.460 --> 00:04:24.500
+want the neural network to output for you in terms of what would make a good encoding.
+
+00:04:24.540 --> 00:04:28.900
+But how do you actually define an objective function to make your neural network learn
+
+00:04:28.900 --> 00:04:31.420
+to do what we just discussed here?
+
+00:04:31.420 --> 00:04:35.540
+Let's see how you can do that in the next video using the triplet loss function.

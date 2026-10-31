@@ -1,0 +1,56 @@
+Một trong những thách thức của nhận dạng khuôn mặt (face recognition)
+là bạn cần giải quyết one-shot learning (học một lần). Điều đó có nghĩa là đối với
+hầu hết các ứng dụng nhận dạng khuôn mặt bạn cần có khả năng nhận ra
+một người khi chỉ được cung cấp một hình ảnh duy nhất, hoặc chỉ đưa ra một mẫu
+về khuôn mặt của người đó. Và, về mặt lịch sử, các thuật toán học sâu (deep learning) không hoạt động tốt
+nếu bạn chỉ có một mẫu training. Hãy xem một ví dụ
+để xem điều này có nghĩa là gì và nói về cách giải quyết bài toán này. Giả sử bạn có một cơ sở dữ liệu gồm
+bốn hình ảnh về nhân viên trong tổ chức của bạn. Đây thực ra là một số đồng nghiệp của tôi
+tại Deeplearning.AI, Khan, Danielle, Younes và Thian. Bây giờ, giả sử ai đó
+xuất hiện tại văn phòng và họ muốn đi qua cửa quay. Những gì hệ thống phải làm là, mặc dù
+chỉ nhìn thấy có một hình ảnh của Danielle, phải nhận ra rằng đây thực ra là
+cùng một người. Và ngược lại, nếu nó thấy ai đó
+không có trong cơ sở dữ liệu này, thì nó sẽ nhận ra rằng đây không phải là
+người nào trong số 4 người trong cơ sở dữ liệu. Về bài toán học một lần, bạn phải học từ một
+mẫu để nhận ra người đó một lần nữa. Và bạn cần cái này cho hầu hết các hệ thống nhận dạng khuôn mặt vì
+bạn có thể chỉ có một hình ảnh của từng nhân viên của bạn hoặc
+thành viên trong nhóm của bạn trong cơ sở dữ liệu nhân viên của bạn. Một cách tiếp cận bạn có thể thử là
+nhập hình ảnh của một người, cung cấp cho CNN (mạng nơ ron tích chập - convolutional neuron network). Và để nó xuất ra một nhãn, y, sử dụng
+một đơn vị hàm softmax với bốn đầu ra hoặc có thể năm đầu ra tương ứng với mỗi
+bốn người này hoặc không có người nào ở trên. 5 đầu ra trong softmax. Nếu điều đó thực sự không hiệu quả với bạn, Bởi vì nếu bạn có một bộ training
+nhỏ đến mức mà không đủ để training một mạng nơ-ron mạnh mẽ (robust) cho
+tác vụ này. Và điều gì sẽ xảy ra nếu một người mới
+gia nhập nhóm của bạn? Bây giờ bạn có 5 người
+cần nhận dạng, vì vậy bây giờ sẽ có sáu đầu ra. Bạn có phải training lại
+CNN mỗi lần không? Đó dường như không
+phải là một cách tiếp cận tốt. Để thực hiện nhận dạng khuôn mặt,
+để thực hiện học một lần. Thay vào đó, để làm cho điều này hoạt động, những gì bạn sẽ làm là
+học một hàm tương tự. Cụ thể, bạn muốn một mạng nơron
+học một hàm biểu thị d,
+nhập vào hai hình ảnh và xuất ra mức độ chênh lệch
+giữa hai hình ảnh. Vì vậy, nếu hai hình ảnh
+là của cùng một người, bạn muốn nó xuất ra một số nhỏ. Và nếu hai hình ảnh là của hai người rất
+khác nhau, bạn muốn nó xuất ra một số lớn. Trong thời gian nhận dạng, nếu độ chênh lệch
+giữa chúng nhỏ hơn một số ngưỡng được gọi là 𝜏 (tau),
+là một siêu tham số (hyperparameter). Sau đó, bạn sẽ dự đoán rằng
+hai bức tranh này là cùng một người. Và nếu nó lớn hơn 𝜏, bạn sẽ
+dự đoán rằng đây là hai người khác nhau. Đó chính là cách bạn giải quyết bài toán xác minh khuôn mặt (verification). Để sử dụng điều này cho nhận dạng khuôn mặt (recognition),
+bạn cần sử dụng hàm d
+này để so sánh hai hình ảnh này khi có hình ảnh mới. Và có thể tôi sẽ xuất ra một số rất lớn,
+giả sử là 10, cho ví dụ này. Và sau đó bạn so sánh ảnh này với
+hình ảnh thứ hai trong cơ sở dữ liệu của bạn. Và bởi vì hai người này là cùng một người,
+hy vọng bạn xuất ra một số rất nhỏ. Bạn cũng làm điều này cho các hình ảnh khác
+trong cơ sở dữ liệu của bạn, v.v. Và dựa trên điều này, bạn sẽ tìm ra
+rằng đây thực sự là người đó, đó là Danielle. Và ngược lại,
+nếu ai đó không có trong cơ sở dữ liệu của bạn xuất hiện, khi bạn sử dụng hàm d để thực hiện
+tất cả các so sánh theo cặp này, hy vọng đầu ra d sẽ có một số
+rất lớn cho cả bốn phép so sánh theo cặp. Đây không phải là bất kỳ ai
+trong bốn người trong cơ sở dữ liệu. Lưu ý là điều này cho phép bạn giải quyết bài toán học một lần. Miễn là bạn có thể học hàm d,
+d nhập một cặp hình ảnh và cho bạn biết, về cơ bản là, nếu họ là
+cùng một người hoặc hai người khác nhau. Nếu bạn có người mới
+tham gia nhóm của bạn, bạn có thể thêm người thứ năm vào cơ sở dữ liệu
+của mình và nó vẫn chạy tốt. Bạn đã thấy cách hàm học
+d, nhập vào hai hình ảnh, cho phép bạn giải quyết
+bài toán học một lần. Trong video tiếp theo,
+chúng ta hãy xem làm thế nào bạn có thể thực sự train (huấn luyện) mạng nơron
+để học về hàm d này.

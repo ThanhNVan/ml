@@ -1,0 +1,309 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:07.400
+In the previous video, you saw how you can use mini batch gradient descent to start making progress to start taking gradient descent steps
+
+00:00:07.520 --> 00:00:12.580
+even when you're just partway through processing your training set even for the first time. In this video,
+
+00:00:12.580 --> 00:00:19.320
+you learn more details of how to implement gradient descent and gain a better understanding of what it's doing and why it works.
+
+00:00:19.680 --> 00:00:26.240
+With batch gradient descent, on every iteration, you go through the entire training set and you would expect the cost
+
+00:00:26.560 --> 00:00:29.400
+to go down on every single iteration.
+
+00:00:30.280 --> 00:00:34.640
+So you plot the cost function j as a function of different iterations.
+
+00:00:34.640 --> 00:00:40.600
+It should decrease on every single iteration and if it ever goes up even on one iteration, then something's wrong.
+
+00:00:40.600 --> 00:00:42.640
+Maybe the learning rate is too big. On
+
+00:00:43.320 --> 00:00:51.040
+mini batch gradient descent though, if you plot progress on your cost function, then it may not decrease on every iteration.
+
+00:00:51.200 --> 00:00:56.480
+In particular, on every iteration, you're processing some x t,
+
+00:00:56.480 --> 00:01:04.280
+y t and so if you plot the cost function j t,
+
+00:01:05.960 --> 00:01:07.960
+which is computed
+
+00:01:09.160 --> 00:01:16.000
+using just x t, y t, then it's as if on every iteration you're training on a different
+
+00:01:16.320 --> 00:01:18.720
+training set or really training on a different mini batch.
+
+00:01:18.960 --> 00:01:24.520
+So you plot the cost function j, you're more likely to see something that looks like this. It should trend downwards,
+
+00:01:24.920 --> 00:01:27.600
+but it's also going to be a little bit noisier.
+
+00:01:28.120 --> 00:01:37.780
+So if you plot j of t as you're training mini batch gradient descent and maybe over multiple epochs,
+
+00:01:38.340 --> 00:01:43.060
+you might expect to see a curve like this. So it's okay if it doesn't go down on every iteration,
+
+00:01:43.860 --> 00:01:50.580
+but it should trend downwards. And the reason it'll be a little bit noisy is that maybe x1
+
+00:01:51.340 --> 00:01:56.420
+y1 is just a relatively easy mini batch. So your cost might be a bit lower,
+
+00:01:56.620 --> 00:02:01.940
+but then maybe just by chance x2 y2 is just a harder mini batch.
+
+00:02:01.940 --> 00:02:06.700
+Maybe even some mislabeled examples in it in which case the cost would be a bit higher and so on.
+
+00:02:06.700 --> 00:02:12.820
+So that's why you get these oscillations as you plot the cost when you're running mini batch gradient descent.
+
+00:02:12.980 --> 00:02:17.180
+Now one of the parameters you need to choose is the size of your mini batch.
+
+00:02:17.980 --> 00:02:27.620
+So M was the training set size. On one extreme, if the mini batch size is equal to M,
+
+00:02:28.220 --> 00:02:38.690
+then you just end up with batch gradient descent. So in this extreme, you would just have one mini batch,
+
+00:02:39.050 --> 00:02:45.010
+x1 y1, and this mini batch is equal to your entire training set.
+
+00:02:45.650 --> 00:02:49.210
+So setting the mini batch size to M just gives you back gradient descent.
+
+00:02:49.810 --> 00:02:57.460
+The other extreme would be if your mini batch size were equal to 1.
+
+00:02:59.950 --> 00:03:04.230
+This gives you an algorithm called stochastic gradient descent.
+
+00:03:07.530 --> 00:03:11.530
+And here, every example is its own mini batch.
+
+00:03:18.570 --> 00:03:22.690
+So what you do in this case is you look at the first mini batch.
+
+00:03:23.890 --> 00:03:31.290
+So x1 y1. But when your mini batch size is 1, this just has your first training example.
+
+00:03:31.290 --> 00:03:34.250
+And you take your gradient descent step with your first training example.
+
+00:03:34.570 --> 00:03:41.010
+And then you next take a look at your second mini batch, which is just your second training example,
+
+00:03:41.210 --> 00:03:42.890
+and take a gradient descent step with that.
+
+00:03:43.170 --> 00:03:48.010
+And then you do it with the third training example and so on, looking at just one single training example at a time.
+
+00:03:50.100 --> 00:03:55.780
+So let's look at what these two extremes will do on optimizing this cost function.
+
+00:03:55.820 --> 00:04:00.700
+If these are the contours of a cost function you're trying to minimise, so your minimum is there,
+
+00:04:01.100 --> 00:04:09.420
+then batch gradient descent might start somewhere and be able to take relatively low noise,
+
+00:04:09.420 --> 00:04:15.140
+relatively large steps and just keep marching to the minimum.
+
+00:04:15.580 --> 00:04:21.540
+In contrast, with stochastic gradient descent, if you start somewhere, let's pick a different starting point,
+
+00:04:22.380 --> 00:04:26.780
+then on every iteration, you're taking gradient descent with just a single training example.
+
+00:04:26.780 --> 00:04:32.460
+So most of the time you hit toward the global minimum, but sometimes you hit in the wrong direction.
+
+00:04:32.460 --> 00:04:36.180
+If that one example happens to point you in a bad direction.
+
+00:04:36.540 --> 00:04:43.100
+So stochastic gradient descent can be extremely noisy and on average, it'll take you in a good direction,
+
+00:04:43.500 --> 00:04:47.140
+but sometimes it'll hit in the wrong direction as well.
+
+00:04:47.700 --> 00:04:50.300
+And stochastic gradient descent won't ever converge.
+
+00:04:50.300 --> 00:04:54.740
+You'll always just kind of oscillate and wander around the region of the minimum,
+
+00:04:54.740 --> 00:04:57.380
+but it won't ever just head to the minimum and stay there.
+
+00:04:58.020 --> 00:05:10.330
+In practice, the mini batch size you use will be somewhere in between, somewhere between in one and M.
+
+00:05:10.330 --> 00:05:14.530
+And one and M are respectively too small and too large.
+
+00:05:15.010 --> 00:05:15.930
+And here's why.
+
+00:05:16.250 --> 00:05:27.180
+If you use batch gradient descent, so this is your mini batch size equals M,
+
+00:05:31.060 --> 00:05:35.180
+then you're processing a huge training set on every iteration.
+
+00:05:35.180 --> 00:05:41.660
+So the main disadvantage of this is that it takes too much time, too long per iteration.
+
+00:05:42.020 --> 00:05:46.700
+Assuming you have a very large training set, if you have a small training set, then batch gradient descent is fine.
+
+00:05:46.940 --> 00:05:59.910
+If you go to the opposite, if you use stochastic gradient descent, then it's nice that you get to make progress after processing just one example.
+
+00:06:00.510 --> 00:06:01.910
+That's actually not a problem.
+
+00:06:01.910 --> 00:06:07.190
+And the noisiness can be ameliorated or can be reduced by just using a smaller learning rate.
+
+00:06:07.550 --> 00:06:17.190
+But the huge disadvantage of stochastic gradient descent is that you lose almost all your speed up from vectorization.
+
+00:06:18.270 --> 00:06:21.550
+Because here you're processing a single training example at a time.
+
+00:06:21.990 --> 00:06:25.750
+The way you process each example is going to be very inefficient.
+
+00:06:25.990 --> 00:06:40.220
+So what works best in practice is something in between where you have some, you know, mini batch size that's not too big or too small.
+
+00:06:44.580 --> 00:06:48.820
+And this gives you, in practice, the fastest learning.
+
+00:06:51.510 --> 00:06:54.630
+And you notice that this has two good things going for it.
+
+00:06:54.670 --> 00:06:57.550
+One is that you do get a lot of vectorization.
+
+00:06:58.270 --> 00:07:08.470
+So in the example we used on the previous video, if your mini batch size was a thousand examples, then, you know, you might be able to vectorize across a thousand examples,
+
+00:07:08.470 --> 00:07:12.230
+which is going to be much faster than processing the examples one at a time.
+
+00:07:13.230 --> 00:07:27.680
+And second, you can also make progress without needing to wait till you process the entire training set.
+
+00:07:28.320 --> 00:07:40.260
+So again, using the numbers we had from the previous video, each epoch or each pass through your training set allows you to say 5,000 gradient descent steps.
+
+00:07:41.380 --> 00:07:45.580
+So in practice, there'll be some in between mini batch size that works best.
+
+00:07:45.900 --> 00:07:50.700
+And so with mini batch in the end, if you start here, maybe one iteration does this.
+
+00:07:51.060 --> 00:08:03.220
+Two iterations, three, four, you know, and it's not guaranteed to always head toward the minimum, but it tends to head more consistently and directionally minimum than stochastic gradient descent.
+
+00:08:03.540 --> 00:08:07.740
+And then it doesn't always exactly converge or oscillate in a very small region.
+
+00:08:08.220 --> 00:08:11.500
+If that's an issue, you can always reduce the learning rate slowly.
+
+00:08:11.540 --> 00:08:15.500
+We'll talk more about learning rate decay or how to reduce the learning rate in a later video.
+
+00:08:15.820 --> 00:08:23.260
+So if the mini batch size should not be M and should not be one, but it should be something in between, how do you go about choosing it?
+
+00:08:23.300 --> 00:08:24.820
+Well, here are some guidelines.
+
+00:08:24.940 --> 00:08:33.760
+First, if you have a small training set, just use batch gradient descent.
+
+00:08:36.610 --> 00:08:43.610
+You know, if you have a small training set, then no point using mini batch gradient descent, you can process the whole training set quite fast.
+
+00:08:43.610 --> 00:08:45.370
+So you might as well use batch gradient descent.
+
+00:08:45.810 --> 00:08:53.970
+What a small training set mean, I would say, you know, if it's less than maybe 2000, it'd be perfectly fine to just use batch gradient descent.
+
+00:08:54.370 --> 00:09:09.270
+Otherwise, if you have a bigger training set, typical mini batch sizes would be anything from 64 up to maybe 512 are quite typical.
+
+00:09:09.590 --> 00:09:19.070
+And because of the way computer memory is laid out in access, sometimes your code runs faster if your mini batch size is a power of two.
+
+00:09:19.430 --> 00:09:24.790
+Right. So 64 is two to the six is to the seven, two to the eight, two to the nine.
+
+00:09:25.190 --> 00:09:29.510
+So often I'll implement my mini batch size to be a power of two.
+
+00:09:29.990 --> 00:09:33.550
+I know that in a previous video, I use a mini batch size of 1000.
+
+00:09:33.870 --> 00:09:39.750
+If you really want to do that, I would recommend you just use your 1024, which is to the power of 10.
+
+00:09:40.110 --> 00:09:44.110
+And you do see mini batch sizes of size 1024.
+
+00:09:44.430 --> 00:09:45.630
+It is a bit more rare.
+
+00:09:46.350 --> 00:09:50.230
+This range of mini batch size is a little bit more common.
+
+00:09:50.710 --> 00:10:05.430
+One last tip is to make sure that your mini batch, all of your xt, comma, yt, that that fits in, you know, CPU GPU memory.
+
+00:10:08.770 --> 00:10:12.730
+And this really depends on your application and how large a single training example is.
+
+00:10:12.770 --> 00:10:23.730
+But if you ever process a mini batch that doesn't actually fit in CPU GPU memory, whether you're using the process, the data, then you find that the performance suddenly falls off a cliff.
+
+00:10:23.730 --> 00:10:25.410
+And it's suddenly much worse.
+
+00:10:25.930 --> 00:10:31.050
+So I hope this gives you a sense of the typical range of mini batch sizes that people use.
+
+00:10:31.730 --> 00:10:43.570
+In practice, of course, the mini batch size is actually another hyper parameter that you might do a quick search over to try to figure out which one is most efficient at reducing your cost function j.
+
+00:10:43.850 --> 00:10:56.010
+So what I would do is just try a several different values, try a few different powers of two, and then see if you could pick one that makes your gradient descent optimization algorithm as efficient as possible.
+
+00:10:56.410 --> 00:11:03.050
+But hopefully this gives you a set of guidelines for how to get started with that hyper parameter search.
+
+00:11:03.330 --> 00:11:10.530
+You now know how to implement a mini batch gradient descent and make your algorithm run much faster, especially when you're trading on a launch trading set.
+
+00:11:10.530 --> 00:11:18.210
+But it turns out they're even more efficient algorithms than gradient descent or mini batch gradient descent. Let's start talking about them in the next few videos.

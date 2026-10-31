@@ -1,0 +1,258 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:02.640
+See, we draw a few pictures of neural networks.
+
+00:00:02.640 --> 00:00:05.960
+In this video, we'll talk about exactly what those pictures means.
+
+00:00:05.960 --> 00:00:11.360
+In other words, exactly what those little neural networks we've been drawing represent.
+
+00:00:11.360 --> 00:00:16.160
+And we'll start with focusing on the case of neural networks with what's called a single
+
+00:00:16.160 --> 00:00:17.160
+hidden layer.
+
+00:00:17.160 --> 00:00:19.000
+Here's a picture of a neural net.
+
+00:00:19.000 --> 00:00:22.120
+Let's give different parts of these pictures some names.
+
+00:00:22.120 --> 00:00:28.200
+We have the input features, x1, x2, x3, stacked up vertically, and this is called
+
+00:00:28.200 --> 00:00:31.560
+the input layer of the neural network.
+
+00:00:31.560 --> 00:00:35.160
+So maybe not surprisingly, this contains the inputs to the neural network.
+
+00:00:35.160 --> 00:00:41.640
+Then there's another layer of circles, and this is called a hidden layer of the neural
+
+00:00:41.640 --> 00:00:42.640
+network.
+
+00:00:42.640 --> 00:00:45.480
+I'll come back in a second to say what the word hidden means.
+
+00:00:45.480 --> 00:00:50.320
+But the final layer here is formed by, in this case, just one node, and this single
+
+00:00:50.320 --> 00:00:55.800
+node layer is called the output layer, and it's responsible for generating the predicted
+
+00:00:55.800 --> 00:00:57.280
+value y hat.
+
+00:00:57.360 --> 00:01:02.160
+In a neural network that you train with supervised learning, the training set contains values
+
+00:01:02.160 --> 00:01:05.520
+of the inputs x as well as the target outputs y.
+
+00:01:05.520 --> 00:01:10.720
+So the term hidden layer refers to the fact that in a training set, the true values for
+
+00:01:10.720 --> 00:01:13.040
+these nodes in the middle are not observed.
+
+00:01:13.040 --> 00:01:15.560
+That is, you don't see what they should be in a training set.
+
+00:01:15.560 --> 00:01:18.760
+You see what the inputs are, you see what the outputs should be, but the things in
+
+00:01:18.760 --> 00:01:21.520
+a hidden layer are not seen in a training set.
+
+00:01:21.520 --> 00:01:24.720
+So that kind of explains the name hidden layer.
+
+00:01:24.720 --> 00:01:26.760
+Just means you don't see it in a training set.
+
+00:01:26.760 --> 00:01:28.560
+Let's introduce a bit more notation.
+
+00:01:28.560 --> 00:01:34.400
+Whereas previously we were using the vector x to denote the input features, an
+
+00:01:34.400 --> 00:01:39.520
+alternative notation for the values of the input features will be a super
+
+00:01:39.520 --> 00:01:41.640
+square bracket zero.
+
+00:01:41.640 --> 00:01:47.480
+And the term a also stands for activations, and it refers to the values that
+
+00:01:47.480 --> 00:01:52.040
+different layers of the neural network are passing on to the subsequent layers.
+
+00:01:52.040 --> 00:01:56.600
+So the input layer passes on the value x to the hidden layer, so we're going to
+
+00:01:56.720 --> 00:02:01.560
+call that called the activations of the input layer a superscript zero.
+
+00:02:01.560 --> 00:02:06.160
+The next layer, the hidden layer, will in turn generate some set of activations,
+
+00:02:06.160 --> 00:02:09.880
+which I'm going to write as a superscript square bracket one.
+
+00:02:09.880 --> 00:02:15.240
+So in particular, this first unit or this first node will generate the value a
+
+00:02:15.240 --> 00:02:18.080
+superscript square bracket one, subscript one.
+
+00:02:18.080 --> 00:02:23.200
+This second node will generate a value now with a subscript two and so on.
+
+00:02:23.280 --> 00:02:29.080
+And so a superscript square bracket one, this is a four dimensional vector,
+
+00:02:29.080 --> 00:02:34.240
+or if you want in Python, it gives us a four by one matrix or four column vector,
+
+00:02:34.240 --> 00:02:35.480
+which looks like this.
+
+00:02:35.480 --> 00:02:41.120
+And it's four dimensional because in this case we have four nodes or four units or
+
+00:02:41.120 --> 00:02:43.480
+four hidden units in this hidden layer.
+
+00:02:43.480 --> 00:02:47.200
+Then finally, the output layer will generate some value a two,
+
+00:02:47.200 --> 00:02:48.600
+which is just a real number.
+
+00:02:48.600 --> 00:02:53.120
+And so y hat is going to take on the value of a two.
+
+00:02:53.120 --> 00:02:58.240
+So this is analogous to how in logistic regression, we have y hat equals a and
+
+00:02:58.240 --> 00:03:02.280
+in logistic regression, we only had that one output layer.
+
+00:03:02.280 --> 00:03:06.000
+So we didn't use the superscript square brackets, but with a neural network,
+
+00:03:06.000 --> 00:03:09.360
+we're now going to use the superscript square bracket to explicitly
+
+00:03:09.360 --> 00:03:11.320
+indicate which layer it came from.
+
+00:03:11.320 --> 00:03:15.920
+One funny thing about notational conventions in neural networks is that
+
+00:03:15.920 --> 00:03:20.920
+this network that you're seeing here is called a two layer neural network.
+
+00:03:20.920 --> 00:03:24.720
+And the reason is that when we count layers in neural networks,
+
+00:03:24.720 --> 00:03:26.400
+we don't count the input layer.
+
+00:03:26.400 --> 00:03:30.840
+So the hidden layer is layer one and the output layer is layer two.
+
+00:03:30.840 --> 00:03:34.440
+In a notational convention, we're calling the input layer layer zero.
+
+00:03:34.440 --> 00:03:37.880
+So technically, maybe there are three layers in this neural network,
+
+00:03:37.880 --> 00:03:40.240
+because there's the input layer, the hidden layer and the output layer.
+
+00:03:40.240 --> 00:03:44.120
+But in conventional usage, if you read research papers and
+
+00:03:44.120 --> 00:03:47.680
+elsewhere in the course, you see people refer to this particular neural network as
+
+00:03:47.680 --> 00:03:52.600
+a two layer neural network because we don't count the input layer as an official layer.
+
+00:03:52.600 --> 00:03:56.280
+Finally, something that we'll get to later is that the hidden layer and
+
+00:03:56.280 --> 00:03:59.840
+the output layers will have parameters associated with it.
+
+00:03:59.840 --> 00:04:04.720
+So the hidden layer will have associated with it parameters w and b.
+
+00:04:04.720 --> 00:04:09.000
+And I'm going to write superscript square bracket one to indicate that these
+
+00:04:09.000 --> 00:04:12.000
+are parameters associated with layer one with the hidden layer.
+
+00:04:12.000 --> 00:04:16.280
+We'll see later that w will be a four by three matrix and
+
+00:04:16.280 --> 00:04:21.440
+b will be a four by one vector in this example, where the first coordinate four
+
+00:04:21.440 --> 00:04:25.040
+comes in the fact that we have four nodes or four hidden units in the layer.
+
+00:04:25.040 --> 00:04:28.520
+And three comes from the fact that we have three input features.
+
+00:04:28.520 --> 00:04:31.560
+We'll talk later about the dimensions of these matrices, and
+
+00:04:31.560 --> 00:04:33.280
+it might make more sense at that time.
+
+00:04:33.280 --> 00:04:38.400
+But then similarly, the output layer has associated with it also parameters w,
+
+00:04:38.400 --> 00:04:42.400
+superscript square bracket two and b, superscript square bracket two.
+
+00:04:42.400 --> 00:04:46.040
+And it turns out the dimensions of these are one by four and one by one.
+
+00:04:46.040 --> 00:04:49.920
+And these one by four is because the hidden layer has four hidden units,
+
+00:04:49.920 --> 00:04:52.040
+the output layer has just one unit.
+
+00:04:52.040 --> 00:04:54.520
+But again, we'll go over the dimensions of these matrices and
+
+00:04:54.520 --> 00:04:56.640
+vectors in a later video.
+
+00:04:56.640 --> 00:05:00.080
+So you've just seen what a two layer neural network looks like.
+
+00:05:00.080 --> 00:05:03.080
+That is a neural network with one hidden layer.
+
+00:05:03.080 --> 00:05:08.120
+In the next video, let's go deeper into exactly what this neural network is computing.
+
+00:05:08.160 --> 00:05:10.880
+That is how this neural network inputs x and
+
+00:05:10.880 --> 00:05:13.920
+goes all the way to computing its output y hat.

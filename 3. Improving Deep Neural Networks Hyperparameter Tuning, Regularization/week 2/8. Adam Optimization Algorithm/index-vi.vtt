@@ -1,0 +1,367 @@
+WEBVTT
+
+00:00:00.140 --> 00:00:03.460
+Trong lịch sử của deep learning, nhiều nhà
+nghiên cứu, trong đó có
+
+00:00:03.460 --> 00:00:06.780
+một số nhà nghiên cứu rất nổi tiếng, đôi khi
+đã đề xuất các thuật
+
+00:00:06.780 --> 00:00:10.100
+toán tối ưu hóa và thể hiện tốt công việc của
+họ trong một số bài toán.
+
+00:00:10.100 --> 00:00:14.240
+Nhưng những thuật toán tối ưu hóa đó sau đó đã
+được chứng minh là không thực sự
+
+00:00:14.240 --> 00:00:18.380
+khái quát hóa tốt điều đó cho nhiều loại
+neural network mà bạn có thể muốn đào tạo.
+
+00:00:18.380 --> 00:00:21.940
+Vì vậy, theo thời gian, tôi nghĩ cộng đồng
+deep learning thực sự
+
+00:00:21.940 --> 00:00:25.500
+đã nảy sinh một số hoài nghi về các thuật toán
+tối ưu hóa mới.
+
+00:00:25.500 --> 00:00:27.680
+Và rất nhiều người cảm thấy rằng việc
+
+00:00:27.680 --> 00:00:29.860
+gradient descent bằng động lượng thực sự hoạt
+động tốt.
+
+00:00:29.860 --> 00:00:33.180
+Thật khó để đề xuất những thứ hoạt động tốt
+hơn nhiều.
+
+00:00:33.180 --> 00:00:36.860
+Vì vậy, thuật toán tối ưu hóa RMSprop và Adam
+mà tôi sẽ nói đến
+
+00:00:36.860 --> 00:00:40.540
+trong video này là một trong những thuật toán
+hiếm hoi thực sự
+
+00:00:40.540 --> 00:00:44.220
+đứng vững và được chứng minh là hoạt động tốt
+trên nhiều nền tảng.
+
+00:00:44.220 --> 00:00:47.200
+một loạt các kiến trúc deep learning.
+
+00:00:47.200 --> 00:00:51.110
+Vì vậy, đây là một trong những thuật toán mà
+tôi không ngần ngại khuyên bạn
+
+00:00:51.110 --> 00:00:55.020
+nên thử vì nhiều người đã thử và thấy nó hoạt
+động tốt trên nhiều vấn đề.
+
+00:00:55.020 --> 00:00:58.320
+Và thuật toán tối ưu hóa Adam về cơ bản là lấy
+
+00:00:58.320 --> 00:01:01.620
+động lượng và RMSprop rồi ghép chúng lại với
+nhau.
+
+00:01:01.620 --> 00:01:03.380
+Vì vậy, hãy xem nó hoạt động như thế nào.
+
+00:01:03.380 --> 00:01:09.720
+Để triển khai Adam, bạn sẽ khởi tạo VdW bằng
+
+00:01:09.720 --> 00:01:16.060
+0, SdW bằng 0 và tương tự Vdb, Sdb bằng 0.
+
+00:01:16.060 --> 00:01:26.980
+Và sau đó ở bước lặp T, bạn sẽ tính đạo hàm,
+tính Vw, Vb bằng cách sử dụng dòng điện
+
+00:01:26.980 --> 00:01:30.290
+lô nhỏ.
+
+00:01:30.290 --> 00:01:34.570
+Vì vậy, bạn thường làm điều này với việc
+gradient descent hàng loạt nhỏ.
+
+00:01:34.570 --> 00:01:38.930
+Và sau đó bạn tính động lượng trung bình theo
+cấp số nhân.
+
+00:01:38.930 --> 00:01:41.610
+Vậy VdW bằng beta.
+
+00:01:41.610 --> 00:01:47.350
+Nhưng bây giờ tôi sẽ gọi đây là phiên bản beta
+1 để phân biệt với phiên bản
+
+00:01:47.350 --> 00:01:53.090
+siêu tham số beta 2 mà chúng tôi sẽ sử dụng
+cho phần RMSprop của phiên bản này.
+
+00:01:53.090 --> 00:01:58.970
+Vì vậy, đây chính xác là những gì chúng tôi đã
+có khi triển khai đà,
+
+00:01:58.970 --> 00:02:04.850
+ngoại trừ việc bây giờ tôi gọi là siêu tham số
+beta 1 thay vì beta.
+
+00:02:04.850 --> 00:02:09.810
+Và tương tự như vậy bạn có Vdb như sau.
+
+00:02:09.810 --> 00:02:15.290
+Vậy 1 trừ beta nhân 1 dB.
+
+00:02:15.290 --> 00:02:18.890
+Và sau đó bạn cũng thực hiện cập nhật giống
+như RMSprop.
+
+00:02:18.890 --> 00:02:26.050
+Vì vậy, bây giờ bạn có một siêu tham số khác
+beta 2 cộng 1 trừ beta 2, dW bình phương.
+
+00:02:26.050 --> 00:02:34.250
+Và một lần nữa, bình phương có phần tử Y bình
+phương của đạo hàm dW của bạn.
+
+00:02:34.250 --> 00:02:44.210
+Và khi đó Sdb bằng cái này cộng 1 trừ beta 2
+nhân dB.
+
+00:02:44.210 --> 00:02:50.210
+Vì vậy, đây là động lực giống như bản cập nhật
+với phiên bản siêu tham số beta 1.
+
+00:02:50.210 --> 00:02:55.730
+Và đây là bản cập nhật giống như RMSprop với
+siêu tham số beta 2.
+
+00:02:55.730 --> 00:03:00.970
+Trong quá trình triển khai ADAM điển hình, bạn
+thực hiện hiệu chỉnh sai lệch.
+
+00:03:00.970 --> 00:03:04.930
+Vì vậy, bạn sẽ sửa V.
+
+00:03:04.930 --> 00:03:09.610
+Đã sửa có nghĩa là sau khi hiệu chỉnh sai
+lệch,
+
+00:03:09.610 --> 00:03:14.290
+dW bằng VdW chia cho 1 trừ beta 1 lũy thừa của
+t.
+
+00:03:14.290 --> 00:03:19.790
+Nếu bạn đã thực hiện t lần lặp và tương tự,
+Vdb được
+
+00:03:19.790 --> 00:03:25.290
+sửa bằng Vdb chia cho 1 trừ beta 1 lũy thừa
+của t.
+
+00:03:25.290 --> 00:03:31.290
+Và sau đó, tương tự, bạn cũng thực hiện hiệu
+chỉnh sai lệch này trên S.
+
+00:03:31.290 --> 00:03:44.690
+Vậy đó là SdW chia cho 1 trừ beta 2 cho t và
+Sdb đã sửa bằng Sdb chia
+
+00:03:44.690 --> 00:03:48.290
+bằng 1 trừ beta 2 cho t.
+
+00:03:48.290 --> 00:03:50.890
+Cuối cùng bạn thực hiện cập nhật.
+
+00:03:50.890 --> 00:03:55.410
+Vì vậy, W được cập nhật dưới dạng W trừ đi số
+lần alpha.
+
+00:03:55.410 --> 00:04:03.850
+Vì vậy, nếu bạn chỉ đang thực hiện đà, bạn sẽ
+sử dụng VdW hoặc có thể VdW đã được sửa.
+
+00:04:03.850 --> 00:04:06.850
+Nhưng bây giờ chúng tôi thêm phần RMSprop của
+cái này.
+
+00:04:06.850 --> 00:04:13.650
+Vì vậy, chúng ta cũng sẽ chia cho căn bậc hai
+của SdW đã hiệu chỉnh cộng với epsilon.
+
+00:04:13.650 --> 00:04:18.850
+Và tương tự, B được cập nhật thành một công
+thức tương tự.
+
+00:04:18.850 --> 00:04:29.010
+Vdb đã hiệu chỉnh chia cho căn bậc hai S đã
+hiệu chỉnh dB cộng với epsilon.
+
+00:04:29.010 --> 00:04:33.370
+Và do đó, thuật toán này kết hợp hiệu ứng
+gradient descent
+
+00:04:33.370 --> 00:04:37.730
+với động lượng cùng với hiệu ứng
+gradient descent bằng RMSprop.
+
+00:04:37.730 --> 00:04:42.370
+Và đây là thuật toán học được sử dụng phổ biến
+và đã được chứng minh là rất
+
+00:04:42.370 --> 00:04:47.010
+hiệu quả đối với nhiều neural network khác
+nhau với nhiều kiến trúc rất đa dạng.
+
+00:04:47.010 --> 00:04:50.370
+Vì vậy, thuật toán này có một số siêu tham số.
+
+00:04:50.370 --> 00:04:57.530
+Siêu tham số alpha của learning rate tập vẫn
+quan trọng và thường cần được điều chỉnh.
+
+00:04:57.530 --> 00:05:01.730
+Vì vậy, bạn chỉ cần thử một loạt các giá trị
+và xem giá trị nào có hiệu quả.
+
+00:05:01.730 --> 00:05:06.330
+Một lựa chọn phổ biến, thực sự là lựa chọn mặc
+định cho phiên bản beta 1 là 0,9.
+
+00:05:06.330 --> 00:05:10.130
+Vậy đây là đường trung bình động, đường trung
+bình có trọng số của dW, phải không?
+
+00:05:10.130 --> 00:05:13.050
+Đây là thuật ngữ ánh sáng xung lượng.
+
+00:05:13.050 --> 00:05:16.630
+Siêu tham số cho phiên bản beta 2, các tác giả
+của bài báo
+
+00:05:16.630 --> 00:05:20.210
+Adam, nhà phát minh ra Adam, thuật toán khuyến
+nghị 0,999.
+
+00:05:20.210 --> 00:05:23.630
+Một lần nữa, đây là tính toán bình phương có
+trọng số
+
+00:05:23.630 --> 00:05:27.050
+di chuyển của dW bình phương cũng như bình
+phương dB.
+
+00:05:27.050 --> 00:05:31.250
+Và sau đó là epsilon, việc lựa chọn epsilon
+không quan trọng lắm.
+
+00:05:31.250 --> 00:05:34.970
+Nhưng các tác giả của bài báo Adam khuyến nghị
+nó là 10 trừ 8.
+
+00:05:34.970 --> 00:05:38.990
+Nhưng thông số này thì thực sự bạn không cần
+thiết
+
+00:05:38.990 --> 00:05:43.010
+lập và nó cũng không ảnh hưởng nhiều đến hiệu
+suất đâu.
+
+00:05:43.010 --> 00:05:46.510
+Nhưng khi triển khai Adam, điều mọi người
+thường làm chỉ là sử
+
+00:05:46.510 --> 00:05:50.010
+dụng các giá trị mặc định của beta 1 và beta 2
+cũng như epsilon.
+
+00:05:50.010 --> 00:05:52.730
+Tôi không nghĩ có ai thực sự thích epsilon.
+
+00:05:52.730 --> 00:05:56.890
+Sau đó thử một loạt giá trị alpha để xem giá
+trị nào hoạt động tốt nhất.
+
+00:05:56.890 --> 00:05:59.930
+Bạn cũng có thể điều chỉnh phiên bản beta 1 và
+beta 2, nhưng điều đó
+
+00:05:59.930 --> 00:06:02.970
+không được thực hiện thường xuyên đối với
+những người thực hành như tôi biết.
+
+00:06:02.970 --> 00:06:06.450
+Vậy thuật ngữ Adam đến từ đâu?
+
+00:06:06.450 --> 00:06:15.660
+Adam là viết tắt của ước tính thời điểm thích
+ứng.
+
+00:06:15.660 --> 00:06:18.340
+Vì vậy, phiên bản beta 1 đang tính toán giá
+trị trung bình của đạo hàm.
+
+00:06:18.340 --> 00:06:20.100
+Đây được gọi là khoảnh khắc đầu tiên.
+
+00:06:20.100 --> 00:06:24.340
+Và phiên bản beta 2 được sử dụng để tính trung
+bình theo cấp số nhân của bình phương.
+
+00:06:24.340 --> 00:06:26.020
+Và đó được gọi là khoảnh khắc thứ hai.
+
+00:06:26.020 --> 00:06:29.620
+Vì vậy, điều đó dẫn đến ước tính thời điểm
+thích ứng tên.
+
+00:06:29.620 --> 00:06:33.180
+Nhưng mọi người chỉ gọi nó là thuật toán tối
+ưu hóa Adam.
+
+00:06:33.180 --> 00:06:35.420
+Và nhân tiện, một trong những người bạn và
+
+00:06:35.420 --> 00:06:37.660
+cộng tác viên lâu năm của tôi tên là Adam
+Coates.
+
+00:06:37.980 --> 00:06:40.780
+Theo những gì tôi biết, thuật toán này không
+liên quan gì
+
+00:06:40.780 --> 00:06:43.580
+đến anh ấy ngoại trừ việc tôi nghĩ anh ấy đôi
+khi sử dụng nó.
+
+00:06:43.580 --> 00:06:45.260
+Nhưng đôi khi tôi cũng được hỏi câu hỏi đó.
+
+00:06:45.260 --> 00:06:48.260
+Vì vậy, chỉ trong trường hợp bạn đang thắc
+mắc.
+
+00:06:48.260 --> 00:06:50.940
+Vậy là xong thuật toán tối ưu hóa Adam.
+
+00:06:50.940 --> 00:06:54.820
+Với nó, tôi nghĩ bạn thực sự đào tạo mạng lưới
+thần kinh của mình nhanh hơn nhiều.
+
+00:06:54.820 --> 00:06:59.580
+Nhưng trước khi kết thúc tuần này, chúng ta
+hãy tiếp tục nói về việc điều chỉnh siêu
+
+00:06:59.580 --> 00:07:04.340
+tham số cũng như có được một số trực giác về
+vấn đề tối ưu hóa cho neural network.
+
+00:07:04.340 --> 00:07:07.300
+Trong video tiếp theo, chúng ta sẽ nói về sự
+suy giảm learning rate tập.

@@ -1,0 +1,771 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.770 --> 00:00:05.770
+Welcome, Russ. I'm really glad you could join us here today.
+
+00:00:05.770 --> 00:00:07.770
+Thank you. Thank you, Andrew.
+
+00:00:07.770 --> 00:00:11.770
+So, you know, today you're the director of research at Apple,
+
+00:00:11.770 --> 00:00:15.770
+and you also have a faculty and professor at Carnegie Mellon University.
+
+00:00:15.770 --> 00:00:19.770
+So I'd love to hear a bit about your personal story.
+
+00:00:19.770 --> 00:00:23.770
+How did you end up doing this deep learning work that you do?
+
+00:00:23.770 --> 00:00:26.770
+Yeah, it's actually, to some extent,
+
+00:00:26.770 --> 00:00:30.770
+it was I started in deep learning, to some extent, by luck.
+
+00:00:30.770 --> 00:00:34.770
+I did my master's degree at Toronto, and then I took a year off.
+
+00:00:34.770 --> 00:00:38.770
+I was actually working in the financial sector. It's a little bit surprising.
+
+00:00:38.770 --> 00:00:42.770
+And at that time, I wasn't quite sure whether I want to go for my PhD or not.
+
+00:00:42.770 --> 00:00:45.770
+And then something happened, something surprising happened.
+
+00:00:45.770 --> 00:00:49.770
+I was going to work one morning, and I bumped into Jeff Hinton.
+
+00:00:49.770 --> 00:00:53.770
+And Jeff told me, hey, I have this terrific idea.
+
+00:00:53.770 --> 00:00:55.770
+Come to my office. I'll show you.
+
+00:00:55.770 --> 00:00:57.770
+And so we basically walked together,
+
+00:00:57.770 --> 00:01:01.770
+and he started telling me about, you know, these Boltzmann machines
+
+00:01:01.770 --> 00:01:04.770
+and contrastive divergence and some of the tricks,
+
+00:01:04.770 --> 00:01:08.770
+which I didn't at that time quite understand what he was talking about.
+
+00:01:08.770 --> 00:01:14.770
+But that really, really excited, that was very exciting, and really excited me.
+
+00:01:14.770 --> 00:01:20.770
+And then basically, within three months, I started my PhD with Jeff.
+
+00:01:20.770 --> 00:01:23.770
+So that was kind of like the beginning,
+
+00:01:23.770 --> 00:01:27.770
+because that was back in 2005, 2006.
+
+00:01:27.770 --> 00:01:31.770
+And this is where some of the regional deep learning algorithms
+
+00:01:31.770 --> 00:01:34.770
+using restricted Boltzmann machines and supervised petraining
+
+00:01:34.770 --> 00:01:37.770
+were kind of popping up.
+
+00:01:37.770 --> 00:01:39.770
+And so that's how I started.
+
+00:01:39.770 --> 00:01:42.770
+It was really, you know, that one particular morning,
+
+00:01:42.770 --> 00:01:48.770
+when I bumped into Jeff, completely changed my future career moving forward.
+
+00:01:48.770 --> 00:01:52.770
+And then, in fact, you were co-author on, you know,
+
+00:01:52.770 --> 00:01:55.770
+one of the very early papers on restricted Boltzmann machines
+
+00:01:55.770 --> 00:01:59.770
+that really helped with this research of neural networks and deep learning.
+
+00:01:59.770 --> 00:02:03.770
+Tell me a bit more of what that was like, you know, working on that seminar.
+
+00:02:03.770 --> 00:02:07.770
+Yeah, this was actually a really, this was an exciting year.
+
+00:02:07.770 --> 00:02:10.770
+It was my first year as a PhD student,
+
+00:02:10.770 --> 00:02:15.770
+and Jeff and I were trying to explore these ideas
+
+00:02:15.770 --> 00:02:19.770
+of using restricted Boltzmann machines and using pre-training tricks
+
+00:02:19.770 --> 00:02:21.770
+to train multiple layers.
+
+00:02:21.770 --> 00:02:24.770
+And specifically, we were trying to focus on auto-encoders.
+
+00:02:24.770 --> 00:02:28.770
+You know, how do we do a non-linear extension of PCA effectively?
+
+00:02:28.770 --> 00:02:31.770
+And it was very exciting, because we got these systems
+
+00:02:31.770 --> 00:02:34.770
+to work on MNIST digits, which was exciting.
+
+00:02:34.770 --> 00:02:37.770
+But then the next steps for us were to really see
+
+00:02:37.770 --> 00:02:41.770
+whether we can extend these models to dealing with faces.
+
+00:02:41.770 --> 00:02:44.770
+I remember we had this elevated faces dataset.
+
+00:02:44.770 --> 00:02:47.770
+And then we started looking at, can we do compression for documents?
+
+00:02:47.770 --> 00:02:50.770
+So we started looking at all these different data, you know,
+
+00:02:50.770 --> 00:02:53.770
+real value, count, binary.
+
+00:02:53.770 --> 00:02:59.770
+And throughout, you know, a year it was, I was a first year PhD student,
+
+00:02:59.770 --> 00:03:02.770
+so it was a big learning experience for me.
+
+00:03:02.770 --> 00:03:06.770
+But really, within six or seven months,
+
+00:03:06.770 --> 00:03:10.770
+we were able to get really interesting results and really good results,
+
+00:03:10.770 --> 00:03:14.770
+something that we, you know, we were able to train these very deep auto-encoders.
+
+00:03:14.770 --> 00:03:17.770
+This is something that you couldn't do at that time
+
+00:03:17.770 --> 00:03:21.770
+using sort of traditional optimization techniques.
+
+00:03:21.770 --> 00:03:27.770
+And then it, you know, it turned out into a really, really exciting paper for us.
+
+00:03:27.770 --> 00:03:33.770
+That was super exciting year, because it was a lot of learning for me.
+
+00:03:33.770 --> 00:03:37.770
+But at the same time, the results turned out to be, you know,
+
+00:03:37.770 --> 00:03:41.770
+really, really impressive for what we were trying to do.
+
+00:03:41.770 --> 00:03:44.770
+So in the early days of this resurgence of deep learning,
+
+00:03:44.770 --> 00:03:48.770
+a lot of the activity was centered on restricted Boltzmann machines
+
+00:03:48.770 --> 00:03:51.770
+and then deep Boltzmann machines.
+
+00:03:51.770 --> 00:03:54.770
+There's still a lot of exciting research there being done,
+
+00:03:54.770 --> 00:03:57.770
+including some in your group, but what's happening with Boltzmann machines
+
+00:03:57.770 --> 00:03:59.770
+and restricted Boltzmann machines?
+
+00:03:59.770 --> 00:04:01.770
+Yeah, that's a very good question.
+
+00:04:01.770 --> 00:04:06.770
+I think that in the early days, the way that we were using restricted Boltzmann machines
+
+00:04:06.770 --> 00:04:10.770
+is you sort of can imagine training a stack of these restricted Boltzmann machines
+
+00:04:10.770 --> 00:04:14.770
+that would allow you to learn effectively one layer at a time.
+
+00:04:14.770 --> 00:04:17.770
+And there's a good theory behind, you know, when you add a particular layer,
+
+00:04:17.770 --> 00:04:20.770
+it improves the variation of bound and so forth under certain conditions.
+
+00:04:20.770 --> 00:04:24.770
+So there was a theoretical justification, and these models were working quite well
+
+00:04:24.770 --> 00:04:28.770
+in terms of being able to pre-train these systems.
+
+00:04:28.770 --> 00:04:35.770
+And then around 2009, 2010, once the computer started showing up, you know, GPUs,
+
+00:04:36.770 --> 00:04:40.770
+then a lot of us started realizing that actually directly optimizing
+
+00:04:40.770 --> 00:04:45.770
+these deep neural networks was, you know, was giving similar results,
+
+00:04:45.770 --> 00:04:47.770
+or even better results.
+
+00:04:47.770 --> 00:04:51.770
+So just that the backprop was about the pre-training or the restricted Boltzmann machine?
+
+00:04:51.770 --> 00:04:52.770
+That's right, that's right.
+
+00:04:52.770 --> 00:04:54.770
+And that's sort of over, you know, three or four years,
+
+00:04:54.770 --> 00:04:57.770
+and it was exciting to the whole community because people thought that,
+
+00:04:57.770 --> 00:05:02.770
+wow, you can actually train these deep models using these pre-training mechanisms.
+
+00:05:02.770 --> 00:05:05.770
+And then, you know, with more compute, people started realizing
+
+00:05:05.770 --> 00:05:07.770
+that you can just basically do standard backprop navigation,
+
+00:05:07.770 --> 00:05:12.770
+something that we couldn't do back in 2005 or, you know, 2004,
+
+00:05:12.770 --> 00:05:16.770
+because it would take us months to do it on CPUs.
+
+00:05:16.770 --> 00:05:20.770
+And so that was a big change.
+
+00:05:20.770 --> 00:05:23.770
+The other thing that I think that we haven't really figured out
+
+00:05:23.770 --> 00:05:27.770
+what to do with, you know, Boltzmann machines and deep Boltzmann machines,
+
+00:05:27.770 --> 00:05:31.770
+I believe they're very powerful models because you can think of them as generative models.
+
+00:05:31.770 --> 00:05:35.770
+You know, they try to model complex distributions in the data.
+
+00:05:35.770 --> 00:05:39.770
+But when we start looking at learning algorithms, learning algorithms right now,
+
+00:05:39.770 --> 00:05:42.770
+they require using, you know, Markov chain Monte Carlo
+
+00:05:42.770 --> 00:05:48.770
+and variational learning and such, which is not a scalable as backpropagation algorithm.
+
+00:05:48.770 --> 00:05:55.770
+So we yet have to figure out more efficient ways of training these models
+
+00:05:55.770 --> 00:05:57.770
+and also the use of convolution.
+
+00:05:57.770 --> 00:06:02.770
+It's something that's fairly difficult to integrate into these models.
+
+00:06:02.770 --> 00:06:06.770
+I remember some of your work on using probabilistic Mark's pulling
+
+00:06:06.770 --> 00:06:11.770
+for sort of building these generative models of different objects
+
+00:06:11.770 --> 00:06:16.770
+and using these ideas of convolution was also very exciting.
+
+00:06:16.770 --> 00:06:19.770
+But at the same time, it's still extremely hard to train these models.
+
+00:06:19.770 --> 00:06:21.770
+How likely is work?
+
+00:06:21.770 --> 00:06:22.770
+Yes, how likely is work, right?
+
+00:06:22.770 --> 00:06:28.770
+So we still have to figure out what are on the other side,
+
+00:06:28.770 --> 00:06:31.770
+some of the recent work using variational encoders, for example,
+
+00:06:31.770 --> 00:06:34.770
+which could be viewed as directed versions of Boltzmann machines.
+
+00:06:34.770 --> 00:06:39.770
+We have figured out ways of training these models was a work by Max Welling
+
+00:06:39.770 --> 00:06:44.770
+and Dirk Kingma on using, you know, reparameterization tricks.
+
+00:06:44.770 --> 00:06:49.770
+And now we can use backpropagation algorithm within the stochastic system,
+
+00:06:49.770 --> 00:06:52.770
+which is driving a lot of progress right now.
+
+00:06:52.770 --> 00:06:57.770
+But we haven't quite figured out how to do that in the case of Boltzmann machines.
+
+00:06:57.770 --> 00:07:02.770
+So that's actually a very interesting perspective I actually wasn't aware of,
+
+00:07:02.770 --> 00:07:05.770
+which was in an earlier era where computers were slower,
+
+00:07:05.770 --> 00:07:10.770
+that the RBM pre-training was really important.
+
+00:07:10.770 --> 00:07:16.770
+There was only faster computation that drove switching to standard backprop.
+
+00:07:16.770 --> 00:07:20.770
+You know, in terms of the evolution of communities thinking in deep learning,
+
+00:07:20.770 --> 00:07:24.770
+another topic I know you spent a lot of time thinking about is the generative,
+
+00:07:24.770 --> 00:07:27.770
+unsupervised versus supervised approaches.
+
+00:07:27.770 --> 00:07:31.770
+Do you want to share a bit about how your thinking about that has evolved over time?
+
+00:07:31.770 --> 00:07:35.770
+Yeah, I think that's a really, I feel like it's a very important topic,
+
+00:07:35.770 --> 00:07:42.770
+particularly if we think about unsupervised or semi-supervised or generative models,
+
+00:07:42.770 --> 00:07:47.770
+because to some extent a lot of successes that we've seen very recently
+
+00:07:47.770 --> 00:07:49.770
+is due to supervised learning.
+
+00:07:49.770 --> 00:07:55.770
+And back in the early days, unsupervised learning was primarily viewed as unsupervised pre-training
+
+00:07:55.770 --> 00:07:59.770
+because we didn't know how to train these multilayer systems.
+
+00:07:59.770 --> 00:08:05.770
+And even today, if you're working in a settings where you have lots and lots of unlabeled data
+
+00:08:05.770 --> 00:08:09.770
+and a small fraction of labeled examples, you know, these unsupervised pre-training models,
+
+00:08:09.770 --> 00:08:15.770
+so building these generative models can help, you know, for supervised tasks.
+
+00:08:15.770 --> 00:08:20.770
+So I think that a lot of us in the community, you know, it's kind of like it was the belief,
+
+00:08:20.770 --> 00:08:23.770
+when I started doing my PhD, it was all about generative models
+
+00:08:23.770 --> 00:08:26.770
+and trying to learn these stacks of models,
+
+00:08:26.770 --> 00:08:30.770
+because that was the only way for us to train these systems.
+
+00:08:30.770 --> 00:08:35.770
+Today, there is a lot of work right now on generative modeling.
+
+00:08:35.770 --> 00:08:37.770
+You know, if you look at generative adversarial networks,
+
+00:08:37.770 --> 00:08:44.770
+if you look at variational training course, deep energy models is something that my lab is working on right now as well.
+
+00:08:44.770 --> 00:08:50.770
+I think it's very exciting research, but we haven't, perhaps we haven't quite figured it out.
+
+00:08:50.770 --> 00:08:54.770
+Again, for many of you who are thinking about getting in the deep learning field,
+
+00:08:54.770 --> 00:09:00.770
+this is one area that I think we, you know, will make a lot of progress in, hopefully in the near future.
+
+00:09:00.770 --> 00:09:01.770
+So unsupervised learning.
+
+00:09:01.770 --> 00:09:02.770
+Unsupervised learning, right.
+
+00:09:02.770 --> 00:09:03.770
+Headlining.
+
+00:09:03.770 --> 00:09:06.770
+Or maybe you can think of it as unsupervised learning or semi-supervised learning
+
+00:09:06.770 --> 00:09:14.770
+where you have, I give you some hints or some examples of what different things mean,
+
+00:09:14.770 --> 00:09:17.770
+and I throw you lots and lots of unlabeled data.
+
+00:09:17.770 --> 00:09:21.770
+So, you know, that was actually a very important insight that in an earlier era of deep learning
+
+00:09:21.770 --> 00:09:25.770
+where computers were just slower, the restricted Boltzmann machine and deep Boltzmann machine,
+
+00:09:25.770 --> 00:09:30.770
+that was needed for initializing the neural network weights, but as computers got faster,
+
+00:09:30.770 --> 00:09:33.770
+straight backprop didn't start to work much better.
+
+00:09:34.770 --> 00:09:37.770
+So, you know, one other topic that I know you've spent a lot of time thinking about
+
+00:09:37.770 --> 00:09:44.770
+is the supervised learning versus generative models, unsupervised learning approaches.
+
+00:09:44.770 --> 00:09:51.770
+So, how has your, tell me a bit about how you're thinking on that debate has evolved over time.
+
+00:09:51.770 --> 00:09:56.770
+I think that we all believe that we should be able to make progress there.
+
+00:09:56.770 --> 00:10:03.770
+It's just, you know, all the work on Boltzmann machines, variational encoders, GANs,
+
+00:10:03.770 --> 00:10:06.770
+you can think a lot of these models as generative models,
+
+00:10:06.770 --> 00:10:13.770
+but we haven't quite figured out how to really make them work
+
+00:10:13.770 --> 00:10:16.770
+and how can you make use of large models.
+
+00:10:16.770 --> 00:10:24.770
+And even for, I see a lot of IT sector, you know, companies have lots and lots of data,
+
+00:10:24.770 --> 00:10:29.770
+lots of unlabeled data, there's lots of efforts for going through annotations
+
+00:10:29.770 --> 00:10:32.770
+because that's the only way for us to make progress right now.
+
+00:10:32.770 --> 00:10:37.770
+And it seems like, you know, we should be able to make use of unlabeled data
+
+00:10:37.770 --> 00:10:42.770
+because it's just abundance of it and we haven't quite figured out how to do that yet.
+
+00:10:43.770 --> 00:10:47.770
+So, you mentioned for people wanting to enter deep learning research,
+
+00:10:47.770 --> 00:10:50.770
+you know, unsupervised learning is an exciting area.
+
+00:10:50.770 --> 00:10:53.770
+Today, there are a lot of people wanting to enter deep learning,
+
+00:10:53.770 --> 00:10:55.770
+either research or applied work.
+
+00:10:55.770 --> 00:11:00.770
+So, for this global community, either research or applied work, what advice would you have?
+
+00:11:00.770 --> 00:11:09.770
+Yes, I think that one of the key advices I think I should give is people entering that field,
+
+00:11:09.770 --> 00:11:15.770
+I would encourage them to just try different things and not be afraid to try new things
+
+00:11:15.770 --> 00:11:17.770
+and not be afraid to try to innovate.
+
+00:11:17.770 --> 00:11:22.770
+I can give you one example, which is when I was a graduate student,
+
+00:11:22.770 --> 00:11:26.770
+you know, we were looking at neural nets and these are highly non-convex systems
+
+00:11:26.770 --> 00:11:28.770
+that are hard to optimize.
+
+00:11:28.770 --> 00:11:32.770
+And I remember talking to my friends within the optimization community
+
+00:11:32.770 --> 00:11:37.770
+and the feedback was always that, well, there's no way you can solve these problems
+
+00:11:37.770 --> 00:11:40.770
+because these are non-convex, we don't understand optimization,
+
+00:11:40.770 --> 00:11:45.770
+how could you ever even do that, you know, compared to doing comics optimization?
+
+00:11:45.770 --> 00:11:50.770
+And it was surprising because in our lab, you know,
+
+00:11:50.770 --> 00:11:54.770
+we never really cared that much about those specific problems,
+
+00:11:54.770 --> 00:11:59.770
+we're thinking about how can we optimize them, whether we can get interesting results.
+
+00:11:59.770 --> 00:12:02.770
+And that effectively was driving the community.
+
+00:12:02.770 --> 00:12:08.770
+So, we were not scared, maybe to some extent because we didn't,
+
+00:12:08.770 --> 00:12:12.770
+maybe because we were lacking actually the theory behind optimization.
+
+00:12:12.770 --> 00:12:18.770
+But I would encourage people to just try and not be afraid to try to tackle hard problems.
+
+00:12:18.770 --> 00:12:22.770
+Yeah, and I remember you once said, don't learn to code just into high level,
+
+00:12:22.770 --> 00:12:24.770
+you know, deep learning frameworks, but actually understand.
+
+00:12:24.770 --> 00:12:28.770
+Yes, that's right. I think that, well, it's one of the things that I try to do
+
+00:12:28.770 --> 00:12:32.770
+when I teach a deep learning class is one of the homeworks,
+
+00:12:32.770 --> 00:12:36.770
+I'm asking people to actually code back propagation algorithm
+
+00:12:36.770 --> 00:12:38.770
+for convolutional neural networks.
+
+00:12:38.770 --> 00:12:43.770
+And it's, you know, it's painful, but at the same time, if you do it once,
+
+00:12:43.770 --> 00:12:48.770
+you really understand how these systems operate and how they work
+
+00:12:48.770 --> 00:12:52.770
+and how you can efficiently implement them on GPU.
+
+00:12:52.770 --> 00:12:57.770
+And I think it's important for you to, when you go into research or industry,
+
+00:12:57.770 --> 00:13:01.770
+you have a really good understanding of what these systems are doing.
+
+00:13:01.770 --> 00:13:04.770
+So, it's important, I think, you know.
+
+00:13:04.770 --> 00:13:09.770
+Since you have both academic experience as professor and corporate experience,
+
+00:13:10.770 --> 00:13:12.770
+I'm curious if someone's an entity of learning,
+
+00:13:12.770 --> 00:13:17.770
+what are their pros and cons of doing a PhD versus joining a company?
+
+00:13:17.770 --> 00:13:21.770
+Yeah, I think that's actually a very good question.
+
+00:13:21.770 --> 00:13:24.770
+In my particular lab, I have a mix of students.
+
+00:13:24.770 --> 00:13:27.770
+Some students want to go and take an academic route.
+
+00:13:27.770 --> 00:13:31.770
+Some students want to go and take an industry route.
+
+00:13:31.770 --> 00:13:38.770
+And it's becoming very challenging because you can do amazing research in industry
+
+00:13:38.770 --> 00:13:41.770
+and you can also do amazing research in academia.
+
+00:13:41.770 --> 00:13:48.770
+But in terms of pros and cons, in academia, I feel like you have more freedom
+
+00:13:48.770 --> 00:13:51.770
+to work on long-term problems.
+
+00:13:51.770 --> 00:13:55.770
+Or if you think about some crazy problem, you can work on it.
+
+00:13:55.770 --> 00:13:58.770
+So, you have a little bit more freedom.
+
+00:13:58.770 --> 00:14:03.770
+At the same time, the research that you do in industry is also very exciting
+
+00:14:03.770 --> 00:14:09.770
+because in many cases, with your research, you can impact millions of users.
+
+00:14:09.770 --> 00:14:16.770
+If you develop a core AI technology, and obviously, within the industry,
+
+00:14:16.770 --> 00:14:19.770
+you have much more resources in terms of compute
+
+00:14:19.770 --> 00:14:24.770
+and be able to do really amazing things.
+
+00:14:24.770 --> 00:14:27.770
+So, there are pluses and minuses.
+
+00:14:27.770 --> 00:14:29.770
+It really depends on what you want to do.
+
+00:14:29.770 --> 00:14:33.770
+And right now, it's an interesting environment
+
+00:14:33.770 --> 00:14:38.770
+where academics move to industry, and then folks from industry move to academia,
+
+00:14:38.770 --> 00:14:39.770
+but not as much.
+
+00:14:39.770 --> 00:14:44.770
+And so, it's very exciting times.
+
+00:14:44.770 --> 00:14:47.770
+It sounds like academic machine learning is great
+
+00:14:47.770 --> 00:14:49.770
+and corporate machine learning is great.
+
+00:14:49.770 --> 00:14:53.770
+And the most important thing is just jump in. Either one, just jump in.
+
+00:14:53.770 --> 00:14:55.770
+So, it really depends on your preferences
+
+00:14:55.770 --> 00:14:58.770
+because you can do amazing research in either place.
+
+00:14:58.770 --> 00:15:03.770
+So, you've mentioned unsupervised learning as one exciting frontier for research.
+
+00:15:03.770 --> 00:15:07.770
+Are there other areas that you consider exciting frontiers for research?
+
+00:15:07.770 --> 00:15:08.770
+Yeah, absolutely.
+
+00:15:08.770 --> 00:15:11.770
+I think that what I see in our community right now,
+
+00:15:11.770 --> 00:15:15.770
+particularly in the deep learning community, is there are a few trends.
+
+00:15:15.770 --> 00:15:19.770
+One particular area that I think is really exciting
+
+00:15:19.770 --> 00:15:22.770
+is the area of deep reinforcement learning
+
+00:15:22.770 --> 00:15:27.770
+because we were able to figure out how we can train ages in virtual worlds
+
+00:15:27.770 --> 00:15:31.770
+and this is something that's, in just the last couple of years,
+
+00:15:31.770 --> 00:15:34.770
+you see a lot of progress of how can we scale these systems,
+
+00:15:34.770 --> 00:15:36.770
+how can we develop new algorithms,
+
+00:15:36.770 --> 00:15:40.770
+how can we get ages to communicate to each other with each other.
+
+00:15:40.770 --> 00:15:44.770
+And I think that area is, and in general,
+
+00:15:44.770 --> 00:15:50.770
+the settings where you're interacting with the environment is super exciting.
+
+00:15:50.770 --> 00:15:55.770
+The other area that I think is really exciting as well
+
+00:15:55.770 --> 00:15:59.770
+is the area of reasoning and natural language understanding.
+
+00:15:59.770 --> 00:16:02.770
+So, can we build dialogue-based systems?
+
+00:16:02.770 --> 00:16:07.770
+Can we build systems that can reason, that can read text
+
+00:16:07.770 --> 00:16:11.770
+and be able to answer questions intelligently?
+
+00:16:11.770 --> 00:16:16.770
+I think this is something that a lot of research is focusing on right now.
+
+00:16:16.770 --> 00:16:20.770
+And then there's another sort of sub-area also
+
+00:16:20.770 --> 00:16:25.770
+is this area of being able to learn from fewer examples.
+
+00:16:25.770 --> 00:16:28.770
+So, typically, people think of it as one-shot learning
+
+00:16:28.770 --> 00:16:35.770
+or transfer learning, a setting where you learn something about the world
+
+00:16:35.770 --> 00:16:40.770
+and I throw you a new task at you and you can solve this task very quickly,
+
+00:16:40.770 --> 00:16:45.770
+much like humans do without requiring lots and lots of labeled examples.
+
+00:16:45.770 --> 00:16:49.770
+And so this is something that a lot of us in the community
+
+00:16:49.770 --> 00:16:52.770
+are trying to figure out how we can do that
+
+00:16:52.770 --> 00:16:57.770
+and how can we come closer to human-like learning abilities.
+
+00:16:57.770 --> 00:17:00.770
+Thank you, Russ, for sharing all the comments and insights.
+
+00:17:00.770 --> 00:17:04.770
+It was especially interesting hearing the story of your early days doing this intro.
+
+00:17:04.770 --> 00:17:07.770
+Thanks, Andre. Thanks for having me.

@@ -1,0 +1,334 @@
+WEBVTT
+
+00:00:02.060 --> 00:00:07.180
+Trong video này, bạn sẽ thấy một ý tưởng rất
+hữu ích được gọi là vector hóa.
+
+00:00:07.180 --> 00:00:11.900
+Khi bạn đang triển khai một thuật toán học
+tập, việc sử dụng vector hóa
+
+00:00:11.900 --> 00:00:16.620
+sẽ vừa làm cho mã của bạn ngắn hơn, vừa giúp
+mã chạy hiệu quả hơn nhiều.
+
+00:00:16.620 --> 00:00:21.660
+Học cách viết mã vector hóa sẽ cho phép bạn
+tận dụng các thư viện đại số
+
+00:00:21.660 --> 00:00:26.700
+tuyến tính số hiện đại, cũng như thậm chí có
+thể là phần cứng GPU đại diện cho
+
+00:00:26.700 --> 00:00:28.600
+bộ xử lý đồ họa.
+
+00:00:28.600 --> 00:00:32.047
+Đây là phần cứng ban đầu được thiết kế để tăng
+tốc đồ họa máy
+
+00:00:32.047 --> 00:00:35.493
+tính trên máy tính của bạn, nhưng hóa ra nó có
+thể được sử dụng
+
+00:00:35.493 --> 00:00:38.940
+khi bạn viết mã vector hóa để giúp bạn thực
+thi mã nhanh hơn nhiều.
+
+00:00:38.940 --> 00:00:42.520
+Chúng ta hãy xem một ví dụ cụ thể về ý nghĩa
+của vector hóa.
+
+00:00:42.520 --> 00:00:49.390
+Đây là một ví dụ với các tham số w và b, trong
+đó w là một
+
+00:00:49.390 --> 00:00:56.260
+vectơ có ba số và bạn cũng có một vectơ
+feature x cũng có ba số.
+
+00:00:56.260 --> 00:00:59.920
+Vậy ở đây n bằng ba.
+
+00:00:59.920 --> 00:01:05.620
+Vì vậy, hãy lưu ý rằng trong đại số tuyến
+tính, chỉ số hoặc phép đếm bắt đầu từ một.
+
+00:01:05.620 --> 00:01:10.940
+Và do đó, giá trị đầu tiên được ghi dưới dạng
+w1 và x1.
+
+00:01:10.940 --> 00:01:14.900
+Trong mã Python, bạn có thể xác định các biến
+w, b
+
+00:01:14.900 --> 00:01:18.860
+và x này bằng cách sử dụng các mảng như thế
+này.
+
+00:01:18.860 --> 00:01:22.487
+Ở đây tôi thực sự đang sử dụng một thư viện
+đại số tuyến tính số
+
+00:01:22.487 --> 00:01:26.113
+trong Python có tên là numpy, cho đến nay đây
+là thư viện đại số
+
+00:01:26.113 --> 00:01:29.740
+tuyến tính số được sử dụng rộng rãi nhất trong
+Python và trong máy.
+
+00:01:29.740 --> 00:01:32.020
+học tập.
+
+00:01:32.020 --> 00:01:36.953
+Bởi vì trong Python, việc lập chỉ mục của mảng
+hoặc đếm trong
+
+00:01:36.953 --> 00:01:41.887
+mảng bắt đầu từ 0, nên bạn sẽ truy cập giá trị
+đầu tiên của w
+
+00:01:41.887 --> 00:01:46.820
+bằng cách sử dụng dấu ngoặc vuông w, giá trị
+thứ hai bằng cách sử dụng
+
+00:01:46.820 --> 00:01:52.660
+w dấu ngoặc vuông một và dấu ngoặc thứ ba sử
+dụng w dấu ngoặc vuông hai.
+
+00:01:52.660 --> 00:02:00.300
+Vì vậy, việc lập chỉ mục ở đây đi từ 0 một đến
+hai, thay vì một, hai đến ba.
+
+00:02:00.300 --> 00:02:09.180
+Tương tự, để truy cập các feature riêng lẻ của
+x, bạn sẽ sử dụng x0, x1 và x2.
+
+00:02:09.180 --> 00:02:15.540
+Nhiều ngôn ngữ lập trình, bao gồm cả Python,
+bắt đầu đếm từ 0 thay vì một.
+
+00:02:15.540 --> 00:02:18.680
+Bây giờ chúng ta hãy xem xét cách triển khai
+không
+
+00:02:18.680 --> 00:02:21.820
+sử dụng vector hóa để tính toán dự đoán của mô
+hình.
+
+00:02:21.820 --> 00:02:26.540
+Trong mã, nó sẽ trông như thế này, bạn lấy
+từng
+
+00:02:26.540 --> 00:02:31.260
+tham số w và nhân nó với feature liên quan của
+nó.
+
+00:02:31.260 --> 00:02:33.820
+Bây giờ bạn có thể điều chỉnh lại như thế này.
+
+00:02:33.820 --> 00:02:37.220
+Nhưng điều gì sẽ xảy ra nếu n không phải là ba
+mà thay vào đó n là
+
+00:02:37.220 --> 00:02:40.620
+100 hoặc 100.000 thì điều đó vừa không hiệu
+quả đối với bạn khi
+
+00:02:40.620 --> 00:02:44.020
+viết mã vừa không hiệu quả đối với máy tính
+của bạn khi tính toán.
+
+00:02:44.020 --> 00:02:49.980
+Vì vậy, đây là một cách khác không sử dụng
+vector hóa mà sử dụng vòng lặp for.
+
+00:02:49.980 --> 00:02:57.620
+Trong toán học, bạn có thể sử dụng toán tử
+tính tổng để cộng tất cả các tích của
+
+00:02:57.620 --> 00:03:05.260
+wj và xj với j bằng một đến n, sau đó ngoài
+phép tính tổng bạn thêm b vào cuối.
+
+00:03:05.260 --> 00:03:10.760
+Vì vậy, tổng đi từ j bằng một đến và bao gồm n
+
+00:03:10.760 --> 00:03:16.260
+với n bằng ba, do đó j đi từ một, hai đến ba.
+
+00:03:16.260 --> 00:03:22.220
+Trong mã, bạn có thể khởi tạo f thành 0, sau
+đó đối với j trong
+
+00:03:22.220 --> 00:03:28.180
+phạm vi từ 0 đến n, điều này thực sự làm cho j
+đi từ 0 đến n trừ một.
+
+00:03:28.180 --> 00:03:36.180
+Vì vậy, từ 0 đến 2, bạn có thể cộng vào f tích
+của wj nhân xj.
+
+00:03:36.180 --> 00:03:40.220
+Cuối cùng, bên ngoài vòng lặp for, bạn thêm b.
+
+00:03:40.260 --> 00:03:45.020
+Lưu ý rằng trong Python, phạm vi từ 0 đến n có
+nghĩa
+
+00:03:45.020 --> 00:03:49.780
+là j đi từ 0 đến n trừ một và không bao gồm
+chính n.
+
+00:03:49.780 --> 00:03:54.660
+Và thông thường hơn, đây là phạm vi được viết
+bằng Python.
+
+00:03:54.660 --> 00:03:57.600
+Nhưng trong video này, tôi đã thêm số 0 vào
+
+00:03:57.600 --> 00:04:00.540
+đây chỉ để nhấn mạnh rằng nó bắt đầu từ số 0.
+
+00:04:00.540 --> 00:04:04.800
+Mặc dù cách triển khai này tốt hơn một chút so
+với cách triển khai
+
+00:04:04.800 --> 00:04:09.060
+đầu tiên nhưng nó vẫn không sử dụng vector hóa
+và không hiệu quả.
+
+00:04:09.060 --> 00:04:15.300
+Bây giờ hãy xem cách bạn có thể thực hiện việc
+này bằng cách sử dụng vector hóa.
+
+00:04:15.300 --> 00:04:22.460
+Đây là biểu thức toán học của hàm f, là tích
+vô hướng của w và x cộng b.
+
+00:04:22.460 --> 00:04:26.260
+Và bây giờ bạn có thể triển khai điều này chỉ
+bằng một dòng mã.
+
+00:04:26.260 --> 00:04:32.480
+Bằng cách tính fp bằng np dot dot, tôi nói dot
+dot vì dấu chấm đầu tiên là
+
+00:04:32.480 --> 00:04:38.700
+tỷ lệ p và dấu chấm thứ hai là hàm hoặc phương
+thức được gọi là dấu chấm.
+
+00:04:38.700 --> 00:04:44.020
+Đó là fp bằng np dot dot w dấu phẩy x.
+
+00:04:44.020 --> 00:04:51.540
+Và điều này thực hiện tích số chấm toán học
+giữa các vectơ w và x.
+
+00:04:51.540 --> 00:04:55.660
+Và cuối cùng, bạn có thể thêm b vào cuối.
+
+00:04:55.660 --> 00:04:59.080
+Hàm chấm numpy này là một triển khai vector
+
+00:04:59.080 --> 00:05:02.500
+hóa của hoạt động tích số chấm giữa hai vectơ.
+
+00:05:02.500 --> 00:05:09.180
+Và đặc biệt khi n lớn, nó sẽ chạy nhanh hơn
+nhiều so với hai ví dụ mã trước đó.
+
+00:05:09.180 --> 00:05:13.780
+Tôi muốn nhấn mạnh rằng việc vector hóa thực
+sự có hai lợi ích riêng biệt.
+
+00:05:13.780 --> 00:05:16.060
+Đầu tiên, nó làm cho mã ngắn hơn.
+
+00:05:16.060 --> 00:05:17.940
+Bây giờ nó chỉ là một dòng mã.
+
+00:05:17.940 --> 00:05:19.220
+Điều đó không tuyệt vời sao?
+
+00:05:19.220 --> 00:05:24.140
+Và thứ hai, nó cũng khiến mã của bạn chạy
+nhanh hơn nhiều so với
+
+00:05:24.140 --> 00:05:29.060
+một trong hai cách triển khai trước đó không
+sử dụng vector hóa.
+
+00:05:29.060 --> 00:05:34.960
+Và lý do khiến việc triển khai theo vectơ
+nhanh hơn nhiều là ở hậu trường,
+
+00:05:34.960 --> 00:05:40.860
+chức năng dấu chấm có thể sử dụng phần cứng
+song song trong máy tính của bạn.
+
+00:05:40.860 --> 00:05:46.180
+Và điều này đúng cho dù bạn đang chạy ứng dụng
+này trên máy tính bình thường trên CPU
+
+00:05:46.180 --> 00:05:51.500
+máy tính bình thường hay nếu bạn đang sử dụng
+GPU, bộ xử lý đồ họa thường được sử dụng
+
+00:05:51.500 --> 00:05:54.380
+để tăng tốc công việc machine learning.
+
+00:05:54.380 --> 00:06:00.900
+Và khả năng sử dụng phần cứng song song của
+hàm numpy dot làm cho nó hiệu quả hơn
+
+00:06:00.900 --> 00:06:07.420
+nhiều so với vòng lặp for hoặc phép tính tuần
+tự mà chúng ta đã thấy trước đây.
+
+00:06:07.420 --> 00:06:14.220
+Bây giờ, phiên bản này thực tế hơn nhiều khi n
+lớn vì bạn không gõ W0 nhân x0
+
+00:06:14.220 --> 00:06:21.020
+cộng W1 nhân x1 cộng với nhiều thuật ngữ bổ
+sung như bạn đã có ở phiên bản trước
+
+00:06:21.020 --> 00:06:22.020
+phiên bản.
+
+00:06:22.020 --> 00:06:27.000
+Nhưng mặc dù điều này tiết kiệm rất nhiều cho
+việc gõ phím, nhưng nó
+
+00:06:27.000 --> 00:06:31.980
+vẫn không hiệu quả về mặt tính toán vì nó vẫn
+không sử dụng vector hóa.
+
+00:06:31.980 --> 00:06:35.980
+Vì vậy, tóm lại, vector hóa làm cho mã của bạn
+ngắn hơn, vì
+
+00:06:35.980 --> 00:06:39.980
+vậy hy vọng bạn hoặc người khác sẽ dễ viết hơn
+và dễ đọc hơn.
+
+00:06:39.980 --> 00:06:42.940
+Và nó cũng làm cho nó chạy nhanh hơn nhiều.
+
+00:06:42.940 --> 00:06:45.520
+Nhưng điều kỳ diệu nào đằng sau việc vector
+hóa
+
+00:06:45.520 --> 00:06:48.100
+khiến các bản phối chạy nhanh hơn nhiều như
+vậy?
+
+00:06:48.100 --> 00:06:50.800
+Chúng ta hãy xem máy tính của bạn thực sự đang
+làm gì ở hậu
+
+00:06:50.800 --> 00:06:53.500
+trường để làm cho mã vector hóa chạy nhanh hơn
+rất nhiều.

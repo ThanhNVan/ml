@@ -1,0 +1,529 @@
+WEBVTT
+
+00:00:00.050 --> 00:00:03.950
+Ngoài việc regularization L2 và regularization
+loại bỏ, còn có một số kỹ
+
+00:00:03.950 --> 00:00:07.850
+thuật khác để giảm việc overfitting trong
+neural network của bạn.
+
+00:00:07.850 --> 00:00:08.970
+Chúng ta hãy xem xét.
+
+00:00:08.970 --> 00:00:11.370
+Giả sử bạn đang lắp một bộ classification CAD.
+
+00:00:11.370 --> 00:00:14.383
+Nếu bạn overfitting, việc nhận thêm
+training data có
+
+00:00:14.383 --> 00:00:17.397
+thể hữu ích nhưng việc thu thập thêm
+training data có thể
+
+00:00:17.397 --> 00:00:20.410
+tốn kém và đôi khi bạn không thể nhận được
+nhiều dữ liệu hơn.
+
+00:00:20.410 --> 00:00:23.437
+Nhưng những gì bạn có thể làm là tăng cường
+training set của
+
+00:00:23.437 --> 00:00:26.463
+mình bằng cách chụp một hình ảnh như thế này
+và chẳng hạn như
+
+00:00:26.463 --> 00:00:29.490
+lật nó theo chiều ngang và thêm hình ảnh đó
+vào training set của bạn.
+
+00:00:29.530 --> 00:00:32.590
+Bây giờ, thay vì chỉ một ví dụ này trong
+training set của
+
+00:00:32.590 --> 00:00:35.650
+bạn, bạn có thể thêm ví dụ này vào ví dụ huấn
+luyện của mình.
+
+00:00:35.650 --> 00:00:38.110
+Bằng cách lật hình ảnh theo chiều ngang, bạn
+có
+
+00:00:38.110 --> 00:00:40.570
+thể tăng gấp đôi kích thước training set của
+mình.
+
+00:00:40.570 --> 00:00:46.010
+Bởi vì training set của bạn bây giờ hơi dư
+thừa nên điều này không tốt bằng
+
+00:00:46.010 --> 00:00:51.450
+việc bạn đã thu thập thêm một tập M mẫu độc
+lập hoàn toàn mới, nhưng bạn có
+
+00:00:51.450 --> 00:00:56.890
+thể làm điều này mà không cần phải trả chi phí
+đi ra ngoài để chụp thêm ảnh CAD.
+
+00:00:57.010 --> 00:01:02.210
+Và sau đó, ngoài việc lật theo chiều ngang,
+bạn cũng có thể cắt hình ảnh ngẫu nhiên.
+
+00:01:02.210 --> 00:01:04.910
+Vì vậy, ở đây chúng ta đang xoay và họ phóng
+to hình ảnh
+
+00:01:04.910 --> 00:01:07.610
+một cách ngẫu nhiên và nó vẫn trông giống như
+một CAD.
+
+00:01:07.610 --> 00:01:12.030
+Tuy nhiên, bằng cách thực hiện các biến dạng
+và biến đổi ngẫu nhiên của hình
+
+00:01:12.030 --> 00:01:16.450
+ảnh, bạn có thể tăng cường tập dữ liệu của
+mình và tạo thêm các ví dụ đào tạo giả.
+
+00:01:16.450 --> 00:01:21.150
+Một lần nữa, những ví dụ đào tạo giả bổ sung
+này, chúng không thêm nhiều
+
+00:01:21.150 --> 00:01:25.850
+thông tin như trước đây và lấy một ví dụ độc
+lập hoàn toàn mới về CAD.
+
+00:01:25.850 --> 00:01:31.050
+Nhưng vì bạn có thể làm điều này nên bạn gần
+như được tự do, ngoại trừ một số chi
+
+00:01:31.050 --> 00:01:36.250
+phí tính toán, đây có thể là một cách không
+tốn kém để cung cấp dữ liệu của bạn.
+
+00:01:36.250 --> 00:01:39.650
+Đây có thể là một cách không tốn kém để cung
+cấp cho thuật toán của bạn nhiều dữ
+
+00:01:39.650 --> 00:01:43.050
+liệu hơn và do đó, bạn biết đấy, hãy
+regularization nó và giảm việc trang bị quá
+mức.
+
+00:01:43.050 --> 00:01:47.330
+Và bằng cách tổng hợp các ví dụ như thế này,
+điều bạn thực sự muốn nói với thuật
+
+00:01:47.330 --> 00:01:51.610
+toán của mình là nếu thứ gì đó là CAD, thì lật
+nó theo chiều ngang vẫn là CAD.
+
+00:01:51.610 --> 00:01:55.730
+Lưu ý rằng tôi không lật nó theo chiều dọc vì
+có lẽ chúng ta không muốn CAD lộn ngược.
+
+00:01:55.930 --> 00:02:00.210
+Và sau đó cũng có thể phóng to ngẫu nhiên để
+xem hình ảnh có lẽ vẫn là CAD.
+
+00:02:00.210 --> 00:02:04.370
+Để nhận dạng ký tự quang học, bạn cũng có thể
+tăng cường tập dữ liệu của mình
+
+00:02:04.370 --> 00:02:08.530
+bằng cách lấy các chữ số và áp đặt các phép
+quay và biến dạng ngẫu nhiên cho nó.
+
+00:02:08.530 --> 00:02:11.610
+Vì vậy, nếu bạn thêm những thứ này vào
+
+00:02:11.610 --> 00:02:14.690
+training set của mình, bạn biết đấy, đây vẫn
+là chữ số 4.
+
+00:02:14.690 --> 00:02:18.370
+Để minh họa, tôi đã áp dụng độ biến dạng rất
+mạnh.
+
+00:02:18.370 --> 00:02:21.903
+Vì vậy, nó trông rất lượn sóng vì trong thực
+tế, bạn không cần phải
+
+00:02:21.903 --> 00:02:25.437
+bóp méo số 4 quá nhiều mà chỉ cần một sự biến
+dạng tinh tế hơn những
+
+00:02:25.437 --> 00:02:28.970
+gì tôi đang trình bày ở đây để làm cho ví dụ
+này rõ ràng hơn cho bạn.
+
+00:02:28.970 --> 00:02:32.170
+Đúng. Nhưng sự biến dạng tinh tế hơn thường
+được sử dụng trong
+
+00:02:32.170 --> 00:02:35.370
+thực tế, bởi vì điều này trông giống như lực
+bị biến dạng thực sự.
+
+00:02:35.370 --> 00:02:39.150
+Vì vậy, tăng cường dữ liệu có thể được sử dụng
+như một kỹ thuật
+
+00:02:39.150 --> 00:02:42.930
+regularization, vì nó có tác dụng tương tự như
+regularization.
+
+00:02:42.930 --> 00:02:46.850
+Có một kỹ thuật khác thường được sử dụng gọi
+là dừng sớm.
+
+00:02:46.850 --> 00:02:52.290
+Vì vậy, những gì bạn sẽ làm là khi chạy
+gradient descent, bạn sẽ vẽ
+
+00:02:52.290 --> 00:02:57.730
+biểu đồ lỗi giao dịch, lỗi classification thứ
+01 trên tập hợp giao dịch,
+
+00:02:57.730 --> 00:03:00.810
+hoặc chỉ vẽ đồ thị cost function j bạn đang
+tối ưu
+
+00:03:00.810 --> 00:03:03.890
+hóa và hàm đó sẽ giảm một cách đơn điệu, như
+vậy.
+
+00:03:03.890 --> 00:03:08.970
+Bởi vì khi bạn luyện tập, hy vọng lỗi giao
+dịch hoặc cost function j của bạn sẽ giảm.
+
+00:03:08.970 --> 00:03:12.910
+Vì vậy, với việc dừng sớm, điều bạn làm là vẽ
+biểu đồ này
+
+00:03:12.910 --> 00:03:16.850
+và bạn cũng sẽ vẽ biểu đồ lỗi thiết lập độ sâu
+của mình.
+
+00:03:16.850 --> 00:03:20.010
+Và một lần nữa, đây có thể là lỗi
+classification hoặc bộ phát
+
+00:03:20.010 --> 00:03:23.170
+triển của bạn hoặc thứ gì đó giống như
+cost function, chẳng hạn
+
+00:03:23.170 --> 00:03:26.330
+như mất nhật ký, được đánh giá trong tập hợp
+độ sâu của chúng tôi.
+
+00:03:26.330 --> 00:03:29.470
+Và điều bạn nhận thấy là lỗi thiết lập độ sâu
+của bạn thường
+
+00:03:29.470 --> 00:03:32.610
+sẽ giảm đi trong một thời gian và sau đó sẽ
+tăng lên từ đó.
+
+00:03:32.610 --> 00:03:36.330
+Vì vậy, việc dừng sớm có tác dụng gì là bạn sẽ
+nói, à, có vẻ như
+
+00:03:36.330 --> 00:03:40.050
+neural network của bạn đang hoạt động tốt
+nhất trong lần lặp đó.
+
+00:03:40.050 --> 00:03:43.630
+Vì vậy, chúng tôi sẽ ngừng đào tạo mạng lưới
+thần kinh của bạn giữa
+
+00:03:43.630 --> 00:03:47.210
+chừng và bạn sẽ nhận bất kỳ giá trị nào đạt
+được lỗi đặt độ sâu này.
+
+00:03:47.210 --> 00:03:48.250
+Vậy tại sao điều này lại hiệu quả?
+
+00:03:48.250 --> 00:03:52.210
+Chà, khi bạn chưa chạy nhiều lần lặp cho
+neural network của mình, các
+
+00:03:52.210 --> 00:03:56.170
+tham số w của bạn sẽ gần bằng 0 bởi vì, bạn
+biết đấy, với việc khởi
+
+00:03:56.170 --> 00:04:00.130
+tạo ngẫu nhiên, bạn có thể khởi tạo w thành
+các giá trị ngẫu nhiên nhỏ.
+
+00:04:00.130 --> 00:04:04.090
+Vì vậy trước khi bạn tập luyện trong thời gian
+dài thì w vẫn còn khá nhỏ.
+
+00:04:04.090 --> 00:04:07.690
+Và khi bạn lặp đi lặp lại, khi bạn luyện tập,
+w sẽ ngày càng lớn hơn và lớn hơn.
+
+00:04:07.690 --> 00:04:10.850
+Và vì vậy ở đây, có thể bạn có giá trị lớn hơn
+
+00:04:10.850 --> 00:04:14.010
+nhiều của các tham số w cho neural network của
+mình.
+
+00:04:14.010 --> 00:04:19.010
+Vì vậy, việc dừng sớm có nghĩa là dừng giữa
+chừng, bạn
+
+00:04:19.010 --> 00:04:24.010
+chỉ có một, bạn biết đấy, cỡ trung bình, phải
+không? w.
+
+00:04:24.010 --> 00:04:27.503
+Và tương tự như regularization L2, bằng cách
+chọn
+
+00:04:27.503 --> 00:04:30.997
+neural network có định mức nhỏ hơn cho các
+tham số của bạn
+
+00:04:30.997 --> 00:04:34.490
+w, hy vọng neural network của bạn sẽ ít bị
+overfitting hơn.
+
+00:04:34.490 --> 00:04:37.570
+Và thuật ngữ dừng sớm đề cập đến thực tế là
+bạn chỉ
+
+00:04:37.570 --> 00:04:40.650
+dừng quá trình đào tạo neural network của
+mình sớm.
+
+00:04:40.650 --> 00:04:43.070
+Đôi khi tôi sử dụng feature dừng sớm khi huấn
+
+00:04:43.070 --> 00:04:45.490
+luyện neural network, nhưng nó có một
+nhược điểm.
+
+00:04:45.490 --> 00:04:46.530
+Hãy để tôi giải thích.
+
+00:04:46.530 --> 00:04:50.690
+Tôi nghĩ quá trình machine learning bao gồm
+một số bước khác nhau.
+
+00:04:50.690 --> 00:04:55.430
+Một là bạn muốn có một thuật toán để tối ưu
+hóa cost function j và chúng tôi có
+
+00:04:55.430 --> 00:05:00.170
+nhiều công cụ khác nhau để làm điều đó, bạn
+biết đấy, chẳng hạn như gradient descent.
+
+00:05:00.170 --> 00:05:04.010
+Và sau đó chúng ta sẽ nói về các thuật toán
+khác
+
+00:05:04.010 --> 00:05:07.850
+như động lượng và alve- một RMS prop và Adam,
+v.v.
+
+00:05:07.850 --> 00:05:14.890
+Nhưng sau khi tối ưu hóa cost function j, bạn
+cũng không muốn overfitting.
+
+00:05:14.890 --> 00:05:18.410
+Và chúng tôi có một số công cụ để thực hiện
+điều đó,
+
+00:05:18.410 --> 00:05:21.930
+chẳng hạn như regularization, lấy thêm dữ
+liệu, v.v.
+
+00:05:21.930 --> 00:05:26.050
+Hiện nay trong machine learning, chúng ta đã
+có rất nhiều siêu tham số để tìm kiếm.
+
+00:05:26.050 --> 00:05:31.010
+Việc lựa chọn trong số không gian các thuật
+toán khả thi vốn đã rất phức tạp.
+
+00:05:31.010 --> 00:05:36.030
+Và vì vậy tôi thấy machine learning dễ nghĩ
+đến hơn khi bạn có một bộ công cụ để
+
+00:05:36.030 --> 00:05:41.050
+tối ưu hóa cost function j và khi bạn tập
+trung vào việc tối ưu hóa cost function j,
+
+00:05:41.050 --> 00:05:45.470
+tất cả những gì bạn quan tâm là tìm w và b sao
+cho j của w và b càng nhỏ
+
+00:05:45.470 --> 00:05:49.890
+càng tốt, và bạn không nghĩ đến điều gì khác
+ngoài việc giảm giá trị này.
+
+00:05:49.890 --> 00:05:55.490
+Và sau đó là các nhiệm vụ hoàn toàn riêng biệt
+để không bị quá sức.
+
+00:05:55.490 --> 00:05:57.570
+Nói cách khác, để giảm sự khác biệt.
+
+00:05:57.570 --> 00:06:01.050
+Và khi bạn làm điều đó, bạn có một bộ công cụ
+riêng để thực hiện việc đó.
+
+00:06:01.050 --> 00:06:06.250
+Và nguyên tắc này đôi khi được gọi là trực
+giao hóa.
+
+00:06:06.250 --> 00:06:10.810
+Và đây là ý tưởng mà bạn muốn có thể nghĩ về
+từng nhiệm vụ một.
+
+00:06:10.810 --> 00:06:14.450
+Tôi sẽ nói nhiều hơn về tính trực giao trong
+video sau.
+
+00:06:14.450 --> 00:06:17.210
+Vì vậy, nếu bạn chưa hiểu đầy đủ về khái niệm
+này, đừng lo lắng về nó.
+
+00:06:17.210 --> 00:06:20.410
+Nhưng đối với tôi, nhược điểm chính của việc
+
+00:06:20.410 --> 00:06:23.610
+dừng lại sớm là việc kết hợp hai nhiệm vụ này.
+
+00:06:23.850 --> 00:06:28.090
+Vì vậy, bạn không thể giải quyết hai vấn đề
+này một cách độc lập được nữa.
+
+00:06:28.090 --> 00:06:31.823
+Bởi vì bằng cách dừng sớm việc
+gradient descent, bạn sắp phá vỡ mọi
+
+00:06:31.823 --> 00:06:35.557
+điều bạn đang làm để tối ưu hóa cost function
+j, bởi vì bây giờ bạn
+
+00:06:35.557 --> 00:06:39.290
+đang làm không tốt việc giảm cost function j,
+bạn đã làm chưa tốt điều đó.
+
+00:06:39.290 --> 00:06:43.450
+Và đồng thời bạn cũng đang cố gắng để không
+tập luyện quá sức.
+
+00:06:43.450 --> 00:06:46.470
+Vì vậy, thay vì sử dụng các công cụ khác nhau
+để giải quyết
+
+00:06:46.470 --> 00:06:49.490
+hai vấn đề, bạn đang sử dụng một trong hai
+kiểu kết hợp cả hai.
+
+00:06:49.490 --> 00:06:53.050
+Và điều này chỉ làm cho tập hợp những điều bạn
+
+00:06:53.050 --> 00:06:56.610
+có thể thử trở nên phức tạp hơn để suy nghĩ.
+
+00:06:56.610 --> 00:06:59.170
+Thay vì sử dụng feature dừng sớm, một giải
+
+00:06:59.170 --> 00:07:01.730
+pháp thay thế chỉ là sử dụng regularization
+L2.
+
+00:07:01.730 --> 00:07:04.930
+Sau đó, bạn có thể huấn luyện mạng lưới thần
+kinh càng lâu càng tốt.
+
+00:07:04.930 --> 00:07:07.790
+Tôi thấy rằng điều này làm cho không gian tìm
+kiếm
+
+00:07:07.790 --> 00:07:10.650
+của siêu tham số dễ phân hủy hơn và dễ tìm
+kiếm hơn.
+
+00:07:10.650 --> 00:07:13.490
+Tuy nhiên, nhược điểm của việc này là bạn có
+thể phải
+
+00:07:13.490 --> 00:07:16.330
+thử rất nhiều giá trị của tham số chính quy
+lambda.
+
+00:07:16.330 --> 00:07:19.150
+Và do đó, điều này làm cho việc tìm kiếm trên
+nhiều
+
+00:07:19.150 --> 00:07:21.970
+giá trị của lambda trở nên tốn kém hơn về mặt
+tính toán.
+
+00:07:21.970 --> 00:07:27.570
+Và lợi thế thực sự của việc dừng sớm là việc
+chạy quá trình gradient descent chỉ
+
+00:07:27.570 --> 00:07:33.170
+một lần, bạn có thể thử các giá trị của w nhỏ,
+w cỡ trung bình và w lớn mà không
+
+00:07:33.170 --> 00:07:38.770
+cần phải thử nhiều giá trị của siêu tham số
+regularization, lambda regularization L2.
+
+00:07:40.210 --> 00:07:43.810
+Nếu khái niệm này chưa hoàn toàn có ý nghĩa
+với bạn, đừng lo lắng về nó.
+
+00:07:43.810 --> 00:07:46.770
+Khi chúng ta nói chi tiết hơn về tổ chức trực
+giao trong
+
+00:07:46.770 --> 00:07:49.730
+video sau, tôi nghĩ điều này sẽ có ý nghĩa hơn
+một chút.
+
+00:07:49.730 --> 00:07:52.730
+Bất chấp những nhược điểm của nó, nhiều người
+vẫn sử dụng nó.
+
+00:07:52.730 --> 00:07:57.570
+Cá nhân tôi chỉ thích sử dụng chính quy L2 và
+thử các giá trị khác nhau của lambda.
+
+00:07:57.570 --> 00:08:00.410
+Đó là giả sử bạn có đủ khả năng tính toán để
+làm như vậy.
+
+00:08:00.410 --> 00:08:03.630
+Nhưng việc dừng sớm sẽ cho phép bạn đạt được
+hiệu quả tương tự
+
+00:08:03.630 --> 00:08:06.850
+mà không cần phải thử rõ ràng nhiều giá trị
+khác nhau của lambda.
+
+00:08:06.850 --> 00:08:12.130
+Vì vậy, bây giờ bạn đã biết cách sử dụng
+feature tăng cường dữ liệu, cũng như dừng sớm
+
+00:08:12.130 --> 00:08:17.410
+nếu muốn để giảm variance và ngăn chặn việc
+overfitting neural network của bạn.
+
+00:08:17.410 --> 00:08:20.550
+Tiếp theo, hãy nói về một số kỹ thuật thiết
+lập vấn đề tối
+
+00:08:20.550 --> 00:08:23.690
+ưu hóa để giúp quá trình đào tạo của bạn diễn
+ra nhanh chóng.

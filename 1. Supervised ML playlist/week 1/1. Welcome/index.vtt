@@ -1,0 +1,162 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:04.110 --> 00:00:06.110
+Welcome to machine learning.
+
+00:00:06.110 --> 00:00:08.110
+What is machine learning?
+
+00:00:08.110 --> 00:00:12.110
+You probably use it many times a day without even knowing it.
+
+00:00:12.110 --> 00:00:14.110
+Anytime you want to find out something like
+
+00:00:14.110 --> 00:00:16.110
+how do I make a sushi roll,
+
+00:00:16.110 --> 00:00:20.110
+you can do a web search on Google Bing or Baidu to find out.
+
+00:00:20.110 --> 00:00:24.110
+And that works so well because their machine learning software
+
+00:00:24.110 --> 00:00:27.110
+has figured out how to rank web pages.
+
+00:00:27.110 --> 00:00:30.110
+Or when you upload pictures to Instagram or Snapchat
+
+00:00:30.110 --> 00:00:32.110
+and think to yourself,
+
+00:00:32.110 --> 00:00:35.110
+I want to tag my friends so they can see their pictures.
+
+00:00:35.110 --> 00:00:38.110
+Well, these apps can recognize your friends in your pictures
+
+00:00:38.110 --> 00:00:40.110
+and label them as well.
+
+00:00:40.110 --> 00:00:42.110
+That's also machine learning.
+
+00:00:42.110 --> 00:00:45.110
+Or if you've just finished watching a Star Wars movie
+
+00:00:45.110 --> 00:00:48.110
+on a video streaming service and you think,
+
+00:00:48.110 --> 00:00:50.110
+what other similar movies could I watch?
+
+00:00:50.110 --> 00:00:53.110
+Well, the streaming service will likely use machine learning
+
+00:00:53.110 --> 00:00:56.110
+to recommend something that you might like.
+
+00:00:56.110 --> 00:01:00.110
+Each time you use voice-to-text on your phone to write a text message,
+
+00:01:01.110 --> 00:01:03.110
+or tell your phone,
+
+00:01:03.110 --> 00:01:05.110
+hey Siri, play a song by Rihanna,
+
+00:01:05.110 --> 00:01:07.110
+or ask your other phone,
+
+00:01:07.110 --> 00:01:10.110
+okay Google, show me Indian restaurants near me.
+
+00:01:10.110 --> 00:01:13.110
+That's also machine learning.
+
+00:01:13.110 --> 00:01:15.110
+Each time you receive an email titled,
+
+00:01:15.110 --> 00:01:18.110
+congratulations, you've won a million dollars.
+
+00:01:18.110 --> 00:01:20.110
+Well, maybe you're rich, congratulations.
+
+00:01:20.110 --> 00:01:25.110
+Or more likely your email service will probably flag it as spam.
+
+00:01:25.110 --> 00:01:29.110
+That too is an application of machine learning.
+
+00:01:29.110 --> 00:01:32.110
+Beyond consumer applications that you might use,
+
+00:01:32.110 --> 00:01:35.110
+AI is also rapidly making its way into big companies
+
+00:01:35.110 --> 00:01:38.110
+and into industrial applications.
+
+00:01:38.110 --> 00:01:42.110
+For example, I'm deeply concerned about climate change
+
+00:01:42.110 --> 00:01:46.110
+and I'm glad to see that machine learning is already hoping
+
+00:01:46.110 --> 00:01:49.110
+to optimize wind turbine power generation.
+
+00:01:49.110 --> 00:01:53.110
+Or in healthcare, it's starting to make its way into hospitals
+
+00:01:53.110 --> 00:01:57.110
+to help doctors make accurate diagnoses.
+
+00:01:57.110 --> 00:02:00.110
+Or recently at LearningAI, I've been doing a lot of work
+
+00:02:00.110 --> 00:02:03.110
+putting computer vision into factories
+
+00:02:03.110 --> 00:02:06.110
+to help inspect if something coming off the assembly line
+
+00:02:06.110 --> 00:02:09.110
+has any defects.
+
+00:02:09.110 --> 00:02:11.110
+That's machine learning.
+
+00:02:11.110 --> 00:02:13.110
+It's the science of getting computers to learn
+
+00:02:13.110 --> 00:02:16.110
+without being explicitly programmed.
+
+00:02:16.110 --> 00:02:19.110
+In this class, you learn about machine learning
+
+00:02:19.110 --> 00:02:23.110
+and get to implement machine learning in code yourself.
+
+00:02:24.110 --> 00:02:27.110
+Millions of others have taken the earlier version of this course
+
+00:02:27.110 --> 00:02:30.110
+which is a course that led to the founding of Coursera.
+
+00:02:30.110 --> 00:02:34.110
+And many learners ended up building exciting machine learning systems
+
+00:02:34.110 --> 00:02:38.110
+or even pursuing very successful careers in AI.
+
+00:02:38.110 --> 00:02:41.110
+I'm excited that you're on this journey with me.
+
+00:02:41.110 --> 00:02:43.110
+Welcome and let's get started.

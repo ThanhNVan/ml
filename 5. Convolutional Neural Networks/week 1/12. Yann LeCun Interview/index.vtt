@@ -1,0 +1,1626 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.090 --> 00:00:06.490
+Hi Jan, you've been such a leader for deep learning for so long.
+
+00:00:06.490 --> 00:00:08.010
+Thanks a lot for doing this with us.
+
+00:00:08.010 --> 00:00:09.330
+Well, thanks for having me.
+
+00:00:09.330 --> 00:00:13.170
+So you've been working on neural nets for a long time.
+
+00:00:13.170 --> 00:00:16.890
+I'd love to hear your personal story of how did you get started in AI?
+
+00:00:16.890 --> 00:00:19.210
+How did you end up working with neural networks?
+
+00:00:19.210 --> 00:00:21.450
+So I got interested in,
+
+00:00:21.450 --> 00:00:25.010
+I was always interested in the intelligence in general,
+
+00:00:25.010 --> 00:00:27.210
+like the armatures of intelligence in humans,
+
+00:00:27.210 --> 00:00:29.250
+you know, that got me interested into, you know,
+
+00:00:29.250 --> 00:00:32.170
+human evolution when I was a kid and, uh,
+
+00:00:32.170 --> 00:00:33.170
+this is in France.
+
+00:00:33.170 --> 00:00:36.250
+It was in France, I was, you know, um,
+
+00:00:36.250 --> 00:00:39.050
+you know, in middle school or something and, uh,
+
+00:00:39.050 --> 00:00:42.330
+you know, I was interested in technology and like, you know, space, etc.
+
+00:00:42.330 --> 00:00:45.090
+You know, my favorite movie was 2001 Space Odyssey, you know,
+
+00:00:45.090 --> 00:00:48.250
+you had intelligent machines, you know, space travel
+
+00:00:48.250 --> 00:00:50.410
+and human evolution as kind of the themes,
+
+00:00:50.410 --> 00:00:52.490
+that was what I was fascinated by.
+
+00:00:52.490 --> 00:00:55.170
+Um, and, and, you know, the concept of intelligent machine,
+
+00:00:55.170 --> 00:00:57.050
+I think really kind of, uh, appealed to me.
+
+00:00:57.050 --> 00:01:00.770
+And then, um, you know, I studied electrical engineering
+
+00:01:00.770 --> 00:01:02.490
+and when I was, uh, at school,
+
+00:01:02.490 --> 00:01:04.450
+I was maybe in second year of engineering school,
+
+00:01:04.450 --> 00:01:07.170
+I, um, stumbled on a book,
+
+00:01:07.170 --> 00:01:08.730
+uh, which was actually a philosophy book.
+
+00:01:08.730 --> 00:01:11.010
+It was a debate between, uh,
+
+00:01:11.010 --> 00:01:13.890
+Noam Chomsky, the computational linguist at MIT
+
+00:01:13.890 --> 00:01:17.930
+and Jean Piaget, who is a cognitive psychologist,
+
+00:01:17.930 --> 00:01:19.690
+you know, sort of, uh, psychology of,
+
+00:01:19.690 --> 00:01:22.130
+of child development in, uh, in Switzerland.
+
+00:01:22.130 --> 00:01:25.210
+And it was basically a debate between, you know,
+
+00:01:25.210 --> 00:01:27.410
+nature and nurture, where Chomsky,
+
+00:01:27.410 --> 00:01:28.810
+arguing for the fact that, you know,
+
+00:01:28.810 --> 00:01:31.170
+language is, is a lot of unique structure
+
+00:01:31.170 --> 00:01:32.290
+and Piaget saying, you know,
+
+00:01:32.290 --> 00:01:34.330
+a lot of it is learned and, etc.
+
+00:01:34.330 --> 00:01:38.610
+And on the side of Piaget was, uh, uh,
+
+00:01:38.610 --> 00:01:41.890
+a, a, a transcription of, uh, a person,
+
+00:01:41.890 --> 00:01:43.930
+you know, each of these guys sort of brought their teams
+
+00:01:43.930 --> 00:01:47.010
+of, of, of people to, uh, to, you know,
+
+00:01:47.010 --> 00:01:48.610
+argue for their side.
+
+00:01:48.610 --> 00:01:52.650
+And on the side of Piaget was Seymour Papert from MIT,
+
+00:01:52.650 --> 00:01:54.930
+who had worked on the perceptual model,
+
+00:01:54.930 --> 00:01:57.250
+uh, one of the first machines capable of running.
+
+00:01:57.250 --> 00:01:58.650
+And I never heard of the perceptual,
+
+00:01:58.650 --> 00:01:59.810
+and I read this article and say,
+
+00:01:59.810 --> 00:02:02.610
+a machine capable of running, that sounds wonderful.
+
+00:02:02.610 --> 00:02:06.170
+And so I, I, I started going to, uh, uh,
+
+00:02:06.170 --> 00:02:08.930
+several university libraries and, and searching for all,
+
+00:02:08.930 --> 00:02:11.090
+you know, everything I could find that talked about
+
+00:02:11.090 --> 00:02:13.330
+the perceptual and then realized there was a lot of papers
+
+00:02:13.330 --> 00:02:15.530
+from the fifties, but, but it kind of stopped
+
+00:02:15.530 --> 00:02:17.770
+at the end of the sixties with a book that was co-authored
+
+00:02:17.770 --> 00:02:20.010
+by the same Seymour Papert.
+
+00:02:20.010 --> 00:02:21.490
+What year was this then?
+
+00:02:21.490 --> 00:02:24.530
+So this was 1980, roughly.
+
+00:02:24.610 --> 00:02:27.090
+And so I, I, I specialized, uh,
+
+00:02:27.090 --> 00:02:29.250
+I did a couple of projects with some of the math professor
+
+00:02:29.250 --> 00:02:32.130
+in my school on, on kind of neural nets, essentially,
+
+00:02:32.130 --> 00:02:34.690
+but there was no one I could talk to who, you know,
+
+00:02:34.690 --> 00:02:36.770
+had worked on this because the field basically
+
+00:02:36.770 --> 00:02:38.690
+had disappeared in the meantime, right?
+
+00:02:38.690 --> 00:02:40.610
+This is 1980, nobody was working on this.
+
+00:02:43.010 --> 00:02:45.930
+And, uh, you know, experimented with this, uh,
+
+00:02:45.930 --> 00:02:48.050
+a little bit, you know, writing kind of simulation software
+
+00:02:48.050 --> 00:02:50.930
+of various kinds, uh, reading about neuroscience.
+
+00:02:51.770 --> 00:02:56.050
+Um, when I finished my, uh, engineering studies,
+
+00:02:56.050 --> 00:02:59.650
+I studied chip design, you get a site design at the time.
+
+00:02:59.650 --> 00:03:01.610
+So it's something completely different.
+
+00:03:01.610 --> 00:03:04.050
+Uh, and when I finished, I, I really wanted to kind of
+
+00:03:04.050 --> 00:03:05.410
+do research on this and I, you know,
+
+00:03:05.410 --> 00:03:07.610
+figured out already that, uh, at the time that
+
+00:03:07.610 --> 00:03:09.690
+the important question was how you train neural nets
+
+00:03:09.690 --> 00:03:10.810
+with multiple layers.
+
+00:03:10.810 --> 00:03:12.690
+It was pretty clear in the literature of the sixties
+
+00:03:12.690 --> 00:03:14.890
+that that was the important question that was,
+
+00:03:14.890 --> 00:03:16.810
+that had been left unsolved.
+
+00:03:16.810 --> 00:03:19.770
+Uh, and the idea of hierarchy and everything,
+
+00:03:19.770 --> 00:03:23.090
+you know, I'd read, uh, Fukushima's article
+
+00:03:23.090 --> 00:03:24.290
+on the new cognitron, right?
+
+00:03:24.290 --> 00:03:26.130
+Which was this sort of hierarchical architecture,
+
+00:03:26.130 --> 00:03:28.770
+very similar to now what we now call conv- convolution nets.
+
+00:03:28.770 --> 00:03:32.490
+But, you know, um, with, uh, without really,
+
+00:03:32.490 --> 00:03:34.610
+without a back prop style learning algorithms.
+
+00:03:35.370 --> 00:03:39.130
+Um, and I met a small, uh, I met people who were
+
+00:03:39.130 --> 00:03:43.850
+in a small independent lab, uh, in France, uh, that, um,
+
+00:03:43.850 --> 00:03:46.770
+they were interested in what, what they called at the time
+
+00:03:46.770 --> 00:03:47.690
+automata networks.
+
+00:03:48.490 --> 00:03:51.410
+Uh, and they gave me a couple of papers,
+
+00:03:51.410 --> 00:03:53.770
+the people on Hopfield networks, which, you know,
+
+00:03:53.770 --> 00:03:56.010
+is not very popular anymore, but it's, uh, you know,
+
+00:03:56.010 --> 00:03:58.490
+the first associative memories with, uh, with neural nets.
+
+00:03:58.490 --> 00:04:01.330
+And that, that paper kind of revived the interest
+
+00:04:01.330 --> 00:04:03.730
+of some research communities into neural nets
+
+00:04:03.730 --> 00:04:04.610
+in the early eighties.
+
+00:04:05.330 --> 00:04:10.770
+Uh, whereby, um, uh, mostly, uh, physicists and, um,
+
+00:04:10.770 --> 00:04:13.490
+so condensed matter physicists and a few psychologists.
+
+00:04:13.810 --> 00:04:16.090
+It was, it was still not okay for engineers
+
+00:04:16.090 --> 00:04:17.810
+and computer scientists to talk about neural nets.
+
+00:04:18.610 --> 00:04:21.890
+And they also showed me another paper, uh, that had just been
+
+00:04:21.890 --> 00:04:26.490
+distributed as a preprint, uh, uh, whose title was
+
+00:04:27.290 --> 00:04:28.530
+optimal perceptual inference.
+
+00:04:28.530 --> 00:04:31.570
+And this was the first paper on, on Boltzmann machines
+
+00:04:31.570 --> 00:04:33.290
+by Jeff Hinton and Terry Sanorski.
+
+00:04:33.890 --> 00:04:34.930
+It was talking about hidden units.
+
+00:04:34.930 --> 00:04:37.170
+It was talking about basically the problem of learning,
+
+00:04:37.770 --> 00:04:42.290
+you know, multilayer neural nets with, you know,
+
+00:04:42.290 --> 00:04:44.570
+that are, you know, are more capable than just
+
+00:04:44.570 --> 00:04:45.490
+linear classifiers.
+
+00:04:46.170 --> 00:04:50.170
+Um, so I said, you know, I need to meet these people
+
+00:04:51.210 --> 00:04:53.210
+because they, they're really interested in the right problem.
+
+00:04:54.610 --> 00:04:58.170
+Um, and a couple of years later, I was, after I started my PhD,
+
+00:04:58.170 --> 00:05:02.610
+um, I participated in a workshop in, uh, in Les Uches,
+
+00:05:02.770 --> 00:05:05.930
+and that was organized by the people I was working with.
+
+00:05:05.930 --> 00:05:09.930
+And, uh, Terry was one of the, one of the speakers
+
+00:05:09.930 --> 00:05:10.490
+at that workshop.
+
+00:05:10.490 --> 00:05:11.770
+So I met him at that time.
+
+00:05:11.890 --> 00:05:13.250
+It was like early eighties now.
+
+00:05:13.330 --> 00:05:15.930
+This is 1985, early 1985.
+
+00:05:16.010 --> 00:05:19.650
+So I met Terry Sanorski in 1985 in the workshop in France in Les Uches.
+
+00:05:19.650 --> 00:05:23.010
+And, um, a lot of people were there, you know, from the sort of early neural net,
+
+00:05:23.010 --> 00:05:26.610
+you know, jump up fields and a lot of people working on sort of theoretical
+
+00:05:26.610 --> 00:05:27.770
+neuroscience and stuff like that.
+
+00:05:27.770 --> 00:05:29.730
+It was a fascinating, uh, workshop.
+
+00:05:29.850 --> 00:05:34.090
+I met also, uh, a couple of people from, a couple of people from Bell Labs
+
+00:05:34.170 --> 00:05:35.850
+who eventually hired me at Bell Labs.
+
+00:05:35.930 --> 00:05:36.210
+Okay.
+
+00:05:36.210 --> 00:05:38.130
+But this was several years before I finished my PhD.
+
+00:05:38.490 --> 00:05:42.890
+So, um, I talked to Terry Sanorski and I was, uh, telling him about what I
+
+00:05:42.890 --> 00:05:45.250
+was working on, which was some version of Backprop at the time.
+
+00:05:45.610 --> 00:05:47.090
+This was before Backprop was a paper.
+
+00:05:48.090 --> 00:05:54.050
+Um, and Terry was working on Netalk, uh, at the time.
+
+00:05:54.650 --> 00:05:58.370
+Uh, this was, you know, before the, the, you know, the Rommel Hart,
+
+00:05:58.370 --> 00:06:01.210
+Hinton Williams paper on Backprop had been published, but you know,
+
+00:06:01.410 --> 00:06:04.410
+he was friends with Jeff, you know, this information was circulating.
+
+00:06:04.410 --> 00:06:07.610
+So he was already working on trying to make this work for Netalk,
+
+00:06:07.610 --> 00:06:08.690
+but he didn't, he didn't tell me.
+
+00:06:09.530 --> 00:06:14.570
+Um, and, uh, he went back to the U S and told Jeff, there is some kid in France
+
+00:06:14.570 --> 00:06:16.010
+who was working on the same stuff we were working on.
+
+00:06:16.050 --> 00:06:16.650
+Oh, I see.
+
+00:06:17.770 --> 00:06:20.970
+And then a couple of months, a few months later in June, uh, there was, uh,
+
+00:06:21.010 --> 00:06:26.570
+another conference in France that where Jeff was a keynote speaker and
+
+00:06:26.810 --> 00:06:28.210
+he gave a talk on Boston machines.
+
+00:06:28.210 --> 00:06:30.930
+Of course he was working on, you know, the Backprop paper.
+
+00:06:31.970 --> 00:06:35.850
+Um, and he gave this talk and then there is, you know, 50 people around him
+
+00:06:35.850 --> 00:06:36.810
+who want to talk to him.
+
+00:06:37.450 --> 00:06:40.450
+And the first thing he said to the organizer is, is, is, you know,
+
+00:06:40.450 --> 00:06:44.490
+this guy, Jan LeCun and it's because he had read my paper in the proceedings
+
+00:06:44.490 --> 00:06:47.410
+that was written in French and he could sort of read French and he could see
+
+00:06:47.410 --> 00:06:49.330
+the math and he could figure out what sort of Backprop.
+
+00:06:50.010 --> 00:06:52.690
+And so, so we had lunch together and that's where we became friends.
+
+00:06:54.290 --> 00:06:57.690
+So that's because you basically, you know, independently, multiple groups
+
+00:06:57.690 --> 00:07:00.570
+independently reinvented or invented Backprop pretty much.
+
+00:07:00.610 --> 00:07:00.970
+Right.
+
+00:07:01.170 --> 00:07:05.890
+Or realize that the whole idea of chain rule or, uh, what the optimal
+
+00:07:05.890 --> 00:07:08.730
+control people call it the adjoint state method, which is, you know,
+
+00:07:08.730 --> 00:07:10.850
+really the context in which Backprop was reinvented.
+
+00:07:10.850 --> 00:07:13.890
+This is a context of optimal control by the early sixties.
+
+00:07:14.250 --> 00:07:17.570
+This idea that you could use gradient descent basically with multiple
+
+00:07:17.570 --> 00:07:21.530
+kinds of stages, um, is, uh, is what Backprop really is.
+
+00:07:21.610 --> 00:07:24.250
+And that popped up in various contexts at various times.
+
+00:07:24.890 --> 00:07:31.570
+Um, and, but I think, you know, the Rommel Hart Hinton-Wenjers
+
+00:07:31.570 --> 00:07:32.930
+paper is the one that popularized it.
+
+00:07:33.690 --> 00:07:33.850
+Yeah.
+
+00:07:35.690 --> 00:07:39.810
+And then, um, you know, fast forward a few years, uh, you wound up at AT&T
+
+00:07:39.810 --> 00:07:43.330
+Bell Labs where you invented among many things, uh, the net, which we
+
+00:07:43.330 --> 00:07:45.250
+talked about in the, in the, in the course.
+
+00:07:45.810 --> 00:07:49.570
+And I remember when way back, I was a summer intern at AT&T Bell Labs,
+
+00:07:49.610 --> 00:07:53.010
+uh, work of Michael Kearns and a few others and hearing about your work even
+
+00:07:53.010 --> 00:07:58.290
+back then, so tell me more about your, your AT&T, the net experience.
+
+00:07:58.450 --> 00:08:01.450
+So what happened is actually started working on CompTrial Net when I was,
+
+00:08:01.850 --> 00:08:06.170
+uh, uh, a postdoc at University of Toronto with Jeff Hinton.
+
+00:08:06.810 --> 00:08:08.010
+Uh, I did the first experiment.
+
+00:08:08.010 --> 00:08:10.650
+I wrote the code there and did the first experiments there that showed that
+
+00:08:10.650 --> 00:08:14.370
+if you had a very small dataset, I was, you know, the dataset I was training
+
+00:08:14.370 --> 00:08:16.970
+on, there was no M-NIST or anything like that back then.
+
+00:08:16.970 --> 00:08:19.930
+So, you know, I drew a bunch of characters with my mouse.
+
+00:08:20.130 --> 00:08:23.210
+I had an Amiga personal computer, which was the best computer ever.
+
+00:08:23.210 --> 00:08:27.370
+And, you know, I drew a bunch of characters and then use that, uh,
+
+00:08:27.370 --> 00:08:30.970
+your data augmentation to kind of, you know, increase it and then use that
+
+00:08:31.090 --> 00:08:32.530
+as a way to test the performance.
+
+00:08:32.530 --> 00:08:35.650
+And I compared things like, you know, fully connected nets, locally connected
+
+00:08:35.650 --> 00:08:38.370
+nets without shared weights and then shared weight networks, which was
+
+00:08:38.370 --> 00:08:39.410
+basically the first comment.
+
+00:08:39.890 --> 00:08:44.930
+And, um, and that worked really well for small, you know, relatively small datasets,
+
+00:08:44.970 --> 00:08:48.050
+could show that you get better performance and no over-training
+
+00:08:48.050 --> 00:08:49.450
+with the computational architecture.
+
+00:08:50.210 --> 00:08:55.770
+Um, and when I got to Bell Labs in October, 1988, the first thing I did
+
+00:08:55.770 --> 00:09:00.810
+was, uh, first scale up the network because we had faster computers.
+
+00:09:01.090 --> 00:09:04.610
+A few months before I got to Bell Labs, my boss at the time, Larry Jackal,
+
+00:09:04.770 --> 00:09:08.610
+who became my department head at Bell Labs said, um, oh, we should order
+
+00:09:08.610 --> 00:09:09.850
+a computer for you before you come.
+
+00:09:09.850 --> 00:09:10.370
+What do you want?
+
+00:09:10.370 --> 00:09:13.730
+They say, well, you know, here, just here in Toronto, there is a Sun 4,
+
+00:09:13.730 --> 00:09:15.210
+which was the latest, greatest stuff.
+
+00:09:15.770 --> 00:09:17.370
+It'd be great if we, if we had one.
+
+00:09:17.810 --> 00:09:21.410
+Um, and they ordered one and I had one for myself.
+
+00:09:21.450 --> 00:09:23.530
+You know, at, at University of Toronto, it was one for the
+
+00:09:23.530 --> 00:09:24.410
+entire department, right?
+
+00:09:24.410 --> 00:09:25.290
+Yeah, it went just for me.
+
+00:09:25.770 --> 00:09:28.690
+Right. And so what Larry told me is said, um, yeah, you know, at Bell
+
+00:09:28.690 --> 00:09:30.250
+Labs, you don't get famous by saving money.
+
+00:09:31.290 --> 00:09:33.170
+So, so that was like awesome.
+
+00:09:33.890 --> 00:09:39.250
+And, and they had been working already for, for, for a while on character
+
+00:09:39.250 --> 00:09:43.650
+recognition, they had this enormous dataset called USPS that had 5,000
+
+00:09:43.650 --> 00:09:44.370
+training samples.
+
+00:09:44.810 --> 00:09:49.330
+And so, so immediately I, you know, trained a design accomplishment net,
+
+00:09:49.410 --> 00:09:54.290
+which was learn at one, basically, um, and, uh, and, and train it on this
+
+00:09:54.290 --> 00:09:56.810
+dataset and got really good results, but you know, better results than
+
+00:09:56.810 --> 00:10:00.450
+the other methods that, uh, they had been, that had been, they had tried
+
+00:10:00.450 --> 00:10:02.570
+on it and that other people tried on this dataset.
+
+00:10:03.530 --> 00:10:07.370
+Um, so that, uh, we knew we had something fairly early on.
+
+00:10:07.370 --> 00:10:10.450
+This is, this was within three months of, of, of me joining, uh,
+
+00:10:10.650 --> 00:10:11.410
+joining Bell Labs.
+
+00:10:11.930 --> 00:10:15.850
+And so that was the first version of commercial net where, uh, we had, uh,
+
+00:10:15.850 --> 00:10:19.930
+a competition with stride and we did not have separate sub-sampling and
+
+00:10:19.930 --> 00:10:20.650
+pulling layers.
+
+00:10:21.130 --> 00:10:24.410
+So each, each competition was actually sub-sampling directly.
+
+00:10:24.450 --> 00:10:28.530
+And the reason for this is that we just could not afford to have a
+
+00:10:28.530 --> 00:10:30.010
+convolution at every location.
+
+00:10:30.010 --> 00:10:31.690
+You know, there was just too much computation.
+
+00:10:32.530 --> 00:10:41.010
+Um, so the second version, um, uh, had a separate convolution and pulling
+
+00:10:41.010 --> 00:10:41.970
+layer and sub-sampling.
+
+00:10:42.850 --> 00:10:46.250
+Um, I guess that's the one that's called the net, the net one really.
+
+00:10:46.970 --> 00:10:49.970
+Uh, we, you know, we published a couple of papers on this at, uh,
+
+00:10:50.050 --> 00:10:51.610
+in neural computation and at NIPS.
+
+00:10:52.290 --> 00:10:56.530
+Um, and so interesting, sorry, I gave a talk at NIPS about, about,
+
+00:10:56.610 --> 00:11:00.650
+about this work and Jeff Hinton was in the audience and then I, you
+
+00:11:00.650 --> 00:11:01.570
+know, I came back to my seat.
+
+00:11:01.570 --> 00:11:04.610
+I was sitting next to him and he said, you know, there's one bit of
+
+00:11:04.610 --> 00:11:07.810
+information in your, in your talk, which is that if you do all the
+
+00:11:07.810 --> 00:11:09.330
+sensible things, it actually works.
+
+00:11:11.890 --> 00:11:15.410
+And in fact, shortly after a deadline of work went on to make history,
+
+00:11:15.490 --> 00:11:18.370
+because we came widely adopted these ideas, we can widely adopted
+
+00:11:18.370 --> 00:11:19.690
+for reading checks and.
+
+00:11:20.290 --> 00:11:20.490
+Yeah.
+
+00:11:20.490 --> 00:11:25.370
+So they become widely adopted within AT&T, but not, not very much outside.
+
+00:11:26.130 --> 00:11:31.050
+And, you know, I think it's a little difficult for me to really understand
+
+00:11:31.050 --> 00:11:34.570
+why, but, um, there's several factors, I think.
+
+00:11:34.570 --> 00:11:39.690
+So, you know, this was back in the late eighties and there was no internet.
+
+00:11:40.210 --> 00:11:42.890
+You know, we had email with FTP, but there was no internet really.
+
+00:11:43.610 --> 00:11:47.410
+Uh, nobody, you know, no two labs were using the same software or hardware
+
+00:11:47.410 --> 00:11:48.090
+platform, right?
+
+00:11:48.090 --> 00:11:50.730
+You know, some people had some workstations or those at, you know, other
+
+00:11:50.730 --> 00:11:52.730
+machines, you know, some people were using PCs, whatever.
+
+00:11:52.970 --> 00:11:56.290
+There was no such thing as Python or MATLAB or anything like that, right?
+
+00:11:56.290 --> 00:11:57.530
+People were writing their own code.
+
+00:11:57.970 --> 00:12:02.290
+I had written, I had spent a year and a half basically writing me and
+
+00:12:02.330 --> 00:12:06.730
+Leon Batroux, uh, when he was still a student, we're working together and,
+
+00:12:07.250 --> 00:12:10.570
+uh, we spent a year and a half basically just writing a neural net simulator.
+
+00:12:11.570 --> 00:12:14.490
+Uh, and at the time, you know, because there was no MATLAB or Python, you
+
+00:12:14.490 --> 00:12:15.890
+had to write your own interpreter, right?
+
+00:12:15.890 --> 00:12:16.810
+To kind of control it.
+
+00:12:16.810 --> 00:12:18.090
+So we wrote our own Lisp interpreter.
+
+00:12:18.970 --> 00:12:22.770
+Uh, and so all the, the net was written in Lisp, uh, using a numeral
+
+00:12:22.770 --> 00:12:26.210
+callback and, uh, very similar to what we have now with, you know, blocks
+
+00:12:26.210 --> 00:12:29.450
+that you can interconnect and sort of my differentiation and all that stuff
+
+00:12:29.450 --> 00:12:33.970
+that we familiar with now with, you know, torch and pytorch and TensorFlow
+
+00:12:33.970 --> 00:12:34.570
+and all those things.
+
+00:12:35.050 --> 00:12:41.090
+So, um, so then we, we, um, we developed a bunch of applications.
+
+00:12:41.090 --> 00:12:47.410
+We got, uh, together with a group of, uh, engineers, uh, very smart people.
+
+00:12:48.050 --> 00:12:52.890
+Um, some of them had, you know, were like theoretical, um, physicists who
+
+00:12:52.890 --> 00:12:56.210
+kind of turned, uh, engineer at Bell Labs.
+
+00:12:56.530 --> 00:13:02.330
+Um, Chris Burgess was one of them, um, who then had a distinguished
+
+00:13:02.330 --> 00:13:04.050
+carrier at Microsoft research afterwards.
+
+00:13:04.770 --> 00:13:08.730
+Uh, and Craig Noel and a bunch of other people and, uh, we were collaborating
+
+00:13:08.730 --> 00:13:11.050
+with them to kind of make the, this technology practical.
+
+00:13:12.210 --> 00:13:16.530
+And, uh, so they developed, together we developed those, you know,
+
+00:13:16.530 --> 00:13:19.730
+character recognition systems and that meant integrating convolutional
+
+00:13:19.730 --> 00:13:25.530
+nets with things like, uh, similar to things that we now call CRFs for
+
+00:13:25.850 --> 00:13:29.450
+interpreting, uh, sequences of, of characters, not just sort of individual,
+
+00:13:29.490 --> 00:13:30.450
+individual characters.
+
+00:13:30.570 --> 00:13:30.930
+Yeah, right.
+
+00:13:30.930 --> 00:13:34.450
+The, the net paper had partially on the neural network and partially on the,
+
+00:13:34.490 --> 00:13:37.490
+like the autonomous machinery, right, to put it together.
+
+00:13:37.530 --> 00:13:38.170
+Yeah, that's right.
+
+00:13:38.170 --> 00:13:40.890
+And so the first, the first half of the paper is on, is on convolutional
+
+00:13:40.890 --> 00:13:43.210
+nets and the paper is mostly cited with for that.
+
+00:13:43.210 --> 00:13:46.410
+And then the second half, very few people have read it and it's about,
+
+00:13:46.410 --> 00:13:49.450
+you know, sort of sequence level, discriminative learning and
+
+00:13:49.450 --> 00:13:50.610
+basically structure prediction.
+
+00:13:51.170 --> 00:13:53.850
+Um, we, you know, without normalization.
+
+00:13:53.850 --> 00:13:58.810
+So it's very similar to, uh, to CRF in fact, uh, um, you know,
+
+00:13:58.810 --> 00:14:00.290
+pretty CCRS by several years.
+
+00:14:00.730 --> 00:14:06.730
+So, uh, that, that was very successful except that, um, the day we were,
+
+00:14:07.850 --> 00:14:13.890
+uh, celebrating the deployment of that system in a major bank, uh, we worked
+
+00:14:13.890 --> 00:14:17.770
+with, uh, this, this, this group that was mentioning that was kind of doing
+
+00:14:17.770 --> 00:14:21.370
+the engineering of the, of the whole system and then another product group,
+
+00:14:22.050 --> 00:14:24.250
+uh, in a different part of the country that belonged to a
+
+00:14:24.250 --> 00:14:25.930
+subsidiary of a TNT called NCR.
+
+00:14:25.930 --> 00:14:29.250
+So this is the, the company that, the cash register, right.
+
+00:14:29.250 --> 00:14:33.170
+They also build large, uh, uh, made a bill ATM machines and they build
+
+00:14:33.170 --> 00:14:35.690
+a large, uh, check reading machines for banks.
+
+00:14:36.170 --> 00:14:40.090
+So there were the customers, if you want, they were using our, uh,
+
+00:14:40.130 --> 00:14:43.090
+check reading systems and they deployed it in, in a bank.
+
+00:14:43.090 --> 00:14:44.770
+It was, I can't remember which bank it was.
+
+00:14:45.250 --> 00:14:47.690
+Uh, they deployed also the ATM machines in a French bank, so they
+
+00:14:47.690 --> 00:14:49.690
+could read the check you would deposit.
+
+00:14:50.290 --> 00:14:55.850
+Um, and, um, we were all at a fancy restaurant, uh, celebrating the
+
+00:14:55.850 --> 00:14:59.330
+deployment of this thing where, when the company announced that it
+
+00:14:59.330 --> 00:15:00.330
+was breaking itself up.
+
+00:15:00.810 --> 00:15:01.090
+Let's see.
+
+00:15:01.090 --> 00:15:05.210
+Uh, so this was 1995 and AT&T announced that it was breaking itself up
+
+00:15:05.210 --> 00:15:06.050
+into three companies.
+
+00:15:06.850 --> 00:15:11.330
+So, you know, there was AT&T and then there was Lucid Technologies and NCR.
+
+00:15:11.330 --> 00:15:14.810
+So NCR was spun off and Lucid Technologies was spun off and the
+
+00:15:14.810 --> 00:15:16.970
+engineering group went with Lucid Technologies and the product group,
+
+00:15:16.970 --> 00:15:18.250
+of course, went with NCR.
+
+00:15:19.490 --> 00:15:23.650
+Uh, and the side, the side thing is that the AT&T lawyers in their
+
+00:15:23.650 --> 00:15:27.650
+infinite wisdom assigned the patents of, there was a patent on
+
+00:15:27.650 --> 00:15:33.570
+convolutional nets, which is thankfully expired, uh, expired in 2007.
+
+00:15:34.170 --> 00:15:38.370
+And, uh, about two years ago and they signed a patent to NCR, but there
+
+00:15:38.370 --> 00:15:42.770
+was nobody in NCR who actually knew what even what a convolutional
+
+00:15:42.770 --> 00:15:43.650
+net was really.
+
+00:15:44.570 --> 00:15:47.290
+And so the patent was in the hands of people with no idea what they had.
+
+00:15:47.930 --> 00:15:51.970
+Uh, and we were in a different company that now could not really develop
+
+00:15:51.970 --> 00:15:54.850
+the technology and then our engineering team was in a separate company
+
+00:15:54.850 --> 00:15:58.050
+because we went with AT&T, the engineering went with Lucid and the
+
+00:15:58.050 --> 00:15:59.010
+product group with NCR.
+
+00:15:59.010 --> 00:16:00.010
+So it was a little depressing.
+
+00:16:01.290 --> 00:16:05.410
+So in addition to your early work, you know, when your networks were,
+
+00:16:05.410 --> 00:16:10.370
+were pot, uh, you kept persisting on your networks, even when there was
+
+00:16:10.370 --> 00:16:11.970
+some sort of winter for your net.
+
+00:16:11.970 --> 00:16:13.290
+So what was that like?
+
+00:16:13.650 --> 00:16:16.730
+Well, so I persisted and didn't persist in some ways.
+
+00:16:16.890 --> 00:16:20.130
+I was always convinced that eventually those, those techniques would come
+
+00:16:20.130 --> 00:16:24.610
+back to the fore and sort of, you know, people would figure out how to
+
+00:16:24.610 --> 00:16:27.610
+use them in practice and they would be useful.
+
+00:16:27.610 --> 00:16:32.250
+So I always had that in the back of my mind, but, um, but in 1996 when
+
+00:16:32.250 --> 00:16:36.570
+AT&T broke itself up and all of our work on character recognition,
+
+00:16:36.570 --> 00:16:39.410
+basically was kind of broken up because the product groups was, you
+
+00:16:39.410 --> 00:16:40.450
+know, went in separate way.
+
+00:16:41.210 --> 00:16:45.010
+I was also promoted to a department head and I had to figure out what to work on.
+
+00:16:45.490 --> 00:16:47.570
+And this was the early days of the internet.
+
+00:16:47.730 --> 00:16:48.930
+We're talking 1995.
+
+00:16:49.770 --> 00:16:56.210
+And I had the idea somehow that, that, uh, one big problem about the emergence of
+
+00:16:56.210 --> 00:17:02.210
+the internet was going to be to bring all the knowledge that we had on paper to
+
+00:17:02.210 --> 00:17:03.090
+the digital world.
+
+00:17:03.090 --> 00:17:07.570
+And so I started actually a project called Digiview, DJVU, which was, uh,
+
+00:17:07.610 --> 00:17:11.210
+to, you know, compress scan documents and center, essentially.
+
+00:17:11.210 --> 00:17:13.130
+So they could, they could be distributed over the internet.
+
+00:17:13.730 --> 00:17:17.210
+And this project was really fun for, for a while and, you know, had some
+
+00:17:17.210 --> 00:17:19.370
+success all the way to, and he really didn't know what to do with it.
+
+00:17:19.690 --> 00:17:19.850
+Yeah.
+
+00:17:19.850 --> 00:17:23.210
+I remember that really helping dissemination of online research papers.
+
+00:17:23.490 --> 00:17:24.210
+Yeah, that's right.
+
+00:17:24.210 --> 00:17:24.730
+Exactly.
+
+00:17:24.730 --> 00:17:27.650
+And, uh, you know, we scanned the entire proceedings of nips and we made
+
+00:17:27.650 --> 00:17:32.130
+them available online, uh, to kind of demonstrate how that worked and, uh,
+
+00:17:32.250 --> 00:17:34.450
+you know, we could compress like, you know, high resolution pages to
+
+00:17:34.450 --> 00:17:35.330
+just switch your kilobytes.
+
+00:17:35.650 --> 00:17:39.770
+So confidence starting from, you know, some of your much earlier work has now
+
+00:17:40.370 --> 00:17:43.530
+come in pretty much taken over the field of computer vision and, and
+
+00:17:43.530 --> 00:17:46.970
+starting to, you know, and close significantly into even other fields.
+
+00:17:47.130 --> 00:17:50.330
+So just tell me about how you saw that whole process.
+
+00:17:51.250 --> 00:17:54.970
+So I tell you how I thought this was going to happen early on.
+
+00:17:55.090 --> 00:17:58.570
+So first of all, I always believe that this, this was going to work.
+
+00:17:59.130 --> 00:18:02.010
+Uh, it required, you know, fast computers and lots of data, but I always
+
+00:18:02.010 --> 00:18:05.890
+believe somehow that this, this was gonna, uh, uh, be the right thing to do.
+
+00:18:06.210 --> 00:18:09.730
+Um, what I thought originally when I was at Bell Labs, that there was going to
+
+00:18:09.730 --> 00:18:13.890
+be some sort of, you know, continuous progress along these directions as
+
+00:18:14.210 --> 00:18:16.170
+machines get, got more powerful.
+
+00:18:16.170 --> 00:18:17.730
+And, you know, we were even designing.
+
+00:18:18.290 --> 00:18:21.170
+Shapes to run convolutional nets at Bell Labs, but our buzzer actually, and,
+
+00:18:21.170 --> 00:18:24.970
+and hospital graph separately had two different shapes for running
+
+00:18:24.970 --> 00:18:27.090
+convolutional nets really, really efficiently.
+
+00:18:27.650 --> 00:18:32.170
+Um, and so, you know, we thought, um, there was going to be kind of a pickup
+
+00:18:32.170 --> 00:18:36.130
+of this and, and kind of growing interest and, um, and sort of, you know,
+
+00:18:36.130 --> 00:18:37.130
+continuous progress for it.
+
+00:18:37.930 --> 00:18:43.410
+Um, but in fact, because of the, the sort of interest for neural nets
+
+00:18:43.410 --> 00:18:45.410
+that are dying in the mid nineties, that didn't happen.
+
+00:18:45.410 --> 00:18:49.410
+So it was kind of a dark period of, you know, seven or six or seven years
+
+00:18:49.410 --> 00:18:54.010
+between 1995, roughly in 2002 when basically nobody was working on this.
+
+00:18:54.650 --> 00:18:57.250
+Um, in fact, there were, there was a little bit of work.
+
+00:18:57.250 --> 00:19:04.250
+There was some work at, um, um, at Microsoft in the early 2000s on using
+
+00:19:04.330 --> 00:19:06.530
+convolutional nets for Chinese character recognition.
+
+00:19:06.530 --> 00:19:07.050
+Patricium.
+
+00:19:07.050 --> 00:19:07.810
+Patricium arts group.
+
+00:19:07.850 --> 00:19:08.690
+Yeah, exactly.
+
+00:19:09.490 --> 00:19:14.330
+Um, and, uh, and there was some other small work for like face detection
+
+00:19:14.330 --> 00:19:18.050
+and things like this in France and, um, in various other places.
+
+00:19:18.210 --> 00:19:19.290
+Um, but it was very small.
+
+00:19:19.650 --> 00:19:24.090
+I discovered actually recently that, uh, there's a couple of groups that
+
+00:19:24.090 --> 00:19:26.930
+came up with ideas that are essentially very similar to convolutional
+
+00:19:26.930 --> 00:19:30.450
+nets, but never quite published it, you know, the same way for medical
+
+00:19:30.450 --> 00:19:33.810
+image analysis, and those were mostly in the context of commercial systems.
+
+00:19:33.810 --> 00:19:37.130
+And so it never quite made it to the population.
+
+00:19:37.130 --> 00:19:40.130
+I mean, it was after the office work on, on convolutional nets and
+
+00:19:40.130 --> 00:19:42.810
+they were not really aware of it, but, uh, but it sort of developed
+
+00:19:42.810 --> 00:19:43.970
+in parallel a little bit.
+
+00:19:44.930 --> 00:19:48.330
+Um, so, you know, several people got kind of similar ideas.
+
+00:19:48.370 --> 00:19:51.410
+Uh, you know, several years interval.
+
+00:19:52.170 --> 00:19:57.410
+Um, but then I was really surprised by how fast interest picked up, uh,
+
+00:19:57.690 --> 00:20:01.690
+after, you know, the image net, uh, in 2012.
+
+00:20:01.690 --> 00:20:03.090
+So it's the end of 2012.
+
+00:20:03.690 --> 00:20:08.290
+Um, it was kind of a very interesting, uh, event at ECCV in Florence
+
+00:20:08.330 --> 00:20:10.530
+where, uh, there was a workshop on image net.
+
+00:20:11.170 --> 00:20:15.970
+And, uh, everybody knew that, uh, you know, Jeff Hinton's team, Alex Krijewski
+
+00:20:15.970 --> 00:20:19.130
+and India Siskiver had, had won by a large margin.
+
+00:20:19.690 --> 00:20:22.610
+And so everybody was waiting for Alex Krijewski's, uh, talk.
+
+00:20:22.610 --> 00:20:24.530
+And most people in the computer vision community had no idea what
+
+00:20:24.530 --> 00:20:25.610
+the convolutional net was.
+
+00:20:25.650 --> 00:20:27.130
+I mean, they heard me talk about it.
+
+00:20:27.130 --> 00:20:30.170
+I actually had an invited talk at CVPR in 2000 when I talked about it.
+
+00:20:30.810 --> 00:20:34.890
+But, um, but most people, you know, had not paid much attention to it.
+
+00:20:35.210 --> 00:20:38.170
+Um, senior people did, you know, they knew what it was, but, uh, the
+
+00:20:38.170 --> 00:20:41.050
+more junior people in the community were really had no idea what it was.
+
+00:20:41.730 --> 00:20:44.650
+And so Alex Krijewski just, you know, gives a stock and he doesn't explain
+
+00:20:44.650 --> 00:20:47.210
+what the convolutional net is because he assumes everybody knows, right?
+
+00:20:47.730 --> 00:20:48.930
+Because he comes from machine learning.
+
+00:20:49.930 --> 00:20:53.330
+Um, so he says, you know, here is how we, everything's connected and, uh,
+
+00:20:53.570 --> 00:20:56.170
+you know, how we transform the data and what results we get.
+
+00:20:56.850 --> 00:20:58.850
+Can assuming that everybody knows what it is.
+
+00:20:59.370 --> 00:21:04.250
+A lot of people are incredibly surprised and you could see the opinion of
+
+00:21:04.250 --> 00:21:08.050
+people changing as he was kind of giving his talk, you know, like, you know,
+
+00:21:08.370 --> 00:21:09.490
+very senior people in the field.
+
+00:21:10.250 --> 00:21:14.090
+So do you think that, that, that workshop was the defining moment that
+
+00:21:14.090 --> 00:21:16.050
+swayed a lot of the computer vision community?
+
+00:21:16.130 --> 00:21:16.650
+Yeah, definitely.
+
+00:21:17.330 --> 00:21:19.330
+That's, that's, that's where it happened right there.
+
+00:21:19.890 --> 00:21:25.770
+So today you retain a faculty position at NYU and you also lead fair,
+
+00:21:25.810 --> 00:21:27.010
+uh, Facebook AI research.
+
+00:21:27.450 --> 00:21:31.090
+Um, I know you have a pretty unique point of view on how corporate
+
+00:21:31.090 --> 00:21:32.810
+research should be done.
+
+00:21:32.850 --> 00:21:34.330
+Do you want to share your thoughts on that?
+
+00:21:34.650 --> 00:21:34.930
+Yeah.
+
+00:21:34.930 --> 00:21:40.970
+So I mean, one of the beautiful things that, um, uh, you know, that I managed
+
+00:21:40.970 --> 00:21:44.970
+to do at Facebook in the last four years is that I was, I was given a lot
+
+00:21:44.970 --> 00:21:51.770
+of, uh, freedom to set up fair the way I thought was, uh, the most appropriate.
+
+00:21:52.650 --> 00:21:55.890
+Um, because this was the first research organization within Facebook.
+
+00:21:55.890 --> 00:21:59.610
+You know, Facebook is a sort of engineering centric company and so far was
+
+00:21:59.610 --> 00:22:02.970
+really focused on sort of survival or short term things.
+
+00:22:02.970 --> 00:22:07.090
+And Facebook was, you know, about to turn 10 years old, um, had, you know,
+
+00:22:07.090 --> 00:22:13.450
+had a successful, uh, uh, IPO and was basically thinking about the next 10
+
+00:22:13.450 --> 00:22:14.010
+years, right?
+
+00:22:14.010 --> 00:22:15.990
+I mean, marks recovery was thinking, you know, what is going to be
+
+00:22:15.990 --> 00:22:17.290
+important for the next 10 years?
+
+00:22:18.210 --> 00:22:22.170
+Um, and, and the survival of the company was not in question anymore.
+
+00:22:22.170 --> 00:22:26.530
+So this is the kind of transition where a large company can, can start to think,
+
+00:22:26.530 --> 00:22:30.370
+or it was not such a large company at the time, Facebook had 5,000 employees or so,
+
+00:22:30.370 --> 00:22:36.450
+but, um, but it had the, the, uh, the luxury to, to think about the next 10
+
+00:22:36.450 --> 00:22:39.330
+years and what would be important in, uh, in technology.
+
+00:22:40.010 --> 00:22:44.730
+And, and, and Mark, uh, decided that, uh, Mark and his team decided that AI was
+
+00:22:44.730 --> 00:22:50.290
+going to be a crucial piece of, uh, technology for, for connecting people,
+
+00:22:50.290 --> 00:22:51.930
+which is the mission of Facebook.
+
+00:22:52.490 --> 00:22:56.250
+Um, and so they, they explored several ways to kind of build an effort in AI.
+
+00:22:56.250 --> 00:22:59.130
+They had a small internal group in general group experimenting with commercial
+
+00:22:59.130 --> 00:23:01.690
+nets and stuff that were getting really good results and face recognition,
+
+00:23:01.710 --> 00:23:05.730
+various other things, um, which speaks to their interests and they explored the
+
+00:23:05.730 --> 00:23:10.090
+idea of, you know, hiring a bunch of young researchers or acquiring a company
+
+00:23:10.090 --> 00:23:13.210
+or things like this, and they settled on the idea of, you know, hiring someone
+
+00:23:13.210 --> 00:23:17.330
+senior in the field and then, um, kind of setting, setting up a research, uh,
+
+00:23:17.370 --> 00:23:21.850
+organization, uh, and, and it was a bit of a culture shock.
+
+00:23:21.850 --> 00:23:25.170
+Initially, because the way research operates in the company is very
+
+00:23:25.170 --> 00:23:26.650
+different from, from engineering, right?
+
+00:23:26.650 --> 00:23:30.570
+You have longer timescales and horizon and researchers tend to be very
+
+00:23:30.570 --> 00:23:32.970
+conservative about the choice of places where they want to work.
+
+00:23:33.570 --> 00:23:38.010
+Um, and, and I made very clear very early on that, uh, research needs to be
+
+00:23:38.010 --> 00:23:44.170
+open that researchers need to not only be encouraged to publish, but be even
+
+00:23:44.170 --> 00:23:48.370
+mandated to publish and also be evaluated on criteria that are similar to,
+
+00:23:48.850 --> 00:23:50.050
+uh, what we used to evaluate.
+
+00:23:50.050 --> 00:23:55.210
+I can, you know, I can make, uh, researchers.
+
+00:23:55.850 --> 00:24:02.170
+Um, and so, you know, what, uh, Mark and, and Mike Schreffer, the CTO of the
+
+00:24:02.170 --> 00:24:06.410
+company, who is my boss now, uh, said, you know, they said Facebook is a very
+
+00:24:06.410 --> 00:24:07.090
+open company.
+
+00:24:07.110 --> 00:24:13.370
+We distributed a lot of stuff in open source, you know, uh, uh, you know,
+
+00:24:13.370 --> 00:24:16.570
+Shrep, the CTO comes from the open source world.
+
+00:24:16.570 --> 00:24:19.810
+It was, uh, it was from Mozilla before that.
+
+00:24:19.810 --> 00:24:21.250
+And a lot of people came from that world.
+
+00:24:21.250 --> 00:24:22.850
+So that was in the DNA of the company.
+
+00:24:22.850 --> 00:24:26.730
+So that made me very confident that we could kind of set up a open
+
+00:24:26.730 --> 00:24:28.410
+research organization.
+
+00:24:28.450 --> 00:24:34.250
+And then the fact that the company is not obsessive compulsive about IP as
+
+00:24:34.450 --> 00:24:38.050
+some other companies are, it makes it much easier to collaborate with
+
+00:24:38.050 --> 00:24:43.650
+universities and have, uh, uh, arrangements by which a person can have
+
+00:24:43.650 --> 00:24:45.610
+a foot in industry and a foot in academia.
+
+00:24:46.290 --> 00:24:47.850
+And, um,
+
+00:24:48.530 --> 00:24:49.890
+and you find that valuable yourself.
+
+00:24:49.890 --> 00:24:50.410
+Oh, absolutely.
+
+00:24:50.410 --> 00:24:50.890
+NYU.
+
+00:24:51.290 --> 00:24:51.570
+Yeah.
+
+00:24:52.050 --> 00:24:57.730
+So if you look at the, my publications the last four years, uh, the vast majority
+
+00:24:57.730 --> 00:25:04.010
+of them are publications with my students at NYU, because at Facebook, I, I, you
+
+00:25:04.010 --> 00:25:09.530
+know, I did a lot of, you know, organizing the lab, hiring, uh, you know,
+
+00:25:09.890 --> 00:25:13.930
+scientific direction and advising and things like this, but I don't get
+
+00:25:13.930 --> 00:25:16.770
+involved in individual research projects to get my name on papers.
+
+00:25:16.810 --> 00:25:20.130
+And, you know, I don't care to give anyone papers anymore, but, but it's, uh,
+
+00:25:20.450 --> 00:25:22.170
+setting out someone else to do great work.
+
+00:25:22.170 --> 00:25:22.330
+Right.
+
+00:25:22.330 --> 00:25:22.690
+Exactly.
+
+00:25:22.690 --> 00:25:23.690
+Doing all the great work yourself.
+
+00:25:23.730 --> 00:25:26.770
+And you never want to put yourself, you know, you want to kind of stay behind
+
+00:25:26.770 --> 00:25:29.370
+the scene and you don't want to put yourself in competition with people,
+
+00:25:29.410 --> 00:25:30.730
+you know, in your lab in that case.
+
+00:25:31.090 --> 00:25:34.170
+I'm sure you can ask this a lot, but hope can answer for all the
+
+00:25:34.170 --> 00:25:35.730
+people watching this video as well.
+
+00:25:36.050 --> 00:25:40.250
+Um, what advice do you have for someone wanting to get involved in AI,
+
+00:25:40.290 --> 00:25:41.570
+break break into AI?
+
+00:25:42.570 --> 00:25:46.210
+I mean, it's such a different world now than it was when I, when I got started.
+
+00:25:46.250 --> 00:25:51.650
+But I think what's great now is it's very easy for people to get involved at some
+
+00:25:51.650 --> 00:25:52.330
+level, right?
+
+00:25:52.330 --> 00:25:55.370
+I mean, the tools that are available are so easy to use now, you know, in terms
+
+00:25:55.370 --> 00:25:58.930
+of a high torch, whatever you can, you know, you can have a relatively cheap
+
+00:25:58.930 --> 00:26:04.850
+computer in your, you know, uh, in your bedroom and, and basically train your,
+
+00:26:04.850 --> 00:26:07.650
+your, your commercial network, current net to do, to do whatever.
+
+00:26:07.650 --> 00:26:11.090
+And there's a lot of tools you can learn a lot from, from online
+
+00:26:11.210 --> 00:26:15.770
+material, uh, about this without, uh, um, it was not, it's not very
+
+00:26:15.770 --> 00:26:19.010
+onerous. So you see high school students now playing with this, right?
+
+00:26:19.330 --> 00:26:22.050
+Um, which is kind of, which is great, I think.
+
+00:26:22.050 --> 00:26:27.050
+Um, and there's certainly a growing interest from the student population to
+
+00:26:27.050 --> 00:26:29.330
+learn about machine learning and AI.
+
+00:26:29.330 --> 00:26:33.090
+And it's very exciting for, for young people that I find that, uh,
+
+00:26:33.650 --> 00:26:35.930
+uh, wonderful, I think.
+
+00:26:36.730 --> 00:26:42.370
+So my advice is if you want to get into this, make yourself useful.
+
+00:26:42.370 --> 00:26:45.210
+So make a contribution to an open source project, for example, or make,
+
+00:26:45.210 --> 00:26:48.890
+or, or make an implementation of some standard algorithm that you couldn't
+
+00:26:48.890 --> 00:26:53.890
+find the code of online, uh, but you'd like to, you know, make it available
+
+00:26:53.890 --> 00:26:54.530
+to other people.
+
+00:26:54.530 --> 00:26:57.210
+So take a paper that you think is important and then, you know,
+
+00:26:57.330 --> 00:27:01.210
+re-implement the algorithm and then put it up in open source package or,
+
+00:27:01.210 --> 00:27:03.570
+or contribute to one of those open source packages.
+
+00:27:04.170 --> 00:27:07.930
+And if the stuff you write is, uh, interestingly useful, you'll,
+
+00:27:07.970 --> 00:27:13.170
+you'll get noticed, you know, maybe you'll get a nice job at a company you
+
+00:27:13.170 --> 00:27:16.210
+really want to job at, or maybe you'll get accepted in your favorite
+
+00:27:16.210 --> 00:27:18.530
+PhD program or, or things like this.
+
+00:27:18.530 --> 00:27:20.250
+So I think that's a good way to get started.
+
+00:27:20.730 --> 00:27:23.570
+So open source contributions is a good way to enter the community.
+
+00:27:23.610 --> 00:27:24.210
+Yeah, that's right.
+
+00:27:24.210 --> 00:27:24.650
+You can learn.
+
+00:27:25.090 --> 00:27:25.650
+That's right.
+
+00:27:28.060 --> 00:27:28.700
+Thanks a lot, young.
+
+00:27:28.700 --> 00:27:29.540
+That was fascinating.
+
+00:27:29.540 --> 00:27:30.660
+I've known you for many years.
+
+00:27:30.660 --> 00:27:33.900
+It's still fascinating to hear all of these details of all the stories
+
+00:27:33.900 --> 00:27:34.900
+they've gone on over the years.
+
+00:27:34.900 --> 00:27:38.380
+Yeah, there's many, many stories like this that, uh, uh, you know,
+
+00:27:38.380 --> 00:27:41.340
+reflecting back at the moment when they, when they happen, you don't
+
+00:27:41.340 --> 00:27:45.260
+realize, you know, what, what importance it might take 10 or 20 years later.
+
+00:27:46.020 --> 00:27:46.380
+Thank you.
+
+00:27:47.380 --> 00:27:47.700
+Thanks.

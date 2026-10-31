@@ -1,0 +1,78 @@
+Trong một video trước đây, tôi đã viết
+một công thức cho hàm chi phí cho hồi quy logistic Trong video này, tôi muốn
+giải thích nhanh về lý do mà chúng ta muốn sử dụng
+hàm chi phí đó cho hồi quy logistic. Tóm lại, trong hồi quy logistic, chúng ta có dự đoán y mũ là hàm
+sigmoid của w chuyển vị x + b, trong đó sigmoid là
+hàm quen thuộc này. Và chúng ta đã nói rằng chúng ta
+muốn diễn giải y mũ bằng p(y = 1 | x). Vì vậy, chúng ta muốn thuật toán
+của mình xuất ra mũ y có xác suất là y = 1 với một tập hợp
+các tính năng đầu vào x. Và nói một cách khác
+là nếu y bằng 1 thì xác suất của
+y với x bằng y mũ. Và ngược lại nếu y bằng 0 thì xác suất mà y bằng 0
+là 1- y mũ, đúng chứ? Như vậy, nếu y mũ
+là xác suất mà y = 1, thì 1- y mũ là xác suất mà y = 0. Tôi sẽ thực hiện hai phương trình cuối cùng này
+và chỉ cần sao chép chúng vào slide tiếp theo. Vì vậy, tôi sẽ lấy
+hai phương trình này mà xác định p (y | x) cho
+hai trường hợp y = 0 hoặc y = 1. Và sau đó lấy hai phương trình này và tổng hợp
+chúng thành một phương trình duy nhất. Và chỉ để chỉ ra y phải bằng 0 hoặc 1
+vì trong phương trình chi phí nhị phân, y = 0 hoặc 1 là hai
+trường hợp khả thi duy nhất. Khi một người lấy hai phương trình
+này và tổng hợp chúng như sau. Hãy để tôi viết nó ra để bạn hình dung, rồi tôi
+sẽ giải thích lý do tại sao nó lại trông như thế. (1 - y mũ) mũ (1 - y). Và hóa ra chỉ một dòng này thôi
+đã tóm tắt hai phương trình ở trên. Hãy để tôi giải thích tại sao. Trong trường hợp đầu tiên,
+giả sử y = 1, đúng chứ? Vậy nếu y = 1 thì
+số hạng này là y mũ, bởi vì đó là y mũ 1. Số hạng này bằng (1 - y mũ)
+mũ (1-1), vì vậy đó là mũ 0. Nhưng, bất cứ thứ gì có số mũ bằng 0
+thì đều bằng 1, vì vậy nên nó biến mất. Và như vậy, phương trình này,
+là p(y | x) = y mũ, khi y = 1. Và đó chính xác là
+cái chúng ta muốn. Thế còn trường hợp
+thứ hai, nếu y = 0 thì sao? Nếu y = 0, thì phương trình
+ở trên là p (y | x) = y mũ mũ 0, nhưng bất cứ số nào mũ 0
+thì đều bằng 1, vì vậy chỉ bằng 1 nhân
+(1- y mũ) mũ (1- y). Vậy 1- y bằng 1- 0,
+vì vậy đây chỉ bằng 1. Và do đó, phương trình này
+bằng 1 nhân (1- y mũ) = 1- y mũ. Và ở đây chúng ta có
+y mũ = 0, p (y| x) = 1- y mũ, đó chính xác là những gì
+chúng ta muốn ở trên. Do vậy những điều chúng ta vừa
+trình bày là phương trình này là công thức đúng cho p(ylx). Bây giờ, cuối cùng, bởi vì hàm log
+là một hàm tăng đơn điệu chặt chẽ, khi bạn tối đa hóa log p (y | x), thì
+bạn cũng sẽ có kết quả tương tự khi tối đa hóa p (y | x). Và nếu bạn
+tính log của p (y | x), thì nó bằng với log của y mũ mũ y,
+(1 - y mũ) mũ (1- y). Và nó được đơn giản hóa
+thành y log y mũ + (1- y) nhân log(1- y mũ), đúng chứ? Và điều này bằng âm hàm loss mà chúng ta phải tìm trước đây. Và có một dấu âm là bởi vì thông thường
+nếu bạn đang huấn luyện một thuật toán học, bạn muốn làm cho xác suất lớn trong khi đó, trong hồi quy logistic,
+chúng ta lại thể hiện điều này. Chúng ta muốn giảm thiểu hàm loss. Và giảm thiểu hàm loss tương đương
+với tối đa hóa log của xác suất. Và đây là ví dụ về hàm
+loss trên một ví dụ đơn. Thế còn về hàm chi phí, hàm chi phí tổng trên toàn bộ
+tập huấn luyện trên m ví dụ? Hãy cùng xem điều đó thôi. Và xác suất của tất cả các
+nhãn trong tập huấn luyện. Viết cái này hơi không
+chính thức một chút. Nếu giả sử rằng các ví dụ huấn luyện
+mà tôi đã viết độc lập hoặc viết IID, là phân phối đồng nhất độc lập, thì xác suất của
+ví dụ là tích xác suất. Tích từ i = 1 đến m
+p (y (i)) khi biết x (i). Và vì vậy, nếu bạn muốn thực hiện
+ước lượng hợp lý cực đại, rồi muốn tối đa hóa, thì hãy
+tìm các tham số tối đa hóa cơ hội quan sát và
+tập huấn luyện của bạn. Nhưng tối đa hóa điều này cũng
+giống như tối đa hóa log, vì vậy chúng ta chỉ cần
+đặt log ở cả hai bên. Và log của xác suất của các nhãn
+trong tập huấn luyện là bằng, log của một tích, là tổng của log. Và là tổng từ i = 1 đến m
+của log p(y (i)) đã cho x (i). Và chúng ta đã tìm ra
+trong slide trước đó rằng đây là âm hàm
+loss của y mũ i, y i. Và trong thống kê, có một nguyên tắc
+gọi là nguyên tắc ước lượng hợp lý cực đại, nghĩa là chọn các
+tham số tối đa hóa điều này. Hay nói cách khác, điều đó
+tối đa hóa điều này. Âm tổng từ i = 1
+đến m L (y mũ, y) và chỉ cần di chuyển dấu âm
+ra ngoài phương trình này. Vì vậy, điều này giải thích cho
+chi phí chúng ta đã có cho hồi quy logistic là
+J (w, b) bằng điều này. Và bởi vì bây giờ chúng ta muốn
+giảm thiểu chi phí thay vì tối đa hóa hợp lý, chúng ta cần loại bỏ dấu âm. Và cuối cùng để thuận tiện, để đảm bảo rằng
+số lượng của chúng ta có quy mô tốt hơn, chúng ta chỉ cần thêm một
+hệ số tỷ lệ bổ sung 1/ m ở đó. Nhưng tóm lại, bằng cách giảm thiểu
+hàm chi phí J (w, b) này chúng ta thực sự đang thực hiện ước lượng hợp lý
+cực đại với mô hình hồi quy logistic. Với giả định rằng các ví dụ huấn
+luyện của chúng tôi là IID, hoặc phân phối đồng nhất độc lập. Cảm ơn bạn đã xem video này,
+mặc dù nó không bắt buộc. Tôi mong điều này sẽ giúp bạn hiểu lý do tại sao
+chúng ta sử dụng hàm chi phí chúng ta làm hồi quy logistic Và với điều đó, tôi hy vọng bạn sẽ
+tiếp tục làm các bài tập lập trình và các câu hỏi nhanh trong tuần này. Và chúc bạn may mắn với các
+câu hỏi nhanh và bài tập lập trình.

@@ -1,0 +1,192 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:06.720
+If you look at the object detection literature, there's a set of ideas called region proposals
+
+00:00:06.720 --> 00:00:10.720
+that's been very influential in computer vision as well.
+
+00:00:10.720 --> 00:00:17.040
+I wanted to make this video optional because I tend to use the region proposal set of algorithms
+
+00:00:17.040 --> 00:00:23.120
+a bit less often, but nonetheless, it has been an influential body of work and an idea that
+
+00:00:23.120 --> 00:00:28.000
+you might come across in your own work. Let's take a look. So if you recall the
+
+00:00:28.000 --> 00:00:34.720
+sliding windows idea, you would take a train classifier and run it across all of these different
+
+00:00:34.720 --> 00:00:40.080
+windows and run a detector to see if there's a car, a pedestrian, maybe a motorcycle.
+
+00:00:40.080 --> 00:00:45.520
+Now you could run the algorithm convolutionally, but one downside of the algorithm is it just
+
+00:00:45.520 --> 00:00:51.680
+classifies a lot of regions where there's clearly no object. So this rectangle down here is
+
+00:00:51.680 --> 00:00:57.040
+pretty much blank. It's clearly nothing interesting there to classify. And maybe it was also running
+
+00:00:57.200 --> 00:01:01.200
+on this rectangle, which looks like there's nothing that interesting there.
+
+00:01:01.200 --> 00:01:06.400
+So what Ross Gershwin, Jeff Donahoe, Trevor Darrow, and Jitendra Malik proposed in a paper
+
+00:01:06.400 --> 00:01:11.120
+set to the bottom of this slide is an algorithm called RCNN, which stands for
+
+00:01:11.840 --> 00:01:17.920
+regions with convolutional networks or regions with CNNs. And what that does is it tries to
+
+00:01:17.920 --> 00:01:23.760
+pick just a few regions that make sense to run your confident classifier on. So rather than
+
+00:01:23.760 --> 00:01:30.000
+running your sliding windows on every single window, you instead select just a few windows
+
+00:01:30.000 --> 00:01:33.520
+and run your confident classifier on just a few windows.
+
+00:01:33.520 --> 00:01:39.920
+The way that they perform the region proposals is to run an algorithm called a segmentation algorithm
+
+00:01:40.640 --> 00:01:46.080
+that results in this output on the right in order to figure out what could be objects.
+
+00:01:46.080 --> 00:01:52.160
+So for example, the segmentation algorithm finds a blob over here. And so you might pick that
+
+00:01:52.160 --> 00:01:57.440
+bounding box and say, let's run a classifier on that blob looks like this little green thing
+
+00:01:57.440 --> 00:02:02.480
+that finds a blob there. So you might also run a classifier on that rectangle to see if there's
+
+00:02:03.200 --> 00:02:08.800
+interesting there. And in this case, this blue blob, if it runs a classifier on that,
+
+00:02:08.800 --> 00:02:13.920
+hopefully you'll find the pedestrian. And if you run it on this light cyan blob,
+
+00:02:13.920 --> 00:02:18.560
+maybe you'll find a car maybe not not sure. So the details of this, this is called a
+
+00:02:18.560 --> 00:02:26.320
+segmentation algorithm. And what you do is you find maybe 2000 blobs and place bounding boxes around
+
+00:02:26.320 --> 00:02:32.800
+about 2000 blobs and run your classifier on just those 2000 blobs, which, and this can be a much
+
+00:02:32.800 --> 00:02:38.320
+smaller number of positions on which to run your confident classifier than if you have to run it
+
+00:02:38.320 --> 00:02:43.520
+at every single position throughout the image. And this is especially the case, if you are running
+
+00:02:43.520 --> 00:02:49.760
+your confident not just on square shape regions, but running them on tall skinny regions to try to
+
+00:02:49.760 --> 00:02:54.960
+find pedestrians, but running them on your white fat regions to try to find cars and running them
+
+00:02:54.960 --> 00:03:04.240
+at multiple scales as well. So that's the RCNN or the region with CNN or region of CNN features idea.
+
+00:03:04.240 --> 00:03:10.960
+Now it turns out the RCNN algorithm is still quite slow. So there's been a line of work to explore
+
+00:03:10.960 --> 00:03:17.040
+how to speed up this algorithm. So the basic RCNN algorithm with proposed regions using some
+
+00:03:17.040 --> 00:03:22.240
+algorithm and the classified proposed regions one at a time. And for each of the regions,
+
+00:03:22.240 --> 00:03:27.520
+they will output the label. So is there a car? Is there a pedestrian? Is there a motorcycle there?
+
+00:03:27.520 --> 00:03:33.840
+And also output a bounding box so you can get an accurate bounding box if indeed there is a
+
+00:03:33.840 --> 00:03:40.480
+object in that region. So just to be clear, the RCNN algorithm doesn't just trust the bounding
+
+00:03:40.480 --> 00:03:48.800
+box it was given. It also outputs a bounding box, BX, BY, BHBW, in order to get a more accurate
+
+00:03:48.800 --> 00:03:55.440
+bounding box than whatever happened to surround the block that the image segmentation algorithm
+
+00:03:55.440 --> 00:04:01.040
+gave it. So you can get pretty accurate bounding boxes. Now one downside of the RCNN algorithm
+
+00:04:01.040 --> 00:04:06.400
+was that it's actually quite slow. So over the years, there have been a few improvements to the
+
+00:04:06.480 --> 00:04:14.640
+RCNN algorithm. Roscoe Schwick proposed the fast RCNN algorithm and it's basically the RCNN algorithm
+
+00:04:14.640 --> 00:04:20.080
+but with a convolutional implementation of sliding windows. So the original implementation
+
+00:04:20.080 --> 00:04:27.360
+would actually classify the regions one at a time. So fast RCNN used a convolutional implementation
+
+00:04:27.360 --> 00:04:34.400
+of sliding windows and this is roughly similar to the idea you saw in the fourth video of this
+
+00:04:34.400 --> 00:04:44.620
+week. And that speeds up RCNN quite a bit. It turns out that one of the problems with fast
+
+00:04:44.620 --> 00:04:50.460
+RCNN algorithm is that the clustering step to propose the regions is still quite slow.
+
+00:04:50.460 --> 00:04:56.060
+And so a different group, Xiaoxing Ren, Kaimingher, Roscoe Schwick, and Jian Sun,
+
+00:04:56.060 --> 00:05:02.380
+proposed the faster RCNN algorithm which uses a convolutional neural network instead of one of
+
+00:05:02.380 --> 00:05:07.740
+the more traditional segmentation algorithms to propose the blobs of proposed regions. And that
+
+00:05:07.740 --> 00:05:15.020
+wound up running quite a bit faster than the fast RCNN algorithm. Although I think the faster RCNN
+
+00:05:15.020 --> 00:05:21.180
+algorithm, most implementations are usually still quite a bit slower than the YOLO algorithm.
+
+00:05:21.820 --> 00:05:28.060
+So the idea of region proposals has been quite influential in computer vision and I wanted you
+
+00:05:28.140 --> 00:05:34.140
+to know about these ideas because you see others still use these ideas. For myself,
+
+00:05:34.140 --> 00:05:38.700
+and this is my personal opinion, not the opinion of the computer vision research community as a whole,
+
+00:05:38.700 --> 00:05:44.620
+I think that region proposal is an interesting idea but that not having two steps. First proposed
+
+00:05:44.620 --> 00:05:50.700
+regions and then classed by it, being able to do everything more or at the same time similar to the
+
+00:05:50.700 --> 00:05:55.820
+YOLO or the you only look one's algorithm. That seems to me like a more promising direction for
+
+00:05:55.900 --> 00:06:00.220
+the long term but that's my personal opinion and not necessarily the opinion of the whole computer
+
+00:06:00.220 --> 00:06:06.380
+vision research community. So feel free to take that with a grain of salt. But I think that the
+
+00:06:06.380 --> 00:06:12.620
+RCNN idea you might come across others using it so as well we're knowing as well so you can
+
+00:06:12.620 --> 00:06:14.863
+understand others' algorithms better.

@@ -1,0 +1,131 @@
+Trong video trước, chúng ta đã xem qua một ví dụ về việc
+sử dụng đồ thị tính toán để tính hàm J. Bây giờ, chúng ta hãy cùng xem một
+khía cạnh khác của đồ thị tính toán đó. Và tôi sẽ chỉ bạn cách có thể sử dụng
+nó để tìm ra các phép tính đạo hàm cho hàm J. Đây là một đồ thị tính toán. Giả sử bạn muốn tính
+đạo hàm của J với biến v. Đó là gì? Đó là, nếu chúng ta
+lấy giá trị này của v và thay đổi nó một chút, thì giá trị
+của J sẽ thay đổi như thế nào? J được xác định là 3 lần v. Và bây giờ, v = 11. Vì vậy, nếu chúng ta
+tăng v lên 11.001, và J, bằng 3v, vì vậy J từ 33, sẽ tăng lên đến 33.003. Như vậy, ở đây, chúng ta
+đã tăng v thêm 0,001. Và kết quả cuối cùng của
+việc đó là J tăng gấp 3 lần. Vậy đạo hàm của J
+với biến v bằng 3. Bởi vì lượng tăng của J
+gấp 3 lần lượng tăng của v. Và trên thực tế, điều này
+rất giống với ví dụ chúng ta đã có trong video trước đó,
+trong đó chúng ta có f (a) = 3a. Và do đó, bắt nguồn từ df / da,
+với một chút đơn giản hóa, một ký hiệu hơi cẩu thả, bạn
+có thể viết dưới dạng df / da = 3. Như vậy, thay vào đó,
+ở đây chúng ta có J = 3v, và vì vậy dJ / dv = 3. Ở đây, J đóng vai trò của f, và v đóng vai trò của a trong ví dụ mà
+chúng ta đã thấy ở một video trước đó. Như vậy, thuật ngữ backpropagation
+(truyền ngược), như chúng ta đang thấy là nếu bạn muốn tính đạo hàm
+của biến đầu ra cuối cùng này, mà thường là một biến
+bạn quan tâm nhất, với biến v, sau đó chúng ta vừa
+thực hiện một bước truyền ngược. Như vậy, chúng ta gọi nó là
+một bước lùi trong đồ thị này. Bây giờ chúng ta hãy xem một ví dụ khác. dJ / da là gì? Nói cách khác, nếu chúng ta tăng giá trị của a,
+thì có ảnh hưởng đến giá trị của J như thế nào? Ví dụ, bây giờ a = 5. Hãy tăng nó lên tới 5,001. Tác động ròng của điều đó là v,
+bằng a + u, trước đó v là 11. Thì v sẽ tăng lên 11,001. Và sau đó chúng ta đã thấy như trên bây giờ J tăng lên đến 33.003. Như vậy, chúng ta có thể thấy là nếu
+bạn tăng a thêm 0,001, thì J tăng 0,003. Và bằng cách tăng a,
+ý tôi là, bạn lấy giá trị 5 và chỉ cần thêm vào một giá trị mới. Sau đó, sự thay đổi a sẽ truyền sang
+bên phải của đồ thị tính toán để mà cuối cùng J bằng 33,003. Và do đó, mức tăng lên của J
+gấp 3 lần mức tăng lên của a. Vậy có nghĩa là đạo hàm này bằng 3. Và có một cách để phá vỡ điều này,
+đó là giả sử nếu bạn thay đổi a, điều này sẽ thay đổi v. Và thông qua thay đổi v, J sẽ thay đổi. Và do đó, mạng thay đổi giá trị
+của J khi bạn tăng giá trị, khi bạn nâng giá trị
+lên một chút, đó là, đầu tiên, bằng cách thay đổi
+a, cuối cùng bạn tăng v. Vậy v tăng bao nhiêu? Nó được tăng thêm
+một lượng bằng dv/ da. Và sau đó thay đổi trong v sẽ
+khiến giá trị của J cũng tăng lên. Vì vậy, trong giải tích, đây chính là
+quy tắc chuỗi mà nếu a ảnh hưởng đến v, rồi ảnh hưởng đến J, sau đó lượng
+giá trị mà J thay đổi khi bạn tăng a là kết quả của phép tính
+lượng v thay đổi khi bạn nâng a nhân với lượng J
+thay đổi khi bạn nâng v. Vì vậy, một lần nữa, trong giải tích,
+đây được gọi là quy tắc chuỗi. Và từ tính toán này, chúng ta có thể
+thấy là nếu bạn tăng a thêm 0,001, thì v thay đổi với cùng
+một lượng như vậy. Vậy dv / da = 1. Trên thực tế, nếu bạn thêm vào
+những gì chúng ta đã có trước đó, dv / dJ = 3 và dv / da = 1. Vậy kết quả là 3 nhân 1, nó mang lại kết quả
+chính xác là dJ/ da = 3. Như vậy, hình minh họa nhỏ này
+cho thấy bằng cách tính dJ / dv, mà là đạo hàm đối với biến này, nó có thể giúp bạn tính dJ / da. Và đó là một bước nữa
+trong phép tính ngược này. Tôi muốn giới thiệu thêm
+một quy ước ký hiệu mới. Đó là khi bạn đang sử dụng mã
+để thực hiện truyền ngược, thường sẽ có một số biến đầu ra
+cuối cùng mà bạn thực sự quan tâm. Một biến đầu ra cuối cùng mà bạn thực sự
+quan tâm hoặc bạn muốn tối ưu hóa. Và trong trường hợp này, biến
+đầu ra cuối cùng này là J. Đó là nút cuối cùng trong
+đồ thị tính toán của bạn. Vì vậy, rất nhiều tính toán sẽ
+cố gắng để tính đạo hàm của biến đầu ra cuối cùng đó. Như vậy, d của biến đầu ra cuối cùng
+này đối với một số biến khác. Và chúng ta chỉ gọi đó là dvar. Vì vậy, rất nhiều phép tính mà bạn có
+sẽ tính đạo hàm của biến đầu ra cuối cùng, trong trường hợp này, J với
+các biến trung gian khác nhau, chẳng hạn như a, b, c, u hoặc v. Và khi bạn thực hiện điều này trong
+phần mềm, bạn gọi tên biến này là gì? Trong Python, bạn có thể cung cấp cho chúng tôi một tên biến
+rất dài như dFinalOurputVar / dvar. Nhưng đó là một tên biến rất dài. Tôi nghĩ bạn có thể gọi
+điều này là dJdvar. Nhưng bởi vì bạn luôn lấy
+đạo hàm liên quan đến dJ, liên quan đến biến đầu ra cuối cùng này,
+nên tôi sẽ giới thiệu một ký hiệu mới. Ở đó, trong mã, khi bạn tính toán
+điều này trong mã bạn viết, chúng ta sẽ sử dụng tên biến
+dvar để thể hiện số lượng đó. Như vậy, dvar trong mã bạn
+viết sẽ đại diện cho đạo hàm của biến đầu ra cuối cùng mà
+bạn quan tâm, ví dụ như J. Đôi khi, l cuối cùng đối với các
+đại lượng trung gian khác nhau mà bạn đang tính trong mã của bạn. Như vậy, ở đây trong mã của bạn,
+bạn sử dụng dv để biểu thị giá trị này. Vậy dv sẽ bằng 3. Và mã của bạn, bạn
+biểu diễn cho điều này là da, và nó bằng 3 như
+chúng ta đã tìm ra. Vì vậy, chúng ta đã thực hiện truyền ngược
+một phần thông qua đồ thị tính toán này. Chúng ta hãy xem nốt phần còn lại
+của ví dụ này trên slide tiếp theo. Hãy cùng nhìn vào một đồ thị
+tính toán sạch đẹp hơn. Và nói tóm lại, cho tới bây giờ,
+những gì chúng ta đã làm là tính ngược lại và
+tìm ra rằng dv= 3. Và một lần nữa, thì dv
+chỉ là một tên biến, trong đó mã thực sự là dJ / dv. Chúng ta đã tìm ra rằng da = 3. Và một lần nữa, da là tên biến trong mã
+của bạn và đó thực sự là giá trị dJ / da. Và chúng ta thấy cách mà chúng ta
+đi ngược lại trên hai cạnh như này. Bây giờ hãy cùng tiếp tục
+tính các đạo hàm. Bây giờ bạn hãy
+nhìn vào giá trị u. Vậy dJ / du là gì? Thông qua một tính toán tương tự
+như chúng ta đã làm trước đây và sau đó chúng ta bắt đầu với u = 6. Nếu bạn tăng u lên 6,001, thì v, mà trước đó là 11, tăng lên 11,001. Vì thế J tăng từ 33 lên 33.003. Và do đó, mức tăng của J
+là 3x, vì vậy đây là bằng nhau. Và phân tích với u rất giống với
+phân tích chúng ta đã làm với a. Điều này được tính là
+dJ / dv nhân dv / du, và chúng ta có cái này bằng 3. Và cái này bằng 1. Vì vậy, chúng ta đã thực hiện
+thêm một bước truyền ngược. Chúng ta kết thúc với
+kết quả du cũng bằng 3. Và du là, tất nhiên,
+chỉ dJ / du này. Bây giờ chúng ta chỉ cần
+xem kỹ ví dụ cuối cùng. Vậy dJ / db là gì? Ở đây, hãy tưởng tượng nếu bạn
+được phép thay đổi giá trị của b. Và bạn muốn điều chỉnh b
+một chút để giảm thiểu hoặc tối đa hóa giá trị của J. Vậy đạo hàm là gì hay độ dốc của hàm J là gì khi bạn
+thay đổi một chút giá trị của b? Trên thực tế bằng cách sử dụng
+quy tắc chuỗi để tính toán, có thể coi điều này là
+kết quả của 2 thứ. dJ / du nhân du / db. Và lý do là nếu bạn
+thay đổi b một chút, tăng b = 3 lên, giả sử, 3.001. Thì cách mà nó sẽ ảnh hưởng đến J
+là trước tiên nó sẽ ảnh hưởng đến u. Vậy, nó ảnh hưởng đến u bao nhiêu? Vâng, u được xác định
+bằng b nhân c. Như vậy, nó sẽ tăng từ 6, khi b = 3, lên 6,002 bởi vì c = 2 trong ví dụ ở đây. Và điều này cho
+chúng ta biết du /db = 2. Bởi vì khi bạn tăng b
+lên 0,001, u tăng gấp đôi. Thế nên, du / db bằng 2. Và bây giờ, chúng ta biết rằng u đã
+tăng gấp đôi so với lượng b đã tăng lên. Vậy, dJ / du là gì? Chúng ta đã tìm ra
+rằng điều này bằng 3. Và bằng cách nhân hai số này,
+chúng ta thấy rằng dJ / db = 6. Và một lần nữa, đây là lý do cho
+phần thứ hai trong cuộc tranh luận. Đó là những gì chúng ta muốn biết khi u tăng
+0,002, vậy nó ảnh hưởng đến J như thế nào? Thực tế là dJ / du = 3, điều đó
+cho chúng ta biết rằng khi u tăng 0,002,
+J tăng gấp 3 lần. Vậy J nên tăng thêm 0,006. Điều này xuất phát từ
+thực tế là dJ/ du = 3. Và nếu bạn kiểm tra
+toán một cách chi tiết, bạn sẽ thấy rằng nếu
+b trở thành 3.001, sau đó u trở thành 6,002,
+v trở thành 11,002. bằng a + u, vì vậy đó là 5 + u. Và rồi J, bằng 3 lần v, bằng 33.006. Và đó là cách bạn
+có được dJ / db =6. Và để điền vào đó, đây là nếu chúng ta
+đi ngược lại, vì vậy đây là db = 6. Và db chính là tên biến
+mã Python cho dJ / db. Và tôi sẽ không nói quá
+chi tiết về ví dụ cuối cùng. Nhưng nếu bạn cũng tính ra dJ, thì hóa ra nó
+bằng dJ / du nhân du. Và bằng 9, bằng 3 nhân 3. Tôi sẽ không nói quá
+chi tiết về ví dụ đó. Thông qua bước cuối cùng này,
+có thể suy ra rằng dc bằng 2. Vì vậy, điều quan trọng trong
+video này, từ ví dụ này là khi tính đạo hàm và khi tính tất cả các đạo hàm
+này, cách hiệu quả nhất để làm là sử dụng một cách tính từ phải
+sang trái theo hướng mũi tên màu đỏ. Và cụ thể là, trước tiên chúng ta
+sẽ tính đạo hàm với biến v. Và sau đó nó trở nên hữu ích để tính đạo hàm với biến a
+và đạo hàm với biến u. Và sau đó là đạo hàm với biến u, ví dụ, số hạng ở đây
+và số hạng ở đây. Chúng lần lượt trở nên có ích
+để tính đạo hàm với biến b và đạo hàm với biến c. Như vậy, đó là đồ thị tính toán và cách
+mà phép tính xuôi hoặc từ trái sang phải tính hàm chi phí J mà
+có thể bạn muốn tối ưu hóa. Và phép tính ngược hoặc từ
+phải sang trái để tính đạo hàm. Nếu bạn không quen với
+tính toán hoặc quy tắc chuỗi, tôi biết một số chi tiết đó,
+nhưng sẽ quên chúng rất nhanh. Nhưng nếu bạn không làm theo
+tất cả các bước thì đừng lo lắng về nó. Ở video tiếp theo, chúng ta sẽ xem lại điều này một
+lần nữa trong hồi quy logistic. Và tôi sẽ chỉ cho bạn chính xác những gì
+bạn cần làm để thực hiện các phép tính bạn cần để tính các đạo hàm
+của mô hình hồi quy logistic.

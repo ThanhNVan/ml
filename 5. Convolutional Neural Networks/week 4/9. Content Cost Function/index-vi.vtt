@@ -1,0 +1,237 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.500
+Cost function của thuật toán truyền phong cách thần kinh có
+
+2
+00:00:03.500 --> 00:00:07.975
+một thành phần chi phí nội dung và một thành phần chi phí phong cách.
+
+3
+00:00:07.975 --> 00:00:11.455
+Hãy bắt đầu bằng cách xác định thành phần chi phí nội dung.
+
+4
+00:00:11.455 --> 00:00:17.595
+Hãy nhớ rằng đây là cost function tổng thể của thuật toán truyền phong cách thần kinh.
+
+5
+00:00:17.595 --> 00:00:21.660
+Vì vậy, chúng ta hãy tìm ra những gì nên chức năng chi phí nội dung được.
+
+6
+00:00:21.660 --> 00:00:26.380
+Hãy nói rằng bạn sử dụng lớp ẩn l để tính toán chi phí nội dung.
+
+7
+00:00:26.380 --> 00:00:30.920
+Nếu l là một số rất nhỏ, nếu bạn sử dụng lớp ẩn một,
+
+8
+00:00:30.920 --> 00:00:34.440
+sau đó nó sẽ thực sự buộc hình ảnh được tạo ra của bạn
+
+9
+00:00:34.440 --> 00:00:37.875
+để các giá trị điểm ảnh rất giống với hình ảnh nội dung của bạn.
+
+10
+00:00:37.875 --> 00:00:39.735
+Trong khi đó, nếu bạn sử dụng một lớp rất sâu,
+
+11
+00:00:39.735 --> 00:00:41.260
+sau đó nó chỉ hỏi, “Vâng,
+
+12
+00:00:41.260 --> 00:00:43.040
+nếu có một chú chó trong hình ảnh nội dung của bạn,
+
+13
+00:00:43.040 --> 00:00:46.150
+sau đó đảm bảo rằng có một chú chó ở đâu đó trong hình ảnh được tạo ra của bạn. “
+
+14
+00:00:46.150 --> 00:00:50.310
+Vì vậy, trong thực tế, lớp l chọn một nơi nào đó ở giữa.
+
+15
+00:00:50.310 --> 00:00:53.015
+Nó không quá cạn cũng không quá sâu trong neural network.
+
+16
+00:00:53.015 --> 00:00:55.780
+Và bởi vì bạn tự lập kế hoạch này,
+
+17
+00:00:55.780 --> 00:00:58.765
+trong bài tập vấn đề mà bạn đã làm vào cuối tuần này,
+
+18
+00:00:58.765 --> 00:01:01.260
+tôi sẽ để bạn có được một số trực giác với
+
+19
+00:01:01.260 --> 00:01:04.475
+các ví dụ cụ thể trong bài tập vấn đề là tốt.
+
+20
+00:01:04.475 --> 00:01:06.810
+Nhưng thông thường, tôi được chọn để
+
+21
+00:01:06.810 --> 00:01:09.080
+ở đâu đó ở giữa các lớp của neural network,
+
+22
+00:01:09.080 --> 00:01:12.170
+không quá nông cũng không quá sâu.
+
+23
+00:01:12.170 --> 00:01:15.285
+Những gì bạn có thể làm là sau đó sử dụng một ConvNet được đào tạo trước, có
+
+24
+00:01:15.285 --> 00:01:17.317
+thể là một mạng VGG,
+
+25
+00:01:17.317 --> 00:01:20.020
+hoặc có thể là một neural network khác là tốt.
+
+26
+00:01:20.020 --> 00:01:22.050
+Và bây giờ, bạn muốn đo lường,
+
+27
+00:01:22.050 --> 00:01:26.160
+đưa ra một hình ảnh nội dung và đưa ra một hình ảnh
+
+28
+00:01:26.160 --> 00:01:29.688
+được tạo ra, chúng tương tự như thế nào trong nội dung.
+
+29
+00:01:29.688 --> 00:01:31.540
+Vì vậy, hãy để
+
+30
+00:01:31.540 --> 00:01:39.900
+a_superscript_ này [l] (c) và đây là sự kích hoạt của lớp l trên hai hình ảnh này,
+
+31
+00:01:39.900 --> 00:01:42.814
+trên các hình ảnh C và G. Vì vậy,
+
+32
+00:01:42.814 --> 00:01:47.020
+nếu hai kích hoạt này tương tự,
+
+33
+00:01:47.020 --> 00:01:52.602
+thì điều đó dường như ngụ ý rằng cả hai hình ảnh có nội dung tương tự.
+
+34
+00:01:52.602 --> 00:01:54.855
+Vì vậy, những gì chúng ta sẽ làm là xác định
+
+35
+00:01:54.855 --> 00:02:01.510
+J_Content (C, G) như chỉ là bao
+
+36
+00:02:01.510 --> 00:02:05.345
+lâu hoặc làm thế nào khác nhau là hai kích hoạt.
+
+37
+00:02:05.345 --> 00:02:08.320
+Vì vậy, chúng tôi sẽ mất sự khác biệt yếu tố khôn ngoan giữa
+
+38
+00:02:08.320 --> 00:02:12.200
+các kích hoạt đơn vị ẩn trong lớp l,
+
+39
+00:02:12.200 --> 00:02:14.710
+giữa khi bạn vượt qua trong hình ảnh nội dung so
+
+40
+00:02:14.710 --> 00:02:17.736
+với khi bạn vượt qua trong hình ảnh được tạo ra,
+
+41
+00:02:17.736 --> 00:02:19.955
+và lấy đó bình phương.
+
+42
+00:02:19.955 --> 00:02:23.760
+Và bạn có thể có một hằng số bình thường hóa ở phía trước hay không,
+
+43
+00:02:23.760 --> 00:02:25.535
+vì vậy nó chỉ là một trong hai hoặc cái gì đó khác.
+
+44
+00:02:25.535 --> 00:02:31.935
+Nó không thực sự quan trọng vì điều này có thể được điều chỉnh là tốt bởi hyperparameter alpha này.
+
+45
+00:02:31.935 --> 00:02:37.070
+Vì vậy, chỉ cần rõ ràng
+
+46
+00:02:37.070 --> 00:02:42.635
+về việc sử dụng ký hiệu này như thể cả hai đã được mở ra thành vectơ,
+
+47
+00:02:42.635 --> 00:02:47.975
+vì vậy sau đó, điều này trở thành căn bậc hai của định mức l_2 giữa điều này và điều này,
+
+48
+00:02:47.975 --> 00:02:51.680
+sau khi bạn đã mở ra cả hai thành vectơ.
+
+49
+00:02:51.680 --> 00:02:54.492
+Có thực sự chỉ là tổng yếu tố khôn ngoan của
+
+50
+00:02:54.492 --> 00:02:59.480
+sự khác biệt bình phương giữa hai kích hoạt này.
+
+51
+00:02:59.480 --> 00:03:03.000
+Nhưng nó thực sự chỉ là tổng yếu tố khôn ngoan của
+
+52
+00:03:03.000 --> 00:03:06.150
+bình phương của sự khác biệt giữa các kích hoạt trong lớp l,
+
+53
+00:03:06.150 --> 00:03:11.850
+giữa các hình ảnh trong C và G. Và như vậy,
+
+54
+00:03:11.850 --> 00:03:17.100
+khi sau đó bạn thực hiện gradient gốc trên J_of_g để cố gắng tìm một giá trị của G,
+
+55
+00:03:17.100 --> 00:03:19.740
+do đó chi phí tổng thể thấp,
+
+56
+00:03:19.740 --> 00:03:23.120
+điều này sẽ khuyến khích thuật toán để tìm một hình ảnh G,
+
+57
+00:03:23.120 --> 00:03:29.203
+do đó các kích hoạt lớp ẩn tương tự như những gì bạn nhận được cho hình ảnh nội dung.
+
+58
+00:03:29.203 --> 00:03:33.985
+Vì vậy, đó là cách bạn xác định cost function nội dung cho việc truyền phong cách thần kinh.
+
+59
+00:03:33.985 --> 00:03:37.000
+Tiếp theo, chúng ta hãy chuyển sang chức năng chi phí phong cách.

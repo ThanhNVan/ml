@@ -1,0 +1,386 @@
+WEBVTT
+
+00:00:03.020 --> 00:00:08.100
+Hãy cùng bắt tay vào tìm hiểu về attention
+nhiều đầu.
+
+00:00:08.100 --> 00:00:13.400
+Ký hiệu hơi phức tạp một chút, nhưng điều cần
+lưu ý về cơ bản chỉ là một vòng
+
+00:00:13.400 --> 00:00:18.700
+lặp for lớn đối với cơ chế self-attention mà
+bạn đã tìm hiểu trong video trước.
+
+00:00:18.700 --> 00:00:19.700
+Chúng ta hãy xem xét.
+
+00:00:19.700 --> 00:00:24.113
+Mỗi lần bạn tính toán mức độ self-attention
+cho một chuỗi được gọi
+
+00:00:24.113 --> 00:00:28.527
+là một cái đầu và do đó, cái tên chú ý nhiều
+đầu đề cập đến việc bạn
+
+00:00:28.527 --> 00:00:32.940
+có làm những gì bạn đã thấy trong video trước
+hay không, nhưng một
+
+00:00:32.940 --> 00:00:33.940
+rất nhiều lần.
+
+00:00:33.940 --> 00:00:36.660
+Hãy cùng tìm hiểu cách thức hoạt động của nó.
+
+00:00:36.660 --> 00:00:43.840
+Hãy nhớ rằng bạn có các vectơ Q, K và V cho
+mỗi số hạng đầu
+
+00:00:43.840 --> 00:00:51.020
+vào bằng cách nhân chúng với một vài ma trận
+WQ, WK và WV.
+
+00:00:51.020 --> 00:00:55.113
+Với attention của nhiều đầu, bạn lấy cùng một
+tập hợp các vectơ
+
+00:00:55.113 --> 00:00:59.207
+truy vấn, khóa và giá trị đó làm đầu vào, do
+đó, giá trị Q, K,
+
+00:00:59.207 --> 00:01:03.300
+V được ghi xuống đây và tính toán nhiều mức độ
+self-attention.
+
+00:01:03.300 --> 00:01:14.620
+Vì vậy, cách đầu tiên, bạn nhân ma trận Q, K,
+V với ma trận trọng số W1Q, W1K,
+
+00:01:14.620 --> 00:01:19.700
+và W1V, do đó ba giá trị này cung cấp cho bạn
+một
+
+00:01:19.700 --> 00:01:24.780
+tập hợp các vectơ truy vấn, khóa và giá trị
+mới
+
+00:01:24.780 --> 00:01:31.580
+đối với những từ đầu tiên và bạn làm điều
+tương tự với mỗi từ còn lại.
+
+00:01:31.580 --> 00:01:39.660
+Để trực quan, bạn có thể thấy hữu ích khi coi
+W1Q, W1K và W1V
+
+00:01:39.660 --> 00:01:47.740
+được học để giúp hỏi và trả lời câu hỏi,
+chuyện gì đang xảy ra ở đó?
+
+00:01:47.740 --> 00:01:51.900
+Và đây ít nhiều chỉ là ví dụ về sự
+self-attention
+
+00:01:51.900 --> 00:01:56.060
+mà chúng ta đã trình bày trước đó trong video
+trước.
+
+00:01:56.060 --> 00:02:02.160
+Sau khi học xong một trực giác, có thể bạn sẽ
+nghĩ, W1Q, W1K, W1V
+
+00:02:02.160 --> 00:02:08.260
+được học để giúp bạn hỏi và trả lời câu hỏi,
+chuyện gì đang xảy ra?
+
+00:02:08.260 --> 00:02:12.500
+Và với phép tính này, từ Visite đưa ra câu trả
+lời tốt nhất
+
+00:02:12.500 --> 00:02:16.740
+cho những gì đang xảy ra, đó là lý do tại sao
+tôi đã đánh
+
+00:02:16.740 --> 00:02:20.980
+dấu bằng mũi tên màu xanh ở đây, để thể hiện
+rằng nội tâm
+
+00:02:20.980 --> 00:02:25.840
+tích giữa khóa dành cho lượt truy cập có giá
+trị cao nhất với truy vấn
+
+00:02:25.840 --> 00:02:30.700
+dành cho người kỳ dị, đây là câu hỏi đầu tiên
+mà chúng ta sẽ đặt ra.
+
+00:02:30.700 --> 00:02:35.000
+Vì vậy, đây là cách bạn biểu diễn cho kẻ lập
+dị, và bạn làm
+
+00:02:35.000 --> 00:02:39.300
+tương tự cho Jane, chiếc ghế và những từ khác
+trong tháng Chín.
+
+00:02:39.300 --> 00:02:44.020
+Vì vậy, bạn thu được năm vectơ để biểu thị năm
+từ trong chuỗi.
+
+00:02:44.020 --> 00:02:48.180
+Vì vậy, đây là phép tính bạn thực hiện cho đầu
+đầu tiên
+
+00:02:48.180 --> 00:02:52.340
+trong số nhiều đầu bạn sử dụng trong chú ý
+nhiều đầu.
+
+00:02:52.340 --> 00:02:58.180
+Và do đó, bạn sẽ thực hiện chính xác phép tính
+giống như chúng ta vừa thực hiện
+
+00:02:58.180 --> 00:03:04.020
+trong tuần và cho các từ khác, và kết thúc với
+cùng các giá trị chú ý, từ một đến
+
+00:03:04.020 --> 00:03:06.940
+số 5 mà chúng ta đã có ở video trước.
+
+00:03:06.940 --> 00:03:13.220
+Nhưng bây giờ chúng ta sẽ làm điều này không
+phải một lần mà là vài lần, để thay vì
+
+00:03:13.220 --> 00:03:19.500
+có một đầu, chúng ta có thể có tám đầu, nghĩa
+là thực hiện toàn bộ phép tính này,
+
+00:03:19.500 --> 00:03:21.700
+có thể là tám lần.
+
+00:03:21.700 --> 00:03:27.700
+Và cho đến nay chúng ta đã tính toán được mức
+độ chú ý này với phần
+
+00:03:27.700 --> 00:03:33.700
+đầu đầu tiên được biểu thị bằng chỉ số dưới
+trong các ma trận này.
+
+00:03:33.700 --> 00:03:40.260
+Và phương trình chú ý chính là thế này, bạn
+cũng đã thấy ở video trước.
+
+00:03:40.260 --> 00:03:43.900
+Bây giờ hãy thực hiện phép tính này với cái
+đầu thứ hai.
+
+00:03:43.900 --> 00:03:54.860
+Đầu thứ hai sẽ có một bộ ma trận mới sẽ viết W
+q two, W k two và W v two
+
+00:03:54.860 --> 00:04:00.940
+cho phép cơ chế này hỏi và trả lời câu hỏi thứ
+hai.
+
+00:04:00.940 --> 00:04:05.080
+Vậy câu hỏi đầu tiên là chuyện gì đang xảy ra,
+có
+
+00:04:05.080 --> 00:04:09.220
+lẽ câu hỏi thứ hai là khi nào chuyện gì đó xảy
+ra?
+
+00:04:09.220 --> 00:04:13.807
+Và vì vậy thay vì có W ở đây, trong trường hợp
+tổng quát, chúng
+
+00:04:13.807 --> 00:04:18.393
+ta sẽ có ở đây W i và bây giờ tôi đã xếp chồng
+cái đầu thứ hai
+
+00:04:18.393 --> 00:04:22.980
+lên sau cái đầu thứ nhất với cái đầu thứ hai
+được tô màu đỏ.
+
+00:04:22.980 --> 00:04:26.960
+Vì vậy, bạn lặp lại phép tính thực hiện giống
+hệt như phép
+
+00:04:26.960 --> 00:04:30.940
+tính đầu tiên, nhưng thay vào đó là tập hợp ma
+trận mới này.
+
+00:04:30.940 --> 00:04:36.380
+Và bạn kết thúc trong trường hợp này, có thể
+tích bên trong giữa
+
+00:04:36.380 --> 00:04:41.820
+khóa tháng 9 và truy vấn LeFriq sẽ có tích bên
+trong cao nhất.
+
+00:04:41.820 --> 00:04:48.540
+Vì vậy, tôi sẽ làm nổi bật mũi tên màu đỏ này
+để chỉ ra rằng giá trị của
+
+00:04:48.540 --> 00:04:55.260
+tháng 9 sẽ đóng một vai trò lớn trong phần thứ
+hai của việc biểu diễn quái vật.
+
+00:04:55.260 --> 00:05:03.120
+Có lẽ câu hỏi thứ ba bây giờ chúng ta muốn hỏi
+được đại diện bởi W q
+
+00:05:03.120 --> 00:05:10.980
+three, W k three và W v three là ai, ai có
+liên quan gì đến Châu Phi.
+
+00:05:10.980 --> 00:05:15.953
+Và trong trường hợp này, khi bạn thực hiện
+phép tính này,
+
+00:05:15.953 --> 00:05:20.927
+lần thứ ba, có thể tích bên trong giữa vectơ
+khóa của Jane
+
+00:05:20.927 --> 00:05:25.900
+và vectơ truy vấn LeFriq sẽ cao nhất và tự làm
+nổi bật điều này
+
+00:05:25.900 --> 00:05:31.300
+mũi tên màu đen ở đây, để giá trị của Jane sẽ
+có trọng lượng lớn nhất
+
+00:05:31.300 --> 00:05:36.700
+trong cách trình bày này, mà bây giờ tôi đã
+xếp chồng lên nhau ở phía sau.
+
+00:05:36.700 --> 00:05:41.820
+Trong văn học, số đầu thường được biểu thị
+
+00:05:41.820 --> 00:05:46.940
+bằng chữ H viết thường. Và vì thế H bằng số
+đầu.
+
+00:05:46.940 --> 00:05:50.300
+Và bạn có thể coi mỗi cái đầu này là một đặc
+điểm khác nhau.
+
+00:05:50.300 --> 00:05:54.040
+Và khi bạn chuyển những đặc điểm này sang một
+mạng mới, bạn
+
+00:05:54.040 --> 00:05:57.780
+có thể tính toán được cách trình bày rất phong
+phú của câu.
+
+00:05:57.780 --> 00:06:03.800
+Tính toán các phép tính này cho ba đầu hoặc
+tám đầu hoặc bất kể số nào,
+
+00:06:03.800 --> 00:06:09.820
+phép nối của ba giá trị này hoặc giá trị a
+được sử dụng để tính toán đầu ra
+
+00:06:09.820 --> 00:06:12.340
+của attention đa đầu.
+
+00:06:12.340 --> 00:06:23.760
+Và do đó, giá trị cuối cùng là sự ghép nối của
+tất cả các đầu H này, và cuối cùng
+
+00:06:23.760 --> 00:06:27.480
+nhân với ma trận W.
+
+00:06:27.640 --> 00:06:31.827
+Bây giờ, một chi tiết nữa đáng ghi nhớ là
+trong phần mô tả
+
+00:06:31.827 --> 00:06:36.013
+attention của nhiều đầu, tôi đã mô tả việc
+tính toán những
+
+00:06:36.013 --> 00:06:40.200
+giá trị khác nhau này cho những cái đầu khác
+nhau, như thể bạn
+
+00:06:40.200 --> 00:06:42.720
+sẽ thực hiện chúng trong một vòng lặp for lớn.
+
+00:06:42.720 --> 00:06:46.440
+Và về mặt khái niệm, bạn có thể nghĩ về nó như
+vậy.
+
+00:06:46.440 --> 00:06:51.240
+Nhưng trong thực tế, bạn thực sự có thể tính
+toán song song các giá trị đầu khác nhau
+
+00:06:51.240 --> 00:06:56.040
+này, vì không có giá trị nào có giá trị phụ
+thuộc vào giá trị của bất kỳ đầu nào khác.
+
+00:06:56.040 --> 00:07:01.940
+Vì vậy, về cách thực hiện điều này, bạn thực
+sự có thể tính toán song song tất cả các
+
+00:07:01.940 --> 00:07:07.840
+phần đầu thay vì tuần tự, sau đó ghép chúng
+nhân với W 0, và đây là kết quả của bạn
+
+00:07:07.840 --> 00:07:10.680
+attention đa đầu.
+
+00:07:10.680 --> 00:07:13.240
+Bây giờ có rất nhiều thứ đang diễn ra trên
+slide này.
+
+00:07:13.240 --> 00:07:17.400
+Cảm ơn bạn đã đồng hành cùng tôi đến cuối
+video này.
+
+00:07:17.400 --> 00:07:23.280
+Trong video tiếp theo, tôi sẽ sử dụng một biểu
+tượng đơn giản hóa
+
+00:07:23.280 --> 00:07:29.160
+để sử dụng sơ đồ nhỏ này ở đây để biểu thị
+phép tính nhiều đầu này.
+
+00:07:29.160 --> 00:07:32.920
+Vậy ma trận đầu vào Texas q, k và v.
+
+00:07:32.920 --> 00:07:38.880
+Vậy những giá trị này ở dưới đây và xuất ra
+giá trị này ở trên đây.
+
+00:07:38.880 --> 00:07:46.075
+Vì vậy, trong video tiếp theo, khi chúng ta
+đưa nó vào mạng biến áp đầy đủ, tôi sẽ sử
+
+00:07:46.075 --> 00:07:53.270
+dụng bức ảnh nhỏ này để biểu thị tất cả các
+tính toán được biểu thị trên slide này.
+
+00:07:53.270 --> 00:07:54.730
+Vậy xin chúc mừng.
+
+00:07:54.730 --> 00:07:58.290
+Trong video trước, bạn đã tìm hiểu về
+attention đến bản thân.
+
+00:07:58.290 --> 00:08:03.730
+Và bằng cách thực hiện điều đó nhiều lần, giờ
+đây bạn đã hiểu được attention nhiều
+
+00:08:03.730 --> 00:08:09.170
+đầu, cho phép bạn đặt nhiều câu hỏi cho mỗi từ
+và học được nhiều kiến thức phong phú hơn,
+
+00:08:09.170 --> 00:08:12.330
+đại diện tốt hơn nhiều cho mỗi từ.
+
+00:08:12.330 --> 00:08:14.230
+Bây giờ chúng ta hãy tập hợp tất cả những thứ
+
+00:08:14.230 --> 00:08:16.130
+này lại với nhau để xây dựng mạng Transformer.
+
+00:08:16.130 --> 00:08:17.770
+Chúng ta hãy đi vào video tiếp theo để thấy
+điều đó.

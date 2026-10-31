@@ -1,0 +1,361 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.440
+Trong video trước,
+
+2
+00:00:01.440 --> 00:00:06.410
+Mọi người đã thấy cách để khiến mạn nơ ron xuất ra 4 số bx
+
+3
+00:00:06.410 --> 00:00:08.850
+by, bh và bw để chỉ định
+
+4
+00:00:08.850 --> 00:00:12.840
+bounding box của một đối tượng mà mọi người muốn neural network khoanh vùng
+
+5
+00:00:12.840 --> 00:00:14.753
+Trong các trường hợp tổng quát hơn,
+
+6
+00:00:14.753 --> 00:00:17.400
+mọi người có thể có một neural network chỉ xuất tọa độ X và
+
+7
+00:00:17.400 --> 00:00:20.700
+Y của các điểm và hình ảnh quan trọng,
+
+8
+00:00:20.700 --> 00:00:24.960
+đôi khi được gọi là landmark (điểm mốc), đây là thứ ta muốn neural network nhận dạng
+
+9
+00:00:24.960 --> 00:00:26.451
+Hãy để tôi trình bày một vài ví dụ.
+
+10
+00:00:26.451 --> 00:00:31.095
+Giả sử mọi người đang xây dựng ứng dụng nhận dạng khuôn mặt và vì vài lý do
+
+11
+00:00:31.095 --> 00:00:36.835
+mọi người muốn thuật toán cho mọi người biết đâu là khóe mắt của một người nào đó
+
+12
+00:00:36.835 --> 00:00:40.530
+Vậy điểm đó có tọa độ X và Y
+
+13
+00:00:40.530 --> 00:00:43.310
+vì vậy mọi người chỉ có thể có một neural network có
+
+14
+00:00:43.310 --> 00:00:48.235
+layer cuối cùng của nó và có nó chỉ xuất ra hai số nữa
+
+15
+00:00:48.235 --> 00:00:51.804
+Tôi sẽ gọi lx và ly để
+
+16
+00:00:51.804 --> 00:00:56.730
+cho ta biết tọa độ của khóe mắt người đó
+
+17
+00:00:56.730 --> 00:01:01.680
+Bây giờ, nếu mọi người muốn nó cho mọi người biết tất cả bốn khóe mắt,
+
+18
+00:01:01.680 --> 00:01:03.595
+của cả 2 mắt
+
+19
+00:01:03.595 --> 00:01:06.360
+Vì vậy, nếu chúng ta gọi các điểm, điểm thứ nhất, thứ hai,
+
+20
+00:01:06.360 --> 00:01:08.640
+điểm thứ ba và thứ tư đi từ trái sang phải,
+
+21
+00:01:08.640 --> 00:01:13.585
+thì giờ mọi người có thể điều chỉnh neural network để xuất ra l1x,
+
+22
+00:01:13.585 --> 00:01:17.975
+l1y cho điểm đầu tiên và l2x,
+
+23
+00:01:17.975 --> 00:01:22.140
+l2y cho điểm thứ hai, v.v.
+
+24
+00:01:22.140 --> 00:01:25.015
+để neural network có thể xuất ra
+
+25
+00:01:25.015 --> 00:01:29.590
+vị trí ước lượng của 4 điểm đó trên mặt của người đó
+
+26
+00:01:29.590 --> 00:01:31.500
+Nhưng nếu mọi người không muốn nhiều hơn bốn điểm đó thì sao?
+
+27
+00:01:31.500 --> 00:01:33.195
+Nếu mọi người muốn xuất điểm này,
+
+28
+00:01:33.195 --> 00:01:36.885
+và điểm này và điểm này và điểm này dọc theo mắt thì sao?
+
+29
+00:01:36.885 --> 00:01:39.945
+Có lẽ xuất ra một số điểm quan trọng dọc theo miệng,
+
+30
+00:01:39.945 --> 00:01:44.205
+để mọi người có thể trích xuất hình dạng miệng và biết người đó đang cười hay đang bĩu môi
+
+31
+00:01:44.205 --> 00:01:47.250
+có thể trích xuất một vài điểm quan trọng dọc theo rìa
+
+32
+00:01:47.250 --> 00:01:50.175
+mũi nhưng mọi người có thể định nghĩa một số
+
+33
+00:01:50.175 --> 00:01:57.080
+Để bàn luận, giả sử 64 điểm hoặc 64 điểm mốc trên mặt.
+
+34
+00:01:57.080 --> 00:02:02.020
+Có lẽ cả một số điểm giúp ta định nghĩa các góc của mặt
+
+35
+00:02:02.020 --> 00:02:06.480
+định nghĩa xương hàm nhưng bằng cách chọn một số điểm mốc
+
+36
+00:02:06.480 --> 00:02:11.415
+và tạo bộ huấn luyện nhãn chứa tất cả các điểm mốc này,
+
+37
+00:02:11.415 --> 00:02:14.240
+sau đó mọi người có thể khiến neural network cho mọi người biết mọi người đang ở đâu
+
+38
+00:02:14.240 --> 00:02:19.045
+tất cả các vị trí quan trọng hoặc các điểm mốc quan trọng trên một khuôn mặt.
+
+39
+00:02:19.045 --> 00:02:21.305
+Vậy chúng ta sẽ có hình ảnh này,
+
+40
+00:02:21.305 --> 00:02:23.755
+khuôn mặt của một người làm đầu vào,
+
+41
+00:02:23.755 --> 00:02:28.564
+cho nó đi qua mạng convolution và có mạng convolution
+
+42
+00:02:28.564 --> 00:02:32.160
+sau đó có một số đặc điểm,
+
+43
+00:02:32.160 --> 00:02:34.285
+có thể khiến nó xuất 0 hoặc 1
+
+44
+00:02:34.285 --> 00:02:40.605
+như là ở đây có khuôn mặt nào không và nếu có thì khiến nó xuất đầu ra l1x
+
+45
+00:02:40.605 --> 00:02:48.675
+l1y, v.v. xuống l64x, l64y.
+
+46
+00:02:48.675 --> 00:02:52.065
+Và ở đây tôi đang sử dụng l để đại diện từ landmark
+
+47
+00:02:52.065 --> 00:02:59.905
+Vì vậy, ví dụ này sẽ có 129 unit đầu ra,
+
+48
+00:02:59.905 --> 00:03:02.005
+1 tức là có khuôn mặt trong hình hay không?
+
+49
+00:03:02.005 --> 00:03:04.020
+Và sau đó nếu mọi người có 64 điểm mốc,
+
+50
+00:03:04.020 --> 00:03:05.520
+tức là 64 x 2
+
+51
+00:03:05.520 --> 00:03:09.600
+vậy là 128 cộng 1 unit đầu ra và
+
+52
+00:03:09.600 --> 00:03:14.450
+điều này có thể cho mọi người biết nếu có một khuôn mặt và vị trí của tất cả các điểm mốc chính trên khuôn mặt.
+
+53
+00:03:14.450 --> 00:03:19.225
+Vì vậy, đây là một khối xây dựng cơ bản để nhận diện
+
+54
+00:03:19.225 --> 00:03:25.020
+cảm xúc từ khuôn mặt và nếu mọi người dùng Snapchat và các ứng dụng giải trí khác,
+
+55
+00:03:25.020 --> 00:03:28.635
+cũng như các bộ lọc (filter) thực tế tăng cường AR như
+
+56
+00:03:28.635 --> 00:03:33.635
+ảnh trên Snapchat có thể vẽ vương miện lên khuôn mặt và có các hiệu ứng khác
+
+57
+00:03:33.635 --> 00:03:36.565
+Có thể phát hiện những điểm mốc này trên khuôn mặt,
+
+58
+00:03:36.565 --> 00:03:41.949
+Còn có cả các khối xây dựng cho các hiệu ứng đồ họa máy tính như làm cong
+
+59
+00:03:41.949 --> 00:03:48.125
+khuôn mặt hoặc vẽ các hiệu ứng đặc biệt khác nhau như đội vương miện hoặc đội mũ lên người.
+
+60
+00:03:48.125 --> 00:03:50.600
+Tất nhiên, để huấn luyện một mạng như vậy
+
+61
+00:03:50.600 --> 00:03:52.995
+mọi người cần có training set nhãn
+
+62
+00:03:52.995 --> 00:03:57.455
+Chúng ta cũng có tập hình ảnh cũng như nhãn Y, có người
+
+63
+00:03:57.455 --> 00:04:00.350
+có người đã phải trải qua việc
+
+64
+00:04:00.350 --> 00:04:04.925
+chú thích tất cả các điểm mốc đó
+
+65
+00:04:04.925 --> 00:04:11.870
+Một ví dụ cuối cùng, nếu mọi người quan tâm đến việc phát hiện tư thế mọi người,
+
+66
+00:04:11.870 --> 00:04:17.110
+mọi người cũng có thể xác định một số vị trí chính như điểm giữa của ngực,
+
+67
+00:04:17.110 --> 00:04:21.807
+vai trái, khuỷu tay trái, cổ tay,
+
+68
+00:04:21.807 --> 00:04:24.936
+và v.v và khiến một neural network chú thích
+
+69
+00:04:24.936 --> 00:04:34.195
+các vị trí quan trọng trong tư thế của người đó và bằng cách có đầu ra neural network
+
+70
+00:04:34.195 --> 00:04:36.743
+tất cả những điểm tôi đang chú thích,
+
+71
+00:04:36.743 --> 00:04:42.685
+mọi người cũng có thể có neural network xuất ra tư thế của một người.
+
+72
+00:04:42.685 --> 00:04:47.325
+Và tất nhiên, để làm được điều đó, mọi người cũng cần chỉ định
+
+73
+00:04:47.325 --> 00:04:50.775
+những điểm mốc quan trọng này như có thể l1x và l1y
+
+74
+00:04:50.775 --> 00:04:55.395
+là điểm giữa của ngực xuống có thể xuống l32x,
+
+75
+00:04:55.395 --> 00:05:01.840
+l32y, nếu mọi người sử dụng 32 tọa độ để chỉ định tư thế của người đó.
+
+76
+00:05:01.840 --> 00:05:06.690
+Vì vậy, ý tưởng này có vẻ khá đơn giản khi chỉ thêm một loạt các unit đầu ra
+
+77
+00:05:06.690 --> 00:05:12.200
+để xuất ra tọa độ X, Y của các điểm mốc khác nhau mà mọi người muốn nhận dạng.
+
+78
+00:05:12.200 --> 00:05:16.290
+Tôi phải nói rõ là, danh tính của một điểm mốc phải là
+
+79
+00:05:16.290 --> 00:05:18.525
+nhất quán trên các hình ảnh khác nhau như có thể
+
+80
+00:05:18.525 --> 00:05:21.368
+là điểm mốc 1 luôn là khóe mắt này,
+
+81
+00:05:21.368 --> 00:05:23.535
+là điểm mốc 2 luôn là khóe mắt này,
+
+82
+00:05:23.535 --> 00:05:25.650
+điểm mốc ba, điểm mốc bốn, v.v.
+
+83
+00:05:25.650 --> 00:05:29.475
+Vì vậy, các nhãn phải nhất quán trên các hình ảnh khác nhau.
+
+84
+00:05:29.475 --> 00:05:34.350
+Nhưng nếu mọi người có thể thuê người gắn nhãn hoặc tự gắn nhãn một tập dữ liệu đủ lớn để làm điều này
+
+85
+00:05:34.350 --> 00:05:38.368
+thì một neural network có thể xuất ra tất cả các điểm mốc này sẽ
+
+86
+00:05:38.368 --> 00:05:43.440
+được sử dụng để thực hiện các hiệu ứng thú vị khác như với tư thế của người,
+
+87
+00:05:43.440 --> 00:05:47.935
+có thể cố gắng nhận ra cảm xúc của ai đó từ một bức ảnh, v.v.
+
+88
+00:05:47.935 --> 00:05:50.460
+Vì vậy, video về phát hiện điểm mốc đến đây là hết
+
+89
+00:05:50.460 --> 00:05:53.280
+Tiếp theo, hãy dùng các khối xây dựng này và sử dụng
+
+90
+00:05:53.280 --> 00:05:56.280
+chúng để bắt đầu xây dựng object detection.

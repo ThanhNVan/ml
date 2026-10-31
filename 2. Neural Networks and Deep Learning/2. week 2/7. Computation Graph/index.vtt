@@ -1,0 +1,150 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.440
+We've heard me say that the computations of a neural network are organized in terms of
+
+00:00:04.440 --> 00:00:09.300
+a forward pass or a forward propagation step in which we compute the output of the neural
+
+00:00:09.300 --> 00:00:14.680
+network, followed by a backward pass or a back propagation step which we use to compute
+
+00:00:14.680 --> 00:00:17.080
+gradients or compute derivatives.
+
+00:00:17.080 --> 00:00:21.700
+The computation draft explains why it is organized this way.
+
+00:00:21.700 --> 00:00:25.000
+In this video, we'll go through an example.
+
+00:00:25.000 --> 00:00:32.120
+In order to illustrate the computation draft, let's use a simpler example than logistic regression
+
+00:00:32.120 --> 00:00:34.640
+or a full-blown neural network.
+
+00:00:34.640 --> 00:00:39.360
+Let's say that we're trying to compute a function j, which is a function of three variables a,
+
+00:00:39.360 --> 00:00:40.840
+b, and c.
+
+00:00:40.840 --> 00:00:44.960
+And let's say that function is 3 times a plus b times c.
+
+00:00:44.960 --> 00:00:49.280
+Computing this function actually has three distinct steps.
+
+00:00:49.280 --> 00:00:52.520
+The first is you need to compute what is b times c.
+
+00:00:52.760 --> 00:00:55.160
+And let's say we store that in a variable called u.
+
+00:00:55.160 --> 00:00:57.960
+So u is equal to b times c.
+
+00:00:57.960 --> 00:01:01.520
+And then you might compute v is equal to a times u.
+
+00:01:01.520 --> 00:01:04.960
+So let's say this is v.
+
+00:01:04.960 --> 00:01:09.360
+And then finally, your output j is 3 times v.
+
+00:01:09.360 --> 00:01:15.600
+So this is your final function j that you're trying to compute.
+
+00:01:15.600 --> 00:01:20.880
+We can take these three steps and draw them in a computation draft as follows.
+
+00:01:20.960 --> 00:01:26.400
+Let's say I draw your three variables a, b, and c here.
+
+00:01:26.400 --> 00:01:31.800
+So the first thing we did was compute u equals b times c.
+
+00:01:31.800 --> 00:01:34.960
+So I'm going to put a rectangular box around that.
+
+00:01:34.960 --> 00:01:38.440
+And so the inputs to that are b and c.
+
+00:01:38.440 --> 00:01:45.680
+And then you might have v equals a plus u.
+
+00:01:45.680 --> 00:01:50.000
+So the inputs to that are v.
+
+00:01:52.240 --> 00:01:56.920
+So the inputs to that are u, which we just computed together with a.
+
+00:01:56.920 --> 00:02:04.240
+And then finally, we have j equals 3 times v.
+
+00:02:04.240 --> 00:02:11.240
+So as a counter example, if a equals 5, b equals 3, and c equals 2,
+
+00:02:11.240 --> 00:02:14.560
+then u equals bc would be 6.
+
+00:02:14.560 --> 00:02:18.040
+And v equals a plus u would be 5 plus 6 is 11.
+
+00:02:18.040 --> 00:02:19.040
+j is 3 times that.
+
+00:02:19.040 --> 00:02:20.520
+So j is equal to 33.
+
+00:02:20.520 --> 00:02:29.640
+And indeed, hopefully you can verify that this is 3 times 5 plus 3 times 2.
+
+00:02:29.640 --> 00:02:34.880
+And if you expand that out, you actually get 33 as the value of j.
+
+00:02:34.880 --> 00:02:40.840
+So the computation draft comes in handy when there is some distinguished or some special
+
+00:02:40.840 --> 00:02:46.440
+output variable, such as j in this case, that you want to optimize.
+
+00:02:46.440 --> 00:02:51.920
+And in the case of a logistic regression, j is of course the cost function that we're trying
+
+00:02:51.920 --> 00:02:53.640
+to minimize.
+
+00:02:53.640 --> 00:02:59.000
+And what we're seeing in this little example is that through a left to right pass, you
+
+00:02:59.000 --> 00:03:01.080
+can compute the value of j.
+
+00:03:01.080 --> 00:03:05.840
+And what we'll see in the next couple of slides is that in order to compute derivatives,
+
+00:03:05.840 --> 00:03:12.280
+it will be a right to left pass like this, kind of going in the opposite direction as
+
+00:03:12.280 --> 00:03:17.400
+the blue arrows that would be most natural for computing the derivatives.
+
+00:03:17.400 --> 00:03:22.400
+So to recap, the computation draft organizes a computation with this blue arrow left
+
+00:03:22.400 --> 00:03:24.480
+to right computation.
+
+00:03:24.480 --> 00:03:30.640
+Let's defer to the next video how you can do the backward red arrow right to left computation
+
+00:03:30.640 --> 00:03:31.880
+of the derivatives.
+
+00:03:31.880 --> 00:03:32.880
+Let's go on to the next video.

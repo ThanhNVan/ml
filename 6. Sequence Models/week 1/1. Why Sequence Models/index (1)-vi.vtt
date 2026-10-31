@@ -1,0 +1,205 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.805
+Chào mừng bạn đến với khóa học thứ năm này về deep learning.
+
+2
+00:00:02.805 --> 00:00:05.481
+Trong khóa học này, bạn sẽ tìm hiểu về các mô hình trình tự,
+
+3
+00:00:05.481 --> 00:00:07.800
+một trong những lĩnh vực thú vị nhất trong deep learning.
+
+4
+00:00:07.800 --> 00:00:13.088
+Các mô hình như neural network tái phát hoặc RNN đã chuyển đổi nhận dạng giọng nói,
+
+5
+00:00:13.088 --> 00:00:15.620
+xử lý ngôn ngữ tự nhiên và các lĩnh vực khác.
+
+6
+00:00:15.620 --> 00:00:18.930
+Và trong khóa học này, bạn học cách xây dựng các mô hình này cho chính mình.
+
+7
+00:00:18.930 --> 00:00:22.590
+Hãy bắt đầu bằng cách xem xét một vài ví dụ về nơi mà các mô hình trình tự có thể hữu ích.
+
+8
+00:00:22.590 --> 00:00:25.470
+Trong nhận dạng giọng nói bạn được cung cấp
+
+9
+00:00:25.470 --> 00:00:31.310
+một clip âm thanh đầu vào X và yêu cầu để ánh xạ nó vào một bảng điểm văn
+
+10
+00:00:31.310 --> 00:00:34.560
+bản Y Cả đầu vào và đầu ra ở đây là dữ liệu chuỗi,
+
+11
+00:00:34.560 --> 00:00:38.393
+bởi vì X là một clip âm thanh và do đó phát ra theo thời gian và Y,
+
+12
+00:00:38.393 --> 00:00:41.295
+đầu ra, là một chuỗi các từ.
+
+13
+00:00:41.295 --> 00:00:45.049
+Vì vậy, các mô hình trình tự như một neural network tái phát và các biến thể khác,
+
+14
+00:00:45.049 --> 00:00:48.953
+bạn sẽ tìm hiểu trong một chút đã rất hữu ích cho việc nhận dạng giọng nói.
+
+15
+00:00:48.953 --> 00:00:53.880
+Thế hệ âm nhạc là một ví dụ khác của một vấn đề với dữ liệu trình tự.
+
+16
+00:00:53.880 --> 00:00:57.300
+Trong trường hợp này, chỉ có đầu ra Y là một chuỗi,
+
+17
+00:00:57.300 --> 00:01:00.510
+đầu vào có thể là tập rỗng,
+
+18
+00:01:00.510 --> 00:01:02.617
+hoặc nó có thể là một số nguyên duy nhất, có
+
+19
+00:01:02.617 --> 00:01:04.770
+thể đề cập đến thể loại nhạc bạn muốn
+
+20
+00:01:04.770 --> 00:01:07.978
+tạo ra hoặc có thể là vài nốt nhạc đầu tiên của đoạn nhạc bạn muốn.
+
+21
+00:01:07.978 --> 00:01:15.120
+Nhưng ở đây X có thể là không có gì hoặc có thể chỉ là một số nguyên và đầu ra Y là một dãy.
+
+22
+00:01:15.120 --> 00:01:19.165
+Trong classification tình cảm đầu vào X là một chuỗi,
+
+23
+00:01:19.165 --> 00:01:20.788
+vì vậy cho cụm từ đầu vào như,
+
+24
+00:01:20.788 --> 00:01:26.469
+“Không có gì để thích trong bộ phim này” bạn nghĩ rằng bài đánh giá này sẽ là bao nhiêu ngôi sao?
+
+25
+00:01:26.469 --> 00:01:31.140
+Các mô hình trình tự cũng rất hữu ích cho việc phân tích trình tự DNA.
+
+26
+00:01:31.140 --> 00:01:35.385
+Vì vậy, DNA của bạn được biểu diễn qua bốn bảng chữ cái A, C, G,
+
+27
+00:01:35.385 --> 00:01:39.515
+và T. Và như vậy với một trình tự DNA bạn có thể dán nhãn
+
+28
+00:01:39.515 --> 00:01:43.996
+phần nào của trình tự DNA này nói tương ứng với protein.
+
+29
+00:01:43.996 --> 00:01:47.250
+Trong dịch máy bạn được đưa ra một câu đầu vào,
+
+30
+00:01:47.250 --> 00:01:48.549
+voulez-vou chante avec moi?
+
+31
+00:01:48.549 --> 00:01:53.160
+Và bạn được yêu cầu xuất bản dịch bằng một ngôn ngữ khác.
+
+32
+00:01:53.160 --> 00:01:56.400
+Trong nhận dạng hoạt động video, bạn có thể được cung cấp
+
+33
+00:01:56.400 --> 00:02:01.073
+một chuỗi các khung video và yêu cầu nhận dạng hoạt động.
+
+34
+00:02:01.073 --> 00:02:04.380
+Và trong công nhận thực thể tên bạn có thể được đưa ra
+
+35
+00:02:04.380 --> 00:02:08.840
+một câu và yêu cầu xác định những người trong câu đó.
+
+36
+00:02:08.840 --> 00:02:16.155
+Vì vậy, tất cả những vấn đề này có thể được giải quyết như là supervised learning với dữ liệu nhãn X,
+
+37
+00:02:16.155 --> 00:02:18.085
+Y như training set.
+
+38
+00:02:18.085 --> 00:02:20.010
+Nhưng, như bạn có thể nói từ danh sách các ví dụ này,
+
+39
+00:02:20.010 --> 00:02:22.765
+có rất nhiều loại khác nhau của các bài toán trình tự.
+
+40
+00:02:22.765 --> 00:02:26.745
+Trong một số, cả đầu vào X và đầu ra Y là chuỗi,
+
+41
+00:02:26.745 --> 00:02:28.470
+và trong trường hợp đó,
+
+42
+00:02:28.470 --> 00:02:30.750
+đôi khi X và Y có thể có độ dài khác nhau,
+
+43
+00:02:30.750 --> 00:02:34.109
+hoặc trong ví dụ này và ví dụ này,
+
+44
+00:02:34.109 --> 00:02:35.455
+X và Y có cùng độ dài.
+
+45
+00:02:35.455 --> 00:02:41.000
+Và trong một số ví dụ này chỉ có X hoặc chỉ có Y đối diện là một dãy.
+
+46
+00:02:41.000 --> 00:02:44.261
+Vì vậy, trong khóa học này bạn tìm hiểu về các mô hình trình tự được áp dụng,
+
+47
+00:02:44.261 --> 00:02:46.560
+vì vậy tất cả các cài đặt khác nhau này.
+
+48
+00:02:46.560 --> 00:02:49.800
+Vì vậy, tôi hy vọng điều này mang lại cho bạn một cảm giác
+
+49
+00:02:49.800 --> 00:02:53.815
+về những vấn đề thú vị mà các mô hình trình tự có thể giúp bạn giải quyết.
+
+50
+00:02:53.815 --> 00:02:56.610
+Với điều đó chúng ta hãy tiếp tục đến đoạn video tiếp theo mà chúng ta bắt đầu xác
+
+51
+00:02:56.610 --> 00:02:59.680
+định ký hiệu chúng ta sử dụng để xác định những vấn đề trình tự này.

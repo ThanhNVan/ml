@@ -1,0 +1,69 @@
+Bạn đã thấy cách sử dụng momentum
+có thể tăng gradient descent. Có một thuật toán khác được gọi là RMSprop, là viết tắt của root mean square prop (lan truyền căn bậc hai trung bình bình phương),
+cũng có thể tăng gradient descent. Hãy xem nó hoạt động như thế nào. Nhớ lại ví dụ của chúng ta trước đây,
+rằng nếu bạn triển khai gradient descent, bạn có thể kết thúc với các dao động lớn
+theo phương thẳng đứng, ngay cả khi nó đang cố gắng thực hiện các bước tiến theo phương ngang. Để cung cấp trực giác cho
+ví dụ này, hãy giả sử rằng trục tung là tham số b và
+trục hoành là tham số w. Nó có thể là w1 và w2 trong đó một số trong số
+tham số trung tâm được đặt tên là b và w vì lợi ích của trực giác. Và do đó, bạn muốn làm chậm lại
+quá trình học theo hướng b, hoặc theo phương thẳng đứng. Và tăng tốc độ học, hoặc ít nhất không làm chậm nó theo hướng ngang. Vì vậy, đây là những gì thuật toán RMSprop
+làm để thực hiện điều này. Trong lần lặp t, nó sẽ tính
+như thường lệ với đạo hàm dW, db trên mini batch hiện tại. Vì vậy, tôi sẽ giữ mức trung bình trọng số theo cấp số nhân này. Thay vì VdW,
+, tôi sẽ sử dụng ký hiệu mới SdW. Vì vậy, SdW bằng beta nhân với giá trị phía trước + 1- beta nhân bình phương dW. Đôi khi viết là dW**2 để biểu thị dW bình phương. Vì vậy, để rõ ràng, phép toán bình phương
+này là một phép toán bình phương từng thành phần. Vì vậy, những gì điều này đang làm thực sự là
+giữ trung bình trọng số theo cấp số nhân của bình phương các đạo hàm. Và tương tự, chúng ta cũng có Sdb bằng
+beta Sdb + 1- beta, db bình phương. Và một lần nữa,
+bình phương là một phép toán từng thành phần. Tiếp theo, RMSprop cập nhật
+các tham số như sau. W được cập nhật thành W trừ đi
+tốc độ học và trong khi trước đây chúng ta có alpha nhân dW,
+bây giờ là dW chia cho căn bậc hai của SdW. Và b được cập nhật là b trừ đi
+lần tốc độ học, thay vì chỉ gradient, đây cũng là
+chia cho, bây giờ chia cho Sdb. Vì vậy, chúng ta hãy có được một số trực giác
+về cách hoạt động của nó. Nhớ lại rằng theo phương ngang hoặc trong ví dụ này, theo hướng W
+chúng ta muốn việc học diễn ra khá nhanh. Trong khi theo phương thẳng đứng hoặc
+trong ví dụ này theo hướng b, chúng ta muốn làm chậm mọi dao động
+theo phương thẳng đứng. Vì vậy, với số hạng này SdW một Sdb, điều chúng ta hy vọng là SdW
+sẽ tương đối nhỏ, vì vậy ở đây chúng ta đang chia
+cho một số tương đối nhỏ. Trong khi Sdb sẽ tương đối lớn, do đó
+ở đây chúng ta đang chia yt cho một số tương đối lớn để làm chậm
+cập nhật theo chiều dọc. Và thực sự nếu bạn nhìn vào các đạo hàm,
+các đạo hàm này lớn hơn theo phương thẳng đứng
+so với phương ngang. Vậy độ dốc rất lớn
+theo phương b phải không? Vì vậy, với các đạo hàm như thế này, đây là
+một db rất lớn và một dw tương đối nhỏ. Bởi vì hàm này dốc hơn
+theo phương thẳng đứng hơn là theo phương b, theo phương w
+, hay theo phương ngang. Và như vậy, bình phương
+db sẽ tương đối lớn. Vì vậy, Sdb sẽ tương đối lớn, trong khi
+so với dW thì vẫn nhỏ hơn, hoặc dW bình phương sẽ nhỏ hơn,
+và do đó SdW sẽ nhỏ hơn. Vì vậy, hiệu quả thực sự của việc này là
+ngày tăng của bạn theo hướng thẳng đứng được chia cho một số lớn hơn nhiều, để giảm thiểu các dao động. Trong khi các cập nhật theo phương
+nằm ngang được chia cho một số nhỏ hơn. Vì vậy, tác động thực của việc sử dụng RMSprop
+là các bản cập nhật của bạn sẽ trông giống như thế này. Đó là cập nhật theo phương thẳng đứng và sau đó là phương ngang
+bạn có thể tiếp tục. Và một tác động của điều này là bạn
+có thể sử dụng tốc độ học alpha lớn hơn và học nhanh hơn mà không phân kỳ
+theo phương thẳng đứng. Bây giờ, để rõ ràng hơn, tôi sẽ gọi phương b và w lần lượt là phương thẳng đứng và phương ngang chỉ để minh họa điều này. Trên thực tế, bạn đang ở trong không gian
+chiều rất cao của các tham số, vì vậy, ở chiều thẳng đứng, nơi bạn đang cố gắng loại bỏ các dao động là tập hợp tổng
+của các tham số, w1, w2, w17. Và chiều ngang có thể là w3,
+w4, v.v., phải không ?. Và như vậy, sự phân tách có
+WMP chỉ là một minh họa. Trong thực tế, dW là một véc tơ tham số có chiều rất cao. Db cũng là vectơ tham số
+chiều rất cao, nhưng trực giác của bạn là trong các chiều, nơi bạn nhận được các dao động bạn sẽ tính được một tổng lớn. Trung bình trọng số cho
+các bình phương và đạo hàm này, v.v. vậy nên bạn sẽ giảm thiểu các chiều mà ở đó có dao động. Vì vậy, đó là RMSprop, và nó là viết tắt của
+root mean squared prop, bởi vì ở đây bạn bình phương các đạo hàm, và sau đó
+bạn lấy căn bậc hai ở đây ở cuối. Và cuối cùng, đây là một số chi tiết về thuật toán này trước khi chúng ta chuyển sang phần khác. Trong video tiếp theo, chúng tôi đang thực sự sẽ
+kết hợp RMSprop cùng với momentum. Vì vậy, thay vì sử dụng beta siêu tham số
+, mà chúng ta đã sử dụng trong momentum, Tôi sẽ gọi đây là siêu tham số
+beta 2 chỉ để không bị trùng Cùng một siêu tham số cho
+cả momentum và RMSprop. Và cũng để đảm bảo rằng thuật toán
+của bạn không chia cho 0. Điều gì xảy ra nếu căn bậc hai của SdW,
+phải, rất gần với 0. Sau đó, mọi thứ có thể nổ tung. Mục đích là để đảm bảo sự ổn định về số,
+khi bạn triển khai điều này trong thực tế, bạn thêm một epsilon rất,
+rất nhỏ vào mẫu số. Việc sử dụng epsilon nào thực sự không quan trọng lắm. 10 mũ -8 sẽ là
+mặc định hợp lý, nhưng điều này chỉ đảm bảo ổn định về số hơn một chút do các số làm tròn hay bất kể lí do gì, bạn sẽ không chia cho một số rất rất nhỏ. Vì vậy, đó là RMSprop và
+tương tự như momentum, có các tác động làm giảm các dao động trong gradient
+descent hay mini-batch gradient descent. Và cho phép bạn có thể sử dụng tốc độ học tập alpha lớn hơn. Và chắc chắn tăng tốc
+độ học của thuật toán của bạn. Vì vậy, bây giờ bạn đã biết triển khai RMSprop,
+và đây sẽ là một cách khác để bạn để tăng tốc thuật toán học tập của mình. Một sự thật thú vị về RMSprop, đó là nó thực ra được đề xuất lần đầu không phải trên các tờ báo nghiên cứu học thuật mà trong một khóa học Coursera mà Jeff Hinton
+đã dạy nhiều năm trước. Tôi đoán Coursera đã không có ý định trở thành một nền tảng để phổ cập các nghiên cứu hàn lâm mới lạ, nhưng
+nó hoạt động khá tốt trong trường hợp đó. Và thực sự từ khóa học Coursera
+, RMSprop bắt đầu được biết đến rộng rãi và nó thực sự đã thành công. Chúng ta đã nói về momentum. Chúng ta đã nói về RMSprop. Hóa ra nếu bạn đặt chúng
+lại cùng nhau, bạn có thể có được một thuật toán tối ưu hóa thậm chí còn tốt hơn. Hãy nói về điều đó trong video tiếp theo.

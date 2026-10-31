@@ -1,0 +1,532 @@
+WEBVTT
+
+1
+00:00:01.050 --> 00:00:03.840
+Thuật ngữ Deep Learning (Deep learning), đề cập 
+đến việc huấn luyện Neural network nhân tạo,
+
+2
+00:00:03.840 --> 00:00:06.050
+đôi khi là những neural network rất lớn.
+
+3
+00:00:06.050 --> 00:00:08.400
+Vậy chính xác thì mạng 
+nơ-ron nhân tạo là gì?
+
+4
+00:00:08.400 --> 00:00:11.340
+Trong video này, chúng tôi sẽ cố gắng
+ cung cấp cho bạn một số kiến thức cơ bản.
+
+5
+00:00:12.850 --> 00:00:16.540
+Hãy bắt đầu với ví dụ 
+Dự đoán giá nhà đất.
+
+6
+00:00:16.540 --> 00:00:20.599
+Giả sử bạn có một bộ dữ liệu với sáu ngôi nhà, 
+như vậy bạn biết kích thước của các ngôi nhà
+
+7
+00:00:20.599 --> 00:00:24.478
+tính bằng feet vuông hoặc mét vuông
+ và bạn biết giá nhà và bạn muốn
+
+8
+00:00:24.478 --> 00:00:28.501
+sử dụng một tiêu chuẩn để dự đoán 
+giá của các ngôi nhà, chức năng kích thước.
+
+9
+00:00:28.501 --> 00:00:33.509
+Vì vậy, nếu bạn đã quen với
+ linear regression, bạn có thể nghĩ, hãy
+
+10
+00:00:33.509 --> 00:00:38.450
+đặt một đường thẳng cho những dữ liệu này và 
+chúng ta sẽ có được một đường thẳng như thế này.
+
+11
+00:00:38.450 --> 00:00:41.850
+Nhưng theo một cách lý tưởng, bạn
+ có thể nghĩ rằng, chúng ta biết rằng giá cả
+
+12
+00:00:41.850 --> 00:00:43.770
+không bao giờ có thể âm, đúng không.
+
+13
+00:00:43.770 --> 00:00:48.050
+Như vậy, thay vì đường thẳng 
+phù hợp vốn sẽ phải âm,
+
+14
+00:00:48.050 --> 00:00:49.960
+thì hãy uốn cong ở đây.
+
+15
+00:00:49.960 --> 00:00:51.530
+Như vậy, nó chỉ kết thúc 
+bằng không ở đây.
+
+16
+00:00:51.530 --> 00:00:56.770
+Vì vậy, dòng màu xanh dày mà
+ bạn cho là tiêu chuẩn phù hợp
+
+17
+00:00:56.770 --> 00:00:59.760
+bạn dùng để dự đoán giá 
+nhà sẽ được đặt ở đây.
+
+18
+00:00:59.760 --> 00:01:03.310
+Trong khi 0 ở đây và sau đó có một
+ đường thẳng phù hợp ở bên phải.
+
+19
+00:01:04.408 --> 00:01:08.735
+Vì vậy, bạn có thể coi tiêu chuẩn
+ mà bạn vừa sử dụng cho giá nhà đất
+
+20
+00:01:08.735 --> 00:01:11.880
+như một neural network 
+nhân tạo rất đơn giản.
+
+21
+00:01:11.880 --> 00:01:14.230
+Nó gần như là đơn giản 
+như neural network nhân tạo.
+
+22
+00:01:14.230 --> 00:01:15.000
+Hãy để tôi vẽ minh họa ở đây.
+
+23
+00:01:17.220 --> 00:01:22.170
+Chúng ta có đầu vào cho neural network nhân tạo là
+ kích thước của một ngôi nhà mà chúng ta gọi là x.
+
+24
+00:01:22.170 --> 00:01:26.791
+Nó đi vào nút này,
+ hình tròn nhỏ này và
+
+25
+00:01:26.791 --> 00:01:30.940
+sau đó nó đưa ra giá 
+mà chúng ta gọi là y.
+
+26
+00:01:30.940 --> 00:01:37.183
+Như vậy, hình tròn nhỏ này, là một nơron
+ duy nhất trong neural network nhân tạo,
+
+27
+00:01:37.183 --> 00:01:41.830
+thực hiện chức năng này mà 
+chúng ta đã vẽ bên trái.
+
+28
+00:01:43.350 --> 00:01:48.940
+Và tất cả những gì mà các nơ-ron làm là nhập
+ kích thước, tính toán hàm tuyến tính này,
+
+29
+00:01:48.940 --> 00:01:51.960
+lấy tối đa bằng 0, và sau đó
+ đưa ra giá ước tính.
+
+30
+00:01:53.190 --> 00:01:58.230
+Và nhân tiện trong tài liệu nơ ron nhân tạo,
+ bạn sẽ thấy chức năng này rất nhiều.
+
+31
+00:01:58.230 --> 00:02:00.992
+Hàm này đôi khi về 0 và
+
+32
+00:02:00.992 --> 00:02:03.550
+sau đó nó sẽ đi lên 
+thành một đường thẳng.
+
+33
+00:02:03.550 --> 00:02:09.108
+Hàm này được gọi là 
+hàm ReLU, viết tắt của
+
+34
+00:02:09.108 --> 00:02:17.620
+các đơn vị tuyến tính tinh chỉnh.
+
+35
+00:02:17.620 --> 00:02:18.252
+Là R-E-L-U. Và
+
+36
+00:02:18.252 --> 00:02:22.520
+tinh chỉnh có nghĩa là lấy tối đa bằng 0, đó là lý do 
+tại sao bạn có được hình dạng hàm như thế này.
+
+37
+00:02:23.640 --> 00:02:25.550
+Bạn không cần phải nghĩ 
+về các đơn vị ReLU lúc này
+
+38
+00:02:25.550 --> 00:02:30.200
+Bởi bạn sẽ gặp lại nó
+ sau trong khóa học này.
+
+39
+00:02:30.200 --> 00:02:33.790
+Như vậy, nếu đây là một nơron, 
+neural network nhân tạo,
+
+40
+00:02:33.790 --> 00:02:38.870
+một neural network cực kỳ nhỏ bé, thì 
+một neural network nhân tạo lớn hơn
+
+41
+00:02:38.870 --> 00:02:44.520
+sẽ được hình thành bằng cách lấy nhiều
+ nơ-ron đơn lẻ và xếp chúng lại với nhau.
+
+42
+00:02:44.520 --> 00:02:50.700
+Nếu bạn coi nơ-ron này giống 
+như một viên gạch Lego, thì bạn
+
+43
+00:02:50.700 --> 00:02:55.270
+sẽ có được một neural network lớn hơn bằng 
+cách ráp nhiều viên gạch Lego này lại với nhau.
+
+44
+00:02:55.270 --> 00:02:56.110
+Chúng ta hãy xem một ví dụ.
+
+45
+00:02:57.260 --> 00:03:02.220
+Giả sử thay vì dự đoán giá của
+ một ngôi nhà chỉ từ kích thước,
+
+46
+00:03:02.220 --> 00:03:04.330
+bây giờ bạn có các đặc điểm khác.
+
+47
+00:03:04.330 --> 00:03:08.164
+Bạn biết những điều khác về chủ nhà,
+ chẳng hạn như số lượng phòng ngủ,
+
+48
+00:03:08.164 --> 00:03:13.630
+Tôi nên viết là #phòng ngủ, và bạn 
+cũng có thể cho là một trong những
+
+49
+00:03:13.630 --> 00:03:18.820
+yếu tố mà thực sự ảnh hưởng đến giá của
+ một ngôi nhà là quy mô gia đình, đúng chứ?
+
+50
+00:03:18.820 --> 00:03:21.882
+Như vậy, ngôi nhà này có thể phù hợp với
+ gia đình ba người, hoặc gia đình bốn, hoặc
+
+51
+00:03:21.882 --> 00:03:22.687
+gia đình năm người?
+
+52
+00:03:22.687 --> 00:03:26.351
+Và nó thực sự dựa trên kích thước tính
+ bằng feet vuông hoặc mét vuông, và
+
+53
+00:03:26.351 --> 00:03:28.960
+số lượng phòng ngủ quyết định liệu
+
+54
+00:03:28.960 --> 00:03:31.462
+một ngôi nhà có thể phù hợp với 
+quy mô gia đình của bạn hay không.
+
+55
+00:03:31.462 --> 00:03:34.909
+Và sau đó có thể bạn biết mã zip,
+
+56
+00:03:34.909 --> 00:03:40.520
+ở các quốc gia khác, nó được
+ gọi là mã bưu chính của một ngôi nhà.
+
+57
+00:03:40.520 --> 00:03:48.820
+Và mã zip cũng có thể nói với bạn về một 
+điều trong tương lai, như là khả năng đi bộ?
+
+58
+00:03:48.820 --> 00:03:51.434
+Vì vậy, khu phố này dễ đi bộ?
+
+59
+00:03:51.434 --> 00:03:53.635
+Như là đi bộ tới các cửa hàng tạp hóa?
+
+60
+00:03:53.635 --> 00:03:54.194
+Đi bộ đến trường?
+
+61
+00:03:54.194 --> 00:03:55.250
+Bạn có cần lái xe không?
+
+62
+00:03:55.250 --> 00:03:57.870
+Và một số người thích
+ các khu phố dễ đi bộ.
+
+63
+00:03:57.870 --> 00:04:06.145
+Và sau đó, cũng như mã zip, mức độ
+ giàu có cũng sẽ cho bạn biết, đúng chứ.
+
+64
+00:04:06.145 --> 00:04:09.200
+Chắc chắn là ở Hoa Kỳ cũng 
+như ở một số nước khác.
+
+65
+00:04:09.200 --> 00:04:13.590
+Cho bạn biết chất lượng 
+trường học tốt như thế nào.
+
+66
+00:04:13.590 --> 00:04:17.820
+Vì vậy, mỗi hình tròn nhỏ mà tôi
+ đang vẽ, có thể là một trong những ReLU đó,
+
+67
+00:04:17.820 --> 00:04:22.670
+tinh chỉnh đơn vị tuyến tính hoặc một
+ số chức năng không tuyến tính khác.
+
+68
+00:04:22.670 --> 00:04:24.936
+Vì vậy, dựa trên kích thước 
+và số lượng phòng ngủ,
+
+69
+00:04:24.936 --> 00:04:28.420
+bạn có thể ước tính quy mô gia đình,
+ mã zip của họ, dựa trên khả năng đi bộ,
+
+70
+00:04:28.420 --> 00:04:32.050
+dựa trên mã zip và mức độ giàu có
+ có thể ước tính chất lượng trường học.
+
+71
+00:04:32.050 --> 00:04:35.660
+Và cuối cùng, bạn có thể nghĩ rằng
+ cách mà mọi người quyết định là họ
+
+72
+00:04:35.660 --> 00:04:38.880
+sẽ trả bao nhiêu cho một ngôi nhà, là họ
+ nhìn vào những điều thực sự quan trọng với họ.
+
+73
+00:04:38.880 --> 00:04:43.060
+Trong trường hợp này quy mô gia đình, 
+khả năng đi lại, và chất lượng trường học và
+
+74
+00:04:43.060 --> 00:04:45.210
+điều đó giúp bạn dự đoán giá.
+
+75
+00:04:46.330 --> 00:04:51.740
+Vì vậy, trong ví dụ thì x là 
+tất cả bốn đầu vào này.
+
+76
+00:04:53.470 --> 00:04:56.460
+Và y là giá bạn đang
+ cố gắng dự đoán.
+
+77
+00:04:57.960 --> 00:05:03.350
+Và do đó, bằng cách xếp chồng một vài nơ-ron
+ đơn lẻ hoặc các yếu tố dự đoán đơn giản
+
+78
+00:05:03.350 --> 00:05:07.360
+chúng ta có từ slide trước, bây giờ chúng ta có 
+một neural network nhân tạo lớn hơn một chút.
+
+79
+00:05:07.360 --> 00:05:10.850
+Cách bạn quản lý neural network 
+nhân tạo là khi bạn triển khai nó,
+
+80
+00:05:10.850 --> 00:05:15.860
+bạn cần cung cấp
+ cho nó đầu vào x và
+
+81
+00:05:15.860 --> 00:05:20.740
+đầu ra y cho một số ví dụ
+ trong training set của bạn và
+
+82
+00:05:20.740 --> 00:05:23.580
+tất cả những điều này
+ ở giữa, chúng sẽ tự tính ra.
+
+83
+00:05:25.435 --> 00:05:29.225
+Vì vậy, những gì bạn 
+thực sự thực hiện là điều này.
+
+84
+00:05:29.225 --> 00:05:32.055
+Ở đây, bạn có một neural network
+ nhân tạo với bốn đầu vào.
+
+85
+00:05:32.055 --> 00:05:35.455
+Vì vậy, các feature đầu vào 
+có thể là kích thước, số phòng ngủ,
+
+86
+00:05:35.455 --> 00:05:40.365
+mã zip hoặc mã bưu chính, và 
+mức độ giàu có của khu phố.
+
+87
+00:05:40.365 --> 00:05:44.805
+Và do đó, với các 
+feature đầu vào,
+
+88
+00:05:44.805 --> 00:05:50.200
+công việc của neural network
+ sẽ là dự đoán giá y.
+
+89
+00:05:50.200 --> 00:05:55.942
+Và hãy nhớ là mỗi hình tròn này
+ được gọi là các đơn vị ẩn trong
+
+90
+00:05:55.942 --> 00:06:02.310
+neural network nhân tạo, mỗi mạng 
+đều có cả bốn feature đầu vào.
+
+91
+00:06:02.310 --> 00:06:08.139
+Ví dụ, thay vì nói các nút đầu tiên
+ này đại diện cho quy mô gia đình và
+
+92
+00:06:08.139 --> 00:06:12.056
+kích thước gia đình chỉ phụ thuộc
+ vào các feature X1 và X2.
+
+93
+00:06:12.056 --> 00:06:15.302
+Thay vào đó, chúng ta sẽ nói,
+ neural network nhân tạo,
+
+94
+00:06:15.302 --> 00:06:18.200
+bạn là người quyết định 
+cách gọi tên điều này.
+
+95
+00:06:18.200 --> 00:06:21.070
+Và chúng tôi sẽ cung cấp cho bạn tất cả bốn
+ feature để hoàn thành bất cứ điều gì bạn muốn.
+
+96
+00:06:21.070 --> 00:06:26.170
+Vì vậy, chúng ta nói rằng các lớp, 
+mà đây là lớp đầu vào và
+
+97
+00:06:26.170 --> 00:06:28.960
+lớp này ở giữa neural network
+ nhân tạo được kết nối mật độ.
+
+98
+00:06:28.960 --> 00:06:31.740
+Bởi vì mọi feature 
+đầu vào được kết nối với mọi
+
+99
+00:06:31.740 --> 00:06:33.980
+hình tròn ở giữa.
+
+100
+00:06:33.980 --> 00:06:38.630
+Và điều đáng lưu ý về các neural network
+ nhân tạo là, khi được cung cấp đủ dữ liệu về
+
+101
+00:06:38.630 --> 00:06:43.290
+x và y, được cung cấp đủ ví dụ huấn
+ luyện với cả x và y, neural network nhân tạo
+
+102
+00:06:43.290 --> 00:06:47.450
+đặc biệt hiệu quả trong việc tìm ra
+ các hàm mà ánh xạ chính xác từ x đến y.
+
+103
+00:06:48.990 --> 00:06:51.680
+Như vậy, đó là một mạng 
+nơ-ron nhân tạo cơ bản.
+
+104
+00:06:51.680 --> 00:06:54.290
+Hóa ra khi bạn xây dựng mạng 
+nơ-ron nhân tạo của riêng mình,
+
+105
+00:06:54.290 --> 00:06:57.130
+bạn sẽ có thể thấy chúng 
+hữu ích nhất, mạnh mẽ nhất
+
+106
+00:06:57.130 --> 00:07:01.620
+trong các khuyến khích học tập có giám sát,
+ có nghĩa là bạn đang cố lấy đầu vào x và
+
+107
+00:07:01.620 --> 00:07:06.980
+ánh xạ nó tới một số đầu ra y, như chúng ta
+ vừa thấy trong ví dụ dự đoán giá nhà đất.
+
+108
+00:07:06.980 --> 00:07:11.490
+Trong video tiếp theo, hãy xem thêm
+ một số ví dụ về học tập có giám sát và
+
+109
+00:07:11.490 --> 00:07:15.670
+một số ví dụ về nơi mà bạn có thể thấy 
+neural network của mình cực kỳ hữu ích đối với
+
+110
+00:07:15.670 --> 00:07:16.670
+các ứng dụng của bạn.

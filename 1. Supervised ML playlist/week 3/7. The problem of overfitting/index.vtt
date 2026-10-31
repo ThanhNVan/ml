@@ -1,0 +1,294 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.160 --> 00:00:08.160
+Now you've seen a couple of different learning algorithms, linear regression and logistic regression.
+
+00:00:08.160 --> 00:00:16.160
+They work well for many tasks, but sometimes in an application, the algorithm could run into a problem called overfitting,
+
+00:00:16.160 --> 00:00:19.160
+which can cause it to perform poorly.
+
+00:00:19.160 --> 00:00:23.160
+What I'd like to do in this video is to show you what is overfitting,
+
+00:00:23.160 --> 00:00:28.160
+as well as a closely related, almost opposite problem called underfitting.
+
+00:00:28.160 --> 00:00:34.160
+And in the next videos after this, I'll share with you some techniques for addressing overfitting.
+
+00:00:34.160 --> 00:00:38.160
+In particular, there's a method called regularization, very useful technique.
+
+00:00:38.160 --> 00:00:44.160
+I use it all the time, but regularization will help you minimize this overfitting problem
+
+00:00:44.160 --> 00:00:47.160
+and get your learning algorithms to work much better.
+
+00:00:47.160 --> 00:00:51.160
+So let's take a look at what is overfitting.
+
+00:00:51.160 --> 00:00:58.160
+To help us understand what is overfitting, let's take a look at a few examples.
+
+00:00:58.160 --> 00:01:04.160
+Let's go back to our original example of predicting housing prices with linear regression,
+
+00:01:04.160 --> 00:01:09.160
+where you want to predict the price as a function of the size of a house.
+
+00:01:09.160 --> 00:01:17.160
+To help us understand what is overfitting, let's take a look at a linear regression example.
+
+00:01:18.160 --> 00:01:24.160
+And I'm going to go back to our original running example of predicting housing prices with linear regression.
+
+00:01:24.160 --> 00:01:31.160
+Suppose your data set looks like this, with the input feature x being the size of the house
+
+00:01:31.160 --> 00:01:36.160
+and the value y they're trying to predict the price of the house.
+
+00:01:36.160 --> 00:01:41.160
+One thing you could do is fit a linear function to this data.
+
+00:01:41.160 --> 00:01:47.160
+And if you do that, you get a straight line fit to the data that maybe looks like this.
+
+00:01:47.160 --> 00:01:50.160
+But this isn't a very good model.
+
+00:01:50.160 --> 00:01:55.160
+Looking at the data, it seems pretty clear that as the size of the house increases,
+
+00:01:55.160 --> 00:01:58.160
+the housing prices kind of flatten out.
+
+00:01:58.160 --> 00:02:04.160
+So this algorithm does not fit the training data very well.
+
+00:02:04.160 --> 00:02:10.160
+The technical term for this is the model is underfitting the training data.
+
+00:02:11.160 --> 00:02:16.160
+Another term is the algorithm has high bias.
+
+00:02:16.160 --> 00:02:21.160
+You may have read in the news about some learning algorithms, really unfortunately,
+
+00:02:21.160 --> 00:02:26.160
+demonstrating bias against certain ethnicities or certain genders.
+
+00:02:26.160 --> 00:02:31.160
+In machine learning, the term bias has multiple meanings.
+
+00:02:31.160 --> 00:02:39.160
+Checking learning algorithms for bias based on characteristics such as gender or ethnicity is absolutely critical.
+
+00:02:41.160 --> 00:02:47.160
+But the term bias has a second technical meaning as well, which is the one I'm using here,
+
+00:02:47.160 --> 00:02:55.160
+which is if the algorithm has underfit the data, meaning that it's just not even able to fit the training set that well.
+
+00:02:55.160 --> 00:03:01.160
+That there's a clear pattern in the training data that the algorithm is just unable to capture.
+
+00:03:01.160 --> 00:03:05.160
+Another way to think of this form of bias is,
+
+00:03:05.160 --> 00:03:10.160
+as if the learning algorithm has a very strong preconception, or we say a very strong bias,
+
+00:03:10.160 --> 00:03:19.160
+that the housing prices are going to be a completely linear function of the size, despite data to the contrary.
+
+00:03:19.160 --> 00:03:30.160
+So this preconception that the data is linear causes it to fit a straight line that fits the data poorly, leading it to underfit the data.
+
+00:03:30.160 --> 00:03:43.160
+Now, let's look at a second variation of a model, which is, if you instead fit a quadratic function to the data with two features, x and x squared,
+
+00:03:43.160 --> 00:03:55.160
+then when you fit the parameters w1 and w2, you can get a curve that fits the data somewhat better. Maybe it looks like this.
+
+00:03:55.160 --> 00:04:01.160
+Also, if you were to get a new house that's not in this set of five training examples,
+
+00:04:01.160 --> 00:04:06.160
+this model would probably do quite well on that new house.
+
+00:04:06.160 --> 00:04:18.160
+So if you're a real estate agent, the idea that you want your learning algorithm to do well, even on examples that are not on the training set, that's called generalization.
+
+00:04:18.160 --> 00:04:28.160
+Technically, we say that you want your learning algorithm to generalize well, which means to make good predictions, even on brand new examples that it has never seen before.
+
+00:04:28.160 --> 00:04:38.160
+So this quadratic model seems to fit the training set not perfectly, but pretty well. And I think it would generalize well to new examples.
+
+00:04:38.160 --> 00:04:45.160
+Now, let's look at the other extreme. What if you were to fit a fourth order polynomial to the data?
+
+00:04:45.160 --> 00:04:58.160
+So you have x, x squared, x cubed, and x to the fourth all as features. With this fourth order polynomial, you can actually fit the curve that passes through all five of the training examples exactly.
+
+00:04:58.160 --> 00:05:03.160
+And you might get a curve that looks like this.
+
+00:05:03.160 --> 00:05:12.160
+This, on one hand, seems to do an extremely good job fitting the training data because it passes through all of the training data perfectly.
+
+00:05:12.160 --> 00:05:23.160
+In fact, you'll be able to choose parameters that will result in the cost function being exactly equal to zero because the errors are zero on all five training examples.
+
+00:05:23.160 --> 00:05:29.160
+But this is a very, you know, wiggly curve. It's going up and down all over the place.
+
+00:05:29.160 --> 00:05:38.160
+And if you have this whole size right here, the model would predict that this house is cheaper than houses that are smaller than it.
+
+00:05:39.160 --> 00:05:54.160
+So we don't think that this is a particularly good model for predicting housing prices. The technical term is that we'll say this model has overfit the data or this model has an overfitting problem.
+
+00:05:54.160 --> 00:06:01.160
+Because even though it fits the training set very well, it has fit the data almost too well, hence it's overfit.
+
+00:06:01.160 --> 00:06:07.160
+And it does not look like this model will generalize to new examples that has never seen before.
+
+00:06:08.160 --> 00:06:13.160
+Another term for this is that the algorithm has high variance.
+
+00:06:13.160 --> 00:06:24.160
+In machine learning, many people will use the terms overfit and high variance almost interchangeably, and we'll use the terms underfit and high bias almost interchangeably.
+
+00:06:26.160 --> 00:06:34.160
+The intuition behind overfitting or high variance is that the algorithm is trying very, very hard to fit every single training example.
+
+00:06:34.160 --> 00:06:48.160
+And it turns out that if your training set were just even a little bit different, say one house was priced just a little bit more, a little bit less, then the function that the algorithm fits could end up being totally different.
+
+00:06:48.160 --> 00:07:02.160
+So if two different machine learning engineers were to fit this fourth order polynomial model to just slightly different data sets, they could end up with totally different predictions or highly variable predictions.
+
+00:07:03.160 --> 00:07:06.160
+And that's why we say the algorithm has high variance.
+
+00:07:07.160 --> 00:07:18.160
+Contrasting this rightmost model with the one in the middle, for the same house, it seems the middle model gives the much more reasonable prediction for price.
+
+00:07:18.160 --> 00:07:27.160
+There isn't really a name for this case in the middle, but I'm just going to call this just right because it is neither underfit nor overfit.
+
+00:07:28.160 --> 00:07:35.160
+So we can say that the goal of machine learning is to find a model that hopefully is neither underfitting nor overfitting.
+
+00:07:35.160 --> 00:07:41.160
+In other words, hopefully a model that has neither high bias nor high variance.
+
+00:07:42.160 --> 00:07:53.160
+When I think about underfitting and overfitting high bias and high variance, I'm sometimes reminded of the children's story of Goldilocks and the Three Bears.
+
+00:07:54.160 --> 00:08:00.160
+In this children's tale, a girl called Goldilocks visits the home of a bear family.
+
+00:08:00.160 --> 00:08:05.160
+There's a bowl of porridge that's too cold to taste, and so that's no good.
+
+00:08:06.160 --> 00:08:09.160
+There's also a bowl of porridge that's too hot to eat.
+
+00:08:10.160 --> 00:08:11.160
+So that's no good either.
+
+00:08:12.160 --> 00:08:15.160
+But there's a bowl of porridge that is neither too cold nor too hot.
+
+00:08:15.160 --> 00:08:19.160
+The temperature is in the middle, which is just right to eat.
+
+00:08:20.160 --> 00:08:31.160
+So to recap, if you have too many features like the fourth water polynomial on the right, then the model may fit the training set well, but almost too well or overfit in the five variants.
+
+00:08:32.160 --> 00:08:39.160
+On the flip side, if you have too few features, then in this example, like the one on the left, it underfits and has high bias.
+
+00:08:40.160 --> 00:08:45.160
+And in this example, using quadratic features, x and x squared, that seems to be just right.
+
+00:08:46.160 --> 00:08:51.160
+So far, we've looked at underfitting and overfitting for linear regression model.
+
+00:08:52.160 --> 00:08:55.160
+Similarly, overfitting applies to classification as well.
+
+00:08:56.160 --> 00:09:05.160
+Here's a classification example with two features, x1 and x2, where x1 is maybe the tumor size and x2 is the age of the patient.
+
+00:09:06.160 --> 00:09:12.160
+And we're trying to classify if a tumor is malignant or benign, as denoted by these crosses and circles.
+
+00:09:13.160 --> 00:09:28.160
+One thing you can do is fit a logistic regression model, just a simple model, like this, where as usual, g is the sigmoid function, and this term here inside is z.
+
+00:09:29.160 --> 00:09:35.160
+So if you do that, you end up with a straight line as the decision boundary.
+
+00:09:36.160 --> 00:09:41.160
+This is the line where z is equal to zero, that separates the positive and negative examples.
+
+00:09:42.160 --> 00:09:48.160
+This straight line doesn't look terrible. It looks kind of okay, but it doesn't look like a very good fit to the data either.
+
+00:09:49.160 --> 00:09:53.160
+So this is an example of underfitting or of high bias.
+
+00:09:54.160 --> 00:09:56.160
+Let's look at another example.
+
+00:09:57.160 --> 00:10:12.160
+If you were to add to your features these quadratic terms, then z becomes this new term in the middle, and the decision boundary, that is, where z equals zero, can look more like this, more like an ellipse or part of an ellipse.
+
+00:10:13.160 --> 00:10:20.160
+And this is a pretty good fit to the data, even though it does not perfectly classify every single training example in the training set.
+
+00:10:21.160 --> 00:10:24.160
+Notice how some of these crosses get classified among the circles.
+
+00:10:25.160 --> 00:10:32.160
+But this model looks pretty good. I'm going to call it just right, and it looks like this will generalize pretty well to new patients.
+
+00:10:34.160 --> 00:10:42.160
+And finally, at the other extreme, if you were to fit a very high order polynomial with many, many features like these,
+
+00:10:43.160 --> 00:10:52.160
+then the model may try really hard and contort or twist itself to find a decision boundary that fits your training data perfectly.
+
+00:10:53.160 --> 00:11:02.160
+Having all these higher order polynomial features allows the algorithm to choose this really overly complex decision boundary.
+
+00:11:03.160 --> 00:11:14.160
+If the features are tumor size and age, and you're trying to classify tumors as malignant or benign, then this doesn't really look like a very good model for making predictions.
+
+00:11:15.160 --> 00:11:26.160
+So once again, this is an instance of overfitting and high variance, because this model, despite doing very well on the training set, doesn't look like it would generalize well to new examples.
+
+00:11:27.160 --> 00:11:34.160
+So now you've seen how an algorithm can underfit or have high bias or overfit and have high variance.
+
+00:11:35.160 --> 00:11:38.160
+You may want to know how you can get a model that is just right.
+
+00:11:39.160 --> 00:11:43.160
+In the next video, we'll look at some ways you can address the issue of overfitting.
+
+00:11:44.160 --> 00:11:48.160
+And we'll also touch on some ideas relevant for addressing underfitting.
+
+00:11:49.160 --> 00:11:50.160
+Let's go on to the next video.

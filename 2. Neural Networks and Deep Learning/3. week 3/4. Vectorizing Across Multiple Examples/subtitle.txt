@@ -1,0 +1,69 @@
+Trong video trước, bạn đã thấy
+cách để tính toán dự đoán trên một mạng nơ‑ron, khi có một mẫu huấn luyện đơn cho trước. Trong video này, bạn sẽ thấy cách để
+vector hóa trên nhiều mẫu huấn luyện. Và kết quả sẽ khá giống với
+những gì bạn đã thấy cho hồi quy logistic. Trong đó việc xếp chồng nhiều mẫu huấn luyện
+khác nhau trong các cột khác nhau của ma trận, bạn có thể lấy các phương trình
+bạn đã có từ video trước. Và với rất ít sửa đổi, thay đổi
+chúng để mạng nơ-ron tính toán các đầura trên tất cả các mẫu
+gần như là cùng một lúc. Vậy hãy cùng tìm hiểu chi tiết cách để thực thi điều này. Đây là 4 phương trình chúng ta có từ video trước
+là cách để bạn tính z1, a1, z2 và a2. Và chúng chỉ bạn cách, đưa một
+đầu vào là vector đặc trưng x, bạn có thể dùng chúng để tính a2=y^
+cho một mẫu huấn luyện đơn. Giờ nếu bạn có m mẫu huấn luyện,
+bạn cần lặp lại quy trình này cho mẫu huấn luyện đầu tiên. X(1) để tính y^(1) để dự đoán
+trên mẫu huấn luyệnđầu tiên của bạn. Sau đó, X(2) sử dụng nó để tạo ra một dự đoán y^(2). Và cứ thể tiếp tục đến X(m) để tạo ra một dự đoán y^(m). Và như vậy, trong tất cả những ký hiệu hàm kích hoạt này, Tôi sẽ viết là a[2](1). Và đây là a[2](2), và a[2](m), vậy nên ký hiệu này ở đây sẽ là a[2](i). Chữ i trong ngoặc tròn ám chỉ mẫu huấn luyện thứ i, và số 2 trong ngoặc vuông ám chỉ lớp thứ 2, okay. Và đó là ý nghĩa của các chỉ số
+nằm trong ngoặc vuông và ngoặc tròn. Và do đó, chúng gợi ý rằng
+nếu bạn không thực thi việc vector hóa và muốn tính các dự đoán
+của toàn bộ mẫu huấn luyện, bạn cần phải tính từ i=1 đến m. Và về cơ bản là thực thi 4 phương trình này,
+phải không? Bạn cần tính z[1](i) = W[1]x(i) + b[1], a[1](i) = sigmoid(z[1](i)). z[2](i) = W[2]a[1](i) + b[2] và a[2](i) = sigmoid(z[2](i)). Vậy về cơ bản, 4 phương trình này
+được thêm mũ [i] trên tất cả các biến
+và i phụ thuộc vào các mẫu huấn luyện. Vì vậy hãy thêm mũ [i] vào X, z và a nếu bạn muốn tính toàn tất cả các đầu ra
+trên m mẫu huấn luyện của bạn. Những gì chúng ta muốn làm là vector hóa toàn bộ tính toán, để loại bỏ vòng lặp for. Và nhân tiện, trong trường hợp có vẻ
+tôi đang có cả tá đại số tuyến tính,
+hóa ra việc có thể thực thi chúng một cách chính xác lại rất quan trọng
+trong kỷ nguyên deep learning. Và chúng tôi đã chọn lựa rất cẩn thận
+ký hiệu cho khóa học này và làm các bước vector hóa này
+đơn giản nhất có thể. Và tôi hy vọng rằng việc học được
+kiến thức cốt lõi này này sẽ giúp bạn triển khai chính xác các thuật toán m
+ột cách nhanh chóng hơn. Được rồi, tôi sẽ sao chép toàn bộ
+khối mã này sang slide tiếp theo và rồi chúng ta sẽ xem làm
+thế nào để vector hóa điều này. Đây là cái chúng ta có từ slide trước với vòng lặp for trên m ví dụ
+huấn luyện của chúng ta. Hãy nhớ rằng chúng ta
+đã xác định ma trận x bằng các ví dụ huấn luyện của chúng ta
+xếp lên nhau trong các cột như này. Hãy lấy các ví dụ huấn luyện
+và xếp chúng trong các cột. Và điều này trở thành một n, hoặc có thể là ma trận (nx, m). Tôi sẽ chỉ đưa ra dòng cần thiết và cho
+bạn biết những gì bạn cần thực hiện trong để có một triển khai
+véc tơ hóa của vòng lặp for này. Thực tế, những gì bạn cần làm là tính Z [1] = W [1] X + b [1], A [1] = sigmoid của z [1]. Thì Z [2] = w [2] A [1] + b [2] và A [2] = sigmoid của Z [2]. Vì vậy, nếu bạn muốn phép tính tương tự
+thì chúng ta đã đi từ các vectơ x thường tới ma trận X hoa bằng cách xếp
+chồng x thường trong các cột khác nhau. Nếu bạn làm điều tương tự với z, ví dụ, nếu bạn lấy z [1] (i), z [1] (2), và cứ như vậy và đây là tất cả các vectơ cột, tới z [1] (m). Đây là số lượng đầu tiên mà có tất
+cả m số, và xếp chúng trong các cột. Sau đó, nó sẽ cung cấp
+cho bạn ma trận z [1]. Và tương tự bạn nhìn
+vào số lượng này và lấy a[1] (1), a[1] (2), v.v. a [1] (m) và xếp chúng thành các cột. Sau đó, giống như cách chúng ta
+đã đi từ x thường sang chữ X hoa và z thường đến Z hoa. Điều này đi từ a thường, là
+vectơ cho A hoa[1] này, là ở đây và tương tự, cho z [2] và [2]. Cũng có thể tạo chúng bằng
+cách lấy các vectơ này và xếp chúng theo chiều ngang. Và lấy các vectơ này và xếp
+chúng theo chiều ngang, để có được Z [2] và A [2]. Một trong những đặc điểm
+của ký hiệu này có thể giúp bạn coi điều này là ma trận Z và A, theo chiều ngang, chúng ta sẽ
+lập chỉ mục qua các ví dụ huấn luyện. Và đó là lý do tại sao chỉ số ngang tương
+ứng với ví dụ huấn luyện khác nhau, khi bạn đi từ trái sang phải bạn,
+quét qua tập huấn luyện. Và theo chiều dọc, chỉ số dọc này
+tương ứng với các nút khác nhau trong mạng nơ-ron nhân tạo. Ví dụ, nút này, giá trị này ở trên cùng, trên cùng góc bên trái
+tương ứng với kích hoạt của đơn vị ẩn đầu tiên trên
+ví dụ huấn luyện đầu tiên. Một giá trị dưới tương ứng với
+kích hoạt trong đơn vị ẩn thứ hai trên ví dụ huấn luyện đầu tiên, sau đó đơn vị ẩn thứ ba trên
+mẫu huấn luyện đầu tiên và như vậy. Khi bạn quét xuống, đây là chỉ
+mục của bạn với số đơn vị ẩn. Trong khi đó, nếu bạn di chuyển theo
+chiều ngang, thì bạn sẽ đi từ đơn vị ẩn đầu tiên. Và từ đơn vị ẩn đầu tiên trong
+ví dụ huấn luyện đầu đầu tiên tới ví dụ thứ hai, ví dụ thứ ba. Và như vậy cho đến nút này
+ở đây tương ứng với việc kích hoạt đơn vị ẩn đầu tiên trên ví dụ huấn luyện
+cuối cùng và ví dụ huấn luyện thứ m. Và theo chiều ngang ma trận A
+đi qua các ví dụ đào tạo khác nhau. Và theo chiều dọc các chỉ số
+khác nhau trong ma trận A tương ứng với các đơn vị ẩn khác nhau. Và điều này cũng đúng với
+ma trận Z cũng như cho X trong đó chiều ngang tương ứng
+với các ví dụ đào tạo khác nhau. Và theo chiều dọc, nó tương ứng với các
+tính năng đầu vào khác nhau, những cái mà thực sự khác biệt so với lớp
+đầu vào của mạng nơ ron. Và trong các phương trình này, bây
+giờ bạn biết cách triển khai véc tơ hóa trong mạng của mình, đó
+là vector hóa trên nhiều ví dụ. Trong video tiếp theo tôi
+muốn giải thích về lý do tại sao đây là một cách triển khai
+đúng của loại vector hóa này. Hóa ra cách giải thích cũng sẽ tương tự
+như những gì bạn đã thấy trước đó. Hãy đón xem video tiếp theo.

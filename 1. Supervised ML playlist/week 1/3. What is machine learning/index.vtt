@@ -1,0 +1,243 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:02.920
+So, what is machine learning?
+
+00:00:02.920 --> 00:00:07.820
+In this video, you learn the definition of what it is, and also get a sense of when you
+
+00:00:07.820 --> 00:00:09.320
+might want to apply it.
+
+00:00:09.320 --> 00:00:11.480
+Let's take a look together.
+
+00:00:11.480 --> 00:00:17.340
+Here's the definition of what is machine learning that is attributed to Arthur Samuel.
+
+00:00:17.340 --> 00:00:22.160
+He defined machine learning as the field of study that gives computers the ability to learn
+
+00:00:22.160 --> 00:00:24.880
+without being explicitly programmed.
+
+00:00:24.880 --> 00:00:31.060
+Another claim to fame was that back in the 1950s, he wrote the Checkers Playing Program.
+
+00:00:31.060 --> 00:00:38.120
+The amazing thing about this program was that Arthur Samuel himself wasn't a very good checkers player.
+
+00:00:38.120 --> 00:00:43.160
+What he did was he had programmed the computer to play maybe tens of thousands of games against
+
+00:00:43.160 --> 00:00:44.360
+itself.
+
+00:00:44.360 --> 00:00:49.060
+By watching what sorts of board positions tended to lead to wins and what positions tended
+
+00:00:49.060 --> 00:00:54.680
+to lead to losses, the Checkers Playing Program learned over time what a good or bad board
+
+00:00:54.680 --> 00:00:56.080
+positions.
+
+00:00:56.080 --> 00:01:01.940
+By trying to get to good and avoid bad positions, his program learned to get better and better
+
+00:01:01.940 --> 00:01:04.040
+at playing checkers.
+
+00:01:04.040 --> 00:01:08.000
+Because the computer had the patience to play tens of thousands of games against itself,
+
+00:01:08.000 --> 00:01:13.840
+it was able to get so much checkers playing experience that eventually it became a better
+
+00:01:13.840 --> 00:01:17.720
+checkers player than Arthur Samuel himself.
+
+00:01:17.720 --> 00:01:22.300
+Now throughout these videos, besides me trying to talk about stuff, I'll occasionally
+
+00:01:22.300 --> 00:01:26.740
+ask you a question to help make sure you understand the content.
+
+00:01:26.740 --> 00:01:31.100
+Here's one about what happens if the computer had played far fewer games.
+
+00:01:31.100 --> 00:01:38.950
+Please take a look and pick whichever you think is a better answer.
+
+00:01:38.950 --> 00:01:40.950
+Thanks for looking at the quiz.
+
+00:01:40.950 --> 00:01:49.030
+And so if you had selected this answer, would it made it worse, then you got it right.
+
+00:01:49.030 --> 00:01:53.670
+In general, the more opportunities you give a learning algorithm to learn, the better it
+
+00:01:53.670 --> 00:01:55.110
+will perform.
+
+00:01:55.110 --> 00:01:59.590
+If you didn't select the correct answer the first time, that's totally okay too.
+
+00:01:59.590 --> 00:02:03.550
+The point of these quiz questions isn't to see if you can get them all correct on the
+
+00:02:03.550 --> 00:02:04.930
+first try.
+
+00:02:04.930 --> 00:02:09.630
+These questions are here just to help you practice the concepts you're learning.
+
+00:02:09.630 --> 00:02:14.510
+Arthur Samuel's definition was a rather informal one, but in the next two videos, we'll dive
+
+00:02:14.510 --> 00:02:21.110
+deeper together into what are the major types of machine learning algorithms.
+
+00:02:21.110 --> 00:02:25.070
+In this class, you learn about many different learning algorithms.
+
+00:02:25.070 --> 00:02:31.190
+The two main types of machine learning are supervised learning and unsupervised learning.
+
+00:02:31.190 --> 00:02:36.710
+We'll define what these terms mean more in the next couple videos.
+
+00:02:36.710 --> 00:02:42.410
+Of these two, supervised learning is the type of machine learning that is used most in many
+
+00:02:42.410 --> 00:02:49.250
+real world applications, and that has seen the most rapid advancement and innovation.
+
+00:02:49.330 --> 00:02:54.930
+In this specialization, which has three causes in total, the first and second causes will
+
+00:02:54.930 --> 00:03:00.330
+focus on supervised learning, and the third will focus on unsupervised learning, recommended
+
+00:03:00.330 --> 00:03:03.530
+systems and reinforcement learning.
+
+00:03:03.530 --> 00:03:09.370
+By far, the most used types of learning algorithms today are supervised learning, unsupervised
+
+00:03:09.370 --> 00:03:12.450
+learning, and recommended systems.
+
+00:03:12.450 --> 00:03:16.610
+The other thing we're going to spend a lot of time on in this specialization is
+
+00:03:16.610 --> 00:03:20.610
+practical advice for applying learning algorithms.
+
+00:03:20.610 --> 00:03:23.250
+This is something I feel pretty strongly about.
+
+00:03:23.250 --> 00:03:29.090
+Teaching about learning algorithms is like giving someone a set of tools, and equally important
+
+00:03:29.090 --> 00:03:34.610
+or even more important than making sure you have great tools is making sure you know
+
+00:03:34.610 --> 00:03:36.490
+how to apply them.
+
+00:03:36.490 --> 00:03:41.650
+Because you know, what good is it if someone were to give you a state of the art hammer
+
+00:03:41.650 --> 00:03:44.210
+or a state of the art hand drill and say, good luck.
+
+00:03:44.210 --> 00:03:48.290
+Now you have all the tools you need to build a three story house doesn't really work like
+
+00:03:48.290 --> 00:03:49.610
+that.
+
+00:03:49.610 --> 00:03:55.210
+And so too in machine learning, making sure you have the tools is really important.
+
+00:03:55.210 --> 00:04:00.970
+And so it's making sure that you know how to apply the tools of machine learning effectively.
+
+00:04:00.970 --> 00:04:05.170
+So that's what you get in this class, the tools as well as the skills that apply them
+
+00:04:05.170 --> 00:04:07.050
+effectively.
+
+00:04:07.050 --> 00:04:11.990
+I regularly visit with friends and teams in some of the top tech companies.
+
+00:04:11.990 --> 00:04:17.510
+And even today, I see experienced machine learning teams apply machine learning algorithms
+
+00:04:17.510 --> 00:04:19.110
+to some problems.
+
+00:04:19.110 --> 00:04:23.850
+And sometimes they've been going at it for six months without much success.
+
+00:04:23.850 --> 00:04:27.550
+And when I look at what they're doing, I sometimes feel like I could have told them
+
+00:04:27.550 --> 00:04:30.550
+six months ago that the current approach won't work.
+
+00:04:30.550 --> 00:04:34.430
+And there's a different way of using these tools that will give them a much better chance
+
+00:04:34.430 --> 00:04:35.990
+of success.
+
+00:04:35.990 --> 00:04:40.750
+So in this class, one of the relatively unique things you learn is you learn a lot
+
+00:04:40.750 --> 00:04:46.230
+about the best practices for how to actually develop a practical, valuable machine learning
+
+00:04:46.230 --> 00:04:47.510
+system.
+
+00:04:47.510 --> 00:04:52.030
+This way, you're less likely to end up in one of those teams that end up losing six months
+
+00:04:52.030 --> 00:04:54.590
+going in the wrong direction.
+
+00:04:54.590 --> 00:04:59.230
+In this class, you gain a sense of how the most skilled machine learning engineers build
+
+00:04:59.230 --> 00:05:00.230
+systems.
+
+00:05:00.230 --> 00:05:05.270
+And I hope you finish this class as one of those very rare people in today's world
+
+00:05:05.270 --> 00:05:09.810
+that know how to design and build serious machine learning systems.
+
+00:05:09.810 --> 00:05:11.970
+So that's machine learning.
+
+00:05:11.970 --> 00:05:17.750
+In the next video, let's look more deeply at what is supervised learning, and also what
+
+00:05:17.750 --> 00:05:19.970
+is unsupervised learning.
+
+00:05:19.970 --> 00:05:25.090
+In addition, you learn when you might want to use each of them, supervised and unsupervised
+
+00:05:25.090 --> 00:05:26.090
+learning.
+
+00:05:26.090 --> 00:05:27.530
+I'll see you in the next video.

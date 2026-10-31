@@ -1,0 +1,216 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.180 --> 00:00:05.420
+If you're working on a brand new machine learning application, one of the pieces of advice I
+
+00:00:05.420 --> 00:00:11.180
+often give people is that I think you should build your first system quickly and then iterate.
+
+00:00:11.180 --> 00:00:12.180
+Let me show you what I mean.
+
+00:00:12.180 --> 00:00:16.500
+I've worked on speech recognition for many years and if you're thinking of building
+
+00:00:16.500 --> 00:00:20.620
+a new speech recognition system, there are actually a lot of directions you could go
+
+00:00:20.620 --> 00:00:23.280
+in, a lot of things you could prioritize.
+
+00:00:23.280 --> 00:00:27.420
+For example, there are specific techniques for making speech recognition systems more
+
+00:00:27.420 --> 00:00:32.980
+robust to a noisy background and noisy background could mean cafe noise like a lot of people
+
+00:00:32.980 --> 00:00:37.820
+talking in the background or car noise, the sounds of cars and highways or other types
+
+00:00:37.820 --> 00:00:38.820
+of noise.
+
+00:00:38.820 --> 00:00:43.580
+There are ways to make a speech recognition system more robust to accented speech.
+
+00:00:43.580 --> 00:00:48.420
+There are specific problems associated with speakers that are far from the microfilm.
+
+00:00:48.420 --> 00:00:50.900
+This is called far-few speech recognition.
+
+00:00:50.900 --> 00:00:55.780
+Young children's speech poses special challenges both in terms of how they pronounce individual
+
+00:00:55.780 --> 00:01:00.320
+words as well as their choice of words and the vocabulary they tend to use.
+
+00:01:00.320 --> 00:01:08.420
+If sometimes your speakers stutter or if they use nonsensical phrases like uh, ah, um, there
+
+00:01:08.420 --> 00:01:13.320
+are different choices and different techniques for making the transcript that you output
+
+00:01:13.320 --> 00:01:17.000
+still read more fluently.
+
+00:01:17.000 --> 00:01:21.920
+There are these and many other things you could do to improve a speech recognition
+
+00:01:21.920 --> 00:01:23.280
+system.
+
+00:01:23.280 --> 00:01:28.980
+Or generally, for almost any machine learning application, there could be 50 different directions
+
+00:01:28.980 --> 00:01:34.700
+you could go in and each of these directions is reasonable and would make your system better.
+
+00:01:34.700 --> 00:01:39.940
+But the challenge is how do you pick which of these to focus on?
+
+00:01:39.940 --> 00:01:44.580
+And even though I've worked in speech recognition for many years, if I'm building a new system
+
+00:01:44.580 --> 00:01:48.620
+for a new application domain, I would still find it maybe a little bit difficult to
+
+00:01:48.620 --> 00:01:52.780
+pick without spending some time thinking about the problem.
+
+00:01:52.780 --> 00:01:57.200
+So what I would recommend you do if you're starting on building a brand new machine learning
+
+00:01:57.200 --> 00:02:02.560
+application is to build your first system quickly and then iterate.
+
+00:02:02.560 --> 00:02:07.920
+What I mean by that is I recommend that you first quickly set up a dev and test set and
+
+00:02:07.920 --> 00:02:12.640
+metric so this is really, you know, deciding where to place your target.
+
+00:02:12.640 --> 00:02:17.480
+And if you get it wrong, you can always move it later, but just set up a target somewhere.
+
+00:02:17.480 --> 00:02:21.200
+And then I recommend you build an initial machine learning system quickly.
+
+00:02:21.200 --> 00:02:25.780
+On the training set, train it and see, start to see and understand how well you're doing
+
+00:02:25.780 --> 00:02:30.940
+against your dev and test set in evaluation metric.
+
+00:02:30.940 --> 00:02:36.540
+When you build your initial system, you then be able to use bias variance analysis, which
+
+00:02:36.540 --> 00:02:41.260
+we talked about earlier, as well as error analysis, which we talked about just in the
+
+00:02:41.260 --> 00:02:45.380
+last several videos to prioritize the next steps.
+
+00:02:45.380 --> 00:02:52.740
+In particular, if error analysis causes you to realize that a lot of the errors are
+
+00:02:52.740 --> 00:02:57.180
+from the speaker being very far from the microphone, which causes special challenges of speech
+
+00:02:57.180 --> 00:03:02.280
+recognition, then that would give you a good reason to focus on techniques to address
+
+00:03:02.280 --> 00:03:08.220
+this, it's called far-field speech recognition, which basically means handling when the speaker
+
+00:03:08.220 --> 00:03:11.180
+is very far from the microphone.
+
+00:03:11.180 --> 00:03:16.460
+A lot of the value of building this initial system can be a quick and dirty implementation,
+
+00:03:16.460 --> 00:03:17.980
+you know, don't overthink it.
+
+00:03:18.220 --> 00:03:23.020
+But a lot of the value of your initial system is having some learned system, having some
+
+00:03:23.020 --> 00:03:27.540
+trained system allows you to look at this bias and variance to try to prioritize what to
+
+00:03:27.540 --> 00:03:32.820
+do next, allows you to do error analysis, look at some mistakes, to figure out all
+
+00:03:32.820 --> 00:03:38.060
+the different directions you could go in, which ones are actually the most worthwhile.
+
+00:03:38.060 --> 00:03:44.460
+So to recap, what I recommend you do is build your first system quickly, then iterate.
+
+00:03:44.460 --> 00:03:48.540
+This advice applies less strongly if you're working on an application area in which you
+
+00:03:48.540 --> 00:03:52.340
+have significant prior experience.
+
+00:03:52.340 --> 00:03:57.540
+It also applies a bit less strongly if there's a significant body of academic literature that
+
+00:03:57.540 --> 00:04:01.660
+you can draw on for pretty much the exact same problem you're building.
+
+00:04:01.660 --> 00:04:06.460
+So for example, there's a large academic literature on face recognition, and if you're
+
+00:04:06.460 --> 00:04:10.820
+trying to build a face recognizer, it might be okay to build a more complex system from
+
+00:04:10.820 --> 00:04:16.740
+a get-go by building on this large body of academic literature.
+
+00:04:16.740 --> 00:04:22.580
+But if you're tackling a new problem for the first time, then I would encourage you to
+
+00:04:22.580 --> 00:04:28.020
+really not overthink or not make your first system too complicated, but just build something
+
+00:04:28.020 --> 00:04:33.540
+quick and dirty and then use that to help you prioritize how to improve your system.
+
+00:04:33.540 --> 00:04:38.220
+So I've seen a lot of machine learning projects, and I've seen some teams overthink
+
+00:04:38.220 --> 00:04:40.500
+their solution and build something too complicated.
+
+00:04:40.500 --> 00:04:44.500
+I've also seen some teams underthink it and build something maybe too simple.
+
+00:04:44.500 --> 00:04:49.340
+But on average, I've seen a lot more teams overthink and build something too complicated,
+
+00:04:49.340 --> 00:04:52.500
+and I've seen teams build something too simple.
+
+00:04:52.500 --> 00:04:58.700
+So I hope this helps, and if you are applying your machine learning algorithms to a new application,
+
+00:04:58.700 --> 00:05:03.380
+and if your main goal is to build something that works, as opposed to if your main goal
+
+00:05:03.380 --> 00:05:08.740
+is to invent a new machine learning algorithm, which is a different goal, the main goal is
+
+00:05:08.740 --> 00:05:10.820
+to get something that works really well.
+
+00:05:10.820 --> 00:05:15.660
+I'd encourage you to build something quick and dirty, use that to do bias-variance analysis,
+
+00:05:15.660 --> 00:05:21.060
+use that to do error analysis, and use the results of those analyses to help you prioritize
+
+00:05:21.060 --> 00:05:22.020
+where to go next.

@@ -1,0 +1,1257 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.770 --> 00:00:06.570
+So welcome Andre, I'm really glad you could join me today.
+
+00:00:06.570 --> 00:00:08.130
+Yeah, thank you for having me.
+
+00:00:08.130 --> 00:00:11.170
+So a lot of people already know your work in deep learning,
+
+00:00:11.170 --> 00:00:14.490
+but not everyone knows your personal story.
+
+00:00:14.490 --> 00:00:16.970
+So I'd like to ask, and start by telling us,
+
+00:00:16.970 --> 00:00:20.410
+how did you end up doing all this work in deep learning?
+
+00:00:20.410 --> 00:00:21.570
+Yeah, absolutely.
+
+00:00:21.570 --> 00:00:23.690
+So I think my first exposure to deep learning
+
+00:00:23.690 --> 00:00:26.450
+was when I was an undergraduate at the University of Toronto.
+
+00:00:26.450 --> 00:00:28.490
+And so Jeff Hinton was there and he was teaching a class
+
+00:00:28.490 --> 00:00:29.490
+on deep learning.
+
+00:00:29.490 --> 00:00:31.410
+And at the time it was restricted Boltzmann machines
+
+00:00:31.410 --> 00:00:33.090
+trained on MNIST digits.
+
+00:00:33.090 --> 00:00:35.850
+And I just really liked the way Jeff
+
+00:00:35.850 --> 00:00:37.330
+talked about training the network,
+
+00:00:37.330 --> 00:00:38.330
+the mind of the network.
+
+00:00:38.330 --> 00:00:40.330
+And he was using these terms.
+
+00:00:40.330 --> 00:00:43.710
+And I just thought there was a flavor of something
+
+00:00:43.710 --> 00:00:46.850
+magical happening when this was training on those digits.
+
+00:00:46.850 --> 00:00:50.050
+And so that's my first exposure to it,
+
+00:00:50.050 --> 00:00:52.050
+although I didn't get into it in a lot of detail
+
+00:00:52.050 --> 00:00:52.970
+at that time.
+
+00:00:52.970 --> 00:00:54.350
+And then when I was doing my master's degree
+
+00:00:54.350 --> 00:00:56.930
+at the University of British Columbia,
+
+00:00:56.930 --> 00:00:58.250
+I took a class with Nando de Freitas,
+
+00:00:58.250 --> 00:00:59.970
+and that was, again, on machine learning.
+
+00:01:00.170 --> 00:01:04.170
+The first time I delved deeper into these networks and so on.
+
+00:01:04.170 --> 00:01:06.270
+And what was interesting is that I
+
+00:01:06.270 --> 00:01:08.450
+was very interested in artificial intelligence,
+
+00:01:08.450 --> 00:01:10.330
+and so I took classes in artificial intelligence.
+
+00:01:10.330 --> 00:01:11.330
+But a lot of what I was seeing there
+
+00:01:11.330 --> 00:01:12.730
+was just very not satisfying.
+
+00:01:12.730 --> 00:01:14.730
+It was a lot of depth-first search,
+
+00:01:14.730 --> 00:01:16.610
+breadth-first search, alpha beta pruning,
+
+00:01:16.610 --> 00:01:17.370
+and all these things.
+
+00:01:17.370 --> 00:01:20.050
+And I was not understanding how I was not satisfied.
+
+00:01:20.050 --> 00:01:22.550
+And so when I was seeing neural networks for the first time,
+
+00:01:22.550 --> 00:01:24.770
+in machine learning, which is this term that I
+
+00:01:24.770 --> 00:01:27.490
+think is more technical and not as well known in kind of,
+
+00:01:27.490 --> 00:01:29.210
+most people talk about artificial intelligence.
+
+00:01:29.210 --> 00:01:31.490
+Machine learning was more kind of a technical term,
+
+00:01:31.490 --> 00:01:32.490
+I would almost say.
+
+00:01:32.490 --> 00:01:34.890
+And so I was dissatisfied with artificial intelligence.
+
+00:01:34.890 --> 00:01:36.250
+And when I saw machine learning, I
+
+00:01:36.250 --> 00:01:39.510
+was like, this is the AI that I want to kind of spend time on.
+
+00:01:39.510 --> 00:01:40.890
+This was really interesting.
+
+00:01:40.890 --> 00:01:44.130
+And that's kind of what took me down those directions,
+
+00:01:44.130 --> 00:01:46.550
+is that this is kind of almost a new computing paradigm,
+
+00:01:46.550 --> 00:01:48.170
+I would say.
+
+00:01:48.170 --> 00:01:50.450
+Because normally, humans write code,
+
+00:01:50.450 --> 00:01:54.130
+but here in this case, the optimization writes code.
+
+00:01:54.130 --> 00:01:56.410
+And so you're creating the input-output specification,
+
+00:01:56.410 --> 00:01:58.010
+and then you have lots of examples of it.
+
+00:01:58.010 --> 00:01:59.290
+And then the optimization writes code,
+
+00:01:59.290 --> 00:02:01.290
+and sometimes it can write code better than you.
+
+00:02:01.290 --> 00:02:04.450
+And so I thought that was just a very new kind of way
+
+00:02:04.450 --> 00:02:06.050
+of thinking about programming.
+
+00:02:06.050 --> 00:02:08.130
+And that's what kind of intrigued me about it.
+
+00:02:08.130 --> 00:02:10.090
+Then through a word, one of the things
+
+00:02:10.090 --> 00:02:12.570
+you've come to be known for is that you are now
+
+00:02:12.570 --> 00:02:16.570
+the human benchmark for the ImageNet classification
+
+00:02:16.570 --> 00:02:17.970
+competition.
+
+00:02:17.970 --> 00:02:19.210
+How did that come about?
+
+00:02:19.210 --> 00:02:20.730
+So basically, the ImageNet challenge
+
+00:02:20.730 --> 00:02:23.170
+is kind of a, it's sometimes compared
+
+00:02:23.170 --> 00:02:24.930
+to kind of the World Cup of Computer Vision.
+
+00:02:24.930 --> 00:02:26.970
+So a lot of people kind of care about this benchmark.
+
+00:02:27.770 --> 00:02:29.890
+Our error rate kind of goes down over time.
+
+00:02:29.890 --> 00:02:31.690
+And it was not obvious to me kind of where
+
+00:02:31.690 --> 00:02:33.330
+a human would be on the scale.
+
+00:02:33.330 --> 00:02:35.970
+And I've done a similar smaller scale experiment on CIFAR-10
+
+00:02:35.970 --> 00:02:37.010
+data set earlier.
+
+00:02:37.010 --> 00:02:38.770
+So what I did in CIFAR-10 is I just
+
+00:02:38.770 --> 00:02:40.530
+was looking at these 32 by 32 images,
+
+00:02:40.530 --> 00:02:42.210
+and I was trying to classify them myself.
+
+00:02:42.210 --> 00:02:43.810
+At the time, this was only 10 categories,
+
+00:02:43.810 --> 00:02:46.210
+so it was fairly simple to create an interface for it.
+
+00:02:46.210 --> 00:02:49.050
+And I think I had an error rate of about 6% on that.
+
+00:02:49.050 --> 00:02:51.810
+And so that was, and then based on what I was seeing
+
+00:02:51.810 --> 00:02:53.970
+and how hard the task was, I think I predicted
+
+00:02:53.970 --> 00:02:55.930
+that the lowest error rate we'd achieve
+
+00:02:55.930 --> 00:02:59.010
+would be like, OK, I can't remember the exact numbers.
+
+00:02:59.010 --> 00:03:00.170
+I think I guessed like 10%.
+
+00:03:00.170 --> 00:03:03.490
+And we're now down to like 3% or 2% or something crazy.
+
+00:03:03.490 --> 00:03:06.210
+So that was my first kind of fun experiment
+
+00:03:06.210 --> 00:03:09.090
+of human baseline.
+
+00:03:09.090 --> 00:03:12.090
+And I thought it was really important for the same purposes
+
+00:03:12.090 --> 00:03:14.170
+that you kind of pointed out in some of your lectures.
+
+00:03:14.170 --> 00:03:16.770
+I mean, you really want that number to understand
+
+00:03:16.770 --> 00:03:19.930
+how well humans are doing, and so you can compare machine
+
+00:03:19.930 --> 00:03:21.330
+learning algorithms to it.
+
+00:03:21.330 --> 00:03:22.930
+And for ImageNet, it seemed that there
+
+00:03:22.930 --> 00:03:25.170
+was a discrepancy between how important this benchmark was
+
+00:03:25.170 --> 00:03:27.370
+and how much focus there was on getting a lower number
+
+00:03:27.370 --> 00:03:30.130
+and us not understanding even how humans
+
+00:03:30.130 --> 00:03:31.650
+are doing on this benchmark.
+
+00:03:31.650 --> 00:03:33.610
+And so I created this JavaScript interface,
+
+00:03:33.610 --> 00:03:35.330
+and I was showing myself the images.
+
+00:03:35.330 --> 00:03:36.930
+And then the problem with ImageNet
+
+00:03:36.930 --> 00:03:39.330
+is you don't have just 10 categories, you have 1,000.
+
+00:03:39.330 --> 00:03:41.450
+And so it was almost like a UI challenge of,
+
+00:03:41.450 --> 00:03:43.370
+obviously, I can't remember 1,000 categories.
+
+00:03:43.370 --> 00:03:46.410
+So how do I make it so that it's something fair?
+
+00:03:46.410 --> 00:03:48.050
+And so I listed out all the categories,
+
+00:03:48.050 --> 00:03:49.410
+and I gave myself examples of them.
+
+00:03:49.410 --> 00:03:51.090
+And so for each image, I was scrolling
+
+00:03:51.090 --> 00:03:52.650
+through 1,000 categories and just trying
+
+00:03:52.650 --> 00:03:56.970
+to see, based on the examples I was seeing for each category,
+
+00:03:56.970 --> 00:03:58.610
+what this image might be.
+
+00:03:58.610 --> 00:04:01.890
+And I thought it was just an extremely instructive exercise
+
+00:04:01.890 --> 00:04:02.490
+by itself.
+
+00:04:02.490 --> 00:04:05.570
+I mean, I did not understand that a third of ImageNet
+
+00:04:05.570 --> 00:04:07.410
+is dogs and dog species.
+
+00:04:07.410 --> 00:04:09.850
+And so that was interesting to see
+
+00:04:09.850 --> 00:04:12.010
+that the network spends a huge amount of time caring
+
+00:04:12.010 --> 00:04:12.890
+about dogs, I think.
+
+00:04:12.890 --> 00:04:16.450
+A third of its performance comes from dogs.
+
+00:04:16.450 --> 00:04:19.890
+And yeah, so this was something that I
+
+00:04:19.890 --> 00:04:21.210
+did for maybe a week or two.
+
+00:04:21.210 --> 00:04:22.130
+I put everything else on hold.
+
+00:04:22.130 --> 00:04:24.250
+I thought it was kind of a very fun exercise.
+
+00:04:24.250 --> 00:04:25.570
+I got a number in the end.
+
+00:04:25.570 --> 00:04:27.210
+And then I thought that one person is not enough.
+
+00:04:27.210 --> 00:04:28.890
+I wanted to have multiple other people.
+
+00:04:28.890 --> 00:04:31.090
+And so I was trying to organize within the lab
+
+00:04:31.090 --> 00:04:33.210
+to get other people to kind of do the same thing.
+
+00:04:33.210 --> 00:04:36.530
+And I think people are not as willing to contribute,
+
+00:04:36.530 --> 00:04:41.310
+say, like a week or two of pretty painstaking work,
+
+00:04:41.310 --> 00:04:43.130
+just sitting down for five hours
+
+00:04:43.130 --> 00:04:45.370
+and trying to figure out which dog breed this is.
+
+00:04:45.370 --> 00:04:47.970
+And so I was not able to get enough data in that respect.
+
+00:04:47.970 --> 00:04:51.490
+But we got at least some approximate performance,
+
+00:04:51.490 --> 00:04:53.370
+which I thought was fun.
+
+00:04:53.370 --> 00:04:55.210
+And then this was kind of picked up.
+
+00:04:55.210 --> 00:04:57.090
+And it wasn't obvious to me at the time.
+
+00:04:57.090 --> 00:04:58.510
+I just wanted to know the number.
+
+00:04:58.510 --> 00:05:00.890
+But this became like a thing.
+
+00:05:00.890 --> 00:05:03.130
+And people really liked the fact that this happened.
+
+00:05:03.130 --> 00:05:06.090
+And I'm referred to jokingly as like the reference human.
+
+00:05:06.090 --> 00:05:10.490
+And of course, that's kind of hilarious to me.
+
+00:05:10.490 --> 00:05:12.450
+Yeah.
+
+00:05:12.450 --> 00:05:17.130
+Were you surprised when software, deep nets, finally
+
+00:05:17.130 --> 00:05:19.890
+surpass your performance?
+
+00:05:19.890 --> 00:05:20.450
+Absolutely.
+
+00:05:21.250 --> 00:05:23.130
+Yeah, absolutely.
+
+00:05:23.130 --> 00:05:26.450
+I mean, sometimes it's really hard to see in the image
+
+00:05:26.450 --> 00:05:26.950
+what it is.
+
+00:05:26.950 --> 00:05:29.530
+It's just like a tiny blob of like a black dog
+
+00:05:29.530 --> 00:05:30.690
+is obviously somewhere there.
+
+00:05:30.690 --> 00:05:33.890
+And I'm guessing between like 20 categories.
+
+00:05:33.890 --> 00:05:35.090
+And the network just gets it.
+
+00:05:35.090 --> 00:05:37.770
+And I don't understand how that comes about.
+
+00:05:37.770 --> 00:05:39.410
+So there's some super humanness to it.
+
+00:05:39.410 --> 00:05:41.610
+But also for the, I think the network
+
+00:05:41.610 --> 00:05:43.530
+is extremely good at these kind of statistics
+
+00:05:43.530 --> 00:05:44.970
+of four types and textures.
+
+00:05:44.970 --> 00:05:48.170
+And I think in that respect, I was not
+
+00:05:48.170 --> 00:05:49.810
+surprised that the network could better
+
+00:05:49.810 --> 00:05:54.250
+measure those fine statistics across lots of images.
+
+00:05:54.250 --> 00:05:56.570
+In many cases, I was surprised because some of the images
+
+00:05:56.570 --> 00:05:57.610
+required you to read.
+
+00:05:57.610 --> 00:05:59.610
+Like it's just a bottle and you can't see what it is.
+
+00:05:59.610 --> 00:06:01.570
+But it actually tells you what it is in text.
+
+00:06:01.570 --> 00:06:03.530
+And so as a human, I can read it and it's fine.
+
+00:06:03.530 --> 00:06:04.650
+But the network would have to learn
+
+00:06:04.650 --> 00:06:07.050
+to read to identify the object because it wasn't obvious
+
+00:06:07.050 --> 00:06:09.210
+just from it.
+
+00:06:09.210 --> 00:06:11.290
+One of the things you've become well known for
+
+00:06:11.290 --> 00:06:13.070
+and that the deep learning community has been
+
+00:06:13.070 --> 00:06:15.250
+grateful to you for has been your teaching the Santa
+
+00:06:15.250 --> 00:06:17.490
+class and putting that online.
+
+00:06:17.490 --> 00:06:20.090
+Tell me about how that came about.
+
+00:06:20.090 --> 00:06:20.930
+Yeah, absolutely.
+
+00:06:20.930 --> 00:06:26.690
+So I think I felt very strongly that basically this technology
+
+00:06:26.690 --> 00:06:29.450
+was transformative and that a lot of people want to use it.
+
+00:06:29.450 --> 00:06:30.610
+It's almost like a hammer.
+
+00:06:30.610 --> 00:06:32.690
+And what I wanted to do, I was in a position
+
+00:06:32.690 --> 00:06:36.090
+to randomly hand out this hammer to a lot of people.
+
+00:06:36.090 --> 00:06:37.770
+And I just found that very compelling.
+
+00:06:37.770 --> 00:06:40.370
+It's not necessarily advisable from the perspective
+
+00:06:40.370 --> 00:06:41.450
+of a PhD student because you're
+
+00:06:41.450 --> 00:06:42.570
+putting your research on hold.
+
+00:06:42.570 --> 00:06:44.610
+This became 120% of my time.
+
+00:06:44.610 --> 00:06:45.930
+And I had to put all of research
+
+00:06:45.930 --> 00:06:48.370
+on hold for maybe, I mean, I taught the class twice
+
+00:06:48.370 --> 00:06:49.970
+and each time it's maybe four months.
+
+00:06:49.970 --> 00:06:52.410
+And so that time is basically spent entirely on the class.
+
+00:06:52.410 --> 00:06:54.410
+So it's not super advisable from that perspective.
+
+00:06:54.410 --> 00:06:56.490
+But it was basically the highlight of my PhD.
+
+00:06:56.490 --> 00:06:57.810
+It's not even like related to research.
+
+00:06:57.810 --> 00:06:59.490
+I think teaching the class was definitely
+
+00:06:59.490 --> 00:07:00.970
+the highlight of my PhD.
+
+00:07:00.970 --> 00:07:02.690
+Just seeing the students, just the fact
+
+00:07:02.690 --> 00:07:04.370
+that they were really excited,
+
+00:07:04.370 --> 00:07:06.010
+it was a very different class.
+
+00:07:06.010 --> 00:07:07.550
+Normally, you're being taught things
+
+00:07:07.550 --> 00:07:09.770
+that were discovered in 1800 or something like that.
+
+00:07:09.770 --> 00:07:11.130
+But we were able to come to class and say,
+
+00:07:11.130 --> 00:07:12.970
+look, there's this paper from like a week ago
+
+00:07:12.970 --> 00:07:14.050
+or even like yesterday.
+
+00:07:14.050 --> 00:07:15.050
+And there's new results.
+
+00:07:15.130 --> 00:07:17.690
+I think the undergraduate students and the other students,
+
+00:07:17.690 --> 00:07:19.730
+they just really enjoyed that aspect of the class
+
+00:07:19.730 --> 00:07:21.570
+and the fact that they actually understood.
+
+00:07:21.570 --> 00:07:24.210
+So there's not, so you don't have to,
+
+00:07:24.210 --> 00:07:26.370
+this is not nuclear physics or rocket science.
+
+00:07:26.370 --> 00:07:27.730
+This is like you need to know calculus
+
+00:07:27.730 --> 00:07:30.030
+and linear algebra and you can actually kind of understand
+
+00:07:30.030 --> 00:07:31.730
+everything that happens under the hood.
+
+00:07:31.730 --> 00:07:34.130
+And so I think just the fact that it's so powerful,
+
+00:07:34.130 --> 00:07:37.210
+the fact that it's, that it keeps changing on a daily basis
+
+00:07:37.210 --> 00:07:38.770
+and people kind of felt like they're on the forefront
+
+00:07:38.770 --> 00:07:39.610
+of something big.
+
+00:07:39.610 --> 00:07:42.070
+And I think that's why people like really enjoyed
+
+00:07:42.070 --> 00:07:42.910
+that class a lot.
+
+00:07:43.310 --> 00:07:46.030
+And you really helped a lot of people
+
+00:07:46.030 --> 00:07:47.630
+and had a lot of hammers.
+
+00:07:48.830 --> 00:07:51.950
+As someone that's been doing deep learning
+
+00:07:51.950 --> 00:07:56.590
+for quite some time now, the field is evolving rapidly.
+
+00:07:56.590 --> 00:07:57.710
+I think Chris is here.
+
+00:07:57.710 --> 00:07:59.230
+How has your own thinking,
+
+00:07:59.230 --> 00:08:01.310
+how has your understanding of deep learning changed
+
+00:08:01.310 --> 00:08:03.470
+over these many years?
+
+00:08:03.470 --> 00:08:05.710
+Yeah, it's basically like when I was seeing
+
+00:08:05.710 --> 00:08:08.510
+restricted-ballson machines for the first time on digits,
+
+00:08:08.510 --> 00:08:10.230
+it wasn't obvious to me how this technology
+
+00:08:10.230 --> 00:08:12.670
+was going to be used and how big of a deal it would be.
+
+00:08:12.670 --> 00:08:14.510
+And also when I was starting to work in computer vision,
+
+00:08:14.510 --> 00:08:16.150
+convolutional networks, they were around,
+
+00:08:16.150 --> 00:08:18.190
+but they were not something that a lot of the computer
+
+00:08:18.190 --> 00:08:22.470
+vision community kind of dissipated using anytime soon.
+
+00:08:22.470 --> 00:08:24.130
+I think the perception was that this works
+
+00:08:24.130 --> 00:08:27.070
+for small cases but would never scale to large images.
+
+00:08:27.070 --> 00:08:30.210
+And that was just extremely incorrect.
+
+00:08:30.210 --> 00:08:33.870
+And so basically, I'm just surprised by how
+
+00:08:33.870 --> 00:08:36.630
+general technology is and how good the results are.
+
+00:08:36.630 --> 00:08:38.630
+That was my largest surprise, I would say.
+
+00:08:38.630 --> 00:08:41.250
+And it's not only that, so that's one thing
+
+00:08:41.250 --> 00:08:42.730
+that it worked so well in, say, like ImageNet.
+
+00:08:42.730 --> 00:08:44.570
+But the other thing that I think no one saw coming,
+
+00:08:44.570 --> 00:08:46.190
+or at least for sure I did not see coming,
+
+00:08:46.190 --> 00:08:48.170
+is that you can take these pre-trained networks
+
+00:08:48.170 --> 00:08:49.930
+and that you can transfer, you can fine-tune them
+
+00:08:49.930 --> 00:08:51.370
+on arbitrary other tasks.
+
+00:08:51.370 --> 00:08:52.850
+Because now you're not just solving ImageNet
+
+00:08:52.850 --> 00:08:54.350
+and you need millions of examples.
+
+00:08:54.350 --> 00:08:57.270
+This also happens to be very general feature extractor.
+
+00:08:57.270 --> 00:08:58.770
+And I think that's kind of a second insight
+
+00:08:58.770 --> 00:09:01.170
+that I think fewer people saw coming.
+
+00:09:01.170 --> 00:09:04.050
+And there were these papers that are just like,
+
+00:09:04.050 --> 00:09:05.770
+here are all the things that people have been working on
+
+00:09:05.770 --> 00:09:06.770
+in computer vision.
+
+00:09:06.770 --> 00:09:09.290
+Scene classification, action recognition,
+
+00:09:09.290 --> 00:09:13.290
+object recognition, face attributes, and so on.
+
+00:09:13.290 --> 00:09:15.070
+And people are just kind of crushing each task
+
+00:09:15.070 --> 00:09:17.370
+just by fine-tuning the network.
+
+00:09:17.370 --> 00:09:22.410
+And so that to me was very surprising.
+
+00:09:22.410 --> 00:09:24.810
+And somehow, I guess, supervised learning
+
+00:09:24.810 --> 00:09:25.850
+gets most of the press.
+
+00:09:25.850 --> 00:09:27.850
+And even though pre-training, fine-tuning,
+
+00:09:27.850 --> 00:09:32.530
+or transfer learning is actually working very well,
+
+00:09:32.530 --> 00:09:34.850
+people seem to talk less about that for some reason.
+
+00:09:34.850 --> 00:09:36.450
+Yeah, exactly.
+
+00:09:36.450 --> 00:09:38.010
+Yeah, I think what has not worked as much
+
+00:09:38.010 --> 00:09:40.210
+is some of these hopes around unsupervised learning, which
+
+00:09:40.210 --> 00:09:43.410
+I think has kind of been really why a lot of researchers
+
+00:09:43.410 --> 00:09:48.250
+have gotten into the field in around 2007 and so on.
+
+00:09:48.250 --> 00:09:50.850
+And I think the promise of that has still not been delivered.
+
+00:09:50.850 --> 00:09:53.370
+And I think I find that also surprising,
+
+00:09:53.370 --> 00:09:56.010
+is that the supervised learning part worked so well.
+
+00:09:56.010 --> 00:09:59.010
+And the unsupervised learning is still kind of in a state
+
+00:09:59.010 --> 00:10:01.450
+of a, yeah, it's still not obvious how it's going to be
+
+00:10:01.450 --> 00:10:03.610
+used or how that's going to work,
+
+00:10:03.610 --> 00:10:05.570
+even though a lot of people are still deep believers,
+
+00:10:05.570 --> 00:10:09.610
+I would say, to use the term, in this area.
+
+00:10:09.610 --> 00:10:11.490
+So I know that one of the presences
+
+00:10:11.490 --> 00:10:14.450
+in thinking a lot about the long-term future of AI.
+
+00:10:14.450 --> 00:10:16.130
+Do you want to share your thoughts on that?
+
+00:10:16.130 --> 00:10:18.370
+So I spent the last maybe a year and a half
+
+00:10:18.370 --> 00:10:20.810
+at OpenAI kind of thinking a lot about these topics.
+
+00:10:20.810 --> 00:10:27.850
+And it seems to me like the field will kind of split
+
+00:10:27.850 --> 00:10:29.250
+into two trajectories.
+
+00:10:29.250 --> 00:10:32.530
+One will be kind of applied AI, which is kind of just
+
+00:10:32.530 --> 00:10:34.690
+making these neural networks, training them,
+
+00:10:34.690 --> 00:10:36.770
+mostly with supervised learning, potentially unsupervised
+
+00:10:36.770 --> 00:10:39.610
+learning, and getting better, say, image recognizers
+
+00:10:39.610 --> 00:10:41.130
+or something like that.
+
+00:10:41.130 --> 00:10:43.010
+And I think the other will be kind
+
+00:10:43.010 --> 00:10:45.010
+of artificial general intelligence directions, which
+
+00:10:45.010 --> 00:10:48.210
+is kind of how do you get neural networks that
+
+00:10:48.210 --> 00:10:50.930
+are entire kind of dynamical system that thinks and speaks
+
+00:10:50.930 --> 00:10:52.770
+and can do everything that a human can do
+
+00:10:52.770 --> 00:10:54.650
+as intelligent in that way.
+
+00:10:54.650 --> 00:10:57.130
+And I think that what's been interesting is that,
+
+00:10:57.130 --> 00:10:58.530
+for example, in computer vision,
+
+00:10:58.530 --> 00:10:59.970
+the way we approached it in the beginning, I think,
+
+00:10:59.970 --> 00:11:02.010
+was wrong, in that we tried to break it down
+
+00:11:02.010 --> 00:11:02.970
+by different parts.
+
+00:11:02.970 --> 00:11:05.050
+So we were like, OK, humans recognize people.
+
+00:11:05.050 --> 00:11:06.210
+Humans recognize scenes.
+
+00:11:06.210 --> 00:11:07.690
+Human recognize objects.
+
+00:11:07.690 --> 00:11:10.290
+So we're just going to do everything that humans do.
+
+00:11:10.290 --> 00:11:11.970
+And then once we have all those things,
+
+00:11:11.970 --> 00:11:13.610
+and now we have different areas, and once we
+
+00:11:13.610 --> 00:11:14.330
+have all those things, we're going
+
+00:11:14.330 --> 00:11:16.010
+to figure out how to put them together.
+
+00:11:16.010 --> 00:11:17.850
+And I think that was kind of a wrong approach.
+
+00:11:17.850 --> 00:11:21.050
+And we've seen how that kind of played out historically.
+
+00:11:21.050 --> 00:11:23.130
+And so I think there's something similar that's
+
+00:11:23.130 --> 00:11:25.170
+going on slightly on the higher level with AI.
+
+00:11:25.170 --> 00:11:28.250
+So kind of people are asking, well, OK, people plan.
+
+00:11:28.250 --> 00:11:30.850
+People do experiments to figure out how the world works.
+
+00:11:30.850 --> 00:11:32.930
+Or people talk to other people, so we need language.
+
+00:11:32.930 --> 00:11:35.410
+And people are trying to decompose it by function,
+
+00:11:35.410 --> 00:11:37.250
+accomplish each piece, and then put it together
+
+00:11:37.250 --> 00:11:38.290
+into some kind of brain.
+
+00:11:38.290 --> 00:11:41.370
+And I just think it's kind of just an incorrect approach.
+
+00:11:41.370 --> 00:11:43.150
+And so what I've been a much bigger fan of
+
+00:11:43.150 --> 00:11:47.970
+is not decomposing that way, but having
+
+00:11:47.970 --> 00:11:49.970
+a single kind of neural network there
+
+00:11:49.970 --> 00:11:51.170
+is the complete dynamical system
+
+00:11:51.170 --> 00:11:53.570
+that you're always working with, a full agent.
+
+00:11:53.570 --> 00:11:55.370
+And then the question is, how do you actually
+
+00:11:55.370 --> 00:11:57.410
+create objectives such that when
+
+00:11:57.410 --> 00:12:00.450
+you optimize over the weights to make up that brain,
+
+00:12:00.450 --> 00:12:02.250
+you get intelligent behavior out?
+
+00:12:02.250 --> 00:12:04.130
+And so that's kind of been something
+
+00:12:04.130 --> 00:12:05.970
+that I've been thinking about a lot at OpenAI.
+
+00:12:05.970 --> 00:12:08.210
+I think there are a lot of different ways
+
+00:12:08.210 --> 00:12:11.410
+that people have thought about approaching this problem.
+
+00:12:11.410 --> 00:12:13.850
+So for example, going in a supervised learning direction,
+
+00:12:13.850 --> 00:12:15.430
+I have this essay online.
+
+00:12:15.430 --> 00:12:15.970
+It's not an essay.
+
+00:12:15.970 --> 00:12:17.770
+It's kind of a short story that I wrote.
+
+00:12:17.770 --> 00:12:18.810
+And the short story kind of tries
+
+00:12:18.810 --> 00:12:20.610
+to come up with a hypothetical world of what
+
+00:12:20.610 --> 00:12:23.610
+it might look like if the way we approach this AGI
+
+00:12:23.610 --> 00:12:25.490
+is just by scaling up supervised learning, which
+
+00:12:25.490 --> 00:12:28.210
+we know works.
+
+00:12:28.210 --> 00:12:30.210
+And so that gets into something that
+
+00:12:30.210 --> 00:12:31.730
+looks like Amazon Mechanical Turk, where
+
+00:12:31.810 --> 00:12:33.770
+people accession to lots of robot bodies,
+
+00:12:33.770 --> 00:12:34.930
+and they perform tasks.
+
+00:12:34.930 --> 00:12:37.090
+And then we train on that as a supervised learning data
+
+00:12:37.090 --> 00:12:40.250
+set to imitate humans and what that might look like and so on.
+
+00:12:40.250 --> 00:12:42.610
+And so then there are other directions,
+
+00:12:42.610 --> 00:12:45.770
+like unsupervised learning from algorithmic information theory,
+
+00:12:45.770 --> 00:12:49.170
+things like AI, XI, or from artificial life,
+
+00:12:49.170 --> 00:12:51.730
+things that look more like artificial evolution.
+
+00:12:51.730 --> 00:12:54.890
+And so that's kind of what I spend my time thinking a lot
+
+00:12:54.890 --> 00:12:55.450
+about.
+
+00:12:55.450 --> 00:12:57.010
+And I think I had the correct answer,
+
+00:12:57.010 --> 00:12:59.610
+but I'm not willing to reveal it here.
+
+00:12:59.610 --> 00:13:02.010
+But I can at least learn more by reading your blog post.
+
+00:13:02.010 --> 00:13:03.610
+Yeah, absolutely.
+
+00:13:03.610 --> 00:13:07.650
+So you've already given out a lot of hammers.
+
+00:13:07.650 --> 00:13:09.810
+And today, there are a lot of people
+
+00:13:09.810 --> 00:13:13.210
+still wanting to enter the field of AI, enter deep learning.
+
+00:13:13.210 --> 00:13:17.330
+So for people in that position, what advice do you have for them?
+
+00:13:17.330 --> 00:13:18.330
+Yeah, absolutely.
+
+00:13:18.330 --> 00:13:21.570
+So I think when people talk to me about CS231n
+
+00:13:21.570 --> 00:13:24.250
+and why they thought it was a very useful course,
+
+00:13:24.250 --> 00:13:26.450
+what I keep hearing again and again is just
+
+00:13:26.450 --> 00:13:28.330
+people appreciate the fact that we got all the way
+
+00:13:28.330 --> 00:13:29.610
+to the low-level details.
+
+00:13:29.610 --> 00:13:31.210
+And they were not working with the library.
+
+00:13:31.210 --> 00:13:32.570
+They saw the row code.
+
+00:13:32.570 --> 00:13:34.330
+And they saw how everything was implemented
+
+00:13:34.330 --> 00:13:36.730
+and implemented chunks of it themselves.
+
+00:13:36.730 --> 00:13:39.770
+And so just going all the way down to the understanding
+
+00:13:39.770 --> 00:13:41.770
+everything under you, and never,
+
+00:13:41.770 --> 00:13:43.970
+it's really important to not abstract away things.
+
+00:13:43.970 --> 00:13:45.930
+Like you need to have a full understanding of the whole
+
+00:13:45.930 --> 00:13:46.570
+stack.
+
+00:13:46.570 --> 00:13:48.410
+And that's where I learned the most myself as well.
+
+00:13:48.410 --> 00:13:49.330
+When I was learning this stuff,
+
+00:13:49.330 --> 00:13:51.170
+it's just implementing it myself from scratch
+
+00:13:51.170 --> 00:13:53.210
+was the most important.
+
+00:13:53.210 --> 00:13:56.930
+It was the piece that I felt gave me
+
+00:13:56.930 --> 00:13:59.370
+the best bang for the buck in terms of understanding.
+
+00:13:59.370 --> 00:14:00.570
+So I wrote my own library.
+
+00:14:00.570 --> 00:14:01.570
+It's called Common Edge JS.
+
+00:14:01.570 --> 00:14:03.090
+It was written in JavaScript and implements
+
+00:14:03.090 --> 00:14:04.010
+convolutional neural networks.
+
+00:14:04.010 --> 00:14:06.370
+That was my way of learning about back propagation.
+
+00:14:06.370 --> 00:14:09.010
+And so that's something that I keep advising people
+
+00:14:09.010 --> 00:14:12.810
+is that you not work with TensorFlow or something else.
+
+00:14:12.810 --> 00:14:15.250
+You can work with it once you have written it
+
+00:14:15.250 --> 00:14:17.010
+something yourself on the lowest detail.
+
+00:14:17.010 --> 00:14:18.570
+You understand everything under you.
+
+00:14:18.570 --> 00:14:21.570
+And now it's possible to use some of these frameworks that
+
+00:14:21.570 --> 00:14:23.010
+abstract some of it away from you,
+
+00:14:23.010 --> 00:14:24.650
+but you know what's under the hood.
+
+00:14:24.650 --> 00:14:26.770
+And so that's been something that helped me the most.
+
+00:14:26.770 --> 00:14:28.530
+That's something that people appreciate the most
+
+00:14:28.530 --> 00:14:29.650
+when they take 231n.
+
+00:14:29.650 --> 00:14:31.490
+And that's what I would advise a lot of people.
+
+00:14:31.490 --> 00:14:33.970
+So rather than run it neural networks,
+
+00:14:33.970 --> 00:14:35.490
+it will all happen to imagine.
+
+00:14:35.490 --> 00:14:37.210
+Yeah, and it's some kind of a sequence of layers.
+
+00:14:37.210 --> 00:14:39.130
+And I know that when I add some dropout layers,
+
+00:14:39.130 --> 00:14:40.210
+it makes it work better.
+
+00:14:40.210 --> 00:14:41.810
+That's not what you want.
+
+00:14:41.810 --> 00:14:44.570
+In that case, you're not going to be able to debug
+
+00:14:44.570 --> 00:14:45.090
+effectively.
+
+00:14:45.090 --> 00:14:47.170
+You're not going to be able to improve on models
+
+00:14:47.170 --> 00:14:48.690
+effectively.
+
+00:14:48.690 --> 00:14:51.850
+With that answer, I'm really glad that the deep learning.ai
+
+00:14:51.850 --> 00:14:54.770
+course starts off with many weeks of Python programming
+
+00:14:54.770 --> 00:14:55.450
+for a second.
+
+00:14:55.450 --> 00:14:56.210
+And then the framework.
+
+00:14:56.930 --> 00:14:57.450
+Good.
+
+00:14:57.450 --> 00:14:58.450
+Good.
+
+00:14:58.450 --> 00:15:01.610
+Thank you very much for sharing your insights and advice.
+
+00:15:01.610 --> 00:15:04.450
+You're already a hero to many people in the deep learning
+
+00:15:04.450 --> 00:15:04.930
+world.
+
+00:15:04.930 --> 00:15:08.290
+So really glad, really grateful you could join us here today.
+
+00:15:08.290 --> 00:15:10.660
+Yeah, thank you for having me.

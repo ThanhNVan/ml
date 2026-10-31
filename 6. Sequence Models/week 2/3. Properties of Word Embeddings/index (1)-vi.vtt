@@ -1,0 +1,625 @@
+WEBVTT
+
+1
+00:00:00.400 --> 00:00:04.940
+Bởi bây giờ, bạn nên có một cảm giác về cách word embedding có thể giúp bạn xây dựng các
+
+2
+00:00:04.940 --> 00:00:06.290
+ứng dụng NLP.
+
+3
+00:00:06.290 --> 00:00:10.330
+Một trong những tính chất hấp dẫn nhất của word embedding là chúng cũng có thể
+
+4
+00:00:10.330 --> 00:00:12.698
+giúp đỡ với lý luận tương tự.
+
+5
+00:00:12.698 --> 00:00:17.040
+Và mặc dù các phép tương tự hợp lý có thể không phải là một
+
+6
+00:00:17.040 --> 00:00:21.740
+ứng dụng NLP quan trọng nhất, chúng cũng có thể giúp truyền đạt một cảm giác về những gì các từ embedding này
+
+7
+00:00:21.740 --> 00:00:24.889
+đang làm, những gì các từ embedding này có thể làm.
+
+8
+00:00:24.889 --> 00:00:29.352
+Hãy để tôi chỉ cho bạn những gì tôi muốn nói ở đây là những đại diện của một tập hợp các
+
+9
+00:00:29.352 --> 00:00:32.790
+từ mà bạn có thể hy vọng một từ embedding có thể nắm bắt được.
+
+10
+00:00:32.790 --> 00:00:37.876
+Giả sử tôi đặt ra một câu hỏi,
+
+11
+00:00:37.876 --> 00:00:43.580
+đàn ông là phụ nữ như vua là gì?
+
+12
+00:00:43.580 --> 00:00:48.270
+Nhiều người trong số các bạn sẽ nói, đàn ông là phụ nữ như vua là hoàng hậu.
+
+13
+00:00:48.270 --> 00:00:52.630
+Nhưng liệu nó có thể có một thuật toán tự động tìm ra điều này?
+
+14
+00:00:52.630 --> 00:00:54.557
+Vâng, đây là cách bạn có thể làm điều
+
+15
+00:00:54.557 --> 00:00:58.814
+đó, giả sử bạn đang sử dụng vector bốn chiều này để biểu diễn con người.
+
+16
+00:00:58.814 --> 00:01:03.538
+Vì vậy, đây sẽ là E5391 của bạn, mặc dù chỉ cho
+
+17
+00:01:03.538 --> 00:01:08.830
+video này, hãy để tôi gọi đây là e subscript man.
+
+18
+00:01:08.830 --> 00:01:12.784
+Và giả sử đó là vector embedding cho người phụ nữ, vì vậy
+
+19
+00:01:12.784 --> 00:01:17.883
+tôi sẽ gọi người phụ nữ đó là e subscript, và tương tự cho vua và nữ hoàng.
+
+20
+00:01:17.883 --> 00:01:19.015
+Và ví dụ này,
+
+21
+00:01:19.015 --> 00:01:22.471
+tôi sẽ cho rằng bạn đang sử dụng embedding bốn chiều,
+
+22
+00:01:22.471 --> 00:01:27.825
+chứ không phải bất cứ nơi nào từ 50 đến 1.000 chiều, điều này sẽ điển hình hơn.
+
+23
+00:01:27.825 --> 00:01:32.385
+Một tài sản thú vị của các vectơ này là nếu bạn lấy vector,
+
+24
+00:01:35.750 --> 00:01:41.459
+e người đàn ông, và trừ vector e phụ nữ, sau đó,
+
+25
+00:01:45.030 --> 00:01:48.977
+Bạn kết thúc với khoảng -1,
+
+26
+00:01:48.977 --> 00:01:54.067
+tiêu cực khác 1 là -2, thập phân
+
+27
+00:01:54.067 --> 00:02:00.454
+0- 0, gần 0- 0, vì vậy bạn nhận được khoảng -2 0 0 0 0.
+
+28
+00:02:00.454 --> 00:02:07.012
+Và tương tự như vậy nếu bạn lấy e vua trừ e nữ hoàng,
+
+29
+00:02:07.012 --> 00:02:13.410
+thì đó là khoảng cùng một điều.
+
+30
+00:02:13.410 --> 00:02:20.450
+Đó là khoảng -1- 0,97, nó là khoảng -2.
+
+31
+00:02:20.450 --> 00:02:25.700
+Đây là khoảng 1- 1, vì các vị vua và hoàng hậu đều về hoàng gia như nhau.
+
+32
+00:02:25.700 --> 00:02:30.564
+Vì vậy, đó là 0, và sau đó là sự khác biệt tuổi tác, sự khác biệt thực phẩm, 0.
+
+33
+00:02:30.564 --> 00:02:35.405
+Và điều này đang nắm bắt là sự khác biệt chính
+
+34
+00:02:35.405 --> 00:02:39.030
+giữa đàn ông và phụ nữ là giới tính.
+
+35
+00:02:39.030 --> 00:02:42.047
+Và sự khác biệt chính giữa vua và hoàng hậu,
+
+36
+00:02:42.047 --> 00:02:45.440
+như được đại diện bởi các vectơ này, cũng là giới tính.
+
+37
+00:02:45.440 --> 00:02:48.536
+Đó là lý do tại sao sự khác biệt e người đàn ông e người phụ nữ, và
+
+38
+00:02:48.536 --> 00:02:52.030
+sự khác biệt e vua e nữ hoàng, đều giống nhau.
+
+39
+00:02:53.880 --> 00:02:58.002
+Vì vậy, một cách để thực hiện lý luận tương tự này là,
+
+40
+00:02:58.002 --> 00:03:03.021
+nếu thuật toán được hỏi, người đàn ông là người phụ nữ như vua là gì?
+
+41
+00:03:03.021 --> 00:03:07.986
+Những gì nó có thể làm là tính toán e man- e woman, và
+
+42
+00:03:07.986 --> 00:03:12.549
+cố gắng tìm một vector, cố gắng tìm một từ để
+
+43
+00:03:12.549 --> 00:03:19.007
+e man- e woman gần với e king- e của từ mới đó.
+
+44
+00:03:19.007 --> 00:03:25.268
+Và nó chỉ ra rằng khi nữ hoàng là từ cắm vào đây,
+
+45
+00:03:25.268 --> 00:03:31.417
+thì phía tay trái gần bên tay phải.
+
+46
+00:03:34.388 --> 00:03:39.251
+Vì vậy, những ý tưởng này lần đầu tiên được Tomas Mikolov, Wen-tau Yih,
+
+47
+00:03:39.251 --> 00:03:40.720
+và Geoffrey Zweig chỉ ra.
+
+48
+00:03:40.720 --> 00:03:44.075
+Và nó là một trong những kết
+
+49
+00:03:44.075 --> 00:03:48.710
+quả đáng chú ý và đáng ngạc nhiên nhất về việc word embedding.
+
+50
+00:03:50.110 --> 00:03:52.870
+Và tôi nghĩ đã giúp cả cộng đồng có
+
+51
+00:03:52.870 --> 00:03:57.590
+được trực giác tốt hơn về việc word embedding đang làm gì.
+
+52
+00:03:57.590 --> 00:04:01.578
+Vì vậy, chúng ta hãy chính thức hóa cách bạn có thể biến nó thành một thuật toán.
+
+53
+00:04:01.578 --> 00:04:08.636
+Trong hình ảnh, từ embedding sống trong có thể là một không gian 300 chiều.
+
+54
+00:04:08.636 --> 00:04:13.922
+Và vì vậy từ người đàn ông được biểu diễn như một điểm trong không gian,
+
+55
+00:04:13.922 --> 00:04:19.227
+và từ người phụ nữ được biểu diễn như một điểm trong không gian.
+
+56
+00:04:19.227 --> 00:04:24.161
+Và từ vua được biểu diễn như một điểm khác,
+
+57
+00:04:24.161 --> 00:04:29.710
+và từ nữ hoàng được biểu diễn như một điểm khác.
+
+58
+00:04:29.710 --> 00:04:32.840
+Và những gì chúng tôi đã chỉ ra trên slide cuối cùng là
+
+59
+00:04:32.840 --> 00:04:36.090
+sự khác biệt vector giữa người đàn ông và người đàn
+
+60
+00:04:36.090 --> 00:04:42.470
+bà rất giống với sự khác biệt vector giữa vua và nữ hoàng.
+
+61
+00:04:42.470 --> 00:04:47.401
+Và mũi tên tôi vừa vẽ này thực sự là vectơ đại diện cho sự khác biệt
+
+62
+00:04:47.401 --> 00:04:48.190
+về giới tính.
+
+63
+00:04:48.190 --> 00:04:53.845
+Và hãy nhớ, đây là những điểm mà chúng ta đang vẽ trong không gian 300 chiều.
+
+64
+00:04:53.845 --> 00:04:58.369
+Vì vậy, để thực hiện các loại lý luận tương tự để tìm ra,
+
+65
+00:04:58.369 --> 00:05:02.910
+người đàn ông là người phụ nữ là vua là những gì, những gì bạn có thể làm là cố gắng tìm ra từ w,
+
+66
+00:05:06.112 --> 00:05:12.107
+Vì vậy, phương trình này
+
+67
+00:05:12.107 --> 00:05:17.160
+giữ đúng, vì vậy bạn muốn có,
+
+68
+00:05:21.260 --> 00:05:25.758
+Một mức độ cao của một sự giống nhau,
+
+69
+00:05:25.758 --> 00:05:29.565
+giữa tôi sẽ sử dụng s,
+
+70
+00:05:38.331 --> 00:05:43.819
+Và như vậy những gì bạn muốn là tìm ra
+
+71
+00:05:43.819 --> 00:05:48.623
+từ w mà tối đa hóa
+
+72
+00:05:48.623 --> 00:05:53.673
+sự giống nhau giữa,
+
+73
+00:05:55.557 --> 00:06:03.209
+e w so với e king- e man + e woman R
+
+74
+00:06:06.225 --> 00:06:10.666
+ight, vậy những gì tôi đã làm là, tôi lấy dấu hỏi e này, và
+
+75
+00:06:10.666 --> 00:06:17.070
+thay thế bằng ew, và sau đó đưa ew đến chỉ một bên của phương trình.
+
+76
+00:06:17.070 --> 00:06:21.740
+Và sau đó là ba thuật ngữ khác ở phía bên tay phải của phương trình này.
+
+77
+00:06:21.740 --> 00:06:24.160
+Vì vậy, chúng tôi có một số chức năng tương tự thích hợp để
+
+78
+00:06:24.160 --> 00:06:29.640
+đo mức độ tương tự như thế nào là embedding của một số từ w với số lượng này của quyền.
+
+79
+00:06:29.640 --> 00:06:34.330
+Sau đó, việc tìm kiếm từ tối đa hóa sự giống nhau nên hy vọng sẽ cho phép bạn
+
+80
+00:06:34.330 --> 00:06:35.610
+chọn ra từ queen.
+
+81
+00:06:39.008 --> 00:06:42.870
+Và điều đáng chú ý là, điều này thực sự có hiệu quả.
+
+82
+00:06:42.870 --> 00:06:47.845
+Nếu bạn học được một tập hợp các từ embedding và tìm một từ w để tối đa hóa
+
+83
+00:06:47.845 --> 00:06:52.710
+loại tương tự này, bạn có thể thực sự có được câu trả lời đúng chính xác.
+
+84
+00:06:52.710 --> 00:06:57.298
+Tùy thuộc vào chi tiết của nhiệm vụ, nhưng nếu bạn nhìn vào các bài báo nghiên cứu,
+
+85
+00:06:57.298 --> 00:07:01.738
+nó không phải là không phổ biến cho các bài báo nghiên cứu để báo cáo bất cứ nơi nào từ, ví dụ,
+
+86
+00:07:01.738 --> 00:07:05.592
+độ chính xác 30% đến 75% về tương tự bằng cách sử dụng các nhiệm vụ như thế này.
+
+87
+00:07:05.592 --> 00:07:10.074
+Trong trường hợp bạn đếm một nỗ lực anology là chính xác chỉ khi nó đoán
+
+88
+00:07:10.074 --> 00:07:11.690
+đúng từ chính xác.
+
+89
+00:07:12.780 --> 00:07:15.980
+Vì vậy, chỉ khi, trong trường hợp này, nó chọn ra từ nữ hoàng.
+
+90
+00:07:15.980 --> 00:07:21.330
+Trước khi tiếp tục, tôi chỉ muốn làm rõ cốt truyện này ở bên trái là gì.
+
+91
+00:07:22.450 --> 00:07:28.821
+Trước đây, chúng tôi đã nói về việc sử dụng các thuật toán như T-sae để hình dung các từ.
+
+92
+00:07:28.821 --> 00:07:32.611
+Những gì T-sae làm là, nó lấy dữ liệu 300-D,
+
+93
+00:07:32.611 --> 00:07:37.870
+và nó ánh xạ nó theo một cách rất phi tuyến tính đến một không gian 2D.
+
+94
+00:07:37.870 --> 00:07:41.900
+Và vì vậy bản đồ mà T-sae học được, đây là một
+
+95
+00:07:41.900 --> 00:07:43.480
+bản đồ rất phức tạp và rất phi tuyến tính.
+
+96
+00:07:43.480 --> 00:07:48.800
+Vì vậy, sau khi lập bản đồ T-sae, bạn không nên mong đợi những
+
+97
+00:07:48.800 --> 00:07:52.720
+mối quan hệ hình bình hành này, giống như cái mà chúng ta thấy ở bên trái, để giữ đúng sự thật.
+
+98
+00:07:54.150 --> 00:07:57.750
+Và nó thực sự là trong không gian 300 chiều ban đầu mà
+
+99
+00:07:57.750 --> 00:08:02.410
+bạn có thể tin cậy hơn vào các loại mối quan hệ bình hành này
+
+100
+00:08:02.410 --> 00:08:04.320
+trong các cặp tương tự để giữ đúng sự thật.
+
+101
+00:08:04.320 --> 00:08:09.164
+Và nó có thể giữ đúng sau một ánh xạ thông qua T-sae, nhưng trong hầu hết các trường hợp,
+
+102
+00:08:09.164 --> 00:08:14.280
+vì ánh xạ phi tuyến tính của T-sae, bạn không nên dựa vào điều đó.
+
+103
+00:08:14.280 --> 00:08:19.810
+Và nhiều mối quan hệ tương tự hình bình hành sẽ bị phá vỡ bởi T-sae.
+
+104
+00:08:19.810 --> 00:08:23.430
+Bây giờ, trước khi tiếp tục, hãy để tôi mô tả nhanh
+
+105
+00:08:23.430 --> 00:08:26.509
+các chức năng tương tự được sử dụng phổ biến nhất.
+
+106
+00:08:27.740 --> 00:08:33.420
+Vì vậy hàm tương đồng được sử dụng phổ biến nhất được gọi là tính tương đồng cosin.
+
+107
+00:08:33.420 --> 00:08:37.660
+Đây là phương trình mà chúng tôi có từ slide trước đó.
+
+108
+00:08:37.660 --> 00:08:42.980
+Vì vậy, trong sự tương đồng cosin, bạn xác định sự tương đồng giữa hai vectơ
+
+109
+00:08:42.980 --> 00:08:50.140
+u và v như u transpose v chia cho độ dài bởi độ dài Euclide.
+
+110
+00:08:50.140 --> 00:08:51.680
+Vì vậy, bỏ qua mẫu số cho
+
+111
+00:08:51.680 --> 00:08:55.130
+bây giờ, đây về cơ bản là sản phẩm bên trong giữa u và v.
+
+112
+00:08:55.130 --> 00:08:59.914
+Và vì vậy nếu u và v rất giống nhau, sản phẩm bên trong của họ sẽ có xu hướng lớn.
+
+113
+00:08:59.914 --> 00:09:04.299
+Và điều này được gọi là sự tương đồng cosin bởi vì đây thực
+
+114
+00:09:04.299 --> 00:09:08.780
+sự là cosin của góc giữa hai vectơ, u và v.
+
+115
+00:09:08.780 --> 00:09:14.558
+Vì vậy, đó là phi góc, vì vậy công thức này thực sự là cosin giữa chúng.
+
+116
+00:09:14.558 --> 00:09:18.989
+Và vì vậy bạn nhớ từ giải tích rằng nếu phi này,
+
+117
+00:09:18.989 --> 00:09:22.403
+thì cosin của phi trông như thế này.
+
+118
+00:09:22.403 --> 00:09:28.187
+Vì vậy nếu góc giữa chúng là 0, thì sự tương đồng cosin bằng 1.
+
+119
+00:09:28.187 --> 00:09:32.975
+Và nếu góc của chúng là 90 độ, sự tương đồng cosin là 0.
+
+120
+00:09:32.975 --> 00:09:36.205
+Và sau đó nếu chúng là 180 độ, hoặc
+
+121
+00:09:36.205 --> 00:09:41.810
+chỉ theo hướng hoàn toàn ngược lại, nó kết thúc là -1.
+
+122
+00:09:43.380 --> 00:09:47.470
+Vì vậy, đó là nơi mà thuật ngữ tương đồng cosin xuất phát, và nó hoạt động khá tốt cho
+
+123
+00:09:47.470 --> 00:09:50.070
+các nhiệm vụ lý luận tương tự này.
+
+124
+00:09:50.070 --> 00:09:54.697
+Nếu bạn muốn, bạn cũng có thể sử dụng khoảng cách vuông hoặc
+
+125
+00:09:54.697 --> 00:09:58.408
+khoảng cách Euclidian, u-v bình phương.
+
+126
+00:09:58.408 --> 00:10:02.538
+Về mặt kỹ thuật, đây sẽ là một thước đo của sự bất đồng hơn là một thước đo
+
+127
+00:10:02.538 --> 00:10:03.435
+của sự tương đồng.
+
+128
+00:10:03.435 --> 00:10:07.694
+Vì vậy, chúng ta cần phải lấy tiêu cực của điều này, và điều này cũng sẽ làm việc tốt.
+
+129
+00:10:07.694 --> 00:10:11.735
+Mặc dù tôi thấy sự tương đồng cosine được sử dụng thường xuyên hơn một chút.
+
+130
+00:10:12.830 --> 00:10:17.100
+Và sự khác biệt chính giữa chúng là làm thế nào nó bình thường hóa độ dài của
+
+131
+00:10:17.100 --> 00:10:18.290
+các vectơ u và v.
+
+132
+00:10:19.590 --> 00:10:25.270
+Vì vậy, một trong những kết quả đáng chú ý về word embedding là tính tổng quát của các
+
+133
+00:10:25.270 --> 00:10:27.220
+mối quan hệ tương tự mà họ có thể học.
+
+134
+00:10:27.220 --> 00:10:33.260
+Ví dụ, nó có thể học được rằng người đàn ông là phụ nữ như con trai là con gái,
+
+135
+00:10:33.260 --> 00:10:35.610
+bởi vì sự khác biệt vector giữa người đàn ông và người đàn
+
+136
+00:10:35.610 --> 00:10:40.350
+bà, tương tự như vua và nữ hoàng và trai và gái, chủ yếu chỉ là giới tính.
+
+137
+00:10:40.350 --> 00:10:44.575
+Nó có thể học được rằng Ottawa, vốn là thủ đô của Canada,
+
+138
+00:10:44.575 --> 00:10:48.036
+rằng Ottawa là đến Canada như Nairobi là đến Kenya.
+
+139
+00:10:48.036 --> 00:10:52.010
+Vì vậy, đó là thủ phủ của thành phố là tên của đất nước.
+
+140
+00:10:52.010 --> 00:10:55.536
+Nó có thể học được rằng lớn hơn là cao hơn, và
+
+141
+00:10:55.536 --> 00:10:57.690
+nó có thể học được những thứ như thế.
+
+142
+00:10:57.690 --> 00:11:02.650
+Yên là sang Nhật Bản, vì yên là đồng tiền của Nhật Bản, như đồng rúp là sang Nga.
+
+143
+00:11:02.650 --> 00:11:06.636
+Và tất cả những điều này có thể được học chỉ bằng cách chạy
+
+144
+00:11:06.636 --> 00:11:11.445
+một thuật toán học word embedding trên corpus văn bản lớn.
+
+145
+00:11:11.445 --> 00:11:14.228
+Nó có thể tự phát hiện ra tất cả các mẫu này,
+
+146
+00:11:14.228 --> 00:11:17.246
+chỉ bằng cách chạy từ các văn bản rất lớn.
+
+147
+00:11:17.246 --> 00:11:21.782
+Vì vậy, trong video này, bạn đã thấy cách word embedding có thể được sử dụng cho
+
+148
+00:11:21.782 --> 00:11:23.580
+lý luận tương tự.
+
+149
+00:11:23.580 --> 00:11:28.249
+Và trong khi bạn có thể không cố gắng xây dựng một hệ thống lý luận tương tự như
+
+150
+00:11:28.249 --> 00:11:33.195
+một ứng dụng, điều này tôi hy vọng truyền tải một số trực giác về các loại
+
+151
+00:11:33.195 --> 00:11:36.580
+biểu diễn giống như feature mà các biểu diễn này có thể học được.
+
+152
+00:11:36.580 --> 00:11:40.630
+Và bạn cũng thấy sự tương đồng cosin có thể là một cách để đo
+
+153
+00:11:40.630 --> 00:11:45.010
+sự tương đồng giữa hai từ embedding khác nhau.
+
+154
+00:11:45.010 --> 00:11:49.070
+Bây giờ, chúng tôi đã nói rất nhiều về các thuộc tính của các embedding này và làm thế nào bạn có thể sử dụng chúng.
+
+155
+00:11:49.070 --> 00:11:52.480
+Tiếp theo, chúng ta hãy nói về cách bạn sẽ thực sự tìm hiểu những từ embedding này,
+
+156
+00:11:52.480 --> 00:11:53.650
+chúng ta hãy tiếp tục đến video tiếp theo.

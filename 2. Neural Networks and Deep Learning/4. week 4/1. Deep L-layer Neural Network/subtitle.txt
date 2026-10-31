@@ -1,0 +1,49 @@
+Chào mừng đến với tuần
+thứ tư của khóa học. Cho đến giờ, bạn đã thấy
+truyền xuôi và truyền ngược trong một mạng nơ-ron nhân tạo, với một
+lớp ẩn duy nhất, cũng như hồi quy logistic và bạn đã học về vector hóa, và hiểu rằng khi nào thì cần khởi tạo ngẫu
+nhiên các phương pháp. Nếu bạn đã hoàn thành bài tập về nhà trong
+vài tuần vừa rồi, thì bạn cũng đã thực hiện và tự hiểu được những ý tưởng này. Vậy nên bây giờ, bạn đã có được hầu hết các kiến thức cần
+thiết để triển khai một mạng nơ-ron nhân tạo sâu. Trong tuần này, chúng ta sẽ lấy những ý
+tưởng đó và kết hợp chúng lại với nhau và bạn sẽ có thể triển khai mạng nơ-ron
+nhân tạo sâu của riêng mình. Bởi vì bài tập tuần này dài hơn, chỉ là có nhiều công việc
+hơn, tôi sẽ để các video tuần này ngắn hơn, để bạn
+có thể xem video nhanh hơn và sau đó có nhiều thời gian hơn để thực hiện
+một bài tập lớn khi kết thúc, và tôi hy vọng điều nà sẽ giúp bạn suy nghĩ kỹ về mạng nơ-ron
+nhân tạo, nếu bạn cảm thấy tự hào về nó. Vậy một mạng nơ-ron nhân tạo sâu là gì? Bạn đã nhìn thấy hình ảnh này
+cho hồi quy logistic và bạn cũng đã thấy các mạng
+nơ-ron nhân tạo với một lớp ẩn duy nhất. Và đây là một ví dụ về một mạng
+nơ-ron nhân tạo với hai lớp ẩn và một mạng nơ-ron nhân tạo với 5 lớp ẩn. Chúng ta nói rằng hồi quy logistic
+là một mô hình rất "nông", trong khi đây là một mô
+hình sâu hơn nhiều, và độ nông và độ sâu thì liên quan đến mức độ. Vậy nên mạng nơ-ron nhân
+tạo của một lớp ẩn duy nhất, đây sẽ là một mạng nơ-ron nhân tạo 2 lớp. Hãy nhớ là khi chúng ta đếm các lớp trong mạng
+nơ-ron, chúng ta không đếm lớp đầu vào, chúng ta chỉ đếm các lớp ẩn và lớp đầu ra. Vậy đây sẽ là một mạng nơ-ron
+nhân tạo 2 lớp, và vẫn còn khá nông, nhưng không nông bằng hồi quy logistic. Về lý thuyết, hồi quy logistic là
+một mạng nơ ron nhân tạo một lớp, nhưng trong vài năm qua, trong cộng đồng học máy, AI đã nhận
+ra rằng có những hàm mà mạng nơ-ron nhân tạo rất sâu thì có thể học được
+nhưng các mô hình nông hơn thì lại thường không thể. Mặc dù là đối với bất kỳ vấn đề nào, bạn cũng
+có thể gặp khó khăn khi dự đoán chính xác độ sâu của mạng nơ-ron mà bạn muốn. Vậy nên, sẽ thật hợp lý khi thử hồi quy
+logistic, thử một rồi hai lớp ẩn và xem số lớp ẩn như là một siêu tham số khác mà bạn có thể
+thử nhiều giá trị và đánh giá tất cả qua dữ liệu hợp lệ
+hoặc trên bộ phát triển của bạn. Chúng ta có thể xem thêm về điều đó sau. Bây giờ chúng ta sẽ xem qua ký hiệu mà được
+sử dụng để mô tả các mạng nơ-ron nhân tạo sâu. Đây là một mạng nơ-ron nhân
+tạo một, hai, ba, bốn lớp, Với ba lớp ẩn và tôi đoán số lượng
+đơn vị trong các lớp ẩn này là 5, 5, 3, và rồi có một đơn vị ở lớp đầu ra. Vậy là ký hiệu chúng ta sẽ sử dụng, sẽ là L viết hoa, để biểu
+thị số lớp trong mạng. Trong trường hợp này, số lớp là L = 4, và chúng ta sẽ sử dụng n với chỉ
+số trên [l] để biểu thị số lượng nút, hoặc số lượng đơn vị trong lớp l viết thường. Vì vậy, nếu chúng ta đánh số,
+thì đầu vào là lớp "0". Đây là lớp 1, đây là lớp 2, đây là
+lớp 3 và đây là lớp 4. Sau đó, ví dụ chúng ta có
+n [1], đó sẽ là cái này, đầu tiên ở đó sẽ bằng 5, bởi vì
+chúng ta có 5 đơn vị ẩn ở đó. Đối với cái này, chúng ta có n [2], số lượng đơn vị trong lớp ẩn thứ hai cũng bằng 5, n [3] = 3 và n [4] = n [L] số lượng đơn vị
+ở lớp đầu ra là 1, bởi vì L của bạn bằng bốn, và chúng ta cũng sẽ có ở đây lớp đầu vào n [0] = nx = 3. Và đó là ký hiệu chúng ta sử dụng để
+mô tả số lượng nút chúng ta có ở các lớp khác nhau. Đối với mỗi lớp L, chúng ta cũng sẽ sử dụng a [l] để biểu thị các kích hoạt trong lớp l. Và rồi sau đó trong truyền xuôi, bạn tính a[l] là kích hoạt g (z [l]) và có lẽ kích hoạt cũng được đánh số bởi lớp l, và sau đó chúng ta sẽ sử dụng
+W [l] để biểu thị, các trọng số để tính giá trị z [l] trong lớp l và tương tự, b [l] được sử dụng để tính z [l]. Cuối cùng, tóm lại, các tính
+năng đầu vào được gọi là x, nhưng x cũng là kích hoạt
+của lớp 0, vậy nên a [0] = x, và kích hoạt lớp cuối cùng, a [L] = y-mũ. Vì vậy, [L] bằng với đầu ra dự đoán,
+dự đoán y-mũ cho mạng nơ-ron nhân tạo. Bây giờ bạn biết được một mạng nơ-ron
+nhân tạo sâu thì trông như thế nào, cũng như là ký hiệu chúng ta sẽ sử dụng
+để mô tả và tính toán với các mạng sâu. Tôi biết là chúng tôi đã giới thiệu rất nhiều ký
+hiệu trong video này, nhưng nếu bạn quên ý nghĩa của một số ký hiệu, thì chúng tôi cũng
+đã đăng trên trang web của khóa học, một bảng ký hiệu hoặc một chỉ dẫn ký hiệu, mà bạn có thể
+sử dụng để tra cứu các biểu tượng này. Tiếp đến, tôi muốn bạn biết
+truyền xuôi trong loại mạng này có hình dạng ra sao. Hãy cùng xem video tiếp theo.

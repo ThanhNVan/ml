@@ -1,0 +1,464 @@
+WEBVTT
+
+00:00:01.200 --> 00:00:05.960
+Trong video trước, bạn đã tìm hiểu về mô hình
+logistic regression.
+
+00:00:05.960 --> 00:00:09.890
+Bây giờ chúng ta hãy xem decision boundary để
+hiểu rõ hơn
+
+00:00:09.890 --> 00:00:13.820
+về cách logistic regression tính toán các dự
+đoán của nó.
+
+00:00:13.820 --> 00:00:17.370
+Tóm lại, đây là cách tính kết quả đầu ra của
+
+00:00:17.370 --> 00:00:20.920
+mô hình logistic regression theo hai bước.
+
+00:00:20.920 --> 00:00:26.820
+Trong bước đầu tiên, bạn tính z là w chấm x
+cộng b.
+
+00:00:26.820 --> 00:00:31.340
+Sau đó, bạn áp dụng hàm sigmoid g cho giá trị
+
+00:00:31.340 --> 00:00:35.860
+z này và đây lại là công thức cho hàm sigmoid.
+
+00:00:35.860 --> 00:00:43.440
+Một cách khác để viết điều này là, chúng ta có
+thể nói f(x) bằng g, hàm sigmoid, còn
+
+00:00:43.440 --> 00:00:51.020
+gọi là hàm logistic, áp dụng cho w chấm x cộng
+b, trong đó đây tất nhiên là giá trị
+
+00:00:51.020 --> 00:00:53.020
+của z.
+
+00:00:53.020 --> 00:01:00.520
+Và nếu bạn lấy định nghĩa của hàm sigmoid và
+thay vào định nghĩa của z,
+
+00:01:00.520 --> 00:01:08.020
+thì bạn sẽ thấy rằng f(x) bằng công thức ở
+đây, 1 trên 1 cộng e với âm
+
+00:01:08.020 --> 00:01:11.980
+z trong đó z là w x cộng b.
+
+00:01:11.980 --> 00:01:17.120
+Và bạn có thể nhớ chúng ta đã nói trong video
+trước rằng chúng ta hiểu
+
+00:01:17.120 --> 00:01:22.260
+điều này là xác suất để y bằng 1 cho trước x
+và với các tham số w và b.
+
+00:01:22.500 --> 00:01:27.740
+Và vì vậy đây sẽ là một con số có lẽ là 0,7
+hoặc 0,3.
+
+00:01:27.740 --> 00:01:35.580
+Bây giờ, nếu bạn muốn thuật toán học dự đoán
+giá trị của y sẽ là 0 hay 1 thì sao?
+
+00:01:35.580 --> 00:01:40.033
+Vâng, một điều bạn có thể làm là đặt một
+ngưỡng trên đó
+
+00:01:40.033 --> 00:01:44.487
+bạn dự đoán y là 1, hoặc bạn đặt y hat thành
+dự đoán bằng
+
+00:01:44.487 --> 00:01:48.940
+1, và dưới ngưỡng đó bạn có thể nói y hat, dự
+đoán của tôi,
+
+00:01:48.940 --> 00:01:52.060
+sẽ bằng 0.
+
+00:01:52.060 --> 00:01:59.520
+Vì vậy, một lựa chọn phổ biến là chọn ngưỡng
+0,5, sao cho nếu f(x) lớn hơn hoặc
+
+00:01:59.520 --> 00:02:06.980
+bằng 0,5 thì dự đoán y là 1, và chúng ta viết
+dự đoán đó là y hat bằng 1, hoặc
+
+00:02:06.980 --> 00:02:16.100
+nếu f của x nhỏ hơn 0,5 thì dự đoán y là 0,
+hay nói cách khác dự đoán y hat bằng 0.
+
+00:02:16.100 --> 00:02:19.980
+Vì vậy, bây giờ chúng ta hãy đi sâu hơn vào
+thời điểm mô hình dự đoán 1.
+
+00:02:19.980 --> 00:02:25.540
+Nói cách khác, khi nào f(x) lớn hơn hoặc bằng
+0,5?
+
+00:02:25.540 --> 00:02:32.300
+Hãy nhớ lại rằng f(x) chỉ bằng g(z), và do đó
+f lớn hơn
+
+00:02:32.300 --> 00:02:39.060
+hoặc bằng 0,5, bất cứ khi nào g(z) lớn hơn
+hoặc bằng 0,5.
+
+00:02:39.060 --> 00:02:43.660
+Nhưng khi nào g của z lớn hơn hoặc bằng 0,5?
+
+00:02:43.660 --> 00:02:50.520
+Vâng, đây là hàm sigmoid ở đây, và g(z) lớn
+hơn hoặc
+
+00:02:50.520 --> 00:02:57.380
+bằng 0,5, bất cứ khi nào z lớn hơn hoặc bằng
+0, phải không?
+
+00:02:57.380 --> 00:03:03.300
+Đó là bất cứ khi nào z nằm ở nửa bên phải của
+trục này.
+
+00:03:03.300 --> 00:03:07.020
+Và cuối cùng, khi nào z lớn hơn hoặc bằng 0?
+
+00:03:07.020 --> 00:03:13.680
+Vâng, z bằng w chấm x cộng b, và do đó z lớn
+hơn hoặc
+
+00:03:13.680 --> 00:03:20.340
+bằng 0 bất cứ khi nào w chấm x cộng b lớn hơn
+hoặc bằng 0.
+
+00:03:20.340 --> 00:03:26.800
+Tóm lại, những gì bạn thấy ở đây là mô hình dự
+đoán
+
+00:03:26.800 --> 00:03:33.260
+1, bất cứ khi nào w chấm x cộng b lớn hơn hoặc
+bằng 0.
+
+00:03:33.260 --> 00:03:43.260
+Và ngược lại, khi w chấm x cộng b nhỏ hơn 0
+thì thuật toán dự đoán y bằng 0.
+
+00:03:43.260 --> 00:03:49.460
+Vì vậy, bây giờ chúng ta hãy hình dung cách mô
+hình đưa ra dự đoán.
+
+00:03:49.460 --> 00:03:54.320
+Tôi sẽ lấy một ví dụ về vấn đề classification
+trong đó bạn có hai
+
+00:03:54.320 --> 00:03:59.180
+đối tượng địa lý, x1 và x2, thay vì chỉ có một
+đối tượng địa lý.
+
+00:03:59.180 --> 00:04:03.860
+Đây là training set trong đó các chữ thập nhỏ
+màu đỏ biểu thị các ví
+
+00:04:03.860 --> 00:04:08.540
+dụ tích cực và các vòng tròn nhỏ màu xanh biểu
+thị các ví dụ tiêu cực.
+
+00:04:08.540 --> 00:04:13.860
+Vì vậy, các chữ thập màu đỏ tương ứng với y
+bằng 1
+
+00:04:13.860 --> 00:04:19.180
+và các vòng tròn màu xanh tương ứng với y bằng
+0.
+
+00:04:19.180 --> 00:04:24.553
+Vì vậy, mô hình logistic regression sẽ đưa ra
+dự đoán bằng
+
+00:04:24.553 --> 00:04:29.927
+cách sử dụng hàm này, f của x bằng g của z,
+trong đó z bây giờ
+
+00:04:29.927 --> 00:04:35.300
+là biểu thức ở đây, w1 x1 cộng w2 x2 cộng b,
+bởi vì chúng ta có
+
+00:04:35.300 --> 00:04:38.380
+hai feature x1 và x2.
+
+00:04:38.380 --> 00:04:44.640
+Và trong ví dụ này, hãy nói rằng giá trị của
+các
+
+00:04:44.640 --> 00:04:50.900
+tham số là w1 bằng 1, w2 bằng 1 và b bằng âm
+3.
+
+00:04:50.900 --> 00:04:55.780
+Và bây giờ chúng ta hãy xem
+logistic regression đưa ra dự đoán như thế
+nào.
+
+00:04:55.780 --> 00:05:04.740
+Cụ thể, hãy tìm hiểu khi nào wx cộng b lớn hơn
+hoặc bằng 0 và khi wx cộng b nhỏ hơn 0.
+
+00:05:04.740 --> 00:05:09.420
+Để tìm ra điều đó, có một đường rất thú vị để
+
+00:05:09.420 --> 00:05:14.100
+xem xét, đó là khi wx cộng b chính xác bằng 0.
+
+00:05:14.100 --> 00:05:20.800
+Hóa ra đường này còn được gọi là
+decision boundary, bởi vì đó
+
+00:05:20.800 --> 00:05:27.500
+là đường mà bạn gần như trung lập về việc y là
+0 hay y là 1.
+
+00:05:27.500 --> 00:05:35.500
+Bây giờ đối với các giá trị của tham số w1, w2
+và b mà chúng ta
+
+00:05:35.500 --> 00:05:43.500
+đã viết ở trên, decision boundary này chỉ là
+x1 cộng x2 trừ 3.
+
+00:05:43.500 --> 00:05:49.180
+Và khi nào x1 cộng x2 trừ 3 bằng 0?
+
+00:05:49.180 --> 00:05:56.700
+Vâng, nó sẽ tương ứng với dòng x1 cộng x2 bằng
+3.
+
+00:05:56.700 --> 00:06:01.660
+Và đó là dòng được hiển thị ở đây.
+
+00:06:01.660 --> 00:06:06.407
+Và do đó, đường này hóa ra là
+decision boundary, trong đó nếu
+
+00:06:06.407 --> 00:06:11.153
+các đặc điểm x ở bên phải của đường này, thì
+
+00:06:11.153 --> 00:06:15.900
+logistic regression sẽ dự đoán là 1, và ở bên
+trái của đường này, logistic
+
+00:06:15.900 --> 00:06:19.860
+regression sẽ dự đoán 0.
+
+00:06:19.860 --> 00:06:26.380
+Nói cách khác, những gì chúng ta vừa hình dung
+là decision boundary
+
+00:06:26.380 --> 00:06:32.900
+cho logistic regression khi các tham số w1, w2
+và b là 1, 1 và âm 3.
+
+00:06:32.900 --> 00:06:39.700
+Tất nhiên, nếu bạn có lựa chọn tham số khác,
+decision boundary sẽ là một đường khác.
+
+00:06:39.700 --> 00:06:42.970
+Bây giờ chúng ta hãy xem một ví dụ phức tạp
+hơn trong
+
+00:06:42.970 --> 00:06:46.240
+đó decision boundary không còn là một đường
+thẳng nữa.
+
+00:06:46.240 --> 00:06:51.830
+Như trước đây, dấu gạch chéo biểu thị mệnh đề
+y
+
+00:06:51.830 --> 00:06:57.420
+bằng 1 và các vòng tròn nhỏ biểu thị mệnh đề y
+bằng 0.
+
+00:06:57.420 --> 00:07:02.460
+Đầu tuần trước, bạn đã biết cách sử dụng đa
+thức trong
+
+00:07:02.460 --> 00:07:07.500
+linear regression và bạn có thể làm điều tương
+tự trong logistic regression.
+
+00:07:07.500 --> 00:07:13.100
+Vì vậy, hãy đặt z bằng w1 x1 bình cộng w2 x2
+
+00:07:13.100 --> 00:07:18.700
+bình cộng b, với sự lựa chọn các feature này,
+
+00:07:18.700 --> 00:07:21.420
+các feature đa thức, thành một
+logistic regression.
+
+00:07:21.420 --> 00:07:27.420
+Vậy f(x), bằng g(z), bây giờ là g của biểu
+thức ở đây.
+
+00:07:27.420 --> 00:07:36.460
+Và giả sử cuối cùng chúng ta chọn w1 và w2 là
+1, và b là âm 1.
+
+00:07:36.460 --> 00:07:43.940
+Vậy z bằng 1 nhân x1 bình cộng 1 nhân x2 bình
+trừ 1.
+
+00:07:43.940 --> 00:07:50.840
+Và decision boundary, như trước, sẽ tương ứng
+với khi z bằng 0, và do đó
+
+00:07:50.840 --> 00:07:57.740
+biểu thức này sẽ bằng 0 khi x1 bình phương
+cộng x2 bình phương bằng 1.
+
+00:07:57.740 --> 00:08:03.560
+Và nếu bạn vẽ trên sơ đồ bên trái, đường cong
+tương ứng với
+
+00:08:03.560 --> 00:08:09.380
+x1 bình cộng x2 bình bằng 1, hóa ra đây là
+hình tròn này.
+
+00:08:09.380 --> 00:08:14.540
+Khi x1 bình phương cộng với x2 bình phương lớn
+hơn hoặc bằng 1, đó
+
+00:08:14.540 --> 00:08:19.700
+là diện tích nằm ngoài hình tròn và đó là khi
+bạn dự đoán y là 1.
+
+00:08:19.700 --> 00:08:25.780
+Ngược lại, khi x1 bình phương cộng x2 bình
+phương nhỏ hơn 1, đó là
+
+00:08:25.780 --> 00:08:31.860
+diện tích bên trong hình tròn và đó là lúc bạn
+dự đoán y bằng 0.
+
+00:08:31.860 --> 00:08:34.300
+Vậy liệu chúng ta có thể đưa ra những
+
+00:08:34.300 --> 00:08:36.740
+decision boundary phức tạp hơn những ranh giới
+này không?
+
+00:08:36.740 --> 00:08:38.220
+Có, bạn có thể.
+
+00:08:38.220 --> 00:08:42.540
+Bạn có thể làm như vậy bằng cách có các số
+hạng đa thức bậc cao hơn.
+
+00:08:42.540 --> 00:08:53.740
+Giả sử z bằng w1 x1 cộng w2 x2 cộng w3 x1 bình
+cộng w4 x1 x2 cộng w5 x2 bình.
+
+00:08:53.740 --> 00:08:58.180
+Sau đó, bạn có thể nhận được những
+decision boundary phức tạp hơn nữa.
+
+00:08:58.180 --> 00:09:03.800
+Mô hình có thể xác định các decision boundary,
+chẳng hạn như ví dụ
+
+00:09:03.800 --> 00:09:09.420
+này và hình elip, giống như thế này hoặc với
+một lựa chọn tham số khác.
+
+00:09:09.420 --> 00:09:13.000
+Bạn thậm chí có thể nhận được các
+decision boundary phức tạp
+
+00:09:13.000 --> 00:09:16.580
+hơn, có thể trông giống như các hàm có thể
+trông giống như vậy.
+
+00:09:16.580 --> 00:09:20.993
+Vì vậy, đây là ví dụ về decision boundary thậm
+chí còn phức tạp
+
+00:09:20.993 --> 00:09:25.407
+hơn những ranh giới chúng ta đã thấy trước đây
+và việc triển
+
+00:09:25.407 --> 00:09:29.820
+khai logistic regression này sẽ dự đoán y bằng
+1 bên trong này
+
+00:09:29.820 --> 00:09:34.780
+hình dạng và bên ngoài hình dạng này sẽ dự
+đoán y bằng 0.
+
+00:09:34.780 --> 00:09:37.600
+Vì vậy, với các đặc điểm đa thức này, bạn có
+
+00:09:37.600 --> 00:09:40.420
+thể có được các decision boundary rất phức
+tạp.
+
+00:09:40.420 --> 00:09:45.940
+Nói cách khác, logistic regression có thể học
+cách phù hợp với dữ liệu khá phức tạp.
+
+00:09:45.940 --> 00:09:51.600
+Mặc dù nếu bạn không bao gồm bất kỳ đa thức
+bậc cao nào, vì vậy nếu feature duy
+
+00:09:51.600 --> 00:09:57.260
+nhất bạn sử dụng là x1 x2 x3, v.v., thì
+decision boundary cho logistic regression
+
+00:09:57.260 --> 00:10:01.740
+sẽ luôn là một đường thẳng, sẽ luôn là một
+đường thẳng.
+
+00:10:01.740 --> 00:10:05.360
+Trong phòng thí nghiệm tùy chọn sắp tới, bạn
+cũng
+
+00:10:05.360 --> 00:10:08.980
+có thể xem cách triển khai mã của
+decision boundary.
+
+00:10:08.980 --> 00:10:12.330
+Trong ví dụ trong lab sẽ có hai đặc điểm để
+bạn
+
+00:10:12.330 --> 00:10:15.680
+có thể xem decision boundary là một đường
+thẳng.
+
+00:10:15.680 --> 00:10:19.770
+Vì vậy, với những hình ảnh trực quan này, tôi
+hy vọng rằng bây giờ bạn đã hiểu
+
+00:10:19.770 --> 00:10:23.860
+được phạm vi các mô hình khả thi mà bạn có thể
+có được bằng logistic regression.
+
+00:10:23.860 --> 00:10:27.940
+Bây giờ bạn đã thấy f(x) có khả năng tính toán
+bao nhiêu, hãy xem xét
+
+00:10:27.940 --> 00:10:32.020
+cách bạn có thể thực sự huấn luyện một mô hình
+logistic regression.
+
+00:10:32.020 --> 00:10:36.100
+Chúng ta sẽ bắt đầu bằng cách xem xét
+cost function cho
+
+00:10:36.100 --> 00:10:40.180
+logistic regression và sau đó, tìm ra cách áp
+dụng phương pháp gradient descent cho nó.
+
+00:10:40.180 --> 00:10:41.500
+Chúng ta hãy chuyển sang video tiếp theo.

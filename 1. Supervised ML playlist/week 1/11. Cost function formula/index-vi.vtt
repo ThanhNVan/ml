@@ -1,0 +1,428 @@
+WEBVTT
+
+00:00:01.520 --> 00:00:04.890
+Để thực hiện linear regression, bước quan
+trọng đầu
+
+00:00:04.890 --> 00:00:08.260
+tiên là chúng ta xác định một thứ gọi là
+cost function.
+
+00:00:08.260 --> 00:00:10.760
+Đây là thứ chúng tôi sẽ xây dựng trong video
+này.
+
+00:00:10.760 --> 00:00:14.200
+Và cost function sẽ cho chúng ta biết mô hình
+đang hoạt động tốt
+
+00:00:14.200 --> 00:00:17.640
+như thế nào để chúng ta có thể cố gắng làm cho
+nó hoạt động tốt hơn.
+
+00:00:17.640 --> 00:00:19.560
+Chúng ta hãy xem điều này có nghĩa là gì.
+
+00:00:19.560 --> 00:00:23.020
+Hãy nhớ lại rằng bạn có một training set chứa
+
+00:00:23.020 --> 00:00:26.480
+các feature đầu vào x và mục tiêu đầu ra y.
+
+00:00:26.480 --> 00:00:31.840
+Và mô hình bạn sẽ sử dụng để phù hợp với
+training set
+
+00:00:31.840 --> 00:00:37.200
+này là hàm tuyến tính f wb của x bằng w nhân x
+cộng b.
+
+00:00:37.200 --> 00:00:44.720
+Để giới thiệu thêm một chút về thuật ngữ, w và
+b được gọi là các tham số của mô hình.
+
+00:00:44.720 --> 00:00:49.560
+Trong machine learning, các tham số của mô
+hình là các biến bạn
+
+00:00:49.560 --> 00:00:54.400
+có thể điều chỉnh trong quá trình đào tạo để
+cải thiện mô hình.
+
+00:00:54.400 --> 00:01:02.520
+Đôi khi bạn cũng nghe thấy các tham số w và b
+được gọi là hệ số hoặc trọng số.
+
+00:01:02.520 --> 00:01:08.600
+Bây giờ chúng ta hãy xem các tham số w và b
+này làm gì.
+
+00:01:08.600 --> 00:01:13.060
+Tùy thuộc vào các giá trị bạn đã chọn cho w và
+b, bạn sẽ có được
+
+00:01:13.060 --> 00:01:17.520
+một hàm f(x) khác nhau, hàm này tạo ra một
+đường khác trên biểu đồ.
+
+00:01:17.560 --> 00:01:24.760
+Hãy nhớ rằng chúng ta có thể viết f(x) dưới
+dạng viết tắt của f wb(x).
+
+00:01:24.760 --> 00:01:29.640
+Chúng ta sẽ xét một số đồ thị của f(x) trên
+biểu đồ.
+
+00:01:29.640 --> 00:01:33.027
+Có thể bạn đã quen với việc vẽ các đường trên
+biểu đồ, nhưng
+
+00:01:33.027 --> 00:01:36.413
+ngay cả khi đây là bài đánh giá dành cho bạn,
+tôi hy vọng điều
+
+00:01:36.413 --> 00:01:39.800
+này sẽ giúp bạn hình thành trực giác về cách w
+và b, các tham số,
+
+00:01:39.800 --> 00:01:42.600
+xác định f.
+
+00:01:42.600 --> 00:01:50.920
+Khi w bằng 0 và b bằng 1,5 thì f có dạng đường
+ngang này.
+
+00:01:50.920 --> 00:01:55.720
+Trong trường hợp này, hàm f của x là 0 nhân x
+
+00:01:55.720 --> 00:02:00.520
+cộng 1,5, vì vậy f luôn là một giá trị không
+đổi.
+
+00:02:00.520 --> 00:02:05.880
+Nó luôn dự đoán 1,5 cho giá trị ước tính của
+y.
+
+00:02:05.880 --> 00:02:09.000
+Vậy y hat luôn bằng b.
+
+00:02:09.000 --> 00:02:13.800
+Và ở đây, b còn được gọi là giao điểm y vì đó
+là
+
+00:02:13.800 --> 00:02:18.600
+nơi nó cắt trục tung hoặc trục y trên biểu đồ
+này.
+
+00:02:18.600 --> 00:02:28.840
+Ví dụ thứ hai, nếu w là 0,5 và b bằng 0 thì
+f(x) bằng 0,5 nhân x.
+
+00:02:28.840 --> 00:02:32.440
+Khi x bằng 0 thì dự đoán cũng bằng 0.
+
+00:02:32.440 --> 00:02:38.400
+Và khi x bằng 2 thì dự đoán là 0,5 nhân 2, tức
+là 1.
+
+00:02:38.400 --> 00:02:40.800
+Vì vậy, bạn có được một dòng trông như thế
+này.
+
+00:02:40.800 --> 00:02:46.440
+Và lưu ý rằng độ dốc là 0,5 chia cho 1.
+
+00:02:46.440 --> 00:02:53.360
+Vì vậy, giá trị của w cho bạn độ dốc của đường
+thẳng là 0,5.
+
+00:02:53.360 --> 00:03:04.600
+Và cuối cùng, nếu w bằng 0,5 và b bằng 1, thì
+f(x) bằng 0,5 nhân x cộng 1.
+
+00:03:04.600 --> 00:03:09.640
+Và khi x bằng 0, thì f(x) bằng b, bằng 1.
+
+00:03:09.640 --> 00:03:15.080
+Vậy đường thẳng cắt trục tung tại b, giao điểm
+y.
+
+00:03:15.080 --> 00:03:19.600
+Ngoài ra khi x là 2 thì f của x là 2.
+
+00:03:19.600 --> 00:03:21.040
+Vì vậy, dòng trông như thế này.
+
+00:03:21.040 --> 00:03:29.320
+Một lần nữa, độ dốc là 0,5 chia cho 1, do đó
+giá trị của w cho bạn độ dốc là 0,5.
+
+00:03:29.320 --> 00:03:33.760
+Hãy nhớ rằng bạn có một training set, giống
+như tập được hiển thị ở đây.
+
+00:03:33.760 --> 00:03:39.060
+Với linear regression, điều bạn muốn làm là
+chọn các giá trị cho tham số w và b
+
+00:03:39.060 --> 00:03:44.360
+sao cho đường thẳng bạn nhận được từ hàm f
+bằng cách nào đó vừa khít với dữ liệu,
+
+00:03:44.360 --> 00:03:47.160
+giống như dòng này được hiển thị ở đây.
+
+00:03:47.160 --> 00:03:51.187
+Và khi tôi nói rằng đường này khớp với dữ liệu
+một cách trực
+
+00:03:51.187 --> 00:03:55.213
+quan, bạn có thể nghĩ điều này có nghĩa là
+đường được xác
+
+00:03:55.213 --> 00:03:59.240
+định bởi f gần như đi qua hoặc hơi gần với ví
+dụ huấn luyện
+
+00:03:59.760 --> 00:04:05.640
+so với các đường có thể khác không gần với các
+điểm này.
+
+00:04:05.640 --> 00:04:13.140
+Và để nhắc bạn về một số ký hiệu, ví dụ huấn
+luyện như điểm này ở đây
+
+00:04:13.140 --> 00:04:20.640
+được xác định bởi x superstrip i, y superstrip
+i, trong đó y là đích.
+
+00:04:20.640 --> 00:04:27.860
+Đối với đầu vào xi cho trước, hàm f cũng tạo
+ra giá trị dự đoán cho
+
+00:04:27.860 --> 00:04:35.080
+y và giá trị mà nó dự đoán cho y là y-hat i,
+được hiển thị ở đây.
+
+00:04:35.080 --> 00:04:41.320
+Đối với sự lựa chọn mô hình của chúng ta,
+f(xi) là w nhân xi cộng b.
+
+00:04:41.320 --> 00:04:50.495
+Nói cách khác, dự đoán y-hat i là f của wb của
+xi, trong
+
+00:04:50.495 --> 00:04:59.670
+đó đối với mô hình sử dụng f của xi bằng w xi
+cộng với b.
+
+00:04:59.670 --> 00:05:05.590
+Vì vậy, bây giờ câu hỏi là, làm thế nào để bạn
+tìm thấy các giá
+
+00:05:05.590 --> 00:05:11.510
+trị của w và b sao cho dự đoán y-hat i gần với
+mục tiêu thực sự
+
+00:05:11.510 --> 00:05:17.430
+yi cho nhiều hoặc có thể là tất cả các ví dụ
+huấn luyện xi yi?
+
+00:05:17.430 --> 00:05:21.190
+Để trả lời câu hỏi đó, trước tiên chúng ta hãy
+xem
+
+00:05:21.190 --> 00:05:24.950
+cách đo mức độ phù hợp của một đường với
+training data.
+
+00:05:24.950 --> 00:05:28.970
+Để làm điều đó, chúng ta sẽ xây dựng
+cost function.
+
+00:05:28.970 --> 00:05:34.380
+Cost function lấy y-hat dự đoán và so sánh
+
+00:05:34.380 --> 00:05:39.790
+nó với y mục tiêu bằng cách lấy y-hat trừ y.
+
+00:05:39.790 --> 00:05:42.830
+Sự khác biệt này được gọi là lỗi.
+
+00:05:42.830 --> 00:05:47.150
+Chúng tôi đang đo lường khoảng cách giữa dự
+đoán và mục tiêu.
+
+00:05:47.150 --> 00:05:52.110
+Tiếp theo, hãy tính bình phương của sai số
+này.
+
+00:05:52.110 --> 00:05:55.710
+Ngoài ra, chúng ta sẽ muốn tính thuật ngữ này
+cho
+
+00:05:55.710 --> 00:05:59.310
+các ví dụ huấn luyện khác nhau trong
+training set.
+
+00:05:59.310 --> 00:06:02.370
+Vì vậy, khi đo sai số, chẳng hạn như i,
+
+00:06:02.370 --> 00:06:05.430
+chúng ta sẽ tính số hạng sai số bình phương
+này.
+
+00:06:05.430 --> 00:06:10.230
+Cuối cùng, chúng tôi muốn đo lỗi trên toàn bộ
+training set.
+
+00:06:10.230 --> 00:06:13.990
+Cụ thể, hãy tổng hợp các lỗi bình phương như
+thế này.
+
+00:06:13.990 --> 00:06:20.190
+Chúng ta sẽ tính tổng từ i bằng 1, 2, 3 cho
+đến m.
+
+00:06:20.190 --> 00:06:26.190
+Và hãy nhớ rằng m là số lượng mẫu huấn luyện,
+là 47 cho tập dữ liệu này.
+
+00:06:26.190 --> 00:06:31.010
+Lưu ý rằng nếu chúng ta có nhiều ví dụ huấn
+luyện hơn thì m sẽ lớn hơn và
+
+00:06:31.010 --> 00:06:35.830
+cost function của bạn sẽ tính một số lớn hơn
+vì nó tính tổng trên nhiều ví dụ hơn.
+
+00:06:35.830 --> 00:06:42.440
+Vì vậy, để xây dựng cost function không tự
+động lớn hơn khi kích thước training set
+
+00:06:42.440 --> 00:06:49.050
+lớn hơn, theo quy ước, chúng ta sẽ tính sai số
+bình phương trung bình thay vì tổng
+
+00:06:49.050 --> 00:06:50.050
+lỗi bình phương.
+
+00:06:50.050 --> 00:06:54.190
+Và chúng ta làm điều đó bằng cách chia cho m
+như thế này.
+
+00:06:54.190 --> 00:06:57.410
+Được rồi, chúng ta gần đến đích rồi.
+
+00:06:57.410 --> 00:06:59.150
+Chỉ một điều cuối cùng.
+
+00:06:59.150 --> 00:07:06.350
+Theo quy ước, cost function mà
+machine learning sử dụng thực sự chia cho 2
+lần m.
+
+00:07:06.350 --> 00:07:09.937
+Việc chia thêm cho 2 chỉ nhằm mục đích làm cho
+một số phép
+
+00:07:09.937 --> 00:07:13.523
+tính sau này của chúng ta gọn gàng hơn một
+chút, nhưng
+
+00:07:13.523 --> 00:07:17.110
+cost function vẫn hoạt động cho dù bạn bao gồm
+phép chia này cho 2 hay
+
+00:07:17.110 --> 00:07:18.110
+không.
+
+00:07:18.110 --> 00:07:23.200
+Vậy biểu thức này ở đây là cost function, và
+
+00:07:23.200 --> 00:07:28.290
+chúng ta sẽ viết j của wb để chỉ
+cost function.
+
+00:07:28.290 --> 00:07:32.230
+Đây còn được gọi là cost function lỗi bình
+phương.
+
+00:07:32.230 --> 00:07:37.350
+Và nó được gọi như vậy vì bạn đang lấy bình
+phương của các số hạng sai số này.
+
+00:07:37.350 --> 00:07:40.350
+Trong machine learning, những người khác nhau
+sẽ sử dụng
+
+00:07:40.350 --> 00:07:43.350
+các cost function khác nhau cho các ứng dụng
+khác nhau.
+
+00:07:43.350 --> 00:07:46.690
+Nhưng cost function sai số bình phương cho đến
+nay vẫn
+
+00:07:46.690 --> 00:07:50.030
+là hàm được sử dụng phổ biến nhất cho
+linear regression.
+
+00:07:50.030 --> 00:07:53.370
+Và đối với vấn đề đó, đối với tất cả các vấn
+đề
+
+00:07:53.370 --> 00:07:56.710
+regression, nó dường như mang lại kết quả tốt
+cho nhiều ứng dụng.
+
+00:07:56.710 --> 00:08:05.670
+Vì vậy, xin nhắc lại, dự đoán y hat bằng đầu
+ra của mô hình f tại x.
+
+00:08:05.670 --> 00:08:10.790
+Vì vậy, chúng ta có thể viết lại cost function
+
+00:08:10.790 --> 00:08:15.910
+j của wb là 1 trên 2m nhân tổng của i bằng 1
+
+00:08:15.910 --> 00:08:23.030
+đến m của f xi trừ yi, đại lượng bình phương.
+
+00:08:23.830 --> 00:08:30.230
+Cuối cùng, chúng ta sẽ muốn tìm các giá trị
+của w và b làm cho cost function nhỏ.
+
+00:08:30.230 --> 00:08:34.370
+Nhưng trước khi đến đó, trước tiên chúng ta
+hãy có
+
+00:08:34.370 --> 00:08:38.510
+thêm trực giác về những gì j của wb thực sự là
+điện toán.
+
+00:08:38.510 --> 00:08:41.380
+Tại thời điểm này, bạn có thể nghĩ rằng chúng
+ta đã
+
+00:08:41.380 --> 00:08:44.250
+thực hiện rất nhiều phép toán để xác định
+cost function.
+
+00:08:44.250 --> 00:08:46.750
+Nhưng chính xác thì nó đang làm gì?
+
+00:08:46.750 --> 00:08:51.817
+Chúng ta hãy chuyển sang video tiếp theo,
+trong đó chúng ta sẽ xem qua một ví
+
+00:08:51.817 --> 00:08:56.883
+dụ về cost function thực sự được tính toán là
+gì, tôi hy vọng sẽ giúp bạn xây
+
+00:08:56.883 --> 00:09:01.950
+dựng trực giác về ý nghĩa của việc nếu j của
+wb lớn so với nếu chi phí j nhỏ.
+
+00:09:01.950 --> 00:09:03.470
+Chúng ta hãy chuyển sang video tiếp theo.

@@ -1,0 +1,222 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.240 --> 00:00:03.800
+Why does your neural network need a nonlinear activation function?
+
+00:00:04.080 --> 00:00:07.280
+Turns out that for your neural network to compute interesting functions
+
+00:00:07.280 --> 00:00:15.000
+You do need to pick a nonlinear activation function. Let's see why. So here's the four prop equations for the neural network
+
+00:00:15.520 --> 00:00:21.840
+Why don't we just get rid of this? Get rid of the function g and set a1 equals z1
+
+00:00:22.680 --> 00:00:28.720
+Alternatively, you could say that g of z is equal to z, right? Sometimes this is called the
+
+00:00:29.280 --> 00:00:30.520
+linear
+
+00:00:30.520 --> 00:00:31.640
+activation function
+
+00:00:31.640 --> 00:00:39.000
+Maybe a better name for it would be the identity activation function because it was just outputs whatever was input for the purpose of this
+
+00:00:39.560 --> 00:00:42.840
+What if a2 was just equal to z2?
+
+00:00:43.240 --> 00:00:46.840
+It turns out if you do this then this model is just
+
+00:00:47.440 --> 00:00:52.880
+Computing y or y hat as a linear function of your input features x
+
+00:00:53.680 --> 00:00:56.800
+To take the first two equations if you have that
+
+00:00:56.800 --> 00:00:59.280
+a1 is equal to
+
+00:00:59.920 --> 00:01:02.440
+z1 is equal to
+
+00:01:03.600 --> 00:01:06.480
+w1 x plus b and
+
+00:01:07.960 --> 00:01:17.380
+If then a2 is equal to z2 is equal to w2 a1
+
+00:01:18.900 --> 00:01:20.900
+Plus b
+
+00:01:20.980 --> 00:01:24.920
+Then if you take this definition of a1 and plug it in there
+
+00:01:25.120 --> 00:01:28.880
+You find that a2 is equal to w2
+
+00:01:29.880 --> 00:01:31.520
+times
+
+00:01:31.520 --> 00:01:34.800
+w1 x plus b1
+
+00:01:37.400 --> 00:01:44.200
+Right, so this is um a1 plus b2 and so this simplifies to
+
+00:01:46.040 --> 00:01:50.640
+W2 w1 x plus
+
+00:01:52.040 --> 00:01:53.440
+W2
+
+00:01:53.440 --> 00:01:55.240
+B1
+
+00:01:55.240 --> 00:01:57.240
+plus B2
+
+00:01:57.920 --> 00:01:59.600
+So this
+
+00:01:59.600 --> 00:02:01.600
+is just
+
+00:02:02.640 --> 00:02:04.800
+Let's call this w prime
+
+00:02:05.640 --> 00:02:08.840
+B prime so this is just equal to w prime x
+
+00:02:09.440 --> 00:02:16.600
+Plus B prime if you were to use linear activation functions or we also call them identity activation functions
+
+00:02:17.080 --> 00:02:22.240
+Then the neural network is just outputting a linear function of the input
+
+00:02:23.040 --> 00:02:29.040
+And we'll talk about deep networks later neural networks with many many layers many many hidden layers
+
+00:02:29.040 --> 00:02:35.980
+And it turns out that if you use a linear activation function or alternatively if you don't have an activation function
+
+00:02:36.080 --> 00:02:42.560
+Then no matter how many layers your neural network has all is doing is just computing a linear activation function
+
+00:02:42.640 --> 00:02:44.840
+So you might as well not have any hidden layers
+
+00:02:46.320 --> 00:02:51.240
+Some of the cases that are briefly mentioned it turns out that if you have a linear
+
+00:02:51.800 --> 00:02:54.840
+activation function here and a sigmoid function here
+
+00:02:55.000 --> 00:02:59.920
+Then this model is no more expressive than standard logistic regression
+
+00:03:00.520 --> 00:03:05.520
+Without any hidden layer, so I won't bother to prove that but you could try to do so if you want
+
+00:03:05.800 --> 00:03:07.960
+But the take-home is that a linear
+
+00:03:08.560 --> 00:03:16.200
+Hidden layer is more or less useless because um the composition of two linear functions is itself a linear function
+
+00:03:16.760 --> 00:03:22.440
+So unless you throw a nonlinearity in there, then you're not computing more interesting functions
+
+00:03:22.440 --> 00:03:24.440
+Even as you go deeper in the network
+
+00:03:25.040 --> 00:03:31.320
+there is just one place where you might use a linear activation function g of z equals z and
+
+00:03:32.040 --> 00:03:34.040
+That's if you are
+
+00:03:34.200 --> 00:03:39.240
+Doing machine learning on the regression problem. So if y is a real number
+
+00:03:39.240 --> 00:03:42.440
+So for example, if you're trying to predict housing prices
+
+00:03:42.440 --> 00:03:47.520
+So y is a it's not zero one, but it's a real number, you know anywhere from
+
+00:03:48.360 --> 00:03:54.600
+No, zero dollars is a price of house up to how of my expensive rate houses kid
+
+00:03:54.600 --> 00:03:56.600
+I guess maybe houses can be you know
+
+00:03:57.520 --> 00:03:59.520
+potentially millions of dollars, so
+
+00:03:59.880 --> 00:04:01.800
+however
+
+00:04:01.800 --> 00:04:07.160
+However much houses cost in your data set, but if y takes on on
+
+00:04:07.720 --> 00:04:09.720
+these real values
+
+00:04:09.840 --> 00:04:15.320
+Then it might be okay to have a linear activation function here so that your output
+
+00:04:16.000 --> 00:04:22.520
+Why hat is also a real number going anywhere from minus infinity to plus infinity?
+
+00:04:23.960 --> 00:04:25.960
+But then the hidden units
+
+00:04:26.400 --> 00:04:31.040
+Should not use the new activation functions. They could use value or 10h
+
+00:04:31.600 --> 00:04:37.000
+Or leaky value or maybe something else. So the one place you might use a linear activation function
+
+00:04:37.440 --> 00:04:40.840
+Is usually in the output layer but other than that
+
+00:04:41.920 --> 00:04:44.840
+using a linear activation function in a
+
+00:04:45.800 --> 00:04:47.320
+hidden layer
+
+00:04:47.320 --> 00:04:52.520
+Except for some very special circumstances relating to compression that we want to talk about
+
+00:04:53.080 --> 00:04:55.760
+Using the linear activation function is extremely rare
+
+00:04:55.760 --> 00:04:59.920
+Oh, and of course of actually predicting housing prices as we saw in the week one video
+
+00:05:00.160 --> 00:05:06.240
+Because housing prices are all non-negative perhaps even then you could use a relu activation function
+
+00:05:06.360 --> 00:05:10.640
+So that your outputs y hat are all greater than or equal to 0
+
+00:05:11.280 --> 00:05:18.440
+So I hope that gives you a sense for why having a nonlinear activation function is a critical part of neural networks
+
+00:05:19.040 --> 00:05:22.440
+Next we're going to start to talk about gradient descent
+
+00:05:22.720 --> 00:05:27.160
+And to do that to set up for our discussion for gradient descent in the next video
+
+00:05:27.160 --> 00:05:33.560
+I'm going to show you how to estimate how to compute the slope or the derivatives of individual activation functions
+
+00:05:33.760 --> 00:05:35.760
+So let's go on to the next video

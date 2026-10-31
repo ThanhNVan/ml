@@ -1,0 +1,766 @@
+WEBVTT
+
+1
+00:00:00.060 --> 00:00:02.669
+Để phát triển neural network nhân tạo sâu
+
+2
+00:00:02.669 --> 00:00:04.380
+đòi hỏi bạn không chỉ
+
+3
+00:00:04.380 --> 00:00:06.870
+tổ chức tốt các tham số mà còn 
+phải tổ chức tốt cả các siêu tham số.
+
+4
+00:00:06.870 --> 00:00:09.269
+Vậy siêu tham số là gì?
+
+5
+00:00:09.269 --> 00:00:11.759
+Hãy cùng xem nhé.
+
+6
+00:00:11.759 --> 00:00:15.170
+Các tham số trong mô hình
+ của bạn là W và B, và
+
+7
+00:00:15.170 --> 00:00:17.820
+có những tham số khác bạn cần nói cho
+
+8
+00:00:17.820 --> 00:00:21.720
+thuật toán học tập của bạn như
+
+9
+00:00:21.720 --> 00:00:26.220
+learning rate alpha.
+
+10
+00:00:26.220 --> 00:00:28.920
+Vì chúng ta cần
+
+11
+00:00:28.920 --> 00:00:32.329
+xác định cách các tham số
+ của bạn phát triển hoặc
+
+12
+00:00:32.329 --> 00:00:34.890
+có thể là số lần lặp của
+
+13
+00:00:34.890 --> 00:00:38.190
+gradient descent mà bạn thực hiện.
+
+14
+00:00:38.190 --> 00:00:40.170
+Thuật toán học thì có các số lượng khác
+
+15
+00:00:40.170 --> 00:00:42.629
+mà bạn cần thiết lập, chẳng hạn như
+
+16
+00:00:42.629 --> 00:00:47.340
+số lớp ẩn mà chúng ta gọi đó là
+
+17
+00:00:47.340 --> 00:00:50.629
+L viết hoa hoặc số đơn vị ẩn
+
+18
+00:00:50.629 --> 00:00:56.039
+như n[1], n[2] và v.v.
+
+19
+00:00:56.039 --> 00:00:59.670
+Và sau đó bạn cũng lựa chọn
+
+20
+00:00:59.670 --> 00:01:03.329
+các activation function bạn muốn sử dụng
+
+21
+00:01:03.329 --> 00:01:05.610
+sử dụng một hàm ReLU, hay sigmoid,
+
+22
+00:01:05.610 --> 00:01:06.869
+hay một hàm nào đó trong
+
+23
+00:01:06.869 --> 00:01:11.760
+các lớp ẩn? Và vì vậy đây là tất cả
+
+24
+00:01:11.760 --> 00:01:13.590
+là những điều bạn cần nói cho
+
+25
+00:01:13.590 --> 00:01:15.990
+thuật toán học tập và đây là những
+
+26
+00:01:15.990 --> 00:01:19.640
+tham số kiểm soát
+
+27
+00:01:19.640 --> 00:01:22.200
+tham số W và B cuối cùng 
+và vì vậy chúng tôi gọi tất cả
+
+28
+00:01:22.200 --> 00:01:25.640
+những điều dưới đây siêu tham số.
+
+29
+00:01:25.640 --> 00:01:29.340
+Bởi vì những tham số như alpha
+
+30
+00:01:29.340 --> 00:01:30.750
+learning rate, số lần lặp
+
+31
+00:01:30.750 --> 00:01:32.369
+số lượng các lớp ẩn và v.v
+
+32
+00:01:32.369 --> 00:01:36.000
+là những tham số kiểm soát W và B
+
+33
+00:01:36.000 --> 00:01:39.290
+vì vậy những tham số này 
+được gọi là siêu tham số
+
+34
+00:01:39.290 --> 00:01:41.970
+Bởi vì đó là các siêu tham số
+
+35
+00:01:41.970 --> 00:01:44.250
+mà bằng cách nào đó xác định
+
+36
+00:01:44.250 --> 00:01:46.950
+giá trị cuối cùng của các
+ tham số W và B mà bạn có.
+
+37
+00:01:46.950 --> 00:01:50.100
+Trong thực tế deep learning có
+
+38
+00:01:50.100 --> 00:01:53.520
+rất nhiều siêu tham số khác nhau, mà trong
+
+39
+00:01:53.520 --> 00:01:55.470
+khóa học sau này, chúng ta sẽ thấy các
+
+40
+00:01:55.470 --> 00:01:57.899
+siêu tham số khác như
+
+41
+00:01:57.899 --> 00:02:05.150
+momentum (động lượng), mini batch size,
+
+42
+00:02:05.150 --> 00:02:07.220
+các hình thức khác nhau của
+
+43
+00:02:07.220 --> 00:02:13.020
+tham số regularization và v.v. 
+
+44
+00:02:13.020 --> 00:02:14.700
+Và nếu bạn chưa hiểu về
+ những thuật ngữ này thì cũng
+
+45
+00:02:14.700 --> 00:02:16.020
+đừng lo lắng, Chúng ta sẽ nói về
+
+46
+00:02:16.020 --> 00:02:18.810
+chúng trong khóa thứ hai, bởi vì deep learning
+
+47
+00:02:18.810 --> 00:02:21.870
+có quá nhiều siêu thông số
+
+48
+00:02:21.870 --> 00:02:24.120
+trái ngược với thời kỳ trước đó của machine learning.
+
+49
+00:02:24.120 --> 00:02:26.370
+tôi sẽ cố gắng
+
+50
+00:02:26.370 --> 00:02:28.890
+nhất quán trong việc gọi learning rate
+
+51
+00:02:28.890 --> 00:02:31.050
+alpha là một siêu tham số
+
+52
+00:02:31.050 --> 00:02:33.480
+chứ không phải là tham số. Tôi nghĩ trong
+
+53
+00:02:33.480 --> 00:02:35.250
+thời đại machine learning trước đó, 
+khi chúng ta không
+
+54
+00:02:35.250 --> 00:02:37.920
+có nhiều siêu thông số, hầu hết chúng ta
+
+55
+00:02:37.920 --> 00:02:39.600
+đã từng hơi chậm lại ở đây và chỉ
+
+56
+00:02:39.600 --> 00:02:42.120
+gọi alpha là một tham số và về lý thuyết
+
+57
+00:02:42.120 --> 00:02:44.610
+alpha là một tham số nhưng
+ nó lại là một tham số
+
+58
+00:02:44.610 --> 00:02:47.580
+xác định các tham số thực của chúng ta.
+
+59
+00:02:47.580 --> 00:02:50.280
+Vì vậy tôi sẽ cố gắng nhất quán trong việc gọi
+
+60
+00:02:50.280 --> 00:02:51.570
+alpha, số lượng
+
+61
+00:02:51.570 --> 00:02:54.180
+lặp và v.v là siêu tham số.
+
+62
+00:02:54.180 --> 00:02:55.769
+Khi bạn đang huấn luyện 
+một neural network sâu cho
+
+63
+00:02:55.769 --> 00:02:57.810
+ứng dụng riêng của mình, 
+bạn sẽ thấy rằng có thể
+
+64
+00:02:57.810 --> 00:02:59.940
+có rất nhiều thiết lập khả thi cho
+
+65
+00:02:59.940 --> 00:03:01.560
+siêu tham số mà bạn cần chỉ
+
+66
+00:03:01.560 --> 00:03:04.440
+thử chúng và ngày nay việc áp dụng deep learning là
+
+67
+00:03:04.440 --> 00:03:07.230
+một quá trình thực nghiệm,
+ mà ở đó bạn thường
+
+68
+00:03:07.230 --> 00:03:09.840
+có thể có một ý tưởng Ví dụ bạn có thể
+
+69
+00:03:09.840 --> 00:03:12.150
+có một ý tưởng về giá trị đúng nhất cho
+
+70
+00:03:12.150 --> 00:03:13.549
+learning rate. Bạn có thể nghĩ là, có thể
+
+71
+00:03:13.549 --> 00:03:16.739
+alpha bằng 0,01. Tôi muốn thử nó.
+
+72
+00:03:16.739 --> 00:03:20.670
+Sau đó bạn triển khai, thử nó và
+
+73
+00:03:20.670 --> 00:03:22.530
+xem cách nó hoạt động và rồi dựa vào
+
+74
+00:03:22.530 --> 00:03:23.910
+kết quả, bạn có thể nói là, bạn biết gì không
+
+75
+00:03:23.910 --> 00:03:25.890
+tôi đã thay đổi mã của tôi. Tôi muốn tăng
+
+76
+00:03:25.890 --> 00:03:28.620
+learning rate lên thành 0,05. Vì vậy, nếu
+
+77
+00:03:28.620 --> 00:03:30.930
+bạn không chắc đâu là giá trị tốt nhất để
+
+78
+00:03:30.930 --> 00:03:32.970
+việc học có thể sẵn sàng
+ để dùng, thì bạn có thể
+
+79
+00:03:32.970 --> 00:03:35.010
+thử một giá trị của learning rate alpha.
+
+80
+00:03:35.010 --> 00:03:37.680
+Và thấy cost function J đi xuống
+
+81
+00:03:37.680 --> 00:03:39.690
+như này, bạn có thể thử giá trị
+
+82
+00:03:39.690 --> 00:03:41.820
+learning rate alpha lớn hơn và
+
+83
+00:03:41.820 --> 00:03:43.650
+thấy cost function tăng lên và
+
+84
+00:03:43.650 --> 00:03:45.060
+learning rate alpha lớn hơn và
+
+85
+00:03:45.060 --> 00:03:47.250
+phiên bản khác và thấy 
+nó đi xuống rất nhanh
+
+86
+00:03:47.250 --> 00:03:49.709
+Nó ngược lại với giá trị cao hơn, bạn có thể
+
+87
+00:03:49.709 --> 00:03:51.780
+thử phiên bản khác và
+
+88
+00:03:51.780 --> 00:03:53.670
+xem cost function J thực hiện điều đó.
+
+89
+00:03:53.670 --> 00:03:55.530
+Rồi tôi sẽ thử các giá trị, bạn có thể
+
+90
+00:03:55.530 --> 00:03:57.840
+nghĩ là, không sao, giá trị của
+
+91
+00:03:57.840 --> 00:04:00.870
+alpha giúp tôi học khá nhanh
+
+92
+00:04:00.870 --> 00:04:02.790
+và giúp tôi đến gần với
+
+93
+00:04:02.790 --> 00:04:04.290
+cost function J thấp hơn mà sẽ
+
+94
+00:04:04.290 --> 00:04:06.720
+sử dụng giá trị này của alpha.
+
+95
+00:04:06.720 --> 00:04:08.040
+Trong một slide trước đó bạn
+ đã có rất nhiều siêu
+
+96
+00:04:08.040 --> 00:04:10.170
+tham số khác nhau và hóa ra
+
+97
+00:04:10.170 --> 00:04:11.489
+khi bạn bắt đầu một
+
+98
+00:04:11.489 --> 00:04:13.830
+ứng dụng mới, tôi thấy sẽ
+
+99
+00:04:13.830 --> 00:04:15.450
+khó để biết được chính xác
+
+100
+00:04:15.450 --> 00:04:17.940
+giá trị đúng nhất của siêu tham số.
+
+101
+00:04:17.940 --> 00:04:20.580
+Vậy nên bạn thường
+
+102
+00:04:20.580 --> 00:04:22.169
+chỉ cần thử nhiều giá trị
+
+103
+00:04:22.169 --> 00:04:24.570
+khác nhau và thực hiện chu trình này.
+
+104
+00:04:24.570 --> 00:04:26.970
+Bạn thử một số giá trị, thử năm lớp ẩn
+
+105
+00:04:26.970 --> 00:04:28.440
+với nhiều đơn vị ẩn như này
+
+106
+00:04:28.440 --> 00:04:31.140
+triển khai nó để thử xem
+ nó có hoạt động không
+
+107
+00:04:31.140 --> 00:04:34.140
+và rồi cứ lặp đi lặp lại các bước này.
+
+108
+00:04:34.140 --> 00:04:36.180
+Và tiêu đề của video này
+ là áp dụng deep learning là một
+
+109
+00:04:36.180 --> 00:04:38.340
+quá trình thực nghiệm
+ và có lẽ quá trình thực nghiệm
+
+110
+00:04:38.340 --> 00:04:40.740
+một cách hoa mỹ hơn để nói về việc bạn chỉ
+
+111
+00:04:40.740 --> 00:04:42.419
+phải thử rất nhiều thứ và
+ xem cái gì sẽ hoạt động.
+
+112
+00:04:42.419 --> 00:04:45.330
+Có một ảnh hưởng khác tôi thấy là
+
+113
+00:04:45.330 --> 00:04:47.190
+ngày nay deep learning được áp dụng đối với
+
+114
+00:04:47.190 --> 00:04:48.810
+rất nhiều vấn đề trải dài từ hình ảnh máy tính
+
+115
+00:04:48.810 --> 00:04:51.990
+tới nhận dạng giọng nói đến
+
+116
+00:04:51.990 --> 00:04:53.789
+xử lý ngôn ngữ tự nhiên và tới rất nhiều
+
+117
+00:04:53.789 --> 00:04:55.500
+các ứng dụng dữ liệu có cấu trúc như
+
+118
+00:04:55.500 --> 00:04:59.250
+quảng cáo trực tuyến 
+hoặc tìm kiếm trên web,
+
+119
+00:04:59.250 --> 00:05:02.430
+hoặc là đề xuất sản phẩm và v.v.
+
+120
+00:05:02.430 --> 00:05:05.640
+và tôi thấy là, đầu tiên là
+
+121
+00:05:05.640 --> 00:05:08.190
+các nhà nghiên cứu thì đều cố gắng đi từ nguyên tắc này
+
+122
+00:05:08.190 --> 00:05:10.080
+đến một nguyên tắc khác.
+
+123
+00:05:10.080 --> 00:05:12.060
+Và có lúc thì trực giác về siêu
+
+124
+00:05:12.060 --> 00:05:14.400
+tham số xuất hiện nhưng đôi khi lại không
+
+125
+00:05:14.400 --> 00:05:16.590
+vậy nên tôi thường khuyên mọi người,
+
+126
+00:05:16.590 --> 00:05:17.849
+đặc biệt là khi bắt đầu một
+
+127
+00:05:17.849 --> 00:05:20.970
+vấn đề mới, thì chỉ cần thử một loạt các
+
+128
+00:05:20.970 --> 00:05:23.550
+giá trị và xem những giá trị
+ nào hoạt động và sau đó trong
+
+129
+00:05:23.550 --> 00:05:25.500
+khóa học tiếp theo, chúng ta
+
+130
+00:05:25.500 --> 00:05:27.930
+sẽ thấy một cách có 
+hệ thống, xem một số cách để thử
+
+131
+00:05:27.930 --> 00:05:30.780
+một loạt các giá trị một cách
+ có hệ thống. Và thứ hai là,
+
+132
+00:05:30.780 --> 00:05:32.070
+ngay cả khi bạn đang làm việc về một
+
+133
+00:05:32.070 --> 00:05:33.570
+ứng dụng trong một thời gian dài,
+
+134
+00:05:33.570 --> 00:05:35.220
+có thể là bạn đang làm việc
+
+135
+00:05:35.220 --> 00:05:37.979
+về quảng cáo trực tuyến.
+
+136
+00:05:37.979 --> 00:05:39.930
+Khi bạn đang tiến hành giải quyết vấn đề thì
+
+137
+00:05:39.930 --> 00:05:41.580
+giá trị đúng nhất cho learning rate, số lượng
+
+138
+00:05:41.580 --> 00:05:43.830
+các đơn vị ẩn và v.v.. sẽ thay đổi, nên
+
+139
+00:05:43.830 --> 00:05:46.440
+ngay cả khi bạn điều chỉnh hệ thống của bạn để có
+
+140
+00:05:46.440 --> 00:05:49.229
+giá trị đúng nhất của các siêu tham số.
+
+141
+00:05:49.229 --> 00:05:51.750
+bạn có thể thấy rằng giá trị đúng nhất
+
+142
+00:05:51.750 --> 00:05:53.430
+có thể thay đổi sau một năm tính từ bây giờ
+
+143
+00:05:53.430 --> 00:05:55.650
+bởi vì cơ sở hạ tầng máy tính
+
+144
+00:05:55.650 --> 00:05:57.840
+bạn biết đấy, CPU hoặc loại GPU
+
+145
+00:05:57.840 --> 00:05:59.789
+chạy hoặc một cái gì đó đã thay đổi. Nhưng
+
+146
+00:05:59.789 --> 00:06:01.560
+có thể một nguyên tắc chung là thi thoảng
+
+147
+00:06:01.560 --> 00:06:03.659
+đôi khi là ngay lập tức hoặc vài tháng
+
+148
+00:06:03.659 --> 00:06:05.070
+nếu bạn đang giải quyết một vấn đề
+
+149
+00:06:05.070 --> 00:06:06.659
+trong một thời gian dài, trong nhiều năm
+
+150
+00:06:06.659 --> 00:06:09.030
+thì bạn chỉ cần thử một vài giá trị
+
+151
+00:06:09.030 --> 00:06:10.800
+siêu tham số và kiểm tra lại xem liệu
+
+152
+00:06:10.800 --> 00:06:12.570
+có giá trị tốt hơn cho 
+siêu tham số hay không.
+
+153
+00:06:12.570 --> 00:06:15.150
+Và khi bạn làm như vậy bạn sẽ dần dần
+
+154
+00:06:15.150 --> 00:06:17.280
+tìm được siêu tham số
+
+155
+00:06:17.280 --> 00:06:18.779
+mà hoạt động tốt nhất đới với
+
+156
+00:06:18.779 --> 00:06:19.870
+vấn đề của bạn.
+
+157
+00:06:19.870 --> 00:06:21.820
+Và tôi biết là dường như điều này là
+
+158
+00:06:21.820 --> 00:06:24.010
+một phần không thỏa đáng trong deep learning, mà ở đó
+
+159
+00:06:24.010 --> 00:06:25.510
+bạn chỉ cần thử tất cả các giá trị
+
+160
+00:06:25.510 --> 00:06:27.940
+cho các siêu tham số này. Nhưng có thể
+
+161
+00:06:27.940 --> 00:06:30.160
+đây là một lĩnh vực mà ở đó nghiên cứu deep learning
+
+162
+00:06:30.160 --> 00:06:32.200
+vẫn đang phát triển và
+
+163
+00:06:32.200 --> 00:06:33.850
+theo thời gian có thể chúng ta sẽ đưa ra
+
+164
+00:06:33.850 --> 00:06:36.190
+hướng dẫn tốt hơn để có đượ
+c các siêu thông số tốt nhất.
+
+165
+00:06:36.190 --> 00:06:38.350
+Nhưng cũng có thể là
+
+166
+00:06:38.350 --> 00:06:41.260
+bởi vì CPU và GPU và mạng và bộ
+
+167
+00:06:41.260 --> 00:06:43.630
+dữ liệu đều đang thay đổi và
+
+168
+00:06:43.630 --> 00:06:45.910
+có thể hướng dẫn sẽ không
+
+169
+00:06:45.910 --> 00:06:47.680
+đúng tại một thời điểm 
+nào đó, và bạn chỉ cần
+
+170
+00:06:47.680 --> 00:06:49.360
+tiếp tục thử các giá trị khác nhau và
+
+171
+00:06:49.360 --> 00:06:50.860
+đánh giá chúng trên một bộ
+
+172
+00:06:50.860 --> 00:06:52.479
+xác thực chéo hoặc một cái gì đó, và
+
+173
+00:06:52.479 --> 00:06:54.100
+chọn ra giá trị phù hợp với
+
+174
+00:06:54.100 --> 00:06:56.350
+vấn đề của bạn. Và đó là một bài học ngắn
+
+175
+00:06:56.350 --> 00:06:58.870
+về các siêu tham số. Trong khóa học thứ hai
+
+176
+00:06:58.870 --> 00:07:01.030
+chúng tôi cũng sẽ đưa ra 
+một số gợi ý về cách
+
+177
+00:07:01.030 --> 00:07:03.280
+khám phá một cách có 
+hệ thống không gian của
+
+178
+00:07:03.280 --> 00:07:06.040
+siêu tham số, nhưng
+ bây giờ thực sự thì bạn đã
+
+179
+00:07:06.040 --> 00:07:07.570
+có khá nhiều công cụ cần thiết
+
+180
+00:07:07.570 --> 00:07:09.430
+để làm bài tập lập trình trước khi
+
+181
+00:07:09.430 --> 00:07:11.470
+bạn làm điều đó, hãy cùng xem thêm
+
+182
+00:07:11.470 --> 00:07:14.050
+một vài ý tưởng, đó là
+
+183
+00:07:14.050 --> 00:07:16.150
+deep learning phải liên quan gì với
+
+184
+00:07:16.150 --> 00:07:18.660
+bộ não con người.

@@ -1,0 +1,156 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:07.000
+In the early days of deep learning, people used to worry a lot about the optimization algorithm getting stuck in bad local optima.
+
+00:00:07.000 --> 00:00:13.000
+But as the theory of deep learning has advanced, our understanding of local optima is also changing.
+
+00:00:13.000 --> 00:00:20.000
+Let me show you how we now think about local optima and problems with the optimization problem in deep learning.
+
+00:00:21.000 --> 00:00:25.000
+So this was a picture people used to have in mind when they worried about local optima.
+
+00:00:25.000 --> 00:00:33.000
+Maybe you're trying to optimize some set of parameters, we call them w1 and w2, and the height of the surface is the cost function.
+
+00:00:33.000 --> 00:00:38.000
+So in this picture, it looks like there are a lot of local optima in all those places,
+
+00:00:38.000 --> 00:00:46.000
+and it'd be easy for gradient descent or one of the other algorithms to get stuck on a local optimum rather than find its way to a global optimum.
+
+00:00:47.000 --> 00:00:56.000
+It turns out that if you're plotting a figure like this in two dimensions, then it's easy to create plots like this with a lot of different local optima.
+
+00:00:56.000 --> 00:01:02.000
+And these very low dimensional plots used to gather intuition. But this intuition isn't actually correct.
+
+00:01:02.000 --> 00:01:10.000
+It turns out if you train a neural network, most points of zero gradients are not local optima like points like this.
+
+00:01:10.000 --> 00:01:15.000
+Instead, most points of zero gradients in cost function are actually saddle points.
+
+00:01:15.000 --> 00:01:25.000
+So that's a point where the zero gradients, again, this is maybe w1, w2, and the height is the value of the cost function j.
+
+00:01:25.000 --> 00:01:31.000
+But informally, a function of very high dimensional space, if the gradient is zero, then in each direction,
+
+00:01:31.000 --> 00:01:37.000
+it can either be a convex light function or a concave light function.
+
+00:01:37.000 --> 00:01:46.000
+And if you're in, say, a 20,000 dimensional space, then for it to be a local optima, all 20,000 directions need to look like this.
+
+00:01:46.000 --> 00:01:52.000
+And so the chance of that happening is maybe very small, maybe 2 to the minus 20,000.
+
+00:01:52.000 --> 00:01:58.000
+Instead, you're much more likely to get some directions where the curve bends up like so,
+
+00:01:58.000 --> 00:02:04.000
+as well as some directions where the curve function is bending down rather than have them all bend upwards.
+
+00:02:04.000 --> 00:02:13.000
+So that's why in very high dimensional spaces, you're actually much more likely to run into a saddle point like that shown on the right than the local optima.
+
+00:02:13.000 --> 00:02:21.000
+Oh, and as for why this surface is called a saddle point, if you can picture maybe this is the sort of saddle you put on a horse, right?
+
+00:02:21.000 --> 00:02:28.000
+So maybe if this is a horse, I guess there's a head of a horse, there's the eye of a horse, you know, I guess.
+
+00:02:28.000 --> 00:02:33.000
+And right, well, not a great drawing of a horse, but you get the idea.
+
+00:02:33.000 --> 00:02:37.000
+Then you, the rider, would sit here in the saddle.
+
+00:02:37.000 --> 00:02:47.000
+So that's why this point here with the derivative is zero, that point is called a saddle point.
+
+00:02:47.000 --> 00:02:53.000
+It's really the point on the saddle where you would sit, I guess, and that happens to have, you know, derivative zero.
+
+00:02:53.000 --> 00:03:01.000
+And so one of the lessons we learned in history of deep learning is that a lot of our intuitions about low dimensional spaces, like what you can plot on the left,
+
+00:03:01.000 --> 00:03:07.000
+they really don't transfer to the very high dimensional spaces that our learning algorithms are operating over.
+
+00:03:07.000 --> 00:03:14.000
+Because if you have 20,000 parameters, then J is via function over a 20,000 dimensional vector,
+
+00:03:14.000 --> 00:03:17.000
+and you're much more likely to see saddle points than local optimum.
+
+00:03:18.000 --> 00:03:22.000
+If local optimal aren't a problem, then what is a problem?
+
+00:03:22.000 --> 00:03:26.000
+It turns out that plateaus can really slow down learning.
+
+00:03:26.000 --> 00:03:31.000
+And a plateau is a region where the derivative is close to zero for a long time.
+
+00:03:31.000 --> 00:03:38.000
+So if you're here, then gradient descent will move down the surface.
+
+00:03:38.000 --> 00:03:43.000
+And because the gradient is zero or near zero, the surface is quite flat.
+
+00:03:43.000 --> 00:03:51.000
+You can actually take a very long time, you know, to slowly find your way to maybe this point on the plateau.
+
+00:03:51.000 --> 00:03:58.000
+And then because of a random perturbation to the left or right, maybe then finally, I'm going to switch pen colors for clarity.
+
+00:03:58.000 --> 00:04:00.000
+Your algorithm can then find its way off the plateau.
+
+00:04:00.000 --> 00:04:07.000
+But that to take this very long, slow path before it's found its way here, and it could get off this plateau.
+
+00:04:08.000 --> 00:04:14.000
+So the takeaways from this video are first, you're actually pretty unlikely to get stuck in bad local optima,
+
+00:04:14.000 --> 00:04:17.000
+so long as you're trading a reasonably large neural network.
+
+00:04:17.000 --> 00:04:23.000
+So you have a lot of parameters, and the cost function J is defined over a relatively high dimensional space.
+
+00:04:23.000 --> 00:04:28.000
+But second, that plateaus are a problem, and they can actually make learning pretty slow.
+
+00:04:28.000 --> 00:04:35.000
+And this is where algorithms like momentum or RMS prop or add them can really help you learning algorithm as well.
+
+00:04:36.000 --> 00:04:47.000
+And these are scenarios where most of skated optimization algorithms, such as Adam, can actually speed up the rate at which you could move down the plateau and then get off the plateau.
+
+00:04:47.000 --> 00:04:52.000
+So because neural networks are solving optimization problems over such high dimensional spaces,
+
+00:04:52.000 --> 00:05:00.000
+to be honest, I don't think anyone has great intuitions about what these spaces really look like, and our understanding of them is still evolving.
+
+00:05:00.000 --> 00:05:06.000
+But I hope this gives you some better intuition about the challenges that the optimization algorithms may face.
+
+00:05:06.000 --> 00:05:11.000
+So that, congratulations on coming to the end of this week's content.
+
+00:05:11.000 --> 00:05:15.000
+Please take a look at this week's quiz as well as the program exercise.
+
+00:05:15.000 --> 00:05:19.000
+I hope you enjoy practicing some of these ideas of this week's program exercise,
+
+00:05:19.000 --> 00:05:23.000
+and I look forward to seeing you at the start of next week's videos.

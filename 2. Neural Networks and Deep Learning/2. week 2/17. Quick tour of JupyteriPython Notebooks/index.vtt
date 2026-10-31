@@ -1,0 +1,183 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.440
+With everything you've learned, you're just about ready to tackle your first programming assignment.
+
+00:00:04.440 --> 00:00:10.160
+Before you do that, let me just give you a quick tour of IPython notebooks in Coursera.
+
+00:00:10.160 --> 00:00:14.520
+Here's the Jupyter IPython notebook that you can get to on Coursera.
+
+00:00:14.520 --> 00:00:17.240
+Let me just quickly show you a few features of this.
+
+00:00:17.240 --> 00:00:21.880
+The instructions are written right here in the text in the IPython notebook.
+
+00:00:21.880 --> 00:00:25.320
+And these little, you know, like gray blocks are blocks of code.
+
+00:00:25.320 --> 00:00:28.960
+So occasionally, you see in these blocks something that looks like this.
+
+00:00:28.960 --> 00:00:31.320
+There's a style code here and an end code here.
+
+00:00:31.320 --> 00:00:35.560
+To do the programming exercise, please make sure to write your code between the style code
+
+00:00:35.560 --> 00:00:36.840
+here and end code here.
+
+00:00:36.840 --> 00:00:41.840
+So for example, print hello world.
+
+00:00:41.840 --> 00:00:47.480
+And then to execute a code block, you can hit shift enter.
+
+00:00:47.480 --> 00:00:51.400
+And then to execute this code block, which I guess we just wrote print hello world.
+
+00:00:51.400 --> 00:00:53.760
+So that printed hello world.
+
+00:00:53.760 --> 00:00:57.960
+To run a cell, you can also, to run one of these code blocks in a cell, you can also
+
+00:00:57.960 --> 00:01:00.440
+click cell and then run cell.
+
+00:01:00.440 --> 00:01:07.240
+So to execute this, it's possible that on your computer, the keyboard shortcut for cell
+
+00:01:07.240 --> 00:01:13.120
+run cell might be different than shift enter, but it's on both my Mac as well as on my
+
+00:01:13.120 --> 00:01:14.520
+PC as shift enter.
+
+00:01:14.520 --> 00:01:16.880
+So might be the same for you as well.
+
+00:01:16.880 --> 00:01:20.560
+Now when you're reading the instructions, if you, you know, accidentally double click
+
+00:01:20.560 --> 00:01:24.480
+on it, you will end up with this markdown language.
+
+00:01:24.480 --> 00:01:29.320
+If you end up with this funny looking text to convert it back to the nice looking text,
+
+00:01:29.320 --> 00:01:30.320
+just run the cell.
+
+00:01:30.320 --> 00:01:34.680
+So you either go to cell run cell, or I'm going to hit shift enter.
+
+00:01:34.680 --> 00:01:40.400
+And that basically executes the markdown and turns it back into this nice looking code.
+
+00:01:40.400 --> 00:01:41.960
+Just a couple more tips.
+
+00:01:41.960 --> 00:01:49.440
+When you execute code like this, it actually runs on a kernel on a piece of code that
+
+00:01:49.440 --> 00:01:51.400
+runs on a server.
+
+00:01:51.400 --> 00:01:57.600
+If you're running an excessively large job or if you leave a computer for a very long
+
+00:01:57.600 --> 00:02:00.840
+time or something goes wrong, your internet connection or something, there is a small
+
+00:02:00.840 --> 00:02:05.240
+chance that the kernel on the back end might die, in which case just click kernel
+
+00:02:05.240 --> 00:02:09.960
+and then restart kernel and hopefully that will reboot the kernel and make it work
+
+00:02:09.960 --> 00:02:10.960
+again.
+
+00:02:10.960 --> 00:02:14.760
+So that shouldn't happen if you're just running relatively small jobs and you just
+
+00:02:14.760 --> 00:02:16.520
+started up the IPython notebook.
+
+00:02:16.520 --> 00:02:20.360
+But if you see an error message that the kernel has died or something, you can
+
+00:02:20.360 --> 00:02:23.480
+try kernel restart.
+
+00:02:23.480 --> 00:02:28.000
+Finally in an IPython notebook like this, there may be multiple blocks of code.
+
+00:02:28.000 --> 00:02:34.280
+So even if an earlier block of code doesn't have any greater code, be sure to execute
+
+00:02:34.280 --> 00:02:39.800
+this block of code because in this example, it imports NumPy as np and so on and
+
+00:02:39.800 --> 00:02:43.960
+sets up some of the variables that you might need in order to execute the lower
+
+00:02:43.960 --> 00:02:45.720
+down blocks of code.
+
+00:02:45.720 --> 00:02:49.680
+So be sure to execute the ones on top even if you aren't asked to write any code
+
+00:02:49.680 --> 00:02:51.280
+in them.
+
+00:02:51.280 --> 00:02:54.360
+And finally when you're done implementing your solutions, there's this blue
+
+00:02:54.360 --> 00:02:58.680
+submit assignment button here on the upper right and we click that and we'll
+
+00:02:58.680 --> 00:03:02.600
+submit your solutions for grading.
+
+00:03:02.600 --> 00:03:07.400
+I found that the interactive command shell nature of IPython notebooks to be
+
+00:03:07.400 --> 00:03:12.360
+very useful for letting you quickly implement a few lines of code, see an outcome,
+
+00:03:12.360 --> 00:03:13.520
+learn and iterate quickly.
+
+00:03:13.520 --> 00:03:18.440
+And so I hope that the program exercises in the Coursera Jupyter IPython
+
+00:03:18.440 --> 00:03:22.920
+notebooks will help you quickly learn and experiment and see how to implement
+
+00:03:22.920 --> 00:03:24.800
+these learning algorithms.
+
+00:03:24.800 --> 00:03:28.720
+There's one more video after this, this is an optional video that talks about
+
+00:03:28.720 --> 00:03:30.600
+the cost function for logistic regression.
+
+00:03:30.600 --> 00:03:32.240
+You can watch that or not.
+
+00:03:32.240 --> 00:03:33.960
+Either way is perfectly fine.
+
+00:03:34.040 --> 00:03:39.120
+Either way, best of luck with the week two programming assignment and I also look
+
+00:03:39.120 --> 00:03:42.720
+forward to seeing you at the start of the weekly materials.

@@ -1,0 +1,288 @@
+WEBVTT
+
+00:00:01.360 --> 00:00:05.360
+Khi chạy gradient descent, làm thế nào bạn có
+thể biết liệu nó có hội tụ hay không?
+
+00:00:05.360 --> 00:00:08.360
+Tức là liệu nó có giúp bạn tìm các tham số gần
+với
+
+00:00:08.360 --> 00:00:11.360
+mức tối thiểu toàn cục của cost function hay
+không.
+
+00:00:11.360 --> 00:00:15.027
+Bằng cách học cách nhận biết quá trình triển
+khai hiệu quả
+
+00:00:15.027 --> 00:00:18.693
+quá trình gradient descent trông như thế nào,
+trong video
+
+00:00:18.693 --> 00:00:22.360
+sau, chúng ta cũng sẽ có thể chọn
+learning rate tốt alpha tốt hơn.
+
+00:00:22.360 --> 00:00:23.360
+Chúng ta hãy xem xét.
+
+00:00:23.360 --> 00:00:26.360
+Xin nhắc lại, đây là quy tắc gradient descent.
+
+00:00:26.360 --> 00:00:32.360
+Và một trong những lựa chọn quan trọng là lựa
+chọn learning rate tập alpha.
+
+00:00:32.360 --> 00:00:34.860
+Đây là điều tôi thường làm để đảm bảo rằng
+
+00:00:34.860 --> 00:00:37.360
+quá trình gradient descent đang hoạt động tốt.
+
+00:00:37.360 --> 00:00:41.360
+Hãy nhớ lại rằng công việc của việc
+gradient descent là
+
+00:00:41.360 --> 00:00:45.360
+tìm các tham số w và b hy vọng giảm thiểu
+cost function j.
+
+00:00:45.360 --> 00:00:52.360
+Vì vậy, điều tôi thường làm là vẽ
+cost function j, được tính toán trên
+training set.
+
+00:00:53.360 --> 00:00:58.360
+Và tôi sẽ vẽ đồ thị giá trị của j tại mỗi lần
+lặp lại quá trình gradient descent.
+
+00:00:58.360 --> 00:01:04.360
+Hãy nhớ rằng mỗi lần lặp có nghĩa là sau mỗi
+lần cập nhật đồng
+
+00:01:04.360 --> 00:01:10.360
+thời các tham số w và b, vì vậy, trong biểu đồ
+này, trục hoành là
+
+00:01:10.360 --> 00:01:16.360
+số lần lặp lại quá trình gradient descent mà
+bạn đã chạy cho đến nay.
+
+00:01:16.360 --> 00:01:20.360
+Và bạn có thể có được một đường cong trông như
+thế này.
+
+00:01:20.360 --> 00:01:24.860
+Lưu ý rằng trục hoành là số lần lặp của
+
+00:01:24.860 --> 00:01:29.360
+gradient descent chứ không phải là tham số như
+w hoặc b.
+
+00:01:29.360 --> 00:01:35.360
+Điều này khác với các biểu đồ trước đây mà bạn
+đã thấy, trong đó trục
+
+00:01:35.360 --> 00:01:41.360
+tung có giá trị j và trục hoành là một tham số
+duy nhất như w hoặc b.
+
+00:01:41.360 --> 00:01:46.360
+Đường cong này còn được gọi là đường cong học
+tập.
+
+00:01:46.360 --> 00:01:50.860
+Lưu ý rằng có một số loại đường cong học tập
+khác nhau được sử dụng trong
+
+00:01:50.860 --> 00:01:55.360
+machine learning và bạn cũng sẽ thấy một số
+loại đó ở phần sau của khóa học này.
+
+00:01:55.360 --> 00:02:01.027
+Cụ thể, nếu bạn nhìn vào điểm này trên đường
+cong, điều này có nghĩa là
+
+00:02:01.027 --> 00:02:06.693
+sau khi bạn chạy gradient descent trong 100
+lần lặp, nghĩa là 100 lần cập
+
+00:02:06.693 --> 00:02:12.360
+nhật đồng thời các tham số, bạn có một số giá
+trị đã học được cho w và b.
+
+00:02:12.360 --> 00:02:18.027
+Và nếu bạn tính chi phí j, w, b, cho các giá
+trị của w và b,
+
+00:02:18.027 --> 00:02:23.693
+những giá trị bạn nhận được sau 100 lần lặp,
+bạn sẽ nhận được
+
+00:02:23.693 --> 00:02:29.360
+giá trị này cho chi phí j, đó là điểm này,
+trên trục tung.
+
+00:02:29.360 --> 00:02:34.360
+Và điểm này ở đây tương ứng với giá trị của j
+cho các
+
+00:02:34.360 --> 00:02:39.360
+tham số mà bạn nhận được sau 200 lần lặp
+gradient descent.
+
+00:02:39.360 --> 00:02:43.360
+Vì vậy, nhìn vào biểu đồ này sẽ giúp bạn biết
+chi phí j của bạn
+
+00:02:43.360 --> 00:02:47.360
+thay đổi như thế nào sau mỗi lần lặp lại quá
+trình gradient descent.
+
+00:02:47.360 --> 00:02:54.360
+Nếu việc gradient descent hoạt động bình
+thường thì chi phí j sẽ giảm sau mỗi lần lặp.
+
+00:02:54.360 --> 00:03:00.860
+Nếu j tăng sau một lần lặp, điều đó có nghĩa
+là alpha được chọn
+
+00:03:00.860 --> 00:03:07.360
+kém và thường có nghĩa là alpha quá lớn hoặc
+có thể có lỗi trong mã.
+
+00:03:07.360 --> 00:03:12.360
+Một điều hữu ích khác mà điểm này có thể cho
+bạn biết là nếu
+
+00:03:12.360 --> 00:03:17.360
+bạn nhìn vào đường cong này, khi bạn đạt được
+khoảng 300 lần
+
+00:03:17.360 --> 00:03:22.360
+lặp, chi phí j sẽ chững lại và không còn giảm
+nhiều nữa.
+
+00:03:22.360 --> 00:03:27.360
+Và sau 400 lần lặp lại, có vẻ như đường cong
+đã phẳng ra.
+
+00:03:27.360 --> 00:03:31.860
+Vì vậy, điều này có nghĩa là gradient descent
+đã
+
+00:03:31.860 --> 00:03:36.360
+hội tụ ít nhiều do đường cong không còn giảm
+nữa.
+
+00:03:36.360 --> 00:03:40.360
+Vì vậy, nhìn vào đường cong học tập này, bạn
+có thể
+
+00:03:40.360 --> 00:03:44.360
+thử phát hiện xem liệu độ dốc giảm có hội tụ
+hay không.
+
+00:03:44.360 --> 00:03:48.360
+Nhân tiện, số lần lặp mà quá trình
+gradient descent cần để
+
+00:03:48.360 --> 00:03:52.360
+hội tụ có thể khác nhau rất nhiều giữa các ứng
+dụng khác nhau.
+
+00:03:52.360 --> 00:03:56.360
+Trong một ứng dụng, nó có thể hội tụ chỉ sau
+30 lần lặp.
+
+00:03:56.360 --> 00:04:02.360
+Đối với một ứng dụng khác, có thể mất hàng
+nghìn hoặc hàng trăm nghìn lần lặp.
+
+00:04:02.360 --> 00:04:08.360
+Hóa ra là rất khó để biết trước cần hội tụ bao
+nhiêu lần lặp gradient descent, đó
+
+00:04:08.360 --> 00:04:14.360
+là lý do tại sao bạn có thể tạo một biểu đồ
+như thế này, một đường cong học tập,
+
+00:04:14.360 --> 00:04:20.360
+để cố gắng tìm ra khi nào bạn có thể ngừng
+huấn luyện mô hình cụ thể của mình.
+
+00:04:20.360 --> 00:04:23.860
+Một cách khác để quyết định khi nào mô hình
+của bạn
+
+00:04:23.860 --> 00:04:27.360
+hoàn tất quá trình đào tạo là kiểm tra độ hội
+tụ tự động.
+
+00:04:27.360 --> 00:04:32.360
+Vì vậy, hãy để epsilon, đây là bảng chữ cái Hy
+Lạp
+
+00:04:32.360 --> 00:04:37.360
+epsilon, hãy để epsilon đại diện cho một số
+nhỏ,
+
+00:04:37.360 --> 00:04:43.360
+chẳng hạn như 0,001 hoặc 10 mũ âm 3.
+
+00:04:43.360 --> 00:04:47.693
+Nếu chi phí j giảm ít hơn số epsilon này trong
+một lần lặp,
+
+00:04:47.693 --> 00:04:52.027
+thì rất có thể bạn đang ở phần phẳng này của
+đường cong mà
+
+00:04:52.027 --> 00:04:56.360
+bạn nhìn thấy ở bên trái và bạn có thể tuyên
+bố sự hội tụ.
+
+00:04:56.360 --> 00:05:00.860
+Hãy nhớ rằng, sự hội tụ hy vọng chỉ ra rằng
+bạn đã tìm thấy
+
+00:05:00.860 --> 00:05:05.360
+các tham số w và b gần với giá trị tối thiểu
+có thể có của j.
+
+00:05:05.360 --> 00:05:09.027
+Tôi thường thấy rằng việc chọn đúng ngưỡng
+epsilon là khá khó
+
+00:05:09.027 --> 00:05:12.693
+khăn, vì vậy tôi thực sự có xu hướng nhìn vào
+các biểu đồ như
+
+00:05:12.693 --> 00:05:16.360
+biểu đồ bên trái này hơn là dựa vào các bài
+kiểm tra hội tụ tự động.
+
+00:05:16.360 --> 00:05:20.860
+Nhìn vào hình khác này có thể cho bạn biết,
+tôi sẽ đưa ra một số cảnh
+
+00:05:20.860 --> 00:05:25.360
+báo trước nếu có thể việc gradient descent
+cũng không hoạt động chính xác.
+
+00:05:26.360 --> 00:05:29.360
+Vậy là bây giờ bạn đã thấy đường cong học tập
+sẽ trông
+
+00:05:29.360 --> 00:05:32.360
+như thế nào khi gradient descent đang hoạt
+động tốt.
+
+00:05:32.360 --> 00:05:35.360
+Hãy cùng xem xét những thông tin chi tiết này
+và trong
+
+00:05:35.360 --> 00:05:38.360
+video tiếp theo, hãy xem cách chọn
+learning rate tập phù hợp.

@@ -1,0 +1,333 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.070
+Với lượng kiến thức bạn đã
+ có được thì bây giờ bạn đã
+
+2
+00:00:02.070 --> 00:00:04.745
+sẵn sàng thực hành 
+bài tập lập trình đầu tiên.
+
+3
+00:00:04.745 --> 00:00:10.130
+Trước khi làm điều đó, tôi sẽ cung cấp cho bạn một
+ cái nhìn nhanh về iPython notebooks trong Coursera.
+
+4
+00:00:10.130 --> 00:00:14.545
+Đây là Jupiter iPython notebook mà 
+bạn có thể truy cập trên Coursera.
+
+5
+00:00:14.545 --> 00:00:17.520
+Tôi sẽ cho bạn thấy 
+nhanh một vài feature.
+
+6
+00:00:17.520 --> 00:00:21.885
+Các hướng dẫn được viết bằng chữ 
+ngay tại đây trong iPython notebook.
+
+7
+00:00:21.885 --> 00:00:25.460
+Và những khối màu xám nhạt 
+dài này là những khối mã.
+
+8
+00:00:25.460 --> 00:00:27.030
+Thỉnh thoảng, bạn sẽ thấy
+
+9
+00:00:27.030 --> 00:00:29.255
+những khối này là START CODE HERE (MÃ BẮT ĐẦU
+TẠI ĐÂY) và END CODE HERE (KẾT THÚC MÃ Ở ĐÂY).
+
+10
+00:00:29.255 --> 00:00:31.860
+Để làm bài tập thì 
+hãy chắc chắn rằng
+
+11
+00:00:31.860 --> 00:00:36.755
+bạn viết mã ở giữa START 
+CODE HERE và END CODE HERE.
+
+12
+00:00:36.755 --> 00:00:41.485
+Ví dụ, print Hello world.
+
+13
+00:00:41.485 --> 00:00:44.085
+Và sau đó để thực thi một khối mã,
+
+14
+00:00:44.085 --> 00:00:49.355
+bạn có thể nhấn shift + enter 
+và thực thi khối mã này,
+
+15
+00:00:49.355 --> 00:00:51.265
+tôi nghĩ là chúng ta 
+chỉ viết print Hello world.
+
+16
+00:00:51.265 --> 00:00:53.355
+Và nó in Hello World.
+
+17
+00:00:53.355 --> 00:00:55.140
+Để chạy một khối,
+
+18
+00:00:55.140 --> 00:00:56.940
+bạn cũng có thể, để chạy một 
+khối trong các khối mã ô này,
+
+19
+00:00:56.940 --> 00:01:01.200
+bạn cũng có thể nhấp vào Cell và
+ sau đó chọn Run Cell. Đó là cách thực thi.
+
+20
+00:01:01.200 --> 00:01:05.275
+Có thể là trên máy tính của bạn,
+
+21
+00:01:05.275 --> 00:01:07.364
+phím tắt cho Cell,
+
+22
+00:01:07.364 --> 00:01:09.105
+Run Cell có thể 
+không phải là shift + enter.
+
+23
+00:01:09.105 --> 00:01:14.070
+Nhưng trên cả máy Mac cũng như
+ trên PC của tôi đều có shift + enter,
+
+24
+00:01:14.070 --> 00:01:16.550
+máy của bạn cũng 
+có thể giống như vậy.
+
+25
+00:01:16.550 --> 00:01:18.480
+Bây giờ khi bạn 
+đang đọc hướng dẫn,
+
+26
+00:01:18.480 --> 00:01:20.960
+nếu bạn vô tình nhấp
+ đúp chuột vào nó,
+
+27
+00:01:20.960 --> 00:01:24.270
+bạn có thể có
+ ngôn ngữ đánh dấu này.
+
+28
+00:01:24.270 --> 00:01:26.700
+Nếu bạn nhận được một
+ văn bản hài hước này, thì
+
+29
+00:01:26.700 --> 00:01:30.390
+để chuyển nó trở lại văn bản 
+dễ nhìn, chỉ cần chạy khối này.
+
+30
+00:01:30.390 --> 00:01:34.740
+Vì vậy, bạn có thể đi tới Cell, Run
+ Cell hoặc tôi sẽ nhấn shift + enter và
+
+31
+00:01:34.740 --> 00:01:39.630
+về cơ bản là nó sẽ thực thi ngôn ngữ đánh dấu
+ này và biến nó trở lại thành mã dễ nhìn.
+
+32
+00:01:39.630 --> 00:01:41.565
+Tôi còn có thêm 
+một số lời khuyên nữa.
+
+33
+00:01:41.565 --> 00:01:43.795
+Khi bạn thực thi 
+mã như thế này,
+
+34
+00:01:43.795 --> 00:01:48.333
+nó sẽ chạy trên
+ một kernel(nhân),
+
+35
+00:01:48.333 --> 00:01:51.947
+trên một đoạn mã 
+chạy trên máy chủ.
+
+36
+00:01:51.947 --> 00:01:54.900
+Nếu bạn đang thực hiện một 
+công việc quá lớn hoặc nếu
+
+37
+00:01:54.900 --> 00:01:59.121
+bạn rời máy tính trong một khoảng thời gian
+ rất dài hoặc có sự cố xảy ra như là
+
+38
+00:01:59.121 --> 00:02:00.505
+kết nối internet của bạn bị 
+gián đoạn hoặc một cái gì đó, thì
+
+39
+00:02:00.505 --> 00:02:03.160
+có thể một kernel ở back end
+(phần lập trình trên server) có thể tắt,
+
+40
+00:02:03.160 --> 00:02:06.690
+và trong trường hợp này, chỉ cần nhấp
+ vào Kernel và chọn Restart Kernel.
+
+41
+00:02:06.690 --> 00:02:10.415
+Và hy vọng là điều đó sẽ khởi động
+ lại kernel và khiến nó hoạt động trở lại.
+
+42
+00:02:10.415 --> 00:02:13.080
+Và điều đó thì không nên xảy ra 
+nếu bạn chỉ đang thực hiện một
+
+43
+00:02:13.080 --> 00:02:16.858
+công việc tương đối nhỏ và bạn chỉ
+ mới bắt đầu sử dụng iPython notebook.
+
+44
+00:02:16.858 --> 00:02:19.995
+Nếu bạn thấy một thông báo lỗi rằng
+ Kernel đã tắt hoặc một cái gì đó,
+
+45
+00:02:19.995 --> 00:02:21.310
+bạn có thể thử Kernel, Restart.
+
+46
+00:02:21.310 --> 00:02:25.362
+Cuối cùng, trong iPython notebook,
+
+47
+00:02:25.362 --> 00:02:27.845
+như thế này, có thể 
+có nhiều khối mã.
+
+48
+00:02:27.845 --> 00:02:33.255
+Thế nên, ngay cả khi một khối mã trước đó
+ không có bất kỳ tạo mã nào, thì hãy
+
+49
+00:02:33.255 --> 00:02:35.550
+chắc chắn thực thi 
+khối mã này bởi vì,
+
+50
+00:02:35.550 --> 00:02:39.698
+trong ví dụ này, nó 
+nhập numpy như np, v.v.
+
+51
+00:02:39.698 --> 00:02:42.360
+và thiết lập một số biến 
+mà có thể bạn sẽ cần để
+
+52
+00:02:42.360 --> 00:02:45.570
+thực hiện các khối mã phía dưới.
+
+53
+00:02:45.570 --> 00:02:50.845
+Vì vậy, hãy thực thi những cái trên đầu ngay cả khi
+ bạn không được yêu cầu viết bất kỳ mã nào trong đó.
+
+54
+00:02:50.845 --> 00:02:53.705
+Và cuối cùng, khi bạn 
+hoàn thành bài của mình,
+
+55
+00:02:53.705 --> 00:02:57.920
+có nút gửi bài màu xanh này ở 
+phía trên bên phải và chúng ta
+
+56
+00:02:57.920 --> 00:03:02.130
+nhấp vào đó để 
+gửi bài để chấm điểm.
+
+57
+00:03:02.130 --> 00:03:05.520
+Tôi đã thấy rằng 
+bản chất lệnh tương tác
+
+58
+00:03:05.520 --> 00:03:09.008
+của iPython notebooks 
+rất hữu ích để học nhanh,
+
+59
+00:03:09.008 --> 00:03:10.520
+thực thi một vài dòng mã,
+
+60
+00:03:10.520 --> 00:03:13.450
+nhận kết quả, học hỏi 
+và thêm rất nhanh
+
+61
+00:03:13.450 --> 00:03:17.430
+Và vì vậy tôi hy vọng rằng
+ từ các bài tập ở Coursera,
+
+62
+00:03:17.430 --> 00:03:20.775
+Jupyter iPython notebooks sẽ 
+giúp bạn nhanh chóng học hỏi
+
+63
+00:03:20.775 --> 00:03:24.535
+và thử nghiệm và xem cách 
+thực hiện các thuật toán này.
+
+64
+00:03:24.535 --> 00:03:26.325
+Vẫn còn một video 
+nữa trong tuần này.
+
+65
+00:03:26.325 --> 00:03:28.695
+Đây là một video không bắt buộc về
+
+66
+00:03:28.695 --> 00:03:32.210
+cost function cho logistic regression. 
+Bạn có thể xem hoặc không
+
+67
+00:03:32.210 --> 00:03:33.745
+Thế nào cũng được.
+
+68
+00:03:33.745 --> 00:03:38.140
+Nhưng dùng thế nào thì tôi cũng chúc bạn
+ may mắn với bài tập lập trình trong tuần 2.
+
+69
+00:03:38.140 --> 00:03:42.720
+Và tôi rất mong được gặp lại 
+bạn trong bài mở đầu tuần 3.

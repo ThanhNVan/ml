@@ -1,0 +1,393 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.270 --> 00:00:03.710
+For this final video for this week, let's talk a bit about why
+
+00:00:04.350 --> 00:00:08.430
+convolutions are so useful when you include them in your neural networks.
+
+00:00:08.430 --> 00:00:15.190
+And then finally, let's briefly talk about how to put this all together and how you could train a
+
+00:00:15.510 --> 00:00:19.270
+convolutional neural network when you have a labeled training set.
+
+00:00:21.030 --> 00:00:26.590
+I think there are two main advantages of convolutional layers over
+
+00:00:27.030 --> 00:00:28.950
+just using fully connected layers.
+
+00:00:28.990 --> 00:00:33.670
+And the advantages are parameter sharing and spasticity of connections.
+
+00:00:33.950 --> 00:00:35.550
+Let me illustrate an example.
+
+00:00:36.350 --> 00:00:42.390
+Let's say you have a 32 by 32 by 3 dimensional image.
+
+00:00:43.190 --> 00:00:48.990
+And this actually comes from the example from the previous video.
+
+00:00:48.990 --> 00:00:53.470
+But let's say you use a 5 by 5 filter with six filters.
+
+00:00:56.250 --> 00:01:03.570
+And so this gives you a 28 by 28 by 6 dimensional output.
+
+00:01:04.930 --> 00:01:16.970
+So 32 by 32 by 3 is 3072 and 20 by 20 by 6 if you multiply out those numbers is 4704.
+
+00:01:17.370 --> 00:01:24.250
+And so if you were to create a neural network with 3072 units in one layer and
+
+00:01:24.570 --> 00:01:27.730
+you know 4704 units in the next layer.
+
+00:01:27.970 --> 00:01:32.970
+And if you were to connect every one of these neurons, then the weight matrix, the number of
+
+00:01:32.970 --> 00:01:41.890
+parameters in the weight matrix would be 3072 times 4000, which is about 14 million.
+
+00:01:42.210 --> 00:01:44.450
+So that's just a lot of parameters to train.
+
+00:01:44.490 --> 00:01:49.170
+And today you can train your networks with even more parameters than 14 million.
+
+00:01:49.450 --> 00:01:54.170
+But considering that this is just a pretty small image, this is a lot of parameters to
+
+00:01:54.250 --> 00:02:01.170
+train. And of course, if this were to be a 1000 by 1000 image, then this weight
+
+00:02:01.170 --> 00:02:03.930
+matrix will just become infeasibly large.
+
+00:02:05.170 --> 00:02:11.610
+But if you look at the number of parameters in this convolutional layer, each filter is
+
+00:02:11.610 --> 00:02:16.690
+5 by 5. So each filter has 25 parameters plus a bias parameter.
+
+00:02:16.690 --> 00:02:20.690
+That means you have 26 parameters per filter and you have six filters.
+
+00:02:21.010 --> 00:02:26.250
+So the total number of parameters is that which is equal to 156 parameters.
+
+00:02:26.930 --> 00:02:30.610
+And so the number of parameters in this conv layer remains quite small.
+
+00:02:31.370 --> 00:02:37.650
+And the reason that a confident has relatively small parameters is really two reasons.
+
+00:02:37.970 --> 00:02:39.450
+One is parameter sharing.
+
+00:02:40.890 --> 00:02:46.090
+And parameter sharing is motivated by the observation that a feature detector such as
+
+00:02:46.090 --> 00:02:49.850
+a vertical edge detector that's useful in one part of the image is probably useful in
+
+00:02:49.850 --> 00:02:50.850
+another part of the image.
+
+00:02:51.090 --> 00:02:55.690
+And what that means is that if you've figured out, say a 3 by 3 filter for detecting
+
+00:02:55.690 --> 00:03:02.810
+vertical edges, you can then apply the same 3 by 3 filter over here and in the next
+
+00:03:02.810 --> 00:03:06.010
+position over and in the next position over and so on.
+
+00:03:06.330 --> 00:03:11.770
+And so each of these feature detectors, each of these outputs can use the same
+
+00:03:11.770 --> 00:03:18.610
+parameters in lots of different positions in your input image in order to detect, say, a
+
+00:03:18.610 --> 00:03:21.010
+vertical edge or some other feature.
+
+00:03:22.330 --> 00:03:27.410
+And I think this is true for low level features like edges as well as the high level
+
+00:03:27.410 --> 00:03:32.650
+features like maybe detecting the eye that indicates a face or cat or something is there.
+
+00:03:33.010 --> 00:03:38.370
+But being able to share in this case, the same nine parameters to compute all 16 of
+
+00:03:38.370 --> 00:03:43.090
+these outputs is one of the ways the number of parameters is reduced.
+
+00:03:43.810 --> 00:03:49.130
+And it also just seems intuitive that a feature detector like a vertical edge detector
+
+00:03:49.410 --> 00:03:51.890
+computed for the upper left hand corner of the image.
+
+00:03:52.250 --> 00:03:56.570
+The same feature seems like it will probably be useful, has a good chance of being
+
+00:03:56.570 --> 00:03:58.930
+useful for the lower right hand corner of the image.
+
+00:03:59.370 --> 00:04:03.170
+So maybe you don't need to learn separate feature detectors for the upper left and
+
+00:04:03.170 --> 00:04:05.010
+the lower right hand corners of the image.
+
+00:04:05.130 --> 00:04:09.450
+And maybe you do have a dataset where the upper left hand corner and the lower right
+
+00:04:09.450 --> 00:04:11.930
+hand corner have different distributions.
+
+00:04:11.970 --> 00:04:15.530
+So they maybe look a little bit different, but they might be similar enough.
+
+00:04:15.570 --> 00:04:19.810
+They're sharing feature detectors in all across the image works just fine.
+
+00:04:20.090 --> 00:04:25.970
+The second way that confidence get away with having relatively few parameters is by
+
+00:04:25.970 --> 00:04:27.410
+having sparse connections.
+
+00:04:27.410 --> 00:04:28.330
+So here's what I mean.
+
+00:04:28.770 --> 00:04:32.890
+If you look at this zero, this is computed via 3x3 convolution.
+
+00:04:32.970 --> 00:04:37.930
+And so it depends only on this 3x3 input grid of cells.
+
+00:04:38.330 --> 00:04:45.850
+So it's as if this output unit on the right is connected only to 9 out of these
+
+00:04:46.450 --> 00:04:49.530
+6x6, 36 input features.
+
+00:04:50.730 --> 00:04:54.650
+And in particular, the rest of these pixel values, you know, all of these
+
+00:04:54.650 --> 00:05:00.050
+pixel values, all of these pixel values do not have any input on this, do not
+
+00:05:00.050 --> 00:05:01.810
+have any effect on that output.
+
+00:05:02.410 --> 00:05:04.570
+So that's what I mean by sparsity of connections.
+
+00:05:05.330 --> 00:05:15.290
+As another example, this output depends only on these nine input features.
+
+00:05:15.610 --> 00:05:19.890
+And so it's as if only those nine input features are connected to this output
+
+00:05:20.210 --> 00:05:23.050
+and the other pixels just don't affect this output at all.
+
+00:05:23.690 --> 00:05:29.650
+And so through these two mechanisms, a neural network has a lot fewer parameters,
+
+00:05:29.650 --> 00:05:32.930
+which allows it to be trained with smaller training sets and is less
+
+00:05:33.290 --> 00:05:34.850
+prone to be overfitting.
+
+00:05:35.490 --> 00:05:39.130
+And sometimes you also hear about convolutional neural networks being
+
+00:05:39.130 --> 00:05:41.810
+very good at capturing translation invariance.
+
+00:05:42.330 --> 00:05:47.170
+And that's the observation that a picture of a cat shifted a couple of
+
+00:05:47.170 --> 00:05:50.050
+pixels to the right is still pretty clearly a cat.
+
+00:05:51.330 --> 00:05:56.930
+And convolutional structure helps the neural network encode the fact that
+
+00:05:57.890 --> 00:06:02.570
+an image shifted a few pixels should result in pretty similar features and
+
+00:06:02.570 --> 00:06:06.770
+should probably be assigned the same output label.
+
+00:06:08.090 --> 00:06:11.570
+And the fact that you're applying the same filter, you know, is all the
+
+00:06:11.570 --> 00:06:15.970
+positions of the image, both in the earlier layers and in the later layers
+
+00:06:16.010 --> 00:06:20.970
+that helps a neural network automatically learn to be more robust or to
+
+00:06:21.010 --> 00:06:26.810
+capture, to better capture this desirable property of translation invariance.
+
+00:06:29.540 --> 00:06:33.980
+So these are maybe a couple of reasons why convolutions or convolutional
+
+00:06:33.980 --> 00:06:36.700
+neural networks work so well in computer vision.
+
+00:06:37.900 --> 00:06:41.660
+Finally, let's put it all together and see how you can train one of these
+
+00:06:41.660 --> 00:06:46.980
+networks. Let's say you want to build a cat detector and you have a label
+
+00:06:46.980 --> 00:06:53.540
+training set as follows where now X is a image and the Y's can be
+
+00:06:53.540 --> 00:06:56.500
+binary labels or one of K classes.
+
+00:06:58.610 --> 00:07:02.090
+And let's say you've chosen a convolutional neural network structure,
+
+00:07:03.130 --> 00:07:06.810
+maybe start with the image and then having convolutional and pooling
+
+00:07:06.810 --> 00:07:10.610
+layers and then some fully connected layers followed by a softmax
+
+00:07:10.610 --> 00:07:13.090
+output that then outputs Y hat.
+
+00:07:14.530 --> 00:07:19.090
+The conv layers and the fully connected layers will have various
+
+00:07:19.090 --> 00:07:25.410
+parameters, W as well as biases B. And so any setting of the
+
+00:07:25.410 --> 00:07:30.090
+parameters therefore lets you define a cost function similar to
+
+00:07:30.090 --> 00:07:34.850
+what we had seen in the previous causes where with randomly
+
+00:07:34.850 --> 00:07:41.090
+initialized parameters W and B, you can compute the cost J as the
+
+00:07:41.690 --> 00:07:45.610
+sum of losses of neural networks predictions on your entire
+
+00:07:45.610 --> 00:07:48.530
+training set, maybe divided by M.
+
+00:07:50.490 --> 00:07:54.690
+So to train this neural network, all you need to do is then use
+
+00:07:54.690 --> 00:07:58.530
+gradient descent or some of the algorithm like gradient
+
+00:07:58.530 --> 00:08:02.850
+December momentum or RMS problem or add them or something
+
+00:08:02.850 --> 00:08:06.170
+else in order to optimize all the parameters in the neural
+
+00:08:06.170 --> 00:08:10.250
+network to try to reduce the cost function J. And you find that
+
+00:08:10.250 --> 00:08:15.010
+if you do this, you can build a very effective cat detector or
+
+00:08:15.010 --> 00:08:16.770
+some other detector.
+
+00:08:18.820 --> 00:08:22.020
+So congratulations on finishing this week's videos. You've now
+
+00:08:22.020 --> 00:08:24.980
+seen all the basic building blocks of a convolutional neural
+
+00:08:24.980 --> 00:08:28.740
+network and how to put them together into an effective image
+
+00:08:28.740 --> 00:08:32.140
+recognition system. In this week's program exercises, I
+
+00:08:32.140 --> 00:08:34.380
+think all of these things will become more concrete and you
+
+00:08:34.380 --> 00:08:37.060
+get the chance to practice implementing these things
+
+00:08:37.060 --> 00:08:40.700
+yourself and seeing it work for yourself. Next week, we'll
+
+00:08:40.700 --> 00:08:44.140
+continue to go deeper into convolutional neural networks. I
+
+00:08:44.140 --> 00:08:46.580
+mentioned earlier that there's just a lot of hyper parameters
+
+00:08:46.580 --> 00:08:48.660
+in convolutional neural networks. So what I want to do
+
+00:08:48.660 --> 00:08:51.980
+next week is show you a few concrete examples of some of the
+
+00:08:51.980 --> 00:08:55.020
+most effective convolutional neural networks. So you can
+
+00:08:55.020 --> 00:08:58.220
+start to recognize the patterns of what types of network
+
+00:08:58.220 --> 00:09:02.060
+architectures are effective. And one thing that people often
+
+00:09:02.060 --> 00:09:04.860
+do is just take the architecture that someone else
+
+00:09:04.860 --> 00:09:07.180
+has found and published in a research paper and just use
+
+00:09:07.180 --> 00:09:10.420
+that for your application. And so by seeing some more
+
+00:09:10.420 --> 00:09:13.980
+concrete examples next week, you also learn how to do that
+
+00:09:14.140 --> 00:09:17.940
+better. And beyond that next week, we'll also just give better
+
+00:09:17.940 --> 00:09:22.380
+intuitions about what makes ConvNet work well. And then in
+
+00:09:22.380 --> 00:09:25.460
+the rest of the course, we'll also see a variety of other
+
+00:09:25.460 --> 00:09:28.820
+computer vision applications, such as object detection and
+
+00:09:28.980 --> 00:09:32.140
+neural style transfer, how they create new forms of artwork
+
+00:09:32.180 --> 00:09:34.820
+using these types of algorithms. So that's it for
+
+00:09:34.820 --> 00:09:37.940
+this week. Best of luck with the whole works and I look
+
+00:09:37.940 --> 00:09:39.420
+forward to seeing you next week.

@@ -1,0 +1,180 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.020 --> 00:00:05.460
+You've now learned so much about deep learning and sequence models that we can actually
+
+00:00:05.460 --> 00:00:11.820
+describe a trigger word system quite simply, just on one slide as you see in this video.
+
+00:00:11.820 --> 00:00:15.140
+But with the rise of speech recognition, there have been more and more devices you
+
+00:00:15.140 --> 00:00:20.340
+can wake up with your voice and those are sometimes called trigger word detection systems.
+
+00:00:20.340 --> 00:00:24.180
+So let's see how you can build a trigger word system.
+
+00:00:24.180 --> 00:00:28.700
+Examples of trigger word systems include Amazon Echo, which is broken up with the
+
+00:00:28.700 --> 00:00:35.340
+word Alexa, the Baidu dual OS power devices, broken up with the phrase Xiao Dooning Hao,
+
+00:00:35.340 --> 00:00:40.500
+Apple Siri, broken up with Hey Siri and Google Home, broken up with OK Google.
+
+00:00:40.500 --> 00:00:46.100
+So it stands to trigger word detection that if you have, say, an Amazon Echo in your living
+
+00:00:46.100 --> 00:00:49.980
+room, you can walk in your living room and just say, Alexa, what time is it?
+
+00:00:49.980 --> 00:00:56.220
+And have it wake up or be triggered by the word Alexa and answer your voice query.
+
+00:00:56.220 --> 00:01:01.300
+So if you can build a trigger word detection system, maybe you can make your computer do
+
+00:01:01.300 --> 00:01:05.180
+something by telling it computer activate.
+
+00:01:05.180 --> 00:01:11.420
+One of my friends also works on turning on and off a particular lamp using a trigger word,
+
+00:01:11.420 --> 00:01:13.660
+kind of as a fun project.
+
+00:01:13.660 --> 00:01:18.380
+But what I want to show you is how you can build a trigger word detection system.
+
+00:01:18.380 --> 00:01:21.740
+The literature on trigger word detection algorithm is still evolving.
+
+00:01:21.740 --> 00:01:26.900
+So there isn't wide consensus yet on what's the best algorithm for trigger word detection.
+
+00:01:26.900 --> 00:01:31.060
+So I'm just going to show you one example of an algorithm you can use.
+
+00:01:31.060 --> 00:01:33.700
+Now you've seen RNNs like this.
+
+00:01:33.700 --> 00:01:38.540
+And what we really do is take an audio clip, maybe compute spectrogram features and that
+
+00:01:38.540 --> 00:01:45.420
+generates features, X1, X2, X3, audio features, X1, X2, X3, that you pass through an RNN.
+
+00:01:45.420 --> 00:01:51.620
+And so all that remains to be done is to define the target labels Y.
+
+00:01:51.620 --> 00:01:59.380
+So if this point in the audio clip is when someone just finished saying the trigger word,
+
+00:01:59.380 --> 00:02:04.900
+such as Alexa or Sayadunihao or Hey Siri or Ok Google, then in the training sets, you
+
+00:02:04.900 --> 00:02:09.980
+can set the target labels to be zero for everything before that point.
+
+00:02:09.980 --> 00:02:14.620
+And right after that, to set the target label of one.
+
+00:02:14.620 --> 00:02:19.900
+And then if a little bit later on, you know, the trigger word was set again and the trigger
+
+00:02:19.900 --> 00:02:26.700
+word was set at this point, then you can again set the target label to be one right
+
+00:02:26.700 --> 00:02:29.020
+after that.
+
+00:02:29.020 --> 00:02:34.500
+Now this type of labeling scheme for an RNN, you know, could work.
+
+00:02:34.500 --> 00:02:38.440
+Actually, this will actually work reasonably well.
+
+00:02:38.440 --> 00:02:42.820
+One slight disadvantage of this is it creates a very imbalanced training set.
+
+00:02:43.020 --> 00:02:45.420
+So a lot more zeros than ones.
+
+00:02:45.420 --> 00:02:50.740
+So one other thing you could do that's just getting a little bit of a hack, but could
+
+00:02:50.740 --> 00:02:55.460
+make the model a little bit easier to train is instead of setting only a single time
+
+00:02:55.460 --> 00:03:00.940
+set to output one, you can actually make an output a few ones for several times or for
+
+00:03:00.940 --> 00:03:04.900
+a fixed period of time before reverting back to zero.
+
+00:03:04.900 --> 00:03:15.180
+So and that slightly evens out the ratio of ones to zeros.
+
+00:03:15.180 --> 00:03:17.140
+But this is a little bit of a hack.
+
+00:03:17.140 --> 00:03:24.740
+But if this is when in the audio clip, a trigger word is set, then right after that,
+
+00:03:24.740 --> 00:03:26.420
+you can set the target label to one.
+
+00:03:26.420 --> 00:03:31.140
+And if this is the trigger word set again, then right after that is when you want the
+
+00:03:31.140 --> 00:03:34.500
+RNN to output one.
+
+00:03:36.420 --> 00:03:40.100
+So you get to play more of this as well in the programming exercise.
+
+00:03:40.100 --> 00:03:44.020
+But I think you should feel quite proud of yourself.
+
+00:03:44.020 --> 00:03:47.980
+You've learned enough about deep learning that it just takes one picture and one
+
+00:03:47.980 --> 00:03:52.420
+slide to describe something as complicated as trigger word detection.
+
+00:03:53.420 --> 00:03:57.860
+And based on this, I hope you'll be able to implement something that works and
+
+00:03:57.860 --> 00:03:59.740
+allows you to detect trigger words.
+
+00:04:01.140 --> 00:04:04.260
+But you see more of this in the programming exercise.
+
+00:04:04.260 --> 00:04:09.500
+In this course on sequence models, you learned about RNNs, including both GRUs
+
+00:04:09.500 --> 00:04:10.980
+and LSTMs.
+
+00:04:10.980 --> 00:04:15.420
+And then in the second week, you learned a lot about word embeddings and how to
+
+00:04:15.420 --> 00:04:17.580
+learn representations of words.
+
+00:04:17.580 --> 00:04:23.300
+And then in this week, you learned about the attention model as well as how to
+
+00:04:23.300 --> 00:04:26.180
+use it to process audio data.
+
+00:04:26.180 --> 00:04:30.180
+And I hope you have fun implementing all of these ideas in this week's
+
+00:04:30.180 --> 00:04:31.420
+programming exercise.

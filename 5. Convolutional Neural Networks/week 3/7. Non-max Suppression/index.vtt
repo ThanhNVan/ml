@@ -1,0 +1,231 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.120
+One of the problems with object detection as you've learned about it so far is that your
+
+00:00:05.120 --> 00:00:10.640
+algorithm may find multiple detections of the same object. So rather than detecting an object
+
+00:00:10.640 --> 00:00:16.640
+just once, it might detect it multiple times. Nonmax suppression is a way for you to make sure
+
+00:00:16.640 --> 00:00:21.920
+that your algorithm detects each object only once. Let's go through an example. Let's say you want
+
+00:00:21.920 --> 00:00:29.120
+to detect pedestrians, cars, and motorcycles in this image. You might place a grid over this,
+
+00:00:29.120 --> 00:00:37.120
+and this is a 19 by 19 grid. Now while technically this car has just one midpoint, so it should be
+
+00:00:37.120 --> 00:00:44.320
+assigned just a one grid cell, and the car on the left also has just one midpoint, so technically
+
+00:00:44.320 --> 00:00:50.400
+only one of those grid cells should predict that there is a car. In practice, you're running
+
+00:00:50.400 --> 00:00:55.920
+an object classification and localization algorithm for every one of these grid cells,
+
+00:00:55.920 --> 00:01:01.440
+so it's quite possible that this grid cell might think that the center of the car is in it, and so
+
+00:01:01.440 --> 00:01:07.120
+like this, and so like this, and for the car on the left as well, maybe not only this box,
+
+00:01:07.840 --> 00:01:13.040
+if this is a test image you've seen before, not only that box might decide that things
+
+00:01:13.040 --> 00:01:18.320
+have found a car, maybe this box and this box, and maybe others as well will also think that
+
+00:01:18.320 --> 00:01:24.080
+they found a car. So let's step through an example of how nonmax suppression will work.
+
+00:01:24.720 --> 00:01:32.000
+So because you're running the image classification and localization algorithm on every grid cell,
+
+00:01:32.000 --> 00:01:40.880
+on 361 grid cells, it's possible that many of them will raise their hand and say, my PC, my chance of
+
+00:01:40.880 --> 00:01:46.720
+thinking I have an object in it is large, rather than just having two of the grid cells out of
+
+00:01:46.720 --> 00:01:53.280
+the 19 squared or 361 think they've detected an object. So when you run your algorithm, you might
+
+00:01:53.360 --> 00:02:00.960
+end up with multiple detections of each object. So what nonmax suppression does is it cleans up
+
+00:02:00.960 --> 00:02:08.560
+these detections. So they end up with just one detection per car rather than multiple detections
+
+00:02:08.560 --> 00:02:14.880
+per car. So concretely, what it does is it first looks at the probabilities associated
+
+00:02:14.880 --> 00:02:19.920
+with each of these detections, kind of the PCs, although there are some details you learn about
+
+00:02:19.920 --> 00:02:26.000
+in this week's programming exercise is actually PC times C1 or C2 or C3. But for now, let's just say
+
+00:02:26.000 --> 00:02:33.040
+is PC with the probability of a detection. And it first takes the largest one, which in this case
+
+00:02:33.040 --> 00:02:39.120
+is 0.9 and says, that's my most confident detection. So let's highlight that I'm just
+
+00:02:39.120 --> 00:02:45.440
+saying I found a car there. Having done that, the nonmax suppression part then looks at all of
+
+00:02:45.520 --> 00:02:52.080
+the remaining rectangles and all the ones with a high overlap with a high IOU with this one that
+
+00:02:52.080 --> 00:02:58.640
+you've just output will get suppressed. So those two rectangles with the 0.6 and the 0.7, both of
+
+00:02:58.640 --> 00:03:04.720
+those overlap a lot with the light blue rectangle. So those you're going to suppress and darken them
+
+00:03:04.720 --> 00:03:09.840
+to show that they're being suppressed. Next, you then go through the remaining rectangles and find
+
+00:03:09.840 --> 00:03:15.040
+the one with the highest probability, the highest PC, which in this case is this one was 0.8.
+
+00:03:15.040 --> 00:03:20.160
+So let's commit to that and just say, oh, I'll detect the car there. And then the nonmax suppression
+
+00:03:20.160 --> 00:03:28.480
+part is to then get rid of any other ones with a high IOU. So now every rectangle has been either
+
+00:03:28.480 --> 00:03:34.000
+highlighted or darkened. And if you just get rid of the darkened rectangles, you're left with
+
+00:03:34.000 --> 00:03:41.360
+just the highlighted ones. And these are your two final predictions. So this is nonmax suppression.
+
+00:03:41.360 --> 00:03:48.240
+And nonmax means that you're going to output your maximal probabilities, classifications,
+
+00:03:48.240 --> 00:03:54.560
+but suppress the close by ones that are nonmaximal. So that's the name nonmax suppression.
+
+00:03:55.600 --> 00:04:01.600
+So let's go through the details of the algorithm. First, on this 19 by 19 grid, you're going to run,
+
+00:04:02.560 --> 00:04:10.240
+you're going to get a 19 by 19 by 8 output volume. Although for this example, I'm going to
+
+00:04:10.240 --> 00:04:16.000
+simplify it to say that you're only doing car detection. So let me get rid of the C1, C2,
+
+00:04:16.000 --> 00:04:22.480
+C3 and pretend for this slide that each output for each of the 19 by 19, so for each of the
+
+00:04:22.480 --> 00:04:28.720
+361, which is 19 squared, for each of the 361 positions, you get an output prediction of the
+
+00:04:28.720 --> 00:04:32.960
+following, which is the chance that there's an object and then the bounding box. And if you
+
+00:04:32.960 --> 00:04:40.160
+have only one object, there's no C1, C2, C3 prediction. The details of what happens here
+
+00:04:40.160 --> 00:04:46.480
+of multiple objects are linked to the programming exercise, which you work on towards the end of
+
+00:04:46.480 --> 00:04:54.000
+this week. Now to implement nonmax suppression, the first thing you can do is discard all the boxes
+
+00:04:54.000 --> 00:04:59.680
+or discard all the predictions of the bounding boxes with PC less than or equal to some threshold,
+
+00:04:59.680 --> 00:05:05.440
+let's say 0.6. So we're going to say that unless you think there's at least a 0.6 chance that there's
+
+00:05:05.440 --> 00:05:12.160
+an object there, let's just get rid of it. So this has got all the low probability output boxes.
+
+00:05:13.600 --> 00:05:16.240
+So the way to think about this is for each of the
+
+00:05:16.960 --> 00:05:27.440
+361 positions, you output a bounding box together with a probability of that bounding box being a
+
+00:05:27.440 --> 00:05:33.120
+good one. So we're just going to discard all the bounding boxes that were assigned a low probability.
+
+00:05:34.640 --> 00:05:41.200
+Next, while there are any remaining bounding boxes that you've not yet discarded or processed,
+
+00:05:41.200 --> 00:05:47.920
+you're going to repeatedly pick the box of the highest probability or the highest PC,
+
+00:05:47.920 --> 00:05:53.440
+and then output that as a prediction. So this is a process on the previous slide of taking one
+
+00:05:53.440 --> 00:05:59.760
+of the bounding boxes and making it lighter in color. So you commit to outputting that as a
+
+00:05:59.760 --> 00:06:07.040
+prediction for that there's a car there. Next, you then discard any remaining box. So any box that you
+
+00:06:07.040 --> 00:06:12.400
+have not output as a prediction and that was not previous is discarded. So discard any remaining
+
+00:06:12.400 --> 00:06:19.600
+box with a high overlap with a high IOU with the box that you just output in the previous step.
+
+00:06:20.240 --> 00:06:27.280
+So this second step in the while loop was when on the previous slide you would darken any remaining
+
+00:06:27.280 --> 00:06:32.800
+bounding box that had a high overlap with a bounding box that we just made lighter, that we just
+
+00:06:32.800 --> 00:06:38.720
+highlighted. And so you keep doing this while there's still any remaining boxes that you've
+
+00:06:38.720 --> 00:06:45.280
+not yet processed until you've taken each of the boxes and either outputted as a prediction
+
+00:06:45.280 --> 00:06:51.920
+or discarded it as having too high an overlap or too high an IOU with one of the boxes that
+
+00:06:51.920 --> 00:07:02.740
+you have just output as a predicted position for one of the detected objects. I've described the
+
+00:07:02.740 --> 00:07:08.100
+algorithm using just a single object on this slide. If you're actually trying to detect
+
+00:07:08.100 --> 00:07:14.260
+three objects, say pedestrians, cars, and motorcycles, then the output vector will
+
+00:07:14.260 --> 00:07:19.780
+have three additional components. And it turns out the right thing to do is to independently
+
+00:07:19.860 --> 00:07:25.460
+carry out nonmax suppression three times, one on each of the output classes.
+
+00:07:27.300 --> 00:07:31.940
+But the details of that are leave to this week's programming exercise where you get to
+
+00:07:31.940 --> 00:07:36.660
+implement that yourself, where you get to implement nonmax suppression yourself on
+
+00:07:36.660 --> 00:07:42.660
+multiple object classes. So that's it for nonmax suppression. And if you implement the
+
+00:07:42.660 --> 00:07:48.180
+object detection algorithm with describe, you actually get pretty decent results.
+
+00:07:48.180 --> 00:07:53.860
+But before wrapping up our discussion of the YOLO algorithm, there's just one last idea I want
+
+00:07:53.860 --> 00:07:58.900
+to share with you, which makes the algorithm work much better, which is the idea of using
+
+00:07:58.900 --> 00:08:01.780
+anchor boxes. Let's go on to the next video.

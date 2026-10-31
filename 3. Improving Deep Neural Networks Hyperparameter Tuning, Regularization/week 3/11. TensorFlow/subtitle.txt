@@ -1,0 +1,169 @@
+Hi and welcome back. There are few deep learning program
+frameworks that can help you be much more
+efficient in how you develop and use deep
+learning algorithms. One of these frameworks
+is TensorFlow. What I hope to do in
+this video is step through with you the
+basic structure of a TensorFlow program
+so that you know how you could use TensorFlow to
+implement such programs, implements neural
+networks yourself. Then after this video, I'll leave you to dive into some more of the details and gain practice programming
+with TensorFlow in this week's program exercise. This week's program exercise does require a law extra time. Please do plan or budget for a little bit more
+time to complete it. As a motivating problem, let's say that you have some cost function J that
+you want to minimize. For this example,
+I'm going to use this highly simple cost function, J of w equals w squared
+minus 10w plus 25. That's the cost function. You might notice that
+this function is actually w minus five squared. If you expand out this quadratic, you get the expression above. The value of w that
+minimizes this, is w equals five. But let's say we
+didn't know that, and you just have this function. Let us see how you can
+implement something in TensorFlow to minimize this. Because a very similar structure, a program can be used to train neural networks
+where you can have some complicated cost
+function J of wb depending on all the parameters
+of your neural network. Then similarly, you build a use TensorFlow to automatically try to find values of w and b that minimize
+this cost function, but let's start with the
+simpler example on the left. Here I am in Python in
+my Jupyter Notebook. In order to startup TensorFlow, you type import NumPy
+or NumPy as NP, import TensorFlow as TF. This is idiomatic. This is what pretty
+much everyone tags exactly to import
+TensorFlow as TF. Next thing you want
+to do is define the parameter W. Intensive though you're going to use tf.variable to signify that this is a
+variable initialize it to zero, and the type of the variable is a floating point number,
+dtype equals tf. float 32, says a TensorFlow
+floating-point number. Next, let's define the optimization algorithm
+you're going to use. In this case, the
+Adam optimization algorithm, optimizing equals
+tf.keras.optimizers.Adam. Let's set the
+learning rate to 0.1. Now we can define
+the cost function. Remember the cost function was w squared minus 10w plus 25. Certainly write that down. The cost is w squared
+minus 10w plus 25. The great thing
+about TensorFlow is you only have to
+implement forward prop, that is you only have
+to write the code to compute the value of
+the cost function. TensorFlow can
+figure out how to do the backprop or do the
+gradient computation. One way to do this is
+to use gradient tape. Let me show you the syntax
+with tf.GradientTape as tape, computes the causes follows. The intuition behind
+the name gradient tape is by an analogy to the
+old-school cassette tapes, where Gradient Tape will
+record the sequence of operations as you're computing the cost function in
+the forward prop step. Then when you play the tape backwards,
+in backwards order, it can revisit the order of
+operations in reverse order, and along the way, compute
+backprop and the gradients. Now let's define a training
+step function to loop over. We're going to define
+a single training step as this function. In order to carry out one
+iteration of training, you have to define what are
+the trainable variables. Trainable variables is just
+a list with only w. We are then going to compute
+the gradients with the tape cost
+trainable variables. Having done this, you can now
+use the optimizer to apply the gradients and
+the gradients are grads and trainable variables. The syntax we are going to use, is we're actually going
+to use the zip functions, built-in Python function to
+take the list of gradients, to take the lists are
+trainable variables and pair them up so that
+the gradients and zip the function just takes two lists and pairs up the
+corresponding elements. I'm going to type print
+w here just to print the initial value of w we've not actually
+run train_step yet. Hopefully I've no syntax errors. W is initially the value of 0, which is what we have
+initialized it to. Now let's run one step of our little learning algorithm and print the new value of w, and now it's increased a little
+bit from 0 to about 0.1. Now let's run 1000 iterations
+of our train_step. If I arrange 1000
+train step print W, let's see what happens. Run pretty quickly.
+Now W is nearly five which we knew was the
+minimum of this cost function. Isn't that cool? We just
+specify the cost function. Didn't have to take
+derivatives and TensorFlow, figured out how to
+minimize this for us. I hope this gives you a sense of the broad structure of
+a TensorFlow program. As you do this week's
+program exercise and play more with
+TensorFlow code yourself, some of these functions
+that I just used here will become more familiar. Just a couple things to notice, w is the parameter
+you want to optimize. That's why we declared
+w as a variable. All we had to do was use
+a GradientTape to record the order of the sequence of operations needed to
+compute the cost function, and that was the only
+problem and TensorFlow could figure out automatically
+how to take derivatives with respect
+to the cost function. That's why in TensorFlow, you basically had to only
+implement the fore prop step, and it will figure out how to do the gradient computation. Now, there's one more feature of TensorFlow that I
+wanted to show you. In the example we
+went through so far, the cost function is a fixed function of the
+parameter or the variable w. But what are the function
+you want to minimize is a function of not just w, but also a function of
+your training step. Unless you have some
+training data x, and x or x, and y, and you're training a
+neural network with a cost function
+depends on your data, x or x and y, as well as the parameters w. How do you get that training data into
+a TensorFlow program? Let's go through another version of how to implement all this. I'm still going to define
+w as the variable. Also I'm going to
+add them optimizer, but now I'm going to define
+x as a list of numbers as array and I'm going to plug
+in 1 negative 10 and 25. This will be another float 32. These three numbers,
+1 negative 10 and 25, will play the role of the coefficients of
+the cost function. You can think of x as
+being like data that controls the coefficients of this quadratic cost function. Let me now define the cost function which will
+minimize as same as before, except that now I'm going
+to write x of 0 times w plus x of 1 times w plus x2. This is the same cost
+function as the one above, except that the coefficients
+are now controlled by this little piece of
+data x that we have. Now this cost function computes exactly the same cost
+function as you had above, except that this little
+piece of data in the array x controls the coefficients of the
+quadratic cost function. Now, let me write print
+w this should do nothing because w is still 0, is just initial value. But if you then use
+the optimizer to take one step of the
+optimization algorithm, then let's print double
+again and see if that works. Great, now this has
+taken one step of Adam Optimization and so
+w is again roughly 0.1. This syntax, optimizer dot
+minimize cost function, and then then list
+of variables W, that is a simpler
+alternative piece of syntax, or that's the same thing as
+these lines up above with the gradients tape
+and apply gradients. Now that we have a single
+training set implementer, let's put the whole
+thing in a loop. Training, X, W optimizer, define the cost function within the scope
+of this function, and then for I in the range 1000, lets run a thousand
+iterations and then lets run W. Lets see what that does. There you go, and now W is
+nearly at the minimum set, roughly the value of five. Hopefully this gives you a sense of what TensorFlow can do, and the thing that makes
+it so powerful is, all you need to do is specify how to compute the cost function, and then it takes
+derivatives and it can apply an optimizer with pretty much just one
+or two lines of codes. Here's the code again, and in case some of these functions of variables still seem a little
+bit mysterious to you, they will become more familiar after you've practiced with it a couple of times by working through the
+programming exercise. What is this code really doing? Let's focus on this equation. The heart of the
+TensorFlow program is something to compute the cost, and then TensorFlow
+automatically figures out the derivatives and how
+to minimize the cost. What this line of code
+is doing is allowing TensorFlow to construct
+a computation graph. What a computation graph
+does is the following, it takes X (0) and it takes W, and W gets squared. There's W squared and then X (0) and W squared can
+multiply together to give X (0) times W squared and so one through multiple steps
+until eventually, this gets built up to
+compute the cost function. I guess the last step
+would have been adding in that last coefficient X (2). The nice thing about
+TensorFlow is that by implementing base
+the four a prop, through this computation graph, TensorFlow will
+automatically figure out all the necessary
+backward calculations. It'll automatically
+be able to figure out all the necessary backward steps needed to implement back-prop. Isn't that nice?
+That's why you don't need to explicitly
+implement back-prop, TensorFlow figures
+it out for you. This is one of the
+things that makes the programe frameworks
+help you become really efficient and there are
+also a lot of things you can change with
+just one line of codes. For example, if you
+don't want to use the Adam Optimizer and you
+want to use a different one, then just change this one line of code and you can quickly swap it out for a different
+optimization algorithm. All of the popular modern deep learning
+programming frameworks support things like these and it makes it much easier to develop even pretty
+complex neural networks. I hope that gave you a sense of the typical structure of
+a TensorFlow program. To recap material from this week, you saw how to systematically organize the hyperparameter
+search process. You also saw batch
+normalization and how you can use that to speed up your
+neural network training. We also chatted about deep learning and
+programming frameworks, and you learned about TensorFlow. I hope that you go on and try out and enjoy this
+week's programming exercise, which will help you to gain even greater familiarity
+with these ideas.

@@ -1,0 +1,402 @@
+WEBVTT
+
+1
+00:00:00.676 --> 00:00:04.870
+Trong video trước, bạn đã xem
+một vài ví dụ về cách vector hóa,
+
+2
+00:00:04.870 --> 00:00:08.140
+bằng cách sử dụng các hàm
+có sẵn và bằng cách tránh
+
+3
+00:00:08.140 --> 00:00:11.210
+các vòng lặp for tường minh, giúp bạn
+tăng tốc đáng kể mã của mình.
+
+4
+00:00:11.210 --> 00:00:12.870
+Hãy cùng xem thêm một vài ví dụ nữa.
+
+5
+00:00:13.960 --> 00:00:17.898
+Có một nguyên tắc cần lưu ý là, khi bạn
+lập trình neural network nhân tạo hoặc
+
+6
+00:00:17.898 --> 00:00:20.061
+khi bạn lập trình một regression, thì
+
+7
+00:00:20.061 --> 00:00:22.341
+hãy tránh các vòng lặp
+tường minh bất cứ khi nào có thể.
+
+8
+00:00:22.341 --> 00:00:27.337
+Và không phải lúc nào cũng có thể tránh
+sử dụng vòng lặp for, nhưng khi bạn có thể
+
+9
+00:00:27.337 --> 00:00:32.580
+sử dụng hàm cài sẵn hoặc tìm một số cách
+khác để tính bất cứ thứ gì bạn cần, thì
+
+10
+00:00:32.580 --> 00:00:37.120
+thường bạn sẽ tiến nhanh hơ
+n khi bạn có một vòng lặp tường minh.
+
+11
+00:00:37.120 --> 00:00:38.640
+Hãy xem một ví dụ khác.
+
+12
+00:00:38.640 --> 00:00:45.227
+Nếu bạn muốn tính một
+vectơ u, là kết quả của ma trận A
+
+13
+00:00:45.227 --> 00:00:50.757
+và một vectơ v khác, rồi
+định nghĩa của nhân ma trận
+
+14
+00:00:50.757 --> 00:00:56.659
+là Ui của bạn bằng tổng trên j ,, Aij, Vj.
+
+15
+00:00:56.659 --> 00:00:58.406
+Đó là cách bạn xác định Ui.
+
+16
+00:00:58.406 --> 00:01:03.851
+Và do đó, việc triển khai
+không vector hóa này
+
+17
+00:01:03.851 --> 00:01:09.750
+sẽ đặt u bằng NP.zeros, (n,1).
+
+18
+00:01:09.750 --> 00:01:12.280
+Với i, tương tự
+
+19
+00:01:12.280 --> 00:01:15.600
+Với j, tương tự
+
+20
+00:01:16.670 --> 00:01:23.050
+Và sau đó u [i] +bằng A [i] [j] nhân v [j].
+
+21
+00:01:23.050 --> 00:01:26.971
+Bây giờ, đây là hai vòng
+lặp for, lặp cả i và j.
+
+22
+00:01:26.971 --> 00:01:30.864
+Đây là một phiên bản không vector hóa,
+
+23
+00:01:30.864 --> 00:01:37.467
+việc triển khai vector hóa
+nghĩa là u bằng np.dot (A, v).
+
+24
+00:01:37.467 --> 00:01:40.726
+Và phiên bản vector hóa ở bên phải
+
+25
+00:01:40.726 --> 00:01:45.040
+bây giờ loại bỏ hai vòng lặp
+khác nhau và nó trở nên nhanh hơn.
+
+26
+00:01:45.040 --> 00:01:46.790
+Chúng ta hãy xem một ví dụ nữa.
+
+27
+00:01:46.790 --> 00:01:50.720
+Giả sử bạn đã có một
+vectơ, v, trong bộ nhớ và bạn
+
+28
+00:01:50.720 --> 00:01:55.420
+muốn áp dụng phép toán số
+mũ trên mọi phần tử của vectơ này v.
+
+29
+00:01:55.420 --> 00:02:00.370
+Như vậy, bạn có thể đặt u
+bằng với vectơ, e mũ v1,
+
+30
+00:02:00.370 --> 00:02:05.700
+e mũ v2, v.v., đến e mũ vn.
+
+31
+00:02:05.700 --> 00:02:09.390
+Vì vậy, đây sẽ là một
+triển khai không vector hóa,
+
+32
+00:02:09.390 --> 00:02:13.342
+đầu tiên bạn khởi tạo u
+thành vectơ không.
+
+33
+00:02:13.342 --> 00:02:18.350
+Và sau đó bạn có một vòng lặp
+tính toán từng phần tử một.
+
+34
+00:02:18.350 --> 00:02:23.890
+Nhưng hóa ra Python và NumPy
+có nhiều hàm cài sẵn cho phép
+
+35
+00:02:23.890 --> 00:02:31.270
+bạn tính toán các vectơ này chỉ bằng
+một lệnh gọi một hàm duy nhất.
+
+36
+00:02:31.270 --> 00:02:34.720
+Thế nên, tôi sẽ thực hiện
+điều này bằng cách nhập
+
+37
+00:02:36.500 --> 00:02:41.640
+numpy as np, và sau đó bạn
+
+38
+00:02:41.640 --> 00:02:47.250
+chỉ cần gọi u = np.exp (v).
+
+39
+00:02:47.250 --> 00:02:52.029
+Và lưu ý rằng, trong khi trước đó
+bạn có vòng lặp for tường minh,
+
+40
+00:02:52.029 --> 00:02:56.879
+thì chỉ với một dòng mã ở đây, v là
+vectơ đầu vào, u là vectơ đầu ra,
+
+41
+00:02:56.879 --> 00:03:01.438
+bạn đã loại bỏ vòng lặp
+tường minh và triển khai
+
+42
+00:03:01.438 --> 00:03:06.030
+bên phải sẽ nhanh hơn nhiều so với triển
+khai mà cần một vòng lặp tường minh.
+
+43
+00:03:06.030 --> 00:03:10.360
+Trong thực tế, thư viện
+NumPy có nhiều hàm giá trị vector.
+
+44
+00:03:10.360 --> 00:03:16.124
+Như vậy, np.log (v) sẽ tính
+log từng phần tử
+
+45
+00:03:16.124 --> 00:03:20.260
+np.abs tính giá trị tuyệt đối,
+
+46
+00:03:20.260 --> 00:03:25.525
+np.maximum tính tối đa từng phần tử
+
+47
+00:03:25.525 --> 00:03:30.207
+để lấy tối đa của mọi phần tử của v với 0.
+
+48
+00:03:30.207 --> 00:03:36.230
+v ** 2 chỉ lấy bình phương
+phần tử của mỗi phần tử của v.
+
+49
+00:03:36.230 --> 00:03:42.950
+1/ v lấy nghịch đảo phần tử, v.v.
+
+50
+00:03:42.950 --> 00:03:47.390
+Vì vậy, bất cứ khi nào bạn muốn viết
+một vòng lặp for, hãy xem xem liệu có
+
+51
+00:03:47.390 --> 00:03:52.022
+cách nào để gọi hàm cài sẵn NumPy để
+thực hiện điều đó mà không cần tới vòng lặp không.
+
+52
+00:03:53.200 --> 00:03:55.387
+Như vậy, hãy tiếp thu tất cả
+những điều bạn vừa học và
+
+53
+00:03:55.387 --> 00:03:59.036
+áp dụng nó để thực hành
+gradient descent logistic regression,
+
+54
+00:03:59.036 --> 00:04:03.240
+và xem liệu chúng ta có thể loại bỏ ít nhất một
+trong hai vòng lặp mà chúng ta đã có hay không.
+
+55
+00:04:03.240 --> 00:04:04.310
+Đây là mã của chúng ta để
+
+56
+00:04:04.310 --> 00:04:09.350
+tính các đạo hàm cho logistic regression
+và chúng ta có hai vòng lặp for.
+
+57
+00:04:09.350 --> 00:04:12.430
+Một cái là cái này ở đây,
+và cái thứ hai là cái này.
+
+58
+00:04:12.430 --> 00:04:15.736
+Trong ví dụ này, chúng ta
+có nx bằng 2, nhưng
+
+59
+00:04:15.736 --> 00:04:20.406
+nếu bạn có nhiều hơn 2
+feature thì bạn sẽ
+
+60
+00:04:20.406 --> 00:04:25.194
+cần có một vòng lặp
+cho dw1, dw2, dw3, v.v.
+
+61
+00:04:25.194 --> 00:04:31.397
+Như vậy sẽ có 4j bằng 1,.. và x.
+
+62
+00:04:31.397 --> 00:04:37.490
+dWj được cập nhật.
+
+63
+00:04:37.490 --> 00:04:41.850
+Chúng ta muốn loại bỏ
+vòng lặp for thứ hai này.
+
+64
+00:04:41.850 --> 00:04:43.940
+Đây là điều chúng ta sẽ làm ở đây.
+
+65
+00:04:43.940 --> 00:04:49.214
+Như vậy, cách chúng ta làm là thay vì
+
+66
+00:04:49.214 --> 00:04:54.120
+khởi tạo rõ ràng dw1, dw2, v.v.
+
+67
+00:04:54.120 --> 00:05:00.267
+chúng ta sẽ loại bỏ điều này
+và làm dw trở thành một vectơ.
+
+68
+00:05:00.267 --> 00:05:04.884
+Chúng ta sẽ đặt dw bằng np.zeros và
+
+69
+00:05:04.884 --> 00:05:10.000
+((n-x,1)), vectơ có chiều.
+
+70
+00:05:11.020 --> 00:05:14.527
+Sau đó, ở đây, thay vì vòng lặp
+
+71
+00:05:14.527 --> 00:05:18.663
+trên các thành phần riêng lẻ,
+
+72
+00:05:18.663 --> 00:05:23.551
+chúng ta sẽ sử dụng các
+phép toán giá trị véc tơ này,
+
+73
+00:05:23.551 --> 00:05:27.080
+dw+ bằng xi nhân dz (i).
+
+74
+00:05:27.080 --> 00:05:33.017
+Và cuối cùng, thay vì cái này,
+
+75
+00:05:33.017 --> 00:05:39.160
+chúng ta sẽ chỉ có dw/ bằng m.
+
+76
+00:05:39.160 --> 00:05:42.540
+Như vậy, từ việc có hai vòng lặp
+giờ chúng ta chỉ còn một vòng lặp.
+
+77
+00:05:42.540 --> 00:05:47.270
+Chúng ta vẫn có một vòng lặp này lặp
+lại trên các ví dụ huấn luyện cá nhân.
+
+78
+00:05:49.180 --> 00:05:52.190
+Tôi hy vọng video này đã
+giúp bạn hiểu về vector hóa.
+
+79
+00:05:52.190 --> 00:05:56.442
+Và bằng cách loại bỏ một vòng lặp,
+mã của bạn sẽ chạy nhanh hơn.
+
+80
+00:05:56.442 --> 00:05:58.370
+Nhưng chúng ta còn có thể làm tốt hơn nữa.
+
+81
+00:05:58.370 --> 00:06:02.432
+Và video tiếp theo sẽ nói thêm
+về cách vectơ hóa regression
+
+82
+00:06:02.432 --> 00:06:03.420
+logistic.
+
+83
+00:06:03.420 --> 00:06:07.430
+Và bạn sẽ thấy một kết quả bất ngờ, mà
+không cần sử dụng bất kỳ vòng lặp nào,
+
+84
+00:06:07.430 --> 00:06:10.890
+không cần một vòng lặp for
+trên các ví dụ huấn luyện,
+
+85
+00:06:10.890 --> 00:06:14.850
+bạn vẫn có thể viết mã để xử lý
+toàn bộ training set.
+
+86
+00:06:14.850 --> 00:06:17.170
+Và bây giờ đã có quá nhiều
+điều cần học rồi.
+
+87
+00:06:17.170 --> 00:06:18.880
+Vậy nên hãy xem điều đó
+trong video tiếp theo.

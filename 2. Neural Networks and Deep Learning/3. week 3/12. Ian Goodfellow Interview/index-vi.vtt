@@ -1,0 +1,1026 @@
+WEBVTT
+
+00:00:03.280 --> 00:00:05.880
+Chào Yin. Cảm ơn rất nhiều vì đã tham gia với
+chúng tôi ngày hôm nay.
+
+00:00:05.880 --> 00:00:08.380
+Cảm ơn bạn đã mời tôi, Andrew. Tôi rất vui khi
+được ở đây.
+
+00:00:08.380 --> 00:00:10.180
+Ngày nay, bạn là một trong những nhà nghiên
+
+00:00:10.180 --> 00:00:11.980
+cứu về deep learning nổi tiếng nhất thế giới.
+
+00:00:11.980 --> 00:00:14.480
+Hãy để chúng tôi chia sẻ một chút về câu
+chuyện cá nhân của bạn.
+
+00:00:14.480 --> 00:00:17.380
+Vậy cuối cùng bạn làm công việc này như thế
+nào?
+
+00:00:17.380 --> 00:00:19.080
+Vâng, điều đó nghe tuyệt vời.
+
+00:00:19.080 --> 00:00:24.280
+Tôi đoán thực ra tôi đã quan tâm đến việc
+machine learning ngay trước khi gặp bạn.
+
+00:00:24.280 --> 00:00:29.330
+Tôi đang nghiên cứu về khoa học thần kinh và
+cố vấn đại học của tôi, Jerry
+
+00:00:29.330 --> 00:00:34.380
+Kane tại Stanford, đã khuyến khích tôi tham
+gia lớp Giới thiệu về AI của bạn.
+
+00:00:34.380 --> 00:00:35.380
+Ồ, tôi đã không biết điều đó.
+
+00:00:35.380 --> 00:00:35.880
+Được rồi.
+
+00:00:35.880 --> 00:00:39.913
+Vì vậy, tôi đã luôn nghĩ rằng AI là một ý
+tưởng hay, nhưng trên thực tế, điều
+
+00:00:39.913 --> 00:00:43.947
+quan trọng nhất mà tôi biết điều đó đang xảy
+ra là AI trong trò chơi, nơi mọi
+
+00:00:43.947 --> 00:00:47.980
+người có rất nhiều quy tắc được mã hóa cứng
+cho những người không phải là người chơi.
+
+00:00:47.980 --> 00:00:50.080
+các nhân vật trong trò chơi đôi khi sẽ nói
+những
+
+00:00:50.080 --> 00:00:52.180
+dòng kịch bản khác nhau ở những thời điểm khác
+nhau.
+
+00:00:52.180 --> 00:00:57.730
+Và sau đó, khi tôi tham gia lớp Giới thiệu về
+AI và bạn đề cập đến các chủ đề như
+
+00:00:57.730 --> 00:01:03.280
+linear regression, bias và các phân tích khác
+nhau của lỗi linear regression, tôi bắt đầu
+
+00:01:03.280 --> 00:01:06.680
+để nhận ra rằng đây là một ngành khoa học thực
+sự và tôi thực sự
+
+00:01:06.680 --> 00:01:10.080
+có thể có một sự nghiệp khoa học về AI hơn là
+khoa học thần kinh.
+
+00:01:10.080 --> 00:01:12.580
+Tuyệt vời. Và sau đó chuyện gì đã xảy ra?
+
+00:01:12.580 --> 00:01:15.780
+Vâng, tôi đã quay lại và sẽ hỗ trợ khóa học
+của bạn sau.
+
+00:01:15.780 --> 00:01:16.780
+Ồ, tôi hiểu rồi. Phải.
+
+00:01:16.780 --> 00:01:17.780
+Tôi sẽ làm vậy.
+
+00:01:17.780 --> 00:01:21.413
+Vì vậy, một bước ngoặt thực sự lớn đối với tôi
+là khi tôi đang
+
+00:01:21.413 --> 00:01:25.047
+dạy khóa học đó, một trong những sinh viên,
+bạn tôi Ethan
+
+00:01:25.047 --> 00:01:28.680
+Dreyfuss, đã quan tâm đến bài báo Deep Relief
+Net của Jeff Hinton.
+
+00:01:28.680 --> 00:01:33.380
+Và cuối cùng, hai chúng tôi đã chế tạo một
+trong những
+
+00:01:33.380 --> 00:01:38.080
+chiếc máy dựa trên GPU CUDA đầu tiên tại
+Stanford để chạy
+
+00:01:38.080 --> 00:01:42.780
+bu-lông và máy móc trong thời gian rảnh rỗi
+trong kỳ nghỉ đông.
+
+00:01:42.780 --> 00:01:47.320
+Và tại thời điểm đó, tôi bắt đầu có trực giác
+rất mạnh mẽ
+
+00:01:47.320 --> 00:01:51.860
+rằng deep learning là con đường hướng tới
+trong tương lai.
+
+00:01:51.860 --> 00:01:55.460
+Rất nhiều thuật toán khác mà tôi đang làm
+việc, như
+
+00:01:55.460 --> 00:01:59.060
+máy vectơ hỗ trợ, dường như không có tiệm cận
+phù hợp.
+
+00:01:59.060 --> 00:02:01.900
+Rằng bạn thêm nhiều training data hơn và sau
+đó sẽ chậm hơn.
+
+00:02:01.900 --> 00:02:04.720
+Hoặc đối với cùng một lượng training data,
+thật khó để khiến
+
+00:02:04.720 --> 00:02:07.540
+chúng hoạt động tốt hơn nhiều bằng cách thay
+đổi các cài đặt khác.
+
+00:02:07.540 --> 00:02:12.860
+Và tại thời điểm đó, tôi bắt đầu tập trung vào
+deep learning nhiều nhất có thể.
+
+00:02:12.860 --> 00:02:17.320
+Và tôi nhớ, từ chối bài viết GPU rất cũ của
+Raina
+
+00:02:17.320 --> 00:02:21.780
+thừa nhận bạn đã thực hiện rất nhiều công việc
+ban đầu.
+
+00:02:21.780 --> 00:02:22.780
+Vâng.
+
+00:02:22.780 --> 00:02:23.780
+Vâng.
+
+00:02:23.780 --> 00:02:27.140
+Điều đó được viết bằng cách sử dụng một số máy
+móc mà chúng tôi chế tạo.
+
+00:02:27.140 --> 00:02:31.200
+Chiếc máy đầu tiên tôi chế tạo chỉ là thứ mà
+tôi và Ethan
+
+00:02:31.200 --> 00:02:35.260
+đã chế tạo tại nhà mẹ Ethan bằng tiền riêng
+của chúng tôi.
+
+00:02:35.260 --> 00:02:37.340
+Và sau đó, chúng tôi sử dụng tiền của phòng
+thí nghiệm để xây
+
+00:02:37.340 --> 00:02:39.420
+dựng hai hoặc ba chiếc đầu tiên cho phòng thí
+nghiệm Stanford.
+
+00:02:39.420 --> 00:02:40.420
+Ồ, thật tuyệt vời.
+
+00:02:40.420 --> 00:02:41.420
+Tôi chưa bao giờ biết câu chuyện đó.
+
+00:02:41.420 --> 00:02:42.420
+Điều đó thật tuyệt.
+
+00:02:43.420 --> 00:02:47.640
+Và ngày nay, một trong những điều thực sự gây
+bão
+
+00:02:47.640 --> 00:02:51.860
+trong thế giới deep learning là phát minh về
+GAN của bạn.
+
+00:02:51.860 --> 00:02:54.220
+Vì vậy, làm thế nào bạn nghĩ ra điều đó?
+
+00:02:54.220 --> 00:02:57.100
+Tôi đã nghiên cứu các mô hình sáng tạo trong
+một thời gian dài.
+
+00:02:57.100 --> 00:03:02.040
+Vì vậy, GAN là một cách thực hiện mô hình tổng
+quát trong đó bạn có nhiều
+
+00:03:02.040 --> 00:03:06.980
+training data và bạn muốn tìm hiểu cách tạo ra
+nhiều ví dụ giống với training data hơn.
+
+00:03:06.980 --> 00:03:08.620
+Nhưng chúng là tưởng tượng.
+
+00:03:08.620 --> 00:03:13.580
+Họ chưa bao giờ được nhìn thấy chính xác trong
+hình dạng đó trước đây.
+
+00:03:13.580 --> 00:03:17.060
+Có một số cách khác để thực hiện các mô hình
+tổng quát đã
+
+00:03:17.060 --> 00:03:20.540
+phổ biến trong vài năm trước khi tôi có ý
+tưởng về GAN.
+
+00:03:20.540 --> 00:03:24.230
+Và sau khi nghiên cứu tất cả các phương pháp
+khác đó trong hầu hết
+
+00:03:24.230 --> 00:03:27.920
+thời gian học tiến sĩ của mình, tôi biết rất
+nhiều về ưu điểm và
+
+00:03:27.920 --> 00:03:31.610
+nhược điểm của tất cả các khuôn khổ khác như
+bu lông và máy móc, mã
+
+00:03:31.610 --> 00:03:35.300
+hóa thưa thớt và tất cả các phương pháp khác
+đã thực sự phổ biến đối với
+
+00:03:35.300 --> 00:03:36.300
+năm.
+
+00:03:36.300 --> 00:03:40.540
+Tôi đang tìm kiếm thứ gì đó để tránh tất cả
+những nhược điểm đó cùng một lúc.
+
+00:03:40.540 --> 00:03:43.247
+Và cuối cùng, khi tôi đang tranh luận về các
+mô hình sáng tạo
+
+00:03:43.247 --> 00:03:45.953
+với bạn bè trong quán bar, có điều gì đó đã
+xảy ra và tôi bắt
+
+00:03:45.953 --> 00:03:48.660
+đầu nói với họ rằng bạn cần phải làm cái này,
+cái này và cái này.
+
+00:03:48.660 --> 00:03:49.780
+Và tôi thề là nó sẽ thành công.
+
+00:03:49.780 --> 00:03:52.940
+Và bạn bè tôi không tin rằng nó sẽ hiệu quả.
+
+00:03:52.940 --> 00:03:55.980
+Đáng lẽ lúc đó tôi đang viết sách giáo khoa về
+deep learning.
+
+00:03:55.980 --> 00:03:58.360
+Nhưng tôi tin tưởng mạnh mẽ rằng nó sẽ hoạt
+động nên tôi
+
+00:03:58.360 --> 00:04:00.740
+về nhà và viết mã nó ngay trong đêm và nó đã
+hoạt động.
+
+00:04:00.740 --> 00:04:04.300
+Vậy hãy dành một buổi tối để triển khai phiên
+bản đầu tiên của GAN?
+
+00:04:04.300 --> 00:04:07.020
+Tôi thực hiện nó vào khoảng nửa đêm sau khi về
+nhà
+
+00:04:07.020 --> 00:04:09.740
+từ quán bar nơi bạn tôi tổ chức bữa tiệc chia
+tay.
+
+00:04:09.740 --> 00:04:10.740
+Tôi hiểu.
+
+00:04:10.740 --> 00:04:13.380
+Và phiên bản đầu tiên của nó đã thành công, đó
+là điều rất rất may mắn.
+
+00:04:13.380 --> 00:04:15.660
+Tôi không phải tìm kiếm siêu thông số hay bất
+cứ thứ gì.
+
+00:04:15.660 --> 00:04:19.800
+Có một câu chuyện tôi đã đọc ở đâu đó về việc
+bạn đã trải qua trải
+
+00:04:19.800 --> 00:04:23.940
+nghiệm cận kề cái chết và điều đó khẳng định
+lại cam kết của bạn đối với AI.
+
+00:04:23.940 --> 00:04:24.940
+Hãy kể cho tôi nghe câu chuyện đó.
+
+00:04:24.940 --> 00:04:27.840
+Vì vậy, vâng, tôi thực sự không phải là người
+cận kề cái
+
+00:04:27.840 --> 00:04:30.740
+chết, nhưng tôi thoáng nghĩ rằng mình đã cận
+kề cái chết.
+
+00:04:30.820 --> 00:04:37.860
+Tôi bị đau đầu rất nặng và một số bác sĩ nghĩ
+rằng tôi có thể bị xuất huyết não.
+
+00:04:37.860 --> 00:04:42.660
+Và trong thời gian chờ đợi kết quả MRI để biết
+liệu tôi có bị xuất huyết não hay
+
+00:04:42.660 --> 00:04:47.460
+không, tôi nhận ra rằng hầu hết những suy nghĩ
+của tôi là về việc đảm bảo rằng
+
+00:04:47.460 --> 00:04:52.260
+những người khác cuối cùng sẽ thử những ý
+tưởng nghiên cứu mà tôi đã có tại thời điểm
+đó.
+
+00:04:52.260 --> 00:04:53.260
+thời gian.
+
+00:04:53.260 --> 00:04:56.820
+Nhìn lại thì tất cả đều là những ý tưởng
+nghiên cứu khá ngớ ngẩn.
+
+00:04:56.900 --> 00:05:01.520
+Nhưng vào thời điểm đó, tôi nhận ra rằng đây
+thực sự là một trong những ưu tiên cao
+
+00:05:01.520 --> 00:05:06.140
+nhất trong cuộc sống của tôi là thực hiện công
+việc nghiên cứu về machine learning.
+
+00:05:06.140 --> 00:05:07.140
+Tôi hiểu.
+
+00:05:07.140 --> 00:05:08.140
+Vâng.
+
+00:05:08.140 --> 00:05:09.140
+Điều đó thật tuyệt.
+
+00:05:09.140 --> 00:05:12.500
+Rằng khi bạn nghĩ mình có thể sắp chết, bạn
+chỉ đang nghĩ cách hoàn thành nghiên cứu.
+
+00:05:12.500 --> 00:05:13.500
+Vâng.
+
+00:05:13.500 --> 00:05:14.500
+Vâng.
+
+00:05:14.500 --> 00:05:15.500
+Đó là một cam kết.
+
+00:05:15.500 --> 00:05:16.500
+Vâng.
+
+00:05:16.500 --> 00:05:17.500
+Vâng.
+
+00:05:17.500 --> 00:05:21.140
+Vì vậy, ngày nay, bạn vẫn là trung tâm của rất
+
+00:05:21.140 --> 00:05:24.780
+nhiều hoạt động với GAN, với các mạng đối thủ
+tổng hợp.
+
+00:05:24.780 --> 00:05:28.700
+Vì vậy, hãy cho tôi biết bạn nhìn thấy tương
+lai của GAN như thế nào.
+
+00:05:28.700 --> 00:05:34.060
+Hiện tại, GAN được sử dụng cho nhiều mục đích
+khác nhau, như học bán giám sát, tạo
+
+00:05:34.060 --> 00:05:39.420
+training data cho các mô hình khác và thậm chí
+mô phỏng các thí nghiệm khoa học.
+
+00:05:39.420 --> 00:05:41.710
+Về nguyên tắc, tất cả những điều này có thể
+được
+
+00:05:41.710 --> 00:05:44.000
+thực hiện bằng các loại mô hình sáng tạo khác.
+
+00:05:44.000 --> 00:05:48.280
+Vì vậy, tôi nghĩ rằng GAN hiện đang ở một ngã
+tư quan trọng.
+
+00:05:48.280 --> 00:05:52.250
+Hiện tại, đôi khi chúng hoạt động tốt, nhưng
+việc thực sự mang lại
+
+00:05:52.250 --> 00:05:56.220
+hiệu quả đó cho chúng có thể mang tính nghệ
+thuật hơn là khoa học.
+
+00:05:56.220 --> 00:06:00.420
+Đó ít nhiều là cảm nhận của mọi người về
+deep learning nói chung cách đây 10 năm.
+
+00:06:00.420 --> 00:06:02.900
+Và hồi đó, chúng tôi sử dụng mạng lưới niềm
+tin
+
+00:06:02.900 --> 00:06:05.380
+sâu sắc với bu lông và máy móc làm khối xây
+dựng.
+
+00:06:05.380 --> 00:06:07.620
+Và họ rất, rất khó tính.
+
+00:06:07.620 --> 00:06:11.280
+Theo thời gian, chúng tôi chuyển sang những
+thứ như đơn vị tuyến tính được chỉnh
+
+00:06:11.280 --> 00:06:14.940
+sửa và batch normalization, và deep learning
+trở nên đáng tin cậy hơn rất nhiều.
+
+00:06:14.940 --> 00:06:18.180
+Nếu chúng ta có thể làm cho GAN trở nên đáng
+tin cậy như deep learning đã
+
+00:06:18.180 --> 00:06:21.420
+trở thành, thì tôi nghĩ chúng ta sẽ tiếp tục
+thấy GAN được sử dụng ở tất
+
+00:06:21.420 --> 00:06:24.660
+cả những nơi mà chúng được sử dụng ngày nay
+với thành công lớn hơn nhiều.
+
+00:06:24.660 --> 00:06:28.313
+Nếu chúng ta không thể tìm ra cách ổn định GAN
+thì tôi nghĩ
+
+00:06:28.313 --> 00:06:31.967
+đóng góp chính của họ đối với lịch sử
+deep learning là họ
+
+00:06:31.967 --> 00:06:35.620
+sẽ chỉ cho mọi người cách thực hiện tất cả
+những điều này
+
+00:06:35.620 --> 00:06:38.660
+các nhiệm vụ liên quan đến mô hình tổng quát
+và cuối cùng
+
+00:06:38.660 --> 00:06:41.700
+chúng tôi sẽ thay thế chúng bằng các dạng mô
+hình tổng quát khác.
+
+00:06:41.700 --> 00:06:46.340
+Vì vậy, hiện tại tôi có thể dành khoảng 40%
+thời gian của mình để ổn định GAN.
+
+00:06:46.340 --> 00:06:47.340
+Tôi hiểu.
+
+00:06:47.340 --> 00:06:48.340
+Tuyệt.
+
+00:06:48.340 --> 00:06:49.340
+Tuyệt vời.
+
+00:06:49.340 --> 00:06:52.887
+Vì vậy, cũng giống như nhiều người, họ đã tham
+gia deep learning khoảng 10 năm
+
+00:06:52.887 --> 00:06:56.433
+trước, chẳng hạn như bạn, trở thành những
+người tiên phong, có thể những người họ đã
+
+00:06:56.433 --> 00:06:59.980
+tham gia GAN ngày hôm nay, nếu thành công, có
+thể trở thành những người tiên phong sớm.
+
+00:06:59.980 --> 00:07:00.980
+Vâng.
+
+00:07:00.980 --> 00:07:04.660
+Rất nhiều người đã là những người tiên phong
+đầu tiên của GAN.
+
+00:07:04.660 --> 00:07:08.447
+Và tôi nghĩ nếu bạn muốn kể bất kỳ loại lịch
+sử nào của GAN
+
+00:07:08.447 --> 00:07:12.233
+cho đến nay, bạn thực sự cần phải đề cập đến
+các nhóm khác
+
+00:07:12.233 --> 00:07:16.020
+như Indico, Facebook và Berkeley cho tất cả
+các nhóm khác nhau.
+
+00:07:16.020 --> 00:07:17.580
+những điều họ đã làm.
+
+00:07:17.580 --> 00:07:20.420
+Vì vậy, ngoài tất cả các nghiên cứu của mình,
+bạn
+
+00:07:20.420 --> 00:07:23.260
+còn là đồng tác giả một cuốn sách về
+deep learning.
+
+00:07:23.260 --> 00:07:24.700
+Chuyện đó thế nào rồi?
+
+00:07:24.700 --> 00:07:25.700
+Đúng vậy.
+
+00:07:25.700 --> 00:07:30.780
+Với Yoshua Bengio và Aaron Corville, những
+người đồng hướng dẫn tiến sĩ của tôi,
+
+00:07:30.780 --> 00:07:35.860
+chúng tôi đã viết cuốn sách giáo khoa đầu tiên
+về phiên bản hiện đại của deep learning.
+
+00:07:35.860 --> 00:07:43.100
+Và điều đó đã rất phổ biến ở cả phiên bản
+tiếng Anh và phiên bản tiếng Trung.
+
+00:07:43.100 --> 00:07:49.580
+Tôi nghĩ chúng tôi đã bán được tổng cộng
+khoảng 70.000 bản giữa hai ngôn ngữ đó.
+
+00:07:49.580 --> 00:07:52.320
+Và tôi đã nhận được rất nhiều phản hồi từ các
+sinh
+
+00:07:52.320 --> 00:07:55.060
+viên nói rằng họ đã học được rất nhiều điều từ
+nó.
+
+00:07:55.060 --> 00:07:58.087
+Một điều mà chúng tôi đã làm hơi khác một chút
+so với một
+
+00:07:58.087 --> 00:08:01.113
+số cuốn sách khác là chúng tôi bắt đầu bằng
+phần giới
+
+00:08:01.113 --> 00:08:04.140
+thiệu rất tập trung về loại toán mà bạn cần để
+deep learning.
+
+00:08:04.140 --> 00:08:09.280
+Tôi nghĩ một điều tôi học được từ các khóa học
+của bạn ở Stanford là đại số tuyến
+
+00:08:09.280 --> 00:08:14.420
+tính và xác suất rất quan trọng, khiến mọi
+người trở nên hào hứng với machine learning
+
+00:08:14.420 --> 00:08:15.420
+thuật toán.
+
+00:08:15.420 --> 00:08:20.840
+Nhưng nếu bạn muốn trở thành một học viên thực
+sự xuất sắc, ngay từ đầu bạn
+
+00:08:20.840 --> 00:08:26.260
+phải nắm vững các phép toán cơ bản làm nền
+tảng cho toàn bộ phương pháp tiếp cận.
+
+00:08:26.260 --> 00:08:29.120
+Vì vậy, chúng tôi đảm bảo trình bày rất tập
+trung về
+
+00:08:29.120 --> 00:08:31.980
+những kiến thức cơ bản về toán học ở phần đầu
+cuốn sách.
+
+00:08:31.980 --> 00:08:34.980
+Bằng cách đó, bạn không cần phải ra ngoài và
+học tất cả đại số
+
+00:08:34.980 --> 00:08:37.980
+tuyến tính, nhưng bạn có thể tham gia một khóa
+học cấp tốc rất
+
+00:08:37.980 --> 00:08:40.980
+nhanh về các phần đại số tuyến tính hữu ích
+nhất cho việc deep learning.
+
+00:08:40.980 --> 00:08:44.013
+Vì vậy, ngay cả những người giỏi toán, bạn
+biết đấy, hơi run,
+
+00:08:44.013 --> 00:08:47.047
+bạn đã không xem môn toán trong vài năm, sẽ
+bắt đầu từ đầu
+
+00:08:47.047 --> 00:08:50.080
+cuốn sách của bạn và hiểu nền tảng đó và bắt
+đầu deep learning.
+
+00:08:50.080 --> 00:08:52.340
+Tất cả sự thật mà bạn cần biết đều ở đó.
+
+00:08:52.340 --> 00:08:59.820
+Chắc chắn sẽ cần một số nỗ lực tập trung để
+thực hành cách sử dụng chúng.
+
+00:08:59.820 --> 00:09:04.300
+Nếu ai đó thực sự sợ môn toán, đó có thể là
+một trải nghiệm hơi đau đớn.
+
+00:09:04.300 --> 00:09:08.460
+Nhưng nếu bạn đã sẵn sàng tham gia trải nghiệm
+học tập và tin rằng mình
+
+00:09:08.460 --> 00:09:12.620
+có thể thành thạo nó thì tôi nghĩ tất cả các
+công cụ bạn cần đều có ở đó.
+
+00:09:12.620 --> 00:09:16.740
+Là một người đã làm việc trong lĩnh vực
+deep learning trong một thời gian
+
+00:09:16.740 --> 00:09:20.860
+dài, tôi rất tò mò nếu bạn nhìn lại những năm
+qua, hãy cho tôi biết một
+
+00:09:20.860 --> 00:09:24.980
+chút về suy nghĩ của bạn về AI và
+deep learning đã phát triển qua nhiều năm.
+
+00:09:24.980 --> 00:09:28.367
+Mười năm trước, tôi cảm thấy với tư cách là
+một cộng đồng,
+
+00:09:28.367 --> 00:09:31.753
+thách thức lớn nhất trong machine learning chỉ
+là làm thế
+
+00:09:31.753 --> 00:09:35.140
+nào để nó hoạt động được cho các nhiệm vụ liên
+quan đến AI.
+
+00:09:35.140 --> 00:09:39.540
+Chúng tôi có những công cụ thực sự tốt mà
+chúng tôi có thể sử dụng cho những
+
+00:09:39.540 --> 00:09:43.940
+nhiệm vụ đơn giản hơn khi chúng tôi muốn nhận
+dạng các mẫu trong các feature
+
+00:09:43.940 --> 00:09:48.340
+trích xuất thủ công mà nhà thiết kế con người
+có thể thực hiện rất nhiều công việc
+
+00:09:48.340 --> 00:09:52.300
+bằng cách tạo ra những feature đó và sau đó
+chuyển nó sang máy tính.
+
+00:09:52.300 --> 00:09:56.860
+Và điều đó thực sự tốt cho những việc khác
+nhau như dự đoán quảng cáo nào
+
+00:09:56.860 --> 00:10:01.420
+người dùng sẽ nhấp vào hoặc các loại phân tích
+khoa học cơ bản khác nhau.
+
+00:10:01.420 --> 00:10:05.833
+Nhưng chúng tôi thực sự gặp khó khăn khi làm
+bất cứ điều gì liên
+
+00:10:05.833 --> 00:10:10.247
+quan đến hàng triệu pixel trong một hình ảnh
+hoặc dạng sóng âm
+
+00:10:10.247 --> 00:10:14.660
+thanh thô mà hệ thống phải xây dựng tất cả sự
+hiểu biết của nó từ đầu.
+
+00:10:14.660 --> 00:10:17.180
+Cuối cùng chúng tôi đã vượt qua rào cản đó
+
+00:10:17.180 --> 00:10:19.700
+một cách thực sự triệt để có lẽ cách đây 5
+năm.
+
+00:10:19.700 --> 00:10:23.567
+Và bây giờ chúng ta đang ở thời điểm có rất
+nhiều con đường
+
+00:10:23.567 --> 00:10:27.433
+khác nhau mở ra mà ai đó muốn tham gia vào AI,
+có lẽ vấn đề
+
+00:10:27.433 --> 00:10:31.300
+khó khăn nhất mà họ gặp phải là chọn con đường
+nào họ muốn đi.
+
+00:10:31.300 --> 00:10:35.620
+Bạn có muốn thực hiện công việc học tập tăng
+cường cũng như học tập có giám sát không?
+
+00:10:35.620 --> 00:10:38.110
+Bạn có muốn thực hiện công việc học tập không
+giám
+
+00:10:38.110 --> 00:10:40.600
+sát cũng như công việc học tập có giám sát
+không?
+
+00:10:40.600 --> 00:10:44.610
+Bạn có muốn đảm bảo rằng các thuật toán
+machine learning công bằng
+
+00:10:44.610 --> 00:10:48.620
+và không phản ánh những thành kiến mà chúng
+tôi muốn tránh không?
+
+00:10:48.620 --> 00:10:53.100
+Bạn có muốn đảm bảo rằng các vấn đề xã hội
+xung quanh AI được
+
+00:10:53.100 --> 00:10:57.580
+giải quyết tốt không, rằng chúng ta có thể đảm
+bảo rằng AI mang
+
+00:10:57.580 --> 00:11:02.060
+lại lợi ích cho mọi người thay vì gây ra biến
+động và rắc rối xã hội
+
+00:11:02.060 --> 00:11:03.580
+với việc mất việc làm?
+
+00:11:03.580 --> 00:11:07.433
+Tôi nghĩ hiện tại thực sự có rất nhiều việc
+khác nhau có thể được thực
+
+00:11:07.433 --> 00:11:11.287
+hiện để ngăn chặn những mặt trái của AI nhưng
+cũng để đảm bảo rằng chúng
+
+00:11:11.287 --> 00:11:15.140
+ta tận dụng được tất cả những mặt tích cực mà
+nó mang lại cho chúng ta.
+
+00:11:15.140 --> 00:11:20.100
+Và vì vậy ngày nay có rất nhiều người muốn
+tham gia vào lĩnh vực AI.
+
+00:11:20.100 --> 00:11:23.340
+Vậy bạn có lời khuyên gì dành cho người như
+vậy?
+
+00:11:23.340 --> 00:11:27.800
+Tôi nghĩ nhiều người muốn tham gia vào lĩnh
+vực AI bắt đầu nghĩ rằng họ
+
+00:11:27.800 --> 00:11:32.260
+thực sự cần phải có bằng Tiến sĩ hoặc một số
+loại chứng chỉ khác tương tự.
+
+00:11:32.260 --> 00:11:35.980
+Tôi không nghĩ đó thực sự là một yêu cầu nữa.
+
+00:11:35.980 --> 00:11:38.320
+Một cách mà bạn có thể thu hút được nhiều
+
+00:11:38.320 --> 00:11:40.660
+attention là viết mã tốt và đưa nó lên GitHub.
+
+00:11:40.660 --> 00:11:44.513
+Nếu bạn có một dự án thú vị giải quyết được
+vấn đề mà ai đó làm
+
+00:11:44.513 --> 00:11:48.367
+việc tại phòng thí nghiệm hàng đầu muốn giải
+quyết thì khi họ
+
+00:11:48.367 --> 00:11:52.220
+tìm thấy kho lưu trữ GitHub của bạn, họ sẽ đến
+tìm bạn và hỏi
+
+00:11:52.220 --> 00:11:54.020
+bạn đến làm việc ở đó
+
+00:11:54.020 --> 00:11:58.660
+Rất nhiều người mà tôi đã thuê hoặc tuyển dụng
+tại OpenAI năm ngoái hoặc
+
+00:11:58.660 --> 00:12:03.300
+tại Google năm nay, lần đầu tiên tôi quan tâm
+đến việc làm việc với họ vì
+
+00:12:03.300 --> 00:12:07.940
+một điều mà tôi thấy rằng họ đã phát hành dưới
+dạng nguồn mở trên internet.
+
+00:12:07.940 --> 00:12:11.380
+Viết bài và đưa chúng vào kho lưu trữ cũng có
+thể tốt.
+
+00:12:11.380 --> 00:12:16.820
+Rất nhiều khi, thật khó để đạt đến mức mà bạn
+có thứ gì đó đủ bóng bẩy để thực
+
+00:12:16.820 --> 00:12:22.260
+sự trở thành một đóng góp mang tính học thuật
+mới cho các tài liệu khoa học.
+
+00:12:22.260 --> 00:12:25.220
+Nhưng bạn thường có thể đạt được mục tiêu có
+
+00:12:25.220 --> 00:12:28.180
+được một sản phẩm phần mềm hữu ích sớm hơn
+nhiều.
+
+00:12:28.180 --> 00:12:31.080
+Vì vậy, hãy đọc cuốn sách của bạn, Thực hành
+Tài
+
+00:12:31.080 --> 00:12:33.980
+liệu và đăng lên GitHub và có thể trên kho lưu
+trữ.
+
+00:12:33.980 --> 00:12:37.647
+Tôi nghĩ nếu bạn học bằng cách đọc cuốn sách
+thì điều thực
+
+00:12:37.647 --> 00:12:41.313
+sự quan trọng là bạn phải đồng thời thực hiện
+một dự án để
+
+00:12:41.313 --> 00:12:44.980
+chọn một số cách áp dụng machine learning vào
+một lĩnh vực mà
+
+00:12:44.980 --> 00:12:47.020
+bạn đã quan tâm đến.
+
+00:12:47.020 --> 00:12:50.400
+Giống như nếu bạn là một nhà sinh vật học thực
+địa và muốn
+
+00:12:50.400 --> 00:12:53.780
+deep learning, có thể bạn có thể sử dụng nó để
+xác định các loài chim.
+
+00:12:53.780 --> 00:12:56.660
+Hoặc nếu bạn không có ý tưởng về cách sử dụng
+machine learning
+
+00:12:56.660 --> 00:12:59.540
+trong cuộc sống của mình, bạn có thể chọn một
+việc gì đó như tạo
+
+00:12:59.540 --> 00:13:02.420
+trình classification số nhà ở chế độ xem phố,
+trong đó tất cả các
+
+00:13:02.420 --> 00:13:05.300
+bộ dữ liệu được thiết lập để giúp bạn thực
+hiện việc này rất đơn giản.
+
+00:13:05.300 --> 00:13:09.860
+Bằng cách đó, bạn có thể rèn luyện tất cả các
+kỹ năng cơ bản trong khi đọc
+
+00:13:09.860 --> 00:13:14.420
+sách hoặc trong khi xem các video Coursera
+giải thích các khái niệm cho bạn.
+
+00:13:14.420 --> 00:13:17.000
+Vì vậy, trong vài năm qua, tôi cũng thấy bạn
+ngày
+
+00:13:17.000 --> 00:13:19.580
+càng nghiên cứu nhiều hơn về các ví dụ đối
+nghịch.
+
+00:13:19.580 --> 00:13:21.660
+Hãy cho chúng tôi biết một chút về điều đó.
+
+00:13:21.660 --> 00:13:25.900
+Vâng, tôi nghĩ các ví dụ đối nghịch là sự khởi
+đầu của
+
+00:13:25.900 --> 00:13:30.140
+một lĩnh vực mới mà tôi gọi là bảo mật
+machine learning.
+
+00:13:30.140 --> 00:13:34.380
+Trước đây, chúng ta đã từng gặp các vấn đề về
+bảo mật máy tính
+
+00:13:34.380 --> 00:13:38.620
+trong đó những kẻ tấn công có thể đánh lừa máy
+tính chạy sai mã.
+
+00:13:38.620 --> 00:13:41.260
+Đó gọi là bảo mật cấp ứng dụng.
+
+00:13:41.260 --> 00:13:47.080
+Và đã có những cuộc tấn công trong đó con
+người có thể đánh lừa máy tính tin rằng
+
+00:13:47.080 --> 00:13:52.900
+các tin nhắn trên mạng đến từ một người nào đó
+không thực sự là người mà họ nói.
+
+00:13:52.900 --> 00:13:55.220
+Đó gọi là bảo mật cấp độ mạng.
+
+00:13:55.220 --> 00:13:58.120
+Bây giờ chúng tôi bắt đầu thấy rằng bạn cũng
+có thể đánh lừa các
+
+00:13:58.120 --> 00:14:01.020
+thuật toán machine learning làm những việc mà
+chúng không nên làm.
+
+00:14:01.020 --> 00:14:06.120
+Ngay cả khi chương trình chạy thuật toán
+machine learning đang chạy đúng mã, ngay
+
+00:14:06.120 --> 00:14:11.220
+cả khi chương trình chạy thuật toán
+machine learning đều biết tất cả thông báo
+trên
+
+00:14:11.220 --> 00:14:14.380
+mạng thực sự đến từ.
+
+00:14:14.380 --> 00:14:17.680
+Và tôi nghĩ điều quan trọng là phải đưa tính
+bảo mật vào
+
+00:14:17.680 --> 00:14:20.980
+bất kỳ công nghệ mới nào gần thời điểm bắt đầu
+phát triển.
+
+00:14:20.980 --> 00:14:24.110
+Chúng tôi nhận thấy rằng rất khó để xây dựng
+một hệ
+
+00:14:24.110 --> 00:14:27.240
+thống hoạt động trước rồi mới bổ sung bảo mật
+sau.
+
+00:14:27.280 --> 00:14:30.653
+Vì vậy, tôi thực sự hào hứng với ý tưởng rằng
+nếu chúng ta đi sâu
+
+00:14:30.653 --> 00:14:34.027
+vào và bắt đầu dự đoán các vấn đề bảo mật với
+machine learning ngay
+
+00:14:34.027 --> 00:14:37.400
+bây giờ, chúng ta có thể đảm bảo rằng các
+thuật toán này được an toàn
+
+00:14:37.400 --> 00:14:42.560
+ngay từ đầu thay vì cố gắng vá nó vào những
+năm sau đó.
+
+00:14:42.560 --> 00:14:43.560
+Cảm ơn bạn.
+
+00:14:43.560 --> 00:14:44.560
+Điều đó thật tuyệt vời.
+
+00:14:44.560 --> 00:14:46.580
+Có rất nhiều điều về câu chuyện của bạn mà tôi
+nghĩ là rất hấp
+
+00:14:46.580 --> 00:14:48.600
+dẫn và mặc dù đã biết bạn nhiều năm nhưng tôi
+thực sự không biết.
+
+00:14:48.600 --> 00:14:50.040
+Vì vậy, cảm ơn bạn đã chia sẻ tất cả những
+điều đó.
+
+00:14:50.040 --> 00:14:51.040
+Ồ, rất hoan nghênh.
+
+00:14:51.040 --> 00:14:52.040
+Cảm ơn bạn đã mời tôi.
+
+00:14:52.040 --> 00:14:53.040
+Đó là một cuộc trò chuyện tuyệt vời.
+
+00:14:53.040 --> 00:14:54.040
+Được rồi, cảm ơn.
+
+00:14:54.040 --> 00:14:55.040
+Không có gì.
+
+00:14:55.040 --> 00:14:55.663
+Cảm ơn bạn.

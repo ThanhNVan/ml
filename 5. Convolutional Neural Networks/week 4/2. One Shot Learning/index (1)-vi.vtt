@@ -1,0 +1,348 @@
+WEBVTT
+
+1
+00:00:00.590 --> 00:00:05.387
+Một trong những thách thức của nhận dạng khuôn mặt (face recognition)
+là bạn cần giải quyết
+
+2
+00:00:05.387 --> 00:00:07.010
+one-shot learning (học một lần).
+
+3
+00:00:07.010 --> 00:00:10.380
+Điều đó có nghĩa là đối với
+hầu hết các ứng dụng nhận dạng khuôn mặt
+
+4
+00:00:10.380 --> 00:00:14.695
+bạn cần có khả năng nhận ra
+một người khi chỉ được cung cấp một hình ảnh duy nhất, hoặc
+
+5
+00:00:14.695 --> 00:00:17.640
+chỉ đưa ra một mẫu
+về khuôn mặt của người đó.
+
+6
+00:00:17.640 --> 00:00:18.922
+Và, về mặt lịch sử,
+
+7
+00:00:18.922 --> 00:00:23.580
+các thuật toán deep learning (deep learning) không hoạt động tốt
+nếu bạn chỉ có một mẫu training.
+
+8
+00:00:23.580 --> 00:00:26.163
+Hãy xem một ví dụ
+để xem điều này có nghĩa là gì và
+
+9
+00:00:26.163 --> 00:00:29.270
+nói về cách giải quyết bài toán này.
+
+10
+00:00:29.270 --> 00:00:33.270
+Giả sử bạn có một cơ sở dữ liệu gồm
+bốn hình ảnh về nhân viên trong
+
+11
+00:00:33.270 --> 00:00:34.310
+tổ chức của bạn.
+
+12
+00:00:34.310 --> 00:00:38.680
+Đây thực ra là một số đồng nghiệp của tôi
+tại Deeplearning.AI, Khan, Danielle,
+
+13
+00:00:38.680 --> 00:00:40.350
+Younes và Thian.
+
+14
+00:00:40.350 --> 00:00:43.340
+Bây giờ, giả sử ai đó
+xuất hiện tại văn phòng và
+
+15
+00:00:43.340 --> 00:00:46.880
+họ muốn đi qua cửa quay.
+
+16
+00:00:46.880 --> 00:00:52.710
+Những gì hệ thống phải làm là, mặc dù
+chỉ nhìn thấy có một hình ảnh của Danielle,
+
+17
+00:00:52.710 --> 00:00:56.170
+phải nhận ra rằng đây thực ra là
+cùng một người.
+
+18
+00:00:56.170 --> 00:00:59.640
+Và ngược lại, nếu nó thấy ai đó
+không có trong cơ sở dữ liệu này,
+
+19
+00:00:59.640 --> 00:01:04.810
+thì nó sẽ nhận ra rằng đây không phải là
+người nào trong số 4 người trong cơ sở dữ liệu.
+
+20
+00:01:04.810 --> 00:01:06.560
+Về bài toán học một lần,
+
+21
+00:01:06.560 --> 00:01:11.860
+bạn phải học từ một
+mẫu để nhận ra người đó một lần nữa.
+
+22
+00:01:11.860 --> 00:01:12.780
+Và bạn cần cái này cho
+
+23
+00:01:12.780 --> 00:01:17.520
+hầu hết các hệ thống nhận dạng khuôn mặt vì
+bạn có thể chỉ có một hình ảnh
+
+24
+00:01:17.520 --> 00:01:22.450
+của từng nhân viên của bạn hoặc
+thành viên trong nhóm của bạn trong cơ sở dữ liệu nhân viên của bạn.
+
+25
+00:01:22.450 --> 00:01:27.990
+Một cách tiếp cận bạn có thể thử là
+nhập hình ảnh của một người,
+
+26
+00:01:27.990 --> 00:01:30.000
+cung cấp cho CNN (neural network convolution - convolutional neuron network).
+
+27
+00:01:30.000 --> 00:01:36.560
+Và để nó xuất ra một nhãn, y, sử dụng
+một đơn vị hàm softmax với bốn đầu ra hoặc có thể
+
+28
+00:01:36.560 --> 00:01:41.600
+năm đầu ra tương ứng với mỗi
+bốn người này hoặc không có người nào ở trên.
+
+29
+00:01:41.600 --> 00:01:44.530
+5 đầu ra trong softmax.
+
+30
+00:01:44.530 --> 00:01:46.140
+Nếu điều đó thực sự không hiệu quả với bạn,
+
+31
+00:01:46.140 --> 00:01:50.410
+Bởi vì nếu bạn có một bộ training
+nhỏ đến mức mà không đủ
+
+32
+00:01:50.410 --> 00:01:54.400
+để training một neural network mạnh mẽ (robust) cho
+tác vụ này.
+
+33
+00:01:54.400 --> 00:01:57.660
+Và điều gì sẽ xảy ra nếu một người mới
+gia nhập nhóm của bạn?
+
+34
+00:01:57.660 --> 00:02:01.040
+Bây giờ bạn có 5 người
+cần nhận dạng, vì vậy
+
+35
+00:02:01.040 --> 00:02:03.520
+bây giờ sẽ có sáu đầu ra.
+
+36
+00:02:03.520 --> 00:02:06.070
+Bạn có phải training lại
+CNN mỗi lần không?
+
+37
+00:02:06.070 --> 00:02:08.110
+Đó dường như không
+phải là một cách tiếp cận tốt.
+
+38
+00:02:08.110 --> 00:02:12.480
+Để thực hiện nhận dạng khuôn mặt,
+để thực hiện học một lần.
+
+39
+00:02:12.480 --> 00:02:14.390
+Thay vào đó, để làm cho điều này hoạt động,
+
+40
+00:02:14.390 --> 00:02:18.350
+những gì bạn sẽ làm là
+học một hàm tương tự.
+
+41
+00:02:18.350 --> 00:02:22.190
+Cụ thể, bạn muốn một mạng nơron
+học một hàm
+
+42
+00:02:22.190 --> 00:02:26.930
+biểu thị d,
+nhập vào hai hình ảnh và
+
+43
+00:02:26.930 --> 00:02:30.780
+xuất ra mức độ chênh lệch
+giữa hai hình ảnh.
+
+44
+00:02:30.780 --> 00:02:34.780
+Vì vậy, nếu hai hình ảnh
+là của cùng một người,
+
+45
+00:02:34.780 --> 00:02:37.660
+bạn muốn nó xuất ra một số nhỏ.
+
+46
+00:02:37.660 --> 00:02:42.550
+Và nếu hai hình ảnh là của hai người rất
+khác nhau, bạn muốn nó xuất ra
+
+47
+00:02:42.550 --> 00:02:43.610
+một số lớn.
+
+48
+00:02:43.610 --> 00:02:48.710
+Trong thời gian nhận dạng, nếu độ chênh lệch
+giữa chúng nhỏ hơn
+
+49
+00:02:48.710 --> 00:02:54.560
+một số ngưỡng được gọi là 𝜏 (tau),
+là một siêu tham số (hyperparameter).
+
+50
+00:02:54.560 --> 00:02:59.290
+Sau đó, bạn sẽ dự đoán rằng
+hai bức tranh này là cùng một người.
+
+51
+00:02:59.290 --> 00:03:05.000
+Và nếu nó lớn hơn 𝜏, bạn sẽ
+dự đoán rằng đây là hai người khác nhau.
+
+52
+00:03:06.580 --> 00:03:12.510
+Đó chính là cách bạn giải quyết bài toán xác minh khuôn mặt (verification).
+
+53
+00:03:12.510 --> 00:03:17.370
+Để sử dụng điều này cho nhận dạng khuôn mặt (recognition),
+bạn cần
+
+54
+00:03:17.370 --> 00:03:23.200
+sử dụng hàm d
+này để so sánh hai hình ảnh này khi có hình ảnh mới.
+
+55
+00:03:23.200 --> 00:03:28.450
+Và có thể tôi sẽ xuất ra một số rất lớn,
+giả sử là 10, cho ví dụ này.
+
+56
+00:03:28.450 --> 00:03:32.500
+Và sau đó bạn so sánh ảnh này với
+hình ảnh thứ hai trong cơ sở dữ liệu của bạn.
+
+57
+00:03:32.500 --> 00:03:37.580
+Và bởi vì hai người này là cùng một người,
+hy vọng bạn xuất ra một số rất nhỏ.
+
+58
+00:03:37.580 --> 00:03:42.110
+Bạn cũng làm điều này cho các hình ảnh khác
+trong cơ sở dữ liệu của bạn, v.v.
+
+59
+00:03:43.140 --> 00:03:48.630
+Và dựa trên điều này, bạn sẽ tìm ra
+rằng đây thực sự là người đó,
+
+60
+00:03:48.630 --> 00:03:50.130
+đó là Danielle.
+
+61
+00:03:50.130 --> 00:03:53.634
+Và ngược lại,
+nếu ai đó không có trong cơ sở dữ liệu của bạn xuất hiện,
+
+62
+00:03:53.634 --> 00:03:57.629
+khi bạn sử dụng hàm d để thực hiện
+tất cả các so sánh theo cặp này,
+
+63
+00:03:57.629 --> 00:04:03.050
+hy vọng đầu ra d sẽ có một số
+rất lớn cho cả bốn phép so sánh theo cặp.
+
+64
+00:04:03.050 --> 00:04:07.610
+Đây không phải là bất kỳ ai
+trong bốn người trong cơ sở dữ liệu.
+
+65
+00:04:07.610 --> 00:04:11.860
+Lưu ý là điều này cho phép bạn giải quyết bài toán học một lần.
+
+66
+00:04:11.860 --> 00:04:16.970
+Miễn là bạn có thể học hàm d,
+d nhập một cặp hình ảnh và
+
+67
+00:04:16.970 --> 00:04:20.600
+cho bạn biết, về cơ bản là, nếu họ là
+cùng một người hoặc hai người khác nhau.
+
+68
+00:04:20.600 --> 00:04:23.790
+Nếu bạn có người mới
+tham gia nhóm của bạn,
+
+69
+00:04:23.790 --> 00:04:28.850
+bạn có thể thêm người thứ năm vào cơ sở dữ liệu
+của mình và nó vẫn chạy tốt.
+
+70
+00:04:30.320 --> 00:04:34.452
+Bạn đã thấy cách hàm học
+d, nhập vào hai hình ảnh,
+
+71
+00:04:34.452 --> 00:04:38.110
+cho phép bạn giải quyết
+bài toán học một lần.
+
+72
+00:04:38.110 --> 00:04:41.720
+Trong video tiếp theo,
+chúng ta hãy xem làm thế nào bạn có thể thực sự
+
+73
+00:04:41.720 --> 00:04:44.550
+train (huấn luyện) mạng nơron
+để học về hàm d này.

@@ -1,0 +1,107 @@
+Xin chào và chào mừng quay trở lại. Trong tuần này chúng ta sẽ học về những điều
+cơ bản trong lập trình mạng nơ-ron nhân tạo. Khi bạn triển khai một mạng
+nơ-ron nhân tạo thì sẽ sử dụng một số kỹ thuật rất quan trọng. Ví dụ: nếu bạn có một tập
+huấn luyện về m ví dụ huấn luyện, có thể bạn quen với việc xử lý tập huấn luyện
+bằng cách sử dụng một vòng lặp for trong m ví dụ
+huấn luyện của bạn. Nhưng hóa ra khi triển khai
+một mạng nơ-ron nhân tạo, bạn thường muốn xử lý
+toàn bộ tập huấn luyện của mình mà không sử dụng lặp đi lặp lại vòng lặp for
+rõ ràng trong toàn bộ tập huấn luyện của bạn. Và bạn sẽ thấy cách làm điều
+đó trong bài học tuần này. Tiếp theo, khi bạn tổ chức các
+tính toán, trong mạng của bạn, thông thường bạn sẽ sử dụng tạm dừng
+chuyển tiếp hoặc bước truyền xuôi, tiếp đến là một tạm dừng
+lùi hoặc bước truyền ngược. Vì thế nên trong các bài học của tuần
+này, bạn cũng sẽ biết lý do tại sao các tính toán, trong việc học một mạng
+nơ-ron nhân tạo có thể được tổ chức theo cách truyền xuôi và truyền ngược
+một cách riêng biệt. Trong các bài học tuần này, tôi muốn truyền đạt
+lại những ý tưởng này bằng cách sử dụng hồi quy logistic để
+bạn thấy dễ hiểu hơn. Nhưng ngay cả khi bạn đã từng thấy hồi quy
+logistic rồi thì tôi nghĩ rằng bạn cũng sẽ tìm được một số kiến thức mới
+và thú vị trong tài liệu tuần này. Hãy cùng bắt đầu nào. Hồi quy logistic là một thuật toán
+cho việc phân loại nhị phân. Hãy bắt đầu với
+thiết lập vấn đề. Đây là một ví dụ về một
+bài toán phân loại nhị phân. Bạn có thể có một đầu vào là
+một hình ảnh, như thế này, và bạn muốn xuất ra một nhãn để
+nhận ra đây là hình một con mèo, trong trường hợp này bạn có đầu ra 1, hoặc
+không phải hình mèo thì bạn có đầu ra 0, và chúng ta sẽ sử dụng
+y để biểu thị nhãn đầu ra. Hãy cùng xem cách mà một hình ảnh
+được hiển thị trong một máy tính. Để lưu trữ một hình ảnh, máy tính
+của bạn lưu trữ ba ma trận riêng biệt tương ứng với các kênh màu đỏ, xanh
+lá cây và xanh dương trong hình ảnh này. Như vậy, nếu hình ảnh đầu vào
+của bạn là 64 pixel x 64 pixel, sau đó bạn sẽ có 3 ma trận
+64 x 64 tương ứng với các giá trị cường độ pixel đỏ, xanh lá cây
+và xanh dương trong hình ảnh của bạn. Trong slide nhỏ này, tôi đã vẽ ra
+những ma trận nhỏ hơn nhiều, vì vậy thực ra đây là các ma trận
+5x4 thay vì 64 x 64. Vì vậy, để biến các giá trị cường độ pixel này
+thành một vectơ đặc trưng, chúng ta sẽ khai triển tất cả các giá trị pixel này
+thành một vectơ đặc trưng đầu vào x. Như vậy, để khai triển tất cả các giá trị cường độ
+pixel này thành vectơ đặc trưng, chúng ta sẽ xác định một vectơ đặc trưng x
+tương ứng với hình ảnh này như sau. Chúng ta sẽ lấy tất cả
+các giá trị pixel 255, 231, v.v. 255, 231, v.v. cho đến khi chúng ta
+liệt kê được tất cả các pixel màu đỏ. Và cuối cùng là 255 134
+255, 134 và v.v. cho đến khi chúng ta nhận được một vectơ đặc trưng dài
+liệt kê tất cả các giá trị cường độ pixel màu đỏ, xanh lá cây và xanh
+dương của hình ảnh này. Nếu đây là hình ảnh
+64 x 64, thì tổng kích thước của vectơ x này sẽ là
+64 x 64 x 3 vì đó là tất cả các số mà chúng ta có
+trong tất cả các ma trận này. Trong trường hợp này, 12.288, là con số bạn nhận được nếu
+bạn nhân tất cả những số trên. Như vậy chúng ta sẽ
+sử dụng nx = 12288 để biểu diễn kích thước của
+các đặc trưng đầu vào x. Và để đơn giản, đôi lúc tôi cũng
+sẽ chỉ sử dụng chữ n thường để biểu diễn kích thước của
+vectơ đặc trưng đầu vào này. Thế nên, trong phân loại nhị phân, mục tiêu của
+chúng ta là tìm hiểu một bộ phân loại có thể nhập vào một hình ảnh được
+biểu diễn bởi vector x đặc trưng này. Và dự đoán xem nhãn y
+tương ứng là 1 hay 0, đây có phải hình
+con mèo hay không. Bây giờ tôi sẽ đưa ra một số
+ký hiệu mà chúng ta sẽ sử dụng trong suốt phần
+còn lại của khóa học này. Một ví dụ huấn luyện duy nhất
+được biểu diễn bởi một cặp, (x, y) trong đó x là
+một vector đặc trưng x chiều, và y là
+nhãn, là 0 hoặc 1. Bộ huấn luyện của bạn sẽ bao gồm
+m (viết thường) ví dụ huấn luyện. Và do đó, tập huấn luyện của bạn sẽ
+được viết là (x(1), y(1)) là đầu vào và đầu ra cho ví dụ huấn luyện
+đầu tiên của bạn, (x2, y2) cho ví dụ huấn luyện thứ hai, và (xm, ym), là
+ví dụ huấn luyện cuối cùng của bạn. Và tất cả tập này là tập
+huấn luyện của bạn. Như vậy, tôi sẽ sử dụng chữ m thường
+để biểu thị số lượng mẫu huấn luyện. Và đôi khi để nhấn mạnh rằng
+đây là số lượng ví dụ huấn luyện, có thể tôi sẽ viết là M = M train. Và khi chúng ta nói về
+một bộ thử nghiệm, đôi khi chúng ta có thể sử dụng Mtest
+để biểu thị số lượng ví dụ thử nghiệm. Như vậy, đây là số lượng
+ví dụ thử nghiệm. Cuối cùng, để xuất ra tất cả các ví dụ
+huấn luyện thành một ký hiệu nhỏ gọn hơn, chúng ta sẽ xác định một
+ma trận bằng chữ X hoa. Nó được xác định bằng cách đưa vào các
+đầu vào x1, x2 trong bộ huấn luyện của bạn và cứ như vậy và đưa
+chúng vào trong các cột. Như vậy, chúng ta lấy x1 và đặt nó
+trong cột đầu tiên của ma trận này, đặt x2 ở cột thứ hai và
+cứ tiếp tục đến tận xm, đây chính là ma trận X. Vậy ma trận X này sẽ có m
+cột, trong đó m là số lượng ví dụ huấn luyện và số lượng các dòng
+hay chiều cao của ma trận này là nx. Hãy lưu ý rằng trong các khóa học
+khác, có thể bạn sẽ thấy ma trận X được xác định bằng cách xếp các
+ví dụ huấn luyện theo dòng như thế này, x1 chuyển vị cho
+đến xm chuyển vị. Nhưng khi bạn đang triển khai các mạng
+nơ-ron nhân tạo, thì bằng cách sử dụng quy ước mà tôi có ở bên trái này,
+bạn sẽ triển khai dễ dàng hơn nhiều. Như vậy, nói tóm lại, X là
+ma trận nx x m chiều và khi bạn triển khai
+điều này trong Python, bạn sẽ thấy rằng X.shape
+là lệnh python để tìm hình dạng của
+ma trận, bằng (nx, m). Có nghĩa là nó là một
+ma trận nx x m chiều. Như vậy, đó là cách bạn nhóm các
+ví dụ huấn luyện, nhập x vào ma trận. Làm thế nào để xuất ra nhãn Y? Để triển khai một mạng
+nơ-ron nhân tạo dễ dàng hơn, thì nên rất xếp chồng
+Y thành các cột. Như vậy, chúng ta sẽ
+xác định Y bằng [y1, y2, …,ym]. Y ở đây sẽ là ma trận 1 x m chiều. Và một lần nữa, để sử dụng ký hiệu
+Python thì sẽ có Y.shape = (1, m). Nghĩa là đây là
+ma trận 1 x m chiều. Và khi bạn triển khai mạng nơ-ron nhân tạo
+sau này trong khóa học, bạn sẽ thấy các quy ước này hữu ích trong việc lấy dữ liệu
+liên quan đến các ví dụ huấn luyện khác nhau và dữ liệu mà tôi nói thì có nghĩa là x hoặc y
+hoặc các đại lượng khác mà bạn sẽ thấy sau này. Nhưng để lấy các dữ liệu liên quan đến các ví dụ
+huấn luyện khác nhau và xếp chúng trong các cột khác nhau, giống như
+chúng ta đã thực hiện ở đây cho cả x và y. Như vậy, đó là ký hiệu mà chúng ta
+sẽ sử dụng cho phép hồi quy và cho mạng nơ-ron nhân tạo
+sau này trong khóa học. Nếu bạn quên mất một
+ký hiệu, như là m là gì hoặc n là gì hoặc các kí hiệu khác, thì chúng tôi cũng đã đăng
+một ghi chú về ký hiệu trên trang web khóa học và bạn có thể sử dụng nó để nhanh chóng
+tra cứu ý nghĩa của bất kỳ ký hiệu nào. Hãy tiếp tục với video
+tiếp theo để bắt đầu tìm hiểu về hồi quy logistic có
+sử dụng ký hiệu này.

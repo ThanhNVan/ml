@@ -1,0 +1,104 @@
+Cho đến nay, các ví dụ phân loại
+mà chúng ta đã đề cập đã sử dụng luyện phân loại nhị phân,
+trong đó bạn có hai nhãn có thể có, 0 hoặc 1. Nó là một con mèo, hay nó không phải là một con mèo? Điều gì sẽ xảy ra nếu chúng ta có nhiều lớp khả thi? Có một tổng quát của hồi quy logistic
+được gọi là hồi quy Softmax (softmax regression). Bạn càng ít đưa ra dự đoán trong đó
+mà bạn đang cố gắng nhận ra một trong C hoặc một trong nhiều lớp,
+thay vì chỉ nhận ra hai lớp. Chúng ta cùng xem nào. Giả sử rằng thay vì chỉ nhận ra
+con mèo, bạn muốn nhận ra mèo, chó và gà con. Vì vậy, tôi sẽ gọi mèo là lớp 1,
+chó là lớp 2, gà con là lớp 3. Và nếu không có cái nào ở trên,
+thì có cái khác hoặc không có lớp nào ở trên,
+mà tôi sẽ gọi là lớp 0. Vì vậy, đây là một ví dụ về các hình ảnh và
+các lớp mà chúng thuộc về. Đó là hình ảnh gà con,
+nên lớp là 3. Mèo là lớp 1, chó là lớp 2,
+Tôi đoán đó là gấu túi, vì vậy nó không thuộc lớp nào cả, vì vậy
+đó là lớp 0, lớp 3, v.v. Kí hiệu mà chúng ta sẽ sử dụng, tôi sẽ sử dụng chữ C viết hoa để biểu thị số lớp mà bạn
+đang cố gắng phân loại input. Và trong trường hợp này, bạn có thể có bốn lớp
+, bao gồm cả lớp kia hoặc không có lớp nào ở trên. Vì vậy, khi bạn có bốn lớp,
+các số chỉ mục của các lớp của bạn sẽ từ 0 đến C-1. Hay nói cách khác, nó sẽ là 0, 1 , 2 hay 3. Trong trường hợp này, chúng ta sẽ tạo một
+XY mới, trong đó lớp trên có bốn, hoặc trong trường hợp này, là các đơn vị có chữ C viết hoa ở phía trên. Vậy N, số đơn vị lớp trên
+là lớp L sẽ bằng 4 hoặc nói chung là sẽ bằng C. Và những gì chúng ta muốn là số lượng các đơn vị ở lớp trên cho chúng ta biết xác suất của
+mỗi lớp trong số bốn lớp này là bao nhiêu. Vì vậy, nút đầu tiên ở đây là output hoặc chúng ta muốn nó xuất ra xác suất
+là lớp khác, với input x, điều này sẽ cho ra xác suất có một con mèo. Giả xử X sẽ đưa ra xác xuất một con chó. Cho một x,
+sẽ xuất ra xác suất. Tôi sẽ viết tắt baby
+chick thành baby C, với input là x. Vì vậy, ở đây,các output được gắn nhãn y hat sẽ
+véc tơ (4;1) chiều bởi vì bây giờ nó phải xuất ra bốn số,
+cho bạn bốn xác suất này. Và bởi vì xác suất phải tổng bằng
+một, bốn số trong output y hat, chúng nên cộng lại thành một. Mô hình chuẩn để khiến mạng
+của bạn thực hiện điều này sử dụng cái gọi là một lớp Softmax và lớp output
+để tạo ra các output này. Sau đó, viết ra bản đồ,
+rồi bạn có thể quay lại và có được một số trực giác về những gì
+Softmax ở đó đang làm. Vì vậy, trong lớp
+cuối cùng của mạng nơ-ron, bạn sẽ tính như bình thường
+phần tuyến tính của các lớp. Vì vậy, z, L, đó là biến z cho
+lớp cuối cùng. Vì vậy, hãy nhớ đây là L. Vì vậy, như thường lệ, bạn tính
+đó là wL nhân với kích hoạt lớp trước cộng với các độc chệch cho
+lớp cuối cùng đó. Bây giờ có máy tính z, bây giờ bạn cần áp dụng cái gọi là
+,hàm kích hoạt Softmax. Vì vậy, chức năng kích hoạt đó hơi
+bất thường đối với lớp Softmax, nhưng đây là những gì nó làm. Đầu tiên, chúng ta sẽ tính
+một biến tạm thời, mà chúng ta sẽ gọi là t,
+là e mũ z L. Vì vậy, đây là một phần riêng biệt của từng thành phần. Vì vậy, zL ở đây, trong ví dụ của chúng ta,
+zL sẽ là (4;1) Đây là một vectơ bốn chiều. Vì vậy, bản thân t là e^zL là lũy thừa từng phần tử. T cũng sẽ là một vector 4,1 chiều. Sau đó, đầu ra aL, về cơ bản vectơ
+t sẽ được chuẩn hóa thành tổng bằng 1. Vì vậy, aL sẽ là e ^zL chia
+cho tổng từ J bằng 1 đến 4, bởi vì chúng ta có bốn lớp Ti. Nói cách khác, chúng ta đang nói rằng
+aL cũng là một vectơ (4;1) và phần tử i của vectơ
+bốn chiều này. Hãy viết điều đó, aL (i) sẽ bằng với ti/ tổng ti, được chứ? Trong trường hợp phép toán không được rõ ràng này, chúng ta sẽ làm một ví dụ thật nhanh
+để làm rõ hơn điều này. Vì vậy, trong trường hợp phép toán này không rõ ràng, Chúng ta hãy đi qua một ví dụ cụ thể
+sẽ làm rõ hơn điều này. Giả sử rằng máy tính của bạn zL và zL là một vectơ bốn chiều,
+giả sử là 5, 2, -1, 3. Những gì chúng ta sẽ làm là sử dụng lũy thừa
+từng thành phần này để tính vectơ này t. Vì vậy, t sẽ là e ^5,
+e ^2, e ^-1, e ^ 3. Và nếu bạn đưa nó vào máy tính,
+đây là những giá trị bạn nhận được. E ^ 5 là 1484,
+e bình phương là khoảng 7,4, e ^ -1 là 0,4, và e lập phương là 20,1. Và như vậy, cách chúng ta đi từ vectơ
+t đến vectơ aL chỉ là để chuẩn hóa các mục nhập này thành một. Vì vậy, nếu bạn tính tổng các phần tử của t, nếu bạn chỉ cộng 4 số đó, thì kết quả là 176,3. Vì vậy, cuối cùng,
+aL sẽ là vectơ này t, dưới dạng vectơ, chia cho 176,3. Ví dụ: nút đầu tiên này ở đây, nó sẽ cho ra e ^ 5 chia cho 176,3. Và đó hóa ra là 0,842. Vì vậy, đối với hình ảnh này,
+nếu đây là giá trị của z bạn nhận được, khả năng nó là 0 là 84,2%. Và sau đó các nút tiếp theo cho ra e^2 176,3, hóa ra là 0,042,
+vì vậy đây là 4,2% cơ hội. tiếp theo sẽ là e^-1 trên 176.3 là 0,042. Và cuối cùng là e^3 / 176.3
+là 0,114. Vì vậy, có 11,4% khả năng
+đây là lớp số ba, đó là lớp bé C, phải không? Vì vậy đều có cơ hội đó là lớp 0, lớp 1, lớp 2, lớp 3. Vì vậy, output của mạng nơron aL,
+đây cũng là y hat. Đây là một vectơ (4;1) trong đó các phần tử của vectơ (4;1) này sẽ là
+là bốn số này. Sau đó, chúng ta chỉ cần tính toán nó. Vì vậy, thuật toán này nhận vectơ zL và
+là bốn xác suất tổng bằng 1. Và nếu chúng ta tóm tắt những gì chúng ta
+vừa làm để toán từ zL đến aL, toàn bộ phép tính này
+lũy thừa khó hiểu thành lấy biến tạm thời t và
+rồi chuẩn hóa, chúng ta có thể tóm tắt điều này thành
+một hàm kích hoạt Softmax và giả sử aL bằng hàm
+kích hoạt g áp dụng cho vectơ zL. Điều bất thường về
+hàm kích hoạt cụ thể này là, hàm kích hoạt này g,
+nó nhận input là một vectơ (4;1) và nó xuất ra một vectơ (4;1). Vì vậy, trước đây, các hàm kích hoạt
+của chúng ta được sử dụng để nhận một input giá trị hàng duy nhất. Vì vậy, ví dụ, sigmoid và các hàm kích hoạt giá trị nhập vào các số thực và xuất ra một số thực. Điều bất thường về hàm kích hoạt Softmax
+là, vì nó cần chuẩn hóa trên các output khả thi khác nhau, và cần lấy một vectơ và
+đưa vào output của vectơ. Vì vậy, một trong những điều mà lớp chéo Softmax
+có thể biểu diễn, Tôi sẽ chỉ cho bạn một số ví dụ
+trong đó bạn có input x1, x2. Và những nguồn cấp dữ liệu trực tiếp đến
+một lớp Softmax có ba hoặc bốn hoặc thêm
+các nút output sau đó xuất ra y hat. Vì vậy, tôi sẽ cho bạn thấy một mạng
+mới không có lớp ẩn, và tất cả những gì nó làm là tính z1
+bằng w1 nhân với input x cộng với b. Và sau đó output a1, hoặc y hat chỉ là hàm kích hoạt Softmax
+được áp dụng cho z1. Vì vậy, trong mạng nơ-ron
+không có lớp ẩn, nó sẽ cho bạn biết kiểu hàm Softmax có thể biểu diễn. Vì vậy, đây là một ví dụ với
+input thô x1 và x2. Một lớp Softmax với C bằng
+3 lớp trên có thể biểu diễn loại ranh giới quyết định này. Lưu ý kiểu ranh giới quyết định tuyến tính này nhưng nó cho phép tách dữ liệu thành 3 lớp. Và trong sơ đồ này, những gì chúng ta đã làm
+là chúng ta thực sự lấy tập huấn luyện hiển thị trong hình này và huấn luyện ngọn crossfire Softmax với
+nhãn trên trên dữ liệu. Và sau đó màu trên
+biểu đồ này cho thấy hướng lên trên của crossfire Softmax
+và tô màu căn cứ input, trong đó, một trong 3 output có xác xuất cao nhất. Vì vậy, chúng ta có thể thấy rằng số
+này giống như một sự khái quát hóa hồi quy logistic với kiểu ranh giới quyết định tuyến tính
+, nhưng với nhiều hơn hai lớp ngoài lớp 0, 1, lớp có thể là 0, 1 hoặc 2. Đây là một ví dụ khác về ranh giới quyết định
+mà crossfire Softmax biểu diễn 3 tập dữ liệu thông thường với 3 lớp. Và đây là một cái khác, rIght, vì vậy
+đây là một, nhưng một trực giác là rằng ranh giới quyết định giữa
+bất kỳ hai lớp nào sẽ tuyến tính hơn. Đó là lý do tại sao bạn thấy chẳng hạn như ranh giới quyết định
+giữa màu vàng và các lớp khác nhau, đó là ranh giới
+tuyến tính nơi tuyến tính màu tím và đỏ trong ranh giới giữa màu tím và
+màu vàng và ranh giới quyết định tuyến tính khác. Nhưng có thể sử dụng
+hàm tuyến tính khác nhau này để tách
+không gian thành ba lớp. Hãy xem một số ví dụ
+với nhiều lớp hơn. Vì vậy, đó là một ví dụ với C bằng 4, vì vậy lớp màu xanh lá cây và Softmax
+có thể tiếp tục đại diện cho các loại ranh giới quyết định tuyến tính
+giữa nhiều lớp. Vì vậy, đây là một ví dụ khác
+với C bằng 5 lớp và đây là một ví dụ cuối cùng với C bằng 6. Vì vậy, điều này cho thấy những việc mà
+Softmax crossfire có thể làm khi không có lớp ẩn của lớp,
+thậm chí mạng nơ ron sâu hơn nhiều với x và sau đó là một số đơn vị ẩn, và
+rồi đến các đơn vị ẩn khác, v.v. Sau đó, bạn có thể tìm hiểu các ranh giới quyết định phi tuyến tính khác
+phức tạp hơn để phân tách ra nhiều lớp khác nhau. Vì vậy, tôi hy vọng điều này giúp bạn hiểu về lớp Softmax hoặc hàm kích hoạt Softmax
+trong mạng nơ-ron có thể làm được. Ở video tiếp theo, chúng ta hãy xem cách bạn có thể huấn luyện một mạng nơ-ron
+sử dụng lớp Softmax.

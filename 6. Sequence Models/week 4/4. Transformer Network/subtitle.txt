@@ -1,0 +1,175 @@
+You've learned about
+self-attention. You've learned about
+multi-headed attention. Let's put it all together to build the transformer network. In this video,
+you'll see how you can pair the attention
+mechanisms you saw in the previous videos to build the transformer
+architecture. Starting again with
+the sentence 'Jane visite L'Afrique en septembre' and its corresponding embedding. Let's walk through how you can translate the sentence
+from French to English. I've also added the start of sentence and end of
+sentence tokens here. Up until this point, for
+the sake of simplicity, I've only been talking about the embeddings for the
+words in the sentence, but in many sequence-to-sequence
+translation tasks, it will be useful to also add the start of sentence
+or the SOS and the end of sentence or the EOS tokens which I
+have in this example. The first step in
+the transformer is, these embeddings get fed into an encoder block which has a
+multi-head attention layer. This is exactly what you
+saw on the last slide, where you feed in the values Q, K and V computed from the embeddings and the weight
+matrices W. This layer then produces a matrix that
+can be passed into a feed-forward neural
+network which helps determine what
+interesting features there are in the sentence. In the transformer paper, this encoding block
+is repeated n times and a typical
+value for n is six. After maybe about six
+times through this block, we will then feed the output of the encoder
+into a decoder block. Let's start building
+the decoder block. The decoders block's job is to output the
+English translation. The first output will be the
+start of sentence token, which I've already
+written down here. At every step, the
+decoder block will input the first few words, whatever we've already
+generated of the translation. When we're just getting started, the only thing we know is that the translation will start with a start of sentence token. The start of sentence
+token gets fed in to this multi-head attention
+block and just this one token, the SOS token,
+start of sentence, is used to compute Q, K and V for this multi-head
+attention block. This first block's
+output is used to generate the Q matrix for the next multi-head
+attention block and the output of the
+encoder is used to generate K and V. Here's a second multi-head attention
+block with inputs Q, K and V as before. Why is it structured this way? Maybe here's one piece of
+intuition that could help. The input down here is what you've translated
+of the sentence so far. This will ask a query to say, "What of the start
+of sentence?". It will then pull
+context from K and V, which is translated from the French version
+of the sentence to then try to decide what is the next word in the
+sequence to generate. To finish the description
+of the decoded block, the multi-head attention block outputs the values which are fed to a feed
+forward neural network. This decoder block is also going to be repeated n
+times, maybe six times, where you take the output,
+feed it back to the input, and have this go through,
+say, half a dozen times. The job of this
+neural network is to predict the next
+word in the sentence. Hopefully, it will decide
+that the first word in the English
+translation is Jane. What we do is then feed
+Jane to the input as well. Now, the next query comes from
+SOS and Jane and it says, well, given Jane, what is the
+most appropriate next word? Let's find the right key
+and the right value, then lets us generate the
+most appropriate next word, which hopefully will
+generate visite. Then running this neural
+network again generates Africa. Then we feed Africa
+back into the input. Hopefully it then generates
+in and then September, and with this input, hopefully it
+generates the end of sentence token and
+then we're done. These encoder and
+decoder blocks, and how they're combined to perform a
+sequence to sequence translation tasks
+are the main ideas behind the transformer
+architecture. In this case, you
+saw how you can translate an input sentence into a sentence in another language to gain some intuition
+about how attention in neural networks can be combined to allow simultaneous
+computation. But beyond these main ideas, there are a few extra bells
+and whistles to transformers. Let me briefly step through
+these extra bells and whistles that makes the transformer network
+work even better. The first of these is positional
+encoding of the input. If you recall the self
+attention equations, there's nothing that indicates
+the position of a word. Is this word the first
+word in the sentence, in the middle, the last
+word in the sentence? But the position within
+a sentence can be extremely important
+to translation. The way you encode the position of elements
+in the input is that you use a combination of these
+sine and cosine equations. Let's say, for example, that your word embedding is
+a vector with four values. In this case, the dimension D of the word embedding is 4, so x^(1), x^(2), x^(3), let's say those are
+four dimensional vectors. In this example, we're
+going to then create a positional embedding vector of the same dimension,
+also four dimensional. I'm going to call this
+positional embedding p^(1), let's say for the
+position embedding of the first word Jane. In this equation below, pos, position denotes the numerical
+position of the word. For the word Jane, pos = 1, and i over here refers to the different
+dimensions of encoding. This first element
+corresponds to i = 0. This element i = 0, i =1, i = 1. These are the
+variables pos and i, they go into these
+equations down below. Where pos is the
+position of a word, i goes from 0 to 1, and d = 4, is the dimension of this vector. What the position encoding
+does with the sine and cosine is create a unique
+positional encoding vector. One of these vectors that
+is unique for each word, the vector p^(3) that encodes
+the position of l'Afrique, the third word will be a set
+of four values that'll be different than the
+four values used in code position of the
+first word of Jane. This is what the sine and
+cosine occurs look like. Is i = 0, i = 0, i = 1, i =1. Because you have these terms and denominator you end up with i = 0 will have some sinusoid
+curve that looks like this, and i =0 will be
+the matched cosine. 90 degrees out of face and i =1 will end up with a
+lower frequency sinusoid, and i =1 gives you a
+matched cosine curve. For T1, for position 1, you read off values at this position to fill in
+those four values there. Whereas for a different word
+at a different position, maybe this is now three
+on the horizontal axis, you read off a different
+set of values. Notice these first two
+values may be very similar because they're
+roughly at the same height. But by using these multiple
+sines and cosines, looking across all four values, P3 will be a different
+vector than P1. The positional
+encoding, P1j is added directly to X1 to the input this way so that each of the
+word vectors is also influenced or colored with where in the sentence
+the word appears. The output of the
+encoding block contains contextual semantic embedding and positional
+encoding information. The output of the
+embedding layer is then D, which in this case four by the maximum length of
+sequence, your model can take. The outputs of all these
+layers are also of this shape. In addition to adding these position encodings
+to the embeddings, you'd also pass them through the network with
+residual connections. These residual connections
+are similar to those you previously
+see in the resnet. Their purpose in this
+case is to pass along positional information through
+the entire architecture. In addition to
+positional encoding, the transformer
+network also uses a layer very similar
+to a batch norm. Their purpose in this
+case is to pass along positional information
+into position encoding. The transformer also uses
+a layer add norm that is very similar to the
+batch norm layer that you're already
+familiar with. For the purpose of this video, don't worry about
+the differences. Think of it as
+playing a role very similar to the batch norm. This helps speed up learning and this batch norm like layer, this add & norm layer is repeated throughout
+this architecture. Finally, for the output
+of the decoder block, there's actually
+also a linear and then a soft max layer to predict the next word
+one word at a time. In case you read the literature on the transformer network, you may also hear
+something called the mask multi-head attention, which I'm going to
+draw and over here. Mask multi-head attention is important only during
+the training process where you're using a
+dataset of correct French to English translations
+to train your transformer. Previously, we
+stepped through how the transformer performs
+prediction one word at the time, but how does it train? Let's say your dataset has a correct French to
+English translation. Jane visite l'Afrique on September, and Jane visits
+Africa in September. When training, you
+have access to the entire correct
+English translation, the correct output, and the correct input and because you have the
+full correct output, you don't actually
+have to generate the words one at a
+time during training. Instead, what masking does is it blocks out
+the last part of the sentence to mimic what the network will need to do at test time or
+during prediction. In other words, all that mask multi -head
+attention does is it repeatedly pretends that the network had
+perfectly translated, say the first few
+words and hides the remaining words
+to see if given a perfect first part
+of the translation, whether the new
+network can predict the next word in the
+sequence accurately. That's a summary of the
+transform architecture. Since the paper attention
+is all you need came out, there have been many other iterations of this
+model such as BERT or DistilBERT which you get to explore
+yourself this week. That was it. I know there
+was a lot of details, but now you have a good sense of all of the major building blocks of the transformer network. When you see this in this
+week's program exercise, playing around with the code
+there will help you to build even deeper intuition about how to make this work
+for your applications.

@@ -1,0 +1,589 @@
+WEBVTT
+
+00:00:00.020 --> 00:00:02.920
+Mô hình hóa ngôn ngữ là một trong những nhiệm
+vụ cơ
+
+00:00:02.920 --> 00:00:05.820
+bản và quan trọng nhất trong xử lý ngôn ngữ tự
+nhiên.
+
+00:00:05.820 --> 00:00:09.460
+Ngoài ra còn có một thứ mà RNN làm rất tốt.
+
+00:00:09.460 --> 00:00:14.420
+Trong video này, bạn sẽ tìm hiểu về cách xây
+dựng mô hình ngôn ngữ bằng RNN.
+
+00:00:14.420 --> 00:00:17.753
+Và điều này sẽ dẫn đến một bài tập lập trình
+thú vị vào cuối
+
+00:00:17.753 --> 00:00:21.087
+tuần này, nơi bạn xây dựng một mô hình ngôn
+ngữ và sử dụng nó
+
+00:00:21.087 --> 00:00:24.420
+để tạo ra các văn bản giống Shakespeare và các
+loại văn bản khác.
+
+00:00:24.420 --> 00:00:25.540
+Hãy bắt đầu.
+
+00:00:25.540 --> 00:00:27.860
+Vậy mô hình ngôn ngữ là gì?
+
+00:00:28.020 --> 00:00:31.100
+Giả sử bạn đang xây dựng một hệ thống nhận
+dạng giọng
+
+00:00:31.100 --> 00:00:34.180
+nói và bạn nghe thấy câu đó, món salad táo và
+lê rất ngon.
+
+00:00:34.900 --> 00:00:37.300
+Vậy bạn vừa nghe tôi nói gì?
+
+00:00:37.300 --> 00:00:40.100
+Tôi vừa nói món salad táo và lê à?
+
+00:00:40.100 --> 00:00:43.540
+Hay tôi đã nói món salad táo và lê?
+
+00:00:45.140 --> 00:00:49.300
+Có lẽ bạn nghĩ câu thứ hai có nhiều khả năng
+xảy ra hơn.
+
+00:00:49.300 --> 00:00:52.860
+Và trên thực tế, đó là kết quả mà một hệ thống
+nhận dạng
+
+00:00:52.860 --> 00:00:56.420
+giọng nói tốt sẽ tạo ra, mặc dù hai câu này
+nghe giống hệt nhau.
+
+00:00:57.940 --> 00:01:03.060
+Và cách hệ thống nhận dạng giọng nói chọn câu
+thứ hai là sử dụng mô hình
+
+00:01:03.060 --> 00:01:08.180
+ngôn ngữ, mô hình này cho biết xác suất của
+một trong hai câu này là bao nhiêu.
+
+00:01:08.180 --> 00:01:12.140
+Ví dụ: một mô hình ngôn ngữ có thể nói rằng cơ
+
+00:01:12.140 --> 00:01:16.100
+hội của câu đầu tiên là 3,2 x 10 trên số âm
+13.
+
+00:01:16.100 --> 00:01:21.860
+Và cơ hội của câu thứ hai là, chẳng hạn, 5,7
+trên 10 trên âm 10.
+
+00:01:22.340 --> 00:01:27.180
+Và vì vậy với những xác suất này, câu thứ hai
+có nhiều khả
+
+00:01:27.180 --> 00:01:32.020
+năng xảy ra hơn với hệ số từ 10 đến 3 so với
+câu đầu tiên.
+
+00:01:32.020 --> 00:01:35.700
+Và đó là lý do tại sao hệ thống nhận dạng
+giọng nói sẽ chọn lựa chọn thứ hai.
+
+00:01:36.820 --> 00:01:41.700
+Vì vậy, công việc của một mô hình ngôn ngữ là
+đưa ra bất kỳ câu nào, công việc
+
+00:01:41.700 --> 00:01:46.580
+của nó là cho bạn biết xác suất của một câu,
+của câu cụ thể đó là bao nhiêu.
+
+00:01:46.580 --> 00:01:51.620
+Và theo xác suất của câu, ý tôi là nếu bạn
+chọn ngẫu nhiên một tờ báo, mở một email
+
+00:01:51.620 --> 00:01:56.660
+ngẫu nhiên, hoặc chọn một trang web ngẫu
+nhiên, hoặc nghe điều tiếp theo ai đó nói,
+
+00:01:56.660 --> 00:02:00.940
+Một người bạn của bạn nói, có khả năng câu
+tiếp theo bạn đọc ở đâu
+
+00:02:00.940 --> 00:02:05.220
+đó trên thế giới sẽ là một câu cụ thể như
+salad táo và lê không?
+
+00:02:08.100 --> 00:02:13.420
+Và đây là thành phần cơ bản cho cả hệ thống
+nhận dạng giọng nói, như bạn
+
+00:02:13.420 --> 00:02:18.740
+vừa thấy, cũng như cho hệ thống dịch máy, nơi
+hệ thống dịch chỉ muốn xuất ra
+
+00:02:18.740 --> 00:02:20.660
+những câu có khả năng xảy ra.
+
+00:02:21.620 --> 00:02:27.580
+Và công việc cơ bản của mô hình ngôn ngữ là
+nhập một câu
+
+00:02:27.580 --> 00:02:33.540
+mà tôi sẽ viết dưới dạng một chuỗi, y1, y2,
+cho đến yty.
+
+00:02:34.100 --> 00:02:37.900
+Và đối với mô hình ngôn ngữ, sẽ rất hữu ích
+khi biểu
+
+00:02:37.900 --> 00:02:41.700
+diễn các câu dưới dạng đầu ra y thay vì đầu
+vào x.
+
+00:02:42.180 --> 00:02:48.900
+Nhưng công việc của một mô hình ngôn ngữ là
+ước tính xác suất của chuỗi từ cụ thể đó.
+
+00:02:53.500 --> 00:02:58.567
+Vậy làm thế nào để bạn xây dựng một mô hình
+ngôn ngữ? Để xây dựng một mô
+
+00:02:58.567 --> 00:03:03.633
+hình như vậy bằng RNN, trước tiên bạn cần một
+training set bao gồm một
+
+00:03:03.633 --> 00:03:08.700
+kho văn bản tiếng Anh lớn hoặc văn bản từ bất
+kỳ ngôn ngữ nào bạn muốn
+
+00:03:08.700 --> 00:03:13.700
+xây dựng mô hình ngôn ngữ Và từ ngữ liệu là
+một thuật ngữ NLP chỉ có nghĩa là
+
+00:03:13.700 --> 00:03:18.700
+một phần lớn hoặc một tập hợp văn bản tiếng
+Anh rất lớn gồm các câu tiếng Anh.
+
+00:03:19.260 --> 00:03:23.313
+Vì vậy, giả sử bạn nhận được một câu trong
+training set của mình,
+
+00:03:23.313 --> 00:03:27.367
+như sau, cắt giảm trung bình 15 giờ ngủ mỗi
+ngày. Điều đầu tiên
+
+00:03:27.367 --> 00:03:31.420
+bạn sẽ làm là mã hóa câu. Và điều đó có nghĩa
+là bạn sẽ hình thành
+
+00:03:31.420 --> 00:03:37.740
+một từ vựng như chúng ta đã thấy trong video
+trước đó, sau đó ánh xạ
+
+00:03:37.740 --> 00:03:44.060
+từng từ này tới các vectơ nóng hoặc các chỉ
+mục trong từ vựng của bạn.
+
+00:03:44.060 --> 00:03:48.647
+Một điều bạn cũng có thể muốn làm là làm mẫu
+khi câu kết thúc. Vì
+
+00:03:48.647 --> 00:03:53.233
+vậy, một việc phổ biến khác cần làm là thêm
+một mã thông báo bổ
+
+00:03:53.233 --> 00:03:57.820
+sung có tên EOS viết tắt của cuối câu để có
+thể giúp bạn tìm ra
+
+00:03:58.620 --> 00:04:02.167
+khi một câu kết thúc. Chúng ta sẽ nói nhiều
+hơn về điều này sau.
+
+00:04:02.167 --> 00:04:05.713
+Nhưng mã thông báo EOS có thể được thêm vào
+cuối mỗi câu trong
+
+00:04:05.713 --> 00:04:09.260
+training set của bạn nếu bạn muốn mô hình của
+mình nắm bắt rõ ràng
+
+00:04:09.260 --> 00:04:13.180
+khi câu kết thúc. Chúng tôi sẽ không sử dụng
+mã thông báo cuối câu
+
+00:04:13.180 --> 00:04:17.100
+cho bài tập quảng cáo vào cuối tuần này. Nhưng
+đối với một số ứng
+
+00:04:17.100 --> 00:04:21.020
+dụng, bạn có thể muốn sử dụng cái này. Và
+chúng ta sẽ nói sau ở đâu
+
+00:04:21.020 --> 00:04:25.580
+điều này có ích. Vì vậy, trong ví dụ này,
+chúng ta có các đầu
+
+00:04:25.580 --> 00:04:30.140
+vào y1, y2, y3, 4567, 899 trong ví dụ này, nếu
+bạn thêm phần
+
+00:04:30.140 --> 00:04:34.700
+cuối của mã thông báo câu vào cuối. Và thực
+hiện bước mã thông báo,
+
+00:04:34.700 --> 00:04:38.140
+bạn có thể quyết định xem khoảng thời gian đó
+có phải là mã thông
+
+00:04:38.140 --> 00:04:41.580
+báo hay không. Trong ví dụ này, tôi chỉ bỏ qua
+dấu câu. Vì vậy,
+
+00:04:41.580 --> 00:04:45.020
+tôi chỉ sử dụng ngày làm một mã thông báo khác
+và bỏ qua dấu chấm,
+
+00:04:45.020 --> 00:04:50.980
+nhưng bạn muốn coi dấu chấm hoặc dấu câu khác
+là dấu hiệu rõ ràng thì bạn cũng có thể
+
+00:04:50.980 --> 00:04:56.940
+thêm dấu chấm vào vốn từ vựng của mình. Bây
+giờ, một chi tiết khác sẽ là nếu một số
+
+00:04:56.940 --> 00:05:00.513
+các từ trong training set của bạn không có
+trong từ vựng của bạn. Vì
+
+00:05:00.513 --> 00:05:04.087
+vậy, nếu vốn từ vựng của bạn sử dụng 10.000
+từ, có thể là 10.000 từ
+
+00:05:04.087 --> 00:05:07.660
+phổ biến nhất trong tiếng Anh, thì thuật ngữ
+Mao như trong mô tả,
+
+00:05:07.660 --> 00:05:11.767
+Mao là một giống mèo có thể không nằm trong số
+10.000 token hàng đầu của
+
+00:05:11.767 --> 00:05:15.873
+bạn. Vì vậy, trong trường hợp đó, bạn có thể
+lấy từ Mao và thay thế nó
+
+00:05:15.873 --> 00:05:19.980
+bằng một mã thông báo duy nhất có tên UNK,
+viết tắt của từ không xác định
+
+00:05:19.980 --> 00:05:22.620
+từ và chúng tôi chỉ lập mô hình khả năng xảy
+
+00:05:22.620 --> 00:05:25.260
+ra của từ chưa biết thay vì từ cụ thể Mao.
+
+00:05:27.330 --> 00:05:31.623
+Đã thực hiện bước mã hóa, về cơ bản có nghĩa
+là lấy câu đầu vào và ánh xạ tới
+
+00:05:31.623 --> 00:05:35.917
+các mã thông báo riêng lẻ hoặc các từ riêng lẻ
+trong từ vựng của bạn. Tiếp
+
+00:05:35.917 --> 00:05:40.210
+theo, hãy xây dựng RNN để mô hình hóa khả năng
+xảy ra các chuỗi khác nhau này.
+
+00:05:41.490 --> 00:05:45.863
+Và một trong những điều chúng ta sẽ thấy ở
+slide tiếp theo là
+
+00:05:45.863 --> 00:05:50.237
+bạn sẽ thiết lập các đầu vào x t bằng y(t trừ
+một), nhưng bạn
+
+00:05:50.237 --> 00:05:54.610
+sẽ thấy điều đó sau một chút. Vì vậy hãy tiếp
+tục xây dựng
+
+00:05:54.610 --> 00:05:59.810
+mô hình RNN. Và tôi sẽ tiếp tục sử dụng câu
+này làm ví dụ.
+
+00:05:59.810 --> 00:06:07.370
+Đây sẽ là kiến trúc RNN tại thời điểm 0, cuối
+cùng bạn sẽ tính toán một số
+
+00:06:07.370 --> 00:06:14.930
+kích hoạt một một như một hàm của một số đầu
+vào x một và x một sẽ chỉ là
+
+00:06:15.650 --> 00:06:20.743
+đặt nó thành tập hợp tất cả các số 0 thành
+vectơ 0. Và số 0 trước
+
+00:06:20.743 --> 00:06:25.837
+đó theo quy ước cũng nói lên điều đó đối với
+sự kiện về số 0.
+
+00:06:25.837 --> 00:06:30.930
+Nhưng điều người ta làm là đưa ra dự đoán
+softmax để cố gắng tìm ra
+
+00:06:31.890 --> 00:06:39.250
+xác suất của từ đầu tiên y là bao nhiêu. Và đó
+sẽ là của bạn.
+
+00:06:40.690 --> 00:06:44.370
+Vì vậy, những gì bước này thực sự làm là, nó
+có một softmax
+
+00:06:44.370 --> 00:06:48.050
+đang cố gắng dự đoán xác suất của bất kỳ từ
+nào, ngoài ra,
+
+00:06:48.050 --> 00:06:51.730
+khả năng từ đầu tiên là cơ hội của từ đầu tiên
+là bao nhiêu
+
+00:06:51.730 --> 00:06:58.370
+từ là Aaron. Và sau đó, khả năng của từ đầu
+tiên là mèo cho đến khả năng của
+
+00:06:58.370 --> 00:07:05.010
+từ đầu tiên là Zulu, hoặc khả năng của từ đầu
+tiên là một từ không xác định,
+
+00:07:05.010 --> 00:07:10.850
+hoặc cơ hội đầu tiên mà bạn biết, từ đầu tiên
+là câu nói, không nên xảy
+
+00:07:10.850 --> 00:07:16.690
+ra. Phải. Vì vậy, y hat one là đầu ra theo
+softmax, nó chỉ dự đoán những gì
+
+00:07:16.690 --> 00:07:22.130
+khả năng từ đầu tiên có thể là bất cứ thứ gì
+nó kết thúc. Và trong ví dụ của
+
+00:07:22.130 --> 00:07:27.570
+chúng ta, đó là từ mèo. Vì vậy, đây sẽ là đầu
+ra softmax 10.000 chiều. Nếu bạn có một
+
+00:07:27.570 --> 00:07:32.930
+10.000 từ vựng hoặc 10.002 từ, tôi đoán, chúng
+ta gọi là từ chưa
+
+00:07:32.930 --> 00:07:38.290
+biết và câu là hai mã thông báo bổ sung. Sau
+đó, RNN chuyển sang
+
+00:07:38.290 --> 00:07:43.650
+bước tiếp theo và thực hiện một số kích hoạt
+cho bước tiếp theo. Và
+
+00:07:43.650 --> 00:07:48.903
+ở bước này, công việc của trẻ là cố gắng tìm
+ra từ thứ hai là gì.
+
+00:07:48.903 --> 00:07:54.157
+Nhưng bây giờ chúng ta cũng sẽ cung cấp cho nó
+từ đầu tiên chính xác.
+
+00:07:54.157 --> 00:07:59.410
+Vì vậy, chúng ta sẽ nói với nó rằng, trên thực
+tế, từ đầu tiên thực sự là
+
+00:07:59.410 --> 00:08:05.050
+mèo. Vì vậy đó là lý do tại sao một. Vì vậy,
+hãy nói với nó
+
+00:08:05.050 --> 00:08:10.690
+mèo. Và đây là lý do tại sao một bằng x hai.
+Và vì vậy tại
+
+00:08:10.690 --> 00:08:14.663
+bước thứ hai, đầu ra sẽ được dự đoán bởi
+softmax. RNN có
+
+00:08:14.663 --> 00:08:18.637
+nhiệm vụ dự đoán khả năng nó trở thành bất kỳ
+từ nào, đó
+
+00:08:18.637 --> 00:08:22.610
+là hay Aaron hay mèo hay Zulu, từ không xác
+định hay EOS hay
+
+00:08:22.610 --> 00:08:26.983
+bất cứ điều gì, dựa trên những gì đã đến trước
+đó. Vì vậy, trong
+
+00:08:26.983 --> 00:08:31.357
+trường hợp này, tôi đoán câu trả lời đúng là
+trung bình vì câu bắt đầu
+
+00:08:31.357 --> 00:08:35.730
+bằng trung bình của mèo. Và sau đó bạn chuyển
+sang bước tiếp theo của RNN,
+
+00:08:36.370 --> 00:08:40.690
+nơi bạn bây giờ tính toán ba. Nhưng để dự đoán
+từ thứ ba là 15, bây giờ
+
+00:08:40.690 --> 00:08:45.010
+chúng ta có thể cho nó hai từ đầu tiên, chúng
+ta sẽ cho nó biết mức
+
+00:08:45.010 --> 00:08:49.330
+trung bình của mèo, hoặc hai từ đầu tiên. Vì
+vậy, đầu vào tiếp theo này
+
+00:08:49.330 --> 00:08:55.370
+ở đây, x ba sẽ bằng y hai. Vì vậy, từ trung
+bình đầu vào. Và công việc này là tìm ra
+
+00:08:55.370 --> 00:09:01.410
+từ tiếp theo trong chuỗi là gì. Vì vậy, nói
+cách khác, hãy cố gắng tìm hiểu xem đâu là
+
+00:09:01.410 --> 00:09:06.397
+xác suất của bất kỳ từ nào trong từ điển, với
+điều kiện là từ vừa xuất
+
+00:09:06.397 --> 00:09:11.383
+hiện trước đó là mức trung bình của loài mèo.
+Và trong trường hợp này,
+
+00:09:11.383 --> 00:09:16.370
+câu trả lời đúng là 15. Và cứ thế. Cho đến
+cuối cùng, bạn kết thúc ở,
+
+00:09:17.250 --> 00:09:28.690
+Tôi đoán, ở bước thứ chín, bạn sẽ cho nó ăn x
+chín, bằng y tám, chính là từ
+
+00:09:29.490 --> 00:09:35.090
+ngày. Và cái này có số chín, và nhiệm vụ của
+nó là
+
+00:09:35.090 --> 00:09:40.690
+xuất ra y hat chín. Và đây chính là token EOS.
+Vì vậy
+
+00:09:40.690 --> 00:09:44.423
+cơ hội của bất cứ thứ gì nó được đưa ra là gì,
+bạn biết đấy,
+
+00:09:44.423 --> 00:09:48.157
+mọi thứ có trước đó và hy vọng bạn sẽ dự đoán
+rằng có khả năng
+
+00:09:48.157 --> 00:09:51.890
+cao sẽ có EOS trong mã thông báo câu. Nhưng vì
+vậy mỗi bước trong
+
+00:09:51.890 --> 00:09:58.570
+RNN sẽ xem xét một số tập hợp các từ trước đó,
+chẳng hạn như ba từ đầu tiên đã cho,
+
+00:09:58.570 --> 00:10:05.250
+sự phân bổ của từ tiếp theo là gì. Và do đó,
+RNN này học cách dự đoán từng từ một từ
+
+00:10:05.250 --> 00:10:08.090
+trái sang phải. Tiếp theo, để huấn luyện
+
+00:10:08.090 --> 00:10:10.930
+neural network này, chúng ta sẽ xác định
+cost function.
+
+00:10:10.930 --> 00:10:18.210
+Vì vậy, tại một thời điểm t nhất định, nếu từ
+đúng là y t và neural network softmax
+
+00:10:18.210 --> 00:10:25.490
+dự đoán một số y hat t, thì đây là hàm mất
+softmax mà bạn đã quen thuộc. Và sau đó
+
+00:10:25.490 --> 00:10:29.410
+tổn thất tổng thể chỉ là tổng của tất cả các
+bước thời gian của
+
+00:10:29.410 --> 00:10:33.330
+tổn thất liên quan đến các dự đoán riêng lẻ.
+Và nếu bạn huấn
+
+00:10:33.330 --> 00:10:37.250
+luyện RNN này trên training set mất mát, điều
+nó có thể làm là:
+
+00:10:37.250 --> 00:10:42.503
+với bất kỳ tập hợp từ ban đầu nào, chẳng hạn
+như trung bình của mèo
+
+00:10:42.503 --> 00:10:47.757
+là 15 giờ hoặc trung bình của mèo là 15 giờ,
+nó có thể dự đoán cơ
+
+00:10:47.757 --> 00:10:53.010
+hội của từ tiếp theo là gì. Và đưa ra một câu
+mới, ví dụ, y1, y2,
+
+00:10:54.210 --> 00:10:59.650
+y3, chỉ với ba từ để đơn giản, cách bạn có thể
+tìm ra xác suất của toàn bộ câu
+
+00:10:59.650 --> 00:11:05.090
+này là bao nhiêu, softmax đầu tiên cho bạn
+biết xác suất của y1 là bao nhiêu.
+
+00:11:06.130 --> 00:11:12.157
+Đó sẽ là đầu ra đầu tiên này. Và sau đó câu
+thứ hai có thể cho
+
+00:11:12.157 --> 00:11:18.183
+bạn biết cơ hội của y2 với y1 là bao nhiêu. Và
+sau đó biểu thức
+
+00:11:18.183 --> 00:11:24.210
+thứ ba cho bạn biết cơ hội của y3 với y1 và y2
+là bao nhiêu. Và
+
+00:11:24.210 --> 00:11:29.770
+vì vậy đó là bằng cách nhân ba xác suất này.
+Và bạn sẽ thấy nhiều chi tiết hơn về
+
+00:11:29.770 --> 00:11:35.330
+điều này trong bài tập quảng cáo vì bằng cách
+nhân ba số này bạn sẽ có xác suất
+
+00:11:35.330 --> 00:11:41.650
+ba câu này của câu ba chữ này. Đó là cấu trúc
+cơ bản về cách bạn có thể huấn
+
+00:11:41.650 --> 00:11:47.970
+luyện mô hình ngôn ngữ bằng RNN. Nếu một số ý
+tưởng này vẫn có vẻ hơi trừu tượng,
+
+00:11:47.970 --> 00:11:50.250
+đừng lo lắng về điều đó, bạn có thể thực hành
+
+00:11:50.250 --> 00:11:52.530
+tất cả những ý tưởng này trong bài tập quảng
+cáo.
+
+00:11:52.530 --> 00:11:55.277
+Nhưng tiếp theo, hóa ra một trong những điều
+thú vị nhất
+
+00:11:55.277 --> 00:11:58.023
+bạn có thể làm với mô hình ngôn ngữ là lấy mẫu
+các chuỗi
+
+00:11:58.023 --> 00:12:00.770
+từ mô hình. Chúng ta hãy xem điều đó trong
+video tiếp theo.

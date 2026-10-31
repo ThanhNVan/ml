@@ -1,0 +1,421 @@
+WEBVTT
+
+1
+00:00:02.400 --> 00:00:07.760
+Chúng tôi đã nói về cách bạn muốn thuật toán học tập của bạn làm tốt trên training set nhưng
+
+2
+00:00:07.760 --> 00:00:10.085
+đôi khi bạn không thực sự muốn làm quá
+
+3
+00:00:10.085 --> 00:00:12.765
+tốt và biết hiệu suất của con người là gì,
+
+4
+00:00:12.765 --> 00:00:15.070
+có thể cho bạn biết chính xác như thế nào tốt
+
+5
+00:00:15.070 --> 00:00:18.250
+nhưng không quá tốt bạn muốn thuật toán của bạn làm trên training set.
+
+6
+00:00:18.250 --> 00:00:19.392
+Để tôi cho anh thấy ý tôi là gì.
+
+7
+00:00:19.392 --> 00:00:24.320
+Chúng tôi đã sử dụng classification Cat rất nhiều và đưa ra một bức tranh,
+
+8
+00:00:24.320 --> 00:00:32.195
+giả sử con người có độ chính xác gần như hoàn hảo vì vậy lỗi mức độ của con người là 1%.
+
+9
+00:00:32.195 --> 00:00:34.475
+Trong trường hợp đó, nếu thuật toán học tập của bạn đạt được
+
+10
+00:00:34.475 --> 00:00:38.915
+8 phần trăm lỗi đào tạo và 10 phần trăm lỗi dev,
+
+11
+00:00:38.915 --> 00:00:44.500
+sau đó có thể bạn muốn làm tốt hơn trên training set.
+
+12
+00:00:44.500 --> 00:00:49.510
+Vì vậy, thực tế là có một khoảng cách lớn giữa thuật toán của bạn làm tốt như thế nào trên
+
+13
+00:00:49.510 --> 00:00:52.010
+tập huấn của bạn so với cách con người làm
+
+14
+00:00:52.010 --> 00:00:55.625
+cho thấy rằng thuật toán của bạn thậm chí không phù hợp với training set tốt.
+
+15
+00:00:55.625 --> 00:00:59.210
+Vì vậy, trong điều kiện của các công cụ để giảm thiên vị hoặc variance,
+
+16
+00:00:59.210 --> 00:01:03.835
+trong trường hợp này, tôi sẽ nói tập trung vào việc giảm thiên vị.
+
+17
+00:01:03.835 --> 00:01:09.410
+Vì vậy, bạn muốn làm những việc như đào tạo một neural network lớn hơn hoặc chạy đào tạo thiết lập lâu hơn,
+
+18
+00:01:09.410 --> 00:01:12.003
+chỉ cần cố gắng làm tốt hơn trên training set.
+
+19
+00:01:12.003 --> 00:01:15.050
+Nhưng bây giờ chúng ta hãy nhìn vào cùng một lỗi đào tạo và
+
+20
+00:01:15.050 --> 00:01:19.340
+lỗi dev và tưởng tượng rằng hiệu suất của con người không phải là 1%.
+
+21
+00:01:19.340 --> 00:01:22.120
+Vì vậy, bản sao này đã kết thúc nhưng bạn biết trong
+
+22
+00:01:22.120 --> 00:01:25.170
+một ứng dụng khác hoặc có thể trên một tập dữ liệu khác,
+
+23
+00:01:25.170 --> 00:01:30.180
+giả sử rằng lỗi cấp độ con người thực sự là 7,5%.
+
+24
+00:01:30.180 --> 00:01:33.890
+Có lẽ những hình ảnh trong tập dữ liệu của bạn quá mờ đến nỗi ngay cả con người cũng
+
+25
+00:01:33.890 --> 00:01:37.917
+không thể biết có một con mèo trong bức ảnh này hay không.
+
+26
+00:01:37.917 --> 00:01:41.090
+Ví dụ này có lẽ hơi giả tạo bởi vì con người
+
+27
+00:01:41.090 --> 00:01:44.525
+thực sự rất giỏi nhìn vào hình ảnh và cho biết có con mèo trong đó hay không.
+
+28
+00:01:44.525 --> 00:01:46.490
+Nhưng vì lợi ích của ví dụ này,
+
+29
+00:01:46.490 --> 00:01:48.270
+giả sử các tập dữ liệu hình ảnh của bạn
+
+30
+00:01:48.270 --> 00:01:54.680
+quá mờ hoặc độ phân giải thấp đến mức ngay cả con người cũng nhận được lỗi 7,5%.
+
+31
+00:01:54.680 --> 00:01:56.720
+Trong trường hợp này, mặc dù
+
+32
+00:01:56.720 --> 00:02:00.305
+lỗi đào tạo và lỗi dev của bạn giống như ví dụ khác,
+
+33
+00:02:00.305 --> 00:02:04.016
+bạn thấy rằng có lẽ bạn đang thực sự làm tốt trên training set.
+
+34
+00:02:04.016 --> 00:02:07.980
+Nó chỉ làm tồi tệ hơn một chút so với hiệu suất của con người.
+
+35
+00:02:07.980 --> 00:02:10.010
+Và trong ví dụ thứ hai này,
+
+36
+00:02:10.010 --> 00:02:14.295
+bạn có thể muốn tập trung vào việc giảm thành phần này,
+
+37
+00:02:14.295 --> 00:02:19.390
+giảm variance trong thuật toán học của bạn.
+
+38
+00:02:19.390 --> 00:02:21.650
+Vì vậy, bạn có thể thử regularization để cố gắng mang lại
+
+39
+00:02:21.650 --> 00:02:25.600
+lỗi dev của bạn gần gũi hơn với lỗi đào tạo của bạn ví dụ.
+
+40
+00:02:25.600 --> 00:02:29.790
+Vì vậy, trong các khóa học trước đó thảo luận về sự thiên vị và variance,
+
+41
+00:02:29.790 --> 00:02:36.900
+chúng tôi chủ yếu giả định rằng có những nhiệm vụ mà lỗi Bayes là gần bằng không.
+
+42
+00:02:36.900 --> 00:02:39.280
+Vì vậy, để giải thích những gì vừa xảy ra ở đây,
+
+43
+00:02:39.280 --> 00:02:42.150
+cho ví dụ classification Cat
+
+44
+00:02:42.150 --> 00:02:47.510
+của chúng tôi, hãy nghĩ về lỗi cấp độ con người
+
+45
+00:02:47.510 --> 00:02:56.030
+như một proxy hoặc như là một ước tính cho lỗi Bayes hoặc cho lỗi tối ưu Bayes.
+
+46
+00:02:56.030 --> 00:02:58.660
+Và đối với các nhiệm vụ thị giác máy tính,
+
+47
+00:02:58.660 --> 00:03:02.450
+đây là một proxy khá hợp lý bởi vì con người thực sự rất giỏi về
+
+48
+00:03:02.450 --> 00:03:08.750
+thị giác máy tính và vì vậy bất cứ điều gì con người có thể làm là có lẽ không quá xa lỗi Bayes.
+
+49
+00:03:08.750 --> 00:03:11.930
+Theo định nghĩa, lỗi cấp độ con người còn tồi tệ hơn
+
+50
+00:03:11.930 --> 00:03:14.840
+lỗi Bayes vì không có gì có thể tốt hơn
+
+51
+00:03:14.840 --> 00:03:19.665
+lỗi Bayes nhưng lỗi cấp độ con người có thể không quá xa lỗi Bayes.
+
+52
+00:03:19.665 --> 00:03:25.145
+Vì vậy, điều đáng ngạc nhiên chúng tôi thấy ở đây là tùy thuộc vào lỗi cấp độ con người là gì
+
+53
+00:03:25.145 --> 00:03:31.214
+hoặc thực sự điều này là khoảng lỗi Bayes hoặc vì vậy chúng tôi giả định nó là,
+
+54
+00:03:31.214 --> 00:03:35.273
+nhưng tùy thuộc vào những gì chúng tôi nghĩ là có thể đạt được,
+
+55
+00:03:35.273 --> 00:03:40.970
+với cùng một lỗi đào tạo và lỗi dev trong hai trường hợp này,
+
+56
+00:03:40.970 --> 00:03:47.510
+chúng tôi quyết định tập trung về chiến thuật giảm thiên vị hoặc về chiến thuật giảm variance.
+
+57
+00:03:47.510 --> 00:03:51.710
+Và những gì đã xảy ra là trong ví dụ bên trái,
+
+58
+00:03:51.710 --> 00:03:55.850
+8% lỗi đào tạo thực sự cao khi bạn nghĩ rằng bạn có thể giảm xuống
+
+59
+00:03:55.850 --> 00:04:01.310
+1% và do đó chiến thuật giảm thiên vị có thể giúp bạn làm điều đó.
+
+60
+00:04:01.310 --> 00:04:02.885
+Trong khi đó, trong ví dụ bên phải,
+
+61
+00:04:02.885 --> 00:04:07.140
+nếu bạn nghĩ rằng lỗi Bayes là 7,5%
+
+62
+00:04:07.140 --> 00:04:12.265
+và ở đây chúng tôi đang sử dụng lỗi mức độ con người như một ước tính hoặc như một proxy cho lỗi
+
+63
+00:04:12.265 --> 00:04:13.622
+Bayes, nhưng bạn nghĩ rằng lỗi Bayes là
+
+64
+00:04:13.622 --> 00:04:15.860
+gần bảy điểm 5% sau đó bạn biết không có
+
+65
+00:04:15.860 --> 00:04:20.195
+nhiều khoảng trống cho giảm lỗi đào tạo của bạn hơn nữa xuống.
+
+66
+00:04:20.195 --> 00:04:24.710
+Bạn không thực sự muốn nó tốt hơn nhiều so với 7,5% bởi vì bạn có thể đạt được điều
+
+67
+00:04:24.710 --> 00:04:29.780
+đó chỉ bằng cách bắt đầu cung cấp đào tạo thêm,
+
+68
+00:04:29.780 --> 00:04:32.910
+và thay vào đó, có nhiều chỗ để cải thiện
+
+69
+00:04:32.910 --> 00:04:36.380
+về việc lấy khoảng cách 2% này và cố gắng
+
+70
+00:04:36.380 --> 00:04:38.660
+giảm điều đó bằng cách sử dụng
+
+71
+00:04:38.660 --> 00:04:43.370
+giảm variance các kỹ thuật như regularization hoặc có thể nhận được nhiều training data hơn.
+
+72
+00:04:43.370 --> 00:04:47.463
+Vì vậy, để cung cấp cho những điều
+
+73
+00:04:47.463 --> 00:04:50.490
+này một vài tên, điều này không được sử dụng rộng rãi thuật ngữ nhưng tôi
+
+74
+00:04:50.490 --> 00:04:54.075
+tìm thấy thuật ngữ hữu ích này và một cách hữu ích
+
+75
+00:04:54.075 --> 00:04:58.380
+để suy nghĩ về nó, đó là tôi sẽ gọi sự khác biệt giữa lỗi
+
+76
+00:04:58.380 --> 00:05:05.670
+Bayes hoặc xấp xỉ của lỗi Bayes và lỗi đào tạo là thiên vị tránh được.
+
+77
+00:05:05.670 --> 00:05:11.830
+Vì vậy, những gì bạn muốn là có thể tiếp tục cải thiện hiệu suất đào tạo của
+
+78
+00:05:11.830 --> 00:05:14.020
+bạn cho đến khi bạn nhận được xuống đến lỗi Bayes nhưng bạn không
+
+79
+00:05:14.020 --> 00:05:16.565
+thực sự muốn làm tốt hơn so với lỗi Bayes.
+
+80
+00:05:16.565 --> 00:05:20.740
+Bạn không thể thực sự làm tốt hơn so với lỗi Bayes trừ khi bạn quá thích hợp.
+
+81
+00:05:20.740 --> 00:05:24.879
+Và điều này, sự khác biệt giữa khu vực đào tạo
+
+82
+00:05:24.879 --> 00:05:29.775
+của bạn và lỗi dev, vẫn còn một biện pháp về vấn đề variance của thuật toán của bạn.
+
+83
+00:05:29.775 --> 00:05:35.350
+Và thuật ngữ thiên vị tránh được thừa nhận rằng có một số thiên vị hoặc
+
+84
+00:05:35.350 --> 00:05:38.140
+một số mức độ lỗi tối thiểu
+
+85
+00:05:38.140 --> 00:05:42.975
+mà bạn không thể nhận được dưới đây đó là nếu lỗi Bayes là 7,5%,
+
+86
+00:05:42.975 --> 00:05:46.885
+bạn không thực sự muốn nhận được dưới mức lỗi đó.
+
+87
+00:05:46.885 --> 00:05:50.650
+Vì vậy, thay vì nói rằng nếu bạn đang đào tạo lỗi là 8%,
+
+88
+00:05:50.650 --> 00:05:53.427
+sau đó 8% là một thước đo của thiên vị trong ví dụ này,
+
+89
+00:05:53.427 --> 00:06:01.520
+bạn đang nói rằng thiên vị tránh được có thể là 0,5% hoặc 0,5% là một thước đo của
+
+90
+00:06:01.520 --> 00:06:06.220
+thiên vị tránh trong khi 2% là một thước đo của variance và
+
+91
+00:06:06.220 --> 00:06:11.378
+do đó có nhiều chỗ trong việc giảm này 2% so với việc giảm 0.5% này.
+
+92
+00:06:11.378 --> 00:06:14.384
+Trong khi ngược lại trong ví dụ bên trái,
+
+93
+00:06:14.384 --> 00:06:20.055
+7% này là một thước đo của sự thiên vị có thể tránh được,
+
+94
+00:06:20.055 --> 00:06:24.275
+trong khi 2% là một thước đo của bao nhiêu variance bạn có.
+
+95
+00:06:24.275 --> 00:06:25.960
+Và trong ví dụ bên trái này,
+
+96
+00:06:25.960 --> 00:06:31.789
+có nhiều tiềm năng hơn trong việc tập trung vào việc giảm sự thiên vị có thể tránh được đó.
+
+97
+00:06:31.789 --> 00:06:33.310
+Vì vậy, trong ví dụ này, việc
+
+98
+00:06:33.310 --> 00:06:35.845
+hiểu sai số cấp độ của con người,
+
+99
+00:06:35.845 --> 00:06:38.220
+hiểu ước tính của bạn về lỗi Bayes thực sự
+
+100
+00:06:38.220 --> 00:06:42.420
+khiến bạn trong các kịch bản khác nhau để tập trung vào các chiến thuật khác nhau, cho
+
+101
+00:06:42.420 --> 00:06:45.970
+dù là chiến thuật tránh thiên vị hay chiến thuật tránh variance.
+
+102
+00:06:45.970 --> 00:06:48.820
+Có khá nhiều sắc thái hơn trong cách bạn yếu tố
+
+103
+00:06:48.820 --> 00:06:53.800
+hiệu suất của con người vào cách bạn đưa ra quyết định trong việc lựa chọn những gì cần tập trung vào.
+
+104
+00:06:53.800 --> 00:06:55.970
+Như vậy trong video tiếp theo, hãy đi sâu hơn vào
+
+105
+00:06:55.970 --> 00:06:59.460
+sự hiểu biết về hiệu suất của con người thực sự có ý nghĩa gì.

@@ -1,0 +1,189 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.530 --> 00:00:06.570
+One of the problems with training neural networks, especially very deep neural networks, is that of vanishing and exploding
+
+00:00:06.890 --> 00:00:14.330
+gradients. What that means is that when you're training a very deep network, your derivatives or your slopes can sometimes get either very, very big or
+
+00:00:14.730 --> 00:00:20.150
+very, very small, maybe even exponentially small, and this makes training difficult. In this video,
+
+00:00:20.150 --> 00:00:26.570
+you see what this problem of exploding or that vanishing gradients really means as well as how you can use
+
+00:00:27.370 --> 00:00:32.490
+careful choices of the random weight initialization to significantly reduce this problem.
+
+00:00:33.050 --> 00:00:37.170
+Let's say you're training a very deep neural network like this. To save space on this slide,
+
+00:00:37.170 --> 00:00:39.770
+I've drawn it as if you have only two hidden units per layer,
+
+00:00:40.210 --> 00:00:45.190
+but it could be more as well. But this neural network will have parameters w1,
+
+00:00:45.730 --> 00:00:47.370
+w2,
+
+00:00:47.370 --> 00:00:49.970
+w3, and so on up to
+
+00:00:50.450 --> 00:00:52.610
+wl. For the sake of simplicity,
+
+00:00:52.770 --> 00:00:58.690
+let's say we're using an activation function g of z equals z, so a linear activation function, and
+
+00:00:59.290 --> 00:01:07.410
+let's ignore b. Let's say b of l equals 0. So in that case, you can show that the output y will be
+
+00:01:08.010 --> 00:01:16.410
+wl times wl minus 1 times wl minus 2 dot dot dot down to w3,
+
+00:01:17.530 --> 00:01:18.970
+w2,
+
+00:01:19.210 --> 00:01:24.450
+w1 times x. But if you want to just check my math, w1
+
+00:01:24.890 --> 00:01:33.010
+times x is going to be z1, because b is equal to 0, so z1 is equal to, I guess,
+
+00:01:33.890 --> 00:01:35.410
+w1
+
+00:01:35.410 --> 00:01:41.850
+times x and then plus b which is 0, but then a1 is equal to g of z1,
+
+00:01:42.170 --> 00:01:46.450
+but because we use a linear activation function, this is just equal to
+
+00:01:47.170 --> 00:01:52.850
+z1. So this first term w1 x is equal to a1. And then by similar reasoning, you can figure out that
+
+00:01:53.690 --> 00:01:57.370
+w2 times w1 times x is equal to a2,
+
+00:01:57.890 --> 00:02:02.610
+because that's going to be g of z2. It's going to be g of
+
+00:02:03.930 --> 00:02:05.410
+w2
+
+00:02:05.410 --> 00:02:07.410
+times a1,
+
+00:02:08.850 --> 00:02:11.610
+right, which you plug that in here.
+
+00:02:11.690 --> 00:02:21.810
+So this thing is going to be equal to a2, and then, you know, this thing is going to be a3
+
+00:02:21.810 --> 00:02:25.370
+and so on until the product of all these matrices gives you
+
+00:02:26.050 --> 00:02:40.490
+y hat, not y. Now, let's say that each of your weight matrices, wl, is equal to, let's say it's just a little bit larger than 1 times the identity. So it's 1.5, 1.5,
+
+00:02:41.490 --> 00:02:48.090
+0, 0, right? Technically, the last one has different dimensions, so maybe this is just the rest of these weight matrices.
+
+00:02:48.850 --> 00:02:53.850
+Then y hat will be, you know, ignoring this last one for a different dimension,
+
+00:02:54.290 --> 00:03:01.690
+it will be this 1.5, 0, 0, 1.5 matrix to the power of L minus 1 times x, because
+
+00:03:02.410 --> 00:03:07.050
+we assume that each one of these matrices, you know, is equal to this thing.
+
+00:03:07.770 --> 00:03:15.050
+It's really 1.5 times the identity matrix, then you end up with this calculation. And so y hat will be essentially
+
+00:03:15.970 --> 00:03:24.010
+1.5 to the power of L, to the power of L minus 1 times x, and if L is large for a very deep neural network,
+
+00:03:24.250 --> 00:03:29.450
+y hat will be very large. In fact, this grows exponentially. It grows like 1.5
+
+00:03:30.090 --> 00:03:35.690
+to the number of layers. And so if you have a very deep neural network, the value of y will explode.
+
+00:03:36.570 --> 00:03:43.370
+Now conversely, if we replace this with 0.5, so something less than 1, then this becomes
+
+00:03:43.970 --> 00:03:47.810
+0.5 to the power of L, right? This matrix becomes
+
+00:03:48.850 --> 00:03:54.330
+0.5 to the L minus 1 times x, again, ignoring WL. But so if each of your
+
+00:03:55.090 --> 00:04:01.810
+matrices are less than 1, then if, let's say x1, x2 were 1, 1, then the activations will be
+
+00:04:01.930 --> 00:04:08.770
+1.5, 1.5, 1.4, 1.4, 1.8, 1.8, and so on, until this becomes
+
+00:04:09.410 --> 00:04:14.050
+1 over 2 to the L. So the activation values will decrease exponentially
+
+00:04:14.690 --> 00:04:21.810
+as a function of the depth, as a function of the number of layers L of the network. So if you have a very deep network, the
+
+00:04:22.770 --> 00:04:24.930
+activations end up decreasing exponentially.
+
+00:04:26.010 --> 00:04:30.770
+So the intuition I hope you can take away from this is that if the weights W,
+
+00:04:30.770 --> 00:04:37.250
+if they're all, you know, just a little bit bigger than 1, or just a little bit bigger than the identity matrix, then
+
+00:04:37.570 --> 00:04:45.290
+with a very deep network, the activations can explode. And if W is, you know, just a little bit less identity,
+
+00:04:45.290 --> 00:04:47.970
+right? So if this was maybe isn't 0.9, 0.9,
+
+00:04:48.330 --> 00:04:55.930
+right? Then if a very deep network, the activations will decrease exponentially. And even though I went through this argument in terms of
+
+00:04:56.570 --> 00:05:00.210
+activations increasing or decreasing exponentially as a function of L,
+
+00:05:00.890 --> 00:05:07.290
+a similar argument can be used to show that the derivatives or the gradients you compute with gradient descent will also increase
+
+00:05:07.930 --> 00:05:11.210
+exponentially or decrease exponentially as a function of the number of layers.
+
+00:05:11.730 --> 00:05:18.570
+With some of the modern neural networks, you actually have L equals 150. Microsoft recently got great results of a
+
+00:05:19.210 --> 00:05:27.530
+352-layer neural network. But with such a deep neural networks, if your activations, your gradients increase or decrease exponentially as a function of L,
+
+00:05:27.730 --> 00:05:35.410
+then these values could get really big or really small. And this makes training difficult, especially if your gradients are
+
+00:05:35.650 --> 00:05:40.410
+exponentially small in L, then, you know, gradient descent will take tiny little steps.
+
+00:05:40.410 --> 00:05:43.730
+It'll take a long time for gradient descent to learn anything.
+
+00:05:44.330 --> 00:05:50.690
+To summarize, you've seen how deep networks suffer from the problems of vanishing or exploding gradients.
+
+00:05:50.690 --> 00:05:57.810
+In fact, for a long time, this problem was a huge barrier to training deep neural networks. It turns out there's a partial solution
+
+00:05:58.010 --> 00:06:05.290
+that doesn't completely solve this problem, but that helps a lot, which is careful choice of how you initialize the weights. To see that,
+
+00:06:05.410 --> 00:06:07.410
+let's go on to the next video.

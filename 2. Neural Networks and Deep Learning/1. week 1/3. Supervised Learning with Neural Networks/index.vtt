@@ -1,0 +1,339 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.380 --> 00:00:08.780
+There's been a lot of hype about neural networks and perhaps some of that hype is justified
+
+00:00:08.780 --> 00:00:10.740
+given how well they're working.
+
+00:00:10.740 --> 00:00:15.380
+But it turns out that so far almost all the economic value created by neural networks
+
+00:00:15.380 --> 00:00:19.660
+has been through one type of machine learning called supervised learning.
+
+00:00:19.660 --> 00:00:22.060
+Let's see what that means and let's go over some examples.
+
+00:00:22.060 --> 00:00:27.540
+In supervised learning, you have some input x and you want to learn a function mapping
+
+00:00:27.540 --> 00:00:29.980
+out to some output y.
+
+00:00:29.980 --> 00:00:34.540
+So for example, just now we saw the housing price prediction application
+
+00:00:34.540 --> 00:00:40.620
+where you input some features of a home and try to output or estimate the price y.
+
+00:00:40.620 --> 00:00:46.740
+Here are some other examples that neural networks have been applied to very effectively.
+
+00:00:46.740 --> 00:00:52.620
+Possibly the single most lucrative application of deep learning today is online advertising,
+
+00:00:52.620 --> 00:00:58.020
+maybe not the most inspiring but certainly very lucrative in which by inputting
+
+00:00:58.020 --> 00:01:02.020
+and add information about an ad to the website,
+
+00:01:02.020 --> 00:01:05.820
+this thinking of showing you and some information about the user,
+
+00:01:05.820 --> 00:01:10.420
+neural networks have gotten very good at predicting whether or not you click on an ad
+
+00:01:10.420 --> 00:01:15.100
+and by showing you and showing users the ads that you're most likely to click on,
+
+00:01:15.100 --> 00:01:20.620
+this has been an incredibly lucrative application of neural networks at multiple companies
+
+00:01:20.620 --> 00:01:24.460
+because the ability to show you ads that you're more likely to click on
+
+00:01:24.460 --> 00:01:30.380
+has a direct impact on the bottom line of some of the very large online advertising companies.
+
+00:01:30.380 --> 00:01:36.820
+Computer vision has also made huge strides in the last several years, mostly due to deep learning.
+
+00:01:36.820 --> 00:01:42.540
+So you might input an image and want to output an index, say from one to a thousand,
+
+00:01:42.540 --> 00:01:48.140
+trying to tell you if this picture might be any one of, say, a thousand different images.
+
+00:01:48.140 --> 00:01:50.260
+So you might use that for photo tagging.
+
+00:01:50.260 --> 00:01:54.380
+I think the recent progress in speech recognition has also been very exciting,
+
+00:01:54.380 --> 00:02:00.620
+where you can now input an audio clip to a neural network and have it output a text transcript.
+
+00:02:00.620 --> 00:02:04.700
+Machine translation has also made huge strides thanks to deep learning,
+
+00:02:04.700 --> 00:02:10.660
+where now you can have a neural network input an English sentence and directly output, say, a Chinese sentence.
+
+00:02:10.660 --> 00:02:14.260
+And in autonomous driving, you might input an image,
+
+00:02:14.260 --> 00:02:20.100
+say a picture of what's in front of your car, as well as some information from a radar.
+
+00:02:20.100 --> 00:02:25.940
+And based on that, maybe a neural network can be trained to tell you the position of the other cars on the road.
+
+00:02:25.940 --> 00:02:30.580
+So this becomes a key component in autonomous driving systems.
+
+00:02:30.580 --> 00:02:37.660
+So a lot of the value creation through neural networks has been through cleverly selecting what should be X
+
+00:02:37.660 --> 00:02:43.740
+and what should be Y for your particular problem and then fitting this supervised learning component
+
+00:02:43.740 --> 00:02:48.300
+into often a bigger system, such as an autonomous vehicle.
+
+00:02:48.300 --> 00:02:54.620
+It turns out that slightly different types of neural networks are useful for different applications.
+
+00:02:54.620 --> 00:03:00.540
+For example, in the real estate application that we saw in the previous video,
+
+00:03:00.540 --> 00:03:04.060
+we used a relatively standard neural network architecture.
+
+00:03:04.060 --> 00:03:10.100
+And maybe for real estate and online advertising, it might be a relatively standard neural network,
+
+00:03:10.100 --> 00:03:13.100
+like the one that we saw.
+
+00:03:13.100 --> 00:03:21.340
+For image applications, we'll often use convolutional neural networks, often abbreviated CNN.
+
+00:03:21.340 --> 00:03:27.540
+And for sequence data, so for example, audio has a temporal component, right?
+
+00:03:27.540 --> 00:03:29.300
+Audio is played out over time.
+
+00:03:29.300 --> 00:03:35.460
+So audio is most naturally represented as a one dimensional time series.
+
+00:03:35.460 --> 00:03:37.740
+It's a one dimensional temporal sequence.
+
+00:03:37.820 --> 00:03:44.900
+And so for sequence data, you often use an RNN, a recurrent neural network.
+
+00:03:44.900 --> 00:03:50.060
+Language, you know, English and Chinese, the alphabets or the words come one at a time.
+
+00:03:50.060 --> 00:03:54.700
+So language is also most naturally represented as sequence data.
+
+00:03:54.700 --> 00:04:00.380
+And so more complex versions of RNNs are often used for these applications.
+
+00:04:00.380 --> 00:04:05.060
+And then for more complex applications like autonomous driving, where you have an image
+
+00:04:05.060 --> 00:04:09.940
+that might suggest more of a CNN convolutional neural net structure and radar info, which
+
+00:04:09.940 --> 00:04:17.700
+is something quite different, you might end up with a more custom or some more complex
+
+00:04:17.700 --> 00:04:20.820
+hybrid neural network architecture.
+
+00:04:20.820 --> 00:04:27.900
+So just a bit more concrete about what are the standard CNN and RNN architectures.
+
+00:04:27.900 --> 00:04:32.740
+So in the literature, you might have seen pictures like this.
+
+00:04:32.740 --> 00:04:34.500
+So that's a standard neural net.
+
+00:04:34.500 --> 00:04:36.500
+You might have seen pictures like this.
+
+00:04:36.500 --> 00:04:40.300
+Well, this is an example of a convolutional neural network.
+
+00:04:40.300 --> 00:04:45.420
+And we'll see in a later course exactly what this picture means and how you can implement
+
+00:04:45.420 --> 00:04:46.420
+this.
+
+00:04:46.420 --> 00:04:51.460
+But convolutional networks are often used for image data.
+
+00:04:51.460 --> 00:04:53.940
+And you might also have seen pictures like this.
+
+00:04:53.940 --> 00:04:59.260
+And you learn how to implement this in a later course where current neural networks are
+
+00:04:59.260 --> 00:05:06.060
+very good for this type of one dimensional sequence data that is maybe a temporal component.
+
+00:05:06.060 --> 00:05:11.740
+You might also have heard about applications of machine learning to both structured data
+
+00:05:11.740 --> 00:05:13.860
+and unstructured data.
+
+00:05:13.860 --> 00:05:15.100
+Here's what the terms mean.
+
+00:05:15.100 --> 00:05:19.820
+Structured data means basically databases of data.
+
+00:05:19.820 --> 00:05:25.900
+So for example, in housing price prediction, you might have a database with a column that
+
+00:05:25.900 --> 00:05:28.020
+tells you the size and the number of bedrooms.
+
+00:05:28.020 --> 00:05:29.980
+So this is structured data.
+
+00:05:29.980 --> 00:05:35.540
+Or in predicting whether or not a user will click on an ad, you might have information
+
+00:05:35.540 --> 00:05:40.180
+about the user, such as the age, some information on the ad, and then labels why that you're
+
+00:05:40.180 --> 00:05:41.500
+trying to predict.
+
+00:05:41.500 --> 00:05:48.380
+So that's structured data, meaning that each of the features, such as size of a house,
+
+00:05:48.380 --> 00:05:54.420
+a number of bedrooms, or the age of a user has a very well-defined meaning.
+
+00:05:54.420 --> 00:06:01.620
+In contrast, unstructured data refers to things like audio, raw audio, or images where you
+
+00:06:01.620 --> 00:06:05.620
+might want to recognize what's in the image, or text.
+
+00:06:05.620 --> 00:06:10.860
+Here the features might be the pixel values in an image or the individual words in a piece
+
+00:06:10.860 --> 00:06:11.860
+of text.
+
+00:06:11.860 --> 00:06:17.020
+Historically, it's been much harder for computers to make sense of unstructured data
+
+00:06:17.020 --> 00:06:19.380
+compared to structured data.
+
+00:06:19.380 --> 00:06:24.940
+And in fact, the human race has evolved to be very good at understanding audio cues as
+
+00:06:24.940 --> 00:06:25.940
+well as images.
+
+00:06:25.940 --> 00:06:30.220
+And then text was a more recent invention, but people are just really good at interpreting
+
+00:06:30.220 --> 00:06:31.700
+unstructured data.
+
+00:06:31.700 --> 00:06:36.860
+And so one of the most exciting things about the rise of neural networks is that thanks
+
+00:06:36.860 --> 00:06:41.940
+to deep learning, thanks to neural networks, computers are now much better at interpreting
+
+00:06:41.940 --> 00:06:46.220
+unstructured data as well compared to just a few years ago.
+
+00:06:46.220 --> 00:06:52.300
+And this creates opportunities for many new exciting applications that use speech recognition,
+
+00:06:52.300 --> 00:06:58.100
+image recognition, natural language processing on text, much more than was possible even
+
+00:06:58.100 --> 00:06:59.860
+just two or three years ago.
+
+00:06:59.860 --> 00:07:04.860
+I think because people have a natural empathy to understanding unstructured data, you might
+
+00:07:04.860 --> 00:07:09.980
+hear about neural network successes on unstructured data more in the media because it's just
+
+00:07:09.980 --> 00:07:12.860
+cool when a neural network recognizes a cat.
+
+00:07:12.860 --> 00:07:15.620
+We all like that and we all know what that means.
+
+00:07:15.620 --> 00:07:19.540
+But it turns out that a lot of the short term economic value that neural networks are
+
+00:07:19.540 --> 00:07:26.860
+creating has also been on structured data such as much better advertising systems, much better
+
+00:07:26.860 --> 00:07:33.460
+product recommendations and just a much better ability to process the giant databases that
+
+00:07:33.460 --> 00:07:37.180
+many companies have to make accurate predictions from them.
+
+00:07:37.180 --> 00:07:41.900
+So in this course, a lot of the techniques we'll go over will apply to both structured
+
+00:07:41.900 --> 00:07:44.580
+data and to unstructured data.
+
+00:07:44.580 --> 00:07:49.820
+For the purposes of explaining the algorithms, we will draw a little bit more on examples
+
+00:07:49.820 --> 00:07:52.020
+that use unstructured data.
+
+00:07:52.020 --> 00:07:56.940
+But as you think through applications of neural networks within your own team, I hope you find
+
+00:07:56.940 --> 00:08:02.540
+both uses for them in both structured and unstructured data.
+
+00:08:02.540 --> 00:08:07.980
+So neural networks have transformed supervised learning and are creating tremendous economic
+
+00:08:07.980 --> 00:08:09.380
+value.
+
+00:08:09.380 --> 00:08:13.500
+It turns out though that the basic technical ideas behind neural networks have mostly been
+
+00:08:13.500 --> 00:08:16.420
+around sometimes for many decades.
+
+00:08:16.420 --> 00:08:20.940
+So why is it then that they're only just now taking off and working so well?
+
+00:08:20.940 --> 00:08:25.620
+In the next video, we'll talk about why it's only quite recently that neural networks
+
+00:08:25.620 --> 00:08:28.740
+have become this incredibly powerful tool that you can use.

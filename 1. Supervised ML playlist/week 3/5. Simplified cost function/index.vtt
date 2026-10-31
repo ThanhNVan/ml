@@ -1,0 +1,222 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.300 --> 00:00:08.020
+In the last video, you saw the loss function and the cost function for logistic regression.
+
+00:00:08.020 --> 00:00:13.740
+In this video, you'll see a slightly simpler way to write out the loss and cost functions
+
+00:00:13.740 --> 00:00:18.860
+so that the implementation can be a bit simpler when we get to gradient descent for fitting
+
+00:00:18.860 --> 00:00:21.860
+the parameters of a logistic regression model.
+
+00:00:21.860 --> 00:00:23.660
+Let's take a look.
+
+00:00:23.660 --> 00:00:29.220
+As a reminder, here's the loss function that we had defined in the previous video for
+
+00:00:29.220 --> 00:00:30.740
+logistic regression.
+
+00:00:31.140 --> 00:00:37.220
+Now, because we're still working on the binary classification problem, y is either 0 or 1.
+
+00:00:38.260 --> 00:00:45.620
+Because y is either 0 or 1 and cannot take on any value other than 0 or 1,
+
+00:00:45.620 --> 00:00:50.420
+we'll be able to come up with a simpler way to write this loss function.
+
+00:00:50.420 --> 00:00:53.540
+You can write the loss function as follows.
+
+00:00:53.540 --> 00:00:59.780
+Given the prediction f of x and the target label y, the loss equals
+
+00:00:59.780 --> 00:01:10.180
+negative y times log of f minus 1 minus y times log of 1 minus f.
+
+00:01:10.180 --> 00:01:15.020
+And it turns out this equation, which we just wrote in one line,
+
+00:01:15.020 --> 00:01:20.540
+is completely equivalent to this more complex formula up here.
+
+00:01:20.540 --> 00:01:22.100
+Let's see why this is the case.
+
+00:01:23.860 --> 00:01:30.220
+Now, remember, y can only take on the values of either 1 or 0.
+
+00:01:31.980 --> 00:01:36.060
+In the first case, let's say y equals 1.
+
+00:01:36.060 --> 00:01:43.940
+This first y over here is 1, and this 1 minus y is 1 minus 1,
+
+00:01:43.940 --> 00:01:46.380
+which is therefore equal to 0.
+
+00:01:46.380 --> 00:01:54.980
+And so the loss becomes negative 1 times log of f of x minus 0 times a bunch of stuff.
+
+00:01:54.980 --> 00:01:58.580
+That becomes 0 and goes away.
+
+00:01:58.580 --> 00:02:04.300
+And so when y is equal to 1, the loss is indeed the first term on top,
+
+00:02:04.300 --> 00:02:08.180
+negative log of f of x.
+
+00:02:08.180 --> 00:02:14.340
+Let's look at the second case when y is equal to 0.
+
+00:02:14.340 --> 00:02:18.620
+In this case, this y here is equal to 0.
+
+00:02:18.620 --> 00:02:21.700
+So this first term goes away.
+
+00:02:21.700 --> 00:02:29.930
+And the second term is 1 minus 0 times that logarithmic term.
+
+00:02:29.930 --> 00:02:38.850
+So the loss becomes this negative 1 times log of 1 minus f of x.
+
+00:02:38.850 --> 00:02:44.450
+And that's just equal to this second term up here.
+
+00:02:44.450 --> 00:02:47.810
+And so in the case of y equals 0,
+
+00:02:47.810 --> 00:02:53.210
+we also get back the original loss function as defined above.
+
+00:02:53.210 --> 00:02:57.970
+So what you see is that whether y is 1 or 0,
+
+00:02:57.970 --> 00:03:03.410
+the single expression here is equivalent to the more complex expression up here,
+
+00:03:03.410 --> 00:03:08.370
+which is why this gives us a simpler way to write the loss with just one equation
+
+00:03:08.370 --> 00:03:13.970
+without separating out these two cases like we did on top.
+
+00:03:13.970 --> 00:03:16.570
+Using this simplified loss function,
+
+00:03:16.570 --> 00:03:22.390
+let's go back and write out the cost function for logistic regression.
+
+00:03:22.390 --> 00:03:27.030
+So here again is the simplified loss function.
+
+00:03:27.030 --> 00:03:31.430
+And recall that the cost J is just the average loss,
+
+00:03:31.430 --> 00:03:36.110
+average across the entire training set of m examples.
+
+00:03:36.110 --> 00:03:43.150
+So it's 1 over m times the sum of the loss from i equals 1 to m.
+
+00:03:43.150 --> 00:03:46.990
+Now, if you plug in the definition for the simplified loss from above,
+
+00:03:46.990 --> 00:03:53.350
+then it looks like this, 1 over m times the sum of this term above.
+
+00:03:53.350 --> 00:03:57.470
+And if you bring the negative signs and move them outside,
+
+00:03:57.470 --> 00:04:00.750
+then you end up with this expression over here.
+
+00:04:00.750 --> 00:04:03.230
+And this is the cost function,
+
+00:04:03.230 --> 00:04:08.870
+the cost function that pretty much everyone uses to train logistic regression.
+
+00:04:08.870 --> 00:04:13.470
+Now, you might be wondering, why did we choose this peculiar function
+
+00:04:13.470 --> 00:04:18.110
+when there could be tons of other cost functions we could have chosen?
+
+00:04:18.110 --> 00:04:22.630
+Although we won't have time to go into great detail on this in this class,
+
+00:04:22.630 --> 00:04:26.150
+I'd just like to mention that this peculiar cost function
+
+00:04:26.150 --> 00:04:31.110
+is derived from statistics using a statistical principle called
+
+00:04:31.110 --> 00:04:33.670
+maximum likelihood estimation,
+
+00:04:33.670 --> 00:04:38.310
+which is an idea from statistics on how to efficiently find parameters
+
+00:04:38.310 --> 00:04:40.510
+for different models.
+
+00:04:40.510 --> 00:04:46.670
+And this cost function has the nice property that it is convex.
+
+00:04:46.670 --> 00:04:50.550
+But don't worry about learning the details of maximum likelihood.
+
+00:04:50.550 --> 00:04:53.630
+It's plus a deeper rationale and justification
+
+00:04:53.630 --> 00:04:57.950
+behind this particular cost function.
+
+00:04:57.950 --> 00:05:00.710
+The upcoming optional lab will show you
+
+00:05:00.710 --> 00:05:04.830
+how the logistic cost function is implemented in code.
+
+00:05:04.830 --> 00:05:07.230
+I recommend taking a look at it
+
+00:05:07.230 --> 00:05:13.870
+because you implement this later in the practice lab at the end of the week.
+
+00:05:13.870 --> 00:05:16.830
+This upcoming optional lab also shows you
+
+00:05:16.830 --> 00:05:19.550
+how two different choices of the parameters
+
+00:05:19.550 --> 00:05:22.550
+will lead to different cost calculations.
+
+00:05:22.550 --> 00:05:25.110
+So you can see in the plot
+
+00:05:25.110 --> 00:05:28.270
+that the better fitting blue decision boundary
+
+00:05:28.270 --> 00:05:34.070
+has a lower cost relative to the magenta decision boundary.
+
+00:05:34.070 --> 00:05:36.630
+So with the simplified cost function,
+
+00:05:36.630 --> 00:05:41.670
+we're now ready to jump into applying gradient descent to logistic regression.
+
+00:05:41.670 --> 00:05:44.750
+Let's go see that in the next video.

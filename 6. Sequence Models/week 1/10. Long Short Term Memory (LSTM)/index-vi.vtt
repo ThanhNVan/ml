@@ -1,0 +1,461 @@
+WEBVTT
+
+00:00:00.050 --> 00:00:05.010
+Trong video trước, bạn đã tìm hiểu về GRU, đơn
+vị định kỳ có cổng và
+
+00:00:05.010 --> 00:00:09.970
+cách điều đó có thể cho phép bạn tìm hiểu các
+kết nối tầm xa theo trình tự.
+
+00:00:09.970 --> 00:00:14.570
+Loại thiết bị khác cho phép bạn thực hiện tốt
+điều này là LSTM, hay Đơn
+
+00:00:14.570 --> 00:00:19.170
+vị bộ nhớ ngắn hạn dài, và loại thiết bị này
+thậm chí còn mạnh hơn GRU.
+
+00:00:19.170 --> 00:00:20.170
+Chúng ta hãy xem xét.
+
+00:00:20.170 --> 00:00:23.770
+Đây là các phương trình từ video trước cho
+GRU.
+
+00:00:23.770 --> 00:00:29.490
+Và đối với GRU, chúng tôi có AT bằng CT và hai
+cổng, cổng cập
+
+00:00:29.490 --> 00:00:35.210
+nhật và cổng liên quan, CTILTER T, là ứng cử
+viên để thay thế ô nhớ,
+
+00:00:35.210 --> 00:00:39.490
+và sau đó chúng tôi sử dụng cổng cập nhật
+gamma U để
+
+00:00:39.490 --> 00:00:43.770
+quyết định có cập nhật CT bằng CTILTER T hay
+không.
+
+00:00:43.770 --> 00:00:50.170
+LSTM thậm chí còn là một phiên bản GRU mạnh
+hơn và tổng quát hơn một chút, do
+
+00:00:50.170 --> 00:00:56.570
+Seb Hochreiter và Jurgen Schmidt Huber tạo ra,
+và đây thực sự là một phiên bản
+
+00:00:56.570 --> 00:01:00.730
+bài báo có ảnh hưởng lớn đến mô hình trình tự.
+
+00:01:00.730 --> 00:01:05.090
+Mặc dù tôi nghĩ bài viết này là một trong
+những bài khó đọc hơn, nhưng nó đề
+
+00:01:05.090 --> 00:01:09.450
+cập khá nhiều đến lý thuyết về độ dốc biến
+mất, và vì vậy tôi nghĩ rằng
+
+00:01:09.450 --> 00:01:13.810
+nhiều người đã tìm hiểu về các chi tiết của
+LSTM thông qua những nơi khác ngoài
+
+00:01:13.810 --> 00:01:16.810
+từ bài báo cụ thể này, mặc dù tôi nghĩ bài báo
+này
+
+00:01:16.810 --> 00:01:19.810
+đã có tác động tuyệt vời đến cộng đồng
+deep learning.
+
+00:01:19.810 --> 00:01:23.330
+Nhưng đây là những phương trình chi phối LSTM.
+
+00:01:23.330 --> 00:01:28.250
+Vì vậy, chúng ta sẽ tiếp tục đến ô nhớ C và
+giá trị
+
+00:01:28.250 --> 00:01:33.170
+ứng viên để cập nhật nó, CILTER T, sẽ là giá
+trị này.
+
+00:01:33.170 --> 00:01:45.170
+Và vì vậy chú ý rằng đối với LSTM, chúng ta sẽ
+không còn trường hợp AT bằng
+
+00:01:45.170 --> 00:01:46.170
+CT.
+
+00:01:46.170 --> 00:01:48.370
+Vì vậy, đây là những gì chúng ta sẽ sử dụng.
+
+00:01:48.370 --> 00:01:52.757
+Và do đó, phương trình này giống như phương
+trình bên trái, ngoại trừ việc chúng ta
+
+00:01:52.757 --> 00:01:57.143
+hiện đã sử dụng AT rõ ràng hơn ở đó, hoặc AT
+trừ 1 thay vì CT trừ 1, và chúng ta
+
+00:01:57.143 --> 00:02:01.530
+không sử dụng gamma R này, cổng liên quan này,
+mặc dù bạn có thể có một biến thể của
+
+00:02:01.530 --> 00:02:05.030
+LSTM nơi bạn đặt lại nó, nhưng có lẽ phiên bản
+
+00:02:05.030 --> 00:02:08.530
+LSTM phổ biến hơn không bận tâm đến điều đó.
+
+00:02:08.530 --> 00:02:15.490
+Và sau đó chúng ta sẽ có một cổng cập nhật,
+giống như trước
+
+00:02:15.490 --> 00:02:22.450
+đây, nên W cập nhật, và tôi sẽ sử dụng AT trừ
+1 ở đây, CT cộng U.
+
+00:02:22.450 --> 00:02:27.510
+Và một thuộc tính mới của LSTM là thay vì có
+một cổng cập nhật kiểm
+
+00:02:27.510 --> 00:02:32.570
+soát cả hai điều khoản này, chúng ta sẽ có hai
+điều khoản riêng biệt.
+
+00:02:32.570 --> 00:02:37.530
+Vì vậy, thay vì gamma U và 1 trừ gamma U,
+chúng ta sẽ có
+
+00:02:37.530 --> 00:02:42.490
+gamma U ở đây và quên cổng, mà chúng ta sẽ gọi
+là gamma F.
+
+00:02:42.490 --> 00:02:51.210
+Vậy cổng gamma F này sẽ có giá trị sigmoid gần
+như những gì bạn mong đợi,
+
+00:02:51.210 --> 00:02:59.930
+XT cộng BF, và sau đó chúng ta sẽ có một cổng
+đầu ra mới, đó là sigma của
+
+00:02:59.930 --> 00:03:12.210
+WO, và sau đó lại gần như những gì bạn mong
+đợi, cộng với BO, và sau đó là
+
+00:03:12.210 --> 00:03:17.630
+giá trị cập nhật vào ô nhớ sẽ là CT bằng gamma
+U, khi đó dấu
+
+00:03:17.630 --> 00:03:23.050
+hoa thị này biểu thị phép nhân theo phần tử,
+có một vectơ vectơ
+
+00:03:23.050 --> 00:03:28.970
+Phép nhân theo từng phần tử, cộng, và thay vì
+1 trừ gamma U,
+
+00:03:28.970 --> 00:03:34.890
+chúng ta sẽ có một cổng quên riêng, gamma F
+nhân C của T trừ 1.
+
+00:03:34.890 --> 00:03:40.310
+Vì vậy, điều này mang lại cho ô nhớ tùy chọn
+giữ giá trị cũ, CT trừ 1, và sau đó
+
+00:03:40.310 --> 00:03:45.730
+chỉ thêm vào giá trị mới này, dấu ngã C của T.
+Vì vậy, hãy sử dụng một giá trị riêng
+
+00:03:45.730 --> 00:03:57.970
+cập nhật và quên cổng. Vì vậy, đây là viết tắt
+của cổng quên cập nhật và cổng đầu ra.
+
+00:03:57.970 --> 00:04:06.090
+Và cuối cùng, thay vì AT bằng CT, AT sẽ bằng
+cổng đầu ra, nhân
+
+00:04:06.090 --> 00:04:14.210
+theo phần tử với CT. Vì vậy đây là các phương
+trình chi phối LSTM,
+
+00:04:14.210 --> 00:04:19.210
+và bạn có thể thấy nó có ba cổng thay vì hai,
+nên nó phức tạp hơn một chút,
+
+00:04:19.210 --> 00:04:24.210
+và nó đặt các cổng ở những vị trí hơi khác
+nhau. Vì vậy, ở đây một lần nữa
+
+00:04:24.210 --> 00:04:29.650
+là các phương trình chi phối hành vi của LSTM.
+Một lần nữa, truyền thống là
+
+00:04:29.650 --> 00:04:35.090
+giải thích những điều này bằng hình ảnh, vì
+vậy hãy để tôi vẽ một cái ở đây,
+
+00:04:35.410 --> 00:04:39.837
+và nếu những hình ảnh này quá phức tạp thì
+cũng đừng lo lắng. Cá nhân tôi
+
+00:04:39.837 --> 00:04:44.263
+thấy các phương trình dễ hiểu hơn hình ảnh,
+nhưng tôi sẽ chỉ hiển thị hình
+
+00:04:44.263 --> 00:04:48.690
+ảnh ở đây để biết trực giác mà nó truyền tải.
+Hình ảnh cụ thể ở đây rất nhiều
+
+00:04:48.690 --> 00:04:53.037
+lấy cảm hứng từ một bài đăng trên blog của
+Chris Olar, có tiêu đề Tìm hiểu về
+
+00:04:53.037 --> 00:04:57.383
+Mạng LSTM và sơ đồ được vẽ ở đây khá giống với
+sơ đồ mà anh ấy đã vẽ trong bài
+
+00:04:57.383 --> 00:05:01.730
+đăng trên blog của mình. Nhưng điều quan trọng
+rút ra từ bức ảnh này có lẽ là
+
+00:05:01.730 --> 00:05:06.990
+bạn sử dụng AT trừ 1 và XT để tính tất cả các
+giá trị cổng. Vì vậy,
+
+00:05:06.990 --> 00:05:12.250
+trong hình này, bạn có AT trừ 1 và XT kết hợp
+với nhau để tính cổng quên, để
+
+00:05:12.250 --> 00:05:18.010
+tính toán cổng cập nhật và tính toán cổng đầu
+ra, đồng thời chúng cũng trải qua
+
+00:05:18.010 --> 00:05:23.770
+một quá trình tannish để tính C dấu ngã T, sau
+đó các giá trị này được kết hợp trong
+
+00:05:23.770 --> 00:05:29.930
+những cách phức tạp này với các phép nhân theo
+từng phần tử, v.v. để lấy CT từ
+
+00:05:29.930 --> 00:05:36.090
+CT trước trừ đi 1. Bây giờ, một yếu tố của
+điều này rất thú vị là nếu bạn nối một
+
+00:05:36.090 --> 00:05:40.500
+một loạt những thứ này song song, đó là một
+trong số chúng, và bạn
+
+00:05:40.500 --> 00:05:44.910
+kết nối chúng, bạn biết đấy, kết nối những thứ
+này theo thời gian. Vì
+
+00:05:44.910 --> 00:05:49.320
+vậy, đây là đầu vào X1, sau đó là X2, X3, vì
+vậy bạn có thể lấy các
+
+00:05:49.320 --> 00:05:53.730
+đơn vị này và nối chúng lại với nhau như sau,
+trong đó đầu ra A từ một
+
+00:05:53.730 --> 00:05:57.690
+bước thời gian trước đó là đầu vào A ở bước
+thời gian tiếp theo và tương tự đối với C.
+
+00:05:57.810 --> 00:06:03.010
+Và tôi đã đơn giản hóa sơ đồ một chút ở phía
+dưới. Và một điều thú vị về điều
+
+00:06:03.010 --> 00:06:08.210
+này, bạn để ý là có dòng này ở trên cùng cho
+biết cách thực hiện, miễn là bạn
+
+00:06:08.210 --> 00:06:14.050
+đặt cổng quên và cổng cập nhật một cách thích
+hợp, LSTM tương đối
+
+00:06:14.050 --> 00:06:19.890
+dễ dàng có một số giá trị C0 và giá trị đó
+được chuyển đến tận bộ
+
+00:06:19.890 --> 00:06:25.810
+bạn biết đấy, có lẽ C3 bằng C0. Và đây là lý
+do tại sao LSTM, cũng như GRU, rất giỏi
+
+00:06:25.810 --> 00:06:31.730
+trong việc ghi nhớ các giá trị nhất định ngay
+cả trong thời gian dài, chẳng hạn như
+
+00:06:31.730 --> 00:06:34.170
+một số giá trị thực nhất định được lưu trữ
+trong
+
+00:06:34.170 --> 00:06:36.610
+ô nhớ thậm chí trong rất nhiều bước thời gian.
+
+00:06:40.480 --> 00:06:46.240
+Vậy là xong với LSTM. Như bạn có thể tưởng
+tượng, cũng có một vài biến thể
+
+00:06:46.240 --> 00:06:52.000
+về điều này mà mọi người sử dụng. Có lẽ điều
+phổ biến nhất là thay vì chỉ
+
+00:06:52.000 --> 00:06:59.860
+có các giá trị cổng chỉ phụ thuộc vào A, T trừ
+1 và XT, đôi khi người ta
+
+00:06:59.860 --> 00:07:07.720
+cũng lẻn vào đó cả giá trị C, T trừ 1 nữa. Đây
+được gọi là lỗ nhìn trộm
+
+00:07:07.720 --> 00:07:11.893
+kết nối. Có thể đó không phải là một cái tên
+hay, nhưng bạn có thể
+
+00:07:11.893 --> 00:07:16.067
+thấy kết nối qua lỗ nhìn trộm. Điều đó có
+nghĩa là các giá trị cổng
+
+00:07:16.067 --> 00:07:20.240
+có thể không chỉ phụ thuộc vào AT trừ 1 và XT
+mà còn phụ thuộc vào
+
+00:07:20.240 --> 00:07:25.780
+cũng trên giá trị ô nhớ trước đó. Và kết nối
+lỗ nhìn trộm có thể đi
+
+00:07:25.780 --> 00:07:31.320
+vào cả ba tính toán cổng này. Đó là một biến
+thể phổ biến mà bạn thấy
+
+00:07:31.320 --> 00:07:38.400
+LSTM. Một chi tiết kỹ thuật là đây là những
+vectơ hàng trăm chiều.
+
+00:07:38.400 --> 00:07:45.480
+Nếu bạn có một đơn vị ô nhớ ẩn trăm chiều thì
+đây cũng vậy. Và, nói,
+
+00:07:45.480 --> 00:07:50.600
+phần tử thứ năm của CT trừ 1 chỉ ảnh hưởng đến
+phần tử thứ năm của các cổng
+
+00:07:50.600 --> 00:07:55.720
+tương ứng. Vì vậy, mối quan hệ đó là một đối
+một trong đó không phải mọi yếu tố của
+
+00:07:55.720 --> 00:08:00.187
+CT trăm chiều trừ 1 có thể ảnh hưởng đến tất
+cả các phần tử của cổng. Nhưng thay
+
+00:08:00.187 --> 00:08:04.653
+vào đó, phần tử đầu tiên của CT trừ 1 ảnh
+hưởng đến phần tử đầu tiên của cổng,
+
+00:08:04.653 --> 00:08:09.120
+phần tử thứ hai ảnh hưởng đến phần tử thứ hai,
+v.v. Nhưng nếu bạn từng đọc báo và thấy
+
+00:08:09.120 --> 00:08:14.160
+ai đó nói về kết nối lỗ nhìn trộm, đó chính là
+ý họ. CT trừ 1 đó
+
+00:08:14.160 --> 00:08:19.200
+cũng được sử dụng để ảnh hưởng đến giá trị
+cổng. Vậy là xong với LSTM.
+
+00:08:19.760 --> 00:08:24.880
+Khi nào bạn nên sử dụng GRU và khi nào bạn nên
+sử dụng LSTM? Không có sự đồng thuận
+
+00:08:24.880 --> 00:08:30.000
+rộng rãi trong việc này. Và mặc dù tôi đã
+trình bày GRU đầu tiên, trong lịch sử của
+
+00:08:30.000 --> 00:08:34.680
+deep learning, LSTM thực sự đã xuất hiện sớm
+hơn nhiều. Và khi đó GRU là phát
+
+00:08:34.680 --> 00:08:39.360
+minh tương đối gần đây có thể bắt nguồn từ một
+phần sự đơn giản hóa của mô
+
+00:08:39.360 --> 00:08:44.040
+hình LSTM phức tạp hơn. Các nhà nghiên cứu đã
+thử cả hai mô hình này trên nhiều
+
+00:08:44.040 --> 00:08:47.490
+các vấn đề khác nhau và đối với các vấn đề
+khác nhau, các thuật toán
+
+00:08:47.490 --> 00:08:50.940
+khác nhau sẽ giành chiến thắng. Vì vậy, không
+có thuật toán nào ưu việt
+
+00:08:50.940 --> 00:08:54.390
+hơn trên toàn cầu, đó là lý do tại sao tôi
+muốn cho bạn xem cả hai thuật
+
+00:08:54.390 --> 00:08:57.840
+toán đó. Nhưng tôi cảm thấy như khi tôi sử
+dụng những thứ này, lợi ích của
+
+00:08:57.840 --> 00:09:01.240
+GRU là một mô hình đơn giản hơn và do đó, việc
+xây dựng một mạng
+
+00:09:01.240 --> 00:09:04.640
+lớn hơn thực sự dễ dàng hơn nhiều so với việc
+chỉ có 2 cổng. Vì
+
+00:09:04.640 --> 00:09:08.040
+vậy, về mặt tính toán, nó chạy nhanh hơn một
+chút, do đó, nó có
+
+00:09:08.040 --> 00:09:11.440
+thể mở rộng để xây dựng các mô hình lớn hơn
+một chút. Nhưng LSTM là
+
+00:09:11.440 --> 00:09:14.973
+mạnh mẽ hơn và linh hoạt hơn vì nó có 3 cổng
+thay vì 2. Nếu
+
+00:09:14.973 --> 00:09:18.507
+bạn muốn chọn một cổng để sử dụng, tôi nghĩ
+LSTM là lựa chọn
+
+00:09:18.507 --> 00:09:22.040
+đã được chứng minh rõ ràng hơn về mặt lịch sử,
+vì vậy nếu bạn
+
+00:09:22.040 --> 00:09:26.413
+phải chọn một, tôi nghĩ hầu hết mọi người ngày
+nay vẫn sẽ sử dụng LSTM
+
+00:09:26.413 --> 00:09:30.787
+làm điều đầu tiên mặc định để thử. Mặc dù tôi
+nghĩ trong vài năm qua,
+
+00:09:30.787 --> 00:09:35.160
+GRU đã có rất nhiều động lực và tôi cảm thấy
+ngày càng có nhiều đội
+
+00:09:35.160 --> 00:09:40.013
+cũng sử dụng GRU vì chúng đơn giản hơn một
+chút nhưng thường cũng tốt
+
+00:09:40.013 --> 00:09:44.867
+và có thể dễ dàng mở rộng quy mô cho các vấn
+đề lớn hơn. Vậy là xong
+
+00:09:44.867 --> 00:09:49.720
+đối với LSTM. Với GRU hoặc LSTM, bạn sẽ có thể
+xây dựng các ứng dụng mới
+
+00:09:49.720 --> 00:09:53.642
+mạng có thể nắm bắt được sự phụ thuộc ở phạm
+vi xa hơn nhiều.

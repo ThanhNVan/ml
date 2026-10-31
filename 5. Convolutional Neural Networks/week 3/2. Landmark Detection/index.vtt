@@ -1,0 +1,210 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.020 --> 00:00:05.980
+In the previous video, you saw how you can get a neural network to output four numbers,
+
+00:00:05.980 --> 00:00:11.780
+Bx, By, Bh, and Bw to specify the bounding box of an object you want the neural network
+
+00:00:11.780 --> 00:00:13.180
+to localize.
+
+00:00:13.180 --> 00:00:18.860
+In more general cases, you can have a neural network just output x and y coordinates of
+
+00:00:18.860 --> 00:00:23.820
+important points in an image, sometimes called landmarks that you want the neural network
+
+00:00:23.820 --> 00:00:24.820
+to recognize.
+
+00:00:24.820 --> 00:00:26.820
+Let me show you a few examples.
+
+00:00:26.820 --> 00:00:31.460
+Let's say you're building a face recognition application and for some reason you want the
+
+00:00:31.460 --> 00:00:37.140
+algorithm to tell you where is the corner of someone's eye.
+
+00:00:37.140 --> 00:00:40.860
+So that point has an x and y coordinate.
+
+00:00:40.860 --> 00:00:47.060
+So you can just have a neural network, have this final layer, and have it just output two
+
+00:00:47.060 --> 00:00:54.100
+more numbers, which I'm going to call Lx and Ly to just tell you the coordinates of that
+
+00:00:54.100 --> 00:00:56.780
+corner of the person's eye.
+
+00:00:56.780 --> 00:01:03.740
+Now what if you wanted to tell you all four corners of the eye, really of both eyes.
+
+00:01:03.740 --> 00:01:08.020
+So if we call the points the first, second, third, and fourth points going from left to
+
+00:01:08.020 --> 00:01:16.020
+right, then you can modify the neural network now to output L1x, L1y for the first point
+
+00:01:16.020 --> 00:01:25.220
+and L2x, L2y for the second point and so on so that the neural network can output
+
+00:01:25.220 --> 00:01:29.700
+the estimated position of all those four points of the person's face.
+
+00:01:29.700 --> 00:01:31.580
+But what if you don't want just those four points?
+
+00:01:31.580 --> 00:01:35.820
+What do you want to output this point and this point and this point and this point, you know,
+
+00:01:35.820 --> 00:01:41.380
+along the eye, maybe output some key points along the mouth so you can extract the mouth
+
+00:01:41.380 --> 00:01:46.660
+shape and tell the person is smiling or frowning, maybe extract a few key points along
+
+00:01:46.660 --> 00:01:48.580
+the edges of the nose.
+
+00:01:48.580 --> 00:01:53.860
+But you could define some number for the sake of argument, let's say 64 points or
+
+00:01:53.860 --> 00:02:00.860
+64 landmarks on the face, maybe even some points, you know, that help you define the
+
+00:02:00.860 --> 00:02:04.140
+edge of the face, defines the jawline.
+
+00:02:04.140 --> 00:02:09.460
+But by selecting a number of landmarks and generating a label training set that
+
+00:02:09.460 --> 00:02:13.900
+contains all of these landmarks, you can then have the neural network tell you
+
+00:02:13.900 --> 00:02:19.020
+where are all the key positions or the key landmarks on a face.
+
+00:02:19.020 --> 00:02:25.340
+So what you do is you have this image, now person's face as input, have it go through a
+
+00:02:25.340 --> 00:02:34.300
+conf net and have a conf net then have some set of features, maybe have it output 0 or 1,
+
+00:02:34.300 --> 00:02:43.060
+like is there a face in this or not, and then have it also output L1x, L1y and so on
+
+00:02:43.060 --> 00:02:48.740
+down to L64x, L64y.
+
+00:02:48.780 --> 00:02:52.260
+And here I'm using L to stand for a landmark.
+
+00:02:52.260 --> 00:03:02.700
+So this example would have 129 output units, one for is there a face or not, and then if
+
+00:03:02.700 --> 00:03:09.580
+you have 64 landmarks, that's 64x2, so 128 plus 1 output units.
+
+00:03:09.580 --> 00:03:13.500
+And this can tell you if there's a face as well as where all the key landmarks on the
+
+00:03:13.500 --> 00:03:14.740
+face.
+
+00:03:14.740 --> 00:03:21.660
+So this is a basic building block for recognizing emotions from faces, and if you
+
+00:03:21.660 --> 00:03:27.140
+played with the Snapchat and the other entertainment, you also AR augmented
+
+00:03:27.140 --> 00:03:32.220
+reality filters, like the Snapchat filters can draw a crown on the face and
+
+00:03:32.220 --> 00:03:33.820
+have other special effects.
+
+00:03:33.820 --> 00:03:39.420
+Being able to detect these landmarks on a face is also a key building block for
+
+00:03:39.420 --> 00:03:44.460
+the computer graphics effects that warp the face or draw on various special effects
+
+00:03:44.500 --> 00:03:48.180
+like put a crown or a hat on a person.
+
+00:03:48.180 --> 00:03:52.260
+Of course, in order to train a network like this, you will need a label training
+
+00:03:52.260 --> 00:03:58.820
+set, we have a set of images as well as labels Y where people where someone will
+
+00:03:58.820 --> 00:04:05.860
+have had to go through and laboriously annotate all of these landmarks.
+
+00:04:05.860 --> 00:04:12.660
+One last example, if you are interested in people post detection, you can also
+
+00:04:12.660 --> 00:04:19.500
+define a few key positions like the midpoint of the chest, the left shoulder,
+
+00:04:19.500 --> 00:04:24.820
+left elbow, the wrist and so on, and just have a neural network, you know,
+
+00:04:24.820 --> 00:04:31.660
+sort of annotate key positions in the person's pose as well.
+
+00:04:31.660 --> 00:04:36.740
+And by having a neural network output all of those points I'm annotating,
+
+00:04:36.740 --> 00:04:42.740
+you could also have the neural network output the pose of the person.
+
+00:04:42.740 --> 00:04:48.580
+And of course, to do that, you also need to specify these key landmarks,
+
+00:04:48.580 --> 00:04:56.980
+like maybe L1X and L1Y is the midpoint of the chest down to maybe L32X, L32Y,
+
+00:04:56.980 --> 00:05:01.740
+if you use 32 coordinates to specify the pose of the person.
+
+00:05:01.740 --> 00:05:07.500
+So this idea might seem quite simple of just adding a bunch of output units to output
+
+00:05:07.500 --> 00:05:12.780
+the XY coordinates of different landmarks you want to recognize.
+
+00:05:12.780 --> 00:05:18.060
+To be clear, the identity of landmark one must be consistent across different images.
+
+00:05:18.060 --> 00:05:22.580
+Like maybe landmark one is always this corner of the eye, landmark two is always this corner
+
+00:05:22.580 --> 00:05:25.580
+of the eye, landmark three, landmark four and so on.
+
+00:05:25.580 --> 00:05:29.420
+So the labels have to be consistent across different images.
+
+00:05:29.420 --> 00:05:34.380
+But if you can hire labelers or label yourself a big enough dataset to do this,
+
+00:05:34.380 --> 00:05:40.700
+then a neural network can output all of these landmarks which you can use to carry out other
+
+00:05:40.700 --> 00:05:44.940
+interesting effects such as estimate the pose of a person, maybe try to recognize
+
+00:05:44.940 --> 00:05:47.980
+someone's emotion from a picture, and so on.
+
+00:05:47.980 --> 00:05:50.380
+So that's it for landmark detection.
+
+00:05:50.380 --> 00:05:56.220
+Next, let's take these building blocks and use it to start building up towards object detection.

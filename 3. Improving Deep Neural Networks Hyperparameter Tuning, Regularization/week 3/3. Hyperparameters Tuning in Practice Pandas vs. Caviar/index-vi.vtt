@@ -1,0 +1,436 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.813
+Bây giờ bạn đã nghe nhiều về cách tìm kiếm
+siêu tham số tốt.
+
+00:00:03.813 --> 00:00:07.627
+Trước khi kết thúc cuộc thảo luận của chúng ta
+về tìm kiếm siêu
+
+00:00:07.627 --> 00:00:11.440
+tham số, tôi muốn chia sẻ với bạn một vài mẹo
+và thủ thuật cuối cùng
+
+00:00:11.440 --> 00:00:15.227
+để biết cách tổ chức quá trình tìm kiếm siêu
+tham số của
+
+00:00:15.227 --> 00:00:19.013
+bạn. Deep learning ngày nay được áp dụng cho
+nhiều lĩnh vực
+
+00:00:19.013 --> 00:00:22.800
+ứng dụng khác nhau và trực quan về cài đặt
+siêu tham số từ một
+
+00:00:22.800 --> 00:00:26.347
+khu vực ứng dụng có thể hoặc không thể chuyển
+sang khu vực khác.
+
+00:00:26.347 --> 00:00:29.893
+Có rất nhiều sự kết hợp chéo giữa các lĩnh vực
+ứng dụng khác
+
+00:00:29.893 --> 00:00:33.440
+nhau. Ví dụ, tôi đã thấy những ý tưởng được
+phát triển trong máy tính
+
+00:00:33.440 --> 00:00:37.120
+cộng đồng tầm nhìn như ConfNets hoặc ResNets,
+mà chúng ta sẽ nói
+
+00:00:37.120 --> 00:00:40.800
+đến trong khóa học sau, đã áp dụng thành công
+vào lời nói. Và tôi
+
+00:00:40.800 --> 00:00:44.480
+đã thấy những ý tưởng lần đầu tiên được phát
+triển trong lời nói,
+
+00:00:44.480 --> 00:00:48.427
+đã áp dụng thành công trong NLP, v.v. Vì vậy,
+một bước phát triển
+
+00:00:48.427 --> 00:00:52.373
+tốt đẹp trong deep learning là mọi người từ
+các lĩnh vực ứng dụng
+
+00:00:52.373 --> 00:00:56.320
+khác nhau ngày càng đọc các tài liệu nghiên
+cứu từ ứng dụng khác.
+
+00:00:56.320 --> 00:01:00.267
+các lĩnh vực để tìm cảm hứng cho sự thụ tinh
+chéo. Tuy nhiên, về
+
+00:01:00.267 --> 00:01:04.213
+mặt cài đặt của bạn cho các siêu tham số, tôi
+thấy rằng trực giác
+
+00:01:04.213 --> 00:01:08.160
+đã trở nên cũ kỹ. Vì vậy ngay cả khi bạn chỉ
+làm việc trên một
+
+00:01:08.160 --> 00:01:12.027
+vấn đề, chẳng hạn như hậu cần, bạn có thể đã
+tìm thấy một cài đặt
+
+00:01:12.027 --> 00:01:15.893
+phù hợp cho siêu tham số và tiếp tục phát
+triển thuật toán của
+
+00:01:15.893 --> 00:01:19.760
+mình hoặc có thể thấy dữ liệu của bạn thay đổi
+dần dần theo thời gian
+
+00:01:19.760 --> 00:01:23.813
+vài tháng hoặc có thể vừa nâng cấp máy chủ
+trong trung tâm dữ liệu của
+
+00:01:23.813 --> 00:01:27.867
+bạn. Và do những thay đổi đó, cài đặt tốt nhất
+cho siêu tham số của bạn
+
+00:01:27.867 --> 00:01:31.920
+có thể trở nên cũ kỹ. Vì vậy tôi khuyên bạn có
+thể chỉ cần kiểm tra lại hoặc
+
+00:01:31.920 --> 00:01:37.000
+đánh giá lại các siêu tham số của bạn ít nhất
+vài tháng một lần để đảm bảo rằng
+
+00:01:37.000 --> 00:01:42.080
+bạn vẫn hài lòng với các giá trị mình có. Cuối
+cùng, xét về cách mọi người tìm kiếm
+
+00:01:42.080 --> 00:01:46.240
+siêu tham số, tôi thấy có thể có hai trường
+phái tư tưởng chính hoặc có
+
+00:01:46.240 --> 00:01:50.400
+thể là hai cách chính khác nhau mà mọi người
+thực hiện. Một cách là nếu
+
+00:01:50.400 --> 00:01:54.560
+bạn trông trẻ cho một người mẫu, và bạn thường
+làm điều này nếu bạn
+
+00:01:54.560 --> 00:01:58.027
+có thể có một tập dữ liệu khổng lồ nhưng không
+có nhiều tài nguyên tính
+
+00:01:58.027 --> 00:02:01.493
+toán, không có nhiều CPU và GPU, vì vậy về cơ
+bản bạn chỉ có đủ khả năng
+
+00:02:01.493 --> 00:02:04.960
+để đào tạo một mô hình hoặc một số lượng rất
+nhỏ mô hình vào thời điểm đó.
+
+00:02:04.960 --> 00:02:08.853
+Trong trường hợp đó, bạn có thể dần dần trông
+nom mô hình đó ngay cả khi nó
+
+00:02:08.853 --> 00:02:12.747
+đang được đào tạo. Vì vậy, ví dụ, vào ngày thứ
+0, bạn có thể khởi tạo các
+
+00:02:12.747 --> 00:02:16.640
+tham số của mình một cách ngẫu nhiên và sau đó
+bắt đầu huấn luyện, và bạn
+
+00:02:16.640 --> 00:02:21.013
+dần dần theo dõi lộ trình học tập của bạn, có
+thể là
+
+00:02:21.013 --> 00:02:25.387
+cost function j hoặc lỗi đặt độ sâu của bạn
+hoặc thứ gì khác
+
+00:02:25.387 --> 00:02:29.760
+giảm dần trong ngày đầu tiên. Sau đó vào cuối
+ngày thứ nhất, bạn có thể nói,
+
+00:02:29.760 --> 00:02:32.773
+ôi, có vẻ như nó học khá tốt. Tôi sẽ thử tăng
+learning rate
+
+00:02:32.773 --> 00:02:35.787
+tập lên một chút và xem nó hoạt động như thế
+nào. Và sau đó có
+
+00:02:35.787 --> 00:02:38.800
+lẽ nó sẽ tốt hơn. Và đó là buổi biểu diễn ngày
+thứ hai của bạn.
+
+00:02:38.800 --> 00:02:42.000
+Và sau hai ngày, bạn nói, được rồi, nó vẫn
+hoạt động khá tốt. Có
+
+00:02:42.000 --> 00:02:45.200
+lẽ bây giờ tôi sẽ tăng thêm động lực một chút
+hoặc giảm
+
+00:02:45.200 --> 00:02:48.400
+learning rate tập một chút. Và sau đó bạn bước
+sang ngày thứ ba. Và mọi
+
+00:02:48.400 --> 00:02:51.600
+ngày nào đó bạn nhìn vào nó và bạn biết đấy,
+hãy thử tăng giảm các thông
+
+00:02:51.600 --> 00:02:54.800
+số của bạn. Và có thể một ngày nào đó, bạn
+nhận thấy learning rate tập
+
+00:02:54.800 --> 00:02:58.000
+của mình quá lớn. Vì vậy, bạn có thể quay lại
+mô hình của ngày hôm trước
+
+00:02:58.000 --> 00:03:03.400
+và vân vân. Nhưng bạn đang trông nom mô hình
+từng ngày một, ngay cả khi nó
+
+00:03:03.400 --> 00:03:08.800
+được đào tạo trong nhiều ngày hoặc trong nhiều
+tuần khác nhau. Vậy đó là một
+
+00:03:08.880 --> 00:03:12.347
+cách tiếp cận. Và những người trông trẻ cho
+một người mẫu đang
+
+00:03:12.347 --> 00:03:15.813
+xem buổi biểu diễn và bạn biết đấy, kiên nhẫn
+nâng hoặc giảm
+
+00:03:15.813 --> 00:03:19.280
+learning rate tập. Đó thường là điều xảy ra
+nếu bạn không có
+
+00:03:19.280 --> 00:03:23.467
+đủ khả năng tính toán để đào tạo nhiều mô hình
+cùng một lúc.
+
+00:03:23.467 --> 00:03:27.653
+Cách tiếp cận khác là nếu bạn đào tạo nhiều mô
+hình song
+
+00:03:27.653 --> 00:03:31.840
+song. Vì vậy, bạn có thể có một số cài đặt của
+các tham số siêu
+
+00:03:31.840 --> 00:03:35.120
+và cứ để nó tự chạy, trong một ngày hoặc thậm
+chí trong nhiều
+
+00:03:35.120 --> 00:03:38.400
+ngày và sau đó có được một số đường cong học
+tập như thế. Và đây
+
+00:03:38.400 --> 00:03:41.680
+có thể là đồ thị của cost function j hoặc chi
+phí đào tạo của bạn
+
+00:03:41.680 --> 00:03:44.507
+lỗi hoặc chi phí cho lỗi thâm hụt của bạn,
+nhưng một số số
+
+00:03:44.507 --> 00:03:47.333
+liệu trong quá trình theo dõi của bạn. Và đồng
+thời, bạn có
+
+00:03:47.333 --> 00:03:50.160
+thể bắt đầu một mô hình khác với cài đặt siêu
+tham số khác.
+
+00:03:50.160 --> 00:03:53.560
+Và do đó, mô hình thứ hai của bạn có thể tạo
+ra một đường cong học tập
+
+00:03:53.560 --> 00:03:56.960
+khác, có thể một đường cong trông giống như
+vậy hoặc trông giống như
+
+00:03:56.960 --> 00:04:00.360
+đường cong đó trông đẹp hơn. Đồng thời, bạn có
+thể đào tạo mô hình thứ
+
+00:04:00.360 --> 00:04:03.760
+ba, mô hình này có thể tạo ra đường cong học
+tập giống như thế. Và một cái khác
+
+00:04:03.840 --> 00:04:08.000
+có lẽ cái này phân kỳ, nên nó trông như thế
+kia, v.v. Nhưng bạn có thể huấn luyện
+
+00:04:08.000 --> 00:04:12.160
+nhiều mô hình khác nhau song song với các
+đường màu cam này là các mô hình khác nhau.
+
+00:04:12.880 --> 00:04:16.820
+Đúng. Và theo cách này, bạn có thể thử nhiều
+cài đặt siêu tham số
+
+00:04:16.820 --> 00:04:20.760
+khác nhau và sau đó có thể nhanh chóng chọn
+một cài đặt hoạt động tốt
+
+00:04:20.760 --> 00:04:24.700
+nhất giống như trong ví dụ này, có lẽ đường
+cong này trông đẹp nhất.
+
+00:04:24.700 --> 00:04:28.640
+Vì vậy, để thực hiện một sự tương tự, tôi sẽ
+gọi cách tiếp cận này là
+
+00:04:28.640 --> 00:04:32.320
+bên trái, cách tiếp cận của gấu trúc, bạn biết
+đấy, khi gấu trúc có
+
+00:04:32.320 --> 00:04:36.000
+con, chúng có rất ít con, thường là mỗi lần
+một con, và sau đó họ thực
+
+00:04:36.000 --> 00:04:39.680
+sự nỗ lực rất nhiều để đảm bảo rằng gấu trúc
+con sẽ sống sót. Vì vậy,
+
+00:04:39.680 --> 00:04:43.360
+đó thực sự là việc trông trẻ, bạn biết đấy,
+một người mẫu hoặc một em bé
+
+00:04:43.360 --> 00:04:47.253
+gấu trúc, trong khi cách tiếp cận bên phải
+giống với cách
+
+00:04:47.253 --> 00:04:51.147
+cá làm hơn, tôi sẽ gọi đây là chiến lược báo
+trước. Có một
+
+00:04:51.147 --> 00:04:55.040
+số loài cá đẻ hơn 100 triệu trứng trong một
+mùa giao phối
+
+00:04:55.040 --> 00:04:59.100
+mùa. Nhưng theo cách sinh sản của cá, chúng đẻ
+rất nhiều trứng và không chú ý
+
+00:04:59.100 --> 00:05:03.160
+quá nhiều đến bất kỳ con nào. Nhưng bạn biết
+đấy, chỉ cần xem hy vọng một trong
+
+00:05:03.160 --> 00:05:07.220
+số họ, hoặc có thể một loạt trong số họ sẽ làm
+tốt. Vì vậy, tôi đoán đây thực sự
+
+00:05:07.220 --> 00:05:11.280
+là sự khác biệt giữa cách sinh sản của động
+vật có vú và cách sinh sản của chúng.
+
+00:05:11.280 --> 00:05:14.720
+cách cá và nhiều loài bò sát sinh sản. Nhưng
+tôi sẽ gọi nó là
+
+00:05:14.720 --> 00:05:18.160
+phương pháp tiếp cận gấu trúc thay vì phương
+pháp báo trước, vì
+
+00:05:18.160 --> 00:05:21.600
+cách đó thú vị và đáng nhớ hơn. Vậy cách lựa
+chọn giữa hai điều này
+
+00:05:21.600 --> 00:05:25.920
+các phương pháp tiếp cận thực sự là một hàm số
+cho biết bạn có bao
+
+00:05:25.920 --> 00:05:30.240
+nhiêu tài nguyên tính toán. Nếu bạn có đủ máy
+tính để đào tạo song
+
+00:05:30.240 --> 00:05:34.560
+song nhiều mô hình thì bằng mọi cách hãy áp
+dụng phương pháp báo trước và
+
+00:05:34.560 --> 00:05:38.053
+hãy thử nhiều tham số siêu khác nhau và xem
+cái nào hiệu quả. Nhưng
+
+00:05:38.053 --> 00:05:41.547
+trong một số miền ứng dụng, tôi thấy điều này
+trong một số cài đặt
+
+00:05:41.547 --> 00:05:45.040
+quảng cáo trực tuyến cũng như trong một số ứng
+dụng thị giác máy tính,
+
+00:05:45.040 --> 00:05:50.000
+nơi có quá nhiều dữ liệu. Và những mô hình bạn
+muốn đào tạo quá lớn nên rất khó để
+
+00:05:50.000 --> 00:05:54.960
+đào tạo nhiều mô hình cùng một lúc. Tất nhiên,
+nó thực sự phụ thuộc vào ứng dụng.
+
+00:05:54.960 --> 00:05:59.920
+Nhưng tôi đã thấy những cộng đồng đó sử dụng
+cách tiếp cận gấu trúc nhiều hơn một chút,
+
+00:05:59.920 --> 00:06:03.547
+nơi bạn đang theo đuổi một mô hình duy nhất và
+điều chỉnh
+
+00:06:03.547 --> 00:06:07.173
+các tham số lên xuống và cố gắng làm cho mô
+hình này hoạt
+
+00:06:07.173 --> 00:06:10.800
+động. Tất nhiên, mặc dù ngay cả cách tiếp cận
+của gấu trúc,
+
+00:06:10.800 --> 00:06:14.140
+đã đào tạo một mô hình và sau đó thấy nó hoạt
+động hoặc không hoạt
+
+00:06:14.140 --> 00:06:17.480
+động, có thể trong tuần thứ hai hoặc tuần thứ
+ba, có thể bạn thực sự
+
+00:06:17.480 --> 00:06:20.820
+khởi tạo một mô hình khác và sau đó, bạn biết
+đấy, con yêu đó, giống
+
+00:06:20.820 --> 00:06:24.160
+như ngay cả gấu trúc, tôi đoán vậy, có thể có
+nhiều con trong đời, ngay cả khi
+
+00:06:24.160 --> 00:06:27.840
+họ chỉ có một hoặc một số rất ít con tại một
+thời điểm. Vì
+
+00:06:27.840 --> 00:06:31.520
+vậy, hy vọng điều này mang lại cho bạn ý thức
+tốt về cách
+
+00:06:31.520 --> 00:06:35.200
+thực hiện quá trình tìm kiếm siêu tham số. Bây
+giờ hóa ra
+
+00:06:35.200 --> 00:06:38.740
+rằng có một kỹ thuật khác có thể làm cho mạng
+lưới thần kinh của bạn trở nên mạnh
+
+00:06:38.740 --> 00:06:42.280
+mẽ hơn nhiều trong việc lựa chọn siêu tham số.
+Không hoạt động với tất cả các
+
+00:06:42.280 --> 00:06:45.820
+neural network, nhưng khi làm được, nó có thể
+giúp việc tìm kiếm siêu tham số dễ
+
+00:06:45.820 --> 00:06:49.360
+dàng hơn nhiều và cũng giúp quá trình đào tạo
+diễn ra nhanh hơn nhiều. Hãy nói về điều này
+
+00:06:49.360 --> 00:06:51.520
+kỹ thuật trong video tiếp theo.

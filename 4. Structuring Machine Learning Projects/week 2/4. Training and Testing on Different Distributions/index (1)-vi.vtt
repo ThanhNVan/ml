@@ -1,0 +1,613 @@
+WEBVTT
+
+1
+00:00:00.560 --> 00:00:04.440
+Thuật toán deep learning có một cơn đói lớn đối với training data.
+
+2
+00:00:04.440 --> 00:00:06.970
+Họ chỉ hoạt động tốt nhất khi bạn có thể tìm đủ
+
+3
+00:00:06.970 --> 00:00:10.294
+training data nhãn để đưa vào training set.
+
+4
+00:00:10.294 --> 00:00:14.154
+Điều này đã dẫn đến nhiều đội đôi khi lấy bất cứ dữ liệu nào bạn có thể tìm thấy và
+
+5
+00:00:14.154 --> 00:00:18.120
+chỉ cần đưa nó vào training set chỉ để có được training data nhiều hơn.
+
+6
+00:00:18.120 --> 00:00:21.720
+Ngay cả khi một số dữ liệu này, hoặc thậm chí có thể là rất nhiều dữ liệu này,
+
+7
+00:00:21.720 --> 00:00:25.870
+không đến từ cùng một phân phối với dữ liệu dev và test của bạn.
+
+8
+00:00:25.870 --> 00:00:30.330
+Vì vậy, trong một kỷ nguyên deep learning, ngày càng có nhiều nhóm đang đào tạo về dữ liệu
+
+9
+00:00:30.330 --> 00:00:34.325
+đến từ một bản phân phối khác với bộ phát triển và thử nghiệm của bạn.
+
+10
+00:00:34.325 --> 00:00:37.385
+Và có một số điều tinh tế và một số phương pháp tốt nhất để đối
+
+11
+00:00:37.385 --> 00:00:41.825
+phó với khi bạn đang đào tạo và phân phối thử nghiệm khác nhau.
+
+12
+00:00:41.825 --> 00:00:43.315
+Chúng ta hãy xem qua.
+
+13
+00:00:43.315 --> 00:00:48.630
+Giả sử rằng bạn đang xây dựng một ứng dụng di động nơi người dùng sẽ tải lên
+
+14
+00:00:48.630 --> 00:00:51.970
+hình ảnh chụp từ điện thoại di động của họ và bạn muốn nhận ra liệu hình ảnh
+
+15
+00:00:51.970 --> 00:00:56.470
+mà người dùng của bạn tải lên từ ứng dụng di động có phải là mèo hay không.
+
+16
+00:00:56.470 --> 00:00:59.580
+Vì vậy, bây giờ bạn có thể nhận được hai nguồn dữ liệu.
+
+17
+00:00:59.580 --> 00:01:03.940
+Một trong đó là phân phối dữ liệu mà bạn thực sự quan tâm, dữ liệu này từ một
+
+18
+00:01:03.940 --> 00:01:07.940
+ứng dụng di động như thế ở bên phải, có xu hướng bị bắn ít chuyên nghiệp hơn,
+
+19
+00:01:07.940 --> 00:01:12.800
+ít được đóng khung tốt hơn, thậm chí có thể bị mờ hơn vì nó bị bắn bởi những người dùng nghiệp dư.
+
+20
+00:01:12.800 --> 00:01:16.760
+Nguồn dữ liệu khác bạn có thể nhận được là bạn có thể thu thập dữ liệu web và chỉ cần tải về
+
+21
+00:01:16.760 --> 00:01:21.635
+rất nhiều, vì lợi ích của ví dụ này, giả sử bạn có thể tải về rất nhiều
+
+22
+00:01:21.635 --> 00:01:27.250
+khung hình rất chuyên nghiệp, độ phân giải cao, chuyên nghiệp chụp hình mèo.
+
+23
+00:01:27.250 --> 00:01:29.950
+Và giả sử bạn chưa có nhiều người dùng cho ứng dụng di động của bạn.
+
+24
+00:01:29.950 --> 00:01:35.632
+Vì vậy, có lẽ bạn đã nhận được 10.000 hình ảnh được tải lên từ ứng dụng di động.
+
+25
+00:01:35.632 --> 00:01:40.320
+Nhưng bằng cách thu thập dữ liệu trên web, bạn có thể tải về số lượng lớn các hình ảnh mèo, và
+
+26
+00:01:40.320 --> 00:01:45.322
+có thể bạn có 200.000 hình ảnh mèo được tải xuống từ Internet.
+
+27
+00:01:48.079 --> 00:01:53.296
+Vì vậy, những gì bạn thực sự quan tâm là hệ thống cuối cùng của bạn hoạt động
+
+28
+00:01:53.296 --> 00:01:58.311
+tốt trên phân phối ứng dụng di động của hình ảnh, phải không?
+
+29
+00:01:58.311 --> 00:02:01.594
+Bởi vì cuối cùng, người dùng của bạn sẽ được tải lên hình ảnh như những người ở
+
+30
+00:02:01.594 --> 00:02:04.230
+bên phải và bạn cần classification của bạn để làm tốt về điều đó.
+
+31
+00:02:04.230 --> 00:02:08.500
+Nhưng bây giờ bạn có một chút khó xử vì bạn có một
+
+32
+00:02:08.500 --> 00:02:12.970
+tập dữ liệu tương đối nhỏ, chỉ cần 10.000 ví dụ được rút ra từ bản phân phối đó.
+
+33
+00:02:12.970 --> 00:02:16.754
+Và bạn có một tập dữ liệu lớn hơn nhiều được rút ra từ một phân phối khác nhau.
+
+34
+00:02:16.754 --> 00:02:19.986
+Có một hình ảnh khác với hình ảnh bạn thực sự muốn.
+
+35
+00:02:19.986 --> 00:02:24.505
+Vì vậy, bạn không muốn chỉ sử dụng 10.000 hình ảnh đó bởi vì nó kết thúc
+
+36
+00:02:24.505 --> 00:02:27.330
+cho bạn một training set tương đối nhỏ.
+
+37
+00:02:28.466 --> 00:02:31.724
+Và sử dụng 200.000 hình ảnh đó có vẻ hữu ích, nhưng
+
+38
+00:02:31.724 --> 00:02:37.550
+vấn đề khó xử là 200.000 hình ảnh này không phải từ chính xác phân phối bạn muốn.
+
+39
+00:02:37.550 --> 00:02:38.496
+Vậy bạn có thể làm gì?
+
+40
+00:02:38.496 --> 00:02:43.340
+Vâng, đây là một lựa chọn.
+
+41
+00:02:43.340 --> 00:02:47.669
+Một điều bạn có thể làm là đặt cả hai tập dữ liệu này lại với nhau để
+
+42
+00:02:47.669 --> 00:02:50.910
+bây giờ bạn có 210.000 hình ảnh.
+
+43
+00:02:50.910 --> 00:02:56.835
+Và sau đó bạn có thể lấy 210.000 hình ảnh và
+
+44
+00:02:56.835 --> 00:03:03.470
+ngẫu nhiên ngẫu nhiên xáo trộn chúng vào một chuyến tàu, dev, và bộ thử nghiệm.
+
+45
+00:03:03.470 --> 00:03:07.020
+Và chúng ta hãy nói vì lợi ích của lập luận rằng bạn đã quyết định rằng
+
+46
+00:03:07.020 --> 00:03:11.380
+bộ dev và thử nghiệm của bạn sẽ là 2.500 ví dụ mỗi.
+
+47
+00:03:11.380 --> 00:03:16.360
+Vì vậy, bộ đào tạo của bạn sẽ là 205.000 ví dụ.
+
+48
+00:03:17.450 --> 00:03:23.520
+Bây giờ do đó, thiết lập dữ liệu của bạn theo cách này có một số lợi thế nhưng cũng có nhược điểm.
+
+49
+00:03:23.520 --> 00:03:26.910
+Lợi thế là bây giờ bạn đang đào tạo, dev và test set tất cả sẽ đến
+
+50
+00:03:26.910 --> 00:03:30.400
+từ cùng một phân phối, do đó làm cho nó dễ dàng hơn để quản lý.
+
+51
+00:03:30.400 --> 00:03:33.470
+Nhưng bất lợi, và đây là một bất lợi lớn,
+
+52
+00:03:33.470 --> 00:03:38.010
+là nếu bạn nhìn vào bộ dev của bạn, trong 2.500 ví dụ này,
+
+53
+00:03:38.010 --> 00:03:43.570
+rất nhiều trong số đó sẽ đến từ phân phối trang web của hình ảnh, chứ không phải là
+
+54
+00:03:43.570 --> 00:03:46.660
+những gì bạn thực sự quan tâm, đó là phân phối ứng dụng di động của hình ảnh.
+
+55
+00:03:48.520 --> 00:03:53.150
+Vì vậy, nó
+
+56
+00:03:53.150 --> 00:03:57.309
+chỉ ra rằng trong tổng số lượng dữ liệu của bạn, 200.000, vì vậy tôi sẽ viết tắt 200k, trong số 210,000,
+
+57
+00:03:57.309 --> 00:04:01.169
+chúng tôi sẽ viết nó là 210k, xuất phát từ các trang web.
+
+58
+00:04:01.169 --> 00:04:06.951
+Vì vậy, tất cả 2.500 ví dụ trên kỳ vọng,
+
+59
+00:04:06.951 --> 00:04:13.430
+tôi nghĩ 2.381 trong số đó sẽ đến từ các trang web.
+
+60
+00:04:13.430 --> 00:04:17.580
+Điều này là trên kỳ vọng, con số chính xác sẽ thay đổi xung quanh tùy thuộc vào
+
+61
+00:04:17.580 --> 00:04:20.290
+cách hoạt động tàu con thoi ngẫu nhiên đi.
+
+62
+00:04:20.290 --> 00:04:25.250
+Nhưng trung bình, chỉ có 119 sẽ đến từ các ứng dụng tải lên trên thiết bị di động.
+
+63
+00:04:27.600 --> 00:04:32.630
+Vì vậy, hãy nhớ rằng thiết lập bộ dev của bạn đang nói với nhóm của bạn nơi để nhắm
+
+64
+00:04:32.630 --> 00:04:33.800
+mục tiêu.
+
+65
+00:04:33.800 --> 00:04:35.150
+Và cách bạn đang nhắm mục tiêu của mình,
+
+66
+00:04:35.150 --> 00:04:38.080
+bạn đang nói rằng dành phần lớn thời gian tối ưu hóa cho việc
+
+67
+00:04:38.080 --> 00:04:41.550
+phân phối các trang web của hình ảnh, mà thực sự không phải là những gì bạn muốn.
+
+68
+00:04:42.780 --> 00:04:45.430
+Vì vậy, tôi khuyên bạn nên chống lại tùy chọn một,
+
+69
+00:04:45.430 --> 00:04:50.010
+bởi vì đây là thiết lập các dev thiết lập để nói với nhóm
+
+70
+00:04:50.010 --> 00:04:53.160
+của bạn để tối ưu hóa cho một phân phối dữ liệu khác với những gì bạn thực sự quan tâm.
+
+71
+00:04:54.210 --> 00:04:56.018
+Vì vậy, thay vì làm điều này,
+
+72
+00:04:56.018 --> 00:05:01.704
+tôi khuyên bạn nên thay vì chọn một lựa chọn khác, đó là những điều sau đây.
+
+73
+00:05:01.704 --> 00:05:08.487
+Bộ đào tạo, giả sử nó vẫn còn 205.000 hình ảnh,
+
+74
+00:05:08.487 --> 00:05:15.985
+tôi sẽ có training set có tất cả 200.000 hình ảnh từ web.
+
+75
+00:05:15.985 --> 00:05:21.970
+Và sau đó bạn có thể, nếu bạn muốn, thêm vào 5.000 hình ảnh từ ứng dụng di động.
+
+76
+00:05:21.970 --> 00:05:24.344
+Và sau đó đối với bộ dev và thử nghiệm của bạn,
+
+77
+00:05:24.344 --> 00:05:27.599
+tôi đoán kích thước bộ dữ liệu của tôi không được rút ra để mở rộng quy mô.
+
+78
+00:05:27.599 --> 00:05:34.993
+Bộ dev và thử nghiệm của bạn sẽ là tất cả các hình ảnh ứng dụng di động.
+
+79
+00:05:38.870 --> 00:05:44.405
+Vì vậy, training set sẽ bao gồm 200.000 hình ảnh từ web và
+
+80
+00:05:44.405 --> 00:05:46.560
+5.000 từ ứng dụng di động.
+
+81
+00:05:46.560 --> 00:05:51.990
+Bộ dev sẽ là 2.500 hình ảnh từ ứng dụng di động, và
+
+82
+00:05:51.990 --> 00:05:58.680
+bộ thử nghiệm sẽ là 2.500 hình ảnh cũng từ ứng dụng di động.
+
+83
+00:05:58.680 --> 00:06:03.480
+Ưu điểm của cách này để chia dữ liệu của bạn thành đào tạo, dev và thử nghiệm,
+
+84
+00:06:03.480 --> 00:06:07.410
+là bạn đang nhắm mục tiêu nơi bạn muốn.
+
+85
+00:06:07.410 --> 00:06:12.930
+Bạn đang nói với nhóm của bạn, bộ dev của tôi có dữ liệu được tải lên từ ứng dụng di động và
+
+86
+00:06:12.930 --> 00:06:15.570
+đó là sự phân phối của hình ảnh bạn thực sự quan tâm, vì vậy
+
+87
+00:06:15.570 --> 00:06:19.110
+hãy cố gắng xây dựng một hệ thống machine learning mà thực sự tốt trên
+
+88
+00:06:19.110 --> 00:06:21.750
+phân phối ứng dụng di động của hình ảnh.
+
+89
+00:06:21.750 --> 00:06:25.190
+Bất lợi, tất nhiên, là bây giờ
+
+90
+00:06:25.190 --> 00:06:30.870
+phân phối đào tạo của bạn khác với các bản phân phối bộ dev và thử nghiệm của bạn.
+
+91
+00:06:30.870 --> 00:06:34.724
+Nhưng nó chỉ ra rằng việc phân chia dữ liệu của bạn thành đào tạo, dev và
+
+92
+00:06:34.724 --> 00:06:38.227
+test sẽ giúp bạn có hiệu suất tốt hơn trong thời gian dài.
+
+93
+00:06:38.227 --> 00:06:42.475
+Và chúng tôi sẽ thảo luận sau một số kỹ thuật cụ thể để đối phó với các
+
+94
+00:06:42.475 --> 00:06:47.160
+bộ đào tạo của bạn đến từ phân phối khác với bộ dev và bộ thử nghiệm của bạn.
+
+95
+00:06:47.160 --> 00:06:49.110
+Hãy nhìn vào một ví dụ khác.
+
+96
+00:06:49.110 --> 00:06:53.553
+Giả sử bạn đang xây dựng một sản phẩm hoàn toàn mới,
+
+97
+00:06:53.553 --> 00:06:58.610
+một gương chiếu hậu kích hoạt lời nói cho một chiếc xe hơi.
+
+98
+00:06:58.610 --> 00:07:01.368
+Vì vậy, đây là một sản phẩm thực sự ở Trung Quốc.
+
+99
+00:07:01.368 --> 00:07:05.668
+Nó đang đi vào các quốc gia khác nhưng bạn có thể xây dựng một tấm gương chiếu hậu để
+
+100
+00:07:05.668 --> 00:07:10.034
+thay thế thứ nhỏ ở đó, để bây giờ bạn có thể nói chuyện
+
+101
+00:07:13.488 --> 00:07:17.760
+với gương chiếu hậu và về cơ bản nói, gương chiếu hậu thân mến, xin hãy giúp tôi tìm hướng dẫn đến trạm xăng gần nhất và nó sẽ giải quyết nó.
+
+102
+00:07:19.620 --> 00:07:22.750
+Vì vậy, đây thực sự là một sản phẩm thực sự, và giả sử bạn đang cố gắng xây dựng nó cho
+
+103
+00:07:22.750 --> 00:07:23.530
+đất nước của bạn.
+
+104
+00:07:27.160 --> 00:07:31.720
+Vậy làm thế nào bạn có thể lấy dữ liệu để đào tạo một hệ thống nhận dạng giọng nói cho
+
+105
+00:07:31.720 --> 00:07:32.489
+sản phẩm này?
+
+106
+00:07:32.489 --> 00:07:36.137
+Vâng, có lẽ bạn đã làm việc trên nhận dạng giọng nói trong một thời gian dài, vì vậy
+
+107
+00:07:36.137 --> 00:07:39.785
+bạn có rất nhiều dữ liệu từ các ứng dụng nhận dạng giọng nói khác,
+
+108
+00:07:39.785 --> 00:07:43.185
+không phải từ gương chiếu hậu được kích hoạt bằng giọng nói.
+
+109
+00:07:43.185 --> 00:07:47.164
+Dưới đây là cách bạn có thể chia tách đào tạo của bạn và bộ phát triển và kiểm tra của bạn.
+
+110
+00:07:47.164 --> 00:07:50.780
+Vì vậy, đối với đào tạo của bạn, bạn có thể lấy tất cả dữ liệu giọng nói mà
+
+111
+00:07:50.780 --> 00:07:54.180
+bạn đã tích lũy được từ việc làm việc trên các vấn đề giọng nói khác, chẳng hạn như
+
+112
+00:07:54.180 --> 00:07:59.060
+dữ liệu bạn đã mua trong nhiều năm từ các nhà cung cấp dữ liệu nhận dạng giọng nói khác nhau.
+
+113
+00:07:59.060 --> 00:08:03.410
+Và hôm nay bạn thực sự có thể mua dữ liệu từ các nhà cung cấp x, y cặp, trong
+
+114
+00:08:03.410 --> 00:08:06.130
+đó x là một clip âm thanh và y là một bảng điểm.
+
+115
+00:08:06.130 --> 00:08:10.832
+Hoặc có thể bạn đã làm việc trên loa thông minh, loa kích hoạt bằng giọng nói thông minh, vì vậy
+
+116
+00:08:10.832 --> 00:08:12.990
+bạn có một số dữ liệu từ đó.
+
+117
+00:08:12.990 --> 00:08:17.040
+Có lẽ bạn đã làm việc trên bàn phím được kích hoạt bằng giọng nói và vân vân.
+
+118
+00:08:17.040 --> 00:08:21.515
+Và vì lợi ích của tranh luận, có lẽ bạn có 500.000
+
+119
+00:08:21.515 --> 00:08:25.330
+lời nói từ tất cả các nguồn này.
+
+120
+00:08:25.330 --> 00:08:30.078
+Và đối với bộ dev và thử nghiệm của bạn, có thể bạn có một tập dữ liệu nhỏ hơn nhiều mà
+
+121
+00:08:30.078 --> 00:08:33.892
+thực sự đến từ một gương chiếu hậu kích hoạt bài phát biểu.
+
+122
+00:08:34.950 --> 00:08:38.316
+Bởi vì người dùng đang yêu cầu truy vấn điều hướng hoặc
+
+123
+00:08:38.316 --> 00:08:41.590
+cố gắng tìm hướng dẫn đến nhiều nơi khác nhau.
+
+124
+00:08:41.590 --> 00:08:46.560
+Tập dữ liệu này có lẽ sẽ có nhiều địa chỉ đường hơn, đúng không?
+
+125
+00:08:46.560 --> 00:08:49.250
+Xin vui lòng giúp tôi điều hướng đến địa chỉ đường phố này, hoặc
+
+126
+00:08:49.250 --> 00:08:51.980
+xin vui lòng giúp tôi điều hướng đến trạm xăng này.
+
+127
+00:08:51.980 --> 00:08:56.040
+Vì vậy, sự phân bố dữ liệu này sẽ rất khác với những thứ này ở bên trái.
+
+128
+00:08:58.140 --> 00:09:01.780
+Nhưng đây thực sự là dữ liệu bạn quan tâm, bởi vì đây là những gì bạn cần
+
+129
+00:09:01.780 --> 00:09:08.082
+sản phẩm của bạn để làm tốt trên, vì vậy đây là những gì bạn thiết lập dev và thử nghiệm của bạn để được.
+
+130
+00:09:08.082 --> 00:09:12.868
+Vì vậy, những gì bạn làm trong ví dụ này là thiết lập đào tạo của bạn là
+
+131
+00:09:12.868 --> 00:09:16.960
+500.000 lời nói ở bên trái, và
+
+132
+00:09:16.960 --> 00:09:21.847
+sau đó thiết lập dev và test của bạn mà tôi sẽ viết tắt D và T, chúng
+
+133
+00:09:21.847 --> 00:09:26.380
+có thể là 10.000 lời nói mỗi.
+
+134
+00:09:26.380 --> 00:09:31.064
+Nó được rút ra từ thực tế là gương chiếu hậu kích hoạt bài phát biểu.
+
+135
+00:09:31.064 --> 00:09:35.600
+Hoặc cách khác, nếu bạn nghĩ rằng bạn không cần phải đặt tất cả 20.000 ví dụ từ
+
+136
+00:09:35.600 --> 00:09:38.498
+gương chiếu hậu kích hoạt bài phát biểu của bạn vào
+
+137
+00:09:38.498 --> 00:09:42.470
+bộ dev và thử nghiệm, có thể bạn có thể lấy một nửa số đó và đặt nó vào bộ đào tạo.
+
+138
+00:09:43.730 --> 00:09:49.085
+Vậy thì bộ huấn luyện có thể là 510.000 bài phát biểu,
+
+139
+00:09:49.085 --> 00:09:55.662
+bao gồm cả 500 bài phát biểu từ đó và 10.000 bài phát biểu từ gương chiếu hậu.
+
+140
+00:09:58.046 --> 00:10:04.500
+Và sau đó các bộ phát triển và thử nghiệm có thể là 5.000 lời nói mỗi người.
+
+141
+00:10:04.500 --> 00:10:09.934
+Vì vậy, trong số 20.000 lời nói, có thể 10k đi vào tập huấn và
+
+142
+00:10:09.934 --> 00:10:14.490
+5k vào tập dev và 5.000 vào test set.
+
+143
+00:10:14.490 --> 00:10:18.870
+Vì vậy, đây sẽ là một cách hợp lý khác để chia dữ liệu của bạn thành đào tạo
+
+144
+00:10:18.870 --> 00:10:20.360
+, dev và thử nghiệm.
+
+145
+00:10:20.360 --> 00:10:26.258
+Và điều này cung cấp cho bạn một tập huấn lớn hơn nhiều, hơn 500.000 lời nói, hơn nếu bạn
+
+146
+00:10:26.258 --> 00:10:31.297
+chỉ sử dụng dữ liệu phản chiếu hậu được kích hoạt bằng giọng nói cho tập huấn của bạn.
+
+147
+00:10:31.297 --> 00:10:35.880
+Vì vậy, trong video này, bạn đã thấy một vài ví dụ về khi cho phép
+
+148
+00:10:35.880 --> 00:10:38.790
+dữ liệu training set của bạn đến từ một bản phân phối khác với bộ dev và
+
+149
+00:10:38.790 --> 00:10:41.980
+bộ thử nghiệm của bạn cho phép bạn có nhiều training data hơn.
+
+150
+00:10:41.980 --> 00:10:45.990
+Và trong những ví dụ này, nó sẽ làm cho thuật toán học của bạn thực hiện tốt hơn.
+
+151
+00:10:45.990 --> 00:10:50.100
+Bây giờ một câu hỏi bạn có thể hỏi là, bạn nên luôn luôn sử dụng tất cả dữ liệu bạn có?
+
+152
+00:10:50.100 --> 00:10:52.850
+Câu trả lời là tinh tế, nó không phải là luôn luôn có.
+
+153
+00:10:52.850 --> 00:10:54.910
+Hãy xem xét một phản ví dụ trong video tiếp theo.

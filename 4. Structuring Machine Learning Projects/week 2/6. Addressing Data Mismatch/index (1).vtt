@@ -1,0 +1,360 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.400
+If your training set comes from a different distribution than your dev and test set, and
+
+00:00:04.400 --> 00:00:10.160
+if error analysis shows you that you have a data mismatch problem, what can you do?
+
+00:00:10.160 --> 00:00:14.320
+There aren't completely systematic solutions to this, but let's look at some things you
+
+00:00:14.320 --> 00:00:15.880
+could try.
+
+00:00:15.880 --> 00:00:21.360
+If I find that I have a large data mismatch problem, what I usually do is carry out manual
+
+00:00:21.360 --> 00:00:29.670
+error analysis and try to understand the differences between the training set and
+
+00:00:29.670 --> 00:00:35.750
+the dev test sets. To avoid overfitting the test set, technically for error analysis,
+
+00:00:35.750 --> 00:00:40.630
+you should manually only look at the dev set and not at the test set. But as a
+
+00:00:40.630 --> 00:00:45.830
+concrete example, if you're building the speech activated rear view mirror
+
+00:00:45.830 --> 00:00:52.550
+application, you might look or I guess if a speech listen to examples in your dev
+
+00:00:52.550 --> 00:00:57.110
+set to try to figure out how your dev set is different than your training set. So
+
+00:00:57.110 --> 00:01:02.150
+for example, you might find that a lot of dev set examples are very noisy and
+
+00:01:02.150 --> 00:01:07.270
+there's a lot of car noise and this is one way that your dev set differs from a
+
+00:01:07.270 --> 00:01:13.510
+training set. And maybe you'll find other categories of errors. For example, in the
+
+00:01:13.510 --> 00:01:18.750
+speech activated rear view mirror in your car, you might find that it's often
+
+00:01:18.750 --> 00:01:23.710
+misrecognizing street numbers because there are a lot more navigational
+
+00:01:23.710 --> 00:01:27.470
+queries which might have street address. So getting street numbers right is really
+
+00:01:27.470 --> 00:01:31.910
+important. When you have insight into the nature of the dev set errors, we have
+
+00:01:31.910 --> 00:01:36.350
+insight into how the dev set may be different or harder than your training
+
+00:01:36.350 --> 00:01:40.470
+set, what you can do is then try to find ways to make the training data more
+
+00:01:40.470 --> 00:01:46.430
+similar. Or alternatively, try to collect more data similar to your dev and test
+
+00:01:46.430 --> 00:01:52.710
+sets. So for example, if you find that car noise in the background is a major
+
+00:01:52.710 --> 00:02:00.640
+source of error, one thing you could do is simulate noisy in-car data. Say a little
+
+00:02:00.640 --> 00:02:04.840
+bit more about how to do this on the next slide or if you find that you're having
+
+00:02:04.840 --> 00:02:08.600
+a hard time recognizing street numbers, maybe you can go and deliberately try to
+
+00:02:08.600 --> 00:02:14.000
+get more data of people speaking out numbers and add that to your training
+
+00:02:14.000 --> 00:02:19.640
+set. Now I realize that this slide is giving a rough guideline for things you
+
+00:02:19.640 --> 00:02:25.280
+could try. This isn't a systematic process and I guess there's no guarantee that you
+
+00:02:25.280 --> 00:02:30.720
+get the insights you need to make progress. But I found that this manual
+
+00:02:30.720 --> 00:02:35.680
+insight together we're trying to make the data more similar on the dimensions
+
+00:02:35.680 --> 00:02:41.880
+that matter that this often helps on a lot of problems. So if your goal is to
+
+00:02:41.880 --> 00:02:47.440
+make the training data more similar to your dev set, what are some things you
+
+00:02:47.440 --> 00:02:52.560
+can do? One of the techniques you can use is artificial data synthesis and let's
+
+00:02:52.560 --> 00:02:58.000
+discuss that in the context of addressing the conways problem. So to build a speech
+
+00:02:58.000 --> 00:03:02.520
+recognition system, maybe you don't have a lot of audio that was actually recorded
+
+00:03:02.520 --> 00:03:06.640
+inside a car with the background noise of a car, background noise of a highway and so on.
+
+00:03:06.640 --> 00:03:10.480
+But it turns out there's a way to synthesize it. So let's say that you've
+
+00:03:10.480 --> 00:03:15.800
+recorded a large amount of clean audio without this car background noise. So
+
+00:03:15.800 --> 00:03:23.740
+here's an example of a clip you might have in your training set. By the way, this
+
+00:03:23.740 --> 00:03:28.300
+sentence is used a lot in AI for testing because this is a short sentence that
+
+00:03:28.300 --> 00:03:33.420
+contains every alphabet from A to Z. So you see this sentence a lot. But given
+
+00:03:33.420 --> 00:03:37.140
+that recording of the quick brown false jumps of lazy dog, you can then also
+
+00:03:37.140 --> 00:03:48.780
+get a recording of car noise like this. So that's what the inside of car sounds
+
+00:03:48.780 --> 00:03:52.580
+like if you're driving in silence. And if you take these two audio clips and
+
+00:03:52.580 --> 00:03:56.660
+add them together, you can then synthesize what saying the quick brown
+
+00:03:56.660 --> 00:04:00.980
+false jumps of lazy dog would sound like if you were saying that in a noisy car.
+
+00:04:00.980 --> 00:04:10.020
+So it sounds like this. So this is a relatively simple audio synthesis
+
+00:04:10.020 --> 00:04:14.180
+example. In practice, you might synthesize other audio effects like
+
+00:04:14.180 --> 00:04:17.700
+reverberation, which is the sound of your voice bouncing off the walls of
+
+00:04:17.700 --> 00:04:23.060
+the car, and so on. But through artificial data synthesis, you might be
+
+00:04:23.060 --> 00:04:28.740
+able to quickly create more data that sounds like it was recorded inside the
+
+00:04:28.740 --> 00:04:33.660
+car without needing to go out there and collect tons of data, maybe thousands or
+
+00:04:33.660 --> 00:04:38.700
+tens of thousands of hours of data in a car that's actually driving along. So if
+
+00:04:38.700 --> 00:04:43.100
+your error analysis shows you that you should try to make your data sound
+
+00:04:43.100 --> 00:04:46.380
+more like it was recorded inside the car, then this could be a reasonable
+
+00:04:46.380 --> 00:04:52.220
+process for synthesizing that type of data to give you a learning hour. Now,
+
+00:04:52.220 --> 00:04:57.300
+there is one note of caution I want to sound on artificial data synthesis, which
+
+00:04:57.300 --> 00:05:03.100
+is that let's say you have 10,000 hours of data that was recorded against a
+
+00:05:03.100 --> 00:05:11.980
+quiet background. And let's say that you have just one hour of car noise.
+
+00:05:11.980 --> 00:05:16.260
+So one thing you could try is take this one hour of car noise and repeat it
+
+00:05:16.260 --> 00:05:22.820
+10,000 times in order to add to this 10,000 hours of data recorded against
+
+00:05:22.820 --> 00:05:28.380
+a quiet background. If you do that, the audio will sound perfectly fine to the
+
+00:05:28.380 --> 00:05:32.900
+human ear, but there is a chance, there is a risk that your learning algorithm will
+
+00:05:32.900 --> 00:05:43.310
+overfit to the one hour of car noise. And in particular, if this is a set of
+
+00:05:43.310 --> 00:05:54.480
+all audio that you could record in the car, or maybe the sets of all car noise
+
+00:05:54.480 --> 00:05:59.640
+backgrounds you can imagine, if you have just one hour of car noise background, you
+
+00:05:59.640 --> 00:06:04.280
+might be simulating just a very small subset of this space, you might be just
+
+00:06:04.280 --> 00:06:11.240
+synthesizing from a very small subset of the space. And to the human ear, all this
+
+00:06:11.240 --> 00:06:15.600
+audio sounds just fine because one hour of car noise sounds just like any other
+
+00:06:15.600 --> 00:06:20.560
+hour of car noise in the human ear. But it's possible that you're synthesizing
+
+00:06:20.560 --> 00:06:25.600
+data from a very small subset of the space and the neural network might be
+
+00:06:25.600 --> 00:06:31.720
+overfitting to the one hour of car noise that you have. I don't know if it'd be
+
+00:06:31.720 --> 00:06:36.680
+practically feasible to inexpensively collect 10,000 hours of car noise so
+
+00:06:36.680 --> 00:06:40.760
+that you don't need to repeat the same one hour of car noise over and over, but
+
+00:06:40.760 --> 00:06:45.200
+you have 10,000 unique hours of car noise to add to 10,000 hours of unique
+
+00:06:45.200 --> 00:06:50.280
+audio recorded against a clean background. But it's possible, not no
+
+00:06:50.280 --> 00:06:55.360
+guarantees, but it is possible that using 10,000 hours of unique car noise
+
+00:06:55.360 --> 00:06:59.160
+rather than just one hour, that could result in better performance through a
+
+00:06:59.160 --> 00:07:04.960
+learning algorithm. And the challenge with artificial data synthesis is to the
+
+00:07:04.960 --> 00:07:09.720
+human ear, as far as your ears can tell, these 10,000 hours all sounds the same as
+
+00:07:09.720 --> 00:07:15.360
+this one hour, so you might end up creating this very impoverished synthesized
+
+00:07:15.360 --> 00:07:19.440
+data set from a much smaller subset of the space without actually realizing it.
+
+00:07:19.440 --> 00:07:24.240
+Here's another example about official data synthesis. Let's say you're building
+
+00:07:24.240 --> 00:07:28.680
+a self-driving car and so you want to really detect vehicles like this and you
+
+00:07:28.680 --> 00:07:33.280
+know put a bounding box around it let's say. So one idea that a lot of people
+
+00:07:33.280 --> 00:07:37.600
+have discussed is well why should you use computer graphics to simulate tons of
+
+00:07:37.600 --> 00:07:42.040
+images of cars? And in fact here are a couple pictures of cars that were
+
+00:07:42.040 --> 00:07:45.520
+generated using computer graphics and I think these graphics effects are actually
+
+00:07:45.520 --> 00:07:50.240
+pretty good and you can imagine that by synthesizing pictures like these you
+
+00:07:50.240 --> 00:07:54.400
+could train a pretty good computer vision system for detecting cars.
+
+00:07:54.400 --> 00:07:59.840
+Unfortunately the picture that I drew on the previous slide again applies in
+
+00:07:59.840 --> 00:08:06.760
+this setting. Maybe this is a set of all cars and if you synthesize just a
+
+00:08:06.760 --> 00:08:13.800
+very small subset of these cars then to the human eye maybe the synthesized
+
+00:08:13.800 --> 00:08:18.640
+images look fine but you might overfit to this small subset you're synthesizing.
+
+00:08:18.640 --> 00:08:23.720
+In particular one idea that a lot of people have independently raised is once
+
+00:08:23.720 --> 00:08:27.120
+you find a video game with good computer graphics of cars and just grab
+
+00:08:27.120 --> 00:08:31.800
+images from them and get a huge data set of pictures of cars. It turns out
+
+00:08:31.800 --> 00:08:36.960
+that if you look at the video game if the video game has just 20 unique cars
+
+00:08:36.960 --> 00:08:40.840
+in the video game then the video game looks fine because you're driving around
+
+00:08:40.840 --> 00:08:44.680
+in the video game and you see these 20 other cars and you know looks like a
+
+00:08:44.680 --> 00:08:50.640
+pretty realistic simulation. But the world has a lot more than 20 unique
+
+00:08:50.640 --> 00:08:55.320
+designs of cars and if your entire synthesized training set has only 20
+
+00:08:55.320 --> 00:09:00.040
+distinct cars then your new network will probably overfit to these 20 cars
+
+00:09:00.400 --> 00:09:05.160
+and it's difficult for a person to easily tell that even though these images look
+
+00:09:05.160 --> 00:09:10.520
+realistic you're really covering such a tiny subset of the sets of all possible cars.
+
+00:09:11.680 --> 00:09:16.240
+So to summarize if you think you have a data mismatch problem I recommend you
+
+00:09:16.240 --> 00:09:19.880
+do error analysis or look at the training set and look at the depth set to
+
+00:09:19.880 --> 00:09:23.160
+try to figure out try to gain insight into how these two distributions of
+
+00:09:23.160 --> 00:09:27.400
+data might differ and then see if you can find some ways to get more training
+
+00:09:27.400 --> 00:09:31.080
+data that looks a bit more like your depth set. One of the ways we talked
+
+00:09:31.080 --> 00:09:35.440
+about is artificial data synthesis and artificial data synthesis does work.
+
+00:09:35.440 --> 00:09:39.480
+In speech recognition I've seen artificial data synthesis significantly
+
+00:09:39.480 --> 00:09:43.360
+boost the performance of what were already very good speech recognition
+
+00:09:43.360 --> 00:09:46.840
+systems so it can work very well. But if you're using artificial data
+
+00:09:46.840 --> 00:09:50.520
+synthesis just be cautious and bear in mind whether or not you might be
+
+00:09:50.520 --> 00:09:55.320
+accidentally simulating data only from a tiny subset of the space of all
+
+00:09:55.320 --> 00:10:03.160
+possible examples. So that's it for how to deal with data mismatch. Next I'd like
+
+00:10:03.160 --> 00:10:07.600
+to share with you some thoughts on how to learn from multiple types of data at
+
+00:10:07.600 --> 00:10:08.549
+the same time.

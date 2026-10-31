@@ -1,0 +1,65 @@
+Tôi nghĩ rằng video này sẽ rất thú vị. Trong video này, bạn sẽ thấy cách triển khai gradient descent cho mạng nơ-ron
+nhân tạo với một lớp ẩn. Trong video này, tôi sẽ chỉ cung cấp
+cho bạn các phương trình mà bạn cần thực hiện để có được sự truyền ngược
+hoặc để thực hiện gradient descent, và rồi trong video tiếp theo, tôi sẽ giải thích thêm về lý do tại sao các phương trình này lại là các
+phương trình chính xác, là các phương trình đúng để tính građien
+cho mạng nơ-ron nhân tạo của bạn. Và bây giờ mạng nơ-ron nhân tạo, với một lớp ẩn duy nhất, sẽ có tham số w[1], b[1], w[2] và b[2]. Và hãy nhớ là, nếu bạn có các tính năng đầu
+vào nx hoặc là n[0], và các đơn vị ẩn n[1], và các đơn vị đầu ra n[2] trong
+các ví dụ của chúng ta Cho đến giờ tôi chỉ có n[2]  bằng 1, w1 sẽ là ma trận (n[1],n[0]) . b1 sẽ là một vectơ n[1] chiều, vì vậy chúng ta có thể viết dưới
+dạng ma trận (n[1],1), đây là một vector cột. Kích thước của w2 sẽ là (n[2],n[1]), và chiều của b[2] sẽ là n[2]. Và cho đến giờ, chúng ta mới chỉ thấy
+các ví dụ mà trong đó n[2] bằng 1, nơi bạn chỉ có một đơn vị ẩn duy nhất. Và bạn cũng có một hàm chi phí
+cho một mạng nơ-ron nhân tạo. Bây giờ, giả sử bạn đang thực
+hiện phân loại nhị phân. Trong trường hợp đó, chi phí của các tham số của bạn sẽ là một trên m của trung bình của
+hàm loss (hàm sai lệch) đó. Và chữ L ở đây là sai lệch khi mạng nơ-ron
+nhân tạo của bạn dự đoán y mũ. Đây chính là a[2] khi nhãn gradient bằng Y. Nếu bạn đang thực hiện phân loại nhị phân, có thể hàm loss chính là hàm mà bạn sử
+dụng cho hồi quy logistic trước đó. Để huấn luyện các tham số
+của thuật toán của bạn, bạn cần thực hiện gradient descent. Khi huấn luyện một mạng nơ-ron nhân tạo, việc khởi tạo các tham số ngẫu nhiên
+thay vì để tất cả bằng không là rất quan trọng. Chúng ta sẽ tìm hiểu lý do sau, nhưng sau khi khởi tạo tham số, và mỗi vòng lặp hoặc gradient descents
+với các dự đoán được tính đến. Về cơ bản, bạn tính y mũ (i), với i bằng một tới m. Sau đó, bạn cần tính đạo hàm. Vì vậy, bạn cần tính dw[1], và đó là đạo hàm của hàm chi phí
+với tham số w[1], bạn có thể tính một biến khác, như là db[1], là đạo hàm hoặc độ dốc của hàm chi phí với biến b[1] và v.v.. Tương tự với các tham số khác w[2] và b[2]. Cuối cùng, bản cập nhật gradient descent
+sẽ cập nhật w[1] thành w[1] trừ alpha α. Tốc độ học tập nhân dw[1]. b[1] trở thành b[1] trừ đi tốc độ học tập, nhân db[1] và tương tự đối với w[2] và b[2]. Đôi khi, tôi sẽ sử dụng dấu hai chấm bằng
+nhưng đôi khi tôi lại dùng dấu bằng, và dùng kí hiệu nào cũng được. Và đây sẽ là một lần lặp của gradient descent, và rồi bạn lặp lại nhiều lần cho đến khi các thông số của bạn
+trông như là chúng đang hội tụ. Trong các video trước đây, chúng ta đã nói về cách tính
+toán các dự đoán, cách tính kết quả đầu ra và chúng ta cũng đã thấy làm thế nào để
+làm điều đó theo cách véc tơ hóa. Mấu chốt là phải biết cách tính các số
+hạng đạo hàm một phần này, dw[1], db[1] cũng như các đạo
+hàm dw[2] và db[2]. Vì vậy, tôi chỉ muốn cung cấp cho bạn các phương trình cần thiết
+để tính các đạo hàm này. Tôi sẽ chuyển tới video tiếp theo,
+đây là một video tùy chọn, để nói rõ hơn về cách chúng ta
+đưa ra những công thức đó. Thế nên tôi sẽ chỉ tóm tắt lại
+các phương trình truyền xuôi. Và bạn có Z[1] bằng W1[1]X cộng với b[1], và A[1] bằng với hàm kích hoạt trong
+lớp đó, được áp dụng với từng phần tử như Z1, và sau đó Z[2] bằng W[2], A[1] cộng với b[2], và cuối cùng, tập huấn luyện của bạn được
+véc tơ hóa hết, đúng chứ? A[2] bằng g[2] của Z[2]. Bây giờ, nếu lại giả sử chúng ta đang
+thực hiện phân loại nhị phân, thì hàm kích hoạt này phải là hàm sigmoid, tương tự cho kết thúc mạng nơ-ron Và đó là truyền xuôi hoặc là phép tính từ trái Và đó là truyền xuôi hoặc là phép tính từ trái Tiếp theo, hãy tính các đạo hàm. Đây là bước truyền ngược. Sau đó, tôi tính dZ[2] bằng A[2]
+trừ đi gradient của Y, Và hãy nhớ là, tất cả điều này được vector
+hóa trên các ví dụ. Vậy nên ma trận Y là một ma trận (1,m) liệt kê tất cả m
+ví dụ của bạn được xếp theo chiều ngang. Sau đó, hóa ra dW[2] bằng với điều này, và trên thực tế, ba phương trình đầu tiên thì rất giống với gradient descents
+cho hồi quy logistic. axis bằng một, keepdims bằng True. Chi tiết nhỏ np.sum này là lệnh Python NumPy để tính tổng
+một chiều của ma trận. Trong trường hợp này, tính tổng
+theo chiều ngang, và nhiệm vụ của Keepdims là
+ngăn không cho Python xuất ra một trong những mảng
+xếp hạng hài hước đó, đúng chứ? Trong đó kích thước là (n,). Vì vậy, keepdims bằng True, đảm bảo rằng Python xuất ra
+cho db[2] một vectơ (n,1). Trong thực tế, về lý thuyết,
+tôi đoán là (n[2],1). Trong trường hợp này, nó chỉ là một số (1,1) nên có lẽ nó cũng không quan trọng lắm. Nhưng sau này, chúng ta sẽ thấy được
+thời điểm mà nó thực sự quan trọng. Và cho đến giờ, chúng ta đã thực hiện
+những điều tương tự với hồi quy logistic. Nhưng bây giờ khi bạn tiếp tục
+thực hiện truyền ngược, bạn sẽ tính cái này dZ[2] nhân g1 phẩy của Z[1]. Và g1 phẩy này là đạo hàm cho bất cứ hàm kích hoạt
+nào bạn sử dụng cho lớp ẩn, và cho lớp đầu ra, Giả sử bạn đang thực hiện phân
+loại nhị phân với hàm sigmoid. Và điều đó đã được đưa vào
+công thức đó cho dZ[2], và dấu nhân này là tích từng thành phần. Đây là một ma trận (n[1],m), và đây là, đạo hàm từng phần tử này cũng
+sẽ là ma trận (n[1],m), và vì vậy dấu nhân này là một tích
+từng thành phần của hai ma trận. Cuối cùng, dW[1] bằng với điều này, và db[1] bằng với điều này, và np.sum (dZ[1], axis bằng một, keepdims bằng True). Trong khi trước đó, keepdims có thể ít
+quan trọng hơn nếu n[2] bằng một. Kết quả là (1,1), chỉ là một số thực. Ở đây, db[1] sẽ là một vectơ (n[1],1), và vì vậy bạn muốn Python,
+bạn muốn Np.sums. Tôi sẽ đặt chiều này là một cái gì đó
+thay vì một mảng hạng 1 hài hước của chiều đó mà có thể khiến một số
+tính toán dữ liệu của bạn rối tung. Một cách khác là không giữ các tham số, mà định hình lại rõ ràng đầu ra
+của np.sum vào chiều này, mà bạn muốn db có. Đó là bốn phương trình truyền xuôi, và sáu phương trình truyền ngược. Tôi biết tôi vừa viết ra
+những phương trình này, nhưng trong video tùy chọn tiếp theo, chúng ta hãy tìm hiểu xem làm thế nào để viết ra được sáu phương trình
+cho thuật toán truyền ngược. Bạn có thể xem video đó hoặc không. Nhưng dù thế nào, nếu bạn thực
+hiện các thuật toán này, bạn sẽ có một triển khai truyền
+xuôi và truyền ngược chính xác. Bạn sẽ có thể tính các đạo hàm bạn cần
+để áp dụng gradient descent, để tìm hiểu các thông số của
+mạng nơ-ron nhân tạo. Bạn có thể thực hiện thuật toán này và khiến nó hoạt động mà không
+cần hiểu sâu về giải tích. Có rất nhiều học viên học sâu
+thành công cũng đã làm như vậy. Nhưng nếu bạn muốn, thì bạn cũng có thể xem video tiếp theo chỉ để hiểu thêm về nguồn gốc
+của các phương trình này.

@@ -1,0 +1,637 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.820
+Giả sử trong việc xây dựng một hệ thống machine learning bạn đang cố gắng
+
+2
+00:00:02.820 --> 00:00:05.690
+quyết định có nên sử dụng phương pháp tiếp cận đầu cuối hay không.
+
+3
+00:00:05.690 --> 00:00:08.250
+Chúng ta hãy xem xét một số ưu và nhược điểm của việc
+
+4
+00:00:08.250 --> 00:00:10.770
+deep learning đầu cuối để bạn có thể
+
+5
+00:00:10.770 --> 00:00:12.690
+đi kèm với một số hướng dẫn về việc liệu
+
+6
+00:00:12.690 --> 00:00:17.040
+một cách tiếp cận đầu cuối có vẻ hứa hẹn cho ứng dụng của bạn hay không.
+
+7
+00:00:17.040 --> 00:00:20.265
+Dưới đây là một số lợi ích của việc áp dụng học tập từ đầu đến cuối.
+
+8
+00:00:20.265 --> 00:00:25.435
+Đầu tiên là việc học từ đầu đến cuối thực sự chỉ cho phép dữ liệu phát biểu.
+
+9
+00:00:25.435 --> 00:00:29.010
+Vì vậy, nếu bạn có đủ dữ liệu X, Y
+
+10
+00:00:29.010 --> 00:00:33.450
+thì bất cứ điều gì là phù hợp nhất lập bản đồ hàm từ X đến Y,
+
+11
+00:00:33.450 --> 00:00:35.475
+nếu bạn đào tạo một neural network đủ lớn,
+
+12
+00:00:35.475 --> 00:00:38.395
+hy vọng neural network sẽ tìm ra nó.
+
+13
+00:00:38.395 --> 00:00:41.040
+Và bằng cách có một phương pháp machine learning thuần túy,
+
+14
+00:00:41.040 --> 00:00:44.550
+đầu vào học neural network của bạn từ X đến Y có thể
+
+15
+00:00:44.550 --> 00:00:48.540
+nắm bắt được bất cứ số liệu thống kê nào trong dữ liệu,
+
+16
+00:00:48.540 --> 00:00:52.800
+chứ không phải là bị buộc phải phản ánh những định kiến của con người.
+
+17
+00:00:52.800 --> 00:00:55.695
+Ví dụ, trong trường hợp nhận dạng giọng nói
+
+18
+00:00:55.695 --> 00:00:58.530
+trước đó hệ thống lời nói có khái niệm về
+
+19
+00:00:58.530 --> 00:01:01.260
+một âm vị đó là một đơn vị cơ bản của âm thanh như C
+
+20
+00:01:01.260 --> 00:01:04.240
+, A, và T cho từ mèo.
+
+21
+00:01:04.240 --> 00:01:09.890
+Và tôi nghĩ rằng âm vị là một hiện vật được tạo ra bởi các nhà ngôn ngữ học của con người.
+
+22
+00:01:09.890 --> 00:01:12.120
+Tôi thực sự nghĩ rằng âm vị là một ảo tưởng của các
+
+23
+00:01:12.120 --> 00:01:15.690
+nhà ngôn ngữ học là một mô tả hợp lý về ngôn ngữ,
+
+24
+00:01:15.690 --> 00:01:21.785
+nhưng không rõ ràng là bạn muốn ép thuật toán học của mình suy nghĩ theo âm vị.
+
+25
+00:01:21.785 --> 00:01:25.895
+Và nếu bạn để cho thuật toán học của bạn học bất cứ biểu diễn nào nó muốn
+
+26
+00:01:25.895 --> 00:01:30.675
+học hơn là buộc thuật toán học của bạn sử dụng âm vị như một biểu diễn,
+
+27
+00:01:30.675 --> 00:01:34.645
+thì hiệu suất tổng thể của nó có thể kết thúc tốt hơn.
+
+28
+00:01:34.645 --> 00:01:37.140
+Lợi ích thứ hai của việc deep learning từ đầu đến cuối
+
+29
+00:01:37.140 --> 00:01:40.480
+là việc thiết kế các thành phần cần thiết ít tay hơn.
+
+30
+00:01:40.480 --> 00:01:43.960
+Và điều này cũng có thể đơn giản hóa dòng công việc thiết kế của
+
+31
+00:01:43.960 --> 00:01:47.655
+bạn, rằng bạn không cần phải dành nhiều thời gian để thiết kế các feature, thiết
+
+32
+00:01:47.655 --> 00:01:51.040
+kế tay những đại diện trung gian này.
+
+33
+00:01:51.040 --> 00:01:52.650
+Làm thế nào về những bất lợi.
+
+34
+00:01:52.650 --> 00:01:54.335
+Dưới đây là một số nhược điểm.
+
+35
+00:01:54.335 --> 00:01:57.010
+Đầu tiên, nó có thể cần một lượng lớn dữ liệu.
+
+36
+00:01:57.010 --> 00:02:00.225
+Vì vậy, để tìm hiểu điều này ánh xạ X đến Y trực tiếp,
+
+37
+00:02:00.225 --> 00:02:03.030
+bạn có thể cần rất nhiều dữ liệu của X,
+
+38
+00:02:03.030 --> 00:02:06.600
+Y và chúng tôi đã thấy trong một video trước đó một số ví dụ về
+
+39
+00:02:06.600 --> 00:02:10.720
+nơi bạn có thể có được rất nhiều dữ liệu cho các nhiệm vụ con.
+
+40
+00:02:10.720 --> 00:02:13.675
+Chẳng hạn như nhận dạng khuôn mặt,
+
+41
+00:02:13.675 --> 00:02:17.310
+chúng tôi có thể tìm thấy rất nhiều dữ liệu để tìm khuôn mặt trong ảnh,
+
+42
+00:02:17.310 --> 00:02:20.510
+cũng như xác định khuôn mặt một khi bạn tìm thấy khuôn mặt,
+
+43
+00:02:20.510 --> 00:02:24.780
+nhưng chỉ có ít dữ liệu có sẵn cho toàn bộ nhiệm vụ đầu cuối.
+
+44
+00:02:24.780 --> 00:02:32.989
+Vì vậy, X, đây là kết thúc đầu vào của kết thúc để kết thúc học tập và Y là kết thúc đầu ra.
+
+45
+00:02:32.989 --> 00:02:36.180
+Và vì vậy bạn cần tất cả dữ liệu X Y với
+
+46
+00:02:36.180 --> 00:02:40.540
+cả đầu vào và đầu ra để đào tạo các hệ thống
+
+47
+00:02:40.540 --> 00:02:45.100
+này, và đây là lý do tại sao chúng tôi gọi nó là giá trị học đầu cuối bởi vì bạn đang học
+
+48
+00:02:45.100 --> 00:02:52.690
+một ánh xạ trực tiếp từ một đầu của hệ thống đến đầu kia của hệ thống.
+
+49
+00:02:52.690 --> 00:02:58.960
+Những bất lợi khác là nó loại trừ các thành phần thiết kế tay có khả năng hữu ích.
+
+50
+00:02:58.960 --> 00:03:04.510
+Vì vậy, các nhà nghiên cứu machine learning có xu hướng nói một cách đáng kinh ngạc về việc thiết kế đồ vật bằng tay.
+
+51
+00:03:04.510 --> 00:03:06.880
+Nhưng nếu bạn không có nhiều dữ liệu,
+
+52
+00:03:06.880 --> 00:03:09.490
+thì thuật toán học của bạn không có
+
+53
+00:03:09.490 --> 00:03:13.450
+nhiều cái nhìn sâu sắc mà nó có thể đạt được từ dữ liệu của bạn nếu training set của bạn nhỏ.
+
+54
+00:03:13.450 --> 00:03:17.080
+Và do đó việc thiết kế một thành phần thực sự có thể là một cách
+
+55
+00:03:17.080 --> 00:03:21.138
+để bạn đưa kiến thức thủ công vào thuật toán,
+
+56
+00:03:21.138 --> 00:03:24.035
+và đó không phải lúc nào cũng là một điều tồi tệ.
+
+57
+00:03:24.035 --> 00:03:28.060
+Tôi nghĩ về một thuật toán học tập là có hai nguồn kiến thức chính.
+
+58
+00:03:28.060 --> 00:03:33.590
+Một là dữ liệu và thứ hai là bất cứ điều gì bạn thiết kế tay,
+
+59
+00:03:33.590 --> 00:03:37.070
+có thể là các thành phần, hoặc các feature, hoặc những thứ khác.
+
+60
+00:03:37.070 --> 00:03:39.840
+Và vì vậy khi bạn có hàng tấn dữ liệu,
+
+61
+00:03:39.840 --> 00:03:44.125
+việc thiết kế mọi thứ ít quan trọng hơn nhưng khi bạn không có nhiều dữ liệu,
+
+62
+00:03:44.125 --> 00:03:49.170
+thì việc có một hệ thống được thiết kế cẩn thận có thể cho phép con người đưa
+
+63
+00:03:49.170 --> 00:03:51.555
+rất nhiều kiến thức về vấn đề
+
+64
+00:03:51.555 --> 00:03:54.985
+vào một bộ giải thuật và điều đó sẽ rất hữu ích.
+
+65
+00:03:54.985 --> 00:03:58.200
+Vì vậy, một trong những nhược điểm của deep learning đầu cuối là
+
+66
+00:03:58.200 --> 00:04:02.605
+nó loại trừ các thành phần được thiết kế bằng tay có khả năng hữu ích.
+
+67
+00:04:02.605 --> 00:04:06.490
+Và các thành phần được thiết kế bằng tay có thể rất hữu ích nếu được thiết kế tốt.
+
+68
+00:04:06.490 --> 00:04:09.660
+Chúng cũng có thể gây hại nếu nó thực sự giới hạn hiệu suất của bạn,
+
+69
+00:04:09.660 --> 00:04:12.960
+chẳng hạn như nếu bạn buộc một thuật toán phải suy nghĩ trong âm vị
+
+70
+00:04:12.960 --> 00:04:16.770
+khi có thể nó đã tự phát hiện ra một biểu diễn tốt hơn.
+
+71
+00:04:16.770 --> 00:04:19.110
+Vì vậy, nó là loại một thanh kiếm hai lưỡi có thể
+
+72
+00:04:19.110 --> 00:04:21.660
+làm tổn thương hoặc giúp đỡ nhưng nó có xu hướng giúp đỡ nhiều hơn, các
+
+73
+00:04:21.660 --> 00:04:26.320
+thành phần được thiết kế bằng tay có xu hướng giúp đỡ nhiều hơn khi bạn đang tập luyện trên một tập luyện nhỏ.
+
+74
+00:04:26.320 --> 00:04:29.250
+Vì vậy, nếu bạn đang xây dựng một hệ thống machine learning mới và bạn đang cố gắng
+
+75
+00:04:29.250 --> 00:04:32.535
+quyết định có sử dụng deep learning đầu cuối hay không,
+
+76
+00:04:32.535 --> 00:04:34.500
+tôi nghĩ câu hỏi quan trọng là,
+
+77
+00:04:34.500 --> 00:04:37.330
+bạn có đủ dữ liệu để tìm hiểu chức năng của
+
+78
+00:04:37.330 --> 00:04:41.340
+sự phức tạp cần thiết để ánh xạ từ X đến Y không?
+
+79
+00:04:41.340 --> 00:04:44.790
+Tôi không có một định nghĩa chính thức của cụm từ này,
+
+80
+00:04:44.790 --> 00:04:49.170
+sự phức tạp cần thiết, nhưng trực giác,
+
+81
+00:04:49.170 --> 00:04:52.140
+nếu bạn đang cố gắng để tìm hiểu một chức năng từ X đến Y,
+
+82
+00:04:52.140 --> 00:04:54.685
+đó là nhìn vào một hình ảnh như thế này
+
+83
+00:04:54.685 --> 00:04:57.495
+và nhận ra vị trí của xương trong hình ảnh này,
+
+84
+00:04:57.495 --> 00:05:01.435
+sau đó có lẽ điều này có vẻ như một tương đối đơn giản vấn đề để
+
+85
+00:05:01.435 --> 00:05:06.030
+xác định xương của hình ảnh và có thể họ sẽ cần nhiều dữ liệu cho nhiệm vụ đó.
+
+86
+00:05:06.030 --> 00:05:12.020
+Hoặc đưa ra một bức ảnh của một người,
+
+87
+00:05:12.020 --> 00:05:18.995
+có thể tìm thấy khuôn mặt của người đó trong bức ảnh không có vẻ khó khăn như một vấn đề,
+
+88
+00:05:18.995 --> 00:05:23.420
+vì vậy có thể bạn không cần quá nhiều dữ liệu để tìm ra khuôn mặt của một người.
+
+89
+00:05:23.420 --> 00:05:28.465
+Hoặc ít nhất có thể bạn có thể tìm thấy đủ dữ liệu để giải quyết nhiệm vụ đó, trong khi ngược lại,
+
+90
+00:05:28.465 --> 00:05:34.210
+các chức năng cần thiết để nhìn vào bàn tay và ánh xạ trực tiếp đến tuổi của đứa trẻ,
+
+91
+00:05:34.210 --> 00:05:38.995
+mà có vẻ như một vấn đề phức tạp hơn nhiều mà trực giác có thể bạn cần nhiều
+
+92
+00:05:38.995 --> 00:05:45.815
+dữ liệu để tìm hiểu nếu bạn đã áp dụng một phương pháp deep learning từ đầu đến cuối.
+
+93
+00:05:45.815 --> 00:05:50.185
+Vì vậy, để tôi kết thúc video này với một ví dụ phức tạp hơn.
+
+94
+00:05:50.185 --> 00:05:52.645
+Bạn có thể biết rằng tôi đã dành thời gian giúp đỡ
+
+95
+00:05:52.645 --> 00:05:55.360
+một công ty lái xe tự trị, Drive.ai.
+
+96
+00:05:55.360 --> 00:06:00.108
+Vì vậy, tôi thực sự rất hào hứng với việc lái xe tự động.
+
+97
+00:06:00.108 --> 00:06:03.950
+Vậy làm thế nào để bạn chế tạo một chiếc xe tự lái?
+
+98
+00:06:03.950 --> 00:06:06.065
+Vâng, đây là một điều bạn có thể làm,
+
+99
+00:06:06.065 --> 00:06:08.795
+và đây không phải là một phương pháp deep learning đầu cuối.
+
+100
+00:06:08.795 --> 00:06:15.620
+Bạn có thể lấy làm đầu vào một hình ảnh của những gì ở phía trước xe của bạn, có thể là radar, nhẹ hơn,
+
+101
+00:06:15.620 --> 00:06:17.075
+các
+
+102
+00:06:20.030 --> 00:06:24.700
+chỉ số cảm biến khác, nhưng để đơn giản hóa mô tả, hãy nói rằng bạn chụp ảnh những gì ở phía trước hoặc những gì xung quanh xe của bạn.
+
+103
+00:06:24.700 --> 00:06:28.430
+Và sau đó để lái xe của bạn một cách an toàn, bạn cần phải phát hiện
+
+104
+00:06:28.430 --> 00:06:33.135
+những chiếc xe khác và bạn cũng cần phải phát hiện người đi bộ.
+
+105
+00:06:33.135 --> 00:06:35.840
+Bạn cần phải phát hiện những thứ khác, tất nhiên,
+
+106
+00:06:35.840 --> 00:06:39.033
+nhưng chúng tôi sẽ chỉ trình bày một ví dụ đơn giản ở đây.
+
+107
+00:06:39.033 --> 00:06:42.625
+Đã tìm ra nơi nào là những chiếc xe khác và người đi bộ,
+
+108
+00:06:42.625 --> 00:06:48.783
+sau đó bạn cần phải lên kế hoạch cho tuyến đường của riêng bạn.
+
+109
+00:06:48.783 --> 00:06:50.305
+Vì vậy, nói cách khác,
+
+110
+00:06:50.305 --> 00:06:54.880
+nếu bạn thấy những chiếc xe khác ở
+
+111
+00:06:54.880 --> 00:06:58.300
+đâu, người đi bộ ở đâu, bạn cần phải quyết định làm thế nào để lái xe của riêng bạn,
+
+112
+00:06:58.300 --> 00:07:02.110
+con đường nào để lái xe của bạn trong vài giây tiếp theo.
+
+113
+00:07:02.110 --> 00:07:08.185
+Và khi quyết định rằng bạn sẽ lái một con đường nào đó,
+
+114
+00:07:08.185 --> 00:07:14.725
+có lẽ đây là một cái nhìn từ trên xuống của một con đường và đó là chiếc xe của bạn.
+
+115
+00:07:14.725 --> 00:07:17.625
+Có lẽ bạn đã quyết định lái xe con đường đó,
+
+116
+00:07:17.625 --> 00:07:18.750
+đó là những gì một tuyến đường là,
+
+117
+00:07:18.750 --> 00:07:25.405
+sau đó bạn cần phải thực hiện điều này bằng cách tạo ra các chỉ đạo thích hợp,
+
+118
+00:07:25.405 --> 00:07:28.850
+cũng như các lệnh tăng tốc và phanh.
+
+119
+00:07:28.850 --> 00:07:34.030
+Vì vậy, khi đi từ hình ảnh của bạn hoặc đầu vào cảm giác của bạn đến phát hiện xe hơi và người đi bộ,
+
+120
+00:07:34.030 --> 00:07:37.630
+điều đó có thể được thực hiện khá tốt bằng cách sử dụng deep learning,
+
+121
+00:07:37.630 --> 00:07:40.870
+nhưng sau đó đã tìm ra nơi mà những chiếc xe khác và người đi bộ đang đi,
+
+122
+00:07:40.870 --> 00:07:45.220
+để chọn tuyến đường này để chính xác cách bạn muốn di chuyển xe của bạn,
+
+123
+00:07:45.220 --> 00:07:47.420
+thường là không phải là để thực hiện với việc deep learning.
+
+124
+00:07:47.420 --> 00:07:51.715
+Thay vào đó, điều đó được thực hiện với một phần mềm gọi là Motion Planning.
+
+125
+00:07:51.715 --> 00:07:55.420
+Và nếu bạn đã từng tham gia một khóa học về robot, bạn sẽ học về lập kế hoạch chuyển động.
+
+126
+00:07:55.420 --> 00:07:59.240
+Và sau đó đã quyết định con đường bạn muốn lái xe của bạn thông qua,
+
+127
+00:07:59.240 --> 00:08:00.880
+sẽ có một số thuật toán khác,
+
+128
+00:08:00.880 --> 00:08:06.355
+chúng tôi sẽ nói đó là một thuật toán điều khiển mà sau đó tạo ra quyết định chính xác,
+
+129
+00:08:06.355 --> 00:08:09.040
+sau đó quyết định chính xác bao nhiêu để xoay
+
+130
+00:08:09.040 --> 00:08:13.160
+tay lái và bao nhiêu để bước vào máy gia tốc hoặc bước trên phanh.
+
+131
+00:08:13.160 --> 00:08:16.990
+Vì vậy, tôi nghĩ những gì ví dụ này minh họa là
+
+132
+00:08:16.990 --> 00:08:21.340
+bạn muốn sử dụng machine learning hoặc sử dụng deep learning để tìm hiểu
+
+133
+00:08:21.340 --> 00:08:30.640
+một số thành phần riêng lẻ và khi áp dụng supervised learning, bạn nên
+
+134
+00:08:30.640 --> 00:08:37.650
+cẩn thận chọn loại ánh xạ X đến Y bạn muốn
+
+135
+00:08:37.650 --> 00:08:44.745
+học tùy thuộc vào nhiệm vụ nào
+
+136
+00:08:44.745 --> 00:08:48.875
+bạn có thể lấy dữ liệu cho.
+
+137
+00:08:48.875 --> 00:08:51.765
+Và ngược lại, thật thú vị khi nói về
+
+138
+00:08:51.765 --> 00:08:54.435
+phương pháp deep learning đầu cuối thuần túy, nơi bạn nhập
+
+139
+00:08:54.435 --> 00:08:57.180
+hình ảnh và trực tiếp xuất ra một tay lái.
+
+140
+00:08:57.180 --> 00:09:04.570
+Nhưng với dữ liệu sẵn có
+
+141
+00:09:04.570 --> 00:09:08.140
+và các loại thứ chúng ta có thể học được với neural network ngày nay,
+
+142
+00:09:08.140 --> 00:09:12.880
+đây thực sự không phải là cách tiếp cận hứa hẹn nhất hoặc đây
+
+143
+00:09:12.880 --> 00:09:18.170
+không phải là cách tiếp cận mà tôi nghĩ rằng các nhóm đã làm việc tốt nhất.
+
+144
+00:09:18.170 --> 00:09:22.780
+Và tôi nghĩ cách tiếp cận deep learning đầu cuối thuần túy này thực sự
+
+145
+00:09:22.780 --> 00:09:27.170
+ít hứa hẹn hơn những cách tiếp cận tinh vi như thế này, với
+
+146
+00:09:27.170 --> 00:09:32.260
+sự sẵn có của dữ liệu và khả năng đào tạo neural network ngày nay.
+
+147
+00:09:32.260 --> 00:09:35.055
+Vì vậy, đó là nó để deep learning từ đầu đến cuối.
+
+148
+00:09:35.055 --> 00:09:38.380
+Nó đôi khi có thể hoạt động thực sự tốt nhưng bạn cũng phải
+
+149
+00:09:38.380 --> 00:09:42.453
+lưu ý đến nơi bạn áp dụng deep learning từ đầu đến cuối.
+
+150
+00:09:42.453 --> 00:09:46.985
+Cuối cùng, cảm ơn bạn và chúc mừng bạn đã làm điều này xa với tôi.
+
+151
+00:09:46.985 --> 00:09:50.290
+Nếu bạn hoàn thành video tuần trước và video của tuần này thì tôi
+
+152
+00:09:50.290 --> 00:09:53.860
+nghĩ rằng bạn sẽ thông minh hơn và chiến lược hơn nhiều
+
+153
+00:09:53.860 --> 00:09:57.250
+và nhiều hơn nữa có thể đưa ra quyết định ưu tiên tốt
+
+154
+00:09:57.250 --> 00:10:01.138
+về cách tiến lên dự án machine learning của bạn,
+
+155
+00:10:01.138 --> 00:10:03.520
+thậm chí so với rất nhiều machine learning các kỹ sư
+
+156
+00:10:03.520 --> 00:10:06.310
+và các nhà nghiên cứu mà tôi thấy ở thung lũng Silicon.
+
+157
+00:10:06.310 --> 00:10:11.320
+Vì vậy, chúc mừng tất cả những gì bạn đã học được cho đến nay và tôi hy vọng bạn bây giờ cũng xem xét các
+
+158
+00:10:11.320 --> 00:10:13.480
+vấn đề bài tập về nhà trong tuần này sẽ cho bạn một
+
+159
+00:10:13.480 --> 00:10:18.770
+cơ hội khác để thực hành những ý tưởng này và đảm bảo rằng bạn đang nắm vững chúng.

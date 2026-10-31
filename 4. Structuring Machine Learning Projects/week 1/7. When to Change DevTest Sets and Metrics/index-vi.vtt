@@ -1,0 +1,665 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.505
+Bạn đã thấy cách thiết lập để có một bộ dev và chỉ số đánh giá
+
+2
+00:00:03.505 --> 00:00:07.170
+giống như đặt một mục tiêu ở đâu đó để nhóm của bạn nhắm vào.
+
+3
+00:00:07.170 --> 00:00:09.330
+Nhưng đôi khi thông qua một dự án bạn có thể
+
+4
+00:00:09.330 --> 00:00:12.040
+nhận ra rằng bạn đặt mục tiêu của bạn vào sai vị trí.
+
+5
+00:00:12.040 --> 00:00:14.365
+Trong trường hợp đó, bạn nên di chuyển mục tiêu của bạn.
+
+6
+00:00:14.365 --> 00:00:16.156
+Chúng ta hãy nhìn vào một ví dụ.
+
+7
+00:00:16.156 --> 00:00:21.210
+Giả sử bạn xây dựng một bộ classification mèo để cố gắng tìm rất nhiều hình ảnh của mèo để hiển thị cho người sử
+
+8
+00:00:21.210 --> 00:00:26.850
+dụng yêu thương mèo của bạn và số liệu mà bạn quyết định sử dụng là lỗi classification.
+
+9
+00:00:26.850 --> 00:00:29.655
+Vì vậy, thuật toán A và B có, tương ứng,
+
+10
+00:00:29.655 --> 00:00:32.025
+lỗi 3% và lỗi 5%,
+
+11
+00:00:32.025 --> 00:00:34.955
+vì vậy có vẻ như thuật toán A đang làm tốt hơn.
+
+12
+00:00:34.955 --> 00:00:38.290
+Nhưng giả sử bạn thử những thuật toán này, bạn nhìn vào những thuật toán này và thuật toán A,
+
+13
+00:00:38.290 --> 00:00:43.760
+vì một lý do nào đó, đang cho phép thông qua rất nhiều hình ảnh khiêu dâm.
+
+14
+00:00:43.760 --> 00:00:46.985
+Vì vậy, nếu bạn thay đổi thuật toán A người dùng sẽ
+
+15
+00:00:46.985 --> 00:00:51.185
+thấy nhiều hình ảnh mèo hơn bởi vì bạn sẽ thấy 3 phần trăm lỗi và xác định mèo,
+
+16
+00:00:51.185 --> 00:00:53.280
+nhưng nó cũng cho người dùng thấy
+
+17
+00:00:53.280 --> 00:00:57.465
+một số hình ảnh khiêu dâm mà là hoàn toàn không thể chấp nhận cả cho công ty của bạn,
+
+18
+00:00:57.465 --> 00:00:59.455
+cũng như cho người dùng của bạn.
+
+19
+00:00:59.455 --> 00:01:03.620
+Ngược lại, Algorithm B có lỗi 5% nên điều này
+
+20
+00:01:03.620 --> 00:01:08.720
+classification ít hình ảnh hơn nhưng nó không có hình ảnh khiêu dâm.
+
+21
+00:01:08.720 --> 00:01:10.845
+Vì vậy, từ quan điểm của công ty bạn,
+
+22
+00:01:10.845 --> 00:01:13.530
+cũng như từ quan điểm chấp nhận người dùng,
+
+23
+00:01:13.530 --> 00:01:15.920
+thuật toán B thực sự là một thuật toán tốt hơn nhiều
+
+24
+00:01:15.920 --> 00:01:19.305
+bởi vì nó không cho phép thông qua bất kỳ hình ảnh khiêu dâm nào.
+
+25
+00:01:19.305 --> 00:01:22.165
+Vì vậy, những gì đã xảy ra trong ví dụ này là thuật toán A
+
+26
+00:01:22.165 --> 00:01:25.590
+đang làm tốt hơn về số liệu đánh giá.
+
+27
+00:01:25.590 --> 00:01:29.990
+Nó nhận được 3 phần trăm lỗi nhưng nó thực sự là một thuật toán tồi tệ hơn.
+
+28
+00:01:29.990 --> 00:01:33.150
+Trong trường hợp này, số liệu đánh giá cộng với
+
+29
+00:01:33.150 --> 00:01:38.460
+bộ dev thích thuật toán A vì họ đang nói, nhìn,
+
+30
+00:01:38.460 --> 00:01:43.860
+thuật toán A có lỗi thấp hơn là số liệu bạn đang sử dụng nhưng bạn và
+
+31
+00:01:43.860 --> 00:01:51.010
+người dùng của bạn thích thuật toán B vì nó không cho phép thông qua hình ảnh khiêu dâm.
+
+32
+00:01:51.010 --> 00:01:52.780
+Vì vậy, khi điều này xảy ra,
+
+33
+00:01:52.780 --> 00:01:55.785
+khi số liệu đánh giá của bạn không còn
+
+34
+00:01:55.785 --> 00:01:59.530
+xếp hạng chính xác các ưu tiên thứ tự giữa các thuật toán,
+
+35
+00:01:59.530 --> 00:02:04.020
+trong trường hợp này là dự đoán sai rằng Thuật toán A là một thuật toán tốt hơn,
+
+36
+00:02:04.020 --> 00:02:05.970
+thì đó là một dấu hiệu cho thấy bạn nên thay đổi
+
+37
+00:02:05.970 --> 00:02:13.500
+số liệu đánh giá của bạn hoặc có lẽ sự phát triển của bạn thiết lập hoặc bộ kiểm tra.
+
+38
+00:02:16.840 --> 00:02:20.340
+Trong trường hợp này số liệu lỗi classification sai
+
+39
+00:02:20.340 --> 00:02:23.870
+mà bạn đang sử dụng có thể được viết như sau: cái này trên m,
+
+40
+00:02:23.870 --> 00:02:30.091
+một số ví dụ trong dev set
+
+41
+00:02:30.091 --> 00:02:37.190
+của bạn, của tổng từ i bằng 1 đến mdev,
+
+42
+00:02:37.190 --> 00:02:44.995
+số ví dụ trong dev set này của chỉ số về việc có hay không dự đoán ví dụ i trong bộ phát triển của bạn không bằng nhãn thực tế i,
+
+43
+00:02:44.995 --> 00:02:50.390
+nơi họ sử dụng ký hiệu này để biểu thị giá trị tiên đoán của chúng.
+
+44
+00:02:50.390 --> 00:02:51.990
+Đúng. Vậy đây là số không.
+
+45
+00:02:51.990 --> 00:02:54.795
+Và điều này chỉ ra một ký hiệu hàm,
+
+46
+00:02:54.795 --> 00:03:00.595
+đếm lên số ví dụ mà điều này bên trong nó là sự thật.
+
+47
+00:03:00.595 --> 00:03:06.533
+Vì vậy, công thức này chỉ đếm số ví dụ được classification sai.
+
+48
+00:03:06.533 --> 00:03:09.360
+Vấn đề với số liệu đánh giá này là họ đối xử với
+
+49
+00:03:09.360 --> 00:03:13.957
+hình ảnh khiêu dâm và không khiêu dâm như nhau
+
+50
+00:03:13.957 --> 00:03:18.750
+nhưng bạn thực sự muốn người classification của bạn không dán nhãn sai các hình ảnh khiêu dâm,
+
+51
+00:03:18.750 --> 00:03:21.470
+như có thể bạn nhận ra một hình ảnh khiêu dâm trong hình ảnh mèo và
+
+52
+00:03:21.470 --> 00:03:24.605
+do đó hiển thị nó cho người dùng không nghi ngờ,
+
+53
+00:03:24.605 --> 00:03:31.727
+do đó rất không hài lòng với việc nhìn thấy nội dung khiêu dâm bất ngờ.
+
+54
+00:03:31.727 --> 00:03:38.590
+Một cách để thay đổi chỉ số đánh giá này là nếu bạn thêm thuật ngữ trọng lượng ở đây,
+
+55
+00:03:38.590 --> 00:03:48.385
+chúng tôi gọi đây là w (i) trong đó w (i) sẽ bằng 1 nếu x (i)
+
+56
+00:03:48.385 --> 00:03:53.950
+không phải khiêu dâm và có thể là 10 hoặc
+
+57
+00:03:53.950 --> 00:04:00.925
+thậm chí có thể là số lớn như 100 nếu x (i) là khiêu dâm.
+
+58
+00:04:00.925 --> 00:04:05.095
+Vì vậy, theo cách này bạn đang đưa ra một trọng lượng lớn hơn nhiều cho
+
+59
+00:04:05.095 --> 00:04:09.220
+các ví dụ khiêu dâm để thuật ngữ lỗi tăng lên
+
+60
+00:04:09.220 --> 00:04:12.800
+nhiều hơn nếu thuật toán mắc sai lầm khi classification
+
+61
+00:04:12.800 --> 00:04:16.931
+một hình ảnh khiêu dâm như một hình ảnh mèo.
+
+62
+00:04:16.931 --> 00:04:19.390
+Trong ví dụ này, bạn đưa ra
+
+63
+00:04:19.390 --> 00:04:25.355
+trọng lượng lớn hơn 10 lần để classification hình ảnh khiêu dâm một cách chính xác.
+
+64
+00:04:25.355 --> 00:04:27.465
+Nếu bạn muốn bình thường hóa này hằng số,
+
+65
+00:04:27.465 --> 00:04:30.743
+về mặt kỹ thuật này trở thành tổng trên i của w (i),
+
+66
+00:04:30.743 --> 00:04:35.633
+vì vậy sau đó lỗi này vẫn sẽ nằm giữa 0 và một.
+
+67
+00:04:35.633 --> 00:04:40.630
+Các chi tiết của trọng số này không quan trọng và thực sự để thực hiện trọng số này,
+
+68
+00:04:40.630 --> 00:04:43.690
+bạn cần phải thực sự đi qua bộ dev và kiểm tra của bạn,
+
+69
+00:04:43.690 --> 00:04:47.415
+do đó, dán nhãn các hình ảnh khiêu dâm
+
+70
+00:04:47.415 --> 00:04:50.960
+trong bộ dev và bộ thử nghiệm của bạn để bạn có thể thực hiện chức năng trọng số này.
+
+71
+00:04:50.960 --> 00:04:53.095
+Nhưng mức độ lấy đi cao là,
+
+72
+00:04:53.095 --> 00:04:56.965
+nếu bạn thấy rằng số liệu đánh giá không đưa ra
+
+73
+00:04:56.965 --> 00:05:01.405
+ưu tiên thứ tự xếp hạng đúng cho thuật toán thực sự tốt hơn,
+
+74
+00:05:01.405 --> 00:05:06.880
+thì có một thời gian để suy nghĩ về việc xác định một số liệu đánh giá mới.
+
+75
+00:05:06.880 --> 00:05:12.200
+Và đây chỉ là một cách có thể mà bạn có thể xác định một số liệu đánh giá.
+
+76
+00:05:12.200 --> 00:05:15.220
+Mục tiêu của chỉ số đánh giá là cho bạn biết chính xác,
+
+77
+00:05:15.220 --> 00:05:20.154
+cho hai đơn vị classification, cái nào tốt hơn cho ứng dụng của bạn.
+
+78
+00:05:20.154 --> 00:05:21.650
+Với mục đích của video này,
+
+79
+00:05:21.650 --> 00:05:25.863
+đừng lo lắng quá nhiều về các chi tiết về cách chúng tôi xác định một số liệu lỗi mới,
+
+80
+00:05:25.863 --> 00:05:29.255
+vấn đề là nếu bạn không hài lòng với số liệu lỗi cũ của bạn
+
+81
+00:05:29.255 --> 00:05:33.050
+thì đừng tiếp tục coasting với số liệu lỗi bạn không hài lòng,
+
+82
+00:05:33.050 --> 00:05:36.260
+thay vào đó hãy thử xác định một số liệu mới mà bạn nghĩ tốt hơn nắm bắt
+
+83
+00:05:36.260 --> 00:05:39.659
+sở thích của bạn trong điều khoản của những gì thực sự là một thuật toán tốt hơn.
+
+84
+00:05:39.659 --> 00:05:42.890
+Một điều bạn có thể nhận thấy là cho đến nay chúng ta chỉ nói về
+
+85
+00:05:42.890 --> 00:05:46.255
+làm thế nào để xác định một số liệu để đánh giá các đơn vị classification.
+
+86
+00:05:46.255 --> 00:05:50.450
+Đó là, chúng tôi đã xác định một chỉ số đánh giá giúp chúng tôi
+
+87
+00:05:50.450 --> 00:05:53.780
+xếp hạng tốt hơn các đơn vị classification thứ tự khi
+
+88
+00:05:53.780 --> 00:05:57.887
+họ thực hiện ở các mức độ khác nhau về phát trực tuyến nội dung khiêu dâm.
+
+89
+00:05:57.887 --> 00:06:01.505
+Và đây thực sự là một ví dụ về sự chỉnh hình mà
+
+90
+00:06:01.505 --> 00:06:05.480
+tôi nghĩ bạn nên lấy một vấn đề machine learning và chia nó thành các bước riêng biệt.
+
+91
+00:06:05.480 --> 00:06:14.525
+Một bước là tìm hiểu làm thế nào để xác định một số liệu ghi lại những gì bạn muốn làm,
+
+92
+00:06:14.525 --> 00:06:21.677
+và tôi sẽ lo lắng riêng về cách thực sự làm tốt trên số liệu này.
+
+93
+00:06:21.677 --> 00:06:26.480
+Vì vậy, hãy nghĩ về nhiệm vụ machine learning như hai bước riêng biệt.
+
+94
+00:06:26.480 --> 00:06:28.145
+Để sử dụng tương tự mục
+
+95
+00:06:28.145 --> 00:06:32.890
+tiêu, bước đầu tiên là đặt mục tiêu.
+
+96
+00:06:32.890 --> 00:06:37.777
+Vì vậy, xác định nơi bạn muốn nhắm và sau đó là một bước hoàn toàn riêng biệt,
+
+97
+00:06:37.777 --> 00:06:40.340
+đây là bước bạn có thể điều chỉnh đó là làm thế nào để bạn
+
+98
+00:06:40.340 --> 00:06:44.005
+đặt mục tiêu như một vấn đề hoàn toàn riêng biệt.
+
+99
+00:06:44.005 --> 00:06:48.854
+Hãy nghĩ về nó như một bước riêng biệt để điều chỉnh về cách làm tốt ở thuật toán này,
+
+100
+00:06:48.854 --> 00:06:58.888
+cách nhắm chính xác hay cách bắn vào mục tiêu.
+
+101
+00:06:58.888 --> 00:07:06.200
+Xác định số liệu là bước một và bạn làm một cái gì đó khác cho bước hai.
+
+102
+00:07:06.200 --> 00:07:08.140
+Về mặt bắn vào mục tiêu,
+
+103
+00:07:08.140 --> 00:07:11.910
+có lẽ thuật toán học của bạn là tối ưu hóa một số chức năng chi phí trông như thế này,
+
+104
+00:07:11.910 --> 00:07:21.907
+nơi bạn đang giảm thiểu một số tổn thất trên bộ đào tạo của bạn.
+
+105
+00:07:21.907 --> 00:07:25.880
+Một điều bạn có thể làm là cũng sửa đổi
+
+106
+00:07:25.880 --> 00:07:28.160
+này để kết hợp các trọng lượng
+
+107
+00:07:28.160 --> 00:07:31.070
+và có thể kết thúc thay đổi hằng số bình thường hóa này là tốt.
+
+108
+00:07:31.070 --> 00:07:34.240
+Vì vậy, nó chỉ 1 trên một tổng của w (i).
+
+109
+00:07:34.240 --> 00:07:36.990
+Một lần nữa, các chi tiết về cách bạn định nghĩa J không quan trọng,
+
+110
+00:07:36.990 --> 00:07:42.050
+nhưng vấn đề là với triết lý của orthogonalization nghĩ đến việc đặt mục tiêu là
+
+111
+00:07:42.050 --> 00:07:48.456
+một bước và nhắm và bắn vào một mục tiêu như một bước riêng biệt mà bạn thực hiện riêng biệt.
+
+112
+00:07:48.456 --> 00:07:49.975
+Nói cách khác, tôi khuyến khích bạn nghĩ đến,
+
+113
+00:07:49.975 --> 00:07:55.225
+xác định số liệu là một bước và chỉ sau khi bạn xác định một số liệu,
+
+114
+00:07:55.225 --> 00:07:57.640
+tìm ra làm thế nào để làm tốt trên số liệu đó có thể
+
+115
+00:07:57.640 --> 00:08:00.745
+thay đổi cost function J mà neural network của bạn đang tối ưu hóa.
+
+116
+00:08:00.745 --> 00:08:03.675
+Trước khi tiếp tục, chúng ta hãy nhìn vào chỉ một ví dụ nữa.
+
+117
+00:08:03.675 --> 00:08:08.135
+Hãy nói rằng hai đơn vị classification mèo A và B của bạn có, tương ứng,
+
+118
+00:08:08.135 --> 00:08:13.300
+3 phần trăm lỗi và 5 phần trăm lỗi như được đánh giá trên bộ dev của bạn.
+
+119
+00:08:13.300 --> 00:08:17.725
+Hoặc thậm chí có thể trên bộ thử nghiệm của bạn mà là hình ảnh tải về từ internet,
+
+120
+00:08:17.725 --> 00:08:19.615
+vì vậy chất lượng cao cũng đóng khung hình ảnh.
+
+121
+00:08:19.615 --> 00:08:21.760
+Nhưng có lẽ khi bạn triển khai sản phẩm thuật toán của
+
+122
+00:08:21.760 --> 00:08:24.895
+bạn, bạn thấy rằng thuật toán B thực sự trông giống như nó đang hoạt động tốt hơn,
+
+123
+00:08:24.895 --> 00:08:27.865
+mặc dù nó đang làm tốt hơn trên bộ dev của bạn.
+
+124
+00:08:27.865 --> 00:08:30.820
+Và bạn thấy rằng bạn đã tập luyện
+
+125
+00:08:30.820 --> 00:08:33.640
+những hình ảnh chất lượng cao được tải xuống từ
+
+126
+00:08:33.640 --> 00:08:36.985
+Internet nhưng khi bạn triển khai những hình ảnh đó trên ứng dụng di động,
+
+127
+00:08:36.985 --> 00:08:39.620
+người dùng đang tải lên tất cả các loại hình ảnh, chúng ít được đóng khung hơn,
+
+128
+00:08:39.620 --> 00:08:42.835
+bạn không chỉ bao phủ con mèo, những con mèo có nét mặt hài hước,
+
+129
+00:08:42.835 --> 00:08:44.778
+có thể hình ảnh mờ hơn nhiều,
+
+130
+00:08:44.778 --> 00:08:51.745
+và khi bạn kiểm tra các thuật toán của bạn, bạn thấy rằng thuật toán B thực sự đang làm tốt hơn.
+
+131
+00:08:51.745 --> 00:08:58.755
+Vì vậy, đây sẽ là một ví dụ khác về số liệu và bộ thử nghiệm dev của bạn rơi xuống.
+
+132
+00:08:58.755 --> 00:09:01.140
+Vấn đề là bạn đang đánh giá trên
+
+133
+00:09:01.140 --> 00:09:04.265
+bộ dev và thử nghiệm một
+
+134
+00:09:04.265 --> 00:09:06.830
+hình ảnh rất đẹp, độ phân giải cao, có khung hình tốt nhưng những gì người dùng của bạn
+
+135
+00:09:06.830 --> 00:09:09.750
+thực sự quan tâm là bạn có chúng làm tốt trên hình ảnh họ đang tải lên,
+
+136
+00:09:09.750 --> 00:09:15.935
+có lẽ là những bức ảnh ít chuyên nghiệp hơn và mờ hơn và ít được đóng khung.
+
+137
+00:09:15.935 --> 00:09:17.655
+Vì vậy, hướng dẫn là,
+
+138
+00:09:17.655 --> 00:09:20.030
+nếu làm tốt trên số liệu của
+
+139
+00:09:20.030 --> 00:09:23.455
+bạn và bộ dev hiện tại của bạn hoặc phân phối bộ dev và kiểm tra,
+
+140
+00:09:23.455 --> 00:09:27.845
+nếu điều đó không tương ứng với làm tốt trên ứng dụng bạn thực sự quan tâm,
+
+141
+00:09:27.845 --> 00:09:32.695
+sau đó thay đổi số liệu của bạn và bộ kiểm tra dev của bạn.
+
+142
+00:09:32.695 --> 00:09:38.490
+Nói cách khác, nếu chúng ta phát hiện ra rằng bộ kiểm tra dev của bạn có những hình ảnh chất lượng rất cao
+
+143
+00:09:38.490 --> 00:09:41.960
+nhưng đánh giá trên bộ kiểm tra dev này
+
+144
+00:09:41.960 --> 00:09:45.915
+không phải là dự đoán của ứng dụng của bạn thực sự thực hiện tốt như thế nào,
+
+145
+00:09:45.915 --> 00:09:47.300
+bởi vì ứng dụng của bạn cần phải đối phó với hình ảnh chất lượng thấp hơn,
+
+146
+00:09:47.300 --> 00:09:51.335
+sau đó đó đó là một thời điểm tốt để thay đổi kiểm tra dev của bạn
+
+147
+00:09:51.335 --> 00:09:56.875
+để dữ liệu của bạn phản ánh tốt hơn loại dữ liệu bạn thực sự cần thực hiện tốt hơn.
+
+148
+00:09:56.875 --> 00:10:00.560
+Nhưng hướng dẫn tổng thể là nếu số liệu hiện tại và dữ liệu bạn đang
+
+149
+00:10:00.560 --> 00:10:04.905
+đánh giá không tương ứng với việc làm tốt về những gì bạn thực sự quan tâm,
+
+150
+00:10:04.905 --> 00:10:07.820
+sau đó thay đổi số liệu của bạn và/hoặc bộ dev/test của bạn để
+
+151
+00:10:07.820 --> 00:10:11.206
+nắm bắt tốt hơn những gì bạn cần thuật toán của bạn để thực sự làm tốt trên.
+
+152
+00:10:11.206 --> 00:10:14.690
+Có một số liệu đánh giá và bộ dev cho phép bạn
+
+153
+00:10:14.690 --> 00:10:18.685
+nhanh hơn nhiều đưa ra quyết định về là thuật toán A hoặc thuật toán B tốt hơn.
+
+154
+00:10:18.685 --> 00:10:22.485
+Nó thực sự tăng tốc độ nhanh như thế nào bạn và nhóm của bạn có thể lặp đi lặp lại.
+
+155
+00:10:22.485 --> 00:10:24.110
+Vì vậy, đề nghị của tôi là,
+
+156
+00:10:24.110 --> 00:10:28.220
+ngay cả khi bạn không thể xác định số liệu đánh giá hoàn hảo và bộ dev,
+
+157
+00:10:28.220 --> 00:10:32.780
+chỉ cần thiết lập một cái gì đó nhanh chóng và sử dụng nó để thúc đẩy tốc độ của nhóm của bạn lặp lại.
+
+158
+00:10:32.780 --> 00:10:36.060
+Và nếu sau đó bạn phát hiện ra rằng nó không phải là một điều tốt,
+
+159
+00:10:36.060 --> 00:10:39.675
+bạn có ý tưởng tốt hơn, thay đổi nó vào thời điểm đó, nó hoàn toàn ổn.
+
+160
+00:10:39.675 --> 00:10:42.230
+Nhưng những gì tôi khuyên bạn nên chống lại cho hầu hết các đội là
+
+161
+00:10:42.230 --> 00:10:45.800
+để chạy quá lâu mà không cần bất kỳ số liệu đánh giá và
+
+162
+00:10:45.800 --> 00:10:48.500
+dev thiết lập bởi vì điều đó có thể làm chậm
+
+163
+00:10:48.500 --> 00:10:52.750
+hiệu quả của những gì nhóm của bạn có thể lặp lại và cải thiện thuật toán của bạn.
+
+164
+00:10:52.750 --> 00:10:58.795
+Vì vậy, điều đó nói về khi nào cần thay đổi số liệu đánh giá của bạn và/hoặc bộ dev và kiểm tra.
+
+165
+00:10:58.795 --> 00:11:02.480
+Tôi hy vọng rằng những nguyên tắc này giúp bạn thiết lập toàn bộ nhóm của mình để có
+
+166
+00:11:02.480 --> 00:11:07.370
+một mục tiêu được xác định rõ ràng mà bạn có thể lặp lại một cách hiệu quả nhằm cải thiện hiệu suất.

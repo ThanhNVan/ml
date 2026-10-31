@@ -1,0 +1,686 @@
+WEBVTT
+
+1
+00:00:02.660 --> 00:00:06.120
+Chào mừng các bạn trở lại. Ở video trước,
+
+2
+00:00:06.120 --> 00:00:09.330
+chúng ta đã học về convolution tách biệt chiều sâu.
+
+3
+00:00:09.330 --> 00:00:11.610
+Bây giờ hãy đưa nó vào neural network
+
+4
+00:00:11.610 --> 00:00:14.130
+để xây dựng MobileNet.
+
+5
+00:00:14.130 --> 00:00:17.820
+Ý tưởng về MobileNet ở khắp mọi nơi mà
+
+6
+00:00:17.820 --> 00:00:19.440
+trước đây bạn đã sử dụng
+
+7
+00:00:19.440 --> 00:00:21.885
+phép convolution đắt đỏ.
+
+8
+00:00:21.885 --> 00:00:23.715
+Thay vào đó, bạn có thể sử dụng
+
+9
+00:00:23.715 --> 00:00:25.635
+phép convolution tách biệt chiều sâu
+
+10
+00:00:25.635 --> 00:00:28.995
+ít tốn kém hơn nhiều,
+
+11
+00:00:28.995 --> 00:00:33.225
+gồm phép depthwise convolution
+
+12
+00:00:33.225 --> 00:00:36.645
+và phép pointwise convolution.
+
+13
+00:00:36.645 --> 00:00:41.145
+Tài liệu MobileNet v1 có một kiến trúc cụ thể
+
+14
+00:00:41.145 --> 00:00:45.825
+trong đó, nó sử dụng một khối như thế này 13 lần.
+
+15
+00:00:45.825 --> 00:00:49.985
+Nó sẽ sử dụng phép depthwise convolution
+
+16
+00:00:49.985 --> 00:00:53.690
+để tạo đầu ra và xếp chống 13 layer này
+
+17
+00:00:53.690 --> 00:00:56.120
+để đi từ
+
+18
+00:00:56.120 --> 00:00:58.835
+hình ảnh đầu vào thô ban đầu
+
+19
+00:00:58.835 --> 00:01:02.675
+để đưa ra dự đoán classification.
+
+20
+00:01:02.675 --> 00:01:07.565
+Thêm một số chi tiết sau 13 layer này,
+
+21
+00:01:07.565 --> 00:01:10.340
+vài layer cuối cùng của neural network
+
+22
+00:01:10.340 --> 00:01:12.635
+là Pooling layer thông thường,
+
+23
+00:01:12.635 --> 00:01:15.275
+tiếp theo là fully connected layer,
+
+24
+00:01:15.275 --> 00:01:17.650
+sau đó là Softmax layer
+
+25
+00:01:17.650 --> 00:01:20.845
+để đưa ra dự đoán classification.
+
+26
+00:01:20.845 --> 00:01:23.105
+Điều này hoạt động tốt
+
+27
+00:01:23.105 --> 00:01:25.340
+trong khi việc tính toán hơn
+
+28
+00:01:25.340 --> 00:01:28.280
+bớt đắt đỏ hơn các thuật toán trước đó
+
+29
+00:01:28.280 --> 00:01:31.550
+sử dụng	phép convolution thông thường.
+
+30
+00:01:31.550 --> 00:01:34.340
+Trong video này, tôi muốn chia sẻ với bạn
+
+31
+00:01:34.340 --> 00:01:36.260
+một trong những cải tiến
+
+32
+00:01:36.260 --> 00:01:39.075
+về kiến trúc MobileNet cơ bản này.
+
+33
+00:01:39.075 --> 00:01:42.360
+là kiến trúc MobileNet v2.
+
+34
+00:01:42.360 --> 00:01:43.850
+Tôi sẽ giới thiệu qua
+
+35
+00:01:43.850 --> 00:01:45.200
+về điều này để các bạn
+
+36
+00:01:45.200 --> 00:01:46.790
+nắm được sơ qua những điều mà thuật toán thực hiện
+
+37
+00:01:46.790 --> 00:01:49.235
+mà không đi sâu vào chi tiết.
+
+38
+00:01:49.235 --> 00:01:52.160
+Đây là một tài liệu được Mark Sandler
+
+39
+00:01:52.160 --> 00:01:55.800
+và các cộng sự công bố khiến MobileNet thậm chí còn tốt hơn
+
+40
+00:01:55.800 --> 00:01:59.580
+Trong MobileNet v2, có hai thay đổi chính.
+
+41
+00:01:59.580 --> 00:02:03.525
+Một là thêm Residual Connection,
+
+42
+00:02:03.525 --> 00:02:05.930
+Đây chỉ là kết nối phần dư
+
+43
+00:02:05.930 --> 00:02:08.595
+mà chúng ta đã học trong các video gần đây.
+
+44
+00:02:08.595 --> 00:02:11.330
+Residual connection hoặc skip connection này
+
+45
+00:02:11.330 --> 00:02:14.255
+lấy đầu vào từ layer trước
+
+46
+00:02:14.255 --> 00:02:18.095
+và tính tổng hoặc chuyển nó trực tiếp đến layer tiếp theo,
+
+47
+00:02:18.095 --> 00:02:19.640
+cho phép các thành phần
+
+48
+00:02:19.640 --> 00:02:22.055
+backpropagation hiệu quả hơn.
+
+49
+00:02:22.055 --> 00:02:27.170
+Thay đổi thứ hai là nó cũng như một layer mở rộng,
+
+50
+00:02:27.170 --> 00:02:30.280
+mà chúng ta sẽ tìm hiểu ở slide tiếp theo,
+
+51
+00:02:30.280 --> 00:02:33.380
+trước depthwise convolution,
+
+52
+00:02:33.380 --> 00:02:35.915
+tiếp theo là pointwise convolution,
+
+53
+00:02:35.915 --> 00:02:37.240
+chúng ta sẽ gọi nó là Projection
+
+54
+00:02:37.240 --> 00:02:39.310
+trong pointwise convolution.
+
+55
+00:02:39.310 --> 00:02:40.715
+Cùng một hoạt động,
+
+56
+00:02:40.715 --> 00:02:42.200
+nhưng tên lại khác nhau,
+
+57
+00:02:42.200 --> 00:02:44.750
+chúng ta sẽ biết lý do ở slide tiếp theo.
+
+58
+00:02:44.750 --> 00:02:46.610
+Điều mà MobileNet v2 thực hiện
+
+59
+00:02:46.610 --> 00:02:48.080
+là sử dụng khối này
+
+60
+00:02:48.080 --> 00:02:50.315
+và lặp lại khối này một số lần,
+
+61
+00:02:50.315 --> 00:02:53.340
+như chúng ta có 13 lần ở đây,
+
+62
+00:02:53.340 --> 00:02:55.520
+Kiến trúc MobileNet v2 tình cờ
+
+63
+00:02:55.520 --> 00:02:57.905
+chọn thực hiện điều này 17 lần,
+
+64
+00:02:57.905 --> 00:03:01.310
+vượt qua các yếu tố đầu vào thông qua 17 khối này,
+
+65
+00:03:01.310 --> 00:03:03.125
+và cuối cùng kết thúc với
+
+66
+00:03:03.125 --> 00:03:06.920
+Pooling, full-connected và softmax
+
+67
+00:03:06.920 --> 00:03:09.710
+để đưa ra dự đoán classification.
+
+68
+00:03:09.710 --> 00:03:14.000
+Nhưng ý tưởng chính là những khối như thế này
+
+69
+00:03:14.000 --> 00:03:17.540
+hoặc như thế này làm giảm chi phí tính toán thế nào?
+
+70
+00:03:17.540 --> 00:03:24.225
+Khối này ở đây được gọi là khối bottleneck (bottleneck).
+
+71
+00:03:24.225 --> 00:03:26.490
+Hãy cùng tìm hiểu chi tiết
+
+72
+00:03:26.490 --> 00:03:29.730
+cách hoạt động của khối MobileNet v2.
+
+73
+00:03:29.730 --> 00:03:31.880
+Cho đầu vào
+
+74
+00:03:31.880 --> 00:03:35.435
+n x n x 3,
+
+75
+00:03:35.435 --> 00:03:38.990
+MobileNet v2 bottleneck sẽ qua
+
+76
+00:03:38.990 --> 00:03:41.660
+đầu vào đó thông qua Residual Connection
+
+77
+00:03:41.660 --> 00:03:43.550
+trực tiếp tới đầu ra,
+
+78
+00:03:43.550 --> 00:03:45.115
+giống như trong ResNet.
+
+79
+00:03:45.115 --> 00:03:47.220
+Sau đó,
+
+80
+00:03:47.220 --> 00:03:50.085
+trong phần Non-Residual Connection chính này của khối,
+
+81
+00:03:50.085 --> 00:03:54.115
+trước tiên chúng ta sẽ áp dụng một toán tử mở rộng,
+
+82
+00:03:54.115 --> 00:03:56.670
+điều đó có nghĩa là chúng ta sẽ áp dụng
+
+83
+00:03:56.670 --> 00:03:59.570
+1 x 1 x n c.
+
+84
+00:03:59.570 --> 00:04:02.315
+trong trường hợp này là bộ lọc 1x1x3 chiều.
+
+85
+00:04:02.315 --> 00:04:04.220
+Nhưng chúng ta vận dụng một số lượng lớn,
+
+86
+00:04:04.220 --> 00:04:06.920
+giả sử 18 bộ lọc,
+
+87
+00:04:06.920 --> 00:04:09.605
+như vậy chúng ta được khối
+
+88
+00:04:09.605 --> 00:04:13.850
+n x n x 18 chiều ở đây.
+
+89
+00:04:13.850 --> 00:04:16.850
+Hệ số mở rộng của 6
+
+90
+00:04:16.850 --> 00:04:19.520
+khá điển hình trong MobileNet v2
+
+91
+00:04:19.520 --> 00:04:21.920
+là lý do tại sao đầu vào đi từ
+
+92
+00:04:21.920 --> 00:04:25.299
+n x n x 3 đến n x n x 18,
+
+93
+00:04:25.299 --> 00:04:27.490
+đó là lý do tại sao chúng ta gọi nó là Expansion,
+
+94
+00:04:27.490 --> 00:04:31.295
+nó làm tăng chiều của điều này lên hệ số sáu.
+
+95
+00:04:31.295 --> 00:04:36.980
+Bước tiếp theo là convolution tách biệt chiều sâu,
+
+96
+00:04:37.740 --> 00:04:40.150
+và với một ít padding,
+
+97
+00:04:40.150 --> 00:04:45.735
+sau đó bạn có thể đi từ n x n x 18 tới chiều tương tự.
+
+98
+00:04:45.735 --> 00:04:49.290
+Trong video trước, chúng ta đi từ 6x6x3
+
+99
+00:04:49.290 --> 00:04:52.555
+tới 4x4x3 vì chúng ta đã không sử dụng padding.
+
+100
+00:04:52.555 --> 00:04:54.700
+Nhưng với padding, chúng ta có thể duy trì
+
+101
+00:04:54.700 --> 00:04:57.104
+n x n x 18 chiều,
+
+102
+00:04:57.104 --> 00:04:58.500
+vì vậy nó sẽ không co lại
+
+103
+00:04:58.500 --> 00:05:02.010
+khi chúng ta áp dụng depthwise convolution.
+
+104
+00:05:02.010 --> 00:05:07.285
+Cuối cùng, chúng ta áp dụng pointwise convolution,
+
+105
+00:05:07.285 --> 00:05:10.500
+trong trường hợp này có nghĩa là convolve với bộ lọc
+
+106
+00:05:10.500 --> 00:05:14.475
+1x1x18 chiều.
+
+107
+00:05:14.475 --> 00:05:16.995
+Giả sử,
+
+108
+00:05:16.995 --> 00:05:21.625
+nếu có 3 bộ lọc là bộ lọc nC',
+
+109
+00:05:21.625 --> 00:05:25.930
+sau đó chúng ta được một đầu ra là
+
+110
+00:05:25.930 --> 00:05:30.935
+n x n x 3 vì chúng ta có ba bộ lọc như vậy.
+
+111
+00:05:30.935 --> 00:05:32.655
+Ở bước cuối cùng này,
+
+112
+00:05:32.655 --> 00:05:37.425
+chúng ta đi từ n x n x 18 xuống n x n x 3,
+
+113
+00:05:37.425 --> 00:05:40.680
+và trong khối MobileNet v2 bottleneck,
+
+114
+00:05:40.680 --> 00:05:44.375
+bước cuối cùng này cũng được gọi là Projection
+
+115
+00:05:44.375 --> 00:05:47.655
+vì chúng ta chiếu xuống từ
+
+116
+00:05:47.655 --> 00:05:51.270
+n x n x 18 xuống n x n x 3.
+
+117
+00:05:51.270 --> 00:05:53.490
+Bạn có thể tự hỏi, tại sao chúng ta
+
+118
+00:05:53.490 --> 00:05:56.415
+gặp phải những khối bottleneck này?
+
+119
+00:05:56.415 --> 00:05:59.365
+Khối bottleneck
+
+120
+00:05:59.365 --> 00:06:02.085
+hoàn thành hai điều:
+
+121
+00:06:02.085 --> 00:06:04.490
+Một là bằng cách sử dụng phép Expansion,
+
+122
+00:06:04.490 --> 00:06:06.080
+nó làm tăng kích thước của
+
+123
+00:06:06.080 --> 00:06:09.705
+biểu diễn bên trong khối bottleneck.
+
+124
+00:06:09.705 --> 00:06:11.540
+Điều này cho phép neural network
+
+125
+00:06:11.540 --> 00:06:13.265
+tìm hiểu một hàm phong phú hơn.
+
+126
+00:06:13.265 --> 00:06:16.970
+Còn một phép toán ở đây nữa.
+
+127
+00:06:16.970 --> 00:06:20.450
+Nhưng khi triển khai trên thiết bị di động,
+
+128
+00:06:20.450 --> 00:06:22.490
+edge device, bạn thường
+
+129
+00:06:22.490 --> 00:06:24.770
+sẽ bị giới hạn nhiều về bộ nhớ.
+
+130
+00:06:24.770 --> 00:06:29.450
+Khối bottleneck sử dụng pointwise convolution hoặc
+
+131
+00:06:29.450 --> 00:06:32.660
+phép Projection để chiếu nó
+
+132
+00:06:32.660 --> 00:06:36.540
+xuống một bộ giá trị nhỏ hơn,
+
+133
+00:06:36.540 --> 00:06:39.050
+để khi bạn vượt qua khối tiếp theo,
+
+134
+00:06:39.050 --> 00:06:41.120
+dung lượng bộ nhớ cần thiết để
+
+135
+00:06:41.120 --> 00:06:44.000
+lưu trữ những giá trị này giảm trở lại.
+
+136
+00:06:44.000 --> 00:06:46.520
+Ý tưởng thông minh, thú vị
+
+137
+00:06:46.520 --> 00:06:48.200
+về bottleneck là nó
+
+138
+00:06:48.200 --> 00:06:50.450
+cho phép tập hợp tính toán phong phú hơn,
+
+139
+00:06:50.450 --> 00:06:52.370
+do đó cho phép neural network tìm hiểu
+
+140
+00:06:52.370 --> 00:06:54.349
+hiều hàm phức tạp hơn,
+
+141
+00:06:54.349 --> 00:06:58.280
+trong khi vẫn giữ dung lượng bộ nhớ, là kích thước
+
+142
+00:06:58.280 --> 00:07:00.080
+của các kích hoạt mà chúng ta cần đi
+
+143
+00:07:00.080 --> 00:07:02.330
+từ layer này sang layer khác, tương đối nhỏ.
+
+144
+00:07:02.330 --> 00:07:04.730
+Đó là lý do tại sao MobileNet v2
+
+145
+00:07:04.730 --> 00:07:07.880
+có hiệu suất tốt hơn MobileNet v1,
+
+146
+00:07:07.880 --> 00:07:10.400
+trong khi vẫn tiếp tục sử dụng
+
+147
+00:07:10.400 --> 00:07:14.560
+ít tài nguyên máy tính và bộ nhớ.
+
+148
+00:07:14.560 --> 00:07:17.235
+Kết hợp tất cả lại với nhau,
+
+149
+00:07:17.235 --> 00:07:21.885
+đây là slide đầu tiên mô tả MobileNet v1 và v2.
+
+150
+00:07:21.885 --> 00:07:24.620
+Kiến trúc MobileNet v2 sẽ
+
+151
+00:07:24.620 --> 00:07:28.899
+lặp lại khối bottleneck này 17 lần.
+
+152
+00:07:28.899 --> 00:07:33.470
+Sau đó, nếu mục tiêu của bạn là classification,
+
+153
+00:07:33.470 --> 00:07:35.090
+thì như thường lệ sẽ có
+
+154
+00:07:35.090 --> 00:07:40.625
+pooling, fully-connected, softmax layer
+
+155
+00:07:40.625 --> 00:07:44.315
+để tạo ra đầu ra classification.
+
+156
+00:07:44.315 --> 00:07:48.715
+Giờ bạn đã biết những ý chính của MobileNet v1 và v2.
+
+157
+00:07:48.715 --> 00:07:52.940
+Nếu bạn muốn xem một vài chi tiết bổ sung như
+
+158
+00:07:52.940 --> 00:07:55.280
+kích thước chính xác của các layer khác nhau khi
+
+159
+00:07:55.280 --> 00:07:58.025
+bạn lưu chuyển dữ liệu từ trái sang phải.
+
+160
+00:07:58.025 --> 00:08:00.320
+Bạn cũng có thể xem qua
+
+161
+00:08:00.320 --> 00:08:03.085
+tài liệu của Mark Sandler và những người khác.
+
+162
+00:08:03.085 --> 00:08:05.780
+Chúc mừng các bạn đã đi tới cuối video này,
+
+163
+00:08:05.780 --> 00:08:10.280
+bây giờ bạn biết MobileNet v1 và v2
+hoạt động thế nào bằng cách sử dụng
+
+164
+00:08:10.280 --> 00:08:12.830
+cótích chập tách biệt chiều sâu và
+
+165
+00:08:12.830 --> 00:08:16.055
+sử dụng các khối bottleneck mà bạn đã thấy trong video này.
+
+166
+00:08:16.055 --> 00:08:18.350
+Nếu bạn đang nghĩ về việc
+
+167
+00:08:18.350 --> 00:08:20.765
+xây dựng neural network hiệu quả,
+
+168
+00:08:20.765 --> 00:08:24.515
+có một ý tưởng khác mà tôi thấy rất hữu ích,
+
+169
+00:08:24.515 --> 00:08:27.440
+và tôi hy vọng bạn cũng sẽ tìm hiểu,
+
+170
+00:08:27.440 --> 00:08:28.930
+đó là EfficientNet.
+
+171
+00:08:28.930 --> 00:08:33.090
+Chúng ta sẽ lướt qua điều này trong video tiếp theo.

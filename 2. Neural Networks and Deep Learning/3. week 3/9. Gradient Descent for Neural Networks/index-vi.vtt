@@ -1,0 +1,665 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.520
+Tôi nghĩ rằng video này sẽ rất thú vị.
+
+2
+00:00:02.520 --> 00:00:04.635
+Trong video này, bạn sẽ thấy cách triển khai
+
+3
+00:00:04.635 --> 00:00:08.490
+gradient descent cho neural network
+ nhân tạo với một lớp ẩn.
+
+4
+00:00:08.490 --> 00:00:12.090
+Trong video này, tôi sẽ chỉ cung cấp 
+cho bạn các phương trình mà bạn cần
+
+5
+00:00:12.090 --> 00:00:16.245
+thực hiện để có được sự truyền ngược
+ hoặc để thực hiện gradient descent,
+
+6
+00:00:16.245 --> 00:00:18.555
+và rồi trong video tiếp theo,
+
+7
+00:00:18.555 --> 00:00:20.940
+tôi sẽ giải thích thêm về lý do tại sao
+
+8
+00:00:20.940 --> 00:00:24.150
+các phương trình này lại là các 
+phương trình chính xác,
+
+9
+00:00:24.150 --> 00:00:28.320
+là các phương trình đúng để tính građien
+ cho neural network nhân tạo của bạn.
+
+10
+00:00:28.320 --> 00:00:29.910
+Và bây giờ neural network nhân tạo,
+
+11
+00:00:29.910 --> 00:00:31.875
+với một lớp ẩn duy nhất,
+
+12
+00:00:31.875 --> 00:00:34.964
+sẽ có tham số w[1],
+
+13
+00:00:34.964 --> 00:00:39.285
+b[1], w[2] và b[2].
+
+14
+00:00:39.285 --> 00:00:40.800
+Và hãy nhớ là,
+
+15
+00:00:40.800 --> 00:00:48.150
+nếu bạn có các feature đầu
+ vào nx hoặc là n[0],
+
+16
+00:00:48.150 --> 00:00:51.090
+và các đơn vị ẩn n[1],
+
+17
+00:00:51.090 --> 00:00:57.260
+và các đơn vị đầu ra n[2] trong 
+các ví dụ của chúng ta
+
+18
+00:00:57.260 --> 00:00:59.690
+Cho đến giờ tôi chỉ có n[2]  bằng 1,
+
+19
+00:00:59.690 --> 00:01:05.720
+w1 sẽ là ma trận (n[1],n[0]) .
+
+20
+00:01:05.720 --> 00:01:08.870
+b1 sẽ là một vectơ n[1] chiều,
+
+21
+00:01:08.870 --> 00:01:12.770
+vì vậy chúng ta có thể viết dưới 
+dạng ma trận (n[1],1),
+
+22
+00:01:12.770 --> 00:01:14.120
+đây là một vector cột.
+
+23
+00:01:14.120 --> 00:01:18.395
+Kích thước của w2 sẽ là (n[2],n[1]),
+
+24
+00:01:18.395 --> 00:01:25.485
+và chiều của b[2] sẽ là n[2].
+
+25
+00:01:25.485 --> 00:01:28.925
+Và cho đến giờ, chúng ta mới chỉ thấy 
+các ví dụ mà trong đó n[2] bằng 1,
+
+26
+00:01:28.925 --> 00:01:32.180
+nơi bạn chỉ có một đơn vị ẩn duy nhất.
+
+27
+00:01:32.180 --> 00:01:39.405
+Và bạn cũng có một cost function 
+cho một neural network nhân tạo.
+
+28
+00:01:39.405 --> 00:01:43.370
+Bây giờ, giả sử bạn đang thực
+ hiện classification nhị phân.
+
+29
+00:01:43.370 --> 00:01:45.110
+Trong trường hợp đó,
+
+30
+00:01:45.110 --> 00:01:50.600
+chi phí của các tham số của bạn sẽ là một
+
+31
+00:01:50.600 --> 00:01:56.520
+trên m của trung bình của
+ hàm loss (hàm sai lệch) đó.
+
+32
+00:01:56.520 --> 00:02:02.580
+Và chữ L ở đây là sai lệch khi neural network
+ nhân tạo của bạn dự đoán y mũ.
+
+33
+00:02:02.580 --> 00:02:06.750
+Đây chính là a[2] khi nhãn gradient bằng Y.
+
+34
+00:02:06.750 --> 00:02:08.560
+Nếu bạn đang thực hiện classification nhị phân,
+
+35
+00:02:08.560 --> 00:02:13.310
+có thể hàm loss chính là hàm mà bạn sử 
+dụng cho logistic regression trước đó.
+
+36
+00:02:13.310 --> 00:02:15.890
+Để huấn luyện các tham số
+ của thuật toán của bạn,
+
+37
+00:02:15.890 --> 00:02:19.705
+bạn cần thực hiện gradient descent.
+
+38
+00:02:19.705 --> 00:02:21.570
+Khi huấn luyện một neural network nhân tạo,
+
+39
+00:02:21.570 --> 00:02:26.435
+việc khởi tạo các tham số ngẫu nhiên 
+thay vì để tất cả bằng không là rất quan trọng.
+
+40
+00:02:26.435 --> 00:02:28.340
+Chúng ta sẽ tìm hiểu lý do sau,
+
+41
+00:02:28.340 --> 00:02:31.110
+nhưng sau khi khởi tạo tham số,
+
+42
+00:02:31.110 --> 00:02:34.555
+và mỗi vòng lặp hoặc gradient descents
+ với các dự đoán được tính đến.
+
+43
+00:02:34.555 --> 00:02:38.270
+Về cơ bản, bạn tính y mũ (i),
+
+44
+00:02:38.270 --> 00:02:41.765
+với i bằng một tới m.
+
+45
+00:02:41.765 --> 00:02:44.450
+Sau đó, bạn cần tính đạo hàm.
+
+46
+00:02:44.450 --> 00:02:47.750
+Vì vậy, bạn cần tính dw[1],
+
+47
+00:02:47.750 --> 00:02:54.279
+và đó là đạo hàm của cost function
+ với tham số w[1],
+
+48
+00:02:54.279 --> 00:02:56.499
+bạn có thể tính một biến khác,
+
+49
+00:02:56.499 --> 00:02:58.375
+như là db[1],
+
+50
+00:02:58.375 --> 00:03:02.260
+là đạo hàm hoặc độ dốc của cost function với
+
+51
+00:03:02.260 --> 00:03:06.190
+biến b[1] và v.v..
+
+52
+00:03:06.190 --> 00:03:09.685
+Tương tự với các tham số khác w[2] và b[2].
+
+53
+00:03:09.685 --> 00:03:17.775
+Cuối cùng, bản cập nhật gradient descent 
+sẽ cập nhật w[1] thành w[1] trừ alpha α.
+
+54
+00:03:17.775 --> 00:03:21.150
+Learning rate tập nhân dw[1].
+
+55
+00:03:21.150 --> 00:03:26.310
+b[1] trở thành b[1] trừ đi learning rate tập,
+
+56
+00:03:26.310 --> 00:03:32.280
+nhân db[1] và tương tự đối với w[2] và b[2].
+
+57
+00:03:32.280 --> 00:03:35.560
+Đôi khi, tôi sẽ sử dụng dấu hai chấm bằng 
+nhưng đôi khi tôi lại dùng dấu bằng,
+
+58
+00:03:35.560 --> 00:03:37.630
+và dùng kí hiệu nào cũng được.
+
+59
+00:03:37.630 --> 00:03:40.790
+Và đây sẽ là một lần lặp của gradient descent,
+
+60
+00:03:40.790 --> 00:03:42.580
+và rồi bạn lặp lại nhiều
+
+61
+00:03:42.580 --> 00:03:45.100
+lần cho đến khi các thông số của bạn
+ trông như là chúng đang hội tụ.
+
+62
+00:03:45.100 --> 00:03:46.300
+Trong các video trước đây,
+
+63
+00:03:46.300 --> 00:03:49.055
+chúng ta đã nói về cách tính
+ toán các dự đoán,
+
+64
+00:03:49.055 --> 00:03:50.400
+cách tính kết quả đầu ra
+
+65
+00:03:50.400 --> 00:03:52.960
+và chúng ta cũng đã thấy làm thế nào để
+ làm điều đó theo cách véc tơ hóa.
+
+66
+00:03:52.960 --> 00:03:57.820
+Mấu chốt là phải biết cách tính các số
+ hạng đạo hàm một phần này,
+
+67
+00:03:57.820 --> 00:04:03.010
+dw[1], db[1] cũng như các đạo 
+hàm dw[2] và db[2].
+
+68
+00:04:03.010 --> 00:04:06.730
+Vì vậy, tôi chỉ muốn cung cấp cho bạn
+
+69
+00:04:06.730 --> 00:04:11.050
+các phương trình cần thiết 
+để tính các đạo hàm này.
+
+70
+00:04:11.050 --> 00:04:15.130
+Tôi sẽ chuyển tới video tiếp theo,
+ đây là một video tùy chọn, để
+
+71
+00:04:15.130 --> 00:04:19.030
+nói rõ hơn về cách chúng ta
+ đưa ra những công thức đó.
+
+72
+00:04:19.030 --> 00:04:25.360
+Thế nên tôi sẽ chỉ tóm tắt lại
+ các phương trình truyền xuôi.
+
+73
+00:04:25.360 --> 00:04:32.510
+Và bạn có Z[1] bằng W1[1]X cộng với b[1],
+
+74
+00:04:32.510 --> 00:04:42.560
+và A[1] bằng với activation function trong
+ lớp đó, được áp dụng với từng phần tử như Z1,
+
+75
+00:04:42.560 --> 00:04:46.610
+và sau đó Z[2] bằng W[2],
+
+76
+00:04:46.610 --> 00:04:52.595
+A[1] cộng với b[2], và cuối cùng,
+
+77
+00:04:52.595 --> 00:04:55.295
+training set của bạn được
+ véc tơ hóa hết, đúng chứ?
+
+78
+00:04:55.295 --> 00:05:00.580
+A[2] bằng g[2] của Z[2].
+
+79
+00:05:00.580 --> 00:05:03.605
+Bây giờ, nếu lại giả sử chúng ta đang
+ thực hiện classification nhị phân,
+
+80
+00:05:03.605 --> 00:05:07.120
+thì activation function này phải là hàm sigmoid,
+
+81
+00:05:07.120 --> 00:05:08.995
+tương tự cho kết thúc neural network
+
+82
+00:05:08.995 --> 00:05:11.900
+Và đó là truyền xuôi hoặc là phép tính từ trái
+
+83
+00:05:11.900 --> 00:05:14.690
+Và đó là truyền xuôi hoặc là phép tính từ trái
+
+84
+00:05:14.690 --> 00:05:16.730
+Tiếp theo, hãy tính các đạo hàm.
+
+85
+00:05:16.730 --> 00:05:21.725
+Đây là bước truyền ngược.
+
+86
+00:05:21.725 --> 00:05:30.900
+Sau đó, tôi tính dZ[2] bằng A[2]
+ trừ đi gradient của Y,
+
+87
+00:05:30.900 --> 00:05:33.130
+Và hãy nhớ là,
+
+88
+00:05:33.130 --> 00:05:35.240
+tất cả điều này được vector 
+hóa trên các ví dụ.
+
+89
+00:05:35.240 --> 00:05:38.540
+Vậy nên ma trận Y là một
+
+90
+00:05:38.540 --> 00:05:44.600
+ma trận (1,m) liệt kê tất cả m 
+ví dụ của bạn được xếp theo chiều ngang.
+
+91
+00:05:44.600 --> 00:05:50.599
+Sau đó, hóa ra dW[2] bằng với điều này,
+
+92
+00:05:50.599 --> 00:05:54.920
+và trên thực tế, ba phương trình đầu tiên thì
+
+93
+00:05:54.920 --> 00:06:00.630
+rất giống với gradient descents
+ cho logistic regression.
+
+94
+00:06:00.910 --> 00:06:03.170
+axis bằng một,
+
+95
+00:06:03.170 --> 00:06:08.635
+keepdims bằng True.
+
+96
+00:06:08.635 --> 00:06:13.600
+Chi tiết nhỏ np.sum này là
+
+97
+00:06:13.600 --> 00:06:18.700
+lệnh Python NumPy để tính tổng
+ một chiều của ma trận.
+
+98
+00:06:18.700 --> 00:06:21.450
+Trong trường hợp này, tính tổng
+ theo chiều ngang,
+
+99
+00:06:21.450 --> 00:06:25.645
+và nhiệm vụ của Keepdims là
+ ngăn không cho Python
+
+100
+00:06:25.645 --> 00:06:30.750
+xuất ra một trong những mảng 
+xếp hạng hài hước đó, đúng chứ?
+
+101
+00:06:30.750 --> 00:06:33.525
+Trong đó kích thước là (n,).
+
+102
+00:06:33.525 --> 00:06:36.045
+Vì vậy, keepdims bằng True,
+
+103
+00:06:36.045 --> 00:06:43.210
+đảm bảo rằng Python xuất ra 
+cho db[2] một vectơ (n,1).
+
+104
+00:06:43.210 --> 00:06:47.145
+Trong thực tế, về lý thuyết, 
+tôi đoán là (n[2],1).
+
+105
+00:06:47.145 --> 00:06:49.680
+Trong trường hợp này, nó chỉ là một số (1,1)
+
+106
+00:06:49.680 --> 00:06:51.795
+nên có lẽ nó cũng không quan trọng lắm.
+
+107
+00:06:51.795 --> 00:06:55.350
+Nhưng sau này, chúng ta sẽ thấy được 
+thời điểm mà nó thực sự quan trọng.
+
+108
+00:06:55.350 --> 00:06:59.825
+Và cho đến giờ, chúng ta đã thực hiện 
+những điều tương tự với logistic regression.
+
+109
+00:06:59.825 --> 00:07:04.260
+Nhưng bây giờ khi bạn tiếp tục
+ thực hiện truyền ngược,
+
+110
+00:07:04.260 --> 00:07:05.790
+bạn sẽ tính cái này
+
+111
+00:07:05.790 --> 00:07:16.340
+dZ[2] nhân g1 phẩy của Z[1].
+
+112
+00:07:16.340 --> 00:07:19.190
+Và g1 phẩy này là
+
+113
+00:07:19.190 --> 00:07:23.945
+đạo hàm cho bất cứ activation function 
+nào bạn sử dụng cho lớp ẩn,
+
+114
+00:07:23.945 --> 00:07:25.750
+và cho lớp đầu ra,
+
+115
+00:07:25.750 --> 00:07:29.470
+Giả sử bạn đang thực hiện phân
+ loại nhị phân với hàm sigmoid.
+
+116
+00:07:29.470 --> 00:07:32.630
+Và điều đó đã được đưa vào
+ công thức đó cho dZ[2],
+
+117
+00:07:32.630 --> 00:07:37.735
+và dấu nhân này là tích từng thành phần.
+
+118
+00:07:37.735 --> 00:07:45.650
+Đây là một ma trận (n[1],m), và đây là,
+
+119
+00:07:45.650 --> 00:07:51.545
+đạo hàm từng phần tử này cũng
+ sẽ là ma trận (n[1],m),
+
+120
+00:07:51.545 --> 00:07:55.910
+và vì vậy dấu nhân này là một tích 
+từng thành phần của hai ma trận.
+
+121
+00:07:55.910 --> 00:08:00.950
+Cuối cùng, dW[1] bằng với điều này,
+
+122
+00:08:00.950 --> 00:08:07.010
+và db[1] bằng với điều này,
+
+123
+00:08:07.010 --> 00:08:14.930
+và np.sum (dZ[1], axis
+
+124
+00:08:14.930 --> 00:08:20.820
+bằng một, keepdims bằng True).
+
+125
+00:08:20.820 --> 00:08:26.455
+Trong khi trước đó, keepdims có thể ít
+ quan trọng hơn nếu n[2] bằng một.
+
+126
+00:08:26.455 --> 00:08:29.475
+Kết quả là (1,1), chỉ là một số thực.
+
+127
+00:08:29.475 --> 00:08:36.330
+Ở đây, db[1] sẽ là một vectơ (n[1],1),
+
+128
+00:08:36.330 --> 00:08:39.180
+và vì vậy bạn muốn Python,
+ bạn muốn Np.sums.
+
+129
+00:08:39.180 --> 00:08:43.990
+Tôi sẽ đặt chiều này là một cái gì đó
+ thay vì một mảng hạng 1 hài hước
+
+130
+00:08:43.990 --> 00:08:49.720
+của chiều đó mà có thể khiến một số
+ tính toán dữ liệu của bạn rối tung.
+
+131
+00:08:49.720 --> 00:08:52.914
+Một cách khác là không giữ các tham số,
+
+132
+00:08:52.914 --> 00:09:01.470
+mà định hình lại rõ ràng đầu ra
+ của np.sum vào chiều này,
+
+133
+00:09:01.470 --> 00:09:04.665
+mà bạn muốn db có.
+
+134
+00:09:04.665 --> 00:09:09.655
+Đó là bốn phương trình truyền xuôi,
+
+135
+00:09:09.655 --> 00:09:13.400
+và sáu phương trình truyền ngược.
+
+136
+00:09:13.400 --> 00:09:15.590
+Tôi biết tôi vừa viết ra
+ những phương trình này,
+
+137
+00:09:15.590 --> 00:09:17.990
+nhưng trong video tùy chọn tiếp theo,
+
+138
+00:09:17.990 --> 00:09:20.690
+chúng ta hãy tìm hiểu xem làm thế nào
+
+139
+00:09:20.690 --> 00:09:24.730
+để viết ra được sáu phương trình 
+cho thuật toán truyền ngược.
+
+140
+00:09:24.730 --> 00:09:26.455
+Bạn có thể xem video đó hoặc không.
+
+141
+00:09:26.455 --> 00:09:28.875
+Nhưng dù thế nào, nếu bạn thực
+ hiện các thuật toán này,
+
+142
+00:09:28.875 --> 00:09:33.255
+bạn sẽ có một triển khai truyền
+ xuôi và truyền ngược chính xác.
+
+143
+00:09:33.255 --> 00:09:38.120
+Bạn sẽ có thể tính các đạo hàm bạn cần
+ để áp dụng gradient descent,
+
+144
+00:09:38.120 --> 00:09:40.360
+để tìm hiểu các thông số của 
+neural network nhân tạo.
+
+145
+00:09:40.360 --> 00:09:43.190
+Bạn có thể thực hiện thuật toán này và
+
+146
+00:09:43.190 --> 00:09:46.000
+khiến nó hoạt động mà không 
+cần hiểu sâu về giải tích.
+
+147
+00:09:46.000 --> 00:09:49.505
+Có rất nhiều học viên deep learning
+ thành công cũng đã làm như vậy.
+
+148
+00:09:49.505 --> 00:09:50.975
+Nhưng nếu bạn muốn, thì
+
+149
+00:09:50.975 --> 00:09:52.505
+bạn cũng có thể xem video tiếp theo
+
+150
+00:09:52.505 --> 00:09:57.680
+chỉ để hiểu thêm về nguồn gốc
+ của các phương trình này.

@@ -1,0 +1,225 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.210 --> 00:00:06.290
+In the previous video, you saw a few examples of how vectorization by using built-in functions
+
+00:00:06.290 --> 00:00:11.290
+and by avoiding explicit for-loops allows you to speed up your code significantly.
+
+00:00:11.290 --> 00:00:13.890
+Let's take a look at a few more examples.
+
+00:00:13.890 --> 00:00:17.810
+The rule of thumb to keep in mind is when you're programming your neural networks or
+
+00:00:17.810 --> 00:00:23.770
+when you're programming logistic regression, whenever possible, avoid explicit for-loops.
+
+00:00:23.770 --> 00:00:28.610
+And it's not always possible to never use a for-loop, but when you can use a built-in
+
+00:00:28.610 --> 00:00:34.490
+function or find some other way to compute whatever you need, it will often go faster
+
+00:00:34.490 --> 00:00:36.930
+than if you had an explicit for-loop.
+
+00:00:36.930 --> 00:00:38.490
+Let's look at another example.
+
+00:00:38.490 --> 00:00:46.650
+If ever you want to compute a vector u as the product of a matrix A and another vector V,
+
+00:00:46.650 --> 00:00:56.850
+then the definition of a matrix multiply is that your ui is equal to sum over j, aij, vj,
+
+00:00:56.850 --> 00:00:58.650
+right? That's how you define ui.
+
+00:00:58.650 --> 00:01:02.290
+And so the non-vectorized implementation of this would be, you know,
+
+00:01:02.290 --> 00:01:08.130
+to set u equals np.zeros would be n by 1,
+
+00:01:08.130 --> 00:01:11.810
+and then, you know, for i and so on,
+
+00:01:11.810 --> 00:01:14.530
+for j and so on, right?
+
+00:01:14.530 --> 00:01:22.890
+And ui plus equals, you know, aij times vj.
+
+00:01:22.890 --> 00:01:27.690
+So now this has two for-loops looping over both i and j.
+
+00:01:27.690 --> 00:01:29.210
+So that's a non-vectorized version.
+
+00:01:29.210 --> 00:01:37.450
+The vectorized implementation would be to say u equals np dot a, v.
+
+00:01:37.450 --> 00:01:40.730
+And the implementation on the right, the vectorized version,
+
+00:01:40.730 --> 00:01:44.890
+now eliminates two different for-loops, and it's going to be way faster.
+
+00:01:44.890 --> 00:01:46.610
+Let's go through one more example.
+
+00:01:46.610 --> 00:01:49.570
+Let's say you already have a vector v in memory,
+
+00:01:49.570 --> 00:01:55.930
+and you want to apply the exponential operation on every element of, say, this vector v.
+
+00:01:55.930 --> 00:02:01.490
+So you compute u equals, you know, a vector that's e to the v1, e to the v2,
+
+00:02:01.490 --> 00:02:05.490
+and so on down to e to the vn.
+
+00:02:05.490 --> 00:02:08.570
+So this would be a non-vectorized implementation, right?
+
+00:02:08.570 --> 00:02:13.210
+Which is that first, you initialize u to a vector of zeros,
+
+00:02:13.210 --> 00:02:18.170
+and then you have a for-loop that computes the elements one at a time.
+
+00:02:18.250 --> 00:02:23.330
+But it turns out that Python and NumPy have many built-in functions
+
+00:02:23.330 --> 00:02:31.130
+that allow you to compute these vectors with just a single call to a single function.
+
+00:02:31.130 --> 00:02:40.450
+So what I would do to implement this is import NumPy as np,
+
+00:02:40.450 --> 00:02:47.130
+and then you just call u equals np dot e to the v.
+
+00:02:47.130 --> 00:02:52.490
+And so notice that whereas previously you had an explicit for-loop,
+
+00:02:52.490 --> 00:02:58.810
+with just one line of code here, this v is an input vector, u is an output vector,
+
+00:02:58.810 --> 00:03:01.250
+you've gotten rid of the explicit for-loop,
+
+00:03:01.250 --> 00:03:06.250
+and the implementation on the right will be much faster than the one needing an explicit for-loop.
+
+00:03:06.250 --> 00:03:10.330
+In fact, the NumPy library has many other vector value functions.
+
+00:03:10.330 --> 00:03:17.090
+So np dot log of v will compute the element-wise log, np dot abs.
+
+00:03:17.210 --> 00:03:21.930
+Computes the absolute value np dot maximum.
+
+00:03:22.410 --> 00:03:24.970
+Computes the element-wise maximums.
+
+00:03:24.970 --> 00:03:29.210
+You can take the max of every element of v with zero.
+
+00:03:29.210 --> 00:03:36.610
+v star star two just takes the element-wise square of each element of v.
+
+00:03:36.610 --> 00:03:42.850
+You know, one over v takes the element-wise inverse, and so on.
+
+00:03:42.850 --> 00:03:45.490
+So whenever you're tempted to write a for-loop,
+
+00:03:45.690 --> 00:03:52.170
+take a look and see if there's a way to call a NumPy built-in function to do it without that for-loop.
+
+00:03:52.890 --> 00:03:57.130
+So let's take all of these learnings and apply it to our logistic regression
+
+00:03:57.130 --> 00:04:02.890
+gradient descent implementation and see if we can at least get rid of one of the two for-loops we had.
+
+00:04:02.890 --> 00:04:07.810
+So here's our code for computing the derivatives for logistic regression.
+
+00:04:07.810 --> 00:04:12.970
+And we had two for-loops. One was this one up here, and the second one was this one, right?
+
+00:04:13.090 --> 00:04:20.770
+So in our example, we had n or nx equals two, but if you had more features than just two features,
+
+00:04:20.770 --> 00:04:25.610
+then you need to have a for-loop over dw1, dw2, dw3, and so on.
+
+00:04:25.610 --> 00:04:36.610
+So it's as if there's actually a for j equals one to nx, you know, dwj, dwj, you know, gets updated.
+
+00:04:37.370 --> 00:04:41.730
+So we'd like to eliminate this second for-loop.
+
+00:04:41.730 --> 00:04:43.810
+That's what we'll do on this slide.
+
+00:04:43.810 --> 00:04:51.610
+So the way we'll do so is that instead of explicitly initializing dw1, dw2, and so on to zeros,
+
+00:04:51.610 --> 00:04:58.050
+we're going to get rid of this and instead make dw a vector.
+
+00:04:58.050 --> 00:05:04.130
+So we're going to set dw equals np.zeros.
+
+00:05:04.130 --> 00:05:10.850
+And let's make this a nx by one dimensional vector.
+
+00:05:10.850 --> 00:05:15.850
+Then here, instead of this, you know, for-loop over the individual components,
+
+00:05:15.850 --> 00:05:28.370
+we just use this vector value operation, dw plus equals xi times dzi.
+
+00:05:28.490 --> 00:05:39.010
+And then finally, instead of this, we will just have dw device equals m.
+
+00:05:39.010 --> 00:05:42.530
+So now we've gone from having two for-loops to just one for-loop.
+
+00:05:42.530 --> 00:05:49.010
+We still have this one for-loop that loops over the individual training examples.
+
+00:05:49.010 --> 00:05:52.010
+So I hope this video gave you a sense of vectorization.
+
+00:05:52.010 --> 00:05:56.530
+And by getting rid of one for-loop, your code will already run faster.
+
+00:05:56.530 --> 00:05:58.290
+But it turns out we could do even better.
+
+00:05:58.290 --> 00:06:03.250
+So the next video, we'll talk about how to vectorize logistic regression even further.
+
+00:06:03.250 --> 00:06:07.330
+And you see a pretty surprising result that without using any for-loops,
+
+00:06:07.330 --> 00:06:10.730
+without needing a for-loop over the training examples,
+
+00:06:10.730 --> 00:06:14.690
+you could write code to process the entire training sets.
+
+00:06:14.690 --> 00:06:17.010
+So pretty much all at the same time.
+
+00:06:17.010 --> 00:06:19.010
+So let's see that in the next video.

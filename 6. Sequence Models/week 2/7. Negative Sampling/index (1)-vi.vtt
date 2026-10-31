@@ -1,0 +1,604 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.000
+Trong video trước, bạn đã biết cách mô hình bỏ
+qua kịch bản cho phép bạn xây
+
+00:00:04.000 --> 00:00:08.000
+dựng một nhiệm vụ học tập có giám sát trong đó
+bạn ánh xạ từ ngữ cảnh sang
+
+00:00:08.000 --> 00:00:12.000
+các từ mục tiêu và cách điều đó cho phép bạn
+học cách word embedding hữu ích.
+
+00:00:12.000 --> 00:00:16.640
+Nhưng nhược điểm của điều đó là mục tiêu
+softmax được tính toán chậm.
+
+00:00:16.640 --> 00:00:20.960
+Trong video này, bạn sẽ thấy một vấn đề học
+tập được sửa đổi có tên là lấy
+
+00:00:20.960 --> 00:00:25.280
+mẫu phủ định, cho phép bạn thực hiện điều gì
+đó tương tự như mô hình bỏ qua
+
+00:00:25.280 --> 00:00:29.600
+kịch bản mà bạn vừa thấy nhưng với thuật toán
+học tập hiệu quả hơn nhiều.
+
+00:00:29.680 --> 00:00:33.360
+Hãy xem làm thế nào bạn có thể làm điều đó.
+Hầu hết các ý tưởng được
+
+00:00:33.360 --> 00:00:37.040
+trình bày trong video này là của Thomas
+Michalov, sasuke của bạn, Eric,
+
+00:00:37.040 --> 00:00:40.720
+Kai Chen, Gregorado và Jeff Dean. Vậy điều
+chúng ta sẽ làm trong việc này
+
+00:00:40.720 --> 00:00:46.373
+thuật toán đang tạo ra một vấn đề
+supervised learning mới. Và vấn đề
+
+00:00:46.373 --> 00:00:52.027
+được đưa ra là một cặp từ như cam và nước trái
+cây, chúng ta sẽ dự đoán
+
+00:00:52.027 --> 00:00:57.680
+đây có phải là cặp từ ngữ cảnh mục tiêu hay
+không. Vì vậy, trong ví dụ này,
+
+00:00:57.680 --> 00:01:01.760
+nước cam là một ví dụ tích cực. Còn cam và
+
+00:01:01.760 --> 00:01:05.840
+vua thì sao? Vâng, đó là một ví dụ tiêu cực.
+
+00:01:06.400 --> 00:01:10.533
+Vì vậy tôi sẽ viết 0 cho mục tiêu. Vì vậy điều
+chúng ta sắp làm là
+
+00:01:10.533 --> 00:01:14.667
+lấy mẫu một ngữ cảnh và một từ mục tiêu. Vì
+vậy, trong trường hợp
+
+00:01:14.667 --> 00:01:18.800
+này, chúng ta có cam và nước trái cây và chúng
+ta sẽ cử một cộng sự
+
+00:01:18.800 --> 00:01:23.013
+cái đó có nhãn là 1. Vậy hãy để tôi đặt các từ
+ở giữa. Và sau
+
+00:01:23.013 --> 00:01:27.227
+đó đã tạo ra một ví dụ tích cực. Vì vậy, ví dụ
+tích cực được
+
+00:01:27.227 --> 00:01:31.440
+tạo chính xác như cách chúng tôi đã tạo trong
+các video trước,
+
+00:01:31.440 --> 00:01:34.240
+lấy mẫu một từ ngữ cảnh, nhìn xung quanh cửa
+
+00:01:34.240 --> 00:01:37.040
+sổ nói cộng trừ 10 từ và chọn một từ mục tiêu.
+
+00:01:37.040 --> 00:01:42.040
+Đó là cách bạn tạo ra hàng đầu tiên của bảng
+này với nước cam 1. Và sau đó để tạo ra
+
+00:01:42.040 --> 00:01:47.040
+các ví dụ phủ định, bạn sẽ lấy cùng một từ ngữ
+cảnh và sau đó chỉ cần chọn một từ tại
+
+00:01:47.040 --> 00:01:50.907
+ngẫu nhiên từ từ điển. Vì vậy, trong trường
+hợp này, tôi đã chọn từ
+
+00:01:50.907 --> 00:01:54.773
+vua một cách ngẫu nhiên và chúng tôi sẽ gắn
+nhãn đó là số 0. Và sau
+
+00:01:54.773 --> 00:01:58.640
+đó hãy lấy màu cam. Và hãy chọn một từ ngẫu
+nhiên khác từ từ điển.
+
+00:01:59.200 --> 00:02:03.707
+Với giả định rằng chúng ta chọn một từ ngẫu
+nhiên, nó có thể sẽ không
+
+00:02:03.707 --> 00:02:08.213
+liên quan đến từ màu cam. Vì vậy, cuốn sách
+màu cam, không. Và hãy chọn
+
+00:02:08.213 --> 00:02:12.720
+một vài quả màu cam khác, có thể chỉ là tình
+cờ thôi chúng ta sẽ chọn
+
+00:02:12.720 --> 00:02:16.880
+số 0, rồi đến màu cam và có lẽ chỉ là ngẫu
+nhiên
+
+00:02:16.880 --> 00:02:21.040
+mà chúng ta sẽ chọn từ của và đặt số 0 vào đó.
+
+00:02:22.560 --> 00:02:27.440
+Và lưu ý rằng từ of được gắn nhãn là số 0, mặc
+dù từ of
+
+00:02:27.440 --> 00:02:32.320
+thực sự cũng xuất hiện bên cạnh màu cam. Tóm
+lại, cách
+
+00:02:32.320 --> 00:02:37.200
+chúng tôi tạo tập dữ liệu này là chúng tôi sẽ
+chọn một từ ngữ cảnh
+
+00:02:38.000 --> 00:02:42.720
+và sau đó chọn một từ mục tiêu. Và đó là hàng
+đầu tiên của bảng này cho
+
+00:02:42.720 --> 00:02:47.440
+chúng ta một ví dụ tích cực. Vì vậy, bối cảnh,
+mục tiêu và sau đó gán cho
+
+00:02:47.440 --> 00:02:52.160
+nó một nhãn hiệu. Và sau đó điều chúng tôi sẽ
+làm là dành cho một số người
+
+00:02:52.160 --> 00:02:56.347
+số lần, chẳng hạn như k lần, chúng ta sẽ lấy
+cùng một từ ngữ cảnh,
+
+00:02:56.347 --> 00:03:00.533
+sau đó chọn các từ ngẫu nhiên từ từ điển,
+king, book, D, bất cứ từ
+
+00:03:00.533 --> 00:03:04.720
+nào ngẫu nhiên xuất hiện từ từ điển và gắn
+nhãn cho tất cả những từ đó
+
+00:03:05.280 --> 00:03:09.563
+không. Và đó sẽ là những ví dụ tiêu cực của
+chúng tôi. Và sẽ
+
+00:03:09.563 --> 00:03:13.847
+không sao nếu tình cờ một trong những từ chúng
+ta chọn ngẫu
+
+00:03:13.847 --> 00:03:18.130
+nhiên từ từ điển xuất hiện trong một cửa sổ ở
+dấu cộng trừ
+
+00:03:18.130 --> 00:03:22.823
+Cửa sổ 10 từ, chẳng hạn, bên cạnh từ ngữ cảnh
+màu cam. Sau
+
+00:03:22.823 --> 00:03:27.517
+đó, chúng ta sẽ tạo một bài toán
+supervised learning trong
+
+00:03:27.517 --> 00:03:32.210
+đó thuật toán học nhập x, nhập cặp từ này và
+sau đó phải
+
+00:03:32.210 --> 00:03:36.877
+dự đoán nhãn mục tiêu để dự đoán đầu ra y. Vậy
+vấn đề thực sự là
+
+00:03:36.877 --> 00:03:41.543
+cho một cặp từ như cam và nước trái cây, bạn
+có nghĩ chúng xuất
+
+00:03:41.543 --> 00:03:46.210
+hiện cùng nhau không? Bạn có nghĩ rằng tôi đã
+hiểu được hai từ này bởi
+
+00:03:46.210 --> 00:03:50.183
+lấy mẫu hai từ gần nhau? Hay bạn nghĩ tôi hiểu
+chúng dưới
+
+00:03:50.183 --> 00:03:54.157
+dạng một từ trong văn bản và một từ được chọn
+ngẫu nhiên từ
+
+00:03:54.157 --> 00:03:58.130
+từ điển? Thực sự là cố gắng phân biệt giữa
+những điều này
+
+00:03:58.130 --> 00:04:03.437
+hai loại phân phối mà từ đó bạn có thể lấy mẫu
+một cặp từ.
+
+00:04:03.437 --> 00:04:08.743
+Vì vậy, đây là cách bạn tạo training set. Bạn
+chọn k như
+
+00:04:08.743 --> 00:04:14.050
+thế nào? Mikulov hoàn toàn khuyên rằng có lẽ k
+là 5 đến 20
+
+00:04:14.050 --> 00:04:20.977
+cho các tập dữ liệu nhỏ hơn. Và nếu bạn có tập
+dữ liệu rất lớn thì
+
+00:04:20.977 --> 00:04:27.903
+hãy chọn k nhỏ hơn. Vì vậy k bằng 2 đến 5 đối
+với các tập dữ liệu lớn
+
+00:04:27.903 --> 00:04:34.830
+hơn và giá trị k lớn hơn đối với các tập dữ
+liệu nhỏ hơn. Và trong này
+
+00:04:34.830 --> 00:04:42.590
+Ví dụ: tôi vừa sử dụng k bằng 4. Tiếp theo,
+hãy mô tả mô hình supervised learning để
+
+00:04:42.590 --> 00:04:50.350
+học và ánh xạ từ x đến y. Đây là mô hình
+softmax mà bạn đã thấy ở video trước. Và đây
+
+00:04:50.350 --> 00:04:54.057
+là training set mà chúng ta có được từ slide
+trước, trong đó
+
+00:04:54.057 --> 00:04:57.763
+một lần nữa, đây sẽ là đầu vào x mới và đây sẽ
+là giá trị của
+
+00:04:57.763 --> 00:05:01.470
+y mà bạn đang cố gắng dự đoán. Vì vậy, để xác
+định mô hình,
+
+00:05:01.470 --> 00:05:06.217
+Tôi sẽ sử dụng cái này để biểu thị cái này
+bằng c cho từ ngữ cảnh, cái
+
+00:05:06.217 --> 00:05:10.963
+này để biểu thị từ mục tiêu có thể là t và cái
+này tôi sẽ dùng y để
+
+00:05:10.963 --> 00:05:15.710
+biểu thị 01. Đây là một cặp mục tiêu ngữ cảnh.
+Vậy chúng ta sẽ làm gì
+
+00:05:15.710 --> 00:05:20.163
+việc cần làm là tìm một mô hình
+logistic regression. Chúng ta
+
+00:05:20.163 --> 00:05:24.617
+nói rằng khả năng y bằng 1, với cặp dấu phẩy
+đầu vào c, chúng
+
+00:05:24.617 --> 00:05:29.070
+ta sẽ mô hình hóa điều này về cơ bản như một
+logistic regression
+
+00:05:29.070 --> 00:05:34.510
+mô hình. Nhưng công thức cụ thể mà chúng tôi
+sử dụng là sigmoid
+
+00:05:34.510 --> 00:05:39.950
+được áp dụng cho chuyển vị theta, chuyển vị
+theta t, ec. Vì vậy,
+
+00:05:39.950 --> 00:05:45.390
+các thông số tương tự như trước. Bạn có một
+vectơ tham số theta cho mỗi
+
+00:05:46.110 --> 00:05:50.403
+từ mục tiêu có thể có và một vectơ tham số
+riêng biệt, thực
+
+00:05:50.403 --> 00:05:54.697
+sự là vectơ embedding cho mỗi từ ngữ cảnh có
+thể có. Và
+
+00:05:54.697 --> 00:05:58.990
+chúng ta sẽ sử dụng công thức này để ước tính
+xác suất mà y
+
+00:05:59.150 --> 00:06:07.190
+bằng 1. Vì vậy, nếu bạn có k ví dụ ở đây, thì
+bạn có thể coi đây là có tỷ lệ
+
+00:06:07.190 --> 00:06:15.230
+k trên 1 của các ví dụ âm và dương. Vì vậy,
+với mọi ví dụ tích cực, bạn có k
+
+00:06:15.950 --> 00:06:20.670
+các ví dụ tiêu cực để đào tạo mô hình
+logistic regression này.
+
+00:06:21.630 --> 00:06:27.110
+Và để vẽ cái này như một mạng lưới thần
+
+00:06:27.110 --> 00:06:32.590
+kinh, nếu từ đầu vào có màu cam, tức là từ
+6257,
+
+00:06:33.950 --> 00:06:39.763
+sau đó việc bạn làm là nhập một vectơ nóng,
+chuyển nó qua e,
+
+00:06:39.763 --> 00:06:45.577
+thực hiện phép nhân đó để có vectơ embedding
+6257. Và sau đó
+
+00:06:45.577 --> 00:06:51.390
+những gì bạn có thực sự là 10.000
+logistic regression có thể có
+
+00:06:52.110 --> 00:06:56.830
+các vấn đề về classification, trong đó một
+trong số này sẽ là
+
+00:06:56.830 --> 00:07:01.550
+bộ classification tương ứng với từ mục tiêu có
+phải là nước
+
+00:07:01.550 --> 00:07:06.270
+trái cây hay không. Và sau đó sẽ có những từ
+khác. Ví dụ, có thể có
+
+00:07:06.270 --> 00:07:10.777
+một người ở đâu đó dưới đây đang dự đoán có
+phải là từ vua hay
+
+00:07:10.777 --> 00:07:15.283
+không, v.v. Vì đây là những từ có thể có trong
+vốn từ vựng của
+
+00:07:15.283 --> 00:07:19.790
+bạn. Vì vậy, hãy coi điều này giống như có
+10.000 logistic nhị phân
+
+00:07:19.870 --> 00:07:24.250
+classification regression. Nhưng thay vì đào
+tạo tất cả 10.000 người trong
+
+00:07:24.250 --> 00:07:28.630
+mỗi lần lặp, chúng tôi sẽ chỉ đào tạo 5 người
+trong số họ. Chúng ta sẽ huấn
+
+00:07:28.630 --> 00:07:33.010
+luyện một từ tương ứng với từ mục tiêu thực tế
+mà chúng ta nhận được, sau đó
+
+00:07:33.010 --> 00:07:37.390
+huấn luyện bốn ví dụ phủ định được chọn ngẫu
+nhiên. Và điều này là dành cho
+
+00:07:37.390 --> 00:07:42.830
+trường hợp k bằng bốn. Vì vậy, thay vì có một
+softmax
+
+00:07:42.830 --> 00:07:48.270
+khổng lồ 10.000 chiều, rất tốn kém để tính
+toán, thay vào
+
+00:07:48.270 --> 00:07:53.710
+đó, chúng tôi đã biến nó thành classification
+nhị phân 10.000
+
+00:07:53.710 --> 00:07:57.950
+các vấn đề, mỗi vấn đề đều có chi phí tính
+toán khá rẻ. Và trong mỗi lần
+
+00:07:57.950 --> 00:08:02.190
+lặp lại, chúng ta sẽ chỉ huấn luyện năm trong
+số chúng hoặc nói chung là
+
+00:08:02.190 --> 00:08:06.430
+k cộng với một trong số chúng với k ví dụ tiêu
+cực và một ví dụ tích cực
+
+00:08:06.430 --> 00:08:12.070
+ví dụ. Và đây là lý do tại sao chi phí tính
+toán của thuật toán này thấp hơn nhiều vì
+
+00:08:12.070 --> 00:08:17.710
+bạn đang cập nhật k cộng một đơn vị hậu cần k
+cộng một vấn đề classification nhị phân,
+
+00:08:18.350 --> 00:08:22.537
+việc này tương đối rẻ để thực hiện trên mỗi
+lần lặp, thay vì
+
+00:08:22.537 --> 00:08:26.723
+cập nhật bộ classification softmax 10.000
+chiều. Vì vậy, kỹ
+
+00:08:26.723 --> 00:08:30.910
+thuật này được gọi là lấy mẫu âm tính, bởi vì
+điều bạn đang làm là
+
+00:08:30.910 --> 00:08:36.670
+bạn có một ví dụ tích cực, quả cam và nước
+trái cây, sau đó bạn sẽ đi ra ngoài và cố
+
+00:08:36.670 --> 00:08:42.430
+tình tạo ra một loạt các ví dụ tiêu cực, lấy
+mẫu âm tính, lấy mẫu âm tính nhạy cảm, mà
+
+00:08:42.430 --> 00:08:47.577
+mong muốn đào tạo thêm về các bộ
+classification nhị phân này. Và trên
+
+00:08:47.577 --> 00:08:52.723
+mỗi lần lặp lại, bạn chọn bốn từ phủ định ngẫu
+nhiên khác nhau để huấn
+
+00:08:52.723 --> 00:08:57.870
+luyện thuật toán của mình. Bây giờ trước khi
+kết thúc, một điều nữa
+
+00:08:57.870 --> 00:09:01.843
+chi tiết quan trọng của thuật toán này là cách
+bạn chọn các ví
+
+00:09:01.843 --> 00:09:05.817
+dụ phủ định. Vì vậy, sau khi đã chọn từ ngữ
+cảnh màu cam, bạn
+
+00:09:05.817 --> 00:09:09.790
+làm cách nào để lấy mẫu những từ này để tạo ra
+các ví dụ phủ định.
+
+00:09:11.710 --> 00:09:18.310
+Vì vậy, một điều bạn có thể làm là lấy mẫu các
+từ ở giữa, các từ mục tiêu của ứng
+
+00:09:18.310 --> 00:09:24.910
+viên. Một điều bạn có thể làm là lấy mẫu nó
+theo tần suất thực nghiệm của các từ
+
+00:09:24.910 --> 00:09:27.630
+trong kho ngữ liệu của bạn. Vì vậy, chỉ cần
+lấy
+
+00:09:27.630 --> 00:09:30.350
+mẫu tùy theo tần suất các từ khác nhau xuất
+hiện.
+
+00:09:30.350 --> 00:09:36.070
+Nhưng vấn đề với điều đó là bạn sẽ có một mức
+độ biểu thị rất cao của các từ như be
+
+00:09:36.070 --> 00:09:41.790
+of, v.v. Một thái cực khác sẽ là nói rằng bạn
+sử dụng, bạn biết đấy, một cái trên
+
+00:09:41.790 --> 00:09:45.603
+mẫu từ vựng, các ví dụ phủ định đều ngẫu nhiên
+một cách thống
+
+00:09:45.603 --> 00:09:49.417
+nhất, nhưng điều đó cũng không mang tính đại
+diện cho sự phân
+
+00:09:49.417 --> 00:09:53.230
+bố của các từ tiếng Anh. Vì vậy các tác giả,
+Mikloff và cộng sự,
+
+00:09:53.230 --> 00:09:57.097
+đã báo cáo rằng về mặt thực nghiệm, điều họ
+thấy có hiệu
+
+00:09:57.097 --> 00:10:00.963
+quả nhất là lấy giá trị heuristic này, giá trị
+này hơi nằm
+
+00:10:00.963 --> 00:10:04.830
+giữa hai thái cực của việc lấy mẫu từ tần số
+thực nghiệm từ
+
+00:10:04.830 --> 00:10:07.190
+có nghĩa là từ sự phân bố được quan sát trong
+
+00:10:07.190 --> 00:10:09.550
+văn bản tiếng Anh đến sự phân bố thống nhất.
+
+00:10:09.550 --> 00:10:17.110
+Và điều họ làm là lấy mẫu tỉ lệ với tần số của
+một từ và độ lớn của lực. Vì
+
+00:10:17.110 --> 00:10:24.670
+vậy, nếu f của wi là tần số quan sát được của
+một từ cụ thể trong tiếng Anh
+
+00:10:24.670 --> 00:10:29.017
+ngôn ngữ trên training set của bạn, sau đó
+bằng cách nâng
+
+00:10:29.017 --> 00:10:33.363
+nó lên lũy thừa ba phần tư, đây là điểm nằm
+giữa thái cực
+
+00:10:33.363 --> 00:10:37.710
+của việc phân phối đồng đều và thái cực kia
+của sự công bằng
+
+00:10:37.710 --> 00:10:40.670
+lấy bất cứ phân phối nào được quan sát trong
+training set của bạn.
+
+00:10:42.190 --> 00:10:45.763
+Và vì vậy tôi không chắc điều này có hợp lý về
+mặt lý thuyết hay không,
+
+00:10:45.763 --> 00:10:49.337
+nhưng nhiều nhà nghiên cứu hiện đang sử dụng
+phương pháp phỏng đoán này
+
+00:10:49.337 --> 00:10:52.910
+và nó dường như hoạt động rất tốt. Tóm lại,
+bạn đã thấy cách bạn có thể
+
+00:10:52.910 --> 00:10:54.830
+học các vectơ từ của bộ classification
+
+00:10:54.830 --> 00:10:56.750
+softmax, nhưng việc đó rất tốn kém về mặt tính
+toán.
+
+00:10:56.750 --> 00:11:00.243
+Và trong video này, bạn đã thấy bằng cách thay
+đổi nó thành một
+
+00:11:00.243 --> 00:11:03.737
+loạt các bài toán classification nhị phân, bạn
+có thể học vectơ
+
+00:11:03.737 --> 00:11:07.230
+từ một cách hiệu quả. Và nếu bạn chạy thuật
+toán này, bạn sẽ có thể
+
+00:11:07.230 --> 00:11:10.617
+học vectơ từ khá tốt. Tất nhiên, hiện nay,
+cũng như trường
+
+00:11:10.617 --> 00:11:14.003
+hợp của các lĩnh vực deep learning khác, đều
+có các triển
+
+00:11:14.003 --> 00:11:17.390
+khai nguồn mở. Và cũng có những vectơ từ được
+đào tạo trước
+
+00:11:17.390 --> 00:11:21.390
+những người khác đã được đào tạo và phát hành
+trực tuyến theo giấy phép
+
+00:11:21.390 --> 00:11:25.390
+cho phép. Và vì vậy nếu bạn muốn giải quyết
+nhanh chóng một vấn đề NLP,
+
+00:11:25.390 --> 00:11:29.390
+sẽ là hợp lý nếu bạn tải xuống các vectơ từ
+của người khác và sử dụng
+
+00:11:29.390 --> 00:11:33.470
+đó là điểm khởi đầu. Vậy là xong đối với mô
+hình bỏ qua RAM.
+
+00:11:33.470 --> 00:11:37.550
+Trong video tiếp theo, tôi muốn chia sẻ với
+bạn một phiên bản
+
+00:11:37.550 --> 00:11:41.630
+khác của thuật toán học word embedding, thậm
+chí có thể đơn giản hơn
+
+00:11:41.630 --> 00:11:43.910
+những gì bạn đã thấy cho đến nay. Vì vậy,
+trong video tiếp
+
+00:11:43.910 --> 00:11:46.190
+theo, chúng ta hãy cùng tìm hiểu về thuật toán
+găng tay.

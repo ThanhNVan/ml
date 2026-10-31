@@ -1,0 +1,357 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.695
+Bạn đã được học về thuật toán định vị vật thể cũng như là phát hiện đường biên
+
+2
+00:00:05.695 --> 00:00:09.470
+Bây giờ, chúng ta cùng tìm hiểu một thuật toán nhận diện vật thể khác.
+
+3
+00:00:09.470 --> 00:00:13.005
+Trong video này, bạn sẽ học cách sử dụng mạng convolution neurons để thực hiện
+
+4
+00:00:13.005 --> 00:00:18.150
+nhận diện vật thể sử dụng một kỹ thuật gọi là "cửa sổ trượt"
+
+5
+00:00:18.150 --> 00:00:21.154
+Giả sử như bạn muốn xây dựng một thuật toán phát hiện xe ô tô trong ảnh
+
+6
+00:00:21.154 --> 00:00:22.315
+Đây là những thứ bạn có thế làm
+
+7
+00:00:22.315 --> 00:00:24.734
+Đầu tiên, bạn tạo ra một tập training data được gán nhãn
+
+8
+00:00:24.734 --> 00:00:29.100
+với x và y được cắt sát vị trí xuất hiện của ô tô
+
+9
+00:00:29.100 --> 00:00:32.970
+Vì vậy, tấm ảnh x thuộc lớp dương, có một chiếc ô tô xuất hiện ở trong đó
+
+10
+00:00:32.970 --> 00:00:35.140
+đây là một chiếc ô tô, đây là một chiếc ô tô
+
+11
+00:00:35.140 --> 00:00:37.755
+và đây không phải là ô tô, đây cũng không phải là ô tô
+
+12
+00:00:37.755 --> 00:00:39.840
+Và chính vì mục đích mà chúng ta tạo ra tập dữ liệu này
+
+13
+00:00:39.840 --> 00:00:43.733
+mà bạn bắt đầu bằng cách cắt tấm ảnh sát với vị trí xuất hiện của chiếc ô tô
+
+14
+00:00:43.733 --> 00:00:47.365
+Điều này có nghĩa là x chỉ chứa một vật thể duy nhất, đó là ô tô
+
+15
+00:00:47.365 --> 00:00:49.650
+Vì vậy, bạn có thể chụp một tấm ảnh và crop lại và
+
+16
+00:00:49.650 --> 00:00:52.340
+cắt bỏ đi những phần không phải là ô tô trên bức ảnh đó.
+
+17
+00:00:52.340 --> 00:00:57.450
+Vì vậy mà chiếc ô tô nằm ở ngay giữa của toàn bức ảnh.
+
+18
+00:00:57.450 --> 00:01:01.090
+Với tập training data này,
+
+19
+00:01:01.090 --> 00:01:05.412
+bạn có thể huấn luyện một mạng convolution neurons mà đầu vào là một bức ảnh
+
+20
+00:01:05.412 --> 00:01:07.977
+được cắt sát như thế này.
+
+21
+00:01:07.977 --> 00:01:12.135
+Và sau đó, nhiệm vụ của mạng neurons này là tính toán đầu ra y,
+
+22
+00:01:12.135 --> 00:01:15.090
+0 hoặc 1, là ô tô hoặc không phải là ô tô.
+
+23
+00:01:15.090 --> 00:01:17.044
+Khi mà bạn đã huấn luyện mạng neurons này xong,
+
+24
+00:01:17.044 --> 00:01:20.515
+bạn có thể sử dụng nó trong thuật toán nhận diện "cửa sổ trượt"
+
+25
+00:01:20.515 --> 00:01:21.870
+Cụ thể là,
+
+26
+00:01:21.870 --> 00:01:25.560
+nếu bạn có một bức ảnh như thế này, bạn sẽ
+
+27
+00:01:25.560 --> 00:01:29.625
+bắt đầu chọn một kích thước nhất định cho cửa sổ trượt như dưới này nè.
+
+28
+00:01:29.625 --> 00:01:35.070
+Và sau đó, bạn sẽ đưa vào mạng neurons một vùng nhỏ.
+
+29
+00:01:35.070 --> 00:01:38.670
+chỉ một vùng nhỏ như là cái hình vuông màu đỏ này vậy
+
+30
+00:01:38.670 --> 00:01:41.235
+đưa nó vào mạng neurons
+
+31
+00:01:41.235 --> 00:01:43.020
+và mạng neurons sẽ tiến hành dự đoán.
+
+32
+00:01:43.020 --> 00:01:47.215
+với vùng màu đỏ đó
+
+33
+00:01:47.215 --> 00:01:50.640
+nó sẽ bảo rằng "À, vùng màu đỏ đó không có chứa chiếc ô tô nào cả".
+
+34
+00:01:50.640 --> 00:01:52.310
+Trong thuật toán cửa sổ trượt này,
+
+35
+00:01:52.310 --> 00:01:56.900
+những gì bạn cần làm tiếp theo đó là
+
+36
+00:01:56.900 --> 00:02:00.000
+đưa vùng màu đỏ
+
+37
+00:02:00.000 --> 00:02:03.970
+di chuyển sang phải một chút qua mạng neurons
+
+38
+00:02:03.970 --> 00:02:06.715
+Bạn chỉ cho đưa một vùng nhỏ của bức ảnh
+
+39
+00:02:06.715 --> 00:02:10.665
+vào mạng neurons và chạy mạng neurons để dự báo
+
+40
+00:02:10.665 --> 00:02:16.275
+và tương tự như vậy với vùng thứ ba
+
+41
+00:02:16.275 --> 00:02:23.415
+và cứ tiếp tục như vậy đi qua tất cả các vùng trên toàn bức ảnh
+
+42
+00:02:23.415 --> 00:02:28.975
+Thật ra, trong ví dụ này, tôi chọn bước đi hơi lớn một chút để hiệu ứng nó chạy nhanh
+
+43
+00:02:28.975 --> 00:02:34.700
+Nhưng ý tưởng chính đó là mình di chuyển vùng nhỏ với kích thước như thế này
+
+44
+00:02:34.700 --> 00:02:38.460
+và cho nó đi qua
+
+45
+00:02:38.460 --> 00:02:45.125
+mạng neurons để nhận kết quả phân lớp là 0 hoặc 1 với nhiều bước đi khác nhau.
+
+46
+00:02:45.125 --> 00:02:47.085
+OK, chúng ta đã
+
+47
+00:02:47.085 --> 00:02:54.230
+di chuyển cửa sổ trượt qua toàn bức ảnh được một lần
+
+48
+00:02:54.230 --> 00:02:55.295
+Bây giờ chúng ta lặp lại quá trình đó
+
+49
+00:02:55.295 --> 00:02:57.710
+nhưng với kích thước cửa sổ trượt lớn hơn
+
+50
+00:02:57.710 --> 00:03:02.191
+Nào, bây giờ chúng ta có một vùng lớn hơn và tiếp tục chạy nó
+
+51
+00:03:02.191 --> 00:03:06.440
+Và hãy chọn bất cứ kích thước của cửa sổ mà mạng neurons cần thiết
+
+52
+00:03:06.440 --> 00:03:10.235
+và đưa nó vào mạng neurons để tính toán
+
+53
+00:03:10.235 --> 00:03:15.305
+Và tiếp tục di chuyển cửa sổ trượt với bước đi khác, cứ tiếp tục như vậy thôi
+
+54
+00:03:15.305 --> 00:03:20.500
+và cứ di chuyển qua toàn bộ bức ảnh đến khi kết thúc thì thôi.
+
+55
+00:03:20.500 --> 00:03:26.283
+Và lặp lại lần thứ ba với kích thước cửa sổ lớn hơn chút nữa, vân vân và mây mây
+
+56
+00:03:26.283 --> 00:03:29.738
+Rồi. Nếu bạn làm theo cách này,
+
+57
+00:03:29.738 --> 00:03:36.080
+miễn là có một chiếc ô tô xuất hiện ở đâu đó trên bức ảnh mà cửa sổ trượt có thể di chuyển qua đó được
+
+58
+00:03:36.080 --> 00:03:40.200
+ví dụ như là vùng này chẳng hạn, ta đưa nó vào mạng neurons
+
+59
+00:03:40.200 --> 00:03:44.890
+và mạng neurons sẽ cho ra kết quả dự đoán là 1.
+
+60
+00:03:44.890 --> 00:03:47.825
+Như vậy thì bạn đã phát hiện được ô tô ngay tại vị trí này
+
+61
+00:03:47.825 --> 00:03:52.895
+Đó cũng là lý do vì sao mà thuật toán này lại được gọi là thuật toán cửa sổ trượt, bạn có một cái cửa sỗ
+
+62
+00:03:52.895 --> 00:03:58.745
+thật ra là một vùng nhỏ hình vuông, di chuyển nó qua toàn bộ bức ảnh
+
+63
+00:03:58.745 --> 00:04:05.770
+và với mỗi vùng mà nó đi qua như vậy, ta tiến hành phân lớp vùng đó xem nó có chứa vật thể mà ta muốn tìm hay không, cụ thể trong trường hợp này là ô tô
+
+64
+00:04:05.770 --> 00:04:10.055
+Một điểm yếu rất lớn của thuật toán cửa sổ trượt này là
+
+65
+00:04:10.055 --> 00:04:12.704
+chi phí tính toán
+
+66
+00:04:12.704 --> 00:04:16.460
+Bởi vì bạn crop từ tấm ảnh gốc ra rất nhiều vùng khác nhau
+
+67
+00:04:16.460 --> 00:04:21.370
+và cho từng vùng đó đi qua mạng ConvNet một cách độc lập
+
+68
+00:04:21.370 --> 00:04:24.505
+Nếu bạn chọn số bước đi không tốt
+
+69
+00:04:24.505 --> 00:04:26.745
+có thể là số bước đi quá lớn chẳng hạn
+
+70
+00:04:26.745 --> 00:04:31.598
+nó có thể giảm số vùng mà bạn đưa vào mạng ConvNet đấy,
+
+71
+00:04:31.598 --> 00:04:35.810
+nhưng nó sẽ làm ảnh hưởng đến hiệu suất của thuật toán này
+
+72
+00:04:35.810 --> 00:04:39.630
+Ngược lại, nếu bạn chọn số bước đi quá nhỏ, quá chi tiết
+
+73
+00:04:39.630 --> 00:04:44.005
+thì sẽ có một lượng khổng lồ các vùng nhỏ
+
+74
+00:04:44.005 --> 00:04:48.995
+mà bạn phải tính toán với mạng ConvNet và dĩ nhiên nó đòi hỏi chi phí tính toán cực kì cao
+
+75
+00:04:48.995 --> 00:04:54.180
+Vì vậy mà trước khi mà các mạng neurons nhân tạo phát triển, người ta sử dụng rất là nhiều các thuật toán phân lớp đơn giản, như là
+
+76
+00:04:54.180 --> 00:04:56.910
+phân lớp tuyến tính với
+
+77
+00:04:56.910 --> 00:05:00.450
+những feature được trích lọc thủ công cho bài toán nhận diện vật thể.
+
+78
+00:05:00.450 --> 00:05:04.870
+Và vào thời đó, những thuật toán phân lớp có chi phí tính toán khá là nhẹ
+
+79
+00:05:04.870 --> 00:05:06.480
+nó chỉ là một hàm tuyến tính
+
+80
+00:05:06.480 --> 00:05:08.980
+Thuật toán cửa sổ trượt hoạt động khá ổn
+
+81
+00:05:08.980 --> 00:05:10.395
+Nó thật sự không tồi
+
+82
+00:05:10.395 --> 00:05:15.450
+nhưng mà nếu sử dụng mạng ConvNet thì mỗi lượt tính toán như vậy
+
+83
+00:05:15.450 --> 00:05:21.125
+tốn rất nhiều tài nguyên tính toán, điều này làm cho thuật toán vô cùng chậm
+
+84
+00:05:21.125 --> 00:05:26.305
+và trừ khi là bạn chọn kích thước cửa sổ trượt tốt hoặc là chọn số bước đi rất nhỏ
+
+85
+00:05:26.305 --> 00:05:32.850
+nếu không bạn sẽ không nhận được kết quả nhận diện với độ chính xác như ý.
+
+86
+00:05:32.850 --> 00:05:38.575
+Thật may là vấn đề chi phí tính toán đã có giải pháp khá ổn rồi.
+
+87
+00:05:38.575 --> 00:05:41.845
+Cụ thể là thuật toán cửa sổ trượt
+
+88
+00:05:41.845 --> 00:05:45.935
+có thể được cài đặt theo dạng convolution, nó thật sự hiệu quả hơn
+
+89
+00:05:45.935 --> 00:05:48.310
+Trong video tiếp theo, bạn sẽ biết cách làm sao để thực hiện ý tưởng đó.

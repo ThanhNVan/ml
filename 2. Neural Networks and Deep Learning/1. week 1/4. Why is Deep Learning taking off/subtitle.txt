@@ -1,0 +1,80 @@
+nếu ý tưởng kỹ thuật cơ bản đằng sau học sâu, đằng sau mạng
+nơ-ron nhân tạo đã tồn tại trong nhiều thập kỷ,
+tại sao chúng lại chỉ vừa mới trở nên phổ biến.
+Trong video này, chúng ta nói về một số yếu tố chính đằng sau sự nổi lên của học sâu bởi vì Tôi nghĩ rằng điều này sẽ
+giúp bạn nắm bắt được những cơ hội tốt nhất trong tổ chức của mình để áp dụng
+những điều này trong vài năm qua, có rất nhiều người hỏi tôi: Andrew tại sao học sâu lại chắc chắn hiệu quả và khi được hỏi câu hỏi này, tôi thường vẽ bức tranh này cho họ, giả sử chúng ta vẽ một hình, trong đó trên trục ngang là lượng
+dữ liệu chúng ta có trong một dự án và giả sử rằng ở trục dọc là hiệu suất ở trên các thuật toán học tập như độ chính xác của trình phân loại spam hoặc dự
+đoán số lượng nhấp vào quảng cáo hoặc tính chính xác của
+mạng nơ-ron nhân tạo của để tìm ra vị trí của các cuộc gọi khác cho xe tự lái hóa ra nếu bạn coi hiệu suất của một thuật toán học tập
+truyền thống như máy vector hỗ trợ hoặc hồi quy logistic như một hàm của số lượng dữ liệu bạn có, bạn có thể
+có một đường cong như thế này thể hiện hiệu suất cải thiện trong
+một thời gian khi bạn thêm nhiều dữ liệu hơn nhưng sau một thời gian, bạn thấy đấy hiệu suất khá là ổn định, đó là một đường nằm ngang, bạn biết là họ không biết phải làm gì với số lượng lớn dữ liệu, và những gì đã xảy ra trong xã hội chúng ta trong 10 năm qua có lẽ là đối với rất nhiều vấn đề, chúng ta đã đi từ có một lượng dữ liệu tương đối nhỏ tới một lượng dữ liệu khá lớn và tất cả điều này là nhờ vào sự số hóa của một xã hội mà có rất nhiều hoạt động
+của con người trong lĩnh vực kỹ thuật số. Chúng ta
+dành rất nhiều thời gian vào máy tính, trên các trang
+web, trên thiết bị di động ứng dụng và hoạt động trên
+các thiết bị kỹ thuật số và tạo dữ liệu, nhờ có sự gia tăng của máy ảnh rẻ được tích hợp vào
+điện thoại của chúng ta, gia tốc kế, tất cả các loại cảm biến trong Internet vạn vật, chúng ta đã có thể thu thập thêm được nhiều dữ liệu hơn, trong 20 năm qua với rất nhiều ứng dụng, chúng ta đã thu thập được nhiều dữ liệu hơn, hơn những gì mà thuật toán học truyền
+thống có thể làm được khai thác hiệu quả dữ liệu hơn và mạng nơ-ron mới chỉ ra rằng nếu bạn huấn luyện một mạng nơ-ron
+nhân tạo nhỏ, sau đó hiệu suất có thể trông như thế này nếu bạn huấn luyện một
+mạng Internet lớn hơn một chút gọi là một mạng internet cỡ trung bình, hiệu suất sẽ tốt hơn một chút và nếu bạn huấn luyện
+một mạng nơ-ron nhân tạo cực lớn thì đó chỉ là vấn đề về hình thức còn hiệu suất sẽ ngày càng trở nên tốt hơn kết luận rút ra đầu tiên là nếu bạn muốn đạt được mức độ hiệu suất rất cao, bạn cần hai điều, đầu tiên là bạn cần có khả năng huấn luyện một mạng nơ-ron nhân tạo đủ lớn để tận dụng lượng dữ liệu khổng lồ, và thứ hai bạn cần phải ra đây, trên các trục x, bạn cần rất nhiều dữ liệu, nên chúng
+ta thường nói rằng quy mô đã thúc đẩy tiến độ học sâu và khi nói về quy mô, ý tôi là cả kích thước của mạng nơ-ron
+nhân tạo chúng ta cần một mạng nơ-ron rất nhiều đơn vị ẩn, rất nhiều thông số, rất nhiều kết nối và cả quy mô của dữ liệu, trong thực tế, ngày nay một trong những
+cách đáng tin cậy nhất để có được hiệu suất tốt hơn trong mạng
+nơ-ron nhân tạo thường là huấn luyện một mạng lớn hơn hoặc đưa
+nhiều dữ liệu hơn vào đó nhưng điều đó chỉ hoạt
+động đến một mức độ nhất định bởi vì cuối cùng thì bạn sẽ hết dữ liệu bởi hoặc cuối cùng thì mạng của bạn quá lớn và bạn phải mất quá nhiều
+thời gian để huấn luyện nó nhưng chỉ cần cải thiện
+quy mô thôi đã giúp chúng ta đi được một chặng đường
+dài trong thế giới học tập để làm cho sơ đồ này
+chính xác hơn về mặt kỹ thuật và thêm một vài thứ, tôi đã viết số lượng dữ liệu trên trục x, về mặt kỹ thuật, đây là số lượng dữ liệu được dán nhãn,
+bên cạnh dữ liệu nhãn, Ý tôi là ví dụ đào tạo, chúng ta có cả đầu vào X và nhãn Y, Tôi muốn nói qua về ký hiệu mà chúng ta sẽ sử dụng trong
+khóa học này, Chúng ta sẽ sử dụng chữ “m” thường để biểu thị kích thước của bộ
+huấn luyện của tôi hoặc số lượng ví dụ đào tạo chữ “m” thường này ở đây có một vài chi tiết khác về đồ thị này trong khuôn khổ của các
+bộ đào tạo nhỏ hơn thứ tự quan hệ của các thuật toán thực sự không được xác định rõ lắm nên nếu bạn không có
+nhiều dữ liệu đào tạo thì bạn cần sử dụng kỹ năng thủ công chuyển dữ liệu thô thành đặc tính vì vậy có thể có trường hợp là có người huấn luyện một SVM
+(máy véc tơ hỗ trợ) có thêm động lực để chuyển dữ liệu
+thô thành đặc tính bằng tay và có người huấn luyện một
+mạng lớn của riêng họ, có thể là trong khuôn khổ
+bộ huấn luyện nhỏ này thì chế độ SEM (Marketing với
+công cụ tìm kiếm) có thể làm tốt hơn. như vậy, trong khu vực này bên trái số liệu, thứ tự quan hệ giữa các thuật toán gen thì không rõ ràng và hiệu suất phụ thuộc nhiều vào kỹ năng chuyển đổi dữ liệu của bạn và các chi tiết di động khác trong thuật toán, Và chỉ trong một số chế độ dữ liệu lớn, trong
+các bộ huấn luyện rất lớn, trong chế độ M rất lớn ở bên phải là chúng ta thường xuyên thấy phần lớn Ronettes vượt qua các phương pháp khác và nếu có ai trong số bạn bè
+của bạn hỏi bạn tại sao mạng nơ-ron nhân tạo lại
+nổi lên thì tôi mong bạn cũng sẽ vẽ bức tranh này cho họ như vậy, tôi sẽ nói rằng trong những ngày đầu Học sâu nổi lên thì quy mô của dữ liệu và quy mô của tính toán, mà chúng ta
+có thể dùng để huấn luyện mạng nơ-ron nhân tạo rất lớn trên CPU hoặc GPU, giúp chúng ta đạt được nhiều tiến bộ nhưng đặc biệt là trong vài năm gần đây chúng ta đã chứng kiến rất nhiều đổi mới thuật toán tuyệt
+vời nên tôi vẫn chưa nói hết về điều đó thú vị là, nhiều đổi mới thuật toán là để làm cho mạng nơ-ron nhân tạo chạy nhanh hơn nhiều một ví dụ cụ thể là một trong những đột phá trong mạng nơ-ron nhân tạo là chuyển từ một hàm Sigmoid trông như thế này sang hàm Railer mà chúng ta đã nói qua trong video đầu tiên trông như thế này, Nếu bạn không hiểu lắm về một hàm thì đừng lo lắng về điều đó nhưng hóa ra rằng một
+trong những vấn đề trong việc sử dụng các hàm Sigmoid và học máy là những khu vực này là độ dốc của hàm sẽ có độ dốc gần như bằng
+không và vì vậy việc học trở nên rất chậm bởi vì khi bạn thực hiện thuật toán
+Gradient Descent và gradient bằng không, các tham số thay đổi rất từ từ và học rất chậm. trong khi đó bằng cách thay đổi chức năng kích hoạt
+mạng nơ-ron nhân tạo để sử dụng hàm này hay hàm giá trị của đơn vị tuyến tính tinh chỉnh một cho tất cả các giá trị dương của đầu vào và vì vậy gradient có ít khả năng thu nhỏ dần về 0, và gradient ở đây độ dốc của đường này bằng không ở phía bên trái nhưng chỉ bằng cách
+chuyển từ hàm Sigmoid sang hàm ReLU đã khiến thuật toán Gradient Descent chạy nhanh hơn nhiều đây là một ví dụ về thuật
+toán tương đối đơn giản trong Định lý Bayes, Nhưng cuối cùng thì sự đổi mới thuật toán này thực sự tác động về mặt tính toán nên có khá nhiều ví dụ như này về nơi chúng ta thay đổi thuật toán bởi vì nó cho phép mã đó chạy nhanh hơn và điều này giúp chúng ta huấn luyện mạng nơ-ron nhân tạo
+lớn hơn hoặc làm như vậy để có nhiều khách hàng
+hơn, ngay cả khi chúng ta có một mạng lớn chuyển vùng tất cả dữ liệu, một lý do khác mà tính toán nhanh hì quan trọng là nó cho thấy quá trình huấn luyện mạng của bạn là rất trực quan, thường
+thì bạn có ý tưởng về một kiến trúc mạng nơ-ron
+nhân tạo và như vậy bạn triển khai ý tưởng
+của mình và mã hóa triển khai ý tưởng của bạn sau đó chạy một thí nghiệm để biết
+được mức độ hiệu quả mạng nơ-ron nhân tạo bạn làm và sau đó bằng cách nhìn vào
+kết quả, bạn có thể quay lại để thay đổi chi tiết về mạng nơ-ron
+của mình và sau đó là bạn thực hiện quá trình này lặp
+đi lặp lại nhiều lần và khi bạn mất nhiều thời gian để huấn luyện mạng nơ-ron thì bạn nghĩa là bạn mất nhiều thời gian
+để thực hiện quá trình này có điểm khác biệt rất lớn
+trong hiệu suất xây dựng mạng nơ-ron nhân tạo
+hiệu quả, khi bạn có thể có một ý tưởng và thử nó
+và xem nó có hiệu quả không trong mười phút hoặc có thể là một ngày so với việc bạn có thể phải huấn luyện mạng nơ-ron nhân tạo trong một tháng, điều này thường xảy ra bởi vì bạn nhận được một kết quả trong mười phút hoặc
+có thể trong một ngày bạn chỉ muốn thử nhiều
+ý tưởng hơn và được khám phá mạng của bạn nhiều hơn nó hoạt động hiệu quả
+đối với ứng dụng của bạn
+và tính toán nhanh hơn đã thực sự giúp rút ngắn thời gian bạn có thể nhận được kết quả thử nghiệm và điều này có thực sự đã giúp cả học viên thực hành mạng nơ-ron nhân tạo
+cũng như các nhà nghiên cứu làm việc và học sâu thực
+hiện quá trình lặp lại này nhanh hơn và cải thiện ý tưởng của bạn nhanh hơn và vì vậy tất cả
+nhũng điều này cũng đã là một ợi ích lớn đối với toàn bộ cộng đồng nghiên cứu học sâu bạn biết đấy, chúng có thể phát minh ra thuật toán mới
+và đang phát triển không ngừng vì vậy đây là một số
+nguồn lực tạo ra những bước tiến mạnh mẽ của học sâu nhưng tin tốt là những yếu tố này vẫn đang phát triển mạnh mẽ để giúp học sâu thậm chí
+trở nên tốt hơn nữa xã hội dữ liệu công nghệ dữ liệu số hoặc tính toán với sự gia tăng của phần
+cứng chuyên dụng như GPU và kết nối mạng nhanh hơn có vô sô loại phần cứng
+mà Tôi khá tự tin về khả năng của chúng ta trong việc
+tạo ra một mạng nơ-ron nhân tạo lớn hoặc là một quan điểm tính toán sẽ tiếp tục trở nên tốt hơn và khiến thuật toán học sâu trong cộng đồng nghiên cứu liên tục đổi mới trên các mặt trận thuật toán vì vậy tôi nghĩ rằng chúng ta có thể lạc quan, trả lời rằng học sâu có triển vọng sẽ tiếp tục phát triển tốt hơn
+trong nhiều năm tới hãy tiếp tục xem đến phần cuối
+trong video này, sẽ có một phần mà chúng tôi đã nhắc lại những gì bạn học được từ khóa học này

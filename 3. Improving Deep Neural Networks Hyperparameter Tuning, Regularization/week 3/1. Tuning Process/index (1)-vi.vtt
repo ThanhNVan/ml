@@ -1,0 +1,505 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.710
+Chào mừng các bạn quay lại.
+
+2
+00:00:01.710 --> 00:00:04.140
+Bây giờ bạn đã thấy rằng việc thay đổi neural network có thể
+
+3
+00:00:04.140 --> 00:00:07.415
+liên quan đến việc thiết lập nhiều siêu tham số khác nhau.
+
+4
+00:00:07.415 --> 00:00:11.155
+Bây giờ, làm thế nào để bạn tìm một cài đặt tốt cho các siêu tham số này?
+
+5
+00:00:11.155 --> 00:00:13.710
+Trong video này, tôi muốn chia sẻ với bạn một số nguyên tắc,
+
+6
+00:00:13.710 --> 00:00:18.235
+một số mẹo về cách tổ chức quy trình điều chỉnh siêu tham số của bạn một cách có hệ thống,
+
+7
+00:00:18.235 --> 00:00:20.640
+hy vọng đó là một cách hiệu quả hơn để
+
+8
+00:00:20.640 --> 00:00:23.760
+hội tụ trên một thiết lập tốt của các siêu tham số.
+
+9
+00:00:23.760 --> 00:00:25.929
+Một trong những điều nhức nhối về việc huấn luyện sự sâu sắc
+
+10
+00:00:25.929 --> 00:00:29.250
+là số lượng siêu tham số mà bạn phải xử lý,
+
+11
+00:00:29.250 --> 00:00:35.935
+từ learning rate alpha đến số hạng momentum beta, nếu sử dụng momentum,
+
+12
+00:00:35.935 --> 00:00:41.370
+hoặc các siêu tham số cho Thuật toán tối ưu hóa Adam là beta 1,
+
+13
+00:00:41.370 --> 00:00:44.185
+beta 2 và epsilon.
+
+14
+00:00:44.185 --> 00:00:47.270
+Có thể bạn phải chọn số lớp,
+
+15
+00:00:47.270 --> 00:00:50.820
+có thể bạn phải chọn số lượng unit ẩn cho các lớp khác nhau,
+
+16
+00:00:50.820 --> 00:00:55.093
+và có thể bạn muốn sử dụng phân rã learning rate tập,
+
+17
+00:00:55.093 --> 00:00:59.899
+vì vậy bạn không chỉ sử dụng một learning rate alpha duy nhất.
+
+18
+00:00:59.899 --> 00:01:01.065
+Và sau đó dĩ nhiên,
+
+19
+00:01:01.065 --> 00:01:06.220
+bạn có thể cần phải chọn kích thước mini batch.
+
+20
+00:01:06.220 --> 00:01:09.990
+Vì vậy, hóa ra, một số siêu tham số quan trọng hơn những siêu tham số khác.
+
+21
+00:01:09.990 --> 00:01:12.235
+Các ứng dụng học tập mà tôi muốn nói đến nhiều nhất,
+
+22
+00:01:12.235 --> 00:01:16.015
+là alpha, learning rate là siêu tham số quan trọng nhất cần điều chỉnh.
+
+23
+00:01:16.015 --> 00:01:21.595
+Ngoài alpha, một số siêu tham số khác mà tôi có xu hướng sẽ điều chỉnh tiếp theo,
+
+24
+00:01:21.595 --> 00:01:25.040
+có thể là số hạng momentum,
+
+25
+00:01:25.040 --> 00:01:27.795
+giả sử, 0,9 là một mặc định tốt.
+
+26
+00:01:27.795 --> 00:01:30.700
+Tôi cũng sẽ điều chỉnh kích thước mini batch để
+
+27
+00:01:30.700 --> 00:01:34.465
+đảm bảo rằng thuật toán tối ưu hóa đang chạy hiệu quả.
+
+28
+00:01:34.465 --> 00:01:36.985
+Thường thì tôi cũng loay hoay với các unit ẩn.
+
+29
+00:01:36.985 --> 00:01:39.250
+Trong số những cái tôi đã khoanh màu cam,
+
+30
+00:01:39.250 --> 00:01:43.660
+đây thực sự là ba thứ mà tôi sẽ coi là quan trọng thứ hai
+
+31
+00:01:43.660 --> 00:01:46.060
+đối với learning rate alpha và quan trọng thứ ba
+
+32
+00:01:46.060 --> 00:01:49.060
+sau khi loay hoay với những thứ khác,
+
+33
+00:01:49.060 --> 00:01:51.925
+số lượng các lớp đôi khi có thể tạo ra sự khác biệt lớn,
+
+34
+00:01:51.925 --> 00:01:55.000
+và learning rate tập có thể giảm sút.
+
+35
+00:01:55.000 --> 00:01:58.870
+Và sau đó khi sử dụng thuật toán Adam, tôi thực sự chưa bao giờ điều chỉnh beta 1,
+
+36
+00:01:58.870 --> 00:02:00.434
+beta 2 và epsilon.
+
+37
+00:02:00.434 --> 00:02:01.930
+Tôi thường sử dụng 0.9 khá nhiều,
+
+38
+00:02:01.930 --> 00:02:08.570
+0,999 và phần mười trừ đi tám mặc dù bạn cũng có thể thử điều chỉnh chúng nếu muốn.
+
+39
+00:02:08.570 --> 00:02:12.130
+Nhưng hy vọng nó cung cấp cho bạn một số cảm nhận sơ bộ về siêu tham số
+
+40
+00:02:12.130 --> 00:02:16.463
+có thể quan trọng hơn những cái khác, alpha,
+
+41
+00:02:16.463 --> 00:02:19.005
+quan trọng nhất, chắc chắn,
+
+42
+00:02:19.005 --> 00:02:22.270
+theo sau có thể là những thứ tôi đã khoanh tròn màu cam,
+
+43
+00:02:22.270 --> 00:02:25.235
+sau nữa có thể là những cái tôi khoanh màu tím.
+
+44
+00:02:25.235 --> 00:02:27.760
+Nhưng đây không phải là một quy tắc khó và nhanh chóng và tôi nghĩ
+
+45
+00:02:27.760 --> 00:02:30.490
+các học viên deep learning khác cũng có thể
+
+46
+00:02:30.490 --> 00:02:33.670
+không đồng ý với tôi hoặc có trực giác khác nhau về những điều này.
+
+47
+00:02:33.670 --> 00:02:37.240
+Bây giờ, nếu bạn đang cố gắng điều chỉnh một số siêu tham số,
+
+48
+00:02:37.240 --> 00:02:40.060
+làm thế nào để bạn chọn một tập hợp các giá trị để khám phá?
+
+49
+00:02:40.060 --> 00:02:42.845
+Trong các thế hệ thuật toán machine learning trước đây,
+
+50
+00:02:42.845 --> 00:02:44.660
+nếu bạn có hai siêu tham số,
+
+51
+00:02:44.660 --> 00:02:47.662
+mà tôi đang gọi là siêu tham số một và siêu tham số hai ở đây,
+
+52
+00:02:47.662 --> 00:02:53.380
+thực tế phổ biến là lấy mẫu các điểm trong một lưới như vậy
+
+53
+00:02:53.380 --> 00:02:59.435
+và vì vậy khám phá các giá trị này một cách có hệ thống.
+
+54
+00:02:59.435 --> 00:03:00.935
+Ở đây tôi đang đặt một lưới năm x năm.
+
+55
+00:03:00.935 --> 00:03:06.070
+Trong thực tế, nó có thể nhiều hơn hoặc nhỏ hơn lưới 5 x 5 nhưng bạn hãy thử
+
+56
+00:03:06.070 --> 00:03:12.430
+ví dụ này tất cả 25 điểm và sau đó chọn siêu tham số nào hoạt động tốt nhất.
+
+57
+00:03:12.430 --> 00:03:18.010
+Và phương pháp này hoạt động ổn khi số lượng siêu tham số tương đối nhỏ.
+
+58
+00:03:18.010 --> 00:03:19.840
+Trong deep learning, những gì chúng ta có xu hướng làm,
+
+59
+00:03:19.840 --> 00:03:21.415
+và những gì tôi khuyên bạn nên làm thay vào đó,
+
+60
+00:03:21.415 --> 00:03:23.975
+là chọn các điểm một cách ngẫu nhiên.
+
+61
+00:03:23.975 --> 00:03:27.970
+Vì vậy, hãy tiếp tục và chọn có thể có cùng một số điểm, phải không?
+
+62
+00:03:27.970 --> 00:03:34.590
+25 điểm và sau đó thử các siêu tham số trên tập hợp điểm được chọn ngẫu nhiên này.
+
+63
+00:03:34.590 --> 00:03:38.350
+Và lý do bạn làm điều đó là rất khó để biết trước
+
+64
+00:03:38.350 --> 00:03:43.040
+siêu tham số nào sẽ là quan trọng nhất cho vấn đề của bạn.
+
+65
+00:03:43.040 --> 00:03:44.480
+Và như bạn đã thấy trong slide trước,
+
+66
+00:03:44.480 --> 00:03:47.910
+một số siêu tham số thực sự quan trọng hơn nhiều so với những siêu tham số khác.
+
+67
+00:03:47.910 --> 00:03:49.190
+Vì vậy, để lấy một ví dụ,
+
+68
+00:03:49.190 --> 00:03:53.505
+giả sử một siêu tham số hóa ra là alpha, là learning rate.
+
+69
+00:03:53.505 --> 00:03:55.175
+Và để lấy một ví dụ điển hình,
+
+70
+00:03:55.175 --> 00:03:58.180
+giả sử rằng siêu tham số hai là
+
+71
+00:03:58.180 --> 00:04:02.730
+giá trị epsilon mà bạn có trong mẫu số của thuật toán Adam.
+
+72
+00:04:02.730 --> 00:04:07.455
+Vì vậy, lựa chọn alpha của bạn rất quan trọng và lựa chọn epsilon của bạn thì không.
+
+73
+00:04:07.455 --> 00:04:12.410
+Vì vậy, nếu bạn lấy mẫu trong lưới thì bạn đã thực sự thử
+
+74
+00:04:12.410 --> 00:04:16.300
+năm giá trị của alpha
+
+75
+00:04:16.300 --> 00:04:18.550
+và bạn có thể thấy rằng tất cả các giá trị khác nhau
+
+76
+00:04:18.550 --> 00:04:21.190
+của epsilon cung cấp cho bạn câu trả lời về cơ bản giống nhau.
+
+77
+00:04:21.190 --> 00:04:24.400
+Vì vậy, bây giờ bạn đã đào tạo 25 mô hình và chỉ
+
+78
+00:04:24.400 --> 00:04:27.925
+thử năm giá trị cho learning rate alpha,
+
+79
+00:04:27.925 --> 00:04:29.740
+mà tôi nghĩ là thực sự quan trọng.
+
+80
+00:04:29.740 --> 00:04:33.430
+Ngược lại, nếu bạn lấy mẫu ngẫu nhiên,
+
+81
+00:04:33.430 --> 00:04:37.960
+thì bạn sẽ thử 25 giá trị riêng biệt của
+
+82
+00:04:37.960 --> 00:04:40.390
+learning rate tập alpha và do đó bạn có nhiều
+
+83
+00:04:40.390 --> 00:04:43.690
+khả năng tìm thấy một giá trị hoạt động thực sự tốt hơn.
+
+84
+00:04:43.690 --> 00:04:44.980
+Tôi đã giải thích ví dụ này,
+
+85
+00:04:44.980 --> 00:04:47.160
+chỉ sử dụng hai siêu tham số.
+
+86
+00:04:47.160 --> 00:04:50.270
+Trong thực tế, bạn có thể đang tìm kiếm trên nhiều siêu tham số hơn những thứ này,
+
+87
+00:04:50.270 --> 00:04:52.000
+vì vậy nếu bạn có, giả sử
+
+88
+00:04:52.000 --> 00:04:55.080
+ba siêu tham số, tôi đoán thay vì tìm kiếm trên một hình vuông,
+
+89
+00:04:55.080 --> 00:05:00.820
+bạn đang tìm kiếm trên một khối lập phương trong đó kích thước thứ ba này là siêu tham số ba và
+
+90
+00:05:00.820 --> 00:05:03.010
+sau đó bằng cách lấy mẫu trong
+
+91
+00:05:03.010 --> 00:05:05.380
+khối lập phương ba chiều này mà bạn được
+
+92
+00:05:05.380 --> 00:05:08.080
+thử nhiều giá trị hơn của từng siêu tham số của bạn.
+
+93
+00:05:08.080 --> 00:05:11.440
+Và trong thực tế, bạn có thể đang tìm kiếm
+
+94
+00:05:11.440 --> 00:05:14.980
+thậm chí nhiều siêu tham số hơn ba và đôi khi thật khó để
+
+95
+00:05:14.980 --> 00:05:17.160
+biết trước cái nào hóa ra là
+
+96
+00:05:17.160 --> 00:05:22.120
+các siêu tham số thực sự quan trọng cho ứng dụng của bạn và việc lấy mẫu ngẫu nhiên thay vì
+
+97
+00:05:22.120 --> 00:05:25.390
+trong lưới cho thấy rằng bạn
+
+98
+00:05:25.390 --> 00:05:28.085
+khám phá tập các giá trị khả thi
+
+99
+00:05:28.085 --> 00:05:31.045
+cho các siêu tham số quan trọng nhất, bất kể chúng là gì.
+
+100
+00:05:31.045 --> 00:05:33.130
+Khi bạn lấy mẫu siêu tham số,
+
+101
+00:05:33.130 --> 00:05:37.875
+một thực tế phổ biến khác là sử dụng sơ đồ lấy mẫu từ thô đến tinh.
+
+102
+00:05:37.875 --> 00:05:42.130
+Vì vậy, giả sử trong ví dụ hai chiều này rằng bạn lấy mẫu những điểm này,
+
+103
+00:05:42.130 --> 00:05:45.600
+và có thể bạn thấy rằng điểm này hoạt động tốt nhất và
+
+104
+00:05:45.600 --> 00:05:49.210
+có thể một số điểm khác xung quanh nó có xu hướng hoạt động thực sự tốt,
+
+105
+00:05:49.210 --> 00:05:53.530
+thì trong sơ đồ cuối cùng, điều bạn có thể làm là phóng to
+
+106
+00:05:53.530 --> 00:06:00.820
+một vùng nhỏ hơn của siêu tham số và sau đó lấy mẫu mật độ trong không gian này.
+
+107
+00:06:00.820 --> 00:06:02.795
+Hoặc có thể ngẫu nhiên một lần nữa,
+
+108
+00:06:02.795 --> 00:06:06.690
+nhưng sau đó tập trung nhiều tài nguyên hơn vào việc tìm kiếm trong
+
+109
+00:06:06.690 --> 00:06:11.265
+hình vuông màu xanh này nếu bạn nghi ngờ rằng cài đặt tốt nhất,
+
+110
+00:06:11.265 --> 00:06:13.600
+các siêu tham số, có thể nằm trong vùng này.
+
+111
+00:06:13.600 --> 00:06:18.365
+Vì vậy, sau khi thực hiện một mẫu thô của toàn bộ hình vuông này,
+
+112
+00:06:18.365 --> 00:06:22.375
+điều đó cho bạn biết sau đó tập trung vào một hình vuông nhỏ hơn.
+
+113
+00:06:22.375 --> 00:06:26.105
+Sau đó, bạn có thể lấy mẫu dày hơn trong hình vuông nhỏ hơn này.
+
+114
+00:06:26.105 --> 00:06:29.720
+Vì vậy, loại tìm kiếm từ thô đến tinh này cũng thường được sử dụng.
+
+115
+00:06:29.720 --> 00:06:33.565
+Và bằng cách thử các giá trị khác nhau này của các siêu tham số, bạn có thể
+
+116
+00:06:33.565 --> 00:06:37.740
+chọn bất kỳ giá trị nào cho phép bạn làm tốt nhất trong mục tiêu training set của mình
+
+117
+00:06:37.740 --> 00:06:41.230
+hoặc làm tốt nhất trên dev set của bạn hoặc
+
+118
+00:06:41.230 --> 00:06:46.660
+bất cứ điều gì bạn đang cố gắng tối ưu hóa trong quá trình tìm kiếm siêu tham số của mình.
+
+119
+00:06:46.660 --> 00:06:48.570
+Vì vậy, tôi hy vọng điều này cung cấp cho bạn một cách để
+
+120
+00:06:48.570 --> 00:06:51.670
+tổ chức một cách có hệ thống quá trình tìm kiếm siêu tham số của bạn.
+
+121
+00:06:51.670 --> 00:06:53.200
+Hai bài học chính là,
+
+122
+00:06:53.200 --> 00:06:55.930
+sử dụng lấy mẫu ngẫu nhiên và tìm kiếm đầy đủ và
+
+123
+00:06:55.930 --> 00:07:01.585
+tùy ý xem xét triển khai quy trình tìm kiếm thô đến tinh.
+
+124
+00:07:01.585 --> 00:07:04.750
+Nhưng thậm chí còn có nhiều thứ hơn ngoài việc tìm kiếm siêu tham số như thế này.
+
+125
+00:07:04.750 --> 00:07:07.300
+Chúng ta hãy nói thêm trong video tiếp theo về cách chọn
+
+126
+00:07:07.300 --> 00:07:10.020
+thang đo phù hợp để lấy mẫu siêu tham số của bạn.

@@ -1,0 +1,103 @@
+Khi bạn xây dựng mạng nơ-ron
+nhân tạo, bạn cần lựa chọn loại hàm kích hoạt mà bạn sử
+dụng trong các lớp ẩn, Cũng như ở đầu ra
+đơn vị của mạng nơ-ron của bạn. Cho đến nay, chúng ta mới
+sử dụng hàm kích hoạt sigmoid. Nhưng đôi khi, các lựa chọn khác
+có thể hoạt động hiệu quả hơn nhiều. Hãy cùng xem một số tùy chọn sau. Trong các bước truyền xuôi cho
+mạng nơ-ron nhân tạo, chúng ta sẽ sử dụng hàm
+sigmoid ở ba bước này. Như vậy, hàm sigmoid được
+gọi là một hàm kích hoạt. Và đây là hàm sigmoid quen thuộc, a = 1/1 + e mũ -z. Vì vậy trong trường hợp tổng quát hơn, chúng ta có một hàm g(z) khác Tôi sẽ nói ngay ở đây, nơi
+g có thể là một hàm phi tuyến đó có thể không phải là hàm sigmoid. Ví dụ, hàm sigmoid nằm
+trong khoảng 0 và 1, và hàm kích hoạt mà gần như luôn
+hoạt động tốt hơn hàm sigmoid là hàm tiếp tuyến hoặc
+hàm tiếp tuyến hyperbol. Đây là z, đây là a, a bằng tanh (z), Và hàm này nằm giữa +1 và -1. Công thức của hàm tanh là e mũ z z trừ e thành z trên tổng của chúng. Và về mặt toán học, một phiên
+bản dịch chuyển của hàm sigmoid. Và, từ một hàm sigmoid
+giống như này, nhưng đã thay đổi, bây giờ nó vượt qua điểm
+trên thang đo. Vì vậy nó nằm giữa -1 và +1 Và nó đưa ra kết quả cho đơn vị ẩn nếu bạn cho hàm
+g (z) bằng tanh (z). Điều này hầu như luôn hoạt động tốt hơn hàm sigmoid bởi vì với nhiều giá trị giữa -1 và +1, trung bình của activations xuất hiện của lớp ẩn gần hơn có giá trị trung bình bằng 0. Và cũng giống như khi bạn
+huấn luyện một thuật toán học tập, có lẽ bạn sẽ đặt dữ liệu vào trung tâm và dữ liệu của bạn là 0 thì có nghĩa là bạn sẽ
+sử dụng hàm tanh thay vì hàm sigmoid. Tác dụng của nó là đặt dữ
+liệu của bạn và trung tâm để giá trị trung bình của dữ liệu của
+bạn gần 0 hơn, thay vì là 0,5 chẳng hạn. Và điều này thực sự làm cho việc học
+cho lớp tiếp theo dễ dàng hơn một chút. Chúng ta sẽ nói kỹ hơn về điều này trong khóa
+học thứ hai, khi mà chúng ta học về thuật toán tối ưu hóa. Nhưng một điều rút ra là số
+mà tôi hầu như không bao giờ sử dụng hàm kích hoạt sigmoid nữa. Hàm tanh thì hầu như luôn luôn vượt trội. Có một ngoại lệ cho lớp
+đầu ra, bởi vì nếu y bằng 0 hoặc một, thì có nghĩa là
+y  là một số mà bạn muốn kết quả nằm giữa 0 và 1 hơn là nằm giữa -1 và +1. Vì vậy, một ngoại lệ mà tôi sẽ sử dụng
+hàm activation sigmoid là khi bạn đang sử dụng bài toán phân loại nhị phân. trong trường hợp đó bạn có thể sử dụng
+hàm kích hoạt sigmoid cho lớp đầu ra. Vì vậy g (z2) ở đây bằng sigmoid của z2. Và như vậy, trong ví dụ này, bạn có
+thể thấy là bạn có thể có một hàm hàm activation tanh cho lớp ẩn và
+sigmoid cho lớp đầu ra. Và có thể có các hàm kích hoạt khác
+nhau giữa các lớp khác nhau. Và hãy lưu ý rằng đôi khi các
+hàm kích hoạt là khác nhau cho những lớp khác nhau, chúng ta có thể sử dụng các chỉ số trên để chỉ ra rằng Dấu ngoặc vuông gf một có thể khác
+so với dấu ngoặc vuông gf hai, đúng không. Và một lần nữa, [1] đề cập đến lớp này và [2] đề cập đến lớp đầu ra. Bây giờ, một nhược điểm của
+cả hàm sigmoid và hàm tanh là nếu z vô cùng
+lớn hoặc vô cùng nhỏ, thì gradient hoặc đạo hàm hoặc độ dốc
+của hàm này trở nên vô cùng nhỏ. Vì vậy nếu z vô cùng lớn hoặc vô cùng nhỏ, độ dốc của hàm kết thúc lên gần bằng 0 và vì vậy điều này có thể làm chậm gradient Vì vậy, một sự lựa chọn phổ biến khác trong học máy là cái được gọi là đơn vị tuyến tính chỉnh lưu Hàm giá trị trông như thế này. Và công thức là a = max (0, z). Vì vậy, đạo hàm là 1 khi z dương và đạo hàm hoặc độ dốc bằng 0 khi z âm. Nếu bạn đang triển khai điều này, về lý thuyết thì đạo hàm không được
+xác định rõ khi z chính xác bằng 0. Nhưng khi bạn triển khai
+điều này trong máy tính, tỷ lệ cược mà bạn nhận được chính xác z
+bằng 000000000000 là rất nhỏ. Vì vậy, bạn không cần phải lo lắng về nó. Trong thực tế, bạn có thể giả sử
+là đạo hàm khi z bằng 0, có thể giả vờ là 1 hoặc 0. Và bạn có thể làm việc tốt. Vì vậy, thực tế là không thể phân biệt được. Thực tế là, vì vậy đây là một số quy tắc
+ngón tay cái để chọn các hàm kích hoạt. Nếu đầu ra của bạn có giá trị là 0, 1, nếu
+bạn đang sử dụng phân loại nhị phân, thì hàm kích hoạt sigmoid là
+một lựa chọn dễ hiểu cho lớp đầu ra. Và sau đó đối với tất cả các đơn vị khác giá trị hoặc đơn vị tuyến tính được điều chỉnh ngày càng sự lựa chọn mặc định của hàm kích hoạt. Vì vậy, nếu bạn không chắc chắn nên sử dụng gì cho
+lớp ẩn của mình, tôi sẽ chỉ sử dụng hàm kích hoạt giá trị, là
+mà bạn thấy hầu hết mọi người sử dụng những ngày nay. Mặc dù đôi khi người ta cũng sử
+dụng hàm kích hoạt tanh. Một nhược điểm của giá trị là
+đạo hàm bằng 0 khi z âm. Trong thực tế, điều này vẫn hoạt động tốt. Nhưng có một phiên bản khác của
+được gọi là Leaky ReLU. Chúng tôi sẽ cung cấp cho bạn công thức trên slide
+tiếp theo nhưng thay vì nó bằng 0 khi z là âm,
+nó chỉ cần một độ dốc nhỏ như vậy. Vì vậy, đây được gọi là Leaky ReLU. Điều này thường hoạt động tốt hơn
+hàm kích hoạt giá trị. mặc dù nó không được sử
+dụng nhiều trong thực tế. Một trong hai sẽ ổn. Mặc dù, nếu phải chọn một,
+, tôi thường chỉ sử dụng giá trị. Và lợi thế của cả giá trị và
+Leaky ReLU là cho rất nhiều không gian của Z,
+đạo hàm của hàm kích hoạt, độ dốc của hàm kích hoạt thì khác 0. Và trong thực tế,
+bằng cách sử dụng chức năng kích hoạt giá trị, mạng nơ-ron nhân tạo của bạn thường sẽ học
+nhanh hơn nhiều so với khi sử dụng hàm kích hoạt tanh hoặc hàm sigmoid. Và lý do chính là ảnh hưởng
+của độ dốc của hàm tiến về 0 sẽ ít hơn, làm chậm quá trình học. Và tôi biết rằng đối với một nửa phạm vi
+của z, độ dốc cho giá trị bằng không. nhưng trong thực tế, một lượng đủ các
+đơn vị ẩn của bạn sẽ có z lớn hơn 0. Vậy nên hầu hết các ví dụ huấn
+luyện vẫn có thể học khá nhanh. Hãy cùng tóm tắt nhanh những ưu và
+nhược điểm của các hàm kích hoạt khác nhau. Đây là một hàm kích hoạt sigmoid. Tôi sẽ nói không bao giờ sử dụng điều này ngoại trừ
+lớp đầu ra nếu bạn đang thực hiện phân loại nhị phân hoặc
+có thể hầu như không bao giờ sử dụng điều này. Và lý do tôi gần như không bao giờ
+sử dụng hàm này là vì hàm tanh vượt trội hơn rất nhiều. Vậy nên đây là hàm kích hoạt tanh. Và hàm mặc định, hàm kích hoạt được sử dụng phổ
+biến nhất là ReLU, là hàm này. Nếu bạn không chắc chắn nên sử dụng
+hàm gì thì hãy sử dụng hàm này và Và có thể, hãy thử Leaky ReLU có thể ở đâu 0.01 (z, z), phải không? Vậy a là giá trị lớn nhất của 0.1 lần z và z. Vì vậy, điều đó cung cấp cho bạn
+này trong hàm. Và bạn có thể nghĩ là, tại sao
+hằng số đó lại là 0,01? Vâng, bạn cũng có thể sử dụng một
+tham số khác của thuật toán học tập. Và một số người nói rằng điều đó thậm chí còn
+, nhưng họ thấy mọi người làm điều đó như thế nào. Nhưng nếu bạn muốn thử điều đó trong ứng dụng
+của mình, thì bạn có thể làm như vậy. Và bạn có thể xem nó hoạt động như thế
+nào, và nó hoạt động tốt như thế nào, và tiếp tục sử dụng nó nếu
+nó mang lại kết quả tốt. Tôi hy vọng bạn đã hiểu về
+một số lựa chọn hàm kích hoạt mà bạn bạn có thể sử dụng trong mạng nơ-ron của mình. Một trong những chủ đề chúng ta sẽ thấy
+trong học sâu là bạn thường có rất nhiều lựa chọn khác nhau để
+mã hóa mạng nơ-ron nhân tạo. Khác từ số lượng các đơn vị ẩn,
+đến lựa chọn hàm kích hoạt đến cách bạn khởi tạo những
+điều mà chúng ta sẽ thấy sau này. Có rất nhiều sự lựa chọn như thế. Và trên thực tế, đôi khi việc
+có được hướng dẫn chính xác về những điều
+tốt nhất cho vấn đề của bạn là rất khó. Vì vậy, trong suốt các khóa học này,
+, tôi sẽ tiếp tục cung cấp cho bạn cảm giác về những gì tôi xem trong ngành bằng
+những gì phổ biến hơn hoặc ít hơn. Nhưng đối với ứng dụng của bạn với
+ứng dụng của bạn, các tính năng riêng biệt thực sự là rất khó để biết trước
+chính xác cái gì sẽ hoạt động tốt nhất. Do đó, tôi có một lời khuyên là,
+nếu bạn không chắc chắn các hàm kích hoạt hoạt động tốt nhất,
+hãy thử tất cả. Và đánh giá như một bộ xác thực khoản giữ
+hoặc như một bộ phát triển, một khái niệm mà chúng ta sẽ tìm hiểu sau. Và xem cái nào hoạt động tốt hơn và
+thì hãy làm cái đó. Và tôi nghĩ rằng bằng cách thử nghiệm
+các lựa chọn khác nhau này cho ứng dụng của bạn, bạn sẽ tốt hơn
+trong việc kiểm chứng kiến trúc mạng nơ-ron tương lai với
+các vấn đề về phong cách riêng cũng như sự phát triển của
+các thuật toán thay vì, nếu tôi phải nói với bạn rằng luôn sử dụng
+và không sử dụng bất kỳ thứ gì khác. Bạn có thể áp dụng điều đó hoặc không
+cho bất kỳ vấn đề nào mà bạn hoàn thành trong tương lai gần hoặc
+trong tương lai xa. Đó là về việc lựa chọn
+các hàm kích hoạt và bạn đã thấy các hàm
+kích hoạt phổ biến nhất. Có một câu hỏi khác mà
+đôi khi bạn có thể yêu cầu đó là, tại sao bạn thậm chí cần sử dụng
+chức năng kích hoạt? Tại sao chúng ta lại không
+thể không dùng? Vì vậy, hãy nói về vấn đề đó trong
+tiếp theo, nơi bạn thấy lý do tại sao mạng cần một số loại
+hàm kích hoạt phi tuyến tính.

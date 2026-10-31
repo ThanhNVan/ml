@@ -1,0 +1,417 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.180 --> 00:00:07.180
+Other than convolutional layers, confidence often also use pooling layers to reduce the size of the representation,
+
+00:00:07.180 --> 00:00:12.180
+the speed of computation, as well as make some of the features it detects a bit more robust.
+
+00:00:12.180 --> 00:00:13.180
+Let's take a look.
+
+00:00:13.180 --> 00:00:20.180
+Let's go through an example of pooling, and then we'll talk about why you might want to do this.
+
+00:00:20.180 --> 00:00:29.180
+Suppose you have a 4x4 input, and you want to apply a type of pooling called max-pooling.
+
+00:00:29.180 --> 00:00:35.180
+And the output of this particular implementation of max-pooling will be a 2x2 output.
+
+00:00:35.180 --> 00:00:37.180
+And the way you do that is quite simple.
+
+00:00:37.180 --> 00:00:44.180
+Take your 4x4 input and break it into different regions, and I'm going to color the four regions as follows.
+
+00:00:44.180 --> 00:00:53.180
+And then in the output, which is 2x2, each of the outputs will just be the max from the correspondingly shaded region.
+
+00:00:53.180 --> 00:00:58.180
+So the upper left, I guess the max of these four numbers, is 9.
+
+00:00:58.180 --> 00:01:01.180
+On the upper right, the max of the blue numbers is 2.
+
+00:01:01.180 --> 00:01:04.180
+Lower left, the biggest number is 6.
+
+00:01:04.180 --> 00:01:08.180
+And lower right, the biggest number is 3.
+
+00:01:08.180 --> 00:01:13.180
+So to compute each of the numbers on the right, we took the max over a 2x2 region.
+
+00:01:13.180 --> 00:01:21.180
+So this is as if you're applying a filter size of 2, because you're taking a 2x2 region,
+
+00:01:21.180 --> 00:01:25.180
+and you're taking a stride of 2.
+
+00:01:25.180 --> 00:01:32.620
+So these are actually the hyperparameters of max-pooling.
+
+00:01:32.620 --> 00:01:39.620
+Because we start from this filter size, it's like a 2x2 region that gives you the 9,
+
+00:01:39.620 --> 00:01:45.620
+and then you step it over two steps to look at this region to give you the 2.
+
+00:01:45.620 --> 00:01:49.620
+And then for the next row, you step it down two steps to give it a 6,
+
+00:01:49.620 --> 00:01:52.620
+and then step it to the right by two steps to give you 3.
+
+00:01:52.620 --> 00:01:55.620
+So because the squares are 2x2, f is equal to 2,
+
+00:01:55.620 --> 00:02:00.620
+and because you stride by 2, s is equal to 2.
+
+00:02:00.620 --> 00:02:04.620
+So here's the intuition behind what max-pooling is doing.
+
+00:02:04.620 --> 00:02:09.620
+If you think of this 4x4 input as some set of features,
+
+00:02:09.620 --> 00:02:15.620
+maybe not...if you think of this 4x4 region as some set of features,
+
+00:02:15.620 --> 00:02:18.620
+the activations in some layer of the neural network,
+
+00:02:18.620 --> 00:02:22.620
+then a large number means that it's maybe detected a particular feature.
+
+00:02:22.620 --> 00:02:26.620
+So the upper left-hand quadrant has this particular feature,
+
+00:02:26.620 --> 00:02:30.620
+maybe a vertical edge, or maybe an eye, or a whisker,
+
+00:02:30.620 --> 00:02:31.620
+which kind of detect the cat.
+
+00:02:31.620 --> 00:02:35.620
+But clearly that feature exists in the upper left-hand quadrant,
+
+00:02:35.620 --> 00:02:39.620
+whereas this feature maybe doesn't cat eye detector,
+
+00:02:39.620 --> 00:02:43.620
+whereas this feature doesn't really exist in the upper right-hand quadrant.
+
+00:02:43.620 --> 00:02:47.620
+So what the max operation does is so long as the feature is detected anywhere
+
+00:02:47.620 --> 00:02:52.620
+in one of these quadrants, it then remains preserved in the output of max-pooling.
+
+00:02:52.620 --> 00:02:55.620
+So what the max operator does is really say,
+
+00:02:55.620 --> 00:03:00.620
+if this feature is detected anywhere in this filter, then keep a high number.
+
+00:03:00.620 --> 00:03:03.620
+But if this feature is not detected,
+
+00:03:03.620 --> 00:03:07.620
+so maybe if this feature doesn't exist in the upper right-hand quadrant,
+
+00:03:07.620 --> 00:03:10.620
+then the max of all those numbers is still itself quite small.
+
+00:03:10.620 --> 00:03:14.620
+So maybe that's the intuition behind max-pooling.
+
+00:03:15.620 --> 00:03:19.620
+But I have to admit, I think the main reason people use max-pooling is because
+
+00:03:19.620 --> 00:03:23.620
+it's been found in a lot of experiments to work well,
+
+00:03:23.620 --> 00:03:26.620
+and the intuition I just described, despite it being often cited,
+
+00:03:26.620 --> 00:03:32.620
+I don't know if anyone fully knows if that's the real underlying reason.
+
+00:03:32.620 --> 00:03:36.620
+I don't know if anyone knows if that's the real underlying reason
+
+00:03:36.620 --> 00:03:39.620
+that max-pooling works well in confidence.
+
+00:03:39.620 --> 00:03:42.620
+One interesting property of max-pooling is that
+
+00:03:42.620 --> 00:03:47.620
+it has a set of hyperparameters, but it has no parameters to learn.
+
+00:03:47.620 --> 00:03:50.620
+There's actually nothing for gradient descent to learn.
+
+00:03:50.620 --> 00:03:53.620
+Once you fix f and s, it's just a fixed computation,
+
+00:03:53.620 --> 00:03:56.620
+and gradient descent doesn't change anything.
+
+00:03:56.620 --> 00:04:00.620
+Let's go through an example with some different hyperparameters.
+
+00:04:00.620 --> 00:04:04.620
+Here you have a 5x5 input,
+
+00:04:04.620 --> 00:04:09.620
+and we're going to apply max-pooling with a filter size that's 3x3,
+
+00:04:09.620 --> 00:04:13.620
+so f is equal to 3, and let's use a stride of 1.
+
+00:04:13.620 --> 00:04:17.620
+In this case, the output size is going to be 3x3.
+
+00:04:17.620 --> 00:04:21.620
+The formulas we had developed in the previous videos for figuring out
+
+00:04:21.620 --> 00:04:26.620
+the output size for a conned layer, those formulas also work for max-pooling.
+
+00:04:26.620 --> 00:04:33.620
+So that n plus 2p minus f over s plus 1,
+
+00:04:33.620 --> 00:04:37.620
+that formula also works for figuring out the output size of max-pool.
+
+00:04:37.620 --> 00:04:42.620
+But in this example, let's compute each of the elements of this 3x3 output.
+
+00:04:42.620 --> 00:04:46.620
+The upper left hand elements, we're going to look over that region.
+
+00:04:46.620 --> 00:04:49.620
+Notice this is a 3x3 region because the filter size is 3,
+
+00:04:49.620 --> 00:04:53.620
+and the max is there, so that's going to be 9.
+
+00:04:53.620 --> 00:04:57.620
+And then we'll shift it over by 1 because we're taking a stride of 1.
+
+00:04:57.620 --> 00:05:01.620
+So that max in the blue box is 9.
+
+00:05:01.620 --> 00:05:05.620
+Let's shift that over again. The max in the blue box is 5.
+
+00:05:06.620 --> 00:05:09.620
+And then let's go on to the next row, a stride of 1.
+
+00:05:09.620 --> 00:05:12.620
+So we're just stepping down by one step.
+
+00:05:12.620 --> 00:05:15.620
+So max in that region is 9.
+
+00:05:15.620 --> 00:05:17.620
+Max in that region is 9.
+
+00:05:17.620 --> 00:05:19.620
+Max in that region...
+
+00:05:19.620 --> 00:05:22.620
+Oh, there are two 5s, but the max is a 5.
+
+00:05:22.620 --> 00:05:26.620
+And then finally, max in that is 8.
+
+00:05:26.620 --> 00:05:28.620
+Max in that is 6.
+
+00:05:28.620 --> 00:05:31.620
+And max in that is 9 in the lower right hand corner.
+
+00:05:31.620 --> 00:05:38.620
+So this with this set of hyper-ramps, this f equals 3, s equals 1, gives that output shown on it.
+
+00:05:38.620 --> 00:05:44.620
+Now, so far I've shown max pooling on a 2D input.
+
+00:05:44.620 --> 00:05:52.620
+If you have a 3D input, then the output will have the same dimension.
+
+00:05:52.620 --> 00:05:58.620
+So for example, if you have 5x5x2, then the output will be 3x3x2.
+
+00:06:01.120 --> 00:06:08.120
+And the way you compute max pooling is you perform the computation we just described on each of the channels independently.
+
+00:06:08.120 --> 00:06:12.120
+So the first channel, which is shown here on top, is still the same.
+
+00:06:12.120 --> 00:06:16.120
+And then for the second channel, I guess this one that I just drew at the bottom,
+
+00:06:16.120 --> 00:06:20.120
+you would do the same computation on that slice of this volume.
+
+00:06:20.120 --> 00:06:24.120
+And that gives you this second slice.
+
+00:06:25.120 --> 00:06:29.120
+And more generally, if this was 5x5 by some number of channels,
+
+00:06:29.120 --> 00:06:33.120
+the output would be 3x3 by that same number of channels.
+
+00:06:33.120 --> 00:06:41.660
+And the max pooling computation is done independently on each of these NC channels.
+
+00:06:41.660 --> 00:06:45.860
+So that's max pooling.
+
+00:06:45.860 --> 00:06:50.860
+There's one other type of pooling that isn't used very often, but I'll mention briefly,
+
+00:06:50.860 --> 00:06:52.860
+which is average pooling.
+
+00:06:52.860 --> 00:06:58.860
+So it does pretty much what you'd expect, which is instead of taking the maxes
+
+00:06:58.860 --> 00:07:01.860
+within each filter, you take the average.
+
+00:07:01.860 --> 00:07:07.860
+So in this example, the average of the numbers in purple is 3.75,
+
+00:07:07.860 --> 00:07:12.860
+then that's 1.25, and 4, and 2.
+
+00:07:12.860 --> 00:07:17.860
+And so this is average pooling with hyperparameters f equals 2, s equals 2.
+
+00:07:17.860 --> 00:07:21.860
+We can choose other hyperparameters as well.
+
+00:07:21.860 --> 00:07:26.860
+So these days, max pooling is used much more often than average pooling,
+
+00:07:26.860 --> 00:07:31.860
+with one exception, which is sometimes very deep in the neural network.
+
+00:07:31.860 --> 00:07:39.860
+You might use average pooling to collapse your representation from, say, 7x7 by 1000,
+
+00:07:39.860 --> 00:07:44.860
+and average over all the spatial extents to get 1x1 by 1000.
+
+00:07:44.860 --> 00:07:47.860
+We'll see an example of this later.
+
+00:07:47.860 --> 00:07:53.860
+But you see max pooling used much more in the neural network than average pooling.
+
+00:07:53.860 --> 00:08:02.860
+So just to summarize, the hyperparameters for pooling are f, the filter size, and s, the stride.
+
+00:08:02.860 --> 00:08:07.860
+And maybe common choices of parameters might be f equals 2, s equals 2.
+
+00:08:07.860 --> 00:08:13.860
+This is used quite often, and this has the effect of roughly shrinking the height and width
+
+00:08:13.860 --> 00:08:15.860
+by a factor of about 2.
+
+00:08:15.860 --> 00:08:20.860
+And the common choice of hyperparameters might be f equals 2, s equals 2,
+
+00:08:20.860 --> 00:08:27.860
+and this has the effect of shrinking the height and width of the representation by a factor of 2.
+
+00:08:27.860 --> 00:08:31.860
+I've also seen f equals 3, s equals 2 used.
+
+00:08:31.860 --> 00:08:36.860
+And then the other hyperparameter is just the binary bit that says,
+
+00:08:36.860 --> 00:08:40.860
+are you using max pooling or are you using average pooling?
+
+00:08:40.860 --> 00:08:45.860
+If you want, you can add an extra hyperparameter for the padding,
+
+00:08:45.860 --> 00:08:47.860
+although this is very, very rarely used.
+
+00:08:47.860 --> 00:08:50.860
+When you do max pooling, usually you do not use any padding,
+
+00:08:50.860 --> 00:08:54.860
+although there is one exception that we'll see next week as well.
+
+00:08:54.860 --> 00:08:58.860
+But for the most part, max pooling usually does not use any padding.
+
+00:08:58.860 --> 00:09:06.180
+So the most common value of p by far is p equals 0.
+
+00:09:06.180 --> 00:09:12.180
+And the input of max pooling is that you input a volume of size that,
+
+00:09:12.180 --> 00:09:21.180
+nh by nw by nc, and it would output a volume of size given by this.
+
+00:09:21.180 --> 00:09:32.180
+So assuming there's no padding by nw minus f over s, s1, 4 by nc.
+
+00:09:32.180 --> 00:09:35.180
+And so the number of input channels is equal to the number of output channels
+
+00:09:35.180 --> 00:09:41.180
+because pooling applies to each of your channels independently.
+
+00:09:41.180 --> 00:09:47.180
+One thing to note about pooling is that there are no parameters to learn.
+
+00:09:47.180 --> 00:09:52.180
+So when you implement backprop, you find that there are no parameters
+
+00:09:52.180 --> 00:09:55.180
+that backprop will adapt through max pooling.
+
+00:09:55.180 --> 00:09:58.180
+Instead, there are just these hyperparameters that you set once,
+
+00:09:58.180 --> 00:10:01.180
+maybe set once by hand or set using cross-validation.
+
+00:10:01.180 --> 00:10:03.180
+And then beyond that, you're done.
+
+00:10:03.180 --> 00:10:07.180
+And it's just a fixed function that the neural network computes in one of the layers,
+
+00:10:07.180 --> 00:10:09.180
+and there is actually nothing to learn.
+
+00:10:09.180 --> 00:10:11.180
+It's just a fixed function.
+
+00:10:11.180 --> 00:10:13.180
+So that's it for pooling.
+
+00:10:13.180 --> 00:10:16.180
+You now know how to build convolutional layers and pooling layers.
+
+00:10:16.180 --> 00:10:20.180
+In the next video, let's see a more complex example of a confnet,
+
+00:10:20.180 --> 00:10:24.180
+one that will also allow us to introduce fully connected layers.

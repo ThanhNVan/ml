@@ -1,0 +1,87 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.800
+So you're just about to reach the end of the first week of material on the first course in this specialization.
+
+00:00:06.000 --> 00:00:09.200
+Let me give a quick sense of what you learned in the next few weeks as well.
+
+00:00:09.520 --> 00:00:12.260
+As I said in the first video, this
+
+00:00:12.960 --> 00:00:19.620
+specialization comprises the five causes and right now we're in the first of these five causes which teach you the most important
+
+00:00:19.760 --> 00:00:22.880
+foundations, really the most important building blocks of deep learning.
+
+00:00:23.560 --> 00:00:29.600
+So by the end of this first course, you know how to build and get to work a deep neural network.
+
+00:00:30.000 --> 00:00:33.320
+So here are the details of what is in this first course.
+
+00:00:33.600 --> 00:00:39.840
+This course is four weeks of material and you're just coming up to the end of the first week where you saw an introduction to deep learning.
+
+00:00:40.120 --> 00:00:46.880
+At the end of each week, there will also be ten multiple choice questions that you can use to double check your understanding of the material.
+
+00:00:47.280 --> 00:00:51.200
+So when you're done watching this video, I hope you go on to take a look at those questions.
+
+00:00:51.480 --> 00:00:55.760
+In the second week, you then learn about the basics of neural network programming.
+
+00:00:56.240 --> 00:01:03.640
+You learn the structure of what are called the forward propagation and the back propagation steps of the algorithm and how to implement
+
+00:01:04.240 --> 00:01:06.160
+neural networks efficiently.
+
+00:01:06.160 --> 00:01:12.680
+Starting from the second week, you also get to do a programming exercise that lets you practice the material
+
+00:01:12.680 --> 00:01:16.360
+you've just learned, implement the algorithms yourself and see it work for yourself.
+
+00:01:16.360 --> 00:01:21.640
+I find it really satisfying when I learn about an algorithm and I get to code it up and I see it work, you know,
+
+00:01:21.640 --> 00:01:23.640
+for myself. So I hope you enjoy that too.
+
+00:01:24.080 --> 00:01:31.280
+Having learned the framework for neural network programming, in the third week, you code up a single hidden layer neural network.
+
+00:01:32.080 --> 00:01:36.880
+So you learn about all the key concepts needed to implement and get to work in your network.
+
+00:01:36.920 --> 00:01:43.440
+And then finally, in week four, you build a deep neural network, a neural network with many layers and see it work for yourself.
+
+00:01:43.960 --> 00:01:47.440
+So that's congratulations on finishing the videos up to this one.
+
+00:01:47.800 --> 00:01:51.520
+I hope that you now have a good high level sense of what's happening in deep learning.
+
+00:01:51.600 --> 00:01:56.880
+And perhaps some of you are also starting to have some ideas of where you might want to apply deep learning yourself.
+
+00:01:57.440 --> 00:02:08.480
+So I hope that after this video, you go on to take a look at the 10 multiple choice questions that follow this video on the course website and just use the 10 multiple choice questions to check your understanding.
+
+00:02:08.720 --> 00:02:14.640
+And don't worry if you don't get all the answers right the first time, you can try again and again until you get them all right.
+
+00:02:14.680 --> 00:02:19.120
+I found them useful too, to make sure that I'm understanding all the concepts.
+
+00:02:19.120 --> 00:02:20.960
+I hope they'll help you that way too.
+
+00:02:21.520 --> 00:02:27.600
+So with that, congrats again for getting up to here and I look forward to seeing you in the week two videos.

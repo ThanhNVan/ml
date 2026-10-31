@@ -1,0 +1,333 @@
+WEBVTT
+
+00:00:00.240 --> 00:00:03.300
+Trong video trước, bạn đã tìm hiểu về kiểm tra
+độ dốc.
+
+00:00:03.300 --> 00:00:07.130
+Trong video này, tôi muốn chia sẻ với bạn một
+số mẹo thực tế hoặc một số
+
+00:00:07.130 --> 00:00:10.960
+ghi chú về cách thực sự triển khai điều này
+cho neural network của bạn.
+
+00:00:10.960 --> 00:00:14.720
+Đầu tiên, đừng chỉ sử dụng chương trình đào
+tạo kiểm tra cấp độ để gỡ lỗi.
+
+00:00:14.720 --> 00:00:18.660
+Vậy ý tôi là việc tính d theta hoặc Prox i cho
+tất
+
+00:00:18.660 --> 00:00:22.600
+cả các giá trị của i, đây là một phép tính rất
+chậm.
+
+00:00:22.600 --> 00:00:25.900
+Vì vậy, để thực hiện gradient descent, bạn nên
+sử dụng
+
+00:00:25.900 --> 00:00:29.200
+backprop để tính d theta và chỉ sử dụng
+backprop để tính đạo hàm.
+
+00:00:29.200 --> 00:00:31.760
+Và chỉ khi bạn đang gỡ lỗi, bạn mới tính
+
+00:00:31.760 --> 00:00:34.320
+toán kết quả này để đảm bảo nó gần với d
+theta.
+
+00:00:34.320 --> 00:00:37.880
+Nhưng một khi bạn đã làm xong việc đó, bạn sẽ
+tắt feature kiểm tra mức độ và không
+
+00:00:37.880 --> 00:00:41.440
+chạy feature này trong mỗi lần lặp lại quá
+trình gradient descent vì điều đó quá chậm.
+
+00:00:41.440 --> 00:00:44.760
+Thứ hai, nếu một thuật toán không kiểm tra
+được cấp độ, hãy xem xét
+
+00:00:44.760 --> 00:00:48.080
+các thành phần, xem xét các thành phần riêng
+lẻ để cố gắng xác định lỗi.
+
+00:00:48.080 --> 00:00:53.560
+Vì vậy, điều tôi muốn nói là nếu d theta hoặc
+Prox rất xa d theta, điều tôi sẽ
+
+00:00:53.560 --> 00:00:59.040
+làm là xem xét các giá trị khác nhau của i để
+xem giá trị nào của d theta hoặc Prox
+
+00:00:59.040 --> 00:01:02.440
+i, chúng thực sự rất khác so với giá trị của d
+theta.
+
+00:01:02.440 --> 00:01:06.640
+Vì vậy, ví dụ: nếu bạn thấy rằng các giá trị
+của theta hoặc d
+
+00:01:06.640 --> 00:01:10.840
+theta, chúng rất xa nhau, tất cả đều tương ứng
+với dBL đối với
+
+00:01:10.840 --> 00:01:15.040
+một số lớp hoặc đối với một số lớp, nhưng các
+thành phần cho dW
+
+00:01:15.040 --> 00:01:16.040
+đang khá gần nhau.
+
+00:01:16.040 --> 00:01:17.040
+Đúng không?
+
+00:01:17.040 --> 00:01:19.120
+Hãy nhớ rằng, các thành phần khác nhau của
+theta
+
+00:01:19.120 --> 00:01:21.200
+tương ứng với các thành phần khác nhau của b
+và w.
+
+00:01:21.200 --> 00:01:26.120
+Khi bạn tìm thấy trường hợp này, thì có thể
+bạn thấy rằng
+
+00:01:26.120 --> 00:01:31.040
+lỗi không phải ở cách bạn tính dB, đạo hàm
+theo tham số b.
+
+00:01:31.040 --> 00:01:36.280
+Và tương tự, ngược lại, nếu bạn thấy rằng các
+giá trị rất xa, các giá trị từ
+
+00:01:36.280 --> 00:01:41.520
+d theta hoặc Prox rất xa d theta, nếu bạn thấy
+rằng tất cả các thành phần đó
+
+00:01:41.520 --> 00:01:45.060
+đến từ dW hoặc từ dW trong một lớp nhất định
+thì
+
+00:01:45.060 --> 00:01:48.600
+điều đó có thể giúp bạn tìm ra vị trí của lỗi.
+
+00:01:48.600 --> 00:01:52.640
+Điều này không phải lúc nào cũng cho phép bạn
+xác định lỗi ngay lập tức nhưng
+
+00:01:52.640 --> 00:01:56.680
+đôi khi nó giúp bạn đưa ra một số dự đoán về
+cách thời tiết đã phát hiện ra lỗi.
+
+00:01:56.680 --> 00:01:59.920
+Tiếp theo, khi thực hiện kiểm tra cấp độ, hãy
+nhớ
+
+00:01:59.920 --> 00:02:03.160
+thuật ngữ chính quy nếu bạn đang sử dụng chính
+quy.
+
+00:02:03.160 --> 00:02:09.520
+Vì vậy, nếu cost function của bạn là j của
+theta bằng 1 trên m, tổng số
+
+00:02:09.520 --> 00:02:15.880
+tổn thất của bạn, và sau đó cộng với số hạng
+chính quy này, phải không?
+
+00:02:15.880 --> 00:02:20.720
+Tổng L của WL đối với B được biết bình phương.
+
+00:02:20.720 --> 00:02:22.680
+Và đây là định nghĩa của j.
+
+00:02:22.680 --> 00:02:26.800
+Và bạn nên biết rằng d theta là gradient của j
+đối
+
+00:02:26.800 --> 00:02:30.920
+với theta, bao gồm cả số hạng regularization
+này.
+
+00:02:30.920 --> 00:02:32.880
+Vì vậy, chỉ cần nhớ bao gồm thuật ngữ đó.
+
+00:02:32.880 --> 00:02:37.220
+Tiếp theo, kiểm tra cấp độ không hoạt động với
+bỏ học, bởi vì trong mỗi lần lặp,
+
+00:02:37.220 --> 00:02:41.560
+việc bỏ học sẽ loại bỏ ngẫu nhiên các tập hợp
+con khác nhau của các đơn vị ẩn.
+
+00:02:41.560 --> 00:02:44.940
+Không dễ dàng tính toán cost function j mà
+
+00:02:44.940 --> 00:02:48.320
+việc bỏ học đang thực hiện gradient descent.
+
+00:02:48.320 --> 00:02:52.507
+Hóa ra việc bỏ học có thể được xem là tối ưu
+hóa một số cost function j,
+
+00:02:52.507 --> 00:02:56.693
+nhưng đó là cost function j được xác định bằng
+cách tính tổng tất cả các tập
+
+00:02:56.693 --> 00:03:00.880
+hợp con lớn theo cấp số nhân của các nút có
+thể loại bỏ trong bất kỳ lần lặp nào.
+
+00:03:00.880 --> 00:03:06.300
+Vì vậy, cost function j rất khó tính toán và
+bạn chỉ đang lấy mẫu cost function mỗi
+
+00:03:06.300 --> 00:03:11.720
+khi loại bỏ các tập hợp con ngẫu nhiên khác
+nhau của các nút khi bạn sử dụng bỏ học.
+
+00:03:11.720 --> 00:03:14.240
+Vì vậy, thật khó để sử dụng feature kiểm tra
+cấp độ để
+
+00:03:14.240 --> 00:03:16.760
+kiểm tra lại tính toán của bạn khi có học sinh
+bỏ học.
+
+00:03:16.760 --> 00:03:20.280
+Vì vậy, những gì tôi thường làm là thực hiện
+kiểm tra cấp độ mà không bỏ học.
+
+00:03:20.280 --> 00:03:25.500
+Vì vậy, nếu muốn, bạn có thể đặt keyprop trong
+dropout bằng 1,0, sau đó
+
+00:03:25.500 --> 00:03:30.720
+bật dropout và hy vọng rằng việc triển khai
+dropout của tôi là chính xác.
+
+00:03:30.720 --> 00:03:35.480
+Có một số việc khác bạn có thể làm, chẳng hạn
+như sửa mẫu nút bị loại bỏ và
+
+00:03:35.480 --> 00:03:40.240
+xác minh rằng việc kiểm tra cấp độ cho mẫu đơn
+vị bị loại bỏ đó là chính xác.
+
+00:03:40.240 --> 00:03:43.120
+Nhưng trong thực tế, tôi thường không làm điều
+đó.
+
+00:03:43.120 --> 00:03:46.227
+Vì vậy, khuyến nghị của tôi là tắt bỏ học, sử
+dụng kiểm
+
+00:03:46.227 --> 00:03:49.333
+tra cấp độ để kiểm tra kỹ xem thuật toán của
+bạn ít nhất
+
+00:03:49.333 --> 00:03:52.440
+có chính xác mà không bị bỏ học hay không, sau
+đó bật bỏ học.
+
+00:03:52.440 --> 00:03:55.480
+Cuối cùng, đây là một sự tinh tế.
+
+00:03:55.480 --> 00:03:59.133
+Điều đó không phải là không thể, hiếm khi xảy
+ra, nhưng không
+
+00:03:59.133 --> 00:04:02.787
+phải là không thể thực hiện việc
+gradient descent của bạn là
+
+00:04:02.787 --> 00:04:06.440
+chính xác khi w và b gần bằng 0, do đó, khi
+khởi tạo ngẫu nhiên.
+
+00:04:06.440 --> 00:04:10.493
+Nhưng khi bạn chạy gradient descent và w và b
+trở nên lớn hơn,
+
+00:04:10.493 --> 00:04:14.547
+có thể việc triển khai backprop của bạn chỉ
+đúng khi w và b gần
+
+00:04:14.547 --> 00:04:18.600
+bằng 0, nhưng nó sẽ không chính xác hơn khi w
+và b trở nên lớn.
+
+00:04:18.600 --> 00:04:22.800
+Vì vậy, một điều bạn có thể làm, tôi không làm
+điều này thường xuyên, nhưng
+
+00:04:22.800 --> 00:04:27.000
+một điều bạn có thể làm là chạy kiểm tra kéo ở
+khởi tạo ngẫu nhiên và sau đó
+
+00:04:27.000 --> 00:04:31.200
+huấn luyện mạng trong một thời gian để w và b
+có thời gian di chuyển khỏi số 0,
+
+00:04:31.200 --> 00:04:34.380
+từ các giá trị ban đầu ngẫu nhiên nhỏ của
+chúng, rồi chạy
+
+00:04:34.380 --> 00:04:37.560
+lại kiểm tra kéo sau khi bạn đã huấn luyện một
+số lần lặp.
+
+00:04:37.560 --> 00:04:40.140
+Vậy là xong phần kiểm tra độ dốc và xin chúc
+
+00:04:40.140 --> 00:04:42.720
+mừng bạn đã hoàn thành xong tài liệu của tuần
+này.
+
+00:04:42.720 --> 00:04:46.533
+Và tuần này, bạn đã tìm hiểu về cách thiết lập
+độ sâu được đào tạo của mình
+
+00:04:46.533 --> 00:04:50.347
+trong các test set, cách phân tích bias và
+variance cũng như những việc cần
+
+00:04:50.347 --> 00:04:54.160
+làm nếu bạn có bias cao so với variance cao so
+với bias cao và variance cao.
+
+00:04:54.160 --> 00:04:58.080
+Bạn cũng đã biết cách áp dụng các hình thức
+regularization khác nhau,
+
+00:04:58.080 --> 00:05:02.000
+chẳng hạn như regularization L2 và loại bỏ
+trên neural network của bạn.
+
+00:05:02.000 --> 00:05:04.900
+Vì vậy, một số thủ thuật để tăng tốc quá trình
+đào tạo
+
+00:05:04.900 --> 00:05:07.800
+neural network của bạn và cuối cùng là
+kiểm tra độ dốc.
+
+00:05:07.800 --> 00:05:11.020
+Vì vậy, tôi nghĩ bạn đã thấy rất nhiều điều
+trong tuần này và bạn có
+
+00:05:11.020 --> 00:05:14.240
+thể áp dụng rất nhiều ý tưởng này trong bài
+tập chương trình tuần này.
+
+00:05:14.240 --> 00:05:16.240
+Vì vậy, chúc bạn may mắn với điều đó và tôi
+
+00:05:16.240 --> 00:05:18.240
+mong được gặp bạn trong tài liệu thứ hai của
+tuần.

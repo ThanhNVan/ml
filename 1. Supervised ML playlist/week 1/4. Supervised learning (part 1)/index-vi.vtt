@@ -1,0 +1,376 @@
+WEBVTT
+
+00:00:01.650 --> 00:00:05.470
+Machine learning đang tạo ra giá trị kinh tế
+to lớn ngày nay.
+
+00:00:05.470 --> 00:00:09.710
+Tôi nghĩ 99% giá trị kinh tế do
+machine learning tạo ra ngày nay là
+
+00:00:09.710 --> 00:00:13.950
+thông qua một loại hình machine learning, được
+gọi là supervised learning.
+
+00:00:13.950 --> 00:00:17.690
+Chúng ta hãy xem điều đó có nghĩa là gì.
+
+00:00:17.690 --> 00:00:23.290
+Machine learning có giám sát, hay phổ biến hơn
+là supervised learning,
+
+00:00:23.290 --> 00:00:28.890
+đề cập đến các thuật toán học x đến y hoặc ánh
+xạ đầu vào thành đầu ra.
+
+00:00:28.890 --> 00:00:33.463
+Đặc điểm chính của supervised learning là bạn
+đưa ra các ví
+
+00:00:33.463 --> 00:00:38.037
+dụ về thuật toán học của mình để học từ đó bao
+gồm các câu
+
+00:00:38.037 --> 00:00:42.610
+trả lời đúng, theo đó câu trả lời đúng, ý tôi
+là nhãn đúng
+
+00:00:42.610 --> 00:00:45.610
+y với một đầu vào x cho trước.
+
+00:00:45.610 --> 00:00:52.230
+Và bằng cách nhìn thấy các cặp đầu vào x chính
+xác và nhãn đầu ra y mong muốn,
+
+00:00:52.230 --> 00:00:58.850
+thuật toán học cuối cùng sẽ học cách chỉ lấy
+đầu vào mà không có nhãn đầu ra và đưa ra
+
+00:00:58.850 --> 00:01:03.850
+một dự đoán hoặc phỏng đoán chính xác hợp lý
+về đầu ra.
+
+00:01:03.850 --> 00:01:06.530
+Hãy xem xét một số ví dụ.
+
+00:01:06.530 --> 00:01:12.130
+Nếu đầu vào x là một email và đầu ra y là
+email spam này hoặc
+
+00:01:12.130 --> 00:01:17.730
+không phải spam, điều này sẽ cung cấp cho bạn
+bộ lọc thư rác.
+
+00:01:17.730 --> 00:01:24.050
+Hoặc nếu đầu vào là một đoạn âm thanh và công
+việc của thuật
+
+00:01:24.050 --> 00:01:30.370
+toán là xuất ra bản ghi văn bản thì đây là
+nhận dạng giọng nói.
+
+00:01:30.370 --> 00:01:34.703
+Hoặc nếu bạn muốn nhập tiếng Anh và yêu cầu nó
+xuất ra bản dịch
+
+00:01:34.703 --> 00:01:39.037
+tương ứng bằng tiếng Tây Ban Nha, tiếng Ả Rập,
+tiếng Hindi, tiếng
+
+00:01:39.037 --> 00:01:43.370
+Trung, tiếng Nhật hoặc bản dịch nào khác thì
+đó là bản dịch máy.
+
+00:01:43.490 --> 00:01:47.190
+Hình thức học tập có giám sát sinh lợi nhất
+hiện
+
+00:01:47.190 --> 00:01:50.890
+nay có lẽ được sử dụng trong quảng cáo trực
+tuyến.
+
+00:01:50.890 --> 00:01:54.690
+Gần như tất cả các nền tảng quảng cáo trực
+tuyến lớn đều có
+
+00:01:54.690 --> 00:01:58.490
+thuật toán học tập nhập một số thông tin về
+quảng cáo và một
+
+00:01:58.490 --> 00:02:02.290
+số thông tin về bạn, sau đó cố gắng tìm hiểu
+xem liệu bạn có muốn
+
+00:02:02.290 --> 00:02:04.730
+nhấp vào quảng cáo đó hay không.
+
+00:02:04.730 --> 00:02:08.470
+Bởi vì bằng cách hiển thị cho bạn những quảng
+cáo mà bạn có nhiều khả năng nhấp vào
+
+00:02:08.470 --> 00:02:12.210
+hơn đối với các nền tảng quảng cáo trực tuyến
+lớn này, mỗi nhấp chuột đều là doanh thu.
+
+00:02:12.210 --> 00:02:15.650
+Điều này thực sự mang lại rất nhiều doanh thu
+cho các công ty này.
+
+00:02:15.650 --> 00:02:20.670
+Đây là điều mà tôi đã từng làm rất nhiều, có
+thể không phải là ứng dụng truyền cảm
+
+00:02:20.670 --> 00:02:25.690
+hứng nhất, nhưng nó chắc chắn có tác động kinh
+tế đáng kể ở một số công ty ngày nay.
+
+00:02:25.690 --> 00:02:31.390
+Hoặc nếu bạn muốn chế tạo một chiếc ô tô tự
+lái, thuật toán học sẽ lấy hình ảnh
+
+00:02:31.390 --> 00:02:37.090
+đầu vào và một số thông tin từ các cảm biến
+khác như radar hoặc những thứ khác,
+
+00:02:37.090 --> 00:02:41.450
+và sau đó cố gắng xuất ra vị trí của những
+chiếc xe khác để xe tự
+
+00:02:41.450 --> 00:02:45.810
+lái của bạn có thể lái vòng qua những chiếc xe
+khác một cách an toàn.
+
+00:02:45.810 --> 00:02:46.810
+Hoặc lấy sản xuất.
+
+00:02:46.810 --> 00:02:52.410
+Tôi thực sự đã làm rất nhiều việc trong lĩnh
+vực này tại Landing AI.
+
+00:02:52.410 --> 00:02:56.183
+Bạn có thể yêu cầu một thuật toán học lấy đầu
+vào là hình ảnh của một
+
+00:02:56.183 --> 00:02:59.957
+sản phẩm được sản xuất, chẳng hạn như một
+chiếc điện thoại di động vừa
+
+00:02:59.957 --> 00:03:03.730
+được đưa ra khỏi dây chuyền sản xuất và có đầu
+ra của thuật toán học.
+
+00:03:03.730 --> 00:03:09.090
+sản phẩm có bị trầy xước, móp méo hay các
+khuyết tật khác hay không.
+
+00:03:09.090 --> 00:03:12.600
+Điều này được gọi là kiểm tra trực quan và
+giúp các nhà sản xuất
+
+00:03:12.600 --> 00:03:16.110
+giảm thiểu hoặc ngăn ngừa các khuyết tật trong
+sản phẩm của họ.
+
+00:03:16.110 --> 00:03:21.080
+Trong tất cả các ứng dụng này, trước tiên bạn
+sẽ huấn luyện mô hình
+
+00:03:21.080 --> 00:03:26.050
+của mình bằng các ví dụ về đầu vào X và câu
+trả lời đúng, đó là nhãn Y.
+
+00:03:26.050 --> 00:03:29.637
+Sau khi mô hình đã học được từ các đầu ra đầu
+vào hoặc cặp X
+
+00:03:29.637 --> 00:03:33.223
+và Y này, nó có thể lấy đầu vào X hoàn toàn
+mới, thứ mà nó
+
+00:03:33.223 --> 00:03:36.810
+chưa từng thấy trước đây và cố gắng tạo ra đầu
+vào thích hợp.
+
+00:03:36.810 --> 00:03:38.570
+đầu ra tương ứng Y.
+
+00:03:38.570 --> 00:03:45.210
+Hãy đi sâu hơn vào một ví dụ cụ thể.
+
+00:03:45.210 --> 00:03:50.290
+Giả sử bạn muốn dự đoán giá nhà dựa trên kích
+thước của ngôi nhà.
+
+00:03:50.290 --> 00:03:53.130
+Bạn đã thu thập một số dữ liệu và nói rằng
+
+00:03:53.130 --> 00:03:55.970
+bạn vẽ biểu đồ dữ liệu và nó trông như thế
+này.
+
+00:03:55.970 --> 00:04:00.130
+Ở đây trên trục ngang là kích thước của ngôi
+nhà tính bằng feet vuông.
+
+00:04:00.130 --> 00:04:03.170
+Và vâng, tôi sống ở Hoa Kỳ, nơi chúng tôi vẫn
+sử dụng feet vuông.
+
+00:04:03.170 --> 00:04:07.010
+Tôi biết hầu hết thế giới đều sử dụng mét
+vuông.
+
+00:04:07.010 --> 00:04:13.410
+Và ở đây trên trục tung là giá của ngôi nhà
+lên tới hàng ngàn đô la.
+
+00:04:13.410 --> 00:04:17.480
+Vì vậy, với dữ liệu này, giả sử một người bạn
+muốn
+
+00:04:17.480 --> 00:04:21.550
+biết giá căn nhà rộng 750 foot vuông của họ là
+bao nhiêu.
+
+00:04:21.550 --> 00:04:24.170
+Thuật toán học tập có thể giúp bạn như thế
+nào?
+
+00:04:24.170 --> 00:04:29.250
+Một điều mà thuật toán học có thể làm là nói
+khớp một đường thẳng với dữ liệu
+
+00:04:29.250 --> 00:04:34.330
+và đọc theo đường thẳng đó, có vẻ như nhà của
+bạn bạn có thể được bán với giá
+
+00:04:34.330 --> 00:04:39.290
+có lẽ khoảng 150.000 USD, tôi không biết.
+
+00:04:39.290 --> 00:04:41.220
+Nhưng việc khớp một đường thẳng không phải là
+
+00:04:41.220 --> 00:04:43.150
+thuật toán học tập duy nhất bạn có thể sử
+dụng.
+
+00:04:43.150 --> 00:04:46.750
+Có những cái khác có thể hoạt động tốt hơn cho
+ứng dụng này.
+
+00:04:46.750 --> 00:04:51.940
+Ví dụ: thay vì khớp một đường thẳng, bạn có
+thể quyết định rằng tốt hơn nên khớp
+
+00:04:51.940 --> 00:04:57.130
+một đường cong, một hàm phức tạp hơn hoặc phức
+tạp hơn một chút so với đường thẳng.
+
+00:04:57.130 --> 00:04:58.650
+dòng.
+
+00:04:58.650 --> 00:05:03.560
+Nếu bạn làm điều đó và đưa ra dự đoán ở đây,
+thì có vẻ như
+
+00:05:03.560 --> 00:05:08.470
+ngôi nhà của bạn bạn có thể được bán với giá
+gần 200.000 USD.
+
+00:05:08.470 --> 00:05:12.623
+Một trong những điều bạn sẽ thấy sau trong lớp
+này là cách bạn
+
+00:05:12.623 --> 00:05:16.777
+có thể quyết định xem nên khớp một đường
+thẳng, một đường cong
+
+00:05:16.777 --> 00:05:20.930
+hay một hàm khác thậm chí còn phức tạp hơn đối
+với dữ liệu.
+
+00:05:20.930 --> 00:05:23.360
+Bây giờ có vẻ không thích hợp để chọn nơi
+
+00:05:23.360 --> 00:05:25.790
+mang lại cho bạn bè của bạn mức giá tốt nhất.
+
+00:05:25.790 --> 00:05:31.520
+Một điều bạn thấy là làm thế nào để có được
+một thuật toán để chọn một cách có hệ
+
+00:05:31.520 --> 00:05:37.250
+thống đường hoặc đường cong thích hợp nhất
+hoặc thứ khác phù hợp với dữ liệu này.
+
+00:05:37.250 --> 00:05:41.910
+Những gì bạn thấy trong slide này là một ví dụ
+về học tập có giám sát.
+
+00:05:41.910 --> 00:05:45.490
+Bởi vì chúng tôi đã cung cấp cho thuật toán
+một tập dữ
+
+00:05:45.490 --> 00:05:49.070
+liệu trong đó câu trả lời được gọi là đúng,
+tức là nhãn
+
+00:05:49.070 --> 00:05:52.650
+hoặc giá Y chính xác được đưa ra cho mỗi ngôi
+nhà trên lô đất.
+
+00:05:52.650 --> 00:05:58.350
+Và nhiệm vụ của thuật toán học là tạo ra nhiều
+câu trả lời đúng hơn, cụ thể là
+
+00:05:58.350 --> 00:06:04.050
+dự đoán mức giá có thể xảy ra cho những ngôi
+nhà khác giống như nhà bạn của bạn.
+
+00:06:04.050 --> 00:06:06.850
+Đó là lý do tại sao đây là học tập có giám
+sát.
+
+00:06:06.850 --> 00:06:10.890
+Để xác định thêm một chút thuật ngữ, dự đoán
+giá nhà đất này
+
+00:06:10.890 --> 00:06:14.930
+là một loại học tập có giám sát cụ thể được
+gọi là regression.
+
+00:06:14.930 --> 00:06:20.330
+Và bằng regression, ý tôi là chúng ta đang cố
+gắng dự đoán
+
+00:06:20.330 --> 00:06:25.730
+một số từ vô số số có thể, chẳng hạn như giá
+nhà trong ví
+
+00:06:25.730 --> 00:06:31.130
+dụ của chúng ta, có thể là 150.000 hoặc 70.000
+hoặc 183.000
+
+00:06:31.130 --> 00:06:34.090
+hoặc bất kỳ số nào khác ở giữa.
+
+00:06:34.090 --> 00:06:39.890
+Vì vậy, đó là supervised learning, học đầu ra
+hoặc ánh xạ từ x đến y.
+
+00:06:39.890 --> 00:06:43.070
+Và bạn đã thấy trong video này một ví dụ về
+
+00:06:43.070 --> 00:06:46.250
+regression với nhiệm vụ là dự đoán một con số.
+
+00:06:46.250 --> 00:06:49.390
+Nhưng còn có một loại vấn đề
+
+00:06:49.390 --> 00:06:52.530
+supervised learning chính thứ hai được gọi là
+classification.
+
+00:06:52.530 --> 00:06:54.850
+Chúng ta hãy xem điều đó có nghĩa là gì trong
+video tiếp theo.

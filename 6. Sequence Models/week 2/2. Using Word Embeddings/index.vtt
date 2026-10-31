@@ -1,0 +1,357 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.720
+In the last video, you saw what it might mean to learn a featureized representation of different
+
+00:00:05.720 --> 00:00:06.720
+words.
+
+00:00:06.720 --> 00:00:12.120
+In this video, you see how you can take these representations and plug them into NLP applications.
+
+00:00:12.120 --> 00:00:14.000
+Let's start with an example.
+
+00:00:14.000 --> 00:00:18.880
+Continuing with the named entity recognition example, if you're trying to detect people's
+
+00:00:18.880 --> 00:00:24.680
+names, given a sentence like Sally Johnson is an orange farmer, hopefully you figure
+
+00:00:24.680 --> 00:00:30.480
+out that Sally Johnson is a person's name, hence the output's 1 like that.
+
+00:00:30.480 --> 00:00:35.360
+And one way to be sure that Sally Johnson has to be a person, rather than say the name of
+
+00:00:35.360 --> 00:00:39.600
+a corporation, is that your orange farmer is a person.
+
+00:00:39.600 --> 00:00:45.920
+So previously, we had talked about one-hot representations to represent these words, x1,
+
+00:00:45.920 --> 00:00:48.000
+x2, and so on.
+
+00:00:48.000 --> 00:00:53.120
+But if you can now use the featureized representations, the embedding vectors that we talked about
+
+00:00:53.120 --> 00:00:58.840
+in the last video, then after having trained a model that uses word embeddings as the inputs,
+
+00:00:58.840 --> 00:01:04.960
+if you now see a new input, Robert Lin is an apple farmer, knowing that orange and apple
+
+00:01:04.960 --> 00:01:09.640
+are very similar will make it easier for your learning algorithm to generalize to figure
+
+00:01:09.640 --> 00:01:15.520
+out that Robert Lin is also a human, is also a person's name.
+
+00:01:15.520 --> 00:01:20.400
+One of the most interesting cases will be what if in your test set, you see not Robert
+
+00:01:20.400 --> 00:01:23.600
+Lin as apple farmer, but you see much less common words.
+
+00:01:23.600 --> 00:01:31.980
+What if you see Robert Lin is a durian cultivator.
+
+00:01:31.980 --> 00:01:38.900
+A durian is a rare type of fruit, popular in Singapore and a few other countries.
+
+00:01:38.900 --> 00:01:43.580
+But if you have a small label training set for the name entity recognition task, you
+
+00:01:43.580 --> 00:01:48.340
+might not even have seen the word durian or seen the word cultivator in your training
+
+00:01:48.340 --> 00:01:49.340
+set.
+
+00:01:49.340 --> 00:01:53.660
+I guess technically, this should be a durian cultivator.
+
+00:01:53.660 --> 00:01:59.100
+But if you have learned a word embedding that tells you that durian is a fruit, so it's
+
+00:01:59.100 --> 00:02:03.380
+kind of like an orange, and a cultivator, you know, some of the cultivators is kind
+
+00:02:03.380 --> 00:02:08.100
+of like a farmer, then you might still be able to generalize from having seen an
+
+00:02:08.100 --> 00:02:13.540
+orange farmer in your training set to knowing that a durian cultivator is also probably
+
+00:02:13.540 --> 00:02:14.740
+a person.
+
+00:02:14.740 --> 00:02:18.580
+So one of the reasons that word embeddings will be able to do this is the algorithm
+
+00:02:18.580 --> 00:02:24.020
+so learning word embeddings can examine very large text corpuses, maybe found off
+
+00:02:24.020 --> 00:02:25.020
+the internet.
+
+00:02:25.020 --> 00:02:29.620
+So you can examine very large data sets, maybe a billion words, maybe even up to a
+
+00:02:29.620 --> 00:02:32.740
+hundred billion words.
+
+00:02:32.740 --> 00:02:34.060
+This would be quite reasonable.
+
+00:02:34.060 --> 00:02:39.540
+So very large training sets of just unlabeled text.
+
+00:02:39.540 --> 00:02:43.780
+And by examining tons of unlabeled text, which you can download, you know, more or
+
+00:02:43.780 --> 00:02:49.860
+less for free, you can figure out that orange and durian are kind of similar and farmer
+
+00:02:49.860 --> 00:02:54.660
+and cultivator are kind of similar, and therefore learn embeddings that groups them
+
+00:02:54.660 --> 00:02:55.660
+together.
+
+00:02:55.660 --> 00:03:03.340
+Now, having discovered that orange and durian are both fruits, by reading massive amounts
+
+00:03:03.340 --> 00:03:07.620
+of internet text, what you can do is then take this word embedding and apply it to
+
+00:03:07.620 --> 00:03:12.620
+your name entity recognition task for which you might have a much smaller training set,
+
+00:03:12.620 --> 00:03:17.820
+maybe just a hundred thousand words in your training set or even much smaller.
+
+00:03:17.820 --> 00:03:24.060
+And so this allows you to carry out transfer learning, where you take information you've
+
+00:03:24.060 --> 00:03:29.540
+learned from huge amounts of unlabeled text that you can set down essentially for free
+
+00:03:29.540 --> 00:03:36.420
+off the internet to figure out that orange apple and durian are fruits and then transfer
+
+00:03:36.420 --> 00:03:42.260
+that knowledge to a task such as name entity recognition for which you might have a relatively
+
+00:03:42.260 --> 00:03:44.620
+small labeled training set.
+
+00:03:44.620 --> 00:03:52.140
+Oh, and of course, for simplicity, I drew this as a for and only as a uni directional RNN.
+
+00:03:52.140 --> 00:03:55.660
+If you actually want to carry out the name entity recognition task, you should of course
+
+00:03:55.660 --> 00:04:00.140
+use a bi directional RNN rather than a simpler one after one here.
+
+00:04:00.140 --> 00:04:06.060
+But to summarize, this is how you can carry out transfer learning using word embeddings.
+
+00:04:06.060 --> 00:04:12.180
+Step one is to learn word embeddings from a large tech corpus, very large tech corpora,
+
+00:04:12.180 --> 00:04:16.620
+or you can also download pre trained word embeddings online.
+
+00:04:16.620 --> 00:04:23.340
+There are several word embeddings that you can find online under a very permissive licenses.
+
+00:04:23.340 --> 00:04:27.260
+And you can then take these word embeddings and transfer the embedding to a new task
+
+00:04:27.260 --> 00:04:32.860
+we have a much smaller labeled training set and use this, let's say 300 dimensional
+
+00:04:32.860 --> 00:04:35.620
+embedding to represent your words.
+
+00:04:35.620 --> 00:04:42.220
+One nice thing also about this is you can now use relatively lower dimensional feature
+
+00:04:42.220 --> 00:04:43.420
+vectors.
+
+00:04:43.420 --> 00:04:50.580
+So rather than using a 10,000 dimensional one hot vector, you can now instead use maybe
+
+00:04:50.580 --> 00:04:57.300
+a 300 dimensional dense vector, although the one hot vector is sparse and the 300 dimensional
+
+00:04:57.300 --> 00:05:01.580
+vector that you might learn through embedding will be a dense vector.
+
+00:05:01.580 --> 00:05:07.700
+And then finally, as you train your model on your new tasks on your name entity recognition
+
+00:05:07.700 --> 00:05:13.220
+tasks, with a smaller label data set, one thing you can optionally do is to continue
+
+00:05:13.220 --> 00:05:20.060
+to find to continue to adjust the word embeddings with the new data.
+
+00:05:20.060 --> 00:05:25.340
+In practice, you would do this only if your new task only if this task two has a pretty
+
+00:05:25.340 --> 00:05:27.100
+big data set.
+
+00:05:27.100 --> 00:05:33.300
+If your label data set for step two is quite small, then usually I would not bother to continue
+
+00:05:33.300 --> 00:05:35.780
+to find you the word embeddings.
+
+00:05:35.780 --> 00:05:40.700
+So when embeddings tend to make the biggest difference when the task you're trying to
+
+00:05:40.700 --> 00:05:44.940
+carry out has a relatively small training set.
+
+00:05:44.940 --> 00:05:47.860
+So it has been useful for many NLP tasks.
+
+00:05:47.860 --> 00:05:51.820
+Now just name a few don't worry if you don't know these terms, it has been useful for
+
+00:05:51.820 --> 00:05:56.980
+name entity recognition for text summarization for core reference resolution for pausing.
+
+00:05:57.340 --> 00:06:00.780
+These are all maybe pretty standard NLP tasks.
+
+00:06:00.780 --> 00:06:05.340
+It has been less useful for language modeling machine translation, especially if you're
+
+00:06:05.340 --> 00:06:10.060
+actually a language modeling machine translation task for which you have a lot of data just
+
+00:06:10.060 --> 00:06:11.980
+dedicated to that task.
+
+00:06:11.980 --> 00:06:16.900
+So as you see in other transfer learning settings, if you're trying to transfer from some task
+
+00:06:16.900 --> 00:06:23.820
+A to some task B, the process of transfer learning is just most useful when you happen
+
+00:06:23.820 --> 00:06:28.980
+to have a ton of data for A and a relatively smaller data set for B.
+
+00:06:28.980 --> 00:06:35.540
+And so that's true for a lot of NLP tasks and just less true for some language modeling
+
+00:06:35.540 --> 00:06:37.780
+and machine translation settings.
+
+00:06:37.780 --> 00:06:44.220
+Finally, word embeddings has an interesting relationship to the face encoding set of
+
+00:06:44.220 --> 00:06:48.980
+ideas that you learned about in the previous course if you took the convolutional neural
+
+00:06:48.980 --> 00:06:50.380
+networks course.
+
+00:06:50.380 --> 00:06:56.340
+So you will remember that for face recognition, we trained this Siamese network architecture
+
+00:06:56.340 --> 00:07:03.660
+that would learn, say, a 128 dimensional representation for different faces and then you could compare
+
+00:07:03.660 --> 00:07:10.940
+these encodings in order to figure out if these two pictures are of the same face.
+
+00:07:10.940 --> 00:07:17.100
+The words encoding and embedding mean fairly similar things.
+
+00:07:17.100 --> 00:07:23.100
+So in the face recognition literature, people also use the term encoding to refer to these
+
+00:07:23.100 --> 00:07:28.020
+vectors fx i and fx j.
+
+00:07:28.020 --> 00:07:32.060
+One difference between the face recognition literature and what we'll do in word embeddings
+
+00:07:32.060 --> 00:07:37.980
+is that for face recognition, you wanted to train a neural network that can take as
+
+00:07:37.980 --> 00:07:43.500
+input any face picture, even a picture you've never seen before and have a neural network
+
+00:07:43.500 --> 00:07:46.380
+compute and encoding for that new picture.
+
+00:07:46.380 --> 00:07:51.100
+Whereas what we'll do, and you understand this better when we go through the next few
+
+00:07:51.100 --> 00:07:55.580
+videos, whereas what we'll do for learning word embeddings is that we'll have a fixed
+
+00:07:55.580 --> 00:08:04.340
+vocabulary of say 10,000 words and we'll learn a vector e1 through say e10,000 that
+
+00:08:04.340 --> 00:08:12.460
+just learns a fixed encoding or learns a fixed embedding for each of the words in our vocabulary.
+
+00:08:12.460 --> 00:08:18.100
+So that's one difference between the set of ideas you solve for face recognition versus
+
+00:08:18.100 --> 00:08:21.340
+what the algorithms will discuss in the next few videos.
+
+00:08:21.340 --> 00:08:26.300
+But the terms encoding and embedding are used somewhat interchangeably.
+
+00:08:26.300 --> 00:08:31.460
+So the difference I just described is not represented by the difference in terminology.
+
+00:08:31.460 --> 00:08:36.900
+It's just a difference in how we need to use these algorithms in face recognition, where
+
+00:08:36.900 --> 00:08:42.300
+there's an unlimited sea of pictures you can see in the future versus natural language
+
+00:08:42.300 --> 00:08:47.460
+processing where there might be just a fixed vocabulary and everything outside that will
+
+00:08:47.460 --> 00:08:50.340
+just declare as an unknown word.
+
+00:08:50.340 --> 00:08:55.940
+So in this video, you saw how using word embeddings allows you to implement this type of transfer
+
+00:08:55.940 --> 00:09:00.980
+learning and how by replacing the one-hot vectors we're using previously with the embedding
+
+00:09:00.980 --> 00:09:05.300
+vectors, you can allow your algorithms to generalize much better or even learn from
+
+00:09:05.300 --> 00:09:06.740
+much less label data.
+
+00:09:06.740 --> 00:09:12.020
+Next, I want to show you just a few more properties of these word embeddings.
+
+00:09:12.020 --> 00:09:16.540
+And then after that, we will talk about algorithms for actually learning these word embeddings.
+
+00:09:16.540 --> 00:09:20.780
+Let's go on to the next video where you see how word embeddings can help with reasoning
+
+00:09:20.780 --> 00:09:22.060
+about analogies.

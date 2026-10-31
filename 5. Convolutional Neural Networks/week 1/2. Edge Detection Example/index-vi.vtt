@@ -1,0 +1,677 @@
+WEBVTT
+
+1
+00:00:00.530 --> 00:00:03.370
+Phép toán convolution là một trong những
+
+2
+00:00:03.370 --> 00:00:05.743
+các khối xây dựng cơ bản của một neural network convolution
+
+3
+00:00:05.743 --> 00:00:10.758
+Ta sử dụng feature phát hiện cạnh làm ví dụ thúc đẩy trong video này,
+
+4
+00:00:10.758 --> 00:00:16.758
+ta sẽ thấy cách hoạt động của phép toán convolution.
+
+5
+00:00:16.758 --> 00:00:19.530
+Trong các video trước, tôi đã nói về
+
+6
+00:00:19.530 --> 00:00:24.000
+cách các layer ban đầu của neural network có thể phát hiện các cạnh và sau đó
+
+7
+00:00:24.000 --> 00:00:27.525
+một số layer sau có thể phát hiện nguyên nhân của các đối tượng và sau đó
+
+8
+00:00:27.525 --> 00:00:35.005
+thậm chí các layer sau đó có thể phát hiện nguyên nhân của các đối tượng hoàn chỉnh như khuôn mặt người trong trường hợp này.
+
+9
+00:00:35.005 --> 00:00:40.465
+Trong video này, ta thấy cách ta có thể phát hiện các cạnh trong hình ảnh.
+
+10
+00:00:40.465 --> 00:00:42.060
+Hãy cùng xem một ví dụ.
+
+11
+00:00:42.060 --> 00:00:44.730
+Giả sử có một hình ảnh như vậy cho máy tính
+
+12
+00:00:44.730 --> 00:00:47.250
+để tìm ra những đối tượng trong bức tranh này,
+
+13
+00:00:47.250 --> 00:00:54.550
+điều đầu tiên ta có thể làm là có thể phát hiện các cạnh dọc trong hình ảnh này.
+
+14
+00:00:54.550 --> 00:00:58.050
+Ví dụ: hình ảnh này có nhiều đường thẳng đứng,
+
+15
+00:00:58.050 --> 00:00:59.490
+vị trí của tòa nhà
+
+16
+00:00:59.490 --> 00:01:03.416
+cũng như đường thẳng đứng và những đường viền của những người đi bộ này và
+
+17
+00:01:03.416 --> 00:01:07.770
+những đường đó được phát hiện trong đầu ra của bộ dò cạnh dọc này.
+
+18
+00:01:07.770 --> 00:01:13.665
+Và có thể ta cũng muốn phát hiện các cạnh ngang, ví dụ:
+
+19
+00:01:13.665 --> 00:01:15.810
+có một đường ngang rất mạnh, như
+
+20
+00:01:15.810 --> 00:01:18.490
+lan can này là và nó cũng được phát hiện ở đây.
+
+21
+00:01:18.490 --> 00:01:24.780
+Làm thế nào để ta phát hiện các cạnh trong hình ảnh như thế này?
+
+22
+00:01:24.780 --> 00:01:26.965
+Hãy xem xét một ví dụ nhé.
+
+23
+00:01:26.965 --> 00:01:32.895
+Đây là hình ảnh thang mức xám 6 x 6 và vì đây là hình ảnh mức xám,
+
+24
+00:01:32.895 --> 00:01:36.620
+đây chỉ là ma trận 6 x 6 x 1 chứ không phải
+
+25
+00:01:36.620 --> 00:01:41.225
+là 6 x 6 x 3 vì chúng nằm trên các kênh rgb riêng biệt.
+
+26
+00:01:41.225 --> 00:01:45.200
+Để phát hiện các cạnh hoặc các cạnh dọc trong hình ảnh của anh ấy chẳng hạn,
+
+27
+00:01:45.200 --> 00:01:49.025
+những gì ta có thể làm là xây dựng một ma trận 3 x 3
+
+28
+00:01:49.025 --> 00:01:53.935
+và trong thuật ngữ của neural network convolution
+
+29
+00:01:53.935 --> 00:01:56.420
+cái này sẽ được gọi là bộ lọc (filter)
+
+30
+00:01:56.420 --> 00:02:03.175
+Và tôi sẽ tạo bộ lọc 3 x 3 hoặc ma trận 3 x 3 trông giống như thế này,
+
+31
+00:02:03.175 --> 00:02:08.685
+1 ,1 , 1, 0, 0, 0, -1, -1, -1.
+
+32
+00:02:08.685 --> 00:02:12.170
+Đôi khi các tài liệu nghiên cứu sẽ gọi đây là hạt nhân (kernel) chứ không phải
+
+33
+00:02:12.170 --> 00:02:17.020
+một bộ lọc nhưng tôi sẽ sử dụng thuật ngữ bộ lọc trong các video này.
+
+34
+00:02:17.020 --> 00:02:22.760
+Và chúng ta sẽ lấy hình ảnh 6 x 6 và convolve nó và
+
+35
+00:02:22.760 --> 00:02:26.143
+phép toán convolution được biểu thị bằng dấu hoa thị này và
+
+36
+00:02:26.143 --> 00:02:31.855
+convolve với bộ lọc 3 x 3.
+
+37
+00:02:31.855 --> 00:02:37.220
+Một điều hơi đáng tiếc về ký hiệu là trong toán học,
+
+38
+00:02:37.220 --> 00:02:42.535
+dấu hoa thị là biểu tượng tiêu chuẩn cho convolution nhưng trong Python,
+
+39
+00:02:42.535 --> 00:02:48.350
+nó cũng được sử dụng để biểu thị phép nhân hoặc có thể là phép nhân từng phần tử.
+
+40
+00:02:48.350 --> 00:02:52.840
+Dấu hoa thị này có mục đích kép là ký hiệu quá tải
+
+41
+00:02:52.840 --> 00:02:58.340
+nhưng tôi sẽ cố làm rõ trong các video này khi dấu hoa thị này biểu thị cho convolution.
+
+42
+00:02:58.340 --> 00:03:04.515
+Đầu ra của toán tử convolution này sẽ là ma trận 4 x 4,
+
+43
+00:03:04.515 --> 00:03:08.875
+mà ta có thể hiểu, mà ta có thể coi là hình ảnh 4 x 4.
+
+44
+00:03:08.875 --> 00:03:13.175
+Ta tính toán đầu ra 4 x 4 này như sau,
+
+45
+00:03:13.175 --> 00:03:15.440
+để tính toán các phần tử đầu tiên,
+
+46
+00:03:15.440 --> 00:03:18.500
+phần tử phía trên bên trái của ma trận 4 x 4 này,
+
+47
+00:03:18.500 --> 00:03:21.890
+chúng ta sẽ lấy bộ lọc 3 x 3 và dán nó lên
+
+48
+00:03:21.890 --> 00:03:26.050
+trên cùng của vùng 3 x 3 của hình ảnh đầu vào ban đầu của ta
+
+49
+00:03:26.050 --> 00:03:29.720
+Tôi đã viết ở đây 1, 1, 1,
+
+50
+00:03:29.720 --> 00:03:34.990
+0, 0, 0, -1, -1, -1.
+
+51
+00:03:34.990 --> 00:03:39.151
+Và chúng ta nên lấy tích của phép nhân từng phần tử nên tích đầu tiên sẽ là
+
+52
+00:03:39.151 --> 00:03:45.230
+3 nhân 1 và sau đó tích thứ hai sẽ là 1 nhân 1 tôi sẽ xuống đây,
+
+53
+00:03:45.230 --> 00:03:49.760
+1 nhân 1 và sau đó + 2 nhân 1
+
+54
+00:03:49.760 --> 00:03:53.270
+chỉ 1 thôi và sau đó cộng tất cả 9 kết quả lại.
+
+55
+00:03:53.270 --> 00:03:57.020
+Vậy, sau đó với cột ở giữa, ta có 0 nhân với 0,
+
+56
+00:03:57.020 --> 00:03:58.775
+cộng 5 nhân 0,
+
+57
+00:03:58.775 --> 00:04:02.300
++ 7 nhân 0 và sau đó với cột ngoài cùng bên phải, ta có 1 nhân -1,
+
+58
+00:04:02.300 --> 00:04:08.555
+8 nhân -1 + 2 nhân -1.
+
+59
+00:04:08.555 --> 00:04:13.770
+Cộng 9 số này lại ta sẽ được kết quả là
+
+60
+00:04:13.770 --> 00:04:19.110
+- 5 và vì vậy tôi sẽ điền - 5 ở đây.
+
+61
+00:04:19.110 --> 00:04:22.440
+Tất nhiên, ta có thể cộng 9 số này theo bất kỳ thứ tự nào.
+
+62
+00:04:22.440 --> 00:04:27.505
+Chỉ là tôi đã đi xuống cột đầu tiên,
+
+63
+00:04:27.505 --> 00:04:29.295
+rồi đến cột thứ hai, rồi đến cột thứ ba.
+
+64
+00:04:29.295 --> 00:04:31.850
+Tiếp theo, để tìm ra phần tử thứ hai này là gì,
+
+65
+00:04:31.850 --> 00:04:37.710
+ta sẽ lấy hình vuông màu xanh lam và chuyển nó sang phải 1 ô như thế này
+
+66
+00:04:37.710 --> 00:04:41.825
+Tôi sẽ xóa bỏ những vết xanh ở đây.
+
+67
+00:04:41.825 --> 00:04:46.250
+Mọi người cũng sẽ tính tích của phép nhân từng phần tử và sau đó là phép cộng.
+
+68
+00:04:46.250 --> 00:04:49.200
+Ta có 0 nhân 1
+
+69
+00:04:49.200 --> 00:04:51.135
+cộng 5 nhân 1
+
+70
+00:04:51.135 --> 00:04:52.845
+cộng 7 nhân 1,
+
+71
+00:04:52.845 --> 00:04:55.573
+cộng 1 nhân 0, cộng 8 nhân 0,
+
+72
+00:04:55.573 --> 00:04:57.090
+cộng 2 nhân 0,
+
+73
+00:04:57.090 --> 00:04:59.318
+cộng 2 nhân -1, cộng 9 nhân -1
+
+74
+00:04:59.318 --> 00:05:06.795
+cộng 5 nhân -1 và nếu ta cộng 9 số đó,
+
+75
+00:05:06.795 --> 00:05:10.840
+ta sẽ có kết quả là -4, v.v.
+
+76
+00:05:10.840 --> 00:05:14.605
+Nếu ta chuyển nó sang phải, lại tìm 9 tích và cộng chúng lại,
+
+77
+00:05:14.605 --> 00:05:19.120
+t nhận được kết quả là 0 và sau đó ở đây ta sẽ nhận được 8.
+
+78
+00:05:19.120 --> 00:05:26.075
+Để xác minh thì thử làm nhé, ta có 2 cộng 9 cộng 5 là 16.
+
+79
+00:05:26.075 --> 00:05:29.205
+Sau đó, cột ở giữa cho ta số 0 và
+
+80
+00:05:29.205 --> 00:05:33.615
+thì cột 4 bên phải ngoài cùng 4 cộng 1 cộng 3 nhân -1,
+
+81
+00:05:33.615 --> 00:05:37.990
+kết quả là là -8 vậy là ở cột bên trài là 16 trừ 8
+
+82
+00:05:37.990 --> 00:05:43.166
+và như vậy kết quả là 8 như chúng ta có ở đây.
+
+83
+00:05:43.166 --> 00:05:48.490
+Tiếp theo, để ta có được phần tử này ở hàng tiếp theo
+
+84
+00:05:48.490 --> 00:05:50.801
+chúng ta phải lấy hình vuông màu xanh và bây giờ chuyển nó
+
+85
+00:05:50.801 --> 00:05:53.920
+xuống 1 ô để bây giờ nó ở vị trí này
+
+86
+00:05:53.920 --> 00:05:59.710
+và một lần nữa lại tính các tích của phép nhân từng phần tử và sau đó lại làm phép cộng
+
+87
+00:05:59.710 --> 00:06:01.180
+Nếu bạn làm điều đó,
+
+88
+00:06:01.180 --> 00:06:02.640
+ta sẽ nhận được -10 ở đây.
+
+89
+00:06:02.640 --> 00:06:06.805
+Nếu ta chuyển nó sang phải,
+
+90
+00:06:06.805 --> 00:06:16.745
+ta sẽ nhận được -2, sau đó là 2 và sau đó là 3, v.v.
+
+91
+00:06:16.745 --> 00:06:20.990
+Sau đó điền vào tất cả các phần tử còn lại của ma trận.
+
+92
+00:06:20.990 --> 00:06:29.455
+Để mọi người hiểu rõ hơn, vùng 3 x 3 phía dưới bên phải này sẽ cho ta kết quả là -16.
+
+93
+00:06:29.455 --> 00:06:37.280
+Ma trận 6 x 6 của ma trận 3 x 3 cho ta ma trận 4 x 4.
+
+94
+00:06:37.280 --> 00:06:39.730
+Và đây là những hình ảnh và bộ lọc.
+
+95
+00:06:39.730 --> 00:06:43.990
+Đây chỉ là những ma trận có nhiều chiều khác nhau.
+
+96
+00:06:43.990 --> 00:06:48.632
+Nhưng ma trận bên trái rất dễ để diễn giải dưới dạng hình ảnh,
+
+97
+00:06:48.632 --> 00:06:53.170
+và ma trận ở giữa có thể được hiểu là bộ lọc và ma trận ở bên phải,
+
+98
+00:06:53.170 --> 00:06:56.605
+ta có thể hiểu nó là một hình ảnh khác.
+
+99
+00:06:56.605 --> 00:07:00.310
+Và đây hóa ra là một máy dò cạnh dọc,
+
+100
+00:07:00.310 --> 00:07:03.280
+và mọi người sẽ hiểu lý do trên slide tiếp theo.
+
+101
+00:07:03.280 --> 00:07:04.455
+Trước khi tiếp tục,
+
+102
+00:07:04.455 --> 00:07:06.010
+tôi phải nói thêm 1 điều,
+
+103
+00:07:06.010 --> 00:07:09.745
+đó là nếu ta triển khai nó bằng ngôn ngữ lập trình,
+
+104
+00:07:09.745 --> 00:07:12.460
+thì trong thực tế, hầu hết các ngoại ngữ sẽ có
+
+105
+00:07:12.460 --> 00:07:16.720
+một số hàm khác nhau chứ không phải dấu hoa thị để biểu thị convolution.
+
+106
+00:07:16.720 --> 00:07:18.985
+Ví dụ, trong bài tập trước,
+
+107
+00:07:18.985 --> 00:07:23.740
+ta sử dụng hoặc triển khai một hàm được gọi là conv-forward.
+
+108
+00:07:23.740 --> 00:07:27.185
+Nếu ta làm điều này trong tensorflow
+
+109
+00:07:27.185 --> 00:07:29.515
+có một hàm tf.nn.cont2d.
+
+110
+00:07:29.515 --> 00:07:37.535
+Và các khung lập trình deep learning khác trong phần sụn (firmware) của chương trình CARIS,
+
+111
+00:07:37.535 --> 00:07:39.860
+chúng ta sẽ tìm hiểu điều này sau trong khóa học này,
+
+112
+00:07:39.860 --> 00:07:44.755
+có một hàm gọi là cont2d thực hiện convolution, v.v.
+
+113
+00:07:44.755 --> 00:07:49.370
+Nhưng tất cả các khung deep learning hỗ trợ tốt
+
+114
+00:07:49.370 --> 00:07:56.635
+thị giác máy tính sẽ có một số hàm để triển khai toán tử convolution này.
+
+115
+00:07:56.635 --> 00:07:59.620
+Tại sao nó lại thực hiện phát hiện cạnh dọc?
+
+116
+00:07:59.620 --> 00:08:01.840
+Hãy xem một ví dụ khác.
+
+117
+00:08:01.840 --> 00:08:06.160
+Để minh họa điều này, chúng ta sẽ sử dụng một hình ảnh đơn giản hóa.
+
+118
+00:08:06.160 --> 00:08:09.410
+Đây là một hình ảnh
+
+119
+00:08:09.410 --> 00:08:13.970
+đơn giản 6 x 6 trong đó nửa bên trái của hình ảnh là 10 và nửa bên phải là 0
+
+120
+00:08:13.970 --> 00:08:15.596
+Nếu ta vẽ nó như một bức tranh,
+
+121
+00:08:15.596 --> 00:08:16.940
+nó có thể trông như thế này,
+
+122
+00:08:16.940 --> 00:08:18.460
+trong đó nửa bên trái, 10s,
+
+123
+00:08:18.460 --> 00:08:20.690
+thì ta sẽ có giá trị chuyên sâu
+
+124
+00:08:20.690 --> 00:08:24.221
+pixel sáng hơn và nửa bên phải cho ta giá trị chuyên sâu pixel tối hơn.
+
+125
+00:08:24.221 --> 00:08:28.100
+Tôi đang sử dụng màu xám để biểu thị 0
+
+126
+00:08:28.100 --> 00:08:31.620
+mặc dù nó cũng có thể được vẽ thành màu đen.
+
+127
+00:08:31.620 --> 00:08:32.935
+Nhưng trong hình ảnh này,
+
+128
+00:08:32.935 --> 00:08:37.370
+rõ ràng có một cạnh thẳng đứng rất rõ ở ngay giữa
+
+129
+00:08:37.370 --> 00:08:43.660
+hình ảnh này khi màu chuyển từ trắng sang đen hoặc trắng sang màu tối hơn.
+
+130
+00:08:43.660 --> 00:08:46.568
+Khi ta convolve nó với bộ lọc
+
+131
+00:08:46.568 --> 00:08:52.965
+3 x 3 và bộ lọc 3 x 3 này có thể được biểu diễn như sau,
+
+132
+00:08:52.965 --> 00:08:56.960
+hình ảnh có pixel sáng hơn ở
+
+133
+00:08:56.960 --> 00:09:01.380
+bên trái và sau đó ở giữa có các số 0 màu trung tính và ở bên phải có màu tối hơn
+
+134
+00:09:01.380 --> 00:09:06.515
+Chúng ta nhận được ma trận này ở bên phải.
+
+135
+00:09:06.515 --> 00:09:09.885
+Chỉ để xác minh phép toán này nếu ta muốn,
+
+136
+00:09:09.885 --> 00:09:12.140
+số 0 này chẳng hạn,
+
+137
+00:09:12.140 --> 00:09:14.655
+có thể nhận được số 0 bằng cách
+
+138
+00:09:14.655 --> 00:09:18.076
+lây các tích của phép nhân từng phần tử và sau đó nhân với khối 3 x 3 này và
+
+139
+00:09:18.076 --> 00:09:20.311
+ta nhận được từ
+
+140
+00:09:20.311 --> 00:09:25.880
+cột bên trái 10 cộng 10 cộng 10 rồi đến các số 0 ở giữa rồi đến -10,
+
+141
+00:09:25.880 --> 00:09:30.495
+-10, -10 đó là lý do tại sao ta nhận được kết quả bằng 0 ở đây.
+
+142
+00:09:30.495 --> 00:09:36.045
+Ngược lại, ta nhận được kết quả là 30
+
+143
+00:09:36.045 --> 00:09:42.570
+từ phép cộng 10 cộng với 10 cộng với 10 rồi trừ đi 0,
+
+144
+00:09:42.570 --> 00:09:47.160
+trừ đi 0, đó là lý do tại sao ta có kết quả bằng 30 ở đó.
+
+145
+00:09:47.160 --> 00:09:50.790
+Bây giờ, nếu ta vẽ hình ảnh bên phải ngoài cùng của ma trận, nó sẽ trông
+
+146
+00:09:50.790 --> 00:09:54.540
+như vậy, nó có vùng sáng hơn ở
+
+147
+00:09:54.540 --> 00:09:57.330
+giữa và điều đó tương ứng với việc
+
+148
+00:09:57.330 --> 00:10:02.395
+đã phát hiện cạnh dọc này ở giữa hình ảnh 6 x 6 của ta
+
+149
+00:10:02.395 --> 00:10:05.610
+Trong trường hợp các kích thước ở đây dường như
+
+150
+00:10:05.610 --> 00:10:08.960
+có nhầm lẫn một chút nên rằng cạnh được phát hiện có vẻ dày,
+
+151
+00:10:08.960 --> 00:10:13.635
+lý do là vì chúng ta đang làm việc với những hình ảnh rất nhỏ trong ví dụ này.
+
+152
+00:10:13.635 --> 00:10:17.965
+Và nếu ta đang sử dụng, hình ảnh 1000 x 1000 thay vì hình ảnh 6 x 6 thì
+
+153
+00:10:17.965 --> 00:10:23.485
+ta thấy rằng nó phát hiện cạnh khá tốt
+
+154
+00:10:23.485 --> 00:10:27.155
+nó thực sự phát hiện được các cạnh dọc trong hình ảnh của ta
+
+155
+00:10:27.155 --> 00:10:30.860
+Trong ví dụ này, vùng sáng ở giữa là
+
+156
+00:10:30.860 --> 00:10:34.384
+chỉ là hình ảnh đầu ra muốn nói rằng có vẻ như có
+
+157
+00:10:34.384 --> 00:10:39.165
+một cạnh dọc rất rõ ngay giữa hình ảnh.
+
+158
+00:10:39.165 --> 00:10:45.150
+Có thể đôi khi ta muốn loại bỏ việc phát hiện cạnh dọc vì cạnh dọc là
+
+159
+00:10:45.150 --> 00:10:48.207
+vùng 3 x 3 vì chúng ta đang sử dụng bộ lọc 3 x 3
+
+160
+00:10:48.207 --> 00:10:52.658
+với các pixel sáng ở bên trái,
+
+161
+00:10:52.658 --> 00:10:57.785
+ta không quan tâm nhiều đến những thứ ở giữa và các pixel tối ở bên phải.
+
+162
+00:10:57.785 --> 00:11:03.925
+Phần giữa trong hình ảnh 6 x 6 này là nơi có thể có
+
+163
+00:11:03.925 --> 00:11:07.680
+pixel sáng ở bên trái và pixel tối hơn ở bên phải và
+
+164
+00:11:07.680 --> 00:11:11.610
+đó là lý do tại sao phát hiện cạnh nghĩ rằng đó là một cạnh thẳng đứng ở đó.
+
+165
+00:11:11.610 --> 00:11:15.420
+Phép toán convolution cung cấp cho ta một cách thuận tiện để
+
+166
+00:11:15.420 --> 00:11:20.090
+chỉ định cách tìm các cạnh dọc này trong hình ảnh.
+
+167
+00:11:20.090 --> 00:11:23.530
+Bây giờ mọi người đã thấy cách hoạt động của toán tử convolution.
+
+168
+00:11:23.530 --> 00:11:26.820
+Trong video tiếp theo, ta sẽ tìm hiểu cách lấy và sử dụng nó
+
+169
+00:11:26.820 --> 00:11:30.240
+làm một trong những khối xây dựng cơ bản của Neural network convolution

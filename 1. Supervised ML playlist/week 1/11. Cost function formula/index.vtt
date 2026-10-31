@@ -1,0 +1,330 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.520 --> 00:00:06.240
+In order to implement linear regression, the first key step is for us to define something
+
+00:00:06.240 --> 00:00:08.260
+called a cost function.
+
+00:00:08.260 --> 00:00:10.760
+This is something we'll build in this video.
+
+00:00:10.760 --> 00:00:15.800
+And the cost function will tell us how well the model is doing so that we can try to
+
+00:00:15.800 --> 00:00:17.640
+get it to do better.
+
+00:00:17.640 --> 00:00:19.560
+Let's look at what this means.
+
+00:00:19.560 --> 00:00:25.080
+Recall that you have a training set that contains input features x and output targets
+
+00:00:25.080 --> 00:00:26.480
+y.
+
+00:00:26.480 --> 00:00:33.600
+And the model you're going to use to fit this training set is this linear function f wb of
+
+00:00:33.600 --> 00:00:37.200
+x equals w times x plus b.
+
+00:00:37.200 --> 00:00:43.720
+To introduce a little bit more terminology, the w and b are called the parameters of the
+
+00:00:43.720 --> 00:00:44.720
+model.
+
+00:00:44.720 --> 00:00:50.960
+In machine learning, parameters of a model are the variables you can adjust during training
+
+00:00:50.960 --> 00:00:54.400
+in order to improve the model.
+
+00:00:54.400 --> 00:01:02.520
+Sometimes you also hear the parameters w and b referred to as coefficients or as weights.
+
+00:01:02.520 --> 00:01:08.600
+Now let's take a look at what these parameters w and b do.
+
+00:01:08.600 --> 00:01:13.580
+Depending on the values you've chosen for w and b, you get a different function f of
+
+00:01:13.580 --> 00:01:17.520
+x, which generates a different line on the graph.
+
+00:01:17.560 --> 00:01:24.760
+Remember that we can write f of x as a shorthand for f wb of x.
+
+00:01:24.760 --> 00:01:29.640
+We're going to take a look at some plots of f of x on a chart.
+
+00:01:29.640 --> 00:01:34.080
+Maybe you're already familiar with drawing lines on charts, but even if this is a review
+
+00:01:34.080 --> 00:01:39.800
+for you, I hope this will help you build intuition on how w and b, the parameters,
+
+00:01:39.800 --> 00:01:42.600
+determine f.
+
+00:01:42.600 --> 00:01:50.920
+When w is equal to 0 and b is equal to 1.5, then f looks like this horizontal line.
+
+00:01:50.920 --> 00:02:00.520
+In this case, the function f of x is 0 times x plus 1.5, so f is always a constant value.
+
+00:02:00.520 --> 00:02:05.880
+It always predicts 1.5 for the estimated value of y.
+
+00:02:05.880 --> 00:02:09.000
+So y hat is always equal to b.
+
+00:02:09.000 --> 00:02:14.640
+And here, b is also called the y-interset because that's where it crosses the vertical
+
+00:02:14.640 --> 00:02:18.600
+axis or the y-axis on this graph.
+
+00:02:18.600 --> 00:02:28.840
+As a second example, if w is 0.5 and b is equal to 0, then f of x is 0.5 times x.
+
+00:02:28.840 --> 00:02:32.440
+When x is 0, the prediction is also 0.
+
+00:02:32.440 --> 00:02:38.400
+And when x is 2, then the prediction is 0.5 times 2, which is 1.
+
+00:02:38.400 --> 00:02:40.800
+So you get a line that looks like this.
+
+00:02:40.800 --> 00:02:46.440
+And notice that the slope is 0.5 divided by 1.
+
+00:02:46.440 --> 00:02:53.360
+So the value of w gives you the slope of the line, which is 0.5.
+
+00:02:53.360 --> 00:03:04.600
+And finally, if w equals 0.5 and b equals 1, then f of x is 0.5 times x plus 1.
+
+00:03:04.600 --> 00:03:09.640
+And when x is 0, then f of x equals b, which is 1.
+
+00:03:09.640 --> 00:03:15.080
+So the line intersects the vertical axis at b, the y-intercept.
+
+00:03:15.080 --> 00:03:19.600
+Also when x is 2, then f of x is 2.
+
+00:03:19.600 --> 00:03:21.040
+So the line looks like this.
+
+00:03:21.040 --> 00:03:27.160
+Again, the slope is 0.5 divided by 1, so the value of w gives you the slope, which
+
+00:03:27.160 --> 00:03:29.320
+is 0.5.
+
+00:03:29.320 --> 00:03:33.760
+Recall that you have a training set, like the one shown here.
+
+00:03:33.760 --> 00:03:38.800
+With linear regression, what you want to do is to choose values for the parameters w and
+
+00:03:38.800 --> 00:03:44.360
+b so that the straight line you get from the function f somehow fits the data well,
+
+00:03:44.360 --> 00:03:47.160
+like maybe this line shown here.
+
+00:03:47.160 --> 00:03:52.640
+And when I say that the line fits the data visually, you can think of this to mean that
+
+00:03:52.640 --> 00:03:59.240
+the line defined by f is roughly passing through or somewhat close to the training example
+
+00:03:59.760 --> 00:04:05.640
+as compared to other possible lines that are not as close to these points.
+
+00:04:05.640 --> 00:04:13.000
+And just to remind you of some notation, a training example like this point here is defined by
+
+00:04:13.000 --> 00:04:20.640
+x superstrip i, y superstrip i, where y is the target.
+
+00:04:20.640 --> 00:04:30.280
+For a given input xi, the function f also makes a predicted value for y, and the value
+
+00:04:30.280 --> 00:04:35.080
+that it predicts for y is y-hat i, shown here.
+
+00:04:35.080 --> 00:04:41.320
+For our choice of a model, f of xi is w times xi plus b.
+
+00:04:41.320 --> 00:04:50.560
+Stated differently, the prediction y-hat i is f of wb of xi, where for the model where
+
+00:04:50.560 --> 00:04:59.670
+using f of xi is equal to w xi plus b.
+
+00:04:59.670 --> 00:05:07.670
+So now the question is, how do you find values for w and b so that the prediction y-hat i
+
+00:05:07.670 --> 00:05:17.430
+is close to the true target yi for many or maybe all training examples xi yi?
+
+00:05:17.430 --> 00:05:22.950
+To answer that question, let's first take a look at how to measure how well a line fits
+
+00:05:22.950 --> 00:05:24.950
+the training data.
+
+00:05:24.950 --> 00:05:28.970
+To do that, we're going to construct our cost function.
+
+00:05:28.970 --> 00:05:36.710
+The cost function takes the prediction y-hat and compares it to the target y by taking
+
+00:05:36.710 --> 00:05:39.790
+y-hat minus y.
+
+00:05:39.790 --> 00:05:42.830
+This difference is called the error.
+
+00:05:42.830 --> 00:05:47.150
+We're measuring how far off the prediction is from the target.
+
+00:05:47.150 --> 00:05:52.110
+Next, let's compute the square of this error.
+
+00:05:52.110 --> 00:05:57.810
+Also, we're going to want to compute this term for different training examples i in the
+
+00:05:57.810 --> 00:05:59.310
+training set.
+
+00:05:59.310 --> 00:06:05.430
+So when measuring the error, for example, i, we'll compute this squared error term.
+
+00:06:05.430 --> 00:06:10.230
+Finally, we want to measure the error across the entire training set.
+
+00:06:10.230 --> 00:06:13.990
+In particular, let's sum up the squared errors like this.
+
+00:06:13.990 --> 00:06:20.190
+We'll sum from i equals 1, 2, 3, all the way up to m.
+
+00:06:20.190 --> 00:06:26.190
+And remember that m is the number of training examples, which is 47 for this data set.
+
+00:06:26.190 --> 00:06:31.230
+Notice that if we have more training examples, m is larger, and your cost function will
+
+00:06:31.230 --> 00:06:35.830
+calculate a bigger number since it's summing over more examples.
+
+00:06:35.830 --> 00:06:40.830
+So to build a cost function that doesn't automatically get bigger as the training set
+
+00:06:40.830 --> 00:06:49.050
+size gets larger, by convention, we will compute the average squared error instead of the total
+
+00:06:49.050 --> 00:06:50.050
+squared error.
+
+00:06:50.050 --> 00:06:54.190
+And we do that by dividing by m like this.
+
+00:06:54.190 --> 00:06:57.410
+Okay, we're nearly there.
+
+00:06:57.410 --> 00:06:59.150
+Just one last thing.
+
+00:06:59.150 --> 00:07:05.350
+By convention, the cost function that machine learning people use actually divides by 2
+
+00:07:05.350 --> 00:07:06.350
+times m.
+
+00:07:06.350 --> 00:07:11.790
+The extra division by 2 is just meant to make some of our later calculations a little bit
+
+00:07:11.790 --> 00:07:17.110
+neater, but the cost function still works whether you include this division by 2 or
+
+00:07:17.110 --> 00:07:18.110
+not.
+
+00:07:18.110 --> 00:07:23.110
+So this expression right here is the cost function, and we're going to write j of
+
+00:07:23.110 --> 00:07:28.290
+wb to refer to the cost function.
+
+00:07:28.290 --> 00:07:32.230
+This is also called the squared error cost function.
+
+00:07:32.230 --> 00:07:37.350
+And it's called this because you're taking the square of these error terms.
+
+00:07:37.350 --> 00:07:42.350
+In machine learning, different people will use different cost functions for different
+
+00:07:42.350 --> 00:07:43.350
+applications.
+
+00:07:43.350 --> 00:07:50.030
+But the squared error cost function is by far the most commonly used one for linear regression.
+
+00:07:50.030 --> 00:07:54.630
+And for that matter, for all regression problems, where it seems to give good results for
+
+00:07:54.630 --> 00:07:56.710
+many applications.
+
+00:07:56.710 --> 00:08:05.670
+So just as a reminder, the prediction y hat is equal to the output of the model f at x.
+
+00:08:05.670 --> 00:08:15.910
+So we can rewrite the cost function j of wb as 1 over 2m times the sum from i equals 1
+
+00:08:15.910 --> 00:08:23.030
+to m of f of xi minus yi, the quantity squared.
+
+00:08:23.830 --> 00:08:28.630
+Eventually, we're going to want to find values of w and b that make the cost function
+
+00:08:28.630 --> 00:08:30.230
+small.
+
+00:08:30.230 --> 00:08:37.070
+But before going there, let's first gain more intuition about what j of wb is really
+
+00:08:37.070 --> 00:08:38.510
+computing.
+
+00:08:38.510 --> 00:08:43.150
+At this point, you might be thinking, we've done a whole lot of math to define the cost
+
+00:08:43.150 --> 00:08:44.250
+function.
+
+00:08:44.250 --> 00:08:46.750
+But what exactly is it doing?
+
+00:08:46.750 --> 00:08:51.310
+Let's go on to the next video, where we'll step through one example of what the cost
+
+00:08:51.310 --> 00:08:56.150
+function is really computing, that I hope will help you build intuition about what it
+
+00:08:56.150 --> 00:09:01.950
+means if j of wb is large versus if the cost j is small.
+
+00:09:01.950 --> 00:09:03.470
+Let's go on to the next video.

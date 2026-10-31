@@ -1,0 +1,49 @@
+Trong video trước, chúng ta đã đã thấy mô hình hồi quy logistic để huấn luyện các tham số w và b của mô hình hồi quy logistic. Chúng ta cần xác định hàm chi phí,
+hãy xem xét hàm chi phí mà chúng ta có thể sử dụng để huấn luyện hồi quy logistic.
+Nhắc lại, đây là những gì chúng ta đã xác định trong slide trước, Vì vậy, đầu ra ŷ bằng sigmoid của w chuyển vị T x cộng b,
+trong đó σ(z) được xác định ở đây. Vì vậy, để tìm hiểu các tham số cho mô hình,
+bạn được cung cấp một tập huấn luyện có m mẫu huấn luyện và có vẻ như
+mà chúng ta cần tìm tham số w và b. Vì vậy, ít nhất trên tập huấn luyện,
+kết quả đầu ra, các dự đoán mà chúng ta có trên tập huấn luyện là ŷ(i) sẽ gần bằng giá trị thật y(i) có nhãn gốc y(i) trong tập huấn luyện. Vì vậy, để làm rõ hơn phương trình ở trên, chúng ta đã nói rằng ŷ
+được xác định ở trên cùng cho mẫu huấn luyện, và tất nhiên đối với mỗi mẫu huấn luyện,
+chúng ta sử dụng các chỉ số trên dấu ngoặc đơn để lập chỉ mục các mẫu huấn luyện khác nhau. Dự đoán về mẫu huấn luyện i là ŷ(i) sẽ được tính bằng cách tính hàm sigmoid và áp dụng cho w chuyển vị x(i),
+đầu vào cho mẫu huấn luyện cộng với b. Chúng ta cũng có thể định nghĩa z(i) như sau, z(i) bằng w chuyển vị x(i) cộng b. Vì vậy, trong suốt khóa học, chúng ta sẽ
+sử dụng quy ước ký hiệu này, chỉ số trên (i)
+đề cập đến dữ liệu là x, y hoặc z hoặc một cái gì đó khác liên quan với
+mẫu huấn luyện thứ i, liên quan tới mẫu thứ i, chỉ số trên (i) có ý nghĩa như vậy. Bây giờ hãy xem chúng ta có thể dùng hàm mất mát hoặc hàm lỗi nào để xem chúng ta đang thực hiện tốt như thế nào. Chúng ta có thể xác định mất mát
+khi thuật toán ŷ và nhãn đúng y bằng
+lỗi bình phương hoặc một nửa lỗi bình phương của lỗi. Hóa ra là chúng ta có thể thự hiện như vậy nhưng trong hồi quy logistic, mọi người
+thường không làm vậy vì khi tìm hiểu các tham số,
+chúng ta thấy bài toán tối ưu hóa sẽ trở nên không lồi, chúng ta sẽ thảo luận điều này sau. Vì vậy, chúng ta kết thúc với bài toán tối ưu,
+được nhiều local optima. Gradient descent có thể không tìm thấy điểm tối ưu.
+Nếu bạn không hiểu các chú thích cuối, đừng lo lắng về điều đó.
+Chúng tôi sẽ giải thích trong video sau. Có thể thấy hàm L là hàm mất mát là một hàm cần được xác định để đo lường đầu ra ŷ thực hiện tốt thế nào khi nhãn đúng là y. Và lỗi bình phương có vẻ là một lựa chọn hợp lý ngoài việc nó khiến gradient descent không hoạt động tốt. Vì vậy, trong hồi quy logistic, chúng ta sẽ
+xác định một hàm mất mát khác có vai trò tương tự như lỗi bình phương nhưng sẽ cho chúng ta bài toán tối ưu hóa lồi. Trong video sau, chúng ta sẽ thấy nó
+trở nên dễ tối ưu hóa hơn, vì vậy trong hồi quy logistic,
+chúng ta sẽ sử dụng hàm mất mát sau, mà tôi đang viết ở đây, bằng - ylogŷ + với (1 - y)log(1 - ŷ). Đây là một số điều khiến hàm mất mát có nghĩa. Hãy nhớ rằng nếu chúng ta đang sử dụng
+lỗi bình phương thì bạn cần bình phương lỗi để nó nhỏ nhất có thể. Và với hồi quy logistic này, mất hàm cũng cần càng nhỏ càng tốt. Để hiểu rõ điều này,
+hãy xem xét hai trường hợp sau, trong trường hợp đầu tiên, giả sử y = 1 thì hàm mất mát ŷ,y chỉ là phần đầu tiên trong biểu thức phủ định này, bằng -logŷ nếu y = 1 vì nếu y = 1 thì phần thứ hai 1 - y = 0. Vậy nếu y = 1, chúng ta cần
+-logŷ càng nhỏ càng tốt, điều đó có nghĩa là cần logŷ càng lớn càng tốt, tức là cần ŷ phải lớn. Nhưng vì ŷ là hàm sigmoid
+nên nó không thể lớn hơn 1. do đó nếu y = 1, cần ŷ lớn nhất có thể, nhưng không thể lớn hơn 1 nên có thể nói chúng ta cần ŷ lớn gần bằng 1. Một trường hợp khác là y = 0, nếu y = 0 thì phần tử đầu tiên này trong
+hàm mất mát sẽ bằng 0 do y = 0, và phần tử thứ hai xác định hàm mất mát. Hàm mất mát bằng -log(1 - ŷ) nếu trong quá trình học,
+bạn cố gắng làm hàm mất mát nhỏ đi, điều này có nghĩa là bạn muốn log(1 - ŷ) lớn và có dấu âm ở đó. Với các lý do tương tự,
+chúng ta có thể kết luận rằng hàm mất mát đang cố gắng khiến ŷ nhỏ nhất có thể và một lần nữa, bởi vì ŷ nằm trong khoảng từ 0 đến 1, tức là nếu y = 0 thì hàm mất mát sẽ đẩy các tham số khiến ŷ gần bằng 0 nhất có thể. Bây giờ có rất nhiều hàm
+có hiệu ứng đại khái như vậy, nếu y bằng 1 thì ŷ lớn còn nếu y bằng 0 thì ŷ nhỏ. Phần giải thích màu xanh lá phần nào
+chứng minh một cách không chính thức cho hàm mất mát cụ thể này.
+Chúng tôi sẽ cung cấp một video tham khảo sau để đưa ra biện minh chính thức hơn cho y. Trong hồi quy logistic, chúng ta muốn sử dụng
+hàm mất mát với công thức cụ thể này. Cuối cùng, hàm mất mát được xác định
+với một mẫu huấn luyện riêng lẻ. Nó đo lường mức độ bạn thực hiện thế nào
+trên một mẫu huấn luyện. Bây giờ tôi sẽ xác định
+một hàm chi phí, đo lường xem nào bạn đang thực hiện thế nào
+trên toàn bộ tập huấn luyện? Hàm chi phí J cho các tham số w và b, sẽ là trung bình, 1/m của tổng của hàm mất mát áp dụng lần lượt cho từng mẫu huấn luyện. Ở đây, ŷ là đầu ra dự đoán được đưa ra bởi thuật toán hồi quy logistic sử dụng
+tập hợp các tham số w, b cụ thể. Mở rộng ra, điều này bằng với -1/m tổng từ i=1 đến m của
+định nghĩa về hàm mất mát ở trên y(i)logŷ(i) cộng với (1 - ŷ)log(1 - ŷ(i)),
+có thể đặt dấu ngoặc vuông ở đây. Dấu âm ở ngoài ngoặc,
+vì vậy thuật ngữ tôi sẽ sử dụng là hàm mất mát,
+áp dụng cho một mẫu huấn luyện duy nhất như vậy và hàm chi phí là chi phí
+của các tham số, vì vậy trong khi huấn luyện mô hình hồi quy logistic, chúng ta
+sẽ cố gắng tìm các tham số w và b giảm thiểu hàm chi phí tổng thể J,
+được viết ở phía dưới. Như vậy, các bạn vừa thấy phần thiết lập của
+thuật toán hồi quy logistic, hàm mất mát với mẫu huấn luyện
+và hàm chi phí tổng thể cho các tham số của thuật toán. Hồi quy logistic có thể xem như một mạng nơ-ron rất nhỏ. Trong video tiếp theo, chúng ta sẽ xem xét vấn đề đó, bắt đầu tìm hiểu xem mạng nơ-ron thực hiện những gì. Hãy chuyển sang video tiếp theo
+để tìm hiểu hồi quy logistic dưới góc nhìn của mạng nơ-ron nhỏ.

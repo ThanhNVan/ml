@@ -1,0 +1,621 @@
+WEBVTT
+
+00:00:03.020 --> 00:00:07.980
+Bạn đã học về attention đến bản thân, bạn đã
+học về attention đa chiều.
+
+00:00:07.980 --> 00:00:11.400
+Hãy tập hợp tất cả lại để xây dựng mạng lưới
+Transformer.
+
+00:00:11.400 --> 00:00:16.520
+Trong video này, bạn sẽ biết cách ghép nối các
+attention mà bạn
+
+00:00:16.520 --> 00:00:21.640
+đã thấy trong các video trước để xây dựng kiến
+trúc Transformer.
+
+00:00:21.640 --> 00:00:27.820
+Bắt đầu lại với câu, Jane Visit, l'affique en
+November, và phần embedding tương
+
+00:00:27.820 --> 00:00:34.000
+ứng của nó, hãy cùng tìm hiểu cách bạn có thể
+dịch câu từ tiếng Pháp sang tiếng Anh.
+
+00:00:34.000 --> 00:00:40.200
+Tôi cũng đã thêm mã thông báo bắt đầu câu và
+kết thúc câu ở đây.
+
+00:00:40.200 --> 00:00:45.900
+Cho đến thời điểm này, để đơn giản, tôi chỉ
+nói về cách embedding
+
+00:00:45.900 --> 00:00:51.600
+các từ trong câu, nhưng trong nhiều tác vụ
+dịch theo trình tự, nó sẽ
+
+00:00:51.600 --> 00:00:57.180
+cũng hữu ích khi thêm phần đầu câu hoặc SOS và
+phần
+
+00:00:57.180 --> 00:01:02.760
+cuối câu hoặc mã thông báo EOS mà tôi có trong
+ví dụ này.
+
+00:01:02.760 --> 00:01:07.920
+Bước đầu tiên trong Transformer là các phần
+embedding này
+
+00:01:07.920 --> 00:01:13.080
+được đưa vào khối mã hóa, khối này có lớp chú
+ý nhiều đầu.
+
+00:01:13.080 --> 00:01:18.360
+Đây chính xác là những gì bạn đã thấy trên
+
+00:01:18.360 --> 00:01:23.640
+slide trước, nơi bạn nhập các giá trị Q, K và
+
+00:01:23.640 --> 00:01:29.560
+V được tính toán từ các phần embedding và ma
+trận trọng số W.
+
+00:01:29.560 --> 00:01:34.940
+Sau đó, lớp này tạo ra một ma trận có thể được
+chuyển vào neural network
+
+00:01:34.940 --> 00:01:40.320
+chuyển tiếp nguồn cấp dữ liệu, giúp xác định
+những feature thú vị nào có trong câu.
+
+00:01:40.320 --> 00:01:47.295
+Trong giấy biến áp, khối này, khối mã hóa này
+
+00:01:47.295 --> 00:01:54.270
+được lặp lại n lần và giá trị điển hình của n
+là 6.
+
+00:01:54.270 --> 00:01:59.070
+Vì vậy, có thể sau khoảng 6 lần đi qua khối
+này,
+
+00:01:59.070 --> 00:02:03.870
+chúng tôi sẽ đưa đầu ra của bộ mã hóa vào khối
+giải mã.
+
+00:02:03.870 --> 00:02:07.630
+Hãy bắt đầu xây dựng khối giải mã.
+
+00:02:07.630 --> 00:02:13.050
+Công việc của khối giải mã là xuất ra bản dịch
+tiếng Anh, vì vậy đầu
+
+00:02:13.050 --> 00:02:18.470
+ra đầu tiên sẽ là mã thông báo bắt đầu câu mà
+tôi đã viết ra ở đây.
+
+00:02:18.470 --> 00:02:23.450
+Ở mỗi bước, khối giải mã sẽ nhập một vài từ
+đầu
+
+00:02:23.450 --> 00:02:28.430
+tiên, bất kể chúng ta đã tạo bản dịch như thế
+nào.
+
+00:02:28.430 --> 00:02:34.670
+Khi chúng tôi mới bắt đầu, điều duy nhất chúng
+tôi biết là bản dịch sẽ bắt đầu
+
+00:02:34.670 --> 00:02:40.910
+bằng mã thông báo bắt đầu câu và do đó, mã
+thông báo bắt đầu câu sẽ được đưa vào
+
+00:02:40.910 --> 00:02:47.930
+vào khối chú ý nhiều đầu này và chỉ một mã
+thông báo này, mã thông báo SOS,
+
+00:02:47.930 --> 00:02:54.950
+bắt đầu câu, được sử dụng để tính Q, K và V
+cho khối chú ý nhiều đầu này.
+
+00:02:54.950 --> 00:03:03.955
+Đầu ra của khối đầu tiên này được sử dụng để
+tạo ma trận Q cho khối chú ý
+
+00:03:03.955 --> 00:03:12.960
+nhiều đầu tiếp theo và đầu ra của bộ mã hóa
+được sử dụng để tạo K và V.
+
+00:03:12.960 --> 00:03:20.720
+Vì vậy, đây là khối chú ý nhiều đầu thứ hai
+với các đầu vào Q, K và V như trước.
+
+00:03:20.720 --> 00:03:22.360
+Tại sao nó được cấu trúc theo cách này?
+
+00:03:22.360 --> 00:03:25.960
+Có lẽ đây là một phần trực giác có thể giúp
+ích.
+
+00:03:25.960 --> 00:03:31.180
+Dữ liệu đầu vào ở đây là bất cứ điều gì bạn đã
+dịch câu này cho đến nay
+
+00:03:31.180 --> 00:03:36.400
+và do đó, điều này sẽ đặt ra một truy vấn để
+nói, phần đầu của câu là gì?
+
+00:03:36.400 --> 00:03:41.800
+Và sau đó nó sẽ lấy ngữ cảnh từ K và V, được
+dịch từ phiên bản tiếng
+
+00:03:41.800 --> 00:03:47.200
+Pháp của câu, để cố gắng quyết định từ tiếp
+theo trong chuỗi cần tạo là gì.
+
+00:03:47.200 --> 00:03:52.050
+Để hoàn thành mô tả khối giải mã, khối chú ý
+nhiều đầu sẽ xuất ra
+
+00:03:52.050 --> 00:03:56.900
+các giá trị được đưa đến neural network chuyển
+tiếp nguồn cấp dữ liệu.
+
+00:03:56.900 --> 00:04:02.800
+Khối giải mã này cũng sẽ được lặp lại n lần,
+có thể là 6 lần, trong đó bạn lấy
+
+00:04:02.800 --> 00:04:08.700
+đầu ra, đưa nó trở lại đầu vào và thực hiện
+việc này, chẳng hạn như nửa tá lần.
+
+00:04:08.700 --> 00:04:14.020
+Và công việc của neural network này là dự
+đoán từ tiếp theo trong câu.
+
+00:04:14.020 --> 00:04:20.420
+Vì vậy, hy vọng nó sẽ quyết định rằng từ đầu
+tiên trong bản dịch tiếng Anh là Jane.
+
+00:04:20.420 --> 00:04:26.860
+Và những gì chúng tôi làm sau đó là đưa Jane
+vào đầu vào.
+
+00:04:26.860 --> 00:04:31.960
+Và bây giờ, truy vấn tiếp theo đến từ SOS và
+Jane, và nó
+
+00:04:31.960 --> 00:04:37.060
+cho biết, với Jane, từ tiếp theo thích hợp
+nhất là gì?
+
+00:04:37.060 --> 00:04:42.300
+Hãy tìm đúng khóa và đúng giá trị cho phép
+chúng tôi tạo
+
+00:04:42.300 --> 00:04:47.540
+từ tiếp theo phù hợp nhất, hy vọng sẽ tạo ra
+lượt truy cập.
+
+00:04:47.540 --> 00:04:54.180
+Và sau đó việc chạy neural network này
+lại tạo ra Châu Phi, sau đó chúng
+
+00:04:54.180 --> 00:05:00.820
+tôi đưa Châu Phi trở lại đầu vào, hy vọng nó
+sẽ tạo ra và sau đó là tháng 9.
+
+00:05:00.820 --> 00:05:03.760
+Và với thông tin đầu vào này, hy vọng nó sẽ
+tạo ra mã
+
+00:05:03.760 --> 00:05:06.700
+thông báo ở cuối câu và thế là chúng ta đã
+hoàn tất.
+
+00:05:06.700 --> 00:05:11.440
+Các khối mã hóa và giải mã này cũng như cách
+chúng được kết hợp để thực hiện nhiệm vụ
+
+00:05:11.440 --> 00:05:16.180
+dịch trình tự này sang trình tự khác là ý
+tưởng chính đằng sau kiến trúc Transformer.
+
+00:05:16.180 --> 00:05:20.440
+Trong trường hợp này, bạn đã thấy cách bạn có
+thể dịch một câu
+
+00:05:20.440 --> 00:05:24.700
+đầu vào sang một câu bằng ngôn ngữ khác để có
+được trực giác nào
+
+00:05:24.700 --> 00:05:28.960
+đó về cách kết hợp attention trong mạng lưới
+của bạn để cho phép
+
+00:05:28.960 --> 00:05:31.620
+tính toán đồng thời.
+
+00:05:31.620 --> 00:05:34.240
+Nhưng ngoài những ý tưởng chính này, còn có
+một vài
+
+00:05:34.240 --> 00:05:36.860
+tiếng chuông và tiếng còi bổ sung để biến đổi
+điều này.
+
+00:05:36.860 --> 00:05:40.770
+Hãy để tôi điểm qua ngắn gọn những điểm nhấn
+bổ sung
+
+00:05:40.770 --> 00:05:44.680
+này để giúp mạng Transformer hoạt động tốt hơn
+nữa.
+
+00:05:44.680 --> 00:05:49.720
+Đầu tiên trong số này là mã hóa vị trí của đầu
+vào.
+
+00:05:49.720 --> 00:05:56.680
+Nếu bạn nhớ lại các phương trình
+self-attention, không có gì chỉ ra vị trí của
+một từ.
+
+00:05:56.680 --> 00:06:02.640
+Từ này có phải là từ đầu tiên trong câu, ở
+giữa, từ cuối cùng trong câu không?
+
+00:06:02.640 --> 00:06:07.160
+Nhưng vị trí trong câu có thể cực kỳ quan
+trọng đối với việc dịch thuật.
+
+00:06:07.160 --> 00:06:12.420
+Vì vậy, cách bạn mã hóa vị trí của các phần tử
+trong đầu
+
+00:06:12.420 --> 00:06:17.680
+vào là bạn sử dụng kết hợp các phương trình
+sin và cos này.
+
+00:06:17.680 --> 00:06:25.120
+Vì vậy, ví dụ: giả sử việc word embedding của
+bạn là một vectơ có bốn giá trị.
+
+00:06:25.120 --> 00:06:34.320
+Trong trường hợp này, chiều D của từ embedding
+là bốn.
+
+00:06:34.320 --> 00:06:40.360
+Vậy x1, x2, x3, giả sử đó là các vectơ bốn
+chiều.
+
+00:06:40.360 --> 00:06:44.860
+Trong ví dụ này, chúng ta sẽ tạo một vectơ
+
+00:06:44.860 --> 00:06:49.360
+embedding vị trí có cùng chiều, cũng là bốn
+chiều.
+
+00:06:49.360 --> 00:06:54.760
+Và tôi sẽ gọi việc embedding vị trí này là P1,
+giả
+
+00:06:54.760 --> 00:07:00.160
+sử, cho việc embedding vị trí của từ đầu tiên,
+Jane.
+
+00:07:00.160 --> 00:07:07.840
+Trong phương trình dưới đây, vị trí pos biểu
+thị vị trí số của từ.
+
+00:07:07.840 --> 00:07:15.800
+Vì vậy, đối với từ Jane, pos bằng một.
+
+00:07:15.800 --> 00:07:22.440
+Và tôi ở đây đề cập đến các khía cạnh khác
+nhau của mã hóa.
+
+00:07:22.440 --> 00:07:27.520
+Các phần tử phân tán tương ứng với I bằng 0,
+
+00:07:27.520 --> 00:07:32.600
+phần tử này, I bằng 0, tôi bằng một, tôi bằng
+một.
+
+00:07:32.600 --> 00:07:38.020
+Vì vậy, đây là các biến pos, pos, và I đi vào
+các
+
+00:07:38.020 --> 00:07:43.440
+phương trình bên dưới, trong đó pos là vị trí
+của một từ.
+
+00:07:43.440 --> 00:07:51.600
+Tôi đi từ 0 đến 1, và D bằng 4, chiều của
+vectơ này.
+
+00:07:51.600 --> 00:07:57.650
+Và chức năng mã hóa vị trí với sin và cosine
+là tạo ra một vectơ mã
+
+00:07:57.650 --> 00:08:03.700
+hóa vị trí duy nhất, một trong những vectơ này
+là duy nhất cho mỗi từ.
+
+00:08:03.700 --> 00:08:10.790
+Vì vậy, vectơ p3, mã hóa vị trí của quái vật,
+từ thứ ba sẽ là một tập
+
+00:08:10.790 --> 00:08:17.880
+hợp gồm bốn giá trị khác với bốn giá trị được
+sử dụng trong mã vị trí
+
+00:08:17.880 --> 00:08:20.520
+lời đầu tiên của Jane.
+
+00:08:20.520 --> 00:08:25.720
+Đường cong sin và cosin trông như thế này.
+
+00:08:25.720 --> 00:08:32.200
+Đây là tôi bằng 0, tôi bằng 0, tôi bằng một,
+và tôi bằng một.
+
+00:08:32.200 --> 00:08:37.500
+Và bởi vì bạn có những số hạng này trong mẫu
+
+00:08:37.500 --> 00:08:42.800
+số, bạn sẽ có I bằng 0, chúng ta sẽ có một số
+
+00:08:42.800 --> 00:08:48.320
+đường cong hình sin trông như thế này.
+
+00:08:48.320 --> 00:08:53.360
+Và tôi bằng 0 sẽ là cosin phù hợp.
+
+00:08:53.360 --> 00:09:06.070
+Vì vậy, lệch pha 90 độ và tôi bằng 1 sẽ có
+hình sin tần số thấp hơn
+
+00:09:06.070 --> 00:09:08.070
+như vậy.
+
+00:09:08.070 --> 00:09:15.090
+Và tôi bằng 1 sẽ cho bạn một đường cong cosine
+phù hợp.
+
+00:09:15.090 --> 00:09:20.550
+Vì vậy, đối với p1, đối với vị trí một, bạn
+đọc
+
+00:09:20.550 --> 00:09:26.010
+các giá trị ở vị trí này để điền vào bốn giá
+trị đó.
+
+00:09:26.010 --> 00:09:30.070
+Trong khi đó đối với một từ khác ở một vị trí
+khác, có thể bây
+
+00:09:30.070 --> 00:09:34.130
+giờ nó là ba trên trục ngang, bạn đọc ra một
+tập hợp giá trị khác.
+
+00:09:34.130 --> 00:09:36.730
+Và lưu ý rằng hai giá trị đầu tiên này có thể
+rất giống
+
+00:09:36.730 --> 00:09:39.330
+nhau, vì bạn biết đấy, chúng có chiều cao gần
+như nhau.
+
+00:09:39.330 --> 00:09:44.290
+Nhưng bằng cách sử dụng nhiều dấu và cosin
+này, việc
+
+00:09:44.290 --> 00:09:49.250
+nhìn qua cả bốn giá trị p3 sẽ là một vectơ
+khác với p1.
+
+00:09:49.250 --> 00:09:54.560
+Vì vậy, mã hóa vị trí p1 được thêm trực tiếp
+
+00:09:54.560 --> 00:09:59.870
+vào x1, vào đầu vào theo cách này, sao cho mỗi
+
+00:09:59.870 --> 00:10:08.610
+của từ vectơ cũng bị ảnh hưởng hoặc tô màu
+theo vị trí của từ xuất hiện trong câu.
+
+00:10:08.610 --> 00:10:12.820
+Đầu ra của khối mã hóa chứa thông tin mã hóa
+
+00:10:12.820 --> 00:10:17.030
+vị trí và embedding ngữ nghĩa theo ngữ cảnh.
+
+00:10:17.030 --> 00:10:22.370
+Đầu ra của lớp embedding khi đó là D, trong
+trường hợp này là
+
+00:10:22.370 --> 00:10:27.710
+bốn, theo độ dài chuỗi tối đa mà mô hình của
+bạn có thể lấy.
+
+00:10:27.710 --> 00:10:36.430
+Đầu ra của tất cả các lớp này cũng có hình
+dạng này.
+
+00:10:36.430 --> 00:10:41.470
+Ngoài việc thêm các mã định vị này vào phần
+embedding,
+
+00:10:41.470 --> 00:10:46.510
+bạn cũng sẽ chuyển chúng qua mạng với các kết
+nối còn lại.
+
+00:10:46.510 --> 00:10:51.570
+Các kết nối còn lại này tương tự như các kết
+nối bạn thấy trước đây trong resnet.
+
+00:10:51.570 --> 00:10:54.890
+Và mục đích của chúng trong trường hợp này là
+
+00:10:54.890 --> 00:10:58.210
+truyền thông tin vị trí qua toàn bộ kiến trúc.
+
+00:10:58.210 --> 00:11:07.150
+Ngoài mã hóa vị trí, mạng Transformer còn sử
+dụng một lớp rất giống với định mức lô.
+
+00:11:07.150 --> 00:11:10.030
+Và mục đích của chúng trong trường hợp này là
+
+00:11:10.030 --> 00:11:12.910
+chuyển thông tin vị trí sang mã hóa vị trí.
+
+00:11:12.910 --> 00:11:16.990
+Transformer cũng sử dụng một lớp có tên là
+thêm định
+
+00:11:16.990 --> 00:11:21.070
+mức rất giống với lớp định mức lô mà bạn đã
+quen thuộc.
+
+00:11:21.070 --> 00:11:23.750
+Vì mục đích của video này, đừng lo lắng về sự
+khác biệt.
+
+00:11:23.750 --> 00:11:27.430
+Hãy nghĩ về nó như đóng một vai trò rất giống
+với định mức lô.
+
+00:11:27.430 --> 00:11:30.110
+Và điều này giúp tăng learning rate tập.
+
+00:11:30.110 --> 00:11:33.850
+Và lớp định mức này giống như lớp, lớp thêm
+định
+
+00:11:33.850 --> 00:11:37.590
+mức này được lặp lại trong suốt kiến ​​trúc
+này.
+
+00:11:37.590 --> 00:11:43.130
+Và cuối cùng, đối với đầu ra của khối giải mã,
+thực tế cũng có một lớp
+
+00:11:43.130 --> 00:11:48.670
+tuyến tính và sau đó là lớp tối đa mềm để dự
+đoán từng từ tiếp theo một từ.
+
+00:11:48.670 --> 00:11:54.870
+Trong trường hợp bạn đọc tài liệu về mạng
+Transformer, bạn cũng có thể nghe
+
+00:11:54.870 --> 00:12:01.070
+nói về một thứ gọi là attention nhiều sợi đeo
+mặt nạ mà tôi sẽ trình bày ở đây.
+
+00:12:01.070 --> 00:12:05.003
+Attention nhiều sợi được đeo mặt nạ chỉ quan
+trọng trong quá trình
+
+00:12:05.003 --> 00:12:08.937
+đào tạo, khi bạn đang sử dụng bộ dữ liệu gồm
+các bản dịch chính xác
+
+00:12:08.937 --> 00:12:12.870
+từ tiếng Pháp sang tiếng Anh để huấn luyện
+Transformer của mình.
+
+00:12:12.870 --> 00:12:18.990
+Vì vậy, trước đây chúng ta đã tìm hiểu cách
+Transformer thực hiện dự đoán từng từ một.
+
+00:12:18.990 --> 00:12:20.990
+Nhưng nó được đào tạo như thế nào?
+
+00:12:20.990 --> 00:12:25.690
+Giả sử tập dữ liệu của bạn có bản dịch chính
+xác từ tiếng Pháp sang tiếng
+
+00:12:25.690 --> 00:12:30.390
+Anh, Jane Vesey Lafriq vào tháng 9 và Jane đến
+thăm Châu Phi vào tháng 9.
+
+00:12:30.390 --> 00:12:35.250
+Khi đào tạo, bạn có quyền truy cập vào toàn bộ
+bản dịch
+
+00:12:35.250 --> 00:12:40.110
+tiếng Anh chính xác, đầu ra chính xác và đầu
+vào chính xác.
+
+00:12:40.110 --> 00:12:44.350
+Và bởi vì bạn có kết quả đầu ra hoàn toàn
+chính xác nên bạn
+
+00:12:44.350 --> 00:12:48.590
+thực sự không cần phải tạo ra từng từ một
+trong quá trình đào tạo.
+
+00:12:48.590 --> 00:12:54.090
+Thay vào đó, chức năng che giấu là chặn phần
+cuối của câu để bắt chước những
+
+00:12:54.090 --> 00:12:59.590
+gì mạng sẽ cần thực hiện vào thời điểm thử
+nghiệm hoặc trong quá trình dự đoán.
+
+00:12:59.590 --> 00:13:07.370
+Nói cách khác, tất cả những gì mà attention
+nhiều mặt bị che giấu làm là nó liên tục
+
+00:13:07.370 --> 00:13:15.150
+giả vờ rằng mạng đã dịch hoàn hảo, chẳng hạn,
+vài từ đầu tiên và ẩn những từ còn lại.
+
+00:13:15.150 --> 00:13:21.070
+để xem liệu phần đầu tiên của bản dịch có hoàn
+hảo hay không, liệu mạng
+
+00:13:21.070 --> 00:13:26.990
+lưới thần kinh có thể dự đoán chính xác từ
+tiếp theo trong chuỗi hay không.
+
+00:13:26.990 --> 00:13:30.190
+Đó là bản tóm tắt về kiến trúc Transformer.
+
+00:13:30.190 --> 00:13:34.270
+Kể từ khi bài báo Chú ý là tất cả những gì bạn
+cần được xuất
+
+00:13:34.270 --> 00:13:38.350
+bản, đã có nhiều phiên bản khác của mô hình
+này, chẳng hạn như
+
+00:13:38.350 --> 00:13:42.430
+BERT hoặc BERT Distill, mà bạn có thể tự khám
+phá trong tuần này.
+
+00:13:42.430 --> 00:13:43.430
+Vậy là xong rồi.
+
+00:13:43.430 --> 00:13:46.070
+Tôi biết có rất nhiều chi tiết.
+
+00:13:46.070 --> 00:13:51.950
+Nhưng bây giờ bạn đã hiểu rõ về tất cả các
+thành phần chính của mạng Transformer.
+
+00:13:51.950 --> 00:13:55.150
+Và khi bạn nhìn thấy điều này trong bài tập
+chương trình tuần này,
+
+00:13:55.150 --> 00:13:58.350
+việc thử nghiệm mã ở đó sẽ giúp bạn xây dựng
+trực giác sâu sắc hơn
+
+00:13:58.350 --> 00:14:01.550
+nữa về cách làm cho điều này hoạt động cho các
+ứng dụng của bạn.

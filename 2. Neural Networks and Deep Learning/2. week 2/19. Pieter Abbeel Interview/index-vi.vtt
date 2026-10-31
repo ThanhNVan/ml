@@ -1,0 +1,1052 @@
+WEBVTT
+
+00:00:03.340 --> 00:00:05.340
+Vì vậy, cảm ơn rất nhiều Peter vì đã tham gia
+cùng tôi ngày hôm nay.
+
+00:00:06.340 --> 00:00:09.340
+Tôi nghĩ nhiều người biết đến bạn với tư cách
+là một nhà
+
+00:00:09.340 --> 00:00:12.340
+nghiên cứu về machine learning, deep learning
+và robot nổi tiếng.
+
+00:00:12.340 --> 00:00:14.840
+Tôi muốn mọi người nghe một chút về câu chuyện
+của bạn.
+
+00:00:14.840 --> 00:00:17.340
+Cuối cùng bạn đã thực hiện công việc bạn đang
+làm như thế nào?
+
+00:00:17.340 --> 00:00:22.007
+Đó là một câu hỏi hay và thực sự nếu bạn hỏi
+tôi khi còn là một đứa trẻ 14 tuổi
+
+00:00:22.007 --> 00:00:26.673
+rằng tôi mong muốn làm gì thì có lẽ nó đã
+không như thế này. Thực tế, vào thời
+
+00:00:26.673 --> 00:00:31.340
+điểm đó tôi nghĩ trở thành một cầu thủ bóng rổ
+chuyên nghiệp sẽ là con đường đúng đắn.
+
+00:00:32.340 --> 00:00:34.340
+Tôi không nghĩ mình có thể đạt được nó.
+
+00:00:34.340 --> 00:00:38.340
+Tôi cảm thấy machine learning đã bỏ sót rằng
+đội bóng rổ đã không thành công.
+
+00:00:38.340 --> 00:00:41.340
+Vâng, điều đó đã không thành công. Chơi bóng
+rổ rất thú vị
+
+00:00:41.340 --> 00:00:44.340
+nhưng cố gắng biến nó thành sự nghiệp lại
+không thành công.
+
+00:00:44.340 --> 00:00:48.340
+Vì vậy môn tôi thực sự thích ở trường là vật
+lý và toán.
+
+00:00:48.340 --> 00:00:51.840
+Và từ đó việc học ngành kỹ thuật trở nên khá
+tự nhiên,
+
+00:00:51.840 --> 00:00:55.340
+tức là áp dụng vật lý và toán học vào thế giới
+thực.
+
+00:00:55.340 --> 00:00:59.840
+Và thực sự sau khi tốt nghiệp ngành kỹ thuật
+điện, tôi không chắc mình phải
+
+00:00:59.840 --> 00:01:04.340
+làm gì vì thực sự thì bất cứ thứ gì về kỹ
+thuật đều có vẻ thú vị đối với tôi.
+
+00:01:04.340 --> 00:01:06.840
+Giống như hiểu cách mọi thứ hoạt động có vẻ
+thú
+
+00:01:06.840 --> 00:01:09.340
+vị. Cố gắng xây dựng bất cứ điều gì là thú vị.
+
+00:01:09.340 --> 00:01:13.840
+Và ở một khía cạnh nào đó, trí tuệ nhân tạo đã
+chiến thắng vì có vẻ như bằng
+
+00:01:13.840 --> 00:01:18.340
+cách nào đó nó có thể giúp ích cho tất cả các
+ngành học theo một cách nào đó.
+
+00:01:18.340 --> 00:01:22.340
+Và bằng cách nào đó, nó dường như cũng là cốt
+lõi của mọi thứ hơn một chút.
+
+00:01:22.340 --> 00:01:26.340
+Giống như nếu bạn nghĩ về cách một cỗ máy có
+thể suy nghĩ, thì có lẽ
+
+00:01:26.340 --> 00:01:30.340
+đó là cốt lõi của mọi thứ khác hơn là chọn bất
+kỳ lĩnh vực cụ thể nào.
+
+00:01:30.340 --> 00:01:33.840
+Tôi đã nói AI là nguồn điện mới. Có vẻ như
+phiên
+
+00:01:33.840 --> 00:01:37.340
+bản 14 tuổi của bạn thậm chí còn có phiên bản
+cũ hơn.
+
+00:01:37.340 --> 00:01:40.340
+Trong vài năm qua, bạn đã thực hiện rất nhiều
+
+00:01:40.340 --> 00:01:43.340
+công việc trong lĩnh vực
+reinforcement learning sâu.
+
+00:01:43.340 --> 00:01:48.340
+Chuyện gì đang xảy ra vậy? Tại sao
+reinforcement learning sâu đột nhiên phát
+triển?
+
+00:01:48.340 --> 00:01:50.340
+Trước khi làm việc trong lĩnh vực
+reinforcement learning
+
+00:01:50.340 --> 00:01:52.340
+sâu, tôi đã nghiên cứu rất nhiều về
+reinforcement learning.
+
+00:01:52.340 --> 00:01:56.340
+Thực ra là với bạn Andrew ở Stanford tất
+nhiên.
+
+00:01:56.340 --> 00:01:59.340
+Và vì vậy chúng tôi đã làm việc trên chuyến
+bay trực thăng tự động.
+
+00:01:59.340 --> 00:02:02.340
+Sau đó, tại Berkeley cùng với một số sinh viên
+của mình,
+
+00:02:02.340 --> 00:02:05.340
+chúng tôi đã nghiên cứu để tạo ra một robot
+học cách gấp đồ giặt.
+
+00:02:05.340 --> 00:02:08.840
+Và đặc điểm feature của công việc là sự kết
+hợp của việc học tập
+
+00:02:08.840 --> 00:02:12.340
+để tạo ra những điều không thể thực hiện được
+nếu không học tập.
+
+00:02:12.340 --> 00:02:14.840
+Nhưng cũng cần có nhiều kiến thức chuyên môn
+về
+
+00:02:14.840 --> 00:02:17.340
+miền kết hợp với việc học để thực hiện được
+điều này.
+
+00:02:18.340 --> 00:02:20.840
+Và điều đó rất thú vị vì bạn cần kiến thức
+chuyên
+
+00:02:20.840 --> 00:02:23.340
+môn về miền và điều đó thật thú vị khi tiếp
+thu được.
+
+00:02:23.340 --> 00:02:25.340
+Nhưng đồng thời nó rất tốn thời gian.
+
+00:02:25.340 --> 00:02:28.340
+Đối với mọi ứng dụng mới mà bạn muốn thành
+công, bạn cần có kiến thức
+
+00:02:28.340 --> 00:02:31.340
+chuyên môn về miền cộng với kiến thức chuyên
+môn về machine learning.
+
+00:02:31.340 --> 00:02:37.007
+Và đối với tôi, đó là vào năm 2012 với kết quả
+mang tính đột phá của
+
+00:02:37.007 --> 00:02:42.673
+ImageNet từ nhóm AlexNet của Jeff Hinton ở
+Toronto, cho thấy rằng việc
+
+00:02:42.673 --> 00:02:48.340
+supervised learning đột ngột có thể được thực
+hiện với ít kỹ thuật hơn cho miền hiện có.
+
+00:02:48.340 --> 00:02:51.340
+Có rất ít kỹ thuật về tầm nhìn trong AlexNet.
+
+00:02:51.340 --> 00:02:54.840
+Điều đó khiến tôi nghĩ rằng chúng ta thực sự
+nên xem lại việc
+
+00:02:54.840 --> 00:02:58.340
+reinforcement learning theo cùng một quan điểm
+và xem liệu chúng ta có thể
+
+00:02:58.340 --> 00:03:01.840
+áp dụng phiên bản sâu của
+reinforcement learning để hoạt động và làm
+được
+
+00:03:01.840 --> 00:03:05.340
+những điều thú vị không kém như vừa xảy ra
+trong học tập có giám sát sâu hay không.
+
+00:03:06.340 --> 00:03:08.840
+Vì vậy, có vẻ như bạn đã nhìn thấy sớm hơn hầu
+hết
+
+00:03:08.840 --> 00:03:11.340
+mọi người về tiềm năng của
+reinforcement learning sâu.
+
+00:03:11.340 --> 00:03:15.340
+Vậy bây giờ nhìn vào tương lai, bạn thấy gì
+tiếp theo?
+
+00:03:15.340 --> 00:03:20.340
+Dự đoán của bạn về một số cách tiếp theo để
+học tập tăng cường sâu là gì?
+
+00:03:20.340 --> 00:03:23.340
+Vì vậy, tôi nghĩ điều thú vị về
+reinforcement learning sâu là ở một
+
+00:03:23.340 --> 00:03:26.340
+khía cạnh nào đó, có nhiều câu hỏi hơn so với
+supervised learning.
+
+00:03:26.340 --> 00:03:29.340
+Trong supervised learning, đó là học cách ánh
+xạ đầu vào-đầu ra.
+
+00:03:30.340 --> 00:03:34.340
+Trong reinforcement learning, có khái niệm dữ
+liệu đến từ đâu.
+
+00:03:34.340 --> 00:03:36.340
+Vì vậy, đó là vấn đề thăm dò.
+
+00:03:36.340 --> 00:03:38.340
+Khi bạn có dữ liệu, bạn thực hiện chuyển
+nhượng tín dụng như thế nào?
+
+00:03:38.340 --> 00:03:40.340
+Làm thế nào để bạn hiểu những hành động bạn đã
+thực hiện sớm?
+
+00:03:40.340 --> 00:03:42.340
+Bạn sẽ nhận được phần thưởng sau.
+
+00:03:42.340 --> 00:03:44.340
+Và sau đó là vấn đề về an toàn.
+
+00:03:44.340 --> 00:03:46.840
+Khi bạn có một hệ thống tự động thu thập dữ
+liệu, về
+
+00:03:46.840 --> 00:03:49.340
+cơ bản là khá nguy hiểm trong hầu hết các tình
+huống.
+
+00:03:49.340 --> 00:03:51.340
+Hãy tưởng tượng một công ty ô tô tự lái nói
+rằng
+
+00:03:51.340 --> 00:03:53.340
+chúng tôi sắp triển khai học tập tăng cường
+sâu.
+
+00:03:53.340 --> 00:03:57.340
+Rất có thể chiếc xe đó sẽ gặp rất nhiều tai
+nạn trước khi nó làm được điều gì hữu ích.
+
+00:03:58.340 --> 00:04:00.340
+Bạn cần những ví dụ tiêu cực về chủng tộc.
+
+00:04:00.340 --> 00:04:02.340
+Bạn thực sự cần một số ví dụ tiêu cực bằng
+cách nào đó, vâng.
+
+00:04:02.340 --> 00:04:04.340
+Và những điều tích cực hy vọng.
+
+00:04:04.340 --> 00:04:08.340
+Vì vậy, tôi nghĩ rằng vẫn còn rất nhiều thách
+thức trong việc
+
+00:04:08.340 --> 00:04:12.340
+reinforcement learning sâu về việc tìm ra một
+số chi tiết cụ thể về cách khiến những thứ này
+hoạt động.
+
+00:04:12.340 --> 00:04:14.340
+Vì vậy, phần sâu sắc là đại diện.
+
+00:04:14.340 --> 00:04:18.340
+Nhưng bản thân việc reinforcement learning vẫn
+còn rất nhiều thắc mắc.
+
+00:04:18.340 --> 00:04:22.340
+Và điều tôi cảm thấy là với những tiến bộ
+trong deep learning, bằng cách nào
+
+00:04:22.340 --> 00:04:26.340
+đó, một phần của câu đố về
+reinforcement learning phần lớn đã được giải
+quyết.
+
+00:04:27.340 --> 00:04:29.340
+Đó là phần đại diện.
+
+00:04:29.340 --> 00:04:31.840
+Vì vậy, nếu có một mẫu, chúng ta có thể biểu
+
+00:04:31.840 --> 00:04:34.340
+diễn nó bằng một mạng sâu và nắm bắt mẫu đó.
+
+00:04:34.340 --> 00:04:36.840
+Và làm thế nào để tách rời mô hình vẫn là một
+
+00:04:36.840 --> 00:04:39.340
+thách thức lớn trong reinforcement learning.
+
+00:04:39.340 --> 00:04:42.340
+Vì vậy, tôi nghĩ thách thức lớn là làm thế nào
+để
+
+00:04:42.340 --> 00:04:45.340
+các hệ thống có thể suy luận trong thời gian
+dài.
+
+00:04:45.340 --> 00:04:47.840
+Vì vậy, hiện tại, rất nhiều thành công trong
+
+00:04:47.840 --> 00:04:50.340
+reinforcement learning sâu chỉ còn rất ngắn.
+
+00:04:50.340 --> 00:04:53.840
+Đó là những vấn đề mà nếu bạn hành động tốt
+trong khoảng
+
+00:04:53.840 --> 00:04:57.340
+thời gian 5 giây, bạn sẽ hành động tốt trong
+toàn bộ vấn đề.
+
+00:04:57.340 --> 00:05:01.840
+Vì vậy, kỹ năng 5 giây là một điều gì đó rất
+khác so với kỹ năng kéo dài một
+
+00:05:01.840 --> 00:05:06.340
+ngày hoặc khả năng sống cuộc sống như một
+robot hoặc một nhân viên phần mềm nào đó.
+
+00:05:06.340 --> 00:05:08.340
+Vì vậy tôi nghĩ có rất nhiều thách thức ở đó.
+
+00:05:08.340 --> 00:05:12.840
+Tôi nghĩ rằng sự an toàn có rất nhiều thách
+thức về cách bạn học một
+
+00:05:12.840 --> 00:05:17.340
+cách an toàn cũng như làm thế nào để bạn tiếp
+tục học khi bạn đã khá giỏi.
+
+00:05:18.340 --> 00:05:21.340
+Vì vậy, hãy đưa ra một ví dụ nữa mà nhiều
+người có thể quen thuộc.
+
+00:05:21.340 --> 00:05:22.340
+Xe ô tô lái xe di động.
+
+00:05:22.340 --> 00:05:26.840
+Để một chiếc ô tô lái bằng tế bào tốt hơn
+người lái, thực tế là người lái xe là
+
+00:05:26.840 --> 00:05:31.340
+con người có thể gặp tai nạn, tai nạn nghiêm
+trọng cứ sau ba triệu dặm hoặc gì đó.
+
+00:05:31.340 --> 00:05:34.340
+Và do đó, phải mất một thời gian dài mới thấy
+được dữ
+
+00:05:34.340 --> 00:05:37.340
+liệu tiêu cực khi bạn đã thành thạo như một
+người lái xe.
+
+00:05:37.340 --> 00:05:40.340
+Nhưng bạn muốn chiếc xe điều khiển di động của
+mình tốt hơn người lái.
+
+00:05:40.340 --> 00:05:43.840
+Và tại thời điểm đó, việc thu thập dữ liệu trở
+nên thực sự rất khó
+
+00:05:43.840 --> 00:05:47.340
+khăn để có được dữ liệu thú vị giúp hệ thống
+của bạn được cải thiện.
+
+00:05:47.340 --> 00:05:51.340
+Vì vậy, có rất nhiều thách thức liên quan đến
+việc khám phá gắn liền với điều đó.
+
+00:05:51.340 --> 00:05:56.840
+Nhưng một trong những điều tôi thực sự hào
+hứng nhất lúc này là xem liệu chúng ta
+
+00:05:56.840 --> 00:06:02.340
+có thể thực sự lùi lại một bước và học thuật
+toán reinforcement learning hay không.
+
+00:06:02.340 --> 00:06:04.340
+Vì vậy, reinforcement learning là rất phức
+tạp.
+
+00:06:04.340 --> 00:06:05.340
+Thiết kế tín dụng rất phức tạp.
+
+00:06:05.340 --> 00:06:07.340
+Việc thăm dò rất phức tạp.
+
+00:06:07.340 --> 00:06:11.090
+Và vì vậy, có lẽ giống như cách deep learning
+cho supervised learning có thể
+
+00:06:11.090 --> 00:06:14.840
+thay thế nhiều kiến thức chuyên môn về lĩnh
+vực, có thể chúng ta có thể có
+
+00:06:14.840 --> 00:06:18.590
+các chương trình có thể học được, đó là các
+chương trình
+
+00:06:18.590 --> 00:06:22.340
+reinforcement learning và thực hiện tất cả
+những điều này thay vì chúng ta thiết kế chi
+tiết.
+
+00:06:22.340 --> 00:06:25.340
+Bạn học chức năng thưởng hay học cả chương
+trình?
+
+00:06:25.340 --> 00:06:28.340
+Vì vậy, đây sẽ là học toàn bộ chương trình
+reinforcement learning.
+
+00:06:28.340 --> 00:06:32.340
+Vì vậy, hãy tưởng tượng bạn có một chương
+trình
+
+00:06:32.340 --> 00:06:36.340
+reinforcement learning, bất kể nó là gì, và
+bạn ném nó vào một số vấn đề.
+
+00:06:36.340 --> 00:06:38.340
+Và sau đó bạn sẽ thấy phải mất bao lâu để học.
+
+00:06:38.340 --> 00:06:40.340
+Và sau đó bạn nói, à, việc đó mất một lúc.
+
+00:06:40.340 --> 00:06:44.340
+Bây giờ hãy để một chương trình khác sửa đổi
+chương trình
+
+00:06:44.340 --> 00:06:48.340
+reinforcement learning này sau khi sửa đổi,
+xem nó học nhanh như thế nào.
+
+00:06:48.340 --> 00:06:54.340
+Nếu nó học nhanh hơn thì đó là một sửa đổi tốt
+và có thể giữ nó và cải thiện từ đó.
+
+00:06:54.340 --> 00:06:55.340
+Ôi. Tôi hiểu rồi. Phải. Vâng.
+
+00:06:55.340 --> 00:06:56.340
+Theo chiều hướng xấu xa.
+
+00:06:56.340 --> 00:06:57.340
+Vâng.
+
+00:06:57.340 --> 00:07:01.340
+Tôi nghĩ nó liên quan nhiều đến số lượng máy
+tính đang có sẵn.
+
+00:07:01.340 --> 00:07:05.340
+Vì vậy, đây sẽ là quá trình
+reinforcement learning ở vòng lặp bên trong.
+
+00:07:05.340 --> 00:07:08.340
+Trong khi hiện tại, chúng tôi coi việc
+reinforcement learning là mục tiêu cuối cùng.
+
+00:07:08.340 --> 00:07:12.840
+Và do đó, chúng ta càng tính toán nhiều thì
+càng có thể chạy thứ gì đó như
+
+00:07:12.840 --> 00:07:17.340
+reinforcement learning trong vòng lặp bên
+trong của một thuật toán lớn hơn.
+
+00:07:17.340 --> 00:07:19.340
+Điều đó có ý nghĩa.
+
+00:07:19.340 --> 00:07:22.340
+Vì vậy, bắt đầu từ 14 euro U, bạn đã làm việc
+
+00:07:22.340 --> 00:07:25.340
+trong lĩnh vực AI được khoảng hơn 20 năm rồi.
+
+00:07:25.340 --> 00:07:28.840
+Vì vậy, hãy cho tôi biết một chút về sự hiểu
+biết của
+
+00:07:28.840 --> 00:07:32.340
+bạn về AI đã phát triển như thế nào trong thời
+gian này.
+
+00:07:32.340 --> 00:07:36.840
+Vâng. Vì vậy, khi tôi bắt đầu xem xét AI, điều
+đó rất thú vị vì nó
+
+00:07:36.840 --> 00:07:41.340
+thực sự trùng hợp với việc tôi đến Stanford để
+lấy bằng thạc sĩ ở đó.
+
+00:07:41.340 --> 00:07:45.007
+Và có một số biểu tượng ở đó như John
+McCarthy, người mà tôi đã
+
+00:07:45.007 --> 00:07:48.673
+nói chuyện cùng, nhưng vào năm 2000, ông có
+cách tiếp cận rất
+
+00:07:48.673 --> 00:07:52.340
+khác đối với những gì hầu hết mọi người đang
+làm vào thời điểm đó.
+
+00:07:52.340 --> 00:07:56.340
+Nhưng cũng đang nói chuyện với Daphne Koller.
+Và tôi nghĩ phần
+
+00:07:56.340 --> 00:08:00.340
+lớn suy nghĩ ban đầu của tôi về AI được hình
+thành từ suy nghĩ
+
+00:08:00.340 --> 00:08:04.340
+của Daphne, lớp AI của cô ấy, lớp mô hình đồ
+họa xác suất của cô ấy,
+
+00:08:04.340 --> 00:08:09.340
+và thực sự bị hấp dẫn bởi việc phân phối đơn
+giản trên nhiều biến ngẫu nhiên và sau
+
+00:08:09.340 --> 00:08:14.340
+đó có thể dựa vào một số bộ biến và đưa ra kết
+luận về những bộ khác thực sự có thể
+
+00:08:14.340 --> 00:08:19.340
+mang lại cho bạn rất nhiều nếu bạn bằng cách
+nào đó có thể làm cho nó dễ tính toán,
+
+00:08:19.340 --> 00:08:23.340
+đó chắc chắn là một thách thức để làm cho nó
+có thể tính toán được.
+
+00:08:23.340 --> 00:08:28.340
+Và rồi từ đó, khi tôi bắt đầu học tiến sĩ,
+Andrew, bạn đã đến Stanford.
+
+00:08:28.340 --> 00:08:32.673
+Và tôi nghĩ bạn đã cho tôi kiểm tra thực tế
+rất tốt. Đó không phải là thước
+
+00:08:32.673 --> 00:08:37.007
+đo phù hợp để đánh giá công việc của bạn và để
+thực sự cố gắng xem mối liên
+
+00:08:37.007 --> 00:08:41.340
+hệ giữa những gì bạn đang làm với những tác
+động thực sự mà nó có thể có,
+
+00:08:41.340 --> 00:08:43.840
+nó có thể tạo ra sự thay đổi gì hơn là phép
+
+00:08:43.840 --> 00:08:46.340
+toán đã xảy ra trong công việc của bạn là gì.
+
+00:08:46.340 --> 00:08:50.340
+Đúng. Điều đó thật tuyệt vời. Tôi không nhận
+ra là mình đã quên điều đó.
+
+00:08:50.340 --> 00:08:53.340
+Vâng, đó thực sự là một trong những điều tôi
+trích dẫn thường
+
+00:08:53.340 --> 00:08:56.340
+xuyên nhất. Mọi người hỏi, điều gì sẽ xảy ra
+nếu bạn chỉ
+
+00:08:56.340 --> 00:08:59.340
+trích dẫn một điều khiến bạn nhớ mãi từ lời
+khuyên của Andrew.
+
+00:08:59.340 --> 00:09:05.340
+Nó đảm bảo rằng bạn có thể thấy được mối liên
+hệ tới nơi nó thực sự sẽ làm điều gì đó.
+
+00:09:05.340 --> 00:09:10.340
+Bạn biết đấy, bạn đã và đang tiếp tục có một
+sự nghiệp tuyệt vời trong lĩnh vực AI.
+
+00:09:11.340 --> 00:09:16.340
+Vì vậy, đối với một số người hiện đang nghe
+bạn nói trên video, nếu họ cũng muốn
+
+00:09:16.340 --> 00:09:21.340
+tham gia hoặc theo đuổi sự nghiệp trong lĩnh
+vực AI, bạn có lời khuyên nào dành cho họ?
+
+00:09:21.340 --> 00:09:24.340
+Tôi nghĩ đây là thời điểm thực sự tốt để tham
+gia vào lĩnh vực trí tuệ nhân tạo.
+
+00:09:24.340 --> 00:09:29.340
+Nếu bạn nhìn vào nhu cầu của mọi người, nó rất
+cao. Có rất nhiều cơ hội việc làm,
+
+00:09:29.340 --> 00:09:34.340
+rất nhiều điều bạn có thể thực hiện trong
+nghiên cứu, xây dựng công ty mới, v.v.
+
+00:09:34.340 --> 00:09:36.840
+Vì vậy, tôi sẽ nói, vâng, đó chắc chắn là một
+
+00:09:36.840 --> 00:09:39.340
+quyết định thông minh về mặt thực sự bắt đầu.
+
+00:09:39.340 --> 00:09:42.340
+Rất nhiều trong số đó bạn có thể tự học dù có
+đi học hay không. Có
+
+00:09:42.340 --> 00:09:45.340
+rất nhiều khóa học trực tuyến. Có khóa
+machine learning học của bạn.
+
+00:09:45.340 --> 00:09:50.340
+Ví dụ, còn có khóa deep learning của Andrew
+Carapati, có
+
+00:09:50.340 --> 00:09:55.340
+video trực tuyến, đây là một cách tuyệt vời để
+bắt đầu.
+
+00:09:55.340 --> 00:09:59.340
+Berkeley tổ chức khóa reinforcement learning
+sâu, tất cả đều là bài giảng trực tuyến.
+
+00:09:59.340 --> 00:10:01.340
+Vì vậy, đó đều là những nơi tốt để bắt đầu.
+
+00:10:01.340 --> 00:10:06.340
+Tôi nghĩ phần lớn điều quan trọng là đảm bảo
+bạn tự mình thử mọi thứ.
+
+00:10:06.340 --> 00:10:10.340
+Vì vậy, không chỉ đọc mọi thứ hoặc xem video
+mà hãy thử mọi thứ.
+
+00:10:10.340 --> 00:10:16.340
+Với các khung như TensorFlow, Chainer, Fiano,
+PyTorch, v.v., bất kể bạn yêu
+
+00:10:16.340 --> 00:10:22.340
+thích gì, bạn sẽ rất dễ dàng bắt đầu và thiết
+lập một thứ gì đó và chạy rất nhanh.
+
+00:10:22.340 --> 00:10:27.340
+Để tự mình thực hành, thực hiện và xem những
+gì hiệu quả và những gì không hiệu quả.
+
+00:10:27.340 --> 00:10:31.340
+Vì vậy, tuần trước đã có một bài báo trên
+Mashable về một thanh niên 16 tuổi
+
+00:10:31.340 --> 00:10:35.340
+ở Vương quốc Anh, một trong những người dẫn
+đầu trong các cuộc thi Kaggle.
+
+00:10:36.340 --> 00:10:40.340
+Anh ấy chỉ nói, anh ấy chỉ ra ngoài và tìm
+kiếm mọi thứ trên mạng, tự học
+
+00:10:40.340 --> 00:10:44.340
+mọi thứ và thực sự chưa bao giờ tham gia bất
+kỳ khóa học chính thức nào.
+
+00:10:44.340 --> 00:10:47.340
+Và ở đó, anh ấy là một cậu bé 16 tuổi rất có
+tính cạnh
+
+00:10:47.340 --> 00:10:50.340
+tranh trong các cuộc thi Kaggle. Vì vậy, nó
+chắc chắn có thể.
+
+00:10:50.340 --> 00:10:54.340
+Vâng. Chúng ta đang sống trong thời kỳ tốt đẹp
+cho những người muốn học hỏi.
+
+00:10:54.340 --> 00:10:55.340
+Chắc chắn rồi.
+
+00:10:55.340 --> 00:10:59.007
+Một câu hỏi mà tôi cá là đôi khi bạn sẽ được
+hỏi là, nếu ai
+
+00:10:59.007 --> 00:11:02.673
+đó muốn tham gia deep learning về máy AI, họ
+nên đăng ký
+
+00:11:02.673 --> 00:11:06.340
+chương trình Tiến sĩ hay nên kiếm việc làm ở
+một công ty lớn?
+
+00:11:06.340 --> 00:11:12.340
+Tôi nghĩ phần lớn điều đó liên quan đến việc
+bạn có thể nhận được bao nhiêu sự cố vấn.
+
+00:11:12.340 --> 00:11:17.673
+Vì vậy, trong chương trình Tiến sĩ, về cơ bản
+bạn được đảm bảo rằng công việc của giáo
+
+00:11:17.673 --> 00:11:23.007
+sư là cố vấn của bạn, quan tâm đến bạn, cố
+gắng làm mọi thứ có thể để định hình bạn,
+
+00:11:23.007 --> 00:11:28.340
+giúp đỡ bạn, trở nên mạnh mẽ hơn trong bất cứ
+điều gì bạn muốn làm, chẳng hạn như AI.
+
+00:11:29.340 --> 00:11:33.007
+Và vì vậy có một người rất rõ ràng, tận tâm.
+Đôi khi bạn có hai cố vấn và đó
+
+00:11:33.007 --> 00:11:36.673
+thực sự là một công việc và đó là lý do tại
+sao họ là giáo sư. Điều họ thích
+
+00:11:36.673 --> 00:11:40.340
+nhất khi trở thành giáo sư là giúp sinh viên
+trở nên có năng lực hơn trong mọi việc.
+
+00:11:40.340 --> 00:11:44.007
+Bây giờ, điều đó không có nghĩa là điều đó là
+không thể ở các công
+
+00:11:44.007 --> 00:11:47.673
+ty, và nhiều công ty có những người cố vấn
+thực sự giỏi và có
+
+00:11:47.673 --> 00:11:51.340
+những người thích giúp đỡ đào tạo những người
+đến và củng cố họ, v.v.
+
+00:11:52.340 --> 00:11:56.673
+Nó có thể không mang lại nhiều sự đảm bảo và
+chắc chắn so với việc
+
+00:11:56.673 --> 00:12:01.007
+thực sự đăng ký vào một chương trình Tiến sĩ,
+trong đó điểm mấu
+
+00:12:01.007 --> 00:12:05.340
+chốt của chương trình là bạn sẽ học và có ai
+đó ở đó để giúp bạn học.
+
+00:12:05.340 --> 00:12:09.340
+Vâng, điều đó thực sự phụ thuộc vào công ty và
+chương trình Tiến sĩ.
+
+00:12:09.340 --> 00:12:13.090
+Chắc chắn rồi, vâng. Nhưng tôi nghĩ điều quan
+trọng là bạn có thể
+
+00:12:13.090 --> 00:12:16.840
+tự học được nhiều điều, nhưng tôi nghĩ bạn có
+thể học nhanh hơn rất
+
+00:12:16.840 --> 00:12:20.590
+nhiều nếu bạn có ai đó có kinh nghiệm hơn,
+người thực sự nhận trách
+
+00:12:20.590 --> 00:12:24.340
+nhiệm dành thời gian cho bạn và giúp đẩy nhanh
+sự tiến bộ của bạn.
+
+00:12:25.340 --> 00:12:26.840
+Vậy là bạn đã là một trong những người đi đầu
+rõ
+
+00:12:26.840 --> 00:12:28.340
+ràng nhất trong lĩnh vực
+reinforcement learning sâu.
+
+00:12:28.340 --> 00:12:33.340
+Vậy reinforcement learning sâu đang hoạt động
+thực sự hiệu quả ở những lĩnh vực nào?
+
+00:12:34.340 --> 00:12:36.340
+Tôi nghĩ nếu bạn nhìn vào một số thành công
+của
+
+00:12:36.340 --> 00:12:38.340
+học tập tăng cường sâu, nó sẽ rất rất hấp dẫn.
+
+00:12:38.340 --> 00:12:43.340
+Ví dụ: học chơi trò chơi Atari từ pixel, xử lý
+các pixel này, đây chỉ là những
+
+00:12:43.340 --> 00:12:48.340
+con số đang được xử lý bằng cách nào đó và
+biến thành hành động cần điều khiển.
+
+00:12:49.340 --> 00:12:52.340
+Sau đó, ví dụ, một số công việc chúng tôi đã
+làm ở Berkeley, nơi
+
+00:12:52.340 --> 00:12:55.340
+chúng tôi có một robot mô phỏng phát minh ra
+khả năng đi bộ, và
+
+00:12:55.340 --> 00:12:58.340
+phần thưởng mà nó được trao chỉ đơn giản là
+bạn càng đi xa về phía
+
+00:12:58.340 --> 00:13:01.340
+bắc thì càng tốt và bạn càng ít tác động mạnh
+lên mặt đất thì càng tốt.
+
+00:13:01.340 --> 00:13:05.340
+Và bằng cách nào đó, nó quyết định rằng việc
+đi bộ và chạy bộ là thứ cần
+
+00:13:05.340 --> 00:13:09.340
+được phát minh, trong khi không ai chỉ cho nó
+biết đi bộ hay chạy là gì.
+
+00:13:09.340 --> 00:13:12.840
+Hoặc một robot chơi với đồ chơi của trẻ em và
+học cách
+
+00:13:12.840 --> 00:13:16.340
+ghép chúng lại với nhau, đặt các khối vào lỗ
+phù hợp, v.v.
+
+00:13:16.340 --> 00:13:19.673
+Và vì vậy tôi nghĩ thật thú vị khi trong tất
+cả những điều
+
+00:13:19.673 --> 00:13:23.007
+này, có thể học hỏi từ những đầu vào cảm giác
+thô cho đến
+
+00:13:23.007 --> 00:13:26.340
+những điều khiển thô, chẳng hạn như mô men
+xoắn ở động cơ.
+
+00:13:27.340 --> 00:13:32.340
+Nhưng đồng thời, thật thú vị khi bạn có thể có
+một thuật toán duy nhất.
+
+00:13:32.340 --> 00:13:35.673
+Ví dụ: tối ưu hóa chính sách vùng tin cậy có
+thể yêu cầu rô-bốt
+
+00:13:35.673 --> 00:13:39.007
+học cách chạy, có thể yêu cầu rô-bốt học cách
+đứng, có thể có,
+
+00:13:39.007 --> 00:13:42.340
+thay vì rô-bốt hai chân bây giờ, bạn đang hoán
+đổi rô-bốt bốn chân.
+
+00:13:42.340 --> 00:13:46.340
+Bạn chạy cùng một thuật toán tăng cường và nó
+vẫn học cách chạy.
+
+00:13:46.340 --> 00:13:48.840
+Và do đó không có thay đổi nào trong thuật
+toán tăng cường.
+
+00:13:48.840 --> 00:13:51.340
+Nó rất, rất chung chung. Tương tự với các trò
+chơi Atari.
+
+00:13:51.340 --> 00:13:54.340
+DQN là DQN giống nhau cho mọi trò chơi.
+
+00:13:54.340 --> 00:13:57.840
+Nhưng sau đó, khi nó thực sự bắt đầu chạm tới
+giới hạn của
+
+00:13:57.840 --> 00:14:01.340
+những điều chưa thể thực hiện được thì điều đó
+thật tuyệt.
+
+00:14:01.340 --> 00:14:03.340
+Nó học từ đầu cho từng nhiệm vụ này.
+
+00:14:03.340 --> 00:14:06.340
+Nhưng sẽ tốt hơn nếu nó có thể sử dụng lại
+những điều đã học
+
+00:14:06.340 --> 00:14:09.340
+trong quá khứ để học nhanh hơn nữa cho nhiệm
+vụ tiếp theo.
+
+00:14:09.340 --> 00:14:12.340
+Và đó là điều vẫn còn ở mức cao và chưa thể
+
+00:14:12.340 --> 00:14:15.340
+thực hiện được. Về cơ bản, nó luôn bắt đầu từ
+đầu.
+
+00:14:16.340 --> 00:14:19.340
+Bạn nghĩ mình thấy reinforcement learning sâu
+được triển khai trong
+
+00:14:19.340 --> 00:14:22.340
+các robot xung quanh chúng ta hoặc các robot
+xung quanh chúng ta
+
+00:14:22.340 --> 00:14:25.340
+nhanh đến mức nào và chúng đang được triển
+khai trên thế giới ngày nay?
+
+00:14:25.340 --> 00:14:29.340
+Tôi nghĩ trong thực tế, kịch bản thực tế là
+kịch bản
+
+00:14:29.340 --> 00:14:33.340
+bắt đầu bằng việc supervised learning, nhân
+bản hành vi.
+
+00:14:33.340 --> 00:14:36.007
+Con người thực hiện công việc. Và tôi nghĩ
+thực tế là rất
+
+00:14:36.007 --> 00:14:38.673
+nhiều doanh nghiệp sẽ được xây dựng theo cách
+đó, trong đó
+
+00:14:38.673 --> 00:14:41.340
+con người đứng sau hậu trường sẽ thực hiện rất
+nhiều công việc.
+
+00:14:42.340 --> 00:14:45.840
+Hãy tưởng tượng Trợ lý Facebook Messenger, một
+hệ thống như thế có thể được xây dựng
+
+00:14:45.840 --> 00:14:49.340
+với sự điều khiển của con người đằng sau tấm
+màn và thực hiện rất nhiều công việc.
+
+00:14:49.340 --> 00:14:52.840
+Machine learning phù hợp với những gì con
+người làm và bắt đầu
+
+00:14:52.840 --> 00:14:56.340
+đưa ra đề xuất cho con người để con người có
+một số ít lựa chọn.
+
+00:14:56.340 --> 00:14:59.340
+Sự phát triển có thể chỉ cần nhấp chuột và
+chọn. Và sau đó, theo thời
+
+00:14:59.340 --> 00:15:02.340
+gian, khi nó trở nên khá tốt, bạn bắt đầu
+truyền tải một số bài học củng
+
+00:15:02.340 --> 00:15:05.340
+cố trong đó bạn đặt cho nó những mục tiêu thực
+tế, không chỉ phù hợp với
+
+00:15:05.340 --> 00:15:08.340
+con người đằng sau tấm màn mà còn đưa ra những
+mục tiêu về thành tích.
+
+00:15:09.340 --> 00:15:13.340
+Có lẽ hai người này có thể lên kế hoạch cho
+cuộc gặp của họ nhanh đến mức
+
+00:15:13.340 --> 00:15:17.340
+nào, hoặc họ có thể đặt chuyến bay nhanh như
+thế nào, hay những thứ tương tự?
+
+00:15:17.340 --> 00:15:19.340
+Mất bao lâu? Họ đã hạnh phúc thế nào với nó?
+
+00:15:19.340 --> 00:15:23.340
+Nhưng có lẽ sẽ phải có rất nhiều bản sao hành
+vi của con
+
+00:15:23.340 --> 00:15:27.340
+người để chứng minh điều này có thể thực hiện
+được như thế nào.
+
+00:15:27.340 --> 00:15:30.673
+Vì vậy, hãy bắt đầu với việc nhân bản hành vi,
+chỉ học tập có giám sát
+
+00:15:30.673 --> 00:15:34.007
+để bắt chước bất cứ điều gì người đó đang làm,
+sau đó dần dần áp dụng
+
+00:15:34.007 --> 00:15:37.340
+học tập củng cố để khiến họ suy nghĩ về những
+khoảng thời gian dài hơn.
+
+00:15:38.340 --> 00:15:40.840
+Tôi sẽ nói vậy. Chỉ vì việc
+
+00:15:40.840 --> 00:15:43.340
+reinforcement learning ngay từ đầu thực sự rất
+thú vị khi xem.
+
+00:15:43.340 --> 00:15:46.840
+Nó cực kỳ hấp dẫn và có rất ít điều thú vị để
+xem hơn là một robot
+
+00:15:46.840 --> 00:15:50.340
+học tập tăng cường bắt đầu từ con số không và
+phát minh ra mọi thứ.
+
+00:15:50.340 --> 00:15:53.340
+Nhưng nó chỉ tốn thời gian và không phải lúc
+nào cũng an toàn.
+
+00:15:53.340 --> 00:15:55.340
+Cảm ơn bạn rất nhiều. Điều đó thật hấp dẫn.
+Tôi
+
+00:15:55.340 --> 00:15:57.340
+thực sự vui mừng vì chúng ta có cơ hội trò
+chuyện.
+
+00:15:57.340 --> 00:16:00.340
+Ồ, Andrew, cảm ơn vì đã mời tôi. Rất nhiều
+đánh giá cao nó.

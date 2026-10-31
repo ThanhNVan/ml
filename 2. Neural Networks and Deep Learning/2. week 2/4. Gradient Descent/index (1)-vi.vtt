@@ -1,0 +1,831 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.885
+Bạn đã thấy mô hình logistic regression,
+bạn đã thấy loss function
+
+2
+00:00:04.885 --> 00:00:08.789
+đo lường mức độ hiệu quả công việc
+bạn đang làm trên một mẫu huấn luyện.
+
+3
+00:00:08.789 --> 00:00:13.711
+Bạn cũng đã học về cost function đo
+mức độ hiệu quả của tham số w và
+
+4
+00:00:13.711 --> 00:00:16.219
+b trên toàn bộ tập
+huấn luyện của bạn.
+
+5
+00:00:16.219 --> 00:00:22.093
+Bây giờ hãy nói về cách bạn có thể sử dụng
+thuật toán gradient descent để huấn luyện,
+
+6
+00:00:22.093 --> 00:00:25.659
+để tìm hiểu các tham số
+w trên training set của bạn.
+
+7
+00:00:25.659 --> 00:00:30.616
+Tóm lại, đây là thuật toán
+logistic regression quen thuộc.
+
+8
+00:00:30.616 --> 00:00:34.193
+Và trên dòng thứ hai
+chúng ta có cost function, J,
+
+9
+00:00:34.193 --> 00:00:37.789
+một hàm của các tham số w và b.
+
+10
+00:00:37.789 --> 00:00:42.506
+Và điều đó được định nghĩa là giá trị trung bình
+là một trên m của
+
+11
+00:00:42.506 --> 00:00:44.109
+loss function này.
+
+12
+00:00:44.109 --> 00:00:49.250
+Và do đó, loss function sẽ đo lường
+đầu ra của các thuật toán tốt như thế nào.
+
+13
+00:00:49.250 --> 00:00:54.211
+y mũ i trên mỗi mẫu huấn luyện
+xếp chồng lên so với nhãn
+
+14
+00:00:54.211 --> 00:00:57.826
+gốc y(i) trên mỗi
+mẫu huấn luyện và
+
+15
+00:00:57.826 --> 00:01:00.869
+công thức đầy đủ được mở rộng ở bên phải.
+
+16
+00:01:00.869 --> 00:01:04.670
+Như vậy, cost function đo lường
+mức độ hiệu quả mà tham số w và
+
+17
+00:01:04.670 --> 00:01:06.730
+b đang thực hiện
+trên training set.
+
+18
+00:01:06.730 --> 00:01:10.105
+Vì vậy, để tìm hiểu tập hợp
+của các tham số w và b,
+
+19
+00:01:10.105 --> 00:01:13.319
+có vẻ tự nhiên là chúng ta
+muốn tìm w và b.
+
+20
+00:01:13.319 --> 00:01:17.869
+Điều đó làm cho cost function J(w,b) càng nhỏ càng tốt.
+
+21
+00:01:17.869 --> 00:01:21.277
+Như vậy, đây là một minh họa
+về thuật toán gradient descent.
+
+22
+00:01:21.277 --> 00:01:26.953
+Trong biểu đồ này, trục hoành
+đại diện cho các tham số không gian w và b.
+
+23
+00:01:26.953 --> 00:01:32.027
+Trong thực tế, w có thể
+cao hơn nhiều, nhưng để
+
+24
+00:01:32.027 --> 00:01:38.139
+vẽ đồ thị, thì hãy minh họa w là một số thực
+duy nhất và b là một số thực duy nhất.
+
+25
+00:01:38.139 --> 00:01:40.271
+Cost function J của w,
+
+26
+00:01:40.271 --> 00:01:45.260
+b là một mặt nào đó nằm trên
+trục hoành w và b.
+
+27
+00:01:45.260 --> 00:01:50.741
+Như vậy, chiều cao của bề mặt biểu thị
+giá trị của J (w, b) tại một điểm nhất định.
+
+28
+00:01:50.741 --> 00:01:55.556
+Và điều mà chúng ta muốn làm
+là tìm thấy giá trị của w và
+
+29
+00:01:55.556 --> 00:02:00.699
+b tương ứng với mức
+tối thiểu của cost function J.
+
+30
+00:02:00.699 --> 00:02:05.910
+Nó chỉ ra rằng
+cụ thể này J là một hàm lồi.
+
+31
+00:02:05.910 --> 00:02:10.217
+Như vậy, nó giống như một cái
+bát lớn, và đây là một hàm lồi và
+
+32
+00:02:10.217 --> 00:02:13.791
+điều này trái ngược với các
+hàm trông như thế này,
+
+33
+00:02:13.791 --> 00:02:18.039
+không lồi và
+có rất nhiều tối ưu cục bộ khác nhau.
+
+34
+00:02:18.039 --> 00:02:22.881
+Vì vậy, thực tế là cost function J của w,
+b như được định nghĩa ở đây là lồi,
+
+35
+00:02:22.881 --> 00:02:27.807
+là một trong những lý do lớn tại sao chúng tôi sử dụng
+cost function cụ thể này J cho
+
+36
+00:02:27.807 --> 00:02:29.499
+logistic regression
+
+37
+00:02:29.499 --> 00:02:33.809
+Thế nên để tìm một
+giá trị tốt cho các tham số,
+
+38
+00:02:33.809 --> 00:02:37.162
+những gì chúng tôi sẽ làm là khởi tạo w và
+
+39
+00:02:37.162 --> 00:02:43.288
+b đến giá trị ban đầu nào đó có thể là
+được biểu thị bằng chấm nhỏ màu đỏ đó.
+
+40
+00:02:43.288 --> 00:02:47.821
+Và đối với logistic regression, hầu hết mọi
+phương thức khởi chạy đều hiệu quả,
+
+41
+00:02:47.821 --> 00:02:50.716
+Thông thường bạn Khởi tạo các giá trị bằng 0.
+
+42
+00:02:50.716 --> 00:02:54.414
+Khởi tạo ngẫu nhiên cũng hoạt động,
+nhưng mọi người thường không làm điều đó cho
+
+43
+00:02:54.414 --> 00:02:55.613
+logistic regression
+
+44
+00:02:55.613 --> 00:02:59.250
+Nhưng vì hàm này lồi, nên
+bất kể là bạn khởi chạy ở đâu, thì
+
+45
+00:02:59.250 --> 00:03:02.230
+bạn nên đến cùng một điểm
+hoặc gần như cùng một điểm.
+
+46
+00:03:02.230 --> 00:03:06.720
+Và những gì mà kỹ thuật gradient descent
+thực hiện là nó bắt đầu từ điểm ban đầu đó và
+
+47
+00:03:06.720 --> 00:03:10.360
+sau đó đi xuống một bước
+theo hướng thẳng đứng.
+
+48
+00:03:10.360 --> 00:03:14.933
+Như vậy, sau một bước đi xuống,
+bạn có thể kết thúc ở đó, bởi vì
+
+49
+00:03:14.933 --> 00:03:19.143
+nó đang cố gắng đi xuống
+theo hướng dốc nhất hoặc
+
+50
+00:03:19.143 --> 00:03:21.190
+càng nhanh càng tốt.
+
+51
+00:03:21.190 --> 00:03:23.609
+Vì vậy, đó là một lần lặp
+của gradient descent.
+
+52
+00:03:23.609 --> 00:03:26.086
+Và sau bước 2, với 1 bước giảm lớn
+
+53
+00:03:26.086 --> 00:03:28.769
+bạn có thể bước ở đó ba lần lặp,...
+
+54
+00:03:28.769 --> 00:03:33.783
+Tôi đoán bây giờ các lần lặp đến cuối cùng
+đã bị che mất rồi, hy vọng bạn
+
+55
+00:03:33.783 --> 00:03:38.819
+hội tụ về một điểm tối ưu toàn cục này hoặc
+đến một cái gì đó gần với điểm tối ưu toàn cục.
+
+56
+00:03:38.819 --> 00:03:42.182
+Vì vậy, hình ảnh này minh họa
+các thuật toán gradient descent.
+
+57
+00:03:42.182 --> 00:03:46.187
+Hãy viết thêm một chút về
+chi tiết với mục đích minh họa,
+
+58
+00:03:46.187 --> 00:03:49.889
+giả sử rằng có một số hàm
+J của w mà bạn muốn giảm thiểu và
+
+59
+00:03:49.889 --> 00:03:53.190
+có thể hàm đó trông giống như
+để dễ vẽ hơn.
+
+60
+00:03:53.190 --> 00:03:54.597
+Tôi sẽ bỏ qua b vì
+
+61
+00:03:54.597 --> 00:03:59.160
+chỉ để biến điều này thành một đồ thị
+một chiều thay vì một đồ thị nhiều chiều.
+
+62
+00:03:59.160 --> 00:04:01.273
+Như vậy, thuật toán gradient
+descent sẽ làm điều này,
+
+63
+00:04:01.273 --> 00:04:06.489
+chúng ta sẽ liên tục
+thực hiện cập nhật sau đây.
+
+64
+00:04:06.489 --> 00:04:09.513
+Chúng tôi sẽ lấy giá trị của w và cập nhật.
+
+65
+00:04:09.513 --> 00:04:12.543
+sử dụng dấu hai chấm
+để thể hiện cập nhật w.
+
+66
+00:04:12.543 --> 00:04:17.524
+Vì vậy, thiết lập w thành
+w trừ alpha lần và
+
+67
+00:04:17.524 --> 00:04:22.330
+đây là một đạo hàm d của J wd w.
+
+68
+00:04:22.330 --> 00:04:26.186
+Và chúng tôi lặp lại số
+đó cho đến khi thuật toán hội tụ.
+
+69
+00:04:26.186 --> 00:04:30.950
+Như vậy, ký hiệu alpha
+ở đây, là learning rate tập, và
+
+70
+00:04:30.950 --> 00:04:35.714
+kiểm soát độ lớn của từng bước chúng ta thực hiện trên
+mỗi lần lặp lại hoặc gradient descent
+
+71
+00:04:35.714 --> 00:04:40.238
+chúng ta sẽ nói sau về một số cách để
+chọn learning rate tập,
+
+72
+00:04:40.238 --> 00:04:44.409
+alpha và thứ hai đại lượng này ở đây,
+đây là một đạo hàm.
+
+73
+00:04:44.409 --> 00:04:49.839
+Về cơ bản, đây là bản cập nhật hoặc thay đổi
+bạn muốn thực hiện cho các tham số w.
+
+74
+00:04:49.839 --> 00:04:53.870
+khi chúng ta bắt đầu viết mã để triển khai gradient descent,
+
+75
+00:04:53.870 --> 00:04:58.726
+chúng ta sẽ sử dụng quy ước là
+tên biến trong mã của chúng ta
+
+76
+00:04:58.726 --> 00:05:02.290
+dw sẽ được sử dụng để đại diện
+cho số hạng đạo hàm này.
+
+77
+00:05:02.290 --> 00:05:07.026
+Vì vậy, khi bạn viết mã,
+bạn viết một cái gì đó như w bằng hoặc
+
+78
+00:05:07.026 --> 00:05:10.070
+bằng w trừ d w của thời gian alpha.
+
+79
+00:05:10.070 --> 00:05:14.689
+Và vì vậy chúng ta sử dụng dw là tên biến
+để biểu thị thuật ngữ đạo hàm này.
+
+80
+00:05:14.689 --> 00:05:19.260
+Bây giờ, hãy chắc chắn rằng bản
+cập nhật gradient descent này có nghĩa.
+
+81
+00:05:19.260 --> 00:05:21.882
+Giả sử w đã kết thúc ở đây.
+
+82
+00:05:21.882 --> 00:05:26.020
+Như vậy, bạn đang ở điểm
+này trên cost function J (w).
+
+83
+00:05:26.020 --> 00:05:29.716
+Hãy nhớ rằng định nghĩa
+của đạo hàm là hệ số góc
+
+84
+00:05:29.716 --> 00:05:31.490
+của một hàm tại điểm.
+
+85
+00:05:31.490 --> 00:05:33.688
+Vì vậy, độ dốc của hàm thực sự là,
+
+86
+00:05:33.688 --> 00:05:37.090
+chiều cao chia cho chiều rộng
+bên phải của tam giác dưới.
+
+87
+00:05:37.090 --> 00:05:40.264
+Ở đây, tại thời điểm đó lực căng bằng
+J của w.
+
+88
+00:05:40.264 --> 00:05:43.704
+Và như vậy, ở đây
+đạo hàm là dương.
+
+89
+00:05:43.704 --> 00:05:48.354
+w được cập nhật là w trừ đi tỷ lệ
+học tập nhân với đạo hàm.
+
+90
+00:05:48.354 --> 00:05:50.559
+đạo hàm là số dương.
+
+91
+00:05:50.559 --> 00:05:53.202
+Và vì vậy bạn kết thúc trừ w.
+
+92
+00:05:53.202 --> 00:05:57.258
+Vì vậy, bạn kết thúc một bước sang bên trái
+và quá tuyệt vời và bất đồng với,
+
+93
+00:05:57.258 --> 00:06:00.527
+làm cho thuật toán của bạn từ từ
+giảm tham số.
+
+94
+00:06:00.527 --> 00:06:04.410
+Nếu bạn đã bắt đầu với
+giá trị lớn này của w.
+
+95
+00:06:04.410 --> 00:06:08.769
+Một ví dụ khác, nếu w
+đã kết thúc ở đây,
+
+96
+00:06:08.769 --> 00:06:16.219
+thì tại thời điểm này độ dốc ở đây hoặc
+dJ sẽ là số âm.
+
+97
+00:06:16.219 --> 00:06:22.939
+Và vì vậy, gradient cập nhật với
+trừ alpha lần một số âm.
+
+98
+00:06:22.939 --> 00:06:25.350
+Và do đó, kết thúc từ từ tăng w.
+
+99
+00:06:25.350 --> 00:06:27.768
+Vì vậy, bạn cuối cùng bạn đang làm cho w lớn hơn và
+
+100
+00:06:27.768 --> 00:06:31.440
+lớn hơn với
+thế hệ liên tiếp của gradient giảm dần.
+
+101
+00:06:31.440 --> 00:06:35.353
+Vì vậy, hy vọng rằng cho dù bạn
+khởi tạo ở bên trái, tự hỏi bên phải,
+
+102
+00:06:35.353 --> 00:06:38.949
+tạo thành trung tâm di chuyển bạn
+hướng tới mức tối thiểu toàn cầu này tại đây.
+
+103
+00:06:38.949 --> 00:06:44.809
+Nếu bạn không quen thuộc với
+đạo hàm của phép tính và
+
+104
+00:06:44.809 --> 00:06:47.988
+thuật ngữ d J của wdw này có nghĩa là gì.
+
+105
+00:06:47.988 --> 00:06:49.696
+Đừng lo lắng quá nhiều về điều đó.
+
+106
+00:06:49.696 --> 00:06:53.699
+Chúng ta sẽ nói thêm về các
+đạo hàm trong video tiếp theo.
+
+107
+00:06:53.699 --> 00:06:56.753
+Nếu bạn hiểu sâu về tính toán,
+
+108
+00:06:56.753 --> 00:07:02.439
+bạn có thể có hiểu biết sâu sắc hơn về cách thức
+hoạt động của các neural network nhân tạo.
+
+109
+00:07:02.439 --> 00:07:06.953
+Nhưng ngay cả khi bạn không quen thuộc
+với phép tính trong một vài video tiếp theo
+
+110
+00:07:06.953 --> 00:07:10.357
+sẽ cung cấp cho bạn đủ trực giác
+về các dẫn xuất và
+
+111
+00:07:10.357 --> 00:07:14.949
+về tính toán mà bạn sẽ có thể sử dụng
+các neural network nhân tạo hiệu quả.
+
+112
+00:07:14.949 --> 00:07:17.057
+Nhưng kiến thức tổng quát
+
+113
+00:07:17.057 --> 00:07:22.027
+bây giờ là thuật ngữ này đại diện cho
+độ dốc của hàm và chúng tôi muốn
+
+114
+00:07:22.027 --> 00:07:27.166
+biết độ dốc của hàm tại
+, cài đặt hiện tại của các thông số để
+
+115
+00:07:27.166 --> 00:07:31.882
+để chúng ta có thể thực hiện những bước đi
+xuống dốc nhất, để chúng ta biết cần bước theo
+
+116
+00:07:31.882 --> 00:07:36.629
+hướng nào để đi xuống dốc
+trên cost function J.
+
+117
+00:07:36.629 --> 00:07:40.391
+Vì vậy, chúng tôi đã viết gradient descent của chúng tôi cho
+J của w.
+
+118
+00:07:40.391 --> 00:07:43.799
+Nếu chỉ có w là tham số
+của bạn trong logistic regression.
+
+119
+00:07:43.799 --> 00:07:47.116
+Cost function của bạn là
+một hàm trên w và b.
+
+120
+00:07:47.116 --> 00:07:49.684
+Trong trường hợp đó, vòng lặp gốc
+
+121
+00:07:49.684 --> 00:07:53.549
+đó là điều này ở đây, điều mà bạn
+phải lặp lại sẽ trở thành như sau.
+
+122
+00:07:53.549 --> 00:07:58.271
+Bạn kết thúc cập nhật w là
+w trừ đi learning rate tập
+
+123
+00:07:58.271 --> 00:08:02.757
+nhân với đạo hàm
+J của wb đối với w và
+
+124
+00:08:02.757 --> 00:08:07.242
+Và bạn cập nhật b là
+b trừ đi (số lần học
+
+125
+00:08:07.242 --> 00:08:12.219
+nhân đạo hàm của
+cost function của b).
+
+126
+00:08:12.219 --> 00:08:16.864
+Vì vậy, hai phương trình này ở cuối
+cập nhật thực tế mà bạn triển khai như trong
+
+127
+00:08:16.864 --> 00:08:21.670
+bên cạnh, tôi chỉ muốn đề cập đến một
+, tất cả các quy ước và phép tính.
+
+128
+00:08:21.670 --> 00:08:24.526
+Điều đó hơi khó hiểu đối với một số người.
+
+129
+00:08:24.526 --> 00:08:28.228
+Tôi không nghĩ việc bạn hiểu tính toán
+là cực kỳ quan trọng, nhưng
+
+130
+00:08:28.228 --> 00:08:32.379
+khi bạn thấy điều này tôi muốn chắc chắn
+rằng bạn không suy nghĩ quá nhiều.
+
+131
+00:08:32.379 --> 00:08:38.231
+Đó là trong phép tính số hạng
+ở đây chúng tôi thực sự viết như sau,
+
+132
+00:08:38.231 --> 00:08:40.718
+biểu tượng ngoằn ngoèo vui nhộn đó.
+
+133
+00:08:40.718 --> 00:08:45.119
+Vì vậy, biểu tượng này,
+, đây thực sự chỉ là giá trị thấp hơn
+
+134
+00:08:45.119 --> 00:08:49.089
+trường hợp d trong một phông chữ lạ mắt,
+trong một phông chữ cách điệu.
+
+135
+00:08:49.089 --> 00:08:54.429
+Nhưng khi bạn nhìn thấy biểu thức này,
+tất cả điều này có nghĩa là đây là J của w,
+
+136
+00:08:54.429 --> 00:08:57.633
+b hoặc
+thực sự là hệ số góc của hàm J của w,
+
+137
+00:08:57.633 --> 00:09:01.460
+b bằng bao nhiêu để hàm
+dốc theo phương w.
+
+138
+00:09:01.460 --> 00:09:06.589
+Và quy tắc của ký hiệu và phép tính,
+mà tôi nghĩ là hoàn toàn logic.
+
+139
+00:09:06.589 --> 00:09:11.569
+nhưng quy tắc trong ký hiệu cho phép tính,
+mà tôi nghĩ là nó chỉ làm cho mọi thứ trở nên
+
+140
+00:09:11.569 --> 00:09:16.464
+phức tạp hơn cái bạn cần là
+nếu J là hàm của hai hoặc
+
+141
+00:09:16.464 --> 00:09:20.110
+nhiều biến hơn,
+thì thay vì sử dụng chữ thường d.
+
+142
+00:09:20.110 --> 00:09:21.516
+Bạn sử dụng biểu tượng vui nhộn này.
+
+143
+00:09:21.516 --> 00:09:25.830
+Đây được gọi là
+, nhưng đừng lo lắng về điều này.
+
+144
+00:09:25.830 --> 00:09:31.070
+và nếu J là hàm chỉ có một biến,
+thì bạn sử dụng chữ d thường.
+
+145
+00:09:31.070 --> 00:09:35.808
+Vì vậy, sự khác biệt duy nhất giữa việc bạn
+sử dụng biểu tượng đạo hàm riêng vui nhộn này hay không
+
+146
+00:09:35.808 --> 00:09:36.750
+hoặc chữ thường d.
+
+147
+00:09:36.750 --> 00:09:41.480
+Như chúng ta đã làm ở trên là liệu J là
+một chức năng của hai hay nhiều biến.
+
+148
+00:09:41.480 --> 00:09:46.156
+Trong trường hợp đó, bạn sử dụng biểu tượng
+này, ký hiệu đạo hàm một phần hoặc
+
+149
+00:09:46.156 --> 00:09:48.849
+J chỉ là một hàm của một biến.
+
+150
+00:09:48.849 --> 00:09:51.247
+Sau đó, bạn sử dụng chữ thường d.
+
+151
+00:09:51.247 --> 00:09:53.866
+Đây là một trong những quy tắc ký hiệu số
+
+152
+00:09:53.866 --> 00:09:58.249
+phép tính mà tôi nghĩ chỉ làm cho mọi thứ
+so với mức cần thiết.
+
+153
+00:09:58.249 --> 00:10:01.680
+Nhưng nếu bạn thấy ký hiệu đạo hàm riêng
+
+154
+00:10:01.680 --> 00:10:06.226
+tất cả điều đó có nghĩa là bạn đang đo
+độ dốc của hàm với
+
+155
+00:10:06.226 --> 00:10:10.942
+đối với một trong các biến,
+và tương tự với,
+
+156
+00:10:10.942 --> 00:10:16.890
+chính thức đúng ký hiệu toán học
+vì ở đây J có hai đầu vào.
+
+157
+00:10:16.890 --> 00:10:18.012
+Không chỉ một,
+
+158
+00:10:18.012 --> 00:10:23.289
+Điều này ở phía dưới nên được viết
+bằng ký hiệu đạo hàm một phần này.
+
+159
+00:10:23.289 --> 00:10:28.269
+Nhưng nó có nghĩa tương tự
+như, gần giống như chữ d thường.
+
+160
+00:10:28.269 --> 00:10:31.626
+Cuối cùng, khi bạn triển khai
+điều này trong mã,
+
+161
+00:10:31.626 --> 00:10:37.073
+chúng ta sẽ sử dụng quy ước
+rằng số lượng này thực sự là số lượng
+
+162
+00:10:37.073 --> 00:10:41.811
+Chúc bạn cập nhật w sẽ biểu thị
+là biến dw trong mã của bạn.
+
+163
+00:10:41.811 --> 00:10:46.767
+Và số lượng này, đúng,
+số lượng mà bạn muốn
+
+164
+00:10:46.767 --> 00:10:51.730
+để cập nhật b với ghi chú bằng
+biến db trong mã của bạn.
+
+165
+00:10:51.730 --> 00:10:52.252
+Bây giờ,
+
+166
+00:10:52.252 --> 00:10:55.457
+đó là cách bạn có thể
+triển khai gradient descent.
+
+167
+00:10:55.457 --> 00:10:59.499
+Bây giờ nếu bạn đã không học tính toán trong
+một vài năm, tôi biết rằng có lẽ đã có quá
+
+168
+00:10:59.499 --> 00:11:03.432
+nhiều đạo hàm trong tính toán
+này mà khiến bạn không quen lắm.
+
+169
+00:11:03.432 --> 00:11:06.197
+Nhưng nếu bạn đang cảm thấy
+như vậy, thì đừng lo lắng về điều đó.
+
+170
+00:11:06.197 --> 00:11:09.970
+Trong video tiếp theo, chúng tôi sẽ cung cấp
+cho bạn nhiều kiến thức về các đạo hàm.
+
+171
+00:11:09.970 --> 00:11:13.461
+Và thậm chí bạn không cần có hiểu biết
+toán deep learning sắc về tính toán,
+
+172
+00:11:13.461 --> 00:11:16.110
+chỉ với hiểu biết trực quan về tính toán
+
+173
+00:11:16.110 --> 00:11:19.000
+bạn sẽ có thể làm cho
+mạng của mình hoạt động hiệu quả để
+
+174
+00:11:19.000 --> 00:11:23.351
+chúng ta hãy đi vào video tiếp theo, chúng ta sẽ
+nói thêm một chút về các dẫn xuất.

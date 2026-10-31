@@ -1,0 +1,147 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.100 --> 00:00:06.720
+In the last video, you saw what is unsupervised learning and one type of unsupervised learning
+
+00:00:06.720 --> 00:00:07.720
+called clustering.
+
+00:00:07.720 --> 00:00:13.460
+Let's give a slightly more formal definition of unsupervised learning and take a quick
+
+00:00:13.460 --> 00:00:17.920
+look at some other types of unsupervised learning other than clustering.
+
+00:00:17.920 --> 00:00:23.800
+Whereas in supervised learning, the data comes with both inputs x and output labels y, in
+
+00:00:23.800 --> 00:00:30.480
+unsupervised learning, the data comes only with inputs x but not output labels y, and
+
+00:00:30.480 --> 00:00:35.500
+the algorithm has to find some structure or some pattern or something interesting in the
+
+00:00:35.500 --> 00:00:36.500
+data.
+
+00:00:36.500 --> 00:00:43.680
+We've seen just one example of unsupervised learning called a clustering algorithm, which
+
+00:00:43.680 --> 00:00:46.320
+groups similar data points together.
+
+00:00:46.320 --> 00:00:52.760
+In this specialization, you learn about clustering as well as two other types of unsupervised
+
+00:00:52.760 --> 00:00:53.760
+learning.
+
+00:00:53.760 --> 00:01:00.200
+One is called anomaly detection, which is used to detect unusual events.
+
+00:01:00.200 --> 00:01:05.840
+This turns out to be really important for fraud detection in the financial system, where
+
+00:01:05.840 --> 00:01:13.480
+unusual events, unusual transactions could be a science of fraud and for many other applications.
+
+00:01:13.480 --> 00:01:17.420
+And you also learn about dimensionality reduction.
+
+00:01:17.420 --> 00:01:23.120
+This lets you take a big data set and almost magically compress it to a much smaller data
+
+00:01:23.120 --> 00:01:27.320
+set while losing as little information as possible.
+
+00:01:27.320 --> 00:01:32.280
+In case anomaly detection and dimensionality reduction don't seem to make too much sense
+
+00:01:32.280 --> 00:01:34.240
+to you yet, don't worry about it.
+
+00:01:34.240 --> 00:01:36.720
+We'll get to this later in this specialization.
+
+00:01:36.720 --> 00:01:43.560
+Now, I'd like to ask you another question to help you check your understanding.
+
+00:01:43.560 --> 00:01:48.080
+And no pressure if you don't get it right on the first try is totally fine.
+
+00:01:48.080 --> 00:01:54.560
+Please select any of the following that you think are examples of unsupervised learning.
+
+00:01:54.560 --> 00:01:59.680
+Two are unsupervised examples and two are supervised learning examples.
+
+00:01:59.680 --> 00:02:04.200
+So please take a look.
+
+00:02:04.200 --> 00:02:07.040
+Maybe you remember the spam filtering problem.
+
+00:02:07.040 --> 00:02:12.480
+If you have labeled data, you know, labeled as spam or non-spam email, you can treat
+
+00:02:12.480 --> 00:02:15.680
+this as a supervised learning problem.
+
+00:02:15.680 --> 00:02:20.960
+The second example, the news story example, that's exactly the Google news and tandem
+
+00:02:20.960 --> 00:02:23.880
+example that you saw in the last video.
+
+00:02:23.880 --> 00:02:29.680
+And so you can approach that using a clustering algorithm to group news articles together.
+
+00:02:29.680 --> 00:02:33.080
+So that would use unsupervised learning.
+
+00:02:33.080 --> 00:02:38.060
+The marker segmentation example that I talked about a little bit earlier, you can do that
+
+00:02:38.060 --> 00:02:43.520
+as an unsupervised learning problem as well, because you can give your algorithm some data
+
+00:02:43.520 --> 00:02:48.160
+and ask it to discover market segments automatically.
+
+00:02:48.160 --> 00:02:51.960
+And the final example on diagnosing diabetes.
+
+00:02:52.040 --> 00:02:58.120
+Well, actually, that's a lot like our breast cancer example from the supervised learning videos.
+
+00:02:58.120 --> 00:03:04.280
+Only instead of benign or malignant tumors, we instead have diabetes or not diabetes.
+
+00:03:04.280 --> 00:03:08.280
+And so you can approach this as a supervised learning problem, just like we did for the
+
+00:03:08.280 --> 00:03:11.800
+breast tumor classification problem.
+
+00:03:11.800 --> 00:03:16.800
+Even though in this in the last video, we've talked mainly about clustering.
+
+00:03:16.800 --> 00:03:21.120
+In later videos in this specialization, we'll dive much more deeply into anomaly
+
+00:03:21.120 --> 00:03:25.760
+detection and dimensionality reduction as well.
+
+00:03:25.760 --> 00:03:28.400
+So that's unsupervised learning.
+
+00:03:28.400 --> 00:03:31.960
+Before we wrap up this section, I want to share with you something that I find really
+
+00:03:31.960 --> 00:03:36.760
+exciting and useful, which is the use of Jupyter notebooks in machine learning.
+
+00:03:36.760 --> 00:03:38.480
+Let's take a look at that in the next video.

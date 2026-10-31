@@ -1,0 +1,25 @@
+Chắc hẳn bạn đã nghe tôi nói rằng các tính toán của một mạng nơ-ron
+nhân tạo được tổ chức theo các bước truyền xuôi, trong đó chúng ta
+tính toán đầu ra của mạng nơ ron, theo sau là một bước truyền ngược, mà được sử dụng để
+tính toán độ dốc hoặc tính đạo hàm. Đồ thị tính toán sẽ giải thích lý do các phép tính được
+tổ chức theo cách này. Trong video này, chúng ta sẽ xem qua một ví dụ. Để minh họa đồ thị tính toán, hãy cùng xem một
+ví dụ đơn giản hơn hồi quy logistic hoặc mạng nơ ron toàn diện. Giả sử chúng ta đang
+muốn tính toán một hàm, J, đây là một hàm của ba biến a, b,và c và giả sử rằng
+hàm đó là 3 (a + bc). Để tính toán được
+hàm này thì cần thực hiện 3 bước khác nhau. Đầu tiên là bạn cần tính bc và giả sử chúng ta gói nó trong một biến u. Vậy u = bc và sau đó bạn
+tính V = a* u của tôi. Vậy giả sử đây là V. Và cuối cùng, bạn
+có đầu ra J là 3V. Đây là hàm J cuối cùng mà bạn đang muốn tính. Chúng ta có thể
+thực hiện ba bước này và vẽ chúng trong một
+đồ thị tính toán như sau. Giả sử, tôi vẽ ba biến a, b và c ở đây. Đầu tiên chúng ta tính u = bc. Và tôi sẽ vẽ một khung hình chữ nhật
+xung quanh đó. Và, đầu vào là b và c. Và sau đó, bạn
+có thể có V = a + u. Như vậy, các đầu vào là V. Và các đầu vào u thì chỉ được
+tính cùng với a. Và cuối cùng, chúng ta có J = 3V. Như vậy, cụ thể là, nếu a = 5, b = 3 và c = 2 thì
+u = bc sẽ là 6, a + u sẽ bằng
+5 + 6 bằng 11, J gấp ba lần,
+vì vậy J = 33. Và nếu cần thì tôi hy vọng
+bạn có thể kiểm tra lại, đây là ba lần năm cộng với ba lần hai. Và nếu bạn viết đầy đủ
+công thức này ra, bạn nhận được
+giá trị của J là 33. Như vậy, đồ thị tính toán
+trở nên có ích khi có một số biến phân biệt hoặc một số biến đầu ra đặc biệt, giống như là J trong ví dụ này, hàm mà bạn muốn tối ưu hóa. Và trong hồi quy logistic, J chính là hàm chi phí mà chúng ta
+đang muốn giảm thiểu. Và chúng ta có thể thấy trong ví dụ nhỏ này, theo chiều từ trái sang phải, bạn có thể tính giá trị của J. Và trong một vài slide tiếp theo, chúng ta sẽ thấy là để tính toán các đạo hàm, thì sẽ xuất hiện một đường truyền từ phải sang trái như thế này, đi theo hướng ngược lại mũi tên màu xanh. Đó sẽ là cách tính đạo hàm tự nhiên nhất. Nói tóm lại, đồ thị tính toán tổ chức một phép tính với
+mũi tên màu xanh này, tính từ trái sang phải. Hãy tham khảo video tiếp theo về cách bạn có thể tính đạo hàm theo hướng mũi tên màu đỏ ngược từ phải sang trái. Hãy đón xem video tiếp theo.

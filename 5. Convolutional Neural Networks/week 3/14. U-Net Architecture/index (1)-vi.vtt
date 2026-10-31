@@ -1,0 +1,416 @@
+WEBVTT
+
+00:00:03.150 --> 00:00:06.670
+Tôi nhận thấy kiến trúc UNet hữu ích cho nhiều
+ứng dụng mà
+
+00:00:06.670 --> 00:00:10.190
+tôi đã nghiên cứu và đây là một trong những
+kiến trúc
+
+00:00:10.190 --> 00:00:13.710
+neural network cơ bản và quan trọng nhất của
+thị giác máy tính
+
+00:00:13.710 --> 00:00:14.710
+hôm nay.
+
+00:00:14.710 --> 00:00:17.310
+Vì vậy, trong video này, chúng ta hãy tìm hiểu
+
+00:00:17.310 --> 00:00:19.910
+chi tiết về cách hoạt động chính xác của UNet.
+
+00:00:19.910 --> 00:00:21.670
+UNet trông như thế này.
+
+00:00:21.670 --> 00:00:23.670
+Tôi biết có rất nhiều điều đang diễn ra trong
+bức ảnh này.
+
+00:00:23.670 --> 00:00:24.670
+Không sao đâu.
+
+00:00:24.670 --> 00:00:27.950
+Chúng tôi sẽ chia nhỏ nó ra và thực hiện từng
+bước một.
+
+00:00:27.950 --> 00:00:30.870
+Nhưng tôi muốn nhanh chóng cho bạn thấy kết
+quả
+
+00:00:30.870 --> 00:00:33.790
+cuối cùng của kiến trúc UNet trông như thế
+nào.
+
+00:00:33.790 --> 00:00:37.390
+Và nhân tiện, đây cũng là lý do tại sao nó
+được gọi là
+
+00:00:37.390 --> 00:00:40.990
+UNet vì khi bạn vẽ nó như thế này, nó trông
+rất giống chữ U.
+
+00:00:40.990 --> 00:00:45.390
+Nhưng hãy chia nhỏ nó ra và xây dựng lại nó
+từng phần một.
+
+00:00:45.390 --> 00:00:48.310
+Vì vậy, chúng ta sẽ đảm bảo rằng chúng ta biết
+tất cả
+
+00:00:48.310 --> 00:00:51.230
+những điều đang diễn ra trong sơ đồ này thực
+sự đang làm gì.
+
+00:00:51.230 --> 00:00:56.510
+Những ý tưởng này là của Olaf Rauneberger,
+Philip Fisher và Thomas Brox.
+
+00:00:56.510 --> 00:01:01.730
+Thực tế là, khi họ viết bài báo UNet ban đầu,
+họ đã nghĩ đến việc ứng
+
+00:01:01.730 --> 00:01:06.950
+dụng phân đoạn hình ảnh y sinh, thực sự là
+phân đoạn các hình ảnh y tế.
+
+00:01:06.950 --> 00:01:10.490
+Nhưng những ý tưởng này hóa ra lại hữu ích cho
+nhiều
+
+00:01:10.490 --> 00:01:14.030
+ứng dụng semantic segmentation thị giác máy tính
+khác.
+
+00:01:14.030 --> 00:01:24.510
+Vì vậy, đầu vào của UNet là một hình ảnh, giả
+sử là H x W x ba cho ba kênh, kênh RGB.
+
+00:01:24.510 --> 00:01:30.430
+Tôi sẽ hình dung hình ảnh này như một lớp mỏng
+như thế.
+
+00:01:30.430 --> 00:01:36.910
+Tôi biết rằng trước đây chúng tôi đã lấy các
+lớp neural network và vẽ
+
+00:01:36.910 --> 00:01:43.390
+chúng dưới dạng các khối 3D như thế này, trong
+đó đây có thể là H x W x 3.
+
+00:01:43.390 --> 00:01:49.430
+Nhưng để làm cho sơ đồ UNet trông đơn giản
+hơn, tôi sẽ tưởng tượng nhìn vào cạnh này.
+
+00:01:49.430 --> 00:01:54.450
+Tất cả những gì bạn thấy là cái này, và phần
+còn lại
+
+00:01:54.450 --> 00:01:59.470
+được ẩn đằng sau hình chữ nhật màu xanh đậm mà
+tôi đã vẽ.
+
+00:01:59.470 --> 00:02:01.430
+Và đó chính là điều này.
+
+00:02:01.430 --> 00:02:08.910
+Chiều cao của cái này là chiều cao H và chiều
+rộng của cái này là ba.
+
+00:02:08.910 --> 00:02:13.030
+Số lượng kênh, độ sâu là ba nên trông rất
+mỏng.
+
+00:02:13.030 --> 00:02:16.910
+Vì vậy, để đơn giản hóa sơ đồ UNet, tôi sẽ sử
+dụng các
+
+00:02:16.910 --> 00:02:20.790
+hình chữ nhật này thay vì các lớp 3D để minh
+họa thuật toán.
+
+00:02:20.790 --> 00:02:24.090
+Bây giờ phần đầu tiên của UNet sử dụng các lớp
+convolution
+
+00:02:24.090 --> 00:02:27.390
+neural network chuyển tiếp nguồn cấp dữ liệu
+thông thường.
+
+00:02:27.390 --> 00:02:31.830
+Vì vậy, tôi sẽ sử dụng mũi tên màu đen để biểu
+
+00:02:31.830 --> 00:02:36.270
+thị lớp chập theo sau là activation function
+ReLU.
+
+00:02:36.270 --> 00:02:41.370
+Vì vậy, lớp tiếp theo có thể trông như thế, sẽ
+tăng số lượng kênh lên
+
+00:02:41.370 --> 00:02:46.470
+một chút, nhưng kích thước vẫn cao theo chiều
+rộng thêm một chút nữa.
+
+00:02:46.470 --> 00:02:51.310
+Và sau đó là một lớp chập khác có chức năng
+kích hoạt ReLU.
+
+00:02:51.310 --> 00:02:55.590
+Bây giờ chúng ta vẫn đang ở nửa đầu của mạng
+lưới thần kinh.
+
+00:02:55.590 --> 00:03:00.010
+Chúng tôi sẽ sử dụng tổng hợp tối đa để giảm
+chiều cao và chiều rộng.
+
+00:03:00.010 --> 00:03:04.860
+Vì vậy, có thể bạn kết thúc với một tập hợp
+kích hoạt có chiều cao và
+
+00:03:04.860 --> 00:03:09.710
+chiều rộng thấp hơn nhưng có thể là nhãn dán
+nên số lượng kênh ngày càng tăng.
+
+00:03:09.710 --> 00:03:13.910
+Sau đó, chúng ta có thêm hai lớp convolution
+chuyển tiếp
+
+00:03:13.910 --> 00:03:18.110
+nguồn cấp dữ liệu thông thường với chức năng
+kích hoạt ReLU.
+
+00:03:18.110 --> 00:03:22.150
+Và sau đó hãy áp dụng lại phép gộp tối đa và
+bạn sẽ có được điều đó.
+
+00:03:22.150 --> 00:03:26.950
+Và sau đó lặp lại lần nữa, và thế là bạn kết
+thúc với điều này.
+
+00:03:26.950 --> 00:03:32.770
+Cho đến nay, đây là lớp convolution thông
+thường có chức năng kích hoạt mà bạn
+
+00:03:32.770 --> 00:03:38.590
+đã quen với các video trước đó với các lớp
+tổng hợp tối đa không thường xuyên.
+
+00:03:38.590 --> 00:03:41.880
+Vì vậy, hãy lưu ý rằng chiều cao của lớp
+
+00:03:41.880 --> 00:03:45.170
+này, chiều cao và chiều rộng, hiện tại rất
+nhỏ.
+
+00:03:45.170 --> 00:03:51.500
+Vì vậy, chúng ta sẽ bắt đầu áp dụng các lớp
+convolution chuyển vị mà tôi sẽ biểu thị
+
+00:03:51.500 --> 00:03:57.830
+bằng mũi tên màu xanh lá cây để xây dựng lại
+kích thước của neural network này.
+
+00:03:57.830 --> 00:04:02.710
+Vì vậy, với lớp chập chuyển vị đầu tiên hoặc
+lớp chuyển đổi
+
+00:04:02.710 --> 00:04:07.590
+conf, bạn sẽ có được một tập hợp các kích hoạt
+trông giống như vậy.
+
+00:04:07.590 --> 00:04:11.860
+Trong ví dụ này, chúng tôi không tăng chiều
+cao và
+
+00:04:11.860 --> 00:04:16.130
+chiều rộng nhưng chúng tôi đã giảm số lượng
+kênh.
+
+00:04:16.130 --> 00:04:21.020
+Nhưng có một điều nữa bạn cần làm để xây dựng
+một đơn vị, đó là
+
+00:04:21.020 --> 00:04:25.910
+thêm vào kết nối bỏ qua mà tôi sẽ biểu thị
+bằng mũi tên màu xám này.
+
+00:04:25.910 --> 00:04:29.410
+Chức năng của kết nối bỏ qua là lấy tập hợp
+
+00:04:29.410 --> 00:04:32.910
+kích hoạt này và chỉ sao chép nó sang bên
+phải.
+
+00:04:32.910 --> 00:04:36.390
+Và do đó, tập hợp kích hoạt mà bạn đạt được sẽ
+giống như thế này.
+
+00:04:36.390 --> 00:04:40.590
+Phần màu xanh nhạt xuất phát từ convolution
+chuyển vị
+
+00:04:40.590 --> 00:04:44.790
+và phần màu xanh đậm chỉ được sao chép từ bên
+trái.
+
+00:04:44.790 --> 00:04:51.390
+Để tiếp tục xây dựng đơn vị, sau đó chúng ta
+sẽ áp dụng thêm một vài lớp
+
+00:04:51.390 --> 00:04:57.990
+convolution thông thường, theo sau là
+activation function relu, được biểu thị bằng
+màu đen
+
+00:04:57.990 --> 00:05:00.550
+mũi tên như vậy.
+
+00:05:00.550 --> 00:05:03.020
+Và sau đó chúng ta sẽ áp dụng một lớp chập
+
+00:05:03.020 --> 00:05:05.490
+chuyển vị khác, đó là mũi tên màu xanh lá cây.
+
+00:05:05.490 --> 00:05:08.670
+Và ở đây chúng ta sẽ bắt đầu tăng kích thước,
+
+00:05:08.670 --> 00:05:11.850
+tăng chiều cao và chiều rộng của hình ảnh này.
+
+00:05:11.850 --> 00:05:15.730
+Và thế là bây giờ chiều cao ngày càng lớn hơn.
+
+00:05:15.730 --> 00:05:19.010
+Nhưng ở đây cũng vậy, chúng ta sẽ áp dụng kết
+nối bỏ qua.
+
+00:05:19.010 --> 00:05:23.830
+Vì vậy, lại có một mũi tên màu xám, chúng ta
+sẽ lấy
+
+00:05:23.830 --> 00:05:28.650
+bộ kích hoạt này và chỉ cần sao chép nó sang
+bên phải.
+
+00:05:28.650 --> 00:05:33.370
+Nhiều lớp convolution hơn và kết nối bỏ qua
+convolution chuyển vị khác.
+
+00:05:33.370 --> 00:05:38.090
+Một lần nữa, chúng ta sẽ lấy bộ kích hoạt này
+và sao chép nó sang bên phải.
+
+00:05:38.090 --> 00:05:42.290
+Và sau đó là nhiều lớp chập hơn, tiếp theo là
+một lớp
+
+00:05:42.290 --> 00:05:46.490
+chập chuyển vị khác, bỏ qua kết nối, sao chép
+lớp đó.
+
+00:05:46.490 --> 00:05:50.510
+Và bây giờ chúng ta quay lại tập hợp kích hoạt
+là
+
+00:05:50.510 --> 00:05:54.530
+chiều cao và chiều rộng của hình ảnh đầu vào
+ban đầu.
+
+00:05:54.530 --> 00:06:00.090
+Chúng ta sẽ có thêm một vài lớp cấu trúc
+chuyển tiếp cấp dữ liệu thông thường.
+
+00:06:00.090 --> 00:06:04.663
+Và cuối cùng, để lấy cái này và ánh xạ cái này
+vào bản đồ
+
+00:06:04.663 --> 00:06:09.237
+phân đoạn của chúng ta, chúng ta sẽ sử dụng
+phép chập từng
+
+00:06:09.237 --> 00:06:13.810
+cái một mà tôi sẽ biểu thị bằng mũi tên màu đỏ
+tươi để cuối cùng
+
+00:06:13.810 --> 00:06:18.930
+đưa cho chúng tôi cái này, đây sẽ là đầu ra
+của chúng tôi.
+
+00:06:18.930 --> 00:06:23.530
+Kích thước của lớp đầu ra này sẽ là h x w.
+
+00:06:23.530 --> 00:06:29.970
+Vì vậy, các kích thước giống như đầu vào ban
+đầu của chúng tôi theo các lớp num.
+
+00:06:29.970 --> 00:06:33.943
+Vì vậy, nếu bạn có ba lớp để cố gắng nhận dạng
+thì đây sẽ là
+
+00:06:33.943 --> 00:06:37.917
+ba lớp, nếu bạn có 10 lớp khác nhau để cố gắng
+nhận dạng
+
+00:06:37.917 --> 00:06:41.890
+trong bản đồ phân đoạn của mình thì số cuối
+cùng đó sẽ là 10.
+
+00:06:41.890 --> 00:06:47.530
+Và những gì nó làm là với mỗi pixel của bạn,
+bạn có h x w pixel, bạn có,
+
+00:06:47.530 --> 00:06:53.170
+bạn biết đấy, một mảng hoặc một vectơ, về cơ
+bản là n lớp số cho bạn biết một
+
+00:06:53.170 --> 00:06:58.250
+pixel, khả năng pixel đó đến từ mỗi lớp khác
+nhau này là bao nhiêu.
+
+00:06:58.250 --> 00:07:02.110
+Và nếu bạn lấy một argmax cho n lớp này thì đó
+là cách
+
+00:07:02.110 --> 00:07:05.970
+bạn classification từng pixel thành một trong
+các lớp.
+
+00:07:05.970 --> 00:07:10.450
+Và bạn có thể hình dung nó giống như bản đồ
+phân đoạn hiển thị bên phải.
+
+00:07:10.450 --> 00:07:11.450
+Thế là xong.
+
+00:07:11.450 --> 00:07:16.170
+Bạn đã tìm hiểu về convolution chuyển vị và
+kiến trúc đơn vị.
+
+00:07:16.170 --> 00:07:18.810
+Chúc mừng bạn đã xem đến cuối video của tuần
+này.
+
+00:07:18.810 --> 00:07:24.050
+Tôi hy vọng bạn cũng thích thực hiện những ý
+tưởng này trong bài tập của chương trình.
+
+00:07:24.050 --> 00:07:27.783
+Tuần tới, chúng ta sẽ quay lại và nói về một
+số kiến trúc chuyên dụng
+
+00:07:27.783 --> 00:07:31.517
+để nhận dạng khuôn mặt và chuyển đổi phong
+cách của bạn, nơi bạn có
+
+00:07:31.517 --> 00:07:35.250
+thể tạo một số tác phẩm nghệ thuật thực sự thú
+vị bằng cách sử dụng
+
+00:07:35.250 --> 00:07:36.890
+neural network.
+
+00:07:36.890 --> 00:07:40.410
+Chúc các bạn tham gia chương trình vui vẻ và
+hẹn gặp lại các bạn vào tuần sau.

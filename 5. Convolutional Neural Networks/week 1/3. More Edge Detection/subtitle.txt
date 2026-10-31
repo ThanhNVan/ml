@@ -1,0 +1,93 @@
+Mọi người đã thấy cách phép toán tích chập
+cho phép ta triển khai một máy dò cạnh dọc Trong video này, ta sẽ tìm hiểu sự khác biệt
+giữa các cạnh dương và âm, tức là, sự khác biệt giữa chuyển cạnh từ sáng sang tối
+so với chuyển đổi cạnh tối sang sáng. Và ta cũng sẽ thấy
+loại máy dò cạnh khác, cũng như cách yêu cầu một thuật toán phải học, chứ không phải để chúng ta tự viết code cho một bộ dò cạnh
+như từ trước đến nay ta vẫn làm. Hãy cùng bắt đầu bài học. Đây là ví dụ ta đã thấy từ
+video trước, ta có hình ảnh này, 6 x 6, bên trái là màu sáng và
+bên phải là màu tối, và convolve nó với bộ lọc phát hiện cạnh dọc
+nhờ đó phát hiện cạnh dọc ở
+giữa hình ảnh. Điều gì xảy ra trong một hình ảnh
+mà các màu bị lật, ở bên trái nó tối hơn và
+ở bên phải thì sáng hơn chăng? Vì vậy, 10s hiện ở trên nửa bên phải
+của hình ảnh và 0s bên trái. Nếu ta convolve nó với
+cùng một bộ lọc phát hiện cạnh, ta sẽ được -30s,
+thay vì 30 giữa và ta có thể vẽ biểu đồ đó dưới dạng hình
+trông như thế này. Vì vậy, bởi vì trong quá trình chuyển đổi
+màu bị đảo ngược, nên 30s bây giờ cũng bị đảo ngược. Và -30s cho thấy rằng đây là chuyển từ tối sang sáng
+chứ không phải là sự chuyển đổi từ sáng sang tối. Và nếu ta không quan tâm
+nó là trường hợp nào ta có thể nhận các giá trị
+tuyệt đối của ma trận đầu ra này. Nhưng với bộ lọc đặc biệt này, có
+một sự khác biệt giữa các cạnh sáng sang tối so với các cạnh tối sang sáng. Hãy xem một vài
+ví dụ nữa về phát hiện cạnh. Bộ lọc 3 x 3 này mà chúng ta đã thấy
+cho phép ta phát hiện các cạnh dọc. Vì vậy, có lẽ đây không phải là
+điều ngạc nhiên rằng bộ lọc 3 x 3 sẽ cho phép
+ta phát hiện các cạnh ngang. Vậy, xin nhắc lại, theo bộ lọc này,
+cạnh thẳng đứng là vùng 3 x 3 nơi các pixel
+tương đối sáng ở phần bên trái và tương đối tối ở phần bên phải. Vì vậy, tương tự, một cạnh ngang sẽ là
+một vùng 3 x 3 với các pixel tương đối sáng ở hàng trên và
+tương đối tối ở hàng dưới. Đây là một ví dụ,
+đây là một ví dụ phức tạp hơn, ta có 10s ở góc phía trên
+bên trái và góc dưới bên phải. Vậy, nếu ta vẽ nó dưới dạng một hình ảnh, thì
+hình ảnh này sẽ tối hơn ở những nơi có số 0, vì vậy tôi
+sẽ tô ở những vùng tối hơn và sau đó các vùng sáng hơn ở góc trên bên trái và
+góc dưới bên phải. Và nếu ta convolve nó với một máy dò cạnh
+nằm ngang, ta sẽ nhận được cái này Và để lấy một vài ví dụ, 30 ở đây tương ứng với
+vùng 3 x 3 này vùng này có các điểm ảnhpixel sáng
+ở trên và các pixel tối hơn ở dưới cùng. Nó ở đằng này. Và vì vậy
+nó tìm thấy một cạnh dương rất rõ ở đó. Và -30 ở đây
+tương ứng với vùng này, nó sáng hơn ở
+phía dưới và tối hơn ở phía trên. Vậy, trong ví dụ này
+nó là một cạnh âm Và một lần nữa, đây là một giả thuyết
+rằng chúng ta đang làm việc với hình ảnh tương đối nhỏ,
+rằng đây chỉ là hình ảnh 6 x 6. Nhưng các giá trị trung gian này,
+chẳng hạn như -10, chỉ phản ánh là
+mà bộ lọc ở đây, bộ lọc bao gồm một phần của cạnh dương ở bên trái và một phần
+của cạnh âm ở bên phải, và trộn chúng lại với nhau mang lại cho
+cho ta một giá trị trung gian. Nhưng nếu nó quá lớn, hình ảnh 1000 x 1000 chẳng hạn với
+kiểu bàn cờ này, thì ta sẽ không thấy
+vùng chuyển tiếp của 10s này. Các giá trị trung gian sẽ được khá nhỏ
+so với kích thước của hình ảnh. Vì vậy, tóm lại, các bộ lọc khác nhau cho phép ta
+tìm các cạnh dọc và ngang. Hóa ra là bộ lọc phát hiện cạnh dọc 3 x 3 chúng ta chỉ sử dụng một sự lựa chọn khả thi. Và từ trước đến nay,
+trong tài liệu về thị giác máy tính, đã có rất nhiều tranh luận xem
+dùng bộ số nào là tốt nhất Vì vậy, ta có thể sử dụng một thứ khác,
+có thể là 1, 2, 1, 0, 0, 0, -1, -2, -1. Đây được gọi là bộ lọc Sobel. Và lợi thế của nó là nó đặt thêm
+một chút trọng số vào hàng giữa pixel trung tâm và điều này làm cho
+có thể mạnh hơn một chút. Nhưng các nhà nghiên cứu thị giác máy tính
+cũng sẽ sử dụng bộ số khác có thể thay vì 1, 2, 1,
+thì họ dùng 3, 10, 3, phải không? Và sau đó là -3, -10, -3. Và đây được gọi là bộ lọc Scharr. Và nó có những thuộc tính
+hơi khác một chút. Và đây là chỉ là với
+phát hiện cạnh dọc. Và nếu ta lật nó 90 độ,
+ta sẽ nhận được tính năng phát hiện cạnh ngang. Và với sự tiến bộ của học sâu,
+một trong những điều ta học được là khi ta muốn phát hiện các cạnh trong một số hình ảnh
+phức tạp, có thể ta không cần các nhà nghiên cứu thị giác máy tính
+phải chọn ra 9 con số này. Có lẽ ta chỉ có thể học chúng và
+coi 9 số của ma trận này như các tham số, sau đó ta có thể
+học thêm bằng cách sử dụng truyền ngược. Và mục tiêu là tìm hiểu 9 tham số
+để khi ta dùng ảnh, hình ảnh 6 x 6 và convolve
+hình ảnh đó với bộ lọc 3 x 3 ta sẽ tạo ra được một máy dò cạnh tốt. Và những gì các bạn thấy trong các video sau là
+bằng cách coi 9 số này là tham số, nếu truyền ngược muốn thì nó
+có thể chọn để học 1, 1, 1, 0, 0, 0,-1, -1, hoặc học bộ lọc Sobel
+hoặc học bộ lọc Scharr, thậm chí có thể nó còn học được thứ
+khác thậm chí còn nắm bắt thống kê dữ liệu tốt hơn
+so với bất kỳ bộ lọc được mã hóa thủ công nào này. Và thay vì chỉ có cạnh dọc và
+cạnh ngang, có thể nó có thể học cách phát hiện
+cạnh nằm ở 45 độ hoặc 70 độ hoặc 73 độ hoặc
+ở bất kỳ hướng nào nó chọn. Và do đó, ta chỉ cần để tất cả các số
+này là tham số và học chúng tự động từ dữ liệu, ta thấy rằng
+mạng nơ-ron có thể học các tính năng cấp thấp có thể học các đặc điểm
+chẳng hạn như các cạnh, thậm chí còn mạnh mẽ hơn so với các nhà nghiên cứu thị giác máy tính
+có thể viết code cho những thứ này bằng tay. Nhưng cơ bản của tất cả các phép tính
+này vẫn là phép toán tích chập Nó cho phép truyền ngược học
+bất cứ bộ lọc 3 x 3 nào mà nó muốn và sau đó áp dụng bộ lọc cho toàn bộ hình ảnh
+, tại vị trí này, tại vị trí này, tại vị trí này, để xuất ra
+bất kỳ đặc điểm nào nó muốn phát hiện. Có thể là các cạnh dọc, cạnh ngang,
+hoặc các cạnh ở một số góc khác hoặc thậm chí một số bộ lọc khác
+thậm chí không có tên bằng tiếng Anh. Vì vậy, ta có thể coi
+9 số này là các tham số để học là một trong
+ý tưởng hữu ích nhất trong thị giác máy tính. Và phần sau của khóa học này, vào cuối tuần này,
+chúng ta sẽ nói về các chi tiết của cách sử dụng ruyền ngược
+để học 9 con số này. Nhưng trước tiên, hãy nói về một số
+chi tiết khác, một số biến thể khác, về phép toán tích chập cơ bản. Trong 2 video tiếp theo, tôi muốn thảo luận
+với các bạn cách để sử dụng padding cũng như những bước tiến khác nhau đối với tích chập. Và 2 điều này sẽ trở thành những mảnh ghép quan trọng số
+của khối xây dựng của mạng nơ-ron tích chập Nào, cùng tiếp tục trong video tiếp theo nhé!

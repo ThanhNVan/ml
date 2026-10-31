@@ -1,0 +1,594 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.193
+Trong video trước, bạn đã biết cách sử dụng
+feature gradient descent hàng loạt nhỏ để
+
+00:00:04.193 --> 00:00:08.387
+bắt đầu thực hiện các bước gradient descent
+ngay cả khi bạn mới chỉ đang thực hiện
+
+00:00:08.387 --> 00:00:12.580
+một phần quá trình xử lý training set của mình
+ngay cả lần đầu tiên. Trong video này,
+
+00:00:12.580 --> 00:00:15.950
+bạn tìm hiểu thêm chi tiết về cách triển khai
+feature
+
+00:00:15.950 --> 00:00:19.320
+gradient descent và hiểu rõ hơn về những gì nó
+đang làm cũng như lý do nó hoạt động.
+
+00:00:19.680 --> 00:00:24.540
+Với phương pháp gradient descent hàng loạt,
+trên mỗi lần lặp, bạn sẽ xem
+
+00:00:24.540 --> 00:00:29.400
+qua toàn bộ training set và bạn sẽ mong đợi
+chi phí sẽ giảm sau mỗi lần lặp.
+
+00:00:30.280 --> 00:00:34.640
+Vì vậy, bạn vẽ cost function j dưới dạng hàm
+của các lần lặp khác nhau.
+
+00:00:34.640 --> 00:00:37.620
+Nó sẽ giảm sau mỗi lần lặp và nếu nó tăng lên
+
+00:00:37.620 --> 00:00:40.600
+dù chỉ trong một lần lặp thì có gì đó không
+ổn.
+
+00:00:40.600 --> 00:00:44.080
+Có lẽ learning rate tập là quá lớn. Tuy nhiên,
+khi
+
+00:00:44.080 --> 00:00:47.560
+gradient descent theo lô nhỏ, nếu bạn vẽ biểu
+đồ tiến trình
+
+00:00:47.560 --> 00:00:51.040
+trên cost function của mình thì nó có thể
+không giảm sau mỗi lần lặp.
+
+00:00:51.200 --> 00:00:57.740
+Đặc biệt, trên mỗi lần lặp, bạn đang xử lý một
+số
+
+00:00:57.740 --> 00:01:04.280
+x t, y t và do đó nếu bạn vẽ cost function j
+t,
+
+00:01:05.960 --> 00:01:10.980
+được tính toán chỉ bằng cách sử dụng x t, y t,
+thì cứ như thể
+
+00:01:10.980 --> 00:01:16.000
+mỗi lần lặp lại bạn đang luyện tập trên một
+phương pháp khác
+
+00:01:16.320 --> 00:01:18.720
+training set hoặc huấn luyện thực sự trên một
+đợt nhỏ khác.
+
+00:01:18.960 --> 00:01:23.280
+Vì vậy, bạn vẽ cost function j, nhiều khả năng
+bạn sẽ thấy thứ gì đó trông
+
+00:01:23.280 --> 00:01:27.600
+như thế này. Nó sẽ có xu hướng giảm xuống,
+nhưng nó cũng sẽ ồn hơn một chút.
+
+00:01:28.120 --> 00:01:33.100
+Vì vậy, nếu bạn vẽ đồ thị j của t khi đang
+huấn luyện quá trình
+
+00:01:33.100 --> 00:01:38.080
+gradient descent theo đợt nhỏ và có thể qua
+nhiều kỷ nguyên, bạn có thể mong
+
+00:01:38.080 --> 00:01:43.060
+đợi thấy một đường cong như thế này. Vì vậy,
+sẽ không sao nếu nó không giảm sau mỗi lần
+lặp,
+
+00:01:43.860 --> 00:01:50.140
+nhưng nó sẽ có xu hướng đi xuống. Và lý do nó
+sẽ ồn ào một chút là có lẽ x1 y1 chỉ
+
+00:01:50.140 --> 00:01:56.420
+là một mẻ nhỏ tương đối dễ dàng. Vì vậy, chi
+phí của bạn có thể thấp hơn một chút,
+
+00:01:56.620 --> 00:02:01.940
+nhưng có lẽ tình cờ x2 y2 chỉ là một đợt nhỏ
+khó hơn.
+
+00:02:01.940 --> 00:02:04.320
+Thậm chí có thể có một số ví dụ bị dán nhãn
+sai trong
+
+00:02:04.320 --> 00:02:06.700
+đó, trong trường hợp đó chi phí sẽ cao hơn một
+chút, v.v.
+
+00:02:06.700 --> 00:02:09.760
+Vì vậy, đó là lý do tại sao bạn nhận được
+những dao động này khi
+
+00:02:09.760 --> 00:02:12.820
+tính toán chi phí khi bạn đang chạy
+gradient descent hàng loạt nhỏ.
+
+00:02:12.980 --> 00:02:17.180
+Bây giờ một trong những thông số bạn cần chọn
+là kích thước của lô nhỏ của bạn.
+
+00:02:17.980 --> 00:02:24.883
+Vậy M là kích thước training set. Ở một khía
+cạnh nào đó, nếu kích
+
+00:02:24.883 --> 00:02:31.787
+thước lô nhỏ bằng M, thì bạn chỉ kết thúc bằng
+việc gradient descent
+
+00:02:31.787 --> 00:02:38.690
+hàng loạt. Vì vậy, trong trường hợp cực đoan
+này, bạn sẽ chỉ có một lô nhỏ,
+
+00:02:39.050 --> 00:02:45.010
+x1 y1 và lô nhỏ này bằng toàn bộ training set
+của bạn.
+
+00:02:45.650 --> 00:02:49.210
+Vì vậy, việc đặt kích thước lô nhỏ thành M chỉ
+giúp bạn gradient descent trở lại.
+
+00:02:49.810 --> 00:02:57.460
+Một thái cực khác sẽ là nếu kích thước lô nhỏ
+của bạn bằng 1.
+
+00:02:59.950 --> 00:03:04.230
+Điều này cung cấp cho bạn một thuật toán gọi
+là gradient descent ngẫu nhiên.
+
+00:03:07.530 --> 00:03:11.530
+Và ở đây, mỗi ví dụ đều là một lô nhỏ của
+riêng nó.
+
+00:03:18.570 --> 00:03:22.690
+Vì vậy, điều bạn làm trong trường hợp này là
+xem xét lô nhỏ đầu tiên.
+
+00:03:23.890 --> 00:03:27.590
+Vậy x1 y1. Nhưng khi kích thước lô nhỏ của bạn
+là
+
+00:03:27.590 --> 00:03:31.290
+1 thì đây chỉ là ví dụ đào tạo đầu tiên của
+bạn.
+
+00:03:31.290 --> 00:03:34.250
+Và bạn thực hiện bước gradient descent với ví
+dụ đào tạo đầu tiên của mình.
+
+00:03:34.570 --> 00:03:38.730
+Và sau đó, bạn hãy xem lô nhỏ thứ hai, đây chỉ
+là ví dụ đào tạo
+
+00:03:38.730 --> 00:03:42.890
+thứ hai của bạn và thực hiện bước
+gradient descent với bước đó.
+
+00:03:43.170 --> 00:03:45.590
+Sau đó, bạn thực hiện điều đó với ví dụ huấn
+luyện thứ ba,
+
+00:03:45.590 --> 00:03:48.010
+v.v., mỗi lần chỉ xem xét một ví dụ huấn luyện
+duy nhất.
+
+00:03:50.100 --> 00:03:55.780
+Vì vậy, hãy xem hai thái cực này sẽ làm gì để
+tối ưu hóa cost function này.
+
+00:03:55.820 --> 00:04:00.353
+Nếu đây là những đường nét của cost function
+mà bạn đang cố gắng giảm
+
+00:04:00.353 --> 00:04:04.887
+thiểu, do đó mức tối thiểu của bạn ở đó, thì
+việc gradient descent hàng
+
+00:04:04.887 --> 00:04:09.420
+loạt có thể bắt đầu ở đâu đó và có thể tạo ra
+tiếng ồn tương đối thấp,
+
+00:04:09.420 --> 00:04:15.140
+các bước tương đối lớn và chỉ tiếp tục hành
+quân ở mức tối thiểu.
+
+00:04:15.580 --> 00:04:19.313
+Ngược lại, với phương pháp gradient descent
+ngẫu nhiên, nếu bạn bắt đầu
+
+00:04:19.313 --> 00:04:23.047
+ở đâu đó, hãy chọn một điểm bắt đầu khác, sau
+đó trên mỗi lần lặp, bạn
+
+00:04:23.047 --> 00:04:26.780
+sẽ thực hiện gradient descent chỉ bằng một ví
+dụ huấn luyện duy nhất.
+
+00:04:26.780 --> 00:04:29.620
+Vì vậy, hầu hết thời gian bạn đánh về mức tối
+
+00:04:29.620 --> 00:04:32.460
+thiểu toàn cầu, nhưng đôi khi bạn đánh sai
+hướng.
+
+00:04:32.460 --> 00:04:36.180
+Nếu một ví dụ đó xảy ra khiến bạn đi theo
+hướng xấu.
+
+00:04:36.540 --> 00:04:41.840
+Vì vậy, việc gradient descent ngẫu nhiên có
+thể cực kỳ ồn ào và trung
+
+00:04:41.840 --> 00:04:47.140
+bình, nó sẽ đưa bạn đi theo hướng tốt, nhưng
+đôi khi nó cũng sẽ đi sai hướng.
+
+00:04:47.700 --> 00:04:50.300
+Và gradient descent ngẫu nhiên sẽ không bao
+giờ hội tụ.
+
+00:04:50.300 --> 00:04:53.840
+Bạn sẽ luôn dao động và đi loanh quanh vùng
+cực tiểu, nhưng
+
+00:04:53.840 --> 00:04:57.380
+nó sẽ không bao giờ tiến tới cực tiểu và giữ
+nguyên ở đó.
+
+00:04:58.020 --> 00:05:04.175
+Trong thực tế, kích thước lô nhỏ mà bạn sử
+
+00:05:04.175 --> 00:05:10.330
+dụng sẽ nằm ở khoảng giữa, khoảng từ một đến
+M.
+
+00:05:10.330 --> 00:05:14.530
+Và một và M tương ứng là quá nhỏ và quá lớn.
+
+00:05:15.010 --> 00:05:15.930
+Và đây là lý do tại sao.
+
+00:05:16.250 --> 00:05:21.715
+Nếu bạn sử dụng phương pháp gradient descent
+hàng
+
+00:05:21.715 --> 00:05:27.180
+loạt thì đây là kích thước lô nhỏ của bạn bằng
+M,
+
+00:05:31.060 --> 00:05:35.180
+thì bạn đang xử lý một training set khổng lồ
+trên mỗi lần lặp.
+
+00:05:35.180 --> 00:05:38.420
+Vì vậy, nhược điểm chính của việc này là mất
+
+00:05:38.420 --> 00:05:41.660
+quá nhiều thời gian, quá lâu cho mỗi lần lặp.
+
+00:05:42.020 --> 00:05:44.360
+Giả sử bạn có một training set rất lớn, nếu
+bạn có một
+
+00:05:44.360 --> 00:05:46.700
+training set nhỏ thì việc gradient descent
+hàng loạt là ổn.
+
+00:05:46.940 --> 00:05:53.425
+Nếu bạn đi ngược lại, nếu bạn sử dụng phương
+pháp gradient descent ngẫu
+
+00:05:53.425 --> 00:05:59.910
+nhiên, thì thật tuyệt khi bạn đạt được tiến bộ
+sau khi chỉ xử lý một ví dụ.
+
+00:06:00.510 --> 00:06:01.910
+Đó thực sự không phải là một vấn đề.
+
+00:06:01.910 --> 00:06:04.550
+Và tiếng ồn có thể được cải thiện hoặc giảm
+
+00:06:04.550 --> 00:06:07.190
+bớt bằng cách sử dụng learning rate nhỏ hơn.
+
+00:06:07.550 --> 00:06:12.370
+Nhưng nhược điểm lớn của việc gradient descent
+ngẫu nhiên là
+
+00:06:12.370 --> 00:06:17.190
+bạn mất gần như toàn bộ tốc độ tăng tốc từ quá
+trình vector hóa.
+
+00:06:18.270 --> 00:06:21.550
+Bởi vì ở đây bạn đang xử lý một ví dụ đào tạo
+tại một thời điểm.
+
+00:06:21.990 --> 00:06:25.750
+Cách bạn xử lý từng ví dụ sẽ rất kém hiệu quả.
+
+00:06:25.990 --> 00:06:33.105
+Vì vậy, điều hiệu quả nhất trong thực tế là
+thứ gì đó ở giữa nơi bạn
+
+00:06:33.105 --> 00:06:40.220
+có một số, bạn biết đấy, quy mô lô nhỏ không
+quá lớn hoặc quá nhỏ.
+
+00:06:44.580 --> 00:06:48.820
+Và trên thực tế, điều này mang lại cho bạn khả
+năng học tập nhanh nhất.
+
+00:06:51.510 --> 00:06:54.630
+Và bạn nhận thấy rằng điều này có hai điều
+tốt.
+
+00:06:54.670 --> 00:06:57.550
+Một là bạn nhận được rất nhiều vector hóa.
+
+00:06:58.270 --> 00:07:03.370
+Vì vậy, trong ví dụ chúng tôi sử dụng ở video
+trước, nếu kích thước lô nhỏ của
+
+00:07:03.370 --> 00:07:08.470
+bạn là một nghìn mẫu, thì bạn biết đấy, bạn có
+thể vector hóa trên một nghìn mẫu,
+
+00:07:08.470 --> 00:07:12.230
+việc này sẽ nhanh hơn nhiều so với việc xử lý
+từng ví dụ một.
+
+00:07:13.230 --> 00:07:20.455
+Và thứ hai, bạn cũng có thể đạt được tiến bộ
+mà
+
+00:07:20.455 --> 00:07:27.680
+không cần đợi cho đến khi xử lý toàn bộ
+training set.
+
+00:07:28.320 --> 00:07:32.300
+Vì vậy, một lần nữa, bằng cách sử dụng các con
+số chúng ta có
+
+00:07:32.300 --> 00:07:36.280
+từ video trước, mỗi kỷ nguyên hoặc mỗi lần
+vượt qua
+
+00:07:36.280 --> 00:07:40.260
+training set của bạn sẽ cho phép bạn nói 5.000
+bước gradient descent.
+
+00:07:41.380 --> 00:07:45.580
+Vì vậy, trong thực tế, sẽ có một số kích thước
+ở giữa các lô nhỏ hoạt động tốt nhất.
+
+00:07:45.900 --> 00:07:48.300
+Và cuối cùng với lô nhỏ, nếu bạn bắt đầu ở
+đây,
+
+00:07:48.300 --> 00:07:50.700
+có thể một lần lặp lại sẽ thực hiện được điều
+này.
+
+00:07:51.060 --> 00:07:55.113
+Bạn biết đấy, hai lần lặp, ba, bốn, và nó
+không đảm bảo luôn
+
+00:07:55.113 --> 00:07:59.167
+hướng về mức tối thiểu, nhưng nó có xu hướng
+hướng về mức tối
+
+00:07:59.167 --> 00:08:03.220
+thiểu nhất quán và có hướng hơn so với
+gradient descent ngẫu nhiên.
+
+00:08:03.540 --> 00:08:05.640
+Và sau đó nó không phải lúc nào cũng hội tụ
+
+00:08:05.640 --> 00:08:07.740
+hoặc dao động chính xác trong một vùng rất
+nhỏ.
+
+00:08:08.220 --> 00:08:11.500
+Nếu đó là một vấn đề, bạn luôn có thể giảm
+learning rate tập từ từ.
+
+00:08:11.540 --> 00:08:13.520
+Chúng ta sẽ nói nhiều hơn về việc giảm
+
+00:08:13.520 --> 00:08:15.500
+learning rate hoặc cách giảm learning rate
+trong video sau.
+
+00:08:15.820 --> 00:08:19.540
+Vì vậy, nếu kích thước lô nhỏ không phải là M
+và không phải là
+
+00:08:19.540 --> 00:08:23.260
+một, mà phải là một cái gì đó ở giữa, bạn sẽ
+chọn nó như thế nào?
+
+00:08:23.300 --> 00:08:24.820
+Vâng, đây là một số hướng dẫn.
+
+00:08:24.940 --> 00:08:29.350
+Đầu tiên, nếu bạn có một training set nhỏ, chỉ
+
+00:08:29.350 --> 00:08:33.760
+cần sử dụng phương pháp gradient descent hàng
+loạt.
+
+00:08:36.610 --> 00:08:38.943
+Bạn biết đấy, nếu bạn có một training set nhỏ,
+thì việc sử
+
+00:08:38.943 --> 00:08:41.277
+dụng phương pháp gradient descent hàng loạt
+nhỏ cũng chẳng
+
+00:08:41.277 --> 00:08:43.610
+ích gì, bạn có thể xử lý toàn bộ training set
+khá nhanh.
+
+00:08:43.610 --> 00:08:45.370
+Vì vậy, bạn cũng có thể sử dụng phương pháp
+gradient descent hàng loạt.
+
+00:08:45.810 --> 00:08:49.890
+Bạn biết đấy, một training set nhỏ có ý nghĩa
+như thế nào, bạn biết đấy, nếu nó nhỏ
+
+00:08:49.890 --> 00:08:53.970
+hơn 2000, thì chỉ cần sử dụng phương pháp
+gradient descent hàng loạt là hoàn toàn ổn.
+
+00:08:54.370 --> 00:09:01.820
+Mặt khác, nếu bạn có một training set lớn hơn,
+các kích thước
+
+00:09:01.820 --> 00:09:09.270
+lô nhỏ điển hình sẽ là từ 64 đến có thể là 512
+là khá điển hình.
+
+00:09:09.590 --> 00:09:14.330
+Và do cách bố trí bộ nhớ máy tính trong quyền
+truy cập, đôi khi mã của
+
+00:09:14.330 --> 00:09:19.070
+bạn chạy nhanh hơn nếu kích thước lô nhỏ của
+bạn là lũy thừa của hai.
+
+00:09:19.430 --> 00:09:24.790
+Đúng. Vậy 64 bằng hai chia sáu là bảy, hai
+chia tám, hai chia chín.
+
+00:09:25.190 --> 00:09:29.510
+Vì vậy, tôi thường triển khai kích thước lô
+nhỏ của mình thành lũy thừa của hai.
+
+00:09:29.990 --> 00:09:33.550
+Tôi biết rằng trong video trước, tôi sử dụng
+kích thước lô nhỏ là 1000.
+
+00:09:33.870 --> 00:09:39.750
+Nếu bạn thực sự muốn làm điều đó, tôi khuyên
+bạn chỉ nên sử dụng 1024, lũy thừa 10.
+
+00:09:40.110 --> 00:09:44.110
+Và bạn sẽ thấy kích thước lô nhỏ có kích thước
+1024.
+
+00:09:44.430 --> 00:09:45.630
+Nó hiếm hơn một chút.
+
+00:09:46.350 --> 00:09:50.230
+Phạm vi kích thước lô nhỏ này phổ biến hơn một
+chút.
+
+00:09:50.710 --> 00:09:58.070
+Một mẹo cuối cùng là đảm bảo rằng lô nhỏ của
+bạn,
+
+00:09:58.070 --> 00:10:05.430
+tất cả xt, dấu phẩy, yt, phù hợp với bộ nhớ
+CPU GPU.
+
+00:10:08.770 --> 00:10:10.750
+Và điều này thực sự phụ thuộc vào ứng dụng
+
+00:10:10.750 --> 00:10:12.730
+của bạn và mức độ lớn của một ví dụ đào tạo.
+
+00:10:12.770 --> 00:10:16.423
+Nhưng nếu bạn từng xử lý một lô nhỏ không thực
+sự phù hợp
+
+00:10:16.423 --> 00:10:20.077
+với bộ nhớ GPU CPU, cho dù bạn đang sử dụng
+quy trình hay
+
+00:10:20.077 --> 00:10:23.730
+dữ liệu, thì bạn sẽ thấy rằng hiệu suất đột
+nhiên tụt dốc.
+
+00:10:23.730 --> 00:10:25.410
+Và nó đột nhiên tồi tệ hơn nhiều.
+
+00:10:25.930 --> 00:10:28.490
+Vì vậy, tôi hy vọng điều này giúp bạn hiểu
+được phạm
+
+00:10:28.490 --> 00:10:31.050
+vi kích thước lô nhỏ điển hình mà mọi người sử
+dụng.
+
+00:10:31.730 --> 00:10:35.677
+Tất nhiên, trong thực tế, kích thước lô nhỏ
+thực sự là một tham
+
+00:10:35.677 --> 00:10:39.623
+số siêu khác mà bạn có thể thực hiện tìm kiếm
+nhanh để cố gắng
+
+00:10:39.623 --> 00:10:43.570
+tìm ra tham số nào hiệu quả nhất trong việc
+giảm cost function j.
+
+00:10:43.850 --> 00:10:47.903
+Vì vậy, những gì tôi sẽ làm chỉ là thử một vài
+giá trị khác nhau, thử một vài
+
+00:10:47.903 --> 00:10:51.957
+lũy thừa khác nhau của 2 và sau đó xem liệu
+bạn có thể chọn một giá trị giúp
+
+00:10:51.957 --> 00:10:56.010
+thuật toán tối ưu hóa gradient descent của bạn
+hiệu quả nhất có thể hay không.
+
+00:10:56.410 --> 00:10:59.730
+Nhưng hy vọng điều này sẽ cung cấp cho bạn một
+bộ
+
+00:10:59.730 --> 00:11:03.050
+hướng dẫn về cách bắt đầu với tìm kiếm siêu
+tham số đó.
+
+00:11:03.330 --> 00:11:05.730
+Bây giờ bạn đã biết cách triển khai
+gradient descent hàng loạt
+
+00:11:05.730 --> 00:11:08.130
+nhỏ và làm cho thuật toán của bạn chạy nhanh
+hơn nhiều, đặc
+
+00:11:08.130 --> 00:11:10.530
+biệt là khi bạn đang giao dịch trên một nhóm
+giao dịch khởi chạy.
+
+00:11:10.530 --> 00:11:13.090
+Nhưng hóa ra chúng thậm chí còn là những thuật
+toán hiệu quả
+
+00:11:13.090 --> 00:11:15.650
+hơn so với thuật toán gradient descent hoặc
+gradient descent
+
+00:11:15.650 --> 00:11:18.210
+hàng loạt nhỏ. Hãy bắt đầu nói về chúng trong
+vài video tiếp theo.

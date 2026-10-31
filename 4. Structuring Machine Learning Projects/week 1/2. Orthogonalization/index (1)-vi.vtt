@@ -1,0 +1,637 @@
+WEBVTT
+
+1
+00:00:00.340 --> 00:00:03.520
+Một trong những thách thức khi xây dựng hệ thống machine learning là có
+
+2
+00:00:03.520 --> 00:00:06.250
+rất nhiều thứ bạn có thể thử, rất nhiều thứ bạn có thể thay đổi.
+
+3
+00:00:06.250 --> 00:00:09.840
+Bao gồm, ví dụ, rất nhiều siêu tham số bạn có thể điều chỉnh.
+
+4
+00:00:10.960 --> 00:00:14.210
+Một trong những điều tôi nhận thấy là về những người machine learning hiệu quả nhất
+
+5
+00:00:14.210 --> 00:00:17.440
+là họ rất rõ ràng về những gì cần điều chỉnh để
+
+6
+00:00:17.440 --> 00:00:20.200
+cố gắng đạt được một hiệu ứng.
+
+7
+00:00:20.200 --> 00:00:22.842
+Đây là một quá trình mà chúng ta gọi là orthogonalization.
+
+8
+00:00:22.842 --> 00:00:24.120
+Để tôi nói cho anh biết ý tôi là gì.
+
+9
+00:00:25.490 --> 00:00:28.560
+Đây là một bức ảnh của một truyền hình trường học cũ,
+
+10
+00:00:28.560 --> 00:00:33.820
+với rất nhiều nút bấm mà bạn có thể điều chỉnh để điều chỉnh hình ảnh theo nhiều cách khác nhau.
+
+11
+00:00:35.050 --> 00:00:39.880
+Vì vậy, đối với những bộ TV cũ này, có thể có một núm để điều chỉnh độ
+
+12
+00:00:39.880 --> 00:00:45.160
+cao theo chiều dọc hình ảnh của bạn và một núm khác để điều chỉnh độ rộng của nó.
+
+13
+00:00:45.160 --> 00:00:49.310
+Có lẽ một núm khác để điều chỉnh hình thang nó là như thế nào,
+
+14
+00:00:49.310 --> 00:00:52.370
+một núm khác để điều chỉnh bao nhiêu để di chuyển hình ảnh sang trái và
+
+15
+00:00:52.370 --> 00:00:57.090
+phải, một cái khác để điều chỉnh bao nhiêu hình ảnh được xoay, và như vậy.
+
+16
+00:00:58.740 --> 00:01:03.719
+Và những gì các nhà thiết kế truyền hình đã dành rất nhiều thời gian để làm là xây dựng
+
+17
+00:01:03.719 --> 00:01:06.477
+mạch điện, thường là mạch tương tự,
+
+18
+00:01:06.477 --> 00:01:11.170
+để đảm bảo mỗi núm có một chức năng tương đối dễ hiểu.
+
+19
+00:01:11.170 --> 00:01:15.358
+Chẳng hạn như một núm để điều chỉnh này, một núm để điều chỉnh này, một núm để điều chỉnh này,
+
+20
+00:01:15.358 --> 00:01:15.960
+và như vậy.
+
+21
+00:01:17.840 --> 00:01:24.488
+Ngược lại, hãy tưởng tượng nếu bạn có một núm điều chỉnh 0,1 x độ cao của hình ảnh,
+
+22
+00:01:24.488 --> 00:01:32.002
++ 0,3 x độ rộng của hình ảnh, - 1,7 x hình thang như thế nào,
+
+23
+00:01:32.002 --> 00:01:39.010
++ 0,8 lần vị trí của hình ảnh trên trục ngang, v.v.
+
+24
+00:01:39.010 --> 00:01:42.330
+Nếu bạn điều chỉnh núm này, thì chiều cao của hình ảnh, chiều rộng của hình ảnh, hình
+
+25
+00:01:42.330 --> 00:01:46.350
+thang nó là như thế nào, nó thay đổi bao nhiêu, tất cả đều thay đổi cùng một lúc.
+
+26
+00:01:46.350 --> 00:01:51.211
+Nếu bạn có một núm như thế, hầu như không thể điều chỉnh TV để
+
+27
+00:01:51.211 --> 00:01:54.790
+hình ảnh được trung tâm ở khu vực hiển thị.
+
+28
+00:01:54.790 --> 00:02:00.569
+Vì vậy, trong bối cảnh này, orthogonalization đề cập đến rằng
+
+29
+00:02:00.569 --> 00:02:06.076
+các nhà thiết kế TV đã thiết kế các núm để mỗi loại núm chỉ làm một điều.
+
+30
+00:02:06.076 --> 00:02:09.118
+Và điều này làm cho nó dễ dàng hơn nhiều để điều chỉnh TV, để
+
+31
+00:02:09.118 --> 00:02:12.712
+hình ảnh được làm trung tâm ở nơi bạn muốn.
+
+32
+00:02:14.032 --> 00:02:17.075
+Đây là một ví dụ khác của orthogonalization.
+
+33
+00:02:17.075 --> 00:02:22.736
+Nếu bạn nghĩ đến việc học lái một chiếc xe hơi, một chiếc xe có ba điều khiển chính,
+
+34
+00:02:22.736 --> 00:02:28.124
+đó là lái, tay lái quyết định bao nhiêu bạn đi trái hoặc
+
+35
+00:02:28.124 --> 00:02:31.170
+phải, tăng tốc, và phanh.
+
+36
+00:02:31.170 --> 00:02:35.560
+Vì vậy, ba điều khiển này, hoặc thực sự một điều khiển cho lái và
+
+37
+00:02:35.560 --> 00:02:38.810
+hai điều khiển khác cho tốc độ của bạn.
+
+38
+00:02:38.810 --> 00:02:42.150
+Nó làm cho nó tương đối dễ hiểu,
+
+39
+00:02:42.150 --> 00:02:46.770
+những gì hành động khác nhau của bạn thông qua các điều khiển khác nhau sẽ làm cho chiếc xe của bạn.
+
+40
+00:02:46.770 --> 00:02:51.940
+Nhưng bây giờ hãy tưởng tượng nếu ai đó xây dựng một chiếc xe để có một cần điều khiển,
+
+41
+00:02:51.940 --> 00:02:56.560
+nơi một trục của cần điều khiển 0,3 x
+
+42
+00:02:56.560 --> 00:03:00.910
+góc lái của bạn, - 0,8 x tốc độ của bạn.
+
+43
+00:03:00.910 --> 00:03:05.957
+Và bạn đã có một điều khiển khác nhau mà điều khiển 2
+
+44
+00:03:05.957 --> 00:03:12.530
+x góc lái, + 0,9 x tốc độ của chiếc xe của bạn.
+
+45
+00:03:12.530 --> 00:03:15.140
+Về lý thuyết, bằng cách điều chỉnh hai núm này,
+
+46
+00:03:15.140 --> 00:03:19.072
+bạn có thể làm cho chiếc xe của bạn lái ở góc và ở tốc độ bạn muốn.
+
+47
+00:03:19.072 --> 00:03:22.840
+Nhưng nó khó hơn nhiều so với nếu bạn chỉ có một điều khiển duy nhất để
+
+48
+00:03:22.840 --> 00:03:26.980
+điều khiển góc lái, và một bộ điều khiển riêng biệt, riêng biệt để điều khiển
+
+49
+00:03:26.980 --> 00:03:28.750
+tốc độ.
+
+50
+00:03:28.750 --> 00:03:31.913
+Vì vậy, khái niệm về sự trực giao đề cập đến điều đó,
+
+51
+00:03:31.913 --> 00:03:35.707
+nếu bạn nghĩ về một chiều của những gì bạn muốn làm là điều khiển
+
+52
+00:03:35.707 --> 00:03:39.877
+một góc lái, và một chiều khác là điều khiển tốc độ của bạn.
+
+53
+00:03:39.877 --> 00:03:44.756
+Sau đó, bạn muốn một núm chỉ ảnh hưởng đến góc lái càng nhiều càng tốt,
+
+54
+00:03:44.756 --> 00:03:49.179
+và một núm khác, trong trường hợp của chiếc xe, thực sự là tăng tốc và
+
+55
+00:03:49.179 --> 00:03:51.634
+phanh, điều khiển tốc độ của bạn.
+
+56
+00:03:51.634 --> 00:03:54.564
+Nhưng nếu bạn có một điều khiển kết hợp hai điều khiển với nhau,
+
+57
+00:03:54.564 --> 00:03:59.156
+giống như một điều khiển như thế này ảnh hưởng đến cả góc lái và tốc độ của bạn,
+
+58
+00:03:59.156 --> 00:04:01.752
+điều gì đó thay đổi cả hai cùng một lúc,
+
+59
+00:04:01.752 --> 00:04:06.570
+sau đó nó trở nên khó khăn hơn nhiều để thiết lập xe đến tốc độ và góc bạn muốn.
+
+60
+00:04:06.570 --> 00:04:11.933
+Và bằng cách có phương tiện trực giao, trực giao ở 90 độ với nhau.
+
+61
+00:04:11.933 --> 00:04:16.309
+Bằng cách có các điều khiển trực giao phù hợp lý tưởng với những thứ bạn
+
+62
+00:04:16.309 --> 00:04:21.251
+thực sự muốn điều khiển, nó giúp điều chỉnh các núm bạn phải điều chỉnh dễ dàng hơn nhiều.
+
+63
+00:04:21.251 --> 00:04:23.939
+Để điều chỉnh góc vô lăng, và bộ
+
+64
+00:04:23.939 --> 00:04:28.813
+tăng tốc của bạn, phanh của bạn, để cho chiếc xe làm những gì bạn muốn.
+
+65
+00:04:28.813 --> 00:04:31.090
+Vậy điều này liên quan đến machine learning như thế nào?
+
+66
+00:04:32.260 --> 00:04:35.980
+Để một hệ thống học tập được giám sát để làm tốt, bạn thường cần phải
+
+67
+00:04:35.980 --> 00:04:40.080
+điều chỉnh các núm của hệ thống của bạn để đảm bảo rằng bốn điều giữ đúng.
+
+68
+00:04:40.080 --> 00:04:43.930
+Đầu tiên, là bạn thường phải chắc chắn rằng bạn ít nhất là làm tốt
+
+69
+00:04:43.930 --> 00:04:45.210
+trên training set.
+
+70
+00:04:45.210 --> 00:04:50.327
+Vì vậy, hiệu suất trên bộ đào tạo cần phải vượt qua một số đánh giá khả năng chấp nhận.
+
+71
+00:04:50.327 --> 00:04:52.458
+Đối với một số ứng dụng,
+
+72
+00:04:52.458 --> 00:04:57.841
+điều này có thể có nghĩa là làm tương đối với hiệu suất của con người.
+
+73
+00:04:57.841 --> 00:05:00.005
+Nhưng điều này sẽ phụ thuộc vào ứng dụng của bạn, và
+
+74
+00:05:00.005 --> 00:05:03.400
+chúng tôi sẽ nói nhiều hơn về việc so sánh với hiệu suất trình độ con người vào tuần tới.
+
+75
+00:05:04.520 --> 00:05:07.689
+Nhưng sau khi làm tốt trên các bộ đào tạo,
+
+76
+00:05:07.689 --> 00:05:12.281
+sau đó bạn hy vọng rằng điều này dẫn đến cũng làm tốt trên bộ dev.
+
+77
+00:05:12.281 --> 00:05:16.520
+Và sau đó bạn hy vọng rằng điều này cũng làm tốt trên bộ thử nghiệm.
+
+78
+00:05:16.520 --> 00:05:20.025
+Và cuối cùng, bạn hy vọng rằng làm tốt trên các thiết lập thử nghiệm trên các
+
+79
+00:05:20.025 --> 00:05:23.544
+chức năng chi phí kết quả trong hệ thống của bạn thực hiện trong thế giới thực.
+
+80
+00:05:23.544 --> 00:05:28.481
+Vì vậy, bạn hy vọng rằng điều này giải quyết trong hạnh phúc
+
+81
+00:05:28.481 --> 00:05:32.590
+người dùng ứng dụng hình ảnh mèo, ví dụ.
+
+82
+00:05:32.590 --> 00:05:37.990
+Vì vậy, để liên hệ lại với ví dụ điều chỉnh TV, nếu hình ảnh TV của bạn
+
+83
+00:05:37.990 --> 00:05:43.040
+quá rộng hoặc quá hẹp, bạn muốn một núm điều chỉnh để điều chỉnh nó.
+
+84
+00:05:43.040 --> 00:05:45.680
+Bạn không muốn phải điều chỉnh cẩn thận năm núm khác nhau, điều
+
+85
+00:05:45.680 --> 00:05:47.720
+này cũng ảnh hưởng đến những thứ khác nhau.
+
+86
+00:05:47.720 --> 00:05:52.510
+Bạn muốn một núm chỉ ảnh hưởng đến chiều rộng của hình ảnh TV của bạn.
+
+87
+00:05:52.510 --> 00:05:57.500
+Vì vậy, theo một cách tương tự, nếu thuật toán của bạn không phù hợp với đào tạo thiết lập tốt về
+
+88
+00:05:57.500 --> 00:06:02.540
+chức năng chi phí, bạn muốn có một núm, vâng, đó là nỗ lực của tôi để vẽ một núm.
+
+89
+00:06:02.540 --> 00:06:05.540
+Hoặc có thể một bộ núm cụ thể mà bạn có thể sử dụng,
+
+90
+00:06:05.540 --> 00:06:10.960
+để đảm bảo rằng bạn có thể điều chỉnh thuật toán của bạn để làm cho nó phù hợp với training set.
+
+91
+00:06:10.960 --> 00:06:15.560
+Vì vậy, các nút bấm bạn sử dụng để điều chỉnh nó là, bạn có thể đào tạo một mạng lưới lớn hơn.
+
+92
+00:06:16.730 --> 00:06:20.740
+Hoặc bạn có thể chuyển sang một thuật toán tối ưu hóa tốt hơn,
+
+93
+00:06:20.740 --> 00:06:24.270
+như thuật toán tối ưu hóa Adam, và vân
+
+94
+00:06:24.270 --> 00:06:27.410
+vân, sang một số tùy chọn khác, chúng tôi sẽ thảo luận vào cuối tuần này và tuần tới.
+
+95
+00:06:28.440 --> 00:06:33.588
+Ngược lại, nếu bạn thấy rằng thuật toán không phù hợp với bộ dev tốt,
+
+96
+00:06:33.588 --> 00:06:36.251
+thì có một bộ núm riêng biệt.
+
+97
+00:06:36.251 --> 00:06:40.976
+Vâng, đó là vẽ không phải là rất nghệ thuật của tôi về núm khác,
+
+98
+00:06:40.976 --> 00:06:44.465
+bạn muốn có một bộ núm khác biệt để thử.
+
+99
+00:06:44.465 --> 00:06:49.196
+Vì vậy, ví dụ, nếu thuật toán của bạn không làm tốt trên bộ dev, nó đang làm tốt
+
+100
+00:06:49.196 --> 00:06:53.455
+trên training set nhưng không phải trên bộ dev, sau đó bạn có một tập hợp các núm xung quanh
+
+101
+00:06:53.455 --> 00:06:57.938
+regularization mà bạn có thể sử dụng để cố gắng làm cho nó đáp ứng các tiêu chí thứ hai.
+
+102
+00:06:57.938 --> 00:07:01.786
+Vì vậy, sự tương tự là, bây giờ bạn đã điều chỉnh chiều rộng của TV của bạn,
+
+103
+00:07:01.786 --> 00:07:04.467
+nếu chiều cao của hình ảnh không hoàn toàn đúng,
+
+104
+00:07:04.467 --> 00:07:08.680
+sau đó bạn muốn có một núm khác để điều chỉnh chiều cao của hình ảnh TV.
+
+105
+00:07:08.680 --> 00:07:13.429
+Và bạn muốn làm điều này một cách hy vọng mà không ảnh hưởng đến chiều rộng của
+
+106
+00:07:13.429 --> 00:07:14.563
+hình ảnh TV của bạn quá nhiều.
+
+107
+00:07:14.563 --> 00:07:20.655
+Và nhận được một training set lớn hơn sẽ là một núm khác bạn có thể sử dụng,
+
+108
+00:07:20.655 --> 00:07:26.758
+giúp thuật toán học tập của bạn tổng quát tốt hơn cho bộ dev.
+
+109
+00:07:26.758 --> 00:07:30.248
+Bây giờ, sau khi điều chỉnh chiều rộng và chiều cao của hình ảnh TV của bạn, tốt, điều
+
+110
+00:07:30.248 --> 00:07:32.587
+gì sẽ xảy ra nếu nó không đáp ứng các tiêu chí thứ ba?
+
+111
+00:07:32.587 --> 00:07:36.880
+Điều gì sẽ xảy ra nếu bạn làm tốt trên bộ dev nhưng không phải trên bộ kiểm tra?
+
+112
+00:07:36.880 --> 00:07:37.840
+Nếu điều đó xảy ra,
+
+113
+00:07:37.840 --> 00:07:42.880
+sau đó núm bạn điều chỉnh là, bạn có thể muốn có được một bộ dev lớn hơn.
+
+114
+00:07:42.880 --> 00:07:47.452
+Bởi vì nếu nó làm tốt trên bộ dev nhưng không phải là bộ kiểm tra, nó có thể có nghĩa là bạn đã
+
+115
+00:07:47.452 --> 00:07:51.010
+overtuned để bộ dev của bạn, và bạn cần phải quay trở lại và tìm một bộ dev lớn hơn.
+
+116
+00:07:52.590 --> 00:07:57.630
+Và cuối cùng, nếu nó làm tốt trên bộ thử nghiệm, nhưng nó không cung cấp cho bạn
+
+117
+00:07:57.630 --> 00:08:04.020
+một người dùng ứng dụng hình ảnh mèo hạnh phúc, sau đó những gì điều đó có nghĩa là bạn muốn quay trở lại và
+
+118
+00:08:04.020 --> 00:08:10.270
+thay đổi một trong hai bộ dev hoặc chức năng chi phí.
+
+119
+00:08:13.600 --> 00:08:18.230
+Bởi vì nếu làm tốt trên bộ kiểm tra theo một số cost function
+
+120
+00:08:18.230 --> 00:08:21.870
+không tương ứng với thuật toán của bạn làm những gì bạn cần nó để làm trong thế giới thực,
+
+121
+00:08:21.870 --> 00:08:27.260
+sau đó nó có nghĩa là hoặc phân phối bộ kiểm tra dev của bạn không được thiết lập chính xác,
+
+122
+00:08:27.260 --> 00:08:30.230
+hoặc cost function của bạn không đo đúng điều.
+
+123
+00:08:30.230 --> 00:08:34.260
+Tôi biết tôi sẽ xem qua những ví dụ này khá nhanh, nhưng chúng tôi sẽ
+
+124
+00:08:34.260 --> 00:08:39.770
+chi tiết hơn về những nút bấm cụ thể này vào cuối tuần này và tuần tới.
+
+125
+00:08:39.770 --> 00:08:42.870
+Vì vậy, nếu bạn không theo dõi tất cả các chi tiết ngay bây giờ, đừng lo lắng về nó.
+
+126
+00:08:42.870 --> 00:08:46.429
+Nhưng tôi muốn cho bạn một cảm giác về quá trình chỉnh hình này,
+
+127
+00:08:46.429 --> 00:08:50.184
+rằng bạn muốn rất rõ ràng về vấn đề nào trong số bốn vấn đề này, những
+
+128
+00:08:50.184 --> 00:08:53.569
+điều khác nhau mà bạn có thể điều chỉnh, đang cố gắng giải quyết.
+
+129
+00:08:53.569 --> 00:08:57.809
+Và khi tôi đào tạo một neural network, tôi có xu hướng không sử dụng dừng sớm.
+
+130
+00:08:57.809 --> 00:09:00.845
+Nó không phải là một kỹ thuật xấu, khá nhiều người làm điều đó.
+
+131
+00:09:00.845 --> 00:09:04.450
+Nhưng cá nhân tôi thấy sớm dừng lại khó khăn để suy nghĩ về.
+
+132
+00:09:04.450 --> 00:09:09.530
+Bởi vì đây là một hoạt động mà đồng thời ảnh hưởng đến mức nào bạn phù hợp với training set,
+
+133
+00:09:09.530 --> 00:09:13.370
+bởi vì nếu bạn dừng lại sớm, bạn phù hợp với training set ít tốt.
+
+134
+00:09:13.370 --> 00:09:18.610
+Nó cũng đồng thời thường được thực hiện để cải thiện hiệu suất thiết lập dev của bạn.
+
+135
+00:09:18.610 --> 00:09:21.973
+Vì vậy, đây là một núm ít được chỉnh hình,
+
+136
+00:09:21.973 --> 00:09:25.343
+bởi vì nó đồng thời ảnh hưởng đến hai thứ.
+
+137
+00:09:25.343 --> 00:09:28.691
+Nó giống như một núm đồng thời ảnh hưởng đến cả chiều rộng và chiều
+
+138
+00:09:28.691 --> 00:09:30.900
+cao của hình ảnh TV của bạn.
+
+139
+00:09:30.900 --> 00:09:34.285
+Và nó không có nghĩa là nó xấu, không sử dụng, bạn có thể sử dụng nó nếu bạn muốn.
+
+140
+00:09:34.285 --> 00:09:37.400
+Nhưng khi bạn có nhiều điều khiển trực giao hơn,
+
+141
+00:09:37.400 --> 00:09:40.020
+chẳng hạn như những điều khác mà tôi đang viết ở đây,
+
+142
+00:09:40.020 --> 00:09:44.260
+thì nó chỉ làm cho quá trình điều chỉnh mạng của bạn dễ dàng hơn nhiều.
+
+143
+00:09:44.260 --> 00:09:47.655
+Vì vậy, tôi hy vọng điều đó mang lại cho bạn một cảm giác về những gì orthogonalization có nghĩa là.
+
+144
+00:09:47.655 --> 00:09:51.645
+Cũng giống như khi bạn nhìn vào hình TV, thật tuyệt nếu bạn có thể nói, hình TV của tôi
+
+145
+00:09:51.645 --> 00:09:55.343
+quá rộng, vì vậy tôi sẽ điều chỉnh núm này, hoặc nó quá cao, nên tôi sẽ
+
+146
+00:09:55.343 --> 00:09:59.390
+điều chỉnh núm đó, hoặc nó quá hình thang, vì vậy tôi sẽ phải điều chỉnh núm đó.
+
+147
+00:09:59.390 --> 00:10:01.710
+Trong machine learning, nó là tốt đẹp nếu bạn có thể nhìn vào hệ thống của bạn và
+
+148
+00:10:01.710 --> 00:10:03.430
+nói, phần này của nó là sai.
+
+149
+00:10:03.430 --> 00:10:06.088
+Nó không làm tốt trên bộ đào tạo, nó không làm tốt trên bộ dev,
+
+150
+00:10:06.088 --> 00:10:08.702
+nó không làm tốt trên bộ thử nghiệm, hoặc nó đang làm tốt trên bộ thử nghiệm nhưng
+
+151
+00:10:08.702 --> 00:10:09.720
+chỉ không phải trong thế giới thực.
+
+152
+00:10:09.720 --> 00:10:13.309
+Nhưng tìm ra chính xác những gì là sai, và sau đó có chính xác một núm, hoặc
+
+153
+00:10:13.309 --> 00:10:17.310
+một bộ núm cụ thể giúp chỉ giải quyết vấn đề
+
+154
+00:10:17.310 --> 00:10:20.770
+đó là hạn chế hiệu suất của hệ thống machine learning.
+
+155
+00:10:20.770 --> 00:10:24.643
+Vì vậy, những gì chúng tôi sẽ làm trong tuần này và tuần tới là làm thế nào để chẩn đoán
+
+156
+00:10:24.643 --> 00:10:28.025
+chính xác những gì là nút cổ chai cho hiệu suất của hệ thống của bạn.
+
+157
+00:10:28.025 --> 00:10:32.386
+Cũng như xác định các bộ núm cụ thể mà bạn có thể sử dụng để điều chỉnh hệ thống của bạn để
+
+158
+00:10:32.386 --> 00:10:34.715
+cải thiện khía cạnh đó của hiệu suất của nó.
+
+159
+00:10:34.715 --> 00:10:37.900
+Vì vậy, chúng ta hãy bắt đầu đi nhiều hơn vào các chi tiết của quá trình này.

@@ -1,0 +1,44 @@
+Khi bạn thực hiện truyền ngược
+trong mạng nơ-ron nhân tạo, bạn cần tính độ dốc hoặc đạo
+hàm của các hàm kích hoạt. Hãy cùng xem lựa chọn hàm kích hoạt của chúng tôi và cách tính
+độ dốc của các hàm này. Đây là hàm kích hoạt Sigmoid quen thuộc. Với bất kỳ giá trị đã cho nào của z, có thể là giá trị này của z. Hàm này sẽ có một số độ dốc hoặc
+một số đạo hàm tương ứng với, nếu bạn vẽ một đường nhỏ ở đây, chiều cao trên chiều rộng của
+tam giác dưới ở đây. Và nếu g của z là hàm sigmoid, thì độ dốc của hàm là d, dz g của z, và từ phép tính, chúng ta biết đó là
+độ dốc của g của x tại z. Nếu bạn quen với giải tích
+và biết cách lấy đạo hàm, nếu bạn lấy đạo hàm của hàm Sigmoid, thì nó bằng công thức này. Một lần nữa, tôi sẽ không
+thực hiện các bước giải tích, nhưng nếu bạn quen với giải tích, thì hãy cứ thoải mái đăng lên một video
+và cố gắng tự chứng minh điều này. Vì vậy, điều này tương đương với g của z, nhân (1 trừ g của z). Và hãy kiểm tra xem biểu
+thức này có nghĩa gì không. Đầu tiên, nếu z rất lớn, giả sử z bằng 10, thì g của z sẽ gần bằng 1, và vì vậy công thức ở bên trái cho chúng ta
+biết rằng d / dz g của z gần với g của z, bằng 1 nhân 1 trừ 1, do đó gần bằng 0. Điều này không chính xác vì khi z rất lớn, độ dốc gần bằng 0. Ngược lại, nếu z bằng -10, và khi đó, g của z gần bằng 0. Và công thức bên trái cho chúng ta biết
+d dz g của z sẽ gần với g của z, tức là 0 nhân 1 trừ 0. và nó cũng rất gần với 0, là chính xác. Cuối cùng, nếu z bằng 0, thì g của z bằng 1/2, đó là hàm sigmoid ở đây, và do đó đạo hàm bằng 1/2 nhân 1 trừ đi 1/2 bằng 1/4, và đó chính là giá trị chính xác của đạo hàm hoặc độ dốc của
+hàm này khi z bằng 0. Cuối cùng, tôi muốn giới
+thiệu thêm một vài ký hiệu, đôi khi thay vì viết thế này, một cách viết nhanh cho đạo
+hàm là g phẩy của z. Và, g phẩy của z trong giải tích, dấu gạch nhỏ trên đầu được gọi là phẩy, vì vậy g phẩy của z là một cách
+viết nhanh cho phép tính đạo hàm của hàm g với biến đầu vào z. Trong một mạng nơ-ron nhân tạo, chúng ta có a bằng g của z, bằng số này, thì công thức này
+cũng rút gọn thành a nhân (1 trừ a). Đôi khi trong khi triển khai, bạn có thể thấy là g phẩy của z
+bằng a nhân (1 trừ a), và điều đó chỉ nói đến quan sát là g phẩy, có nghĩa là đạo hàm là bằng với điều này ở đây. Một ưu điểm của công thức này
+là nếu bạn đã tính giá trị cho a, thì bằng cách sử dụng biểu thức này, bạn cũng có thể nhanh chóng
+tính giá trị độ dốc cho g phẩy. Và đó là hàm kích hoạt sigmoid. Bây giờ chúng ta hãy xem
+hàm kích hoạt Tanh. Giống như những gì chúng
+ta đã có trước đây, định nghĩa của d dz g của z là độ dốc của g của z tại một điểm cụ thể của z, và nếu bạn nhìn vào công thức
+của hàm tiếp tuyến hyperbol, và nếu bạn biết giải tích, thì bạn có thể lấy đạo hàm và chỉ ra
+rằng điều này rút gọn thành công thức này và sử dụng cách viết nhanh chúng ta có trước
+đây, chúng ta gọi đây là g phẩy của z Và bạn có thể kiểm tra xem công
+thức này có nghĩa không nếu muốn. Ví dụ, nếu z bằng 10, Tanh của z sẽ rất gần với 1. Điều này đi từ cộng 1 đến trừ 1. Sau đó g phẩy của z, theo công thức này, sẽ là bằng 1 trừ 1 bình phương, do đó, rất gần với 0. Vậy nên, nếu z rất lớn, thì độ dốc gần bằng 0. Ngược lại, nếu z cực nhỏ, giả sử z bằng âm 10, thì Tanh của z sẽ gần âm 1, và vì vậy g phẩy của z sẽ gần
+bằng 1 trừ âm 1 bình phương. Và nó gần bằng 1 trừ 1, cũng gần bằng 0. Cuối cùng, nếu z bằng 0, thì Tanh của z bằng 0, và độ dốc bằng 1, đây là độ dốc khi z bằng 0. Vì vậy, tóm lại, nếu a bằng g của z, nếu a bằng Tanh này của z, thì đạo hàm, g phẩy của z, bằng 1 trừ một bình phương. g phẩy của z, bằng 1 trừ một bình phương. bạn có thể sử dụng công thức
+này để tính đạo hàm rất nhanh. Cuối cùng, đây là cách bạn
+tính các đạo hàm trong các hàm kích hoạt ReLU và Leaky ReLU. Với giá trị g của z bằng max( 0, z), do đó đạo hàm bằng 0, nếu z nhỏ hơn 0 và bằng 1 nếu z lớn hơn 0. Về lý thuyết thì nó không được
+xác định, nếu z bằng 0. Nhưng nếu bạn đang triển khai
+điều này trong phần mềm, thì có thể sẽ không đúng 100% về mặt toán học, nhưng nó sẽ hoạt động tốt nếu z bằng 0, nếu bạn đặt đạo hàm bằng 1. Nó luôn luôn phải bằng 0,
+và nó không thành vấn đề. Nếu bạn là một chuyên gia
+về tối ưu hóa, về lý thuyết, g phẩy sẽ trở thành sub-gradient
+của hàm kích hoạt g của z, đó là lý do tại sao gradient
+descent vẫn hoạt động. Nhưng bạn có thể coi nó là, xác suất của z bằng 0,000000 thì nhỏ đến mức gần như
+không quan trọng là bạn đặt đạo hàm bằng bao nhiêu khi z bằng 0. Vì vậy, trong thực tế, đây là những gì
+mọi người thực hiện đạo hàm của z. Cuối cùng, nếu bạn đang huấn luyện một mạng
+nơ-ron nhân tạo với hàm kích hoạt Leaky ReLU, thì g của z sẽ là max (0,01 z, z), và do đó, g phẩy của z bằng 0,01 nếu z nhỏ hơn 0 và bằng 1 nếu z lớn hơn 0. Một lần nữa, về lý thuyết thì độ dốc không
+được xác định khi z chính xác bằng 0, nhưng nếu bạn triển khai một đoạn mã đặt đạo hàm hoặc đặt g phẩy bằng
+0,01 hoặc hoặc bằng 1, cách naò cũng được. Khi z chính xác bằng 0, mã của
+bạn sẽ hoạt động. Và theo các công thức này, bạn nên tính độ dốc hoặc đạo
+hàm của các hàm kích hoạt. Bây giờ, với những kiến thức cơ bản này, bạn đã sẵn sàng để học cách triển khai
+gradient descent cho mạng nơ-ron nhân tạo. Hãy cùng xem video tiếp theo để thấy điều đó.

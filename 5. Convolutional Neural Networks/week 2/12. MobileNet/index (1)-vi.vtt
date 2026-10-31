@@ -1,0 +1,731 @@
+WEBVTT
+
+00:00:03.540 --> 00:00:07.040
+Xin chào và chào mừng trở lại. Bạn đã tìm hiểu
+về
+
+00:00:07.040 --> 00:00:10.540
+kiến ​​trúc ResNet, bạn đã tìm hiểu về
+InceptionNet.
+
+00:00:10.540 --> 00:00:15.040
+Trong video này, bạn đã tìm hiểu về MobileNet,
+một kiến trúc
+
+00:00:15.040 --> 00:00:19.540
+neural network convolution nền tảng khác được
+sử dụng cho thị giác máy tính.
+
+00:00:19.540 --> 00:00:24.040
+Sử dụng MobileNet sẽ cho phép bạn xây dựng và
+triển khai các neural network hoạt
+
+00:00:24.040 --> 00:00:28.540
+động ngay cả trong môi trường tính toán thấp,
+chẳng hạn như điện thoại di động.
+
+00:00:28.540 --> 00:00:33.540
+Hãy đi sâu vào. Tại sao bạn cần một kiến trúc
+neural network khác?
+
+00:00:33.540 --> 00:00:36.540
+Hóa ra rất nhiều neural network mà bạn đã
+
+00:00:36.540 --> 00:00:39.540
+tìm hiểu cho đến nay có chi phí tính toán khá
+cao.
+
+00:00:39.540 --> 00:00:44.207
+Và nếu bạn muốn neural network của mình chạy
+trên một thiết bị có
+
+00:00:44.207 --> 00:00:48.873
+khả năng triển khai CPU hoặc GPU kém hơn thì
+có một kiến trúc
+
+00:00:48.873 --> 00:00:53.540
+neural network khác có tên MobileNet có thể
+hoạt động tốt hơn nhiều.
+
+00:00:53.540 --> 00:00:57.040
+Vì vậy, tôi hy vọng có thể chia sẻ với bạn
+trong video này
+
+00:00:57.040 --> 00:01:00.540
+cách hoạt động của convolution có thể phân
+tách theo chiều sâu.
+
+00:01:00.540 --> 00:01:04.540
+Trước tiên chúng ta hãy xem lại phép
+convolution thông thường làm gì và sau đó
+
+00:01:04.540 --> 00:01:08.540
+chúng ta sẽ sửa đổi nó để xây dựng phép
+convolution có thể phân tách theo chiều sâu.
+
+00:01:08.540 --> 00:01:13.540
+Trong convolution thông thường, bạn có thể có
+
+00:01:13.540 --> 00:01:18.540
+một hình ảnh đầu vào có kích thước n x n x nc,
+
+00:01:18.540 --> 00:01:27.040
+trong đó nc là số kênh, vì vậy trong trường
+hợp này là 6 x 6 x 3 kênh và bạn
+
+00:01:27.040 --> 00:01:35.540
+muốn kết hợp nó với bộ lọc f x f x nc và trong
+trường hợp này là 3 x 3 x 3.
+
+00:01:35.540 --> 00:01:40.710
+Và cách bạn làm điều này là bạn lấy bộ lọc này
+
+00:01:40.710 --> 00:01:45.880
+mà tôi sẽ vẽ dưới dạng khối màu vàng ba chiều,
+
+00:01:45.880 --> 00:01:52.880
+và đặt bộ lọc màu vàng ở đó. Có 27 phép nhân
+bạn phải làm.
+
+00:01:52.880 --> 00:01:58.380
+Cộng nó lại và sau đó cho bạn giá trị này, sau
+đó chuyển bộ
+
+00:01:58.380 --> 00:02:03.880
+lọc sang, nhân 27 cặp số, cộng nó lại, sẽ cho
+bạn số này,
+
+00:02:03.880 --> 00:02:11.880
+và bạn tiếp tục đạt được cái này, để có được
+cái này, rồi cái này, vân vân.
+
+00:02:11.880 --> 00:02:18.640
+Cho đến khi bạn tính toán tất cả các giá trị
+đầu ra 4 x 4.
+
+00:02:18.640 --> 00:02:23.640
+Chúng tôi đã không sử dụng phần đệm trong
+trường hợp này và chúng tôi đã
+
+00:02:23.640 --> 00:02:28.640
+sử dụng bước tiến là 1, đó là lý do tại sao
+kích thước đầu ra, n out n
+
+00:02:28.640 --> 00:02:33.640
+out, nhỏ hơn một chút so với kích thước đầu
+vào. Đó là 4 x 4 thay vì 6 x 6.
+
+00:02:33.640 --> 00:02:38.640
+Và thay vì chỉ có một trong các bộ lọc 3 x 3 x
+
+00:02:38.640 --> 00:02:43.640
+3 này, bạn có thể có một số bộ lọc nc prime,
+
+00:02:43.640 --> 00:02:49.640
+và nếu bạn có 5 trong số chúng, thì đầu ra sẽ
+
+00:02:49.640 --> 00:02:55.640
+là 4 x 4 x 5, hoặc n out by n out by nc prime.
+
+00:02:55.640 --> 00:02:59.640
+Vì vậy, hãy tìm hiểu chi phí tính toán của
+những gì chúng ta vừa làm là bao nhiêu.
+
+00:02:59.640 --> 00:03:08.140
+Hóa ra tổng số tính toán cần thiết để tính
+toán đầu ra này được tính bằng số
+
+00:03:08.140 --> 00:03:16.640
+tham số bộ lọc, trong trường hợp này là 3 x 3
+x 3, nhân với số vị trí bộ lọc,
+
+00:03:16.640 --> 00:03:23.140
+đó là số vị trí mà chúng ta đặt khối màu vàng
+lớn này, bằng
+
+00:03:23.140 --> 00:03:29.640
+4 x 4, sau đó nhân với số bộ lọc, trong trường
+hợp này là 5.
+
+00:03:29.640 --> 00:03:33.640
+Và bạn có thể tự kiểm tra xem đây có phải là
+tổng số phép nhân
+
+00:03:33.640 --> 00:03:37.640
+chúng ta cần thực hiện hay không, bởi vì tại
+mỗi vị trí chúng
+
+00:03:37.640 --> 00:03:41.640
+ta đặt bộ lọc xuống, chúng ta cần thực hiện
+nhiều phép nhân này,
+
+00:03:41.640 --> 00:03:46.140
+và sau đó chúng tôi có nhiều bộ lọc này. Và
+nếu
+
+00:03:46.140 --> 00:03:50.640
+bạn nhân những con số này ra, kết quả là
+2.160.
+
+00:03:50.640 --> 00:03:53.973
+Vì vậy chúng tôi sẽ quay lại. Bạn sẽ thấy lại
+con số này sau
+
+00:03:53.973 --> 00:03:57.307
+trong video này, khi chúng ta nghĩ ra phép
+convolution có thể
+
+00:03:57.307 --> 00:04:00.640
+phân tách theo chiều sâu, nó sẽ có thể lấy đầu
+vào của nó,
+
+00:04:00.640 --> 00:04:05.640
+một hình ảnh 6 x 6 x 3 và xuất ra bộ kích hoạt
+4 x
+
+00:04:05.640 --> 00:04:10.640
+4 x 5, nhưng với số lượng tính toán ít hơn
+2.160.
+
+00:04:10.640 --> 00:04:12.640
+Chúng ta hãy xem phép convolution có thể phân
+
+00:04:12.640 --> 00:04:14.640
+tách theo chiều sâu thực hiện điều đó như thế
+nào.
+
+00:04:14.640 --> 00:04:18.140
+Ngược lại với phép convolution thông thường mà
+bạn vừa thấy,
+
+00:04:18.140 --> 00:04:21.640
+phép convolution có thể phân tách theo chiều
+sâu có hai bước.
+
+00:04:21.640 --> 00:04:25.640
+Trước tiên, bạn sẽ sử dụng convolution theo
+
+00:04:25.640 --> 00:04:29.640
+chiều sâu, sau đó là convolution theo điểm.
+
+00:04:29.640 --> 00:04:33.140
+Và chính hai bước này cùng nhau tạo nên
+
+00:04:33.140 --> 00:04:36.640
+convolution có thể phân tách theo chiều sâu
+này.
+
+00:04:36.640 --> 00:04:39.640
+Chúng ta hãy xem hai bước này hoạt động như
+thế nào.
+
+00:04:39.640 --> 00:04:43.140
+Đặc biệt, chúng ta hãy tìm hiểu chi tiết về
+cách thức hoạt động
+
+00:04:43.140 --> 00:04:46.640
+của convolution theo chiều sâu, bước đầu tiên
+trong hai bước này.
+
+00:04:46.640 --> 00:04:56.640
+Như trước đây, chúng ta có đầu vào là 6 x 6 x
+3, do đó n x n x nc, có ba kênh.
+
+00:04:56.640 --> 00:05:01.640
+Bộ lọc trong convolution theo chiều sâu sẽ là
+
+00:05:01.640 --> 00:05:06.640
+f x f, không phải f x f x nc, mà chỉ f x f.
+
+00:05:07.640 --> 00:05:15.640
+Và số lượng bộ lọc sẽ là nc, trong trường hợp
+này là 3.
+
+00:05:15.640 --> 00:05:22.140
+Cách bạn tính toán đầu ra 4 x 4 x 3 là bạn áp
+dụng một
+
+00:05:22.140 --> 00:05:28.640
+trong các bộ lọc này cho một trong các kênh
+đầu vào này.
+
+00:05:28.640 --> 00:05:30.640
+Hãy bước qua điều này.
+
+00:05:30.640 --> 00:05:35.640
+Trước tiên, hãy tập trung vào bộ lọc đầu tiên
+trong ba bộ lọc, chỉ bộ lọc màu đỏ.
+
+00:05:35.640 --> 00:05:39.640
+Chúng ta sẽ lấy bộ lọc màu đỏ và đặt nó ở đó.
+
+00:05:39.640 --> 00:05:41.640
+Thực hiện phép nhân 9.
+
+00:05:41.640 --> 00:05:45.140
+Lưu ý rằng chỉ có 9 số bạn cần nhân, không
+phải 27 mà là
+
+00:05:45.140 --> 00:05:48.640
+9, rồi cộng chúng lại và điều đó sẽ cho bạn
+giá trị này.
+
+00:05:48.640 --> 00:05:53.640
+Sau đó dịch chuyển nó sang nhân 9 cặp số tương
+ứng.
+
+00:05:53.640 --> 00:05:55.640
+Điều đó mang lại cho bạn giá trị này.
+
+00:05:55.640 --> 00:05:58.640
+Ở đây, đưa cho bạn điều đó.
+
+00:05:59.640 --> 00:06:08.640
+Và cứ như vậy cho đến khi bạn mất đi 16 giá
+trị này.
+
+00:06:08.640 --> 00:06:13.640
+Tiếp theo, chúng ta chuyển sang kênh thứ hai
+và xem bộ lọc màu xanh lá cây.
+
+00:06:13.640 --> 00:06:19.640
+Bạn đặt bộ lọc màu xanh lá cây ở đó, thực hiện
+9 phép nhân để tính giá trị này.
+
+00:06:19.640 --> 00:06:21.640
+Chuyển nó lên 1 để tính giá trị này.
+
+00:06:21.640 --> 00:06:24.640
+Chuyển nó lên 1, v.v.
+
+00:06:25.640 --> 00:06:29.140
+Và bạn làm điều đó 16 lần cho đến khi tính
+xong tất
+
+00:06:29.140 --> 00:06:32.640
+cả các giá trị này trong kênh thứ hai của đầu
+ra.
+
+00:06:32.640 --> 00:06:34.640
+Cuối cùng, bạn làm điều này cho kênh thứ ba.
+
+00:06:34.640 --> 00:06:36.640
+Có bộ lọc màu xanh.
+
+00:06:36.640 --> 00:06:38.640
+Đặt nó ở đó để tính giá trị này.
+
+00:06:38.640 --> 00:06:45.140
+Chuyển nó qua, dịch chuyển nó qua, dịch chuyển
+nó qua, v.v., cho
+
+00:06:45.140 --> 00:06:51.640
+đến khi bạn tính toán xong tất cả 16 đầu ra
+trong kênh thứ ba đó.
+
+00:06:52.640 --> 00:06:59.640
+Kích thước của đầu ra sau bước này sẽ là n out
+by n out, 4 x 4, by n c,
+
+00:06:59.640 --> 00:07:06.640
+trong đó n c giống với n c này, số kênh trong
+đầu vào ban đầu của bạn.
+
+00:07:06.640 --> 00:07:10.640
+Chúng ta hãy xem chi phí tính toán của những
+gì chúng ta vừa thực hiện.
+
+00:07:10.640 --> 00:07:14.640
+Bởi vì để tạo ra từng giá trị đầu ra này, mỗi
+
+00:07:14.640 --> 00:07:18.640
+giá trị đầu ra 4 x 4 x 3 này cần 9 phép nhân.
+
+00:07:19.640 --> 00:07:27.140
+Tổng chi phí tính toán gấp 3 x 3 lần số vị trí
+bộ lọc, tức là số vị trí mà
+
+00:07:27.140 --> 00:07:34.640
+mỗi bộ lọc này được đặt ở trên cùng của hình
+ảnh bên trái, do đó là 4 x 4.
+
+00:07:34.640 --> 00:07:38.640
+Và cuối cùng nhân với số bộ lọc, là 3.
+
+00:07:39.640 --> 00:07:45.140
+Một cách khác để xem xét điều này là bạn có
+kết quả đầu ra 4 x 4
+
+00:07:45.140 --> 00:07:50.640
+x 3 và với mỗi kết quả đầu ra đó, bạn cần thực
+hiện 9 phép nhân.
+
+00:07:50.640 --> 00:07:56.140
+Vậy tổng chi phí tính toán là 3 nhân 3 nhân 4
+nhân 4 nhân 3,
+
+00:07:56.140 --> 00:08:01.640
+và nếu bạn nhân những con số này với nhau thì
+kết quả là 432.
+
+00:08:02.640 --> 00:08:08.307
+Nhưng chúng tôi vẫn chưa xong. Đây là phần
+convolution theo chiều sâu của
+
+00:08:08.307 --> 00:08:13.973
+convolution có thể phân tách theo chiều sâu.
+Còn một bước nữa, đó là chúng
+
+00:08:13.973 --> 00:08:19.640
+ta cần lấy giá trị trung gian 4 x 4 x 3 này và
+thực hiện thêm một bước nữa.
+
+00:08:20.640 --> 00:08:26.720
+Bước còn lại là lấy tập hợp giá trị 4 x 4 x 3
+này hoặc n out
+
+00:08:26.720 --> 00:08:32.800
+by n out by n c tập hợp giá trị và áp dụng
+convolution theo
+
+00:08:32.800 --> 00:08:38.880
+điểm để có được kết quả mà chúng ta mong muốn,
+sẽ là 4 x 4 x 5.
+
+00:08:39.880 --> 00:08:41.880
+Vì vậy, hãy xem cách convolution theo điểm
+hoạt động như thế nào.
+
+00:08:42.880 --> 00:08:52.380
+Đây là convolution theo điểm. Bạn sẽ lấy tập
+hợp các giá trị trung
+
+00:08:52.380 --> 00:09:01.880
+gian n out by n out by n c và tích hợp nó với
+một bộ lọc 1 x 1 by n c.
+
+00:09:02.880 --> 00:09:08.213
+1 x 1 x 3 trong trường hợp này. Chà, bạn lấy
+bộ lọc màu hồng này,
+
+00:09:08.213 --> 00:09:13.547
+khối 1 x 1 x 3 màu hồng này và áp dụng vị trí
+trên cùng bên trái,
+
+00:09:13.547 --> 00:09:18.880
+thực hiện 3 phép nhân, cộng chúng lại và điều
+đó sẽ cho bạn giá trị này.
+
+00:09:19.880 --> 00:09:26.880
+Chuyển nó lên 1, nhân 3 cặp số, cộng chúng
+lại, sẽ cho bạn giá trị đó, v.v.
+
+00:09:27.880 --> 00:09:33.880
+Và bạn tiếp tục làm như vậy cho đến khi điền
+hết 16 giá trị của kết quả này.
+
+00:09:34.880 --> 00:09:39.880
+Bây giờ, chúng tôi đã thực hiện việc này chỉ
+với một bộ lọc.
+
+00:09:39.880 --> 00:09:44.880
+Để có được đầu ra 4 x 4 khác, nhưng là đầu ra
+4 x 4 x 5
+
+00:09:44.880 --> 00:09:49.880
+chiều, bạn thực sự phải làm điều này với các
+bộ lọc n c prime.
+
+00:09:50.880 --> 00:09:56.547
+Trong trường hợp này, n c prime sẽ được đặt
+thành 5, do đó, với 5
+
+00:09:56.547 --> 00:10:02.213
+trong số các bộ lọc 1 x 1 x 3 này, bạn sẽ có
+kết quả đầu ra 4 x 4 x 5
+
+00:10:02.213 --> 00:10:07.880
+như sau, để cung cấp cho bạn kết quả n out by
+n out by n c nguyên tố.
+
+00:10:08.880 --> 00:10:13.880
+Và do đó, phép convolution theo điểm sẽ cho
+bạn kết quả đầu ra là 4 x 4 x 5.
+
+00:10:14.880 --> 00:10:20.380
+Hãy tính chi phí tính toán của việc chúng ta
+vừa làm. Đối với mỗi giá trị đầu ra
+
+00:10:20.380 --> 00:10:25.880
+4 x 4 x 5 này, chúng tôi phải áp dụng bộ lọc
+màu hồng này cho một phần đầu vào.
+
+00:10:26.880 --> 00:10:33.880
+Và điều đó tốn 3 thao tác, hoặc 1 x 1 x 3, là
+số lượng tham số bộ lọc.
+
+00:10:34.880 --> 00:10:42.880
+Bộ lọc phải được đặt ở 4 x 4 vị trí khác nhau
+và chúng tôi có 5 bộ lọc.
+
+00:10:43.880 --> 00:10:48.880
+Vì vậy, tổng giá trị của những gì chúng ta vừa
+làm ở đây là
+
+00:10:48.880 --> 00:10:53.880
+1 nhân 1 nhân 3 nhân 4 nhân 4 nhân 5, bằng 240
+phép nhân.
+
+00:10:54.880 --> 00:10:59.880
+Trong ví dụ chúng ta vừa xem qua, convolution
+thông thường lấy đầu
+
+00:10:59.880 --> 00:11:04.880
+vào của nó, đầu vào 6 x 6 x 3 và kết thúc bằng
+đầu ra 4 x 4 x 5.
+
+00:11:05.880 --> 00:11:09.213
+Và tương tự đối với convolution có thể phân
+tách theo chiều
+
+00:11:09.213 --> 00:11:12.547
+sâu, ngoại trừ việc chúng tôi đã thực hiện nó
+theo hai bước,
+
+00:11:12.547 --> 00:11:15.880
+với convolution theo chiều sâu, sau đó là
+convolution theo điểm.
+
+00:11:16.880 --> 00:11:21.880
+Bây giờ, chi phí tính toán của tất cả các hoạt
+động này là bao nhiêu?
+
+00:11:22.880 --> 00:11:26.380
+Trong trường hợp convolution thông thường,
+chúng
+
+00:11:26.380 --> 00:11:29.880
+tôi cần 2.160 phép nhân để tính kết quả đầu
+ra.
+
+00:11:30.880 --> 00:11:36.880
+Đối với convolution có thể phân tách theo
+chiều sâu, đầu tiên là bước
+
+00:11:36.880 --> 00:11:42.880
+theo chiều sâu, trong đó chúng ta có 432 phép
+nhân từ trước đó trong
+
+00:11:42.880 --> 00:11:48.880
+video, và sau đó là bước theo điểm, trong đó
+chúng ta có 240 phép nhân.
+
+00:11:49.880 --> 00:11:55.880
+Và như vậy, cộng chúng lại, chúng ta có 672
+phép nhân.
+
+00:11:56.880 --> 00:12:01.380
+Nếu chúng ta nhìn vào tỷ lệ giữa hai số này,
+
+00:12:01.380 --> 00:12:05.880
+672 trên 2160, thì kết quả này là khoảng 0,31.
+
+00:12:06.880 --> 00:12:10.547
+Vì vậy, trong ví dụ này, convolution có thể
+phân tách theo
+
+00:12:10.547 --> 00:12:14.213
+chiều sâu có chi phí tính toán cao hơn khoảng
+31% so với
+
+00:12:14.213 --> 00:12:17.880
+convolution thông thường, do đó tiết kiệm được
+khoảng 3 lần.
+
+00:12:18.880 --> 00:12:26.213
+Các tác giả của bài báo của Mobile Net đã chỉ
+ra rằng nhìn chung, tỷ lệ chi phí
+
+00:12:26.213 --> 00:12:33.547
+của convolution có thể phân tách theo chiều
+sâu so với convolution thông thường,
+
+00:12:33.547 --> 00:12:40.880
+hóa ra bằng 1 trên nC prime cộng với 1 trên f
+bình phương trong trường hợp chung.
+
+00:12:41.880 --> 00:12:44.880
+Và trong trường hợp của chúng ta, đây là 1
+trên 5
+
+00:12:44.880 --> 00:12:47.880
+cộng 1 trên 3 bình phương, hay 1 trên 9, bằng
+0,31.
+
+00:12:48.880 --> 00:12:53.880
+Trong một ví dụ về neural network điển hình
+hơn, nC
+
+00:12:53.880 --> 00:12:58.880
+prime sẽ lớn hơn nhiều, do đó, nó có thể là 1
+trên 512.
+
+00:12:59.880 --> 00:13:04.880
+Nếu bạn có 512 kênh ở đầu ra, cộng với 1 trên
+3 bình phương,
+
+00:13:04.880 --> 00:13:09.880
+đây sẽ là một tham số khá điển hình trong
+neural network của bạn.
+
+00:13:10.880 --> 00:13:13.880
+Cái này thực sự rất nhỏ, và đây là số 19.
+
+00:13:14.880 --> 00:13:20.880
+Và do đó, rất đại khái, convolution có thể
+phân tách theo chiều sâu có thể
+
+00:13:20.880 --> 00:13:26.880
+vào khoảng 1/9 hoặc có thể làm tròn chi phí
+tính toán rẻ hơn khoảng 10 lần.
+
+00:13:27.880 --> 00:13:31.213
+Và đó là lý do tại sao convolution có thể phân
+tách theo chiều
+
+00:13:31.213 --> 00:13:34.547
+sâu như một khối xây dựng của ConvNet cho phép
+bạn thực hiện suy
+
+00:13:34.547 --> 00:13:37.880
+luận hiệu quả hơn nhiều so với sử dụng
+convolution thông thường.
+
+00:13:37.880 --> 00:13:40.880
+Bây giờ, chỉ còn một chi tiết nữa tôi muốn
+
+00:13:40.880 --> 00:13:43.880
+chia sẻ với bạn trước khi kết thúc video này.
+
+00:13:44.880 --> 00:13:51.380
+Trong ví dụ mà chúng ta đã xem qua, đầu vào ở
+đây là 6 x 6 x nC,
+
+00:13:51.380 --> 00:13:57.880
+trong đó nC bằng 3 và do đó bạn có các bộ lọc
+3 x 3 x nC ở đây.
+
+00:13:58.880 --> 00:14:01.380
+Giờ đây, convolution có thể phân tách theo
+chiều
+
+00:14:01.380 --> 00:14:03.880
+sâu hoạt động cho bất kỳ số lượng kênh đầu vào
+nào.
+
+00:14:03.880 --> 00:14:08.880
+Vì vậy, nếu bạn có 6 kênh đầu vào thì nC sẽ
+bằng
+
+00:14:08.880 --> 00:14:13.880
+6 và khi đó bạn cũng sẽ phải có bộ lọc 3 x 3 x
+6.
+
+00:14:14.880 --> 00:14:24.880
+Và đầu ra trung gian sẽ tiếp tục là 4 x 4 nC.
+Số đó trở thành 4 x 4 x 6.
+
+00:14:25.880 --> 00:14:29.880
+Bây giờ, có điều gì đó không ổn với sơ đồ này
+phải
+
+00:14:29.880 --> 00:14:33.880
+không? Tức là nó phải là 3 x 3 x 6 chứ không
+phải 3 x 3 x 3.
+
+00:14:33.880 --> 00:14:38.880
+Nhưng để làm cho sơ đồ trong video tiếp theo
+trông đơn giản hơn
+
+00:14:38.880 --> 00:14:43.880
+một chút, ngay cả khi số lượng kênh lớn hơn 3,
+tôi vẫn sẽ vẽ phép
+
+00:14:43.880 --> 00:14:48.880
+toán convolution theo chiều sâu như thể nó là
+chồng 3 bộ lọc này.
+
+00:14:48.880 --> 00:14:54.547
+Vì vậy, khi bạn nhìn thấy biểu tượng chính xác
+này sau này, hãy coi đó là biểu
+
+00:14:54.547 --> 00:15:00.213
+tượng mà chúng tôi đang sử dụng để biểu thị
+convolution theo chiều sâu, thay vì
+
+00:15:00.213 --> 00:15:05.880
+hiển thị chính xác theo nghĩa đen về số lượng
+kênh của bộ lọc convolution theo chiều sâu.
+
+00:15:05.880 --> 00:15:10.880
+Và tôi sẽ sử dụng một biểu tượng tương tự để
+biểu thị convolution theo điểm.
+
+00:15:10.880 --> 00:15:15.380
+Trong ví dụ này, đầu vào ở đây sẽ là 4 x 4 by
+
+00:15:15.380 --> 00:15:19.880
+nC, vì vậy nó thực sự là giá trị này từ trên
+đây.
+
+00:15:19.880 --> 00:15:25.380
+Và thay vì mở rộng chồng giá trị này thành 1 x
+1 theo nC, tôi
+
+00:15:25.380 --> 00:15:30.880
+sẽ tiếp tục sử dụng bộ bộ lọc màu hồng trông
+giống như thế này.
+
+00:15:30.880 --> 00:15:35.380
+Và ngay cả khi nC lớn hơn nhiều, tôi vẫn sẽ vẽ
+nó như thể nó
+
+00:15:35.380 --> 00:15:39.880
+chỉ có 3 bộ lọc để làm cho một số sơ đồ trông
+đơn giản hơn.
+
+00:15:39.880 --> 00:15:44.880
+Sau đó, điều này có thể cung cấp cho bạn đầu
+ra của bất kỳ thứ nguyên cần thiết
+
+00:15:44.880 --> 00:15:49.880
+nào, chẳng hạn như 4 x 4 x 8 x một số giá trị
+của nC prime trong trường hợp này.
+
+00:15:49.880 --> 00:15:54.880
+Thế là xong. Bạn đã tìm hiểu về convolution có
+thể phân tách theo chiều sâu,
+
+00:15:54.880 --> 00:15:59.880
+bao gồm hai bước chính, convolution theo chiều
+sâu và convolution theo điểm.
+
+00:16:00.880 --> 00:16:04.213
+Và thao tác này có thể được thiết kế để có
+cùng kích thước đầu
+
+00:16:04.213 --> 00:16:07.547
+vào và đầu ra như thao tác convolution thông
+thường, nhưng nó
+
+00:16:07.547 --> 00:16:10.880
+có thể được thực hiện với chi phí tính toán
+thấp hơn nhiều.
+
+00:16:10.880 --> 00:16:14.380
+Bây giờ chúng ta hãy lấy khối xây dựng này và
+sử dụng nó để xây
+
+00:16:14.380 --> 00:16:17.880
+dựng mạng di động. Chúng ta sẽ làm điều đó
+trong video tiếp theo.

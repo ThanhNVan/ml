@@ -1,0 +1,253 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.573
+Trong video trước, chúng tôi đã mô tả mạng nơ-ron nhân tạo L lớp sâu và cũng nói về ký
+
+00:00:07.573 --> 00:00:12.064
+hiệu mà chúng ta sử dụng để mô tả các mạng như vậy.
+
+00:00:12.064 --> 00:00:19.725
+Trong video này, bạn sẽ thấy cách bạn thực hiện truyền xuôi, trong một mạng nơ-ron sâu.
+
+00:00:19.725 --> 00:00:27.298
+Trước tiên hãy cùng xem truyền xuôi sẽ trông như thế nào trong một ví dụ huấn luyện x,
+
+00:00:27.298 --> 00:00:31.701
+và sau đó chúng ta sẽ nói về phiên bản véc tơ hóa,
+
+00:00:31.701 --> 00:00:38.746
+mà ở đó bạn muốn thực hiện truyền xuôi trên toàn bộ tập huấn luyện cùng một lúc.
+
+00:00:38.746 --> 00:00:42.180
+Nhưng với một ví dụ đào tạo duy nhất x,
+
+00:00:42.180 --> 00:00:46.671
+đây sẽ là cách bạn tính kích hoạt của lớp đầu tiên.
+
+00:00:46.671 --> 00:00:52.043
+Đối với lớp đầu tiên này, bạn tính z1 bằng w1 nhân x cộng b1.
+
+00:00:52.043 --> 00:00:58.207
+Vậy là, w1 và b1 là các tham số ảnh hưởng đến kích hoạt trong lớp một.
+
+00:00:58.207 --> 00:01:01.730
+Đây là lớp một của mạng nơ-ron nhân tạo,
+
+00:01:01.730 --> 00:01:06.485
+và sau đó bạn tính kích hoạt cho lớp đó bằng g của z1.
+
+00:01:06.485 --> 00:01:14.058
+Hàm kích hoạt g còn tùy vào bạn đang ở lớp nào và có lẽ là còn tùy vào chỉ số nào được
+
+00:01:14.058 --> 00:01:16.964
+đặt làm hàm kích hoạt từ lớp một.
+
+00:01:16.964 --> 00:01:23.216
+Và nếu bạn làm như vậy, bây giờ bạn đã tính toán kích hoạt cho lớp một.
+
+00:01:23.216 --> 00:01:24.625
+Thế còn lớp hai?
+
+00:01:24.625 --> 00:01:25.506
+Là lớp đó.
+
+00:01:25.506 --> 00:01:29.380
+Và sau đó bạn sẽ tính z2 bằng w2 a1 cộng b2.
+
+00:01:29.380 --> 00:01:35.985
+Sau đó, kích hoạt lớp hai là ma trận Y nhân với kết quả đầu ra của lớp một.
+
+00:01:35.985 --> 00:01:40.564
+Và là giá trị này, cộng với vectơ chệch cho lớp hai.
+
+00:01:40.564 --> 00:01:45.231
+Khi đó a2 bằng với hàm kích hoạt được áp dụng với z2.
+
+00:01:45.231 --> 00:01:46.111
+Đuợc rồi?
+
+00:01:46.111 --> 00:01:48.841
+Và đó là cho lớp hai, và v.v...
+
+00:01:48.841 --> 00:01:52.892
+Cho đến khi bạn đến lớp đầu ra, đó là lớp bốn.
+
+00:01:52.892 --> 00:02:00.377
+Ở đó bạn sẽ có z4 bằng các tham số cho lớp đó nhân với các kích hoạt từ lớp trước đó,
+
+00:02:00.377 --> 00:02:02.490
+cộng với vectơ chệch đó.
+
+00:02:02.490 --> 00:02:05.484
+Và rồi tương tự, a4 bằng g của z4.
+
+00:02:05.484 --> 00:02:12.353
+Đó là cách bạn tính đầu ra dự đoán của bạn, y mũ Và có một điều bạn cần lưu ý,
+
+00:02:12.353 --> 00:02:19.662
+x ở đây cũng bằng a0, bởi vì vectơ tính năng đầu vào x cũng là kích hoạt của lớp 0.
+
+00:02:19.662 --> 00:02:22.040
+Vì vậy, chúng ta gạch đi x.
+
+00:02:22.040 --> 00:02:29.965
+Khi tôi gạch bỏ x và đặt a0 ở đây, thì về cơ bản tất cả các phương trình trông giống nhau.
+
+00:02:29.965 --> 00:02:34.896
+Nguyên tắc chung là zl bằng wl nhân a (l trừ 1) cộng bl.
+
+00:02:34.896 --> 00:02:41.853
+Và sau đó, kích hoạt cho lớp đó là hàm kích hoạt áp dụng với các giá trị của z.
+
+00:02:41.853 --> 00:02:45.463
+Đó là phương trình truyền xuôi tổng quát.
+
+00:02:45.463 --> 00:02:52.244
+Và chúng ta đã thực hiện tất cả điều này trong một ví dụ huấn luyện duy nhất.
+
+00:02:52.244 --> 00:03:00.169
+Thế còn về việc thực hiện nó theo cách véc tơ hóa cho toàn bộ tập huấn luyện cùng một lúc?
+
+00:03:00.169 --> 00:03:04.660
+Các phương trình thì trông khá giống với trước đây.
+
+00:03:04.660 --> 00:03:10.120
+Đối với lớp đầu tiên, bạn sẽ có Z1 bằng w1 nhân X cộng với b1.
+
+00:03:10.120 --> 00:03:12.321
+Khi đó, A1 bằng g của Z1.
+
+00:03:12.321 --> 00:03:14.347
+Hãy nhớ rằng X bằng A0.
+
+00:03:14.347 --> 00:03:21.392
+Đây chỉ là các ví dụ huấn luyện được xếp chồng lên nhau trong các cột khác nhau.
+
+00:03:21.392 --> 00:03:27.027
+Bạn có thể lấy cái này, để tôi gạch đi X, họ có thể đặt A0 ở đó.
+
+00:03:27.027 --> 00:03:33.984
+Sau đó, với lớp tiếp theo, tương tự, Z2 bằng w2 A1 cộng b2 và A2 bằng g của Z2.
+
+00:03:33.984 --> 00:03:40.148
+Chúng ta chỉ lấy các vectơ z hoặc a và cứ thế, và xếp chúng cạnh nhau.
+
+00:03:40.148 --> 00:03:47.633
+Đây là vector z cho ví dụ huấn luyện đầu tiên, vector z cho ví dụ huấn luyện thứ hai,
+
+00:03:47.633 --> 00:03:51.332
+và cứ như vậy, tới ví dụ huấn luyện thứ n,
+
+00:03:51.332 --> 00:03:56.175
+xếp chồng chúng thành cột và gọi cái này là Z viết hoa.
+
+00:03:56.175 --> 00:04:01.194
+Tương tự, đối với A viết hoa, và X viết hoa cũng như vậy.
+
+00:04:01.194 --> 00:04:08.063
+Tất cả các ví dụ huấn luyện là các vectơ cột được xếp chồng từ trái sang phải.
+
+00:04:08.063 --> 00:04:15.108
+Trong quá trình này, bạn sẽ có kết quả y mũ bằng g của Z4, cái này cũng bằng A4.
+
+00:04:15.108 --> 00:04:22.505
+Đó là dự đoán trên tất cả các ví dụ huấn luyện của bạn mà được xếp theo chiều ngang.
+
+00:04:22.505 --> 00:04:26.555
+Nói tóm lại, về ký hiệu, tôi sẽ sửa đổi ở đây.
+
+00:04:26.555 --> 00:04:34.217
+Một ký hiệu cho phép chúng ta thay thế các ký tự z và a viết thường bằng các ký tự viết
+
+00:04:34.217 --> 00:04:38.267
+hoa, ký tự này trông giống như Z viết hoa rồi.
+
+00:04:38.267 --> 00:04:46.017
+Điều này cung cấp cho bạn một phiên bản vector hóa của truyền xuôi mà bạn thực hiện trên
+
+00:04:46.017 --> 00:04:50.772
+toàn bộ tập huấn luyện cùng một lúc, Trong đó A0 là X.
+
+00:04:50.772 --> 00:04:55.351
+Bây giờ, nếu bạn nhìn vào triển khai vector hóa này,
+
+00:04:55.351 --> 00:04:59.402
+thì dường như là sẽ có một vòng lặp For ở đây.
+
+00:04:59.402 --> 00:05:00.722
+for l bằng 1…4.
+
+00:05:00.722 --> 00:05:02.396
+For l bằng 1 tới L.
+
+00:05:02.396 --> 00:05:08.472
+Sau đó, bạn phải tính kích hoạt cho lớp một, rồi lớp hai, rồi lớp ba,
+
+00:05:08.472 --> 00:05:10.321
+và sau đó là lớp bốn.
+
+00:05:10.321 --> 00:05:13.755
+Và dường như có một vòng lặp For ở đây.
+
+00:05:13.755 --> 00:05:18.334
+Tôi biết là khi triển khai các mạng nơ-ron nhân tạo,
+
+00:05:18.334 --> 00:05:23.354
+chúng ta thường muốn loại bỏ các vòng lặp for tường minh.
+
+00:05:23.354 --> 00:05:31.103
+Nhưng ở đây tôi lại không nghĩ là sẽ có bất kỳ cách nào khác thực hiện điều này mà không
+
+00:05:31.103 --> 00:05:33.481
+có vòng lặp For tường minh.
+
+00:05:33.481 --> 00:05:41.054
+Vậy nên khi thực hiện truyền xuôi, việc có vòng lặp For để tính kích hoạt cho lớp một,
+
+00:05:41.054 --> 00:05:45.721
+rồi lớp hai, rồi lớp ba, rồi lớp bốn là hoàn toàn ổn.
+
+00:05:45.721 --> 00:05:53.206
+Không ai biết, và tôi cũng không nghĩ là có cách nào để thực hiện cái này mà không có
+
+00:05:53.206 --> 00:06:00.251
+vòng lặp For đi từ một đến L, từ một đến tổng số lớp trong mạng nơ-ron nhân tạo.
+
+00:06:00.251 --> 00:06:06.151
+Vì vậy, ở đây, việc có một vòng lặp For tường minh là hoàn toàn ổn.
+
+00:06:06.151 --> 00:06:11.522
+Và đó là toàn bộ về ký hiệu cho các mạng nơ-ron nhân tạo sâu,
+
+00:06:11.522 --> 00:06:16.630
+cũng như là cách thực hiện truyền xuôi trong các mạng này.
+
+00:06:16.630 --> 00:06:24.115
+Nếu bạn thấy những điều chúng ta vừa thấy hơi quen thì đó là bởi vì những gì chúng ta
+
+00:06:24.115 --> 00:06:31.688
+đang thấy rất giống với những gì bạn đã thấy trong mạng nơ-ron nhân tạo với một lớp ẩn
+
+00:06:31.688 --> 00:06:36.003
+duy nhất và chỉ là lặp lại nhiều lần hơn mà thôi.
+
+00:06:36.003 --> 00:06:42.607
+Bây giờ, trên thực tế khi chúng ta triển khai một mạng nơ-ron nhân tạo sâu,
+
+00:06:42.607 --> 00:06:50.092
+thì một trong những cách để tăng tỷ lệ thực hiện không lỗi là suy nghĩ một cách có hệ
+
+00:06:50.092 --> 00:06:55.464
+thống và cẩn thận về kích thước ma trận mà bạn đang làm việc.
+
+00:06:55.464 --> 00:07:00.923
+Như vậy, khi tôi đang cố gắng tìm và khắc phục lỗi mã của tôi,
+
+00:07:00.923 --> 00:07:06.383
+tôi sẽ thường lấy một mảnh giấy, và chỉ cần suy nghĩ cẩn thận,
+
+00:07:06.383 --> 00:07:10.522
+về kích thước của ma trận mà tôi đang làm việc.
+
+00:07:10.522 --> 00:07:15.189
+Hãy cùng xem cách làm điều đó, trong video tiếp theo.

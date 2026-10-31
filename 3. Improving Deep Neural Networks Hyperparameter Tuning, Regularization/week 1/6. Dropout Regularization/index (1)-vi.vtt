@@ -1,0 +1,527 @@
+WEBVTT
+
+00:00:00.210 --> 00:00:03.470
+Ngoài việc regularization L2, một kỹ thuật
+
+00:00:03.470 --> 00:00:06.730
+regularization rất mạnh khác được gọi là bỏ
+học.
+
+00:00:06.730 --> 00:00:08.510
+Hãy xem nó hoạt động như thế nào.
+
+00:00:08.510 --> 00:00:10.460
+Giả sử bạn đã huấn luyện một mạng lưới thần
+
+00:00:10.460 --> 00:00:12.410
+kinh giống như mạng bên trái và nó
+overfitting.
+
+00:00:12.410 --> 00:00:14.510
+Đây là những gì bạn làm với việc bỏ học.
+
+00:00:14.510 --> 00:00:16.970
+Hãy để tôi tạo một bản sao của mạng lưới thần
+kinh.
+
+00:00:16.970 --> 00:00:21.650
+Với tình trạng bỏ học, điều chúng ta sẽ làm là
+đi qua từng lớp của
+
+00:00:21.650 --> 00:00:26.330
+mạng và đặt ra một số xác suất loại bỏ một nút
+trong neural network.
+
+00:00:26.330 --> 00:00:32.210
+Vì vậy, giả sử rằng đối với mỗi lớp này, đối
+với mỗi nút, chúng ta sẽ
+
+00:00:32.210 --> 00:00:38.090
+tung một đồng xu và có 0,5 cơ hội giữ mỗi nút
+và 0,5 cơ hội loại bỏ mỗi nút.
+
+00:00:38.090 --> 00:00:42.850
+Vì vậy, sau khi tung đồng xu, có thể chúng ta
+sẽ quyết định loại bỏ các nút đó.
+
+00:00:42.850 --> 00:00:49.570
+Sau đó, những gì bạn làm thực sự là loại bỏ
+tất cả các liên kết gửi đi khỏi nút đó.
+
+00:00:49.570 --> 00:00:53.250
+Vì vậy, bạn kết thúc với một mạng lưới nhỏ
+hơn, thực sự bị thu hẹp lại rất nhiều.
+
+00:00:53.250 --> 00:00:56.330
+Sau đó, bạn thực hiện truyền ngược, huấn luyện
+
+00:00:56.330 --> 00:00:59.410
+một ví dụ này trên mạng đã bị thu hẹp nhiều
+này.
+
+00:00:59.410 --> 00:01:03.410
+Sau đó, trong một ví dụ khác, bạn sẽ tung lại
+một tập hợp đồng xu và
+
+00:01:03.410 --> 00:01:07.410
+giữ một tập hợp nút khác, sau đó loại bỏ hoặc
+loại bỏ tập hợp nút khác.
+
+00:01:07.410 --> 00:01:10.830
+Vì vậy, đối với mỗi ví dụ huấn luyện, bạn sẽ
+huấn
+
+00:01:10.830 --> 00:01:14.250
+luyện nó bằng cách sử dụng một trong các mạng
+rút gọn này.
+
+00:01:14.250 --> 00:01:18.250
+Vì vậy, có vẻ như đây là một kỹ thuật hơi điên
+rồ khi chỉ đi loanh quanh để
+
+00:01:18.250 --> 00:01:22.250
+tiêu diệt các nút một cách ngẫu nhiên, nhưng
+cách này thực sự có hiệu quả.
+
+00:01:22.250 --> 00:01:28.290
+Nhưng bạn có thể tưởng tượng rằng vì bạn đang
+huấn luyện một mạng nhỏ hơn nhiều trên
+
+00:01:28.290 --> 00:01:34.330
+mỗi ví dụ, có thể bạn sẽ hiểu lý do tại sao
+cuối cùng bạn có thể regularization mạng,
+
+00:01:34.330 --> 00:01:38.610
+bởi vì những mạng lưới nhỏ hơn nhiều này đang
+được đào tạo.
+
+00:01:38.610 --> 00:01:41.370
+Vì vậy, hãy xem cách bạn triển khai việc bỏ
+học.
+
+00:01:41.370 --> 00:01:43.330
+Có một số cách để thực hiện bỏ học.
+
+00:01:43.330 --> 00:01:45.450
+Tôi sẽ chỉ cho bạn một kỹ thuật phổ biến
+
+00:01:45.450 --> 00:01:47.570
+nhất, đó là kỹ thuật được gọi là bỏ học ngược.
+
+00:01:47.570 --> 00:01:59.610
+Để hoàn thiện, giả sử chúng ta muốn minh họa
+điều này với lớp L bằng 3.
+
+00:01:59.610 --> 00:02:03.210
+Vì vậy, trong đoạn mã tôi sắp viết, sẽ có một
+loạt số 3 ở đây.
+
+00:02:03.210 --> 00:02:08.210
+Chỉ là tôi sẽ minh họa cách triển khai
+drop-out trong một lớp duy nhất.
+
+00:02:08.210 --> 00:02:16.490
+Vì vậy, những gì chúng ta sẽ làm là đặt vectơ
+D và D3 sẽ là vectơ loại bỏ cho lớp 3.
+
+00:02:16.490 --> 00:02:22.890
+Đó chính là số 3, tức là np.random.rand.
+
+00:02:23.130 --> 00:02:28.170
+Đây sẽ là hình dạng tương tự như A3.
+
+00:02:28.170 --> 00:02:34.410
+Tôi sẽ xem liệu số này có nhỏ hơn một số nào
+đó không, tôi sẽ gọi số này là keepprop.
+
+00:02:34.410 --> 00:02:37.130
+Vậy keepprop là một con số.
+
+00:02:37.130 --> 00:02:42.090
+Trên slide trước là 0,5 nhưng có lẽ bây giờ
+tôi sẽ sử dụng 0,8 trong ví dụ này.
+
+00:02:42.090 --> 00:02:46.890
+Đó sẽ là xác suất để một đơn vị ẩn nhất định
+sẽ được giữ lại.
+
+00:02:46.890 --> 00:02:50.730
+Vì vậy, nếu keepprop bằng 0,8 thì điều này có
+
+00:02:50.730 --> 00:02:54.570
+nghĩa là có 0,2 cơ hội loại bỏ bất kỳ đơn vị
+ẩn nào.
+
+00:02:54.570 --> 00:02:57.670
+Vì vậy, điều này làm là nó tạo ra một ma trận
+ngẫu
+
+00:02:57.670 --> 00:03:00.770
+nhiên và điều này cũng có tác dụng nếu bạn đã
+vector hóa.
+
+00:03:00.770 --> 00:03:06.770
+Vì vậy, D3 sẽ là một ma trận trong đó đối với
+mỗi ví dụ và đối với mỗi đơn
+
+00:03:06.770 --> 00:03:12.770
+vị ẩn, có 0,8 khả năng D3 tương ứng sẽ là một
+và 20% khả năng sẽ bằng 0.
+
+00:03:12.770 --> 00:03:18.670
+Vì vậy, số ngẫu nhiên này nhỏ hơn 0,8, tức là
+0,8 cơ hội là
+
+00:03:18.670 --> 00:03:24.570
+một hoặc đúng và 20% cơ hội là 0,2 cơ hội sai
+hoặc bằng 0.
+
+00:03:24.570 --> 00:03:27.690
+Sau đó, điều bạn sẽ làm là lấy các kích hoạt
+của mình từ lớp
+
+00:03:27.690 --> 00:03:30.810
+thứ ba và chúng ta sẽ chỉ gọi đó là A3 trong
+ví dụ nhỏ này.
+
+00:03:30.810 --> 00:03:34.990
+Vì vậy, A3 là số lần kích hoạt bạn đã tính
+
+00:03:34.990 --> 00:03:39.170
+toán và bạn sẽ đặt A3 bằng với số lần A3 cũ.
+
+00:03:39.170 --> 00:03:41.770
+Vì vậy, đây là phép nhân theo phần tử.
+
+00:03:41.770 --> 00:03:46.290
+Chà, tôi đoán bạn cũng có thể viết cái này là
+A3 nhân bằng D3.
+
+00:03:46.450 --> 00:03:53.590
+Nhưng điều này làm là với mọi phần tử của D3
+bằng 0, và có 20% khả năng mỗi phần
+
+00:03:53.590 --> 00:04:00.730
+tử bằng 0, bạn kết thúc, phép toán nhân này sẽ
+loại bỏ phần tử tương ứng của D3.
+
+00:04:00.730 --> 00:04:04.957
+Nếu bạn làm điều này bằng Python, về mặt kỹ
+thuật, D3 sẽ là một mảng
+
+00:04:04.957 --> 00:04:09.183
+Boolean với các giá trị đúng và sai thay vì
+một và 0, nhưng bạn sẽ nhân
+
+00:04:09.183 --> 00:04:13.410
+lên, phép toán nhân sẽ hoạt động và diễn giải
+các giá trị đúng và sai là một và 0.
+
+00:04:13.410 --> 00:04:16.210
+Nếu bạn tự mình thử điều này bằng Python, bạn
+sẽ thấy.
+
+00:04:16.210 --> 00:04:23.010
+Cuối cùng, chúng ta sẽ lấy A3 và tăng tỷ lệ
+bằng cách chia
+
+00:04:23.010 --> 00:04:29.810
+cho 0,8 hoặc thực sự chia cho tham số heap của
+chúng ta.
+
+00:04:29.810 --> 00:04:32.530
+Vì vậy, hãy để tôi giải thích bước cuối cùng
+này đang làm gì.
+
+00:04:32.530 --> 00:04:39.810
+Giả sử để tranh luận rằng bạn có 50 đơn vị
+hoặc 50 nơ-ron ở lớp ẩn thứ ba.
+
+00:04:39.810 --> 00:04:43.130
+Vì vậy, có thể A3 là 50 theo một chiều hoặc
+
+00:04:43.130 --> 00:04:46.450
+nếu hệ số của bạn có thể là 50 theo M chiều.
+
+00:04:46.450 --> 00:04:52.750
+Vì vậy, nếu bạn có 80% cơ hội giữ chúng, 20%
+cơ hội loại bỏ chúng, điều này
+
+00:04:52.750 --> 00:04:59.050
+có nghĩa là trung bình bạn sẽ có 10 đơn vị bị
+tắt hoặc 10 đơn vị bị loại bỏ.
+
+00:04:59.050 --> 00:05:08.930
+Bây giờ, nếu bạn nhìn vào giá trị của Z4, Z4
+sẽ bằng W4 nhân A3 cộng B4.
+
+00:05:08.930 --> 00:05:13.690
+Và như vậy theo dự đoán, con số này sẽ giảm đi
+20 phần
+
+00:05:13.690 --> 00:05:18.450
+trăm, ý tôi là 20 phần trăm các phần tử của A3
+sẽ bị loại bỏ.
+
+00:05:18.450 --> 00:05:23.450
+Vậy để không làm giảm giá trị kỳ vọng của Z4,
+
+00:05:23.450 --> 00:05:28.450
+điều bạn làm là lấy giá trị này chia cho 0,8,
+
+00:05:28.450 --> 00:05:31.050
+bởi vì điều này, bạn biết đấy, sẽ đúng hoặc
+điều
+
+00:05:31.050 --> 00:05:33.650
+này sẽ tăng trở lại khoảng 20 phần trăm mà bạn
+cần.
+
+00:05:33.650 --> 00:05:37.410
+Vì vậy, không được thay đổi giá trị mong đợi
+của A3.
+
+00:05:37.410 --> 00:05:43.330
+Và dòng này ở đây được gọi là kỹ thuật bỏ học
+ngược.
+
+00:05:43.330 --> 00:05:47.090
+Và tác dụng của nó là bất kể bạn đặt key prop
+thành bao nhiêu, cho dù đó
+
+00:05:47.090 --> 00:05:50.850
+là 0,8 hay 0,9 hay thậm chí là 1, nếu bạn đặt
+nó thành 1 thì sẽ không có
+
+00:05:50.850 --> 00:05:54.610
+hiện tượng bỏ học vì bạn đang giữ mọi thứ hoặc
+0,5 hoặc bất cứ thứ gì.
+
+00:05:54.610 --> 00:05:58.610
+Kỹ thuật bỏ học ngược này, bằng cách chia cho
+key prop,
+
+00:05:58.610 --> 00:06:02.610
+nó đảm bảo rằng giá trị mong đợi của A3 vẫn
+giữ nguyên.
+
+00:06:02.610 --> 00:06:06.103
+Và hóa ra là vào thời điểm thử nghiệm khi bạn
+đang cố gắng đánh giá mạng
+
+00:06:06.103 --> 00:06:09.597
+lưới thần kinh, điều được đề cập ở slide tiếp
+theo, kỹ thuật đảo ngược việc
+
+00:06:09.597 --> 00:06:13.090
+bỏ học này, có một đường thẳng mà tôi đã vẽ
+hộp màu xanh lá cây xung quanh,
+
+00:06:13.090 --> 00:06:17.730
+điều này làm cho thời gian thử nghiệm dễ dàng
+hơn vì bạn gặp ít vấn đề về tỷ lệ hơn.
+
+00:06:17.730 --> 00:06:20.250
+Nhưng cho đến nay, cách thực hiện phổ biến
+nhất của
+
+00:06:20.250 --> 00:06:22.770
+việc bỏ học hiện nay, theo như tôi biết, là bỏ
+học ngược.
+
+00:06:22.770 --> 00:06:24.450
+Tôi khuyên bạn chỉ nên thực hiện điều này.
+
+00:06:24.450 --> 00:06:30.130
+Nhưng có một số lần bỏ học ban đầu đã bỏ lỡ sự
+phân chia này theo dòng hỗ trợ chính.
+
+00:06:30.130 --> 00:06:33.490
+Và tại thời điểm thử nghiệm, thuật toán trở
+nên phức tạp hơn một chút.
+
+00:06:33.490 --> 00:06:36.610
+Nhưng một lần nữa, mọi người có xu hướng không
+sử dụng các phiên bản khác đó.
+
+00:06:36.930 --> 00:06:40.130
+Vì vậy, những gì bạn làm là sử dụng vectơ D.
+
+00:06:40.130 --> 00:06:43.090
+Và bạn nhận thấy rằng đối với các ví dụ huấn
+
+00:06:43.090 --> 00:06:46.050
+luyện khác nhau, bạn loại bỏ các đơn vị ẩn
+khác nhau.
+
+00:06:46.050 --> 00:06:50.650
+Và trên thực tế, nếu bạn thực hiện nhiều lượt
+qua cùng một training set, thì trên các
+
+00:06:50.650 --> 00:06:55.250
+lượt khác nhau qua training set, bạn nên loại
+bỏ ngẫu nhiên các đơn vị ẩn khác nhau.
+
+00:06:55.250 --> 00:07:00.210
+Vì vậy, không phải trong một ví dụ, bạn nên
+tiếp tục loại bỏ các đơn vị ẩn giống nhau.
+
+00:07:00.210 --> 00:07:02.770
+Đó có phải là khi lặp lại một trong số các đơn
+vị
+
+00:07:02.770 --> 00:07:05.330
+gradient descent, bạn có thể loại bỏ một số
+đơn vị ẩn.
+
+00:07:05.330 --> 00:07:09.130
+Và ở lần lặp thứ hai của quá trình
+gradient descent, khi bạn thực hiện
+
+00:07:09.130 --> 00:07:12.930
+training set lần thứ hai, có thể bạn đặt 0 ra
+một mẫu đơn vị ẩn khác.
+
+00:07:12.930 --> 00:07:17.130
+Và vectơ D hoặc D3 cho lớp thứ ba được sử dụng
+để quyết định loại bỏ những
+
+00:07:17.130 --> 00:07:21.330
+gì về 0, cả trong phần chống phía trước cũng
+như phần chống đỡ phía sau.
+
+00:07:21.330 --> 00:07:22.850
+Chúng tôi chỉ đang hiển thị chỗ dựa phía trước
+ở đây.
+
+00:07:22.850 --> 00:07:24.890
+Sau khi đã huấn luyện thuật toán, tại thời
+
+00:07:24.890 --> 00:07:26.930
+điểm thử nghiệm, đây là những gì bạn sẽ làm.
+
+00:07:26.930 --> 00:07:30.530
+Vào thời điểm kiểm tra, bạn được cung cấp một
+số x mà bạn muốn đưa ra dự đoán.
+
+00:07:30.530 --> 00:07:34.330
+Và bằng cách sử dụng ký hiệu tiêu chuẩn của
+chúng tôi, tôi sẽ sử
+
+00:07:34.330 --> 00:07:38.130
+dụng A0, kích hoạt của lớp 0 để biểu thị ví dụ
+thử nghiệm x này.
+
+00:07:38.130 --> 00:07:40.210
+Vì vậy, điều chúng tôi sắp làm là không sử
+
+00:07:40.210 --> 00:07:42.290
+dụng tỷ lệ bỏ học trong thời gian thử nghiệm.
+
+00:07:42.290 --> 00:07:48.690
+Cụ thể, chúng ta sẽ đặt Z1 bằng W1 A0 cộng B1.
+
+00:07:48.690 --> 00:08:05.490
+A1 bằng G1 của Z1, Z2 bằng W2 A1 cộng B2, A2
+bằng, v.v.,
+
+00:08:05.490 --> 00:08:09.810
+cho đến khi bạn đến lớp cuối cùng và sau đó
+bạn đưa ra dự đoán.
+
+00:08:09.810 --> 00:08:12.730
+Nhưng hãy lưu ý rằng tại thời điểm kiểm tra,
+bạn không sử dụng tỷ lệ bỏ
+
+00:08:12.730 --> 00:08:15.650
+học một cách rõ ràng, tức là bạn không tung
+đồng xu một cách ngẫu nhiên.
+
+00:08:15.650 --> 00:08:19.330
+Bạn không phải lật đồng xu để quyết định đơn
+vị ẩn nào sẽ bị loại bỏ.
+
+00:08:20.210 --> 00:08:22.490
+Và đó là bởi vì khi bạn đưa ra dự đoán vào
+thời điểm thử
+
+00:08:22.490 --> 00:08:24.770
+nghiệm, bạn không thực sự muốn kết quả đầu ra
+của mình là ngẫu nhiên.
+
+00:08:25.490 --> 00:08:27.650
+Nếu bạn đang thực hiện bỏ học tại thời điểm
+thử nghiệm,
+
+00:08:27.650 --> 00:08:29.810
+điều đó chỉ làm tăng thêm tiếng ồn cho dự đoán
+của bạn.
+
+00:08:29.810 --> 00:08:34.330
+Về lý thuyết, một điều bạn có thể làm là chạy
+quy trình dự đoán nhiều lần với các
+
+00:08:34.330 --> 00:08:38.850
+đơn vị ẩn khác nhau được loại bỏ ngẫu nhiên và
+sau đó tính trung bình cho chúng.
+
+00:08:38.850 --> 00:08:42.810
+Nhưng cách đó không hiệu quả về mặt tính toán
+và nó mang lại cho bạn kết
+
+00:08:42.810 --> 00:08:46.770
+quả gần như tương tự, kết quả rất, rất giống
+với quy trình cụ thể này.
+
+00:08:46.770 --> 00:08:50.090
+Và chỉ đề cập đến vấn đề bỏ học ngược, hãy nhớ
+bước trên
+
+00:08:50.090 --> 00:08:53.410
+trang trình bày trước đó mà chúng ta đã chia
+cho phần giữ lại.
+
+00:08:53.410 --> 00:08:56.263
+Hiệu quả của việc đó được đảm bảo rằng ngay cả
+khi bạn không triển
+
+00:08:56.263 --> 00:08:59.117
+khai hoạt động bỏ học tại thời điểm thử nghiệm
+để mở rộng quy mô,
+
+00:08:59.117 --> 00:09:01.970
+thì giá trị mong đợi của những lần kích hoạt
+này vẫn không thay đổi.
+
+00:09:01.970 --> 00:09:05.130
+Vì vậy, bạn không cần phải thêm một tham số tỷ
+lệ hài hước vào
+
+00:09:05.130 --> 00:09:08.290
+thời điểm thử nghiệm, khác với khi bạn có
+trong thời gian đào tạo.
+
+00:09:08.850 --> 00:09:10.130
+Thế là bỏ học.
+
+00:09:10.130 --> 00:09:13.010
+Và khi bạn thực hiện điều này trong bài tập
+chính của tuần
+
+00:09:13.010 --> 00:09:15.890
+này, bạn cũng sẽ có được nhiều kinh nghiệm
+trực tiếp hơn về nó.
+
+00:09:16.530 --> 00:09:18.290
+Nhưng tại sao nó thực sự hoạt động?
+
+00:09:18.290 --> 00:09:20.930
+Điều tôi muốn làm trong video tiếp theo là
+cung cấp cho bạn
+
+00:09:20.930 --> 00:09:23.570
+trực giác tốt hơn về những gì việc bỏ học thực
+sự đang làm.
+
+00:09:23.570 --> 00:09:25.170
+Chúng ta hãy chuyển sang video tiếp theo.

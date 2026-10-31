@@ -1,0 +1,219 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.220 --> 00:00:04.220
+So, welcome back.
+
+00:00:04.220 --> 00:00:08.700
+Let's take a look at some techniques that make gradient descent work much better.
+
+00:00:08.700 --> 00:00:13.300
+In this video, you see a technique called feature scaling that will enable gradient
+
+00:00:13.300 --> 00:00:16.180
+descent to run much faster.
+
+00:00:16.180 --> 00:00:20.900
+Let's start by taking a look at the relationship between the size of a feature, that is how
+
+00:00:20.900 --> 00:00:27.020
+big are the numbers for that feature, and the size of its associated parameter.
+
+00:00:27.020 --> 00:00:33.020
+As a concrete example, let's predict the price of a hulls using two features, x1, the
+
+00:00:33.020 --> 00:00:37.460
+size of the hulls, and x2, the number of bedrooms.
+
+00:00:37.460 --> 00:00:45.220
+Let's say that x1 typically ranges from 300 to 2000 square feet, and x2, in the data set,
+
+00:00:45.220 --> 00:00:48.380
+ranges from 0 to 5 bedrooms.
+
+00:00:48.380 --> 00:00:55.660
+So for this example, x1 takes on a relatively large range of values, and x2 takes on a relatively
+
+00:00:55.660 --> 00:00:58.300
+small range of values.
+
+00:00:58.300 --> 00:01:06.780
+Now let's take an example of a hulls that has a size of 2000 square feet, has 5 bedrooms,
+
+00:01:06.780 --> 00:01:11.980
+and a price of 500k or $500,000.
+
+00:01:11.980 --> 00:01:16.340
+For this one training example, what do you think are reasonable values for the size of
+
+00:01:16.340 --> 00:01:20.580
+parameters w1 and w2?
+
+00:01:20.580 --> 00:01:23.940
+Well let's look at one possible set of parameters.
+
+00:01:23.940 --> 00:01:34.260
+Say w1 is 50, and w2 is 0.1, and b is 50 for the purposes of discussion.
+
+00:01:34.260 --> 00:01:44.540
+So in this case, the estimated price in thousands of dollars is 100,000k here, plus 0.5k, plus
+
+00:01:44.540 --> 00:01:50.460
+50k, which is slightly over 100 million dollars.
+
+00:01:50.460 --> 00:01:57.900
+So that's clearly very far from the actual price of $500,000.
+
+00:01:57.900 --> 00:02:03.700
+And so this is not a very good set of parameter choices for w1 and w2.
+
+00:02:03.700 --> 00:02:07.020
+Now let's take a look at another possibility.
+
+00:02:07.020 --> 00:02:15.820
+Say w1 and w2 were the other way around, w1 is 0.1, and w2 is 50, and b is still also
+
+00:02:15.820 --> 00:02:17.420
+50.
+
+00:02:17.420 --> 00:02:26.140
+In this choice of w1 and w2, w1 is relatively small, and w2 is relatively large, 50 is much
+
+00:02:26.140 --> 00:02:28.460
+bigger than 0.1.
+
+00:02:28.460 --> 00:02:38.340
+So here the predicted price is 0.1 times 2000 plus 50 times 5 plus 50.
+
+00:02:38.340 --> 00:02:45.540
+The first term becomes 200k, the second term becomes 250k, and then plus 50.
+
+00:02:45.540 --> 00:02:51.540
+So this version of the model predicts a price of $500,000, which is a much more reasonable
+
+00:02:51.540 --> 00:02:56.700
+estimate, and it happens to be the same price as the true price of the house.
+
+00:02:56.700 --> 00:03:02.780
+So hopefully you might notice that when a possible range of values of a feature is large, like
+
+00:03:02.780 --> 00:03:07.540
+the size in square feet, which goes all the way up to 2000, it's more likely that
+
+00:03:07.540 --> 00:03:14.140
+a good model will learn to choose a relatively small parameter value like 0.1.
+
+00:03:14.540 --> 00:03:20.780
+Likewise, when the possible values of a feature are small, like the number of bedrooms, then
+
+00:03:20.780 --> 00:03:26.580
+a reasonable value for its parameters will be relatively large, like 50.
+
+00:03:26.580 --> 00:03:29.740
+So how does this relate to gradient descent?
+
+00:03:29.740 --> 00:03:36.740
+Well, let's take a look at a scatterplot of the features, where the size in square
+
+00:03:36.820 --> 00:03:44.820
+feet is the horizontal axis, x1, and the number of bedrooms, x2, is on the vertical axis.
+
+00:03:44.820 --> 00:03:50.540
+If you plot the training data, you notice that the horizontal axis is on a much larger scale,
+
+00:03:50.540 --> 00:03:54.820
+or much larger range of values compared to the vertical axis.
+
+00:03:54.820 --> 00:04:01.140
+Next, let's look at how the cost function might look in a contour plot.
+
+00:04:01.140 --> 00:04:08.140
+You might see a contour plot where the horizontal axis has a much narrower range, say between
+
+00:04:08.140 --> 00:04:15.140
+0 and 1, whereas the vertical axis takes on much larger values, say between 10 and 100.
+
+00:04:15.140 --> 00:04:22.260
+So the contours form ovals or ellipses, and they're shorter on one side and longer on
+
+00:04:22.260 --> 00:04:23.860
+the other.
+
+00:04:23.860 --> 00:04:30.260
+And this is because a very small change to w1 can have a very large impact on the estimated
+
+00:04:30.260 --> 00:04:37.260
+price, and thus a very large impact on the cost j, because w1 tends to be multiplied by
+
+00:04:37.580 --> 00:04:41.620
+a very large number, the size in square feet.
+
+00:04:41.620 --> 00:04:48.260
+In contrast, it takes a much larger change in w2 in order to change the predictions much,
+
+00:04:48.260 --> 00:04:54.740
+and thus small changes to w2 don't change the cost function nearly as much.
+
+00:04:54.740 --> 00:04:56.740
+So where does this leave us?
+
+00:04:56.740 --> 00:05:01.700
+This is what might end up happening if you were to run gradient descent, if you were to
+
+00:05:01.700 --> 00:05:04.900
+use your training data as is.
+
+00:05:04.900 --> 00:05:11.220
+Because the contours are so tall and skinny, gradient descent may end up bouncing back and
+
+00:05:11.220 --> 00:05:17.420
+forth for a long time before it can finally find its way to the global minimum.
+
+00:05:17.420 --> 00:05:22.620
+In situations like this, a useful thing to do is to scale the features.
+
+00:05:22.620 --> 00:05:28.700
+This means performing some transformation of your training data so that x1, say, might
+
+00:05:28.700 --> 00:05:35.260
+now range from 0 to 1, and x2 might also range from 0 to 1.
+
+00:05:35.260 --> 00:05:39.940
+So the data points now look more like this, and you might notice that the scale of the
+
+00:05:39.940 --> 00:05:45.180
+plot on the bottom is now quite different than the one on top.
+
+00:05:45.180 --> 00:05:51.540
+The key point is that the rescaled x1 and x2 are both now taking comparable ranges of
+
+00:05:51.540 --> 00:05:54.340
+values to each other.
+
+00:05:54.340 --> 00:06:01.420
+And if you run gradient descent on a cost function defined on this rescaled x1 and x2 using this
+
+00:06:01.420 --> 00:06:07.460
+transform data, then the contours will look more like this, more like circles and less
+
+00:06:07.460 --> 00:06:12.900
+tall and skinny, and gradient descents can find a much more direct path to the global
+
+00:06:12.900 --> 00:06:14.900
+minimum.
+
+00:06:14.900 --> 00:06:20.060
+So to recap, when you have different features that take on very different ranges of values,
+
+00:06:20.060 --> 00:06:24.980
+you can cause gradient descent to run slowly, but rescaling the different features so they
+
+00:06:24.980 --> 00:06:30.740
+all take on comparable range of values can speed up gradient descent significantly.
+
+00:06:30.740 --> 00:06:31.900
+How do you actually do this?
+
+00:06:31.900 --> 00:06:34.060
+Let's take a look at that in the next video.

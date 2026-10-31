@@ -1,0 +1,341 @@
+WEBVTT
+
+1
+00:00:01.430 --> 00:00:05.280
+Trong vài năm gần đây, rất nhiều nhóm machine learning đã nói về việc
+
+2
+00:00:05.280 --> 00:00:09.480
+so sánh các hệ thống machine learning với hiệu suất trình độ của con người.
+
+3
+00:00:09.480 --> 00:00:10.260
+Tại sao lại thế?
+
+4
+00:00:10.260 --> 00:00:12.110
+Tôi nghĩ rằng có hai lý do chính.
+
+5
+00:00:12.110 --> 00:00:15.130
+Đầu tiên là vì những tiến bộ trong deep learning, các
+
+6
+00:00:15.130 --> 00:00:18.170
+thuật toán machine learning đột nhiên hoạt động tốt hơn nhiều và vì vậy
+
+7
+00:00:18.170 --> 00:00:22.170
+nó đã trở nên khả thi hơn nhiều trong rất nhiều lĩnh vực ứng dụng cho các
+
+8
+00:00:22.170 --> 00:00:26.560
+thuật toán machine learning để thực sự trở nên cạnh tranh với hiệu suất của con người.
+
+9
+00:00:26.560 --> 00:00:29.760
+Thứ hai, nó chỉ ra rằng quy trình thiết kế và
+
+10
+00:00:29.760 --> 00:00:33.500
+xây dựng một hệ thống machine learning, quy trình làm việc hiệu quả hơn nhiều
+
+11
+00:00:33.500 --> 00:00:36.550
+khi bạn đang cố gắng làm điều gì đó mà con người cũng có thể làm.
+
+12
+00:00:36.550 --> 00:00:40.450
+Vì vậy, trong những thiết lập đó, nó trở nên tự nhiên để nói về so sánh, hoặc
+
+13
+00:00:40.450 --> 00:00:43.200
+cố gắng để bắt chước hiệu suất của con người.
+
+14
+00:00:43.200 --> 00:00:45.110
+Hãy xem một vài ví dụ về ý nghĩa của điều này.
+
+15
+00:00:46.250 --> 00:00:50.090
+Tôi đã nhìn thấy trên rất nhiều nhiệm vụ machine learning mà khi bạn làm việc trên một vấn đề theo
+
+16
+00:00:50.090 --> 00:00:56.060
+thời gian, vì vậy trục x, thời gian, điều này có thể là nhiều tháng hoặc thậm chí nhiều năm
+
+17
+00:00:56.060 --> 00:00:59.965
+qua đó một số nhóm hoặc một số cộng đồng nghiên cứu đang làm việc trên một vấn đề.
+
+18
+00:00:59.965 --> 00:01:07.540
+Tiến độ có xu hướng tương đối nhanh khi bạn tiếp cận hiệu suất của con người.
+
+19
+00:01:07.540 --> 00:01:12.115
+Nhưng sau đó một thời gian, thuật toán vượt qua hiệu suất của con người và
+
+20
+00:01:12.115 --> 00:01:14.998
+sau đó tiến bộ và độ chính xác thực sự chậm lại.
+
+21
+00:01:14.998 --> 00:01:17.140
+Và có thể nó tiếp tục trở nên tốt hơn nhưng
+
+22
+00:01:17.140 --> 00:01:21.560
+sau khi vượt qua hiệu suất của con người, nó vẫn có thể trở nên tốt hơn, nhưng hiệu suất,
+
+23
+00:01:21.560 --> 00:01:26.420
+độ dốc của độ chính xác tăng nhanh như thế nào, thường chậm lại.
+
+24
+00:01:26.420 --> 00:01:31.450
+Và hy vọng là nó đạt được một số mức độ tối ưu về mặt lý thuyết.
+
+25
+00:01:32.730 --> 00:01:37.704
+Và theo thời gian, khi bạn tiếp tục đào tạo thuật toán,
+
+26
+00:01:37.704 --> 00:01:42.792
+có thể các mô hình lớn hơn và lớn hơn về dữ liệu ngày càng nhiều,
+
+27
+00:01:42.792 --> 00:01:49.915
+hiệu suất tiếp cận nhưng không bao giờ vượt qua giới hạn lý thuyết nào
+
+28
+00:01:49.915 --> 00:01:53.900
+đó, được gọi là lỗi tối ưu Bayes.
+
+29
+00:01:53.900 --> 00:01:57.048
+Vì vậy, Bayes lỗi tối ưu, hãy nghĩ về điều này như là lỗi tốt nhất có thể.
+
+30
+00:01:59.946 --> 00:02:02.247
+Và đó chỉ là cách cho
+
+31
+00:02:02.247 --> 00:02:08.258
+bất kỳ hàm ánh xạ từ x đến y để vượt qua một mức độ chính xác nhất định.
+
+32
+00:02:08.258 --> 00:02:14.678
+Vì vậy, ví dụ, để nhận dạng giọng nói, nếu x là clip âm thanh, một số âm thanh chỉ
+
+33
+00:02:14.678 --> 00:02:20.022
+ồn ào đến mức không thể nói được những gì trong phiên mã chính xác.
+
+34
+00:02:20.022 --> 00:02:23.790
+Vì vậy, lỗi hoàn hảo có thể không phải là 100%.
+
+35
+00:02:23.790 --> 00:02:25.150
+Hoặc để nhận dạng mèo.
+
+36
+00:02:25.150 --> 00:02:29.945
+Có lẽ một số hình ảnh quá mờ,
+
+37
+00:02:29.945 --> 00:02:34.705
+đến nỗi bất cứ ai hoặc bất cứ điều gì không thể nói được có hay không có một con mèo trong bức ảnh đó.
+
+38
+00:02:34.705 --> 00:02:39.195
+Vì vậy, mức độ chính xác hoàn hảo có thể không phải là 100%.
+
+39
+00:02:39.195 --> 00:02:44.655
+Và sai số tối ưu Bayes, hay sai số tối ưu Bayes, hay đôi khi sai số Bayes nói
+
+40
+00:02:44.655 --> 00:02:51.065
+ngắn gọn, là hàm lý thuyết tốt nhất để ánh xạ từ x đến y
+
+41
+00:02:52.330 --> 00:02:53.770
+Điều đó không bao giờ có thể vượt qua được.
+
+42
+00:02:56.180 --> 00:03:00.290
+Vì vậy, không có gì ngạc nhiên khi dòng màu tím này, không có vấn đề bao nhiêu năm bạn
+
+43
+00:03:00.290 --> 00:03:05.330
+làm việc trên một vấn đề bạn không bao giờ có thể vượt qua lỗi Bayes, Bayes lỗi tối ưu.
+
+44
+00:03:05.330 --> 00:03:08.670
+Và nó chỉ ra rằng sự tiến bộ thường khá nhanh
+
+45
+00:03:08.670 --> 00:03:10.910
+cho đến khi bạn vượt qua hiệu suất của con người.
+
+46
+00:03:12.010 --> 00:03:16.180
+Và đôi khi nó chậm lại sau khi bạn vượt qua hiệu suất của con người.
+
+47
+00:03:16.180 --> 00:03:18.150
+Và tôi nghĩ có hai lý do cho
+
+48
+00:03:18.150 --> 00:03:22.490
+điều đó, vì lý do tại sao tiến bộ thường chậm lại khi bạn vượt qua hiệu suất của con người.
+
+49
+00:03:22.490 --> 00:03:25.740
+Một lý do là hiệu suất ở mức độ con người là dành cho
+
+50
+00:03:25.740 --> 00:03:28.640
+nhiều nhiệm vụ không xa lỗi tối ưu của Bayes.
+
+51
+00:03:28.640 --> 00:03:32.040
+Mọi người rất giỏi nhìn vào hình ảnh và nói nếu có một con mèo hay
+
+52
+00:03:32.040 --> 00:03:34.810
+nghe âm thanh và sao chép nó.
+
+53
+00:03:34.810 --> 00:03:38.920
+Vì vậy, vào thời điểm bạn vượt qua hiệu suất của con người có lẽ không có nhiều cơ
+
+54
+00:03:38.920 --> 00:03:41.030
+sở đầu để vẫn cải thiện.
+
+55
+00:03:42.390 --> 00:03:46.677
+Nhưng lý do thứ hai là miễn là hiệu suất của bạn tồi tệ hơn hiệu suất ở mức độ con người
+
+56
+00:03:46.677 --> 00:03:50.776
+, thì thực sự có một số công cụ nhất định bạn có thể sử dụng để cải thiện
+
+57
+00:03:50.776 --> 00:03:55.340
+hiệu suất khó sử dụng hơn một khi bạn đã vượt qua hiệu suất ở mức độ con người.
+
+58
+00:03:55.340 --> 00:03:57.541
+Vậy đây là những gì tôi muốn nói.
+
+59
+00:03:59.980 --> 00:04:02.407
+Đối với những nhiệm vụ mà con người khá giỏi, và điều
+
+60
+00:04:02.407 --> 00:04:07.066
+này bao gồm việc nhìn vào hình ảnh và nhận ra mọi thứ, hay nghe âm thanh,
+
+61
+00:04:07.066 --> 00:04:11.480
+hay đọc ngôn ngữ, những nhiệm vụ dữ liệu thực sự tự nhiên mà con người thường rất giỏi.
+
+62
+00:04:11.480 --> 00:04:16.344
+Đối với những nhiệm vụ mà con người giỏi, miễn là thuật toán machine learning của bạn
+
+63
+00:04:16.344 --> 00:04:20.426
+vẫn còn tồi tệ hơn con người, bạn có thể nhận được dữ liệu dán nhãn từ con người.
+
+64
+00:04:20.426 --> 00:04:25.055
+Đó là bạn có thể yêu cầu mọi người, yêu cầu con người cao hơn, dán nhãn ví dụ cho bạn để
+
+65
+00:04:25.055 --> 00:04:29.560
+bạn có thể có thêm dữ liệu để cung cấp cho thuật toán học tập của bạn.
+
+66
+00:04:29.560 --> 00:04:33.010
+Một cái gì đó chúng ta sẽ nói vào tuần tới là phân tích lỗi thủ công.
+
+67
+00:04:33.010 --> 00:04:37.290
+Nhưng miễn là con người vẫn hoạt động tốt hơn bất kỳ thuật toán nào khác, bạn có thể
+
+68
+00:04:37.290 --> 00:04:41.010
+yêu cầu mọi người nhìn vào những ví dụ mà thuật toán
+
+69
+00:04:41.010 --> 00:04:44.270
+của bạn bị sai, và cố gắng tìm hiểu về lý do tại sao một người làm đúng nhưng thuật toán lại sai.
+
+70
+00:04:44.270 --> 00:04:47.130
+Và chúng ta sẽ thấy tuần tới rằng điều này giúp cải thiện hiệu suất của thuật toán của bạn.
+
+71
+00:04:48.230 --> 00:04:51.220
+Và bạn cũng có thể có được một phân tích tốt hơn về sự thiên vị và
+
+72
+00:04:51.220 --> 00:04:53.240
+variance mà chúng ta sẽ nói về một chút.
+
+73
+00:04:53.240 --> 00:04:56.810
+Nhưng miễn là thuật toán của bạn vẫn còn làm tồi tệ hơn sau đó con người
+
+74
+00:04:56.810 --> 00:05:00.290
+bạn có những chiến thuật quan trọng để cải thiện thuật toán của bạn.
+
+75
+00:05:00.290 --> 00:05:03.540
+Trong khi một khi thuật toán của bạn đang làm tốt hơn con người,
+
+76
+00:05:03.540 --> 00:05:06.140
+thì ba chiến thuật này sẽ khó áp dụng hơn.
+
+77
+00:05:07.250 --> 00:05:11.931
+Vì vậy, đây có lẽ là một lý do khác tại sao so sánh với hiệu suất của con người
+
+78
+00:05:11.931 --> 00:05:15.360
+là hữu ích, đặc biệt là về các nhiệm vụ mà con người làm tốt.
+
+79
+00:05:17.665 --> 00:05:21.860
+Và tại sao các thuật toán machine learning có xu hướng thực sự tốt trong việc
+
+80
+00:05:21.860 --> 00:05:25.590
+cố gắng tái tạo các nhiệm vụ mà mọi người có thể làm và bắt kịp và có
+
+81
+00:05:25.590 --> 00:05:29.690
+thể vượt qua một chút hiệu suất của con người.
+
+82
+00:05:29.690 --> 00:05:34.129
+Đặc biệt, mặc dù bạn biết thiên vị là gì và variance là gì, nó chỉ ra
+
+83
+00:05:34.129 --> 00:05:38.373
+rằng biết con người có thể làm tốt như thế nào trong một nhiệm vụ có thể giúp bạn hiểu rõ hơn
+
+84
+00:05:38.373 --> 00:05:43.430
+bao nhiêu bạn nên cố gắng để giảm thiên vị và bao nhiêu bạn nên cố gắng để giảm variance.
+
+85
+00:05:43.430 --> 00:05:45.810
+Tôi muốn cho bạn xem một ví dụ về điều này trong đoạn video tiếp theo.

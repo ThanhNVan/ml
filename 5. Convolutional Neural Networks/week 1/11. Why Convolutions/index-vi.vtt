@@ -1,0 +1,613 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.385
+Đối với video cuối cùng cho tuần này,
+
+2
+00:00:02.385 --> 00:00:05.520
+chúng ta sẽ nói một chút về lý do tại sao convolution lại
+
+3
+00:00:05.520 --> 00:00:08.990
+hữu ích khi mọi người đưa chúng vào neural network của mình.
+
+4
+00:00:08.990 --> 00:00:13.890
+Và cuối cùng, ta sẽ nói ngắn gọn về cách kết hợp tất cả chúng lại với nhau và cách
+
+5
+00:00:13.890 --> 00:00:20.160
+mọi người có thể huấn luyện neural network convolution khi mọi người có training set (training set) có nhãn.
+
+6
+00:00:20.160 --> 00:00:23.610
+Tôi nghĩ có hai ưu điểm chính của
+
+7
+00:00:23.610 --> 00:00:29.091
+các layer convolution chỉ sử dụng các layer được kết nối đầy đủ.
+
+8
+00:00:29.091 --> 00:00:34.075
+Và lợi thế là chia sẻ tham số và kết nối thưa.
+
+9
+00:00:34.075 --> 00:00:36.097
+Hãy để tôi minh họa bằng một ví dụ.
+
+10
+00:00:36.097 --> 00:00:42.915
+Giả sử mọi người có hình ảnh kích thước 32 x 32 x 3,
+
+11
+00:00:42.915 --> 00:00:49.040
+và nó thực ra là từ ví dụ từ video trước,
+
+12
+00:00:49.040 --> 00:00:54.945
+nhưng giả sử mọi người sử dụng bộ lọc 5 x 5 với sáu bộ lọc.
+
+13
+00:00:54.945 --> 00:01:04.887
+Và do đó, ta sẽ nhận được đầu ra kích thước 28 x 28 x 6.
+
+14
+00:01:04.887 --> 00:01:07.938
+vậy, 32 x 32 x 3 là 3.072,
+
+15
+00:01:07.938 --> 00:01:17.320
+và 28 x 28 x 6 nếu mọi người nhân tất cả các số đó thì được 4,704.
+
+16
+00:01:17.320 --> 00:01:24.049
+Và vậy, nếu mọi người định tạo một neural network với 3.072 unit trong một layer,
+
+17
+00:01:24.049 --> 00:01:27.995
+và với 4.704 unit trong layer tiếp theo,
+
+18
+00:01:27.995 --> 00:01:31.205
+và nếu mọi người kết nối tất cả những nơ ron này
+
+19
+00:01:31.205 --> 00:01:32.650
+sau đó là ma trận trọng số,
+
+20
+00:01:32.650 --> 00:01:35.624
+số tham số trong ma trận trọng số sẽ là 3,072
+
+21
+00:01:35.624 --> 00:01:42.175
+nhân 4,704 tức là khoảng 14 triệu.
+
+22
+00:01:42.175 --> 00:01:44.950
+vậy, đó là rất nhiều tham số để huấn luyện.
+
+23
+00:01:44.950 --> 00:01:49.455
+Và ngày nay mọi người có thể huấn luyện neural network với nhiều hơn 14 triệu tham số,
+
+24
+00:01:49.455 --> 00:01:52.543
+nhưng nhớ rằng đây chỉ là một hình ảnh nhỏ xinh,
+
+25
+00:01:52.543 --> 00:01:54.985
+mà có rất nhiều tham số để huấn luyện.
+
+26
+00:01:54.985 --> 00:02:00.030
+Và tất nhiên, nếu đây là hình ảnh 1.000 x 1.000,
+
+27
+00:02:00.030 --> 00:02:04.920
+thì ma trận hiển thị của mọi người sẽ trở nên lớn đến mức không nhìn thấy hết được
+
+28
+00:02:04.920 --> 00:02:10.020
+Nhưng nếu mọi người nhìn vào số lượng tham số trong layer convolution này,
+
+29
+00:02:10.020 --> 00:02:12.710
+mỗi bộ lọc là 5 x 5.
+
+30
+00:02:12.710 --> 00:02:15.385
+vậy, mỗi bộ lọc có 25 tham số,
+
+31
+00:02:15.385 --> 00:02:19.120
+cộng với một tham số thiên vị gồm 26 tham số cho mỗi bộ lọc,
+
+32
+00:02:19.120 --> 00:02:21.280
+và ta có sáu bộ lọc, vậy,
+
+33
+00:02:21.280 --> 00:02:23.800
+tổng số tham số là,
+
+34
+00:02:23.800 --> 00:02:26.605
+bằng 156 tham số.
+
+35
+00:02:26.605 --> 00:02:31.360
+Và do đó, số lượng tham số trong layer conv này vẫn còn khá ít.
+
+36
+00:02:31.360 --> 00:02:37.965
+Và lý do mà CNN có khá ít tham số, thực ra là có hai lý do.
+
+37
+00:02:37.965 --> 00:02:40.110
+Một là chia sẻ tham số.
+
+38
+00:02:40.110 --> 00:02:43.915
+Và việc chia sẻ tham số được phát triển nhờ sự quan sát
+
+39
+00:02:43.915 --> 00:02:47.575
+máy dò đặc điểm như máy dò cạnh dọc,
+
+40
+00:02:47.575 --> 00:02:51.098
+vì nó hữu ích trong một phần của hình ảnh nên nó cũng có thể hữu ích trong một phần khác của hình ảnh.
+
+41
+00:02:51.098 --> 00:02:52.435
+Điều đó có nghĩa là,
+
+42
+00:02:52.435 --> 00:02:56.635
+nếu mọi người đã tìm ra, bộ lọc 3 x 3 để phát hiện các cạnh dọc chẳng hạn,
+
+43
+00:02:56.635 --> 00:03:01.765
+thì mọi người có thể áp dụng bộ lọc 3 x 3 đó ở đây,
+
+44
+00:03:01.765 --> 00:03:03.755
+và sau đó chuyển sang vị trí tiếp theo,
+
+45
+00:03:03.755 --> 00:03:06.220
+và vị trí tiếp theo, v.v.
+
+46
+00:03:06.220 --> 00:03:09.040
+Và như vậy, mỗi máy dò đặc điểm này,
+
+47
+00:03:09.040 --> 00:03:13.510
+mỗi đầu ra này có thể sử dụng các tham số giống nhau trong rất nhiều
+
+48
+00:03:13.510 --> 00:03:17.140
+vị trí khác nhau trong hình ảnh đầu vào của mọi người để
+
+49
+00:03:17.140 --> 00:03:21.825
+phát hiện một cạnh dọc hoặc một số đặc điểm khác chẳng hạn.
+
+50
+00:03:21.825 --> 00:03:25.885
+Và tôi nghĩ điều này đúng với các đặc điểm cấp thấp như các cạnh,
+
+51
+00:03:25.885 --> 00:03:28.990
+cũng như các đặc điểm cấp cao hơn, như có thể,
+
+52
+00:03:28.990 --> 00:03:32.865
+phát hiện mắt để biểu thị có một khuôn mặt hoặc một con mèo hoặc một cái gì đó ở đó.
+
+53
+00:03:32.865 --> 00:03:34.640
+Nhưng với việc chia sẻ ở trong trường hợp này
+
+54
+00:03:34.640 --> 00:03:39.455
+dùng 9 tham số giống nhau để tính toán tất cả 16 loại nước này,
+
+55
+00:03:39.455 --> 00:03:43.620
+là một trong những cách giảm số lượng tham số.
+
+56
+00:03:43.620 --> 00:03:47.590
+Và nó cũng có vẻ trực quan rằng một máy phát hiện đặc điểm
+
+57
+00:03:47.590 --> 00:03:52.075
+giống như một máy phát hiện cạnh dọc tính toán góc trên bên trái của hình ảnh.
+
+58
+00:03:52.075 --> 00:03:55.476
+đặc điểm tương tự có vẻ như cũng sẽ hữu ích,
+
+59
+00:03:55.476 --> 00:03:59.280
+có thể sẽ hữu ích cho góc dưới bên phải của hình ảnh.
+
+60
+00:03:59.280 --> 00:04:00.910
+vậy, có thể mọi người không cần học
+
+61
+00:04:00.910 --> 00:04:02.320
+máy phát hiện đặc điểm riêng biệt cho
+
+62
+00:04:02.320 --> 00:04:05.140
+góc trên bên trái và góc dưới bên phải của hình ảnh.
+
+63
+00:04:05.140 --> 00:04:07.435
+Và có thể mọi người có một tập dữ liệu mà mọi người có
+
+64
+00:04:07.435 --> 00:04:12.087
+góc trên bên trái và góc dưới bên phải có sự phân bố khác nhau, vậy,
+
+65
+00:04:12.087 --> 00:04:15.660
+chúng có thể trông hơi khác một chút nhưng thế là đủ giống nhau rồi
+
+66
+00:04:15.660 --> 00:04:20.185
+chúng đang dùng chung máy phát hiện đặc điểm trên toàn bộ hình ảnh, cũng ổn.
+
+67
+00:04:20.185 --> 00:04:23.800
+Cách thứ hai mà CNN có thể
+
+68
+00:04:23.800 --> 00:04:27.485
+có tương đối ít tham số là do có các kết nối thưa.
+
+69
+00:04:27.485 --> 00:04:28.779
+vậy, ý tôi là như thế này
+
+70
+00:04:28.779 --> 00:04:30.400
+nếu mọi người nhìn vào số 0,
+
+71
+00:04:30.400 --> 00:04:32.980
+nó được tính toán thông qua convolution 3 x 3.
+
+72
+00:04:32.980 --> 00:04:38.350
+Và do đó, nó chỉ phụ thuộc vào lưới hoặc ô đầu vào 3 x 3 này
+
+73
+00:04:38.350 --> 00:04:43.900
+vậy, nó giống như thể unit đầu ra này ở bên phải chỉ được kết nối
+
+74
+00:04:43.900 --> 00:04:50.155
+9 trong số 6 x 6, 36 đặc điểm đầu vào.
+
+75
+00:04:50.155 --> 00:04:54.015
+Và đặc biệt, phần còn lại của các giá trị pixel này,
+
+76
+00:04:54.015 --> 00:05:02.395
+tất cả các giá trị pixel này không có bất kỳ ảnh hưởng nào đến đầu ra khác.
+
+77
+00:05:02.395 --> 00:05:04.945
+vậy, đó là định nghĩa của sự thưa thớt của các kết nối.
+
+78
+00:05:04.945 --> 00:05:15.585
+Một ví dụ khác nữa là, đầu ra này chỉ phụ thuộc vào chín đặc điểm đầu vào này.
+
+79
+00:05:15.585 --> 00:05:20.293
+Và như thể chỉ có 9 đặc điểm đầu vào đó được kết nối với đầu ra này,
+
+80
+00:05:20.293 --> 00:05:23.431
+và các pixel khác hoàn toàn không ảnh hưởng đến đầu ra này.
+
+81
+00:05:23.431 --> 00:05:25.825
+Và do đó, thông qua hai cơ chế này,
+
+82
+00:05:25.825 --> 00:05:30.310
+mạng nơron có ít tham số hơn rất nhiều, điều này cho phép nó
+
+83
+00:05:30.310 --> 00:05:35.380
+được huấn luyện với các ô huấn luyện nhỏ hơn và ít có xu hướng lớn hơn 30.
+
+84
+00:05:35.380 --> 00:05:37.445
+Và vậy, đôi khi mọi người cũng nghe về
+
+85
+00:05:37.445 --> 00:05:42.245
+neural network convolution rất tốt trong việc thu thập bất biến dịch.
+
+86
+00:05:42.245 --> 00:05:44.725
+Và đó là quan sát cho thấy
+
+87
+00:05:44.725 --> 00:05:48.170
+một bức ảnh của một con mèo đã dịch chuyển một vài pixel sang bên phải,
+
+88
+00:05:48.170 --> 00:05:50.735
+thì rõ ràng vẫn là một con mèo.
+
+89
+00:05:50.735 --> 00:05:58.715
+Và cấu trúc tích hợp giúp neural network mã hóa thực tế rằng một hình ảnh
+
+90
+00:05:58.715 --> 00:06:02.600
+bị dịch chuyển một vài pixel sẽ dẫn đến các đặc điểm khá giống nhau và
+
+91
+00:06:02.600 --> 00:06:07.515
+có lẽ nên được gán cùng một nhãn hình bầu dục.
+
+92
+00:06:07.515 --> 00:06:10.468
+Và thực tế là mọi người đang áp dụng cho cùng một bộ lọc,
+
+93
+00:06:10.468 --> 00:06:13.130
+biết tất cả các vị trí của hình ảnh,
+
+94
+00:06:13.130 --> 00:06:16.255
+cả ở layer đầu và layer sau
+
+95
+00:06:16.255 --> 00:06:20.060
+giúp neural network tự động học để trở nên
+
+96
+00:06:20.060 --> 00:06:28.320
+mạnh mẽ hơn hoặc để nắm bắt tốt hơn thuộc tính mong muốn của bất biến dịch.
+
+97
+00:06:28.320 --> 00:06:32.415
+vậy, đây có thể là một vài lý do tại sao
+
+98
+00:06:32.415 --> 00:06:37.320
+convolution hoặc neural network convolution hoạt động rất tốt trong thị giác máy tính.
+
+99
+00:06:37.320 --> 00:06:43.150
+Cuối cùng, hãy kết hợp tất cả lại với nhau và xem mọi người có thể huấn luyện một trong những mạng này như thế nào.
+
+100
+00:06:43.150 --> 00:06:45.980
+Giả sử mọi người muốn tạo một máy dò mèo và mọi người
+
+101
+00:06:45.980 --> 00:06:48.715
+có một tập hợp huấn luyện được gắn nhãn như sau,
+
+102
+00:06:48.715 --> 00:06:52.180
+bây giờ, X là một hình ảnh.
+
+103
+00:06:52.180 --> 00:06:54.650
+Và chữ y có thể là nhãn nhị phân,
+
+104
+00:06:54.650 --> 00:06:57.645
+hoặc một trong số các K.
+
+105
+00:06:57.645 --> 00:07:02.090
+Và giả sử mọi người đã chọn cấu trúc neural network convolution,
+
+106
+00:07:02.090 --> 00:07:06.468
+có thể được chèn vào hình ảnh và sau đó có các layer nơ ron convolution và pulling layer
+
+107
+00:07:06.468 --> 00:07:09.310
+và sau đó là một số layer được kết nối đầy đủ
+
+108
+00:07:09.310 --> 00:07:13.880
+tiếp theo là đầu ra phần mềm sau đó vận hành Y mũ.
+
+109
+00:07:13.880 --> 00:07:20.165
+Các layer conv và các layer được kết nối đầy đủ sẽ có các tham số khác nhau,
+
+110
+00:07:20.165 --> 00:07:23.213
+W, cũng như tham số B của bias.
+
+111
+00:07:23.213 --> 00:07:26.780
+Do đó, bất kỳ cài đặt tham số nào,
+
+112
+00:07:26.780 --> 00:07:32.540
+cho phép mọi người xác định một cost function (cost fuction) tương tự như những gì chúng ta đã thấy trong các khóa học trước,
+
+113
+00:07:32.540 --> 00:07:37.648
+nơi chúng ta đã khởi tạo ngẫu nhiên các tham số W và B.
+
+114
+00:07:37.648 --> 00:07:40.237
+mọi người có thể tính J,
+
+115
+00:07:40.237 --> 00:07:46.645
+là tổng số tổn thất của các dự đoán neural network trên toàn bộ tập hợp huấn luyện của mọi người,
+
+116
+00:07:46.645 --> 00:07:50.880
+có thể chia nó cho M. vậy,
+
+117
+00:07:50.880 --> 00:07:52.555
+để huấn luyện neural network này,
+
+118
+00:07:52.555 --> 00:07:56.210
+thì mọi người cần sử dụng thuật toán tối ưu gradient descent hoặc một số
+
+119
+00:07:56.210 --> 00:07:59.795
+thuật toán như, động lượng gradient descent,
+
+120
+00:07:59.795 --> 00:08:03.447
+hoặc RMSProp hoặc Adam, hoặc thứ gì khác,
+
+121
+00:08:03.447 --> 00:08:05.900
+để tối ưu hóa tất cả các tham số của
+
+122
+00:08:05.900 --> 00:08:09.220
+mạng nơron để cố gắng giảm cost function J.
+
+123
+00:08:09.220 --> 00:08:11.110
+Và mọi người thấy rằng nếu mọi người làm điều này,
+
+124
+00:08:11.110 --> 00:08:18.759
+mọi người có thể xây dựng một máy dò mèo rất hiệu quả hoặc một số máy dò khác.
+
+125
+00:08:18.759 --> 00:08:21.700
+vậy, xin chúc mừng mọi người đã hoàn thành video của tuần này.
+
+126
+00:08:21.700 --> 00:08:25.550
+Bây giờ mọi người đã thấy tất cả các khối xây dựng cơ bản của một neural network convolution,
+
+127
+00:08:25.550 --> 00:08:30.415
+và cách kết hợp chúng thành một hệ thống nhận dạng hình ảnh hiệu quả.
+
+128
+00:08:30.415 --> 00:08:32.095
+Trong các bài tập của bài học tuần này,
+
+129
+00:08:32.095 --> 00:08:34.310
+Tôi nghĩ tất cả những lý thuyết này sẽ trở nên cụ thể hơn,
+
+130
+00:08:34.310 --> 00:08:36.610
+và mọi người sẽ có cơ hội thực hành tự triển khai
+
+131
+00:08:36.610 --> 00:08:39.805
+những điều này và tự thấy được hiệu quả của nó.
+
+132
+00:08:39.805 --> 00:08:43.835
+Tuần tới, chúng ta sẽ tiếp tục đi sâu hơn vào neural network convolution.
+
+133
+00:08:43.835 --> 00:08:45.730
+Tôi đã đề cập trước đó, rằng có rất nhiều
+
+134
+00:08:45.730 --> 00:08:48.115
+siêu tham số trong neural network convolution.
+
+135
+00:08:48.115 --> 00:08:49.420
+vậy, trong tuần tới, tôi muốn
+
+136
+00:08:49.420 --> 00:08:52.000
+chỉ cho mọi người một vài ví dụ cụ thể về một số
+
+137
+00:08:52.000 --> 00:08:54.680
+neural network convolution hiệu quả nhất,
+
+138
+00:08:54.680 --> 00:08:57.010
+để mọi người có thể bắt đầu nhận ra các mô hình
+
+139
+00:08:57.010 --> 00:09:00.055
+về loại kiến trúc mạng nào là hiệu quả.
+
+140
+00:09:00.055 --> 00:09:04.360
+Và thường thì, người ta sẽ chỉ sử dụng kiến trúc mà
+
+141
+00:09:04.360 --> 00:09:05.885
+người khác đã tìm thấy và xuất bản trong
+
+142
+00:09:05.885 --> 00:09:08.995
+một bài báo nghiên cứu và cứ sử dụng nó cho ứng dụng của mọi người.
+
+143
+00:09:08.995 --> 00:09:12.055
+Và như vậy, bằng cách xem một số ví dụ cụ thể hơn vào tuần tới,
+
+144
+00:09:12.055 --> 00:09:15.470
+mọi người cũng học cách làm tốt hơn.
+
+145
+00:09:15.470 --> 00:09:16.690
+Và hơn thế nữa, vào tuần tới,
+
+146
+00:09:16.690 --> 00:09:21.520
+chúng ta cũng sẽ có được trực giác về điều gì làm cho mạng convolution hoạt động tốt,
+
+147
+00:09:21.520 --> 00:09:23.160
+và sau đó trong phần còn lại của khóa học,
+
+148
+00:09:23.160 --> 00:09:27.475
+chúng ta cũng sẽ thấy nhiều ứng dụng thị giác máy tính khác như,
+
+149
+00:09:27.475 --> 00:09:30.170
+object detection và neural style transfer (chuyển phong cách hình ảnh)
+
+150
+00:09:30.170 --> 00:09:34.070
+Cách chúng tạo ra các loại hình tác phẩm nghệ thuật mới bằng cách sử dụng tập hợp các thuật toán này.
+
+151
+00:09:34.070 --> 00:09:35.564
+vậy, video tuần này đến đây là hết,
+
+152
+00:09:35.564 --> 00:09:37.530
+chúc mọi người làm bài tập tốt,
+
+153
+00:09:37.530 --> 00:09:39.660
+Tôi mong được gặp mọi người vào tuần tới.

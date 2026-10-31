@@ -1,0 +1,77 @@
+Chào mừng trở lại. Trong video này, Trong video này,chúng ta sẽ
+nói về cách tính đạo hàm để triển khai Gradient Descent
+cho hồi quy logistic. Bạn sẽ học được những
+kiến thức cần thiết. Đó là, các phương trình
+quan trọng cần thiết để thực hiện Gradient descent
+cho hồi quy logistic. Trong video này, tôi muốn thực hiện
+phép tính này bằng đồ thị tính toán. Tôi phải thừa nhận là việc
+sử dụng đồ thị tính toán là hơi quá mức cần thiết để tạo ra
+Gradient descent cho hồi quy logistic, nhưng tôi muốn giải thích
+mọi thứ theo cách này để bạn làm quen với
+những ý tưởng này, tôi hy vọng là nó sẽ dễ hiểu hơn một chút khi
+chúng ta học về các mạng nơ-ron nhân tạo hoàn chỉnh. Hãy cùng nghiên cứu kỹ lưỡng về
+gradient descent cho hồi quy logistic. Tóm lại, chúng ta đã thiết lập
+hồi quy logistic như sau, dự đoán của bạn, y_mũ,
+được định nghĩa như sau, và z là như thế này. Nếu bây giờ chúng ta chỉ tập trung vào
+một ví dụ, thì hàm loss (hàm mất mát), hoặc là trong ví dụ đó, được định nghĩa như sau, trong đó a là đầu ra
+của hồi quy logistic, và y là nhãn thật sự. Hãy viết nó ra dưới dạng đồ thị
+tính toán và trong ví dụ này, giả sử chúng ta chỉ có
+hai tính năng, x1 và x2. Để tính z, chúng ta sẽ cần nhập w1, w2 và b, ngoài các
+giá trị tính năng x1, x2. Trong một đồ thị
+tính toán, những cái này dùng để tính z,
+z bằng w1x1 + w2x2 + b, vẽ hộp hình chữ nhật bao quanh. Sau đó, chúng ta tính y_mũ, bằng a = Sigma_của_z, đây là bước tiếp theo trong
+đồ thị tính toán, và cuối cùng, chúng ta tính L(a,y) và tôi sẽ không chép
+lại công thức lần nữa. Trong hồi quy logistic, chúng ta
+sẽ muốn sửa đổi các tham số, w và b, để giảm hàm loss
+(hàm mất mát) này. Chúng tôi đã mô tả
+bước truyền xuôi về cách tính hàm loss trong một
+ví dụ huấn luyện duy nhất, bây giờ chúng ta sẽ nói về cách bạn có thể
+tính các đạo hàm theo hướng ngược lại. Đây là một phiên bản
+sơ đồ sạch đẹp. Bởi vì chúng ta muốn tính các
+đạo hàm liên quan đến hàm loss này nên điều đầu tiên chúng ta
+muốn làm khi tính ngược là tính đạo hàm của
+hàm loss này với tập lệnh ở đó, với biến a. Vì vậy, trong mã, bạn chỉ cần sử dụng
+“da” để biểu diễn biến này. Trên thực tế, nếu bạn
+quen với giải tích, bạn có thể chỉ ra rằng kết quả
+của cái này là y/a + (1-y)/(1-a). Và bạn làm điều đó bằng cách
+lấy công thức cho hàm loss và, nếu bạn quen với giải tích, bạn có thể tính
+đạo hàm đối với biến a, và bạn có được công thức này. Nhưng nếu bạn không quen với
+giải tích thì cũng đừng lo lắng về nó. Chúng tôi sẽ cung cấp
+các dạng đạo hàm, mà bạn cần, trong
+suốt khóa học này. Nếu bạn là một
+chuyên gia về giải tích, tôi mong bạn sẽ tìm
+công thức của hàm loss từ video trước và thử lấy đạo hàm
+với biến a sử dụng giải tích, nhưng nếu bạn không có đủ kiến thức về
+giải tích để làm điều đó thì cũng đừng lo lắng. Bây giờ, sau khi tính
+được số lượng da này và đạo hàm hoặc biến alpha
+cuối cùng của bạn với biến a, sau đó bạn có thể tính ngược lại. Thực tế là bạn có thể hiển thị dz, đây là tên biến, và đây là đạo hàm của hàm loss, dL/dz, bạn có thể viết hàm loss với a và y rõ ràng
+là tham số hay không, đúng chứ? Cả hai loại ký hiệu đều
+được chấp nhận như nhau. Chúng ta có thể chỉ ra rằng
+điều này tương đương với a-y. Đây chỉ là một số diễn giải cho
+những bạn chuyên về giải tích, nếu bạn không phải chuyên gia
+về giải tích thì đừng lo lắng quá. Nhưng hóa ra, dL/dz, có thể được biểu thị dưới
+dạng dL/da nhân da/dz, và hóa ra da/dz, bằng a nhân với (1-a), và với dL/da , chúng ta
+đã thực hiện trước đây, nếu bạn lấy hai lượng này, dL/da, là cái này, cùng với da/dz, là cái này, và chỉ cần lấy hai lượng
+này và nhân chúng với nhau. Bạn có thể chỉ ra rằng phương trình
+được đơn giản hóa thành a-y. Đó là cách bạn lấy
+được công thức này, và đây chính là quy tắc chuỗi mà
+nhanh chóng tóm gọn biểu mẫu. Hãy tự mình làm phép tính đó
+nếu bạn có kiến thức về giải tích, nhưng nếu bạn không có thì tất cả
+những gì bạn cần biết là bạn có thể tính dz bằng a-y và chúng tôi đã
+thực hiện phép tính đó cho bạn. Sau đó, bước cuối cùng trong
+tính toán đó là quay trở lại tính số lượng cần thiết
+để thay đổi w và b. Cụ thể là, bạn có thể chỉ ra
+rằng đạo hàm với biến w1 và “dw1”,bằng x1 nhân dz. Sau đó, tương tự như vậy, dw2, là
+số lượng bạn muốn thay đổi w2, bằng x2 nhân dz nhân b, xin lỗi, nhân dB, bằng dz. Nếu bạn muốn thực hiện
+gradient descent trong ví dụ này, bạn sẽ làm như sau; bạn sẽ sử dụng công thức
+này để tính dz, và sau đó sử dụng các
+công thức này để tính dw1, dw2, và db, và sau đó bạn
+thực hiện các cập nhật này. w1 được cập nhật thành w1 trừ đi (tỷ lệ học tập alpha nhân dw1). w2 được cập nhật giống như vậy, và b được đặt là b trừ đi
+(tốc độ học tập alpha nhân với db). Và vì vậy, đây sẽ là một bước của
+gradient descent trong một ví dụ duy nhất. Bạn thấy được cách
+tính đạo hàm và thực hiện gradient descent cho hồi quy
+logistic trong một ví dụ đào tạo duy nhất. Nhưng đào tạo mô hình
+hồi quy logistic, bạn không chỉ có một ví dụ đào tạo
+mà bạn có m ví dụ huấn luyện. Ở video tiếp theo, hãy xem cách bạn có thể tiếp thu những
+ý tưởng này và áp dụng chúng vào việc học, không chỉ từ một ví dụ, mà là từ toàn bộ
+tập huấn luyện.

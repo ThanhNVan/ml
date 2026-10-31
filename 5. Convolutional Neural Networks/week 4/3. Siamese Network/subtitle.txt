@@ -1,0 +1,53 @@
+Công việc của hàm d,
+mà bạn đã học trong video trước, là nhập hai mặt và cho bạn biết
+giống nhau hay khác nhau như thế nào. Một cách làm điều này là
+sử dụng mạng Siamese. Chúng ta cùng xem nào. Bạn đã quen nhìn thấy những bức ảnh về
+CNN (mạng nơ ron tích chập) như thế này khi bạn nhập vào một hình ảnh, giả sử x1. Và qua một chuỗi
+convolutional (tích chập) và pooling (gộp) và fully connected layers (tầng kết nối đầy đủ),
+kết thúc bằng một vectơ đặc trưng (feature vector) như vậy. Và đôi khi nó dẫn đến đơn vị softmax (softmax unit)
+để phân loại (classification). Chúng ta sẽ không sử dụng điều đó trong video này. Thay vào đó, chúng ta sẽ tập trung
+vào vectơ này, giả sử là 128 số được tính toán bởi một số tầng
+kết nối đầy đủ nằm sâu hơn trong mạng. Và tôi sẽ đặt tên cho danh sách 128 số
+này. Tôi sẽ gọi đây là f(x1), và bạn nên coi f(x1) là
+mã hóa của hình ảnh đầu vào x1. Nó lấy hình ảnh đầu vào,
+đây là hình ảnh của Kian, và đang biểu diễn lại nó
+dưới dạng véc tơ 128 số. Cách bạn có thể xây dựng hệ thống nhận dạng khuôn mặt
+là nếu bạn muốn so sánh hai hình ảnh, giả sử hình ảnh đầu tiên
+này với hình ảnh thứ hai ở đây. Những gì bạn có thể làm là cung cấp hình ảnh
+thứ hai này cho cùng một mạng nơ-ron với các tham số giống nhau và
+nhận được một vectơ khác gồm 128 số, mã hóa bức tranh thứ hai này. Tôi sẽ gọi đây là bức tranh thứ hai. Tôi sẽ gọi đây là mã hóa
+của bức ảnh thứ hai f(x2), và ở đây tôi đang sử dụng x1 và
+x2 chỉ để biểu thị hai hình ảnh đầu vào. không nhất thiết phải là mẫu
+đầu tiên và mẫu thứ hai trong tập training của bạn. Nó có thể là hai hình ảnh bất kỳ nào. Cuối cùng, nếu bạn tin rằng
+mã hóa này biểu diễn tốt hai hình ảnh này,
+điều bạn có thể làm là xác định hình ảnh của khoảng cách giữa x1 và x2 là tiêu chuẩn của sự khác biệt giữa các bảng mã của hai hình ảnh này. Vì vậy, ý tưởng mà để chạy hai CNN giống hệt nhau, trên hai
+đầu vào khác nhau và sau đó so sánh chúng, đôi khi nó được gọi là kiến trúc mạng nơ-ron
+Siamese. Và rất nhiều ý tưởng mà tôi
+đang trình bày ở đây đến từ bài báo này của Yaniv Taigman,
+Ming Yang, Marc'Aurelio Ranzato, và Lior Wolf trong hệ thống nghiên cứu
+mà họ phát triển có tên là DeepFace. Và nhiều ý tưởng mà tôi đang trình bày ở đây
+đến từ một bài báo của Yaniv Taigman, Ming Yang, Marc'Aurelio Ranzato, và Lior Wolf trong một hệ thống mà họ
+phát triển có tên là DeepFace. Vậy làm cách nào để train (huấn luyện) mạng nơ-ron
+Siamese này? Hãy nhớ rằng hai mạng nơ-ron này
+có các tham số giống nhau. Những gì bạn phải làm là
+train mạng nơ ron để mã hóa mà nó
+tính toán dẫn đến một hàm d mà cho bạn biết khi nào hai ảnh
+là của cùng một người. Chính thức hơn, các tham số của mạng nơron
+xác định một mã hóa f(xi). Với bất kỳ hình ảnh đầu vào xi nào, mạng nơ-ron xuất ra bảng mã
+128 chiều f(xi). Chính thức hơn,
+điều bạn muốn làm là tìm hiểu các tham số để nếu hai hình ảnh, xi và
+xj, là của cùng một người, thì bạn muốn khoảng cách giữa
+các mã hóa của chúng nhỏ. Và trong slide trước,
+tôi đang sử dụng x1 và x2, nhưng nó có thể là bất kỳ cặp xi và
+xj nào từ tập training của bạn. Và ngược lại, nếu xi và
+xj là của hai người khác nhau, thì bạn muốn khoảng cách giữa
+các mã hóa của chúng lớn. Vì vậy, khi bạn thay đổi các tham số trong tất cả
+các tầng của mạng nơron, bạn kết thúc với các mã hóa khác nhau. Và những gì bạn có thể làm là
+sử dụng lan truyền ngược (back propagation) và thay đổi tất cả các tham số đó để
+đảm bảo rằng các điều kiện này được thỏa mãn. Vậy là bạn đã tìm hiểu về kiến trúc mạng Siamese
+và hiểu bạn muốn
+mạng nơ-ron xuất ra cho bạn gì
+khi bạn muốn mã hóa tốt. Nhưng làm thế nào để bạn thực sự
+xác định một hàm mục tiêu (objective function) để làm mạng nơ-ron học
+làm những gì chúng ta vừa thảo luận ở đây? Hãy xem cách bạn có thể làm điều đó trong video
+tiếp theo bằng cách sử dụng hàm triplet loss.

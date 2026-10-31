@@ -1,0 +1,324 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.590 --> 00:00:06.590
+In this video, I want to help you gain an intuitive understanding of calculus and of derivatives.
+
+00:00:06.590 --> 00:00:11.590
+Now, maybe you're thinking that you haven't seen calculus since your college days,
+
+00:00:11.590 --> 00:00:15.590
+and depending on when you graduated, maybe that was quite some time back.
+
+00:00:15.590 --> 00:00:18.590
+Now, if that's what you're thinking, don't worry.
+
+00:00:18.590 --> 00:00:23.590
+You don't need a deep understanding of calculus in order to apply neural networks
+
+00:00:23.590 --> 00:00:25.590
+and deep learning very effectively.
+
+00:00:25.590 --> 00:00:29.590
+So if you're watching this video or some of the later videos and you're wondering,
+
+00:00:29.590 --> 00:00:33.590
+wow, is this stuff really for me? This calculus looks really complicated.
+
+00:00:33.590 --> 00:00:36.590
+My advice to you is the following, which is that watch the videos,
+
+00:00:36.590 --> 00:00:40.590
+and then if you could do the homework and complete the programming homework successfully,
+
+00:00:40.590 --> 00:00:42.590
+then you can apply deep learning.
+
+00:00:42.590 --> 00:00:45.590
+In fact, what you see later is that in week four,
+
+00:00:45.590 --> 00:00:49.590
+we'll define a couple of types of functions that will enable you to encapsulate
+
+00:00:49.590 --> 00:00:52.590
+everything that needs to be done with respect to calculus.
+
+00:00:52.590 --> 00:00:56.590
+These functions are called forward functions and backward functions that you learn about
+
+00:00:56.590 --> 00:01:00.590
+that lets you put everything you need to know about calculus into these functions
+
+00:01:00.590 --> 00:01:03.590
+so that you don't need to worry about them anymore beyond that.
+
+00:01:03.590 --> 00:01:06.590
+But I thought that in this foray into deep learning,
+
+00:01:06.590 --> 00:01:10.590
+that this week we should open up the box and peer a little bit further
+
+00:01:10.590 --> 00:01:12.590
+into the details of calculus.
+
+00:01:12.590 --> 00:01:15.590
+But really, all you need is an intuitive understanding of this
+
+00:01:15.590 --> 00:01:18.590
+in order to build and successfully apply these algorithms.
+
+00:01:18.590 --> 00:01:23.590
+And finally, if you are among that maybe smaller group of people
+
+00:01:23.590 --> 00:01:27.590
+that are expert in calculus, if you're very familiar with calculus of derivatives,
+
+00:01:27.590 --> 00:01:29.590
+it's probably okay for you to skip this video.
+
+00:01:29.590 --> 00:01:35.590
+But for everyone else, let's dive in and try to get an intuitive understanding of derivatives.
+
+00:01:35.590 --> 00:01:40.590
+I've plotted here the function f of a equals 3a, so it's just a straight line.
+
+00:01:40.590 --> 00:01:44.590
+To gain intuition about derivatives, let's look at a few points on this function.
+
+00:01:44.590 --> 00:01:47.590
+Let's say that a is equal to 2.
+
+00:01:47.590 --> 00:01:52.590
+In that case, f of a, which is equal to 3 times a, is equal to 6.
+
+00:01:52.590 --> 00:01:57.590
+So if a is equal to 2, then f of a will be equal to 6.
+
+00:01:57.590 --> 00:02:01.590
+Let's say we give the value of a just a little bit of a nudge.
+
+00:02:01.590 --> 00:02:06.590
+I'm going to just bump up a little bit so that it's now 2.001.
+
+00:02:06.590 --> 00:02:10.590
+So I'm going to give a tiny little nudge to the right.
+
+00:02:10.590 --> 00:02:13.590
+So now it's, let's say, 2.001.
+
+00:02:13.590 --> 00:02:15.590
+This plot isn't to scale.
+
+00:02:15.590 --> 00:02:20.590
+2.001, the 0.001 difference is too small to show on this plot.
+
+00:02:20.590 --> 00:02:22.590
+Let's give a little nudge to the right.
+
+00:02:22.590 --> 00:02:27.590
+Now f of a is equal to 3 times that, so 6.003.
+
+00:02:27.590 --> 00:02:29.590
+So plot this over here.
+
+00:02:29.590 --> 00:02:30.590
+This is not to scale.
+
+00:02:30.590 --> 00:02:33.590
+This is 6.003.
+
+00:02:33.590 --> 00:02:37.590
+So if you look at this little triangle here, I'm highlighting in green,
+
+00:02:37.590 --> 00:02:42.590
+what we see is that if I nudge a 0.001 to the right,
+
+00:02:42.590 --> 00:02:47.590
+then f of a goes up by 0.003.
+
+00:02:47.590 --> 00:02:51.590
+The amount that f of a went up is 3 times as big as the amount
+
+00:02:51.590 --> 00:02:53.590
+that I nudged a to the right.
+
+00:02:53.590 --> 00:02:58.590
+So we're going to say that the slope or the derivative
+
+00:02:58.590 --> 00:03:03.590
+of the function f of a at a equals 2, or when a equals 2,
+
+00:03:03.590 --> 00:03:05.590
+the slope is 3.
+
+00:03:05.590 --> 00:03:08.590
+And you know the term derivative basically means slope.
+
+00:03:08.590 --> 00:03:12.590
+It's just that derivative sounds like a scary, more intimidating word,
+
+00:03:12.590 --> 00:03:16.590
+whereas slope is a friendlier way to describe the concept of derivative.
+
+00:03:16.590 --> 00:03:19.590
+So whenever you hear derivative, just think slope of the function.
+
+00:03:19.590 --> 00:03:26.590
+And more formally, the slope is defined as the height divided by the width
+
+00:03:26.590 --> 00:03:28.590
+of this little triangle that we have in green.
+
+00:03:28.590 --> 00:03:33.590
+So this is 0.003 over 0.001.
+
+00:03:33.590 --> 00:03:37.590
+And the fact that the slope is equal to 3 or the derivative is equal to 3
+
+00:03:37.590 --> 00:03:41.590
+just represents the fact that when you nudge a to the right by 0.001
+
+00:03:41.590 --> 00:03:47.590
+by a tiny amount, the amount that f of a goes up is 3 times as big
+
+00:03:47.590 --> 00:03:51.590
+as the amount that you nudged a in the horizontal direction.
+
+00:03:51.590 --> 00:03:53.590
+So that's all that the slope of a line is.
+
+00:03:53.590 --> 00:03:56.590
+Now let's look at this function at a different point.
+
+00:03:56.590 --> 00:03:59.590
+Let's say that a is now equal to 5.
+
+00:03:59.590 --> 00:04:02.590
+In that case, f of a, 3 times a, is equal to 15.
+
+00:04:02.590 --> 00:04:05.590
+So let's say I again give a a nudge to the right.
+
+00:04:05.590 --> 00:04:08.590
+A tiny little nudge is now bumped up to 5.001.
+
+00:04:08.590 --> 00:04:14.590
+f of a is 3 times that, so f of a is equal to 15.003.
+
+00:04:14.590 --> 00:04:20.590
+And so once again, when I bump a to the right, nudge a to the right by 0.001,
+
+00:04:20.590 --> 00:04:22.590
+f of a goes up 3 times as much.
+
+00:04:22.590 --> 00:04:27.590
+So the slope again at a equals 5 is also 3.
+
+00:04:27.590 --> 00:04:32.590
+So the way we write this, that the slope of the function f is equal to 3,
+
+00:04:32.590 --> 00:04:36.590
+we say d f of a d a.
+
+00:04:36.590 --> 00:04:40.590
+And this just means the slope of the function f of a,
+
+00:04:40.590 --> 00:04:44.590
+when you nudge the variable a a tiny little amount,
+
+00:04:44.590 --> 00:04:47.590
+this is equal to 3.
+
+00:04:47.590 --> 00:04:51.590
+And an alternative way to write this divergent formula is as follows.
+
+00:04:51.590 --> 00:04:57.590
+You can also write this as d d a of f of a.
+
+00:04:57.590 --> 00:05:01.590
+So whether you put the f of a on top or whether you write it down here,
+
+00:05:01.590 --> 00:05:02.590
+it doesn't matter.
+
+00:05:02.590 --> 00:05:07.590
+But all this equation means is that if I nudge a to the right a little bit,
+
+00:05:07.590 --> 00:05:13.590
+I expect f of a to go up by 3 times as much as I nudge the value of little a.
+
+00:05:13.590 --> 00:05:17.590
+Now for this video, I explained derivatives,
+
+00:05:17.590 --> 00:05:24.590
+talking about what happens if we nudge the variable a by 0.001.
+
+00:05:24.590 --> 00:05:28.590
+If you want the formal mathematical definition of the derivatives,
+
+00:05:28.590 --> 00:05:33.590
+derivatives are defined with an even smaller value of how much you nudge a to the right.
+
+00:05:33.590 --> 00:05:40.590
+So it's not 0.001, it's not 0.001, it's not 0.0000.
+
+00:05:40.590 --> 00:05:43.590
+And so on 1, it's sort of even smaller than that.
+
+00:05:43.590 --> 00:05:46.590
+And the formal definition of derivatives says,
+
+00:05:46.590 --> 00:05:50.590
+what if you nudge a to the right by an infinitesimal amount,
+
+00:05:50.590 --> 00:05:53.590
+basically an infinitely tiny tiny amount.
+
+00:05:53.590 --> 00:06:00.590
+If you do that, does f of a go up 3 times as much as whatever was the tiny tiny tiny amount that you nudge a to the right.
+
+00:06:00.590 --> 00:06:04.590
+So that's actually the formal definition of a derivative.
+
+00:06:04.590 --> 00:06:06.590
+But for the purposes of our intuitive understanding,
+
+00:06:06.590 --> 00:06:12.590
+we're just going to talk about nudging a to the right by this small amount, 0.001,
+
+00:06:12.590 --> 00:06:17.590
+even if 0.001 isn't exactly tiny tiny infinitesimal.
+
+00:06:17.590 --> 00:06:23.590
+Now one property of the derivative is that no matter where you take the slope of this function,
+
+00:06:23.590 --> 00:06:28.590
+it is equal to 3. Whether a is equal to 2 or a is equal to 5,
+
+00:06:28.590 --> 00:06:33.590
+the slope of this function is equal to 3, meaning that whatever is the value of a,
+
+00:06:33.590 --> 00:06:39.590
+if you increase it by 0.001, the value of f of a goes up by 3 times as much.
+
+00:06:39.590 --> 00:06:41.590
+So this function has the same slope everywhere.
+
+00:06:41.590 --> 00:06:46.590
+And one way to see that is that wherever you draw this little triangle,
+
+00:06:46.590 --> 00:06:52.590
+the height divided by the width always has a ratio of 3 to 1.
+
+00:06:52.590 --> 00:06:57.590
+So I hope this gives you a sense of what the slope, what the derivative of the function means for a straight line,
+
+00:06:57.590 --> 00:07:01.590
+where in this example, the slope of the function was 3 everywhere.
+
+00:07:01.590 --> 00:07:05.590
+In the next video, let's take a look at a slightly more complex example
+
+00:07:05.590 --> 00:07:09.590
+where the slope to the function can be different at different points on the function.

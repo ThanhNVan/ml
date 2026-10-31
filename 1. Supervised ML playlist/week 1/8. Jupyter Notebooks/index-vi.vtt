@@ -1,0 +1,264 @@
+WEBVTT
+
+00:00:03.060 --> 00:00:06.560
+Cho đến nay trong các video, bạn đã thấy
+
+00:00:06.560 --> 00:00:10.060
+supervised learning và unsupervised learning
+cũng như các ví dụ về cả hai.
+
+00:00:10.060 --> 00:00:15.560
+Để bạn hiểu sâu hơn về những khái niệm này,
+tôi muốn mời bạn tham gia lớp học
+
+00:00:15.560 --> 00:00:21.060
+này để xem, chạy và sau này có thể tự viết mã
+để triển khai những khái niệm này.
+
+00:00:21.060 --> 00:00:24.560
+Công cụ được các nhà thực hành khoa học dữ
+liệu và
+
+00:00:24.560 --> 00:00:28.060
+machine learning sử dụng rộng rãi nhất hiện
+nay là Jupyter Notebook.
+
+00:00:28.060 --> 00:00:31.060
+Đây là môi trường mặc định mà nhiều người
+trong
+
+00:00:31.060 --> 00:00:34.060
+chúng ta sử dụng để viết mã, thử nghiệm và thử
+mọi thứ.
+
+00:00:34.060 --> 00:00:39.060
+Và vì vậy, trong lớp học này, ngay tại trình
+duyệt web của bạn, bạn cũng có thể
+
+00:00:39.060 --> 00:00:44.060
+sử dụng môi trường Jupyter Notebook để tự mình
+thử nghiệm một số ý tưởng này.
+
+00:00:44.060 --> 00:00:48.060
+Bạn biết đấy, đây không phải là một môi trường
+được tạo nên, đơn
+
+00:00:48.060 --> 00:00:52.060
+giản hóa. Đây chính xác là cùng một môi
+trường, cùng một công cụ.
+
+00:00:52.060 --> 00:00:57.060
+Notebook Jupyter mà các nhà phát triển hiện
+đang sử dụng ở nhiều công ty lớn.
+
+00:00:57.060 --> 00:01:01.060
+Một loại phòng thí nghiệm mà bạn thấy trong
+suốt lớp học này là các
+
+00:01:01.060 --> 00:01:05.060
+phòng thí nghiệm tùy chọn, là những phòng thí
+nghiệm bạn có thể mở
+
+00:01:05.060 --> 00:01:09.060
+và chạy từng dòng một mà thường không cần phải
+tự viết bất kỳ mã nào.
+
+00:01:09.060 --> 00:01:14.060
+Vì vậy, các phòng thí nghiệm tùy chọn được
+thiết kế rất dễ sử dụng và tôi có thể đảm
+
+00:01:14.060 --> 00:01:19.060
+bảo rằng bạn sẽ nhận được đầy đủ số dặm cho
+mỗi phòng thí nghiệm đó vì không có dặm.
+
+00:01:19.060 --> 00:01:24.060
+Tất cả những gì bạn cần làm là mở nó lên và
+chạy mã chúng tôi đã cung cấp.
+
+00:01:24.060 --> 00:01:27.060
+Và bằng cách đọc qua và chạy mã trong các
+phòng thí nghiệm
+
+00:01:27.060 --> 00:01:30.060
+tùy chọn, bạn sẽ biết mã machine learning chạy
+như thế nào.
+
+00:01:30.060 --> 00:01:35.060
+Và bạn sẽ có thể hoàn thành chúng, tương đối
+nhanh
+
+00:01:35.060 --> 00:01:40.060
+chóng, chỉ bằng cách chạy từng dòng một từ
+trên xuống dưới.
+
+00:01:40.060 --> 00:01:42.560
+Các phòng thí nghiệm tùy chọn là hoàn toàn tùy
+chọn, vì
+
+00:01:42.560 --> 00:01:45.060
+vậy bạn không cần phải thực hiện chúng nếu
+không muốn.
+
+00:01:45.060 --> 00:01:49.393
+Nhưng tôi hy vọng bạn sẽ xem qua, vì chạy qua
+chúng sẽ cho bạn cảm
+
+00:01:49.393 --> 00:01:53.727
+nhận sâu sắc hơn, cho bạn thêm một chút trải
+nghiệm về các thuật
+
+00:01:53.727 --> 00:01:58.060
+toán machine learning, code machine learning
+thực sự trông như thế nào.
+
+00:01:58.060 --> 00:02:01.560
+Bắt đầu từ tuần tới, cũng sẽ có một số phòng
+thí nghiệm
+
+00:02:01.560 --> 00:02:05.060
+thực hành, nơi sẽ cho bạn cơ hội tự viết một
+số mã đó.
+
+00:02:05.060 --> 00:02:06.560
+Nhưng chúng ta sẽ giải quyết vấn đề đó vào
+tuần
+
+00:02:06.560 --> 00:02:08.060
+tới, vì vậy đừng lo lắng về điều đó vào lúc
+này.
+
+00:02:08.060 --> 00:02:11.060
+Và tôi hy vọng bạn chỉ cần xem qua bài thí
+nghiệm tùy chọn
+
+00:02:11.060 --> 00:02:14.060
+tiếp theo và xem hết phần nội dung còn lại của
+tuần này.
+
+00:02:15.060 --> 00:02:18.060
+Vì vậy, chúng ta hãy xem một ví dụ về một cuốn
+sổ tay.
+
+00:02:18.060 --> 00:02:22.393
+Đây là những gì bạn thấy khi đến phòng thí
+nghiệm tùy chọn
+
+00:02:22.393 --> 00:02:26.727
+đầu tiên, vui lòng cuộn lên xuống, duyệt và di
+chuột qua
+
+00:02:26.727 --> 00:02:31.060
+các menu khác nhau cũng như xem các tùy chọn
+khác nhau ở đây.
+
+00:02:31.060 --> 00:02:37.060
+Bạn có thể nhận thấy rằng có hai loại khối
+này, còn được gọi là ô trong sổ ghi chép.
+
+00:02:37.060 --> 00:02:39.060
+Và có hai loại tế bào.
+
+00:02:40.060 --> 00:02:46.060
+Một là cái được gọi là ô mô phỏng, về cơ bản
+có nghĩa là một loạt văn bản.
+
+00:02:46.060 --> 00:02:48.560
+Vì vậy, ở đây bạn thực sự có thể chỉnh sửa văn
+bản
+
+00:02:48.560 --> 00:02:51.060
+nếu bạn không thích văn bản mà chúng tôi đã
+viết.
+
+00:02:51.060 --> 00:02:55.060
+Nhưng đây là văn bản mô tả mã.
+
+00:02:55.060 --> 00:03:02.060
+Sau đó, có loại khối hoặc ô thứ hai, trông như
+thế này, là ô mã.
+
+00:03:02.060 --> 00:03:04.060
+Vì vậy, ở đây chúng tôi đã cung cấp mã.
+
+00:03:04.060 --> 00:03:11.060
+Và nếu bạn muốn chạy ô mã này, hãy nhấn shift,
+nhập sẽ chạy mã trong ô mã này.
+
+00:03:11.060 --> 00:03:16.060
+Ồ, và nhân tiện, nếu bạn nhấp vào một ô mô
+phỏng để hiển thị tất cả
+
+00:03:16.060 --> 00:03:21.060
+định dạng này, hãy tiếp tục và nhấn shift
+enter trên bàn phím của bạn.
+
+00:03:21.060 --> 00:03:26.060
+Và điều đó cũng sẽ chuyển nó trở lại văn bản
+có định dạng đẹp mắt này.
+
+00:03:26.060 --> 00:03:29.060
+Phòng thí nghiệm tùy chọn này hiển thị một số
+mã Python phổ biến.
+
+00:03:29.060 --> 00:03:34.060
+Vì vậy, bạn có thể tiếp tục và chạy nó sau đó
+trong sổ ghi chép Jupyter của riêng bạn.
+
+00:03:34.060 --> 00:03:37.560
+Khi bạn tự mình sử dụng sổ ghi chép này, điều
+tôi
+
+00:03:37.560 --> 00:03:41.060
+muốn bạn làm là chọn các ô và nhấn shift
+enter.
+
+00:03:41.060 --> 00:03:44.060
+Vâng, hãy đọc qua mã, xem nó có hợp lý không.
+
+00:03:44.060 --> 00:03:48.560
+Bạn biết đấy, hãy thử đưa ra dự đoán về những
+gì bạn nghĩ mã này
+
+00:03:48.560 --> 00:03:53.060
+sẽ làm, sau đó nhấn shift enter và sau đó xem
+mã thực sự làm gì.
+
+00:03:53.060 --> 00:03:56.560
+Và nếu bạn cảm thấy thích, hãy thoải mái vào
+và chỉnh sửa mã,
+
+00:03:56.560 --> 00:04:00.060
+bạn biết đấy, thay đổi mã rồi chạy nó và xem
+điều gì sẽ xảy ra.
+
+00:04:00.060 --> 00:04:04.060
+Và nếu bạn chưa từng chơi trong môi trường sổ
+ghi chép Jupyter trước đây, tôi
+
+00:04:04.060 --> 00:04:08.060
+hy vọng bạn sẽ trở nên quen thuộc hơn với
+Python trong sổ ghi chép Jupyter.
+
+00:04:08.060 --> 00:04:11.060
+Tôi dành nhiều giờ để chơi đùa với sổ tay
+Jupyter và
+
+00:04:11.060 --> 00:04:14.060
+vì vậy tôi hy vọng bạn cũng thấy vui vẻ với
+chúng.
+
+00:04:15.060 --> 00:04:18.393
+Và sau đó, tôi mong được gặp bạn trong video
+tiếp theo, nơi
+
+00:04:18.393 --> 00:04:21.727
+chúng ta sẽ giải quyết vấn đề
+supervised learning và bắt đầu
+
+00:04:21.727 --> 00:04:25.060
+phát triển thuật toán supervised learning đầu
+tiên của mình.
+
+00:04:25.060 --> 00:04:28.060
+Tôi hy vọng điều đó cũng sẽ vui và mong được
+gặp bạn ở đó.

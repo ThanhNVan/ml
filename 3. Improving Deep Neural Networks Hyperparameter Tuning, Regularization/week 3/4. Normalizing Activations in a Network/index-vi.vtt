@@ -1,0 +1,452 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.920
+Trong sự phát triển của deep learning, một
+trong những ý tưởng quan
+
+00:00:03.920 --> 00:00:07.840
+trọng nhất là thuật toán được gọi là
+batch normalization được tạo ra
+
+00:00:07.840 --> 00:00:11.760
+bởi hai nhà nghiên cứu, Sergey Ioffee và
+Tristan Zegady. Batch normalization
+
+00:00:11.760 --> 00:00:14.693
+làm cho vấn đề tìm kiếm siêu tham số của bạn
+dễ dàng hơn nhiều, làm
+
+00:00:14.693 --> 00:00:17.627
+cho neural network của bạn mạnh mẽ hơn
+nhiều trong việc lựa
+
+00:00:17.627 --> 00:00:20.560
+chọn siêu tham số. Có nhiều loại siêu tham số
+hoạt động tốt hơn nhiều,
+
+00:00:20.560 --> 00:00:25.200
+và nó cũng sẽ cho phép bạn đào tạo các mạng
+rất sâu dễ dàng hơn nhiều.
+
+00:00:25.200 --> 00:00:29.040
+Hãy xem cách batch normalization hoạt động.
+Khi huấn luyện một mô
+
+00:00:29.040 --> 00:00:32.880
+hình như logistic regression, bạn có thể nhớ
+rằng việc chuẩn hóa các
+
+00:00:32.880 --> 00:00:36.720
+feature đầu vào có thể tăng learning rate tập.
+Vì vậy bạn tính toán
+
+00:00:36.720 --> 00:00:41.520
+giá trị trung bình, trừ giá trị trung bình
+khỏi training set
+
+00:00:41.520 --> 00:00:46.320
+của bạn, tính variance, ừm, tổng xi bình
+phương này, đây là
+
+00:00:46.320 --> 00:00:51.120
+một phần tử y bình phương, phải, rồi chuẩn hóa
+dữ liệu của bạn
+
+00:00:51.120 --> 00:00:54.827
+thiết lập theo các variance. Và chúng ta đã
+thấy trong video trước
+
+00:00:54.827 --> 00:00:58.533
+đó cách điều này có thể biến việc kiểm soát
+vấn đề học tập của bạn
+
+00:00:58.533 --> 00:01:02.240
+từ một thứ có thể rất dài thành một thứ gì đó
+rất dài, bạn biết đấy,
+
+00:01:02.240 --> 00:01:06.720
+tròn trịa hơn và dễ dàng hơn để một thuật toán
+như gradient descent
+
+00:01:06.720 --> 00:01:11.200
+tối ưu hóa. Vì vậy, điều này hoạt động theo
+cách chuẩn hóa các giá
+
+00:01:11.200 --> 00:01:15.680
+trị feature đầu vào cho neural network, tự
+động hợp pháp hóa. Bây giờ,
+
+00:01:15.680 --> 00:01:20.027
+còn một mô hình sâu hơn thì sao? Bạn không chỉ
+nhập các
+
+00:01:20.027 --> 00:01:24.373
+feature x, mà trong lớp này bạn có các kích
+hoạt a1, trong
+
+00:01:24.373 --> 00:01:28.720
+lớp này bạn có các kích hoạt a2, v.v. Vì vậy
+nếu bạn muốn đào tạo
+
+00:01:28.720 --> 00:01:34.267
+các tham số, chẳng hạn như w3, b3, thì sẽ
+không hay nếu bạn có thể chuẩn
+
+00:01:34.267 --> 00:01:39.813
+hóa giá trị trung bình và variance của a2 để
+giúp việc huấn luyện w3, b3
+
+00:01:39.813 --> 00:01:45.360
+hiệu quả hơn phải không? Trong trường hợp
+logistic regression, chúng ta đã thấy
+
+00:01:46.000 --> 00:01:51.317
+chuẩn hóa x1, x2, x3 có thể giúp bạn luyện w
+và b hiệu quả hơn. Vì
+
+00:01:51.317 --> 00:01:56.633
+vậy, câu hỏi ở đây là, đối với bất kỳ lớp ẩn
+nào, liệu chúng ta có
+
+00:01:56.633 --> 00:02:01.950
+thể bình thường hóa các giá trị của a- giả sử
+a2 trong ví dụ này không,
+
+00:02:01.950 --> 00:02:13.950
+nhưng thực ra là lớp ẩn nào để luyện w3, b3
+nhanh hơn phải không? Vì a2 là đầu vào nên
+
+00:02:14.590 --> 00:02:18.590
+sang lớp tiếp theo, do đó ảnh hưởng đến việc
+huấn luyện w3 và
+
+00:02:18.590 --> 00:02:22.590
+b3. Vì vậy, đây là những gì định mức lô thực
+hiện, chuẩn hóa lô
+
+00:02:22.590 --> 00:02:26.590
+hoặc gọi tắt là định mức lô. Mặc dù về mặt kỹ
+thuật chúng tôi sẽ
+
+00:02:26.590 --> 00:02:31.123
+thực sự bình thường hóa các giá trị không phải
+của a2 mà là z2. Có
+
+00:02:31.123 --> 00:02:35.657
+một số tranh luận trong tài liệu deep learning
+về việc liệu bạn có
+
+00:02:35.657 --> 00:02:40.190
+nên chuẩn hóa giá trị trước
+activation function hay không, vì vậy z2,
+
+00:02:40.190 --> 00:02:44.377
+hoặc liệu bạn có nên chuẩn hóa giá trị sau khi
+áp dụng activation function a2
+
+00:02:44.377 --> 00:02:48.563
+hay không. Trong thực tế, việc chuẩn hóa z2
+được thực hiện thường xuyên hơn
+
+00:02:48.563 --> 00:02:52.750
+nhiều, vì vậy đó là phiên bản tôi sẽ trình bày
+và là phiên bản tôi muốn giới thiệu.
+
+00:02:52.750 --> 00:03:01.573
+bạn sử dụng làm lựa chọn mặc định. Vì vậy, đây
+là cách bạn sẽ triển khai
+
+00:03:01.573 --> 00:03:10.397
+định mức theo lô. Cho một số giá trị trung
+gian trong neural network của
+
+00:03:10.397 --> 00:03:19.220
+bạn, giả sử rằng bạn có một số giá trị đơn vị
+ẩn từ z1 đến zm, và đây là
+
+00:03:19.220 --> 00:03:23.887
+thực sự từ một lớp ẩn nào đó, vì vậy sẽ chính
+xác hơn nếu viết
+
+00:03:23.887 --> 00:03:28.553
+cái này là z cho một lớp ẩn nào đó i cho i
+bằng 1 đến m, nhưng
+
+00:03:28.553 --> 00:03:33.220
+để giảm bớt việc viết, tôi sẽ bỏ qua dấu ngoặc
+vuông l này chỉ để
+
+00:03:33.220 --> 00:03:37.407
+đơn giản hóa ký hiệu trên dòng này. Vì vậy,
+với những giá trị này, việc
+
+00:03:37.407 --> 00:03:41.593
+bạn làm là tính giá trị trung bình như sau.
+Một lần nữa, tất cả điều này
+
+00:03:41.593 --> 00:03:45.780
+là dành riêng cho một số lớp l, nhưng tôi đang
+bỏ qua dấu ngoặc vuông l,
+
+00:03:46.580 --> 00:03:53.060
+và sau đó bạn tính variance bằng cách sử dụng
+khá nhiều công thức mà bạn mong
+
+00:03:53.060 --> 00:03:59.540
+đợi, sau đó bạn lấy từng zi và chuẩn hóa nó,
+để zi được chuẩn hóa bằng cách trừ
+
+00:03:59.540 --> 00:04:04.420
+lệch khỏi giá trị trung bình và chia cho bias
+chuẩn. Để ổn định
+
+00:04:04.420 --> 00:04:09.300
+về số, chúng ta thường thêm epsilon vào mẫu số
+như vậy, đề phòng
+
+00:04:09.300 --> 00:04:14.180
+trường hợp bình phương sigma hóa ra bằng 0
+trong một số ước tính.
+
+00:04:14.180 --> 00:04:18.873
+Và vì vậy bây giờ chúng ta đã lấy các giá trị
+z này và chuẩn hóa chúng để
+
+00:04:18.873 --> 00:04:23.567
+có trung bình 0 và variance đơn vị tiêu chuẩn,
+do đó mọi thành phần của z
+
+00:04:23.567 --> 00:04:28.260
+đều có trung bình 0 và variance 1. Nhưng chúng
+ta không muốn các đơn vị ẩn
+
+00:04:28.260 --> 00:04:34.307
+luôn có giá trị trung bình 0 và variance 1. Có
+lẽ việc các đơn vị
+
+00:04:34.307 --> 00:04:40.353
+ẩn có phân phối khác là hợp lý, vì vậy thay
+vào đó, điều chúng ta
+
+00:04:40.353 --> 00:04:46.400
+sẽ làm là tính toán, chúng ta sẽ gọi z dấu ngã
+bằng gamma zi chuẩn
+
+00:04:47.680 --> 00:04:53.710
+cộng với beta, ở đây gamma và beta là các
+thông số có thể
+
+00:04:53.710 --> 00:04:59.740
+học được trong mô hình của bạn. Vì vậy nếu bạn
+đang sử dụng
+
+00:04:59.740 --> 00:05:03.340
+gradient descent hoặc một số thuật toán khác
+như
+
+00:05:03.340 --> 00:05:06.940
+gradient descent bằng động lượng hoặc RMS prop
+hoặc nguyên tử,
+
+00:05:06.940 --> 00:05:10.540
+bạn sẽ cập nhật các tham số gamma và beta
+giống như bạn cập nhật trọng số của
+
+00:05:10.540 --> 00:05:14.940
+neural network. Bây giờ hãy lưu ý rằng
+tác dụng của gamma
+
+00:05:14.940 --> 00:05:19.340
+và beta là nó cho phép bạn đặt giá trị trung
+bình của dấu ngã
+
+00:05:19.340 --> 00:05:23.740
+z thành bất cứ giá trị nào bạn muốn. Thực tế,
+nếu gamma bằng
+
+00:05:24.060 --> 00:05:33.630
+căn bậc hai sigma bình phương cộng epsilon,
+vậy nếu gamma bằng số hạng mẫu số này, và
+
+00:05:33.630 --> 00:05:43.200
+nếu beta bằng mu, vậy giá trị này ở trên đây,
+thì hiệu ứng của gamma z chuẩn cộng beta
+
+00:05:43.200 --> 00:05:48.613
+là nó sẽ đảo ngược chính xác phương trình này.
+Vì vậy, nếu
+
+00:05:48.613 --> 00:05:54.027
+điều này đúng, thì trên thực tế z dấu ngã i
+bằng zi, và do
+
+00:05:54.027 --> 00:05:59.440
+đó bằng cách thiết lập các tham số gamma và
+beta thích hợp,
+
+00:05:59.440 --> 00:06:04.293
+Bước chuẩn hóa này, tức là bốn phương trình
+này, về cơ bản
+
+00:06:04.293 --> 00:06:09.147
+chỉ là tính toán hàm nhận dạng. Nhưng bằng
+cách chọn các giá
+
+00:06:09.147 --> 00:06:14.000
+trị khác của gamma và beta, điều này cho phép
+bạn thực hiện
+
+00:06:14.000 --> 00:06:18.000
+giá trị đơn vị ẩn của các phương tiện và
+variance khác. Và do đó,
+
+00:06:18.000 --> 00:06:22.000
+cách bạn đưa cái này vào neural network
+của mình là, trong khi
+
+00:06:22.000 --> 00:06:26.000
+trước đây bạn đang sử dụng các giá trị z1, z2,
+v.v., thì bây giờ bạn sẽ
+
+00:06:26.560 --> 00:06:32.185
+sử dụng z dấu ngã i thay vì zi cho các tính
+toán
+
+00:06:32.185 --> 00:06:37.810
+sau này trong neural network của bạn. Và chúng
+tôi
+
+00:06:37.810 --> 00:06:43.730
+muốn đặt lại vào dấu ngoặc vuông L này để biểu
+thị rõ ràng nó thuộc lớp nào.
+
+00:06:43.730 --> 00:06:47.277
+Bạn có thể đặt nó trở lại đó. Vì vậy, trực
+giác mà tôi hy vọng bạn sẽ
+
+00:06:47.277 --> 00:06:50.823
+rút ra được từ điều này là chúng ta đã thấy
+việc chuẩn hóa các feature
+
+00:06:50.823 --> 00:06:54.370
+đầu vào x có thể giúp ích như thế nào trong
+việc học trong neural network.
+
+00:06:54.370 --> 00:06:57.357
+Và định mức hàng loạt thực hiện là nó áp dụng
+quy trình chuẩn hóa đó
+
+00:06:57.357 --> 00:07:00.343
+không chỉ cho lớp đầu vào mà còn cho các giá
+trị thậm chí nằm sâu
+
+00:07:00.343 --> 00:07:03.330
+trong một số lớp ẩn trong neural network.
+Vì vậy bạn áp dụng loại này
+
+00:07:03.330 --> 00:07:06.570
+chuẩn hóa để chuẩn hóa giá trị trung bình và
+
+00:07:06.570 --> 00:07:09.810
+variance của một số giá trị z của đơn vị ẩn
+của bạn.
+
+00:07:09.810 --> 00:07:13.810
+Nhưng có một điểm khác biệt giữa đầu vào huấn
+luyện và các giá trị
+
+00:07:13.810 --> 00:07:17.810
+đơn vị ẩn này là bạn có thể không muốn các giá
+trị đơn vị ẩn của mình
+
+00:07:17.810 --> 00:07:21.810
+bị buộc phải có trung bình 0 và variance 1. Ví
+dụ: nếu bạn có sigmoid
+
+00:07:21.810 --> 00:07:27.090
+kích hoạt, bạn không muốn các giá trị của mình
+luôn được nhóm ở đây. Bạn có thể
+
+00:07:27.090 --> 00:07:32.370
+muốn chúng có variance lớn hơn hoặc có giá trị
+trung bình khác 0 để tận dụng tốt hơn
+
+00:07:32.370 --> 00:07:38.210
+về tính phi tuyến của hàm sigmoid thay vì để
+tất cả các giá trị của bạn chỉ ở chế độ
+
+00:07:38.210 --> 00:07:44.050
+tuyến tính này. Đó là lý do tại sao với thông
+số gamma và beta, bạn có thể thấy rằng
+
+00:07:44.850 --> 00:07:50.770
+bây giờ bạn có thể đảm bảo rằng các giá trị zi
+của bạn có phạm vi giá trị mà bạn muốn.
+
+00:07:51.410 --> 00:07:55.730
+Nhưng thực tế nó đảm bảo rằng các đơn vị ẩn
+của bạn có giá trị
+
+00:07:55.730 --> 00:08:00.050
+trung bình và variance được chuẩn hóa trong đó
+giá trị trung bình
+
+00:08:00.050 --> 00:08:04.370
+và variance được kiểm soát bởi hai tham số rõ
+ràng, gamma và beta,
+
+00:08:04.370 --> 00:08:08.397
+mà thuật toán học có thể đặt thành bất cứ điều
+gì nó muốn. Vì vậy,
+
+00:08:08.397 --> 00:08:12.423
+điều nó thực sự làm là chuẩn hóa giá trị trung
+bình và variance của
+
+00:08:12.423 --> 00:08:16.450
+các giá trị đơn vị ẩn này, thực ra là zi, để
+có một số giá trị cố định
+
+00:08:16.450 --> 00:08:20.263
+trung bình và variance. Và giá trị trung bình
+và variance đó có thể là 0 và
+
+00:08:20.263 --> 00:08:24.077
+1 hoặc có thể là một số giá trị khác và nó
+được kiểm soát bởi các tham số
+
+00:08:24.077 --> 00:08:27.890
+gamma và beta này. Vì vậy tôi hy vọng điều đó
+mang lại cho bạn cảm giác về
+
+00:08:27.890 --> 00:08:33.010
+cơ chế triển khai định mức dash, ít nhất là
+cho một lớp trong neural network.
+
+00:08:33.010 --> 00:08:36.130
+Trong video tiếp theo, tôi muốn chỉ cho bạn
+cách lắp chuẩn gạch ngang vào
+
+00:08:36.130 --> 00:08:39.250
+neural network, thậm chí là neural network sâu
+và cách làm cho nó hoạt động
+
+00:08:39.250 --> 00:08:42.370
+cho nhiều lớp khác nhau của neural network. Và
+sau đó, chúng tôi sẽ cung cấp
+
+00:08:42.370 --> 00:08:45.490
+thêm một số thông tin trực quan về lý do tại
+sao định mức lô có thể giúp bạn
+
+00:08:45.490 --> 00:08:48.530
+đào tạo neural network của bạn. Vì vậy,
+trong trường hợp tại
+
+00:08:48.530 --> 00:08:51.570
+sao nó hoạt động vẫn có vẻ hơi bí ẩn, hãy ở
+lại với tôi. Và tôi nghĩ
+
+00:08:51.570 --> 00:08:54.610
+trong hai video kể từ bây giờ, chúng tôi sẽ
+thực sự làm rõ điều đó.

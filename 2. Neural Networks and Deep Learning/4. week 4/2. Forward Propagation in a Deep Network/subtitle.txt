@@ -1,0 +1,52 @@
+Trong video trước, chúng tôi đã mô tả mạng nơ-ron nhân tạo
+L lớp sâu và cũng nói về ký hiệu mà chúng ta sử
+dụng để mô tả các mạng như vậy. Trong video này, bạn sẽ thấy
+cách bạn thực hiện truyền xuôi, trong một mạng nơ-ron sâu. Trước tiên hãy cùng xem truyền xuôi sẽ trông như thế
+nào trong một ví dụ huấn luyện x, và sau đó chúng ta sẽ nói
+về phiên bản véc tơ hóa, mà ở đó bạn muốn thực hiện truyền xuôi trên toàn bộ tập huấn luyện cùng một lúc. Nhưng với một ví dụ đào tạo duy nhất x, đây sẽ là cách bạn tính kích
+hoạt của lớp đầu tiên. Đối với lớp đầu tiên này, bạn tính z1 bằng w1 nhân x cộng b1. Vậy là, w1 và b1 là các tham số
+ảnh hưởng đến kích hoạt trong lớp một. Đây là lớp một của mạng nơ-ron nhân tạo, và sau đó bạn tính kích hoạt
+cho lớp đó bằng g của z1. Hàm kích hoạt g còn tùy vào
+bạn đang ở lớp nào và có lẽ là còn tùy vào chỉ số nào
+được đặt làm hàm kích hoạt từ lớp một. Và nếu bạn làm như vậy, bây giờ
+bạn đã tính toán kích hoạt cho lớp một. Thế còn lớp hai? Là lớp đó. Và sau đó bạn sẽ tính z2 bằng w2 a1 cộng b2. Sau đó, kích hoạt lớp hai là ma trận
+Y nhân với kết quả đầu ra của lớp một. Và là giá trị này, cộng với vectơ chệch cho lớp hai. Khi đó a2 bằng với hàm kích
+hoạt được áp dụng với z2. Đuợc rồi? Và đó là cho lớp hai, và v.v... Cho đến khi bạn đến lớp
+đầu ra, đó là lớp bốn. Ở đó bạn sẽ có z4 bằng các tham số cho lớp đó nhân
+với các kích hoạt từ lớp trước đó, cộng với vectơ chệch đó. Và rồi tương tự, a4 bằng g của z4. Đó là cách bạn tính đầu ra
+dự đoán của bạn, y mũ Và có một điều bạn cần lưu ý, x ở đây cũng bằng a0, bởi vì vectơ tính năng đầu vào
+x cũng là kích hoạt của lớp 0. Vì vậy, chúng ta gạch đi x. Khi tôi gạch bỏ x và đặt a0 ở đây, thì về cơ bản tất cả các phương
+trình trông giống nhau. Nguyên tắc chung là zl bằng wl nhân a (l trừ 1) cộng bl. Và sau đó, kích hoạt cho lớp đó là hàm kích hoạt áp dụng với các giá trị của z. Đó là phương trình truyền xuôi tổng quát. Và chúng ta đã thực hiện tất cả điều này
+trong một ví dụ huấn luyện duy nhất. Thế còn về việc thực hiện nó theo cách véc tơ
+hóa cho toàn bộ tập huấn luyện cùng một lúc? Các phương trình thì trông
+khá giống với trước đây. Đối với lớp đầu tiên, bạn sẽ có Z1 bằng w1 nhân X cộng với b1. Khi đó, A1 bằng g của Z1. Hãy nhớ rằng X bằng A0. Đây chỉ là các ví dụ huấn luyện được xếp
+chồng lên nhau trong các cột khác nhau. Bạn có thể lấy cái này, để tôi gạch đi X, họ có thể đặt A0 ở đó. Sau đó, với lớp tiếp theo, tương tự, Z2 bằng w2 A1 cộng b2 và A2 bằng g của Z2. Chúng ta chỉ lấy các vectơ z hoặc a và cứ thế, và xếp chúng cạnh nhau. Đây là vector z cho ví dụ huấn luyện đầu tiên, vector z cho ví dụ huấn luyện thứ hai, và cứ như vậy, tới ví dụ huấn luyện thứ n, xếp chồng chúng thành cột
+và gọi cái này là Z viết hoa. Tương tự, đối với A viết hoa, và X viết hoa cũng như vậy. Tất cả các ví dụ huấn luyện là các
+vectơ cột được xếp chồng từ trái sang phải. Trong quá trình này, bạn sẽ có kết
+quả y mũ bằng g của Z4, cái này cũng bằng A4. Đó là dự đoán trên tất cả các ví dụ huấn
+luyện của bạn mà được xếp theo chiều ngang. Nói tóm lại, về ký hiệu, tôi sẽ sửa đổi ở đây. Một ký hiệu cho phép chúng ta thay thế các
+ký tự z và a viết thường bằng các ký tự viết hoa, ký tự này trông giống như Z viết hoa rồi. Điều này cung cấp cho bạn một
+phiên bản vector hóa của truyền xuôi mà bạn thực hiện trên
+toàn bộ tập huấn luyện cùng một lúc, Trong đó A0 là X. Bây giờ, nếu bạn nhìn vào triển
+khai vector hóa này, thì dường như là sẽ có một vòng lặp For ở đây. for l bằng 1…4. For l bằng 1 tới L. Sau đó, bạn
+phải tính kích hoạt cho lớp một, rồi lớp hai, rồi lớp ba, và sau đó là lớp bốn. Và dường như có một vòng lặp For ở đây. Tôi biết là khi triển khai các
+mạng nơ-ron nhân tạo, chúng ta thường muốn loại bỏ
+các vòng lặp for tường minh. Nhưng ở đây tôi lại không nghĩ là sẽ có bất kỳ cách nào khác thực hiện điều này
+mà không có vòng lặp For tường minh. Vậy nên khi thực hiện truyền xuôi, việc có vòng lặp For để tính
+kích hoạt cho lớp một, rồi lớp hai, rồi lớp ba, rồi lớp
+bốn là hoàn toàn ổn. Không ai biết, và tôi cũng không
+nghĩ là có cách nào để thực hiện cái này mà không có vòng lặp
+For đi từ một đến L, từ một đến tổng số lớp trong
+mạng nơ-ron nhân tạo. Vì vậy, ở đây, việc có một vòng
+lặp For tường minh là hoàn toàn ổn. Và đó là toàn bộ về ký hiệu cho
+các mạng nơ-ron nhân tạo sâu, cũng như là cách thực hiện
+truyền xuôi trong các mạng này. Nếu bạn thấy những điều
+chúng ta vừa thấy hơi quen thì đó là bởi vì những gì chúng ta đang thấy
+rất giống với những gì bạn đã thấy trong mạng nơ-ron nhân tạo với một lớp ẩn duy
+nhất và chỉ là lặp lại nhiều lần hơn mà thôi. Bây giờ, trên thực tế khi chúng ta triển
+khai một mạng nơ-ron nhân tạo sâu, thì một trong những cách để tăng
+tỷ lệ thực hiện không lỗi là suy nghĩ một cách có hệ thống và cẩn thận về kích thước ma trận
+mà bạn đang làm việc. Như vậy, khi tôi đang cố gắng tìm
+và khắc phục lỗi mã của tôi, tôi sẽ thường lấy một mảnh giấy, và chỉ cần suy nghĩ cẩn thận, về kích thước của ma trận
+mà tôi đang làm việc. Hãy cùng xem cách làm
+điều đó, trong video tiếp theo.

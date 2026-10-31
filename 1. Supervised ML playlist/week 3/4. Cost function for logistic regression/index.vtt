@@ -1,0 +1,426 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.460 --> 00:00:06.860
+Remember that the cost function gives you a way to measure how well a specific set of
+
+00:00:06.860 --> 00:00:14.460
+parameters fits the training data, and thereby gives you a way to try to choose better parameters.
+
+00:00:14.460 --> 00:00:20.460
+In this video, we'll look at how the squared error cost function is not an ideal cost function
+
+00:00:20.460 --> 00:00:25.100
+for logistic regression, and we'll take a look at a different cost function that can
+
+00:00:25.100 --> 00:00:29.180
+help us choose better parameters for logistic regression.
+
+00:00:29.180 --> 00:00:35.180
+Notice what the training set for a logistic regression model might look like, where each
+
+00:00:35.180 --> 00:00:41.860
+row might correspond to a patient that was paying a visit to the doctor and wound up with
+
+00:00:41.860 --> 00:00:44.780
+some sort of diagnosis.
+
+00:00:44.780 --> 00:00:51.220
+As before, we'll use M to denote the number of training examples.
+
+00:00:51.220 --> 00:00:57.540
+Each training example has one or more features such as the tumor size, the patient's age,
+
+00:00:57.540 --> 00:01:01.940
+and so on, for a total of n features.
+
+00:01:01.940 --> 00:01:06.620
+And so let's call the features x1 through xn.
+
+00:01:06.620 --> 00:01:13.380
+And since this is a binary classification task, the target label y takes on only two values,
+
+00:01:13.380 --> 00:01:15.860
+either 0 or 1.
+
+00:01:15.860 --> 00:01:20.980
+And finally, the logistic regression model is defined by this equation.
+
+00:01:21.660 --> 00:01:26.940
+Okay, so the question you want to answer is, given this training set, how can you choose
+
+00:01:26.940 --> 00:01:30.580
+parameters w and b?
+
+00:01:30.580 --> 00:01:35.460
+Recall for linear regression, this is the squared error cost function.
+
+00:01:35.460 --> 00:01:40.580
+The only thing I've changed is that I put the one half inside the summation instead of
+
+00:01:40.580 --> 00:01:42.620
+outside the summation.
+
+00:01:42.620 --> 00:01:47.340
+And you might remember that in the case of linear regression, where f of x is the linear
+
+00:01:47.340 --> 00:01:54.700
+function, w dot x plus b, the cost function looks like this is a convex function or a bow
+
+00:01:54.700 --> 00:01:56.780
+shape or a hammer shape.
+
+00:01:56.780 --> 00:02:02.100
+And so gradient descent will look like this, where you take one step, one step, one step,
+
+00:02:02.100 --> 00:02:05.260
+and so on to converge at the global minimum.
+
+00:02:05.260 --> 00:02:10.060
+Now, you could try to use the same cost function for logistic regression.
+
+00:02:10.780 --> 00:02:16.820
+But it turns out the divide with the right f of x equals 1 over 1 plus e to the negative
+
+00:02:16.820 --> 00:02:23.860
+wx plus b, and plot the cost function using this value of f of x, then the cost will look
+
+00:02:23.860 --> 00:02:26.580
+like this.
+
+00:02:26.580 --> 00:02:32.460
+This becomes what's called a non-convex cost function, is not convex.
+
+00:02:32.460 --> 00:02:38.180
+And what this means is that if you were to try to use gradient descent, there are lots
+
+00:02:38.180 --> 00:02:41.780
+of local minima that you can get sucked in.
+
+00:02:41.780 --> 00:02:47.980
+So it turns out that for logistic regression, this squared error cost function is not a good
+
+00:02:47.980 --> 00:02:48.980
+choice.
+
+00:02:48.980 --> 00:02:55.660
+Instead, there will be a different cost function that can make the cost function convex again.
+
+00:02:55.660 --> 00:03:00.380
+So the gradient descent can be guaranteed to converge to the global minimum.
+
+00:03:00.380 --> 00:03:04.540
+The only thing I've changed is that I put the one half inside the summation instead
+
+00:03:04.540 --> 00:03:06.660
+of outside the summation.
+
+00:03:06.660 --> 00:03:11.820
+This will make the math you see later on this slide a little bit simpler.
+
+00:03:11.820 --> 00:03:16.660
+In order to build a new cost function, one that we'll use for logistic regression, I'm
+
+00:03:16.660 --> 00:03:22.740
+going to change a little bit the definition of the cost function j of w and b.
+
+00:03:22.740 --> 00:03:29.420
+In particular, if you look inside this summation, let's call this term inside the loss on
+
+00:03:29.420 --> 00:03:32.780
+a single training example.
+
+00:03:32.900 --> 00:03:40.700
+And I'm going to denote the loss via this capital L, and is a function of the prediction
+
+00:03:40.700 --> 00:03:47.940
+of the learning algorithm f of x, as well as of the true label y.
+
+00:03:47.940 --> 00:03:54.980
+And so the loss, given the predicted f of x and the true label y, is equal in this
+
+00:03:54.980 --> 00:03:59.260
+case to one half of the squared difference.
+
+00:03:59.260 --> 00:04:04.180
+We'll see shortly that by choosing a different form for this loss function, we'll be able
+
+00:04:04.180 --> 00:04:10.900
+to keep the overall cost function, which is one over m times the sum of these loss functions
+
+00:04:10.900 --> 00:04:13.220
+to be a convex function.
+
+00:04:13.220 --> 00:04:21.220
+Now the loss function inputs f of x and the true label y, and tells us how well we're
+
+00:04:21.220 --> 00:04:24.220
+doing on that example.
+
+00:04:24.220 --> 00:04:29.140
+I'm going to just write down here the definition of the loss function we'll use for the
+
+00:04:29.140 --> 00:04:31.300
+logistic regression.
+
+00:04:31.300 --> 00:04:39.100
+If the label y is equal to one, then the loss is negative log of f of x.
+
+00:04:39.100 --> 00:04:49.220
+And if the label y is equal to zero, then the loss is negative log of one minus f of x.
+
+00:04:49.220 --> 00:04:55.780
+Let's take a look at why this loss function hopefully makes sense.
+
+00:04:55.780 --> 00:05:01.860
+Let's first consider the case of y equals one, and plot what this function looks like
+
+00:05:01.860 --> 00:05:06.540
+to gain some intuition about what this loss function is doing.
+
+00:05:06.540 --> 00:05:12.100
+And remember, the loss function measures how well you're doing on one training example,
+
+00:05:12.100 --> 00:05:16.580
+and is by summing up the losses on all of the training examples that you then get the
+
+00:05:16.580 --> 00:05:22.620
+cost function, which measures how well you're doing on the entire training set.
+
+00:05:22.620 --> 00:05:31.140
+So if you plot log of f, it looks like this curve here, where f here is on the horizontal
+
+00:05:31.140 --> 00:05:32.660
+axis.
+
+00:05:32.660 --> 00:05:39.740
+And so a plot of negative of the log of f looks like this, where we just flip the curve along
+
+00:05:39.740 --> 00:05:42.260
+the horizontal axis.
+
+00:05:42.260 --> 00:05:48.420
+Notice that it intersects the horizontal axis at f equals one, and continues downward
+
+00:05:48.420 --> 00:05:51.100
+from there.
+
+00:05:51.100 --> 00:05:54.140
+Now f is the output of logistic regression.
+
+00:05:54.140 --> 00:06:00.380
+Thus, f is always between zero and one, because the output of logistic regression is always
+
+00:06:00.380 --> 00:06:03.180
+between zero and one.
+
+00:06:03.180 --> 00:06:10.380
+The only part of the function that's relevant is therefore this part over here, corresponding
+
+00:06:10.380 --> 00:06:13.340
+to f between zero and one.
+
+00:06:13.340 --> 00:06:18.620
+So let's zoom in and take a closer look at this part of the graph.
+
+00:06:18.620 --> 00:06:26.260
+If the algorithm predicts a probability close to one, and the true label is one, then the
+
+00:06:26.260 --> 00:06:34.260
+loss is very small, it's pretty much zero, because you're very close to the right answer.
+
+00:06:34.260 --> 00:06:40.180
+Now continue with the example of the true label y being one, so say it really is a Madelik-Ned
+
+00:06:40.180 --> 00:06:41.180
+tumor.
+
+00:06:41.180 --> 00:06:50.060
+If the algorithm predicts 0.5, then the loss is at this point here, which is a bit higher
+
+00:06:50.060 --> 00:06:52.100
+but not that high.
+
+00:06:52.100 --> 00:06:58.900
+Whereas in contrast, if the other were to have output 0.1, if it thinks that there's
+
+00:06:58.900 --> 00:07:06.220
+only a 10% chance of the tumor being malignant, but y really is one, it really is malignant,
+
+00:07:06.220 --> 00:07:11.140
+then the loss is this much higher value over here.
+
+00:07:11.140 --> 00:07:16.920
+So when y is equal to one, the loss function incentivizes or nudges or it helps push the
+
+00:07:16.920 --> 00:07:22.540
+algorithm to make more accurate predictions because the loss is lowest when it predicts
+
+00:07:22.540 --> 00:07:25.140
+values close to one.
+
+00:07:25.140 --> 00:07:30.540
+Now on this slide, we've been looking at what the loss is when y is equal to one.
+
+00:07:30.540 --> 00:07:34.740
+On this slide, let's look at the second part of the loss function corresponding to
+
+00:07:34.740 --> 00:07:37.300
+when y is equal to zero.
+
+00:07:37.300 --> 00:07:43.460
+In this case, the loss is negative log of one minus f of x.
+
+00:07:43.460 --> 00:07:48.060
+When this function is plotted, it actually looks like this.
+
+00:07:48.060 --> 00:07:54.980
+The range of f is limited to zero to one because logistic regression only outputs values between
+
+00:07:54.980 --> 00:07:56.700
+zero and one.
+
+00:07:56.700 --> 00:08:00.860
+And if we zoom in, this is what it looks like.
+
+00:08:00.860 --> 00:08:08.060
+So in this plot, corresponding to y equals zero, the vertical axis shows the value of
+
+00:08:08.060 --> 00:08:13.380
+the loss for different values of f of x.
+
+00:08:13.380 --> 00:08:20.300
+So when f is zero or very close to zero, the loss is also going to be very small, which
+
+00:08:20.300 --> 00:08:25.300
+means that if the true label is zero and the model's prediction is very close to zero,
+
+00:08:25.300 --> 00:08:27.440
+well you nearly got it right.
+
+00:08:27.440 --> 00:08:32.080
+So the loss is appropriately very close to zero.
+
+00:08:32.080 --> 00:08:37.640
+And the larger the value of f of x gets, the bigger the loss because the prediction is further
+
+00:08:37.640 --> 00:08:40.680
+from the true label zero.
+
+00:08:40.680 --> 00:08:47.280
+And in fact, as that prediction approaches one, the loss actually approaches infinity.
+
+00:08:47.280 --> 00:08:52.200
+Going back to the tumor prediction example, this says that if a model predicts that the
+
+00:08:52.200 --> 00:08:59.040
+patient's tumor is almost certain to be malignant, say 99.9% chance of malignancy, then it turns
+
+00:08:59.040 --> 00:09:01.080
+out to actually not be malignant.
+
+00:09:01.080 --> 00:09:07.200
+So y equals zero, then we penalize the model with a very high loss.
+
+00:09:07.200 --> 00:09:12.400
+So in this case of y equals zero, similar to the case of y equals one on the previous
+
+00:09:12.400 --> 00:09:17.560
+slide, the further the prediction f of x is away from the true value of y, the higher
+
+00:09:17.560 --> 00:09:18.880
+the loss.
+
+00:09:18.880 --> 00:09:26.720
+And in fact, if f of x approaches zero, the loss here actually goes really, really large
+
+00:09:26.720 --> 00:09:29.780
+and in fact approaches infinity.
+
+00:09:29.780 --> 00:09:36.200
+So when the true label is one, the algorithm is strongly incentivized not to predict something
+
+00:09:36.200 --> 00:09:38.840
+too close to zero.
+
+00:09:38.840 --> 00:09:42.840
+So in this video, you saw why the squared error cost function doesn't work well for
+
+00:09:42.840 --> 00:09:45.320
+logistic regression.
+
+00:09:45.320 --> 00:09:53.080
+We also defined the loss for a single training example and came up with a new definition
+
+00:09:53.080 --> 00:09:57.900
+for the loss function for logistic regression.
+
+00:09:57.900 --> 00:10:03.360
+It turns out that with this choice of loss function, the overall cost function will be
+
+00:10:03.360 --> 00:10:09.880
+convex and thus you can reliably use gradient descent to take you to the global minimum,
+
+00:10:09.880 --> 00:10:15.200
+proving that this function is convex is beyond the scope of this course.
+
+00:10:15.220 --> 00:10:21.280
+You may remember that the cost function is a function of the entire training set and is
+
+00:10:21.280 --> 00:10:28.120
+therefore the average or one of ram times the sum of the loss function on the individual
+
+00:10:28.120 --> 00:10:30.240
+training examples.
+
+00:10:30.240 --> 00:10:38.580
+So the cost on a certain set of parameters w and b is equal to one over ram times the
+
+00:10:38.580 --> 00:10:44.360
+sum over all the training examples of the loss on the training samples.
+
+00:10:44.360 --> 00:10:50.920
+And if you can find the value of the parameters w and b that minimizes this, then you'd
+
+00:10:50.920 --> 00:10:56.940
+have a pretty good set of values for the parameters w and b for logistic regression.
+
+00:10:56.940 --> 00:11:01.560
+In the upcoming optional lab, you get to take a look at how the squared error cost
+
+00:11:01.560 --> 00:11:07.640
+function doesn't work very well for classification, because you see that the surface plot results
+
+00:11:07.640 --> 00:11:12.680
+in a very wiggly cost surface with many local minima.
+
+00:11:12.680 --> 00:11:17.880
+Then you take a look at the new logistic loss function.
+
+00:11:17.880 --> 00:11:23.840
+And as you can see here, this produces a nice and smooth convex surface plot that does
+
+00:11:23.840 --> 00:11:26.840
+not have all those local minima.
+
+00:11:26.840 --> 00:11:32.080
+So please take a look at the code and the plots after this video.
+
+00:11:32.080 --> 00:11:35.480
+Alright, so we've seen a lot in this video.
+
+00:11:35.480 --> 00:11:39.560
+In the next video, let's go back and take the loss function for a single training
+
+00:11:39.560 --> 00:11:45.880
+example, and use that to define the overall cost function for the entire training set.
+
+00:11:45.880 --> 00:11:50.600
+And we'll also figure out a simpler way to write out the cost function, which will
+
+00:11:50.600 --> 00:11:56.520
+then later allow us to run gradient descent to find good parameters for logistic regression.
+
+00:11:56.520 --> 00:11:58.120
+Let's go on to the next video.

@@ -1,0 +1,672 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.300 --> 00:00:06.300
+Estimating the bias and variance of your learning algorithm really helps you prioritize what to work on next.
+
+00:00:06.300 --> 00:00:14.300
+But the way you analyze bias and variance changes when your training set comes from a different distribution than your depth and test set.
+
+00:00:14.300 --> 00:00:15.300
+Let's see how.
+
+00:00:15.300 --> 00:00:22.300
+Let's keep using our CAD classification example and let's say humans get near perfect performance on this.
+
+00:00:22.300 --> 00:00:28.300
+So Bayes' error or Bayes' optimal error we know is nearly 0% on this problem.
+
+00:00:28.300 --> 00:00:36.300
+So to carry out error analysis, you usually look at the training error and also look at the error on the depth set.
+
+00:00:36.300 --> 00:00:45.300
+So let's say in this example that your training error is 1% and your depth error is 10%.
+
+00:00:45.300 --> 00:00:49.300
+If your depth data came from the same distribution as your training set,
+
+00:00:49.300 --> 00:00:56.300
+you would say that here you have a large variance problem that your algorithm is just not generalizing well from the training set,
+
+00:00:56.300 --> 00:01:01.300
+which is doing well on to the depth set, which is suddenly doing much worse on.
+
+00:01:01.300 --> 00:01:06.300
+But in the setting where your training data and your depth data comes from different distribution,
+
+00:01:06.300 --> 00:01:09.300
+you can no longer safely draw this conclusion.
+
+00:01:09.300 --> 00:01:13.300
+In particular, maybe it's doing just fine on the depth set.
+
+00:01:13.300 --> 00:01:19.300
+It's just that the training set was really easy because it was high res, very clear images,
+
+00:01:19.300 --> 00:01:23.300
+and maybe the depth set is just much harder.
+
+00:01:23.300 --> 00:01:33.300
+So maybe there isn't a variance problem, and this just reflects that the depth set contains images that are much more difficult to classify accurately.
+
+00:01:33.300 --> 00:01:39.300
+So the problem with this analysis is that when you went from the training error to the depth error,
+
+00:01:39.300 --> 00:01:41.300
+two things change at a time.
+
+00:01:41.300 --> 00:01:46.300
+One is that the algorithm saw data in the training set but not in the depth set.
+
+00:01:46.300 --> 00:01:50.300
+Two, the distribution of data in your depth set is different.
+
+00:01:50.300 --> 00:01:56.300
+And because you change two things at the same time, it's difficult to know of this 9% increase in error,
+
+00:01:56.300 --> 00:02:01.300
+how much of it is because the algorithm didn't see the data in the depth set.
+
+00:02:01.300 --> 00:02:04.300
+So that's sort of the variance part of the problem.
+
+00:02:04.300 --> 00:02:08.300
+And how much of it is because the depth set data is just different.
+
+00:02:08.300 --> 00:02:13.300
+So in order to tease out these two effects,
+
+00:02:13.300 --> 00:02:19.300
+and if you didn't totally follow what these two different effects are, don't worry, we'll go over it again in a second.
+
+00:02:19.300 --> 00:02:26.300
+But in order to tease out these two effects, it will be useful to define a new piece of data which we call the training depth set.
+
+00:02:26.300 --> 00:02:33.300
+So this is a new subset of data which you carve out that should have the same distribution as training sets,
+
+00:02:33.300 --> 00:02:37.300
+but you don't explicitly train your neural network on this.
+
+00:02:37.300 --> 00:02:39.300
+So here's what I mean.
+
+00:02:40.300 --> 00:02:50.300
+Previously, we had set up some training set and some depth set and some test set as follows.
+
+00:02:50.300 --> 00:02:56.300
+And the dev and test sets have the same distribution, but the training sets will have some different distribution.
+
+00:02:56.300 --> 00:03:08.300
+What we're going to do is randomly shuffle the training set and then carve out just a piece of the training set to be the training-depth set.
+
+00:03:08.300 --> 00:03:12.300
+So just as the dev and test set have the same distribution,
+
+00:03:12.300 --> 00:03:18.300
+the training set and the training-depth set also have the same distribution.
+
+00:03:18.300 --> 00:03:26.970
+But the difference is that now you train your neural network just on the training set proper.
+
+00:03:26.970 --> 00:03:33.970
+You won't let the neural network, you won't run back propagation on the training-depth portion of this data.
+
+00:03:33.970 --> 00:03:39.970
+To carry out error analysis, what you should do is now look at the error of the classifier on the training set,
+
+00:03:39.970 --> 00:03:43.970
+on the training-depth set, as well as on the dev set.
+
+00:03:43.970 --> 00:03:52.630
+So let's say in this example that your training error is 1%,
+
+00:03:52.630 --> 00:04:00.630
+and let's say the error on the training-depth set is 9%,
+
+00:04:00.630 --> 00:04:08.630
+and the error on the dev set is 10%, same as before.
+
+00:04:08.630 --> 00:04:15.630
+What you can conclude from this is that when you went from training data to training-depth data,
+
+00:04:15.630 --> 00:04:17.630
+the error really went up a lot.
+
+00:04:17.630 --> 00:04:26.630
+And the only difference between the training data and the training-depth data is that your neural network got to solve the first part of this.
+
+00:04:26.630 --> 00:04:33.630
+It was trained explicitly on this, but it wasn't trained explicitly on the training-depth data.
+
+00:04:33.630 --> 00:04:38.630
+So this tells you that you have a variance problem,
+
+00:04:38.630 --> 00:04:45.630
+because the training-depth error was measured on data that comes from the same distribution as your training set.
+
+00:04:45.630 --> 00:04:49.630
+So you know that even though your neural network does well on the training set,
+
+00:04:49.630 --> 00:04:54.630
+your training set is just not generalizing well to data in the training-depth set,
+
+00:04:54.630 --> 00:05:02.630
+which comes from the same distribution, but it's just not generalizing well to data from the same distribution that it hadn't seen before.
+
+00:05:02.630 --> 00:05:07.630
+So in this example, you have really a variance problem.
+
+00:05:09.200 --> 00:05:11.200
+Let's look at a different example.
+
+00:05:11.200 --> 00:05:17.200
+Let's say the training error is 1%, and the training-depth error is 1.5%,
+
+00:05:17.200 --> 00:05:21.200
+but when you go to the depth set, your error is 10%.
+
+00:05:21.200 --> 00:05:25.200
+So now you have actually a pretty low variance problem,
+
+00:05:25.200 --> 00:05:32.200
+because when you went from training data that you've seen to the training-depth data that the neural network has not seen,
+
+00:05:32.200 --> 00:05:37.200
+the error increases only a little bit, but then it really jumps when you go to the depth set.
+
+00:05:37.200 --> 00:05:40.200
+So this is a data mismatch problem.
+
+00:05:40.200 --> 00:05:44.200
+Write data mismatch.
+
+00:05:44.200 --> 00:05:51.200
+So this is a data mismatch problem,
+
+00:05:51.200 --> 00:05:57.200
+because your learning algorithm was not trained explicitly on data from training-depth or depth,
+
+00:05:57.200 --> 00:06:00.200
+but these two data sets come from different distributions.
+
+00:06:00.200 --> 00:06:05.200
+But whatever your algorithm is learning, it works great on training-depth, but it doesn't work well on depth.
+
+00:06:06.200 --> 00:06:12.200
+So somehow your algorithm has learned to do well on a different distribution than what you really care about.
+
+00:06:12.200 --> 00:06:17.660
+So we call it a data mismatch problem.
+
+00:06:17.660 --> 00:06:19.660
+Let's just look at a few more examples.
+
+00:06:19.660 --> 00:06:24.660
+I'll write this on the next row since I'm running out of space on top.
+
+00:06:24.660 --> 00:06:33.520
+So training error, training-depth error, and depth error.
+
+00:06:33.520 --> 00:06:41.520
+Let's say that training error is 10%, training-depth error is 11%, and depth error is 12%.
+
+00:06:41.520 --> 00:06:49.520
+Remember that human level, proxy for Bayes' error, is roughly 0%.
+
+00:06:49.520 --> 00:06:57.520
+So if you have this type of performance, then you really have a bias or an avoidable bias problem,
+
+00:06:58.520 --> 00:07:01.520
+because you're doing much worse than human level.
+
+00:07:01.520 --> 00:07:05.520
+So this is really a high bias setting.
+
+00:07:05.520 --> 00:07:13.520
+And one last example, if your training error is 10%, your training-depth error is 11%,
+
+00:07:13.520 --> 00:07:19.520
+and your depth error is 20%, then it looks like this actually has two issues.
+
+00:07:19.520 --> 00:07:26.520
+One, the avoidable bias is quite high because you're not even doing that well on the training set.
+
+00:07:26.520 --> 00:07:31.520
+Humans get nearly 0% error, but you're getting 10% error on the training set.
+
+00:07:31.520 --> 00:07:42.980
+The variance here seems quite small, but this data mismatch is quite large.
+
+00:07:42.980 --> 00:07:48.980
+So for this example, I would say you have a large bias or avoidable bias problem,
+
+00:07:48.980 --> 00:07:56.380
+as well as a data mismatch problem.
+
+00:07:56.380 --> 00:08:02.380
+So let's take what we've done on this slide and write out the general principles.
+
+00:08:02.380 --> 00:08:11.380
+The key quantities I would look at are human level error, your training set error,
+
+00:08:11.380 --> 00:08:23.220
+your training depth set error, so that same distribution is a training set,
+
+00:08:23.220 --> 00:08:28.220
+but you didn't train explicitly on it, your depth set error.
+
+00:08:28.220 --> 00:08:31.220
+And depending on the differences between these errors,
+
+00:08:31.220 --> 00:08:38.220
+you can get a sense of how big is the avoidable bias, the variance, the data mismatch problems.
+
+00:08:38.220 --> 00:08:43.220
+So let's say that human level error is 4%, your training error is 7%,
+
+00:08:43.220 --> 00:08:49.220
+your training depth error is 10%, and your depth error is 12%.
+
+00:08:49.220 --> 00:08:54.220
+So this gives you a sense of the avoidable bias,
+
+00:08:54.220 --> 00:08:57.220
+because you know you'd like your algorithm to do at least as well,
+
+00:08:57.220 --> 00:09:00.220
+or approach human level performance maybe on the training set.
+
+00:09:00.220 --> 00:09:03.220
+This is a sense of the variance.
+
+00:09:03.220 --> 00:09:09.220
+So how well do you generalize from the training set to the training depth set?
+
+00:09:09.220 --> 00:09:14.220
+This is a sense of how much of a data mismatch problem you have.
+
+00:09:14.220 --> 00:09:17.220
+And technically, you could also add one more thing,
+
+00:09:17.220 --> 00:09:19.220
+which is the test set performance.
+
+00:09:19.220 --> 00:09:20.220
+And we write test error.
+
+00:09:20.220 --> 00:09:23.220
+You shouldn't be doing development on your test set,
+
+00:09:23.220 --> 00:09:25.220
+because you don't want to overfit your test set.
+
+00:09:25.220 --> 00:09:28.220
+But if you also look at this, then this gap here
+
+00:09:28.220 --> 00:09:36.300
+tells you the degree of overfitting to the depth set.
+
+00:09:36.300 --> 00:09:40.770
+So there's a huge gap between your depth set performance
+
+00:09:40.770 --> 00:09:41.770
+and your test set performance.
+
+00:09:41.770 --> 00:09:44.770
+It means you may be overtuned to the depth set.
+
+00:09:44.770 --> 00:09:48.770
+And so maybe you need to find a bigger depth set.
+
+00:09:48.770 --> 00:09:52.770
+So remember that your depth set and your test set come from the same distribution.
+
+00:09:52.770 --> 00:09:54.770
+So the only way for there to be a huge gap here,
+
+00:09:54.770 --> 00:09:57.770
+for it to do much better on the depth set and the test set,
+
+00:09:57.770 --> 00:10:00.770
+is if you somehow manage to overfit the depth set.
+
+00:10:00.770 --> 00:10:03.770
+And if that's the case, what you might consider doing is going back
+
+00:10:03.770 --> 00:10:05.770
+and just getting more depth set data.
+
+00:10:05.770 --> 00:10:09.770
+Now, I've written these numbers as if as you go down the list,
+
+00:10:09.770 --> 00:10:12.770
+the numbers always keep going up.
+
+00:10:12.770 --> 00:10:16.770
+Here's one example of numbers that doesn't always go up.
+
+00:10:16.770 --> 00:10:21.770
+Maybe human level performance is 4%, training error is 7%,
+
+00:10:21.770 --> 00:10:23.770
+training depth error is 10%.
+
+00:10:23.770 --> 00:10:25.770
+But let's say that when you go to the depth set,
+
+00:10:25.770 --> 00:10:29.770
+you find that you actually surprisingly do much better on the depth set.
+
+00:10:29.770 --> 00:10:32.770
+Maybe this is 6%, 6% as well.
+
+00:10:32.770 --> 00:10:41.420
+So I've seen effects like this working on, for example,
+
+00:10:41.420 --> 00:10:45.420
+a speech recognition task where the training data turned out to be
+
+00:10:45.420 --> 00:10:48.420
+much harder than your depth set and test set.
+
+00:10:48.420 --> 00:10:52.420
+So these two were evaluated on your training set distribution,
+
+00:10:52.420 --> 00:10:56.420
+and these two were evaluated on your depth test set distribution.
+
+00:10:56.420 --> 00:11:01.420
+So sometimes if your depth test set distribution is much easier
+
+00:11:01.420 --> 00:11:03.420
+for whatever application you're working on,
+
+00:11:03.420 --> 00:11:06.420
+then these numbers can actually go down.
+
+00:11:06.420 --> 00:11:08.420
+So if you see funny things like this,
+
+00:11:08.420 --> 00:11:11.420
+there's an even more general formulation of this analysis
+
+00:11:11.420 --> 00:11:12.420
+that might be helpful.
+
+00:11:12.420 --> 00:11:15.420
+Let me quickly explain that on the next slide.
+
+00:11:15.420 --> 00:11:21.960
+So let me motivate this using the speech activated
+
+00:11:21.960 --> 00:11:25.960
+rear view mirror example.
+
+00:11:25.960 --> 00:11:28.960
+It turns out that the numbers we've been writing down
+
+00:11:28.960 --> 00:11:33.960
+can be placed into a table where on the horizontal axis
+
+00:11:33.960 --> 00:11:35.960
+I'm going to place different data sets.
+
+00:11:35.960 --> 00:11:42.960
+So for example, you might have data from your general speech recognition tasks.
+
+00:11:42.960 --> 00:11:46.960
+So you might have a bunch of data that you've just collected
+
+00:11:46.960 --> 00:11:49.960
+from a lot of speech recognition problems you've worked on,
+
+00:11:49.960 --> 00:11:52.960
+from smart speakers, data you purchase, and so on.
+
+00:11:52.960 --> 00:12:00.960
+And then you also have the rear view mirror specific speech data
+
+00:12:00.960 --> 00:12:04.500
+recorded inside the car.
+
+00:12:04.500 --> 00:12:09.500
+So on this x-axis on the table, I'm going to vary the data set.
+
+00:12:09.500 --> 00:12:15.870
+On this other axis, I'm going to label different ways
+
+00:12:15.870 --> 00:12:17.870
+or algorithms for examining the data.
+
+00:12:17.870 --> 00:12:20.870
+So first, there's human level performance,
+
+00:12:20.870 --> 00:12:25.870
+which is how accurate are humans on each of these data sets.
+
+00:12:25.870 --> 00:12:36.270
+Then there is the error on examples that your neural network has trained on.
+
+00:12:36.270 --> 00:12:47.030
+And then finally, there's error on examples that your neural network has not trained on.
+
+00:12:47.030 --> 00:12:53.500
+So it turns out that what we're calling on the human level
+
+00:12:53.500 --> 00:12:57.500
+on the previous slide is the number that goes in this box,
+
+00:12:57.500 --> 00:13:02.500
+which is how well do humans do on this category of data,
+
+00:13:02.500 --> 00:13:05.500
+say data from all sorts of speech recognition tasks,
+
+00:13:05.500 --> 00:13:09.500
+you know, the 5,000 utterances that you could power into your training set.
+
+00:13:09.500 --> 00:13:12.500
+And an example on the previous slide, this is 4%.
+
+00:13:12.500 --> 00:13:20.500
+This number here was our, maybe the training error,
+
+00:13:20.500 --> 00:13:26.260
+which in the example on the previous slide was 7%.
+
+00:13:26.260 --> 00:13:33.620
+If your learning algorithm has seen this example, performed gradient descent as an example,
+
+00:13:33.620 --> 00:13:37.620
+and this example came from your training set distribution
+
+00:13:37.620 --> 00:13:39.620
+or some general speech recognition distribution,
+
+00:13:39.620 --> 00:13:43.620
+how well does your algorithm do on the example it has trained on?
+
+00:13:43.620 --> 00:13:53.000
+Then here is the training depth set error.
+
+00:13:53.000 --> 00:13:57.000
+It's usually a bit higher, which is for data from this distribution,
+
+00:13:57.000 --> 00:14:02.000
+from general speech recognition, if your algorithm did not train explicitly
+
+00:14:02.000 --> 00:14:06.000
+on some examples from this distribution, how well does it do?
+
+00:14:06.000 --> 00:14:10.340
+And that's what we call the training depth error.
+
+00:14:10.340 --> 00:14:17.340
+And then if you move over to the right, this box here is the depth set error
+
+00:14:17.340 --> 00:14:24.970
+or maybe also the test set error, which was 6% in the example just now.
+
+00:14:24.970 --> 00:14:27.970
+And depth and test set error are actually technically two numbers,
+
+00:14:27.970 --> 00:14:31.970
+but either one could go into this box here.
+
+00:14:31.970 --> 00:14:34.970
+And this is if you have data from the rearview mirror,
+
+00:14:34.970 --> 00:14:38.970
+from actually recorded in a car from the rearview mirror application,
+
+00:14:38.970 --> 00:14:43.970
+but your neural network did not perform back propagation on this example.
+
+00:14:43.970 --> 00:14:45.970
+What is the error?
+
+00:14:45.970 --> 00:14:50.970
+So what we're doing in the analysis in the previous slide was look at differences
+
+00:14:50.970 --> 00:14:55.970
+between these two numbers, these two numbers, and these two numbers.
+
+00:14:55.970 --> 00:15:01.970
+And this gap here is a measure of avoidable bias.
+
+00:15:01.970 --> 00:15:06.970
+This gap here is a measure of variance,
+
+00:15:06.970 --> 00:15:12.970
+and this gap here was a measure of data mismatch.
+
+00:15:12.970 --> 00:15:17.970
+But it turns out that it could be useful to also fill in the remaining
+
+00:15:17.970 --> 00:15:20.970
+two entries in this table.
+
+00:15:20.970 --> 00:15:24.970
+And so if this turns out to be also 6%,
+
+00:15:24.970 --> 00:15:28.970
+and the way you get this number is you ask some humans to label their rearview
+
+00:15:28.970 --> 00:15:32.970
+mirror speech data and just measure how good humans are at this task.
+
+00:15:32.970 --> 00:15:37.970
+And maybe this turns out also to be 6%, and the way you do that is you take some
+
+00:15:37.970 --> 00:15:40.970
+rearview mirror speech data, put in the training set so the neural network
+
+00:15:40.970 --> 00:15:45.970
+learns on it as well, and then you measure the error on that subset of the data.
+
+00:15:45.970 --> 00:15:48.970
+But if this is what you get, then well, it turns out that you're actually
+
+00:15:48.970 --> 00:15:53.970
+already performing at the level of humans on this rearview mirror speech data.
+
+00:15:53.970 --> 00:15:57.970
+So maybe you're actually doing quite well on that distribution of data.
+
+00:15:57.970 --> 00:16:02.970
+When you do this most of skidded analysis, it doesn't always give you a one clear
+
+00:16:02.970 --> 00:16:06.970
+powerful width, but sometimes it just gives you additional insights as well.
+
+00:16:06.970 --> 00:16:10.970
+So for example, comparing these two numbers in this case tells us that for
+
+00:16:10.970 --> 00:16:15.970
+humans, the rearview mirror speech data is actually harder than for general
+
+00:16:15.970 --> 00:16:20.970
+speech recognition because humans get 6% error rather than 4% error.
+
+00:16:20.970 --> 00:16:26.970
+But then looking at these differences as well may help you understand bias
+
+00:16:26.970 --> 00:16:29.970
+and variance and data mismatch problems to different degrees.
+
+00:16:29.970 --> 00:16:34.970
+So this more general formulation is something I've used a few times.
+
+00:16:34.970 --> 00:16:39.970
+I've not used it, but for a lot of problems, you find that examining
+
+00:16:39.970 --> 00:16:44.970
+this subset of entries, kind of looking at this difference and this difference
+
+00:16:44.970 --> 00:16:49.970
+and this difference, that that's enough to point you in a pretty promising direction.
+
+00:16:49.970 --> 00:16:54.970
+But sometimes filling out this whole table can give you additional insight.
+
+00:16:54.970 --> 00:17:01.970
+Finally, we've previously talked a lot about ideas for addressing bias,
+
+00:17:01.970 --> 00:17:05.970
+talked a lot about techniques for addressing variance, but how do you address
+
+00:17:05.970 --> 00:17:10.970
+data mismatch? In particular, training on data that comes from a different
+
+00:17:10.970 --> 00:17:15.970
+distribution that your dev and test set can get you more data and really help you
+
+00:17:15.970 --> 00:17:19.970
+learn your algorithm's performance. But rather than just bias and variance problems,
+
+00:17:19.970 --> 00:17:23.970
+you now have this new potential problem of data mismatch.
+
+00:17:23.970 --> 00:17:27.970
+What are some good ways that you could use to address data mismatch?
+
+00:17:27.970 --> 00:17:30.970
+I'll be honest and say they're actually on to great or at least not very
+
+00:17:30.970 --> 00:17:34.970
+systematic ways to address data mismatch, but there are some things you could try
+
+00:17:34.970 --> 00:17:37.970
+that could help. Let's take a look at them in the next video.
+
+00:17:37.970 --> 00:17:42.970
+So what we've seen is that by using training data that can come from a different
+
+00:17:42.970 --> 00:17:46.970
+distribution as a dev and test set, this could give you a lot more data and
+
+00:17:46.970 --> 00:17:49.970
+therefore help the performance of your learning algorithm.
+
+00:17:49.970 --> 00:17:54.970
+But instead of just having bias and variance as two potential problems,
+
+00:17:54.970 --> 00:17:57.970
+you now have this third potential problem, data mismatch.
+
+00:17:57.970 --> 00:18:01.970
+So what if you perform error analysis and conclude that data mismatch is a
+
+00:18:01.970 --> 00:18:04.970
+huge source of error? How can you go about addressing that?
+
+00:18:04.970 --> 00:18:09.970
+It turns out that unfortunately there aren't super systematic ways to address
+
+00:18:09.970 --> 00:18:13.970
+data mismatch, but there are a few things you can try that could help.
+
+00:18:13.970 --> 00:18:15.970
+Let's take a look at them in the next video.

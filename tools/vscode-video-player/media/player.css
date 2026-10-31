@@ -1,0 +1,563 @@
+:root {
+  --bg: var(--vscode-editor-background, #14161a);
+  --panel: var(--vscode-editorWidget-background, #1d2026);
+  --panel-2: var(--vscode-toolbar-hoverBackground, #262a31);
+  --txt: var(--vscode-foreground, #e6e8eb);
+  --txt-dim: var(--vscode-descriptionForeground, #9aa0a8);
+  --accent: var(--vscode-progressBar-background, #4ea1ff);
+  --accent-dim: var(--vscode-button-background, #2f6db3);
+  --loop-a: #60d394;
+  --loop-b: #f7b955;
+  --warn-bg: var(--vscode-inputValidation-warningBackground, #3a2a1a);
+  --warn-bd: var(--vscode-inputValidation-warningBorder, #7a5320);
+  --warn-txt: var(--vscode-inputValidation-warningForeground, #f0c476);
+  --info-bg: var(--vscode-inputValidation-infoBackground, #1f2a35);
+  --info-bd: var(--vscode-inputValidation-infoBorder, #2f4658);
+  --info-txt: var(--vscode-inputValidation-infoForeground, #a9c8e2);
+  --border: var(--vscode-editorWidget-border, #262a31);
+  --focus: var(--vscode-focusBorder, #4ea1ff);
+  --on-accent: var(--vscode-button-foreground, #ffffff);
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--txt);
+  font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif);
+  font-size: var(--vscode-font-size, 13px);
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: none;
+  height: 100%;
+  margin: 0;
+  padding: 12px;
+}
+
+/* ---------- Video stage ---------- */
+.stage {
+  position: relative;
+  background: #000;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  flex: 1 1 0;
+  cursor: pointer;
+}
+
+#video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  outline: none;
+}
+
+.stage:fullscreen {
+  border-radius: 0;
+}
+
+.stage:fullscreen #video {
+  max-height: 100vh;
+  height: 100vh;
+}
+
+/* Filename overlay */
+.file-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.stage:hover .file-label,
+.player.is-paused .file-label {
+  opacity: 1;
+}
+
+/* Center flash */
+.flash {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.7);
+}
+
+.flash.show {
+  animation: flash-pop 0.5s ease-out;
+}
+
+@keyframes flash-pop {
+  0%   { opacity: 0.9; transform: scale(0.7); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* Stage overlay: buffering spinner + error message */
+.stage-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.player.is-buffering .stage-overlay,
+.player.is-stage-error .stage-overlay {
+  display: flex;
+}
+
+.stage-spinner {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.player.is-buffering .stage-spinner {
+  display: block;
+}
+
+.stage-error {
+  display: none;
+  max-width: 80%;
+  padding: 10px 14px;
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius);
+  font-size: 13px;
+}
+
+.player.is-stage-error .stage-error {
+  display: block;
+}
+
+/* ---------- Seek bar ---------- */
+.seek {
+  padding: 4px 2px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.seek:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.seek-track {
+  position: relative;
+  height: 5px;
+  border-radius: 3px;
+  background: var(--border);
+  transition: height 0.12s ease;
+}
+
+.seek:hover .seek-track,
+.seek.scrubbing .seek-track {
+  height: 8px;
+}
+
+.seek-buffered {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.seek-played {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 3px;
+  background: var(--accent);
+}
+
+.seek-handle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.12s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.seek-marker {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.seek-marker-a {
+  background: var(--loop-a);
+}
+
+.seek-marker-b {
+  background: var(--loop-b);
+}
+
+.seek:hover .seek-handle,
+.seek.scrubbing .seek-handle {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- Controls bar ---------- */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  row-gap: 6px;
+  padding: 6px 8px;
+  background: var(--panel);
+  /* Keep the bar distinct in High Contrast themes, where --panel collapses to
+     the page background and the bar would otherwise have no visible edge. */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 6px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--txt);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.btn:hover {
+  background: var(--panel-2);
+}
+
+.btn:active {
+  background: var(--accent-dim);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.btn svg {
+  display: block;
+}
+
+.btn-sub {
+  position: absolute;
+  bottom: 3px;
+  right: 4px;
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--txt-dim);
+}
+
+.btn-speed {
+  font-weight: 600;
+  font-size: 12px;
+  min-width: 42px;
+}
+
+.btn-loop-point {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.btn.is-active,
+.player.is-looping #loopBtn {
+  color: var(--on-accent);
+  background: var(--accent-dim);
+}
+
+.cc-panel {
+  position: fixed;
+  right: 12px;
+  bottom: 90px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--vscode-editorWidget-background, #252526);
+  color: var(--vscode-foreground, #ccc);
+  border: 1px solid var(--vscode-editorWidget-border, #454545);
+  font-size: 12px;
+}
+
+.cc-panel[hidden] { display: none; }
+.cc-panel label { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.cc-panel select, .cc-panel button { font: inherit; }
+.cc-panel output { min-width: 34px; text-align: right; }
+
+.cc-text {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 90%;
+  padding: 2px 10px;
+  text-align: center;
+  white-space: pre-line;
+  user-select: text;
+  cursor: text;
+  z-index: 5;
+  font-size: var(--cc-size, 22px);
+  font-family: var(--cc-font, sans-serif);
+  color: var(--cc-color, #fff);
+  background-color: var(--cc-bg, rgba(0, 0, 0, 0.75));
+}
+
+.cc-text[hidden] { display: none; }
+.cc-grip { margin-right: 8px; cursor: move; user-select: none; touch-action: none; opacity: 0.6; }
+.cc-grip:hover { opacity: 1; }
+
+.cc-panel {
+  position: fixed;
+  right: 12px;
+  bottom: 90px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--vscode-editorWidget-background, #252526);
+  color: var(--vscode-foreground, #ccc);
+  border: 1px solid var(--vscode-editorWidget-border, #454545);
+  font-size: 12px;
+}
+
+.cc-panel[hidden] { display: none; }
+.cc-panel label { display: flex; align-items: center; gap: 8px; justify-content: space-between; }
+.cc-panel select, .cc-panel button { font: inherit; }
+.cc-panel output { min-width: 34px; text-align: right; }
+
+.btn-cc {
+  min-width: 38px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.player.is-subtitles-on #subBtn {
+  background: var(--accent-dim);
+  color: var(--on-accent);
+}
+
+/* icon toggling.
+   These selectors are scoped to `.btn` so they out-specify the `.btn svg`
+   base rule above (which sets display:block); without the `.btn ` prefix the
+   "off" icon of every toggle would stay visible and the paused/unmuted/windowed
+   states would render BOTH icons at once. */
+.btn .ic-pause,
+.btn .ic-muted,
+.btn .ic-fs-exit {
+  display: none;
+}
+
+.player.is-playing .ic-play { display: none; }
+.player.is-playing .ic-pause { display: block; }
+
+.player.is-muted .ic-vol { display: none; }
+.player.is-muted .ic-muted { display: block; }
+
+.stage:fullscreen .ic-fs,
+.player.is-fullscreen .ic-fs { display: none; }
+.player.is-fullscreen .ic-fs-exit { display: block; }
+
+/* ---------- Volume ---------- */
+.vol {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.vol-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 4px;
+  border-radius: 3px;
+  background: var(--border);
+  cursor: pointer;
+  outline: none;
+}
+
+.vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.vol-slider::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+/* ---------- Time ---------- */
+.time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+  color: var(--txt-dim);
+  white-space: nowrap;
+}
+
+.time-sep {
+  opacity: 0.5;
+}
+
+/* ---------- Status bar ---------- */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  font-size: 12px;
+  background: var(--info-bg);
+  border: 1px solid var(--info-bd);
+  color: var(--info-txt);
+}
+
+.status.is-warning {
+  background: var(--warn-bg);
+  border-color: var(--warn-bd);
+  color: var(--warn-txt);
+}
+
+/* Optional action button inside the status bar (e.g. Trust workspace) */
+.status-action {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding: 3px 10px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  background: transparent;
+  color: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.status-action:hover {
+  background: rgba(127, 127, 127, 0.18);
+}
+
+.status-action:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.spinner {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--info-txt);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  .vol-slider {
+    width: 50px;
+  }
+  .time {
+    font-size: 11px;
+    padding: 0 2px;
+  }
+  .btn {
+    min-width: 30px;
+    padding: 0 3px;
+  }
+}
+
+@media (max-width: 420px) {
+  .vol-slider {
+    display: none;
+  }
+  .btn-sub {
+    display: none;
+  }
+}

@@ -1,0 +1,135 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.220 --> 00:00:09.660
+MobileNet to V1 and V2 gave you a way to implement a neural network that is more computationally
+
+00:00:09.660 --> 00:00:10.660
+efficient.
+
+00:00:10.660 --> 00:00:17.260
+But is there a way to tune MobileNet or some other architecture to your specific device?
+
+00:00:17.260 --> 00:00:22.660
+So maybe you're implementing a computer vision algorithm for different brands of mobile
+
+00:00:22.660 --> 00:00:27.740
+phones with different amounts of compute resources or for different edge devices.
+
+00:00:27.740 --> 00:00:31.220
+And if you have a little bit more computation, maybe you can have a slightly bigger neural
+
+00:00:31.220 --> 00:00:34.340
+network and hopefully get a bit more accuracy.
+
+00:00:34.340 --> 00:00:39.180
+Or if you are more computationally constrained, maybe you want a slightly smaller neural network
+
+00:00:39.180 --> 00:00:43.100
+that runs a bit faster at the cost of a little bit of accuracy.
+
+00:00:43.100 --> 00:00:49.140
+So how can you automatically scale up or down neural networks for a particular device?
+
+00:00:49.140 --> 00:00:52.300
+EfficientNet gives you a way to do so.
+
+00:00:52.300 --> 00:00:58.420
+Let's say you have a baseline neural network architecture where the input image has a certain
+
+00:00:58.500 --> 00:01:07.980
+resolution R and your neural network has a certain depth and the layers has a certain width.
+
+00:01:07.980 --> 00:01:14.660
+The authors of the EfficientNet paper Ming-Sing Tan and my former PhD student Kwok-Lor observed
+
+00:01:14.660 --> 00:01:20.540
+that the three things you could do to scale things up or down are you could use a high
+
+00:01:20.540 --> 00:01:28.770
+resolution image, so a new image resolution R. And I don't know how to denote a high
+
+00:01:28.810 --> 00:01:30.730
+resolution in a video like this.
+
+00:01:30.730 --> 00:01:36.290
+So I'm using this blue glow here to denote maybe a high resolution image.
+
+00:01:36.290 --> 00:01:39.970
+Or you could make this network much deeper.
+
+00:01:39.970 --> 00:01:49.970
+So you could vary D, the depth of the neural network, or you can make the layers wider.
+
+00:01:49.970 --> 00:01:55.250
+So you can also vary the width of these layers.
+
+00:01:55.250 --> 00:02:04.850
+So the question is, given a particular computational budget, what's a good choice of R, D and W?
+
+00:02:04.850 --> 00:02:10.930
+Or depending on the computational resources you have, you can also use compound scaling
+
+00:02:10.930 --> 00:02:16.690
+where you might simultaneously scale up or simultaneously scale down the resolution of
+
+00:02:16.690 --> 00:02:20.370
+the image and the depth and the width of the neural network.
+
+00:02:20.370 --> 00:02:26.370
+Now the tricky part is, if you want to scale up R, D and W, what's the rate at which you
+
+00:02:26.370 --> 00:02:28.210
+could scale up each of these?
+
+00:02:28.210 --> 00:02:31.250
+Should you double the resolution and leave depth and width the same?
+
+00:02:31.250 --> 00:02:34.770
+Or maybe you should double the depth but leave the others the same?
+
+00:02:34.770 --> 00:02:39.610
+Or increase resolution by 10%, increase depth by 50% and width by 20%?
+
+00:02:39.610 --> 00:02:46.290
+What's the best trade-off between R, D and W to scale up or down your neural network
+
+00:02:46.290 --> 00:02:50.930
+to get the best possible performance within your computational budget?
+
+00:02:50.930 --> 00:02:56.610
+So if you're ever looking to adapt a neural network architecture for a particular device,
+
+00:02:56.610 --> 00:03:01.690
+look at one of the open source implementations of EfficientNet, which will help you to choose
+
+00:03:01.690 --> 00:03:05.530
+a good trade-off between R, D and W.
+
+00:03:05.530 --> 00:03:06.530
+So that's it.
+
+00:03:06.530 --> 00:03:11.290
+With MobileNet, you've learned how to build more computationally efficient layers.
+
+00:03:11.290 --> 00:03:17.930
+And with EfficientNet, you can also find a way to scale up or down these neural networks
+
+00:03:17.930 --> 00:03:22.190
+based on the resources of a device you may be working on.
+
+00:03:22.190 --> 00:03:27.530
+So with this, I hope you have the skills needed in order to build neural networks for
+
+00:03:27.530 --> 00:03:32.730
+mobile devices and for embedded devices and for other devices where the computation and
+
+00:03:32.730 --> 00:03:34.610
+the memory may be more limited.
+
+00:03:34.610 --> 00:03:38.450
+I hope this will open up a lot of possible applications that you may now be able to
+
+00:03:38.450 --> 00:03:38.850
+build.

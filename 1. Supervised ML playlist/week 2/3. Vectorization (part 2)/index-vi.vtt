@@ -1,0 +1,361 @@
+WEBVTT
+
+00:00:01.970 --> 00:00:05.583
+Tôi nhớ khi lần đầu tiên tôi học về vector
+hóa, tôi đã dành nhiều giờ
+
+00:00:05.583 --> 00:00:09.197
+trên máy tính để sử dụng phiên bản thuật toán
+chưa được vector hóa
+
+00:00:09.197 --> 00:00:12.810
+chạy nó, xem tôi đã chạy trong bao lâu và sau
+đó chạy một chương trình.
+
+00:00:12.810 --> 00:00:16.210
+phiên bản mã vector hóa và xem nó chạy nhanh
+hơn bao nhiêu.
+
+00:00:16.210 --> 00:00:18.530
+Và tôi đã dành hàng giờ để chơi với nó.
+
+00:00:18.530 --> 00:00:21.340
+Và tôi thực sự ngạc nhiên rằng cùng một thuật
+
+00:00:21.340 --> 00:00:24.150
+toán được vector hóa sẽ chạy nhanh hơn rất
+nhiều.
+
+00:00:24.150 --> 00:00:27.050
+Đối với tôi nó gần giống như một trò ảo thuật.
+
+00:00:27.050 --> 00:00:29.190
+Trong video này, chúng ta hãy tìm hiểu xem trò
+
+00:00:29.190 --> 00:00:31.330
+ảo thuật này thực sự hoạt động như thế nào
+nhé.
+
+00:00:31.330 --> 00:00:34.290
+Chúng ta hãy xem xét sâu hơn cách triển khai
+vector
+
+00:00:34.290 --> 00:00:37.250
+hóa có thể hoạt động trên máy tính của bạn ở
+hậu trường.
+
+00:00:37.250 --> 00:00:39.370
+Chúng ta hãy nhìn vào vòng lặp for này.
+
+00:00:39.370 --> 00:00:43.110
+Một vòng lặp for như thế này chạy mà không cần
+vector hóa.
+
+00:00:43.110 --> 00:00:47.850
+Vì vậy, nếu J nằm trong khoảng từ 0 đến 15,
+
+00:00:47.850 --> 00:00:52.590
+đoạn mã này sẽ thực hiện lần lượt các thao
+tác.
+
+00:00:52.590 --> 00:00:57.360
+Ở bước đầu tiên, mà tôi sẽ viết là thời gian 0
+hoặc t
+
+00:00:57.360 --> 00:01:02.130
+0, trước tiên nó hoạt động trên các giá trị ở
+chỉ số 0.
+
+00:01:02.130 --> 00:01:07.820
+Ở bước thời gian tiếp theo, nó tính toán các
+giá trị tương ứng với
+
+00:01:07.820 --> 00:01:13.510
+chỉ mục một, v.v. cho đến bước thứ 15 khi nó
+tính toán giá trị đó.
+
+00:01:13.510 --> 00:01:21.010
+Nói cách khác, nó tính toán các phép tính này,
+từng bước một, từng bước một.
+
+00:01:21.010 --> 00:01:24.810
+Ngược lại, chức năng này trong NumPy được
+triển
+
+00:01:24.810 --> 00:01:28.610
+khai trong phần cứng máy tính với feature
+vector hóa.
+
+00:01:28.610 --> 00:01:33.550
+Vì vậy máy tính có thể lấy được tất cả các giá
+trị của vectơ w và x.
+
+00:01:33.550 --> 00:01:42.450
+Và chỉ trong một bước duy nhất, nó nhân song
+song từng cặp w và x với nhau.
+
+00:01:42.450 --> 00:01:48.230
+Sau đó, máy tính lấy 16 số này và sử dụng phần
+cứng chuyên dụng để cộng tất
+
+00:01:48.230 --> 00:01:54.010
+cả lại với nhau rất hiệu quả, thay vì phải
+thực hiện các phép cộng riêng biệt.
+
+00:01:54.010 --> 00:01:58.330
+lần lượt để cộng 16 số này.
+
+00:01:58.330 --> 00:02:02.420
+Điều này có nghĩa là mã có vector hóa có thể
+thực hiện các phép
+
+00:02:02.420 --> 00:02:06.510
+tính trong thời gian ít hơn nhiều so với mã
+không có vector hóa.
+
+00:02:06.510 --> 00:02:09.790
+Và điều này quan trọng hơn khi bạn đang chạy
+các thuật
+
+00:02:09.790 --> 00:02:13.070
+toán học trên các tập dữ liệu lớn hoặc cố gắng
+huấn luyện
+
+00:02:13.070 --> 00:02:16.350
+các mô hình lớn, điều này thường xảy ra với
+machine learning.
+
+00:02:16.350 --> 00:02:19.757
+Vì vậy, đó là lý do tại sao việc có thể viết
+các triển khai
+
+00:02:19.757 --> 00:02:23.163
+vector hóa các thuật toán học tập là một bước
+quan trọng để
+
+00:02:23.163 --> 00:02:26.570
+giúp các thuật toán học tập chạy hiệu quả và
+do đó mở rộng quy mô tốt
+
+00:02:26.570 --> 00:02:29.500
+đến các tập dữ liệu lớn mà nhiều thuật toán
+
+00:02:29.500 --> 00:02:32.430
+machine learning hiện đại hiện nay phải vận
+hành.
+
+00:02:32.430 --> 00:02:38.100
+Bây giờ chúng ta hãy xem một ví dụ cụ thể về
+cách điều này giúp triển khai
+
+00:02:38.100 --> 00:02:43.770
+linear regression bội, đó là linear regression
+với nhiều feature đầu vào.
+
+00:02:43.770 --> 00:02:55.530
+Giả sử bạn gặp vấn đề với 16 feature và 16
+tham số từ w1 đến w16, ngoài tham số b.
+
+00:02:55.530 --> 00:03:00.450
+Bạn đã tính 16 số hạng đạo hàm cho 16 trọng số
+này.
+
+00:03:00.450 --> 00:03:05.570
+Và trong mã, có thể bạn đã lưu trữ các giá trị
+của w và d trong
+
+00:03:05.570 --> 00:03:10.690
+hai mảng có nhiều mảng, trong đó d lưu trữ các
+giá trị của đạo hàm.
+
+00:03:10.690 --> 00:03:14.890
+Trong ví dụ này, tôi sẽ bỏ qua tham số b.
+
+00:03:14.890 --> 00:03:20.410
+Bây giờ bạn muốn tính toán bản cập nhật cho
+từng tham số trong số 16 tham số này.
+
+00:03:20.410 --> 00:03:26.490
+Vì vậy, wj được cập nhật thành wj trừ đi
+
+00:03:26.490 --> 00:03:32.570
+learning rate tập, giả sử 0,1 lần dj cho j từ
+1 đến
+
+00:03:32.570 --> 00:03:33.970
+16.
+
+00:03:33.970 --> 00:03:40.650
+Trong mã, không có vector hóa, bạn sẽ làm điều
+gì đó như thế này.
+
+00:03:40.650 --> 00:03:49.210
+Cập nhật w1 thành w1 trừ learning rate 0,1
+nhân d1, cập nhật tiếp
+
+00:03:49.210 --> 00:03:57.770
+theo w2 tương tự, v.v. đến w16, cập nhật thành
+w16 trừ 0,1 nhân d16.
+
+00:03:57.770 --> 00:04:06.050
+Trong các mã không có vector hóa, bạn có thể
+sử dụng vòng lặp for như thế
+
+00:04:06.050 --> 00:04:14.330
+này cho j trong phạm vi 0,16, lại đi từ 0 đến
+15, wj bằng wj trừ 0,1 nhân dj.
+
+00:04:14.330 --> 00:04:18.140
+Ngược lại, với vector hóa, bạn có thể hình
+dung
+
+00:04:18.140 --> 00:04:21.950
+phần cứng xử lý song song của máy tính như thế
+này.
+
+00:04:21.950 --> 00:04:30.500
+Nó lấy tất cả 16 giá trị trong vectơ w và trừ
+song song 0,1 lần tất cả 16 giá trị
+
+00:04:30.500 --> 00:04:39.050
+trong vectơ d và gán tất cả 16 phép tính trở
+lại w, tất cả cùng một lúc và tất cả đều đúng
+
+00:04:39.050 --> 00:04:40.370
+một bước.
+
+00:04:40.410 --> 00:04:45.170
+Trong mã, bạn có thể triển khai điều này như
+sau.
+
+00:04:45.170 --> 00:04:50.170
+W được gán cho w trừ 0,1 lần d.
+
+00:04:50.170 --> 00:04:55.560
+Đằng sau hậu trường, máy tính lấy các mảng
+phức tạp w và d này và sử dụng
+
+00:04:55.560 --> 00:05:00.950
+phần cứng xử lý song song để thực hiện tất cả
+16 phép tính một cách hiệu quả.
+
+00:05:00.950 --> 00:05:04.340
+Vì vậy, bằng cách sử dụng triển khai vector
+hóa, bạn
+
+00:05:04.340 --> 00:05:07.730
+sẽ triển khai linear regression hiệu quả hơn
+nhiều.
+
+00:05:07.730 --> 00:05:11.210
+Có thể sự khác biệt về tốc độ sẽ không lớn nếu
+bạn có 16
+
+00:05:11.210 --> 00:05:14.690
+feature, nhưng nếu bạn có hàng nghìn feature
+và có lẽ là
+
+00:05:14.690 --> 00:05:18.170
+các training set rất lớn, thì kiểu triển khai
+vector hóa này
+
+00:05:18.170 --> 00:05:21.970
+sẽ tạo ra sự khác biệt lớn về thời gian chạy
+thuật toán học tập của bạn.
+
+00:05:21.970 --> 00:05:25.790
+Đó có thể là sự khác biệt giữa việc hoàn thành
+mã trong một
+
+00:05:25.790 --> 00:05:29.610
+hoặc hai phút so với việc mất nhiều giờ để làm
+điều tương tự.
+
+00:05:29.610 --> 00:05:33.530
+Trong phòng thí nghiệm tùy chọn tiếp theo
+video này, bạn sẽ thấy phần giới
+
+00:05:33.530 --> 00:05:37.450
+thiệu về một trong những thư viện Python được
+sử dụng nhiều nhất trong
+
+00:05:37.450 --> 00:05:41.370
+machine learning mà chúng ta đã đề cập đến
+trong video này có tên là numpy.
+
+00:05:41.370 --> 00:05:45.463
+Bạn thấy ba vectơ trong mã và các vectơ hoặc
+danh sách số này
+
+00:05:45.463 --> 00:05:49.557
+được gọi là mảng có nhiều mảng và bạn cũng
+thấy cách lấy tích
+
+00:05:49.557 --> 00:05:53.650
+chấm của hai vectơ bằng cách sử dụng một mảng
+có nhiều mảng.
+
+00:05:53.650 --> 00:05:56.730
+hàm gọi là dấu chấm.
+
+00:05:56.730 --> 00:06:00.530
+Và bạn cũng có thể thấy mã vector hóa, chẳng
+hạn như sử dụng
+
+00:06:00.530 --> 00:06:04.330
+hàm dấu chấm, có thể chạy nhanh hơn nhiều so
+với vòng lặp for.
+
+00:06:04.330 --> 00:06:07.050
+Trên thực tế, bạn có thể tự mình tính thời
+gian
+
+00:06:07.050 --> 00:06:09.770
+cho mã này và hy vọng nó chạy nhanh hơn nhiều.
+
+00:06:09.770 --> 00:06:13.463
+Phòng thí nghiệm tùy chọn này giới thiệu khá
+nhiều cú pháp phức
+
+00:06:13.463 --> 00:06:17.157
+tạp mới, vì vậy khi bạn đọc qua phòng thí
+nghiệm tùy chọn, vui
+
+00:06:17.157 --> 00:06:20.850
+lòng không cảm thấy như bạn phải hiểu tất cả
+mã ngay lập tức,
+
+00:06:20.850 --> 00:06:24.390
+nhưng bạn có thể lưu sổ ghi chép này và sử
+dụng nó làm tài liệu tham khảo để
+
+00:06:24.390 --> 00:06:27.930
+xem khi bạn làm việc với dữ liệu được lưu trữ
+trong các mảng có nhiều mảng.
+
+00:06:27.930 --> 00:06:31.490
+Chúc mừng bạn đã hoàn thành video này về
+vector hóa.
+
+00:06:31.490 --> 00:06:34.350
+Chúng ta đã học được một trong những kỹ thuật
+quan trọng và hữu
+
+00:06:34.350 --> 00:06:37.210
+ích nhất trong việc triển khai các thuật toán
+machine learning.
+
+00:06:37.210 --> 00:06:41.410
+Trong video tiếp theo, chúng ta sẽ kết hợp
+phép toán của
+
+00:06:41.410 --> 00:06:45.610
+linear regression bội với vectơ hóa để bạn
+thực sự triển
+
+00:06:45.610 --> 00:06:49.810
+khai gradient descent cho linear regression
+bội với vectơ hóa.
+
+00:06:49.810 --> 00:06:51.210
+Chúng ta hãy chuyển sang video tiếp theo.

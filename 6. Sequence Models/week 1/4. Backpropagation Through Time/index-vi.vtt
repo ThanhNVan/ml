@@ -1,0 +1,389 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.585
+Bạn đã học được về cấu trúc cơ bản của một RNN.
+
+2
+00:00:03.585 --> 00:00:08.730
+Trong video này, bạn sẽ thấy cách backpropagation trong một neural network tái phát hoạt động như thế nào.
+
+3
+00:00:08.730 --> 00:00:12.570
+Như thường lệ, khi bạn thực hiện điều này trong một trong các khuôn khổ lập
+
+4
+00:00:12.570 --> 00:00:16.848
+trình, thường thì khuôn khổ lập trình sẽ tự động chăm sóc backpropagation.
+
+5
+00:00:16.848 --> 00:00:21.887
+Nhưng tôi nghĩ rằng nó vẫn còn hữu ích để có một cảm giác thô sơ về cách backprop hoạt động trong RNN.
+
+6
+00:00:21.887 --> 00:00:23.575
+Chúng ta hãy xem qua.
+
+7
+00:00:23.575 --> 00:00:25.719
+Bạn đã thấy làm thế nào, đối với prop phía trước,
+
+8
+00:00:25.719 --> 00:00:33.965
+bạn sẽ tính toán các kích hoạt từ trái sang phải như sau trong neural network,
+
+9
+00:00:33.965 --> 00:00:37.365
+và do đó bạn đã đưa ra tất cả các dự đoán.
+
+10
+00:00:37.365 --> 00:00:40.605
+Trong backprop, như bạn có thể đã đoán,
+
+11
+00:00:40.605 --> 00:00:42.375
+bạn kết thúc mang
+
+12
+00:00:42.375 --> 00:00:46.830
+tính toán backpropagation về cơ bản hướng ngược lại
+
+13
+00:00:46.830 --> 00:00:49.071
+của các mũi tên prop về phía trước.
+
+14
+00:00:49.071 --> 00:00:52.815
+Vì vậy, chúng ta hãy đi qua tính toán tuyên truyền về phía trước.
+
+15
+00:00:52.815 --> 00:00:56.120
+Bạn được cung cấp chuỗi đầu vào này x_1, x_2,
+
+16
+00:00:56.120 --> 00:01:01.690
+x_3, lên đến x_tx.
+
+17
+00:01:01.690 --> 00:01:06.385
+Và sau đó sử dụng x_1 và nói, a_0,
+
+18
+00:01:06.385 --> 00:01:11.390
+bạn sẽ tính toán kích hoạt, lần mà một,
+
+19
+00:01:11.390 --> 00:01:17.490
+và sau đó cùng nhau, x_2 cùng với a_1 được sử dụng để tính toán a_2,
+
+20
+00:01:17.490 --> 00:01:24.853
+và sau đó a_3, và như vậy, lên đến a_tx.
+
+21
+00:01:24.853 --> 00:01:27.753
+Được rồi. Và sau đó để thực sự tính toán a_1,
+
+22
+00:01:27.753 --> 00:01:29.760
+bạn cũng cần các tham số.
+
+23
+00:01:29.760 --> 00:01:32.595
+Chúng tôi sẽ chỉ vẽ điều này trong màu xanh lá cây, W_a và b_a,
+
+24
+00:01:32.595 --> 00:01:35.570
+đó là những tham số được sử dụng để tính toán a_1.
+
+25
+00:01:35.570 --> 00:01:39.950
+Và sau đó, các tham số này thực sự được sử dụng cho mỗi timestep đơn vì vậy,
+
+26
+00:01:39.950 --> 00:01:45.035
+các tham số này thực sự được sử dụng để tính toán a_2, a_3
+
+27
+00:01:45.035 --> 00:01:52.329
+, và như vậy, tất cả các kích hoạt lên đến timestep cuối cùng phụ thuộc vào các tham số w_a và b_a
+
+28
+00:01:52.329 --> 00:01:55.090
+Hãy tiếp tục fleshing ra đồ thị này.
+
+29
+00:01:55.090 --> 00:02:01.980
+Bây giờ, cho a_1, neural network của bạn sau đó có thể tính toán dự đoán đầu tiên, y-hat_1,
+
+30
+00:02:01.980 --> 00:02:07.340
+và sau đó là timestep thứ hai, y-hat_2, y-hat_3,
+
+31
+00:02:07.340 --> 00:02:14.985
+và vân vân, với y-hat_ty.
+
+32
+00:02:14.985 --> 00:02:18.600
+Và hãy để tôi vẽ lại các thông số của một màu khác nhau.
+
+33
+00:02:18.600 --> 00:02:22.590
+Vì vậy, để tính toán y-hat,
+
+34
+00:02:22.590 --> 00:02:24.700
+bạn cần các tham số,
+
+35
+00:02:24.700 --> 00:02:27.350
+W_y cũng như b_y,
+
+36
+00:02:27.350 --> 00:02:32.230
+và điều này đi vào nút này cũng như tất cả những người khác.
+
+37
+00:02:32.230 --> 00:02:34.900
+Vì vậy, tôi sẽ vẽ điều này trong màu xanh lá cây là tốt.
+
+38
+00:02:34.900 --> 00:02:36.670
+Tiếp theo, để tính toán backpropagation,
+
+39
+00:02:36.670 --> 00:02:39.361
+bạn cần một chức năng mất mát.
+
+40
+00:02:39.361 --> 00:02:42.370
+Vì vậy, chúng ta hãy xác định một lực lượng tổn thất yếu tố khôn ngoan,
+
+41
+00:02:42.370 --> 00:02:45.625
+được cho là cho một từ nào đó trong chuỗi.
+
+42
+00:02:45.625 --> 00:02:46.975
+Đó là tên của một người,
+
+43
+00:02:46.975 --> 00:02:48.220
+vì vậy y_t là một.
+
+44
+00:02:48.220 --> 00:02:51.395
+Và neural network của bạn xuất ra một số xác suất có thể là
+
+45
+00:02:51.395 --> 00:02:55.303
+0,1 từ cụ thể là tên của một người.
+
+46
+00:02:55.303 --> 00:03:00.385
+Vì vậy, tôi sẽ định nghĩa điều này như là sự mất mát logistic regression tiêu chuẩn,
+
+47
+00:03:00.385 --> 00:03:04.045
+còn được gọi là mất entropy chéo.
+
+48
+00:03:04.045 --> 00:03:07.240
+Điều này có thể trông quen thuộc với bạn từ nơi trước đây chúng tôi đã xem
+
+49
+00:03:07.240 --> 00:03:10.502
+xét các vấn đề classification nhị phân.
+
+50
+00:03:10.502 --> 00:03:12.190
+Vì vậy, đây là sự mất mát liên quan đến
+
+51
+00:03:12.190 --> 00:03:15.671
+một dự đoán duy nhất tại một vị trí duy nhất hoặc tại một thiết lập thời gian duy nhất,
+
+52
+00:03:15.671 --> 00:03:17.661
+t, cho một từ duy nhất.
+
+53
+00:03:17.661 --> 00:03:21.700
+Bây giờ chúng ta hãy xác định sự mất mát tổng thể của toàn bộ chuỗi,
+
+54
+00:03:21.700 --> 00:03:28.235
+vì vậy L sẽ được định nghĩa
+
+55
+00:03:29.940 --> 00:03:33.890
+là tổng t tổng thể bằng một để, tôi đoán, T_x hoặc T_y. T_x bằng với T_y trong ví dụ này của các thiệt hại
+
+56
+00:03:33.890 --> 00:03:38.605
+cho timesteps cá nhân, dấu phẩy y_t
+
+57
+00:03:38.605 --> 00:03:42.712
+Và sau đó, như vậy, chỉ cần L mà không có điều này
+
+58
+00:03:42.712 --> 00:03:47.575
+chỉ số T. Đây là sự mất mát cho toàn bộ chuỗi.
+
+59
+00:03:47.575 --> 00:03:48.910
+Vì vậy, trong một biểu đồ tính toán,
+
+60
+00:03:48.910 --> 00:03:52.225
+để tính toán sự mất mát cho y-hat_1,
+
+61
+00:03:52.225 --> 00:03:54.380
+sau đó bạn có thể tính toán sự mất mát cho
+
+62
+00:03:54.380 --> 00:03:59.785
+timestep đầu tiên cho rằng bạn tính toán sự mất mát cho timestep thứ hai,
+
+63
+00:03:59.785 --> 00:04:03.094
+sự mất mát cho timestep thứ ba,
+
+64
+00:04:03.094 --> 00:04:07.265
+và như vậy, sự mất mát cho timestep cuối cùng.
+
+65
+00:04:07.265 --> 00:04:11.945
+Và cuối cùng, để tính toán tổn thất tổng thể,
+
+66
+00:04:11.945 --> 00:04:19.525
+chúng ta sẽ lấy chúng và tổng hợp tất cả chúng để tính toán L cuối cùng bằng cách sử dụng phương trình
+
+67
+00:04:19.525 --> 00:04:23.550
+đó, đó là tổng của các cá thể mỗi lần tổn thất.
+
+68
+00:04:23.550 --> 00:04:25.975
+Vì vậy, đây là vấn đề tính toán
+
+69
+00:04:25.975 --> 00:04:29.950
+và từ các ví dụ trước đó bạn đã nhìn thấy của backpropagation,
+
+70
+00:04:29.950 --> 00:04:34.390
+nó không nên ngạc nhiên bạn rằng backprop sau đó chỉ cần
+
+71
+00:04:34.390 --> 00:04:39.880
+thực hiện tính toán hoặc phân tích cú pháp tin nhắn theo các hướng ngược lại.
+
+72
+00:04:39.880 --> 00:04:43.700
+Vì vậy, tất cả các bốn bước tuyên truyền mũi tên,
+
+73
+00:04:43.700 --> 00:04:46.605
+vì vậy bạn kết thúc làm điều đó.
+
+74
+00:04:46.605 --> 00:04:53.095
+Và sau đó, cho phép bạn tính toán tất cả các số lượng thích hợp cho phép bạn sau đó,
+
+75
+00:04:53.095 --> 00:04:55.705
+lấy đinh tán, các thông số được tôn trọng,
+
+76
+00:04:55.705 --> 00:04:59.305
+và cập nhật các thông số bằng cách sử dụng gốc gradient.
+
+77
+00:04:59.305 --> 00:05:02.070
+Bây giờ, trong quy trình tuyên truyền trở lại này,
+
+78
+00:05:02.070 --> 00:05:08.575
+thông điệp quan trọng nhất hoặc tính toán đệ quy đáng kể nhất là tính toán này,
+
+79
+00:05:08.575 --> 00:05:11.260
+từ phải sang trái,
+
+80
+00:05:11.260 --> 00:05:13.600
+và đó là lý do tại sao nó cung cấp cho thuật toán này,
+
+81
+00:05:13.600 --> 00:05:17.380
+một tên đầy đủ khá nhanh gọi là backpropagation thông qua thời gian.
+
+82
+00:05:17.380 --> 00:05:20.180
+Và động lực cho cái tên này là cho prop phía trước,
+
+83
+00:05:20.180 --> 00:05:22.305
+bạn đang quét từ trái sang phải,
+
+84
+00:05:22.305 --> 00:05:25.075
+tăng chỉ số của thời gian, t, trong khi đó
+
+85
+00:05:25.075 --> 00:05:27.695
+, sự backpropagation, bạn đang đi từ phải sang trái,
+
+86
+00:05:27.695 --> 00:05:29.380
+bạn đang đi ngược thời gian.
+
+87
+00:05:29.380 --> 00:05:31.870
+Vì vậy, điều này mang lại cho điều này, tôi nghĩ một cái tên rất hay,
+
+88
+00:05:31.870 --> 00:05:36.180
+sự backpropagation thời gian, nơi mà bạn đang đi ngược thời gian, đúng không?
+
+89
+00:05:36.180 --> 00:05:40.039
+Cụm từ đó thực sự làm cho nó nghe như bạn cần một cỗ máy thời gian để thực hiện đầu ra này,
+
+90
+00:05:40.039 --> 00:05:42.460
+nhưng tôi chỉ nghĩ rằng backprop thông qua thời gian
+
+91
+00:05:42.460 --> 00:05:45.360
+chỉ là một trong những cái tên tuyệt vời nhất cho một thuật toán.
+
+92
+00:05:45.360 --> 00:05:50.890
+Vì vậy, tôi hy vọng rằng cung cấp cho bạn một cảm giác về cách thức về phía trước prop và backprop trong RNN hoạt động.
+
+93
+00:05:50.890 --> 00:05:54.766
+Bây giờ, cho đến nay, bạn chỉ nhìn thấy ví dụ động lực chính này trong RNN,
+
+94
+00:05:54.766 --> 00:06:00.220
+trong đó chiều dài của chuỗi đầu vào bằng với chiều dài của chuỗi đầu ra.
+
+95
+00:06:00.220 --> 00:06:01.660
+Trong video tiếp theo,
+
+96
+00:06:01.660 --> 00:06:06.033
+tôi muốn cho bạn thấy một phạm vi rộng hơn của kiến trúc RNN,
+
+97
+00:06:06.033 --> 00:06:10.880
+vì vậy tôi sẽ cho phép bạn giải quyết một bộ ứng dụng rộng hơn nhiều. Chúng ta hãy tiếp tục video tiếp theo.

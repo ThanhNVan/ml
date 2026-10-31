@@ -1,0 +1,351 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.000
+When you create your neural network, it's important to initialize the weights randomly.
+
+00:00:04.000 --> 00:00:08.000
+For logistic regression, it was okay to initialize the weights to zero,
+
+00:00:08.000 --> 00:00:12.000
+but for a neural network, if you initialize the weights, the parameters to all zero,
+
+00:00:12.000 --> 00:00:16.000
+and then apply gradient descent, it won't work. Let's see why.
+
+00:00:16.000 --> 00:00:24.000
+So you have here two input features. So n0 is equal to 2 and two hidden units.
+
+00:00:24.000 --> 00:00:31.000
+So n1 is equal to 2. And so the matrix associated with the hidden layer,
+
+00:00:31.000 --> 00:00:38.000
+or w1, is going to be 2 by 2. Let's say that you initialize it to all zeros.
+
+00:00:38.000 --> 00:00:45.000
+So 0, 0, 0, 0, 2 by 2 matrix. And let's say b1 is also equal to 0, 0.
+
+00:00:45.000 --> 00:00:50.000
+It turns out initializing the bias terms b to 0 is actually okay.
+
+00:00:50.000 --> 00:00:54.000
+But initializing w to all zeros is a problem.
+
+00:00:54.000 --> 00:01:00.000
+So the problem with this form of initialization is that for any example you give it,
+
+00:01:00.000 --> 00:01:09.000
+you will have that a11 and a12 will be equal.
+
+00:01:09.000 --> 00:01:12.000
+So this activation and this activation will be the same,
+
+00:01:12.000 --> 00:01:16.000
+because both of these hidden units are computing exactly the same function.
+
+00:01:17.000 --> 00:01:20.000
+And then when you compute backpropagation,
+
+00:01:20.000 --> 00:01:30.000
+it turns out that dz11 and dz12 will also be the same, kind of by symmetry.
+
+00:01:30.000 --> 00:01:34.000
+Both of these hidden units will initialize the same way.
+
+00:01:34.000 --> 00:01:39.000
+Technically, for what I'm saying, I'm assuming that the outgoing weights are also identical.
+
+00:01:40.000 --> 00:01:44.000
+So that w2 is equal to 0, 0.
+
+00:01:44.000 --> 00:01:49.000
+But if you initialize the neural network this way,
+
+00:01:49.000 --> 00:01:54.000
+then this hidden unit and this hidden unit are completely identical.
+
+00:01:54.000 --> 00:01:57.000
+So they're completely, sometimes you say they're completely symmetric,
+
+00:01:57.000 --> 00:02:00.000
+which just means that they're computing exactly the same function.
+
+00:02:00.000 --> 00:02:03.000
+And by kind of a proof by induction,
+
+00:02:03.000 --> 00:02:07.000
+it turns out that after every single iteration of training,
+
+00:02:07.000 --> 00:02:11.000
+your two hidden units are still computing exactly the same function.
+
+00:02:11.000 --> 00:02:17.000
+So it's possible to show that dw will be a matrix that looks like this,
+
+00:02:17.000 --> 00:02:20.000
+where every row takes on the same value.
+
+00:02:20.000 --> 00:02:22.000
+So when you perform a weight update,
+
+00:02:22.000 --> 00:02:25.000
+so when you perform a weight update,
+
+00:02:25.000 --> 00:02:30.000
+w1 gets updated as w1 minus alpha times dw.
+
+00:02:30.000 --> 00:02:33.000
+You find that w1, after every iteration,
+
+00:02:33.000 --> 00:02:37.000
+will have the first row equal to the second row.
+
+00:02:37.000 --> 00:02:40.000
+So it's possible to construct a proof by induction
+
+00:02:40.000 --> 00:02:44.000
+that if you initialize all the weights, all the values of w to 0,
+
+00:02:44.000 --> 00:02:49.000
+then because both hidden units start off computing the same function
+
+00:02:49.000 --> 00:02:54.000
+and both hidden units have the same influence on the output unit,
+
+00:02:54.000 --> 00:02:58.000
+then after one iteration, that same statement is still true.
+
+00:02:58.000 --> 00:03:00.000
+The two hidden units are still symmetric,
+
+00:03:00.000 --> 00:03:04.000
+and therefore by induction, after two iterations, three iterations, and so on,
+
+00:03:04.000 --> 00:03:06.000
+no matter how long you train a neural network,
+
+00:03:06.000 --> 00:03:10.000
+both hidden units are still computing exactly the same function.
+
+00:03:10.000 --> 00:03:15.000
+And so in this case, there's really no point to having more than one hidden unit
+
+00:03:15.000 --> 00:03:17.000
+because they're all computing the same thing.
+
+00:03:17.000 --> 00:03:20.000
+And of course, for larger neural networks, let's see,
+
+00:03:20.000 --> 00:03:24.000
+three features and maybe a very large number of hidden units.
+
+00:03:24.000 --> 00:03:29.000
+A similar argument works to show that with a neural network like this,
+
+00:03:30.000 --> 00:03:32.000
+because it won't draw on all the edges,
+
+00:03:32.000 --> 00:03:37.000
+if you initialize the weights to 0, then all of your hidden units are symmetric,
+
+00:03:37.000 --> 00:03:39.000
+and no matter how long you run gradient descent,
+
+00:03:39.000 --> 00:03:43.000
+they'll all continue to compute exactly the same function.
+
+00:03:43.000 --> 00:03:47.000
+So that's not helpful because you want the different hidden units
+
+00:03:47.000 --> 00:03:49.000
+to compute different functions.
+
+00:03:49.000 --> 00:03:53.000
+The solution to this is to initialize your parameters randomly.
+
+00:03:53.000 --> 00:03:55.000
+So here's what you do.
+
+00:03:56.000 --> 00:04:03.000
+You can set w1 equals np.random.randn.
+
+00:04:03.000 --> 00:04:07.000
+This generates a Gaussian random variable 2, 2.
+
+00:04:07.000 --> 00:04:12.000
+And then usually you multiply this by a very small number, such as 0.01.
+
+00:04:12.000 --> 00:04:15.000
+So you initialize it to very small random values.
+
+00:04:15.000 --> 00:04:22.000
+And then b, it turns out that b does not have this symmetry problem.
+
+00:04:22.000 --> 00:04:24.000
+It's called a symmetry breaking problem.
+
+00:04:24.000 --> 00:04:29.000
+So it's okay to initialize b to just 0s,
+
+00:04:29.000 --> 00:04:32.000
+because so long as w is initialized randomly,
+
+00:04:32.000 --> 00:04:36.000
+you start off with the different hidden units computing different things,
+
+00:04:36.000 --> 00:04:39.000
+and so you no longer have this symmetry breaking problem.
+
+00:04:39.000 --> 00:04:44.000
+And then similarly, for w2, you can initialize that randomly,
+
+00:04:44.000 --> 00:04:50.000
+and b2, you can initialize that to 0.
+
+00:04:50.000 --> 00:04:53.000
+So you might be wondering, you know, where did this constant come from
+
+00:04:53.000 --> 00:04:55.000
+and why is it 0.01?
+
+00:04:55.000 --> 00:04:58.000
+Why not put the number 100 or 1000?
+
+00:04:58.000 --> 00:05:02.000
+It turns out that we usually prefer to initialize the weights
+
+00:05:02.000 --> 00:05:05.000
+to very small random values,
+
+00:05:05.000 --> 00:05:10.000
+because if you're using a, say, tanh or sigmoid activation function,
+
+00:05:10.000 --> 00:05:13.000
+or if you have a sigmoid, even just at the output layer,
+
+00:05:13.000 --> 00:05:16.000
+if the weights are too large,
+
+00:05:16.000 --> 00:05:19.000
+then when you compute the activation values,
+
+00:05:19.000 --> 00:05:28.000
+remember that z1 is equal to w1x plus b,
+
+00:05:28.000 --> 00:05:35.000
+and then a1 is the activation function applied to z1.
+
+00:05:35.000 --> 00:05:38.000
+So if w is very big, z will be very big,
+
+00:05:38.000 --> 00:05:43.000
+or at least some values of z will be either very large or very small,
+
+00:05:43.000 --> 00:05:48.000
+and so in that case, you're more likely to end up at these flat parts
+
+00:05:48.000 --> 00:05:52.000
+of the tanh function or the sigmoid function,
+
+00:05:52.000 --> 00:05:55.000
+where the slope or the gradient is very small,
+
+00:05:55.000 --> 00:05:58.000
+meaning that gradient descent would be very slow,
+
+00:05:58.000 --> 00:06:00.000
+and so learning would be very slow.
+
+00:06:00.000 --> 00:06:03.000
+So just to recap, if w is too large,
+
+00:06:03.000 --> 00:06:06.000
+you're more likely to end up even at the very start of training
+
+00:06:06.000 --> 00:06:08.000
+with very large values of z,
+
+00:06:08.000 --> 00:06:11.000
+which causes your tanh, your sigmoid activation function,
+
+00:06:11.000 --> 00:06:15.000
+to be saturated, thus slowing down learning.
+
+00:06:15.000 --> 00:06:18.000
+If you don't have any sigmoid or tanh activation functions
+
+00:06:18.000 --> 00:06:21.000
+throughout your neural network, this is less of an issue,
+
+00:06:21.000 --> 00:06:23.000
+but if you're doing binary classification
+
+00:06:23.000 --> 00:06:26.000
+and your output unit is a sigmoid function,
+
+00:06:26.000 --> 00:06:30.000
+then you just don't want the initial parameters to be too large.
+
+00:06:30.000 --> 00:06:35.000
+So that's why multiplying by 0.01 would be something reasonable to try,
+
+00:06:35.000 --> 00:06:38.000
+or any other small number, and same for w2,
+
+00:06:38.000 --> 00:06:43.000
+right, this can be random dot random.
+
+00:06:43.000 --> 00:06:46.000
+I guess this would be 1 by 2 in this example,
+
+00:06:46.000 --> 00:06:51.000
+times 0.01, you see that? That's there.
+
+00:06:51.000 --> 00:07:00.000
+So finally, it turns out that sometimes there can be better constants than 0.01.
+
+00:07:00.000 --> 00:07:05.000
+When you're training a neural network with just one hidden layer,
+
+00:07:05.000 --> 00:07:09.000
+this is a relatively shallow neural network without too many hidden layers.
+
+00:07:09.000 --> 00:07:12.000
+Setting it to 0.01 would probably work okay,
+
+00:07:12.000 --> 00:07:15.000
+but when you're training a very, very deep neural network,
+
+00:07:15.000 --> 00:07:19.000
+then you might want to pick a different constant than 0.01,
+
+00:07:19.000 --> 00:07:24.000
+and in next week's material, we'll talk a little bit about how and when
+
+00:07:24.000 --> 00:07:27.000
+you might want to choose a different constant than 0.01.
+
+00:07:27.000 --> 00:07:32.000
+But either way, it will usually end up being a relatively small number.
+
+00:07:32.000 --> 00:07:34.000
+So that's it for this week's videos.
+
+00:07:34.000 --> 00:07:38.000
+You now know how to set up a neural network with a hidden layer,
+
+00:07:38.000 --> 00:07:42.000
+initialize the parameters, make predictions using forward prop,
+
+00:07:42.000 --> 00:07:46.000
+as well as compute derivatives in the plain gradient descent using back prop.
+
+00:07:46.000 --> 00:07:51.000
+So with that, you should be able to do the quizzes as well as this week's programming exercises.
+
+00:07:51.000 --> 00:07:54.000
+Best of luck with that. I hope you have fun with the programming exercise,
+
+00:07:54.000 --> 00:07:57.000
+and I look forward to seeing you in the week 4 materials.

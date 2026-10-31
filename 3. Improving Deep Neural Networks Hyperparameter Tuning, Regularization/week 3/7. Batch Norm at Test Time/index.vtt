@@ -1,0 +1,288 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:03.820
+Bash norm processes your data one mini-batch at a time.
+
+00:00:03.820 --> 00:00:07.700
+But at test time, you might need to process the examples one at a time.
+
+00:00:07.700 --> 00:00:10.480
+Let's see how you can adapt your network to do that.
+
+00:00:10.480 --> 00:00:12.260
+Recall that during training,
+
+00:00:12.260 --> 00:00:15.520
+here are the equations you'd use to implement Bash norm.
+
+00:00:15.520 --> 00:00:16.980
+Within a single mini-batch,
+
+00:00:16.980 --> 00:00:22.580
+you'd sum over that mini-batch of the zi values to compute the mean.
+
+00:00:22.580 --> 00:00:26.020
+So here, you're just summing over the examples in one mini-batch.
+
+00:00:26.020 --> 00:00:29.300
+I'm using m to denote the number of examples in the mini-batch,
+
+00:00:29.300 --> 00:00:31.500
+not, not in the whole training set.
+
+00:00:31.500 --> 00:00:34.380
+Then you compute the variance and then you compute
+
+00:00:34.380 --> 00:00:38.600
+z norm by scaling by the mean and standard deviation,
+
+00:00:38.600 --> 00:00:41.260
+with epsilon added for numerical stability.
+
+00:00:41.260 --> 00:00:46.940
+And then z tilde is taking z norm every scaling by gamma and beta.
+
+00:00:46.940 --> 00:00:51.440
+So notice that mu and sigma squared,
+
+00:00:51.440 --> 00:00:54.600
+which you need for this scaling calculation,
+
+00:00:54.600 --> 00:00:57.600
+are computed on the entire mini-batch.
+
+00:00:57.720 --> 00:01:01.400
+But at test time, you might not have a mini-batch of 64,
+
+00:01:01.400 --> 00:01:05.280
+128 or 256 examples to process at the same time.
+
+00:01:05.280 --> 00:01:08.840
+So you need some different way of coming up with mu and sigma squared.
+
+00:01:08.840 --> 00:01:10.320
+And if you have just one example,
+
+00:01:10.320 --> 00:01:14.560
+taking the mean and variance of that one example, doesn't make sense.
+
+00:01:14.560 --> 00:01:20.640
+So what's actually done in order to apply your neural network at test time,
+
+00:01:20.640 --> 00:01:25.640
+is to come up with some separate estimate of mu and sigma squared.
+
+00:01:25.880 --> 00:01:28.240
+And in typical implementations of batch norm,
+
+00:01:28.240 --> 00:01:35.240
+what you do is estimate this using a exponentially weighted average,
+
+00:01:35.800 --> 00:01:40.800
+where the average is across the mini-batches.
+
+00:01:42.970 --> 00:01:46.010
+So to be very concrete, here's what I mean.
+
+00:01:46.010 --> 00:01:51.010
+Let's pick some layer L and let's say you're going through mini-batches x1,
+
+00:01:52.170 --> 00:01:57.170
+x2 together with the corresponding values of y and so on.
+
+00:01:57.770 --> 00:02:02.330
+So when training on x1, for that layer L,
+
+00:02:02.330 --> 00:02:05.690
+you get some mu L.
+
+00:02:05.690 --> 00:02:10.690
+And in fact, I'm going to write this as mu for the first mini-batch and that layer.
+
+00:02:12.610 --> 00:02:14.970
+And then when you train on the second mini-batch,
+
+00:02:14.970 --> 00:02:16.890
+for that layer and that mini-batch,
+
+00:02:16.890 --> 00:02:19.170
+you end up with some second value of mu.
+
+00:02:19.170 --> 00:02:23.610
+And then for the third mini-batch in this hidden layer,
+
+00:02:23.610 --> 00:02:28.610
+you end up with some third value for mu.
+
+00:02:29.570 --> 00:02:34.250
+So just as we saw how to use an exponentially weighted average
+
+00:02:34.250 --> 00:02:38.770
+to compute the mean of theta 1, theta 2, theta 3,
+
+00:02:38.770 --> 00:02:42.570
+when you are trying to compute a exponentially weighted average
+
+00:02:42.570 --> 00:02:44.250
+of the current temperature,
+
+00:02:44.250 --> 00:02:49.130
+you would do that to keep track of what's the latest average value
+
+00:02:49.130 --> 00:02:51.090
+of this mean vector you've seen.
+
+00:02:51.090 --> 00:02:55.730
+So that exponentially weighted average becomes your estimate
+
+00:02:55.730 --> 00:02:59.610
+for what the mean of the z's is for that hidden layer.
+
+00:02:59.610 --> 00:03:02.890
+And similarly, you use an exponentially weighted average
+
+00:03:02.890 --> 00:03:07.050
+to keep track of these values of sigma squared
+
+00:03:07.050 --> 00:03:10.330
+that you see on the first mini-batch in that layer,
+
+00:03:10.330 --> 00:03:13.850
+sigma squared that you see on the second mini-batch and so on.
+
+00:03:13.850 --> 00:03:17.730
+So you keep a running average of the mu
+
+00:03:17.730 --> 00:03:19.810
+and the sigma squared that you're seeing
+
+00:03:19.810 --> 00:03:22.610
+for each layer as you train the neural network
+
+00:03:22.610 --> 00:03:24.610
+across different mini-banges.
+
+00:03:24.610 --> 00:03:26.850
+Then finally, at test time,
+
+00:03:26.850 --> 00:03:30.610
+what you do is in place of this equation,
+
+00:03:30.610 --> 00:03:34.690
+you would just compute z norm using whatever value
+
+00:03:34.690 --> 00:03:39.530
+you z you have and using your exponentially weighted average
+
+00:03:39.530 --> 00:03:41.490
+of the mu and sigma squared,
+
+00:03:41.490 --> 00:03:43.810
+whatever was the latest value you have
+
+00:03:43.810 --> 00:03:45.410
+to do the scaling here.
+
+00:03:45.410 --> 00:03:51.410
+And then you would compute z tilde on your one test example
+
+00:03:51.410 --> 00:03:54.690
+using that z norm that we just computed on the left
+
+00:03:54.690 --> 00:03:58.610
+and using the beta and gamma parameters
+
+00:03:58.610 --> 00:04:02.690
+that you will- you have learned during your neural network training process.
+
+00:04:02.690 --> 00:04:06.570
+So the takeaway from this is that during training time,
+
+00:04:06.570 --> 00:04:10.170
+mu and sigma squared are computed on an entire mini-batch of,
+
+00:04:10.170 --> 00:04:14.690
+you know, say 64, 128 or some number of examples.
+
+00:04:14.690 --> 00:04:18.210
+But at test time, you might need to process a single example at a time.
+
+00:04:18.210 --> 00:04:23.130
+So the way to do that is to estimate mu and sigma squared from your training set.
+
+00:04:23.130 --> 00:04:25.290
+And there are many ways to do that.
+
+00:04:25.290 --> 00:04:28.010
+You could in theory run your whole training set
+
+00:04:28.010 --> 00:04:30.890
+through your final network to get mu and sigma squared.
+
+00:04:30.890 --> 00:04:32.970
+But in practice, what people usually do is
+
+00:04:32.970 --> 00:04:36.730
+implement an exponentially weighted average where you just keep track
+
+00:04:36.730 --> 00:04:40.090
+of the mu and sigma squared values you're seeing during training
+
+00:04:40.090 --> 00:04:42.090
+and use an exponentially weighted average,
+
+00:04:42.090 --> 00:04:44.170
+also sometimes called a running average,
+
+00:04:44.290 --> 00:04:47.170
+to just get a rough estimate of mu and sigma squared.
+
+00:04:47.170 --> 00:04:51.370
+And then you use those values of mu and sigma squared at test time
+
+00:04:51.370 --> 00:04:55.890
+to do the scaling you need of the hidden unit values z.
+
+00:04:55.890 --> 00:04:58.970
+In practice, this process is pretty robust
+
+00:04:58.970 --> 00:05:03.410
+to the exact way you use to estimate mu and sigma squared.
+
+00:05:03.410 --> 00:05:07.250
+So I wouldn't worry too much about exactly how you do this.
+
+00:05:07.250 --> 00:05:09.690
+And if you're using a deep learning framework,
+
+00:05:09.690 --> 00:05:15.490
+they'll usually have some default way to estimate mu and sigma squared
+
+00:05:15.490 --> 00:05:17.930
+that should work reasonably well as well.
+
+00:05:17.930 --> 00:05:23.290
+But in practice, any reasonable way to estimate the mean and variance
+
+00:05:23.290 --> 00:05:28.610
+of your hidden unit values z should work fine at test.
+
+00:05:28.610 --> 00:05:30.450
+So that's it for Dash Norm.
+
+00:05:30.450 --> 00:05:34.090
+And using it, I think you'll be able to train much deeper networks
+
+00:05:34.090 --> 00:05:37.570
+and get your learning algorithm to run much more quickly.
+
+00:05:37.570 --> 00:05:38.890
+Before we wrap up for this week,
+
+00:05:38.890 --> 00:05:43.090
+I want to share with you some thoughts on deep learning frameworks as well.
+
+00:05:43.090 --> 00:05:45.370
+Let's start to talk about that in the next video.

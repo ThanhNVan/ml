@@ -1,0 +1,438 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.500
+Trong video trước, bạn đã biết cách lấy mẫu
+ngẫu nhiên trong phạm vi siêu tham số
+
+00:00:04.500 --> 00:00:09.000
+có thể cho phép bạn tìm kiếm trong không gian
+siêu tham số hiệu quả hơn như thế nào.
+
+00:00:09.000 --> 00:00:13.000
+Nhưng hóa ra việc lấy mẫu ngẫu nhiên không có
+nghĩa là lấy
+
+00:00:13.000 --> 00:00:17.000
+mẫu ngẫu nhiên thống nhất trên phạm vi các giá
+trị hợp lệ.
+
+00:00:17.000 --> 00:00:22.000
+Thay vào đó, điều quan trọng là chọn thang đo
+thích hợp để khám phá các siêu tham số.
+
+00:00:22.000 --> 00:00:25.000
+Trong video này, tôi muốn chỉ cho bạn cách làm
+điều đó.
+
+00:00:25.000 --> 00:00:31.000
+Giả sử bạn đang cố gắng chọn số đơn vị ẩn, nL
+cho một lớp l cho trước.
+
+00:00:31.000 --> 00:00:36.000
+Và giả sử bạn cho rằng phạm vi giá trị phù hợp
+là từ 50 đến 100.
+
+00:00:36.000 --> 00:00:41.000
+Trong trường hợp đó, nếu bạn nhìn vào trục số
+từ 50 đến 100,
+
+00:00:41.000 --> 00:00:46.000
+có thể bạn sẽ chọn ngẫu nhiên một số giá trị
+trong trục số này
+
+00:00:46.000 --> 00:00:50.000
+là một cách khá hợp lý để tìm kiếm siêu tham
+số cụ thể này.
+
+00:00:50.000 --> 00:00:54.000
+Hoặc nếu bạn đang cố gắng quyết định số lớp
+trong mạng lưới
+
+00:00:54.000 --> 00:00:58.000
+thần kinh của mình, chúng tôi sẽ gọi đó là L
+viết hoa, có
+
+00:00:58.000 --> 00:01:02.000
+thể bạn nghĩ tổng số lớp phải nằm trong khoảng
+từ 2 đến 4.
+
+00:01:02.000 --> 00:01:06.333
+Sau đó, lấy mẫu thống nhất ngẫu nhiên trong số
+2, 3 và 4 có
+
+00:01:06.333 --> 00:01:10.667
+thể hợp lý hoặc thậm chí sử dụng tìm kiếm dạng
+lưới trong đó
+
+00:01:10.667 --> 00:01:15.000
+bạn đánh giá rõ ràng các giá trị 2, 3 và 4 có
+thể hợp lý.
+
+00:01:15.000 --> 00:01:19.000
+Vì vậy, đây là một vài ví dụ trong đó việc lấy
+mẫu ngẫu nhiên
+
+00:01:19.000 --> 00:01:23.000
+thống nhất trong phạm vi dự tính có thể là một
+điều hợp lý nên làm.
+
+00:01:23.000 --> 00:01:26.000
+Nhưng điều này không đúng với tất cả các siêu
+tham số.
+
+00:01:26.000 --> 00:01:28.000
+Hãy xem một ví dụ khác.
+
+00:01:28.000 --> 00:01:33.000
+Giả sử bạn đang tìm kiếm siêu tham số alpha,
+
+00:01:33.000 --> 00:01:38.000
+learning rate tập và giả sử bạn nghi ngờ
+0,0001 có thể ở mức thấp,
+
+00:01:38.000 --> 00:01:41.000
+hoặc có thể nó có thể cao tới 1.
+
+00:01:41.000 --> 00:01:48.000
+Bây giờ, nếu bạn vẽ trục số từ 0,0001 đến 1 và
+lấy mẫu các
+
+00:01:48.000 --> 00:01:55.000
+giá trị ngẫu nhiên, thống nhất ngẫu nhiên trên
+trục số này,
+
+00:01:55.000 --> 00:02:02.000
+hoặc, bạn biết đấy, khoảng 90% giá trị bạn lấy
+mẫu sẽ nằm trong khoảng từ 0,1 đến 1.
+
+00:02:02.000 --> 00:02:07.000
+Vì vậy, bạn đang sử dụng 90% tài nguyên để tìm
+kiếm trong khoảng từ 0,1
+
+00:02:07.000 --> 00:02:12.000
+đến 1 và chỉ 10% tài nguyên để tìm kiếm trong
+khoảng từ 0,001 đến 0,1.
+
+00:02:12.000 --> 00:02:14.000
+Vì vậy, điều đó có vẻ không đúng.
+
+00:02:14.000 --> 00:02:18.000
+Thay vào đó, có vẻ hợp lý hơn khi tìm kiếm các
+siêu tham số trên thang đo log.
+
+00:02:18.000 --> 00:02:24.000
+Thay vì sử dụng thang đo tuyến tính, bạn sẽ có
+
+00:02:24.000 --> 00:02:30.000
+0,0001 ở đây, sau đó là 0,001, 0,01, 0,1 và
+sau đó là 1.
+
+00:02:30.000 --> 00:02:33.000
+Và thay vào đó, bạn lấy mẫu ngẫu nhiên một
+
+00:02:33.000 --> 00:02:36.000
+cách thống nhất theo loại thang logarit này.
+
+00:02:36.000 --> 00:02:41.000
+Bây giờ bạn có nhiều tài nguyên hơn dành riêng
+
+00:02:41.000 --> 00:02:46.000
+cho việc tìm kiếm trong khoảng từ 0,001 đến
+0,001,
+
+00:02:46.000 --> 00:02:50.000
+và từ 0,001 đến 0,01, v.v.
+
+00:02:50.000 --> 00:02:55.500
+Vì vậy, trong Python, cách bạn triển khai
+
+00:02:55.500 --> 00:03:01.000
+điều này là để r bằng âm 4 lần np.random.rand,
+
+00:03:01.000 --> 00:03:08.000
+và khi đó giá trị alpha được chọn ngẫu nhiên
+sẽ là alpha bằng 10 lũy thừa của r.
+
+00:03:08.000 --> 00:03:14.000
+Vì vậy, sau dòng đầu tiên này, r sẽ là một số
+ngẫu nhiên trong khoảng từ
+
+00:03:14.000 --> 00:03:20.000
+âm 4 đến 0, và alpha ở đây sẽ nằm trong khoảng
+từ 10 đến âm 4 và 10 đến 0.
+
+00:03:20.000 --> 00:03:28.000
+Vậy 10 mũ trừ 4 là số còn lại, 10 mũ trừ 4, và
+1 bằng 10 mũ 0.
+
+00:03:28.000 --> 00:03:34.000
+Trong trường hợp tổng quát hơn, nếu bạn đang
+cố lấy mẫu từ 10 đến a
+
+00:03:34.000 --> 00:03:40.000
+đến 10 đến b theo thang logarit và trong ví dụ
+này, đây là 10 đến a,
+
+00:03:40.000 --> 00:03:45.500
+và bạn có thể tìm ra a bằng cách lấy log cơ số
+10 của 0,0001, nó sẽ
+
+00:03:45.500 --> 00:03:51.000
+cho bạn biết a bằng âm 4, và giá trị này ở bên
+phải, đây là 10 mũ b,
+
+00:03:51.000 --> 00:03:57.000
+và bạn có thể tìm ra b bằng cách lấy log cơ số
+10 của 1, cho bạn biết b bằng 0.
+
+00:03:57.000 --> 00:04:04.000
+Vì vậy, những gì bạn làm là lấy mẫu r đồng đều
+một cách ngẫu nhiên giữa a và b.
+
+00:04:04.000 --> 00:04:08.500
+Vì vậy, trong trường hợp này, r sẽ nằm trong
+khoảng từ âm 4 đến 0 và bạn
+
+00:04:08.500 --> 00:04:13.000
+có thể đặt alpha hoặc lấy mẫu ngẫu nhiên giá
+trị siêu tham số, là 10 đến r.
+
+00:04:13.000 --> 00:04:18.000
+Tóm lại, để lấy mẫu trên thang đo log, bạn lấy
+giá trị thấp, lấy
+
+00:04:18.000 --> 00:04:23.000
+log để tìm ra đâu là a, lấy giá trị cao, lấy
+log để tìm ra đâu là b.
+
+00:04:23.000 --> 00:04:27.000
+Vì vậy, bây giờ bạn đang cố gắng lấy mẫu từ 10
+đến a đến 10 đến b trên thang logarit.
+
+00:04:27.000 --> 00:04:31.000
+Vì vậy, bạn đặt r đồng đều một cách ngẫu nhiên
+
+00:04:31.000 --> 00:04:35.000
+giữa a và b, sau đó bạn đặt siêu tham số là 10
+mũ r.
+
+00:04:35.000 --> 00:04:39.000
+Đó là cách bạn triển khai lấy mẫu theo thang
+logarit này.
+
+00:04:39.000 --> 00:04:44.000
+Cuối cùng, một trường hợp phức tạp khác là lấy
+mẫu phiên bản beta siêu tham
+
+00:04:44.000 --> 00:04:49.000
+số được sử dụng để tính toán mức trung bình có
+trọng số theo cấp số nhân.
+
+00:04:49.000 --> 00:04:55.000
+Vì vậy, giả sử bạn nghi ngờ rằng hệ số beta sẽ
+nằm trong khoảng từ 0,9 đến 0,999.
+
+00:04:55.000 --> 00:04:59.000
+Có thể đây là phạm vi giá trị bạn muốn tìm
+kiếm.
+
+00:04:59.000 --> 00:05:04.000
+Vì vậy, hãy nhớ rằng khi tính trung bình theo
+cấp số nhân, việc sử
+
+00:05:04.000 --> 00:05:09.000
+dụng 0,9 cũng giống như tính trung bình của 10
+giá trị cuối cùng,
+
+00:05:09.000 --> 00:05:13.500
+giống như lấy nhiệt độ trung bình của 10 ngày,
+trong khi sử
+
+00:05:13.500 --> 00:05:18.000
+dụng 0,999 giống như lấy trung bình của 1.000
+giá trị gần nhất.
+
+00:05:18.000 --> 00:05:23.000
+Tương tự như những gì chúng ta thấy trên slide
+trước, nếu bạn muốn tìm kiếm
+
+00:05:23.000 --> 00:05:28.000
+trong khoảng từ 0,9 đến 0,999, việc lấy mẫu
+theo thang tuyến tính là vô nghĩa,
+
+00:05:28.000 --> 00:05:31.000
+thống nhất ngẫu nhiên trong khoảng từ 0,9 đến
+0,999.
+
+00:05:31.000 --> 00:05:37.000
+Vì vậy, cách tốt hơn để nghĩ về điều này là
+chúng ta muốn khám phá phạm
+
+00:05:37.000 --> 00:05:43.000
+vi giá trị của 1 trừ beta, hiện tại sẽ nằm
+trong khoảng từ 0,1 đến 0,001.
+
+00:05:43.000 --> 00:05:47.500
+Và vì vậy, chúng tôi sẽ lấy mẫu giữa phiên bản
+beta,
+
+00:05:47.500 --> 00:05:52.000
+lấy các giá trị từ 0,1 đến có thể là 0,1 đến
+0,001.
+
+00:05:52.000 --> 00:05:56.500
+Vì vậy, bằng cách sử dụng phương pháp chúng ta
+đã tìm
+
+00:05:56.500 --> 00:06:01.000
+ra ở slide trước, đây là 10 mũ âm 1, đây là 10
+mũ trừ 3.
+
+00:06:01.000 --> 00:06:06.500
+Lưu ý ở slide trước chúng ta có giá trị nhỏ ở
+bên trái và giá trị lớn ở bên phải,
+
+00:06:06.500 --> 00:06:12.000
+nhưng ở đây chúng ta có đảo ngược với giá trị
+lớn ở bên trái và giá trị nhỏ ở bên phải.
+
+00:06:12.000 --> 00:06:17.000
+Vì vậy, những gì bạn làm là lấy mẫu r đồng đều
+một cách ngẫu
+
+00:06:17.000 --> 00:06:22.000
+nhiên từ âm 3 đến âm 1, và bạn đặt 1 trừ beta
+bằng 10 cho r,
+
+00:06:22.000 --> 00:06:26.500
+và do đó beta bằng 1 trừ 10 r và giá trị này
+trở thành giá trị
+
+00:06:26.500 --> 00:06:31.000
+mẫu ngẫu nhiên của siêu tham số được chọn trên
+thang đo thích hợp.
+
+00:06:31.000 --> 00:06:37.000
+Và hy vọng điều này có ý nghĩa theo cách này,
+bạn dành nhiều tài nguyên
+
+00:06:37.000 --> 00:06:43.000
+để khám phá phạm vi 0,9 đến 0,99 như khi bạn
+khám phá 0,99 đến 0,999.
+
+00:06:43.000 --> 00:06:45.667
+Vì vậy, nếu bạn muốn có một sự biện minh toán
+học chính
+
+00:06:45.667 --> 00:06:48.333
+thức hơn một chút cho lý do tại sao chúng ta
+làm điều này,
+
+00:06:48.333 --> 00:06:51.000
+tại sao lấy mẫu theo thang tuyến tính lại là
+một ý tưởng tồi?
+
+00:06:51.000 --> 00:06:56.000
+Đó là khi beta gần bằng 1, độ nhạy của kết quả
+bạn nhận được
+
+00:06:56.000 --> 00:07:01.000
+sẽ thay đổi ngay cả với những thay đổi rất nhỏ
+đối với beta.
+
+00:07:01.000 --> 00:07:12.000
+Vì vậy, nếu beta tăng từ 0,9 lên 0,9005, bạn
+biết đó không phải là vấn đề lớn,
+
+00:07:12.000 --> 00:07:15.000
+điều này hầu như không có bất kỳ thay đổi nào
+trong kết quả của bạn.
+
+00:07:15.000 --> 00:07:20.500
+Nhưng nếu phiên bản beta tăng từ 0,999 lên
+0,995, điều này sẽ có tác
+
+00:07:20.500 --> 00:07:26.000
+động rất lớn đến chính xác những gì thuật toán
+của bạn đang thực hiện.
+
+00:07:26.000 --> 00:07:32.000
+Trong cả hai trường hợp này, nó lấy trung bình
+trên khoảng 10 giá trị, nhưng ở đây nó
+
+00:07:32.000 --> 00:07:38.000
+đã vượt xa mức trung bình theo cấp số nhân
+trên khoảng 1.000, 1.000 ví dụ gần đây nhất
+
+00:07:38.000 --> 00:07:40.000
+cho đến nay là 2.000 ví dụ cuối cùng.
+
+00:07:40.000 --> 00:07:44.500
+Và đó là vì công thức mà chúng ta có, 1 trên 1
+trừ beta, điều này
+
+00:07:44.500 --> 00:07:49.000
+rất nhạy cảm với những thay đổi nhỏ trong beta
+khi beta gần bằng 1.
+
+00:07:49.000 --> 00:07:54.125
+Vì vậy, toàn bộ quá trình lấy mẫu này làm cho
+bạn
+
+00:07:54.125 --> 00:07:59.250
+lấy mẫu dày đặc hơn trong chế độ khi beta gần
+bằng 1.
+
+00:07:59.250 --> 00:08:05.250
+Hoặc cách khác, khi 1 trừ beta gần bằng 0, để
+bạn có thể hiệu quả hơn về cách phân
+
+00:08:05.250 --> 00:08:11.250
+phối mẫu nhằm khám phá không gian của các kết
+quả có thể xảy ra một cách hiệu quả hơn.
+
+00:08:11.250 --> 00:08:13.750
+Vì vậy, tôi hy vọng điều này sẽ giúp bạn
+
+00:08:13.750 --> 00:08:16.250
+chọn thang đo phù hợp để lấy mẫu siêu tham số.
+
+00:08:16.250 --> 00:08:19.750
+Trong trường hợp cuối cùng bạn không đưa ra
+quyết định mở rộng đúng đắn
+
+00:08:19.750 --> 00:08:23.250
+đối với một số lựa chọn siêu tham số, đừng lo
+lắng quá nhiều về điều đó.
+
+00:08:23.250 --> 00:08:26.583
+Ngay cả khi bạn lấy mẫu theo thang đo thống
+nhất trong đó một số thang đo
+
+00:08:26.583 --> 00:08:29.917
+khác có thể tốt hơn, bạn vẫn có thể nhận được
+kết quả ổn, đặc biệt nếu bạn
+
+00:08:29.917 --> 00:08:33.250
+sử dụng tìm kiếm do khóa học xác định để trong
+các lần lặp lại sau này,
+
+00:08:33.250 --> 00:08:38.250
+bạn tập trung nhiều hơn vào phạm vi giá trị
+siêu tham số hữu ích nhất để lấy mẫu.
+
+00:08:38.250 --> 00:08:40.250
+Tôi hy vọng điều này sẽ giúp bạn tìm kiếm siêu
+tham số.
+
+00:08:40.250 --> 00:08:43.552
+Trong video tiếp theo, tôi cũng muốn chia sẻ
+với bạn một số suy
+
+00:08:43.552 --> 00:08:46.855
+nghĩ về cách sắp xếp quy trình tìm kiếm siêu
+tham số mà tôi hy
+
+00:08:46.855 --> 00:08:50.157
+vọng sẽ giúp quy trình làm việc của bạn hiệu
+quả hơn một chút.

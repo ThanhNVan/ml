@@ -1,0 +1,911 @@
+WEBVTT
+
+1
+00:00:00.510 --> 00:00:01.280
+Trong video trước,
+
+2
+00:00:01.280 --> 00:00:06.130
+chúng ta đã xem qua một ví dụ về việc
+ sử dụng đồ thị tính toán để tính hàm J.
+
+3
+00:00:06.130 --> 00:00:09.311
+Bây giờ, chúng ta hãy cùng xem một
+ khía cạnh khác của đồ thị tính toán đó.
+
+4
+00:00:09.311 --> 00:00:13.990
+Và tôi sẽ chỉ bạn cách có thể sử dụng
+ nó để tìm ra các phép tính đạo hàm cho
+
+5
+00:00:13.990 --> 00:00:15.252
+hàm J.
+
+6
+00:00:15.252 --> 00:00:17.292
+Đây là một đồ thị tính toán.
+
+7
+00:00:17.292 --> 00:00:22.280
+Giả sử bạn muốn tính 
+đạo hàm của J với biến v.
+
+8
+00:00:23.440 --> 00:00:24.126
+Đó là gì?
+
+9
+00:00:24.126 --> 00:00:27.800
+Đó là, nếu chúng ta 
+lấy giá trị này của v và
+
+10
+00:00:27.800 --> 00:00:32.360
+thay đổi nó một chút, thì giá trị 
+của J sẽ thay đổi như thế nào?
+
+11
+00:00:32.360 --> 00:00:37.553
+J được xác định là 3 lần v.
+
+12
+00:00:37.553 --> 00:00:42.895
+Và bây giờ, v = 11.
+
+13
+00:00:42.895 --> 00:00:48.348
+Vì vậy, nếu chúng ta
+ tăng v lên 11.001,
+
+14
+00:00:48.348 --> 00:00:52.524
+và J, bằng 3v, vì vậy J từ 33,
+
+15
+00:00:52.524 --> 00:00:56.130
+sẽ tăng lên đến 33.003.
+
+16
+00:00:56.130 --> 00:00:59.123
+Như vậy, ở đây, chúng ta 
+đã tăng v thêm 0,001.
+
+17
+00:00:59.123 --> 00:01:03.640
+Và kết quả cuối cùng của
+ việc đó là J tăng gấp 3 lần.
+
+18
+00:01:03.640 --> 00:01:08.099
+Vậy đạo hàm của J 
+với biến v bằng 3.
+
+19
+00:01:08.099 --> 00:01:12.590
+Bởi vì lượng tăng của J 
+gấp 3 lần lượng tăng của v.
+
+20
+00:01:12.590 --> 00:01:18.221
+Và trên thực tế, điều này 
+rất giống với ví dụ
+
+21
+00:01:18.221 --> 00:01:24.670
+chúng ta đã có trong video trước đó,
+ trong đó chúng ta có f (a) = 3a.
+
+22
+00:01:24.670 --> 00:01:30.765
+Và do đó, bắt nguồn từ df / da, 
+với một chút đơn giản hóa,
+
+23
+00:01:30.765 --> 00:01:36.740
+một ký hiệu hơi cẩu thả, bạn 
+có thể viết dưới dạng df / da = 3.
+
+24
+00:01:36.740 --> 00:01:41.829
+Như vậy, thay vào đó, 
+ở đây chúng ta có J = 3v,
+
+25
+00:01:41.829 --> 00:01:44.825
+và vì vậy dJ / dv = 3.
+
+26
+00:01:44.825 --> 00:01:51.713
+Ở đây, J đóng vai trò của f, và
+
+27
+00:01:51.713 --> 00:01:58.323
+v đóng vai trò của a trong ví dụ mà
+ chúng ta đã thấy ở một video trước đó.
+
+28
+00:01:58.323 --> 00:02:03.595
+Như vậy, thuật ngữ backpropagation 
+(truyền ngược), như chúng ta đang thấy
+
+29
+00:02:03.595 --> 00:02:09.617
+là nếu bạn muốn tính đạo hàm 
+của biến đầu ra cuối cùng này,
+
+30
+00:02:09.617 --> 00:02:13.475
+mà thường là một biến 
+bạn quan tâm nhất,
+
+31
+00:02:13.475 --> 00:02:18.790
+với biến v, sau đó chúng ta vừa
+ thực hiện một bước truyền ngược.
+
+32
+00:02:18.790 --> 00:02:22.240
+Như vậy, chúng ta gọi nó là 
+một bước lùi trong đồ thị này.
+
+33
+00:02:22.240 --> 00:02:24.280
+Bây giờ chúng ta hãy xem một ví dụ khác.
+
+34
+00:02:24.280 --> 00:02:28.180
+dJ / da là gì?
+
+35
+00:02:28.180 --> 00:02:33.670
+Nói cách khác, nếu chúng ta tăng giá trị của a, 
+thì có ảnh hưởng đến giá trị của J như thế nào?
+
+36
+00:02:35.420 --> 00:02:39.965
+Ví dụ, bây giờ a = 5.
+
+37
+00:02:39.965 --> 00:02:42.850
+Hãy tăng nó lên tới 5,001.
+
+38
+00:02:42.850 --> 00:02:48.790
+Tác động ròng của điều đó là v, 
+bằng a + u, trước đó v là 11.
+
+39
+00:02:48.790 --> 00:02:52.359
+Thì v sẽ tăng lên 11,001.
+
+40
+00:02:52.359 --> 00:02:57.224
+Và sau đó chúng ta đã thấy như trên
+
+41
+00:02:57.224 --> 00:03:01.672
+bây giờ J tăng lên đến 33.003.
+
+42
+00:03:01.672 --> 00:03:07.591
+Như vậy, chúng ta có thể thấy là nếu
+ bạn tăng a thêm 0,001, thì J tăng 0,003.
+
+43
+00:03:07.591 --> 00:03:11.751
+Và bằng cách tăng a, 
+ý tôi là, bạn lấy giá trị 5 và
+
+44
+00:03:11.751 --> 00:03:14.100
+chỉ cần thêm vào một giá trị mới.
+
+45
+00:03:14.100 --> 00:03:17.954
+Sau đó, sự thay đổi a sẽ truyền sang
+ bên phải của đồ thị tính toán để mà
+
+46
+00:03:17.954 --> 00:03:19.832
+cuối cùng J bằng 33,003.
+
+47
+00:03:19.832 --> 00:03:28.110
+Và do đó, mức tăng lên của J
+ gấp 3 lần mức tăng lên của a.
+
+48
+00:03:28.110 --> 00:03:31.520
+Vậy có nghĩa là đạo hàm này bằng 3.
+
+49
+00:03:31.520 --> 00:03:37.400
+Và có một cách để phá vỡ điều này,
+ đó là giả sử nếu bạn thay đổi a,
+
+50
+00:03:37.400 --> 00:03:38.910
+điều này sẽ thay đổi v.
+
+51
+00:03:40.130 --> 00:03:43.967
+Và thông qua thay đổi v, J sẽ thay đổi.
+
+52
+00:03:43.967 --> 00:03:49.554
+Và do đó, mạng thay đổi giá trị 
+của J khi bạn tăng giá trị,
+
+53
+00:03:49.554 --> 00:03:54.313
+khi bạn nâng giá trị 
+lên một chút, đó là,
+
+54
+00:03:57.699 --> 00:04:02.561
+đầu tiên, bằng cách thay đổi
+ a, cuối cùng bạn tăng v.
+
+55
+00:04:02.561 --> 00:04:05.850
+Vậy v tăng bao nhiêu?
+
+56
+00:04:05.850 --> 00:04:11.709
+Nó được tăng thêm 
+một lượng bằng dv/ da.
+
+57
+00:04:11.709 --> 00:04:19.802
+Và sau đó thay đổi trong v sẽ 
+khiến giá trị của J cũng tăng lên.
+
+58
+00:04:19.802 --> 00:04:27.064
+Vì vậy, trong giải tích, đây chính là
+ quy tắc chuỗi mà nếu a ảnh hưởng đến v, rồi
+
+59
+00:04:27.064 --> 00:04:32.023
+ảnh hưởng đến J, sau đó lượng 
+giá trị mà J thay đổi khi bạn
+
+60
+00:04:32.023 --> 00:04:36.866
+tăng a là kết quả của phép tính
+ lượng v thay đổi khi bạn
+
+61
+00:04:36.866 --> 00:04:42.165
+nâng a nhân với lượng J 
+thay đổi khi bạn nâng v.
+
+62
+00:04:42.165 --> 00:04:46.225
+Vì vậy, một lần nữa, trong giải tích, 
+đây được gọi là quy tắc chuỗi.
+
+63
+00:04:46.225 --> 00:04:52.140
+Và từ tính toán này, chúng ta có thể
+ thấy là nếu bạn tăng a thêm 0,001, thì
+
+64
+00:04:52.140 --> 00:04:55.250
+v thay đổi với cùng
+ một lượng như vậy.
+
+65
+00:04:55.250 --> 00:04:59.650
+Vậy dv / da = 1.
+
+66
+00:04:59.650 --> 00:05:07.774
+Trên thực tế, nếu bạn thêm vào
+ những gì chúng ta đã có trước đó,
+
+67
+00:05:07.774 --> 00:05:11.700
+dv / dJ = 3 và dv / da = 1.
+
+68
+00:05:11.700 --> 00:05:14.160
+Vậy kết quả là 3 nhân 1,
+
+69
+00:05:14.160 --> 00:05:18.350
+nó mang lại kết quả 
+chính xác là dJ/ da = 3.
+
+70
+00:05:18.350 --> 00:05:24.963
+Như vậy, hình minh họa nhỏ này
+ cho thấy bằng cách tính dJ / dv,
+
+71
+00:05:24.963 --> 00:05:30.183
+mà là đạo hàm đối với biến này,
+
+72
+00:05:30.183 --> 00:05:34.030
+nó có thể giúp bạn tính dJ / da.
+
+73
+00:05:34.030 --> 00:05:37.270
+Và đó là một bước nữa 
+trong phép tính ngược này.
+
+74
+00:05:39.900 --> 00:05:44.115
+Tôi muốn giới thiệu thêm 
+một quy ước ký hiệu mới.
+
+75
+00:05:44.115 --> 00:05:50.005
+Đó là khi bạn đang sử dụng mã 
+để thực hiện truyền ngược,
+
+76
+00:05:50.005 --> 00:05:54.675
+thường sẽ có một số biến đầu ra 
+cuối cùng mà bạn thực sự quan tâm.
+
+77
+00:05:54.675 --> 00:06:01.065
+Một biến đầu ra cuối cùng mà bạn thực sự
+ quan tâm hoặc bạn muốn tối ưu hóa.
+
+78
+00:06:01.065 --> 00:06:04.100
+Và trong trường hợp này, biến 
+đầu ra cuối cùng này là J.
+
+79
+00:06:04.100 --> 00:06:07.460
+Đó là nút cuối cùng trong 
+đồ thị tính toán của bạn.
+
+80
+00:06:07.460 --> 00:06:11.870
+Vì vậy, rất nhiều tính toán sẽ 
+cố gắng để tính đạo hàm của
+
+81
+00:06:11.870 --> 00:06:13.343
+biến đầu ra cuối cùng đó.
+
+82
+00:06:13.343 --> 00:06:17.100
+Như vậy, d của biến đầu ra cuối cùng
+ này đối với một số biến khác.
+
+83
+00:06:17.100 --> 00:06:23.319
+Và chúng ta chỉ gọi đó là dvar.
+
+84
+00:06:23.319 --> 00:06:27.909
+Vì vậy, rất nhiều phép tính mà bạn có
+ sẽ tính đạo hàm của biến đầu ra cuối cùng,
+
+85
+00:06:27.909 --> 00:06:32.164
+trong trường hợp này, J với 
+các biến trung gian khác nhau,
+
+86
+00:06:32.164 --> 00:06:34.520
+chẳng hạn như a, b, c, u hoặc v.
+
+87
+00:06:34.520 --> 00:06:41.280
+Và khi bạn thực hiện điều này trong
+ phần mềm, bạn gọi tên biến này là gì?
+
+88
+00:06:41.280 --> 00:06:44.208
+Trong Python, bạn có thể
+
+89
+00:06:44.208 --> 00:06:50.280
+cung cấp cho chúng tôi một tên biến 
+rất dài như dFinalOurputVar / dvar.
+
+90
+00:06:50.280 --> 00:06:51.766
+Nhưng đó là một tên biến rất dài.
+
+91
+00:06:51.766 --> 00:06:55.018
+Tôi nghĩ bạn có thể gọi 
+điều này là dJdvar.
+
+92
+00:06:55.018 --> 00:06:58.929
+Nhưng bởi vì bạn luôn lấy 
+đạo hàm liên quan đến dJ,
+
+93
+00:06:58.929 --> 00:07:03.173
+liên quan đến biến đầu ra cuối cùng này, 
+nên tôi sẽ giới thiệu một ký hiệu mới.
+
+94
+00:07:03.173 --> 00:07:09.635
+Ở đó, trong mã, khi bạn tính toán
+ điều này trong mã bạn viết,
+
+95
+00:07:09.635 --> 00:07:16.936
+chúng ta sẽ sử dụng tên biến 
+dvar để thể hiện số lượng đó.
+
+96
+00:07:16.936 --> 00:07:21.459
+Như vậy, dvar trong mã bạn 
+viết sẽ đại diện cho đạo hàm của
+
+97
+00:07:21.459 --> 00:07:25.444
+biến đầu ra cuối cùng mà 
+bạn quan tâm, ví dụ như J.
+
+98
+00:07:25.444 --> 00:07:29.938
+Đôi khi, l cuối cùng đối với các
+ đại lượng trung gian khác nhau mà
+
+99
+00:07:29.938 --> 00:07:31.795
+bạn đang tính trong mã của bạn.
+
+100
+00:07:31.795 --> 00:07:38.380
+Như vậy, ở đây trong mã của bạn, 
+bạn sử dụng dv để biểu thị giá trị này.
+
+101
+00:07:38.380 --> 00:07:42.453
+Vậy dv sẽ bằng 3.
+
+102
+00:07:42.453 --> 00:07:46.635
+Và mã của bạn, bạn 
+biểu diễn cho điều này là da,
+
+103
+00:07:46.635 --> 00:07:51.185
+và nó bằng 3 như 
+chúng ta đã tìm ra.
+
+104
+00:07:51.185 --> 00:07:58.018
+Vì vậy, chúng ta đã thực hiện truyền ngược 
+một phần thông qua đồ thị tính toán này.
+
+105
+00:07:58.018 --> 00:08:02.130
+Chúng ta hãy xem nốt phần còn lại 
+của ví dụ này trên slide tiếp theo.
+
+106
+00:08:02.130 --> 00:08:06.293
+Hãy cùng nhìn vào một đồ thị 
+tính toán sạch đẹp hơn.
+
+107
+00:08:06.293 --> 00:08:09.846
+Và nói tóm lại, cho tới bây giờ, 
+những gì chúng ta đã làm
+
+108
+00:08:09.846 --> 00:08:14.743
+là tính ngược lại và
+ tìm ra rằng dv= 3.
+
+109
+00:08:14.743 --> 00:08:18.783
+Và một lần nữa, thì dv 
+chỉ là một tên biến,
+
+110
+00:08:18.783 --> 00:08:20.844
+trong đó mã thực sự là dJ / dv.
+
+111
+00:08:20.844 --> 00:08:24.303
+Chúng ta đã tìm ra rằng da = 3.
+
+112
+00:08:24.303 --> 00:08:30.470
+Và một lần nữa, da là tên biến trong mã
+ của bạn và đó thực sự là giá trị dJ / da.
+
+113
+00:08:32.332 --> 00:08:39.410
+Và chúng ta thấy cách mà chúng ta 
+đi ngược lại trên hai cạnh như này.
+
+114
+00:08:39.410 --> 00:08:41.262
+Bây giờ hãy cùng tiếp tục 
+tính các đạo hàm.
+
+115
+00:08:41.262 --> 00:08:44.129
+Bây giờ bạn hãy 
+nhìn vào giá trị u.
+
+116
+00:08:44.129 --> 00:08:47.473
+Vậy dJ / du là gì?
+
+117
+00:08:47.473 --> 00:08:52.153
+Thông qua một tính toán tương tự
+ như chúng ta đã làm trước đây và
+
+118
+00:08:52.153 --> 00:08:54.430
+sau đó chúng ta bắt đầu với u = 6.
+
+119
+00:08:54.430 --> 00:08:57.913
+Nếu bạn tăng u lên 6,001, thì v,
+
+120
+00:08:57.913 --> 00:09:02.700
+mà trước đó là 11, tăng lên 11,001.
+
+121
+00:09:02.700 --> 00:09:07.978
+Vì thế J tăng từ 33 lên 33.003.
+
+122
+00:09:07.978 --> 00:09:12.190
+Và do đó, mức tăng của J 
+là 3x, vì vậy đây là bằng nhau.
+
+123
+00:09:12.190 --> 00:09:16.760
+Và phân tích với u rất giống với
+ phân tích chúng ta đã làm với a.
+
+124
+00:09:16.760 --> 00:09:23.884
+Điều này được tính là
+ dJ / dv nhân dv / du,
+
+125
+00:09:23.884 --> 00:09:30.186
+và chúng ta có cái này bằng 3.
+
+126
+00:09:30.186 --> 00:09:33.800
+Và cái này bằng 1.
+
+127
+00:09:33.800 --> 00:09:36.950
+Vì vậy, chúng ta đã thực hiện 
+thêm một bước truyền ngược.
+
+128
+00:09:36.950 --> 00:09:42.920
+Chúng ta kết thúc với 
+kết quả du cũng bằng 3.
+
+129
+00:09:42.920 --> 00:09:47.240
+Và du là, tất nhiên, 
+chỉ dJ / du này.
+
+130
+00:09:47.240 --> 00:09:51.570
+Bây giờ chúng ta chỉ cần 
+xem kỹ ví dụ cuối cùng.
+
+131
+00:09:51.570 --> 00:09:54.137
+Vậy dJ / db là gì?
+
+132
+00:09:54.137 --> 00:09:57.255
+Ở đây, hãy tưởng tượng nếu bạn 
+được phép thay đổi giá trị của b.
+
+133
+00:09:57.255 --> 00:10:01.585
+Và bạn muốn điều chỉnh b 
+một chút để giảm thiểu hoặc
+
+134
+00:10:01.585 --> 00:10:04.040
+tối đa hóa giá trị của J.
+
+135
+00:10:04.040 --> 00:10:05.340
+Vậy đạo hàm là gì hay
+
+136
+00:10:05.340 --> 00:10:10.860
+độ dốc của hàm J là gì khi bạn 
+thay đổi một chút giá trị của b?
+
+137
+00:10:11.880 --> 00:10:15.257
+Trên thực tế bằng cách sử dụng 
+quy tắc chuỗi để tính toán,
+
+138
+00:10:15.257 --> 00:10:18.416
+có thể coi điều này là 
+kết quả của 2 thứ.
+
+139
+00:10:18.416 --> 00:10:24.720
+dJ / du nhân du / db.
+
+140
+00:10:24.720 --> 00:10:30.390
+Và lý do là nếu bạn 
+thay đổi b một chút,
+
+141
+00:10:30.390 --> 00:10:34.275
+tăng b = 3 lên, giả sử, 3.001.
+
+142
+00:10:34.275 --> 00:10:38.041
+Thì cách mà nó sẽ ảnh hưởng đến J
+ là trước tiên nó sẽ ảnh hưởng đến u.
+
+143
+00:10:38.041 --> 00:10:40.120
+Vậy, nó ảnh hưởng đến u bao nhiêu?
+
+144
+00:10:40.120 --> 00:10:44.100
+Vâng, u được xác định
+ bằng b nhân c.
+
+145
+00:10:44.100 --> 00:10:48.073
+Như vậy, nó sẽ tăng từ 6,
+
+146
+00:10:48.073 --> 00:10:53.238
+khi b = 3, lên 6,002
+
+147
+00:10:53.238 --> 00:10:59.560
+bởi vì c = 2 trong ví dụ ở đây.
+
+148
+00:10:59.560 --> 00:11:05.150
+Và điều này cho 
+chúng ta biết du /db = 2.
+
+149
+00:11:05.150 --> 00:11:10.490
+Bởi vì khi bạn tăng b 
+lên 0,001, u tăng gấp đôi.
+
+150
+00:11:10.490 --> 00:11:15.360
+Thế nên, du / db bằng 2.
+
+151
+00:11:15.360 --> 00:11:21.430
+Và bây giờ, chúng ta biết rằng u đã
+ tăng gấp đôi so với lượng b đã tăng lên.
+
+152
+00:11:21.430 --> 00:11:24.460
+Vậy, dJ / du là gì?
+
+153
+00:11:24.460 --> 00:11:27.447
+Chúng ta đã tìm ra 
+rằng điều này bằng 3.
+
+154
+00:11:27.447 --> 00:11:32.850
+Và bằng cách nhân hai số này, 
+chúng ta thấy rằng dJ / db = 6.
+
+155
+00:11:32.850 --> 00:11:36.274
+Và một lần nữa, đây là lý do cho 
+phần thứ hai trong cuộc tranh luận.
+
+156
+00:11:36.274 --> 00:11:43.370
+Đó là những gì chúng ta muốn biết khi u tăng
+ 0,002, vậy nó ảnh hưởng đến J như thế nào?
+
+157
+00:11:43.370 --> 00:11:48.746
+Thực tế là dJ / du = 3, điều đó
+ cho chúng ta biết rằng
+
+158
+00:11:48.746 --> 00:11:54.310
+khi u tăng 0,002, 
+J tăng gấp 3 lần.
+
+159
+00:11:54.310 --> 00:11:59.943
+Vậy J nên tăng thêm 0,006.
+
+160
+00:11:59.943 --> 00:12:05.670
+Điều này xuất phát từ 
+thực tế là dJ/ du = 3.
+
+161
+00:12:05.670 --> 00:12:09.351
+Và nếu bạn kiểm tra 
+toán một cách chi tiết,
+
+162
+00:12:09.351 --> 00:12:13.891
+bạn sẽ thấy rằng nếu 
+b trở thành 3.001,
+
+163
+00:12:13.891 --> 00:12:20.190
+sau đó u trở thành 6,002, 
+v trở thành 11,002.
+
+164
+00:12:20.190 --> 00:12:24.064
+bằng a + u, vì vậy đó là 5 + u.
+
+165
+00:12:24.064 --> 00:12:28.450
+Và rồi J, bằng 3 lần v,
+
+166
+00:12:28.450 --> 00:12:33.101
+bằng 33.006.
+
+167
+00:12:33.101 --> 00:12:37.695
+Và đó là cách bạn 
+có được dJ / db =6.
+
+168
+00:12:37.695 --> 00:12:43.738
+Và để điền vào đó, đây là nếu chúng ta
+ đi ngược lại, vì vậy đây là db = 6.
+
+169
+00:12:43.738 --> 00:12:50.347
+Và db chính là tên biến 
+mã Python cho dJ / db.
+
+170
+00:12:50.347 --> 00:12:53.565
+Và tôi sẽ không nói quá 
+chi tiết về ví dụ cuối cùng.
+
+171
+00:12:53.565 --> 00:13:00.423
+Nhưng nếu bạn cũng tính ra dJ,
+
+172
+00:13:00.423 --> 00:13:05.748
+thì hóa ra nó 
+bằng dJ / du nhân du.
+
+173
+00:13:05.748 --> 00:13:09.987
+Và bằng 9, bằng 3 nhân 3.
+
+174
+00:13:09.987 --> 00:13:11.950
+Tôi sẽ không nói quá
+ chi tiết về ví dụ đó.
+
+175
+00:13:11.950 --> 00:13:18.720
+Thông qua bước cuối cùng này, 
+có thể suy ra rằng dc bằng 2.
+
+176
+00:13:20.060 --> 00:13:24.634
+Vì vậy, điều quan trọng trong 
+video này, từ ví dụ này là khi tính
+
+177
+00:13:24.634 --> 00:13:29.347
+đạo hàm và khi tính tất cả các đạo hàm
+ này, cách hiệu quả nhất để làm
+
+178
+00:13:29.347 --> 00:13:34.221
+là sử dụng một cách tính từ phải
+ sang trái theo hướng mũi tên màu đỏ.
+
+179
+00:13:34.221 --> 00:13:37.780
+Và cụ thể là, trước tiên chúng ta 
+sẽ tính đạo hàm với biến v.
+
+180
+00:13:37.780 --> 00:13:40.530
+Và sau đó nó trở nên hữu ích để
+
+181
+00:13:40.530 --> 00:13:45.410
+tính đạo hàm với biến a 
+và đạo hàm với biến u.
+
+182
+00:13:45.410 --> 00:13:48.070
+Và sau đó là đạo hàm với biến u,
+
+183
+00:13:48.070 --> 00:13:52.020
+ví dụ, số hạng ở đây 
+và số hạng ở đây.
+
+184
+00:13:52.020 --> 00:13:55.430
+Chúng lần lượt trở nên có ích 
+để tính đạo hàm với biến b và
+
+185
+00:13:55.430 --> 00:13:57.610
+đạo hàm với biến c.
+
+186
+00:13:57.610 --> 00:14:02.370
+Như vậy, đó là đồ thị tính toán và cách
+ mà phép tính xuôi hoặc từ trái sang phải
+
+187
+00:14:02.370 --> 00:14:07.620
+tính cost function J mà 
+có thể bạn muốn tối ưu hóa.
+
+188
+00:14:07.620 --> 00:14:12.940
+Và phép tính ngược hoặc từ 
+phải sang trái để tính đạo hàm.
+
+189
+00:14:12.940 --> 00:14:15.422
+Nếu bạn không quen với 
+tính toán hoặc quy tắc chuỗi,
+
+190
+00:14:15.422 --> 00:14:18.382
+tôi biết một số chi tiết đó, 
+nhưng sẽ quên chúng rất nhanh.
+
+191
+00:14:18.382 --> 00:14:21.500
+Nhưng nếu bạn không làm theo 
+tất cả các bước thì đừng lo lắng về nó.
+
+192
+00:14:21.500 --> 00:14:22.567
+Ở video tiếp theo,
+
+193
+00:14:22.567 --> 00:14:26.251
+chúng ta sẽ xem lại điều này một 
+lần nữa trong logistic regression.
+
+194
+00:14:26.251 --> 00:14:30.337
+Và tôi sẽ chỉ cho bạn chính xác những gì 
+bạn cần làm để thực hiện các phép tính bạn
+
+195
+00:14:30.337 --> 00:14:33.780
+cần để tính các đạo hàm 
+của mô hình logistic regression.

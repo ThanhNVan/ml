@@ -1,0 +1,301 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.490
+Chào mừng đến với tuần thứ tư và cũng là tuần cuối cùng
+
+2
+00:00:03.490 --> 00:00:06.374
+của khóa học này về neural network convolution (convolutional neural networks - CNN).
+
+3
+00:00:06.374 --> 00:00:08.930
+Cho đến giờ, bạn đã học được rất nhiều về CNN.
+
+4
+00:00:08.930 --> 00:00:11.590
+Điều tôi muốn làm trong tuần này là cho bạn thấy
+
+5
+00:00:11.590 --> 00:00:15.481
+một vài ứng dụng đặc biệt quan trọng của CNN.
+
+6
+00:00:15.481 --> 00:00:17.286
+chúng ta sẽ bắt đầu với nhận dạng khuôn mặt (face recognition),
+
+7
+00:00:17.286 --> 00:00:21.135
+và sau đó tiếp tục với Neural Style Transfer (truyền tải phong cách nơ-ron) vào cuối tuần này,
+
+8
+00:00:21.135 --> 00:00:26.015
+mà bạn có thể triển khai trong bài tập cũng như để tạo ra tác phẩm nghệ thuật của riêng bạn.
+
+9
+00:00:26.015 --> 00:00:30.095
+Nhưng trước tiên, hãy bắt đầu nhận dạng khuôn mặt và để vui hơn,
+
+10
+00:00:30.095 --> 00:00:31.395
+Tôi muốn cho bạn xem một bản demo.
+
+11
+00:00:31.395 --> 00:00:33.730
+Khi tôi lãnh đạo tập đoàn AI của Baidu,
+
+12
+00:00:33.730 --> 00:00:37.120
+một trong những nhóm mà tôi làm việc cùng do Lâm Nguyên Khánh lãnh đạo đã xây dựng
+
+13
+00:00:37.120 --> 00:00:41.405
+một hệ thống nhận dạng khuôn mặt mà tôi nghĩ là rất tuyệt. Chúng ta hãy xem.
+
+14
+00:00:41.405 --> 00:00:43.360
+Vì vậy, tôi sẽ phát video ở đây,
+
+15
+00:00:43.360 --> 00:00:48.690
+nhưng tôi đoán là ai đang chỉnh sửa video gốc này thì có thể biết
+
+16
+00:00:48.690 --> 00:00:55.630
+là nên ghép đoạn video thô hay là dùng đoạn video mà tôi đang cho chạy ở đây thì tốt hơn.
+
+17
+00:00:55.630 --> 00:00:57.110
+Tôi muốn cho bạn xem bản demo của nhận dạng khuôn mặt.
+
+18
+00:00:57.110 --> 00:00:58.975
+Tôi đang ở trụ sở chính của Baidu ở Trung Quốc.
+
+19
+00:00:58.975 --> 00:01:01.740
+Để vào trong, hầu hết các công ty yêu cầu
+
+20
+00:01:01.740 --> 00:01:04.799
+bạn quẹt thẻ ID như cái này nhưng ở đây chúng ta không cần cái đó.
+
+21
+00:01:04.799 --> 00:01:07.355
+Sử dụng nhận dạng khuôn mặt, hãy kiểm tra xem tôi có thể làm gì.
+
+22
+00:01:07.355 --> 00:01:09.580
+Khi tôi bước lên, nó nhận ra khuôn mặt của tôi, nó nói,
+
+23
+00:01:09.580 --> 00:01:15.030
+"Chào mừng Andrew," và tôi chỉ cần đi bộ ngay qua mà không cần phải sử dụng thẻ ID của mình.
+
+24
+00:01:15.030 --> 00:01:16.530
+Để tôi chỉ cho bạn thứ khác.
+
+25
+00:01:16.530 --> 00:01:17.730
+Tôi đang ở đây với Lâm Nguyên Khánh,
+
+26
+00:01:17.730 --> 00:01:22.530
+giám đốc của IDL đã phát triển tất cả công nghệ nhận dạng khuôn mặt.
+
+27
+00:01:22.530 --> 00:01:24.530
+Tôi sẽ đưa cho anh ấy thẻ ID của tôi,
+
+28
+00:01:24.530 --> 00:01:26.230
+có mặt tôi in trên đó,
+
+29
+00:01:26.230 --> 00:01:30.820
+và anh ta sẽ sử dụng nó để cố gắng lẻn vào sử dụng ảnh của tôi thay vì người thật.
+
+30
+00:01:30.820 --> 00:01:37.698
+Tôi sẽ sử dụng thẻ của Andrew và cố gắng lẻn vào xem điều gì sẽ xảy ra.
+
+31
+00:01:37.698 --> 00:01:43.400
+Vì vậy, hệ thống không nhận ra nó,
+
+32
+00:01:43.400 --> 00:01:47.271
+nó từ chối nhận dạng.
+
+33
+00:01:47.271 --> 00:01:53.280
+Được rồi. Bây giờ, tôi sẽ sử dụng khuôn mặt của chính mình.
+
+34
+00:01:53.330 --> 00:01:59.000
+Công nghệ nhận dạng khuôn mặt như thế này đang phát triển rất nhanh ở Trung Quốc
+
+35
+00:01:59.000 --> 00:02:04.710
+và tôi hy vọng rằng loại công nghệ này sẽ sớm được tiếp cận với các quốc gia khác.
+
+36
+00:02:04.710 --> 00:02:07.075
+Điều đó khá tuyệt, phải không?
+
+37
+00:02:07.075 --> 00:02:12.323
+Video bạn vừa xem đã demo cả nhận dạng khuôn mặt cũng như là liveness detection (công nghệ nhận diện người thật).
+
+38
+00:02:12.323 --> 00:02:16.010
+Cái thứ hai nghĩa là đảm bảo rằng bạn là người thật chứ không phải ảnh.
+
+39
+00:02:16.010 --> 00:02:20.240
+Hóa ra cũng có thể triển khai liveness detection bằng cách sử dụng phương pháp supervised learning (supervised learning)
+
+40
+00:02:20.240 --> 00:02:25.201
+để dự đoán người sống so với người giả nhưng tôi muốn dành ít thời gian hơn cho việc đó.
+
+41
+00:02:25.201 --> 00:02:28.160
+Thay vào đó, tôi muốn tập trung thời gian để nói về cách
+
+42
+00:02:28.160 --> 00:02:31.365
+xây dựng phần nhận dạng khuôn mặt của hệ thống.
+
+43
+00:02:31.365 --> 00:02:36.071
+Trước tiên, hãy bắt đầu bằng cách xem qua một số thuật ngữ được sử dụng trong nhận dạng khuôn mặt.
+
+44
+00:02:36.071 --> 00:02:38.200
+Trong tài liệu nhận dạng khuôn mặt,
+
+45
+00:02:38.200 --> 00:02:42.605
+mọi người thường nói về face verification (xác minh khuôn mặt) và face recognition (nhận dạng khuôn mặt).
+
+46
+00:02:42.605 --> 00:02:45.845
+Là face verification nếu bạn
+
+47
+00:02:45.845 --> 00:02:49.835
+được cung cấp hình ảnh đầu vào cũng như tên hoặc ID
+
+48
+00:02:49.835 --> 00:02:53.300
+của một người và công việc của hệ thống là
+
+49
+00:02:53.300 --> 00:02:57.080
+xác minh xem hình ảnh đầu vào có phải là của người đó hay không.
+
+50
+00:02:57.080 --> 00:03:00.170
+Vì vậy, đôi khi điều này còn được gọi là bài toán
+
+51
+00:03:00.170 --> 00:03:04.435
+1 vs 1 mà bạn chỉ muốn biết liệu người đó có phải là người đó thật hay không.
+
+52
+00:03:04.435 --> 00:03:09.485
+Recognition khó hơn nhiều so với verification.
+
+53
+00:03:09.485 --> 00:03:11.090
+Để hiểu tại sao, giả sử,
+
+54
+00:03:11.090 --> 00:03:15.140
+bạn có một hệ thống xác minh chính xác 99 phần trăm.
+
+55
+00:03:15.140 --> 00:03:19.040
+99% có thể không quá kinh khủng nhưng bây giờ giả sử
+
+56
+00:03:19.040 --> 00:03:23.606
+K = 100 trong hệ thống nhận dạng.
+
+57
+00:03:23.606 --> 00:03:30.290
+Nếu bạn áp dụng hệ thống này cho một bài toán recognition với 100 người trong cơ sở dữ liệu của bạn,
+
+58
+00:03:30.290 --> 00:03:33.710
+bây giờ bạn có một trăm cơ hội
+
+59
+00:03:33.710 --> 00:03:38.030
+mắc sai lầm và nếu khả năng mắc lỗi của mỗi người chỉ là một phần trăm.
+
+60
+00:03:38.030 --> 00:03:39.860
+Nếu bạn có một cơ sở dữ liệu về
+
+61
+00:03:39.860 --> 00:03:45.530
+100 người và nếu bạn muốn lỗi nhận dạng có thể chấp nhận được,
+
+62
+00:03:45.530 --> 00:03:48.755
+có lẽ bạn thật sự cần một hệ thống xác minh với
+
+63
+00:03:48.755 --> 00:03:52.520
+độ chính xác 99,9 hoặc thậm chí cao hơn trước khi bạn có thể chạy
+
+64
+00:03:52.520 --> 00:03:55.430
+nó trên cơ sở dữ liệu gồm 100 người có
+
+65
+00:03:55.430 --> 00:03:59.840
+khả năng sai cao.
+
+66
+00:03:59.840 --> 00:04:03.440
+Trên thực tế, nếu bạn có một cơ sở dữ liệu gồm 100 người
+
+67
+00:04:03.440 --> 00:04:07.330
+cao hơn một chút so với 99% để điều đó hoạt động tốt.
+
+68
+00:04:07.330 --> 00:04:11.645
+Nhưng những gì chúng ta làm trong một vài video tiếp theo là tập trung vào việc xây dựng
+
+69
+00:04:11.645 --> 00:04:17.720
+một hệ thống xác minh khuôn mặt như một khối gạch và sau đó nếu độ chính xác đủ cao,
+
+70
+00:04:17.720 --> 00:04:21.984
+thì bạn cũng có thể sử dụng nó trong hệ thống nhận dạng.
+
+71
+00:04:21.984 --> 00:04:23.150
+Trong video tiếp theo,
+
+72
+00:04:23.150 --> 00:04:27.395
+chúng ta sẽ bắt đầu mô tả cách bạn có thể xây dựng hệ thống xác minh khuôn mặt.
+
+73
+00:04:27.395 --> 00:04:29.630
+Hóa ra một trong những lý do nó là
+
+74
+00:04:29.630 --> 00:04:34.125
+một vấn đề khó khăn là bạn cần giải quyết one shot learning (học một lần).
+
+75
+00:04:34.125 --> 00:04:37.000
+Hãy xem trong video tiếp theo điều đó có nghĩa là gì.

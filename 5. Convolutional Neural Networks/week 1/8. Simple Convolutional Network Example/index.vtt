@@ -1,0 +1,288 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.050 --> 00:00:06.670
+In the last video, you saw the building blocks of a single layer of a single convolutional layer in a conf net.
+
+00:00:06.670 --> 00:00:12.350
+Now let's go through a concrete example of a deep convolutional neural network.
+
+00:00:12.350 --> 00:00:17.650
+And this will give you some practice with the notation that we introduced toward the end of the last video as well.
+
+00:00:17.650 --> 00:00:27.040
+Let's say you have an image and you want to do image classification or image recognition.
+
+00:00:27.040 --> 00:00:32.120
+We want to take this input and image x and decide is this a cat or not, 0 or 1.
+
+00:00:32.120 --> 00:00:33.740
+So it's a classification problem.
+
+00:00:33.740 --> 00:00:38.160
+Let's build an example of a conf net you could use for this task.
+
+00:00:38.160 --> 00:00:43.040
+For the sake of this example, I'm going to use a fairly small image.
+
+00:00:43.040 --> 00:00:47.920
+Let's say this image is 39 by 39 by 3.
+
+00:00:47.920 --> 00:00:51.520
+This choice just makes some of the numbers work out a bit better.
+
+00:00:51.600 --> 00:01:04.880
+And so nh in layer 0 will be equal to nw height and width, i equal to 39, and the number of channels in layer 0 is equal to 3.
+
+00:01:06.480 --> 00:01:14.000
+Let's say the first layer uses a set of 3 by 3 filters to detect features.
+
+00:01:14.000 --> 00:01:21.040
+So f is equal to 3, already f1 is equal to 3 because we're using 3 by 3 filters.
+
+00:01:21.040 --> 00:01:29.280
+And let's say we're using a stride of 1 and no padding, so using a same convolution.
+
+00:01:29.280 --> 00:01:34.610
+And let's say you have 10 filters.
+
+00:01:34.610 --> 00:01:44.690
+Then the activations in this next layer of the neural network will be 37 by 37 by 10.
+
+00:01:44.690 --> 00:01:49.490
+And this 10 comes from the fact that you use 10 filters.
+
+00:01:49.490 --> 00:01:58.690
+And 37 comes from this formula n plus 2p minus f over s plus 1.
+
+00:01:58.690 --> 00:02:10.370
+And I guess you have 39 plus 0 minus 3 over 1 plus 1, that's equal to 37.
+
+00:02:10.370 --> 00:02:13.410
+So that's why the output is 37 by 37.
+
+00:02:13.410 --> 00:02:17.410
+It's a valid convolution and that's the output size.
+
+00:02:17.410 --> 00:02:30.530
+So in our notation, you would have nh1 equals nw1 equals 37, and nc1 is equal to 10.
+
+00:02:30.530 --> 00:02:35.490
+So nc1 is also equal to the number of filters from the first layer.
+
+00:02:36.050 --> 00:02:41.970
+And so this becomes the dimension of the activation at the first layer.
+
+00:02:43.090 --> 00:02:45.570
+Let's say you now have another convolutional layer.
+
+00:02:45.570 --> 00:02:48.770
+And let's say this time you use 5 by 5 filters.
+
+00:02:48.770 --> 00:02:53.890
+So in our notation, f2 at the next layer of neural network is equal to 5.
+
+00:02:55.490 --> 00:02:57.570
+And let's say you use a stride of 2 this time.
+
+00:02:59.250 --> 00:03:06.740
+And maybe you have no padding and say 20 filters.
+
+00:03:09.180 --> 00:03:16.240
+So then the output of this will be another volume.
+
+00:03:16.240 --> 00:03:20.880
+This time it will be 17 by 17 by 20.
+
+00:03:20.880 --> 00:03:25.680
+Notice that because you're now using a stride of 2, the dimension has shrunk much faster.
+
+00:03:25.680 --> 00:03:32.160
+And 37 by 37 has gone down in size by slightly more than a factor of 2 to 17 by 17.
+
+00:03:32.800 --> 00:03:37.440
+And because you're using 20 filters, the number of channels now is 20.
+
+00:03:37.440 --> 00:03:42.000
+So this activation, a2 would be that dimension.
+
+00:03:42.320 --> 00:03:48.160
+And so nh2 equals nw2 equals 17.
+
+00:03:48.160 --> 00:03:52.560
+And nc2 equals 20.
+
+00:03:54.160 --> 00:03:57.120
+All right, let's apply one last convolutional layer.
+
+00:03:57.120 --> 00:04:04.160
+So let's say that you use a 5 by 5 filter again, and again a stride of 2.
+
+00:04:05.040 --> 00:04:12.640
+So if you do that, I'll skip the map, but you end up with a 7 by 7.
+
+00:04:12.640 --> 00:04:19.040
+And let's say you use 40 filters, no padding, 40 filters.
+
+00:04:19.040 --> 00:04:22.800
+You end up with 7 by 7 by 40.
+
+00:04:22.800 --> 00:04:33.120
+So now what you've done is taken your 39 by 39 by 3 input image and computed 7 by 7 by 40 features
+
+00:04:33.120 --> 00:04:34.000
+for this image.
+
+00:04:34.640 --> 00:04:40.320
+And then finally, what's commonly done is if you take this 7 by 7 by 40,
+
+00:04:41.280 --> 00:04:45.120
+7 times 7 times 40 is actually 1960.
+
+00:04:45.120 --> 00:04:54.480
+And so what we can do is take this volume and flatten it or unroll it into just 1,960 units,
+
+00:04:55.440 --> 00:04:58.960
+right, just as a flattened it out into a vector.
+
+00:04:59.520 --> 00:05:04.640
+And then feed this to a logistic regression unit or a softmax unit,
+
+00:05:07.780 --> 00:05:10.260
+depending on whether you're trying to recognize cat, no cat,
+
+00:05:10.340 --> 00:05:15.380
+or trying to recognize any one of k different objects, and then just have this,
+
+00:05:16.500 --> 00:05:19.860
+give the final output, the final predicted output for the neural network.
+
+00:05:20.660 --> 00:05:26.020
+And so just be clear, this last step is just taking all of these numbers,
+
+00:05:26.020 --> 00:05:32.340
+all 1,960 numbers and unrolling them into a very long vector.
+
+00:05:32.340 --> 00:05:35.460
+So then you just have one long vector that you can feed into
+
+00:05:35.460 --> 00:05:40.020
+softmax and into logistic regression in order to make a prediction for the final output.
+
+00:05:41.220 --> 00:05:45.860
+So this would be a pretty typical example of a confident.
+
+00:05:47.060 --> 00:05:50.740
+A lot of the work in designing convolutional neural nets is selecting
+
+00:05:51.700 --> 00:05:55.540
+hyperparameters like the sesiding, what's the filter size, what's the stride,
+
+00:05:55.540 --> 00:05:58.500
+what's the padding, and how many filters to use.
+
+00:05:59.780 --> 00:06:03.540
+And both later this week, as well as next week, we'll give some suggestions
+
+00:06:03.540 --> 00:06:06.340
+and some guidelines for how to make these choices.
+
+00:06:07.220 --> 00:06:13.940
+But for now, maybe one thing to take away from this is that as you go deeper in the neural network,
+
+00:06:13.940 --> 00:06:19.780
+typically you start off with larger images, 39 by 39, and then the height and width will
+
+00:06:20.980 --> 00:06:25.700
+stay the same for a while and gradually trend down as you go deeper in the neural network.
+
+00:06:25.700 --> 00:06:29.060
+So it's gone from 39 to 37 to 17 to 40.
+
+00:06:30.500 --> 00:06:35.220
+So it's gone from 39 to 37 to 17 to 7, whereas the number of channels
+
+00:06:35.300 --> 00:06:40.980
+with generally increases come from 3 to 10 to 20 to 40.
+
+00:06:41.860 --> 00:06:45.860
+And you see this general trend in a lot of other convolutional neural networks as well.
+
+00:06:46.900 --> 00:06:51.300
+But we'll give more guidelines about how to design these parameters in later videos.
+
+00:06:52.500 --> 00:06:56.900
+But you've now seen your first example of a convolutional neural network,
+
+00:06:56.900 --> 00:07:00.500
+or a confnet for short. So congratulations from that.
+
+00:07:00.500 --> 00:07:07.700
+But it turns out that in a typical confnet, there are usually three types of layers.
+
+00:07:07.700 --> 00:07:13.460
+One is the convolutional layer, and often we'll denote that as a conv layer.
+
+00:07:13.460 --> 00:07:16.820
+And that's what we've been using in the previous network.
+
+00:07:16.820 --> 00:07:21.220
+It turns out that there are two other common types of layers that you haven't seen yet,
+
+00:07:21.220 --> 00:07:23.060
+but we'll talk about in the next couple of videos.
+
+00:07:23.780 --> 00:07:28.100
+One is called a pooling layer, often called this pool.
+
+00:07:28.100 --> 00:07:31.780
+And the last is a fully connected layer called FC.
+
+00:07:32.420 --> 00:07:37.620
+And although it's possible to design a pretty good neural network using just convolutional layers,
+
+00:07:38.180 --> 00:07:41.780
+most neural network architectures will also have a few pooling layers
+
+00:07:41.780 --> 00:07:43.380
+and a few fully connected layers.
+
+00:07:46.430 --> 00:07:50.110
+Fortunately, pooling layers and fully connected layers are a bit simpler
+
+00:07:50.110 --> 00:07:52.190
+than convolutional layers to define.
+
+00:07:53.950 --> 00:07:56.670
+So we'll do that quickly in the next two videos,
+
+00:07:56.670 --> 00:08:01.390
+and then you have a sense of all of the most common types of layers
+
+00:08:01.390 --> 00:08:03.070
+in a convolutional neural network.
+
+00:08:03.070 --> 00:08:07.150
+And you'll be able to put together even more powerful networks than the one we just saw.
+
+00:08:08.750 --> 00:08:13.310
+So congrats again on seeing your first full convolutional neural network.
+
+00:08:14.270 --> 00:08:18.110
+We'll also talk later in this week about how to train these networks.
+
+00:08:18.110 --> 00:08:21.950
+But first, let's talk briefly about pooling and fully connected layers,
+
+00:08:21.950 --> 00:08:24.590
+and then training these will be using backpropagation,
+
+00:08:24.590 --> 00:08:26.190
+which you're already familiar with.
+
+00:08:26.190 --> 00:08:28.590
+But in the next video, let's quickly go over
+
+00:08:28.590 --> 00:08:31.630
+how to implement a pooling layer for your confident.

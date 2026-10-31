@@ -1,0 +1,353 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:02.920
+Vậy machine learning là gì?
+
+00:00:02.920 --> 00:00:06.120
+Trong video này, bạn sẽ tìm hiểu định nghĩa
+của nó
+
+00:00:06.120 --> 00:00:09.320
+và cũng biết được khi nào bạn có thể muốn áp
+dụng nó.
+
+00:00:09.320 --> 00:00:11.480
+Chúng ta hãy cùng nhau xem xét.
+
+00:00:11.480 --> 00:00:17.340
+Đây là định nghĩa về machine learning được cho
+là của Arthur Samuel.
+
+00:00:17.340 --> 00:00:21.110
+Ông định nghĩa machine learning là lĩnh vực
+nghiên cứu mang lại
+
+00:00:21.110 --> 00:00:24.880
+cho máy tính khả năng học hỏi mà không cần lập
+trình rõ ràng.
+
+00:00:24.880 --> 00:00:27.970
+Một tuyên bố nổi tiếng khác là vào những năm
+
+00:00:27.970 --> 00:00:31.060
+1950, ông đã viết Chương trình chơi cờ đam.
+
+00:00:31.060 --> 00:00:34.590
+Điều đáng kinh ngạc về chương trình này là bản
+
+00:00:34.590 --> 00:00:38.120
+thân Arthur Samuel không phải là người chơi cờ
+giỏi.
+
+00:00:38.120 --> 00:00:41.240
+Những gì anh ấy làm là lập trình cho máy tính
+có
+
+00:00:41.240 --> 00:00:44.360
+thể chơi hàng chục nghìn trò chơi với chính
+nó.
+
+00:00:44.360 --> 00:00:47.800
+Bằng cách xem xét loại vị trí nào trên bàn cờ
+có xu hướng dẫn đến chiến
+
+00:00:47.800 --> 00:00:51.240
+thắng và loại vị trí nào có xu hướng dẫn đến
+thua lỗ, Chương trình Chơi
+
+00:00:51.240 --> 00:00:54.680
+cờ đam theo thời gian đã biết được thế nào là
+một bàn cờ tốt hay xấu.
+
+00:00:54.680 --> 00:00:56.080
+các vị trí.
+
+00:00:56.080 --> 00:01:00.060
+Bằng cách cố gắng đạt được vị trí tốt và tránh
+các vị trí xấu,
+
+00:01:00.060 --> 00:01:04.040
+chương trình của anh ấy đã học được cách chơi
+cờ đam ngày càng giỏi hơn.
+
+00:01:04.040 --> 00:01:08.600
+Bởi vì máy tính có đủ kiên nhẫn để chơi hàng
+chục nghìn ván cờ với
+
+00:01:08.600 --> 00:01:13.160
+chính nó, nên nó có thể tích lũy được nhiều
+kinh nghiệm chơi cờ đam đến
+
+00:01:13.160 --> 00:01:17.720
+nỗi cuối cùng nó trở thành một người chơi cờ
+giỏi hơn chính Arthur Samuel.
+
+00:01:17.720 --> 00:01:22.230
+Xuyên suốt các video này, ngoài việc tôi cố
+gắng nói về các nội dung,
+
+00:01:22.230 --> 00:01:26.740
+thỉnh thoảng tôi sẽ hỏi bạn một câu hỏi để
+giúp đảm bảo bạn hiểu nội dung.
+
+00:01:26.740 --> 00:01:31.100
+Đây là một trong những điều sẽ xảy ra nếu máy
+tính chơi ít trò chơi hơn.
+
+00:01:31.100 --> 00:01:38.950
+Hãy xem và chọn bất kỳ câu trả lời nào bạn
+nghĩ là tốt hơn.
+
+00:01:38.950 --> 00:01:40.950
+Cảm ơn bạn đã xem bài kiểm tra.
+
+00:01:40.950 --> 00:01:44.990
+Và nếu bạn chọn câu trả lời này, liệu nó có
+
+00:01:44.990 --> 00:01:49.030
+khiến nó tệ hơn không, thì bạn đã đoán đúng.
+
+00:01:49.030 --> 00:01:52.070
+Nói chung, bạn càng tạo nhiều cơ hội cho
+
+00:01:52.070 --> 00:01:55.110
+thuật toán học tập thì nó sẽ hoạt động càng
+tốt.
+
+00:01:55.110 --> 00:01:57.350
+Nếu bạn không chọn câu trả lời đúng trong lần
+
+00:01:57.350 --> 00:01:59.590
+đầu tiên thì điều đó cũng hoàn toàn không sao
+cả.
+
+00:01:59.590 --> 00:02:02.260
+Mục đích của những câu hỏi trắc nghiệm này
+không phải là để xem
+
+00:02:02.260 --> 00:02:04.930
+liệu bạn có thể trả lời đúng ngay lần thử đầu
+tiên hay không.
+
+00:02:04.930 --> 00:02:09.630
+Những câu hỏi này ở đây chỉ nhằm giúp bạn thực
+hành các khái niệm bạn đang học.
+
+00:02:09.630 --> 00:02:13.457
+Định nghĩa của Arthur Samuel là một định nghĩa
+khá đơn giản,
+
+00:02:13.457 --> 00:02:17.283
+nhưng trong hai video tiếp theo, chúng ta sẽ
+cùng nhau tìm
+
+00:02:17.283 --> 00:02:21.110
+hiểu sâu hơn về các loại thuật toán
+machine learning chính là gì.
+
+00:02:21.110 --> 00:02:25.070
+Trong lớp học này, bạn tìm hiểu về nhiều thuật
+toán học tập khác nhau.
+
+00:02:25.070 --> 00:02:31.190
+Hai loại machine learning chính là
+supervised learning và unsupervised learning.
+
+00:02:31.190 --> 00:02:36.710
+Chúng tôi sẽ giải thích ý nghĩa của những
+thuật ngữ này trong một số video tiếp theo.
+
+00:02:36.710 --> 00:02:40.890
+Trong số hai loại này, supervised learning là
+loại
+
+00:02:40.890 --> 00:02:45.070
+machine learning được sử dụng nhiều nhất trong
+nhiều ứng
+
+00:02:45.070 --> 00:02:49.250
+dụng trong thế giới thực và có sự tiến bộ và
+đổi mới nhanh chóng nhất.
+
+00:02:49.330 --> 00:02:52.997
+Trong chuyên ngành này, có tổng cộng ba nguyên
+nhân, nguyên nhân
+
+00:02:52.997 --> 00:02:56.663
+thứ nhất và thứ hai sẽ tập trung vào
+supervised learning và nguyên
+
+00:02:56.663 --> 00:03:00.330
+nhân thứ ba sẽ tập trung vào
+unsupervised learning, được khuyến nghị
+
+00:03:00.330 --> 00:03:03.530
+hệ thống và học tập tăng cường.
+
+00:03:03.530 --> 00:03:07.990
+Cho đến nay, các loại thuật toán học tập được
+sử dụng nhiều nhất hiện nay
+
+00:03:07.990 --> 00:03:12.450
+là supervised learning, unsupervised learning
+và các hệ thống được đề xuất.
+
+00:03:12.450 --> 00:03:16.530
+Một điều khác mà chúng ta sẽ dành nhiều thời
+gian cho chuyên ngành
+
+00:03:16.530 --> 00:03:20.610
+này là lời khuyên thiết thực cho việc áp dụng
+các thuật toán học tập.
+
+00:03:20.610 --> 00:03:23.250
+Đây là điều tôi cảm thấy khá mạnh mẽ.
+
+00:03:23.250 --> 00:03:27.037
+Dạy về các thuật toán học tập cũng giống như
+đưa cho ai đó một bộ
+
+00:03:27.037 --> 00:03:30.823
+công cụ, và điều quan trọng không kém hoặc
+thậm chí quan trọng hơn
+
+00:03:30.823 --> 00:03:34.610
+việc đảm bảo bạn có những công cụ tuyệt vời là
+đảm bảo rằng bạn biết
+
+00:03:34.610 --> 00:03:36.490
+cách áp dụng chúng.
+
+00:03:36.490 --> 00:03:40.350
+Bởi vì bạn biết đấy, sẽ tốt biết bao nếu ai đó
+đưa cho bạn một chiếc búa
+
+00:03:40.350 --> 00:03:44.210
+hiện đại hoặc một chiếc máy khoan cầm tay hiện
+đại và nói, chúc may mắn.
+
+00:03:44.210 --> 00:03:46.910
+Bây giờ bạn đã có tất cả các công cụ cần thiết
+để xây dựng
+
+00:03:46.910 --> 00:03:49.610
+một ngôi nhà ba tầng nhưng thực tế công việc
+không như vậy.
+
+00:03:49.610 --> 00:03:52.410
+Và trong machine learning cũng vậy, việc đảm
+
+00:03:52.410 --> 00:03:55.210
+bảo bạn có các công cụ thực sự quan trọng.
+
+00:03:55.210 --> 00:03:58.090
+Vì vậy, điều quan trọng là bạn biết cách áp
+dụng
+
+00:03:58.090 --> 00:04:00.970
+các công cụ machine learning một cách hiệu
+quả.
+
+00:04:00.970 --> 00:04:04.010
+Vậy đó chính là những gì bạn nhận được trong
+lớp học này,
+
+00:04:04.010 --> 00:04:07.050
+những công cụ cũng như kỹ năng áp dụng chúng
+một cách hiệu quả.
+
+00:04:07.050 --> 00:04:11.990
+Tôi thường xuyên đến thăm bạn bè và nhóm ở một
+số công ty công nghệ hàng đầu.
+
+00:04:11.990 --> 00:04:15.550
+Và thậm chí ngày nay, tôi thấy các nhóm
+machine learning có
+
+00:04:15.550 --> 00:04:19.110
+kinh nghiệm áp dụng thuật toán
+machine learning cho một số vấn đề.
+
+00:04:19.110 --> 00:04:23.850
+Và đôi khi họ đã làm việc đó suốt sáu tháng mà
+không mấy thành công.
+
+00:04:23.850 --> 00:04:27.200
+Và khi tôi nhìn vào những gì họ đang làm, đôi
+khi tôi cảm thấy như lẽ ra tôi có
+
+00:04:27.200 --> 00:04:30.550
+thể nói với họ sáu tháng trước rằng cách tiếp
+cận hiện tại sẽ không hiệu quả.
+
+00:04:30.550 --> 00:04:33.270
+Và có một cách khác để sử dụng những công cụ
+này
+
+00:04:33.270 --> 00:04:35.990
+sẽ mang lại cho họ cơ hội thành công cao hơn
+nhiều.
+
+00:04:35.990 --> 00:04:39.403
+Vì vậy, trong lớp học này, một trong những
+điều tương đối độc đáo mà
+
+00:04:39.403 --> 00:04:42.817
+bạn học được là bạn học được rất nhiều về các
+phương pháp hay nhất để
+
+00:04:42.817 --> 00:04:46.230
+thực sự phát triển một phương pháp
+machine learning có giá trị, thực tế
+
+00:04:46.230 --> 00:04:47.510
+hệ thống.
+
+00:04:47.510 --> 00:04:51.050
+Bằng cách này, bạn sẽ ít có khả năng rơi vào
+
+00:04:51.050 --> 00:04:54.590
+một trong những đội mất sáu tháng đi sai
+hướng.
+
+00:04:54.590 --> 00:04:57.410
+Trong lớp học này, bạn sẽ hiểu được cách các
+kỹ sư
+
+00:04:57.410 --> 00:05:00.230
+machine learning lành nghề nhất xây dựng hệ
+thống.
+
+00:05:00.230 --> 00:05:03.423
+Và tôi hy vọng bạn kết thúc lớp học này với tư
+cách là một
+
+00:05:03.423 --> 00:05:06.617
+trong những người rất hiếm hoi trên thế giới
+ngày nay biết
+
+00:05:06.617 --> 00:05:09.810
+cách thiết kế và xây dựng các hệ thống
+machine learning nghiêm túc.
+
+00:05:09.810 --> 00:05:11.970
+Đó là machine learning.
+
+00:05:11.970 --> 00:05:15.970
+Trong video tiếp theo, chúng ta hãy tìm hiểu
+sâu hơn về thế
+
+00:05:15.970 --> 00:05:19.970
+nào là supervised learning và thế nào là
+unsupervised learning.
+
+00:05:19.970 --> 00:05:23.030
+Ngoài ra, bạn còn biết khi nào bạn có thể muốn
+sử dụng
+
+00:05:23.030 --> 00:05:26.090
+từng phương pháp đó, supervised learning và
+không giám sát.
+
+00:05:26.090 --> 00:05:27.530
+Tôi sẽ gặp bạn trong video tiếp theo.

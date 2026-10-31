@@ -1,0 +1,81 @@
+Xin chào và chào mừng quay trở lại. Tuần này, chúng ta sẽ học về
+nhận dạng đối tượng trong ảnh Đây là một trong những bài toán đang nhận được
+nhiều sự quan tâm trong lĩnh vực thị giác máy tính Nó đã được cải tiến rất nhiều so với
+một vài năm trước đây Trước khi tìm hiểu về bài toán nhận dạng đối tượng,
+chúng ta cùng xem xét bài toán xác định vị trí đối tượng. Nào, cùng tìm hiểu xem nó là gì nhé! Bạn đã rất quen thuộc với bài toán phân loại hình ành
+mà trong đó, thuật toán nhận vào một bức ảnh như ảnh này chẳng hạn
+và nhiệm vụ của nó là phải cho biết rằng, đây là một chiếc ô tô. Đó là một bài toán phân lớp. Bài toán mà chúng ta sẽ tìm hiểu trong video này
+và những video tiếp theo nữa đó là phân lớp và xác định vị trí Có nghĩa là không chỉ dừng lại ở việc
+gán nhãn cho đối tượng trong ảnh mà thuật toán còn có nhiệm vụ là vẽ một đường biên
+gọi là bounding box, nó là một đường biên màu đỏ bao quanh đối tượng
+mà cụ thể là chiếc ô tô như thế này đây. Đó là bài toán phân lớp cũng như xác định vị trí. Cụm từ "localization" có nghĩa là
+chỉ ra trên bức ảnh vị trí xuất hiện của chiếc ô tô mà ta nhận diện được. Trong nội dung của tuần này, chúng ta sẽ nói đến bài toán phát hiện đối tượng. Đó là một bài toán mà có nhiều đối tượng xuất hiện
+trên một bức ảnh và nhiệm vụ của chúng ta là nhận diện xem chúng
+là những vật gì cũng như là vị trí của chúng. Và nếu như chúng ta ứng dụng nó vào
+bài toán xe tự hành thì chúng ta không chỉ phải nhận diện xe ô tô thôi đâu mà còn nhiều đối tượng khác, ví dụ như
+người đi bộ, xe gắn máy, vv... Bạn sẽ được học tất cả những nội dung đó
+trong tuần này. Thuật ngữ mà chúng ta sẽ sử dụng
+trong tuần này, classification và localization thường dùng để chỉ cho trường hợp
+chỉ có một đối tượng. Thường là một đối tượng khá lớn nằm ở ngay
+giữa bức ảnh mà chúng ta cần phải nhận dạng hay chính xác hơn là nhận dạng và xác định vị trí. Nhưng ngược lại, đối với bài toán nhận dạng đối tượng
+có thể có nhiều hơn một đối tượng trong cùng một ảnh. Hơn nữa, các đối tượng đó thường là
+những thứ khác nhau. Tất cả chúng chỉ nằm trong một bức ảnh mà thôi. Do đó mà những gì bạn được học về phân lớp lại
+hữu ích cho phân lớp và xác định vị trí. Còn những gì bạn biết về xác định vị trí hóa ra lại hữu ích
+cho bài toán nhận dạng (detection) Nào, cùng bắt đầu với bài toán phân lớp
+và xác định vị trí. Tôi nghĩ rằng bạn đã quá quen thuộc với bài toán
+phân lớp. Cho một bức ảnh đi qua một mạng tích chập
+với nhiều lớp như thế này Và kết quả từ mạng tích chập lại được chuyển sang một hàm softmax để đưa ra dự đoán cuối cùng. Ví dụ như bạn đang làm một chiếc xe tự lái và các đối tượng mà bạn phải nhận dạng
+là những đối tượng này đây có thể là người đi bộ, xe ô tô, xe gắn máy
+hay thậm chí chỉ là phần nền thôi. Có nghĩa là không phải thứ nào trong
+những thứ ở bên trên. Không có người đi bộ, không ô tô, không xe máy thì lúc đó đầu ra
+của chúng ta là phần nền. Đây là các nhãn của chúng ta. Chúng ta sử dụng
+một hàm softmax để dự đoán ra các nhãn này. Đó là cách giải quyết cho bài toán phân lớp
+mà trong lĩnh vực thị giác máy tính thường gọi là pipeline. Nhưng nếu như chúng ta muốn xác định vị trí
+của chiếc ô tô trên ảnh thì phải làm thế nào? Để làm điều đó, chúng ta cần phải thay đổi kiến trúc
+của mạng neurons một chút để có thêm một vài giá trị đầu ra cần thiết khác
+mà cụ thể ở đây là thông tin về bounding box. Cụ thể, mạng neurons của chúng ta cần thêm 4 giá trị, chúng ta sẽ ký hiệu chúng là
+bx, by, bh và bh 4 giá trị này sẽ cho biết vị trí của bounding box Ở đây, tôi quy ước vị trí trên cùng bên trái của bức ảnh sẽ có tọa độ là (0, 0) và vị trí dưới cùng bên phải sẽ là (1, 1) Để biểu thị vị trí của bounding box, tức là khung viền màu đỏ, chúng ta sẽ xác định vị trí
+của điểm chính giữa Điểm đó sẽ có tọa độ là (bx, by) cũng như là chiều cao là bh và chiều ngang là bw.
+Đó là 4 giá trị biểu diễn cho bouding box. Như vậy thì nhãn của tập dữ liệu huấn luyện lúc này
+không chỉ chứa nhãn của đối tượng mà mạng neurons cần phải dự đoán mà còn phải có thêm 4 giá trị nữa cho bounding box và nhiệm vụ của chúng ta là
+làm thế nào để xây dựng được một thuật toán không chỉ có thể dự đoán nhãn mà còn phải cho biết là đối tượng xuất hiện tại vị trí nào
+trong bức ảnh. Trong ví dụ này, giá trị của bx chắc tầm khoảng 0.5 bởi vì nó nằm ở giữa bức ảnh. by chắc là tầm 0.7
+vì nó chiếm cũng gần 70% rồi đấy. bh thì khoảng 0.3 vì chiều cao của khung này chiếm khoảng 30% chiều cao của toàn bức ảnh. Và cuối cùng bw khoảng 0.4 vì nó cũng chiếm khoảng 40% chiều ngang của toàn ảnh. Bây giờ chúng ta sẽ thống nhất cách định nghĩa
+vector đầu ra y cho thuật toán học này. Ghi nhớ rằng chúng ta có 4 nhãn và đầu ra của mạng neurons lúc này gồm có 4 giá trị
+của bounding box cộng với số nhãn hay nói cách khác là xác suất của từng lớp Chúng ta sẽ định nghĩa vector đầu ra y như sau Giá trị đầu tiên của vector này sẽ là pc, cho biết rằng có đối tượng nào trong ảnh hay không? Nếu tồn tại một đối tượng nào đó, dù là 1, 2 hay 3
+thì giá trị của pc cũng bằng 1 Nhưng nếu nó là lớp thứ tư
+tức là phần nền nghĩa là không có đối tượng nào xuất hiện trong này
+thì giá trị của pc sẽ bằng 0 pc là viết tắt của probability nghĩa là xác suất xuất hiện đối tượng trong ảnh xác suất xuất hiện một đối tượng có nhãn
+mà ta cần dự đoán. Và lưu ý là nhãn này
+không phải là phần nền đâu nhé. Tiếp theo, nếu tồn tại một đối tượng,
+thì ta cần thêm 4 giá trị bx, by, bh và bw để xác định vị trí của bounding box Và cuối cùng, nếu pc có giá trị bằng 1 thì ta cần phải xác định xem đối tượng này
+có nhãn là c1, c2 hay c3 tương ứng với lớp thứ nhất, thứ hai và thứ ba là người đi bộ, ô tô, xe máy Và nên nhớ rằng, vấn đề mà chúng ta đang
+xem xét ở đây là chúng ta giả định rằng sẽ chỉ có một đối tượng
+xuất hiện trong ảnh mà thôi Trong đa số các trường hợp, chỉ có một trong 3
+đối tượng xuất hiện trong ảnh mà thôi Trong bài toán phân lớp kết hợp với
+xác định vị trí Nào, chúng ta cùng xem xét một vài ví dụ nhé Ví dụ đây là một ảnh trong tập dữ liệu huấn luyện
+chúng ta ký hiệu là x vậy thì giá trị đầu tiên của y, tức là pc sẽ bằng 1
+vì như bạn thấy đấy, có một chiếc ô tô trong ảnh. và bx, by, bh, bw sẽ xác định vị trí của bounding box Do đó mà thông tin về bounding box
+cũng phải có trong phần nhãn của tập dữ liệu và cuối cùng, trong ảnh là một chiếc ô tô
+do đó mà nhãn của nó sẽ là 2 Do đó c1 sẽ bằng 0,
+không có người đi bộ nào cả c2 bằng 1 vì nó là ô tô
+và c3 bằng 0 vì cũng không có xe gắn máy Trong 3 giá trị c1, c2, c3, luôn có một giá trị bằng 1 nếu có đối tượng nào đó trong ảnh Vậy trường hợp không có đối tượng nào thì sao? Ví dụ như trường hợp này chẳng hạn? Trong trường hợp này, pc sẽ có giá trị bằng 0 và tất cả các giá trị còn lại trong vector y
+chúng ta không cần quan tâm đến nữa Tôi sẽ đánh dấu chúng là những dấu chấm hỏi
+như thế này đây giá trị của chúng sẽ là "không quan tâm",
+chẳng có đối tượng nào để xem xét cả Chúng ta không cần quan tâm đến giá trị bounding box
+mà mạng neurons trả về là gì cũng như là giá trị của nhãn c1, c2 và c3 Đó là cách mà chúng ta định nghĩa đầu vào x cũng như nhãn y cho tập dữ liệu huấn luyện trong cả hai trường hợp có tồn tại đối tượng
+trong ảnh cũng như là trường hợp không có Chúng ta sẽ gán nhãn cho tập dữ liệu huấn luyện
+theo cách như vậy Cuối cùng, chúng ta sẽ nói về hàm mất mát mà chúng ta sẽ sử dụng trong mạng neurons Giá trị đúng của nhãn sẽ là y
+và giá trị được tạo ra từ mạng neurons là ŷ Vậy thì hàm mất mát sẽ như thế nào? Nếu bạn sử dụng hàm squared error thì hàm mất mát sẽ là (ŷ1 - y1) bình phương cộng với (ŷ2 - y2) bình phương cộng ... cộng (ŷ8- y8) bình phương. Lưu ý là vector y của chúng ta sẽ có 8 giá trị Đó là tổng bình phương độ chênh giữa y và ŷ trên tất cả các phần tử Đó là hàm mất mát cho trường hợp y1 bằng 1 Đó là trường hợp có đối tượng trong ảnh y1 bằng pc Do đó nếu pc bằng 1 thì có đối tượng trong ảnh Hàm mất mát là tổng bình phương độ chênh giữa y và ŷ trên tất cả các phần tử Trường hợp ngược lại khi y1 bằng 0, hay nói cách khác là pc bằng 0 Trong trường hợp đó thì hàm mất mát chỉ bằng
+bình phương của (ŷ1 - y1) bởi vì như tôi đã nói, chúng ta không quan tâm đến
+các thành phần khác trong trường hợp này. Điều chúng ta quan tâm ở đây là độ chính xác của giá trị pc trong trường hợp này. Tóm lại, nếu y1 bằng 1, trường hợp này đây chúng ta sử dụng hàm squared error để tính toán độ chênh giữa kết quả dự đoán và nhãn thực sự trên cả 8 thành phần Ngược lại, khi y1 bằng 0, chúng ta không cần quan tâm đến
+các giá trị phía sau nữa. Chúng ta chỉ càn quan tâm đến độ chính xác của y1 hay nói cách khác là pc Bên lề một chút cho những bạn muốn tìm hiểu
+một cách chi tiết, ở đây tôi sử dụng hàm squared error
+để các bạn dễ dàng hình dung thuật toán. Trên thực tế, bạn có thể sử dụng các hàm mất mát dạng log cho các giá trị c1, c2, c3 Một số thành phần khác
+thì bạn có thể sử dụng hàm squared error như là tọa độ của bounding box chẳng hạn Còn giá trị của pc thì bạn có thể sử dụng hàm mất mát của
+hồi quy logistic. Mặc dù vậy, nhưng nếu bạn chỉ sử dụng hàm squared error
+thì nó vẫn hoạt động tốt. Đó là cách sử dụng mạng neurons để phân lớp cũng như là xác định vị trí của đối tượng trong ảnh. Ý tưởng ở đây là mạng neurons sẽ tính toán
+ra một loạt các giá trị để dự đoán xem là có những gì trong bức ảnh,
+đó thực sự là một ý tưởng rất tuyệt vời. Trong video tiếp theo, tôi sẽ giới thiệu với bạn
+một số ứng dụng của ý tưởng này trong hầu hết các bài toán hồi quy tuyến tính. Nó được áp dụng một cách rất hiệu quả trong các bài toán
+về thị giác máy tính. Nào, cùng tiếp tục trong video tiếp theo nhé!

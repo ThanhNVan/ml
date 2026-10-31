@@ -1,0 +1,99 @@
+Sau khi bạn train một mô hình chuỗi, một
+cách bạn có thể hiểu một cách chính thức về những gì học được là
+lấy mẫu chuỗi mới. Hãy cùng xem cách
+bạn có thể làm điều đó. Hãy nhớ rằng một mô hình chuỗi,
+mô hình hóa cơ hội của bất kỳ chuỗi các từ cụ thể như sau,
+và vì vậy những gì chúng ta muốn làm là lấy mẫu từ phân phối này để
+tạo ra các chuỗi từ. Vì vậy, mạng được train bằng cách sử dụng
+cấu trúc này được hiển thị ở trên cùng. Nhưng để lấy mẫu, bạn làm điều gì đó khác
+một chút, vì vậy những gì bạn muốn làm là mẫu đầu tiên là
+từ đầu tiên bạn muốn mô hình của mình tạo ra. Và vì vậy, bạn nhập thông thường
+x1 bằng 0, a0 bằng 0. Và bây giờ timestep đầu tiên của bạn sẽ có một số xác suất tối đa
+trên các đầu ra có thể. Vì vậy, những gì bạn làm là bạn lấy mẫu
+ngẫu nhiên theo phân phối soft max này. Vì vậy, những gì mà phân phối soft max mang lại cho bạn
+là nó cho bạn biết đâu là khả năng mà nó đề cập đến "a",
+khả năng mà nó đề cập đến "Aaron"? Khả năng nó đề cập đến Zulu là gì, khả năng mà
+từ đầu tiên là mã thông báo là UNK là bao nhiêu. Có lẽ có khả năng nó là mã thông báo cuối câu. Và sau đó bạn lấy vectơ này và
+sử dụng, ví dụ, lệnh numpy np.random.choice để lấy mẫu
+theo phân phối được xác định bởi vectơ xác suất này và
+cho phép bạn lấy mẫu các từ đầu tiên. Tiếp theo, bạn chuyển sang
+bước thời gian thứ hai và bây giờ hãy nhớ rằng bước
+thời gian thứ hai đang mong đợi y1 này làm đầu vào. Nhưng những gì bạn làm là bạn lấy
+y1^ mà bạn vừa lấy mẫu và chuyền nó vào đây làm đầu vào
+cho bước thời gian tiếp theo. Bất kể điều gì có hiệu quả, bạn chỉ chọn bước thời gian đầu tiên chuyền
+đầu vào này ở vị trí thứ hai thì giá trị soft max này sẽ làm cho
+dự đoán cho y^2 là gì. Ví dụ, giả sử rằng sau khi
+bạn lấy mẫu từ đầu tiên, từ đầu tiên xảy ra là z,
+là lựa chọn rất phổ biến của từ đầu tiên. Sau đó, bạn chuyển vào v là x2, bây giờ bằng y^1. Và bây giờ bạn đang cố gắng tìm ra
+khả năng từ thứ hai là gì khi cho trước
+từ đầu tiên là d. Và đây sẽ là y^2. Sau đó, bạn lại sử dụng loại hàm lấy mẫu
+để lấy mẫu y^2. Và sau đó ở bước thời gian tiếp theo, bạn chọn bất kỳ lựa chọn nào mà bạn có
+để biểu diễn như một one-hot encoding (biễu diễn one-hot). Và chuyền nó sang bước thời gian tiếp theo và sau đó bạn lấy mẫu từ
+thứ ba cho bất kỳ từ nào bạn đã chọn, và bạn tiếp tục cho đến khi bạn
+đến bước thời gian cuối cùng. Làm thế nào để bạn biết khi nào chuỗi kết thúc? Một điều bạn có thể làm là nếu
+mã thông báo cuối câu là một phần từ vựng của bạn, bạn có thể giữ
+lấy mẫu cho đến khi tạo mã thông báo EOS. Và điều đó cho bạn biết rằng bạn đã đạt đến
+cuối câu và bạn có thể dừng lại. Hoặc cách khác, nếu bạn không
+bao gồm từ này trong vốn từ vựng của bạn sau đó, bạn cũng có thể quyết định lấy mẫu
+20 từ hoặc 100 từ hoặc đại loại thế, và sau đó tiếp tục cho đến khi bạn đạt đến số bước thời gian
+đó. Và thủ tục đặc biệt này sẽ
+đôi khi tạo ra một mã thông báo UNK. Nếu bạn muốn đảm bảo rằng thuật toán
+của bạn không bao giờ tạo mã thông báo này, một điều bạn có thể làm là từ chối bất kỳ mẫu xuất hiện dưới dạng mã thông báo UNK
+và chỉ tiếp tục lấy mẫu lại từ phần còn lại của từ vựng cho đến khi bạn nhận được
+một từ không phải là UNK. Hoặc bạn có thể để nó ở đầu ra
+nếu bạn không phiền khi có UNK làm đầu ra. Đây là cách bạn tạo ra
+một câu được chọn ngẫu nhiên từ mô hình ngôn ngữ RNN của bạn. Bây giờ,
+cho đến nay chúng ta đã xây dựng RNN cấp từ, theo đó ý tôi là từ vựng
+là các từ tiếng Anh. Tùy thuộc vào ứng dụng của bạn, một điều bạn có thể làm là
+xây dựng RNN cấp ký tự. Trong trường hợp này, từ vựng
+của bạn sẽ chỉ là các bảng chữ cái. Lên đến z và cũng như có thể là dấu cách, dấu câu nếu bạn muốn,
+các chữ số từ 0 đến 9. Và nếu bạn muốn phân biệt
+chữ hoa và chữ thường, bạn cũng có thể bao gồm các bảng chữ cái viết hoa và có một điều bạn có thể làm là
+xem xét tập training của bạn và nhìn vào các ký tự xuất hiện ở đó
+và sử dụng ký tự đó để xác định từ vựng. Và nếu bạn xây dựng mô hình ngôn ngữ cấp ký tự
+thay vì mô hình ngôn ngữ cấp độ từ,
+rồi đến chuỗi của bạn y1, y2, y3, sẽ là
+ký tự riêng lẻ trong dữ liệu train của bạn, thay vì
+từ riêng lẻ trong dữ liệu train của bạn. Vì vậy, đối với ví dụ trước của chúng ta, câu
+"mèo trung bình ngủ 15 giờ mỗi ngày". Trong ví dụ này,
+c sẽ là y1, a sẽ là y2, t sẽ là y3,
+không gian sẽ là y4, v.v. Sử dụng mô hình ngôn ngữ cấp độ ký tự
+có một số ưu và nhược điểm. Một là bạn không bao giờ phải
+lo lắng về các mã thông báo UNK. Đặc biệt,
+một mô hình ngôn ngữ cấp độ ký tự có thể gán một chuỗi như "mau",
+là một xác suất khác không. Trong khi nếu "mau" không có trong từ vựng
+của bạn đối với mô hình ngôn ngữ cấp độ từ, bạn chỉ cần gán cho nó
+mã thông báo UNK. Nhưng nhược điểm chính của
+mô hình ngôn ngữ cấp ký tự là bạn kết thúc với
+chuỗi dài hơn nhiều. Vì vậy, nhiều câu tiếng anh
+sẽ có 10 đến 20 từ nhưng có thể có nhiều, hàng tá ký tự. Và các mô hình ngôn ngữ ký tự như vậy không
+tốt như mô hình ngôn ngữ cấp từ khi nắm bắt phạm vi dài
+phụ thuộc giữa các phần trước của câu
+ảnh hưởng đến phần sau của câu như thế nào. Và các mô hình cấp độ ký tự cũng chỉ tốn kém hơn
+về mặt tính toán để train. Vì vậy, xu hướng mà tôi đã thấy trong xử lý ngôn ngữ tự nhiên
+là cho phần lớn, mô hình ngôn ngữ cấp độ từ
+vẫn được sử dụng, nhưng như là khi máy tính nhanh hơn, thì có nhiều
+và nhiều hơn nữa các ứng dụng mà mọi người, ít nhất trong một số trường hợp đặc biệt, bắt đầu
+xem xét nhiều mô hình cấp độ ký tự hơn. Nhưng thường sẽ khó hơn nhiều,
+và tốn khá nhiều tính toán để train, vì vậy chúng không được sử dụng rộng rãi ngày nay. Ngoại trừ các ứng dụng chuyên biệt
+mà bạn có thể cần phải xử lý UNK hoặc
+từ vựng khác rất nhiều. Hoặc nó cũng được sử dụng
+ứng dụng chuyên biệt hơn nơi bạn có vốn từ vựng chuyên ngành hơn. Vì vậy, theo các phương pháp này, những gì bạn có thể làm bây giờ là xây dựng một RNN để
+xem kho ngữ liệu tiếng Anh, xây dựng mô hình ngôn ngữ cấp độ từ, cấp độ ký tự lấy mẫu từ
+mô hình ngôn ngữ mà bạn đã train. Đây là một số ví dụ về văn bản
+ví dụ từ mô hình ngôn ngữ, thực ra từ một mô hình ngôn ngữ cấp
+văn hóa. Và bạn có thể tự mình thực hiện điều gì đó giống như
+thế này trong bài tập. Nếu mô hình được train trên các bài báo, sau đó nó tạo ra các văn bản
+được hiển thị ở bên trái. Và điều này trông mơ hồ giống như văn bản tin tức,
+không đúng ngữ pháp, nhưng có thể hơi giống như
+thứ có thể xuất hiện trên tin tức, "concussion epidemic, to be examined". Và nó đã được train trên
+văn bản Shakespear và sau đó nó tạo ra những thứ nghe có vẻ
+giống như Shakespeare có thể đã viết ra nó. The mortal moon hath her eclipse in love. (Vầng trăng trần thế đã yêu nàng nhật thực). And subject of this thou
+art another this fold. When besser be my love to me see sabl's. For whose are ruse of mine eyes heaves. Vì vậy, đó là RNN cơ bản và cách
+bạn có thể xây dựng mô hình ngôn ngữ bằng cách sử dụng nó, lấy mẫu từ mô hình ngôn ngữ
+mà bạn đã train. Trong vài video tiếp theo, tôi muốn thảo luận
+thêm một số thách thức khi train RNN, cũng như cách điều chỉnh một số
+những thách thức này, đặc biệt là t tiêu biến gradient bằng cách xây dựng thêm
+mô hình có sức ảnh hưởng lớn của RNN. Vì vậy, trong video tiếp theo, chúng ta hãy nói về
+vấn đề làm biến mất gradient và chúng ta sẽ tiếp tục nói về GRU, Gate Recurring Unit
+cũng như các mô hình LSTM.

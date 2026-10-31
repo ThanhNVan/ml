@@ -1,0 +1,282 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.140 --> 00:00:05.940
+During the history of deep learning, many researchers, including some very well-known researchers,
+
+00:00:05.940 --> 00:00:10.100
+sometimes proposed optimization algorithms and showed their work well in a few problems.
+
+00:00:10.100 --> 00:00:14.320
+But those optimization algorithms subsequently were shown not to really generalize that
+
+00:00:14.320 --> 00:00:18.380
+well to the wide range of neural networks you might want to train.
+
+00:00:18.380 --> 00:00:23.380
+So over time, I think the deep learning community actually developed some amount of skepticism
+
+00:00:23.380 --> 00:00:25.500
+about new optimization algorithms.
+
+00:00:25.500 --> 00:00:29.860
+And a lot of people felt that gradient descent with momentum really works well.
+
+00:00:29.860 --> 00:00:33.180
+It's difficult to propose things that work much better.
+
+00:00:33.180 --> 00:00:38.260
+So RMSprop and the Adam optimization algorithm, which I'll talk about in this video, is one
+
+00:00:38.260 --> 00:00:44.220
+of those rare algorithms that has really stood up and has been shown to work well across a
+
+00:00:44.220 --> 00:00:47.200
+wide range of deep learning architectures.
+
+00:00:47.200 --> 00:00:51.300
+So this is one of the algorithms that I wouldn't hesitate to recommend you try because many
+
+00:00:51.300 --> 00:00:55.020
+people have tried it and seen it work well on many problems.
+
+00:00:55.020 --> 00:01:00.620
+And the Adam optimization algorithm is basically taking momentum and RMSprop and putting them
+
+00:01:00.620 --> 00:01:01.620
+together.
+
+00:01:01.620 --> 00:01:03.380
+So let's see how that works.
+
+00:01:03.380 --> 00:01:13.060
+To implement Adam, you would initialize VdW equals 0, SdW equals 0, and similarly Vdb,
+
+00:01:13.060 --> 00:01:16.060
+Sdb equals 0.
+
+00:01:16.060 --> 00:01:26.980
+And then on iteration T, you would compute derivatives, compute Vw, Vb using current
+
+00:01:26.980 --> 00:01:30.290
+mini batch.
+
+00:01:30.290 --> 00:01:34.570
+So usually you do this with mini batch gradient descent.
+
+00:01:34.570 --> 00:01:38.930
+And then you do the momentum exponentially weighted average.
+
+00:01:38.930 --> 00:01:41.610
+So VdW equals beta.
+
+00:01:41.610 --> 00:01:46.610
+But now I'm going to call this beta 1 to distinguish it from the hyperparameter beta
+
+00:01:46.610 --> 00:01:53.090
+2 we'll use for the RMSprop portion of this.
+
+00:01:53.090 --> 00:02:01.290
+So this is exactly what we had when we're implementing momentum, except that I've now called the
+
+00:02:01.290 --> 00:02:04.850
+hyperparameter beta 1 instead of beta.
+
+00:02:04.850 --> 00:02:09.810
+And similarly, you have Vdb as follows.
+
+00:02:09.810 --> 00:02:15.290
+So 1 minus beta 1 times dB.
+
+00:02:15.290 --> 00:02:18.890
+And then you do the RMSprop like update as well.
+
+00:02:18.890 --> 00:02:26.050
+So now you have a different hyperparameter beta 2 plus 1 minus beta 2, dW squared.
+
+00:02:26.050 --> 00:02:34.250
+And again, the squaring there is element Y squaring of your derivatives dW.
+
+00:02:34.250 --> 00:02:44.210
+And then Sdb is equal to this plus 1 minus beta 2 times dB.
+
+00:02:44.210 --> 00:02:50.210
+So this is the momentum like update with hyperparameter beta 1.
+
+00:02:50.210 --> 00:02:55.730
+And this is the RMSprop like update with hyperparameter beta 2.
+
+00:02:55.730 --> 00:03:00.970
+In the typical implementation of ADAM, you do implement bias correction.
+
+00:03:00.970 --> 00:03:04.930
+So you're going to have V corrected.
+
+00:03:04.930 --> 00:03:13.290
+Corrected means after bias correction, dW equals VdW divided by 1 minus beta 1 to the
+
+00:03:13.290 --> 00:03:14.290
+power of t.
+
+00:03:14.290 --> 00:03:23.370
+If you've done t iterations and similarly Vdb corrected equals Vdb divided by 1 minus beta
+
+00:03:23.370 --> 00:03:25.290
+1 to the power of t.
+
+00:03:25.290 --> 00:03:31.290
+And then similarly, you implement this bias correction on S as well.
+
+00:03:31.290 --> 00:03:44.690
+So that's SdW divided by 1 minus beta 2 to the t and Sdb corrected equals Sdb divided
+
+00:03:44.690 --> 00:03:48.290
+by 1 minus beta 2 to the t.
+
+00:03:48.290 --> 00:03:50.890
+Finally, you perform the update.
+
+00:03:50.890 --> 00:03:55.410
+So W gets updated as W minus alpha times.
+
+00:03:55.410 --> 00:04:03.850
+So if you're just implementing momentum, you'd use VdW or maybe VdW corrected.
+
+00:04:03.850 --> 00:04:06.850
+But now we add in the RMSprop portion of this.
+
+00:04:06.850 --> 00:04:13.650
+So we're also going to divide by square root of SdW corrected plus epsilon.
+
+00:04:13.650 --> 00:04:18.850
+And similarly, B gets updated as a similar formula.
+
+00:04:18.850 --> 00:04:29.010
+Vdb corrected divided by square root S corrected dB plus epsilon.
+
+00:04:29.010 --> 00:04:35.210
+And so this algorithm combines the effect of gradient descent with momentum together with
+
+00:04:35.210 --> 00:04:37.730
+gradient descent with RMSprop.
+
+00:04:37.730 --> 00:04:43.170
+And this is commonly used learning algorithm that's proven to be very effective for many
+
+00:04:43.170 --> 00:04:47.010
+different neural networks with a very wide variety of architectures.
+
+00:04:47.010 --> 00:04:50.370
+So this algorithm has a number of hyperparameters.
+
+00:04:50.370 --> 00:04:57.530
+The learning rate hyperparameter alpha is still important and usually needs to be tuned.
+
+00:04:57.530 --> 00:05:01.730
+So you just have to try a range of values and see what works.
+
+00:05:01.730 --> 00:05:06.330
+A common choice, really the default choice for beta 1 is 0.9.
+
+00:05:06.330 --> 00:05:10.130
+So this is the moving average, weighted average of dW, right?
+
+00:05:10.130 --> 00:05:13.050
+This is the momentum light term.
+
+00:05:13.050 --> 00:05:18.810
+The hyperparameter for beta 2, the authors of the Adam paper, inventors of the Adam,
+
+00:05:18.810 --> 00:05:20.210
+algorithm recommend 0.999.
+
+00:05:20.210 --> 00:05:27.050
+Again, this is computing the moving weighted average of dW squared as well as dB squared.
+
+00:05:27.050 --> 00:05:31.250
+And then epsilon, the choice of epsilon doesn't matter very much.
+
+00:05:31.250 --> 00:05:34.970
+But the authors of the Adam paper recommend it 10 to the minus 8.
+
+00:05:34.970 --> 00:05:40.850
+But this parameter, you really don't need to set it and it doesn't affect performance
+
+00:05:40.850 --> 00:05:43.010
+much at all.
+
+00:05:43.010 --> 00:05:47.570
+But when implementing Adam, what people usually do is just use the default values of beta
+
+00:05:47.570 --> 00:05:50.010
+1 and beta 2 as well as epsilon.
+
+00:05:50.010 --> 00:05:52.730
+I don't think anyone ever really tunes epsilon.
+
+00:05:52.730 --> 00:05:56.890
+And then try a range of values of alpha to see what works best.
+
+00:05:56.890 --> 00:06:01.570
+You could also tune beta 1 and beta 2, but it's not done that often among the practitioners
+
+00:06:01.570 --> 00:06:02.970
+as I know.
+
+00:06:02.970 --> 00:06:06.450
+So where does the term Adam come from?
+
+00:06:06.450 --> 00:06:15.660
+Adam stands for adaptive moment estimation.
+
+00:06:15.660 --> 00:06:18.340
+So beta 1 is computing the mean of the derivatives.
+
+00:06:18.340 --> 00:06:20.100
+This is called the first moment.
+
+00:06:20.100 --> 00:06:24.340
+And beta 2 is used to compute exponentially weighted average of the squares.
+
+00:06:24.340 --> 00:06:26.020
+And that's called the second moment.
+
+00:06:26.020 --> 00:06:29.620
+So that gives rise to the name adaptive moment estimation.
+
+00:06:29.620 --> 00:06:33.180
+But everyone just calls it the Adam optimization algorithm.
+
+00:06:33.180 --> 00:06:37.660
+And by the way, one of my long term friends and collaborators is called Adam Coates.
+
+00:06:37.980 --> 00:06:41.740
+As far as I know, this algorithm doesn't have anything to do with him except for the fact
+
+00:06:41.740 --> 00:06:43.580
+that I think he uses it sometimes.
+
+00:06:43.580 --> 00:06:45.260
+But sometimes I get asked that question.
+
+00:06:45.260 --> 00:06:48.260
+So just in case you're wondering.
+
+00:06:48.260 --> 00:06:50.940
+So that's it for the Adam optimization algorithm.
+
+00:06:50.940 --> 00:06:54.820
+With it, I think you really train your neural networks much more quickly.
+
+00:06:54.820 --> 00:06:59.420
+But before we wrap up for this week, let's keep talking about hyperparameter tuning as
+
+00:06:59.420 --> 00:07:03.340
+well as gain somewhat intuitions about what the optimization problem for neural
+
+00:07:03.340 --> 00:07:04.340
+networks looks like.
+
+00:07:04.340 --> 00:07:07.300
+In the next video, we'll talk about learning rate decay.

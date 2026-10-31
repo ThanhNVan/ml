@@ -1,0 +1,1153 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.470
+Trong video này, mọi người sẽ tìm hiểu về một số
+
+2
+00:00:02.470 --> 00:00:05.418
+kiến trúc neural network kinh điển bắt đầu với LeNet-5,
+
+3
+00:00:05.418 --> 00:00:10.122
+và sau đó là AlexNet, và sau đó là VGGNet. Chúng ta cùng tìm hiểu nhé
+
+4
+00:00:10.122 --> 00:00:12.935
+Đây là kiến trúc LeNet-5.
+
+5
+00:00:12.935 --> 00:00:15.700
+mọi người bắt đầu với một hình ảnh, giả sử là
+
+6
+00:00:15.700 --> 00:00:17.540
+32 x 32 x 1.
+
+7
+00:00:17.540 --> 00:00:21.520
+Và mục tiêu của LeNet-5 là nhận dạng các chữ số viết tay,
+
+8
+00:00:21.520 --> 00:00:25.490
+vậy có thể là một hình ảnh của các chữ số như vậy.
+
+9
+00:00:25.490 --> 00:00:28.815
+Và LeNet-5 đã được huấn luyện về hình ảnh mức xám,
+
+10
+00:00:28.815 --> 00:00:32.180
+đó là lý do nó là hình ảnh 32 x 32 x 1.
+
+11
+00:00:32.180 --> 00:00:34.400
+Kiến trúc neural network này thực sự khá
+
+12
+00:00:34.400 --> 00:00:38.315
+giống như ví dụ cuối cùng mọi người thấy tuần trước.
+
+13
+00:00:38.315 --> 00:00:39.847
+Trong bước đầu tiên,
+
+14
+00:00:39.847 --> 00:00:41.765
+mọi người sử dụng một bộ gồm sáu
+
+15
+00:00:41.765 --> 00:00:45.220
+bộ lọc 5 x 5 với một stride là 1, vì mọi người sử dụng
+
+16
+00:00:45.220 --> 00:00:50.218
+6 bộ lọc nên có kết quả là 20 x 20 x 6 ở đó.
+
+17
+00:00:50.218 --> 00:00:52.730
+Và với một stride là 1 và không có padding,
+
+18
+00:00:52.730 --> 00:00:58.640
+kích thước hình ảnh giảm từ 32 x 32 xuống 28 x 28.
+
+19
+00:00:58.640 --> 00:01:02.295
+Sau đó, neural network LeNet áp dụng pooling
+
+20
+00:01:02.295 --> 00:01:04.970
+Và ngày xưa, khi nghiên cứu này được viết,
+
+21
+00:01:04.970 --> 00:01:07.576
+người ta sử dụng avarage pooling nhiều hơn.
+
+22
+00:01:07.576 --> 00:01:09.290
+Nếu mọi người đang xây dựng một kiểu hiện đại,
+
+23
+00:01:09.290 --> 00:01:12.145
+thay vào đó, mọi người có thể sử dụng max pooling.
+
+24
+00:01:12.145 --> 00:01:13.360
+Nhưng trong ví dụ này,
+
+25
+00:01:13.360 --> 00:01:17.825
+ta dùng average pooling và với bộ lọc có chiều rộng là 2 và stride là 2,
+
+26
+00:01:17.825 --> 00:01:20.780
+mọi người sẽ giảm kích thước,
+
+27
+00:01:20.780 --> 00:01:22.730
+chiều cao và chiều rộng bằng hệ số hai,
+
+28
+00:01:22.730 --> 00:01:28.784
+vì vậy bây giờ chúng ta có với một hình khối 14 x 14 x 6.
+
+29
+00:01:28.784 --> 00:01:32.180
+Tôi đoán chiều cao và chiều rộng của những hình khối này không hoàn toàn được vẽ theo tỷ lệ.
+
+30
+00:01:32.180 --> 00:01:35.210
+Về mặt kỹ thuật, nếu tôi vẽ những hình khối này theo tỷ lệ,
+
+31
+00:01:35.210 --> 00:01:38.150
+chiều cao và chiều rộng sẽ được biểu diễn theo hệ số hai.
+
+32
+00:01:38.150 --> 00:01:41.180
+Tiếp theo, mọi người áp dụng một layer convolution khác.
+
+33
+00:01:41.180 --> 00:01:44.070
+Lần này mọi người sử dụng bộ gồm 16 bộ lọc
+
+34
+00:01:44.070 --> 00:01:48.515
+5 x 5, vì vậy mọi người sẽ có 16 kênh cho hình khối tiếp theo.
+
+35
+00:01:48.515 --> 00:01:52.355
+Và khi nghiên cứu này được viết vào năm 1998,
+
+36
+00:01:52.355 --> 00:01:57.200
+người ta không thực sự sử dụng padding hoặc mọi người luôn sử dụng các convolution hợp lệ,
+
+37
+00:01:57.200 --> 00:01:59.635
+đó là lý do tại sao mỗi khi mọi người áp dụng layer convolution,
+
+38
+00:01:59.635 --> 00:02:01.965
+chiều cao và chiều rộng giảm
+
+39
+00:02:01.965 --> 00:02:03.380
+Vì vậy, đó là lý do tại sao, ở đây,
+
+40
+00:02:03.380 --> 00:02:06.393
+ta đi từ 14 x 14 xuống thành 10 x 10.
+
+41
+00:02:06.393 --> 00:02:08.580
+Sau đó, một poolinglayer khác,
+
+42
+00:02:08.580 --> 00:02:11.060
+để giảm chiều cao và chiều rộng đi một phần hai,
+
+43
+00:02:11.060 --> 00:02:13.715
+sau đó mọi người sẽ có 5 x 5 ở đây.
+
+44
+00:02:13.715 --> 00:02:16.640
+Và nếu mọi người nhân tất cả các số này, 5 x 5 x 16,
+
+45
+00:02:16.640 --> 00:02:20.375
+con số này lên đến 400.
+
+46
+00:02:20.375 --> 00:02:24.020
+Đó là 25 x 16 x 400.
+
+47
+00:02:24.020 --> 00:02:29.900
+Và layer tiếp theo sau đó là một layer được kết nối đầy đủ, kết nối đầy đủ từng nút trong
+
+48
+00:02:29.900 --> 00:02:36.840
+400 nút này với mỗi nơ ron trong số 120 nơ ron
+
+49
+00:02:36.840 --> 00:02:38.385
+vì vậy, có một layer được kết nối đầy đủ.
+
+50
+00:02:38.385 --> 00:02:41.955
+Và đôi khi, chúng ta sẽ nhận được
+
+51
+00:02:41.955 --> 00:02:46.080
+một layer có 400 nút, tôi đang bỏ qua ở đây.
+
+52
+00:02:46.080 --> 00:02:49.590
+Có một layer được kết nối đầy đủ và sau đó là một layer khác được kết nối đầy đủ.
+
+53
+00:02:49.590 --> 00:02:51.690
+Và bước cuối cùng là sử dụng
+
+54
+00:02:51.690 --> 00:02:57.280
+về cơ bản, 84 đặc điểm này và sử dụng nó với một đầu ra cuối cùng.
+
+55
+00:02:57.280 --> 00:03:01.375
+Tôi nghĩ mọi người có thể vẽ thêm một nút ở đây để đưa ra dự đoán cho ŷ.
+
+56
+00:03:01.375 --> 00:03:04.560
+Và ŷ đã nhận 10 giá trị có thể
+
+57
+00:03:04.560 --> 00:03:09.090
+tương ứng với việc nhận biết từng chữ số từ 0 đến 9.
+
+58
+00:03:09.090 --> 00:03:11.100
+Một phiên bản hiện đại của neural network này,
+
+59
+00:03:11.100 --> 00:03:17.300
+chúng ta sẽ sử dụng một layer softmax với đầu ra classification 10 chiều.
+
+60
+00:03:17.300 --> 00:03:23.385
+Mặc dù trước đó, LeNet-5 thực sự sử dụng một bộ classification khác ở layer đầu ra,
+
+61
+00:03:23.385 --> 00:03:25.633
+ở thời nay thì nó vô dụng.
+
+62
+00:03:25.633 --> 00:03:29.220
+Vì vậy, neural network này nhỏ theo tiêu chuẩn hiện đại,
+
+63
+00:03:29.220 --> 00:03:32.645
+có khoảng 60.000 tham số.
+
+64
+00:03:32.645 --> 00:03:35.934
+Và ngày nay, mọi người thường thấy các neural network với
+
+65
+00:03:35.934 --> 00:03:39.690
+trong khoảng từ 10 triệu đến 100 triệu tham số,
+
+66
+00:03:39.690 --> 00:03:41.850
+và chẳng phải là một điều lạ khi thấy các mạng
+
+67
+00:03:41.850 --> 00:03:45.295
+lớn hơn khoảng một nghìn lần so với mạng này.
+
+68
+00:03:45.295 --> 00:03:49.600
+Nhưng một điều mọi người thấy là khi mọi người đi sâu hơn vào mạng,
+
+69
+00:03:49.600 --> 00:03:51.790
+khi mọi người đi từ trái sang phải,
+
+70
+00:03:51.790 --> 00:03:55.360
+chiều cao và chiều rộng có xu hướng đi xuống.
+
+71
+00:03:55.360 --> 00:03:57.690
+Vì vậy, mọi người đã từ 32 x 32, thành 28 x 14,
+
+72
+00:03:57.690 --> 00:04:03.100
+xuống 10 x 5, trong khi số kênh tăng lên.
+
+73
+00:04:03.100 --> 00:04:11.250
+Số kênh tăng từ 1 đến 6 đến 16 khi mọi người đi sâu hơn vào các layer của mạng.
+
+74
+00:04:11.250 --> 00:04:15.400
+Một mô hình khác mà mọi người thấy trong neural network này vẫn thường được dùng cho đến ngày nay là
+
+75
+00:04:15.400 --> 00:04:20.500
+rằng mọi người có thể có một số hoặc nhiều layer convolution, theo sau là pooling layer,
+
+76
+00:04:20.500 --> 00:04:25.758
+và sau đó một hoặc đôi khi nhiều hơn một layer convolution, tiếp theo là một pooling layer,
+
+77
+00:04:25.758 --> 00:04:29.940
+và sau đó là một số layer được kết nối đầy đủ và sau đó là đầu ra.
+
+78
+00:04:29.940 --> 00:04:34.090
+Vì vậy kiểu sắp xếp các layer này khá phổ biến.
+
+79
+00:04:34.090 --> 00:04:39.515
+Bây giờ cuối cùng, điều này có lẽ chỉ dành cho những người muốn thử đọc nghiên cứu
+
+80
+00:04:39.515 --> 00:04:41.880
+Có một vài thứ khác đã khác.
+
+81
+00:04:41.880 --> 00:04:43.690
+Trong phần còn lại của slide này,
+
+82
+00:04:43.690 --> 00:04:47.065
+Tôi sẽ đưa ra một vài nhận xét nâng cao hơn,
+
+83
+00:04:47.065 --> 00:04:52.265
+chỉ dành cho những người mọi người muốn đọc nghiên cứu kinh điển này.
+
+84
+00:04:52.265 --> 00:04:54.903
+Và vì vậy, mọi thứ tôi sẽ viết bằng màu đỏ,
+
+85
+00:04:54.903 --> 00:04:57.490
+mọi người có thể bỏ qua slide này nhé,
+
+86
+00:04:57.490 --> 00:05:00.520
+và có thể có một chú thích lịch sử thú vị
+
+87
+00:05:00.520 --> 00:05:04.350
+mọi người không theo dõi hết các slide cũng không sao đâu
+
+88
+00:05:04.350 --> 00:05:07.990
+Vì vậy, hóa ra là nếu mọi người đọc nghiên cứu gốc,
+
+89
+00:05:07.990 --> 00:05:12.453
+người ta đã sử dụng phi tuyến tính sigmoid và tanh,
+
+90
+00:05:12.453 --> 00:05:16.330
+và hồi đó, người ta không sử dụng phi tuyến tính giá trị.
+
+91
+00:05:16.330 --> 00:05:20.065
+Vì vậy, nếu mọi người xem nghiên cứu, mọi người sẽ thấy có đề cập đến sigmoid và tanh.
+
+92
+00:05:20.065 --> 00:05:23.260
+Và cũng có một số cách hài hước về
+
+93
+00:05:23.260 --> 00:05:26.835
+cách mạng này đã được kết nối thì khá buồn cười theo tiêu chuẩn hiện đại.
+
+94
+00:05:26.835 --> 00:05:33.775
+Ví dụ, mọi người đã thấy nếu mọi người có một mạng nh x nw x nc với
+
+95
+00:05:33.775 --> 00:05:40.985
+nc kênh thì mọi người sử dụng bộ lọc kích thước f x f x nc,
+
+96
+00:05:40.985 --> 00:05:44.480
+mỗi bộ lọc sẽ xem xét từng kênh này.
+
+97
+00:05:44.480 --> 00:05:47.195
+Nhưng hồi đó, máy tính chậm hơn nhiều.
+
+98
+00:05:47.195 --> 00:05:50.230
+Và do đó, để tiết kiệm tính toán cũng như một số tham số,
+
+99
+00:05:50.230 --> 00:05:53.785
+LeNet-5 ban đầu dùng một số cách phức tạp đến điên rồ
+
+100
+00:05:53.785 --> 00:05:58.040
+là các bộ lọc khác nhau sẽ xem xét các kênh khác nhau của khối đầu vào.
+
+101
+00:05:58.040 --> 00:06:00.343
+Và nghiên cứu nói về những chi tiết đó,
+
+102
+00:06:00.343 --> 00:06:07.090
+nhưng triển khai hiện đại hơn sẽ không phức tạp như ngày xưa
+
+103
+00:06:07.090 --> 00:06:12.280
+Và một điều cuối cùng hồi đó người ta làm nhưng tôi thấy bây giờ không được thực hiện đúng
+
+104
+00:06:12.280 --> 00:06:19.705
+là LeNet-5 ban đầu có một phi tuyến tính sau khi pooling,
+
+105
+00:06:19.705 --> 00:06:25.005
+và tôi nghĩ rằng nó sử dụng tính phi tuyến tính sigmoid sau pooling layer
+
+106
+00:06:25.005 --> 00:06:27.130
+Vì vậy, nếu mọi người đọc nghiên cứu này,
+
+107
+00:06:27.130 --> 00:06:29.345
+và nghiên cứu này thì khó đọc hơn so với
+
+108
+00:06:29.345 --> 00:06:32.100
+những nghiên cứu mà chúng ta sẽ xem xét trong vài video tiếp theo,
+
+109
+00:06:32.100 --> 00:06:34.670
+nghiên cứu tiếp theo có thể là dễ hơn
+
+110
+00:06:34.670 --> 00:06:40.135
+Hầu hết các ý tưởng trên slide thì tôi làm thử trong phần 2 và 3 của nghiên cứu,
+
+111
+00:06:40.135 --> 00:06:44.485
+và các phần sau của nghiên cứu nói về một số ý tưởng khác.
+
+112
+00:06:44.485 --> 00:06:47.260
+Nó nói về một thứ gọi là mạng biến áp đồ thị,
+
+113
+00:06:47.260 --> 00:06:49.215
+mà ngày nay không được sử dụng rộng rãi.
+
+114
+00:06:49.215 --> 00:06:50.935
+Vì vậy, nếu mọi người muốn đọc nghiên cứu này,
+
+115
+00:06:50.935 --> 00:06:55.660
+Tôi khuyên mọi người nên tập trung vào phần hai nói về kiến trúc này,
+
+116
+00:06:55.660 --> 00:06:58.165
+và có thể xem nhanh phần ba
+
+117
+00:06:58.165 --> 00:07:01.720
+trong đó có một loạt các thử nghiệm và kết quả, điều này khá thú vị.
+
+118
+00:07:01.720 --> 00:07:06.155
+Ví dụ thứ hai về neural network mà tôi muốn giới thiệu với mọi người là AlexNet,
+
+119
+00:07:06.155 --> 00:07:12.510
+được đặt theo tên của Alex Krizhevsky, tác giả đầu tiên của nghiên cứu đã mô tả mạng này.
+
+120
+00:07:12.510 --> 00:07:13.725
+Các tác giả khác là Ilya Sutskever và Geoffrey Hinton.
+
+121
+00:07:13.725 --> 00:07:21.048
+Vì vậy, đầu vào của AlexNet bắt đầu với các hình ảnh 227 x 227 x 3.
+
+122
+00:07:21.048 --> 00:07:22.525
+Và nếu mọi người đọc nghiên cứu,
+
+123
+00:07:22.525 --> 00:07:27.010
+nghiên cứu đề cập đến các hình ảnh 224 x 224 x 3
+
+124
+00:07:27.010 --> 00:07:28.120
+Nhưng nếu mọi người nhìn vào các con số,
+
+125
+00:07:28.120 --> 00:07:33.100
+Tôi nghĩ rằng các con số chỉ có ý nghĩa thực sự là 227 x 227.
+
+126
+00:07:33.100 --> 00:07:40.230
+Và sau đó, layer đầu tiên áp dụng một tập hợp các bộ lọc 96 x 11 x 11 với stride là bốn.
+
+127
+00:07:40.230 --> 00:07:42.740
+Và bởi vì nó sử dụng một stride là bốn,
+
+128
+00:07:42.740 --> 00:07:45.574
+kích thước thu nhỏ lại 55 x 55.
+
+129
+00:07:45.574 --> 00:07:50.930
+Đại khái là, giảm đi một hệ số 4 vì stride này lớn.
+
+130
+00:07:50.930 --> 00:07:55.110
+Và sau đó nó áp dụng max pooling với bộ lọc 3 x 3.
+
+131
+00:07:55.110 --> 00:07:57.925
+Vì vậy, f bằng ba và một stride là hai.
+
+132
+00:07:57.925 --> 00:08:04.570
+Vì vậy, điều này làm giảm kích thước xuống 27 x 27 x 96,
+
+133
+00:08:04.570 --> 00:08:08.530
+và sau đó nó thực hiện một phép chập 5 x 5,
+
+134
+00:08:08.530 --> 00:08:14.730
+c, vì vậy ta được kết quả là 27 x 27 x 276.
+
+135
+00:08:14.730 --> 00:08:20.025
+max pooling, điều này làm giảm chiều cao và chiều rộng xuống 13.
+
+136
+00:08:20.025 --> 00:08:23.860
+Và sau đó là một convolution khác, padding vẫn như cũ
+
+137
+00:08:23.860 --> 00:08:29.805
+Vì vậy, nó là bộ lọc 13 x 13 x 384.
+
+138
+00:08:29.805 --> 00:08:35.275
+Và sau đó 3 x 3, cùng một phép chập, cho ta kết quả thế này
+
+139
+00:08:35.275 --> 00:08:39.680
+Sau đó 3 x 3, cùng một convolution, cho ta kết quả thế này
+
+140
+00:08:39.680 --> 00:08:45.285
+Sau đó, max pooling, giảm nó xuống 6 x 6 x 256.
+
+141
+00:08:45.285 --> 00:08:52.020
+Nếu mọi người nhân tất cả các số này, 6 x 6 x 256, thì được 9216.
+
+142
+00:08:52.020 --> 00:08:56.947
+Vì vậy, chúng ta sẽ làm phẳng nó thành 9216 nút.
+
+143
+00:08:56.947 --> 00:09:00.790
+Và cuối cùng, nó có một vài layer được kết nối đầy đủ.
+
+144
+00:09:00.790 --> 00:09:04.250
+Và cuối cùng, nó sử dụng softmax để xuất
+
+145
+00:09:04.250 --> 00:09:09.515
+mà một trong số 1000 kích hoạt tạo ra đối tượng.
+
+146
+00:09:09.515 --> 00:09:16.920
+Vì vậy, neural network này thực sự có rất nhiều điểm tương đồng với LeNet,
+
+147
+00:09:16.920 --> 00:09:20.210
+nhưng nó lớn hơn nhiều.
+
+148
+00:09:20.210 --> 00:09:27.740
+Vì vậy, trong khi LeNet-5 từ slide trước có khoảng 60.000 tham số,
+
+149
+00:09:27.740 --> 00:09:31.935
+AlexNet này có khoảng 60 triệu tham số.
+
+150
+00:09:31.935 --> 00:09:34.024
+Và thực tế là chúng có thể dùng
+
+151
+00:09:34.024 --> 00:09:36.925
+các khối xây dựng cơ bản khá giống nhau
+
+152
+00:09:36.925 --> 00:09:40.270
+có nhiều unit ẩn hơn và huấn luyện nhiều dữ liệu hơn,
+
+153
+00:09:40.270 --> 00:09:42.820
+chúng đã huấn luyện về hình ảnh mà tập dữ liệu
+
+154
+00:09:42.820 --> 00:09:46.255
+cho phép để một hiệu suất tốt hơn đáng kể.
+
+155
+00:09:46.255 --> 00:09:49.810
+Một khía cạnh khác của kiến trúc này khiến nó
+
+156
+00:09:49.810 --> 00:09:53.575
+tốt hơn LeNet là sử dụng hàm value activation.
+
+157
+00:09:53.575 --> 00:09:56.425
+Và một lần nữa, chỉ cần mọi người đọc nghiên cứu
+
+158
+00:09:56.425 --> 00:09:59.020
+có một số chi tiết nâng cao hơn mà mọi người không cần
+
+159
+00:09:59.020 --> 00:10:01.840
+lo lắng nếu mọi người không đọc nghiên cứu, một là,
+
+160
+00:10:01.840 --> 00:10:03.445
+khi nghiên cứu này được viết,
+
+161
+00:10:03.445 --> 00:10:06.197
+GPU vẫn chậm hơn một chút,
+
+162
+00:10:06.197 --> 00:10:11.135
+vì vậy nó có cách huấn luyện phức tạp trên hai GPU.
+
+163
+00:10:11.135 --> 00:10:13.310
+Và ý tưởng cơ bản là,
+
+164
+00:10:13.310 --> 00:10:18.250
+rất nhiều layer này được chia thành hai GPU khác nhau và có
+
+165
+00:10:18.250 --> 00:10:23.497
+một cách hợp lý để hai GPU giao tiếp với nhau.
+
+166
+00:10:23.497 --> 00:10:25.360
+Và nghiên cứu cũng,
+
+167
+00:10:25.360 --> 00:10:29.650
+kiến trúc AlexNet ban đầu cũng có một tập hợp layer khác
+
+168
+00:10:29.650 --> 00:10:34.125
+được gọi là Chuẩn hóa đáp ứng cục bộ.
+
+169
+00:10:34.125 --> 00:10:36.820
+Và loại layer này không được sử dụng nhiều,
+
+170
+00:10:36.820 --> 00:10:38.830
+đó là lý do tại sao tôi không nói về nó.
+
+171
+00:10:38.830 --> 00:10:42.220
+Nhưng ý tưởng cơ bản của Chuẩn hóa đáp ứng cục bộ là,
+
+172
+00:10:42.220 --> 00:10:44.845
+nếu mọi người nhìn vào một trong những khối này,
+
+173
+00:10:44.845 --> 00:10:46.940
+một trong những hình khối mà chúng ta có ở trên cùng,
+
+174
+00:10:46.940 --> 00:10:49.360
+để bàn bạc thì, hình này,
+
+175
+00:10:49.360 --> 00:10:52.380
+13 x 13 x 256,
+
+176
+00:10:52.380 --> 00:10:54.765
+Nhiệm vụ của chuẩn hóa đáp ứng cục bộ
+
+177
+00:10:54.765 --> 00:10:57.805
+(LRN), mọi người đang nhìn vào một vị trí.
+
+178
+00:10:57.805 --> 00:10:59.570
+Vì vậy, một vị trí chiều cao và chiều rộng,
+
+179
+00:10:59.570 --> 00:11:02.935
+và xem xét điều này trên tất cả các kênh,
+
+180
+00:11:02.935 --> 00:11:07.195
+nhìn vào tất cả 256 số và chuẩn hóa chúng.
+
+181
+00:11:07.195 --> 00:11:10.750
+Và động lực cho Chuẩn hóa đáp ứng cục bộ này là vì
+
+182
+00:11:10.750 --> 00:11:14.934
+mỗi vị trí trong hình ảnh 13 x 13 này,
+
+183
+00:11:14.934 --> 00:11:20.123
+có thể mọi người không muốn có quá nhiều nơ ron với kích hoạt cao.
+
+184
+00:11:20.123 --> 00:11:25.730
+Nhưng sau đó, nhiều nhà nghiên cứu đã phát hiện ra rằng điều này không hữu ích nên nó là
+
+185
+00:11:25.730 --> 00:11:27.995
+một trong những ý tưởng đó tôi đang viết bằng màu đỏ
+
+186
+00:11:27.995 --> 00:11:31.880
+vì mọi người cũng không cần quá cố gắng để hiểu nó
+
+187
+00:11:31.880 --> 00:11:33.940
+Và trong thực tế, tôi không thực sự sử dụng
+
+188
+00:11:33.940 --> 00:11:38.760
+chuẩn hóa đáp ứng cục bộ bằng ngôn ngữ mạng được huấn luyện ngày nay.
+
+189
+00:11:38.760 --> 00:11:41.380
+Vì vậy, nếu mọi người quan tâm đến lịch sử của deep learning,
+
+190
+00:11:41.380 --> 00:11:43.395
+Tôi nghĩ thậm chí trước AlexNet,
+
+191
+00:11:43.395 --> 00:11:48.978
+deep learning đã bắt đầu đạt được sức hút trong nhận dạng giọng nói và một số lĩnh vực khác,
+
+192
+00:11:48.978 --> 00:11:52.690
+nhưng nó thực sự chỉ là một nghiên cứu thuyết phục rất nhiều
+
+193
+00:11:52.690 --> 00:11:56.350
+cộng đồng thị giác máy tính để xem xét nghiêm túc
+
+194
+00:11:56.350 --> 00:12:00.280
+deep learning, để thuyết phục họ rằng deep learning thực sự hữu ích trong thị giác máy tính.
+
+195
+00:12:00.280 --> 00:12:02.710
+Và sau đó nó phát triển và có một tác động lớn
+
+196
+00:12:02.710 --> 00:12:05.508
+không chỉ trong thị giác máy tính mà còn ngoài thị giác máy tính.
+
+197
+00:12:05.508 --> 00:12:08.170
+Và nếu mọi người muốn đọc một số nghiên cứu này
+
+198
+00:12:08.170 --> 00:12:11.635
+với khóa học này thì mọi người thực sự không cần đọc đâu
+
+199
+00:12:11.635 --> 00:12:14.200
+nhưng nếu mọi người muốn thử đọc một số nghiên cứu,
+
+200
+00:12:14.200 --> 00:12:19.354
+nghiên cứu này là một nghiên cứu dễ đọc hơn nên đây có thể là một nghiên cứu hay để mọi người xem qua.
+
+201
+00:12:19.354 --> 00:12:23.257
+Vì vậy, trong khi AlexNet có một kiến trúc tương đối phức tạp,
+
+202
+00:12:23.257 --> 00:12:25.585
+nó có rất nhiều siêu tham số, phải không?
+
+203
+00:12:25.585 --> 00:12:28.255
+Với AlexNet, ta có tất cả những con số này
+
+204
+00:12:28.255 --> 00:12:33.240
+mà Alex Krizhevsky và các đồng tác giả phải nghĩ ra.
+
+205
+00:12:33.240 --> 00:12:39.765
+Để tôi cho mọi người xem một ví dụ thứ ba và là cuối cùng trong video này là mạng VGG hoặc VGG-16.
+
+206
+00:12:39.765 --> 00:12:44.820
+Và một điều đáng chú ý về mạng VGG-16 là người ta nói,
+
+207
+00:12:44.820 --> 00:12:46.966
+thay vì có quá nhiều siêu tham số,
+
+208
+00:12:46.966 --> 00:12:52.495
+hãy sử dụng một mạng đơn giản hơn nhiều, mọi người chỉ tập trung vào việc có các layer convolution
+
+209
+00:12:52.495 --> 00:12:58.690
+bộ lọc 3 x 3 với stride là một và luôn sử dụng padding giống nhau
+
+210
+00:12:58.690 --> 00:13:03.640
+Và làm cho tất cả các max pooling layer có kích thước 2 x 2 với một stride là hai.
+
+211
+00:13:03.640 --> 00:13:06.250
+Và vậy, một điều rất hay về
+
+212
+00:13:06.250 --> 00:13:12.224
+mạng VGG là nó đơn giản hóa kiến trúc neural network này.
+
+213
+00:13:12.224 --> 00:13:14.494
+Vì vậy, chúng ta hãy tìm hiểu về kiến trúc.
+
+214
+00:13:14.494 --> 00:13:19.660
+Vậy, mọi người thấy một bức ảnh và sau đó, 2 layer đầu tiên là convolution
+
+215
+00:13:19.660 --> 00:13:24.315
+do đó, chúng là những bộ lọc 3 x 3 này.
+
+216
+00:13:24.315 --> 00:13:27.930
+Và trong hai layer đầu tiên sử dụng 64 bộ lọc.
+
+217
+00:13:27.930 --> 00:13:35.830
+mọi người có kết quả là 224 x 224 bởi vì sử dụng cùng một phép chập và sau đó là 64 kênh.
+
+218
+00:13:35.830 --> 00:13:39.345
+Vì VGG-16 là một mạng tương đối sâu,
+
+219
+00:13:39.345 --> 00:13:42.335
+tôi sẽ không vẽ tất cả các hình khối ở đây.
+
+220
+00:13:42.335 --> 00:13:46.270
+Vì vậy, bức tranh nhỏ này biểu thị hình khối
+
+221
+00:13:46.270 --> 00:13:50.890
+mà ta sẽ vẽ với kích thước 224 x 224 x 3.
+
+222
+00:13:50.890 --> 00:13:55.362
+Và sau đó tôi nghĩ là một phép chập có kết quả là
+
+223
+00:13:55.362 --> 00:14:00.535
+224 x 224 x 64 sẽ được vẽ dưới dạng một hình khối sâu hơn,
+
+224
+00:14:00.535 --> 00:14:07.227
+và sau đó là một layer khác có kết quả là 224 x 224 x 64.
+
+225
+00:14:07.227 --> 00:14:15.730
+Vì vậy, conv64 x 2 này thể hiện rằng mọi người đang thực hiện hai layer convolution với 64 bộ lọc.
+
+226
+00:14:15.730 --> 00:14:17.380
+Và như tôi đã đề cập trước đó,
+
+227
+00:14:17.380 --> 00:14:20.555
+các bộ lọc luôn là 3 x 3
+
+228
+00:14:20.555 --> 00:14:24.455
+với một stride là và chúng luôn luôn là phép chập giống nhau
+
+229
+00:14:24.455 --> 00:14:26.395
+Vì vậy, thay vì vẽ tất cả những hình khối này,
+
+230
+00:14:26.395 --> 00:14:28.400
+tôi sẽ chỉ sử dụng văn bản để biểu diễn mạng này.
+
+231
+00:14:28.400 --> 00:14:31.413
+Tiếp theo, việc sử dụng là pooling layer
+
+232
+00:14:31.413 --> 00:14:33.580
+vì vậy pooling layer sẽ giảm.
+
+233
+00:14:33.580 --> 00:14:36.725
+Tôi nghĩ rằng nó đi từ 224 x 224 xuống thành gì?
+
+234
+00:14:36.725 --> 00:14:40.755
+Đúng. Giảm còn 112 x 112 x 64.
+
+235
+00:14:40.755 --> 00:14:44.339
+Và sau đó nó có thêm một vài layer convolution
+
+236
+00:14:44.339 --> 00:14:50.426
+Vì vậy, điều này có nghĩa là nó có 128 bộ lọc và bởi vì đây là những phép chập giống nhau,
+
+237
+00:14:50.426 --> 00:14:52.365
+chúng ta hãy xem kích thước mới là gì.
+
+238
+00:14:52.365 --> 00:14:57.020
+Đúng? Nó sẽ là 112 x 112 x 128 và sau đó
+
+239
+00:14:57.020 --> 00:15:02.205
+pooling layer để mọi người có thể tìm ra kích thước mới của nó.
+
+240
+00:15:02.205 --> 00:15:07.210
+Và bây giờ, ba layer convolution với
+
+241
+00:15:07.210 --> 00:15:14.300
+256 bộ lọc tới pooling layer và sau đó là một vài layer convolution khác,
+
+242
+00:15:14.300 --> 00:15:18.945
+pooling layer, nhiều layer convolution, pooling layer
+
+243
+00:15:18.945 --> 00:15:26.345
+Và sau đó sẽ cần hình khối 7 x 7 x 512 cuối cùng này vào layer được kết nối đầy đủ,
+
+244
+00:15:26.345 --> 00:15:30.230
+kết nối đầy đủ với 4096
+
+245
+00:15:30.230 --> 00:15:36.080
+unit và một đầu ra softmax với1 trong 1000 kích hoạt
+
+246
+00:15:36.080 --> 00:15:39.875
+Nhân tiện, số 16 trong VGG-16
+
+247
+00:15:39.875 --> 00:15:45.080
+có ý nghĩa là có 16 layer có trọng số.
+
+248
+00:15:45.080 --> 00:15:47.470
+Và đây là một mạng khá lớn,
+
+249
+00:15:47.470 --> 00:15:52.415
+mạng này có tổng cộng khoảng 138 triệu tham số.
+
+250
+00:15:52.415 --> 00:15:55.615
+Và nó khá lớn ngay cả theo tiêu chuẩn hiện đại.
+
+251
+00:15:55.615 --> 00:16:00.673
+Nhưng sự đơn giản của kiến trúc VGG-16 khiến nó hấp dẫn.
+
+252
+00:16:00.673 --> 00:16:03.935
+mọi người có thể nói kiến trúc của anh ấy thực sự khá đồng đều.
+
+253
+00:16:03.935 --> 00:16:07.130
+Có một vài layer convolution theo sau là một pooling layer
+
+254
+00:16:07.130 --> 00:16:09.590
+làm giảm chiều cao và chiều rộng, phải không?
+
+255
+00:16:09.590 --> 00:16:13.396
+Vì vậy, các pooling layer giảm chiều cao và chiều rộng.
+
+256
+00:16:13.396 --> 00:16:15.570
+mọi người có một vài pooling layer ở đây.
+
+257
+00:16:15.570 --> 00:16:20.260
+Nhưng sau đó, nếu mọi người nhìn vào số lượng bộ lọc trong các layer convolution
+
+258
+00:16:20.260 --> 00:16:28.675
+ở đây mọi người có 64 bộ lọc và sau đó mọi người nhân đôi lên thành 128 nhân đôi thành 256 và nhân đôi thành 512.
+
+259
+00:16:28.675 --> 00:16:33.160
+Và sau đó tôi đoán các tác giả nghĩ 512 là đủ lớn và không tăng gấp ở đây nữa.
+
+260
+00:16:33.160 --> 00:16:36.410
+Nhưng kiểu tăng gần gấp đôi trên mỗi bước,
+
+261
+00:16:36.410 --> 00:16:39.915
+hoặc tăng gấp đôi qua mỗi chồng của các layer convolution là
+
+262
+00:16:39.915 --> 00:16:45.040
+một nguyên tắc đơn giản khác được sử dụng để thiết kế kiến trúc của mạng này.
+
+263
+00:16:45.040 --> 00:16:48.230
+Và vì vậy tôi nghĩ rằng tính đồng nhất tương đối của
+
+264
+00:16:48.230 --> 00:16:52.460
+kiến trúc này khiến nó trở nên khá hấp dẫn đối với các nhà nghiên cứu.
+
+265
+00:16:52.460 --> 00:16:54.680
+Nhược điểm chính là nó là
+
+266
+00:16:54.680 --> 00:16:58.910
+một mạng có nhiều tham số mà mọi người phải huấn luyện.
+
+267
+00:16:58.910 --> 00:17:00.995
+Và nếu mọi người đọc tài liệu,
+
+268
+00:17:00.995 --> 00:17:04.700
+đôi khi mọi người thấy mọi người nói về VGG-19,
+
+269
+00:17:04.700 --> 00:17:08.600
+đó là một phiên bản thậm chí còn lớn hơn của mạng này.
+
+270
+00:17:08.600 --> 00:17:11.780
+Và mọi người có thể xem chi tiết trong nghiên cứu của
+
+271
+00:17:11.780 --> 00:17:16.595
+Karen Simonyan và Andrew Zisserman được trích dẫn phía dưới
+
+272
+00:17:16.595 --> 00:17:20.875
+Nhưng vì VGG-16 gần như tốt như VGG-19.
+
+273
+00:17:20.875 --> 00:17:23.570
+Rất nhiều người sẽ sử dụng VGG-16.
+
+274
+00:17:23.570 --> 00:17:26.090
+Nhưng điều tôi thích nhất ở đây là,
+
+275
+00:17:26.090 --> 00:17:28.540
+điều này tạo nên mô hình là
+
+276
+00:17:28.540 --> 00:17:31.100
+khi mọi người đi sâu hơn, chiều cao và chiều rộng giảm xuống,
+
+277
+00:17:31.100 --> 00:17:33.540
+các pooling layer thì giảm theo
+
+278
+00:17:33.540 --> 00:17:36.890
+hệ số 2 trong khi số lượng kênh tăng lên.
+
+279
+00:17:36.890 --> 00:17:42.855
+Và ở đây gần như tăng lên theo hệ số hai mỗi khi mọi người có một tập hợp các layer convolution mới.
+
+280
+00:17:42.855 --> 00:17:49.155
+Vì vậy, bằng cách làm cho tỷ lệ layer convolution giảm xuống và kênh tăng lên có tính hệ thống,
+
+281
+00:17:49.155 --> 00:17:54.410
+Tôi nghĩ nghiên cứu này rất hấp dẫn từ góc độ đó.
+
+282
+00:17:54.410 --> 00:17:57.845
+Vì vậy, đó là 3 kiến trúc cổ điển.
+
+283
+00:17:57.845 --> 00:18:00.931
+Nếu mọi người muốn, mọi người thực sự nên đọc một số nghiên cứu này.
+
+284
+00:18:00.931 --> 00:18:05.270
+Tôi khuyên mọi người nên bắt đầu với nghiên cứu AlexNet, sau đó là nghiên cứu mạng VGG và
+
+285
+00:18:05.270 --> 00:18:07.460
+tiếp theo là nghiên cứu LeNet khó hơn một chút
+
+286
+00:18:07.460 --> 00:18:09.984
+nhưng khi đọc xong thì mọi người thấy nó là một tác phẩm hay kinh điển
+
+287
+00:18:09.984 --> 00:18:14.725
+Nhưng tiếp theo, hãy tìm hiểu thêm ngoài các mạng kinh điển này và xem xét một số mạng thậm chí còn nâng cao hơn,
+
+288
+00:18:14.725 --> 00:18:18.040
+thậm chí nhiều kiến trúc neural network mạnh mẽ hơn. Hãy xem trong video tiếp theo nhé.

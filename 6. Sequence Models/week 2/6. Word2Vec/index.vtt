@@ -1,0 +1,414 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:07.000
+In the last video, you saw how you can learn a neural language model in order to get good word embeddings.
+
+00:00:07.000 --> 00:00:15.500
+In this video, you see the word-to-vec algorithm, which is a simpler and computationally more efficient way to learn these types of embeddings.
+
+00:00:15.500 --> 00:00:16.500
+Let's take a look.
+
+00:00:16.500 --> 00:00:22.500
+Most of the ideas I present in this video are due to Thomas Mikoloff, Kai Chen, Greg Gerado and Jeff D.
+
+00:00:22.500 --> 00:00:26.500
+Let's say you're given this sentence in your training set.
+
+00:00:26.500 --> 00:00:39.000
+In the skip-gram model, what we're going to do is come up with a few context-to-target pairs to create our supervised learning problem.
+
+00:00:39.000 --> 00:00:47.000
+So rather than having the context be always the last four words or the last n words immediately before the target word,
+
+00:00:47.000 --> 00:00:54.000
+what we're going to do is say randomly pick a word to be the context word and let's say we chose the word orange.
+
+00:00:54.500 --> 00:00:58.500
+What we're going to do is randomly pick another word within some window,
+
+00:00:58.500 --> 00:01:04.500
+say plus minus five words or plus minus ten words of the context word and we choose that to be the target word.
+
+00:01:04.500 --> 00:01:09.500
+So maybe just by chance you might pick juice to be a target word.
+
+00:01:09.500 --> 00:01:11.500
+That's just one word later.
+
+00:01:11.500 --> 00:01:14.500
+Or you might choose two words before.
+
+00:01:14.500 --> 00:01:29.860
+So you have another pair where the target could be glass or maybe just by chance you choose the word my as the target.
+
+00:01:29.860 --> 00:01:34.860
+And so we'll set up supervised learning problem where given the context word,
+
+00:01:34.860 --> 00:01:45.860
+you're asked to predict what is a randomly chosen word within say a plus minus ten word window or plus minus five or ten word window of that input context word.
+
+00:01:46.360 --> 00:01:53.360
+And obviously this is not a very easy learning problem because you know within plus minus ten words of the word orange,
+
+00:01:53.360 --> 00:01:55.360
+it could be a lot of different words.
+
+00:01:55.360 --> 00:02:02.360
+But the goal of setting up this supervised learning problem isn't to do well on the supervised learning problem per se.
+
+00:02:02.360 --> 00:02:08.360
+It is that we want to use this learning problem to learn good word embeddings.
+
+00:02:08.360 --> 00:02:11.360
+So here are the details of the model.
+
+00:02:11.360 --> 00:02:20.860
+Let's say that we'll continue to use our vocab of ten thousand words and some have been trained on vocab sizes that exceed a million words.
+
+00:02:20.860 --> 00:02:28.860
+But the basic supervised learning problem we're going to solve is that we want to learn a mapping from some context C,
+
+00:02:28.860 --> 00:02:35.860
+such as the word orange, to some target which we're going to call T,
+
+00:02:35.860 --> 00:02:43.360
+which might be the word juice or the word glass or the word my if we use the example from the previous slide.
+
+00:02:43.360 --> 00:02:54.360
+So in our vocabulary, orange is word 6257 and the word juice is word 4834 in our vocab of ten thousand words.
+
+00:02:54.360 --> 00:02:59.860
+And so that's the input x that you want to learn to map to that output y.
+
+00:03:00.360 --> 00:03:08.360
+So to represent the input, such as the word orange, you can start out with some one hot vector which is going to write as O subscript C.
+
+00:03:08.360 --> 00:03:11.360
+So there's a one hot vector for the context words.
+
+00:03:11.360 --> 00:03:16.360
+And then similar to what you saw in the last video, you can take the embedding matrix E,
+
+00:03:16.360 --> 00:03:24.360
+multiply E by the vector O subscript C, and this gives you your embedding vector for the input context word.
+
+00:03:24.360 --> 00:03:29.860
+So here, EC is equal to capital E times that one hot vector.
+
+00:03:29.860 --> 00:03:36.860
+Then in this little neural network that we'll form, we're going to take this vector EC and feed it to a softmax unit.
+
+00:03:36.860 --> 00:03:40.860
+So I've been drawing softmax unit as like a node in a neural network.
+
+00:03:40.860 --> 00:03:43.860
+That's not at all. There's a softmax unit.
+
+00:03:43.860 --> 00:03:48.860
+And then there's a job of the softmax unit to output y hat.
+
+00:03:49.360 --> 00:03:53.360
+So to write out this model in detail, this is the model.
+
+00:03:53.360 --> 00:03:57.360
+The softmax model estimates probability of different target words,
+
+00:03:57.360 --> 00:04:12.650
+given the input context word as E to the theta T transpose EC, divided by sum over all words.
+
+00:04:12.650 --> 00:04:20.150
+I'm going to say sum from J equals one to all ten thousand words of E to the theta J transpose EC.
+
+00:04:20.650 --> 00:04:32.220
+So here theta T is the parameter associated with output T.
+
+00:04:32.220 --> 00:04:39.680
+There's a chance of a particular word T being the label.
+
+00:04:39.680 --> 00:04:42.680
+So I've left off the bias term in this softmax.
+
+00:04:42.680 --> 00:04:45.680
+We could include that too if we wish.
+
+00:04:45.680 --> 00:04:57.140
+And then finally, the loss function for softmax would be the usual.
+
+00:04:57.640 --> 00:05:05.140
+So we use y to represent the target words, and we use a one-hot representation for y hat and y here.
+
+00:05:05.140 --> 00:05:11.340
+Then the loss will be the negative log likelihood.
+
+00:05:11.340 --> 00:05:20.840
+So sum from i equals one to ten thousand of yi log yi hat.
+
+00:05:20.840 --> 00:05:28.840
+So that's the usual loss for softmax, where we're representing the target y as a one-hot vector.
+
+00:05:29.840 --> 00:05:34.340
+So this would be a one-hot vector with just one one and the rest zero.
+
+00:05:34.340 --> 00:05:41.840
+And if the target word is J, then it would be elements 4834, right from up here.
+
+00:05:41.840 --> 00:05:44.840
+That is equal to one and the rest would be equal to zero.
+
+00:05:44.840 --> 00:05:50.840
+And similarly, y hat would be a ten thousand dimensional vector output by the softmax unit,
+
+00:05:50.840 --> 00:05:55.340
+with probabilities for all ten thousand possible target words.
+
+00:05:55.840 --> 00:06:04.840
+So to summarize, this is the overall little model, little neural network with basically looking up the embedding
+
+00:06:04.840 --> 00:06:06.840
+and just a softmax unit.
+
+00:06:06.840 --> 00:06:09.840
+And the matrix E will have a lot of parameters.
+
+00:06:09.840 --> 00:06:15.840
+So the matrix E has parameters corresponding to all of these embedding vectors, E subscript C.
+
+00:06:15.840 --> 00:06:22.840
+And then the softmax unit also has parameters that gives these theta t parameters.
+
+00:06:23.340 --> 00:06:29.340
+But if you optimize this loss function with respect to all of these parameters,
+
+00:06:29.340 --> 00:06:33.340
+you actually get a pretty good set of embedding vectors.
+
+00:06:33.340 --> 00:06:40.340
+So this is called the skip gram model, because it's taking its input, one word like orange,
+
+00:06:40.340 --> 00:06:45.340
+and then trying to predict what is some word, skipping a few words to the left or the right
+
+00:06:45.340 --> 00:06:49.340
+to predict what comes a little bit before, a little bit after the context word.
+
+00:06:49.840 --> 00:06:53.840
+Now, it turns out there are a couple problems with using this algorithm.
+
+00:06:53.840 --> 00:06:57.840
+And the primary problem is computational speed.
+
+00:06:57.840 --> 00:07:02.840
+In particular, for the softmax model, every time you want to evaluate this probability,
+
+00:07:02.840 --> 00:07:08.840
+you need to carry out a sum over all ten thousand words in your vocabulary.
+
+00:07:08.840 --> 00:07:13.840
+And maybe ten thousand isn't too bad, but if you're using a vocabulary of size
+
+00:07:14.340 --> 00:07:19.340
+100,000 or a million, it gets really slow to sum up over this denominator every single time.
+
+00:07:19.340 --> 00:07:23.340
+In fact, ten thousand is actually already pretty bad, will be quite slow,
+
+00:07:23.340 --> 00:07:27.340
+but it makes it even harder to scale to larger vocabularies.
+
+00:07:27.340 --> 00:07:29.340
+So there are a few solutions to this.
+
+00:07:29.340 --> 00:07:36.340
+One which you see in the literature is to use a hierarchical softmax classifier.
+
+00:07:36.340 --> 00:07:43.340
+And what that means is instead of trying to categorize something into all ten thousand categories on one go,
+
+00:07:43.840 --> 00:07:50.840
+imagine if you have one classifier that tells you is the target word in the first five thousand words
+
+00:07:50.840 --> 00:07:53.840
+in the vocabulary or is it in the second five thousand words in the vocabulary.
+
+00:07:53.840 --> 00:07:57.840
+And let's say this binary classifier tells you is in the first five thousand words.
+
+00:07:57.840 --> 00:08:00.840
+Then you can have a second classifier tell you is this in the first
+
+00:08:00.840 --> 00:08:05.840
+2500 words in the vocabulary or in the second 2500 words in the vocabulary.
+
+00:08:05.840 --> 00:08:11.840
+And so on, until eventually you get down to classifying exactly what word it is,
+
+00:08:12.340 --> 00:08:15.340
+so that the leaf of this tree.
+
+00:08:15.340 --> 00:08:19.340
+And so having a tree of classifiers like this means that each of the
+
+00:08:19.340 --> 00:08:24.340
+interior nodes of a tree can be just a binary classifier, like a logistic classifier.
+
+00:08:24.340 --> 00:08:28.340
+And so you don't need to sum over all ten thousand words,
+
+00:08:28.340 --> 00:08:32.340
+all of the vocab size in order to make a single classification.
+
+00:08:32.340 --> 00:08:37.340
+In fact, the computational cost using a tree like this scales like log of the vocab size
+
+00:08:37.340 --> 00:08:39.340
+rather than linear in vocab size.
+
+00:08:39.840 --> 00:08:43.840
+So this is called a hierarchical softmax classifier.
+
+00:08:43.840 --> 00:08:51.840
+I should mention in practice, the hierarchical softmax classifier doesn't use a perfectly balanced tree
+
+00:08:51.840 --> 00:08:57.840
+or this perfectly symmetric tree with equal numbers of words on the left and right sides of each branch.
+
+00:08:57.840 --> 00:09:01.840
+In practice, the hierarchical softmax classifier can be developed
+
+00:09:01.840 --> 00:09:08.840
+so that the common words tend to be on top, whereas the less common words like durian,
+
+00:09:08.840 --> 00:09:12.340
+can be buried much deeper in the tree.
+
+00:09:12.340 --> 00:09:15.340
+Because you see the more common words more often,
+
+00:09:15.340 --> 00:09:19.340
+and so you might need only a few traversals to get to common words like d and of,
+
+00:09:19.340 --> 00:09:22.340
+whereas you see less frequent words like durian much less often,
+
+00:09:22.340 --> 00:09:27.340
+so it's okay if they're buried deeper in the tree because you don't need to go that deep as frequently.
+
+00:09:27.340 --> 00:09:35.970
+So there are various heuristics for building the tree that you use to build a hierarchical softmax classifier.
+
+00:09:35.970 --> 00:09:41.470
+So this is one idea you see in the literature for speeding up the softmax classification.
+
+00:09:41.470 --> 00:09:49.470
+And you can read more details of this on the paper I referenced by Thomas Mikoloff and others on the first slide.
+
+00:09:49.470 --> 00:09:52.470
+But I won't spend too much more time on this because in the next video,
+
+00:09:52.470 --> 00:09:56.470
+we actually talk about a different method called negative sampling,
+
+00:09:56.470 --> 00:10:02.970
+which I think is even simpler and also works really well for speeding up the softmax classifier
+
+00:10:02.970 --> 00:10:08.470
+and the problem of needing to sum over the entire vocab size in the denominator.
+
+00:10:08.470 --> 00:10:11.470
+So you see more of that in the next video.
+
+00:10:11.470 --> 00:10:18.470
+But before moving on, one quick topic I want you to understand is how to sample the context C.
+
+00:10:18.470 --> 00:10:23.470
+So once you sample the context C, the target T can be sampled within, say,
+
+00:10:23.470 --> 00:10:26.970
+a plus minus 10-word window of the context C.
+
+00:10:26.970 --> 00:10:29.470
+But how do you choose the context C?
+
+00:10:29.470 --> 00:10:33.470
+One thing you could do is just sample uniformly random from your training corpus.
+
+00:10:33.470 --> 00:10:40.970
+When you do that, you find that there are some words like D, of, A, and, or two, and so on,
+
+00:10:40.970 --> 00:10:42.970
+that appear extremely frequently.
+
+00:10:42.970 --> 00:10:47.970
+And so if you do that, you find it in your context to target mapping pairs.
+
+00:10:47.970 --> 00:10:50.970
+You just get these types of words extremely frequently.
+
+00:10:50.970 --> 00:10:57.970
+Whereas there are other words like orange, apple, and also durian that don't appear that often.
+
+00:10:58.470 --> 00:11:03.470
+And maybe you don't want your training set to be dominated by these extremely frequently
+
+00:11:03.470 --> 00:11:08.470
+occurring words because then you spend almost all the effort updating EC
+
+00:11:08.470 --> 00:11:10.470
+for those frequently occurring words.
+
+00:11:10.470 --> 00:11:13.970
+But you want to make sure that you spend some time updating the embedding,
+
+00:11:13.970 --> 00:11:17.970
+even for these less common words like E, durian.
+
+00:11:17.970 --> 00:11:24.970
+So in practice, the distribution of words PC isn't taking just entirely uniformly random
+
+00:11:24.970 --> 00:11:29.470
+from the training set corpus, but instead there are different heuristics that you could use
+
+00:11:29.470 --> 00:11:35.470
+in order to balance out sampling from the common words together with the less common words.
+
+00:11:35.470 --> 00:11:39.470
+So that's it for the Word2Vec skip-gram model.
+
+00:11:39.470 --> 00:11:43.970
+If you read the original paper by Mikoloff et al., that I referenced earlier,
+
+00:11:43.970 --> 00:11:47.970
+you find that that paper actually had two versions of this Word2Vec model.
+
+00:11:47.970 --> 00:11:52.970
+The skip-gram was one, and the other one is called the CBOW, a continuous bag of words model,
+
+00:11:52.970 --> 00:11:58.970
+which takes the surrounding context for middle word and uses the surrounding words to try to predict the middle word.
+
+00:11:58.970 --> 00:12:02.970
+And that algorithm also works and has some advantages and disadvantages.
+
+00:12:02.970 --> 00:12:07.970
+But the key problem with this algorithm, with the skip-gram models presented so far,
+
+00:12:07.970 --> 00:12:12.970
+is that the softmax step is very expensive to calculate because of needing to sum over
+
+00:12:12.970 --> 00:12:17.970
+your entire vocabulary size in the denominator of the softmax.
+
+00:12:17.970 --> 00:12:22.970
+In the next video, I'm going to show you an algorithm that modifies the training objective,
+
+00:12:22.970 --> 00:12:25.970
+that makes it run much more efficiently and therefore lets you apply this,
+
+00:12:25.970 --> 00:12:30.970
+maybe the much bigger training sets as well, and therefore learn much better word embeddings.
+
+00:12:30.970 --> 00:12:33.302
+Let's go on to the next video.

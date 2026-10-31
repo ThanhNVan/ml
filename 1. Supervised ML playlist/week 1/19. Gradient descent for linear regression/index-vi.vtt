@@ -1,0 +1,310 @@
+WEBVTT
+
+00:00:01.170 --> 00:00:05.880
+Vì vậy, trước đây bạn đã xem mô hình
+linear regression, sau
+
+00:00:05.880 --> 00:00:10.590
+đó là cost function và sau đó là thuật toán
+gradient descent.
+
+00:00:10.590 --> 00:00:14.990
+Trong video này, chúng ta sẽ tổng hợp tất cả
+lại và sử dụng
+
+00:00:14.990 --> 00:00:19.390
+cost function sai số bình phương cho mô hình
+linear regression với gradient descent.
+
+00:00:19.390 --> 00:00:22.530
+Điều này sẽ cho phép chúng ta huấn luyện mô
+hình
+
+00:00:22.530 --> 00:00:25.670
+linear regression để khớp một đường thẳng với
+training data của chúng ta.
+
+00:00:25.670 --> 00:00:27.350
+Hãy bắt đầu với nó.
+
+00:00:27.350 --> 00:00:35.070
+Đây là mô hình linear regression và bên phải
+là cost function sai số bình phương.
+
+00:00:35.070 --> 00:00:38.430
+Và bên dưới là thuật toán gradient descent.
+
+00:00:38.430 --> 00:00:45.670
+Hóa ra nếu bạn tính các đạo hàm này, đây là
+những số hạng bạn sẽ nhận được.
+
+00:00:45.670 --> 00:00:53.090
+Đạo hàm đối với w là thế này, 1 trên m, tổng
+từ i bằng 1 đến m, khi đó hạng sai
+
+00:00:53.090 --> 00:01:00.510
+số, đó là sự khác biệt giữa giá trị dự đoán và
+giá trị thực tế nhân với giá trị
+
+00:01:00.510 --> 00:01:08.370
+đặc tính đầu vào xi, và đạo hàm theo b là công
+thức ở đây, trông
+
+00:01:08.370 --> 00:01:16.230
+giống như phương trình trên ngoại trừ việc nó
+không có số hạng xi ở cuối.
+
+00:01:16.230 --> 00:01:20.470
+Và nếu bạn sử dụng các công thức này để tính
+hai đạo hàm này
+
+00:01:20.470 --> 00:01:24.710
+và thực hiện gradient descent theo cách này,
+nó sẽ hoạt động.
+
+00:01:24.710 --> 00:01:29.070
+Bây giờ bạn có thể tự hỏi tôi lấy những công
+thức này từ đâu?
+
+00:01:29.070 --> 00:01:31.470
+Chúng có nguồn gốc bằng cách sử dụng phép
+tính.
+
+00:01:31.470 --> 00:01:34.150
+Nếu bạn muốn xem đạo hàm đầy đủ, tôi sẽ nhanh
+
+00:01:34.150 --> 00:01:36.830
+chóng xem phần đạo hàm trên slide tiếp theo.
+
+00:01:36.830 --> 00:01:39.270
+Nhưng nếu bạn không nhớ hoặc không quan tâm
+
+00:01:39.270 --> 00:01:41.710
+đến phép tính thì cũng đừng lo lắng về điều
+đó.
+
+00:01:41.710 --> 00:01:46.120
+Bạn có thể bỏ qua hoàn toàn các tài liệu trên
+trang trình bày tiếp theo mà vẫn có
+
+00:01:46.120 --> 00:01:50.530
+thể thực hiện gradient descent và hoàn thành
+lớp này và mọi thứ sẽ hoạt động tốt.
+
+00:01:50.530 --> 00:01:54.357
+Vì vậy, trong slide này, một trong những slide
+toán học nhất
+
+00:01:54.357 --> 00:01:58.183
+của toàn bộ chuyên ngành và một lần nữa là
+hoàn toàn tùy
+
+00:01:58.183 --> 00:02:02.010
+chọn, chúng tôi sẽ chỉ cho bạn cách tính các
+số hạng đạo hàm.
+
+00:02:02.010 --> 00:02:08.130
+Hãy bắt đầu với số hạng đầu tiên, đạo hàm của
+cost function j đối với w.
+
+00:02:08.130 --> 00:02:13.540
+Chúng ta sẽ bắt đầu bằng cách thay vào định
+
+00:02:13.540 --> 00:02:18.950
+nghĩa của cost function j, vậy j của wb là thế
+này.
+
+00:02:18.950 --> 00:02:25.750
+Vì vậy, 1 trên 2m nhân tổng số hạng sai số
+bình phương này.
+
+00:02:25.750 --> 00:02:39.910
+Và bây giờ hãy nhớ rằng f(wb(xi)) bằng số hạng
+ở đây, đó là wxi
+
+00:02:39.910 --> 00:02:41.790
+cộng b.
+
+00:02:41.790 --> 00:02:48.500
+Và vì vậy điều chúng ta muốn làm là tính đạo
+hàm, còn gọi
+
+00:02:48.500 --> 00:02:55.210
+là đạo hàm riêng theo w, của phương trình này
+ở bên phải.
+
+00:02:55.210 --> 00:03:01.360
+Nếu trước đây bạn đã học một lớp giải tích và
+nếu chưa học thì hoàn toàn ổn,
+
+00:03:01.360 --> 00:03:07.510
+bạn có thể biết rằng theo các quy tắc giải
+tích, đạo hàm bằng số hạng ở đây,
+
+00:03:07.510 --> 00:03:13.290
+đó là lý do tại sao 2 ở đây và 2 ở đây triệt
+tiêu nhau, để
+
+00:03:13.290 --> 00:03:19.070
+lại cho chúng ta phương trình mà bạn đã thấy ở
+slide trước.
+
+00:03:19.070 --> 00:03:23.103
+Vì vậy, nhân tiện đây là lý do tại sao chúng
+ta phải tìm
+
+00:03:23.103 --> 00:03:27.137
+hàm giá với một nửa vào đầu tuần này, đó là
+bởi vì nó làm
+
+00:03:27.137 --> 00:03:31.170
+cho đạo hàm riêng gọn gàng hơn, nó loại bỏ hai
+phần xuất hiện
+
+00:03:31.170 --> 00:03:34.870
+từ việc tính đạo hàm.
+
+00:03:34.870 --> 00:03:42.490
+Đối với đạo hàm khác theo b, điều này khá
+giống nhau, tôi có thể viết nó ra như
+
+00:03:42.490 --> 00:03:50.110
+thế này, và một lần nữa thế vào định nghĩa của
+f(xi), ta được phương trình này.
+
+00:03:50.110 --> 00:03:58.670
+Và theo quy tắc tính toán, cái này bằng cái
+này, ở đó không còn xi ở cuối nữa.
+
+00:03:58.670 --> 00:04:07.150
+Và do đó số 2 bị hủy một lần nữa, và bạn thu
+được biểu thức này cho đạo hàm đối với b.
+
+00:04:07.350 --> 00:04:11.830
+Và bây giờ bạn có hai biểu thức này cho đạo
+hàm và
+
+00:04:11.830 --> 00:04:16.310
+bạn có thể đưa chúng vào thuật toán
+gradient descent.
+
+00:04:16.310 --> 00:04:20.590
+Đây là thuật toán gradient descent cho
+linear regression.
+
+00:04:20.590 --> 00:04:26.510
+Bạn liên tục thực hiện các cập nhật này cho w
+và b cho đến khi hội tụ.
+
+00:04:26.510 --> 00:04:31.330
+Hãy nhớ rằng f(x) này là một mô hình
+
+00:04:31.330 --> 00:04:36.150
+linear regression, vì vậy nó bằng w nhân x
+cộng b.
+
+00:04:36.150 --> 00:04:41.950
+Biểu thức này ở đây là đạo hàm của hàm giá
+theo
+
+00:04:41.950 --> 00:04:47.750
+w, và biểu thức này là đạo hàm của hàm giá
+theo b.
+
+00:04:47.750 --> 00:04:54.630
+Và xin nhắc lại, bạn muốn cập nhật w và b đồng
+thời trên mỗi bước.
+
+00:04:54.630 --> 00:04:58.510
+Bây giờ chúng ta hãy làm quen với cách hoạt
+động của việc gradient descent.
+
+00:04:58.510 --> 00:05:02.003
+Một vấn đề mà chúng tôi nhận thấy với việc
+gradient descent là nó có
+
+00:05:02.003 --> 00:05:05.497
+thể dẫn đến mức tối thiểu cục bộ thay vì mức
+tối thiểu toàn cầu,
+
+00:05:05.497 --> 00:05:08.990
+trong đó mức tối thiểu toàn cầu có nghĩa là
+điểm có mức thấp nhất có thể
+
+00:05:08.990 --> 00:05:13.390
+giá trị của cost function j trong số tất cả
+các điểm có thể.
+
+00:05:13.390 --> 00:05:17.710
+Bạn có thể nhớ lại mảnh đất bề mặt này trông
+giống như một công viên ngoài
+
+00:05:17.710 --> 00:05:22.030
+trời với một vài ngọn đồi có cỏ và chim chóc
+là một ngọn đồi thư giãn ngoài trời.
+
+00:05:22.030 --> 00:05:25.430
+Hàm này có nhiều hơn một cực tiểu cục bộ.
+
+00:05:25.430 --> 00:05:28.970
+Hãy nhớ tùy thuộc vào nơi bạn khởi tạo các
+tham số w và
+
+00:05:28.970 --> 00:05:32.510
+b, bạn có thể kết thúc ở mức tối thiểu cục bộ
+khác nhau.
+
+00:05:32.510 --> 00:05:36.950
+Bạn có thể kết thúc ở đây, hoặc bạn có thể kết
+thúc ở đây.
+
+00:05:36.950 --> 00:05:42.250
+Nhưng hóa ra khi bạn đang sử dụng
+cost function sai số bình phương với
+
+00:05:42.250 --> 00:05:47.550
+linear regression, cost function không và sẽ
+không bao giờ có nhiều mức tối thiểu cục bộ.
+
+00:05:47.550 --> 00:05:52.430
+Nó có một mức tối thiểu toàn cầu duy nhất vì
+hình cánh cung này.
+
+00:05:52.430 --> 00:05:58.870
+Thuật ngữ kỹ thuật cho điều này là
+cost function này là hàm lồi.
+
+00:05:58.870 --> 00:06:04.130
+Một cách không chính thức, hàm lồi là hàm hình
+cánh cung và nó không thể
+
+00:06:04.130 --> 00:06:09.390
+có bất kỳ mức tối thiểu cục bộ nào ngoài mức
+tối thiểu toàn cầu duy nhất.
+
+00:06:09.390 --> 00:06:15.950
+Vì vậy, khi bạn triển khai gradient descent
+trên hàm lồi, một đặc tính hay là miễn là
+
+00:06:15.950 --> 00:06:22.510
+learning rate của bạn được chọn phù hợp, nó sẽ
+luôn hội tụ đến mức tối thiểu toàn cục.
+
+00:06:22.510 --> 00:06:25.360
+Xin chúc mừng, bây giờ bạn đã biết cách triển
+khai
+
+00:06:25.360 --> 00:06:28.210
+phương pháp gradient descent cho
+linear regression.
+
+00:06:28.210 --> 00:06:31.090
+Chúng tôi chỉ có một video cuối cùng cho tuần
+này.
+
+00:06:31.090 --> 00:06:34.090
+Trong video đó, chúng ta sẽ thấy album này
+hoạt động.
+
+00:06:34.090 --> 00:06:35.370
+Chúng ta hãy đi đến video cuối cùng.

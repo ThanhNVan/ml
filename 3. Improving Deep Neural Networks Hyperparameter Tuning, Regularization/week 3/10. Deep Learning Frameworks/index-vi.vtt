@@ -1,0 +1,221 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:04.133
+Bạn đã học cách triển khai các thuật toán
+deep learning ít nhiều từ đầu bằng
+
+00:00:04.133 --> 00:00:08.267
+cách sử dụng Python và NumPy và tôi rất vui vì
+bạn đã làm điều đó vì tôi muốn
+
+00:00:08.267 --> 00:00:12.400
+bạn hiểu những thuật toán deep learning này
+thực sự đang làm gì. Nhưng bạn
+
+00:00:12.400 --> 00:00:16.920
+thấy rằng khi bạn triển khai các mô hình phức
+tạp hơn như neural network convolution
+
+00:00:16.920 --> 00:00:21.440
+hoặc neural network regression hoặc khi bạn
+bắt đầu triển khai các mô hình rất lớn
+
+00:00:21.440 --> 00:00:25.960
+ngày càng không thực tế, ít nhất là đối với
+hầu hết mọi người là không thực tế, thì
+
+00:00:25.960 --> 00:00:30.040
+tự mình thực hiện mọi thứ từ đầu. May mắn thay
+hiện nay có rất nhiều
+
+00:00:30.040 --> 00:00:34.120
+framework phần mềm deep learning tốt có thể
+giúp bạn triển khai những mô hình này.
+
+00:00:34.120 --> 00:00:38.720
+Để làm một sự tương tự, tôi nghĩ rằng hy vọng
+bạn hiểu cách thực hiện
+
+00:00:38.720 --> 00:00:43.320
+phép nhân ma trận và bạn sẽ có thể tự mình
+thực hiện cách viết mã để
+
+00:00:43.320 --> 00:00:47.920
+nhân hai ma trận. Nhưng khi bạn xây dựng những
+ứng dụng rất lớn, bạn
+
+00:00:47.920 --> 00:00:52.047
+có thể bạn không muốn triển khai hàm nhân ma
+trận của riêng mình mà
+
+00:00:52.047 --> 00:00:56.173
+thay vào đó bạn muốn gọi một thư viện đại số
+tuyến tính số có thể thực
+
+00:00:56.173 --> 00:01:00.300
+hiện điều đó hiệu quả hơn cho bạn. Nhưng nó
+vẫn giúp bạn hiểu cách nhân
+
+00:01:00.300 --> 00:01:04.473
+hai ma trận hoạt động. Vì vậy, tôi nghĩ rằng
+deep learning hiện đã phát
+
+00:01:04.473 --> 00:01:08.647
+triển đến mức thực tế hơn là bạn có thể thực
+hiện một số việc hiệu quả hơn
+
+00:01:08.647 --> 00:01:12.820
+với một số khung deep learning. Vì vậy, chúng
+ta hãy xem xét các khuôn khổ
+
+00:01:12.820 --> 00:01:17.240
+ở đó. Ngày nay có rất nhiều khung
+deep learning giúp bạn dễ dàng
+
+00:01:17.240 --> 00:01:21.660
+triển khai neural network và đây là một
+số khung hàng đầu.
+
+00:01:22.140 --> 00:01:27.680
+Mỗi khung này đều có một cộng đồng nhà phát
+triển và người dùng chuyên dụng và tôi
+
+00:01:27.680 --> 00:01:33.220
+nghĩ mỗi khung này là một lựa chọn đáng tin
+cậy cho một số tập hợp con ứng dụng.
+
+00:01:33.220 --> 00:01:37.833
+Có rất nhiều người viết bài so sánh các khung
+deep learning này và mức độ
+
+00:01:37.833 --> 00:01:42.447
+thay đổi của các khung deep learning này. Và
+bởi vì các khuôn khổ này
+
+00:01:42.447 --> 00:01:47.060
+thường xuyên phát triển và trở nên tốt hơn qua
+từng tháng, nên tôi sẽ rời đi
+
+00:01:47.060 --> 00:01:51.500
+bạn phải tự mình thực hiện một số tìm kiếm
+trên Internet nếu muốn xem các lập
+
+00:01:51.500 --> 00:01:55.940
+luận về ưu và nhược điểm của một số khung này.
+Nhưng tôi nghĩ nhiều framework
+
+00:01:55.940 --> 00:02:00.380
+trong số này đang phát triển và trở nên tốt
+hơn rất nhanh. Vì vậy, đúng hơn
+
+00:02:00.380 --> 00:02:05.620
+thay vì ủng hộ quá mạnh mẽ bất kỳ khung nào
+trong số này, tôi muốn chia sẻ với
+
+00:02:05.620 --> 00:02:10.860
+bạn các tiêu chí mà tôi khuyên bạn nên sử dụng
+để chọn khung. Một điều quan trọng
+
+00:02:10.860 --> 00:02:15.980
+tiêu chí là sự dễ dàng lập trình và điều đó có
+nghĩa là cả việc phát triển
+
+00:02:15.980 --> 00:02:21.100
+neural network và lặp lại trên nó cũng
+như triển khai nó để sản xuất cho
+
+00:02:21.100 --> 00:02:26.220
+hàng nghìn, hàng triệu hoặc có thể hàng trăm
+triệu người dùng sử dụng thực tế
+
+00:02:26.220 --> 00:02:30.727
+về những gì bạn đang cố gắng làm. Tiêu chí
+quan trọng thứ hai là tốc độ chạy,
+
+00:02:30.727 --> 00:02:35.233
+đặc biệt là đào tạo trên các tập dữ liệu lớn,
+một số khung sẽ cho phép bạn chạy
+
+00:02:35.233 --> 00:02:39.740
+và huấn luyện neural network của mình hiệu quả
+hơn các khung khác. Và sau đó một
+
+00:02:39.740 --> 00:02:44.660
+tiêu chí mà mọi người không thường nói đến
+nhưng tôi nghĩ điều quan trọng là
+
+00:02:44.660 --> 00:02:49.580
+liệu khuôn khổ đó có thực sự mở hay không. Và
+để một khuôn khổ thực sự mở,
+
+00:02:49.580 --> 00:02:54.500
+nó không chỉ cần phải là nguồn mở mà tôi nghĩ
+nó còn cần có sự quản trị tốt.
+
+00:02:54.500 --> 00:02:59.220
+Thật không may, trong ngành công nghiệp phần
+mềm, một số công ty có lịch sử về
+
+00:02:59.220 --> 00:03:03.940
+phần mềm nguồn mở nhưng vẫn duy trì quyền kiểm
+soát phần mềm của một tập đoàn
+
+00:03:03.940 --> 00:03:08.660
+duy nhất và sau đó trong một số năm khi mọi
+người bắt đầu sử dụng phần mềm của họ.
+
+00:03:08.660 --> 00:03:14.220
+các công ty có lịch sử dần dần đóng cửa nguồn
+mở hoặc có thể chuyển
+
+00:03:14.220 --> 00:03:19.780
+chức năng sang các dịch vụ đám mây độc quyền
+của riêng họ. Vì vậy một
+
+00:03:19.780 --> 00:03:24.980
+điều tôi chú ý một chút là bạn tin tưởng đến
+mức nào rằng khuôn khổ này sẽ
+
+00:03:24.980 --> 00:03:30.180
+vẫn là nguồn mở mà bạn đã biết trong một thời
+gian dài thay vì chỉ tuân theo
+
+00:03:30.180 --> 00:03:35.060
+kiểm soát một công ty duy nhất mà vì bất kỳ lý
+do gì họ chọn đóng cửa nó
+
+00:03:35.060 --> 00:03:39.940
+trong tương lai ngay cả khi phần mềm hiện được
+phát hành dưới dạng nguồn mở.
+
+00:03:39.940 --> 00:03:45.260
+Nhưng ít nhất là trong ngắn hạn tùy thuộc vào
+sở thích ngôn ngữ của bạn cho
+
+00:03:45.260 --> 00:03:50.580
+dù bạn thích Python hay Java hay C++ hay thứ
+gì khác và tùy thuộc vào điều gì
+
+00:03:50.580 --> 00:03:54.953
+ứng dụng bạn đang nghiên cứu cho dù đó là thị
+giác máy tính hay xử lý
+
+00:03:54.953 --> 00:03:59.327
+ngôn ngữ tự nhiên hay quảng cáo trực tuyến hay
+thứ gì khác. Tôi nghĩ
+
+00:03:59.327 --> 00:04:03.700
+nhiều khung trong số này có thể là một lựa
+chọn tốt. Thế là xong phần lập trình
+
+00:04:03.700 --> 00:04:07.630
+bằng cách cung cấp mức độ trừu tượng cao hơn
+chỉ là thư viện đại
+
+00:04:07.630 --> 00:04:11.559
+số tuyến tính số, bất kỳ khung lập trình nào
+trong số này đều có
+
+00:04:11.559 --> 00:04:15.489
+thể giúp bạn phát triển các ứng dụng
+machine learning hiệu quả hơn.

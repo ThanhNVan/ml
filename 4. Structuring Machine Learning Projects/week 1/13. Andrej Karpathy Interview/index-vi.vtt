@@ -1,0 +1,1193 @@
+WEBVTT
+
+1
+00:00:02.977 --> 00:00:06.068
+Chào mừng Andrej, tôi rất vui vì anh có thể tham gia với tôi hôm nay.
+
+2
+00:00:06.068 --> 00:00:08.180
+Vâng, cảm ơn vì đã có tôi.
+
+3
+00:00:08.180 --> 00:00:12.170
+>> Vì vậy, rất nhiều người đã biết công việc của bạn trong việc deep learning, nhưng
+
+4
+00:00:12.170 --> 00:00:14.600
+không phải ai cũng biết câu chuyện cá nhân của bạn.
+
+5
+00:00:14.600 --> 00:00:17.100
+Vậy hãy bắt đầu bằng cách nói với chúng tôi,
+
+6
+00:00:17.100 --> 00:00:20.510
+làm thế nào bạn kết thúc những công việc này trong việc deep learning?
+
+7
+00:00:20.510 --> 00:00:21.590
+Vâng, tất nhiên rồi.
+
+8
+00:00:21.590 --> 00:00:25.100
+Vì vậy, tôi nghĩ lần đầu tiên tôi tiếp xúc với deep learning một lần khi tôi còn là đại học
+
+9
+00:00:25.100 --> 00:00:26.520
+tại Đại học Toronto.
+
+10
+00:00:26.520 --> 00:00:28.696
+Và Geoff Hinton đã ở đó, và ông đang dạy một lớp học về deep learning.
+
+11
+00:00:28.696 --> 00:00:32.346
+Và vào thời điểm đó, nó bị hạn chế từ cả máy móc được huấn luyện và những chữ số này.
+
+12
+00:00:32.346 --> 00:00:35.966
+Và tôi thực sự thích cách mà Geoff nói về việc đào tạo mạng lưới,
+
+13
+00:00:35.966 --> 00:00:38.999
+giống như tâm trí của mạng lưới, và anh ấy sử dụng những thuật ngữ này.
+
+14
+00:00:38.999 --> 00:00:42.333
+Và tôi chỉ nghĩ rằng có một hương vị của một điều gì đó
+
+15
+00:00:42.333 --> 00:00:46.870
+kỳ diệu xảy ra khi điều này được đào tạo trên những con số đó.
+
+16
+00:00:46.870 --> 00:00:50.130
+Và đó là lần đầu tiên tôi tiếp xúc với nó,
+
+17
+00:00:50.130 --> 00:00:52.440
+mặc dù tôi đã không tìm hiểu chi tiết vào thời điểm đó.
+
+18
+00:00:52.440 --> 00:00:55.540
+Và sau đó khi tôi đang làm bằng thạc sĩ tại Đại học British Columbia,
+
+19
+00:00:57.000 --> 00:00:59.850
+tôi đã học một lớp và đó là một lần nữa về machine learning.
+
+20
+00:00:59.850 --> 00:01:03.665
+Và đó là lần đầu tiên tôi tìm hiểu sâu hơn về những mạng lưới này và vân vân.
+
+21
+00:01:03.665 --> 00:01:07.790
+Và điều thú vị là tôi rất quan tâm đến
+
+22
+00:01:07.790 --> 00:01:10.430
+trí thông minh nhân tạo, và vì vậy tôi đã học các lớp học về trí tuệ nhân tạo.
+
+23
+00:01:10.430 --> 00:01:12.690
+Nhưng rất nhiều điều tôi thấy ở đó chỉ là rất không thỏa mãn.
+
+24
+00:01:12.690 --> 00:01:16.277
+Đó là rất nhiều tìm kiếm độ sâu đầu tiên, tìm kiếm bề rộng đầu tiên, cắt tỉa alpha-beta,
+
+25
+00:01:16.277 --> 00:01:17.220
+và tất cả những thứ này.
+
+26
+00:01:17.220 --> 00:01:20.190
+Và tôi đã không hiểu làm thế nào, tôi đã không hài lòng.
+
+27
+00:01:20.190 --> 00:01:23.700
+Và vì vậy khi tôi nhìn thấy các neural network lần đầu tiên trong machine learning,
+
+28
+00:01:23.700 --> 00:01:25.720
+đó là thuật ngữ mà tôi nghĩ là kỹ thuật hơn và
+
+29
+00:01:25.720 --> 00:01:29.280
+không được biết đến nhiều ở hầu hết mọi người nói về trí tuệ nhân tạo.
+
+30
+00:01:29.280 --> 00:01:32.550
+Machine learning là một thuật ngữ kỹ thuật, tôi gần như sẽ nói.
+
+31
+00:01:32.550 --> 00:01:34.940
+Và vì vậy tôi không hài lòng với trí thông minh nhân tạo.
+
+32
+00:01:34.940 --> 00:01:36.520
+Khi tôi nhìn thấy machine learning, tôi nghĩ,
+
+33
+00:01:36.520 --> 00:01:41.498
+đây là AI mà tôi muốn dành thời gian cho, đây là điều thực sự thú vị.
+
+34
+00:01:41.498 --> 00:01:45.200
+Và đó là điều khiến tôi đi xuống những hướng đó là đây
+
+35
+00:01:45.200 --> 00:01:47.000
+gần như là một mô hình tính toán mới, tôi có thể nói.
+
+36
+00:01:48.210 --> 00:01:50.730
+Bởi vì bình thường, con người viết mã, nhưng
+
+37
+00:01:50.730 --> 00:01:54.263
+ở đây trong trường hợp này, tối ưu hóa viết mã.
+
+38
+00:01:54.263 --> 00:01:56.260
+Và vì vậy bạn đang tạo ra các đặc tả đầu vào/ra,
+
+39
+00:01:56.260 --> 00:01:59.460
+và sau đó bạn có rất nhiều ví dụ về nó, và sau đó tối ưu hóa viết mã, và
+
+40
+00:01:59.460 --> 00:02:01.370
+đôi khi nó có thể viết mã tốt hơn bạn.
+
+41
+00:02:01.370 --> 00:02:06.300
+Và vì vậy tôi nghĩ đó chỉ là một cách suy nghĩ rất mới về lập trình, và
+
+42
+00:02:06.300 --> 00:02:08.150
+đó là điều làm tôi hứng thú về nó.
+
+43
+00:02:08.150 --> 00:02:11.580
+>> Sau đó, thông qua công việc của bạn, một trong những điều bạn được biết đến
+
+44
+00:02:11.580 --> 00:02:18.030
+là bây giờ bạn đã trở thành chuẩn mực của con người cho cuộc thi classification hình ảnh.
+
+45
+00:02:18.030 --> 00:02:19.280
+Sao chuyện đó lại xảy ra?
+
+46
+00:02:19.280 --> 00:02:23.620
+Về cơ bản, thử thách ImageNet của họ là đôi khi nó được so sánh với
+
+47
+00:02:23.620 --> 00:02:24.870
+thế giới của tầm nhìn máy tính.
+
+48
+00:02:24.870 --> 00:02:27.820
+Vì vậy, cho dù mọi người sẽ quan tâm đến điểm chuẩn và con số này,
+
+49
+00:02:27.820 --> 00:02:29.330
+tỷ lệ lỗi của chúng tôi giảm theo thời gian.
+
+50
+00:02:29.330 --> 00:02:33.390
+Và nó không rõ ràng với tôi nơi mà một con người sẽ ở trên quy mô này.
+
+51
+00:02:33.390 --> 00:02:37.054
+Tôi đã thực hiện một thí nghiệm quy mô nhỏ hơn tương tự trên CIFAR-10 dữ liệu trước đó.
+
+52
+00:02:37.054 --> 00:02:40.437
+Vì vậy, những gì tôi đã làm trong tập dữ liệu CIFAR-10 là tôi chỉ nhìn vào những hình ảnh 32 x 32, và
+
+53
+00:02:40.437 --> 00:02:42.290
+tôi đã cố gắng classification chúng cho bản thân mình.
+
+54
+00:02:42.290 --> 00:02:43.751
+Vào thời điểm đó, đây chỉ là mười loại, vì vậy
+
+55
+00:02:43.751 --> 00:02:45.371
+nó khá đơn giản để tạo ra một giao diện cho nó.
+
+56
+00:02:45.371 --> 00:02:48.341
+Và tôi nghĩ rằng tôi đã có một tỷ lệ lỗi khoảng 6% về điều đó.
+
+57
+00:02:48.341 --> 00:02:52.057
+Và sau đó dựa trên những gì tôi đang nhìn thấy và một nhiệm vụ khó khăn như thế nào,
+
+58
+00:02:52.057 --> 00:02:56.634
+tôi nghĩ tôi dự đoán rằng tỷ lệ lỗi thấp nhất mà chúng ta đạt được sẽ là.
+
+59
+00:02:56.634 --> 00:02:58.812
+Nghe này, được rồi, tôi không nhớ chính xác những con số.
+
+60
+00:02:58.812 --> 00:03:03.530
+Tôi nghĩ, tôi đoán, 10%, và bây giờ chúng ta giảm xuống còn 3 hoặc 2% hoặc một cái gì đó điên rồ.
+
+61
+00:03:03.530 --> 00:03:09.113
+Đó là thí nghiệm thú vị đầu tiên của tôi về cơ sở con người.
+
+62
+00:03:09.113 --> 00:03:11.870
+Và tôi nghĩ nó thực sự quan trọng cho
+
+63
+00:03:11.870 --> 00:03:13.950
+những mục đích tương tự mà bạn chỉ ra trong một số bài giảng của mình.
+
+64
+00:03:13.950 --> 00:03:18.790
+Ý tôi là, bạn thực sự muốn con số đó hiểu được con người đang làm điều đó tốt như thế nào,
+
+65
+00:03:18.790 --> 00:03:20.868
+vì vậy chúng ta có thể so sánh các thuật toán machine learning với nó.
+
+66
+00:03:20.868 --> 00:03:24.610
+Và đối với ImageNet, có vẻ như có sự khác biệt giữa mức độ quan trọng của
+
+67
+00:03:24.610 --> 00:03:27.600
+điểm chuẩn này và tập trung bao nhiêu vào việc nhận được một con số thấp hơn và
+
+68
+00:03:27.600 --> 00:03:31.800
+chúng ta thậm chí không hiểu cách con người đang làm trên điểm chuẩn này.
+
+69
+00:03:31.800 --> 00:03:35.770
+Vì vậy, tôi đã tạo ra giao diện JavaScript này, và tôi đã tự cho mình thấy
+
+70
+00:03:35.770 --> 00:03:38.340
+những hình ảnh, và sau đó vấn đề với ImageNet là bạn không chỉ có 10 danh mục,
+
+71
+00:03:38.340 --> 00:03:39.340
+bạn có 1.000.
+
+72
+00:03:39.340 --> 00:03:41.085
+Nó gần giống như một thách thức giao diện người dùng.
+
+73
+00:03:41.085 --> 00:03:44.443
+Rõ ràng, tôi không thể nhớ 1.000 danh mục, vậy làm thế nào để làm cho nó
+
+74
+00:03:44.443 --> 00:03:45.708
+một cái gì đó công bằng?
+
+75
+00:03:45.708 --> 00:03:48.955
+Và vì vậy tôi đã liệt kê tất cả các thể loại, và tôi tự đưa ra những ví dụ về chúng.
+
+76
+00:03:48.955 --> 00:03:52.679
+Và vì vậy đối với mỗi hình ảnh, tôi đã cuộn qua 1.000 thể loại và
+
+77
+00:03:52.679 --> 00:03:56.401
+chỉ cố gắng xem, dựa trên những ví dụ mà tôi đã xem cho từng thể loại,
+
+78
+00:03:56.401 --> 00:03:57.739
+hình ảnh này có thể là gì.
+
+79
+00:03:57.739 --> 00:04:01.880
+Và tôi nghĩ đó là một bài tập cực kỳ được hướng dẫn bởi chính nó.
+
+80
+00:04:01.880 --> 00:04:06.539
+Ý tôi là, tôi không hiểu rằng một phần ba của ImageNet là loài chó và chó,
+
+81
+00:04:06.539 --> 00:04:10.125
+và điều đó thật thú vị khi thấy rằng mạng lưới dành rất nhiều
+
+82
+00:04:10.125 --> 00:04:12.800
+thời gian quan tâm đến chó, tôi nghĩ vậy.
+
+83
+00:04:12.800 --> 00:04:14.588
+Một phần ba hiệu suất của nó đến từ chó.
+
+84
+00:04:14.588 --> 00:04:20.809
+Và vâng, vậy đây là điều mà tôi đã làm trong một hoặc hai tuần.
+
+85
+00:04:20.809 --> 00:04:21.837
+Tôi đã giữ mọi thứ khác.
+
+86
+00:04:21.837 --> 00:04:24.250
+Tôi nghĩ đó là một bài tập rất thú vị.
+
+87
+00:04:24.250 --> 00:04:26.703
+Tôi nhận được một số cuối cùng, và sau đó tôi nghĩ rằng một người là không đủ.
+
+88
+00:04:26.703 --> 00:04:28.770
+Tôi muốn có nhiều người khác, và vì vậy
+
+89
+00:04:28.770 --> 00:04:32.275
+tôi đã cố gắng tổ chức trong phòng thí nghiệm để khiến những người khác làm điều tương tự.
+
+90
+00:04:32.275 --> 00:04:36.544
+Và tôi nghĩ mọi người không sẵn sàng đóng góp, ví dụ như một hoặc
+
+91
+00:04:36.544 --> 00:04:41.402
+hai tuần làm việc chăm chỉ, giống như ngồi xuống trong năm giờ và
+
+92
+00:04:41.402 --> 00:04:44.222
+cố gắng tìm ra giống chó nào.
+
+93
+00:04:44.222 --> 00:04:47.876
+Và vì vậy tôi đã không thể có đủ dữ liệu về mặt đó, nhưng
+
+94
+00:04:47.876 --> 00:04:53.430
+chúng tôi có ít nhất một số hiệu suất gần đúng, điều mà tôi nghĩ là thú vị.
+
+95
+00:04:53.430 --> 00:04:57.530
+Và sau đó nó được nhặt lên, và nó không rõ ràng với tôi vào lúc đó.
+
+96
+00:04:57.530 --> 00:04:59.946
+Tôi chỉ muốn biết số điện thoại, nhưng điều này trở nên giống như một thứ.
+
+97
+00:04:59.946 --> 00:05:03.800
+Và mọi người thực sự thích sự thật rằng điều này xảy ra, và
+
+98
+00:05:03.800 --> 00:05:06.140
+gọi đùa là con người tham khảo.
+
+99
+00:05:06.140 --> 00:05:10.775
+Và tất nhiên, điều đó thật buồn cười với tôi, vâng.
+
+100
+00:05:10.775 --> 00:05:15.892
+[ Cười] >> Bạn có ngạc nhiên khi phần mềm,
+
+101
+00:05:15.892 --> 00:05:18.785
+cuối cùng đã vượt qua hiệu suất của bạn? -
+
+102
+00:05:18.785 --> 00:05:19.787
+Chắc chắn rồi.
+
+103
+00:05:19.787 --> 00:05:21.968
+Vâng, tất nhiên rồi.
+
+104
+00:05:21.968 --> 00:05:26.851
+Ý tôi là, đặc biệt là, đôi khi nó thực sự khó để nhìn thấy trong hình ảnh nó là gì.
+
+105
+00:05:26.851 --> 00:05:30.125
+Nó giống như một đốm nhỏ của một chấm đen rõ ràng là ở đâu đó.
+
+106
+00:05:30.125 --> 00:05:31.335
+Và tôi sẽ không nhìn thấy.
+
+107
+00:05:31.335 --> 00:05:34.897
+Tôi đoán giữa khoảng 20 loại, và mạng lưới chỉ nhận được nó, và
+
+108
+00:05:34.897 --> 00:05:37.420
+tôi không hiểu làm thế nào nó xảy ra.
+
+109
+00:05:37.420 --> 00:05:39.506
+Vì vậy, có một số tính siêu nhân đối với nó.
+
+110
+00:05:39.506 --> 00:05:44.040
+Nhưng cũng có thể, tôi nghĩ rằng mạng lưới này cực kỳ tốt với các loại thống kê về
+
+111
+00:05:44.040 --> 00:05:45.050
+loại công việc và kết cấu.
+
+112
+00:05:46.090 --> 00:05:49.950
+Tôi nghĩ về mặt đó, tôi không ngạc nhiên khi mạng lưới có thể
+
+113
+00:05:49.950 --> 00:05:53.680
+đo lường tốt hơn những số liệu thống kê tốt hơn trên rất nhiều hình ảnh.
+
+114
+00:05:53.680 --> 00:05:57.720
+Trong nhiều trường hợp, tôi đã rất ngạc nhiên vì một số hình ảnh yêu cầu bạn đọc.
+
+115
+00:05:57.720 --> 00:05:59.544
+Nó chỉ là một chai, và bạn không thể thấy nó là gì, nhưng
+
+116
+00:05:59.544 --> 00:06:00.904
+nó thực sự cho bạn biết nó là gì trong văn bản.
+
+117
+00:06:00.904 --> 00:06:04.382
+Vì vậy, là một con người, tôi có thể đọc nó, và nó ổn, nhưng mạng lưới sẽ phải học cách
+
+118
+00:06:04.382 --> 00:06:07.292
+đọc để xác định đối tượng, bởi vì nó không rõ ràng từ nó.
+
+119
+00:06:07.292 --> 00:06:10.204
+>> Một trong những điều bạn đã trở nên nổi tiếng, và
+
+120
+00:06:10.204 --> 00:06:13.557
+rằng cộng đồng học tập sâu đã biết ơn bạn vì
+
+121
+00:06:13.557 --> 00:06:17.115
+đã giảng dạy lớp học và đưa nó lên mạng.
+
+122
+00:06:17.115 --> 00:06:20.049
+Kể cho tôi nghe một chút về việc đó xảy ra như thế nào.
+
+123
+00:06:20.049 --> 00:06:20.740
+Vâng, tất nhiên rồi.
+
+124
+00:06:20.740 --> 00:06:26.160
+Vì vậy, tôi nghĩ tôi cảm thấy rất mạnh mẽ rằng về cơ bản,
+
+125
+00:06:26.160 --> 00:06:29.490
+công nghệ này đã biến đổi ở chỗ rất nhiều người muốn sử dụng nó.
+
+126
+00:06:29.490 --> 00:06:30.700
+Nó gần giống như một cái búa.
+
+127
+00:06:30.700 --> 00:06:31.490
+Và những gì tôi muốn làm,
+
+128
+00:06:31.490 --> 00:06:36.170
+tôi đã ở trong một vị trí để ngẫu nhiên trao cái búa này cho rất nhiều người.
+
+129
+00:06:36.170 --> 00:06:37.785
+Và tôi thấy điều đó rất hấp dẫn.
+
+130
+00:06:37.785 --> 00:06:40.501
+Nó không nhất thiết phải được khuyến khích từ quan điểm của nghiên cứu sinh,
+
+131
+00:06:40.501 --> 00:06:42.280
+bởi vì bạn đang đặt nghiên cứu của bạn vào giữ.
+
+132
+00:06:42.280 --> 00:06:44.940
+Ý tôi là, chuyện này trở thành 120% thời gian của tôi.
+
+133
+00:06:44.940 --> 00:06:46.480
+Và tôi phải giữ tất cả các nghiên cứu cho có
+
+134
+00:06:46.480 --> 00:06:50.140
+lẽ, ý tôi là, tôi nghĩ lớp hai lần, và mỗi lần, có lẽ là bốn tháng.
+
+135
+00:06:50.140 --> 00:06:52.880
+Và vì vậy thời gian đó về cơ bản là dành hoàn toàn cho lớp học, vì vậy nó không được
+
+136
+00:06:52.880 --> 00:06:56.570
+khuyến khích từ quan điểm đó, nhưng về cơ bản nó là điểm nhấn của tiến sĩ của tôi.
+
+137
+00:06:56.570 --> 00:06:57.838
+Nó thậm chí không liên quan đến nghiên cứu.
+
+138
+00:06:57.838 --> 00:07:01.110
+Tôi nghĩ rằng giảng dạy một lớp chắc chắn là điểm nhấn của tiến sĩ của tôi.
+
+139
+00:07:01.110 --> 00:07:02.350
+Chỉ cần nhìn thấy các sinh viên,
+
+140
+00:07:02.350 --> 00:07:06.360
+thực tế là họ rất phấn khích, đó là một lớp học rất khác.
+
+141
+00:07:06.360 --> 00:07:08.518
+Thông thường, bạn đang được dạy những thứ được phát hiện vào năm 1800 hoặc
+
+142
+00:07:08.518 --> 00:07:09.167
+một cái gì đó tương tự.
+
+143
+00:07:09.167 --> 00:07:12.614
+Nhưng chúng tôi có thể đến lớp và nói, nhìn này, có một bài báo từ một tuần trước,
+
+144
+00:07:12.614 --> 00:07:13.453
+hoặc thậm chí là ngày hôm qua.
+
+145
+00:07:13.453 --> 00:07:16.112
+Và có những kết quả mới, và tôi nghĩ các sinh viên đại học và
+
+146
+00:07:16.112 --> 00:07:18.904
+các sinh viên khác, họ thực sự rất thích khía cạnh đó của lớp học và
+
+147
+00:07:18.904 --> 00:07:20.496
+thực tế là họ đã hiểu được.
+
+148
+00:07:20.496 --> 00:07:25.868
+Đây không phải là vật lý hạt nhân hay khoa học tên lửa.
+
+149
+00:07:25.868 --> 00:07:28.454
+Đây là bạn cần phải biết giải tích, và sau đó là đại số của bạn, và
+
+150
+00:07:28.454 --> 00:07:31.860
+bạn thực sự có thể hiểu được tất cả những gì xảy ra dưới mui xe.
+
+151
+00:07:31.860 --> 00:07:36.465
+Vì vậy, tôi nghĩ rằng thực tế là nó rất mạnh mẽ, thực tế là nó luôn thay đổi
+
+152
+00:07:36.465 --> 00:07:39.395
+hàng ngày, mọi người cảm thấy đúng rằng họ đang đi đầu trong một điều gì đó lớn lao.
+
+153
+00:07:39.395 --> 00:07:42.395
+Và tôi nghĩ đó là lý do tại sao mọi người thực sự thích lớp học đó rất nhiều.
+
+154
+00:07:42.395 --> 00:07:47.695
+Và bạn đã thực sự giúp đỡ rất nhiều người và có rất nhiều búa.
+
+155
+00:07:47.695 --> 00:07:48.892
+>> Yeah.
+
+156
+00:07:48.892 --> 00:07:52.182
+>> Là một người đã deep learning trong
+
+157
+00:07:52.182 --> 00:07:56.712
+một thời gian dài, lĩnh vực này đang phát triển nhanh chóng.
+
+158
+00:07:56.712 --> 00:07:59.222
+Tôi rất tò mò khi nghe, suy nghĩ của riêng bạn như thế
+
+159
+00:07:59.222 --> 00:08:02.889
+nào, sự hiểu biết của bạn về deep learning đã thay đổi như thế nào trong nhiều năm qua?
+
+160
+00:08:02.889 --> 00:08:06.444
+Vâng, cơ bản nó giống như khi tôi nhìn thấy máy hạn chế Boltzmann
+
+161
+00:08:06.444 --> 00:08:07.599
+lần đầu tiên trên DIGITS.
+
+162
+00:08:08.620 --> 00:08:11.360
+>> Tôi không thấy rõ công nghệ này sẽ được sử dụng
+
+163
+00:08:11.360 --> 00:08:12.240
+như thế nào và nó sẽ lớn như thế nào.
+
+164
+00:08:12.240 --> 00:08:15.270
+Và khi tôi bắt đầu làm việc trong tầm nhìn máy tính, các mạng phức tạp,
+
+165
+00:08:15.270 --> 00:08:18.240
+chúng đã ở xung quanh, nhưng chúng không phải là thứ mà rất nhiều
+
+166
+00:08:18.240 --> 00:08:21.770
+cộng đồng thị giác máy tính tham gia sử dụng bất cứ lúc nào sớm.
+
+167
+00:08:21.770 --> 00:08:25.400
+Tôi nghĩ rằng nhận thức là điều này hoạt động cho các trường hợp nhỏ nhưng
+
+168
+00:08:25.400 --> 00:08:27.210
+sẽ không bao giờ quy mô cho các hình ảnh lớn.
+
+169
+00:08:27.210 --> 00:08:28.820
+>> Và điều đó vô cùng không chính xác.
+
+170
+00:08:28.820 --> 00:08:34.283
+Và về cơ bản, tôi chỉ ngạc nhiên bởi công nghệ tổng quát và kết
+
+171
+00:08:34.283 --> 00:08:36.139
+quả tốt như thế nào.
+
+172
+00:08:36.139 --> 00:08:39.234
+Đó là bất ngờ lớn nhất, tôi có thể nói, và nó không chỉ có vậy.
+
+173
+00:08:39.234 --> 00:08:42.780
+Vì vậy, đó là một điều mà nó hoạt động rất tốt, ví dụ như ImageNet.
+
+174
+00:08:42.780 --> 00:08:45.100
+Nhưng điều khác mà tôi nghĩ rằng không ai thấy đến, hoặc ít nhất là
+
+175
+00:08:45.100 --> 00:08:48.310
+chắc chắn tôi không thấy đến, là bạn có thể lấy những mạng lưới được đào tạo trước và
+
+176
+00:08:48.310 --> 00:08:49.290
+bạn có thể chuyển giao.
+
+177
+00:08:49.290 --> 00:08:51.390
+Bạn có thể tinh chỉnh chúng trên các tác vụ khác tùy ý.
+
+178
+00:08:51.390 --> 00:08:52.806
+Bởi vì bây giờ, bạn không chỉ giải quyết ImageNet, và
+
+179
+00:08:52.806 --> 00:08:53.648
+bạn cần hàng triệu ví dụ.
+
+180
+00:08:53.648 --> 00:08:56.748
+Điều này cũng xảy ra là một thiết bị trích xuất feature tổng quát, và
+
+181
+00:08:56.748 --> 00:09:00.349
+tôi nghĩ đó là một cái nhìn sâu sắc thứ hai mà tôi nghĩ rằng ít người thấy đến.
+
+182
+00:09:00.349 --> 00:09:04.340
+Và có những giấy tờ này, chúng chỉ bị khóa ở đây.
+
+183
+00:09:04.340 --> 00:09:06.840
+Tất cả những thứ mà mọi người đã làm việc trong tầm nhìn máy tính.
+
+184
+00:09:06.840 --> 00:09:10.900
+Đồng bộ classification, nhận dạng thực tế, object recognition,
+
+185
+00:09:10.900 --> 00:09:13.070
+thuộc tính cơ sở và như vậy.
+
+186
+00:09:13.070 --> 00:09:16.900
+Và mọi người chỉ nghiền nát từng nhiệm vụ chỉ bằng cách tinh chỉnh mạng lưới.
+
+187
+00:09:16.900 --> 00:09:21.136
+Và điều đó, đối với tôi, đã rất ngạc nhiên.
+
+188
+00:09:21.136 --> 00:09:25.665
+>> Vâng, và bằng cách nào đó tôi đoán việc học được giám sát nhận được hầu hết các báo
+
+189
+00:09:25.665 --> 00:09:30.564
+chí, và mặc dù việc học được huấn luyện tinh chỉnh hoặc chuyển tiếp thực sự hoạt động
+
+190
+00:09:30.564 --> 00:09:34.528
+rất tốt, người ta dường như ít nói về điều đó vì một lý do nào đó.
+
+191
+00:09:34.528 --> 00:09:35.460
+Phải, chính xác.
+
+192
+00:09:36.560 --> 00:09:39.670
+Vâng, tôi nghĩ rằng những gì đã không làm việc nhiều là một số trong những hy vọng là về
+
+193
+00:09:39.670 --> 00:09:44.680
+học tập không có giám sát, mà tôi nghĩ đã thực sự là lý do tại sao rất nhiều nhà nghiên cứu đã đi
+
+194
+00:09:44.680 --> 00:09:48.310
+vào lĩnh vực này trong khoảng năm 2007 và vân vân.
+
+195
+00:09:48.310 --> 00:09:52.350
+Và tôi nghĩ rằng lời hứa của điều đó vẫn chưa được thực hiện, và tôi nghĩ
+
+196
+00:09:52.350 --> 00:09:56.090
+rằng tôi thấy điều đó cũng đáng ngạc nhiên là phần học tập được giám sát hoạt động rất tốt.
+
+197
+00:09:56.090 --> 00:09:59.350
+Và sự học tập của doanh nghiệp, nó vẫn còn trong tình trạng, vâng,
+
+198
+00:09:59.350 --> 00:10:03.600
+nó vẫn không rõ ràng nó sẽ được sử dụng như thế nào hoặc nó sẽ hoạt động như thế nào,
+
+199
+00:10:03.600 --> 00:10:05.570
+mặc dù rất nhiều người vẫn là những tín đồ sâu sắc,
+
+200
+00:10:05.570 --> 00:10:10.525
+tôi sẽ nói để sử dụng thuật ngữ, trong lĩnh vực này >> Vì vậy tôi biết rằng bạn
+
+201
+00:10:10.525 --> 00:10:14.495
+là một trong những người đã suy nghĩ rất nhiều về tương lai lâu dài của AI.
+
+202
+00:10:14.495 --> 00:10:16.175
+Bạn có muốn chia sẻ suy nghĩ của bạn về điều đó?
+
+203
+00:10:16.175 --> 00:10:18.902
+>> Vì vậy, tôi đã dành
+
+204
+00:10:18.902 --> 00:10:23.548
+một năm rưỡi cuối cùng ở OpenAI suy nghĩ rất nhiều về những chủ đề này, và
+
+205
+00:10:23.548 --> 00:10:29.410
+tôi có vẻ như lĩnh vực này sẽ chia thành hai quỹ đạo.
+
+206
+00:10:29.410 --> 00:10:34.010
+Một người sẽ được áp dụng AI, mà chỉ là tạo ra những neural network này, đào tạo
+
+207
+00:10:34.010 --> 00:10:37.450
+chúng, chủ yếu là với việc supervised learning, có khả năng unsupervised learning.
+
+208
+00:10:37.450 --> 00:10:40.296
+Và trở nên tốt hơn, ví dụ, bộ nhận dạng hình ảnh hoặc một cái gì đó tương tự.
+
+209
+00:10:40.296 --> 00:10:45.210
+Và tôi nghĩ cái kia sẽ là những hướng trí thông minh tổng quát nhân tạo, đó
+
+210
+00:10:45.210 --> 00:10:50.191
+là cách bạn có được những neural network hoàn toàn là hệ thống động lực mà suy nghĩ và
+
+211
+00:10:50.191 --> 00:10:54.990
+nói và có thể làm mọi thứ mà con người có thể làm và thông minh theo cách đó.
+
+212
+00:10:54.990 --> 00:10:58.550
+Và tôi nghĩ rằng điều thú vị là, ví dụ như trong tầm nhìn máy tính.
+
+213
+00:10:58.550 --> 00:10:59.990
+Cách chúng tôi tiếp cận nó ngay từ đầu, tôi nghĩ,
+
+214
+00:10:59.990 --> 00:11:02.990
+là sai lầm khi chúng tôi cố gắng phá vỡ nó bằng nhiều phần khác nhau.
+
+215
+00:11:02.990 --> 00:11:05.862
+Chúng ta giống như, được rồi, con người nhận ra con người, con người nhận ra cảnh,
+
+216
+00:11:05.862 --> 00:11:06.910
+con người nhận ra vật thể.
+
+217
+00:11:06.910 --> 00:11:09.318
+Vì vậy, chúng ta sẽ chỉ làm tất cả mọi thứ mà con người làm,
+
+218
+00:11:09.318 --> 00:11:12.740
+và sau đó một khi chúng ta có tất cả những thứ đó, và bây giờ chúng ta có những lĩnh vực khác nhau.
+
+219
+00:11:12.740 --> 00:11:13.850
+Và một khi chúng ta có tất cả những thứ đó,
+
+220
+00:11:13.850 --> 00:11:16.080
+chúng ta sẽ tìm ra cách đặt chúng lại với nhau.
+
+221
+00:11:16.080 --> 00:11:17.710
+Và tôi nghĩ đó là cách tiếp cận sai lầm,
+
+222
+00:11:17.710 --> 00:11:21.120
+và chúng ta đã thấy nó sẽ diễn ra như thế nào trong lịch sử.
+
+223
+00:11:21.120 --> 00:11:24.173
+Và vì vậy tôi nghĩ có một cái gì đó tương tự đang diễn ra có khả năng ở
+
+224
+00:11:24.173 --> 00:11:24.737
+cấp độ cao hơn với AI.
+
+225
+00:11:24.737 --> 00:11:28.363
+Vì thế mọi người đang hỏi, à, được rồi, mọi người lên kế hoạch, mọi người làm thí nghiệm để
+
+226
+00:11:28.363 --> 00:11:32.463
+tìm ra cách thế giới hoạt động, hay mọi người nói chuyện với người khác, nên chúng ta cần ngôn ngữ.
+
+227
+00:11:32.463 --> 00:11:35.684
+Và mọi người đang cố gắng phân hủy nó theo chức năng, hoàn thành từng phần, và
+
+228
+00:11:35.684 --> 00:11:37.522
+sau đó ghép nó lại thành một bộ não nào đó.
+
+229
+00:11:37.522 --> 00:11:40.490
+Và tôi chỉ nghĩ đó là cách tiếp cận không chính xác.
+
+230
+00:11:40.490 --> 00:11:45.111
+Và điều mà tôi đã là một fan hâm mộ lớn hơn nhiều không phải là phân hủy theo cách đó mà là
+
+231
+00:11:45.111 --> 00:11:50.041
+có một loại neural network duy nhất là hệ thống động lực hoàn chỉnh
+
+232
+00:11:50.041 --> 00:11:53.690
+mà bạn luôn làm việc với một tác nhân đầy đủ.
+
+233
+00:11:53.690 --> 00:11:54.760
+Và câu hỏi đặt ra là,
+
+234
+00:11:54.760 --> 00:11:58.990
+làm thế nào để bạn tạo ra mục tiêu sao
+
+235
+00:11:58.990 --> 00:12:02.330
+cho khi bạn tối ưu hóa các trọng lượng tạo nên bộ não đó, bạn sẽ có được hành vi thông minh?
+
+236
+00:12:02.330 --> 00:12:05.610
+Và đó là một cái gì đó mà tôi đã suy nghĩ rất nhiều ở OpenAI.
+
+237
+00:12:05.610 --> 00:12:08.330
+Tôi nghĩ rằng có rất nhiều cách khác nhau mà
+
+238
+00:12:08.330 --> 00:12:10.320
+mọi người đã nghĩ đến việc tiếp cận vấn đề này.
+
+239
+00:12:11.550 --> 00:12:12.050
+Ví dụ,
+
+240
+00:12:12.050 --> 00:12:15.510
+đi theo hướng học được giám sát, tôi có bài luận này trực tuyến.
+
+241
+00:12:15.510 --> 00:12:17.750
+Đó không phải là một bài luận, mà là một câu chuyện ngắn mà tôi đã viết.
+
+242
+00:12:17.750 --> 00:12:20.960
+Và câu chuyện ngắn cố gắng đưa ra một thế giới giả thuyết về nó có thể trông
+
+243
+00:12:20.960 --> 00:12:25.350
+như thế nào nếu cách chúng ta tiếp cận AGI này chỉ bằng cách mở rộng việc supervised learning,
+
+244
+00:12:25.350 --> 00:12:27.270
+mà chúng ta biết có tác dụng.
+
+245
+00:12:27.270 --> 00:12:32.135
+Và điều đó trở thành một cái gì đó trông giống như Amazon Mechanical Turk nơi mọi người
+
+246
+00:12:32.135 --> 00:12:35.310
+liên kết thành rất nhiều cơ thể robot, và họ thực hiện các nhiệm vụ, và
+
+247
+00:12:35.310 --> 00:12:38.640
+sau đó chúng tôi đào tạo nó như một tập dữ liệu học tập có giám sát để bắt chước con người và
+
+248
+00:12:38.640 --> 00:12:39.790
+nó có thể trông như thế nào, vân vân.
+
+249
+00:12:39.790 --> 00:12:41.924
+Và sau đó có những hướng khác,
+
+250
+00:12:41.924 --> 00:12:46.511
+như học hỏi không ngạc nhiên từ lý thuyết thông tin thuật toán, những thứ như AIXI,
+
+251
+00:12:46.511 --> 00:12:50.872
+hay từ sự sống nhân tạo, những thứ trông giống như tiến hóa nhân tạo hơn.
+
+252
+00:12:50.872 --> 00:12:54.804
+Và đó là những gì tôi dành thời gian suy nghĩ rất nhiều về.
+
+253
+00:12:54.804 --> 00:12:57.882
+Và tôi nghĩ tôi đã có câu trả lời đúng, nhưng tôi không sẵn sàng tiết lộ điều đó ở đây.
+
+254
+00:12:57.882 --> 00:13:01.109
+[ Cười] >> Tôi ít nhất có thể tìm hiểu thêm bằng cách đọc
+
+255
+00:13:01.109 --> 00:13:02.050
+bài đăng trên blog của bạn.
+
+256
+00:13:02.050 --> 00:13:02.550
+Vâng, tất nhiên rồi.
+
+257
+00:13:03.670 --> 00:13:08.520
+Bạn đã đưa ra rất nhiều lời khuyên, và ngày nay,
+
+258
+00:13:08.520 --> 00:13:13.280
+có rất nhiều người vẫn muốn tham gia vào lĩnh vực AI vào deep learning.
+
+259
+00:13:13.280 --> 00:13:17.340
+Vì vậy, đối với những người ở vị trí đó, bạn có lời khuyên gì cho họ?
+
+260
+00:13:17.340 --> 00:13:18.390
+Vâng, tất nhiên rồi.
+
+261
+00:13:18.390 --> 00:13:22.225
+Vì vậy, tôi nghĩ rằng khi mọi người nói chuyện với tôi về CS231n và tại sao họ nghĩ rằng đó là một
+
+262
+00:13:22.225 --> 00:13:25.947
+khóa học rất hữu ích, những gì tôi tiếp tục nghe một lần nữa và một lần nữa chỉ là mọi người đánh giá cao
+
+263
+00:13:25.947 --> 00:13:29.054
+thực tế là chúng tôi đã nhận tất cả các cách thông qua các chi tiết cấp thấp.
+
+264
+00:13:29.054 --> 00:13:31.946
+Và họ đã không làm việc với thư viện, họ đã thấy mã thực sự.
+
+265
+00:13:31.946 --> 00:13:34.415
+Và họ thấy mọi thứ đã được thực hiện như thế nào, và
+
+266
+00:13:34.415 --> 00:13:36.750
+thực hiện các khối của nó.
+
+267
+00:13:36.750 --> 00:13:40.550
+Và vì vậy chỉ cần đi xuống và hiểu mọi thứ bên dưới bạn,
+
+268
+00:13:42.140 --> 00:13:44.020
+nó thực sự quan trọng là không trừu tượng ra mọi thứ.
+
+269
+00:13:44.020 --> 00:13:46.890
+Bạn cần phải có một sự hiểu biết đầy đủ về toàn bộ ngăn xếp.
+
+270
+00:13:46.890 --> 00:13:49.390
+Và đó là nơi tôi học được nhiều nhất bản thân mình khi tôi học những thứ này
+
+271
+00:13:49.390 --> 00:13:52.470
+chỉ là thực hiện nó từ đầu là quan trọng nhất.
+
+272
+00:13:52.470 --> 00:13:57.880
+Đó là mảnh mà tôi cảm thấy đã cho tôi loại tốt nhất của bang cho
+
+273
+00:13:57.880 --> 00:13:59.450
+buck về mặt hiểu biết.
+
+274
+00:13:59.450 --> 00:14:00.107
+Vì vậy, tôi đã viết thư viện riêng của mình.
+
+275
+00:14:00.107 --> 00:14:01.438
+Nó được gọi là ConvnetJS.
+
+276
+00:14:01.438 --> 00:14:03.663
+Nó được viết bằng Javascript, và nó thực hiện neural network convolutional.
+
+277
+00:14:03.663 --> 00:14:06.410
+Đó là cách tôi học về ứng dụng.
+
+278
+00:14:06.410 --> 00:14:11.238
+Và đó là điều mà tôi khuyên mọi người là bạn không làm việc với
+
+279
+00:14:11.238 --> 00:14:12.671
+dòng chảy hay cái gì khác.
+
+280
+00:14:12.671 --> 00:14:15.763
+Bạn có thể làm việc với nó một khi bạn đã viết tại một cái gì đó cho mình trên chi
+
+281
+00:14:15.763 --> 00:14:19.066
+tiết thấp nhất, bạn hiểu tất cả mọi thứ dưới bạn, và bây giờ bạn cảm thấy thoải mái để.
+
+282
+00:14:19.066 --> 00:14:21.985
+Bây giờ, có thể sử dụng một số khuôn khổ này để trừu tượng một số nó ra
+
+283
+00:14:21.985 --> 00:14:23.766
+khỏi bạn, nhưng bạn biết những gì nằm dưới mui xe.
+
+284
+00:14:23.766 --> 00:14:26.444
+Và đó là điều đã giúp tôi nhiều nhất.
+
+285
+00:14:26.444 --> 00:14:29.174
+Đó là điều mà mọi người đánh giá cao nhất khi họ mất 231n, và
+
+286
+00:14:29.174 --> 00:14:30.691
+đó là những gì tôi sẽ tư vấn cho rất nhiều người.
+
+287
+00:14:30.691 --> 00:14:35.540
+Thay vì chạy neural network, và tất cả sẽ xảy ra như thế.
+
+288
+00:14:35.540 --> 00:14:38.390
+>> Vâng, và trong một chuỗi các lớp, và tôi biết rằng khi tôi thêm một số
+
+289
+00:14:38.390 --> 00:14:41.500
+lớp bỏ học, nó làm cho nó hoạt động tốt hơn, như đó không phải là những gì bạn muốn.
+
+290
+00:14:41.500 --> 00:14:45.320
+Trong trường hợp đó, bạn sẽ không thể gỡ lỗi một cách hiệu quả,
+
+291
+00:14:45.320 --> 00:14:47.610
+bạn sẽ không thể cải thiện các mô hình một cách hiệu quả.
+
+292
+00:14:48.630 --> 00:14:52.184
+>> Vâng, với câu trả lời đó, tôi rất vui vì khóa deep learning đã có khóa học AI.
+
+293
+00:14:52.184 --> 00:14:56.235
+Nó bắt đầu rất nhiều với nhiều tuần lập trình Python đầu tiên và sau đó [không nghe được].
+
+294
+00:14:56.235 --> 00:14:57.625
+- Vâng, tốt, tốt.
+
+295
+00:14:57.625 --> 00:15:00.947
+>> Cảm ơn bạn rất nhiều vì đã chia sẻ thông tin và lời khuyên của bạn.
+
+296
+00:15:00.947 --> 00:15:04.355
+Các bạn đã là anh hùng của nhiều người trong thế giới deep learning, vì vậy
+
+297
+00:15:04.355 --> 00:15:07.598
+tôi rất vui mừng, rất biết ơn các bạn có thể tham gia cùng chúng tôi hôm nay.
+
+298
+00:15:07.598 --> 00:15:09.585
+Vâng, cảm ơn vì đã có tôi.

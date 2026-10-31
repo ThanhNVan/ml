@@ -1,0 +1,633 @@
+WEBVTT
+
+1
+00:00:00.870 --> 00:00:05.535
+Machine learning và thuật toán AI ngày càng đáng tin cậy để giúp đỡ hoặc đưa ra các
+
+2
+00:00:05.535 --> 00:00:07.590
+quyết định cực kỳ quan trọng.
+
+3
+00:00:07.590 --> 00:00:11.352
+Và vì vậy chúng tôi muốn đảm bảo rằng chúng không có
+
+4
+00:00:11.352 --> 00:00:16.550
+hình thức thiên vị không mong muốn, chẳng hạn như thiên vị giới tính, thiên vị dân tộc và vân vân.
+
+5
+00:00:16.550 --> 00:00:20.690
+Điều tôi muốn làm trong video này là cho các bạn thấy một số ý tưởng để giảm bớt hoặc
+
+6
+00:00:20.690 --> 00:00:24.415
+loại bỏ những hình thức thiên vị này trong word embedding.
+
+7
+00:00:24.415 --> 00:00:28.630
+Khi tôi sử dụng thuật ngữ thiên vị trong video này, tôi không có nghĩa là các biến thể thiên vị.
+
+8
+00:00:28.630 --> 00:00:33.667
+Cảm nhận được sự thiên vị, thay vào đó tôi muốn nói đến giới tính, sắc tộc, thiên hướng tình dục.
+
+9
+00:00:33.667 --> 00:00:38.353
+Đó là một cảm giác khác biệt của sự thiên vị sau đó thường được sử dụng trong các cuộc thảo luận kỹ thuật
+
+10
+00:00:38.353 --> 00:00:40.330
+về machine learning.
+
+11
+00:00:40.330 --> 00:00:43.430
+Nhưng chủ yếu là vấn đề, chúng tôi đã nói về cách
+
+12
+00:00:43.430 --> 00:00:47.700
+word embedding có thể học các phép tương tự như đàn ông đối với phụ nữ như vua là nữ hoàng.
+
+13
+00:00:47.700 --> 00:00:52.583
+Nhưng những gì nếu bạn hỏi nó, người đàn ông là lập trình viên máy tính như người phụ nữ là những gì?
+
+14
+00:00:52.583 --> 00:00:56.244
+Và vì vậy các tác giả của bài báo này Tolga Bolukbasi,
+
+15
+00:00:56.244 --> 00:01:00.428
+Kai-Wei Chang, James Zou, Venkatesh Saligrama, và
+
+16
+00:01:00.428 --> 00:01:06.098
+Adam Kalai tìm thấy một kết quả có phần kinh khủng mà một từ embedding được học
+
+17
+00:01:06.098 --> 00:01:11.008
+có thể đưa ra Man:Computer_Programmer là Woman:Homemaker.
+
+18
+00:01:11.008 --> 00:01:17.145
+Và điều đó có vẻ sai lầm và nó thực hiện một khuôn mẫu giới tính không lành mạnh.
+
+19
+00:01:17.145 --> 00:01:20.500
+Nó sẽ là thích hợp hơn nhiều để có thuật toán đầu ra người đàn ông là
+
+20
+00:01:20.500 --> 00:01:22.815
+lập trình viên máy tính như một người phụ nữ là lập trình viên máy tính.
+
+21
+00:01:22.815 --> 00:01:27.618
+Và họ cũng thấy rằng: Cha: Bác sĩ như Mẹ là gì?
+
+22
+00:01:27.618 --> 00:01:32.534
+Và kết quả thực sự không may là một số từ embedding đã học được sẽ
+
+23
+00:01:32.534 --> 00:01:34.530
+xuất ra Mother:Y tá.
+
+24
+00:01:34.530 --> 00:01:38.300
+Vì vậy, việc word embedding có thể phản ánh giới tính, dân tộc, tuổi tác,
+
+25
+00:01:38.300 --> 00:01:42.798
+khuynh hướng tình dục, và các thành kiến khác của văn bản được sử dụng để đào tạo mô hình.
+
+26
+00:01:42.798 --> 00:01:48.520
+Một điều mà tôi đặc biệt đam mê là thiên vị liên quan đến tình trạng kinh tế xã hội.
+
+27
+00:01:48.520 --> 00:01:52.140
+Tôi nghĩ rằng mỗi người, cho dù bạn đến từ một gia đình giàu có,
+
+28
+00:01:52.140 --> 00:01:54.743
+hoặc một gia đình có thu nhập thấp, hoặc bất cứ nơi nào ở giữa,
+
+29
+00:01:54.743 --> 00:01:57.554
+tôi nghĩ mọi người nên có cơ hội tuyệt vời.
+
+30
+00:01:57.554 --> 00:02:02.537
+Và bởi vì các thuật toán machine learning đang được sử dụng để đưa ra những
+
+31
+00:02:02.537 --> 00:02:03.375
+quyết định rất quan trọng.
+
+32
+00:02:03.375 --> 00:02:08.388
+Chúng ảnh hưởng đến tất cả mọi thứ, từ việc nhập học đại học, đến cách mọi người
+
+33
+00:02:08.388 --> 00:02:13.464
+tìm việc làm, đến đơn xin vay mượn, liệu đơn xin vay của bạn có được chấp thuận hay không,
+
+34
+00:02:13.464 --> 00:02:17.710
+đến hệ thống tư pháp hình sự, thậm chí cả hướng dẫn xử án.
+
+35
+00:02:17.710 --> 00:02:22.560
+Các thuật toán học đang đưa ra những quyết định rất quan trọng và vì vậy tôi nghĩ
+
+36
+00:02:22.560 --> 00:02:28.130
+điều quan trọng
+
+37
+00:02:28.130 --> 00:02:33.940
+là chúng ta cố gắng thay đổi các thuật toán học để giảm đi càng nhiều càng tốt, hoặc, lý tưởng, loại bỏ những thành kiến không mong muốn này.
+
+38
+00:02:33.940 --> 00:02:38.770
+Bây giờ trong trường hợp word embedding, họ có thể chọn những thành kiến của văn bản được sử dụng
+
+39
+00:02:38.770 --> 00:02:42.410
+để đào tạo mô hình và vì vậy những thành kiến mà họ chọn lên hoặc
+
+40
+00:02:42.410 --> 00:02:48.460
+có xu hướng phản ánh những thành kiến trong văn bản như được viết bởi mọi người.
+
+41
+00:02:48.460 --> 00:02:50.450
+Trong nhiều thập kỷ qua, qua nhiều thế kỷ,
+
+42
+00:02:50.450 --> 00:02:55.085
+tôi nghĩ rằng nhân loại đã có những tiến bộ trong việc giảm thiểu những kiểu thiên vị này.
+
+43
+00:02:55.085 --> 00:02:59.355
+Và tôi nghĩ có lẽ may mắn cho AI, tôi nghĩ chúng ta thực sự có những ý tưởng tốt hơn để
+
+44
+00:02:59.355 --> 00:03:02.085
+giảm thiểu sự thiên vị trong AI hơn
+
+45
+00:03:02.085 --> 00:03:05.305
+là giảm nhanh sự thiên vị trong nhân loại.
+
+46
+00:03:05.305 --> 00:03:09.690
+Mặc dù tôi nghĩ rằng chúng ta không có nghĩa là làm cho AI là tốt và
+
+47
+00:03:09.690 --> 00:03:12.080
+vẫn còn rất nhiều nghiên cứu và
+
+48
+00:03:12.080 --> 00:03:16.110
+làm việc chăm chỉ để làm giảm những kiểu thành kiến trong các thuật toán học tập của chúng ta.
+
+49
+00:03:16.110 --> 00:03:20.621
+Nhưng những gì tôi muốn làm trong video này là chia sẻ với các bạn một ví dụ về một tập hợp
+
+50
+00:03:20.621 --> 00:03:24.973
+các ý tưởng do bài báo được tham chiếu ở dưới cùng của Bolukbasi và
+
+51
+00:03:24.973 --> 00:03:28.241
+những người khác về việc giảm sự thiên vị trong word embedding.
+
+52
+00:03:30.356 --> 00:03:32.210
+Vậy đây là ý tưởng.
+
+53
+00:03:32.210 --> 00:03:38.063
+Hãy nói rằng chúng ta đã học được một từ embedding,
+
+54
+00:03:38.063 --> 00:03:43.803
+vì vậy từ giữ trẻ là ở đây, từ bác sĩ ở đây.
+
+55
+00:03:43.803 --> 00:03:48.403
+Chúng tôi có bà ngoại ở đây,
+
+56
+00:03:48.403 --> 00:03:52.403
+và ông nội ở đây.
+
+57
+00:03:52.403 --> 00:03:56.860
+Có lẽ từ cô gái được embedding ở đó, từ cậu bé được embedding ở đó.
+
+58
+00:03:56.860 --> 00:04:01.830
+Và có lẽ cô ấy được embedding ở đây, và anh ấy được embedding ở đó.
+
+59
+00:04:01.830 --> 00:04:07.060
+Vì vậy, điều đầu tiên chúng ta sẽ làm điều đó là xác định hướng
+
+60
+00:04:07.060 --> 00:04:11.750
+tương ứng với một thiên vị cụ thể mà chúng ta muốn giảm hoặc loại bỏ.
+
+61
+00:04:11.750 --> 00:04:15.760
+Và, để minh họa, tôi sẽ tập trung vào thiên vị giới tính nhưng
+
+62
+00:04:15.760 --> 00:04:18.450
+những ý tưởng này được áp dụng cho tất cả các
+
+63
+00:04:18.450 --> 00:04:21.050
+loại thiên vị khác mà tôi đề cập đến trên trang chiếu trước đó.
+
+64
+00:04:26.450 --> 00:04:30.840
+Và như vậy làm thế nào để bạn xác định hướng tương ứng với sự thiên vị?
+
+65
+00:04:30.840 --> 00:04:36.010
+Đối với trường hợp giới tính, những gì chúng ta có thể làm là lấy vector embedding cho anh ta và
+
+66
+00:04:36.010 --> 00:04:41.580
+trừ vectơ embedding cho cô ta, bởi vì điều đó khác nhau theo giới tính.
+
+67
+00:04:41.580 --> 00:04:46.230
+Và lấy e nam, trừ đi e nữ, và
+
+68
+00:04:46.230 --> 00:04:48.720
+lấy một vài trong số này và trung bình chúng, đúng không?
+
+69
+00:04:48.720 --> 00:04:51.920
+Và lấy một vài trong số những khác biệt này và về cơ bản là trung bình chúng.
+
+70
+00:04:51.920 --> 00:04:56.490
+Và điều này sẽ cho phép bạn tìm ra trong trường hợp này rằng những gì trông giống như
+
+71
+00:04:56.490 --> 00:05:01.170
+hướng này là hướng giới tính, hoặc hướng thiên vị.
+
+72
+00:05:02.640 --> 00:05:10.650
+Trong khi đó hướng này không liên quan đến sự thiên vị đặc biệt mà chúng ta đang cố gắng giải quyết.
+
+73
+00:05:10.650 --> 00:05:16.580
+Vì vậy, đây là hướng không thiên vị.
+
+74
+00:05:16.580 --> 00:05:22.013
+Và trong trường hợp này, hướng thiên vị, hãy nghĩ về điều này như một không gian con 1D trong khi
+
+75
+00:05:22.013 --> 00:05:27.047
+một hướng phi thiên vị, đây sẽ là không gian con 299 chiều.
+
+76
+00:05:27.047 --> 00:05:31.520
+Okay, và tôi đã đơn giản hóa mô tả một chút trong bài báo gốc.
+
+77
+00:05:31.520 --> 00:05:34.504
+Hướng thiên vị có thể cao hơn 1 chiều, và
+
+78
+00:05:34.504 --> 00:05:38.426
+thay vì lấy trung bình, như tôi đang mô tả nó ở đây, nó thực sự được tìm thấy
+
+79
+00:05:38.426 --> 00:05:42.597
+bằng cách sử dụng một thuật toán phức tạp hơn gọi là SVU, một phân hủy giá trị số ít. Đó
+
+80
+00:05:42.597 --> 00:05:44.566
+là liên quan chặt chẽ với,
+
+81
+00:05:44.566 --> 00:05:48.429
+nếu bạn đã quen thuộc với phân tích thành phần nguyên tắc,
+
+82
+00:05:48.429 --> 00:05:53.729
+nó sử dụng các ý tưởng tương tự như máy tính hoặc thuật toán phân tích thành phần nguyên tắc.
+
+83
+00:05:53.729 --> 00:05:57.320
+Sau đó, bước tiếp theo là một bước trung hòa.
+
+84
+00:05:57.320 --> 00:06:02.710
+Vì vậy, đối với mỗi từ mà không phải là định nghĩa, dự án nó để thoát khỏi sự thiên vị.
+
+85
+00:06:02.710 --> 00:06:07.350
+Vì vậy, có một số từ mà bản chất nắm bắt giới tính.
+
+86
+00:06:07.350 --> 00:06:08.400
+Vì vậy, những từ như bà ngoại
+
+87
+00:06:08.400 --> 00:06:13.680
+, ông nội, cô gái, cậu bé, cô ấy, một giới tính là nội tại trong định nghĩa.
+
+88
+00:06:13.680 --> 00:06:16.431
+Trong khi đó có những từ khác như bác sĩ và
+
+89
+00:06:16.431 --> 00:06:19.341
+người giữ trẻ rằng chúng ta muốn trở nên trung lập giới tính.
+
+90
+00:06:19.341 --> 00:06:24.008
+Và thực sự, trong trường hợp tổng quát hơn, bạn có thể muốn những từ như bác sĩ hay người
+
+91
+00:06:24.008 --> 00:06:28.601
+trông trẻ trung lập dân tộc hoặc thiên hướng tình dục, và
+
+92
+00:06:28.601 --> 00:06:32.989
+vân vân, nhưng chúng ta sẽ sử dụng giới tính như một ví dụ minh họa ở đây.
+
+93
+00:06:32.989 --> 00:06:35.733
+Nhưng đối với mỗi từ không phải là định nghĩa,
+
+94
+00:06:35.733 --> 00:06:39.646
+điều này về cơ bản không có nghĩa là từ như bà ngoại và ông nội,
+
+95
+00:06:39.646 --> 00:06:44.450
+mà thực sự có một thành phần giới tính rất hợp pháp, bởi vì, theo định nghĩa,
+
+96
+00:06:44.450 --> 00:06:48.190
+bà ngoại là nữ, và ông nội là nam giới.
+
+97
+00:06:48.190 --> 00:06:51.253
+Vì vậy, đối với những từ như bác sĩ và người giữ trẻ,
+
+98
+00:06:51.253 --> 00:06:56.330
+hãy chiếu chúng lên trục này để giảm các thành phần của chúng,
+
+99
+00:06:56.330 --> 00:07:00.636
+hoặc để loại bỏ thành phần của chúng, theo hướng thiên vị.
+
+100
+00:07:00.636 --> 00:07:04.330
+Vì vậy, giảm thành phần của họ theo hướng ngang này.
+
+101
+00:07:06.050 --> 00:07:08.311
+Đó là bước vô hiệu hóa thứ hai.
+
+102
+00:07:08.311 --> 00:07:13.192
+Và sau đó bước cuối cùng được gọi là sự cân bằng trong đó
+
+103
+00:07:13.192 --> 00:07:17.861
+bạn có thể có các cặp từ như bà ngoại và
+
+104
+00:07:17.861 --> 00:07:22.740
+ông nội, hoặc cô gái và cậu bé, nơi bạn muốn sự
+
+105
+00:07:22.740 --> 00:07:27.790
+khác biệt duy nhất trong việc embedding của chúng là giới tính.
+
+106
+00:07:27.790 --> 00:07:30.410
+Và vì vậy, tại sao bạn lại muốn điều đó?
+
+107
+00:07:30.410 --> 00:07:33.910
+Trong ví dụ này, khoảng cách, hoặc
+
+108
+00:07:33.910 --> 00:07:38.500
+sự giống nhau, giữa người giữ trẻ và bà ngoại thực sự
+
+109
+00:07:38.500 --> 00:07:42.650
+nhỏ hơn khoảng cách giữa người giữ trẻ và ông nội.
+
+110
+00:07:42.650 --> 00:07:46.130
+Và vì vậy điều này có thể củng cố một sự
+
+111
+00:07:46.130 --> 00:07:50.830
+thiên vị không lành mạnh, hoặc có thể không mong muốn, mà bà cuối cùng phải trông trẻ hơn ông nội.
+
+112
+00:07:50.830 --> 00:07:53.960
+Vì vậy, trong bước cân bằng cuối cùng,
+
+113
+00:07:53.960 --> 00:07:57.170
+những gì chúng tôi muốn làm là đảm bảo rằng những từ như bà
+
+114
+00:07:57.170 --> 00:08:01.900
+nội và ông nội đều giống hệt nhau, hoặc chính xác cùng một khoảng cách,
+
+115
+00:08:01.900 --> 00:08:06.720
+từ những từ nên trung lập giới tính, chẳng hạn như người trông trẻ hay bác sĩ.
+
+116
+00:08:06.720 --> 00:08:09.102
+Vì vậy, có một vài bước đại số tuyến tính cho điều đó.
+
+117
+00:08:09.102 --> 00:08:13.616
+Nhưng những gì cơ bản nó sẽ làm là di chuyển bà ngoại và
+
+118
+00:08:13.616 --> 00:08:20.705
+ông nội đến một cặp điểm nằm cách nhau từ trục này ở giữa.
+
+119
+00:08:20.705 --> 00:08:24.894
+Và hiệu quả của việc đó là khoảng cách giữa người giữ trẻ,
+
+120
+00:08:24.894 --> 00:08:28.240
+so với hai từ này, sẽ giống hệt nhau.
+
+121
+00:08:29.480 --> 00:08:33.716
+Và như vậy, nói chung, có rất nhiều cặp từ giống như
+
+122
+00:08:33.716 --> 00:08:38.724
+bà nội, cậu bé, nữ sinh, nữ sinh, nữ sinh, nữ
+
+123
+00:08:38.724 --> 00:08:44.326
+sinh, em trai, em trai, cháu trai, con gái,
+
+124
+00:08:44.326 --> 00:08:49.760
+mà bạn có thể muốn thực hiện qua bước cân bằng này.
+
+125
+00:08:49.760 --> 00:08:54.600
+Vậy chi tiết cuối cùng là, làm thế nào để bạn quyết định trung hòa từ nào?
+
+126
+00:08:54.600 --> 00:08:59.550
+Ví dụ, từ bác sĩ có vẻ như một từ bạn nên trung hòa
+
+127
+00:08:59.550 --> 00:09:04.270
+để làm cho nó không feature giới tính hoặc không feature cho sắc tộc.
+
+128
+00:09:04.270 --> 00:09:06.360
+Trong khi đó các từ bà ngoại và
+
+129
+00:09:06.360 --> 00:09:09.900
+bà ngoại không nên được thực hiện không cụ thể giới tính.
+
+130
+00:09:09.900 --> 00:09:12.950
+Và cũng có những từ như râu, phải không,
+
+131
+00:09:12.950 --> 00:09:16.470
+đó chỉ là một thực tế thống kê rằng đàn ông có nhiều khả năng có
+
+132
+00:09:16.470 --> 00:09:21.510
+râu hơn phụ nữ, vì vậy có lẽ râu nên gần gũi hơn với nam hơn phụ nữ.
+
+133
+00:09:21.510 --> 00:09:26.463
+Và vì vậy những gì các tác giả đã làm là đào tạo một bộ classification để cố gắng tìm
+
+134
+00:09:26.463 --> 00:09:29.173
+ra những từ nào là định nghĩa,
+
+135
+00:09:29.173 --> 00:09:34.690
+những từ nào nên cụ thể về giới tính và những từ nào không nên được.
+
+136
+00:09:34.690 --> 00:09:39.200
+Và nó chỉ ra rằng hầu hết các từ trong tiếng Anh không phải là định
+
+137
+00:09:39.200 --> 00:09:41.770
+nghĩa, nghĩa là giới tính không phải là một phần của định nghĩa.
+
+138
+00:09:41.770 --> 00:09:47.391
+Và đó là một tập hợp tương đối nhỏ của các từ như thế này, ông nội
+
+139
+00:09:47.391 --> 00:09:52.360
+, cô gái, tình huynh đệ, và như vậy không nên được trung hòa.
+
+140
+00:09:53.370 --> 00:09:58.160
+Và một bộ classification tuyến tính có thể cho bạn biết những từ nào cần vượt qua
+
+141
+00:09:58.160 --> 00:10:02.774
+bước trung hòa để chiếu ra hướng thiên vị
+
+142
+00:10:02.774 --> 00:10:08.022
+này, để chiếu lên không gian con 299 chiều này.
+
+143
+00:10:08.022 --> 00:10:12.118
+Và sau đó, cuối cùng, số lượng các cặp bạn muốn cân bằng,
+
+144
+00:10:12.118 --> 00:10:17.608
+điều đó thực sự cũng tương đối nhỏ, và ít nhất là đối với ví dụ giới tính,
+
+145
+00:10:17.608 --> 00:10:22.428
+nó là khá khả thi để chọn tay hầu hết các cặp bạn muốn cân bằng.
+
+146
+00:10:22.428 --> 00:10:26.750
+Vì vậy, thuật toán đầy đủ phức tạp hơn một chút so với tôi trình bày nó ở đây,
+
+147
+00:10:26.750 --> 00:10:29.990
+bạn có thể xem bài báo để biết chi tiết đầy đủ.
+
+148
+00:10:29.990 --> 00:10:32.740
+Và bạn cũng có thể chơi với một vài trong số những ý tưởng này
+
+149
+00:10:32.740 --> 00:10:35.510
+trong các bài tập lập trình là tốt.
+
+150
+00:10:35.510 --> 00:10:39.950
+Vì vậy, để tóm tắt, tôi nghĩ rằng giảm hoặc loại bỏ sự thiên vị của các
+
+151
+00:10:39.950 --> 00:10:44.190
+thuật toán học tập của chúng ta là một vấn đề rất quan trọng bởi vì những thuật toán này được yêu cầu
+
+152
+00:10:44.190 --> 00:10:48.175
+giúp đỡ hoặc đưa ra nhiều quyết định quan trọng hơn trong xã hội.
+
+153
+00:10:48.175 --> 00:10:51.350
+Trong video này tôi đã chia sẻ chỉ là một tập hợp các ý tưởng về
+
+154
+00:10:51.350 --> 00:10:53.990
+làm thế nào để đi về cố gắng để giải quyết vấn đề
+
+155
+00:10:53.990 --> 00:11:00.180
+này, nhưng đây vẫn là một rất nhiều lĩnh vực nghiên cứu tích cực của nhiều nhà nghiên cứu.
+
+156
+00:11:00.180 --> 00:11:03.458
+Vì vậy, đó là nó cho các video của tuần này.
+
+157
+00:11:03.458 --> 00:11:06.170
+Chúc may mắn với các bài tập lập trình tuần này và
+
+158
+00:11:06.170 --> 00:11:07.660
+tôi rất mong được gặp Quý vị vào tuần tới.

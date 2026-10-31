@@ -1,0 +1,249 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.240 --> 00:00:03.300
+In the last video, you learned about gradient checking.
+
+00:00:03.300 --> 00:00:08.360
+In this video, I want to share with you some practical tips or some notes on how to actually
+
+00:00:08.360 --> 00:00:10.960
+go about implementing this for your neural network.
+
+00:00:10.960 --> 00:00:14.720
+First, don't use grad checking training only to debug.
+
+00:00:14.720 --> 00:00:20.720
+So what I mean is that computing d theta or Prox i for all the values of i, this is
+
+00:00:20.720 --> 00:00:22.600
+a very slow computation.
+
+00:00:22.600 --> 00:00:26.680
+So to implement gradient descent, you should use backprop to compute d theta and just
+
+00:00:26.680 --> 00:00:29.200
+use backprop to compute the derivative.
+
+00:00:29.200 --> 00:00:32.960
+And it's only when you're debugging that you would compute this to make sure it's close
+
+00:00:32.960 --> 00:00:34.320
+to d theta.
+
+00:00:34.320 --> 00:00:38.000
+But once you've done that, then you would turn off the grad check and don't run this
+
+00:00:38.000 --> 00:00:41.440
+during every iteration of gradient descent because that's just much too slow.
+
+00:00:41.440 --> 00:00:45.720
+Second, if an algorithm fails grad check, look at the components, look at the individual
+
+00:00:45.720 --> 00:00:48.080
+components to try to identify the bug.
+
+00:00:48.080 --> 00:00:54.200
+So what I mean by that is if d theta or Prox is very far from d theta, what I would
+
+00:00:54.200 --> 00:00:59.040
+do is look at the different values of i to see which are the values of d theta or Prox
+
+00:00:59.040 --> 00:01:02.440
+i, they're really very different than the values of d theta.
+
+00:01:02.440 --> 00:01:08.520
+So for example, if you find that the values of theta or d theta, they're very far off,
+
+00:01:08.520 --> 00:01:15.040
+all correspond to dBL for some layer or for some layers, but the components for dW
+
+00:01:15.040 --> 00:01:16.040
+are quite close.
+
+00:01:16.040 --> 00:01:17.040
+Right?
+
+00:01:17.040 --> 00:01:21.200
+Remember, different components of theta correspond to different components of b and w.
+
+00:01:21.200 --> 00:01:26.040
+When you find this in the case, then maybe you find that the bug isn't how you're
+
+00:01:26.040 --> 00:01:31.040
+computing dB, the derivative with respect to parameters b.
+
+00:01:31.040 --> 00:01:36.680
+And similarly, vice versa, if you find that the values are very far, the values from
+
+00:01:36.680 --> 00:01:41.520
+d theta or Prox are very far from d theta, if you find that all those components
+
+00:01:41.520 --> 00:01:46.640
+came from dW or from dW in a certain layer, then that might help you hone in on
+
+00:01:46.640 --> 00:01:48.600
+the location of the bug.
+
+00:01:48.600 --> 00:01:52.680
+This doesn't always let you identify the bug right away, but sometimes it helps you
+
+00:01:52.680 --> 00:01:56.680
+give you some guesses about how the weather tracked down the bug.
+
+00:01:56.680 --> 00:02:02.160
+Next, when doing grad check, remember your regularization term if you're using
+
+00:02:02.160 --> 00:02:03.160
+regularization.
+
+00:02:03.160 --> 00:02:12.520
+So if your cost function is j of theta equals 1 over m, sum of your losses, and
+
+00:02:12.520 --> 00:02:15.880
+then plus this regularization term, right?
+
+00:02:15.880 --> 00:02:20.720
+Sum of L of WL for B is known squared.
+
+00:02:20.720 --> 00:02:22.680
+And this is the definition of j.
+
+00:02:22.680 --> 00:02:29.160
+And you should have that d theta is gradient of j with respect to theta,
+
+00:02:29.160 --> 00:02:30.920
+including this regularization term.
+
+00:02:30.920 --> 00:02:32.880
+So just remember to include that term.
+
+00:02:32.880 --> 00:02:37.560
+Next, grad check doesn't work with dropout, because in every iteration, dropout
+
+00:02:37.560 --> 00:02:41.560
+is randomly eliminating different subsets of the hidden units.
+
+00:02:41.560 --> 00:02:46.240
+There isn't a easy to compute cost function j that dropout is doing
+
+00:02:46.240 --> 00:02:48.320
+gradient descent on.
+
+00:02:48.320 --> 00:02:52.800
+It turns out that dropout can be viewed as optimizing some cost function j,
+
+00:02:52.800 --> 00:02:58.200
+but it's cost function j defined by summing over all exponentially large
+
+00:02:58.200 --> 00:03:00.880
+subsets of nodes that could eliminate in any iteration.
+
+00:03:00.880 --> 00:03:05.200
+So the cost function j is very difficult to compute, and you're just
+
+00:03:05.200 --> 00:03:09.960
+sampling the cost function every time you eliminate different random subsets
+
+00:03:09.960 --> 00:03:11.720
+of nodes when you use dropout.
+
+00:03:11.720 --> 00:03:16.760
+So it's difficult to use grad check to double check your computation with dropouts.
+
+00:03:16.760 --> 00:03:20.280
+So what I usually do is implement grad check without dropout.
+
+00:03:20.280 --> 00:03:25.480
+So if you want, you can set keyprop in dropout to be equal to 1.0,
+
+00:03:25.480 --> 00:03:30.720
+and then turn on dropout and hope that my implementation of dropout was correct.
+
+00:03:30.720 --> 00:03:34.520
+There are some other things you could do, like fix the pattern of nodes dropped
+
+00:03:34.520 --> 00:03:40.240
+and verify that grad check for that pattern of units killed off is correct.
+
+00:03:40.240 --> 00:03:43.120
+But in practice, I don't usually do that.
+
+00:03:43.120 --> 00:03:48.000
+So my recommendation is turn off dropout, use grad check to double check that your
+
+00:03:48.000 --> 00:03:52.440
+algorithm is at least correct without dropout, and then turn on dropout.
+
+00:03:52.440 --> 00:03:55.480
+Finally, this is a subtlety.
+
+00:03:55.480 --> 00:03:59.600
+It is not impossible, rarely happens, but it's not impossible that your
+
+00:03:59.600 --> 00:04:04.600
+implementation of gradient descent is correct when w and b are close to zero,
+
+00:04:04.600 --> 00:04:06.440
+so at random initialization.
+
+00:04:06.440 --> 00:04:09.800
+But that as you run gradient descent and w and b become bigger,
+
+00:04:09.800 --> 00:04:15.120
+maybe your implementation of backprop is correct only when w and b is close to zero,
+
+00:04:15.120 --> 00:04:18.600
+but it gets more inaccurate when w and b become large.
+
+00:04:18.600 --> 00:04:23.000
+So one thing you could do, I don't do this very often, but one thing you could do
+
+00:04:23.000 --> 00:04:27.120
+is run drag check at random initialization and then train the network for a while
+
+00:04:27.120 --> 00:04:31.200
+so that w and b have some time to wander away from zero,
+
+00:04:31.200 --> 00:04:35.480
+from their small random initial values, and then run drag check again after you've
+
+00:04:35.480 --> 00:04:37.560
+trained for some number of iterations.
+
+00:04:37.560 --> 00:04:41.560
+So that's it for gradient checking, and congratulations for coming to the end of this
+
+00:04:41.560 --> 00:04:42.720
+week's materials.
+
+00:04:42.720 --> 00:04:46.440
+And this week, you've learned about how to set up your trained depth in test sets,
+
+00:04:46.440 --> 00:04:50.360
+how to analyze bias and variance, and what things to do if you have high bias
+
+00:04:50.360 --> 00:04:54.160
+versus high variance versus maybe high bias and high variance.
+
+00:04:54.160 --> 00:05:00.120
+You also saw how to apply different forms of regularization, like L2 regularization
+
+00:05:00.120 --> 00:05:02.000
+and dropout on your neural network.
+
+00:05:02.000 --> 00:05:05.360
+So some tricks for speeding up the training of your neural network,
+
+00:05:05.360 --> 00:05:07.800
+and then finally, gradient checking.
+
+00:05:07.800 --> 00:05:12.360
+So I think you've seen a lot in this week, and you get to exercise a lot of these ideas
+
+00:05:12.360 --> 00:05:14.240
+in this week's program exercise.
+
+00:05:14.240 --> 00:05:18.240
+So best of luck with that, and I look forward to seeing you in the week two materials.

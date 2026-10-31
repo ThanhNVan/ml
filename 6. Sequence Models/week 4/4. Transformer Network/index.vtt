@@ -1,0 +1,468 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.020 --> 00:00:07.980
+You've learned about self-attention, you've learned about multi-headed attention.
+
+00:00:07.980 --> 00:00:11.400
+Let's put it all together to build the transformer network.
+
+00:00:11.400 --> 00:00:17.080
+In this video, you see how you can pair the attention mechanisms you saw in the previous
+
+00:00:17.080 --> 00:00:21.640
+videos to build the transformer architecture.
+
+00:00:21.640 --> 00:00:27.320
+Starting again with the sentence, Jane visit, l'affique en September, and its corresponding
+
+00:00:27.320 --> 00:00:34.000
+embedding, let's walk through how you can translate the sentence from French to English.
+
+00:00:34.000 --> 00:00:40.200
+I've also added the start of sentence and end of sentence tokens here.
+
+00:00:40.200 --> 00:00:45.060
+Up until this point, for the sake of simplicity, I've only been talking about the embeddings
+
+00:00:45.060 --> 00:00:51.600
+for the words in the sentence, but in many sequence-to-sequence translation tasks, it'll
+
+00:00:51.600 --> 00:00:58.000
+be useful to also add the start of sentence or the SOS and the end of sentence or the
+
+00:00:58.000 --> 00:01:02.760
+EOS tokens, which I have in this example.
+
+00:01:02.760 --> 00:01:09.800
+The first step in the transformer is these embeddings get fed into an encoder block, which
+
+00:01:09.800 --> 00:01:13.080
+has a multi-headed attention layer.
+
+00:01:13.080 --> 00:01:23.640
+So this is exactly what you saw on the last slide, where you feed in the values Q, K, and
+
+00:01:23.640 --> 00:01:29.560
+V computed from the embeddings and the weight matrices W.
+
+00:01:29.560 --> 00:01:35.800
+This layer then produces a matrix that can be passed into a feed-forward neural network,
+
+00:01:35.800 --> 00:01:40.320
+which helps determine what interesting features there are in the sentence.
+
+00:01:40.320 --> 00:01:48.760
+In the transformer paper, this block, this encoding block is repeated n times, and a typical
+
+00:01:48.760 --> 00:01:54.270
+value for n is 6.
+
+00:01:54.270 --> 00:02:01.390
+So after maybe about 6 times through this block, we will then feed the output of the
+
+00:02:01.390 --> 00:02:03.870
+encoder into a decoder block.
+
+00:02:03.870 --> 00:02:07.630
+Let's start building the decoder block.
+
+00:02:07.630 --> 00:02:13.630
+The decoder block's job is to output the English translation, so the first output will
+
+00:02:13.630 --> 00:02:18.470
+be the start of sentence token, which I've already written down here.
+
+00:02:18.470 --> 00:02:25.310
+At every step, the decoder block will input the first few words, whatever we've already
+
+00:02:25.310 --> 00:02:28.430
+generated of the translation.
+
+00:02:28.430 --> 00:02:33.710
+When we're just getting started, the only thing we know is that the translation will
+
+00:02:33.710 --> 00:02:40.910
+start with a start of sentence token, and so the start of sentence token gets fed in
+
+00:02:40.910 --> 00:02:47.830
+to this multi-head attention block, and just this one token, the SOS token, start of sentence,
+
+00:02:47.830 --> 00:02:54.950
+is used to compute Q, K, and V for this multi-head attention block.
+
+00:02:54.950 --> 00:03:04.120
+This first block's output is used to generate the Q matrix for the next multi-head attention
+
+00:03:04.120 --> 00:03:12.960
+block, and the output of the encoder is used to generate K and V.
+
+00:03:12.960 --> 00:03:20.720
+So here's a second multi-head attention block with inputs Q, K, and V as before.
+
+00:03:20.720 --> 00:03:22.360
+Why is it structured this way?
+
+00:03:22.360 --> 00:03:25.960
+Maybe here's one piece of intuition that could help.
+
+00:03:25.960 --> 00:03:32.040
+The input down here is whatever you've translated of the sentence so far, and so this will
+
+00:03:32.040 --> 00:03:36.400
+ask a query to say, what of the start of sentence?
+
+00:03:36.400 --> 00:03:41.340
+And it will then pull context from K and V, which are translated from the French version
+
+00:03:41.340 --> 00:03:47.200
+of the sentence, to then try to decide what is the next word in the sequence to generate.
+
+00:03:47.200 --> 00:03:53.600
+To finish the description of the decoder block, the multi-head attention block outputs the
+
+00:03:53.600 --> 00:03:56.900
+values which are fed to a feed-forward neural network.
+
+00:03:56.900 --> 00:04:02.300
+This decoder block is also going to be repeated n times, maybe 6 times, where you take the
+
+00:04:02.300 --> 00:04:08.700
+output, feed it back to the input, and have this go through, say, half a dozen times.
+
+00:04:08.700 --> 00:04:14.020
+And the job of this neural network is to predict the next word in the sentence.
+
+00:04:14.020 --> 00:04:20.420
+So hopefully it will decide that the first word in the English translation is Jane.
+
+00:04:20.420 --> 00:04:26.860
+And what we do is then feed Jane to the input as well.
+
+00:04:26.860 --> 00:04:34.180
+And now the next query comes from SOS and Jane, and it says, well, given Jane, what is the
+
+00:04:34.180 --> 00:04:37.060
+most appropriate next word?
+
+00:04:37.060 --> 00:04:42.260
+Let's find the right key and the right value that lets us generate the most appropriate next
+
+00:04:42.260 --> 00:04:47.540
+word, which hopefully will generate visit.
+
+00:04:47.540 --> 00:04:54.160
+And then running this neural network again generates Africa, then we feed Africa back
+
+00:04:54.160 --> 00:05:00.820
+into the input, hopefully it then generates in, and then September.
+
+00:05:00.820 --> 00:05:06.700
+And with this input, hopefully it generates the end-of-sentence token, and then we're done.
+
+00:05:06.700 --> 00:05:11.580
+These encoder and decoder blocks and how they're combined to perform a sequence to sequence
+
+00:05:11.580 --> 00:05:16.180
+translation task are the main ideas behind the transformer architecture.
+
+00:05:16.180 --> 00:05:21.820
+In this case, you saw how you can translate an input sentence into a sentence in another
+
+00:05:21.820 --> 00:05:28.960
+language to gain some intuition about how attention in your networks can be combined to allow
+
+00:05:28.960 --> 00:05:31.620
+simultaneous computation.
+
+00:05:31.620 --> 00:05:36.860
+But beyond these main ideas, there are a few extra bells and whistles to transform this.
+
+00:05:36.860 --> 00:05:42.380
+Let me briefly step through these extra bells and whistles that makes the transformer network
+
+00:05:42.380 --> 00:05:44.680
+work even better.
+
+00:05:44.680 --> 00:05:49.720
+The first of these is positional encoding of the input.
+
+00:05:49.720 --> 00:05:55.240
+If you recall the self-attention equations, there's nothing that indicates the position
+
+00:05:55.240 --> 00:05:56.680
+of a word.
+
+00:05:56.680 --> 00:06:02.640
+Is this word the first word in the sentence, in the middle, the last word in the sentence?
+
+00:06:02.640 --> 00:06:07.160
+But the position within the sentence can be extremely important to translation.
+
+00:06:07.160 --> 00:06:13.080
+So the way you encode the position of elements in the input is that you use a combination
+
+00:06:13.080 --> 00:06:17.680
+of these sine and cosine equations.
+
+00:06:17.680 --> 00:06:25.120
+So let's say, for example, that your word embedding is a vector with four values.
+
+00:06:25.120 --> 00:06:34.320
+In this case, the dimension D of the word embedding is four.
+
+00:06:34.320 --> 00:06:40.360
+So x1, x2, x3, let's say those are four dimensional vectors.
+
+00:06:40.360 --> 00:06:46.160
+In this example, we're going to then create a positional embedding vector of the same
+
+00:06:46.160 --> 00:06:49.360
+dimension, also four dimensional.
+
+00:06:49.360 --> 00:06:57.500
+And I'm going to call this positional embedding P1, let's say, for the position embedding
+
+00:06:57.500 --> 00:07:00.160
+of the first word, Jane.
+
+00:07:00.160 --> 00:07:07.840
+In this equation below, pos position denotes the numerical position of the word.
+
+00:07:07.840 --> 00:07:15.800
+So for the word Jane, pos is equal to one.
+
+00:07:15.800 --> 00:07:22.440
+And I over here refers to the different dimensions of encoding.
+
+00:07:22.440 --> 00:07:29.560
+Dispersed elements corresponds to I equals zero, this element, I equals zero, I equals
+
+00:07:29.560 --> 00:07:32.600
+one, I equals one.
+
+00:07:32.600 --> 00:07:40.560
+So these are the variables pos, pos, and I that go into these equations down below, where
+
+00:07:40.560 --> 00:07:43.440
+pos is the position of a word.
+
+00:07:43.440 --> 00:07:51.600
+I goes from zero to one, and D is equal to four, the dimension of this vector.
+
+00:07:51.600 --> 00:07:58.240
+And what the position encoding does with the sine and cosine is create a unique positional
+
+00:07:58.240 --> 00:08:03.700
+encoding vector, one of these vectors that is unique for each word.
+
+00:08:03.700 --> 00:08:12.680
+So the vector p3, that encodes the position of the freak, the third word will be a set
+
+00:08:12.680 --> 00:08:17.880
+of four values that will be different than the four values used in code the position
+
+00:08:17.880 --> 00:08:20.520
+of the first word of Jane.
+
+00:08:20.520 --> 00:08:25.720
+This is what the sine and cosine curves look like.
+
+00:08:25.720 --> 00:08:32.200
+Here's I equals zero, I equals zero, I equals one, and I equals one.
+
+00:08:32.200 --> 00:08:42.800
+And because you have these terms in denominator, you end up with I equals zero, we'll have some
+
+00:08:42.800 --> 00:08:48.320
+sinusoid curve that looks like this.
+
+00:08:48.320 --> 00:08:53.360
+And I equals zero will be the matched cosine.
+
+00:08:53.360 --> 00:09:06.070
+So 90 degrees out of phase, and I equals one will end up with a lower frequency sinusoid
+
+00:09:06.070 --> 00:09:08.070
+like so.
+
+00:09:08.070 --> 00:09:15.090
+And I equals one gives you a matched cosine curve.
+
+00:09:15.090 --> 00:09:24.450
+So for p1, for position one, you read off values at this position to fill in those four
+
+00:09:24.450 --> 00:09:26.010
+values there.
+
+00:09:26.010 --> 00:09:30.770
+Whereas for a different word at a different position, maybe this is now three on the horizontal
+
+00:09:30.770 --> 00:09:34.130
+axis, you read off a different set of values.
+
+00:09:34.130 --> 00:09:37.890
+And notice these first two values may be very similar, because you know, they're roughly
+
+00:09:37.890 --> 00:09:39.330
+the same height.
+
+00:09:39.330 --> 00:09:45.730
+But by using these multiple signs and cosines, the looking across all four values p3 will
+
+00:09:45.730 --> 00:09:49.250
+be a different vector than p1.
+
+00:09:49.250 --> 00:09:59.870
+So the positional encoding p1 is added directly to x1, to the input this way, so that each
+
+00:09:59.870 --> 00:10:08.610
+of the word vectors is also influenced or colored with where in the sentence the word appears.
+
+00:10:08.610 --> 00:10:17.030
+The output of the encoding block contains contextual semantic embedding and positional encoding information.
+
+00:10:17.030 --> 00:10:23.990
+The output of the embedding layer is then D, which in this case, four, by the maximum
+
+00:10:23.990 --> 00:10:27.710
+length of sequence your model can take.
+
+00:10:27.710 --> 00:10:36.430
+The output of all these layers are also of this shape.
+
+00:10:36.430 --> 00:10:43.030
+In addition to adding these positioning codings to the embeddings, you'd also pass them through
+
+00:10:43.030 --> 00:10:46.510
+the network with residual connections.
+
+00:10:46.510 --> 00:10:51.570
+These residual connections are similar to those you previously see in the resnet.
+
+00:10:51.570 --> 00:10:56.430
+And their purpose in this case is to pass along positional information through the entire
+
+00:10:56.430 --> 00:10:58.210
+architecture.
+
+00:10:58.210 --> 00:11:04.870
+In addition to positional encoding, the transformer network also uses a layer very similar to
+
+00:11:04.870 --> 00:11:07.150
+a batch norm.
+
+00:11:07.150 --> 00:11:12.910
+And their purpose in this case is to pass along positional information to position encoding.
+
+00:11:12.910 --> 00:11:18.230
+The transformer also uses a layer called add a norm that is very similar to the batch norm
+
+00:11:18.230 --> 00:11:21.070
+layer that you're already familiar with.
+
+00:11:21.070 --> 00:11:23.750
+For the purpose of this video, don't worry about the differences.
+
+00:11:23.750 --> 00:11:27.430
+Think of it as playing a role very similar to the batch norm.
+
+00:11:27.430 --> 00:11:30.110
+And this helps speed up learning.
+
+00:11:30.110 --> 00:11:35.990
+And this batch norm like layer, this add a norm layer is repeated throughout this
+
+00:11:35.990 --> 00:11:37.590
+architecture.
+
+00:11:37.590 --> 00:11:43.430
+And finally, for the output of the decoder block, there's actually also a linear and then
+
+00:11:43.430 --> 00:11:48.670
+a soft max layer to predict the next word one word at a time.
+
+00:11:48.670 --> 00:11:55.110
+In case you read the literature on the transformer network, you may also hear of something called
+
+00:11:55.110 --> 00:12:01.070
+the masked multi-haired attention, which I'm going to draw it over here.
+
+00:12:01.070 --> 00:12:06.750
+Masked multi-haired attention is important only during the training process, where you're
+
+00:12:06.750 --> 00:12:12.870
+using a data sets of correct French to English translations to train your transformer.
+
+00:12:12.870 --> 00:12:17.670
+So previously, we stepped through how the transformer performs prediction one word at
+
+00:12:17.670 --> 00:12:18.990
+a time.
+
+00:12:18.990 --> 00:12:20.990
+But how does it train?
+
+00:12:20.990 --> 00:12:25.870
+Let's say your data set has the correct French to English translation, Jane Vesey
+
+00:12:25.870 --> 00:12:30.390
+Lafriq on September and Jane visits Africa in September.
+
+00:12:30.390 --> 00:12:36.670
+When training you have access to the entire correct English translation, the correct output
+
+00:12:36.670 --> 00:12:40.110
+and the correct input.
+
+00:12:40.110 --> 00:12:46.070
+And because you have the full correct output, you don't actually have to generate the words
+
+00:12:46.070 --> 00:12:48.590
+one at a time during training.
+
+00:12:48.590 --> 00:12:55.550
+Instead, what masking does is it blocks out the last part of the sentence to mimic what
+
+00:12:55.550 --> 00:12:59.590
+the network will need to do at test time or during prediction.
+
+00:12:59.590 --> 00:13:07.190
+In other words, all that masked multi-haired attention does is it repeatedly pretends that
+
+00:13:07.190 --> 00:13:15.150
+the network had perfectly translated, say, the first few words and hides the remaining
+
+00:13:15.150 --> 00:13:23.670
+words to see if given a perfect first part of the translation, whether the neural network
+
+00:13:23.670 --> 00:13:26.990
+can predict the next word in the sequence accurately.
+
+00:13:26.990 --> 00:13:30.190
+So that's the summary of the transformer architecture.
+
+00:13:30.190 --> 00:13:35.790
+Since the paper, Attention is All You Need, came out, there have been many other iterations
+
+00:13:35.790 --> 00:13:42.430
+of this model, such as BERT or BERT Distill, which you get to explore yourself this week.
+
+00:13:42.430 --> 00:13:43.430
+So that was it.
+
+00:13:43.430 --> 00:13:46.070
+I know there was a lot of details.
+
+00:13:46.070 --> 00:13:50.670
+But now you have a good sense of all of the major building blocks of the transformer
+
+00:13:50.670 --> 00:13:51.950
+network.
+
+00:13:51.950 --> 00:13:56.510
+And when you see this in this week's program exercise, playing around with the code there
+
+00:13:56.510 --> 00:14:01.550
+will help you to build even deeper intuition about how to make this work for your applications.

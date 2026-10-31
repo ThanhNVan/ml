@@ -1,0 +1,505 @@
+WEBVTT
+
+1
+00:00:00.270 --> 00:00:04.240
+Nếu mọi người đang xây dựng một ứng dụng thị giác máy tính thì thay vì
+
+2
+00:00:04.240 --> 00:00:07.630
+huấn luyện trọng số từ đầu, từ khởi tạo ngẫu nhiên,
+
+3
+00:00:07.630 --> 00:00:10.010
+mọi người thường đạt được tiến độ nhanh hơn nhiều nếu mọi người tải xuống
+
+4
+00:00:10.010 --> 00:00:12.530
+những trọng số mà người khác đã huấn luyện
+
+5
+00:00:12.530 --> 00:00:15.640
+kiến trúc mạng và sử dụng nó làm huấn luyện trước
+
+6
+00:00:15.640 --> 00:00:19.525
+và áp dụng nó sang một nhiệm vụ mới mà mọi người quan tâm.
+
+7
+00:00:19.525 --> 00:00:24.230
+Cộng đồng nghiên cứu thị giác máy tính đã đăng rất nhiều
+
+8
+00:00:24.230 --> 00:00:28.860
+tập hợp dữ liệu trên Internet, vì vậy nếu mọi người nghe nói về những thứ như Image Net hoặc MS COCO,
+
+9
+00:00:28.860 --> 00:00:31.082
+hoặc các loại tập dữ liệu Pascal,
+
+10
+00:00:31.082 --> 00:00:33.995
+đây là tên của các tập dữ liệu khác nhau mà mọi người đã đăng
+
+11
+00:00:33.995 --> 00:00:39.640
+lên mạng và rất nhiều nhà nghiên cứu máy tính đã dùng chúng để huấn luyện thuật toán
+
+12
+00:00:39.640 --> 00:00:44.760
+Đôi khi, quá trình huấn luyện này mất vài tuần và có thể tốn nhiều GP
+
+13
+00:00:44.760 --> 00:00:47.020
+và thực tế là có người khác đã làm
+
+14
+00:00:47.020 --> 00:00:50.005
+việc này và trải qua quá trình tìm kiếm hiệu suất cao rất khó khăn,
+
+15
+00:00:50.005 --> 00:00:55.360
+có nghĩa là mọi người thường có thể tải xuống các trọng số nguồn mở mà người khác đã phải mất nhiều tuần hoặc
+
+16
+00:00:55.360 --> 00:00:57.570
+nhiều tháng để tìm ra và chúng ta có thể sử dụng nó làm
+
+17
+00:00:57.570 --> 00:01:01.550
+một khởi tạo rất tốt cho neural network của riêng mình
+
+18
+00:01:01.550 --> 00:01:05.012
+Và sử dụng phương pháp học chuyển giao để chuyển giao kiến thức từ một số
+
+19
+00:01:05.012 --> 00:01:08.761
+những tập hợp dữ liệu công khai rất lớn này để giải quyết vấn đề của mọi người.
+
+20
+00:01:08.761 --> 00:01:11.710
+Chúng ta hãy xem xét kỹ hơn về cách làm điều này.
+
+21
+00:01:11.710 --> 00:01:13.760
+Hãy bắt đầu với một ví dụ,
+
+22
+00:01:13.760 --> 00:01:18.820
+giả sử mọi người đang xây dựng một máy dò mèo để nhận ra mèo cưng của mình
+
+23
+00:01:18.820 --> 00:01:22.570
+Theo internet,
+
+24
+00:01:22.570 --> 00:01:32.855
+Tigger là một tên mèo phổ biến và Misty là một tên mèo cũng phổ biến khác.
+
+25
+00:01:32.855 --> 00:01:41.480
+Giả sử mèo của mọi người được gọi là Tigger và Misty và không phải cả hai
+
+26
+00:01:41.480 --> 00:01:44.570
+vậy, ta có một bài toán classification với 3 mệnh đề
+
+27
+00:01:44.570 --> 00:01:46.300
+Đây có phải là bức ảnh của Tigger
+
+28
+00:01:46.300 --> 00:01:49.075
+hay đây là Misty hay không con nào trong 2 con?
+
+29
+00:01:49.075 --> 00:01:53.875
+Và ta loại bỏ trường hợp cả hai con mèo của mọi người xuất hiện trong hình.
+
+30
+00:01:53.875 --> 00:01:57.020
+Bây giờ, chắc mọi người không có nhiều bức ảnh của Tigger
+
+31
+00:01:57.020 --> 00:02:00.745
+hoặc Misty nên training set của mọi người sẽ nhỏ.
+
+32
+00:02:00.745 --> 00:02:02.170
+Bạn có thể làm gì?
+
+33
+00:02:02.170 --> 00:02:06.920
+Tôi khuyên mọi người nên lên mạng và tải xuống một số triển khai mã nguồn mở của
+
+34
+00:02:06.920 --> 00:02:12.600
+một neural network và tải xuống không chỉ code mà còn cả trọng số.
+
+35
+00:02:12.600 --> 00:02:19.900
+Có rất nhiều mạng đã được huấn luyện mà mọi người có thể tải xuống, ví dụ:
+
+36
+00:02:19.900 --> 00:02:25.130
+tập dữ liệu Init Net có hàng nghìn mệnh đề khác nhau nên mạng
+
+37
+00:02:25.130 --> 00:02:31.180
+có thể có một unit softmax xuất ra một trong số một nghìn mệnh đề khả thi.
+
+38
+00:02:31.180 --> 00:02:36.110
+Sau đó, mọi người có thể làm xóa layer softmax và tạo
+
+39
+00:02:36.110 --> 00:02:46.025
+unit softmax của mọi người để có đầu ra là Tigger, Misty hoặc neither (không trong cả 2)
+
+40
+00:02:46.025 --> 00:02:48.710
+Về lưới,
+
+41
+00:02:48.710 --> 00:02:52.350
+Tôi khuyến khích mọi người coi tất cả các layer này là
+
+42
+00:02:52.350 --> 00:02:56.415
+layer bị đóng băng nên mọi người đóng băng tham số trong
+
+43
+00:02:56.415 --> 00:03:00.300
+tất cả các layer này của mạng và sau đó mọi người sẽ chỉ
+
+44
+00:03:00.300 --> 00:03:05.700
+huấn luyện các tham số liên quan đến layer softmax của mọi người.
+
+45
+00:03:05.700 --> 00:03:08.982
+Đây là layer softmax với ba đầu ra khả thi
+
+46
+00:03:08.982 --> 00:03:11.790
+Tigger, Misty hoặc neither.
+
+47
+00:03:11.790 --> 00:03:16.560
+Bằng cách sử dụng các trọng số đã huấn luyện trước của người khác
+
+48
+00:03:16.560 --> 00:03:22.600
+mọi người có thể nhận được hiệu suất khá tốt ngay cả với một tập dữ liệu nhỏ.
+
+49
+00:03:22.600 --> 00:03:25.100
+May mắn thay, rất nhiều người đang học các framework
+
+50
+00:03:25.100 --> 00:03:28.000
+hỗ trợ phương thức hoạt động này và trên thực tế,
+
+51
+00:03:28.000 --> 00:03:35.085
+tùy thuộc vào framework, nó có thể có những thứ như tham số có thể huấn luyện bằng 0,
+
+52
+00:03:35.085 --> 00:03:37.660
+mọi người có thể thiết lập nó cho một số layer đầu.
+
+53
+00:03:37.660 --> 00:03:39.117
+Ở những framework khác, người ta chỉ nói,
+
+54
+00:03:39.117 --> 00:03:42.885
+đừng huấn luyện những trọng số đó hoặc đôi khi mọi người có một tham số
+
+55
+00:03:42.885 --> 00:03:47.295
+như là freeze = 1 và có nhiều
+
+56
+00:03:47.295 --> 00:03:50.730
+trọng số khác nhau và các framework chương trình deep learning khác nhau cho phép mọi người
+
+57
+00:03:50.730 --> 00:03:56.245
+chỉ định liệu có nên huấn luyện các trọng số được liên kết với layer cụ thể.
+
+58
+00:03:56.245 --> 00:03:58.440
+Trong trường hợp này, mọi người sẽ
+
+59
+00:03:58.440 --> 00:04:04.945
+chỉ huấn luyện trọng số layer softmax và đóng băng tất cả trọng số của những layer đầu
+
+60
+00:04:04.945 --> 00:04:07.930
+Một mẹo nhỏ khác có thể hữu ích cho một số triển khai
+
+61
+00:04:07.930 --> 00:04:12.380
+là bởi vì tất cả các layer đầu này đều bị đóng băng,
+
+62
+00:04:12.380 --> 00:04:16.345
+có một vài hàm cố định không thay đổi vì ta không thay đổi nó
+
+63
+00:04:16.345 --> 00:04:20.040
+mọi người không huấn luyện nó để lấy hình ảnh đầu vào X và
+
+64
+00:04:20.040 --> 00:04:24.305
+ánh xạ nó đến một số tập hợp các activation trong layer đó.
+
+65
+00:04:24.305 --> 00:04:30.455
+Một trong những mẹo để tăng tốc quá trình huấn luyện là chúng ta tính toán trước layer đó,
+
+66
+00:04:30.455 --> 00:04:36.615
+các feature kích hoạt lại từ layer đó và chỉ cần lưu chúng vào đĩa.
+
+67
+00:04:36.615 --> 00:04:40.620
+Mọi người đang sử dụng hàm cố định này,
+
+68
+00:04:40.620 --> 00:04:43.030
+trong phần đầu tiên này của neural network,
+
+69
+00:04:43.030 --> 00:04:49.680
+để lấy đầu vào là bất kỳ hình ảnh X và tính toán một số vectơ feature cho nó và sau đó mọi người
+
+70
+00:04:49.680 --> 00:04:56.445
+huấn luyện mô hình softmax nông từ vector feature này để đưa ra dự đoán.
+
+71
+00:04:56.445 --> 00:05:04.170
+Một bước để giúp việc tính toán khi mọi người tính toán trước layer activation
+
+72
+00:05:04.170 --> 00:05:06.330
+cho tất cả các ví dụ trong training set và lưu chúng vào
+
+73
+00:05:06.330 --> 00:05:10.525
+đĩa và sau đó chỉ cần huấn luyện mệnh đề softmax ngay trên đó.
+
+74
+00:05:10.525 --> 00:05:12.585
+Ưu điểm của đĩa an toàn hoặc
+
+75
+00:05:12.585 --> 00:05:15.990
+phương pháp tính toán trước hoặc đĩa an toàn là mọi người không cần
+
+76
+00:05:15.990 --> 00:05:19.020
+tính toán lại những activation đó mỗi khi
+
+77
+00:05:19.020 --> 00:05:23.150
+mọi người lấy epoch hay mọi người tạm dừng ở training set
+
+78
+00:05:23.150 --> 00:05:28.585
+nếu với nhiệm vụ của mình, mọi người có một training set nhỏ thì mọi người có thể làm thế này
+
+79
+00:05:28.585 --> 00:05:31.215
+Cho dù mọi người có một training set lớn hơn.
+
+80
+00:05:31.215 --> 00:05:33.810
+Một nguyên tắc chung là nếu mọi người có
+
+81
+00:05:33.810 --> 00:05:39.164
+một tập dữ liệu nhãn lớn hơn, ví dụ mọi người có rất nhiều hình ảnh về Tigger,
+
+82
+00:05:39.164 --> 00:05:41.940
+Misty cũng như là hình ảnh không có con nào trong cả hai
+
+83
+00:05:41.940 --> 00:05:45.935
+một điều mọi người có thể làm là đóng băng ít layer hơn.
+
+84
+00:05:45.935 --> 00:05:52.761
+Có thể mọi người chỉ đóng băng các layer này và sau đó huấn luyện các layer sau.
+
+85
+00:05:52.761 --> 00:05:57.540
+Mặc dù nếu layer đầu ra có các mệnh đề khác nhau thì dù sao thì mọi người cần phải có
+
+86
+00:05:57.540 --> 00:06:04.321
+unit đầu ra của riêng mình, Tigger, Misty hoặc neither.
+
+87
+00:06:04.321 --> 00:06:07.550
+Có một vài cách để làm điều này.
+
+88
+00:06:07.550 --> 00:06:10.980
+mọi người có thể sử dụng một số trong số trong layer cuối cùng
+
+89
+00:06:10.980 --> 00:06:17.346
+và sử dụng nó làm khởi tạo và thực hiện thuật toán gradient descent
+
+90
+00:06:17.346 --> 00:06:22.050
+từ đó hoặc mọi người cũng có thể bỏ những layer cuối cùng này và
+
+91
+00:06:22.050 --> 00:06:27.990
+chỉ cần sử dụng các unit ẩn mới của riêng mọi người và trong các đầu ra softmax cuối cùng của mình.
+
+92
+00:06:27.990 --> 00:06:32.000
+Mọi người nên thử chúng.
+
+93
+00:06:32.000 --> 00:06:35.220
+Nhưng có thể có một mô hình là nếu mọi người có nhiều dữ liệu hơn,
+
+94
+00:06:35.220 --> 00:06:39.090
+số layer mọi người đã đóng băng có thể nhỏ hơn và sau đó
+
+95
+00:06:39.090 --> 00:06:43.810
+số layer mọi người huấn luyện ở phía trên có thể nhiều hơn.
+
+96
+00:06:43.810 --> 00:06:46.710
+Và ý tưởng là nếu mọi người chọn một tập dữ liệu và có thể có
+
+97
+00:06:46.710 --> 00:06:51.090
+đủ dữ liệu không chỉ để huấn luyện một unit softmax mà đủ để huấn luyện
+
+98
+00:06:51.090 --> 00:06:54.960
+một số mạng nơron khác bao gồm
+
+99
+00:06:54.960 --> 00:07:00.400
+vài layer cuối cùng của mạng cuối cùng này mà mọi người sẽ sử dụng.
+
+100
+00:07:00.400 --> 00:07:03.965
+Cuối cùng, nếu mọi người có nhiều dữ liệu,
+
+101
+00:07:03.965 --> 00:07:09.710
+một điều mọi người có thể làm là sử dụng mạng nguồn mở này và trọng số và sử dụng
+
+102
+00:07:09.710 --> 00:07:15.430
+chúng làm phần khởi tạo và huấn luyện toàn bộ mạng.
+
+103
+00:07:15.430 --> 00:07:20.945
+Mặc dù, một lần nữa nếu đây là một nghìn softmax và mọi người chỉ có ba đầu ra,
+
+104
+00:07:20.945 --> 00:07:23.610
+mọi người cần đầu ra softmax của riêng mình.
+
+105
+00:07:23.610 --> 00:07:26.133
+Đầu ra của các nhãn mà mọi người quan tâm.
+
+106
+00:07:26.133 --> 00:07:29.760
+Nhưng mọi người càng có nhiều dữ liệu nhãn cho
+
+107
+00:07:29.760 --> 00:07:33.630
+nhiệm vụ của mình hoặc những bức ảnh khác của Tigger, Misty và cả những bức ảnh không có cả 2,
+
+108
+00:07:33.630 --> 00:07:37.005
+mọi người càng có thể huấn luyện nhiều layer hơn và trong trường hợp cực đoan,
+
+109
+00:07:37.005 --> 00:07:40.365
+mọi người có thể sử dụng những trọng số mọi người tải xuống làm
+
+110
+00:07:40.365 --> 00:07:42.405
+phần khởi tạo để chúng thay thế
+
+111
+00:07:42.405 --> 00:07:45.260
+khởi tạo ngẫu nhiên và sau đó có thể thực hiện thuật toán gradient descent
+
+112
+00:07:45.260 --> 00:07:50.838
+huấn luyện cập nhật tất cả các trọng số và tất cả các layer của mạng.
+
+113
+00:07:50.838 --> 00:07:54.510
+Đó là học chuyển giao cho việc huấn luyện CNN.
+
+114
+00:07:54.510 --> 00:08:00.090
+Trên thực tế, vì các tập dữ liệu mở trên internet quá lớn và những trọng số mà mọi người
+
+115
+00:08:00.090 --> 00:08:05.580
+có thể tải xuống thì người khác đã phải mất hàng tuần huấn luyện đã học được từ rất nhiều dữ liệu,
+
+116
+00:08:05.580 --> 00:08:08.385
+mọi người thấy rằng đối với nhiều ứng dụng thị giác máy tính,
+
+117
+00:08:08.385 --> 00:08:10.980
+sẽ dễ dàng hơn nhiều nếu mọi người tải xuống
+
+118
+00:08:10.980 --> 00:08:16.080
+trọng số nguồn mở của người khác và sử dụng nó làm khởi tạo để giải quyết vấn đề của mọi người.
+
+119
+00:08:16.080 --> 00:08:18.410
+Trong nhiều lĩnh vực khác nhau,
+
+120
+00:08:18.410 --> 00:08:21.720
+trong tất cả các ứng dụng khác nhau của deep learning,
+
+121
+00:08:21.720 --> 00:08:25.220
+Tôi nghĩ rằng thị giác máy tính là một trong những nơi học chuyển giao
+
+122
+00:08:25.220 --> 00:08:28.815
+là điều mà mọi người nên làm trừ khi,
+
+123
+00:08:28.815 --> 00:08:35.145
+mọi người có một tập dữ liệu quá lớn để tự huấn luyện mọi thứ khác từ đầu.
+
+124
+00:08:35.145 --> 00:08:40.560
+Nhưng mọi người nên xem xét nghiêm túc việc học chuyển giao trừ khi mọi người có
+
+125
+00:08:40.560 --> 00:08:43.745
+một tập dữ liệu đặc biệt lớn và một ngân sách tính toán quá lớn
+
+126
+00:08:43.745 --> 00:08:47.350
+để tự huấn luyện mọi thứ từ đầu.

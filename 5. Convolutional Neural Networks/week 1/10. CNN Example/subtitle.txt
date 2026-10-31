@@ -1,0 +1,132 @@
+Bây giờ ta biết gần như là tất cả
+các khối xây dựng để xây một mạng nơ-ron tích chập (CNN) hoàn chỉnh. Cùng nhìn vào một ví dụ Giả sử ta đang nhập
+một hình ảnh có kích thước 32 x 32 x 3, vậy đó là hình ảnh RGB và có thể ta đang cố
+thực hiện nhận dạng chữ số viết tay. Vậy, ta có một số 7 chẳng hạn trong
+một hình ảnh RGB 32 x 32, cố để nhận ra đây là số nào trong
+10 chữ số từ 0 đến 9. Hãy dùng mạng nơ-ron để làm điều này. Và những gì tôi sẽ sử dụng
+trong slide này thực ra là được truyền cảm hứng, nó thực sự khá giống với một trong số
+các mạng nơ-ron kinh điển được gọi là LeNet-5, do Yann LeCun
+phát minh ra nhiều năm trước. Những gì tôi hiển thị ở đây không
+chính xác là LeNet-5 nhưng lấy cảm hứng từ nó, nhưng nhiều lựa chọn tham số
+được lấy cảm hứng từ nó. Vậy, với đầu vào 32 x 32 x 3
+giả sử rằng layer đầu tiên sử dụng bộ lọc 5 x 5 và
+bước nhảy là 1 và không có padding Vậy, đầu ra của lớp này, nếu ta sử dụng 6 bộ lọc sẽ là 28 x 28 x 6, và chúng ta sẽ gọi layer này là conv 1. Vậy, ta áp dụng 6 bộ lọc, thêm độ chệch,
+áp dụng phi tuyến tính, có thể là một phi tuyến tính thực,
+và đó là đầu ra conv 1 Tiếp theo, hãy áp dụng một pooling layer, vì vậy Tôi sẽ áp dụng mass pooling ở đây và
+hãy dùng f = 2, s = 2. Khi tôi không viết padding
+thì padding sẽ bằng 0 Tiếp theo, hãy áp dụng một pooling layer,
+tôi sẽ áp dụng, hãy xem xét max pooling với bộ lọc 2 x
+2 và bước nhảy bằng 2 nhé. Vậy, điều này sẽ làm giảm chiều cao và chiều rộng của hình biểu diễn
+theo hệ số 2. Vậy, 28 x 28 bây giờ trở thành 14 x 14, và số kênh không đổi
+vậy là 14 x 14 x 6, và chúng ta sẽ gọi
+đây là đầu ra Pool 1. Vậy, hóa ra trong tài liệu
+của CNN có hai quy ước bên trong
+không nhất quán với định nghĩa về layer. Có một quy ước là
+gọi cả 2 cái này là một layer. Vậy, đây sẽ là layer 1 của CNN
+và bây giờ một quy ước nữa là ta gọi conv layer là
+một layer và pool layer là một layer. Khi mọi người báo cáo số lượng layer
+trong mạng nơ-ron thường mọi người chỉ ghi lại số layer mà
+có trọng số, có tham số. Và bởi vì các pooling layer không có
+trọng số, không có tham số, chỉ một vài siêu tham số, tôi sẽ
+sử dụng quy ước rằng conv 1 pool 1 là 1 layer Tôi sẽ coi đó là layer 1,
+mặc dù đôi khi ta thấy mọi người có thể đọc các bài báo trực tuyến và đọc
+bài nghiên cứu, người ta nói về conv layer và pooling layer như thể chúng
+là hai layer riêng biệt. Nhưng đây có thể là hai thuật ngữ ký hiệu
+thiếu nhất quán một chút, nhưng khi tôi đếm layer, tôi chỉ
+đếm layer có trọng số. Vậy, hãy coi cả 2 layer này
+là 1 layer Và tên Conv1 và
+Pool1 ta dùng ở đây, số 1 ở cuối thể hiện rằng tôi coi cả 2
+layer này là một phần của layer 1 của CNN. Và Pool1 được nhóm thành layer 1
+vì nó không có trọng số riêng. Tiếp theo, với hình khối 14 x 14 bx 6,
+hãy áp dụng một conv layer cho nó,
+hãy sử dụng kích thước bộ lọc là 5 x 5, và ta sẽ sử dụng bước nhảy 1 và
+lần này ta sẽ dùng 10 bộ lọc Vậy, bây giờ ta nhận được hình khối 10 x 10 x 10 tập, tôi sẽ gọi nó là Conv 2, và sau đó trong mạng này, ta sẽ lại tiến hành max pooling với f = 2, s = 2. Vậy, mọi người có thể đoán
+đầu ra của nó, f = 2, s = 2, nó sẽ làm giảm chiều cao và chiều rộng theo hệ số 2, vậy
+ta còn lại 5 x 5 x 10. Và tôi sẽ gọi đây là Pool 2, và theo quy ước của chúng ta, đây là
+layer 2 của mạng nơ-ron. Bây giờ chúng ta sẽ áp dụng
+một conv layer khác cho nó Tôi sẽ sử dụng bộ lọc 5 x 5,
+nên f = 5, và hãy thử xem nhé, 1 và tôi không viết padding,
+nghĩa là không có padding. Và ta sẽ được đầu ra conv 2,
+và đó là 16 bộ lọc của ta. Vậy, đây sẽ là đầu ra chiều
+với kích thước 10 x 10 x 16 Vậy, chúng ta xem xét nó và
+đây là layer conv 2. Và sau đó, ta sẽ áp dụng max pooling
+cho nó với f = 2, s = 2. Chắc mọi người có thể đoán đầu ra của nó, chúng ta đang ở 10 x 10 x 16 với
+max pooling với f = 2, s = 2. Như vậy chiều cao và chiều rộng sẽ giảm một nửa, mọi người có thể đoán
+kết quả của nó, nhỉ? Pooling bên trái với f = 2, s = 2. Nó sẽ làm giảm một nửa chiều cao và
+chiều rộng và ta sẽ nhận được một hình khối 5 x 5 x 16,
+số kênh vẫn giống như trước. Chúng ta sẽ gọi đây là pool2. Và theo quy ước của chúng ta,
+là layer 2 vì nó có một bộ trọng số và
+layer conv 2 của ta Bây giờ 5 x 5 x 16,
+5 x 5 x 16 bằng 400. Vậy, bây giờ chúng ta sẽ khiến Pool 2
+dẹt lại thành một vectơ chiều 400 x 1. Vậy, hãy coi nó giống như làm dẹt nó đi
+và biến thành tập hợp các tế bào thần kinh này, giống như vậy. Sau đó, chúng ta sẽ
+lấy 400 unit này và xây dựng layer tiếp theo,
+layer này có 120 unit. Vậy, đây thực ra là
+layer được kết nối đầy đủ đầu tiên của ta Tôi sẽ gọi nó là FC3 vì chúng ta có 400 unit kết nối dày đặc với 120 unit. Vậy, unit được kết nối đầy đủ này,
+layeer được kết nối đầy đủ này giống như một layer mạng nơ-ron
+mà ta đã thấy trong Khóa học 1 và 2. Đây chỉ là một mạng nơ-ron
+tiêu chuẩn với ma trận trọng số được gọi là
+W3 có kích thước 120 x 400. Và nó được kết nối đầy đủ vì
+mỗi unit trong số 400 unit ở đây được kết nối với mỗi 120 unit ở đây và
+ta cũng có tham số độ lệch, vâng đó sẽ chỉ là 120 chiều
+đây là 120 đầu ra. Và cuối cùng, hãy lấy 120 unit và
+thêm một layer khác, lần này nhỏ hơn nhưng
+giả sử chúng ta có 84 unit ở đây, Tôi sẽ gọi nó là layer 4 được kết nối đầy đủ Và cuối cùng, bây giờ chúng ta có 84 số thực
+mà ta có thể khớp với một unit softmax. Và nếu ta đang cố thực hiện
+nhận dạng kỹ thuật số chữ viết tay, để nhận dạng các số viết tay này, nó là 0,
+1, 2, v.v. lên đến 9. Sau đó, nó sẽ là
+một softmax với 10 đầu ra. Vì vậy, đây là một ví
+dụ điển hình về một mạng nơ-ron phức hợp
+có thể trông như thế nào. Và tôi biết trông có vẻ như có
+rất nhiều siêu tham số Lát nữa, tôi sẽ cung cấp cho mọi người một số
+đề xuất cụ thể hơn về cách chọn các kiểu siêu tham số Có lẽ một phương châm chung là
+đừng cố tự tạo các thiết lập của các siêu tham số, mà hãy xem tài liệu để biết
+siêu tham số mà những người khác đã dùng Và chỉ cần chọn một kiến trúc
+đã hoạt động tốt cho người khác và có khả năng là
+cũng sẽ hoạt động tốt cho ứng dụng của các mọi người. Chúng ta sẽ tìm hiểu thêm về điều đó vào tuần tới. Nhưng bây giờ tôi sẽ chỉ ra rằng
+khi ta đi sâu hơn vào mạng nơ-ron, thường nh và nw cho đến chiều cao và chiều rộng
+sẽ giảm. Tôi đã nói điều này trước rồi, nhưng nó thay đổi
+từ 32 x 32, thành 20 x 20, thành 14 x 14, thành 10 x 10, thành 5 x 5. Vì vậy, khi ta đi sâu hơn, thường thì chiều cao và chiều rộng
+sẽ giảm, ngược lại số kênh
+sẽ tăng lên. Số kênh đi từ 3 đến 6 thành 16, và
+layer được kết nối đầy đủ của ta ở cuối. Và một mô hình khá phổ biến khác mà mọi người thấy
+trong mạng nơ-ron là có các layer conv (tích chập), có thể một hoặc nhiều layer conv
+theo sau là pooling layer (layer tổng hợp) và sau đó là một hoặc nhiều layer conv
+tiếp theo là pooling layer. Và cuối cùng, mọi người có
+một vài layer được kết nối đầy đủ và sau đó có thể là một softmax. Và đây là một mô hình
+khá phổ biến khác mà mọi người thấy trong mạng nơ-ron. Vì vậy, tôi sẽ chỉ nói nhanh về mạng nơ-ron này, nói một số chi tiết khác
+về hình dạng của activation là gì, kích thước activation và
+số lượng tham số trong mạng này. Vì vậy, đầu vào là 32 x 30 x 3 và nếu mọi người nhân các số
+với nhau, mọi người sẽ nhận được 3,072. Vậy activation, a0 có thứ nguyên là 3072. Nó thực sự là 32 x 32 x 3. Và tôi đoán là không có tham số
+ở layer đầu vào. Và khi mọi người nhìn vào các layer khác nhau, hãy cứ thoải mái tìm hiểu
+các chi tiết nhé Đây là hình dạng activation và kích thước activation của
+các layer khác nhau này. Vì vậy, tôi chỉ muốn nhắc mọi người chú ý một vài điều. Đầu tiên, hãy lưu ý rằng các layer max pooling
+không có bất kỳ tham số nào. Thứ hai, lưu ý rằng các layer conv
+có khá là ít tham số,
+như chúng ta đã nói trong các video đầu tiên. Và trên thực tế, rất nhiều tham số
+có xu hướng nằm trong các layer được kết nối đầy đủ của mạng nơron. Và sau đó mọi người cũng nhận thấy rằng
+kích thước activation có xu hướng giảm dần khi mọi người
+đi sâu hơn vào mạng nơ-ron. Nếu nó giảm xuống quá nhanh, như vậy thường là
+không tốt cho hiệu suất. Vì vậy, đầu tiên, nó bắt đầu ở đó với 6.000 và
+1.600, và sau đó từ từ giảm xuống còn 84 cho đến
+cuối cùng mọi người có đầu ra Softmax của mình. mọi người thấy rằng rất nhiều CNN
+sẽ có thuộc tính, sẽ có các mô hình tương tự như các mô hình này. Vì vậy, bây giờ mọi người đã thấy
+khối xây dựng cơ bản của mạng nơ ron, mạng nơ ron tích chập của mọi người,
+layer conv, pooling layer, và layer được kết nối đầy đủ. Rất nhiều nghiên cứu bộ phận máy tính đã
+đi vào tìm hiểu làm thế nào để đặt lại với nhau những khối xây dựng cơ bản này để
+xây dựng mạng nơ-ron hiệu quả. Và việc kết hợp chúng với nhau
+thực sự đòi hỏi một chút kiến thức sâu. Tôi nghĩ rằng một trong những cách tốt nhất để mọi người có được trực giác về cách để
+kết hợp những thứ này lại với nhau là xem những ví dụ cụ thể về cách
+người khác đã làm điều đó. Vậy, những gì tôi muốn làm vào tuần tới là chỉ cho mọi người
+một vài ví dụ cụ thể thậm chí còn kỹ hơn ví dụ đầu tiên mà mọi người vừa thấy về cách
+người đã kết hợp chúng với nhau thành công để xây dựng
+mạng nơ ron hiệu quả. Và thông qua các video vào tuần tới, tôi hy vọng
+mọi người có được trực giác của riêng mình về cách xây dựng những thứ này. Và khi chúng ta được đưa ra các ví dụ cụ thể
+về những kiến trúc mà mọi người có thể sử dụng ở đây được phát triển bởi người khác
+hoặc ứng dụng của riêng mọi người. Vì vậy, chúng ta sẽ làm điều đó vào tuần tới, nhưng trước khi kết thúc các video của tuần này, tôi
+sẽ chỉ nói một điều cuối cùng cũng là chủ đề của video tiếp theo là
+lý do tại sao mọi người nên sử dụng tích chập Một số lợi ích và lợi thế của việc sử dụng tích chập cũng như
+cũng như cách đặt tất cả chúng lại với nhau. Cách lấy một mạng nơ-ron giống như mạng
+mọi người vừa thấy và thực sự huấn luyện nó với một tập huấn luyện để thực hiện nhận dạng hình ảnh
+cho một số nhiệm vụ. Vậy, chúng ta sẽ tiếp tục với
+video cuối cùng của tuần này.

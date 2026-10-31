@@ -1,0 +1,360 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:05.500
+The term human level performance is sometimes used casually in research articles.
+
+00:00:05.500 --> 00:00:09.800
+But let me show you how we can define it a bit more precisely, and in particular,
+
+00:00:09.800 --> 00:00:13.000
+use the definition of the phrase human level performance
+
+00:00:13.000 --> 00:00:18.000
+that is most useful for helping you drive progress in your machine learning project.
+
+00:00:19.000 --> 00:00:25.000
+So remember from our last video that one of the uses of this phrase human level error
+
+00:00:25.000 --> 00:00:29.000
+is that it gives us a way of estimating Bayes' error,
+
+00:00:29.000 --> 00:00:35.000
+whether it's the best possible error any function could either now or in the future ever, ever achieve.
+
+00:00:35.000 --> 00:00:40.000
+So bearing that in mind, let's look at a medical image classification example.
+
+00:00:40.000 --> 00:00:44.000
+Let's say that you want to look at a radiology image like this
+
+00:00:44.000 --> 00:00:48.000
+and make a diagnosis classification decision.
+
+00:00:49.000 --> 00:00:54.000
+And suppose that a typical human, untrained human, achieves 3% error on this task,
+
+00:00:54.000 --> 00:01:02.000
+a typical doctor, maybe a typical radiologist doctor, achieves 1% error,
+
+00:01:02.000 --> 00:01:06.000
+an experienced doctor does even better, 0.7% error,
+
+00:01:06.000 --> 00:01:11.000
+and a team of experienced doctors, that is, if you get a team of experienced doctors,
+
+00:01:11.000 --> 00:01:14.000
+and have them all look at the image and discuss and debate the image,
+
+00:01:14.000 --> 00:01:19.000
+together their consensus opinion achieves 0.5% error.
+
+00:01:20.000 --> 00:01:25.000
+So the question I want to pose to you is how should you define human level error?
+
+00:01:25.000 --> 00:01:30.000
+Is human level error 3%, 1%, 0.7%, or 0.5%?
+
+00:01:31.000 --> 00:01:34.000
+Feel free to pause this video to think about it if you wish.
+
+00:01:34.000 --> 00:01:38.000
+And to answer that question, I would urge you to bear in mind that
+
+00:01:38.000 --> 00:01:45.000
+one of the most useful ways to think of human error is as a proxy or an estimate for Bayes' error.
+
+00:01:46.000 --> 00:01:50.000
+So please be free to pause this video to think about it for a while if you wish.
+
+00:01:50.000 --> 00:01:55.000
+But here's how I would define human level error,
+
+00:01:55.000 --> 00:01:59.000
+which is if you want a proxy or an estimate for Bayes' error,
+
+00:01:59.000 --> 00:02:06.000
+then given that a team of experienced doctors discussing and debating can achieve 0.5% error,
+
+00:02:06.000 --> 00:02:12.000
+we know that Bayes' error is less than or equal to 0.5%.
+
+00:02:12.000 --> 00:02:17.000
+So because some system, a team of these doctors can achieve 0.5% error,
+
+00:02:17.000 --> 00:02:23.000
+so by definition, the theoretically optimal error has got to be 0.5% or lower.
+
+00:02:23.000 --> 00:02:29.000
+We don't know how much better it is, maybe there's an even larger team of even more experienced doctors that could do even better,
+
+00:02:29.000 --> 00:02:36.000
+so maybe it's even a little bit better than 0.5%, but we know the optimal error cannot be higher than 0.5%.
+
+00:02:36.000 --> 00:02:43.000
+So what I would do in this setting is use 0.5% as our estimate for Bayes' error,
+
+00:02:43.000 --> 00:02:48.000
+so I would define human level performance as 0.5%,
+
+00:02:48.000 --> 00:02:55.000
+at least if you're hoping to use human level error in the analysis of bias invariance as we saw in the last video.
+
+00:02:56.000 --> 00:03:01.000
+Now for the purpose of publishing a research paper or for the purpose of deploying a system,
+
+00:03:01.000 --> 00:03:05.000
+maybe there's a different definition of human level error that you can use,
+
+00:03:05.000 --> 00:03:10.000
+which is so long as you surpass the performance of a typical doctor,
+
+00:03:10.000 --> 00:03:13.000
+that seems like maybe a very useful result to have accomplished,
+
+00:03:13.000 --> 00:03:17.000
+and maybe surpassing a single radiologist or single doctor's performance
+
+00:03:17.000 --> 00:03:21.000
+might mean the system is good enough to deploy in some context.
+
+00:03:21.000 --> 00:03:28.000
+So maybe the takeaway from this is to be clear about what your purpose is in defining the term human level error,
+
+00:03:28.000 --> 00:03:36.000
+and if it is to show that you can surpass a single human and therefore argue for deploying your system in some context,
+
+00:03:36.000 --> 00:03:44.000
+maybe this is the appropriate definition, but if your goal is the proxy for Bayes' error, then this is the appropriate definition.
+
+00:03:44.000 --> 00:03:49.000
+To see why this matters, let's look at an error analysis example.
+
+00:03:49.000 --> 00:03:59.240
+Let's say for a medical imaging diagnosis example that your training error is 5% and your death error is 6%.
+
+00:04:00.240 --> 00:04:05.240
+And in the example from the previous slide, human level performance,
+
+00:04:05.240 --> 00:04:09.240
+and I'm going to think of this as proxy for Bayes' error,
+
+00:04:09.240 --> 00:04:16.990
+depending on whether you define it as a typical doctor's performance or an experienced doctor or a team of doctors,
+
+00:04:16.990 --> 00:04:23.990
+you would have either 1% or 0.7% or 0.5% for this.
+
+00:04:23.990 --> 00:04:31.990
+And remember also our definitions from the previous video that this gap between Bayes' error or the estimate of Bayes' error and training error
+
+00:04:31.990 --> 00:04:35.990
+us calling that a measure of the avoidable bias,
+
+00:04:35.990 --> 00:04:41.990
+and this as a measure or an estimate of how much of a variance problem you have in your learning algorithm.
+
+00:04:41.990 --> 00:04:48.490
+So in this first example, whichever of these choices you make,
+
+00:04:48.490 --> 00:04:58.490
+the measure of avoidable bias will be something like 4%, so it will be somewhat between I guess 4% if you take that to 4.5%,
+
+00:04:58.490 --> 00:05:06.020
+if you use 0.5%, whereas this is 1%.
+
+00:05:06.020 --> 00:05:12.020
+So in this example, I would say it doesn't really matter which of the definitions of human level error you use,
+
+00:05:12.020 --> 00:05:20.020
+whether you use the typical doctor's error or the single experience doctor's error or the team of experienced doctor's error,
+
+00:05:20.020 --> 00:05:27.020
+this, whether this is 4% or 4.5%, this is clearly bigger than the variance problem.
+
+00:05:27.020 --> 00:05:34.020
+And so in this case, you should focus on bias reduction techniques, such as train a bigger network.
+
+00:05:34.020 --> 00:05:42.020
+Now let's look at a second example. Let's say your training error is 1% and your depth error is 5%.
+
+00:05:42.020 --> 00:05:49.020
+Then again, it doesn't really matter, it seems a bit academic whether the human level performance is 1% or 0.7% or 0.5%,
+
+00:05:49.020 --> 00:05:59.020
+because whichever of these definitions you use, your measure of avoidable bias will be, I guess, somewhere between 0% if you use that to 0.5%,
+
+00:05:59.020 --> 00:06:04.020
+that's the gap between the human level performance and your training error, whereas this gap is 4%.
+
+00:06:04.020 --> 00:06:09.020
+So this 4% is going to be much bigger than the avoidable bias either way.
+
+00:06:09.020 --> 00:06:13.020
+And so, you know, this suggests you should focus on variance reduction techniques,
+
+00:06:13.020 --> 00:06:16.020
+such as regularization or getting a bigger training set.
+
+00:06:16.020 --> 00:06:22.020
+But where it really matters will be if your training error is 0.7%, so you're doing really well now,
+
+00:06:22.020 --> 00:06:26.020
+and your depth error is 0.8%.
+
+00:06:26.020 --> 00:06:34.020
+In this case, it really matters that you use your estimate for base error as 0.5%,
+
+00:06:34.020 --> 00:06:40.460
+because in this case, your measure of how much avoidable bias you have is 0.2%,
+
+00:06:40.460 --> 00:06:48.460
+which is twice as big as your measure for your variance, which is just 0.1%.
+
+00:06:48.460 --> 00:06:54.460
+And so this suggests that maybe both the bias and variance are both problems, but maybe the avoidable bias is a bit bigger of a problem.
+
+00:06:54.460 --> 00:07:00.460
+And in this example, 0.5%, as we discussed on the previous slide, was the best measure of base error,
+
+00:07:00.460 --> 00:07:03.460
+because a team of human doctors could achieve that performance.
+
+00:07:03.460 --> 00:07:11.460
+If you use 0.7 as your proxy for base error, you would have estimated the avoidable bias as, you know, pretty much 0%,
+
+00:07:11.460 --> 00:07:16.460
+and you might have missed that you actually should try to do better on your training set.
+
+00:07:16.460 --> 00:07:26.700
+So I hope this gives a sense also of why making progress in the machine learning problem gets harder as you achieve or as you approach human level performance.
+
+00:07:26.700 --> 00:07:34.700
+In this example, once you've approached 0.7% error, unless you're very careful about estimating base error,
+
+00:07:34.700 --> 00:07:41.700
+you might not know how far away you are from base error, and therefore how much you should be trying to reduce avoidable bias.
+
+00:07:42.700 --> 00:07:48.700
+In fact, if all you knew was that a single typical doctor achieves 1% error,
+
+00:07:48.700 --> 00:07:53.700
+and it might be very difficult to know if you should be trying to fit your training set even better.
+
+00:07:53.700 --> 00:07:58.700
+And this problem arose only when you're doing very well on your problem already,
+
+00:07:58.700 --> 00:08:03.700
+only when you're doing, you know, 0.7%, 0.8%, really close to human level performance.
+
+00:08:03.700 --> 00:08:09.700
+Whereas in the two examples on the left, when you were further away from human level performance,
+
+00:08:09.700 --> 00:08:12.700
+it was easier to tell if you should focus on bias or variance.
+
+00:08:12.700 --> 00:08:16.700
+So this is maybe an illustration of why as you approach human level performance,
+
+00:08:16.700 --> 00:08:19.700
+it is actually harder to tease out the bias and the variance effects.
+
+00:08:19.700 --> 00:08:24.700
+And therefore why progress on your machine learning project just gets harder as you're doing really well.
+
+00:08:24.700 --> 00:08:27.700
+So just to summarize what we've talked about,
+
+00:08:27.700 --> 00:08:32.700
+if you're trying to understand bias and variance where you have an estimate of human level error,
+
+00:08:32.700 --> 00:08:38.700
+for a task that humans can do quite well, you can use human level error as a proxy or as an approximation,
+
+00:08:38.700 --> 00:08:41.700
+for Bayes' error.
+
+00:08:41.700 --> 00:08:54.600
+And so the difference between your estimate of Bayes' error tells you how much avoidable bias is a problem,
+
+00:08:54.600 --> 00:08:58.600
+how much avoidable bias there is, and the difference between training error and dev error,
+
+00:08:58.600 --> 00:09:01.600
+that tells you how much variance is a problem,
+
+00:09:01.600 --> 00:09:06.600
+as whether your algorithm is able to generalize from the training set to the dev set.
+
+00:09:06.600 --> 00:09:11.600
+And the big difference between our discussion here and what we saw in earlier course
+
+00:09:11.600 --> 00:09:15.600
+was that instead of comparing training error to 0%,
+
+00:09:15.600 --> 00:09:22.330
+and just calling that the estimate of the bias,
+
+00:09:22.330 --> 00:09:28.330
+in contrast in this video we have a more nuanced analysis in which there is no particular expectation
+
+00:09:28.330 --> 00:09:31.330
+that you should get 0% error.
+
+00:09:31.330 --> 00:09:37.330
+Because sometimes Bayes' error is non-zero and sometimes it's just not possible for anything to do better
+
+00:09:37.330 --> 00:09:39.330
+than a certain threshold of error.
+
+00:09:41.740 --> 00:09:45.740
+And so in the earlier course we were measuring training error
+
+00:09:45.740 --> 00:09:52.740
+and seeing how much bigger training error was than 0 and just using that to try to understand how big our bias is.
+
+00:09:52.740 --> 00:09:57.740
+And that turns out to work just fine for problems where Bayes' error is nearly 0%,
+
+00:09:57.740 --> 00:10:03.740
+such as recognizing cats humans are near perfect for that, so Bayes' error is also near perfect for that.
+
+00:10:03.740 --> 00:10:06.740
+So that actually works okay when Bayes' error is nearly 0.
+
+00:10:06.740 --> 00:10:11.740
+But for problems where the data is noisy, like speech recognition on very noisy audio,
+
+00:10:11.740 --> 00:10:15.740
+where it's just impossible sometimes to hear what was said and to get the correct transcription,
+
+00:10:15.740 --> 00:10:22.740
+for problems like that having a better estimate for Bayes' error can help you better estimate avoidable bias and variance
+
+00:10:22.740 --> 00:10:28.740
+and therefore make better decisions on whether to focus on bias reduction tactics or on variance reduction tactics.
+
+00:10:29.740 --> 00:10:35.740
+So to recap, having an estimate of human level performance gives you an estimate of Bayes' error
+
+00:10:35.740 --> 00:10:41.740
+and this allows you to more quickly make decisions as to whether you should focus on trying to reduce the bias
+
+00:10:41.740 --> 00:10:44.740
+or trying to reduce the variance of your algorithm.
+
+00:10:44.740 --> 00:10:49.740
+And these techniques will tend to work well until you surpass human level performance,
+
+00:10:49.740 --> 00:10:57.740
+whereupon you might no longer have a good estimate of Bayes' error that still helps you make this decision really clearly.
+
+00:10:57.740 --> 00:11:02.740
+Now one of the exciting developments in deep learning has been that for more and more tasks,
+
+00:11:02.740 --> 00:11:05.740
+we're actually able to surpass human level performance.
+
+00:11:05.740 --> 00:11:11.740
+In the next video, let's talk more about the process of surpassing human level performance.

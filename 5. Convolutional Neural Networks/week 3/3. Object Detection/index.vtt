@@ -1,0 +1,210 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.460 --> 00:00:05.500
+You've learned about object localization as well as landmark detection.
+
+00:00:05.500 --> 00:00:09.740
+Now, let's build up toward an object detection algorithm.
+
+00:00:09.740 --> 00:00:14.820
+In this video, you learned how to use a ConvNet to perform object detection using something
+
+00:00:14.820 --> 00:00:18.340
+called the sliding windows detection algorithm.
+
+00:00:18.340 --> 00:00:21.460
+Let's say you want to build a car detection algorithm.
+
+00:00:21.460 --> 00:00:22.460
+Here's what you can do.
+
+00:00:22.460 --> 00:00:28.280
+You can first create a labeled training set, so X and Y, with closely cropped examples
+
+00:00:28.280 --> 00:00:29.280
+of cars.
+
+00:00:29.280 --> 00:00:35.860
+So this is a image X, there's a positive example, is a car, is a car, is a car, and then there's
+
+00:00:35.860 --> 00:00:37.980
+another car, there's another car.
+
+00:00:37.980 --> 00:00:42.080
+And for our purposes, in this training set, you can start off with what I'm going to call
+
+00:00:42.080 --> 00:00:47.240
+closely cropped images, meaning that X is pretty much only the car.
+
+00:00:47.240 --> 00:00:51.720
+So you can take a picture and crop out and just cut out anything else that's not part
+
+00:00:51.720 --> 00:00:57.840
+of a car, so you end up with a car centered in pretty much the entire image.
+
+00:00:57.840 --> 00:01:05.460
+Given this labeled training set, you can then train a ConvNet that inputs an image,
+
+00:01:05.460 --> 00:01:12.140
+like one of these closely cropped images, and then the job of the ConvNet is to output Y,
+
+00:01:12.140 --> 00:01:15.240
+zero, one, is this a car or not.
+
+00:01:15.240 --> 00:01:20.620
+Once you've trained up this ConvNet, you can then use it in sliding windows detection.
+
+00:01:20.620 --> 00:01:25.500
+So the way you do that is if you have a test image like this, what you do is you
+
+00:01:25.500 --> 00:01:30.080
+start by picking a certain window size, which I've shown down there, and then you
+
+00:01:30.080 --> 00:01:35.180
+would input into this ConvNet a small rectangular region.
+
+00:01:35.180 --> 00:01:42.180
+So take just this little red square, input that into the ConvNet, and have a ConvNet
+
+00:01:42.180 --> 00:01:43.180
+make a prediction.
+
+00:01:43.180 --> 00:01:48.260
+And presumably, for that little region in the red square, it will say, no, that little
+
+00:01:48.260 --> 00:01:50.960
+red square does not contain a car.
+
+00:01:50.960 --> 00:01:57.800
+In the sliding windows detection algorithm, what you do is you then pass this input a second
+
+00:01:57.800 --> 00:02:03.600
+image, now bounded by this red square, shift it a little bit over, and feed that to the
+
+00:02:03.600 --> 00:02:08.140
+ConvNet, so you're speeding just the region of the image in the red square to the
+
+00:02:08.140 --> 00:02:16.160
+ConvNet, and run the ConvNet again, and then you do that with a third image, and so on,
+
+00:02:16.160 --> 00:02:23.720
+and you keep going, until you've slid the window across every position in the image.
+
+00:02:23.720 --> 00:02:29.120
+And I'm using a pretty large stride in this example, just to make the animation go faster,
+
+00:02:29.120 --> 00:02:36.560
+but the idea is you basically go through every region of this size, and pass lots of
+
+00:02:36.560 --> 00:02:43.360
+little cropped images into the ConvNet, and have it classify 0 or 1 for each position
+
+00:02:43.360 --> 00:02:45.240
+at some stride.
+
+00:02:45.240 --> 00:02:52.280
+Now having done this once with running this, what's called a sliding window through the
+
+00:02:52.280 --> 00:02:57.840
+image, you then repeat it, but now use a larger window.
+
+00:02:57.840 --> 00:03:03.560
+So now you take a slightly larger region, and run that region, so resize this region
+
+00:03:03.560 --> 00:03:08.720
+into whatever input size the ConvNet is expecting, and feed that to the ConvNet, and have it
+
+00:03:08.720 --> 00:03:15.640
+output 0 or 1, and then slide the window over again using some stride, and so on,
+
+00:03:15.640 --> 00:03:20.800
+and you run that throughout your entire image until you get to the end, and then
+
+00:03:20.800 --> 00:03:27.360
+you might do it a third time using even larger windows, and so on.
+
+00:03:27.360 --> 00:03:31.920
+And the hope is that if you do this, then so long as there's a car somewhere in the
+
+00:03:31.920 --> 00:03:38.600
+image, that there will be a window where, for example, if you are passing in this
+
+00:03:38.600 --> 00:03:43.600
+window into the ConvNet, hopefully the ConvNet will have output 1 for that
+
+00:03:43.600 --> 00:03:47.840
+input region, so then you detect that there is a car there.
+
+00:03:47.840 --> 00:03:52.240
+So this algorithm is called sliding windows detection, because you take these
+
+00:03:52.240 --> 00:03:59.520
+windows, these square boxes, and slide them across the entire image, and classify
+
+00:03:59.520 --> 00:04:05.760
+every square region with some stride as containing a car or not.
+
+00:04:05.760 --> 00:04:10.720
+Now there's a huge disadvantage of sliding windows detection, which is the
+
+00:04:10.720 --> 00:04:15.840
+computational cost, because you're cropping out so many different square
+
+00:04:15.840 --> 00:04:21.920
+regions in the image, and running each of them independently through a ConvNet.
+
+00:04:21.920 --> 00:04:26.800
+And if you use a very coarse stride, a very big stride, a very big step size,
+
+00:04:26.800 --> 00:04:30.480
+then that will reduce the number of windows you need to pass through the
+
+00:04:30.480 --> 00:04:36.720
+ConvNet, but that coarser granularity may hurt performance, whereas if you use a
+
+00:04:36.720 --> 00:04:42.240
+very fine granularity or a very small stride, then the huge number of all
+
+00:04:42.240 --> 00:04:46.400
+these little regions you're passing through the ConvNet means that there's a
+
+00:04:46.400 --> 00:04:49.040
+very high computational cost.
+
+00:04:49.040 --> 00:04:53.200
+So before the rise of neural networks, people used to use much simpler
+
+00:04:53.200 --> 00:04:57.840
+classifiers, like a simple linear classifier over hand-engineered features
+
+00:04:57.840 --> 00:05:03.200
+in order to perform object detection. And in that era, because each classifier
+
+00:05:03.200 --> 00:05:07.200
+was relatively cheap to compute, it was just a linear function, sliding windows
+
+00:05:07.200 --> 00:05:13.040
+detection ran okay. It was not a bad method, but with ConvNet, now running
+
+00:05:13.040 --> 00:05:18.160
+a single classification task is much more expensive, and sliding windows this
+
+00:05:18.160 --> 00:05:24.960
+way is infeasibly slow. And unless you use a very fine granularity or a very
+
+00:05:24.960 --> 00:05:30.800
+small stride, you end up not able to localize the objects that accurately
+
+00:05:30.800 --> 00:05:35.280
+within the image as well. Fortunately, however, this problem of
+
+00:05:35.280 --> 00:05:40.080
+computational cost has a pretty good solution. In particular, the sliding
+
+00:05:40.080 --> 00:05:44.720
+windows object detector can be implemented convolutionally or much
+
+00:05:44.720 --> 00:05:48.320
+more efficiently. Let's see in the next video how you can do that.

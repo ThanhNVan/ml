@@ -1,0 +1,441 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.340 --> 00:00:05.420
+One of the most powerful ideas in deep learning is that sometimes you can take knowledge that
+
+00:00:05.420 --> 00:00:10.720
+the neural network has learned from one task and apply that knowledge to a separate task.
+
+00:00:10.720 --> 00:00:15.180
+So for example, maybe you can have a neural network learn to recognize objects like cats
+
+00:00:15.180 --> 00:00:19.540
+and then use that knowledge or use part of that knowledge to help you do a better job
+
+00:00:19.540 --> 00:00:21.480
+reading x-ray scans.
+
+00:00:21.480 --> 00:00:23.540
+This is called transfer learning.
+
+00:00:23.540 --> 00:00:25.420
+Let's take a look.
+
+00:00:25.420 --> 00:00:30.800
+Let's say you've trained a neural network on image recognition.
+
+00:00:30.800 --> 00:00:36.140
+So you first take a neural network and train it on x-y pairs where x is an image and y
+
+00:00:36.140 --> 00:00:38.100
+is some object in the image.
+
+00:00:38.100 --> 00:00:41.500
+It's a cat or a dog or a bird or something else.
+
+00:00:41.500 --> 00:00:46.420
+If you want to take this neural network and adapt or we say transfer what is learned to
+
+00:00:46.420 --> 00:00:55.180
+a different task such as radiology diagnosis, meaning really reading x-ray scans, where you
+
+00:00:55.180 --> 00:01:00.940
+can do is take this loss output layer of the neural network and just delete that and delete
+
+00:01:00.940 --> 00:01:07.180
+also the waste feeding into that loss output layer and create a new set of randomly initialized
+
+00:01:07.180 --> 00:01:15.180
+waste just for the loss layer and have that now output radiology diagnosis.
+
+00:01:15.180 --> 00:01:18.620
+So to be concrete, during the first phase of training where you're training on an image
+
+00:01:18.620 --> 00:01:23.300
+recognition task, you train all of the usual parameters for the neural network, all
+
+00:01:23.300 --> 00:01:33.080
+the ways, all the layers, and you have something that now learns to make image recognition predictions.
+
+00:01:33.080 --> 00:01:39.040
+Having trained that neural network, what you now do to implement transfer learning is swap
+
+00:01:39.040 --> 00:01:50.040
+in a new data set x-y where now these are radiology images and y are the diagnoses
+
+00:01:50.040 --> 00:01:53.440
+you want to predict.
+
+00:01:53.440 --> 00:01:58.800
+And what you do is initialize the loss layer's waste.
+
+00:01:58.800 --> 00:02:06.800
+Let's call that WL and BL randomly and now retrain the neural network on this new data
+
+00:02:06.800 --> 00:02:09.720
+set, on the new radiology data set.
+
+00:02:09.720 --> 00:02:14.520
+You have a couple options of how you retrain the neural network with radiology data.
+
+00:02:14.520 --> 00:02:18.520
+You might, if you have a small radiology data set, you might want to just retrain the
+
+00:02:18.520 --> 00:02:22.800
+waste of the loss layer, just WL, BL, and keep the rest of the parameters fixed.
+
+00:02:22.800 --> 00:02:29.920
+If you have enough data, you could also retrain all the layers of the rest of the neural network.
+
+00:02:29.920 --> 00:02:33.720
+And the rule of thumb is maybe if you have a small data set, then just retrain the one
+
+00:02:33.720 --> 00:02:37.240
+loss layer, the output layer, or maybe the loss one or two layers.
+
+00:02:37.240 --> 00:02:41.800
+But if you have a lot of data, then maybe you can retrain all the parameters in the
+
+00:02:41.800 --> 00:02:42.800
+network.
+
+00:02:42.800 --> 00:02:48.320
+And if you retrain all the parameters in the neural network, then this initial phase of
+
+00:02:48.320 --> 00:02:55.600
+training on image recognition is sometimes called pre-training because you're using image
+
+00:02:55.600 --> 00:03:01.960
+recognition's data to pre-initialize or really pre-train the waste of the neural network.
+
+00:03:01.960 --> 00:03:07.080
+And then if you're updating all the ways afterward, then training on the radiology data, sometimes
+
+00:03:07.080 --> 00:03:10.000
+that's called fine tuning.
+
+00:03:10.000 --> 00:03:15.320
+So if you hear the words pre-training and fine tuning in a deep learning context, this
+
+00:03:15.320 --> 00:03:20.480
+is what they mean when they refer to pre-training and fine tuning weights in a transfer learning
+
+00:03:20.480 --> 00:03:21.480
+task.
+
+00:03:21.480 --> 00:03:27.000
+And what you've done in this example is you've taken knowledge, learned from image recognition,
+
+00:03:27.000 --> 00:03:31.400
+and applied it or transferred it to radiology diagnosis.
+
+00:03:31.400 --> 00:03:35.880
+And the reason this can be helpful is that a lot of the low-level features such as detecting
+
+00:03:35.880 --> 00:03:41.160
+edges, detecting curves, detecting parts of objects, learning from that, from a very
+
+00:03:41.160 --> 00:03:46.960
+large image recognition data set might help your learning algorithm do better in radiology
+
+00:03:46.960 --> 00:03:47.960
+diagnosis.
+
+00:03:47.960 --> 00:03:53.080
+It's just learned a lot about the structure and the nature of how images look like, and
+
+00:03:53.080 --> 00:03:56.600
+some of that knowledge will be useful.
+
+00:03:56.600 --> 00:04:01.600
+So having learned to recognize images, it might have learned enough about just what
+
+00:04:01.600 --> 00:04:07.040
+parts of different images look like, that knowledge about lines, dots, curves, and
+
+00:04:07.040 --> 00:04:12.720
+so on, maybe small parts of objects, that knowledge could help your radiology diagnosis
+
+00:04:12.720 --> 00:04:16.120
+network learn a bit faster or learn with less data.
+
+00:04:16.120 --> 00:04:17.760
+Here's another example.
+
+00:04:17.760 --> 00:04:20.600
+Let's say that you've trained a speech recognition system.
+
+00:04:20.600 --> 00:04:27.760
+So now X is inputs of audio or audio snippets, and Y is some transcript.
+
+00:04:27.760 --> 00:04:34.520
+So you trained in speech recognition system to output your transcripts.
+
+00:04:34.520 --> 00:04:45.610
+And let's say that you now want to build a wake word or a trigger word detection system.
+
+00:04:45.610 --> 00:04:50.570
+So recall that the wake word or the trigger word are the words we say in order to wake
+
+00:04:50.570 --> 00:04:55.450
+up speech-controlled devices in a whole set, such as saying Alexa to wake up an Amazon
+
+00:04:55.450 --> 00:05:00.490
+Echo or OK Google to wake up a Google device or Hey Siri to wake up an Apple device or
+
+00:05:00.490 --> 00:05:03.690
+saying, Ni hao, bai du to wake up a bai du device.
+
+00:05:03.690 --> 00:05:10.410
+So in order to do this, you might take out the last layer of the neural network again
+
+00:05:10.410 --> 00:05:13.650
+and create a new output node.
+
+00:05:13.650 --> 00:05:19.170
+But sometimes another thing you could do is actually create not just a single new output,
+
+00:05:19.170 --> 00:05:24.570
+but actually create several new layers to your neural network to try to predict the
+
+00:05:24.570 --> 00:05:27.370
+labels Y for your wake word detection problem.
+
+00:05:27.370 --> 00:05:32.850
+And again, depending on how much data you have, you might just retrain the new layers
+
+00:05:32.850 --> 00:05:39.090
+of the network or maybe you could retrain even more layers of this neural network.
+
+00:05:39.090 --> 00:05:42.650
+So when does transfer learning make sense?
+
+00:05:42.650 --> 00:05:47.330
+Transfer learning makes sense when you have a lot of data for the problem you're transferring
+
+00:05:47.330 --> 00:05:52.530
+from and usually relatively less data for the problem you're transferring to.
+
+00:05:52.530 --> 00:05:58.130
+So for example, let's say you have a million examples for image recognition tasks.
+
+00:05:58.130 --> 00:06:03.610
+So that's a lot of data to learn a lot of low level features or to learn a lot of useful
+
+00:06:03.610 --> 00:06:06.730
+features in the earlier layers of the neural network.
+
+00:06:06.730 --> 00:06:12.170
+But for the radiology task, maybe you have only 100 examples.
+
+00:06:12.170 --> 00:06:15.530
+So you have very little data for the radiology diagnosis problem.
+
+00:06:15.530 --> 00:06:17.870
+Maybe you have only 100 X-ray scans.
+
+00:06:17.870 --> 00:06:23.170
+So a lot of knowledge you learn from image recognition can be transferred and can really
+
+00:06:23.170 --> 00:06:29.890
+help you get going with radiology recognition, even if you don't have a lot of data for radiology.
+
+00:06:29.890 --> 00:06:34.170
+For speech recognition, maybe you've trained the speech recognition system on 10,000 hours
+
+00:06:34.170 --> 00:06:35.290
+of data.
+
+00:06:35.290 --> 00:06:40.090
+So you've learned a lot about what human voices sounds like from the 10,000 hours of data,
+
+00:06:40.090 --> 00:06:41.770
+which really is a lot.
+
+00:06:41.770 --> 00:06:46.090
+But for your trigger word detection, maybe you have only one hour of data.
+
+00:06:46.090 --> 00:06:48.890
+So that's not a lot of data to fit a lot of parameters.
+
+00:06:48.890 --> 00:06:55.010
+So in this case, a lot of what you learn about what human voices sound like, what are components
+
+00:06:55.010 --> 00:07:00.370
+of human speech and so on, that can be really helpful for building a good wake word detector,
+
+00:07:00.370 --> 00:07:04.690
+even though you have a relatively small data set, or at least a much smaller data set for
+
+00:07:04.690 --> 00:07:08.210
+the wake word detection task.
+
+00:07:08.210 --> 00:07:12.490
+So in both of these cases, you're transferring from a problem with a lot of data to a
+
+00:07:12.490 --> 00:07:15.930
+problem with relatively little data.
+
+00:07:15.930 --> 00:07:22.490
+One case where transfer learning would not make sense is if the opposite was true.
+
+00:07:22.490 --> 00:07:29.290
+So if you had a hundred images for image recognition, and you had a hundred images for radiology
+
+00:07:29.290 --> 00:07:35.130
+diagnosis, or even your thousand images for radiology diagnosis, one way to think about
+
+00:07:35.130 --> 00:07:40.050
+it is that to do well on radiology diagnosis, assuming what you really want to do well
+
+00:07:40.050 --> 00:07:45.570
+on is radiology diagnosis, having radiology images is much more valuable than having
+
+00:07:45.570 --> 00:07:47.770
+cats and dog and so on images.
+
+00:07:47.770 --> 00:07:52.650
+So each example here is much more valuable than each example there, at least for the
+
+00:07:52.650 --> 00:07:56.050
+purpose of building a good radiology system.
+
+00:07:56.050 --> 00:08:01.050
+So if you already have more data for radiology, it's not that likely that having a hundred
+
+00:08:01.050 --> 00:08:07.130
+images of your random objects of cats and dogs and cars and so on, would be that helpful.
+
+00:08:07.130 --> 00:08:11.970
+Because the value of one example of image from your image recognition task of cats
+
+00:08:11.970 --> 00:08:17.730
+and dogs is just less valuable than one example of an x-ray image for the task of building
+
+00:08:17.730 --> 00:08:20.090
+a good radiology system.
+
+00:08:20.090 --> 00:08:22.370
+So this would be one example with transfer learning.
+
+00:08:22.370 --> 00:08:27.650
+Well, it might not hurt, but I wouldn't expect it to give you any meaningful gain either.
+
+00:08:27.650 --> 00:08:32.650
+And similarly, if you built a speech recognition system on 10 hours of data, and you actually
+
+00:08:32.650 --> 00:08:38.570
+have 10 hours or maybe even more, say 50 hours of data for wake word detection, you
+
+00:08:39.130 --> 00:08:43.010
+know, it may or may not hurt, maybe it won't hurt to include that 10 hours of data to do
+
+00:08:43.010 --> 00:08:47.490
+transfer learning, but you just wouldn't expect to get a meaningful gain.
+
+00:08:47.490 --> 00:08:51.010
+So to summarize, when does transfer learning make sense?
+
+00:08:51.010 --> 00:08:59.820
+If you're trying to learn from some task A and transfer some of the knowledge to some
+
+00:08:59.820 --> 00:09:06.820
+task B, then transfer learning makes sense when tasks A and B have the same input x.
+
+00:09:07.820 --> 00:09:12.460
+In the first example, A and B both had images as input.
+
+00:09:12.460 --> 00:09:17.500
+In the second example, both had audio clips as input.
+
+00:09:17.500 --> 00:09:22.620
+It tends to make sense when you have a lot more data for task A than task B.
+
+00:09:22.620 --> 00:09:28.180
+All this is under the assumption that what you really want to do well on is task B.
+
+00:09:28.180 --> 00:09:33.980
+And because data for task B is more valuable for task B, usually you just need a lot more
+
+00:09:33.980 --> 00:09:40.780
+data for task A because each example from task A is just less valuable for task B than
+
+00:09:40.780 --> 00:09:43.780
+each example for task B.
+
+00:09:43.780 --> 00:09:48.260
+And then finally, transfer learning will tend to make more sense if you suspect that low-level
+
+00:09:48.260 --> 00:09:52.540
+features from task A could be helpful for learning task B.
+
+00:09:52.540 --> 00:09:56.980
+And in both of the earlier examples, maybe learning image recognition teaches you about
+
+00:09:56.980 --> 00:10:01.900
+images to help with radiology diagnosis, and maybe learning speech recognition teaches you
+
+00:10:01.900 --> 00:10:06.100
+about human speech to help you with trigger word or wake word detection.
+
+00:10:06.100 --> 00:10:10.060
+So to summarize, transfer learning tends to be most useful if you're trying to do well
+
+00:10:10.060 --> 00:10:14.660
+on some task B, usually a problem where you have relatively little data.
+
+00:10:14.660 --> 00:10:19.940
+So for example, in radiology, it's difficult to get that many x-ray scans to build a good
+
+00:10:19.940 --> 00:10:21.580
+radiology diagnosis system.
+
+00:10:21.580 --> 00:10:26.380
+So in that case, you might find a related but different task such as image recognition,
+
+00:10:26.380 --> 00:10:30.460
+where you can get maybe a million images and learn a lot of low-level features from
+
+00:10:30.460 --> 00:10:35.860
+that so that you can then try to do well on task B, on your radiology task, despite
+
+00:10:35.860 --> 00:10:38.220
+not having that much data for it.
+
+00:10:38.220 --> 00:10:42.180
+When transfer learning makes sense, it does help the performance of your learning
+
+00:10:42.180 --> 00:10:43.180
+algorithm significantly.
+
+00:10:43.180 --> 00:10:49.060
+But I've also sometimes seen transfer learning applied in settings where task A actually
+
+00:10:49.060 --> 00:10:53.980
+has less data than task B, and in those cases, you kind of don't expect to see
+
+00:10:53.980 --> 00:10:55.580
+much of a gain.
+
+00:10:55.580 --> 00:10:59.500
+So that's it for transfer learning, where you learn from one task and try to transfer
+
+00:10:59.580 --> 00:11:00.500
+to a different task.
+
+00:11:00.500 --> 00:11:04.660
+There's another version of learning from multiple tasks, which is called multi-task
+
+00:11:04.660 --> 00:11:08.580
+learning, which is when you try to learn from multiple tasks at the same time rather than
+
+00:11:08.580 --> 00:11:13.380
+learning from one and then sequentially or after that, trying to transfer to a different
+
+00:11:13.380 --> 00:11:14.380
+task.
+
+00:11:14.380 --> 00:11:17.140
+So in the next video, let's discuss multi-task learning.

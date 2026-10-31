@@ -1,0 +1,107 @@
+Trong khóa thứ ba của chuỗi
+năm khóa học này, bạn đã thấy cách phân tích lỗi có thể giúp bạn tập trung thời gian để thực hiện
+công việc hữu ích nhất cho dự án của bạn. Bây giờ, beam search (thuật toán tìm kiếm) là
+một thuật toán tìm kiếm gần đúng, còn được gọi là thuật toán tìm kiếm heuristic
+(heuristic search algorithm). Và vì vậy nó không phải lúc nào cũng xuất ra
+câu có khả năng xảy ra nhất. Nó chỉ theo dõi B bằng 3 hoặc
+10 hoặc 100 khả năng hàng đầu. Vì vậy, điều gì sẽ xảy ra nếu tìm kiếm chùm mắc lỗi? Trong video này, bạn sẽ tìm hiểu cách phân tích lỗi
+tương tác với beam search và làm thế nào bạn có thể tìm ra liệu đó có phải là
+, thuật toán beam search đang gây ra vấn đề và đáng để dành thời gian. Hoặc liệu nó có thể là mô hình RNN
+của bạn đang gây ra sự cố và đáng để dành thời gian. Chúng ta hãy xem cách thực hiện phân tích lỗi
+với beam search. Hãy sử dụng ví dụ này về Jane
+visite l'Afrique en septembre. Vì vậy, giả sử rằng trong bộ
+dịch máy của bạn, bộ phát triển của bạn,
+con người đã cung cấp bản dịch này và Jane đến thăm Châu Phi vào tháng 9,
+và tôi sẽ gọi đây là y *. Vì vậy, nó là một bản dịch
+khá tốt được viết bởi một con người. Sau đó, giả sử khi bạn chạy beam search
+trên mô hình RNN đã học của bạn và mô hình dịch đã học của bạn,
+nó kết thúc với bản dịch này, mà chúng tôi sẽ gọi là y-hat,
+Jane đã đến thăm Châu Phi vào tháng 9 năm ngoái, đó là một bản dịch tệ hơn nhiều
+của câu tiếng Pháp. Nó thực sự thay đổi ý nghĩa,
+vì vậy nó không phải là một bản dịch tốt. Bây giờ, mô hình của bạn có hai thành phần chính. Có một mô hình mạng nơ-ron,
+mô hình chuỗi sang chuỗi (sequence to sequence model). Chúng tôi sẽ chỉ gọi đây là mô hình RNN của bạn. Nó thực sự là một bộ mã hóa và một bộ giải mã. Và bạn có thuật toán beam search của mình, mà bạn đang chạy
+với một số chiều rộng chùm b. Và sẽ không tốt nếu bạn
+có thể quy lỗi này, bản dịch này không tốt lắm,
+sang một trong hai thành phần này? Đó có phải là RNN hay thực sự
+là do mạng nơ-ron , hoặc nó có phải là thuật toán beam search,
+đó là nhiều hơn để đổ lỗi? Và những gì bạn thấy trong
+thứ ba của trình tự là nó luôn hấp dẫn để thu thập thêm
+dữ liệu huấn luyện không bao giờ gây hại. Vì vậy, theo cách tương tự, việc tăng chiều rộng chùm tia mà vô hại hoặc gần như vô hại luôn hấp dẫn. Nhưng cũng giống như việc tự nhận thêm
+dữ liệu huấn luyện có thể không đưa bạn đến mức hiệu suất
+mà bạn muốn. Cùng một phương pháp, tăng độ rộng chùm bởi chính nó có thể
+không giúp bạn có được đến nơi mà bạn muốn đi. Nhưng làm thế nào để bạn quyết định xem hoặc không cải thiện thuật toán tìm kiếm
+có phải là cách sử dụng thời gian của bạn tốt? Vì vậy, làm thế nào bạn có thể giải quyết vấn đề
+và tìm ra điều gì thực sự là
+cách sử dụng thời gian của bạn. Bây giờ, RNN, mạng nơ-ron, những gì được gọi là RNN thực sự có nghĩa là
+bộ mã hóa và bộ giải mã. Nó tính P (y cho x). Ví dụ: đối với
+một câu, Jane đến thăm Châu Phi vào tháng 9,
+bạn cắm vào Jane thăm Châu Phi. Một lần nữa, tôi đang bỏ qua chữ hoa và chữ thường so với
+bây giờ, phải không, v.v. Và điều này tính P (y cho trước x). Vì vậy, nó chỉ ra rằng
+điều hữu ích nhất cho bạn phải làm tại thời điểm này là
+tính toán bằng cách sử dụng mô hình này để tính toán P (y * cho trước x) cũng như để tính
+P (y cho x) bằng mô hình RNN của bạn. Và sau đó để xem
+trong hai số này lớn hơn. Vì vậy, có thể phía bên trái
+lớn hơn phía bên phải. Cũng có thể P (y *) nhỏ hơn
+so với P (y mũ) trên thực tế, hoặc nhỏ hơn hoặc bằng, phải không? Tùy thuộc vào trường hợp nào trong hai trường hợp này,
+đúng, bạn có thể ghi rõ lỗi cụ thể này,
+bản dịch xấu cụ thể này cho một trong các RNN hoặc thuật toán beam search
+bị lỗi lớn hơn. Vì vậy, chúng ta hãy đưa ra logic đằng sau điều này. Đây là hai câu
+trong slide trước. Và hãy nhớ,
+, chúng ta sẽ tính P (y * cho x) và P (mũ y cho trước x) và
+xem cái nào trong hai cái này lớn hơn. Vì vậy, sẽ có hai trường hợp. Trong trường hợp 1,
+P (y * cho trước x) là đầu ra của RNN mô hình lớn hơn P (y-hat cho trước x). Điều này nghĩa là gì? Thuật toán beam search
+đã chọn y mũ, phải không? Cách bạn có được y mũ là bạn có
+một RNN đang tính toán P (y cho x). Và công việc của beam search là cố gắng tìm
+một giá trị của y mà cho rằng đối số tối đa. Nhưng trong trường hợp này,
+y * thực sự đạt được giá trị cao hơn cho P (y cho trước x) hơn y mũ. Vì vậy, bạn có thể kết luận là
+beam search không thực sự cung cấp bạn giá trị của y tối đa hóa
+P (y cho trước x) vì một việc mà beam search phải làm là tìm
+giá trị của y làm cho điều này thực sự lớn. Nhưng nó đã chọn y mũ,
+thì y * thực sự nhận được giá trị lớn hơn nhiều. Vì vậy, trong trường hợp này, bạn có thể kết luận
+rằng beam search lỗi. Bây giờ, làm thế nào về trường hợp khác? Trong trường hợp 2, P (y * cho trước x) nhỏ hơn hoặc bằng P (y mũ cho trước x), phải không? Và sau đó điều này hoặc
+điều này phải đúng. Vì vậy, trường hợp 1 hoặc
+trường hợp 2 phải đúng. Bạn kết luận gì ở trường hợp 2? Trong ví dụ của chúng ta, y * là một bản dịch tốt hơn y-hat. Nhưng theo RNN,
+P (y *) nhỏ hơn P (y mũ), vì vậy nói rằng y * là đầu ra có khả năng nhỏ hơn
+so với y mũ. Vì vậy, trong trường hợp này,
+có vẻ như mô hình RNN là do lỗi và có thể đáng giá bằng
+dành nhiều thời gian hơn để làm việc trên RNN. Có một số điều tinh tế ở đây liên quan đến chuẩn hóa độ dài
+mà tôi đang đánh dấu. Có một số điều tinh tế liên quan đến chuẩn hóa từ
+đến độ dài mà tôi muốn làm rõ. Và nếu bạn đang sử dụng loại chuẩn hóa độ dài
+nào đó, thay vì đánh giá các xác suất này,
+bạn nên đánh giá việc tối ưu hóa mục tiêu có tính đến chuẩn hóa độ dài tài khoản
+. Nhưng bỏ qua sự phức tạp đó bây giờ,
+trong trường hợp này, điều này cho bạn biết là mặc dù y * là bản dịch tốt hơn, RNN quy định y * ở xác suất thấp hơn
+so với phép dịch kém hơn. Vì vậy, trong trường hợp này,
+, tôi sẽ nói rằng mô hình RNN bị lỗi. Vì vậy, quá trình phân tích lỗi
+như sau. Bạn xem qua bộ phát triển và tìm những sai lầm mà thuật toán
+đã mắc phải trong tập phát triển. Và trong ví dụ này, giả sử rằng
+P (y * cho trước x) là 2 x 10 thành -10, trong khi P (mũ y cho x)
+là 1 x 10 đến -10. Sử dụng logic từ trang trình bày trước,
+trong trường hợp này, chúng tôi thấy rằng beam search đã chọn y mũ,
+có xác suất thấp hơn y *. Vì vậy, tôi sẽ nói beam search có lỗi. Vì vậy, tôi sẽ viết tắt B đó. Và sau đó bạn vượt qua
+một sai lầm thứ hai hoặc kết quả xấu thứ hai theo thuật toán,
+nhìn vào các xác suất này. Và có thể đối với ví dụ thứ hai,
+bạn nghĩ rằng mô hình bị lỗi. Tôi sẽ viết tắt
+mô hình RNN với R. Và bạn đi qua nhiều ví dụ hơn. Và đôi khi beam search bị lỗi,
+đôi khi mô hình bị lỗi, và vân vân. Và thông qua quá trình này, bạn có thể
+thực hiện phân tích lỗi để tìm ra phần nào lỗi do beam search
+so với mô hình RNN. Và với quy trình phân tích lỗi như
+này, đối với mọi ví dụ trong bộ nhà phát triển của bạn, trong đó thuật toán đưa ra kết quả
+tệ hơn nhiều so với bản dịch của con người, bạn có thể thử gán lỗi
+cho thuật toán tìm kiếm hoặc đối với hàm mục tiêu hoặc
+đối với mô hình RNN tạo ra hàm mục tiêu mà beam search
+được cho là cực đại. Và thông qua điều này, bạn có thể cố gắng tìm ra
+thành phần nào trong số hai thành phần này chịu trách nhiệm về nhiều sai sót. Và chỉ khi bạn thấy rằng beam search
+gây ra rất nhiều lỗi, thì có lẽ chúng ta đang làm việc chăm chỉ
+để tăng chiều rộng chùm tia. Ngược lại, nếu bạn thấy
+rằng mô hình RNN bị lỗi, thì bạn có thể thực hiện một lớp phân tích
+sâu hơn để cố gắng tìm hiểu xem bạn có muốn để thêm quy định hoặc
+nhận thêm dữ liệu huấn luyện, hoặc thử một kiến trúc mạng khác,
+hoặc thứ gì đó khác. Và rất nhiều kỹ thuật mà
+bạn đã thấy trong khóa học thứ ba trong trình tự sẽ được áp dụng ở đó. Vì vậy, đó là nó cho phân tích lỗi
+bằng cách sử dụng beam search. Tôi thấy quy trình phân tích lỗi
+cụ thể này rất hữu ích bất cứ khi nào bạn có một thuật toán tối ưu hóa gần đúng,
+chẳng hạn như beam search đang làm việc để tối ưu hóa một số loại mục tiêu
+, một số loại hàm chi phí đó là đầu ra của một thuật toán học tập,
+chẳng hạn như mô hình trình tự nối tiếp hoặc một RNN theo trình tự mà chúng ta đã
+thảo luận trong các bài giảng này. Vì vậy, với điều đó, tôi hy vọng rằng bạn sẽ tạo ra các loại mô hình này hiệu quả hơn hoạt động tốt cho các ứng dụng của bạn.

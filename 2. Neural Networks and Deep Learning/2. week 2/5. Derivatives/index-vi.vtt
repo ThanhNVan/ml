@@ -1,0 +1,616 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.530
+Trong video này, tôi muốn
+ giúp bạn có thêm kiến thức về
+
+2
+00:00:04.530 --> 00:00:07.065
+giải tích và đạo hàm.
+
+3
+00:00:07.065 --> 00:00:11.820
+Bây giờ, có lẽ bạn đang nghĩ rằng bạn đã
+ không đụng đến giải tích từ thời đại học,
+
+4
+00:00:11.820 --> 00:00:13.515
+và còn tùy vào thời điểm
+ bạn tốt nghiệp,
+
+5
+00:00:13.515 --> 00:00:15.885
+có lẽ phải mất một chút 
+thời gian để học lại.
+
+6
+00:00:15.885 --> 00:00:18.930
+Nếu bây giờ bạn đang nghĩ
+ như vậy thì cũng đừng lo lắng,
+
+7
+00:00:18.930 --> 00:00:22.350
+bạn không cần hiểu biết 
+quá sâu về giải tích
+
+8
+00:00:22.350 --> 00:00:26.070
+để ứng dụng hiệu quả các 
+neural network nhân tạo và deep learning.
+
+9
+00:00:26.070 --> 00:00:29.940
+Vì vậy, nếu bạn đang xem video này hoặc
+ một số video sau này và bạn đang tự hỏi,
+
+10
+00:00:29.940 --> 00:00:31.500
+công cụ này thực sự dành cho tôi ư,
+
+11
+00:00:31.500 --> 00:00:33.510
+giải tích trông thật là phức tạp.
+
+12
+00:00:33.510 --> 00:00:35.880
+Lời khuyên của tôi
+ dành cho bạn là
+
+13
+00:00:35.880 --> 00:00:38.270
+hãy xem video và rồi 
+nếu bạn có thể làm
+
+14
+00:00:38.270 --> 00:00:41.299
+bài tập về nhà và hoàn thành 
+tốt bài tập lập trình thì
+
+15
+00:00:41.299 --> 00:00:43.325
+bạn sẽ có thể 
+áp dụng học tập sâu.
+
+16
+00:00:43.325 --> 00:00:46.115
+Trong thực tế, trong
+ tuần bốn, bạn sẽ thấy là
+
+17
+00:00:46.115 --> 00:00:49.400
+chúng ta sẽ xác định một 
+vài loại hàm mà giúp bạn
+
+18
+00:00:49.400 --> 00:00:53.030
+tóm lược mọi thứ cần 
+phải làm trong giải tích,
+
+19
+00:00:53.030 --> 00:00:56.750
+và các hàm này được gọi 
+là hàm thuận và hàm ngược.
+
+20
+00:00:56.750 --> 00:01:01.239
+Bạn sẽ có thể ứng dụng mọi thứ bạn
+ cần biết về giải tích thành các hàm này,
+
+21
+00:01:01.239 --> 00:01:04.055
+và bạn không cần phải 
+lo lắng về chúng nữa.
+
+22
+00:01:04.055 --> 00:01:08.210
+Nhưng tôi nghĩ rằng khi đi sâu 
+vào kỹ thuật deep learning trong tuần này,
+
+23
+00:01:08.210 --> 00:01:12.980
+chúng ta nên mở hộp và nhìn sâu 
+hơn một chút vào chi tiết của giải tích.
+
+24
+00:01:12.980 --> 00:01:16.070
+Nhưng thực sự thì tất cả những gì 
+bạn cần là hiểu biết cơ bản về điều này
+
+25
+00:01:16.070 --> 00:01:19.535
+để xây dựng và áp dụng 
+thành công các thuật toán này.
+
+26
+00:01:19.535 --> 00:01:25.570
+Cuối cùng, nếu bạn nằm trong một
+ nhóm nhỏ các chuyên gia về giải tích,
+
+27
+00:01:25.570 --> 00:01:27.950
+nếu bạn rất quen thuộc 
+với các đạo hàm tính toán,
+
+28
+00:01:27.950 --> 00:01:30.410
+bạn có thể bỏ qua video này.
+
+29
+00:01:30.410 --> 00:01:32.450
+Nhưng đối với những 
+bạn khác, hãy đào sâu vào,
+
+30
+00:01:32.450 --> 00:01:35.710
+và cố gắng để có được 
+hiểu biết cơ bản về các đạo hàm.
+
+31
+00:01:35.710 --> 00:01:39.500
+Ở đây tôi vẽ hàm f (a) bằng 3a.
+
+32
+00:01:39.500 --> 00:01:41.195
+Như vậy, đây chỉ là 
+một đường thẳng.
+
+33
+00:01:41.195 --> 00:01:43.380
+Để hiểu được đạo hàm,
+
+34
+00:01:43.380 --> 00:01:45.230
+hãy nhìn vào một vài
+ điểm trên hàm này.
+
+35
+00:01:45.230 --> 00:01:48.090
+Giả sử a = 2.
+
+36
+00:01:48.090 --> 00:01:49.990
+Trong trường hợp này, f (a),
+
+37
+00:01:49.990 --> 00:01:52.850
+bằng ba lần a và bằng 6.
+
+38
+00:01:52.850 --> 00:01:55.225
+Vậy, nếu a bằng 2,
+
+39
+00:01:55.225 --> 00:01:58.055
+thì f(a) sẽ bằng 6.
+
+40
+00:01:58.055 --> 00:02:01.550
+Giả sử chúng ta tăng 
+giá trị của a lên một chút.
+
+41
+00:02:01.550 --> 00:02:03.660
+Tôi sẽ chỉ tăng a lên
+
+42
+00:02:03.660 --> 00:02:06.750
+một chút, bây giờ a là 2.001.
+
+43
+00:02:06.750 --> 00:02:10.485
+Như vậy, tôi sẽ nhích a
+ về bên phải một chút.
+
+44
+00:02:10.485 --> 00:02:13.770
+Bây giờ, là 2.001,
+
+45
+00:02:13.770 --> 00:02:15.375
+hãy vẽ điều này vào đồ thị,
+
+46
+00:02:15.375 --> 00:02:20.910
+2,001, sự khác biệt 0,001 này là
+ quá nhỏ để hiển thị trên đồ thị này,
+
+47
+00:02:20.910 --> 00:02:22.380
+chỉ cần đặt nó vào bên phải.
+
+48
+00:02:22.380 --> 00:02:23.790
+Bây giờ, f (a),
+
+49
+00:02:23.790 --> 00:02:25.800
+bằng ba lần số đó.
+
+50
+00:02:25.800 --> 00:02:29.960
+Và bằng 6,003, thế nên 
+chúng ta đặt nó ở đây.
+
+51
+00:02:29.960 --> 00:02:33.340
+Đây không phải để 
+đo tỉ lệ, đây là 6,003.
+
+52
+00:02:33.340 --> 00:02:37.890
+Vì vậy, nếu bạn nhìn vào hình tam
+ giác nhỏ màu xanh lá cây này ở đây,
+
+53
+00:02:37.890 --> 00:02:42.640
+bạn sẽ thấy là nếu tôi 
+nhích a thêm 0,001 sang phải,
+
+54
+00:02:42.640 --> 00:02:47.540
+thì f (a) tăng 0,003.
+
+55
+00:02:47.540 --> 00:02:48.980
+Lượng f (a),
+
+56
+00:02:48.980 --> 00:02:54.215
+đã tăng lên gấp ba lần lượng
+ mà tôi nhích a sang phải.
+
+57
+00:02:54.215 --> 00:02:56.135
+Thế nên, chúng tôi sẽ nói rằng,
+
+58
+00:02:56.135 --> 00:03:01.755
+độ dốc hoặc đạo hàm của hàm f (a),
+
+59
+00:03:01.755 --> 00:03:06.735
+tại a bằng 2 hoặc khi 
+a bằng 2 thì độ dốc là ba.
+
+60
+00:03:06.735 --> 00:03:09.170
+Về cơ bản đạo hàm
+ có nghĩa là độ dốc,
+
+61
+00:03:09.170 --> 00:03:12.075
+chỉ là từ “đạo hàm” thì 
+nghe có vẻ đáng sợ hơn
+
+62
+00:03:12.075 --> 00:03:16.910
+đáng ngại hơn, trong khi độ dốc là một từ
+ thân thiện hơn để mô tả khái niệm đạo hàm.
+
+63
+00:03:16.910 --> 00:03:18.320
+Do đó, bất cứ khi nào bạn
+ nghe thấy từ đạo hàm,
+
+64
+00:03:18.320 --> 00:03:20.450
+thì chỉ cần nghĩ đó
+ là độ dốc của hàm.
+
+65
+00:03:20.450 --> 00:03:24.605
+Chính thức hơn thì, độ dốc 
+được xác định bằng chiều cao
+
+66
+00:03:24.605 --> 00:03:29.330
+chia cho chiều rộng của 
+tam giác nhỏ màu xanh lá cây này.
+
+67
+00:03:29.330 --> 00:03:34.005
+Như vậy, đây là 0,003 trên 0,001,
+
+68
+00:03:34.005 --> 00:03:37.760
+và thực tế là độ dốc bằng
+ ba hoặc đạo hàm bằng ba,
+
+69
+00:03:37.760 --> 00:03:43.550
+chỉ thể hiện là khi bạn nhích a
+ sang phải 0,001, với số lượng nhỏ,
+
+70
+00:03:43.550 --> 00:03:49.665
+số lượng tại f (a) tăng lên gấp
+ ba lần lượng mà bạn tăng lên,
+
+71
+00:03:49.665 --> 00:03:52.265
+khi bạn nhích a 
+theo hướng ngang.
+
+72
+00:03:52.265 --> 00:03:54.290
+Như vậy, đó là tất cả về 
+độ dốc của một đường.
+
+73
+00:03:54.290 --> 00:03:57.035
+Bây giờ, hãy xem xét 
+hàm này ở một điểm khác.
+
+74
+00:03:57.035 --> 00:03:59.990
+Giả sử bây giờ a bằng 5.
+
+75
+00:03:59.990 --> 00:04:01.430
+Trong trường hợp này, f (a), bằng
+
+76
+00:04:01.430 --> 00:04:03.380
+ba lần a, bằng 15.
+
+77
+00:04:03.380 --> 00:04:04.625
+Hãy xem lại một chút,
+
+78
+00:04:04.625 --> 00:04:06.245
+tăng a lên một chút về bên phải.
+
+79
+00:04:06.245 --> 00:04:09.425
+Một chút thôi, giờ nó 
+đã tăng lên tới 5,001,
+
+80
+00:04:09.425 --> 00:04:11.420
+f (a) bằng ba lần a.
+
+81
+00:04:11.420 --> 00:04:14.935
+Vậy, f (a) bằng 15.003.
+
+82
+00:04:14.935 --> 00:04:18.570
+Một lần nữa, khi tôi 
+nhích a về bên phải,
+
+83
+00:04:18.570 --> 00:04:21.090
+tăng a thêm 0,001,
+
+84
+00:04:21.090 --> 00:04:23.325
+f(a) tăng gấp ba lần.
+
+85
+00:04:23.325 --> 00:04:28.260
+Như vậy, một lần nữa 
+độ dốc, tại a = 5, cũng là ba.
+
+86
+00:04:28.260 --> 00:04:29.910
+Thế nên chúng ta viết như thế này,
+
+87
+00:04:29.910 --> 00:04:33.255
+độ dốc của hàm f bằng ba:
+
+88
+00:04:33.255 --> 00:04:36.435
+Chúng ta nói, d f (a)/da,
+
+89
+00:04:36.435 --> 00:04:38.895
+nghĩa là,
+
+90
+00:04:38.895 --> 00:04:41.400
+độ dốc của hàm f (a)
+
+91
+00:04:41.400 --> 00:04:43.305
+khi bạn tăng biến a,
+
+92
+00:04:43.305 --> 00:04:47.715
+thêm một chút, thì bằng ba.
+
+93
+00:04:47.715 --> 00:04:52.250
+Có một cách khác để viết 
+công thức đạo hàm này như sau.
+
+94
+00:04:52.250 --> 00:04:54.140
+Bạn cũng có thể viết là,
+
+95
+00:04:54.140 --> 00:04:57.965
+d/da của f (a).
+
+96
+00:04:57.965 --> 00:05:03.060
+Vì vậy, cho dù bạn đặt f (a) lên đầu hay bạn viết nó
+ xuống đây, thì điều đó cũng không thành vấn đề.
+
+97
+00:05:03.060 --> 00:05:05.100
+Nhưng phương trình này có nghĩa là,
+
+98
+00:05:05.100 --> 00:05:08.145
+nếu tôi tăng a sang phải một chút,
+
+99
+00:05:08.145 --> 00:05:14.465
+thì tôi muốn f (a) sẽ tăng gấp 
+ba lần so với giá trị của a.
+
+100
+00:05:14.465 --> 00:05:18.615
+Trong video này tôi đã 
+giải thích về các đạo hàm,
+
+101
+00:05:18.615 --> 00:05:25.430
+nói về điều gì sẽ xảy ra nếu 
+chúng ta tăng biến a thêm 0,001.
+
+102
+00:05:25.430 --> 00:05:29.000
+Nếu bạn muốn biết một định nghĩa
+ toán học chính thức của đạo hàm thì đó là:
+
+103
+00:05:29.000 --> 00:05:34.320
+Đạo hàm được xác định với giá trị thậm chí
+ nhỏ hơn lượng giá trị mà bạn tăng thêm cho a.
+
+104
+00:05:34.320 --> 00:05:35.955
+Như vậy, không phải là 0,001.
+
+105
+00:05:35.955 --> 00:05:38.235
+Cũng không phải là 0,000001.
+
+106
+00:05:38.235 --> 00:05:42.315
+Cũng không phải là 0,000000…1.
+
+107
+00:05:42.315 --> 00:05:44.250
+Nó thậm chí còn nhỏ hơn thế,
+
+108
+00:05:44.250 --> 00:05:47.015
+và định nghĩa chính thức 
+của đạo hàm nói rằng
+
+109
+00:05:47.015 --> 00:05:50.840
+bất cứ khi nào bạn tăng 
+a thêm một lượng vô hạn,
+
+110
+00:05:50.840 --> 00:05:53.900
+về cơ bản là một 
+số lượng vô cùng nhỏ.
+
+111
+00:05:53.900 --> 00:05:58.970
+Nếu bạn làm điều đó,
+ f (a) này tăng gấp ba lần
+
+112
+00:05:58.970 --> 00:06:01.160
+số lượng nhỏ mà bạn tăng a lên.
+
+113
+00:06:01.160 --> 00:06:04.640
+Như vậy đây chính là định nghĩa
+ chính thức của đạo hàm.
+
+114
+00:06:04.640 --> 00:06:07.490
+Nhưng mục đích của chúng ta
+ là hiểu biết trực quan,
+
+115
+00:06:07.490 --> 00:06:12.695
+mà tôi nói về việc tăng a 
+thêm một lượng nhỏ 0.001 này.
+
+116
+00:06:12.695 --> 00:06:18.130
+Thậm chí 0,001 không phải 
+chính xác là một vi phân cực nhỏ.
+
+117
+00:06:18.130 --> 00:06:21.590
+Bây giờ, một thuộc tính
+ của đạo hàm là,
+
+118
+00:06:21.590 --> 00:06:24.480
+bất kể bạn lấy độ dốc 
+của hàm này ở đâu
+
+119
+00:06:24.480 --> 00:06:25.730
+thì nó cũng bằng ba
+
+120
+00:06:25.730 --> 00:06:28.820
+cho dù a bằng hai 
+hay a bằng năm.
+
+121
+00:06:28.820 --> 00:06:31.655
+Độ dốc của hàm này bằng ba,
+
+122
+00:06:31.655 --> 00:06:34.365
+có nghĩa là với bất cứ
+ giá trị nào của a,
+
+123
+00:06:34.365 --> 00:06:36.915
+nếu bạn tăng nó lên 0,001,
+
+124
+00:06:36.915 --> 00:06:40.305
+giá trị của f (a) tăng gấp ba lần.
+
+125
+00:06:40.305 --> 00:06:42.635
+Như vậy hàm này có độ dốc 
+an toàn ở khắp mọi nơi.
+
+126
+00:06:42.635 --> 00:06:44.150
+Một cách để thấy như vậy là,
+
+127
+00:06:44.150 --> 00:06:47.090
+khi bạn vẽ hình tam giác 
+nhỏ này ở bất cứ đâu.
+
+128
+00:06:47.090 --> 00:06:49.690
+Chiều cao, chia cho chiều rộng,
+
+129
+00:06:49.690 --> 00:06:52.460
+luôn có tỷ lệ 3:1.
+
+130
+00:06:52.460 --> 00:06:55.250
+Thế nên, tôi hy vọng điều này 
+giúp bạn hiểu về độ dốc hoặc
+
+131
+00:06:55.250 --> 00:06:58.100
+đạo hàm của hàm có 
+nghĩa là một đường thẳng,
+
+132
+00:06:58.100 --> 00:07:02.075
+trong đó, trong ví dụ này, độ dốc
+ của hàm bằng ba ở mọi nơi.
+
+133
+00:07:02.075 --> 00:07:06.110
+Trong video tiếp theo, chúng ta sẽ
+ xem một ví dụ phức tạp hơn một chút,
+
+134
+00:07:06.110 --> 00:07:10.200
+trong đó độ dốc của hàm có thể 
+khác nhau tại các điểm khác nhau trên hàm.

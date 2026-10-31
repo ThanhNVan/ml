@@ -1,0 +1,729 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.110
+Trong video này, bạn tìm hiểu về thuật toán beam search tia.
+
+2
+00:00:04.110 --> 00:00:05.545
+Trong video cuối cùng,
+
+3
+00:00:05.545 --> 00:00:09.655
+bạn nhớ làm thế nào để dịch máy cho một câu đầu vào tiếng Pháp,
+
+4
+00:00:09.655 --> 00:00:12.735
+bạn không muốn xuất ra một bản dịch tiếng Anh ngẫu nhiên,
+
+5
+00:00:12.735 --> 00:00:16.365
+bạn muốn xuất ra bản dịch tiếng Anh tốt nhất và có khả năng nhất.
+
+6
+00:00:16.365 --> 00:00:21.126
+Điều tương tự cũng đúng đối với nhận dạng giọng nói khi đưa ra một clip âm thanh đầu vào,
+
+7
+00:00:21.126 --> 00:00:24.465
+bạn không muốn xuất một bản sao văn bản ngẫu nhiên của âm thanh đó,
+
+8
+00:00:24.465 --> 00:00:25.745
+bạn muốn xuất bản tốt nhất,
+
+9
+00:00:25.745 --> 00:00:28.315
+có thể là bản sao văn bản tốt nhất.
+
+10
+00:00:28.315 --> 00:00:30.623
+Beam search tia là thuật toán được sử dụng rộng rãi nhất để thực hiện việc này.
+
+11
+00:00:30.623 --> 00:00:33.810
+Và trong video này, bạn sẽ thấy làm thế nào để beam search tia để làm việc cho chính mình.
+
+12
+00:00:33.810 --> 00:00:37.605
+Hãy thử tìm kiếm Beam bằng cách sử dụng ví dụ chạy của chúng tôi về câu tiếng Pháp,
+
+13
+00:00:37.605 --> 00:00:39.495
+“Jane, visite l'Afrique en Septembre”.
+
+14
+00:00:39.495 --> 00:00:41.034
+Hy vọng được dịch sang,
+
+15
+00:00:41.034 --> 00:00:43.170
+“Jane, thăm châu Phi vào tháng Chín”.
+
+16
+00:00:43.170 --> 00:00:45.855
+Điều đầu tiên tìm kiếm Beam phải làm là cố gắng chọn
+
+17
+00:00:45.855 --> 00:00:48.679
+những từ đầu tiên của bản dịch tiếng Anh, điều
+
+18
+00:00:48.679 --> 00:00:50.085
+đó sẽ hoạt động.
+
+19
+00:00:50.085 --> 00:00:51.470
+Vì vậy, ở đây tôi đã liệt kê,
+
+20
+00:00:51.470 --> 00:00:54.195
+nói, 10.000 từ vào từ vựng.
+
+21
+00:00:54.195 --> 00:00:56.140
+Và để đơn giản hóa vấn đề một chút,
+
+22
+00:00:56.140 --> 00:00:58.000
+tôi sẽ bỏ qua viết hoa.
+
+23
+00:00:58.000 --> 00:01:00.605
+Vì vậy, tôi chỉ liệt kê tất cả các từ trong trường hợp thường.
+
+24
+00:01:00.605 --> 00:01:02.870
+Vì vậy, trong bước đầu tiên của Beam Search,
+
+25
+00:01:02.870 --> 00:01:08.085
+tôi sử dụng đoạn mạng này với liên minh màu xanh lá cây và giải mã màu tím,
+
+26
+00:01:08.085 --> 00:01:12.165
+để cố gắng đánh giá xác suất cho một hình vuông là gì.
+
+27
+00:01:12.165 --> 00:01:14.745
+Vì vậy, xác suất của đầu ra y là gì,
+
+28
+00:01:14.745 --> 00:01:18.670
+cho câu đầu vào x cho đầu vào tiếng Pháp đầu vào.
+
+29
+00:01:18.670 --> 00:01:24.725
+Vì vậy, trong khi tìm kiếm tham lam sẽ chỉ chọn một từ có khả năng nhất và tiếp tục, thay vào
+
+30
+00:01:24.725 --> 00:01:28.590
+đó tìm kiếm Beam có thể xem xét nhiều lựa chọn thay thế.
+
+31
+00:01:28.590 --> 00:01:32.344
+Vì vậy, thuật toán Beam Search có một tham số được gọi
+
+32
+00:01:32.344 --> 00:01:33.810
+là B, được gọi là chiều rộng chùm tia và cho
+
+33
+00:01:33.810 --> 00:01:37.715
+ví dụ này tôi sẽ thiết lập chiều rộng chùm tia để được với ba.
+
+34
+00:01:37.715 --> 00:01:40.330
+Và những gì điều này có nghĩa là tìm kiếm Beam sẽ gây ra rằng
+
+35
+00:01:40.330 --> 00:01:44.030
+không chỉ một khả năng mà còn xem xét ba tại thời điểm đó.
+
+36
+00:01:44.030 --> 00:01:46.950
+Vì vậy, đặc biệt, giả sử đánh giá
+
+37
+00:01:46.950 --> 00:01:50.151
+xác suất này qua các lựa chọn khác nhau từ đầu tiên,
+
+38
+00:01:50.151 --> 00:01:52.815
+nó thấy rằng các lựa chọn trong,
+
+39
+00:01:52.815 --> 00:01:55.740
+Jane và tháng Chín là
+
+40
+00:01:55.740 --> 00:02:01.150
+ba khả năng nhất cho các từ đầu tiên trong kết quả đầu ra tiếng Anh.
+
+41
+00:02:01.150 --> 00:02:03.905
+Sau đó, beam search sẽ stowaway trong
+
+42
+00:02:03.905 --> 00:02:07.800
+bộ nhớ máy tính mà nó muốn thử tất cả ba của những từ này,
+
+43
+00:02:07.800 --> 00:02:10.680
+và nếu các thông số chiều rộng chùm đã
+
+44
+00:02:10.680 --> 00:02:12.640
+được nói khác nhau, các thông số chiều rộng chùm là 10,
+
+45
+00:02:12.640 --> 00:02:15.760
+sau đó chúng tôi theo dõi không chỉ ba, nhưng trong mười,
+
+46
+00:02:15.760 --> 00:02:18.950
+nhiều khả năng lựa chọn có thể cho người đầu tiên từ.
+
+47
+00:02:18.950 --> 00:02:23.680
+Vì vậy, để được rõ ràng để thực hiện bước đầu tiên này của tìm kiếm Beam,
+
+48
+00:02:23.680 --> 00:02:26.790
+những gì bạn cần làm là chạy câu đầu vào tiếng Pháp thông qua
+
+49
+00:02:26.790 --> 00:02:31.435
+mạng mã hóa này và sau đó bước đầu tiên này sau đó sẽ giải mã mạng,
+
+50
+00:02:31.435 --> 00:02:35.915
+đây là một đầu ra softmax tổng thể 10.000 khả năng.
+
+51
+00:02:35.915 --> 00:02:39.165
+Sau đó, bạn sẽ lấy 10.000
+
+52
+00:02:39.165 --> 00:02:44.535
+kết quả đầu ra có thể và giữ trong bộ nhớ đó là ba đầu.
+
+53
+00:02:44.535 --> 00:02:47.195
+Chúng ta hãy đi vào bước thứ hai của tìm kiếm Beam.
+
+54
+00:02:47.195 --> 00:02:53.705
+Sau khi chọn trong, Jane và September là ba lựa chọn có khả năng nhất của từ đầu tiên,
+
+55
+00:02:53.705 --> 00:02:55.100
+những gì Beam tìm kiếm sẽ làm bây giờ,
+
+56
+00:02:55.100 --> 00:02:59.330
+là cho mỗi trong ba lựa chọn xem xét những gì nên là từ thứ hai,
+
+57
+00:02:59.330 --> 00:03:03.065
+vì vậy sau khi “trong” có lẽ một từ thứ hai là “a” hoặc có thể như Aaron,
+
+58
+00:03:03.065 --> 00:03:05.340
+Tôi chỉ liệt kê các từ từ
+
+59
+00:03:05.340 --> 00:03:10.370
+từ điển hoặc một nơi nào đó xuống danh sách sẽ là tháng chín,
+
+60
+00:03:10.370 --> 00:03:13.595
+một nơi nào đó xuống danh sách có truy cập và sau đó tất cả các cách
+
+61
+00:03:13.595 --> 00:03:16.910
+để z và sau đó từ cuối cùng là zulu.
+
+62
+00:03:16.910 --> 00:03:19.015
+Vì vậy, để đánh giá xác suất của từ thứ hai,
+
+63
+00:03:19.015 --> 00:03:23.150
+nó sẽ sử dụng các mảnh mạng mới này, nơi là coder
+
+64
+00:03:23.150 --> 00:03:28.785
+màu xanh lá cây và cho phần giải mã khi cố gắng để quyết định những gì xảy ra sau khi trong.
+
+65
+00:03:28.785 --> 00:03:33.055
+Hãy nhớ rằng bộ giải mã đầu tiên đầu ra, y mũ một.
+
+66
+00:03:33.055 --> 00:03:39.177
+Vì vậy, tôi sẽ đặt cho chiếc mũ y này một để từ “in” khi nó đi trở lại.
+
+67
+00:03:39.177 --> 00:03:43.570
+Vì vậy, có từ “in” bởi vì nó quyết định cho bây giờ.
+
+68
+00:03:43.570 --> 00:03:47.085
+Đó là bởi vì Nó cố gắng để tìm ra rằng từ đầu tiên là “trong”,
+
+69
+00:03:47.085 --> 00:03:48.630
+từ thứ hai là gì,
+
+70
+00:03:48.630 --> 00:03:53.460
+và sau đó điều này sẽ cho ra tôi đoán y mũ hai.
+
+71
+00:03:53.460 --> 00:03:58.065
+Và như vậy bởi cứng dây y mũ một ở đây,
+
+72
+00:03:58.065 --> 00:04:01.065
+thực sự các đầu vào ở đây là những từ đầu tiên
+
+73
+00:04:01.065 --> 00:04:06.079
+“trong” thời gian này là mảnh có thể được sử dụng để đánh giá liệu đó là
+
+74
+00:04:06.079 --> 00:04:09.775
+xác suất của từ thứ hai cho
+
+75
+00:04:09.775 --> 00:04:12.400
+câu đầu vào tiếng Pháp và rằng
+
+76
+00:04:12.400 --> 00:04:16.200
+những từ đầu tiên của bản dịch đã được từ “trong”.
+
+77
+00:04:16.200 --> 00:04:20.080
+Bây giờ nhận thấy rằng những gì chúng ta cũng cần giúp đỡ trong bước thứ hai này sẽ
+
+78
+00:04:20.080 --> 00:04:24.580
+là khẳng định để tìm ra cặp của các từ đầu tiên và thứ hai
+
+79
+00:04:24.580 --> 00:04:26.560
+có khả năng nó không chỉ là một giây mà
+
+80
+00:04:26.560 --> 00:04:28.710
+rất có thể là cặp đầu tiên và thứ hai trong khi đó
+
+81
+00:04:28.710 --> 00:04:33.363
+có khả năng nhất và bởi các quy tắc của điều kiện xác suất.
+
+82
+00:04:33.363 --> 00:04:37.520
+Điều này có thể được thể hiện dưới dạng P của các từ đầu tiên
+
+83
+00:04:37.520 --> 00:04:45.553
+lần P xác suất của các từ thứ hai.
+
+84
+00:04:45.553 --> 00:04:48.250
+Mà bạn đang nhận được từ
+
+85
+00:04:48.250 --> 00:04:55.200
+đoạn mạng này và vì vậy nếu cho mỗi trong ba từ bạn đã chọn “in”, “
+
+86
+00:04:55.200 --> 00:04:59.830
+Jane” và “September” bạn tiết kiệm xác suất này sau đó bạn có thể nhân chúng với xác
+
+87
+00:04:59.830 --> 00:05:05.140
+suất thứ hai này để có được xác suất của các từ đầu tiên và thứ hai.
+
+88
+00:05:05.140 --> 00:05:08.095
+Vì vậy, bây giờ bạn đã thấy làm thế nào nếu từ đầu tiên là
+
+89
+00:05:08.095 --> 00:05:11.630
+“trong” làm thế nào bạn có thể đánh giá xác suất của từ thứ hai.
+
+90
+00:05:11.630 --> 00:05:14.510
+Lúc đầu nó là “Jane” bạn cũng làm điều tương tự.
+
+91
+00:05:14.510 --> 00:05:17.823
+Câu có thể là “Jane a”,” Jane Aaron”,
+
+92
+00:05:17.823 --> 00:05:22.185
+và vân vân xuống “Jane is”,
+
+93
+00:05:22.185 --> 00:05:26.935
+“Jane thăm” và vân vân.
+
+94
+00:05:26.935 --> 00:05:30.690
+Và bạn sẽ sử dụng nó trong
+
+95
+00:05:30.690 --> 00:05:37.060
+các mảnh mạng của bạn để tôi vẽ nó trong cũng như nơi ở đây bạn sẽ hardwire,
+
+96
+00:05:37.060 --> 00:05:39.590
+Y hat One là Jane.
+
+97
+00:05:39.590 --> 00:05:46.675
+Và như vậy với chữ đầu tiên y một chiếc mũ cứng
+
+98
+00:05:46.675 --> 00:05:51.095
+như Jane hơn là chỉ những mảnh mạng
+
+99
+00:05:51.095 --> 00:05:54.425
+có thể cho bạn biết xác suất của những từ thứ hai với tôi là bao nhiêu.
+
+100
+00:05:54.425 --> 00:05:57.630
+Và cho rằng từ đầu tiên là “Jane”.
+
+101
+00:05:57.630 --> 00:06:05.595
+Và sau đó giống như ở trên bạn có thể nhân với P của Y1 để có được xác suất
+
+102
+00:06:05.595 --> 00:06:14.130
+của Y1 và Y2 cho mỗi 10.000 lựa chọn khác nhau có thể cho từ thứ hai.
+
+103
+00:06:14.130 --> 00:06:16.980
+Và sau đó cuối cùng làm điều tương tự cho
+
+104
+00:06:16.980 --> 00:06:23.935
+tháng Chín mặc dù từ một xuống Zulu và sử dụng đoạn mạng này.
+
+105
+00:06:23.935 --> 00:06:31.085
+Điều đó chỉ là tốt để xem liệu từ đầu tiên có phải là tháng Chín hay không.
+
+106
+00:06:31.085 --> 00:06:35.938
+Những lựa chọn có khả năng nhất cho những từ thứ hai là gì.
+
+107
+00:06:35.938 --> 00:06:40.100
+Vì vậy, cho bước thứ hai của việc beam search tia bởi vì chúng ta đang
+
+108
+00:06:40.100 --> 00:06:44.450
+tiếp tục sử dụng chiều rộng chùm tia là ba và bởi vì có
+
+109
+00:06:44.450 --> 00:06:48.400
+10.000 từ trong từ vựng bạn sẽ xem xét ba lần
+
+110
+00:06:48.400 --> 00:06:53.555
+10000 hoặc ba ngàn khả năng bởi vì có 10.000 ở đây,
+
+111
+00:06:53.555 --> 00:06:55.820
+10.000 ở đây, 10.000 ở đây như
+
+112
+00:06:55.820 --> 00:07:01.880
+chiều rộng chùm lần số từ trong từ vựng và những gì bạn
+
+113
+00:07:01.880 --> 00:07:05.900
+làm là bạn đánh giá tất cả các tùy chọn 30000
+
+114
+00:07:05.900 --> 00:07:10.685
+theo có lẽ là từ đầu tiên và thứ hai và sau đó chọn ba đầu.
+
+115
+00:07:10.685 --> 00:07:12.050
+Vì vậy, với một cắt giảm,
+
+116
+00:07:12.050 --> 00:07:15.309
+30,000 khả năng này xuống còn ba lần nữa xuống
+
+117
+00:07:15.309 --> 00:07:19.770
+chiều rộng chùm làm tròn một lần nữa vì vậy hãy nói rằng 30.000 lựa chọn,
+
+118
+00:07:19.770 --> 00:07:26.030
+có khả năng nhất là vào tháng Chín
+
+119
+00:07:26.030 --> 00:07:34.336
+và nói Jane là, và Jane thăm xin lỗi chút lộn xộn này nhưng đó là ba trong số
+
+120
+00:07:34.336 --> 00:07:37.655
+30.000 sau đó đó đó là những gì tìm kiếm của Beam sẽ ghi nhớ
+
+121
+00:07:37.655 --> 00:07:43.965
+đi và tiếp tục bước tiếp theo là đột biến.
+
+122
+00:07:43.965 --> 00:07:47.195
+Vì vậy, hãy chú ý một điều nếu beam search tia quyết
+
+123
+00:07:47.195 --> 00:07:52.305
+định rằng các lựa chọn có khả năng nhất là từ đầu tiên và thứ hai là vào tháng Chín,
+
+124
+00:07:52.305 --> 00:07:55.470
+hoặc Jane là, hoặc Jane thăm viếng.
+
+125
+00:07:55.470 --> 00:07:59.745
+Sau đó, điều đó có nghĩa là nó bây giờ từ chối tháng Chín là
+
+126
+00:07:59.745 --> 00:08:05.920
+một ứng cử viên cho các từ đầu tiên của bản dịch tiếng Anh đầu ra
+
+127
+00:08:05.920 --> 00:08:12.420
+vì vậy chúng tôi đang xuống đến hai khả năng cho các từ đầu tiên nhưng chúng tôi vẫn có một
+
+128
+00:08:12.420 --> 00:08:19.660
+chiều rộng chùm ba giữ theo dõi ba lựa chọn cho các cặp Y1,
+
+129
+00:08:19.660 --> 00:08:23.540
+Y2 trước đi vào bước thứ ba của việc beam search tia.
+
+130
+00:08:23.540 --> 00:08:26.946
+Chỉ muốn nhận thấy rằng vì chiều rộng chùm là bằng ba,
+
+131
+00:08:26.946 --> 00:08:31.710
+mỗi bước bạn instantiate ba bản sao
+
+132
+00:08:31.710 --> 00:08:38.160
+của mạng để đánh giá những đoạn câu từng phần và đầu ra.
+
+133
+00:08:38.160 --> 00:08:42.060
+Và đó là vì chiều rộng chùm tia bằng ba mà bạn có
+
+134
+00:08:42.060 --> 00:08:46.740
+ba bản sao của mạng với những lựa chọn khác nhau cho
+
+135
+00:08:46.740 --> 00:08:50.490
+những từ đầu tiên, nhưng ba bản sao của mạng có thể được sử dụng rất hiệu quả để
+
+136
+00:08:50.490 --> 00:08:56.110
+đánh giá tất cả 30.000 tùy chọn cho từ thứ hai.
+
+137
+00:08:56.110 --> 00:09:02.620
+Vì vậy, chỉ cần không instantiate 30.000 bản sao của mạng hoặc ba bản sao của mạng để
+
+138
+00:09:02.620 --> 00:09:09.521
+đánh giá rất nhanh chóng tất cả 10.000 kết quả đầu ra có thể ở đó softmax đầu ra nói cho Y2.
+
+139
+00:09:09.521 --> 00:09:14.120
+Chúng ta hãy nhanh chóng minh họa thêm một bước beam search tia.
+
+140
+00:09:18.822 --> 00:09:21.180
+Vì vậy, nói rằng các lựa chọn có khả năng nhất cho hai từ đầu tiên là trong tháng Chín,
+
+141
+00:09:21.180 --> 00:09:23.850
+Jane là, và Jane thăm và cho mỗi
+
+142
+00:09:23.850 --> 00:09:31.805
+cặp từ mà chúng ta nên đã lưu cách trong
+
+143
+00:09:31.805 --> 00:09:33.120
+bộ nhớ máy tính xác suất của Y1 và Y2 cho đầu vào X cho câu tiếng Pháp X. ,
+
+144
+00:09:33.120 --> 00:09:35.735
+bây giờ chúng ta muốn xem xét từ thứ ba là gì.
+
+145
+00:09:35.735 --> 00:09:37.160
+Vậy vào tháng 9 à?
+
+146
+00:09:37.160 --> 00:09:38.860
+Vào tháng 9 Aaron?
+
+147
+00:09:38.860 --> 00:09:40.800
+Tất cả các con đường xuống là vào
+
+148
+00:09:40.800 --> 00:09:45.920
+tháng Chín Zulu và để đánh giá các lựa chọn có thể cho từ thứ ba,
+
+149
+00:09:45.920 --> 00:09:49.275
+bạn sử dụng các mảnh mạng này mà bạn Hardwire
+
+150
+00:09:49.275 --> 00:09:53.253
+từ đầu tiên ở đây là từ thứ hai là tháng Chín.
+
+151
+00:09:53.253 --> 00:09:56.280
+Và vì vậy đoạn mạng này cho phép bạn đánh giá xác
+
+152
+00:09:56.280 --> 00:09:59.940
+suất của từ thứ ba được đưa ra câu đầu vào tiếng Pháp
+
+153
+00:09:59.940 --> 00:10:08.110
+X và cho rằng hai từ đầu tiên là vào tháng Chín và đầu ra tiếng Anh.
+
+154
+00:10:08.110 --> 00:10:13.415
+Và sau đó bạn làm điều tương tự cho đoạn thứ hai.
+
+155
+00:10:13.415 --> 00:10:15.385
+Giống như thế này.
+
+156
+00:10:15.385 --> 00:10:17.930
+Và điều tương tự cho các
+
+157
+00:10:17.930 --> 00:10:23.265
+chuyến thăm Jane và do đó
+
+158
+00:10:23.265 --> 00:10:25.735
+beam search sau đó một lần nữa sẽ chọn
+
+159
+00:10:25.735 --> 00:10:29.410
+ba khả năng hàng đầu có thể là những thứ trong tháng Chín.
+
+160
+00:10:29.410 --> 00:10:38.284
+Jane là một kết quả có thể hoặc Jane đang truy cập có khả năng hoặc có thể Jane thăm
+
+161
+00:10:38.284 --> 00:10:42.820
+châu Phi có khả năng cho rằng ba từ đầu tiên và sau đó nó tiếp tục
+
+162
+00:10:42.820 --> 00:10:44.680
+đi và sau đó bạn đi vào bước thứ tư của
+
+163
+00:10:44.680 --> 00:10:48.300
+chùm tìm kiếm mũ một từ nữa và trên nó đi.
+
+164
+00:10:48.300 --> 00:10:50.920
+Và kết quả của quá trình này hy vọng sẽ là
+
+165
+00:10:50.920 --> 00:10:54.570
+thêm một từ tại một thời điểm mà tìm kiếm Beam sẽ quyết định điều đó.
+
+166
+00:10:54.570 --> 00:10:57.610
+Jane thăm châu Phi vào tháng 9 sẽ bị chấm dứt bởi
+
+167
+00:10:57.610 --> 00:11:02.275
+sự kết thúc của biểu tượng câu sử dụng hệ thống đó là khá phổ biến.
+
+168
+00:11:02.275 --> 00:11:06.070
+Họ sẽ thấy rằng đây là một câu tiếng Anh có khả năng đầu ra
+
+169
+00:11:06.070 --> 00:11:08.690
+và bạn sẽ thấy thêm chi tiết về điều này cho mình.
+
+170
+00:11:08.690 --> 00:11:15.420
+Trong bài tập tuần này cũng như nơi bạn có thể chơi với chùm tìm kiếm chính mình.
+
+171
+00:11:15.420 --> 00:11:21.400
+Vì vậy, với một chùm ba đang được tìm kiếm xem xét ba khả năng tại một thời điểm.
+
+172
+00:11:21.400 --> 00:11:24.535
+Lưu ý rằng nếu chiều rộng chùm tia được cho là bằng một,
+
+173
+00:11:24.535 --> 00:11:26.075
+nói nguyên nhân chỉ có một,
+
+174
+00:11:26.075 --> 00:11:27.940
+sau đó điều này về cơ bản trở thành
+
+175
+00:11:27.940 --> 00:11:34.450
+thuật toán tìm kiếm tham lam mà chúng tôi đã thảo luận trong video cuối cùng nhưng bằng cách xem xét
+
+176
+00:11:34.450 --> 00:11:38.140
+nhiều khả năng nói ba hoặc mười hoặc một số số khác
+
+177
+00:11:38.140 --> 00:11:40.270
+cùng một lúc chùm tìm kiếm thường sẽ
+
+178
+00:11:40.270 --> 00:11:43.645
+tìm thấy một câu đầu ra tốt hơn nhiều so với tìm kiếm tham lam.
+
+179
+00:11:43.645 --> 00:11:47.470
+Bây giờ bạn đã thấy cách thức hoạt động của Beam Search nhưng hóa ra có
+
+180
+00:11:47.470 --> 00:11:49.607
+một số mẹo và thủ thuật bổ sung từ các đối tác của chúng tôi
+
+181
+00:11:49.607 --> 00:11:52.445
+giúp bạn làm cho việc beam search tia hoạt động tốt hơn.
+
+182
+00:11:52.445 --> 00:11:54.210
+Chúng ta hãy đi vào video tiếp theo để xem.

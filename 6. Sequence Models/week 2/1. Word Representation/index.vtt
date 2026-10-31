@@ -1,0 +1,396 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:01.420 --> 00:00:03.420
+Hello and welcome back.
+
+00:00:03.420 --> 00:00:06.760
+Last week you learned about RNNs, GRUs and LSTMs.
+
+00:00:06.760 --> 00:00:13.060
+In this week, you see how many of these ideas can be applied to NLP, to Natural Language Processing,
+
+00:00:13.060 --> 00:00:17.620
+which is one of the fields of AI that is really being revolutionized by deep learning.
+
+00:00:17.620 --> 00:00:22.140
+One of the key ideas you learn about is word embeddings, which is a way of representing words
+
+00:00:22.140 --> 00:00:26.220
+that lets your algorithms automatically understand analogies like that
+
+00:00:26.220 --> 00:00:30.320
+Manister Woman as King of Siqueen and many other examples.
+
+00:00:30.320 --> 00:00:35.360
+And through these ideas of word embeddings, you'll be able to build NLP applications even
+
+00:00:35.360 --> 00:00:40.400
+with modestly sized or even with relatively small labeled training sets.
+
+00:00:40.400 --> 00:00:46.240
+Finally, towards the end of the week, you see how to debias word embeddings as to reduce
+
+00:00:46.240 --> 00:00:51.520
+undesirable gender or ethnicity or other types of bias that learning algorithms can
+
+00:00:51.520 --> 00:00:53.040
+sometimes pick up.
+
+00:00:53.040 --> 00:00:58.840
+So with that, let's get started with a discussion on word representation.
+
+00:00:58.840 --> 00:01:03.240
+So far, we've been representing words using a vocabulary of words.
+
+00:01:03.240 --> 00:01:09.200
+And vocabulary from the previous week might be say 10,000 words.
+
+00:01:09.200 --> 00:01:13.560
+And we've been representing words using a one-hot vector.
+
+00:01:13.560 --> 00:01:19.800
+So for example, if man is word number 5391 in this dictionary, then you represent it
+
+00:01:19.800 --> 00:01:24.360
+with a vector with a 1 in position 5391.
+
+00:01:24.360 --> 00:01:32.720
+And I'm also going to use O subscript 5391 to represent this vector where O here stands
+
+00:01:32.720 --> 00:01:35.000
+for one-hot.
+
+00:01:35.000 --> 00:01:44.760
+And then if woman is word number 9853, then you represent it with O subscript 9853, which
+
+00:01:44.760 --> 00:01:49.480
+just says a 1 in position 9853 and 0's elsewhere.
+
+00:01:49.480 --> 00:01:56.040
+And then other words, king, queen, apple, orange would be similarly represented with
+
+00:01:56.040 --> 00:01:58.160
+one-hot vectors.
+
+00:01:58.160 --> 00:02:03.800
+One of the weaknesses of this representation is that it treats each word as a thing unto
+
+00:02:03.800 --> 00:02:10.440
+itself and it doesn't allow an algorithm to easily generalize across words.
+
+00:02:10.440 --> 00:02:15.800
+For example, let's say you have a language model that has learned that when you see
+
+00:02:15.800 --> 00:02:20.120
+I want a glass of orange blank, well what do you think the next word will be?
+
+00:02:20.120 --> 00:02:22.840
+Very likely to be juice.
+
+00:02:22.840 --> 00:02:28.280
+But even if the learning algorithm has learned that I want a glass of orange juice is a likely
+
+00:02:28.280 --> 00:02:34.320
+sentence, if it sees I want a glass of apple blank, as far as it knows, the relationship
+
+00:02:34.320 --> 00:02:40.160
+between apple and orange is not any closer as the relationship between any of the other
+
+00:02:40.160 --> 00:02:42.560
+words, man, woman, king, queen and orange.
+
+00:02:42.560 --> 00:02:47.640
+And so it's not easy for the learning algorithm to generalize from knowing that orange juice
+
+00:02:47.640 --> 00:02:54.320
+is a popular thing to recognizing that apple juice might also be a popular thing or a popular
+
+00:02:54.320 --> 00:02:56.000
+phrase.
+
+00:02:56.000 --> 00:03:01.920
+And this is because the inner product between any two different one-hot vectors is 0.
+
+00:03:01.920 --> 00:03:07.160
+If you take any two vectors, say queen and king and inner product them, the inner product
+
+00:03:07.160 --> 00:03:08.160
+is 0.
+
+00:03:08.160 --> 00:03:12.600
+If you take apple and orange and inner product them, the inner product is 0.
+
+00:03:12.600 --> 00:03:17.120
+And Euclidean distance between any pair of these vectors is also the same.
+
+00:03:17.120 --> 00:03:21.780
+So it just doesn't know that somehow apple and orange are much more similar than king
+
+00:03:21.780 --> 00:03:23.820
+and orange or queen and orange.
+
+00:03:23.820 --> 00:03:29.560
+So want to be nice if instead of a one-hot representation, we can instead learn a featurized
+
+00:03:29.560 --> 00:03:34.040
+representation where for each of these words, man, woman, king, queen, apple, orange,
+
+00:03:34.040 --> 00:03:39.160
+or really for every word in our dictionary, we could learn a set of features and values
+
+00:03:39.160 --> 00:03:41.120
+for each of them.
+
+00:03:41.120 --> 00:03:46.160
+So for example, each of these words might have, we want to know what is the gender associated
+
+00:03:46.160 --> 00:03:47.160
+with each of these things.
+
+00:03:47.160 --> 00:03:53.280
+So if gender goes from minus 1 for male to plus 1 for female, then the gender associated
+
+00:03:53.280 --> 00:03:57.400
+man might be minus 1 for woman might be plus 1.
+
+00:03:57.400 --> 00:04:01.640
+And then if you're actually learning these things, maybe for king you get minus 0.95
+
+00:04:01.640 --> 00:04:07.840
+for queen plus 0.97 and for apple and orange, you know, sort of genderless.
+
+00:04:07.840 --> 00:04:11.240
+Another feature might be, well, how royal are these things?
+
+00:04:11.240 --> 00:04:16.280
+And so the terms man and woman are not particularly royal.
+
+00:04:16.280 --> 00:04:22.320
+So the features values close to 0, whereas king and queen are highly royal and apple
+
+00:04:22.320 --> 00:04:25.800
+and orange are not particularly royal.
+
+00:04:25.800 --> 00:04:26.800
+How about age?
+
+00:04:26.800 --> 00:04:30.840
+Well, man and woman doesn't connote much about age.
+
+00:04:30.840 --> 00:04:36.680
+Maybe man and woman implies that they're adults, but maybe neither necessarily young
+
+00:04:36.680 --> 00:04:44.640
+nor old, so maybe values close to 0, whereas kings and queens are almost always adults and
+
+00:04:44.640 --> 00:04:48.320
+apple and orange might be more neutral for respect to age.
+
+00:04:48.320 --> 00:04:51.680
+And then another feature for is this a food?
+
+00:04:51.680 --> 00:04:57.000
+Well, man is not a food, woman is not a food.
+
+00:04:57.000 --> 00:05:01.240
+There are kings and queens, but apples and oranges are foods.
+
+00:05:01.240 --> 00:05:07.120
+And there can be many other features as well, ranging from what is the size of this, what
+
+00:05:07.120 --> 00:05:13.560
+is the cost, is this something that is alive, is this an action, or is this a noun, or is
+
+00:05:13.560 --> 00:05:17.600
+this a verb, or is this something else, and so on.
+
+00:05:17.600 --> 00:05:22.400
+So you can imagine coming up with many features, and for the sake of illustration, let's say
+
+00:05:22.400 --> 00:05:26.160
+300 different features.
+
+00:05:26.160 --> 00:05:30.800
+And what that does is it allows you to take this list of numbers, I've only written four
+
+00:05:30.800 --> 00:05:37.520
+here, but this could be a list of maybe 300 numbers, that then becomes a 300-dimensional
+
+00:05:37.520 --> 00:05:40.680
+vector for representing the word man.
+
+00:05:40.680 --> 00:05:51.120
+And I'm going to use the notation E subscript 5, 3, 9, 1 to denote a representation like
+
+00:05:51.120 --> 00:05:52.400
+this.
+
+00:05:52.400 --> 00:05:58.160
+And similarly, this vector, this 300-dimensional vector, or 300-dimensional vector like this,
+
+00:05:58.160 --> 00:06:07.320
+I would denote E 9, 8, 5, 3 to denote a 300-dimensional vector we could use to represent the word woman.
+
+00:06:07.320 --> 00:06:11.120
+And similarly, for the other examples here.
+
+00:06:11.120 --> 00:06:18.640
+Now if you use this representation to represent the words orange and apple, then notice that
+
+00:06:18.640 --> 00:06:23.560
+the representations for orange and apple are now quite similar.
+
+00:06:23.560 --> 00:06:28.160
+Some of the features will differ, because maybe the color of an orange and apple, the
+
+00:06:28.160 --> 00:06:31.160
+taste, or some of the features will differ.
+
+00:06:31.160 --> 00:06:36.960
+But by and large, a lot of features of apple and orange are actually the same, or take
+
+00:06:36.960 --> 00:06:38.680
+on very similar values.
+
+00:06:38.680 --> 00:06:43.160
+And so this increases the odds of the learning algorithm that has figured out that orange
+
+00:06:43.160 --> 00:06:48.040
+juice is a thing, to also quickly figure out that apple juice is a thing.
+
+00:06:48.040 --> 00:06:52.360
+So this allows it to generalize better across different words.
+
+00:06:52.360 --> 00:06:56.720
+So over the next few videos, we'll find a way to learn word embeddings, which is basically
+
+00:06:56.720 --> 00:07:02.000
+to learn high-dimensional feature vectors like these that gives a better representation than
+
+00:07:02.000 --> 00:07:06.120
+one-hot vectors for representing different words.
+
+00:07:06.120 --> 00:07:12.240
+And the features we'll end up learning won't have an easy to interpret interpretation like
+
+00:07:12.240 --> 00:07:17.800
+that component 1 is gender, component 2 is royal, component 3 is Asian, and so on.
+
+00:07:17.880 --> 00:07:22.360
+Maybe what they're representing will be a bit harder to figure out, but nonetheless, the
+
+00:07:22.360 --> 00:07:27.080
+featurized representations we'll be learning will allow an algorithm to quickly figure out
+
+00:07:27.080 --> 00:07:34.240
+that apple and orange are more similar than, say, king and orange or queen and orange.
+
+00:07:34.240 --> 00:07:41.520
+If we're able to learn a 300-dimensional feature vector or 300-dimensional embedding,
+
+00:07:41.520 --> 00:07:46.000
+for each word, one of the popular things to do is also to take this 300-dimensional
+
+00:07:46.000 --> 00:07:53.160
+data and embed it, say, in a two-dimensional space so that you can visualize them.
+
+00:07:53.160 --> 00:08:00.120
+And so one common algorithm for doing this is the T-SNE algorithm due to Lauren Van der
+
+00:08:00.120 --> 00:08:02.360
+Martin and Jeff Hinton.
+
+00:08:02.360 --> 00:08:08.040
+And if you look at one of these embeddings, one of these representations, you find that
+
+00:08:08.040 --> 00:08:12.400
+words like man and woman tend to get grouped together, king and queen tend to get grouped
+
+00:08:12.400 --> 00:08:17.280
+together, and these are the people which tend to get grouped together.
+
+00:08:17.280 --> 00:08:20.320
+Those are animals who tend to get grouped together.
+
+00:08:20.320 --> 00:08:22.800
+The fruits will tend to be close to each other.
+
+00:08:22.800 --> 00:08:25.600
+Numbers like 1, 2, 3, 4 will be close to each other.
+
+00:08:25.600 --> 00:08:31.360
+And then maybe the animated objects as a whole will also tend to get grouped together.
+
+00:08:31.360 --> 00:08:37.360
+But you see plots like these sometimes on the internet to visualize some of these 300- or
+
+00:08:37.360 --> 00:08:41.040
+higher-dimensional embeddings.
+
+00:08:41.160 --> 00:08:48.200
+Maybe this gives you a sense that word embedding algorithms like these can learn similar features
+
+00:08:48.200 --> 00:08:54.480
+for concepts that feel like they should be more related, as visualized by concepts that
+
+00:08:54.480 --> 00:08:59.680
+seem to you and me like they should be more similar, end up getting mapped to more similar
+
+00:08:59.680 --> 00:09:02.160
+feature vectors.
+
+00:09:02.160 --> 00:09:07.200
+And these representations will use these sort of feature-wise representations in maybe a
+
+00:09:07.200 --> 00:09:08.960
+300-dimensional space.
+
+00:09:08.960 --> 00:09:10.920
+These are called embeddings.
+
+00:09:10.920 --> 00:09:16.560
+And the reason we call them embeddings is you can think of a 300-dimensional space, and
+
+00:09:16.560 --> 00:09:18.560
+again, I can't draw a 300-dimensional space.
+
+00:09:18.560 --> 00:09:20.360
+This is maybe a 3D one.
+
+00:09:20.360 --> 00:09:25.840
+And what you do is you take every word like orange and you have a 300-dimensional feature
+
+00:09:25.840 --> 00:09:26.840
+vector.
+
+00:09:26.840 --> 00:09:32.120
+So the word orange gets embedded to a point in this 300-dimensional space.
+
+00:09:32.120 --> 00:09:38.240
+And the word apple gets embedded to a different point in this 300-dimensional space.
+
+00:09:38.240 --> 00:09:42.600
+And of course, to visualize it, algorithms like T-SNE map this to a much lower-dimensional
+
+00:09:42.600 --> 00:09:48.200
+space so you can actually plot the 2D data and look at it.
+
+00:09:48.200 --> 00:09:50.960
+But that's where the term embedding comes from.
+
+00:09:50.960 --> 00:09:55.320
+Word embeddings has been one of the most important ideas in NLP, in natural language
+
+00:09:55.320 --> 00:09:56.320
+processing.
+
+00:09:56.320 --> 00:10:01.320
+In this video, you saw why you might want to learn or use word embeddings.
+
+00:10:01.320 --> 00:10:04.720
+In the next video, let's take a deeper look at how you'll be able to use these
+
+00:10:04.720 --> 00:10:07.160
+algorithms to build NLP algorithms.

@@ -1,0 +1,623 @@
+WEBVTT
+
+1
+00:00:03.320 --> 00:00:05.850
+Có rất nhiều giả thuyết cường điệu
+ về neural network nhân tạo.
+
+2
+00:00:05.850 --> 00:00:10.170
+Và có lẽ một số giải thuyết là hợp lý khi nói 
+rằng chúng đang làm việc hiệu quả như thế nào.
+
+3
+00:00:10.170 --> 00:00:11.220
+Nhưng hóa ra là
+
+4
+00:00:11.220 --> 00:00:15.710
+cho đến nay, gần như tất cả các giá trị kinh tế được
+ tạo ra bởi các neural network nhân tạo đã được thông qua
+
+5
+00:00:15.710 --> 00:00:18.970
+một loại machine learning, được 
+gọi là supervised learning.
+
+6
+00:00:18.970 --> 00:00:22.120
+Chúng ta hãy cùng xem nó có nghĩa
+ là gì, và hãy xem qua một số ví dụ sau.
+
+7
+00:00:22.120 --> 00:00:26.030
+Trong supervised learning, 
+bạn có một số đầu vào x và
+
+8
+00:00:26.030 --> 00:00:30.210
+bạn muốn biết một hàm
+ ánh xạ đến một số đầu ra y.
+
+9
+00:00:30.210 --> 00:00:34.890
+Vì vậy, ví dụ, bây giờ chúng ta đã thấy
+ ứng dụng dự đoán giá nhà mà ở đó
+
+10
+00:00:34.890 --> 00:00:40.850
+bạn nhập một số đặc điểm của một
+ ngôi nhà và cố gắng xuất hoặc ước tính giá y.
+
+11
+00:00:40.850 --> 00:00:45.180
+Sau đây là một số ví dụ khác mà mạng
+ nơ-ron đã được áp dụng một cách
+
+12
+00:00:45.180 --> 00:00:46.940
+có hiệu quả.
+
+13
+00:00:46.940 --> 00:00:51.180
+Có lẽ ứng dụng sinh lợi nhất 
+của deep learning hiện nay là
+
+14
+00:00:51.180 --> 00:00:56.150
+quảng cáo trực tuyến, có thể ứng dụng này không
+ truyền cảm hứng nhất, nhưng chắc chắn là nó hái ra tiền,
+
+15
+00:00:56.150 --> 00:01:02.770
+bằng cách nhập thông tin về
+ một quảng cáo vào trang web, nó sẽ
+
+16
+00:01:02.770 --> 00:01:07.020
+cho bạn thấy một số thông tin về
+người dùng, các neural network nhân tạo
+
+17
+00:01:07.020 --> 00:01:10.700
+đang rất giỏi trong việc dự đoán liệu
+ bạn có nhấp vào quảng cáo hay không.
+
+18
+00:01:10.700 --> 00:01:11.770
+Và bằng cách cho bạn thấy và
+
+19
+00:01:11.770 --> 00:01:15.800
+hiển thị cho người dùng quảng cáo mà
+ bạn có khả năng nhấp vào nhất, đây là
+
+20
+00:01:15.800 --> 00:01:20.830
+một ứng dụng cực kỳ sinh lợi của 
+neural network nhân tạo tại nhiều công ty.
+
+21
+00:01:20.830 --> 00:01:24.040
+Bởi vì khả năng hiển thị
+ quảng cáomà bạn dễ
+
+22
+00:01:24.040 --> 00:01:26.690
+nhấp vào sẽ có tác động 
+trực tiếp đến kết luận
+
+23
+00:01:26.690 --> 00:01:29.200
+của một số công ty 
+quảng cáo trực tuyến rất lớn.
+
+24
+00:01:30.630 --> 00:01:35.150
+Tầm nhìn máy tính cũng đã có những
+ bước tiến lớn trong vài năm qua,
+
+25
+00:01:35.150 --> 00:01:37.050
+chủ yếu là do deep learning.
+
+26
+00:01:37.050 --> 00:01:41.140
+Vì vậy, bạn có thể nhập một
+ hình ảnh và muốn xuất một chỉ mục,
+
+27
+00:01:41.140 --> 00:01:45.290
+giả sử từ 1 đến 1.000 đang muốn
+ cho bạn biết liệu bức ảnh này,
+
+28
+00:01:45.290 --> 00:01:47.300
+có phải là bức nào trong
+ 1000 bức ảnh khác nhau.
+
+29
+00:01:47.300 --> 00:01:50.500
+Như vậy, bạn có thể 
+sử dụng nó để gắn thẻ ảnh.
+
+30
+00:01:50.500 --> 00:01:54.520
+Tôi cho là tiến bộ gần đây trong 
+nhận dạng giọng nói cũng rất thú vị,
+
+31
+00:01:54.520 --> 00:01:57.910
+bạn có thể đưa một đoạn âm thanh
+ vào neural network nhân tạo và
+
+32
+00:01:57.910 --> 00:02:00.930
+nó sẽ xuất ra văn bản tương ứng.
+
+33
+00:02:00.930 --> 00:02:05.400
+Dịch máy cũng đã có những 
+bước tiến lớn nhờ deep learning,
+
+34
+00:02:05.400 --> 00:02:09.400
+bạn có thể nhập một câu tiếng Anh vào một 
+neural network nhân tạo và nó sẽ trực tiếp xuất ra
+
+35
+00:02:09.400 --> 00:02:11.010
+một câu tiếng Trung.
+
+36
+00:02:11.010 --> 00:02:15.930
+Và trong lái xe tự động, bạn có thể
+ nhập vào một hình ảnh, về những gì ở
+
+37
+00:02:15.930 --> 00:02:20.600
+phía trước xe của bạn như 
+một số thông tin từ radar, vàphía trước xe của bạn như ⏎một số thông tin từ radar, và
+
+38
+00:02:20.600 --> 00:02:25.080
+dựa vào đó, một neural network nhân tạo
+ có thể được huấn luyện để cho bạn biết vị trí
+
+39
+00:02:25.080 --> 00:02:26.100
+của những chiếc xe khác trên đường.
+
+40
+00:02:26.100 --> 00:02:30.870
+Như vậy, điều này trở thành một yếu tố 
+quan trọng trong các hệ thống lái xe tự động.
+
+41
+00:02:30.870 --> 00:02:35.730
+Rất nhiều cách tạo ra giá trị thông qua
+ các neural network nhân tạo chính là lựa
+
+42
+00:02:35.730 --> 00:02:39.360
+chọn khôn khéo những gì nên 
+là x và những gì nên là y cho
+
+43
+00:02:39.360 --> 00:02:45.000
+vấn đề cụ thể của bạn, và sau đó đưa
+ thành phần supervised learning phù hợp này vào
+
+44
+00:02:45.000 --> 00:02:48.660
+một hệ thống lớn hơn như 
+một chiếc xe tự động chẳng hạn.
+
+45
+00:02:48.660 --> 00:02:52.880
+Hóa ra là các loại neural network
+ nhân tạo khác nhau thì hữu ích đối với
+
+46
+00:02:52.880 --> 00:02:54.960
+các ứng dụng khác nhau.
+
+47
+00:02:54.960 --> 00:03:00.100
+Ví dụ, trong ứng dụng bất động sản mà
+ chúng ta đã thấy trong video trước đây,
+
+48
+00:03:00.100 --> 00:03:04.520
+chúng ta sử dụng một kiến trúc neural network 
+nhân tạo tiêu chuẩn phổ quát, đúng chứ?
+
+49
+00:03:04.520 --> 00:03:08.510
+Có thể là trong bất động sản và quảng cáo 
+trực tuyến thì chúng ta có thể sử dụng một
+
+50
+00:03:08.510 --> 00:03:11.620
+neural network nhân tạo tương đối tiêu chuẩn, 
+giống như mạng mà chúng ta đã thấy.
+
+51
+00:03:13.410 --> 00:03:19.120
+Đối với các ứng dụng hình ảnh, chúng ta thường
+ sử dụng convolution trên các neural network nhân tạo,
+
+52
+00:03:19.120 --> 00:03:20.680
+viết tắt là CNN.
+
+53
+00:03:21.730 --> 00:03:24.000
+Và cho dữ liệu chuỗi
+
+54
+00:03:24.000 --> 00:03:27.840
+Ví dụ, âm thanh có 
+yếu tố tạm thời, đúng chứ?
+
+55
+00:03:27.840 --> 00:03:32.990
+Âm thanh được phát ra theo thời gian, vì vậy 
+âm thanh được thể hiện một cách tự nhiên nhất
+
+56
+00:03:32.990 --> 00:03:38.110
+như là một chuỗi thời gian một chiều 
+hoặc như một chuỗi tạm thời một chiều.
+
+57
+00:03:38.110 --> 00:03:42.420
+Và vì vậy, đối với dữ liệu chuỗi, 
+bạn thường sử dụng RNN,
+
+58
+00:03:42.420 --> 00:03:45.810
+một neural network regression.
+
+59
+00:03:45.810 --> 00:03:50.270
+Ngôn ngữ, như tiếng Anh và tiếng Trung Quốc, 
+bảng chữ cái hoặc các từ xuất hiện đồng thời.
+
+60
+00:03:50.270 --> 00:03:54.820
+Vì vậy, ngôn ngữ cũng được trình bày một
+ cách tự nhiên nhất như là dữ liệu chuỗi.
+
+61
+00:03:54.820 --> 00:04:00.700
+Và do đó, các phiên bản RNN phức tạp 
+hơn thường được sử dụng cho các ứng dụng này.
+
+62
+00:04:00.700 --> 00:04:04.360
+Và sau đó, đối với các ứng dụng phức tạp
+ hơn, như lái xe tự động, khi mà bạn có
+
+63
+00:04:04.360 --> 00:04:09.200
+một hình ảnh, có thể gợi nhiều về 
+cấu trúc neural network convolution CNN và
+
+64
+00:04:09.200 --> 00:04:12.480
+thông tin radar khá là khác biệt.
+
+65
+00:04:12.480 --> 00:04:15.360
+Bạn có thể sẽ có một kiến trúc mạng
+ nơ-ron lai tùy chỉnh nhiều hơn, hoặc
+
+66
+00:04:15.360 --> 00:04:19.880
+phức tạp hơn.
+
+67
+00:04:20.880 --> 00:04:26.100
+Như vậy, tôi chỉ muốn làm rõ hơn 
+một chút về CNN tiêu chuẩn là gì và
+
+68
+00:04:26.100 --> 00:04:27.950
+kiến trúc RNN là gì.
+
+69
+00:04:27.950 --> 00:04:32.790
+Như vậy, trong các tài liệu, có thể
+ bạn đã nhìn thấy hình ảnh như thế này.
+
+70
+00:04:32.790 --> 00:04:34.740
+Đó là một neural network 
+nhân tạo tiêu chuẩn.
+
+71
+00:04:34.740 --> 00:04:36.800
+Bạn có thể đã nhìn thấy 
+hình ảnh như thế này.
+
+72
+00:04:36.800 --> 00:04:41.830
+Chà, đây là một ví dụ về Neural network 
+convolution và trong một khóa học sau này
+
+73
+00:04:41.830 --> 00:04:45.950
+chúng ta sẽ hiểu chính xác ý nghĩa của hình ảnh này 
+và làm thế nào để bạn có thể thực hiện điều này.
+
+74
+00:04:45.950 --> 00:04:51.560
+Nhưng mạng convolution thường 
+được sử dụng cho dữ liệu hình ảnh.
+
+75
+00:04:51.560 --> 00:04:54.100
+Và cũng có thể bạn đã nhìn thấy
+ hình ảnh như thế này.
+
+76
+00:04:54.100 --> 00:04:57.590
+Và bạn sẽ học cách triển khai điều
+ này trong một khóa học sau này.
+
+77
+00:04:57.590 --> 00:05:00.180
+Neural network regression 
+rất hiệu quả đối với
+
+78
+00:05:00.180 --> 00:05:06.220
+loại dữ liệu chuỗi một chiều mà có
+ thể có tính tạm thời như này.
+
+79
+00:05:06.220 --> 00:05:10.310
+Bạn cũng có thể đã nghe nói về
+ các ứng dụng của machine learning
+
+80
+00:05:10.310 --> 00:05:14.000
+đối với cả dữ liệu có cấu trúc 
+và dữ liệu phi cấu trúc.
+
+81
+00:05:14.000 --> 00:05:14.960
+Đây là ý nghĩa của 
+các thuật ngữ đó.
+
+82
+00:05:14.960 --> 00:05:18.620
+Dữ liệu có cấu trúc có nghĩa
+ là cơ sở dữ liệu của dữ liệu.
+
+83
+00:05:19.910 --> 00:05:25.010
+Ví dụ, trong dự đoán giá nhà đất,
+ bạn có thể có cơ sở dữ liệu hoặc
+
+84
+00:05:25.010 --> 00:05:28.140
+cột cho bạn biết kích thước
+ nhà và số phòng ngủ.
+
+85
+00:05:28.140 --> 00:05:33.460
+Như vậy, đây là dữ liệu có cấu trúc
+ hoặc khi dự đoán người dùng sẽ
+
+86
+00:05:33.460 --> 00:05:37.330
+nhấp vào quảng cáo hay không, bạn có thể có
+ thông tin về người dùng, chẳng hạn như tuổi,
+
+87
+00:05:37.330 --> 00:05:41.590
+một số thông tin về quảng cáo và sau đó 
+gắn nhãn lý do bạn đang muốn dự đoán.
+
+88
+00:05:41.590 --> 00:05:46.470
+Như vậy, đó là dữ liệu có 
+cấu trúc, là mỗi đặc điểm,
+
+89
+00:05:46.470 --> 00:05:49.740
+chẳng hạn như kích thước của 
+ngôi nhà, số phòng ngủ, hoặc
+
+90
+00:05:49.740 --> 00:05:54.530
+tuổi của người dùng,
+ được xác định rất rõ ràng.
+
+91
+00:05:54.530 --> 00:06:00.520
+Ngược lại, dữ liệu phi cấu trúc đề cập đến
+ những thứ như âm thanh, âm thanh thô,
+
+92
+00:06:00.520 --> 00:06:05.790
+hoặc hình ảnh mà có thể bạn muốn biết
+ có gì trong hình ảnh hoặc văn bản đó.
+
+93
+00:06:05.790 --> 00:06:09.230
+Ở đây, các đặc điểm có thể là 
+các giá trị pixel trong ảnh hoặc
+
+94
+00:06:09.230 --> 00:06:12.190
+các từ riêng lẻ trong 
+một đoạn văn bản.
+
+95
+00:06:12.190 --> 00:06:14.330
+Trong quá khứ,
+
+96
+00:06:14.330 --> 00:06:19.480
+máy tính thì khó hiểu dữ liệu phi cấu
+ trúc hơn rất nhiều so với dữ liệu có cấu trúc.
+
+97
+00:06:19.480 --> 00:06:24.270
+Và thực tế loài người đã 
+tiến hóa để hiểu được
+
+98
+00:06:24.270 --> 00:06:26.270
+tín hiệu âm thanh cũng như hình ảnh.
+
+99
+00:06:26.270 --> 00:06:28.390
+Và sau đó thì chữ viết là một 
+phát minh gần đây hơn, nhưng
+
+100
+00:06:28.390 --> 00:06:31.760
+loài người thực sự giỏi trong việc 
+diễn giải dữ liệu phi cấu trúc.
+
+101
+00:06:31.760 --> 00:06:36.800
+Và vì vậy, một trong những điều thú vị
+ nhất về sự nổi lên của neural network là,
+
+102
+00:06:36.800 --> 00:06:41.280
+nhờ có deep learning, nhờ có neural network
+nhân tạo , máy tính giờ đây đã
+
+103
+00:06:41.280 --> 00:06:46.320
+diễn giải dữ liệu phi cấu trúc tốt hơn 
+rất nhiều so với chỉ một vài năm trước đây.
+
+104
+00:06:46.320 --> 00:06:51.240
+Và điều này tạo ra cơ hội để
+ nhiều ứng dụng thú vị mới sử dụng
+
+105
+00:06:51.240 --> 00:06:55.220
+nhận dạng giọng nói, nhận dạng hình ảnh, 
+xử lý ngôn ngữ tự nhiên trên văn bản,
+
+106
+00:06:56.230 --> 00:07:00.180
+trở nên khả thi hơn thậm chí 
+chỉ hai hoặc ba năm trước.
+
+107
+00:07:00.180 --> 00:07:03.940
+Tôi nghĩ mọi người đều sinh ra với
+ lòng đồng cảm để hiểu
+
+108
+00:07:03.940 --> 00:07:08.250
+dữ liệu không có cấu trúc, có thể bạn nghe về thành công
+ của neural network nhân tạo trên dữ liệu phi cấu trúc
+
+109
+00:07:08.250 --> 00:07:13.060
+nhiều hơn trên các phương tiện truyền thông, bởi vì việc mạng 
+nơ-ron nhân tạo có thể nhận ra một con mèo thật là tuyệt vời.
+
+110
+00:07:13.060 --> 00:07:15.750
+Tất cả chúng ta đều thích điều đó, và tất cả 
+chúng ta đều biết điều đó có nghĩa là gì.
+
+111
+00:07:15.750 --> 00:07:19.290
+Nhưng hóa ra rằng rất nhiều giá trị
+ kinh tế ngắn hạn mà neural network nhân tạo
+
+112
+00:07:19.290 --> 00:07:24.270
+đang tạo ra cũng ở những
+ dữ liệu có cấu trúc,
+
+113
+00:07:24.270 --> 00:07:28.690
+chẳng hạn như hệ thống quảng cáo tốt hơn
+ nhiều, khuyến nghị lợi nhuận tốt hơn nhiều và
+
+114
+00:07:28.690 --> 00:07:33.730
+khả năng xử lý tốt hơn nhiều các cơ sở 
+dữ liệu khổng lồ mà dựa trên đó
+
+115
+00:07:33.730 --> 00:07:37.290
+nhiều công ty phải đưa ra 
+dự đoán chính xác.
+
+116
+00:07:37.290 --> 00:07:41.230
+Vì vậy, trong khóa học này, có rất
+ nhiều kỹ thuật mà chúng ta sẽ áp dụng
+
+117
+00:07:41.230 --> 00:07:44.690
+cho cả dữ liệu có cấu trúc 
+và dữ liệu phi cấu trúc.
+
+118
+00:07:44.690 --> 00:07:46.970
+Để giải thích các thuật toán,
+
+119
+00:07:46.970 --> 00:07:52.210
+chúng ta sẽ nói thêm một chút về
+ các ví dụ sử dụng dữ liệu phi cấu trúc.
+
+120
+00:07:52.210 --> 00:07:56.280
+Nhưng khi bạn nghĩ về các ứng dụng của 
+neural network nhân tạo trong nhóm của bạn, tôi
+
+121
+00:07:56.280 --> 00:08:01.360
+hy vọng bạn tìm thấy cách sử dụng chúng
+ trong cả dữ liệu có cấu trúc và không cấu trúc.
+
+122
+00:08:02.590 --> 00:08:06.390
+Như vậy, neural network nhân tạo đã
+ làm biến đổi supervised learning và
+
+123
+00:08:06.390 --> 00:08:09.500
+đang tạo ra giá trị kinh tế khổng lồ.
+
+124
+00:08:09.500 --> 00:08:12.910
+Mặc dù hóa ra là những ý tưởng kỹ thuật 
+cơ bản đằng sau neural network nhân tạo
+
+125
+00:08:12.910 --> 00:08:16.520
+đã xuất hiện quanh đây, 
+đôi khi là từ nhiều thập kỷ trước.
+
+126
+00:08:16.520 --> 00:08:20.980
+Vậy thì tại sao bây giờ chúng mới trở
+ nên phổ biến và hiệu quả đến vậy?
+
+127
+00:08:20.980 --> 00:08:24.970
+Trong video tiếp theo, chúng tôi sẽ
+ nói về lý do tại sao chỉ mới gần đây thôi
+
+128
+00:08:24.970 --> 00:08:28.940
+neural network nhân tạo đã trở thành một 
+công cụ vô cùng mạnh mẽ mà bạn có thể sử dụng.

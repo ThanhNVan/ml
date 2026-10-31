@@ -1,0 +1,8 @@
+!*.mp4
+*.docx
+!*.vtt
+*.lnk
+__pycache__/
+*.log
+*.vsix
+!tools/vscode-video-player.vsix

@@ -1,0 +1,273 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.050 --> 00:00:06.210
+The ability of Python to allow you to use broadcasting operations and more generally,
+
+00:00:06.210 --> 00:00:11.810
+the great flexibility of the Python NumPy programming language is, I think, both a strength
+
+00:00:11.810 --> 00:00:14.810
+as well as a weakness of the programming language.
+
+00:00:14.810 --> 00:00:19.210
+I think it's a strength because the great expressivity of the language, the great flexibility
+
+00:00:19.210 --> 00:00:24.250
+of the language lets you get a lot done with even just a single line of code.
+
+00:00:24.250 --> 00:00:30.010
+But it's also a weakness because with broadcasting and this great amount of flexibility, sometimes
+
+00:00:30.010 --> 00:00:34.490
+it's possible you can introduce very subtle bugs or very strange looking bugs if you aren't
+
+00:00:34.490 --> 00:00:38.730
+familiar with all of the intricacies of how broadcasting and how features like broadcasting
+
+00:00:38.730 --> 00:00:39.730
+work.
+
+00:00:39.730 --> 00:00:44.810
+For example, if you take a column vector and add it to a row vector, you might expect
+
+00:00:44.810 --> 00:00:48.770
+it to throw up a dimension mismatch or type error or something.
+
+00:00:48.770 --> 00:00:54.050
+But you might actually get back a matrix as a sum of a row vector and a column vector.
+
+00:00:54.050 --> 00:00:59.210
+So there is an internal logic to these strange effects of Python, but if you aren't familiar
+
+00:00:59.210 --> 00:01:05.690
+with Python, now I've seen some students have very strange, very hard to find bugs.
+
+00:01:05.690 --> 00:01:09.890
+So what I want to do in this video is share with you a couple of tips and tricks that
+
+00:01:09.890 --> 00:01:15.570
+have been very useful for me to eliminate or simplify and eliminate a lot of the strange
+
+00:01:15.570 --> 00:01:17.050
+looking bugs in my own code.
+
+00:01:17.050 --> 00:01:22.210
+And I hope that with these tips and tricks, you also be able to much more easily write
+
+00:01:22.210 --> 00:01:25.370
+bug three Python and NumPy code.
+
+00:01:25.370 --> 00:01:31.690
+To illustrate one of the less intuitive effects of Python NumPy, especially how you construct
+
+00:01:31.690 --> 00:01:34.770
+vectors in Python NumPy, let me do a quick demo.
+
+00:01:34.770 --> 00:01:42.530
+Let's say I set a equals np.random.randn 5.
+
+00:01:42.530 --> 00:01:49.330
+So this creates a five random Gaussian variables stored in array a.
+
+00:01:49.330 --> 00:01:52.370
+And so let's print a.
+
+00:01:52.890 --> 00:02:02.730
+Now it turns out that the shape of a when you do this is this five calmer structure.
+
+00:02:02.730 --> 00:02:08.210
+And so this is called a rank one array in Python, and it's neither a row vector nor
+
+00:02:08.210 --> 00:02:09.770
+a column vector.
+
+00:02:09.770 --> 00:02:12.570
+And this leads us to have some slightly nonintuitive effect.
+
+00:02:12.570 --> 00:02:17.210
+So for example, if I print a transpose, it ends up looking the same as a.
+
+00:02:17.210 --> 00:02:20.250
+So a and a transpose end up looking the same.
+
+00:02:20.250 --> 00:02:26.450
+And if I print the inner product between a and a transpose, you might think a times a
+
+00:02:26.450 --> 00:02:30.210
+transpose is maybe the outer product should give you a matrix maybe.
+
+00:02:30.210 --> 00:02:34.250
+But if I do that, you instead get back a number.
+
+00:02:34.250 --> 00:02:39.530
+So what I would recommend is that when you're coding neural networks, that you just not
+
+00:02:39.530 --> 00:02:45.330
+use data structures, where the shape is this, you know, five calmer n calmer, or rank one
+
+00:02:45.330 --> 00:02:46.330
+array.
+
+00:02:46.330 --> 00:02:57.880
+Instead, if you set a to be this five by one, then this commits a to be a five by one column
+
+00:02:57.880 --> 00:02:59.080
+vector.
+
+00:02:59.080 --> 00:03:03.680
+And whereas previously a and a transpose look the same if you now print a transpose.
+
+00:03:03.680 --> 00:03:06.800
+Now a transpose is a row vector.
+
+00:03:06.800 --> 00:03:08.520
+Notice one subtle difference.
+
+00:03:08.520 --> 00:03:12.360
+In this data structure, there are two square brackets when you print a transpose, whereas
+
+00:03:12.360 --> 00:03:14.480
+previously there was one square bracket.
+
+00:03:14.480 --> 00:03:21.360
+So that's the difference between a this is really a one by five matrix versus a one of
+
+00:03:21.360 --> 00:03:23.640
+these are rank one arrays.
+
+00:03:23.640 --> 00:03:30.160
+And if you print, say the product between a and a transpose, then this gives you the
+
+00:03:30.160 --> 00:03:32.400
+outer product of a vector, right?
+
+00:03:32.400 --> 00:03:35.800
+And so the outer product of a vector gives you a matrix.
+
+00:03:35.800 --> 00:03:40.280
+So let's look in greater detail at what we just saw here.
+
+00:03:40.280 --> 00:03:46.960
+The first command that we ran just now was this, and this created a data structure where
+
+00:03:46.960 --> 00:03:52.520
+a dot shape was this funny thing five calmer.
+
+00:03:52.520 --> 00:03:57.280
+And so this is called a rank one array.
+
+00:03:57.280 --> 00:04:01.200
+And this is a very funny data structure, it doesn't behave consistently as either a row
+
+00:04:01.200 --> 00:04:06.780
+vector nor a column vector, which makes some of its effects non intuitive.
+
+00:04:06.780 --> 00:04:11.500
+So what I'm going to recommend is that when you're doing your program exercises, or in
+
+00:04:11.500 --> 00:04:17.220
+fact, when you're implementing logistic regression on your networks, that you just do not use
+
+00:04:17.220 --> 00:04:20.140
+these rank one arrays.
+
+00:04:20.140 --> 00:04:27.260
+Instead, if every time you create an array, you commit to making it either a column vector,
+
+00:04:27.260 --> 00:04:32.860
+so this creates a five or one vector or commit to making it a row vector, then the behavior
+
+00:04:32.860 --> 00:04:36.760
+of your vectors will maybe easier to understand.
+
+00:04:36.760 --> 00:04:43.280
+So in this case, a dot shape is going to be equal to five comma one.
+
+00:04:43.280 --> 00:04:48.540
+And so this behaves a lot like a, that this is a column vector.
+
+00:04:48.540 --> 00:04:52.280
+And that's why you might you can think of this as a five by one matrix or as a column
+
+00:04:52.280 --> 00:04:53.400
+vector.
+
+00:04:53.400 --> 00:05:00.040
+And here, a dot shape is going to be one comma five, and this behaves consistently as
+
+00:05:00.040 --> 00:05:02.160
+a row vector.
+
+00:05:02.160 --> 00:05:08.240
+So when you need a vector, I would say either use this or this, but not a rank one array.
+
+00:05:08.240 --> 00:05:13.240
+One more thing that I do a lot in my code is if I'm not entirely sure what's the dimension
+
+00:05:13.240 --> 00:05:18.480
+of one of my vectors, I'll often throw in an assertion statement like this to make sure
+
+00:05:18.480 --> 00:05:21.720
+in this case that this is a five by one vector.
+
+00:05:21.720 --> 00:05:23.760
+So this is a column vector.
+
+00:05:23.760 --> 00:05:29.560
+These assertions are really inexpensive to execute, and they also help to serve as documentation
+
+00:05:29.560 --> 00:05:30.560
+of your code.
+
+00:05:30.560 --> 00:05:35.560
+So don't hesitate to throw in assertion statements like this one if you feel like it.
+
+00:05:35.560 --> 00:05:40.920
+And then finally, if for some reason you do end up with a rank one array, you can reshape
+
+00:05:40.920 --> 00:05:49.080
+this a equals a dot reshape into, say a five by one array or one by five array so that
+
+00:05:49.080 --> 00:05:53.760
+it behaves more consistently as either a column vector or row vector.
+
+00:05:53.760 --> 00:05:58.120
+So sometimes students end up with very hard to track down bugs because of some of the
+
+00:05:58.120 --> 00:06:01.200
+nonintuitive effects of rank one arrays.
+
+00:06:01.200 --> 00:06:06.760
+By eliminating rank one arrays on my own code, I think my code became simpler, and I did
+
+00:06:06.760 --> 00:06:10.520
+not actually find it restrictive in terms of things I could express in code to just
+
+00:06:10.520 --> 00:06:12.800
+never use a rank one array.
+
+00:06:12.800 --> 00:06:18.240
+And so takeaways are to simplify your code, don't use rank one arrays, always use either
+
+00:06:18.240 --> 00:06:24.520
+n by one matrices, basically column vectors, or one by n matrices, or basically row vectors.
+
+00:06:24.520 --> 00:06:28.480
+Be free to toss a lot of assertion statements to double check the dimensions of your matrices
+
+00:06:28.480 --> 00:06:29.600
+and arrays.
+
+00:06:29.600 --> 00:06:34.360
+And also, you know, don't be shy about calling the reshape operation to make sure that your
+
+00:06:34.360 --> 00:06:38.800
+matrices or your vectors are the dimension that you need it to be.
+
+00:06:38.800 --> 00:06:44.520
+So that I hope that this set of suggestions helps you to eliminate a class of bugs that
+
+00:06:44.520 --> 00:06:48.800
+we have from Python code and makes a programming exercise easier for you to complete.

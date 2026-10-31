@@ -1,0 +1,619 @@
+WEBVTT
+
+00:00:02.160 --> 00:00:05.160
+Bây giờ bạn đã thấy một vài thuật toán học tập
+
+00:00:05.160 --> 00:00:08.160
+khác nhau, linear regression và
+logistic regression.
+
+00:00:08.160 --> 00:00:13.660
+Chúng hoạt động tốt cho nhiều tác vụ, nhưng
+đôi khi trong một ứng dụng, thuật
+
+00:00:13.660 --> 00:00:19.160
+toán có thể gặp phải sự cố gọi là trang bị quá
+mức, khiến thuật toán hoạt động kém.
+
+00:00:19.160 --> 00:00:23.660
+Điều tôi muốn làm trong video này là cho bạn
+thấy thế nào là overfitting, cũng
+
+00:00:23.660 --> 00:00:28.160
+như một vấn đề có liên quan chặt chẽ, gần như
+trái ngược được gọi là underfitting.
+
+00:00:28.160 --> 00:00:31.160
+Và trong các video tiếp theo sau video này,
+tôi sẽ chia sẻ với
+
+00:00:31.160 --> 00:00:34.160
+bạn một số kỹ thuật để giải quyết tình trạng
+overfitting.
+
+00:00:34.160 --> 00:00:38.160
+Đặc biệt, có một phương pháp gọi là
+regularization, một kỹ thuật rất hữu ích.
+
+00:00:38.160 --> 00:00:42.660
+Tôi sử dụng nó mọi lúc, nhưng việc
+regularization sẽ giúp bạn giảm thiểu vấn đề
+
+00:00:42.660 --> 00:00:47.160
+overfitting này và giúp các thuật toán
+học tập của bạn hoạt động tốt hơn nhiều.
+
+00:00:47.160 --> 00:00:51.160
+Vì vậy, chúng ta hãy xem thế nào là trang bị
+quá mức.
+
+00:00:51.160 --> 00:00:58.160
+Để giúp chúng ta hiểu thế nào là overfitting,
+chúng ta hãy xem một vài ví dụ.
+
+00:00:58.160 --> 00:01:01.827
+Hãy quay lại ví dụ ban đầu của chúng ta về
+việc dự đoán giá
+
+00:01:01.827 --> 00:01:05.493
+nhà đất bằng phương pháp linear regression,
+trong đó bạn
+
+00:01:05.493 --> 00:01:09.160
+muốn dự đoán giá như một hàm số theo quy mô
+của một ngôi nhà.
+
+00:01:09.160 --> 00:01:13.160
+Để giúp chúng ta hiểu thế nào là trang bị quá
+
+00:01:13.160 --> 00:01:17.160
+mức, chúng ta hãy xem một ví dụ
+linear regression.
+
+00:01:18.160 --> 00:01:21.160
+Và tôi sẽ quay lại ví dụ ban đầu của chúng ta
+
+00:01:21.160 --> 00:01:24.160
+về dự đoán giá nhà đất bằng linear regression.
+
+00:01:24.160 --> 00:01:30.160
+Giả sử tập dữ liệu của bạn trông như thế này,
+với đặc điểm đầu vào x là
+
+00:01:30.160 --> 00:01:36.160
+kích thước của ngôi nhà và giá trị y họ đang
+cố gắng dự đoán giá căn nhà.
+
+00:01:36.160 --> 00:01:41.160
+Một điều bạn có thể làm là điều chỉnh hàm
+tuyến tính cho dữ liệu này.
+
+00:01:41.160 --> 00:01:44.160
+Và nếu bạn làm điều đó, bạn sẽ có được một
+đường
+
+00:01:44.160 --> 00:01:47.160
+thẳng phù hợp với dữ liệu có thể trông như thế
+này.
+
+00:01:47.160 --> 00:01:50.160
+Nhưng đây không phải là một mô hình tốt.
+
+00:01:50.160 --> 00:01:54.160
+Nhìn vào dữ liệu, có vẻ khá rõ ràng rằng khi
+kích
+
+00:01:54.160 --> 00:01:58.160
+thước ngôi nhà tăng lên, giá nhà đất sẽ đi
+ngang.
+
+00:01:58.160 --> 00:02:04.160
+Vì vậy, thuật toán này không phù hợp lắm với
+training data.
+
+00:02:04.160 --> 00:02:10.160
+Thuật ngữ kỹ thuật cho trường hợp này là mô
+hình không phù hợp với training data.
+
+00:02:11.160 --> 00:02:16.160
+Một thuật ngữ khác là thuật toán có bias cao.
+
+00:02:16.160 --> 00:02:21.160
+Thật không may, bạn có thể đã đọc tin tức về
+một số thuật toán học tập,
+
+00:02:21.160 --> 00:02:26.160
+thể hiện sự thiên vị đối với một số sắc tộc
+hoặc giới tính nhất định.
+
+00:02:26.160 --> 00:02:31.160
+Trong machine learning, thuật ngữ thiên vị có
+nhiều nghĩa.
+
+00:02:31.160 --> 00:02:35.160
+Việc kiểm tra các thuật toán học tập để phát
+hiện sai lệch dựa
+
+00:02:35.160 --> 00:02:39.160
+trên các đặc điểm như giới tính hoặc sắc tộc
+là vô cùng quan trọng.
+
+00:02:41.160 --> 00:02:45.827
+Nhưng thuật ngữ sai lệch cũng có ý nghĩa kỹ
+thuật thứ hai, đó là ý
+
+00:02:45.827 --> 00:02:50.493
+nghĩa tôi đang sử dụng ở đây, đó là nếu thuật
+toán không phù hợp với
+
+00:02:50.493 --> 00:02:55.160
+dữ liệu, nghĩa là nó thậm chí không thể phù
+hợp tốt với training set.
+
+00:02:55.160 --> 00:03:01.160
+Rằng có một mẫu rõ ràng trong training data mà
+thuật toán không thể nắm bắt được.
+
+00:03:01.160 --> 00:03:07.160
+Một cách khác để nghĩ về dạng sai lệch này là,
+như thể thuật toán học tập có một
+
+00:03:07.160 --> 00:03:13.160
+định kiến rất mạnh, hay chúng ta nói là một sự
+thiên vị rất mạnh, rằng giá nhà
+
+00:03:13.160 --> 00:03:19.160
+đất sẽ là một hàm hoàn toàn tuyến tính theo
+quy mô, bất chấp dữ liệu ngược lại.
+
+00:03:19.160 --> 00:03:24.660
+Vì vậy, định kiến ​​cho rằng dữ liệu là tuyến
+tính khiến nó khớp với một
+
+00:03:24.660 --> 00:03:30.160
+đường thẳng không khớp với dữ liệu, dẫn đến dữ
+liệu không khớp với dữ liệu.
+
+00:03:30.160 --> 00:03:36.660
+Bây giờ, chúng ta hãy xem xét biến thể thứ hai
+của mô hình, nghĩa là, thay vào
+
+00:03:36.660 --> 00:03:43.160
+đó, nếu bạn khớp một hàm bậc hai với dữ liệu
+có hai đặc điểm x và x bình phương,
+
+00:03:43.160 --> 00:03:49.160
+sau đó khi bạn khớp các tham số w1 và w2, bạn
+có thể có được một
+
+00:03:49.160 --> 00:03:55.160
+đường cong phù hợp với dữ liệu hơn một chút.
+Có lẽ nó trông như thế này.
+
+00:03:55.160 --> 00:04:00.660
+Ngoài ra, nếu bạn muốn có một ngôi nhà mới
+không nằm trong bộ năm ví dụ
+
+00:04:00.660 --> 00:04:06.160
+đào tạo này, mô hình này có thể sẽ hoạt động
+khá tốt trên ngôi nhà mới đó.
+
+00:04:06.160 --> 00:04:10.160
+Vì vậy, nếu bạn là một đại lý bất động sản, ý
+tưởng rằng bạn muốn
+
+00:04:10.160 --> 00:04:14.160
+thuật toán học tập của mình hoạt động tốt,
+ngay cả trên các ví dụ
+
+00:04:14.160 --> 00:04:18.160
+không có trong training set, điều đó được gọi
+là khái quát hóa.
+
+00:04:18.160 --> 00:04:21.493
+Về mặt kỹ thuật, chúng tôi nói rằng bạn muốn
+thuật toán học của mình
+
+00:04:21.493 --> 00:04:24.827
+có khả năng khái quát hóa tốt, nghĩa là đưa ra
+những dự đoán tốt,
+
+00:04:24.827 --> 00:04:28.160
+ngay cả trên các ví dụ hoàn toàn mới mà nó
+chưa từng thấy trước đây.
+
+00:04:28.160 --> 00:04:33.160
+Vì vậy, mô hình bậc hai này có vẻ phù hợp với
+training set không hoàn
+
+00:04:33.160 --> 00:04:38.160
+hảo nhưng khá tốt. Và tôi nghĩ nó sẽ khái quát
+tốt cho các ví dụ mới.
+
+00:04:38.160 --> 00:04:41.660
+Bây giờ chúng ta hãy nhìn vào thái cực khác.
+Điều gì
+
+00:04:41.660 --> 00:04:45.160
+sẽ xảy ra nếu bạn khớp đa thức bậc bốn với dữ
+liệu?
+
+00:04:45.160 --> 00:04:49.493
+Vì vậy, bạn có x, x bình phương, x lập phương
+và x đến phần tư
+
+00:04:49.493 --> 00:04:53.827
+đều là các đặc điểm. Với đa thức bậc bốn này,
+bạn thực sự có thể
+
+00:04:53.827 --> 00:04:58.160
+điều chỉnh chính xác đường cong đi qua tất cả
+năm ví dụ huấn luyện.
+
+00:04:58.160 --> 00:05:03.160
+Và bạn có thể có một đường cong trông như thế
+này.
+
+00:05:03.160 --> 00:05:07.660
+Một mặt, điều này dường như thực hiện công
+việc cực kỳ phù hợp với
+
+00:05:07.660 --> 00:05:12.160
+training data vì nó truyền qua tất cả
+training data một cách hoàn hảo.
+
+00:05:12.160 --> 00:05:17.660
+Trên thực tế, bạn sẽ có thể chọn các tham số
+dẫn đến
+
+00:05:17.660 --> 00:05:23.160
+cost function chính xác bằng 0 vì sai số bằng
+0 trên cả năm ví dụ huấn luyện.
+
+00:05:23.160 --> 00:05:29.160
+Nhưng bạn biết đấy, đây là một đường cong rất
+ngoằn ngoèo. Nó đang lên xuống khắp nơi.
+
+00:05:29.160 --> 00:05:33.660
+Và nếu bạn có toàn bộ kích thước này ở đây, mô
+hình sẽ dự
+
+00:05:33.660 --> 00:05:38.160
+đoán rằng ngôi nhà này rẻ hơn những ngôi nhà
+nhỏ hơn nó.
+
+00:05:39.160 --> 00:05:44.160
+Vì vậy, chúng tôi không nghĩ rằng đây là một
+mô hình đặc biệt tốt để dự
+
+00:05:44.160 --> 00:05:49.160
+đoán giá nhà đất. Thuật ngữ kỹ thuật là chúng
+ta sẽ nói rằng mô hình này
+
+00:05:49.160 --> 00:05:54.160
+đã khớp quá mức với dữ liệu hoặc mô hình này
+có vấn đề về overfitting.
+
+00:05:54.160 --> 00:05:57.660
+Bởi vì mặc dù nó rất phù hợp với training set
+nhưng nó
+
+00:05:57.660 --> 00:06:01.160
+lại gần như overfitting với dữ liệu, do đó nó
+overfitting.
+
+00:06:01.160 --> 00:06:04.160
+Và có vẻ như mô hình này sẽ không khái quát
+hóa
+
+00:06:04.160 --> 00:06:07.160
+thành những ví dụ mới chưa từng thấy trước
+đây.
+
+00:06:08.160 --> 00:06:13.160
+Một thuật ngữ khác cho điều này là thuật toán
+có variance cao.
+
+00:06:13.160 --> 00:06:16.827
+Trong machine learning, nhiều người sẽ sử dụng
+các thuật ngữ phù hợp quá
+
+00:06:16.827 --> 00:06:20.493
+mức và variance cao gần như thay thế cho nhau
+và chúng tôi sẽ sử dụng
+
+00:06:20.493 --> 00:06:24.160
+các thuật ngữ overfitting và sai lệch cao
+gần như thay thế cho nhau.
+
+00:06:26.160 --> 00:06:30.160
+Trực giác đằng sau việc overfitting hoặc
+variance cao là
+
+00:06:30.160 --> 00:06:34.160
+thuật toán đang cố gắng hết sức để phù hợp với
+từng ví dụ đào tạo.
+
+00:06:34.160 --> 00:06:38.827
+Và hóa ra là nếu training set của bạn chỉ khác
+một chút, chẳng
+
+00:06:38.827 --> 00:06:43.493
+hạn như một ngôi nhà có giá cao hơn một chút,
+thấp hơn một
+
+00:06:43.493 --> 00:06:48.160
+chút, thì chức năng mà thuật toán phù hợp có
+thể sẽ hoàn toàn khác.
+
+00:06:48.160 --> 00:06:52.827
+Vì vậy, nếu hai kỹ sư machine learning khác
+nhau muốn điều chỉnh mô hình đa
+
+00:06:52.827 --> 00:06:57.493
+thức bậc bốn này cho các tập dữ liệu hơi khác
+nhau một chút, thì họ có thể
+
+00:06:57.493 --> 00:07:02.160
+đưa ra những dự đoán hoàn toàn khác nhau hoặc
+những dự đoán rất khác nhau.
+
+00:07:03.160 --> 00:07:06.160
+Và đó là lý do tại sao chúng tôi nói thuật
+toán có variance cao.
+
+00:07:07.160 --> 00:07:12.660
+Đối chiếu mô hình ngoài cùng bên phải này với
+mô hình ở giữa, đối với cùng một
+
+00:07:12.660 --> 00:07:18.160
+ngôi nhà, có vẻ như mô hình ở giữa đưa ra dự
+đoán hợp lý hơn nhiều về giá cả.
+
+00:07:18.160 --> 00:07:22.660
+Thực sự không có tên cho trường hợp này ở
+giữa, nhưng tôi
+
+00:07:22.660 --> 00:07:27.160
+sẽ gọi nó vừa phải vì nó không quá vừa cũng
+không quá vừa.
+
+00:07:28.160 --> 00:07:31.660
+Vì vậy, chúng ta có thể nói rằng mục tiêu của
+machine learning là
+
+00:07:31.660 --> 00:07:35.160
+tìm ra một mô hình hy vọng không phù hợp cũng
+không overfitting.
+
+00:07:35.160 --> 00:07:38.160
+Nói cách khác, hy vọng đó là một mô hình
+
+00:07:38.160 --> 00:07:41.160
+không có bias cao cũng như không có variance
+cao.
+
+00:07:42.160 --> 00:07:47.660
+Khi tôi nghĩ về việc underfitting và trang
+bị quá mức bias cao và variance
+
+00:07:47.660 --> 00:07:53.160
+cao, đôi khi tôi nhớ đến câu chuyện dành cho
+trẻ em về Goldilocks và Three Bears.
+
+00:07:54.160 --> 00:07:57.160
+Trong câu chuyện thiếu nhi này, một cô gái tên
+
+00:07:57.160 --> 00:08:00.160
+Goldilocks đến thăm nhà của một gia đình gấu.
+
+00:08:00.160 --> 00:08:05.160
+Có một bát cháo nguội quá không ăn được nên
+không ngon.
+
+00:08:06.160 --> 00:08:09.160
+Còn có bát cháo nóng hổi ăn không hết.
+
+00:08:10.160 --> 00:08:11.160
+Vậy thì điều đó cũng không tốt.
+
+00:08:12.160 --> 00:08:15.160
+Nhưng có một bát cháo không quá lạnh cũng
+không quá nóng.
+
+00:08:15.160 --> 00:08:19.160
+Nhiệt độ ở mức trung bình, vừa phải để ăn.
+
+00:08:20.160 --> 00:08:23.827
+Vì vậy, tóm lại, nếu bạn có quá nhiều feature
+như đa thức nước
+
+00:08:23.827 --> 00:08:27.493
+thứ tư ở bên phải thì mô hình có thể phù hợp
+tốt với
+
+00:08:27.493 --> 00:08:31.160
+training set, nhưng gần như quá tốt hoặc
+overfitting trong năm biến thể.
+
+00:08:32.160 --> 00:08:35.660
+Mặt khác, nếu bạn có quá ít feature thì trong
+ví dụ này,
+
+00:08:35.660 --> 00:08:39.160
+giống như feature bên trái, nó không phù hợp
+và có bias cao.
+
+00:08:40.160 --> 00:08:42.660
+Và trong ví dụ này, sử dụng các feature bậc
+
+00:08:42.660 --> 00:08:45.160
+hai, x và x bình phương, điều đó có vẻ đúng.
+
+00:08:46.160 --> 00:08:48.660
+Cho đến nay, chúng ta đã xem xét việc trang bị
+
+00:08:48.660 --> 00:08:51.160
+thiếu và thừa cho mô hình linear regression.
+
+00:08:52.160 --> 00:08:55.160
+Tương tự, việc overfitting cũng áp dụng
+cho việc classification.
+
+00:08:56.160 --> 00:09:00.660
+Đây là một ví dụ classification có hai đặc
+điểm, x1 và x2, trong
+
+00:09:00.660 --> 00:09:05.160
+đó x1 có thể là kích thước khối u và x2 là
+tuổi của bệnh nhân.
+
+00:09:06.160 --> 00:09:09.160
+Và chúng tôi đang cố gắng classification xem
+khối u là ác tính
+
+00:09:09.160 --> 00:09:12.160
+hay lành tính, được biểu thị bằng những dấu
+thập và vòng tròn này.
+
+00:09:13.160 --> 00:09:18.160
+Một điều bạn có thể làm là điều chỉnh một mô
+hình
+
+00:09:18.160 --> 00:09:23.160
+logistic regression, chỉ là một mô hình đơn
+giản, như thế này,
+
+00:09:23.160 --> 00:09:28.160
+trong đó, như thường lệ, g là hàm sigmoid, và
+số hạng ở đây bên trong là z.
+
+00:09:29.160 --> 00:09:35.160
+Vì vậy, nếu bạn làm điều đó, bạn sẽ có một
+đường thẳng làm decision boundary.
+
+00:09:36.160 --> 00:09:41.160
+Đây là đường trong đó z bằng 0, phân cách các
+ví dụ dương và âm.
+
+00:09:42.160 --> 00:09:45.160
+Đường thẳng này trông không tệ chút nào. Có vẻ
+ổn,
+
+00:09:45.160 --> 00:09:48.160
+nhưng có vẻ như nó cũng không phù hợp lắm với
+dữ liệu.
+
+00:09:49.160 --> 00:09:53.160
+Vì vậy, đây là một ví dụ về sự thiếu trang bị
+hoặc có bias cao.
+
+00:09:54.160 --> 00:09:56.160
+Hãy xem một ví dụ khác.
+
+00:09:57.160 --> 00:10:02.160
+Nếu bạn thêm vào đặc điểm của mình những số
+hạng bậc hai này, thì z sẽ trở thành
+
+00:10:02.160 --> 00:10:07.160
+số hạng mới này ở giữa, và decision boundary,
+tức là, trong đó z bằng 0, có thể
+
+00:10:07.160 --> 00:10:12.160
+trông giống thế này hơn, giống một hình elip
+hoặc một phần của hình elip hơn.
+
+00:10:13.160 --> 00:10:16.660
+Và điều này khá phù hợp với dữ liệu, mặc dù nó
+không
+
+00:10:16.660 --> 00:10:20.160
+classification hoàn hảo từng ví dụ huấn luyện
+trong training set.
+
+00:10:21.160 --> 00:10:24.160
+Hãy chú ý cách một số dấu thập này được
+classification trong các vòng tròn.
+
+00:10:25.160 --> 00:10:28.660
+Nhưng mô hình này trông khá tốt. Tôi sẽ gọi nó
+là đúng, và có
+
+00:10:28.660 --> 00:10:32.160
+vẻ như điều này sẽ khái quát khá tốt cho những
+bệnh nhân mới.
+
+00:10:34.160 --> 00:10:40.160
+Và cuối cùng, ở một thái cực khác, nếu bạn
+muốn điều chỉnh một đa thức bậc rất cao
+
+00:10:40.160 --> 00:10:46.160
+với rất nhiều feature như thế này, thì mô hình
+có thể cố gắng rất nhiều và tự vặn vẹo
+
+00:10:46.160 --> 00:10:52.160
+hoặc vặn vẹo để tìm ra decision boundary phù
+hợp hoàn hảo với training data của bạn.
+
+00:10:53.160 --> 00:10:57.660
+Việc có tất cả các đặc điểm đa thức bậc cao
+này cho phép
+
+00:10:57.660 --> 00:11:02.160
+thuật toán chọn decision boundary thực sự quá
+phức tạp này.
+
+00:11:03.160 --> 00:11:06.827
+Nếu các đặc điểm là kích thước và độ tuổi của
+khối u và bạn
+
+00:11:06.827 --> 00:11:10.493
+đang cố gắng classification khối u là ác tính
+hay lành tính
+
+00:11:10.493 --> 00:11:14.160
+thì đây thực sự không phải là một mô hình tốt
+để đưa ra dự đoán.
+
+00:11:15.160 --> 00:11:18.827
+Vì vậy, một lần nữa, đây là một ví dụ về trang
+bị quá mức và
+
+00:11:18.827 --> 00:11:22.493
+variance cao, bởi vì mô hình này, mặc dù hoạt
+động rất tốt trên
+
+00:11:22.493 --> 00:11:26.160
+training set, nhưng có vẻ như nó không khái
+quát tốt cho các ví dụ mới.
+
+00:11:27.160 --> 00:11:30.660
+Vậy là bây giờ bạn đã thấy một thuật toán có
+thể không phù
+
+00:11:30.660 --> 00:11:34.160
+hợp hoặc có bias cao hoặc overfitting và
+có variance cao.
+
+00:11:35.160 --> 00:11:38.160
+Bạn có thể muốn biết làm thế nào bạn có thể có
+được một mô hình vừa phải.
+
+00:11:39.160 --> 00:11:41.160
+Trong video tiếp theo, chúng ta sẽ xem xét một
+số
+
+00:11:41.160 --> 00:11:43.160
+cách bạn có thể giải quyết vấn đề trang bị quá
+mức.
+
+00:11:44.160 --> 00:11:46.160
+Và chúng ta cũng sẽ đề cập đến một số ý tưởng
+liên
+
+00:11:46.160 --> 00:11:48.160
+quan đến việc giải quyết tình trạng thiếu
+trang bị.
+
+00:11:49.160 --> 00:11:50.160
+Chúng ta hãy chuyển sang video tiếp theo.

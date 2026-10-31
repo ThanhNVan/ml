@@ -1,0 +1,568 @@
+WEBVTT
+
+00:00:01.460 --> 00:00:05.793
+Hãy nhớ rằng cost function cung cấp cho bạn
+cách đo mức độ
+
+00:00:05.793 --> 00:00:10.127
+phù hợp của một tập hợp tham số cụ thể với
+training data và
+
+00:00:10.127 --> 00:00:14.460
+từ đó cung cấp cho bạn cách để cố gắng chọn
+tham số tốt hơn.
+
+00:00:14.460 --> 00:00:18.007
+Trong video này, chúng ta sẽ xem xét
+cost function sai số bình
+
+00:00:18.007 --> 00:00:21.553
+phương không phải là cost function lý tưởng
+cho
+
+00:00:21.553 --> 00:00:25.100
+logistic regression như thế nào và chúng ta sẽ
+xem xét một cost function khác có thể
+
+00:00:25.100 --> 00:00:29.180
+giúp chúng tôi chọn các tham số tốt hơn cho
+logistic regression.
+
+00:00:29.180 --> 00:00:35.520
+Lưu ý training set cho mô hình
+logistic regression có thể trông như thế nào,
+trong
+
+00:00:35.520 --> 00:00:41.860
+đó mỗi hàng có thể tương ứng với một bệnh nhân
+đang đến khám bác sĩ và kết thúc với
+
+00:00:41.860 --> 00:00:44.780
+một số loại chẩn đoán.
+
+00:00:44.780 --> 00:00:51.220
+Như trước đây, chúng ta sẽ sử dụng M để biểu
+thị số lượng ví dụ huấn luyện.
+
+00:00:51.220 --> 00:00:56.580
+Mỗi ví dụ huấn luyện có một hoặc nhiều đặc
+điểm như kích
+
+00:00:56.580 --> 00:01:01.940
+thước khối u, tuổi của bệnh nhân, v.v., cho
+tổng số n đặc điểm.
+
+00:01:01.940 --> 00:01:06.620
+Và vì vậy hãy gọi các feature là x1 đến xn.
+
+00:01:06.620 --> 00:01:11.240
+Và vì đây là nhiệm vụ classification nhị phân
+
+00:01:11.240 --> 00:01:15.860
+nên nhãn đích y chỉ nhận hai giá trị là 0 hoặc
+1.
+
+00:01:15.860 --> 00:01:20.980
+Và cuối cùng, mô hình logistic regression được
+xác định bởi phương trình này.
+
+00:01:21.660 --> 00:01:26.120
+Được rồi, câu hỏi bạn muốn trả lời là, với
+
+00:01:26.120 --> 00:01:30.580
+training set này, làm thế nào bạn có thể chọn
+tham số w và b?
+
+00:01:30.580 --> 00:01:35.460
+Nhớ lại linear regression, đây là
+cost function sai số bình phương.
+
+00:01:35.460 --> 00:01:39.040
+Điều duy nhất tôi đã thay đổi là tôi đặt một
+
+00:01:39.040 --> 00:01:42.620
+nửa bên trong tổng thay vì bên ngoài tổng.
+
+00:01:42.620 --> 00:01:48.660
+Và bạn có thể nhớ rằng trong trường hợp
+linear regression, trong đó f(x) là hàm
+
+00:01:48.660 --> 00:01:54.700
+tuyến tính, w dot x cộng b, cost function
+trông giống như đây là hàm lồi hoặc cung
+
+00:01:54.700 --> 00:01:56.780
+hình dạng hoặc hình búa.
+
+00:01:56.780 --> 00:02:01.020
+Và do đó, việc gradient descent sẽ trông như
+thế này, trong đó bạn thực
+
+00:02:01.020 --> 00:02:05.260
+hiện một bước, một bước, một bước, v.v. để hội
+tụ ở mức tối thiểu toàn cục.
+
+00:02:05.260 --> 00:02:10.060
+Bây giờ, bạn có thể thử sử dụng cost function
+tương tự cho logistic regression.
+
+00:02:10.780 --> 00:02:17.320
+Nhưng hóa ra phép chia ở bên phải f của x bằng
+1 trên 1 cộng e với âm wx cộng b, và
+
+00:02:17.320 --> 00:02:23.860
+vẽ cost function bằng cách sử dụng giá trị này
+của f của x, khi đó chi phí sẽ có dạng
+
+00:02:23.860 --> 00:02:26.580
+như thế này.
+
+00:02:26.580 --> 00:02:32.460
+Điều này trở thành cái được gọi là
+cost function không lồi, không lồi.
+
+00:02:32.460 --> 00:02:37.120
+Và điều này có nghĩa là nếu bạn cố gắng sử
+dụng phương pháp
+
+00:02:37.120 --> 00:02:41.780
+gradient descent, có rất nhiều điểm cực tiểu
+cục bộ mà bạn có thể bị cuốn vào.
+
+00:02:41.780 --> 00:02:45.380
+Vì vậy, hóa ra đối với logistic regression,
+
+00:02:45.380 --> 00:02:48.980
+cost function lỗi bình phương này không phải
+là một lựa chọn tốt.
+
+00:02:48.980 --> 00:02:55.660
+Thay vào đó, sẽ có một cost function khác có
+thể làm cho cost function lồi trở lại.
+
+00:02:55.660 --> 00:03:00.380
+Vì vậy, việc gradient descent có thể được đảm
+bảo hội tụ đến mức tối thiểu toàn cầu.
+
+00:03:00.380 --> 00:03:03.520
+Điều duy nhất tôi đã thay đổi là tôi đặt một
+
+00:03:03.520 --> 00:03:06.660
+nửa bên trong tổng thay vì bên ngoài tổng.
+
+00:03:06.660 --> 00:03:09.240
+Điều này sẽ làm cho phép toán mà bạn thấy sau
+này
+
+00:03:09.240 --> 00:03:11.820
+trên trang trình bày này đơn giản hơn một
+chút.
+
+00:03:11.820 --> 00:03:17.280
+Để xây dựng cost function mới, hàm mà chúng ta
+sẽ sử dụng cho
+
+00:03:17.280 --> 00:03:22.740
+logistic regression, tôi sẽ thay đổi một chút
+định nghĩa về cost function j của w và b.
+
+00:03:22.740 --> 00:03:27.760
+Đặc biệt, nếu bạn nhìn vào bên trong phép tính
+tổng này, hãy gọi
+
+00:03:27.760 --> 00:03:32.780
+thuật ngữ này là bên trong tổn thất trên một
+ví dụ huấn luyện duy nhất.
+
+00:03:32.900 --> 00:03:40.420
+Và tôi sẽ biểu thị sự mất mát thông qua chữ L
+viết hoa này, và là
+
+00:03:40.420 --> 00:03:47.940
+một hàm dự đoán của thuật toán học f(x), cũng
+như của nhãn thực y.
+
+00:03:47.940 --> 00:03:53.600
+Và do đó, tổn thất, với f dự đoán của x và
+nhãn
+
+00:03:53.600 --> 00:03:59.260
+thực y, trong trường hợp này bằng một nửa bình
+phương.
+
+00:03:59.260 --> 00:04:03.140
+Chúng ta sẽ sớm thấy rằng bằng cách chọn một
+dạng khác cho
+
+00:04:03.140 --> 00:04:07.020
+loss function này, chúng ta sẽ có thể giữ được
+cost function
+
+00:04:07.020 --> 00:04:10.900
+tổng thể, gấp một phần m lần tổng của các
+loss function này.
+
+00:04:10.900 --> 00:04:13.220
+là một hàm lồi.
+
+00:04:13.220 --> 00:04:18.720
+Bây giờ loss function nhập f(x) và nhãn đúng
+y, đồng thời cho
+
+00:04:18.720 --> 00:04:24.220
+chúng ta biết chúng ta đang làm tốt như thế
+nào trên ví dụ đó.
+
+00:04:24.220 --> 00:04:27.760
+Tôi sẽ chỉ viết ra đây định nghĩa về
+
+00:04:27.760 --> 00:04:31.300
+loss function mà chúng ta sẽ sử dụng cho
+logistic regression.
+
+00:04:31.300 --> 00:04:39.100
+Nếu nhãn y bằng 1 thì tổn thất là log âm của
+f(x).
+
+00:04:39.100 --> 00:04:49.220
+Và nếu nhãn y bằng 0, thì tổn thất là log âm
+của một trừ f của x.
+
+00:04:49.220 --> 00:04:55.780
+Chúng ta hãy xem tại sao loss function này hy
+vọng có ý nghĩa.
+
+00:04:55.780 --> 00:05:01.160
+Trước tiên chúng ta hãy xem xét trường hợp y
+bằng 1 và vẽ đồ thị của
+
+00:05:01.160 --> 00:05:06.540
+hàm này để có được trực giác nào đó về chức
+năng của loss function này.
+
+00:05:06.540 --> 00:05:09.887
+Và hãy nhớ rằng, hàm loss đo lường mức độ bạn
+thực hiện
+
+00:05:09.887 --> 00:05:13.233
+trên một ví dụ huấn luyện và bằng cách tổng
+hợp các tổn
+
+00:05:13.233 --> 00:05:16.580
+thất trên tất cả các ví dụ huấn luyện mà sau
+đó bạn nhận được
+
+00:05:16.580 --> 00:05:22.620
+cost function, đo lường mức độ bạn đang thực
+hiện trên toàn bộ training set.
+
+00:05:22.620 --> 00:05:27.640
+Vì vậy, nếu bạn vẽ log của f, nó trông giống
+như đường
+
+00:05:27.640 --> 00:05:32.660
+cong này ở đây, trong đó f ở đây nằm trên trục
+hoành.
+
+00:05:32.660 --> 00:05:37.460
+Và do đó, đồ thị âm của log của f trông như
+thế này,
+
+00:05:37.460 --> 00:05:42.260
+nơi chúng ta chỉ cần lật đường cong dọc theo
+trục hoành.
+
+00:05:42.260 --> 00:05:51.100
+Lưu ý rằng nó cắt trục hoành tại f bằng 1 và
+tiếp tục đi xuống từ đó.
+
+00:05:51.100 --> 00:05:54.140
+Bây giờ f là đầu ra của logistic regression.
+
+00:05:54.140 --> 00:05:58.660
+Do đó, f luôn nằm trong khoảng từ 0 đến 1, vì
+đầu ra
+
+00:05:58.660 --> 00:06:03.180
+của logistic regression luôn nằm trong khoảng
+từ 0 đến 1.
+
+00:06:03.180 --> 00:06:13.340
+Do đó, phần duy nhất của hàm có liên quan là
+phần ở đây, tương ứng với f giữa 0 và 1.
+
+00:06:13.340 --> 00:06:18.620
+Vì vậy, hãy phóng to và xem xét kỹ hơn phần
+này của biểu đồ.
+
+00:06:18.620 --> 00:06:26.440
+Nếu thuật toán dự đoán xác suất gần bằng 1 và
+nhãn đúng là 1 thì sai
+
+00:06:26.440 --> 00:06:34.260
+số sẽ rất nhỏ, gần như bằng 0, vì bạn đã ở rất
+gần câu trả lời đúng.
+
+00:06:34.260 --> 00:06:37.720
+Bây giờ hãy tiếp tục với ví dụ về nhãn thực y
+là
+
+00:06:37.720 --> 00:06:41.180
+một, nên có thể nói nó thực sự là khối u
+Madelik-Ned.
+
+00:06:41.180 --> 00:06:46.640
+Nếu thuật toán dự đoán là 0,5 thì mức lỗ sẽ ở
+thời
+
+00:06:46.640 --> 00:06:52.100
+điểm này, cao hơn một chút nhưng không cao đến
+mức đó.
+
+00:06:52.100 --> 00:06:59.160
+Ngược lại, nếu cái còn lại có đầu ra 0,1, nếu
+nó cho rằng chỉ có 10% khả
+
+00:06:59.160 --> 00:07:06.220
+năng khối u là ác tính, nhưng y thực sự là
+một, nó thực sự là ác tính,
+
+00:07:06.220 --> 00:07:11.140
+thì sự mất mát có giá trị cao hơn nhiều ở đây.
+
+00:07:11.140 --> 00:07:16.840
+Vì vậy, khi y bằng 1, hàm loss khuyến khích
+hoặc thúc đẩy hoặc nó giúp thúc
+
+00:07:16.840 --> 00:07:22.540
+đẩy thuật toán đưa ra dự đoán chính xác hơn vì
+tổn thất thấp nhất khi dự đoán
+
+00:07:22.540 --> 00:07:25.140
+các giá trị gần bằng một.
+
+00:07:25.140 --> 00:07:30.540
+Bây giờ trên slide này, chúng ta đã xem tổn
+thất là bao nhiêu khi y bằng 1.
+
+00:07:30.540 --> 00:07:33.920
+Trên slide này, chúng ta hãy xem phần thứ
+
+00:07:33.920 --> 00:07:37.300
+hai của loss function tương ứng khi y bằng 0.
+
+00:07:37.300 --> 00:07:43.460
+Trong trường hợp này, tổn thất là log âm của
+một trừ f của x.
+
+00:07:43.460 --> 00:07:48.060
+Khi hàm này được vẽ, nó thực sự trông như thế
+này.
+
+00:07:48.060 --> 00:07:52.380
+Phạm vi của f được giới hạn từ 0 đến 1 vì
+
+00:07:52.380 --> 00:07:56.700
+logistic regression chỉ đưa ra các giá trị từ
+0 đến 1.
+
+00:07:56.700 --> 00:08:00.860
+Và nếu chúng ta phóng to lên, nó trông như thế
+này.
+
+00:08:00.860 --> 00:08:07.120
+Vì vậy, trong biểu đồ này, tương ứng với y
+bằng 0, trục tung
+
+00:08:07.120 --> 00:08:13.380
+biểu thị giá trị tổn hao đối với các giá trị
+khác nhau của f(x).
+
+00:08:13.380 --> 00:08:19.340
+Vì vậy, khi f bằng 0 hoặc rất gần 0, tổn thất
+cũng sẽ rất nhỏ, điều đó
+
+00:08:19.340 --> 00:08:25.300
+có nghĩa là nếu nhãn đúng bằng 0 và dự đoán
+của mô hình rất gần bằng 0,
+
+00:08:25.300 --> 00:08:27.440
+à, bạn gần như đã hiểu đúng.
+
+00:08:27.440 --> 00:08:32.080
+Vì vậy, sự mất mát thích hợp là rất gần bằng
+không.
+
+00:08:32.080 --> 00:08:40.680
+Và giá trị của f(x) càng lớn thì tổn thất càng
+lớn vì dự đoán càng xa nhãn 0 thực.
+
+00:08:40.680 --> 00:08:47.280
+Và trên thực tế, khi dự đoán đó tiến đến gần
+một, tổn thất thực sự tiến đến vô cùng.
+
+00:08:47.280 --> 00:08:51.200
+Quay trở lại ví dụ về dự đoán khối u, điều này
+nói lên rằng nếu một mô
+
+00:08:51.200 --> 00:08:55.120
+hình dự đoán rằng khối u của bệnh nhân gần như
+chắc chắn là ác tính,
+
+00:08:55.120 --> 00:08:59.040
+chẳng hạn như 99,9% khả năng là ác tính, thì
+nó sẽ chuyển thành ác tính.
+
+00:08:59.040 --> 00:09:01.080
+thực ra không phải là ác tính.
+
+00:09:01.080 --> 00:09:07.200
+Vậy y bằng 0, khi đó chúng ta phạt mô hình với
+mức tổn thất rất cao.
+
+00:09:07.200 --> 00:09:12.380
+Vì vậy, trong trường hợp y bằng 0, tương tự
+như trường hợp y bằng 1
+
+00:09:12.380 --> 00:09:17.560
+trên slide trước, dự đoán f của x càng xa giá
+trị thực của y thì càng cao.
+
+00:09:17.560 --> 00:09:18.880
+sự mất mát.
+
+00:09:18.880 --> 00:09:24.330
+Và trên thực tế, nếu f(x) tiến tới 0, thì tổn
+thất ở
+
+00:09:24.330 --> 00:09:29.780
+đây thực sự rất lớn và thực tế là tiến tới vô
+cùng.
+
+00:09:29.780 --> 00:09:34.310
+Vì vậy, khi nhãn thực là một, thuật toán được
+khuyến
+
+00:09:34.310 --> 00:09:38.840
+khích mạnh mẽ để không dự đoán thứ gì đó quá
+gần bằng 0.
+
+00:09:38.840 --> 00:09:42.080
+Như vậy, trong video này, bạn đã hiểu tại sao
+cost function
+
+00:09:42.080 --> 00:09:45.320
+lỗi bình phương không hoạt động tốt cho
+logistic regression.
+
+00:09:45.320 --> 00:09:51.610
+Chúng tôi cũng đã xác định loss function cho
+một ví dụ huấn luyện duy
+
+00:09:51.610 --> 00:09:57.900
+nhất và đưa ra định nghĩa mới cho
+loss function cho logistic regression.
+
+00:09:57.900 --> 00:10:01.893
+Hóa ra là với lựa chọn loss function này,
+cost function
+
+00:10:01.893 --> 00:10:05.887
+tổng thể sẽ lồi và do đó bạn có thể sử dụng
+
+00:10:05.887 --> 00:10:09.880
+gradient descent một cách đáng tin cậy để đưa
+bạn đến mức tối thiểu toàn cầu,
+
+00:10:09.880 --> 00:10:15.200
+việc chứng minh rằng hàm này lồi nằm ngoài
+phạm vi của khóa học này.
+
+00:10:15.220 --> 00:10:21.670
+Bạn có thể nhớ rằng cost function là một hàm
+của toàn bộ training set và do đó là
+
+00:10:21.670 --> 00:10:28.120
+giá trị trung bình hoặc một trong số ram nhân
+tổng của loss function trên cá thể.
+
+00:10:28.120 --> 00:10:30.240
+ví dụ đào tạo.
+
+00:10:30.240 --> 00:10:37.300
+Vì vậy, chi phí trên một tập tham số w và b
+nhất định bằng một trên ram nhân
+
+00:10:37.300 --> 00:10:44.360
+với tổng trên tất cả các mẫu huấn luyện về tổn
+thất trên các mẫu huấn luyện.
+
+00:10:44.360 --> 00:10:50.650
+Và nếu bạn có thể tìm thấy giá trị của tham số
+w và b để giảm thiểu điều này,
+
+00:10:50.650 --> 00:10:56.940
+thì bạn sẽ có một bộ giá trị khá tốt cho tham
+số w và b cho logistic regression.
+
+00:10:56.940 --> 00:11:00.507
+Trong phòng thí nghiệm tùy chọn sắp tới, bạn
+sẽ xem xét
+
+00:11:00.507 --> 00:11:04.073
+cost function sai số bình phương hoạt động
+không tốt như thế nào
+
+00:11:04.073 --> 00:11:07.640
+trong việc classification, bởi vì bạn thấy
+rằng kết quả của biểu đồ bề mặt
+
+00:11:07.640 --> 00:11:12.680
+trong một bề mặt chi phí rất dao động với
+nhiều mức tối thiểu cục bộ.
+
+00:11:12.680 --> 00:11:17.880
+Sau đó, bạn hãy xem hàm mất logistic mới.
+
+00:11:17.880 --> 00:11:22.360
+Và như bạn có thể thấy ở đây, điều này tạo ra
+một đồ thị bề
+
+00:11:22.360 --> 00:11:26.840
+mặt lồi đẹp và mịn không có tất cả các cực
+tiểu cục bộ đó.
+
+00:11:26.840 --> 00:11:32.080
+Vì vậy, vui lòng xem mã và sơ đồ sau video
+này.
+
+00:11:32.080 --> 00:11:35.480
+Được rồi, chúng ta đã thấy rất nhiều điều
+trong video này.
+
+00:11:35.480 --> 00:11:38.947
+Trong video tiếp theo, chúng ta hãy quay lại
+và lấy
+
+00:11:38.947 --> 00:11:42.413
+loss function cho một ví dụ huấn luyện duy
+nhất và sử dụng
+
+00:11:42.413 --> 00:11:45.880
+hàm đó để xác định cost function tổng thể cho
+toàn bộ training set.
+
+00:11:45.880 --> 00:11:49.427
+Và chúng ta cũng sẽ tìm ra một cách đơn giản
+hơn để viết
+
+00:11:49.427 --> 00:11:52.973
+cost function, sau này sẽ cho phép chúng ta
+chạy hàm
+
+00:11:52.973 --> 00:11:56.520
+gradient descent để tìm các tham số phù hợp
+cho logistic regression.
+
+00:11:56.520 --> 00:11:58.120
+Chúng ta hãy chuyển sang video tiếp theo.

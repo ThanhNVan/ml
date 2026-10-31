@@ -1,0 +1,62 @@
+Bây giờ mọi người đã biết về một số
+mạng nơ-ron hiệu quả cao và Kiến trúc Mạng tích chập (CNN). Trong vài video tiếp theo, tôi muốn
+chia sẻ với mọi người một số lời khuyên thiết thực về cách sử dụng chúng, trước tiên hãy bắt đầu
+bằng cách sử dụng các triển khai mã nguồn mở. Hóa ra là rất khó hoặc phức tạp để sao chép rất nhiều mạng nơ ron bởi vì rất nhiều chi tiết
+về việc điều chỉnh các siêu tham số như như sự suy giảm học tập và những thứ khác
+làm thay đổi hiệu suất. Và tôi thậm chí còn thấy rằng đôi khi cũng rất khó để một nghiên cứu sinh tiến sĩ học sâu,
+ngay cả ở các trường đại học hàng đầu có thể sao chép sản phẩm
+được xuất bản của người khác chỉ bằng việc đọc nghiên cứu của họ. May mắn thay, rất nhiều
+các nhà nghiên cứu học sâu thường xuyên để mã nguồn mở các sản phẩm của họ trên
+Internet, chẳng hạn như trên GitHub. Và khi mọi người xây dựng các sản phẩm của mình,
+Tôi chắc chắn khuyến khích mọi người hãy xem xét đóng góp code
+của mọi người cho cộng đồng mã nguồn mở. Nhưng nếu mọi người muốn phát triển trên
+cơ sở kết quả của một bài nghiên cứu nào đó mọi người nên cân nhắc làm một điều, một điều tôi làm khá thường xuyên đó là tìm
+triển khai mã nguồn mở online Bởi vì nếu mọi người có thể tìm được triển khai
+của tác giả, mọi người thường có thể làm nhanh hơn nhiều so với nếu mọi người cố gắng
+bắt đầu làm lại từ đầu. Mặc dù đôi khi việc triển khai lại
+từ đầu có thể là cách hay để luyện tập Nếu mọi người đã quen thuộc
+với cách sử dụng GitHub, video này có thể không quá cần thiết hoặc
+không quá quan trọng đối với mọi người. Nhưng nếu mọi người không quen tải xuống
+mã nguồn mở từ GitHub, tôi sẽ nhanh chóng chỉ cho mọi người thấy nó dễ dàng như thế nào. Giả sử mọi người quan tâm đến
+mạng thặng dư (resnet) và mọi người muốn sử dụng nó. Thì hãy tìm resnets trên GitHub Và mọi người thực sự thấy rất nhiều triển khai
+khác nhau của resnet trên GitHub. Và tôi chỉ đi
+đến URL đầu tiên ở đây. Và đây là một kho GitHub
+triển khai resnets trong các trang web GitHub nếu
+mọi người cuộn xuống chúng ta sẽ có một số văn bản mô tả sản phẩm hoặc
+triển khai cụ thể. Trên kho cụ thể này,
+GitHub cụ thể này kho lưu trữ là của
+tác giả ban đầu của nghiên cứu ResNet. Và code này,
+được cấp phép này bởi giấy phép MIT, mọi người có thể nhấp vào để xem
+ý nghĩa của giấy phép này. Giấy phép MIT là một trong
+giấy phép cởi mở hơn và một trong những giấy phép mã nguồn mở cởi mở hơn. Vì vậy, tôi sẽ tải xuống code
+, và để làm điều đó, hãy nhấp vào liên kết này. Nó sẽ cho mọi người URL mà mọi người
+có thể sử dụng để tải code xuống Tôi sẽ nhấp vào nút này trên
+ở đây để sao chép URL vào khay nhớ tạm và sau đó đi tới đây. Sau đó, mọi người phải nhập git clone
+, sau đó nhấn Ctrl + V để dán URL và nhấn Enter. Và như vậy là
+trong vài giây, nó đã tải xuống, đã sao chép kho lưu trữ này
+vào đĩa cứng cục bộ của tôi. Vậy, hãy đi vào thư mục và
+xem xét nhé. Tôi quên dùng Mac hơn Windows, nhưng tôi
+đoán, xem nào, hãy nhập prototxt và Tôi nghĩ đây là vị trí có
+các tệp chỉ định mạng. Vậy, hãy xem xét tệp này, bởi vì
+đây là một tệp rất dài chỉ định cấu hình chi tiết của ResNet
+với 101 layer, được chứ? Và có vẻ như những gì tôi
+nhớ đã thấy từ trang web này, chính triển khai này
+sử dụng framework Cafe. Nhưng nếu mọi người muốn triển khai
+của code này nhưng là triển khai dùng framework lập trình khác,
+mọi người cũng có thể tìm thấy nó. Vì vậy, nếu mọi người đang phát triển
+một ứng dụng thị giác máy tính, một quy trình công việc rất phổ biến sẽ là
+chọn một kiến trúc mà mọi người thích, có lẽ một trong số những loại mọi người
+đã tìm hiểu trong khóa học này. Hoặc có thể là một câu chuyện mà mọi người đã nghe từ
+một người bạn hoặc từ một số tài liệu. Và tìm kiếm
+một triển khai mã nguồn mở và tải nó từ GitHub để bắt đầu xây dựng từ đó Một trong những lợi thế khi làm như vậy
+cũng là đôi khi các mạng này mất một thời gian dài để huấn luyện và người khác
+có thể đã sử dụng nhiều GPU và một tập dữ liệu rất lớn để huấn luyện trước
+một số mạng này. Và điều đó cho phép mọi người thực hiện
+học chuyển giao bằng cách sử dụng mạng mà chúng ta sẽ thảo luận về
+trong video tiếp theo. Tất nhiên nếu mọi người là nhà nghiên cứu thị giác máy tính
+triển khai những điều này từ đầu thì quy trình làm việc
+của mọi người sẽ khác. Và nếu bạn làm điều đó, thì hãy đóng góp sản phẩm của mọi người
+cho cộng đồng nguồn mở nhé. Nhưng bởi vì rất nhiều nhà nghiên cứu thị giác
+đã làm rất nhiều công việc triển khai những kiến trúc này, tôi thường thấy rằng
+bắt đầu với triển khai mã nguồn mở là cách tốt hơn, hay chắc chắn là một cách
+nhanh hơn để bắt đầu một dự án mới.

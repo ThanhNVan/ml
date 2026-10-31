@@ -1,0 +1,543 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.800
+Xin chào và chào mừng trở lại. Trong tuần này,
+bạn sẽ tìm hiểu về các thuật
+
+00:00:03.800 --> 00:00:07.600
+toán tối ưu hóa sẽ cho phép bạn đào tạo
+neural network của mình nhanh hơn nhiều.
+
+00:00:07.920 --> 00:00:11.247
+Bạn đã từng nghe tôi nói trước đây rằng
+machine learning ứng dụng là một quá
+
+00:00:11.247 --> 00:00:14.573
+trình mang tính thực nghiệm cao, đó là quá
+trình lặp đi lặp lại nhiều lần, trong
+
+00:00:14.573 --> 00:00:17.900
+đó bạn chỉ cần đào tạo rất nhiều mô hình để
+tìm ra một mô hình hoạt động thực sự tốt.
+
+00:00:18.100 --> 00:00:20.700
+Vì vậy, nó thực sự giúp ích cho việc đào tạo
+mô hình một cách nhanh chóng.
+
+00:00:20.920 --> 00:00:23.813
+Một điều gây khó khăn hơn là deep learning có
+xu hướng hoạt
+
+00:00:23.813 --> 00:00:26.707
+động tốt nhất trong chế độ dữ liệu lớn khi bạn
+có thể huấn
+
+00:00:26.707 --> 00:00:29.600
+luyện neural network của mình trên một
+tập dữ liệu khổng lồ.
+
+00:00:29.920 --> 00:00:32.720
+Và việc đào tạo trên tập dữ liệu lớn rất chậm.
+
+00:00:33.120 --> 00:00:37.280
+Vì vậy, những gì bạn nhận thấy là việc có các
+thuật toán tối ưu hóa nhanh, có các
+
+00:00:37.280 --> 00:00:41.440
+thuật toán tối ưu hóa tốt, thực sự có thể tăng
+tốc hiệu quả của bạn và nhóm của bạn.
+
+00:00:41.840 --> 00:00:45.680
+Vì vậy, hãy bắt đầu bằng cách nói về việc
+gradient descent theo lô nhỏ.
+
+00:00:46.160 --> 00:00:51.240
+Trước đây bạn đã biết rằng việc vector hóa cho
+phép bạn tính toán hiệu quả trên tất
+
+00:00:51.240 --> 00:00:56.320
+cả m ví dụ cho phép bạn xử lý toàn bộ
+training set mà không cần vòng lặp for rõ
+ràng.
+
+00:00:57.120 --> 00:01:01.707
+Vì vậy, đó là lý do tại sao chúng ta lấy các
+ví dụ đào tạo
+
+00:01:01.707 --> 00:01:06.293
+của mình và xếp chúng vào ma trận khổng lồ
+này, X viết hoa,
+
+00:01:06.293 --> 00:01:10.880
+nên X1, X2, X3, bạn biết đấy, và cuối cùng nó
+tăng lên Xm.
+
+00:01:10.880 --> 00:01:16.520
+Nếu bạn có m ví dụ huấn luyện và tương tự
+
+00:01:16.520 --> 00:01:22.160
+cho y, thì đây là y1, y2, y3, v.v. cho đến ym.
+
+00:01:22.960 --> 00:01:28.960
+Vậy kích thước của X là nx nhân m và đây là 1
+nhân m.
+
+00:01:29.360 --> 00:01:31.960
+Vector hóa cho phép bạn xử lý tất cả m ví dụ
+
+00:01:31.960 --> 00:01:34.560
+một cách nhanh chóng, tương đối nhanh chóng.
+
+00:01:34.560 --> 00:01:37.840
+Nếu m rất lớn thì nó vẫn có thể chậm.
+
+00:01:37.840 --> 00:01:43.360
+Vì vậy, ví dụ, nếu m là 5 triệu hoặc 50 triệu
+hoặc thậm chí lớn hơn thì sao.
+
+00:01:44.720 --> 00:01:48.107
+Với việc triển khai gradient descent trên toàn
+bộ training set
+
+00:01:48.107 --> 00:01:51.493
+của bạn, điều bạn phải làm là phải xử lý toàn
+bộ training set
+
+00:01:51.493 --> 00:01:54.880
+của mình trước khi thực hiện một bước nhỏ
+gradient descent.
+
+00:01:54.880 --> 00:01:57.800
+Và sau đó, bạn phải xử lý lại toàn bộ
+training set gồm 5 triệu ví dụ
+
+00:01:57.800 --> 00:02:00.720
+huấn luyện trước khi thực hiện một bước nhỏ
+nữa là gradient descent.
+
+00:02:00.720 --> 00:02:04.853
+Vì vậy, hóa ra là bạn có thể nhận được thuật
+toán nhanh hơn nếu bạn
+
+00:02:04.853 --> 00:02:08.987
+để độ dốc bắt đầu đạt được một số tiến bộ ngay
+cả trước khi bạn xử
+
+00:02:08.987 --> 00:02:13.120
+lý xong toàn bộ training set khổng lồ gồm 5
+triệu ví dụ của mình.
+
+00:02:14.640 --> 00:02:16.720
+Đặc biệt, đây là những gì bạn có thể làm.
+
+00:02:16.720 --> 00:02:22.080
+Giả sử bạn chia training set của mình thành
+các training set nhỏ hơn, nhỏ hơn.
+
+00:02:22.080 --> 00:02:25.360
+Và những bộ đồ tập cho bé này được gọi là bộ
+mini.
+
+00:02:29.140 --> 00:02:34.340
+Và giả sử mỗi bộ huấn luyện con bạn chỉ có
+1.000 ví dụ.
+
+00:02:35.940 --> 00:02:39.900
+Vì vậy, bạn lấy X1 đến X1000 và bạn gọi đó là
+bộ huấn
+
+00:02:39.900 --> 00:02:43.860
+luyện em bé đầu tiên của mình, còn được gọi là
+lô nhỏ.
+
+00:02:43.860 --> 00:02:52.500
+Và sau đó bạn lấy 1000 ví dụ tiếp theo, từ
+X10001 đến X2000.
+
+00:02:52.740 --> 00:02:56.020
+Đó là 1000 ví dụ tiếp theo và gọi ví dụ tiếp
+theo, v.v.
+
+00:02:56.740 --> 00:02:58.580
+Và tôi sẽ giới thiệu một ký hiệu mới.
+
+00:02:58.580 --> 00:03:04.500
+Mình sẽ gọi đây là dải X siêu có dấu ngoặc
+nhọn 1.
+
+00:03:05.540 --> 00:03:12.020
+Và tôi sẽ gọi cái này là X siêu lột với dấu
+ngoặc nhọn 2.
+
+00:03:12.020 --> 00:03:16.153
+Bây giờ, nếu bạn có tổng cộng 5 triệu ví dụ
+huấn luyện, và mỗi
+
+00:03:16.153 --> 00:03:20.287
+đợt nhỏ này có một nghìn ví dụ, điều đó có
+nghĩa là bạn có 5.000
+
+00:03:20.287 --> 00:03:24.420
+ví dụ như vậy bởi vì, bạn biết đấy, 5.000 nhân
+1.000 bằng 5 triệu.
+
+00:03:24.420 --> 00:03:30.100
+Vậy tổng cộng bạn sẽ có 5.000 lô nhỏ này.
+
+00:03:31.060 --> 00:03:34.020
+Vậy là kết thúc bằng dấu ngoặc nhọn X siêu
+xoắn 5.000.
+
+00:03:34.580 --> 00:03:37.140
+Và sau đó tương tự, bạn làm điều tương tự với
+Y.
+
+00:03:37.140 --> 00:03:42.100
+Bạn cũng sẽ chia nhỏ training data của mình
+cho Y.
+
+00:03:42.100 --> 00:03:44.020
+Vì vậy bạn gọi đó là Y1.
+
+00:03:44.980 --> 00:03:50.020
+Vậy thì đây là Y10001 đến Y2000.
+
+00:03:50.900 --> 00:04:00.100
+Số tiền này được gọi là Y2, v.v. cho đến khi
+bạn có Y5000.
+
+00:04:00.980 --> 00:04:12.540
+Vì vậy, bây giờ, lô nhỏ số T sẽ bao gồm XT và
+YT.
+
+00:04:12.540 --> 00:04:15.500
+Và đó là hàng ngàn ví dụ đào tạo.
+
+00:04:15.580 --> 00:04:17.580
+Với các cặp đầu vào đầu ra tương ứng.
+
+00:04:18.300 --> 00:04:22.540
+Trước khi tiếp tục, để đảm bảo ký hiệu của
+chúng ta rõ ràng, trước đây chúng
+
+00:04:22.540 --> 00:04:26.780
+ta đã sử dụng dấu ngoặc tròn siêu rút I để lập
+chỉ mục trong training set.
+
+00:04:26.780 --> 00:04:29.340
+Vậy XI là ví dụ huấn luyện của tôi.
+
+00:04:29.340 --> 00:04:32.180
+Chúng tôi sử dụng dấu ngoặc vuông siêu rút gọn
+L để
+
+00:04:32.180 --> 00:04:35.020
+lập chỉ mục cho các lớp khác nhau của
+neural network.
+
+00:04:35.020 --> 00:04:41.340
+Vì vậy ZL xuất phát từ các giá trị Z cho lớp
+Lth của neural network.
+
+00:04:41.340 --> 00:04:44.580
+Và ở đây chúng tôi đang giới thiệu dấu ngoặc
+
+00:04:44.580 --> 00:04:47.820
+nhọn T để lập chỉ mục thành các lô nhỏ khác
+nhau.
+
+00:04:47.820 --> 00:04:51.180
+Vậy là bạn có XT, YT.
+
+00:04:52.140 --> 00:05:00.860
+Và để kiểm tra sự hiểu biết của bạn về những
+điều này, chiều của XT và YT là gì?
+
+00:05:01.580 --> 00:05:04.620
+Vâng, X là NX của M.
+
+00:05:04.620 --> 00:05:09.020
+Vì vậy, nếu X1 là một nghìn ví dụ huấn luyện
+hoặc giá trị
+
+00:05:09.020 --> 00:05:13.420
+X cho một nghìn ví dụ thì thứ nguyên này sẽ là
+NX x 1000.
+
+00:05:13.980 --> 00:05:19.180
+Và X2 cũng phải là NX vào năm 1000, v.v.
+
+00:05:19.180 --> 00:05:22.700
+Vì vậy, tất cả những thứ này phải có kích
+thước NX bằng 1000.
+
+00:05:22.700 --> 00:05:27.020
+Và những thứ này phải có kích thước 1 x 1000.
+
+00:05:31.870 --> 00:05:35.603
+Để giải thích tên của thuật toán này, thuật
+toán gradient descent hàng
+
+00:05:35.603 --> 00:05:39.337
+loạt đề cập đến thuật toán gradient descent mà
+chúng ta đã nói đến
+
+00:05:39.337 --> 00:05:43.070
+trước đây, trong đó bạn xử lý toàn bộ
+training set của mình cùng một lúc.
+
+00:05:43.630 --> 00:05:46.990
+Và cái tên này xuất phát từ việc xem đó là
+việc xử
+
+00:05:46.990 --> 00:05:50.350
+lý toàn bộ loạt ví dụ đào tạo của bạn cùng một
+lúc.
+
+00:05:50.350 --> 00:05:53.150
+Tôi không chỉ là một cái tên hay mà nó chỉ
+được gọi như vậy.
+
+00:05:53.150 --> 00:05:56.963
+Ngược lại, gradient descent hàng loạt nhỏ đề
+cập đến thuật
+
+00:05:56.963 --> 00:06:00.777
+toán mà chúng ta sẽ nói đến ở trang trình bày
+tiếp theo,
+
+00:06:00.777 --> 00:06:04.590
+trong đó bạn xử lý một lô nhỏ duy nhất, XT,
+YT, cùng một lúc,
+
+00:06:04.590 --> 00:06:08.110
+thay vì xử lý toàn bộ training set X, Y cùng
+một lúc.
+
+00:06:08.110 --> 00:06:12.190
+Vì vậy, hãy xem cách gradient descent hàng
+loạt nhỏ hoạt động như thế nào.
+
+00:06:12.190 --> 00:06:18.470
+Để chạy gradient descent hàng loạt nhỏ trên
+training set của bạn, bạn sẽ chạy
+
+00:06:18.470 --> 00:06:24.750
+với T bằng 1 đến 5000, vì chúng tôi có 5000 lô
+nhỏ có kích thước 1000 mỗi lô.
+
+00:06:24.750 --> 00:06:32.095
+Và những gì bạn sắp làm bên trong vòng lặp for
+về cơ bản là
+
+00:06:32.095 --> 00:06:39.440
+triển khai một bước gradient descent bằng cách
+sử dụng XT, YT.
+
+00:06:40.320 --> 00:06:45.680
+Và giống như bạn có một training set cỡ 1000
+ví dụ.
+
+00:06:47.440 --> 00:06:52.200
+Và nó giống như thể bạn đang triển khai thuật
+toán mà bạn đã quen thuộc,
+
+00:06:52.200 --> 00:06:56.960
+nhưng chỉ về điều này, bạn biết đấy, kích
+thước training set nhỏ của M bằng 1000.
+
+00:06:56.960 --> 00:07:01.360
+Thay vì có một vòng lặp for rõ ràng trên tất
+cả 1000 ví dụ, bạn sẽ sử
+
+00:07:01.360 --> 00:07:05.760
+dụng vector hóa để xử lý tất cả 1000 ví dụ,
+gần như tất cả cùng một lúc.
+
+00:07:07.280 --> 00:07:08.560
+Vì vậy, hãy viết điều này ra.
+
+00:07:08.560 --> 00:07:15.170
+Đầu tiên, bạn triển khai một giá trị dựa trên
+đầu vào.
+
+00:07:15.810 --> 00:07:16.850
+Vì vậy, chỉ cần trên XT.
+
+00:07:17.570 --> 00:07:23.570
+Và bạn làm điều đó bằng cách triển khai, bạn
+biết đấy, Z1 bằng W1.
+
+00:07:24.290 --> 00:07:27.650
+Bây giờ, trước đây chúng ta chỉ có X ở đó,
+phải không?
+
+00:07:27.650 --> 00:07:31.730
+Nhưng bây giờ bạn không xử lý toàn bộ
+training set mà chỉ xử lý lô nhỏ đầu tiên.
+
+00:07:31.730 --> 00:07:36.770
+Vì vậy, giá trị này sẽ trở thành XT khi bạn xử
+lý lô T nhỏ.
+
+00:07:37.010 --> 00:07:44.130
+Và khi đó bạn sẽ có A1 bằng G1 của Z1.
+
+00:07:44.850 --> 00:07:49.170
+Đúng, đây là chữ Z viết hoa của bạn, vì đây
+thực sự là một triển khai được vector hóa.
+
+00:07:50.530 --> 00:07:55.850
+Và cứ như vậy cho đến khi bạn kết thúc bằng
+
+00:07:55.850 --> 00:08:01.170
+chữ L, bạn biết đấy, tôi đoán là GL của ZL.
+
+00:08:01.170 --> 00:08:03.010
+Và đây là dự đoán của bạn.
+
+00:08:03.970 --> 00:08:07.650
+Và bạn nhận thấy rằng ở đây bạn nên sử dụng
+cách triển khai được vector hóa.
+
+00:08:10.190 --> 00:08:14.510
+Chỉ là việc triển khai vector hóa này xử lý
+
+00:08:14.510 --> 00:08:18.830
+1000 ví dụ cùng một lúc thay vì 5 triệu ví dụ.
+
+00:08:18.830 --> 00:08:28.990
+Tiếp theo, bạn tính cost function, J, mà tôi
+sẽ viết là 1 trên 1000,
+
+00:08:28.990 --> 00:08:35.070
+vì ở đây 1000 là kích thước của training set
+nhỏ của
+
+00:08:35.070 --> 00:08:41.150
+bạn, tổng từ I bằng 1 đến L của thực sự là mất
+Y mũ I, YI.
+
+00:08:43.550 --> 00:08:51.710
+Và ký hiệu này cho rõ ràng đề cập đến các ví
+dụ từ lô nhỏ XT, YT.
+
+00:08:53.630 --> 00:08:58.457
+Và sau đó nếu bạn đang sử dụng regularization,
+bạn cũng có thể
+
+00:08:58.457 --> 00:09:03.283
+có thuật ngữ regularization này, tôi đoán có
+thể với 2 ở mẫu
+
+00:09:03.283 --> 00:09:08.110
+số, nhân với L, Frobenius trên ma trận trọng
+số bình phương.
+
+00:09:08.110 --> 00:09:13.230
+Vì đây thực sự là chi phí cho một lô nhỏ nên
+tôi sẽ lập chỉ
+
+00:09:13.230 --> 00:09:18.350
+mục chi phí J này bằng chữ T siêu âm trong dấu
+ngoặc nhọn.
+
+00:09:18.910 --> 00:09:22.723
+Vì vậy, bạn nhận thấy rằng mọi thứ chúng tôi
+đang làm hoàn toàn
+
+00:09:22.723 --> 00:09:26.537
+giống như khi chúng tôi triển khai
+gradient descent trước đây,
+
+00:09:26.537 --> 00:09:30.350
+ngoại trừ việc thay vì thực hiện trên X, Y,
+bạn hiện đang thực hiện trên
+
+00:09:30.670 --> 00:09:39.950
+X, T, Y, T. Tiếp theo, bạn sẽ triển khai
+backprop để tính toán độ dốc
+
+00:09:39.950 --> 00:09:49.230
+thực sự tôn trọng J, T này. Vì vậy, bạn vẫn
+chỉ sử dụng X, T, Y, T.
+
+00:09:52.340 --> 00:10:00.263
+Và sau đó bạn cập nhật các trọng số, bạn biết
+đấy, W, thực
+
+00:10:00.263 --> 00:10:08.187
+ra mọi WL đều được cập nhật thành WL trừ alpha
+D, WL, và
+
+00:10:08.187 --> 00:10:16.110
+tương tự cho B. Và đây là một lần vượt qua
+training set của bạn
+
+00:10:17.070 --> 00:10:19.150
+sử dụng phương pháp gradient descent hàng loạt
+nhỏ.
+
+00:10:19.150 --> 00:10:25.230
+Mã tôi viết ở đây còn được gọi là thực hiện
+một giai đoạn đào tạo.
+
+00:10:25.230 --> 00:10:31.870
+Và epoch là một từ chỉ có nghĩa là một lần
+vượt qua training set.
+
+00:10:37.060 --> 00:10:40.553
+Vì vậy, trong khi với gradient descent hàng
+loạt, một lần
+
+00:10:40.553 --> 00:10:44.047
+chuyển qua training set cho phép bạn chỉ thực
+hiện một bước
+
+00:10:44.047 --> 00:10:47.540
+gradient descent với gradient descent hàng
+loạt nhỏ, một lần chuyển qua
+
+00:10:47.540 --> 00:10:52.980
+training set gồm một kỷ nguyên cho phép bạn
+thực hiện 5000 bước gradient descent.
+
+00:10:52.980 --> 00:10:56.260
+Tất nhiên, bây giờ, bạn muốn thực hiện nhiều
+lần thông qua
+
+00:10:56.260 --> 00:10:59.540
+training set, điều mà bạn thường muốn, bạn có
+thể muốn một vòng
+
+00:10:59.540 --> 00:11:02.820
+lặp for khác hoặc vòng lặp khác, bạn biết đấy,
+vòng lặp while ở ngoài đó.
+
+00:11:02.820 --> 00:11:06.500
+Vì vậy, bạn tiếp tục thực hiện các bước trong
+training set cho đến khi
+
+00:11:06.500 --> 00:11:10.180
+hy vọng bạn hội tụ hoặc đã hội tụ gần đúng.
+Khi bạn có một training set
+
+00:11:10.180 --> 00:11:13.860
+lớn, việc gradient descent hàng loạt nhỏ sẽ
+chạy nhanh hơn nhiều so với
+
+00:11:13.860 --> 00:11:17.220
+gradient descent hàng loạt. Và đó gần như là
+thứ mà mọi người trong lĩnh vực
+
+00:11:17.220 --> 00:11:20.580
+deep learning sẽ sử dụng khi bạn đào tạo trên
+một tập dữ liệu lớn. Trong
+
+00:11:20.580 --> 00:11:23.940
+video tiếp theo, chúng ta hãy tìm hiểu sâu hơn
+về gradient descent hàng loạt nhỏ,
+
+00:11:23.940 --> 00:11:28.912
+để bạn có thể hiểu rõ hơn về những gì nó đang
+làm và tại sao nó hoạt động tốt như vậy.

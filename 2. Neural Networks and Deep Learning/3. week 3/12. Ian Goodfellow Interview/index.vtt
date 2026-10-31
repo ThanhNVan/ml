@@ -1,0 +1,732 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:03.280 --> 00:00:05.880
+Hi, Yin. Thanks a lot for joining us today.
+
+00:00:05.880 --> 00:00:08.380
+Thank you for inviting me, Andrew. I'm glad to be here.
+
+00:00:08.380 --> 00:00:11.980
+Today, you are one of the world's most visible deep learning researchers.
+
+00:00:11.980 --> 00:00:14.480
+Let us share a bit about your personal story.
+
+00:00:14.480 --> 00:00:17.380
+So how do you end up doing this work that you now do?
+
+00:00:17.380 --> 00:00:19.080
+Yeah, that sounds great.
+
+00:00:19.080 --> 00:00:24.280
+I guess I first became interested in machine learning right before I met you, actually.
+
+00:00:24.280 --> 00:00:31.080
+I had been working on neuroscience and my undergraduate advisor, Jerry Kane at Stanford,
+
+00:00:31.080 --> 00:00:34.380
+encouraged me to take your Intro to AI class.
+
+00:00:34.380 --> 00:00:35.380
+Oh, I didn't know that.
+
+00:00:35.380 --> 00:00:35.880
+Okay.
+
+00:00:35.880 --> 00:00:42.480
+So I had always thought that AI was a good idea, but in practice, the main thing I knew
+
+00:00:42.480 --> 00:00:47.980
+that was happening was game AI, where people have a lot of hard-coded rules for non-player
+
+00:00:47.980 --> 00:00:52.180
+characters in games to say different scripted lines at different points sometime.
+
+00:00:52.180 --> 00:00:57.680
+And then when I took your Intro to AI class and you covered topics like linear regression
+
+00:00:57.680 --> 00:01:03.280
+and the bias and various decomposition of the error of linear regression, I started
+
+00:01:03.280 --> 00:01:07.780
+to realize that this was a real science and I could actually have a scientific career
+
+00:01:07.780 --> 00:01:10.080
+in AI rather than neuroscience.
+
+00:01:10.080 --> 00:01:12.580
+Great. And then what happened?
+
+00:01:12.580 --> 00:01:15.780
+Well, I came back and I TA'd your course later.
+
+00:01:15.780 --> 00:01:16.780
+Oh, I see. Right.
+
+00:01:16.780 --> 00:01:17.780
+I TA'd.
+
+00:01:17.780 --> 00:01:22.980
+So a really big turning point for me was while I was TA'ing that course, one of
+
+00:01:22.980 --> 00:01:27.680
+the students, my friend Ethan Dreyfuss, got interested in Jeff Hinton's Deep Relief Net
+
+00:01:27.680 --> 00:01:28.680
+paper.
+
+00:01:28.680 --> 00:01:36.280
+And the two of us ended up building one of the first GPU CUDA-based machines at Stanford
+
+00:01:36.280 --> 00:01:42.780
+in order to run bolts and machines in our spare time over winter break.
+
+00:01:42.780 --> 00:01:49.580
+And at that point, I started to have a very strong intuition that deep learning was the
+
+00:01:49.580 --> 00:01:51.860
+way to go in the future.
+
+00:01:51.860 --> 00:01:56.860
+A lot of the other algorithms I was working with, like support vector machines, didn't
+
+00:01:56.860 --> 00:01:59.060
+seem to have the right asymptotics.
+
+00:01:59.060 --> 00:02:01.900
+That you add more training data and then get slower.
+
+00:02:01.900 --> 00:02:05.800
+Or for the same amount of training data, it's hard to make them perform a lot better
+
+00:02:05.800 --> 00:02:07.540
+by changing other settings.
+
+00:02:07.540 --> 00:02:12.860
+And at that point, I started to focus on deep learning as much as possible.
+
+00:02:12.860 --> 00:02:20.780
+And I remember, reject Raina's very old GPU paper acknowledges you for having done a lot
+
+00:02:20.780 --> 00:02:21.780
+of the early work.
+
+00:02:21.780 --> 00:02:22.780
+Yeah.
+
+00:02:22.780 --> 00:02:23.780
+Yeah.
+
+00:02:23.780 --> 00:02:27.140
+That was written using some of the machines that we built.
+
+00:02:27.140 --> 00:02:32.020
+The first machine I built was just something that Ethan and I built at Ethan's mom's
+
+00:02:32.020 --> 00:02:35.260
+house with our own money.
+
+00:02:35.260 --> 00:02:39.420
+And then later, we used lab money to build the first two or three for the Stanford lab.
+
+00:02:39.420 --> 00:02:40.420
+Wow, that's great.
+
+00:02:40.420 --> 00:02:41.420
+I never knew that story.
+
+00:02:41.420 --> 00:02:42.420
+That's great.
+
+00:02:43.420 --> 00:02:49.860
+And then today, one of the things that's really taken the deep learning world by storm is
+
+00:02:49.860 --> 00:02:51.860
+your invention of GANs.
+
+00:02:51.860 --> 00:02:54.220
+So how did you come up with that?
+
+00:02:54.220 --> 00:02:57.100
+I've been studying generative models for a long time.
+
+00:02:57.100 --> 00:03:02.180
+So GANs are a way of doing generative modeling where you have a lot of training data and
+
+00:03:02.180 --> 00:03:06.980
+you'd like to learn to produce more examples that resemble the training data.
+
+00:03:06.980 --> 00:03:08.620
+But they're imaginary.
+
+00:03:08.620 --> 00:03:13.580
+They've never been seen exactly in that form before.
+
+00:03:13.580 --> 00:03:17.500
+There were several other ways of doing generative models that had been popular for several years
+
+00:03:17.500 --> 00:03:20.540
+before I had the idea for GANs.
+
+00:03:20.540 --> 00:03:25.300
+And after I'd been working on all those other methods throughout most of my PhD, I knew
+
+00:03:25.300 --> 00:03:29.420
+a lot about the advantages and disadvantages of all the other frameworks like bolts and
+
+00:03:29.420 --> 00:03:35.300
+machines and sparse coding and all the other approaches that had been really popular for
+
+00:03:35.300 --> 00:03:36.300
+years.
+
+00:03:36.300 --> 00:03:40.540
+I was looking for something to avoid all of those disadvantages at the same time.
+
+00:03:40.540 --> 00:03:44.500
+And then finally, when I was arguing about generative models with my friends in a bar, something
+
+00:03:44.500 --> 00:03:48.660
+clicked into place and I started telling them, you need to do this, this, and this.
+
+00:03:48.660 --> 00:03:49.780
+And I swear it'll work.
+
+00:03:49.780 --> 00:03:52.940
+And my friends didn't believe me that it would work.
+
+00:03:52.940 --> 00:03:55.980
+I was supposed to be writing the deep learning textbook at the time.
+
+00:03:55.980 --> 00:03:58.900
+But I believed strongly enough that it would work that I went home and coded it up the
+
+00:03:58.900 --> 00:04:00.740
+same night and it worked.
+
+00:04:00.740 --> 00:04:04.300
+So take it one evening to implement the first version of GANs then?
+
+00:04:04.300 --> 00:04:08.740
+I implemented it around midnight after going home from the bar where my friend had his
+
+00:04:08.740 --> 00:04:09.740
+going away party.
+
+00:04:09.740 --> 00:04:10.740
+I see.
+
+00:04:10.740 --> 00:04:13.380
+And the first version of it worked, which is very, very fortunate.
+
+00:04:13.380 --> 00:04:15.660
+I didn't have to search for hyper parameters or anything.
+
+00:04:15.660 --> 00:04:21.460
+There was a story I read somewhere where you had a near-death experience and that reaffirmed
+
+00:04:21.460 --> 00:04:23.940
+your commitment to AI.
+
+00:04:23.940 --> 00:04:24.940
+Tell me that story.
+
+00:04:24.940 --> 00:04:30.740
+So, yeah, I wasn't actually near-death, but I briefly thought that I was.
+
+00:04:30.820 --> 00:04:37.860
+I had a very bad headache and some of the doctors thought that I might have a brain hemorrhage.
+
+00:04:37.860 --> 00:04:41.980
+And during the time that I was waiting for my MRI results to find out whether I had a
+
+00:04:41.980 --> 00:04:47.820
+brain hemorrhage or not, I realized that most of the thoughts I was having were about making
+
+00:04:47.820 --> 00:04:52.260
+sure that other people would eventually try out the research ideas that I had at the
+
+00:04:52.260 --> 00:04:53.260
+time.
+
+00:04:53.260 --> 00:04:56.820
+In retrospect, they're all pretty silly research ideas.
+
+00:04:56.900 --> 00:05:02.380
+But at that point, I realized that this was actually one of my highest priorities in life
+
+00:05:02.380 --> 00:05:06.140
+was carrying out my machine-learning research work.
+
+00:05:06.140 --> 00:05:07.140
+I see.
+
+00:05:07.140 --> 00:05:08.140
+Yeah.
+
+00:05:08.140 --> 00:05:09.140
+That's great.
+
+00:05:09.140 --> 00:05:11.500
+That when you thought you might be dying soon, you're just thinking how to get the
+
+00:05:11.500 --> 00:05:12.500
+research done.
+
+00:05:12.500 --> 00:05:13.500
+Yeah.
+
+00:05:13.500 --> 00:05:14.500
+Yeah.
+
+00:05:14.500 --> 00:05:15.500
+That's a commitment.
+
+00:05:15.500 --> 00:05:16.500
+Yeah.
+
+00:05:16.500 --> 00:05:17.500
+Yeah.
+
+00:05:17.500 --> 00:05:22.660
+So today, you're still at the center of a lot of the activities with GANs, with generative
+
+00:05:22.660 --> 00:05:24.780
+adversarial networks.
+
+00:05:24.780 --> 00:05:28.700
+So tell me how you see the future of GANs.
+
+00:05:28.700 --> 00:05:33.580
+Right now, GANs are used for a lot of different things, like semi-supervised learning,
+
+00:05:33.580 --> 00:05:39.420
+generating training data for other models, and even simulating scientific experiments.
+
+00:05:39.420 --> 00:05:44.000
+In principle, all of these things could be done by other kinds of generative models.
+
+00:05:44.000 --> 00:05:48.280
+So I think that GANs are at an important crossroads right now.
+
+00:05:48.280 --> 00:05:51.780
+Right now, they work well some of the time, but it can be more of an art than
+
+00:05:51.780 --> 00:05:56.220
+a science to really bring that performance out of them.
+
+00:05:56.220 --> 00:06:00.420
+It's more or less how people felt about deep learning in general 10 years ago.
+
+00:06:00.420 --> 00:06:04.380
+And back then, we were using deep belief networks with bolts and machines as the
+
+00:06:04.380 --> 00:06:05.380
+building blocks.
+
+00:06:05.380 --> 00:06:07.620
+And they were very, very finicky.
+
+00:06:07.620 --> 00:06:12.460
+Over time, we switched to things like rectified linear units and batch normalization,
+
+00:06:12.460 --> 00:06:14.940
+and deep learning became a lot more reliable.
+
+00:06:14.940 --> 00:06:19.380
+If we can make GANs become as reliable as deep learning has become, then I think we'll
+
+00:06:19.380 --> 00:06:24.660
+keep seeing GANs used in all the places they're used today with much greater success.
+
+00:06:24.660 --> 00:06:30.740
+If we aren't able to figure out how to stabilize GANs, then I think their main contribution
+
+00:06:30.740 --> 00:06:35.620
+to the history of deep learning is that they will have shown people how to do all of these
+
+00:06:35.620 --> 00:06:39.980
+tasks that involve generative modeling, and eventually we'll replace them with other forms
+
+00:06:39.980 --> 00:06:41.700
+of generative models.
+
+00:06:41.700 --> 00:06:46.340
+So I spend maybe about 40% of my time right now working on stabilizing GANs.
+
+00:06:46.340 --> 00:06:47.340
+I see.
+
+00:06:47.340 --> 00:06:48.340
+Cool.
+
+00:06:48.340 --> 00:06:49.340
+Great.
+
+00:06:49.340 --> 00:06:53.700
+So just as a lot of people, they joined deep learning about 10 years ago, such as yourself,
+
+00:06:53.700 --> 00:06:58.700
+wound up being pioneers, maybe the people they joined GANs today, if it works out, could
+
+00:06:58.700 --> 00:06:59.980
+end up the early pioneers.
+
+00:06:59.980 --> 00:07:00.980
+Yeah.
+
+00:07:00.980 --> 00:07:04.660
+A lot of people already are early pioneers of GANs.
+
+00:07:04.660 --> 00:07:09.700
+And I think if you wanted to give any kind of history of GANs so far, you'd really need
+
+00:07:09.700 --> 00:07:16.020
+to mention other groups like Indico and Facebook and Berkeley for all the different
+
+00:07:16.020 --> 00:07:17.580
+things that they've done.
+
+00:07:17.580 --> 00:07:23.260
+So in addition to all your research, you also co-authored a book on deep learning.
+
+00:07:23.260 --> 00:07:24.700
+How is that going?
+
+00:07:24.700 --> 00:07:25.700
+That's right.
+
+00:07:25.700 --> 00:07:31.940
+With Yoshua Bengio and Aaron Corville, who were my PhD co-advisors, we wrote the first
+
+00:07:31.940 --> 00:07:35.860
+textbook on the modern version of deep learning.
+
+00:07:35.860 --> 00:07:43.100
+And that has been very popular both in the English edition and the Chinese edition.
+
+00:07:43.100 --> 00:07:49.580
+We've sold about, I think, around 70,000 copies total between those two languages.
+
+00:07:49.580 --> 00:07:55.060
+And I've had a lot of feedback from students who say that they've learned a lot from it.
+
+00:07:55.060 --> 00:07:59.260
+One thing that we did a little bit differently than some other books is we start with a very
+
+00:07:59.260 --> 00:08:04.140
+focused introduction to the kind of math that you need to do deep learning.
+
+00:08:04.140 --> 00:08:09.380
+I think one thing that I got from your courses at Stanford is that linear algebra
+
+00:08:09.380 --> 00:08:14.420
+and probability are very important, that people get excited about the machine learning
+
+00:08:14.420 --> 00:08:15.420
+algorithms.
+
+00:08:15.420 --> 00:08:22.260
+But if you want to be a really excellent practitioner, you've got to master the basic math that underlies
+
+00:08:22.260 --> 00:08:26.260
+the whole approach in the first place.
+
+00:08:26.260 --> 00:08:31.980
+So we made sure to give a very focused presentation of the math basics at the start of the book.
+
+00:08:31.980 --> 00:08:35.820
+That way you don't need to go out and learn all of linear algebra, but you can get
+
+00:08:35.940 --> 00:08:39.500
+a very quick crash course in the pieces of linear algebra that are the most useful for
+
+00:08:39.500 --> 00:08:40.980
+deep learning.
+
+00:08:40.980 --> 00:08:44.700
+So even someone who's math, you know, is a little shaky, you haven't seen the math for
+
+00:08:44.700 --> 00:08:48.380
+a few years, would be the start from the beginning of your book and get that background
+
+00:08:48.380 --> 00:08:50.080
+and get into deep learning.
+
+00:08:50.080 --> 00:08:52.340
+All of the facts that you would need to know are there.
+
+00:08:52.340 --> 00:08:59.820
+It would definitely take some focused effort to practice at making use of them.
+
+00:08:59.820 --> 00:09:04.300
+If someone's really afraid of math, it might be a bit of a painful experience.
+
+00:09:04.300 --> 00:09:09.380
+But if you're ready for the learning experience and you believe you can master it, I think
+
+00:09:09.380 --> 00:09:12.620
+all the tools that you need are there.
+
+00:09:12.620 --> 00:09:17.620
+As someone that's worked in deep learning for a long time, I'd be curious if you look
+
+00:09:17.620 --> 00:09:22.500
+back over the years, tell me a bit about how you're thinking of AI and deep learning
+
+00:09:22.500 --> 00:09:24.980
+has evolved over the years.
+
+00:09:24.980 --> 00:09:30.580
+Ten years ago, I felt like as a community, the biggest challenge in machine learning was
+
+00:09:30.580 --> 00:09:35.140
+just how to get it working for AI-related tasks at all.
+
+00:09:35.140 --> 00:09:41.700
+We had really good tools that we could use for simpler tasks where we wanted to recognize
+
+00:09:41.700 --> 00:09:48.340
+patterns in hand extractive features where a human designer could do a lot of the work
+
+00:09:48.340 --> 00:09:52.300
+by creating those features and then hand it off to the computer.
+
+00:09:52.300 --> 00:09:56.460
+And that was really good for different things like predicting which ads the user would
+
+00:09:56.460 --> 00:10:01.420
+click on or different kinds of basic scientific analysis.
+
+00:10:01.420 --> 00:10:08.460
+But we really struggled to do anything involving millions of pixels in an image or a raw audio
+
+00:10:08.460 --> 00:10:14.660
+waveform where the system had to build all of its understanding from scratch.
+
+00:10:14.660 --> 00:10:19.700
+We finally got over that hurdle really thoroughly maybe five years ago.
+
+00:10:19.700 --> 00:10:24.620
+And now we're at a point where there are so many different paths open that someone
+
+00:10:24.620 --> 00:10:29.340
+who wants to get involved in AI, maybe the hardest problem they face is choosing which
+
+00:10:29.340 --> 00:10:31.300
+path they want to go down.
+
+00:10:31.300 --> 00:10:35.620
+Do you want to make reinforcement learning work as well as supervised learning works?
+
+00:10:35.620 --> 00:10:40.600
+Do you want to make unsupervised learning work as well as supervised learning works?
+
+00:10:40.600 --> 00:10:46.440
+Do you want to make sure that machine learning algorithms are fair and don't reflect biases
+
+00:10:46.440 --> 00:10:48.620
+that we prefer to avoid?
+
+00:10:48.620 --> 00:10:55.500
+Do you want to make sure that the societal issues surrounding AI work out well, that we
+
+00:10:55.500 --> 00:11:02.060
+are able to make sure that AI benefits everyone rather than causing social upheaval and trouble
+
+00:11:02.060 --> 00:11:03.580
+with loss of jobs?
+
+00:11:03.580 --> 00:11:07.100
+I think right now there's just really an amazing amount of different things that can
+
+00:11:07.100 --> 00:11:12.860
+be done both to prevent downsides from AI but also to make sure that we leverage all
+
+00:11:12.860 --> 00:11:15.140
+of the upsides that it offers us.
+
+00:11:15.140 --> 00:11:20.100
+And so today there are a lot of people wanting to get into AI.
+
+00:11:20.100 --> 00:11:23.340
+So what advice would you have for someone like that?
+
+00:11:23.340 --> 00:11:28.620
+I think a lot of people that want to get into AI start thinking that they absolutely need
+
+00:11:28.620 --> 00:11:32.260
+to get a PhD or some other kind of credential like that.
+
+00:11:32.260 --> 00:11:35.980
+I don't think that's actually a requirement anymore.
+
+00:11:35.980 --> 00:11:40.660
+One way that you could get a lot of attention is to write good code and put it on GitHub.
+
+00:11:40.660 --> 00:11:46.180
+If you have an interesting project that solves a problem that someone working at a top lab
+
+00:11:46.180 --> 00:11:52.220
+wanted to solve, once they find your GitHub repository they'll come find you and ask
+
+00:11:52.220 --> 00:11:54.020
+you to come work there.
+
+00:11:54.020 --> 00:12:00.060
+A lot of the people that I've hired or recruited at OpenAI last year or at Google this year,
+
+00:12:00.060 --> 00:12:03.900
+I first became interested in working with them because of something that I saw that
+
+00:12:03.900 --> 00:12:07.940
+they released in open source form on the internet.
+
+00:12:07.940 --> 00:12:11.380
+Writing papers and putting them on archive can also be good.
+
+00:12:11.380 --> 00:12:16.260
+A lot of the time it's harder to reach the point where you have something polished enough
+
+00:12:16.260 --> 00:12:22.260
+to really be a new academic contribution to the scientific literature.
+
+00:12:22.260 --> 00:12:28.180
+But you can often get to the point of having a useful software product much earlier.
+
+00:12:28.180 --> 00:12:33.980
+So read your book, Practice the Materials and post on GitHub and maybe on archive.
+
+00:12:33.980 --> 00:12:38.660
+I think if you learn by reading the book it's really important to also work on a project
+
+00:12:38.660 --> 00:12:44.980
+at the same time to either choose some way of applying machine learning to an area that
+
+00:12:44.980 --> 00:12:47.020
+you're already interested in.
+
+00:12:47.020 --> 00:12:51.100
+Like if you're a field biologist and you want to get into deep learning maybe you could
+
+00:12:51.100 --> 00:12:53.780
+use it to identify birds.
+
+00:12:53.780 --> 00:12:56.580
+Or if you don't have an idea for how you'd like to use machine learning in your own
+
+00:12:56.580 --> 00:13:02.420
+life you could pick something like making a street view house numbers classifier where
+
+00:13:02.420 --> 00:13:05.300
+all the data sets are set up to make it very straightforward for you.
+
+00:13:05.300 --> 00:13:09.860
+That way you get to exercise all of the basic skills while you read the book or while you
+
+00:13:09.860 --> 00:13:14.420
+watch Coursera videos that explain the concepts to you.
+
+00:13:14.420 --> 00:13:18.580
+So over the last couple years I've also seen you do more and more work on adversarial
+
+00:13:18.580 --> 00:13:19.580
+examples.
+
+00:13:19.580 --> 00:13:21.660
+Tell us a bit about that.
+
+00:13:21.660 --> 00:13:28.300
+Yeah, I think adversarial examples are the beginning of a new field that I call machine
+
+00:13:28.300 --> 00:13:30.140
+learning security.
+
+00:13:30.140 --> 00:13:36.700
+In the past we've seen computer security issues where attackers could fool a computer into
+
+00:13:36.700 --> 00:13:38.620
+running the wrong code.
+
+00:13:38.620 --> 00:13:41.260
+That's called application level security.
+
+00:13:41.260 --> 00:13:46.980
+And there's been attacks where people can fool a computer into believing that messages
+
+00:13:46.980 --> 00:13:52.900
+on a network come from somebody that is not actually who they say they are.
+
+00:13:52.900 --> 00:13:55.220
+That's called network level security.
+
+00:13:55.220 --> 00:13:59.100
+Now we're starting to see that you can also fool machine learning algorithms into doing
+
+00:13:59.100 --> 00:14:01.020
+things they shouldn't.
+
+00:14:01.020 --> 00:14:06.580
+Even if the program running the machine learning algorithm is running the correct code, even
+
+00:14:06.580 --> 00:14:11.220
+if the program running the machine learning algorithm knows who all the messages on the
+
+00:14:11.220 --> 00:14:14.380
+network really came from.
+
+00:14:14.380 --> 00:14:19.980
+And I think it's important to build security into any new technology near the start of
+
+00:14:19.980 --> 00:14:20.980
+its development.
+
+00:14:20.980 --> 00:14:26.020
+We found that it's very hard to build a working system first and then add security
+
+00:14:26.020 --> 00:14:27.240
+later.
+
+00:14:27.280 --> 00:14:33.160
+So I'm really excited about the idea that if we dive in and start anticipating security
+
+00:14:33.160 --> 00:14:37.400
+problems with machine learning now, we can make sure that these algorithms are secure
+
+00:14:37.400 --> 00:14:42.560
+from the start instead of trying to patch it in retroactively years later.
+
+00:14:42.560 --> 00:14:43.560
+Thank you.
+
+00:14:43.560 --> 00:14:44.560
+That was great.
+
+00:14:44.560 --> 00:14:46.840
+There was a lot about your story that I thought was fascinating and that despite having
+
+00:14:46.840 --> 00:14:48.600
+known you for years, I didn't actually know.
+
+00:14:48.600 --> 00:14:50.040
+So thank you for sharing all that.
+
+00:14:50.040 --> 00:14:51.040
+Oh, very welcome.
+
+00:14:51.040 --> 00:14:52.040
+Thank you for inviting me.
+
+00:14:52.040 --> 00:14:53.040
+It was a great chat.
+
+00:14:53.040 --> 00:14:54.040
+Okay, thanks.
+
+00:14:54.040 --> 00:14:55.040
+You're welcome.
+
+00:14:55.040 --> 00:14:55.663
+Thank you.

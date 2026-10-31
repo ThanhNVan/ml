@@ -1,0 +1,797 @@
+WEBVTT
+
+1
+00:00:00.330 --> 00:00:03.705
+Vì vậy, trong khi trong việc học chuyển tiếp, bạn có một quá trình tuần tự
+
+2
+00:00:03.705 --> 00:00:07.162
+mà bạn học từ nhiệm vụ A và sau đó chuyển nó sang nhiệm vụ B.
+
+3
+00:00:07.162 --> 00:00:10.520
+Trong việc học đa nhiệm, bạn bắt đầu cùng một lúc,
+
+4
+00:00:10.520 --> 00:00:13.650
+cố gắng để một neural network làm nhiều việc cùng một lúc.
+
+5
+00:00:13.650 --> 00:00:17.520
+Và sau đó mỗi nhiệm vụ này giúp hy vọng tất cả các nhiệm vụ khác.
+
+6
+00:00:17.520 --> 00:00:18.480
+Hãy nhìn vào một ví dụ.
+
+7
+00:00:20.110 --> 00:00:24.140
+Giả sử bạn đang chế tạo một chiếc xe tự động, chế tạo một chiếc xe tự lái.
+
+8
+00:00:24.140 --> 00:00:28.969
+Sau đó, xe tự lái của bạn sẽ cần phải phát hiện một số
+
+9
+00:00:28.969 --> 00:00:34.164
+thứ khác nhau như người đi bộ, phát hiện các xe khác, phát hiện các dấu hiệu dừng.
+
+10
+00:00:37.312 --> 00:00:42.410
+Và cũng phát hiện đèn giao thông và những thứ khác.
+
+11
+00:00:43.670 --> 00:00:47.330
+Ví dụ, trong ví dụ này ở bên trái, có một dấu dừng trong ảnh này
+
+12
+00:00:47.330 --> 00:00:53.510
+và có một chiếc xe trong ảnh này nhưng không có bất kỳ người đi bộ hoặc đèn giao thông nào.
+
+13
+00:00:53.510 --> 00:00:58.200
+Vì vậy, nếu hình ảnh này là một đầu vào cho một ví dụ, x (i),
+
+14
+00:00:58.200 --> 00:01:02.770
+sau đó Thay vì có một nhãn y (i), bạn sẽ thực sự là một bốn nhãn.
+
+15
+00:01:02.770 --> 00:01:05.640
+Trong ví dụ này, không có người đi bộ, có một chiếc xe hơi,
+
+16
+00:01:05.640 --> 00:01:08.850
+có một dấu hiệu dừng và không có đèn giao thông.
+
+17
+00:01:08.850 --> 00:01:10.580
+Và nếu bạn cố gắng và phát hiện những thứ khác,
+
+18
+00:01:10.580 --> 00:01:12.634
+có thể có y (i) có nhiều kích thước hơn.
+
+19
+00:01:12.634 --> 00:01:14.385
+Nhưng bây giờ chúng ta hãy gắn bó với bốn người này.
+
+20
+00:01:14.385 --> 00:01:18.013
+Vì vậy, y (i) là một vector 4 của 1.
+
+21
+00:01:18.013 --> 00:01:22.444
+Và nếu bạn nhìn vào các nhãn kiểm tra đào tạo như một toàn thể,
+
+22
+00:01:22.444 --> 00:01:27.370
+sau đó tương tự như trước đây, chúng tôi sẽ xếp các
+
+23
+00:01:27.370 --> 00:01:32.116
+nhãn của training data theo chiều ngang như sau, y (1) lên đến y (m).
+
+24
+00:01:32.116 --> 00:01:39.470
+Ngoại trừ việc bây giờ y (i) là một vector 4 bởi 1 nên mỗi trong số này là một vector cột cao.
+
+25
+00:01:39.470 --> 00:01:45.530
+Và như vậy ma trận này Y bây giờ là một ma trận 4 bởi m, trong
+
+26
+00:01:45.530 --> 00:01:49.810
+khi trước đây, khi y là số thực đơn, điều này sẽ là một ma trận 1 bởi m.
+
+27
+00:01:49.810 --> 00:01:55.122
+Vì vậy, những gì bạn có thể làm bây giờ đào tạo một neural network để dự đoán những giá trị này của y
+
+28
+00:01:55.122 --> 00:01:57.828
+Vì vậy, bạn có thể có một đầu vào neural network x và
+
+29
+00:01:57.828 --> 00:02:00.970
+đầu ra bây giờ một giá trị bốn chiều cho y
+
+30
+00:02:00.970 --> 00:02:04.590
+Chú ý ở đây cho đầu ra ở đó tôi đã vẽ ra bốn nút.
+
+31
+00:02:04.590 --> 00:02:09.000
+Và vì vậy nút đầu tiên khi chúng tôi cố gắng dự đoán là có một người đi bộ
+
+32
+00:02:09.000 --> 00:02:10.610
+trong bức ảnh này.
+
+33
+00:02:10.610 --> 00:02:13.470
+Sản lượng thứ hai sẽ dự đoán là có một chiếc xe ở đây,
+
+34
+00:02:13.470 --> 00:02:18.870
+dự đoán là có một dấu hiệu dừng và điều này sẽ dự đoán có lẽ là có một đèn giao thông.
+
+35
+00:02:20.850 --> 00:02:23.950
+Vì vậy, y mũ ở đây là bốn chiều.
+
+36
+00:02:26.110 --> 00:02:30.575
+Vì vậy, để đào tạo neural network này, bây giờ bạn cần phải xác định sự mất mát cho
+
+37
+00:02:30.575 --> 00:02:32.029
+neural network.
+
+38
+00:02:32.029 --> 00:02:39.190
+Và do đó, đưa ra một đầu ra dự đoán y hat i đó là 4 bởi 1 chiều.
+
+39
+00:02:39.190 --> 00:02:43.939
+Sự mất mát trung bình trên toàn bộ training set của bạn
+
+40
+00:02:43.939 --> 00:02:48.209
+sẽ là 1 trên m tổng từ i = 1 đến m,
+
+41
+00:02:48.209 --> 00:02:55.349
+tổng từ j = 1 đến 4 của các tổn thất của các dự đoán cá nhân.
+
+42
+00:02:59.030 --> 00:03:03.256
+Vì vậy, nó chỉ là tổng hợp tại bốn thành phần của
+
+43
+00:03:03.256 --> 00:03:04.253
+đèn giao thông dừng xe cho người đi bộ.
+
+44
+00:03:04.253 --> 00:03:11.462
+Và kịch bản này L là sự mất mát hậu cần thông thường.
+
+45
+00:03:14.493 --> 00:03:19.404
+Vì vậy, chỉ để viết ra,
+
+46
+00:03:19.404 --> 00:03:24.314
+đây là -yj i log y hat ji-
+
+47
+00:03:24.314 --> 00:03:28.349
+1- y log 1- y hat.
+
+48
+00:03:31.706 --> 00:03:36.018
+Và sự khác biệt chính so với các ví dụ classification ràng buộc trước
+
+49
+00:03:36.018 --> 00:03:38.760
+đó là bạn đang tổng hợp hơn j bằng 1 đến 4.
+
+50
+00:03:40.570 --> 00:03:45.260
+Và sự khác biệt chính giữa regression này và regression softmax, là không giống như
+
+51
+00:03:45.260 --> 00:03:50.550
+regression softmax, mà gán một nhãn duy nhất cho ví dụ duy nhất.
+
+52
+00:03:50.550 --> 00:03:53.370
+Hình ảnh này có thể có nhiều nhãn.
+
+53
+00:03:55.350 --> 00:04:00.162
+Vì vậy, bạn không nói rằng mỗi hình ảnh hoặc là một hình ảnh của một người đi bộ, hoặc
+
+54
+00:04:00.162 --> 00:04:04.780
+một hình ảnh của xe hơi, một hình ảnh của một dấu hiệu dừng, hình ảnh của một đèn giao thông.
+
+55
+00:04:04.780 --> 00:04:09.010
+Bạn đang yêu cầu cho mỗi bức ảnh, nó có một người đi bộ, hoặc một chiếc xe một dấu hiệu dừng hoặc
+
+56
+00:04:09.010 --> 00:04:11.860
+đèn giao thông, và nhiều vật thể có thể xuất hiện trong cùng một hình ảnh.
+
+57
+00:04:11.860 --> 00:04:16.390
+Trong thực tế, trong ví dụ trên slide trước, chúng tôi có cả một chiếc xe và
+
+58
+00:04:16.390 --> 00:04:19.400
+một dấu dừng trong hình ảnh đó, nhưng không có người đi bộ và đèn giao thông.
+
+59
+00:04:19.400 --> 00:04:22.580
+Vì vậy, bạn không gán một nhãn duy nhất cho một hình ảnh,
+
+60
+00:04:22.580 --> 00:04:25.800
+bạn đang trải qua các lớp khác nhau và yêu cầu cho
+
+61
+00:04:25.800 --> 00:04:29.573
+mỗi lớp học làm lớp đó, liệu loại đối tượng đó xuất hiện trong hình ảnh?
+
+62
+00:04:31.420 --> 00:04:34.839
+Vì vậy, đó là lý do tại sao tôi nói rằng với thiết lập này,
+
+63
+00:04:34.839 --> 00:04:37.313
+một hình ảnh có thể có nhiều nhãn.
+
+64
+00:04:37.313 --> 00:04:42.281
+Nếu bạn đào tạo một neural network để giảm thiểu chức năng chi phí này,
+
+65
+00:04:42.281 --> 00:04:45.920
+bạn đang thực hiện việc học đa nhiệm vụ.
+
+66
+00:04:45.920 --> 00:04:50.823
+Bởi vì những gì bạn đang làm là xây dựng một neural network duy nhất mà đang nhìn vào
+
+67
+00:04:50.823 --> 00:04:53.860
+từng hình ảnh và về cơ bản giải quyết bốn vấn đề.
+
+68
+00:04:53.860 --> 00:04:58.910
+Nó đang cố gắng để cho bạn biết mỗi bức ảnh có mỗi trong bốn vật thể trong đó.
+
+69
+00:05:00.250 --> 00:05:03.850
+Và một điều khác bạn có thể làm là chỉ đào tạo bốn neural network riêng biệt,
+
+70
+00:05:03.850 --> 00:05:06.700
+thay vì đào tạo một mạng làm bốn việc.
+
+71
+00:05:06.700 --> 00:05:11.300
+Nhưng nếu một số feature trước đó trong neural network có thể được chia sẻ giữa các
+
+72
+00:05:11.300 --> 00:05:13.790
+loại đối tượng khác nhau, thì bạn thấy rằng
+
+73
+00:05:13.790 --> 00:05:17.880
+đào tạo một neural network để làm bốn việc dẫn đến hiệu suất tốt hơn là
+
+74
+00:05:17.880 --> 00:05:21.760
+đào tạo bốn neural network hoàn toàn riêng biệt để thực hiện bốn nhiệm vụ riêng biệt.
+
+75
+00:05:23.040 --> 00:05:25.450
+Vì vậy, đó là sức mạnh của việc học đa nhiệm vụ.
+
+76
+00:05:26.716 --> 00:05:28.127
+Và một chi tiết khác,
+
+77
+00:05:28.127 --> 00:05:33.440
+cho đến nay tôi đã mô tả thuật toán này như thể mọi hình ảnh đều có từng nhãn.
+
+78
+00:05:33.440 --> 00:05:37.754
+Nó chỉ ra rằng đa nhiệm vụ học cũng hoạt động ngay cả khi một số hình ảnh chúng tôi sẽ
+
+79
+00:05:37.754 --> 00:05:39.452
+dán nhãn chỉ một số các đối tượng.
+
+80
+00:05:39.452 --> 00:05:43.078
+Ví dụ huấn luyện đầu tiên, giả sử ai đó, người dán nhãn của bạn đã nói với bạn rằng
+
+81
+00:05:43.078 --> 00:05:46.214
+có người đi bộ, không có xe hơi, nhưng họ
+
+82
+00:05:46.214 --> 00:05:49.072
+không bận tâm để dán nhãn cho dù có dấu hiệu dừng hoặc có đèn giao thông hay không.
+
+83
+00:05:49.072 --> 00:05:52.691
+Và có thể cho ví dụ thứ hai, có một người đi bộ, có một chiếc xe hơi, nhưng một
+
+84
+00:05:52.691 --> 00:05:56.479
+lần nữa là người dán nhãn, khi họ nhìn vào bức ảnh đó, họ chỉ không dán nhãn
+
+85
+00:05:56.479 --> 00:05:59.790
+nó, dù nó có dấu hiệu dừng hay đèn giao thông, vân vân.
+
+86
+00:05:59.790 --> 00:06:03.153
+Và có thể một số ví dụ được dán nhãn đầy đủ, và có thể một số ví dụ,
+
+87
+00:06:03.153 --> 00:06:06.117
+chúng chỉ ghi nhãn cho sự hiện diện và vắng mặt của xe hơi nên
+
+88
+00:06:06.117 --> 00:06:08.858
+có một số dấu hỏi, vân vân.
+
+89
+00:06:08.858 --> 00:06:13.050
+Vì vậy, với một tập dữ liệu như thế này, bạn vẫn có thể đào tạo thuật toán học tập của bạn
+
+90
+00:06:13.050 --> 00:06:16.870
+để thực hiện bốn nhiệm vụ cùng một lúc, ngay cả khi
+
+91
+00:06:16.870 --> 00:06:21.300
+một số hình ảnh chỉ có một tập hợp con của các nhãn và những người khác là loại dấu hỏi hoặc không quan tâm.
+
+92
+00:06:21.300 --> 00:06:24.808
+Và cách bạn đào tạo thuật toán của bạn,
+
+93
+00:06:24.808 --> 00:06:29.520
+ngay cả khi một số trong những nhãn này là dấu chấm hỏi hoặc
+
+94
+00:06:29.520 --> 00:06:34.669
+thực sự không được dán nhãn là trong tổng này hơn j từ 1 đến 4,
+
+95
+00:06:34.669 --> 00:06:39.730
+bạn sẽ tổng hợp chỉ trên các giá trị của j với một nhãn 0 hoặc 1.
+
+96
+00:06:41.354 --> 00:06:46.850
+Vì vậy, bất cứ khi nào có một dấu hỏi, bạn chỉ cần bỏ
+
+97
+00:06:46.850 --> 00:06:51.480
+qua thuật ngữ đó từ tổng kết nhưng chỉ tổng kết các giá trị mà có một nhãn.
+
+98
+00:06:51.480 --> 00:06:54.720
+Và vì vậy điều đó cho phép bạn sử dụng các bộ dữ liệu như thế này là tốt.
+
+99
+00:06:54.720 --> 00:06:57.390
+Vậy khi nào thì việc học đa nhiệm có ý nghĩa?
+
+100
+00:06:57.390 --> 00:06:59.471
+Vậy khi nào việc học đa nhiệm có ý nghĩa?
+
+101
+00:06:59.471 --> 00:07:03.550
+Tôi sẽ nói rằng nó có ý nghĩa thường xuyên khi ba điều là sự thật.
+
+102
+00:07:03.550 --> 00:07:06.400
+Một là nếu đào tạo của bạn về một tập hợp các nhiệm vụ có thể được hưởng lợi từ
+
+103
+00:07:06.400 --> 00:07:08.470
+việc chia sẻ các feature cấp thấp.
+
+104
+00:07:08.470 --> 00:07:13.155
+Vì vậy, đối với ví dụ lái xe tự động, nó có ý nghĩa là nhận ra
+
+105
+00:07:13.155 --> 00:07:16.980
+đèn giao thông, xe hơi và người đi bộ, những đèn này nên có những đặc điểm tương tự
+
+106
+00:07:16.980 --> 00:07:21.653
+cũng có thể giúp bạn nhận ra các dấu hiệu dừng, bởi vì đây là tất cả các đặc điểm của đường bộ.
+
+107
+00:07:23.120 --> 00:07:28.032
+Thứ hai, đây là một quy tắc khó khăn và nhanh chóng, vì vậy điều này không phải lúc nào cũng đúng.
+
+108
+00:07:28.032 --> 00:07:31.757
+Nhưng những gì tôi thấy từ rất nhiều thiết lập học tập đa nhiệm vụ thành
+
+109
+00:07:31.757 --> 00:07:35.310
+công là lượng dữ liệu bạn có cho mỗi nhiệm vụ khá giống nhau.
+
+110
+00:07:35.310 --> 00:07:39.480
+Vì vậy, nếu bạn nhớ lại từ việc học chuyển tiếp, bạn học từ một số nhiệm vụ A và
+
+111
+00:07:39.480 --> 00:07:41.930
+chuyển nó sang một số nhiệm vụ B
+
+112
+00:07:41.930 --> 00:07:46.891
+Vì vậy, nếu bạn có một triệu ví dụ về nhiệm vụ A sau đó và 1.000 ví dụ cho
+
+113
+00:07:46.891 --> 00:07:51.611
+nhiệm vụ B, thì tất cả kiến thức bạn học được từ triệu ví dụ đó
+
+114
+00:07:51.611 --> 00:07:56.430
+có thể thực sự giúp tăng thêm nhỏ hơn nhiều bộ dữ liệu mà bạn có cho nhiệm vụ B.
+
+115
+00:07:56.430 --> 00:07:58.652
+Vậy làm thế nào về đa nhiệm vụ học?
+
+116
+00:07:58.652 --> 00:08:01.520
+Trong học tập đa nhiệm, bạn thường có nhiều nhiệm vụ hơn chỉ là hai nhiệm vụ.
+
+117
+00:08:01.520 --> 00:08:07.678
+Vì vậy, có lẽ bạn có, trước đây chúng tôi đã có 4 nhiệm vụ nhưng chúng ta hãy nói rằng bạn có 100 nhiệm vụ.
+
+118
+00:08:07.678 --> 00:08:11.452
+Và bạn sẽ học nhiều nhiệm vụ để cố gắng nhận ra 100 loại
+
+119
+00:08:11.452 --> 00:08:12.580
+vật thể khác nhau cùng một lúc.
+
+120
+00:08:12.580 --> 00:08:17.444
+Vì vậy, những gì bạn có thể tìm thấy là bạn có thể có 1.000 ví dụ cho mỗi nhiệm vụ và vì vậy
+
+121
+00:08:17.444 --> 00:08:20.660
+nếu bạn tập trung vào hiệu suất của chỉ một nhiệm vụ,
+
+122
+00:08:20.660 --> 00:08:25.775
+hãy tập trung vào hiệu suất của nhiệm vụ thứ 100, bạn có thể gọi A100.
+
+123
+00:08:25.775 --> 00:08:28.899
+Nếu bạn đang cố gắng để làm nhiệm vụ cuối cùng này trong sự cô lập,
+
+124
+00:08:28.899 --> 00:08:32.875
+bạn sẽ có chỉ là một ngàn ví dụ để đào tạo một nhiệm vụ
+
+125
+00:08:32.875 --> 00:08:37.320
+này, đây là một trong 100 nhiệm vụ mà bằng cách đào tạo trên 99 nhiệm vụ khác.
+
+126
+00:08:37.320 --> 00:08:42.810
+Những tổng hợp có 99,000 ví dụ đào tạo mà có thể là một
+
+127
+00:08:42.810 --> 00:08:46.597
+sự thúc đẩy lớn, có thể cung cấp cho rất nhiều kiến thức để lập luận này nếu không,
+
+128
+00:08:46.597 --> 00:08:52.040
+tương đối nhỏ 1.000 ví dụ đào tạo thiết lập mà bạn có cho nhiệm vụ A100.
+
+129
+00:08:52.040 --> 00:08:57.080
+Và đối xứng mỗi một trong 99 nhiệm vụ khác có thể cung cấp một số dữ liệu hoặc cung cấp
+
+130
+00:08:57.080 --> 00:09:01.197
+một số kiến thức giúp mỗi một trong những nhiệm vụ khác trong danh sách 100 nhiệm vụ này.
+
+131
+00:09:02.640 --> 00:09:07.940
+Vì vậy, viên đạn thứ hai không phải là một quy tắc cứng và nhanh chóng nhưng những gì tôi có xu hướng nhìn vào là
+
+132
+00:09:07.940 --> 00:09:13.150
+nếu bạn tập trung vào bất kỳ một nhiệm vụ nào, để có được một sự thúc đẩy lớn cho việc học đa nhiệm vụ,
+
+133
+00:09:13.150 --> 00:09:17.260
+các nhiệm vụ khác trong tổng hợp cần phải có khá nhiều dữ liệu hơn cho
+
+134
+00:09:17.260 --> 00:09:18.220
+một nhiệm vụ đó.
+
+135
+00:09:18.220 --> 00:09:22.730
+Và một cách để thỏa mãn điều đó là nếu rất nhiều nhiệm vụ như chúng ta có trong ví dụ này ở
+
+136
+00:09:22.730 --> 00:09:27.030
+bên phải, và nếu lượng dữ liệu bạn có trong mỗi nhiệm vụ khá giống nhau.
+
+137
+00:09:27.030 --> 00:09:31.558
+Nhưng quan trọng thực sự là nếu bạn đã có 1.000 ví dụ cho 1 nhiệm vụ,
+
+138
+00:09:31.558 --> 00:09:36.360
+sau đó cho tất cả các nhiệm vụ khác bạn tốt hơn có nhiều hơn 1.000 ví dụ nếu
+
+139
+00:09:36.360 --> 00:09:40.565
+những nhiệm vụ khác có nghĩa là để giúp bạn làm tốt hơn trong nhiệm vụ cuối cùng này.
+
+140
+00:09:40.565 --> 00:09:44.521
+Và cuối cùng việc học đa nhiệm có xu hướng có ý nghĩa hơn khi bạn có thể đào tạo một
+
+141
+00:09:44.521 --> 00:09:47.640
+neural network đủ lớn để làm tốt tất cả các nhiệm vụ.
+
+142
+00:09:47.640 --> 00:09:50.259
+Vì vậy, sự thay thế cho việc học đa nhiệm vụ là
+
+143
+00:09:50.259 --> 00:09:52.767
+đào tạo một neural network riêng biệt cho mỗi nhiệm vụ.
+
+144
+00:09:52.767 --> 00:09:56.084
+Vì vậy, thay vì đào tạo một neural network cho người đi bộ, xe hơi, dấu dừng và
+
+145
+00:09:56.084 --> 00:09:59.017
+phát hiện đèn giao thông, bạn có thể đã đào tạo một neural network để
+
+146
+00:09:59.017 --> 00:10:02.528
+phát hiện người đi bộ, một neural network để phát hiện xe hơi, một neural network để
+
+147
+00:10:02.528 --> 00:10:05.630
+phát hiện dấu dừng, và một neural network cho giao thông phát hiện ánh sáng.
+
+148
+00:10:06.640 --> 00:10:10.895
+Vì vậy, điều mà một nhà nghiên cứu, Rich Carona, tìm thấy nhiều năm trước đây là lần duy nhất
+
+149
+00:10:10.895 --> 00:10:14.920
+việc học đa nhiệm làm tổn thương hiệu suất so với việc đào tạo
+
+150
+00:10:14.920 --> 00:10:18.590
+các neural network riêng biệt là nếu neural network của bạn không đủ lớn.
+
+151
+00:10:18.590 --> 00:10:22.898
+Nhưng nếu bạn có thể đào tạo một neural network đủ lớn, sau đó đa nhiệm vụ học
+
+152
+00:10:22.898 --> 00:10:26.476
+chắc chắn không nên hoặc rất hiếm khi làm tổn thương hiệu suất.
+
+153
+00:10:26.476 --> 00:10:29.405
+Và hy vọng nó sẽ thực sự giúp đỡ hiệu suất so với nếu bạn
+
+154
+00:10:29.405 --> 00:10:33.640
+đang đào tạo neural network để thực hiện những nhiệm vụ khác nhau trong sự cô lập.
+
+155
+00:10:33.640 --> 00:10:35.860
+Vì vậy, đó là nó cho việc học đa nhiệm vụ.
+
+156
+00:10:35.860 --> 00:10:40.410
+Trong thực tế, học tập đa nhiệm vụ được sử dụng ít thường xuyên hơn nhiều so với học chuyển giao.
+
+157
+00:10:40.410 --> 00:10:43.450
+Tôi thấy rất nhiều ứng dụng của học chuyển giao nơi bạn
+
+158
+00:10:43.450 --> 00:10:46.150
+có một vấn đề bạn muốn giải quyết với một lượng nhỏ dữ liệu.
+
+159
+00:10:46.150 --> 00:10:49.580
+Vì vậy, bạn tìm thấy một vấn đề liên quan với rất nhiều dữ liệu để tìm hiểu điều gì đó và
+
+160
+00:10:49.580 --> 00:10:51.802
+chuyển nó đến vấn đề mới này.
+
+161
+00:10:51.802 --> 00:10:56.084
+Nhưng việc học đa nhiệm là hiếm hơn mà bạn có một tập hợp rất lớn các nhiệm vụ bạn
+
+162
+00:10:56.084 --> 00:10:57.820
+muốn sử dụng mà bạn muốn làm tốt,
+
+163
+00:10:57.820 --> 00:11:00.390
+bạn có thể đào tạo tất cả các nhiệm vụ đó cùng một lúc.
+
+164
+00:11:00.390 --> 00:11:02.254
+Có lẽ một ví dụ là tầm nhìn máy tính.
+
+165
+00:11:02.254 --> 00:11:05.778
+Trong object detection tôi thấy nhiều ứng dụng của đa nhiệm vụ bất kỳ nơi mà một
+
+166
+00:11:05.778 --> 00:11:09.533
+neural network cố gắng để phát hiện một bó toàn bộ các đối tượng cùng một lúc hoạt động
+
+167
+00:11:09.533 --> 00:11:13.700
+tốt hơn so với các neural network khác nhau được đào tạo riêng biệt để phát hiện các đối tượng.
+
+168
+00:11:13.700 --> 00:11:17.870
+Nhưng tôi sẽ nói rằng trung bình học chuyển tiếp được sử dụng nhiều
+
+169
+00:11:17.870 --> 00:11:22.610
+hơn ngày nay hơn nhiều so với học đa nhiệm vụ, nhưng cả hai đều là những công cụ hữu ích để có trong kho vũ khí của bạn.
+
+170
+00:11:22.610 --> 00:11:23.685
+Vì vậy, để tóm tắt,
+
+171
+00:11:23.685 --> 00:11:28.270
+đa nhiệm vụ học tập cho phép bạn đào tạo một neural network để thực hiện nhiều nhiệm vụ và điều
+
+172
+00:11:28.270 --> 00:11:32.630
+này có thể cho bạn hiệu suất tốt hơn so với khi bạn thực hiện các nhiệm vụ trong sự cô lập.
+
+173
+00:11:32.630 --> 00:11:37.410
+Bây giờ một lưu ý của sự thận trọng, trong thực tế tôi thấy rằng học chuyển giao được sử dụng
+
+174
+00:11:37.410 --> 00:11:39.790
+thường xuyên hơn nhiều so với học đa nhiệm vụ.
+
+175
+00:11:39.790 --> 00:11:43.262
+Vì vậy, tôi thấy rất nhiều nhiệm vụ nếu bạn muốn giải quyết một vấn đề machine learning
+
+176
+00:11:43.262 --> 00:11:47.197
+nhưng bạn có một tập dữ liệu tương đối nhỏ, sau đó chuyển học có thể thực sự giúp đỡ.
+
+177
+00:11:47.197 --> 00:11:50.172
+Nếu bạn tìm thấy một vấn đề liên quan nhưng bạn có một tập dữ liệu lớn hơn nhiều,
+
+178
+00:11:50.172 --> 00:11:52.290
+bạn có thể đào tạo trong neural network của bạn từ đó và
+
+179
+00:11:52.290 --> 00:11:54.830
+sau đó chuyển nó đến vấn đề mà chúng tôi có dữ liệu rất thấp.
+
+180
+00:11:54.830 --> 00:11:57.460
+Vì vậy, việc học chuyển giao được sử dụng rất nhiều ngày nay.
+
+181
+00:11:57.460 --> 00:12:01.785
+Có một số ứng dụng của chuyển giao đa nhiệm vụ học tập là tốt, nhưng
+
+182
+00:12:01.785 --> 00:12:05.730
+đa nhiệm vụ học mà tôi nghĩ được sử dụng ít thường xuyên hơn nhiều so với chuyển giao học tập.
+
+183
+00:12:05.730 --> 00:12:09.230
+Và có lẽ một ngoại lệ là object detection thị giác máy tính,
+
+184
+00:12:09.230 --> 00:12:12.180
+nơi tôi thấy rất nhiều ứng dụng đào tạo neural network
+
+185
+00:12:12.180 --> 00:12:13.980
+để phát hiện rất nhiều đối tượng khác nhau.
+
+186
+00:12:13.980 --> 00:12:16.660
+Và điều đó có tác dụng tốt hơn là đào tạo các neural network riêng biệt và
+
+187
+00:12:16.660 --> 00:12:18.150
+phát hiện các đối tượng trực quan.
+
+188
+00:12:18.150 --> 00:12:21.385
+Nhưng trung bình tôi nghĩ rằng mặc dù học chuyển tiếp và học
+
+189
+00:12:21.385 --> 00:12:26.130
+đa nhiệm vụ thường bạn được trình bày theo cách tương tự, trong thực tế tôi đã
+
+190
+00:12:26.130 --> 00:12:30.130
+thấy rất nhiều ứng dụng của học chuyển tiếp hơn là học đa nhiệm vụ.
+
+191
+00:12:30.130 --> 00:12:34.250
+Tôi nghĩ bởi vì thường rất khó để thiết lập hoặc tìm thấy rất nhiều
+
+192
+00:12:34.250 --> 00:12:37.120
+nhiệm vụ khác nhau mà bạn thực sự muốn đào tạo một neural network duy nhất cho. Một
+
+193
+00:12:37.120 --> 00:12:39.050
+lần nữa, với một số loại tầm nhìn máy tính,
+
+194
+00:12:39.050 --> 00:12:43.000
+ví dụ object detection là ngoại lệ đáng chú ý nhất.
+
+195
+00:12:43.000 --> 00:12:45.465
+Vì vậy, đó là nó cho việc học đa nhiệm vụ.
+
+196
+00:12:45.465 --> 00:12:46.310
+Học tập đa nhiệm vụ và
+
+197
+00:12:46.310 --> 00:12:50.350
+học chuyển giao đều là những công cụ quan trọng cần có trong túi công cụ của bạn.
+
+198
+00:12:50.350 --> 00:12:54.730
+Và cuối cùng, tôi muốn tiếp tục thảo luận về việc deep learning từ đầu đến cuối.
+
+199
+00:12:54.730 --> 00:12:57.620
+Vì vậy, chúng ta hãy đi vào video tiếp theo để thảo luận về việc học tập từ đầu đến cuối.

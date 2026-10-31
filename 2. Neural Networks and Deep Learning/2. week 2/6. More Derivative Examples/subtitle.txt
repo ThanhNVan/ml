@@ -1,0 +1,98 @@
+Trong video này, tôi sẽ cho bạn xem
+một ví dụ phức tạp hơn một chút, trong đó độ dốc của hàm có thể khác nhau
+tại các điểm khác nhau trong hàm. Hãy bắt đầu với một ví dụ. Bạn đã vẽ đồ thị hàm f (a) = a². Hãy nhìn vào điểm a = 2. Vậy a² hoặc f (a) = 4. Hãy tăng nhẹ a sang phải,
+vì vậy bây giờ a = 2.001. f (a) là a² sẽ xấp xỉ 4.004. Hóa ra giá trị chính xác, bạn sử dụng máy tính và tìm ra
+giá trị này thực sự bằng 4.004001. Tôi sẽ chỉ nói 4.004 là gần đúng. Điều này có nghĩa là khi a = 2, hãy vẽ cái này trên đồ thị. Chúng ta đang nói là nếu a = 2, thì f (a) = 4 và đây là trục x
+và y không được vẽ theo tỷ lệ. Về mặt kỹ thuật, chiều cao trên
+trục dọc nên cao hơn nhiều trục ngang để trục x
+và y không cùng tỷ lệ. Nhưng nếu bây giờ tôi nhích a đến
+2.001 thì f (a) trở thành khoảng 4.004. Như vậy, nếu chúng ta vẽ hình
+tam giác nhỏ này một lần nữa, điều này có nghĩa là nếu tôi
+nhích a sang phải thêm 0,001, thì f (a) tăng gấp bốn lần, thêm 0,004. Thế nên, trong ngôn ngữ giải tích, chúng ta nói rằng độ dốc
+là đạo hàm của f (a) tại a = 2 là 4, hoặc để viết
+bằng ký hiệu giải tích thì ta nói rằng d / da
+của f (a) = 4 khi a = 2. Bây giờ có một điều
+về hàm này f(a) = a² là độ dốc thì khác nhau
+tại các giá trị a khác nhau. Điều này khác với ví dụ
+chúng ta đã thấy trong slide trước. Hãy nhìn vào một điểm khác. Nếu a = 5, thay vì a = 2, và bây giờ a = 5 thì
+a² = 25, đó là f (a). Nếu tôi nhích a sang
+phải một lần nữa, thêm một chút thôi vì vậy bây giờ a = 5,001
+thì f (a) sẽ xấp xỉ 25,010. Như vậy, những gì chúng ta thấy là
+bằng cách đẩy nhẹ a lên 0.001, f (a) tăng gấp mười lần. Vậy ta có d / da f (a) = 10 khi a = 5 vì f (a) tăng gấp mười lần khi tôi tăng a lên một chút. Một cách để xem tại sao các đạo hàm lại
+khác nhau ở những điểm khác nhau là nếu bạn vẽ hình tam giác nhỏ đó ngay tại
+các vị trí khác nhau trên này, bạn sẽ thấy tỷ lệ chiều cao trên chiều rộng của tam giác rất khác nhau
+tại các điểm khác nhau trên đường cong. Ở đây, độ dốc = 4 khi
+a = 2, a = 10, khi a = 5. Bây giờ nếu bạn mở một cuốn
+sách giáo khoa về giải tích, sách giải tích sẽ cho bạn
+biết rằng d / da của f (a), mà f (a) = a², vì vậy đó là d / da của a². Một trong những công thức bạn tìm
+thấy trong sách giáo khoa giải tích là độ dốc của hàm a², bằng 2a. Tôi sẽ không chứng minh điều này,
+nhưng bạn có thể tìm thấy điều này nếu bạn mở một cuốn sách
+giáo khoa giải tích ở mục các công thức bảng và chúng sẽ cho
+bạn biết rằng đạo hàm của 2 của a² là 2a. Và thực sự thì điều này đúng với
+những gì chúng ta đã tìm ra. Cụ thể là, khi a = 2, độ dốc
+của hàm ở a là 2x2 = 4. Và khi a = 5 thì độ dốc
+của hàm 2xa là 2x5 = 10. Vì vậy, nếu bạn từng mở ra một cuốn sách
+giáo khoa giải tích và bạn thấy công thức này, rằng đạo hàm của a² = 2a, thì nó có nghĩa là với bất kỳ
+giá trị đã cho nào của a, nếu bạn nâng lên 0,001 mà
+là một giá trị rất nhỏ, bạn sẽ mong đợi f (a) tăng thêm 2a. Đó là độ dốc hoặc
+đạo hàm nhân với số lượng mà bạn đã thêm cho a. Bây giờ có một chi tiết nhỏ, tôi sử dụng các ký hiệu gần đúng ở
+đây và đây không chính xác là 4.004, còn có thêm 0,001 nữa. Hóa ra rằng có
+lượng thêm 0,001 này, là bởi vì chúng ta
+đã tăng a thêm 0,001, nếu chúng ta tăng a thêmnếu chúng ta tăng a thêm giá trị cực nhỏ này thì
+lượng 0.001 này sẽ biến mất và bạn thấy rằng số lượng mà
+f (a) tăng lên là hoàn toàn bằng đạo hàm nhân với lượng
+giá trị mà bạn tăng a lên. Và lý do tại sao không phải là 4.004 là vì các
+đạo hàm được xác định bằng cách sử dụng một lượng tăng lên cực kì
+nhỏ của a mà 0,001 thì không phải. Và 0,001 thì nhỏ, nhưng nó không phải là cực kỳ nhỏ. Vì vậy, đó là lý do tại sao số lượng mà
+f (a) tăng lên không được đưa ra chính xác theo công thức mà nó chỉ là một loại
+xấp xỉ được đưa ra bởi đạo hàm. Để kết thúc video này, chúng ta hãy xem
+một vài ví dụ nhanh hơn. Ví dụ bạn đã thấy
+là nếu f (a) = a² thì bảng công thức sách giáo khoa giải tích
+sẽ cho bạn biết rằng đạo hàm bằng 2a. Và vì vậy, ví dụ chúng ta
+đã xem là nếu (a) = 2, f (a) = 4 và chúng ta
+tăng a lên một chút, vì nó lớn hơn một chút
+so với f (a) là khoảng 4.004 và vì vậy f (a) đã tăng
+gấp bốn lần và khi a = 2, các đạo hàm bằng 4. Hãy xem xét một số ví dụ khác. Giả sử, f (a) = a³. Nếu bạn mở một cuốn sách giáo khoa
+giải tích và tra cứu bảng công thức, bạn thấy rằng độ dốc
+của hàm này, một lần nữa, đạo hàm của hàm này bằng 3a². Như vậy, bạn có thể đưa công thức
+này ra khỏi sách giáo khoa giải tích. Vậy công thức này có nghĩa là gì? Cách để giải thích điều này là. Hãy lấy a = 2 làm
+ví dụ một lần nữa. Vậy f (a) hoặc a³ = 8,
+bằng hai mũ ba. Chúng ta tăng a lên một chút, bạn thấy rằng f (a) bằng khoảng
+8.012 và bạn có thể kiểm tra điều này. Lấy 2.001 mũ ba, bạn thấy nó gần bằng 8.012. Và thực tế, khi a = 2
+thì 3x2² bằng 3x4, bạn thấy đó là 12. Vì vậy, công thức đạo hàm dự đoán
+rằng nếu bạn tăng a lên một chút, thì f (a) nên tăng gấp 12 lần. Và thực tế, điều này là
+đúng khi a tăng thêm 0,001, f (a) đã tăng gấp 12 là 0,012. Chỉ một ví dụ cuối cùng nữa thôi và
+sau đó chúng ta sẽ kết thúc bài học này. Giả sử f (a) bằng hàm log. Vì vậy, tôi viết log(a), tôi sẽ coi cái này
+là logarit cơ số e. Vì vậy, một số người
+viết đó là log (a). Vì vậy, nếu bạn mở
+sách giáo khoa giải tích, bạn thấy rằng khi bạn
+lấy đạo hàm của log (a). Thì đây là hàm này
+sẽ trông như này, độ dốc của hàm này
+được cho là bằng 1 / a. Để giải thích điều này thì là với bất kì
+giá trị nào của a thì chúng ta hãy cứ sử dụng a = 2 làm ví dụ và bạn
+nhích a sang phải thêm 0,001, bạn sẽ muốn f (a) tăng lên 1 / a, bằng đạo hàm nhân
+với lượng mà bạn tăng a. Trên thực tế, nếu bạn mở máy tính, bạn thấy rằng nếu a = 2, f (a) là xấp xỉ 0,69315 và nếu bạn tăng f và nếu bạn tăng a lên
+2.001 thì f (a) là khoảng 0,69365, con số này đã tăng lên 0,0005. Và thực tế, nếu bạn nhìn vào
+công thức của đạo hàm khi a = 2, d / da f (a) = 1/2. Thì công thức đạo hàm dự đoán
+rằng nếu bạn tăng lên 0,001, bạn sẽ muốn f (a) tăng chỉ
+bằng 1/2 và 1/2 của 0,001 là 0,0005, đó chính xác là
+những gì chúng ta nhận được. Sau đó khi a tăng lên
+0,001, đi từ a = 2 đến a = 2.001, f (a) tăng một nửa. Như vậy, các đáp án đang
+tăng lên khoảng 0,0005. Nếu chúng ta vẽ hình
+tam giác nhỏ đó, nếu bạn muốn trục hoành chỉ tăng
+0,001, trên trục tung log (a) tăng một nửa
+số đó là 0.0005. Và vì vậy, 1 / a hoặc 1/2
+trong trường hợp này, 1/a = 2 đó chỉ là độ dốc
+của đường này khi a = 2. Như vậy, đó là về đạo hàm. Chỉ có hai lời nhắn trong video này. Đầu tiên là đạo hàm của hàm
+chỉ cónghĩa là độ dốc của một hàm và độ dốc của hàm có thể khác nhau ở các
+điểm khác nhau trên hàm. Trong ví dụ đầu tiên, trong đó
+f(a) = 3a đó là một đường thẳng. Đạo hàm giống nhau ở mọi nơi, nó bằng 3 khắp mọi nơi. Đối với các hàm khác như
+f (a) = a² hoặc f (a) = log (a), độ dốc của đường khác nhau. Vì vậy, độ dốc hoặc đạo hàm có thể khác nhau
+tại các điểm khác nhau trên đường cong. Vì vậy, đó là lời nhắn đầu tiên. Đạo hàm có nghĩa là
+độ dốc của một đường. Lời nhắn thứ hai là nếu bạn
+muốn tra cứu đạo hàm của hàm, bạn có thể mở sách giáo khoa
+giải tích của bạn hoặc tra cứu Wikipedia và bạn thường nhận được một công thức cho
+độ dốc của các hàm này tại các điểm khác nhau. Vì vậy, tôi hy vọng bạn đã hiểu cơ bản về
+các đạo hàm hoặc độ dốc của các dòng. Hãy cùng xem video tiếp theo. Chúng ta sẽ bắt đầu nói về
+đồ thị tính toán và cách sử dụng nó để tính đạo hàm
+của các hàm phức tạp hơn.

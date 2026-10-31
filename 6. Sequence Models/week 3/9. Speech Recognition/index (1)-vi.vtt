@@ -1,0 +1,541 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.645
+Một trong những phát triển thú vị nhất là
+
+2
+00:00:03.645 --> 00:00:08.780
+các mô hình trình tự trình tự đã được sự gia tăng của nhận dạng giọng nói rất chính xác.
+
+3
+00:00:08.780 --> 00:00:10.140
+Chúng tôi sắp kết thúc khóa học,
+
+4
+00:00:10.140 --> 00:00:13.800
+chúng tôi muốn chỉ lấy một vài video để cung cấp cho bạn cảm giác về cách các
+
+5
+00:00:13.800 --> 00:00:19.195
+mô hình trình tự này được áp dụng cho dữ liệu âm thanh, chẳng hạn như bài phát biểu.
+
+6
+00:00:19.195 --> 00:00:22.110
+Vì vậy, vấn đề nhận dạng giọng nói là gì?
+
+7
+00:00:22.110 --> 00:00:24.505
+Bạn được cung cấp một clip âm thanh, x,
+
+8
+00:00:24.505 --> 00:00:31.058
+và công việc của bạn là tự động tìm một bản ghi âm, y
+
+9
+00:00:31.058 --> 00:00:32.565
+Vì vậy, một clip âm thanh,
+
+10
+00:00:32.565 --> 00:00:34.649
+nếu bạn vẽ nó trông như thế này,
+
+11
+00:00:34.649 --> 00:00:37.211
+trục ngang ở đây là thời gian,
+
+12
+00:00:37.211 --> 00:00:43.313
+và những gì một micrô làm là nó thực sự đo lường những thay đổi nhỏ trong áp suất không khí,
+
+13
+00:00:43.313 --> 00:00:46.470
+và cách bạn nghe giọng nói của tôi bây giờ
+
+14
+00:00:46.470 --> 00:00:50.130
+là tai của bạn đang phát hiện những thay đổi nhỏ về áp suất không khí,
+
+15
+00:00:50.130 --> 00:00:55.065
+có thể được tạo ra bởi loa của bạn hoặc bởi tai nghe.
+
+16
+00:00:55.065 --> 00:01:01.145
+Và một số đoạn âm thanh như thế này có áp suất không khí đối với thời gian.
+
+17
+00:01:01.145 --> 00:01:06.192
+Và, nếu clip âm thanh này là của tôi nói,
+
+18
+00:01:06.192 --> 00:01:08.835
+“con cáo nâu nhanh”, thì hy vọng,
+
+19
+00:01:08.835 --> 00:01:14.175
+một thuật toán nhận dạng giọng nói có thể nhập clip âm thanh đó và xuất bản bản ghi đó.
+
+20
+00:01:14.175 --> 00:01:18.398
+Và bởi vì ngay cả tai người cũng không xử lý
+
+21
+00:01:18.398 --> 00:01:21.090
+các dạng sóng thô, nhưng tai người có cấu trúc vật lý
+
+22
+00:01:21.090 --> 00:01:25.183
+đo lượng cường độ của các tần số khác nhau,
+
+23
+00:01:25.183 --> 00:01:29.745
+có một bước xử lý trước phổ biến cho dữ liệu âm thanh
+
+24
+00:01:29.745 --> 00:01:34.985
+là chạy clip âm thanh thô của bạn và tạo ra một quang phổ.
+
+25
+00:01:34.985 --> 00:01:39.100
+Vì vậy, đây là các lô mà trục ngang là thời gian,
+
+26
+00:01:39.100 --> 00:01:42.390
+và trục dọc là tần số,
+
+27
+00:01:42.390 --> 00:01:46.820
+và cường độ của các màu sắc khác nhau cho thấy lượng năng lượng.
+
+28
+00:01:46.820 --> 00:01:51.385
+Vì vậy, âm thanh lớn như thế nào ở các tần số khác nhau? Vào những thời điểm khác nhau?
+
+29
+00:01:51.385 --> 00:01:55.390
+Và như vậy, các loại quang phổ này,
+
+30
+00:01:55.390 --> 00:01:58.810
+hoặc bạn cũng có thể nghe thấy mọi người nói về kết quả đầu ra sai,
+
+31
+00:01:58.810 --> 00:02:01.870
+thường được áp dụng
+
+32
+00:02:01.870 --> 00:02:06.470
+bước xử lý trước khi âm thanh được truyền vào trong thuật toán đang chạy.
+
+33
+00:02:06.470 --> 00:02:12.990
+Và tai người thực hiện một cách tính toán khá giống với bước xử lý tiền chế này.
+
+34
+00:02:12.990 --> 00:02:18.164
+Vì vậy, một trong những xu hướng thú vị nhất trong nhận dạng giọng nói là,
+
+35
+00:02:18.164 --> 00:02:19.735
+ngày xửa ngày xưa, các
+
+36
+00:02:19.735 --> 00:02:27.072
+hệ thống nhận dạng giọng nói được xây dựng bằng âm vị và điều này,
+
+37
+00:02:27.072 --> 00:02:31.135
+tôi muốn nói là các đơn vị cơ bản được chế tạo bằng tay.
+
+38
+00:02:31.135 --> 00:02:34.175
+Vì vậy, con cáo màu nâu nhanh chóng được thể hiện dưới dạng âm vị.
+
+39
+00:02:34.175 --> 00:02:36.074
+Tôi sẽ đơn giản hóa một chút, giả sử,
+
+40
+00:02:36.074 --> 00:02:38.960
+“The” có một “de” và “e” âm thanh và Quick,
+
+41
+00:02:38.960 --> 00:02:42.578
+có một “ku” và “wu”, “ik”, “k” âm thanh,
+
+42
+00:02:42.578 --> 00:02:46.270
+và nhà ngôn ngữ học dùng để viết tắt các đơn vị âm thanh cơ bản này,
+
+43
+00:02:46.270 --> 00:02:50.293
+và thử tiếng Hy Lạp xuống các đơn vị âm thanh cơ bản này.
+
+44
+00:02:50.293 --> 00:02:52.670
+Vì vậy, màu nâu, đây không phải là
+
+45
+00:02:52.670 --> 00:02:57.400
+âm vị chính thức được viết với ký hiệu phức tạp hơn,
+
+46
+00:02:57.400 --> 00:03:02.620
+nhưng các nhà ngôn ngữ học dùng để đưa ra giả thuyết rằng việc viết
+
+47
+00:03:04.475 --> 00:03:08.290
+ra âm thanh theo các đơn vị cơ bản của âm thanh gọi là âm vị sẽ là cách tốt nhất để nhận dạng giọng nói.
+
+48
+00:03:08.290 --> 00:03:10.776
+Nhưng với việc deep learning từ đầu đến cuối,
+
+49
+00:03:10.776 --> 00:03:15.505
+chúng tôi nhận thấy rằng sự biểu diễn âm vị không còn cần thiết nữa.
+
+50
+00:03:15.505 --> 00:03:21.010
+Nhưng thay vào đó, bạn có thể xây dựng các hệ thống nhập vào một clip âm thanh và trực tiếp
+
+51
+00:03:21.010 --> 00:03:27.795
+xuất một bảng điểm mà không cần phải sử dụng các đại diện được chế tạo bằng tay như thế này.
+
+52
+00:03:27.795 --> 00:03:33.420
+Một trong những điều làm cho điều này có thể là đi đến các tập dữ liệu lớn hơn nhiều.
+
+53
+00:03:33.420 --> 00:03:43.425
+Vì vậy, các bộ dữ liệu học thuật về nhận dạng giọng nói có thể là 300 giờ, và trong các học viện,
+
+54
+00:03:43.425 --> 00:03:49.220
+3000 bộ dữ liệu giờ của âm thanh được phiên âm sẽ được coi là kích thước hợp lý,
+
+55
+00:03:49.220 --> 00:03:50.965
+vì vậy rất nhiều nghiên cứu đã được thực hiện,
+
+56
+00:03:50.965 --> 00:03:56.065
+rất nhiều nghiên cứu được viết trên bộ dữ liệu có vài nghìn giọng nói.
+
+57
+00:03:56.065 --> 00:03:59.890
+Nhưng, các hệ thống thương mại tốt nhất hiện nay là tàu
+
+58
+00:03:59.890 --> 00:04:04.681
+trên hơn 10.000 giờ và đôi khi hơn 100.000 giờ âm thanh.
+
+59
+00:04:04.681 --> 00:04:10.325
+Và, nó thực sự chuyển sang một bộ dữ liệu âm thanh lớn hơn nhiều,
+
+60
+00:04:10.325 --> 00:04:12.925
+bộ dữ liệu âm thanh phiên âm là cả x và y,
+
+61
+00:04:12.925 --> 00:04:15.487
+cùng với thuật toán deep learning, điều
+
+62
+00:04:15.487 --> 00:04:18.745
+đó đã thúc đẩy rất nhiều tiến bộ là nhận dạng giọng nói.
+
+63
+00:04:18.745 --> 00:04:22.310
+Vậy, làm thế nào để bạn xây dựng một hệ thống nhận dạng giọng nói?
+
+64
+00:04:22.310 --> 00:04:23.634
+Trong video cuối cùng,
+
+65
+00:04:23.634 --> 00:04:25.870
+chúng ta đang nói về mô hình chú ý.
+
+66
+00:04:25.870 --> 00:04:28.768
+Vì vậy, một điều bạn có thể làm là thực sự làm điều đó,
+
+67
+00:04:28.768 --> 00:04:30.655
+nơi trên trục ngang,
+
+68
+00:04:30.655 --> 00:04:34.604
+bạn lấy các khung thời gian khác nhau của đầu vào âm thanh,
+
+69
+00:04:34.604 --> 00:04:38.905
+và sau đó bạn có một mô hình chú ý cố gắng đưa ra bảng điểm như,
+
+70
+00:04:38.905 --> 00:04:40.975
+“con cáo nâu nhanh”,
+
+71
+00:04:40.975 --> 00:04:42.873
+hoặc những gì nó được nói.
+
+72
+00:04:42.873 --> 00:04:47.933
+Một phương pháp khác dường như hoạt động tốt là sử dụng chi phí CTC để nhận dạng giọng nói.
+
+73
+00:04:47.933 --> 00:04:53.540
+CTC là viết tắt của Connection là Temporal Classification và là do Alex Graves,
+
+74
+00:04:53.540 --> 00:04:57.220
+Santiago Fernandes, Faustino Gomez, và Jürgen Schmidhuber.
+
+75
+00:04:57.220 --> 00:05:01.398
+Vậy, đây là ý tưởng. Giả sử clip âm thanh là ai đó nói,
+
+76
+00:05:01.398 --> 00:05:02.915
+“con cáo nâu nhanh”.
+
+77
+00:05:02.915 --> 00:05:07.090
+Chúng tôi sẽ sử dụng một mạng mới có cấu trúc
+
+78
+00:05:07.090 --> 00:05:11.460
+như thế này với một số bằng nhau của đầu vào x và đầu ra y,
+
+79
+00:05:11.460 --> 00:05:17.350
+và tôi đã rút ra một đơn giản của những gì uni-directional cho RNN cho điều
+
+80
+00:05:17.350 --> 00:05:20.518
+này, nhưng trong thực tế, điều này thường sẽ là một LSP
+
+81
+00:05:20.518 --> 00:05:23.847
+hai chiều và GIU hai chiều và thường, một mô hình sâu hơn.
+
+82
+00:05:23.847 --> 00:05:30.280
+Nhưng lưu ý rằng số bước thời gian ở đây rất lớn và trong nhận dạng giọng nói,
+
+83
+00:05:30.280 --> 00:05:32.950
+thông thường số bước thời gian đầu vào
+
+84
+00:05:32.950 --> 00:05:35.790
+lớn hơn nhiều so với số bước thời gian đầu ra.
+
+85
+00:05:35.790 --> 00:05:39.940
+Ví dụ, nếu bạn có 10 giây âm thanh và các feature của bạn
+
+86
+00:05:39.940 --> 00:05:44.437
+có tốc độ 100 hertz nên 100 mẫu/giây,
+
+87
+00:05:44.437 --> 00:05:48.750
+sau đó một clip âm thanh 10 giây sẽ kết thúc với một ngàn đầu vào.
+
+88
+00:05:48.750 --> 00:05:51.050
+Đúng vậy, nó là 100 hertz lần 10 giây,
+
+89
+00:05:51.050 --> 00:05:53.553
+và như vậy với một ngàn đầu vào.
+
+90
+00:05:53.553 --> 00:05:56.828
+Nhưng đầu ra của bạn có thể không có một nghìn bảng chữ cái, có
+
+91
+00:05:56.828 --> 00:05:59.910
+thể không có một nghìn ký tự.
+
+92
+00:05:59.910 --> 00:06:01.790
+Vậy, anh làm gì?
+
+93
+00:06:01.790 --> 00:06:08.788
+Các CTC chi phí chức năng cho phép RNN để tạo ra một đầu ra như vậy ttt,
+
+94
+00:06:08.788 --> 00:06:10.810
+có một ký tự đặc biệt gọi là
+
+95
+00:06:10.810 --> 00:06:12.860
+ký tự trống, mà chúng tôi sẽ viết như một gạch dưới đây,
+
+96
+00:06:12.860 --> 00:06:22.645
+h_eee___, và sau đó có thể là một không gian,
+
+97
+00:06:22.645 --> 00:06:32.995
+chúng tôi sẽ viết như thế này, do đó một không gian và sau đó ___ qq__.
+
+98
+00:06:32.995 --> 00:06:40.615
+Và, đây được coi là một đầu ra chính xác cho các phần đầu tiên của không gian,
+
+99
+00:06:40.615 --> 00:06:42.345
+nhanh chóng với Q,
+
+100
+00:06:42.345 --> 00:06:46.460
+và quy tắc cơ bản cho cost function CTC là thu gọn các
+
+101
+00:06:46.460 --> 00:06:51.488
+ký tự lặp đi lặp lại không được phân cách bởi “trống”.
+
+102
+00:06:51.488 --> 00:06:52.956
+Vì vậy, để được rõ ràng,
+
+103
+00:06:52.956 --> 00:06:55.135
+tôi đang sử dụng gạch dưới này để biểu thị
+
+104
+00:06:55.135 --> 00:07:01.620
+một ký tự trống đặc biệt và đó là khác với ký tự không gian.
+
+105
+00:07:01.620 --> 00:07:05.181
+Vì vậy, có một không gian ở đây giữa và nhanh chóng,
+
+106
+00:07:05.181 --> 00:07:07.025
+vì vậy tôi nên xuất ra một không gian.
+
+107
+00:07:07.025 --> 00:07:09.605
+Tuy nhiên, bằng cách thu gọn các ký tự lặp đi lặp lại
+
+108
+00:07:09.605 --> 00:07:11.025
+, không phân cách bằng cách trống,
+
+109
+00:07:11.025 --> 00:07:18.142
+nó thực sự thu gọn chuỗi thành t, h
+
+110
+00:07:18.142 --> 00:07:20.686
+, e, và sau đó khoảng trống, và q,
+
+111
+00:07:20.686 --> 00:07:26.400
+và điều này cho
+
+112
+00:07:26.400 --> 00:07:31.380
+phép mạng của bạn có một nghìn đầu ra bằng cách lặp lại ký tự cho phép thời gian.
+
+113
+00:07:31.380 --> 00:07:34.830
+Vì vậy, chèn một loạt các ký tự trống và vẫn kết
+
+114
+00:07:34.830 --> 00:07:38.990
+thúc với một bảng điểm văn bản đầu ra ngắn hơn nhiều.
+
+115
+00:07:38.990 --> 00:07:42.150
+Vì vậy, cụm từ này ở đây “con cáo nâu nhanh” bao gồm không gian
+
+116
+00:07:42.150 --> 00:07:46.140
+thực sự có 19 ký tự, và nếu bằng cách nào đó,
+
+117
+00:07:46.140 --> 00:07:48.090
+mạng mới hơn bị buộc trở lên của
+
+118
+00:07:48.090 --> 00:07:52.714
+một nghìn ký tự bằng cách cho phép mạng để chèn khoảng trống và
+
+119
+00:07:52.714 --> 00:07:55.171
+ký tự lặp đi lặp lại và vẫn có thể đại diện cho
+
+120
+00:07:55.171 --> 00:08:00.480
+19 ký tự này trở lên với 1000 đầu ra giá trị của Y.
+
+121
+00:08:00.480 --> 00:08:03.615
+Vì vậy, bài báo này của Alex Grace,
+
+122
+00:08:03.615 --> 00:08:08.323
+cũng như bởi những hệ thống nhận dạng giọng nói sâu sắc,
+
+123
+00:08:08.323 --> 00:08:10.120
+mà tôi đã tham gia, đã
+
+124
+00:08:10.120 --> 00:08:14.190
+sử dụng ý tưởng này để xây dựng hệ thống nhận dạng giọng nói hiệu quả.
+
+125
+00:08:14.190 --> 00:08:19.935
+Vì vậy, tôi hy vọng điều đó mang lại cho bạn một cảm giác thô sơ về cách thức hoạt động của các mô hình nhận dạng giọng nói.
+
+126
+00:08:19.935 --> 00:08:23.415
+Attention như các mô hình hoạt động và các mô hình CTC hoạt động và
+
+127
+00:08:23.415 --> 00:08:27.430
+trình bày hai lựa chọn khác nhau về cách xây dựng các hệ thống này.
+
+128
+00:08:27.430 --> 00:08:30.400
+Bây giờ, ngày nay, xây dựng hiệu quả nơi mà
+
+129
+00:08:30.400 --> 00:08:33.330
+kỹ năng sản xuất hệ thống nhận dạng giọng nói là
+
+130
+00:08:33.330 --> 00:08:37.585
+một nỗ lực khá đáng kể và đòi hỏi một tập dữ liệu rất lớn.
+
+131
+00:08:37.585 --> 00:08:40.688
+Nhưng, những gì tôi muốn làm trong video tiếp theo là chia sẻ cho bạn, làm
+
+132
+00:08:40.688 --> 00:08:43.610
+thế nào bạn có thể xây dựng một hệ thống phát hiện từ
+
+133
+00:08:43.610 --> 00:08:47.115
+khóa, nơi mà hệ thống phát hiện từ khóa thực sự dễ dàng hơn nhiều và có
+
+134
+00:08:47.115 --> 00:08:50.995
+thể được thực hiện với một lượng dữ liệu nhỏ hơn hoặc hợp lý hơn.
+
+135
+00:08:50.995 --> 00:08:53.000
+Vì vậy, chúng ta hãy nói về điều đó trong đoạn video tiếp theo.

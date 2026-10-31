@@ -1,0 +1,336 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.460 --> 00:00:05.340
+So far, the classification examples we've talked about have used binary classification
+
+00:00:05.340 --> 00:00:10.700
+where you had two possible labels, 0 or 1. Is it a cat or is it not a cat? What if you
+
+00:00:10.700 --> 00:00:15.700
+have multiple possible classes? There's a generalization of logistic regression called
+
+00:00:15.700 --> 00:00:21.080
+softmax regression that lets you make predictions where you're trying to recognize one of C
+
+00:00:21.080 --> 00:00:27.380
+or one of multiple classes rather than just recognize two classes. Let's take a look.
+
+00:00:27.380 --> 00:00:31.740
+Let's say that instead of just recognizing cats, you want to recognize cats, dogs, and
+
+00:00:31.740 --> 00:00:38.660
+baby chicks. So I'm going to call cats class 1, dogs class 2, baby chicks class 3, and
+
+00:00:38.660 --> 00:00:43.460
+if none of the above, then there's an other or none of the above class, which I'm going
+
+00:00:43.460 --> 00:00:50.060
+to call class 0. So here's an example of the images and the classes they belong to. That's
+
+00:00:50.060 --> 00:00:56.060
+a picture of a baby chick. So the class is 3, cats is class 1, a dog is class 2. That's
+
+00:00:56.820 --> 00:01:03.820
+a koala. So that's a none of the above. So that's class 0, class 3, and so on. So the
+
+00:01:03.820 --> 00:01:11.060
+notation we're going to use is I'm going to use capital C to denote the number of classes
+
+00:01:11.060 --> 00:01:16.940
+you're trying to categorize your inputs into. And in this case, you have four possible classes,
+
+00:01:16.940 --> 00:01:22.740
+including the other or the none of the above class. So when you have four classes, the
+
+00:01:22.740 --> 00:01:29.740
+classes indexing your classes will be 0 through C minus 1 through capital C minus 1. So in
+
+00:01:29.740 --> 00:01:33.300
+other words, it will be 0, 1, 2, or 3. In this case, we're going to build a neural network
+
+00:01:33.300 --> 00:01:41.300
+where the output layer has 4, or in this case, the variable capital alphabet C output
+
+00:01:41.340 --> 00:01:48.340
+units. So n, the number of units in the output layer, which is there L, is going
+
+00:01:49.260 --> 00:01:55.220
+to be equal to 4, or more generally is going to be equal to C. And what we want is for the
+
+00:01:55.220 --> 00:01:59.460
+number of units in the output layer to tell us what is the probability of each of these
+
+00:01:59.460 --> 00:02:06.460
+four classes. So the first node here is supposed to output, or we wanted to output, the probability
+
+00:02:06.620 --> 00:02:12.140
+that is the other class, given the input x, this will output probability that is a cat
+
+00:02:12.700 --> 00:02:19.700
+given x, this will output probability that is a dog given x, that will output the probability,
+
+00:02:19.940 --> 00:02:25.780
+I'm just going to abbreviate baby chick to be BC. So probably have a baby chick abbreviated
+
+00:02:25.780 --> 00:02:32.780
+BC, given the input x. So here, the output labels y hat is going to be a four by one
+
+00:02:35.300 --> 00:02:40.740
+dimensional vector, because it now has to output four numbers, giving you these four
+
+00:02:40.740 --> 00:02:46.980
+probabilities. And because probabilities should sum to one, the four numbers in the output
+
+00:02:46.980 --> 00:02:53.980
+y hat, they should sum to one. The standard model for getting a neural network to do this
+
+00:02:54.020 --> 00:02:59.540
+uses what's called a softmax layer in the output layer in order to generate these outputs.
+
+00:02:59.540 --> 00:03:03.380
+Let me write down the map and we can come back and get some intuition about what the
+
+00:03:03.380 --> 00:03:09.860
+softmax layer is doing. So the final layer of the neural network, you are going to compute
+
+00:03:09.940 --> 00:03:16.940
+as usual, the linear part of the layer, so z capital L, that's the z variable for the
+
+00:03:16.940 --> 00:03:23.940
+final layer. So remember, this is layer capital L. So as usual, you compute that as WL times
+
+00:03:25.220 --> 00:03:32.220
+the activation of the previous layer, plus the biases for that final layer. Now having
+
+00:03:32.500 --> 00:03:38.940
+computed z, you now need to apply what's called the softmax activation function. So
+
+00:03:38.940 --> 00:03:45.540
+the activation function is a bit unusual for the softmax layer, but this is what it does.
+
+00:03:45.540 --> 00:03:52.540
+First we're going to compute a temporary variable, which we call t, which is e to the zL. So
+
+00:03:54.740 --> 00:04:00.740
+this is applied element wise. So zL here, in our example, zL is going to be four by
+
+00:04:00.740 --> 00:04:07.740
+one is a four dimensional vector. So t itself, e to the zL, that's an element wise exponentiation.
+
+00:04:08.540 --> 00:04:15.540
+t will also be a four by one dimensional vector. Then the output, aL, is going to be basically
+
+00:04:17.900 --> 00:04:24.900
+the vector t, but normalized to sum to one. So aL is going to be e to the zL divided by
+
+00:04:26.260 --> 00:04:33.260
+sum from j equals one through four, because we have four classes of t subscript i. So
+
+00:04:34.260 --> 00:04:41.260
+another way of saying this is that aL is also a four by one vector, and the i-th element
+
+00:04:43.020 --> 00:04:47.780
+of this four dimensional vector, let's write that aL subscript i, this is going to be equal
+
+00:04:47.780 --> 00:04:54.780
+to t i over sum of t i. In case this math isn't clear, we'll do an example in a minute,
+
+00:04:54.780 --> 00:05:01.780
+that'll make this clearer. So in case this math isn't clear, let's go through a specific
+
+00:05:04.940 --> 00:05:11.940
+example that will make this clearer. Let's say that you've computed zL, and zL is a four
+
+00:05:12.420 --> 00:05:19.300
+dimensional vector. Let's say it's five, two, negative one, three. What we're going to
+
+00:05:19.300 --> 00:05:24.580
+do is use this element wise exponentiation to compute this vector t. So t is going to
+
+00:05:24.580 --> 00:05:30.580
+be e to the five, e to the two, e to the negative one, e to the three. And if you plug
+
+00:05:30.580 --> 00:05:35.820
+that into the calculator, these are the values you get. e to the five is one four eight, one
+
+00:05:35.820 --> 00:05:42.500
+four, e squared is about seven point four, e to the negative one is 0.4, and e cubed
+
+00:05:42.500 --> 00:05:49.500
+is 20.1. And so the way we go from the vector t to the vector aL is to just normalize these
+
+00:05:50.500 --> 00:05:57.500
+entries to sum to one. So if you sum up the elements of t, if you just add up those four
+
+00:05:57.900 --> 00:06:04.900
+numbers, you get one seven six point three. So finally, aL is just going to be this vector
+
+00:06:09.100 --> 00:06:16.100
+t as a vector divided by one seven six point three. So for example, this first note here,
+
+00:06:16.580 --> 00:06:23.580
+this will output e to the five divided by one seven six point three, and that turns out to
+
+00:06:23.580 --> 00:06:30.580
+be 0.842. So saying that for this image, if this is the value of z you get, the chance
+
+00:06:30.900 --> 00:06:37.900
+of it being called zero is 84.2%. And then the next note outputs e squared over one seven
+
+00:06:38.900 --> 00:06:45.900
+six point three, that turns out to be 0.042. So this is the value of z. So this is the
+
+00:06:46.100 --> 00:06:53.100
+value of z is 4.2% chance. The next one is e to the negative one over that, which is 0.02.
+
+00:06:56.700 --> 00:07:03.700
+And the final one is e cubed over that, which is 0.114. So by the 11.4% chance that this
+
+00:07:07.380 --> 00:07:11.420
+is class number three, which I guess is the baby kid class, right? So there's a chance
+
+00:07:11.420 --> 00:07:18.060
+of it being class zero, class one, class two, class three. So the output of the neural network
+
+00:07:18.060 --> 00:07:25.060
+aL, this is also y hat, this is a four by one vector, where the elements of this four
+
+00:07:25.460 --> 00:07:32.460
+by one vector are going to be these four numbers that we just computed. So this algorithm takes
+
+00:07:33.100 --> 00:07:40.100
+the vector zL and maps it to four probabilities that sum to one. And if we summarize what
+
+00:07:41.100 --> 00:07:47.780
+we just did to map from zL to aL, this whole computation computing the exponentiation to
+
+00:07:47.780 --> 00:07:54.780
+get this temporary variable t, and then normalizing, we can summarize this into a softmax activation
+
+00:07:55.460 --> 00:08:02.460
+function and say aL equals the activation function g applied to the vector zL. The unusual thing
+
+00:08:04.560 --> 00:08:09.260
+about this particular activation function is that this activation function g, it takes
+
+00:08:09.340 --> 00:08:16.340
+this input a four by one vector and it outputs a four by one vector. So previously our activation
+
+00:08:16.500 --> 00:08:21.260
+functions used to take in a single real value input. So for example, the sigmoid and the
+
+00:08:21.260 --> 00:08:26.420
+value activation functions input that real number and output a real number. The unusual
+
+00:08:26.420 --> 00:08:31.340
+thing about the softmax activation function is because it needs to normalize across the
+
+00:08:31.340 --> 00:08:35.060
+different possible outputs, it needs to take in a vector of inputs and then outputs
+
+00:08:35.060 --> 00:08:39.980
+a vector. So what are the things that a softmax classifier can represent? I'm going to show
+
+00:08:39.980 --> 00:08:46.980
+you some examples where you have inputs x1, x2, and these feed directly to a softmax layer
+
+00:08:48.180 --> 00:08:54.220
+that has three or four or more output nodes that then outputs y hat. So I'm going to show
+
+00:08:54.220 --> 00:09:01.220
+you a neural network with no hidden layer and all it does is compute z1 equals w1 times
+
+00:09:02.220 --> 00:09:09.220
+the input x plus b and then the output a1 or y hat is just a softmax activation function
+
+00:09:12.140 --> 00:09:17.020
+applied to z1. So in this neural network with no hidden layer, it should give you a sense
+
+00:09:17.020 --> 00:09:21.980
+of the types of things a softmax function can represent. So here's one example with
+
+00:09:21.980 --> 00:09:28.980
+just raw inputs x1 and x2, a softmax layer with c equals three output classes can represent
+
+00:09:29.500 --> 00:09:34.060
+this type of decision boundary. Now this is kind of a several linear decision boundaries,
+
+00:09:34.060 --> 00:09:41.060
+but this allows it to separate out the data into three classes. And in this diagram, what
+
+00:09:41.100 --> 00:09:45.140
+we did was we actually took the training set that's kind of shown in this figure
+
+00:09:45.140 --> 00:09:51.140
+and trained the softmax classifier with three output labels on the data and then the
+
+00:09:51.140 --> 00:09:56.660
+color on this plot shows fetch holding the outputs of the softmax classifier and coloring
+
+00:09:56.860 --> 00:10:01.860
+in the input based on which one of the three outputs had the highest probability. So we
+
+00:10:01.860 --> 00:10:06.860
+can maybe kind of see that this is like a generalization of logistic regression with sort of linear
+
+00:10:06.860 --> 00:10:11.860
+decision boundaries, but with more than two classes with the stuff across being just
+
+00:10:11.860 --> 00:10:15.860
+zero one to class could be zero one or two. Here's another example of decision
+
+00:10:15.860 --> 00:10:21.860
+boundary that a softmax classifier can represent when trained on a data set with three classes.
+
+00:10:21.860 --> 00:10:27.860
+And here's another one. Right, so this is up. But one intuition is that the decision boundary
+
+00:10:27.860 --> 00:10:34.860
+between any two classes will be linear. That's why you see, for example, the decision
+
+00:10:34.860 --> 00:10:38.860
+boundary between the yellow and the red classes, that's sort of a linear boundary,
+
+00:10:38.860 --> 00:10:42.860
+because the purple and red is not a linear boundary, between the purple and yellow is
+
+00:10:42.860 --> 00:10:46.860
+another linear decision boundary. But, you know, I was able to use these different linear
+
+00:10:46.860 --> 00:10:50.860
+functions in order to separate the space into a linear boundary. And then we can
+
+00:10:50.860 --> 00:10:55.860
+separate the space into three classes. Let's look at some examples with more classes.
+
+00:10:55.860 --> 00:11:02.860
+So this example with C equals four, so that the green class and softmax can continue
+
+00:11:02.860 --> 00:11:06.860
+to represent these types of linear decision boundaries between multiple classes.
+
+00:11:06.860 --> 00:11:13.860
+So here's one more example with C equals five classes. And here's one last example
+
+00:11:13.860 --> 00:11:18.860
+with C equals six. So this shows the type of things a softmax classifier can do
+
+00:11:18.860 --> 00:11:22.860
+when there is no hidden layer. Of course, you have a much deeper neural network
+
+00:11:22.860 --> 00:11:27.860
+with X and then, you know, some hidden units and more hidden units and so on.
+
+00:11:27.860 --> 00:11:32.860
+Then you can learn even more complex nonlinear decision boundaries to separate out
+
+00:11:32.860 --> 00:11:37.860
+multiple different classes. So I hope this gives you a sense of what a softmax layer
+
+00:11:37.860 --> 00:11:42.860
+or the softmax activation function in a neural network can do. In the next video,
+
+00:11:42.860 --> 00:11:46.860
+let's take a look at how you can train a neural network that uses a softmax layer.

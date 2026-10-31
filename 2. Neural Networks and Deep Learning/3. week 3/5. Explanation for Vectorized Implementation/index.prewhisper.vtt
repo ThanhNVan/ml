@@ -1,0 +1,253 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.563
+Trong video trước đó, chúng ta đã thấy khi đặt các ví dụ huấn luyện cạnh nhau theo chiều
+
+00:00:07.563 --> 00:00:14.955
+ngang trong ma trận X, thì bạn có thể suy ra một triển khai vector hóa của bước truyền
+
+00:00:14.955 --> 00:00:17.533
+xuôi qua mạng nơ-ron nhân tạo.
+
+00:00:17.533 --> 00:00:25.011
+Chúng ta sẽ nói thêm một chút về lý do tại sao các phương trình chúng ta đã viết lại là
+
+00:00:25.011 --> 00:00:29.566
+một triển khai vector hóa trên nhiều ví dụ chính xác.
+
+00:00:29.566 --> 00:00:35.583
+Hãy cùng xem một phần của phép toán lan truyền trong một số ví dụ sau.
+
+00:00:35.583 --> 00:00:38.935
+Ví dụ là với ví dụ huấn luyện đầu tiên,
+
+00:00:38.935 --> 00:00:46.068
+bạn đã tính xong phép toán x1 cộng với b1 và sau đó trong ví dụ huấn luyện thứ hai,
+
+00:00:46.068 --> 00:00:52.600
+bạn tính xong phép toán x2 cộng với b1 và rồi trong ví dụ huấn luyện thứ ba,
+
+00:00:52.600 --> 00:00:56.296
+bạn tính xong phép toán x3 cộng với b1 này.
+
+00:00:56.296 --> 00:01:02.055
+Và để giải thích một cách đơn giản trên slide này, tôi sẽ bỏ qua b.
+
+00:01:02.055 --> 00:01:07.040
+Và để đơn giản hóa lời giải thích này thì giả sử b bằng 0.
+
+00:01:07.040 --> 00:01:14.603
+Nhưng đối số chúng ta sẽ đưa ra sẽ hoạt động khi xuất hiện một chút thay đổi ngay cả khi
+
+00:01:14.603 --> 00:01:15.720
+b khác không.
+
+00:01:15.720 --> 00:01:20.534
+Chỉ là nó sẽ giúp mô tả trên slide dễ hiểu hơn một chút.
+
+00:01:20.534 --> 00:01:23.972
+Bây giờ, w1 sẽ là một ma trận, đúng chứ?
+
+00:01:23.972 --> 00:01:27.409
+Và tôi có một số hàng trong ma trận này.
+
+00:01:27.409 --> 00:01:31.965
+Nếu bạn nhìn vào phép tính này x1, bạn có w1 nhân x1,
+
+00:01:31.965 --> 00:01:37.208
+cung cấp cho bạn một số vectơ cột mà bạn phải vẽ như thế này.
+
+00:01:37.208 --> 00:01:40.903
+Và tương tự, nếu bạn nhìn vào vectơ x2 này,
+
+00:01:40.903 --> 00:01:45.802
+bạn có w1 nhân x2 đưa ra một số vectơ cột khác, đúng chứ?
+
+00:01:45.802 --> 00:01:48.467
+Và nó cung cấp cho bạn z12 này.
+
+00:01:48.467 --> 00:01:53.022
+Và cuối cùng, nếu bạn nhìn vào x3, bạn có w1 nhân x3,
+
+00:01:53.022 --> 00:01:57.491
+cung cấp cho bạn một số vectơ cột thứ ba, đó là z13.
+
+00:01:57.491 --> 00:02:01.101
+Bây giờ, nếu bạn xem xét tập huấn luyện X,
+
+00:02:01.101 --> 00:02:08.665
+mà chúng ta hình thành bằng cách đặt tất cả các ví dụ huấn luyện của chúng ta cạnh nhau.
+
+00:02:08.665 --> 00:02:16.228
+Vì vậy, ma trận X được hình thành bằng cách lấy vectơ x1 và xếp nó theo chiều dọc với x2
+
+00:02:16.228 --> 00:02:17.603
+và sau đó là x3.
+
+00:02:17.603 --> 00:02:21.385
+Đây là nếu chúng ta chỉ có ba ví dụ đào tạo.
+
+00:02:21.385 --> 00:02:29.034
+Nếu bạn có nhiều ví dụ hơn, thì chúng sẽ tiếp tục được đặt cạnh nhau theo chiều ngang như
+
+00:02:29.034 --> 00:02:29.722
+thế này.
+
+00:02:29.722 --> 00:02:36.684
+Nhưng nếu bây giờ bạn lấy ma trận X này và nhân nó với w thì cuối cùng bạn sẽ có,
+
+00:02:36.684 --> 00:02:41.239
+nếu bạn nghĩ về cách hoạt động của phép nhân ma trận,
+
+00:02:41.239 --> 00:02:48.115
+thì với cột đầu tiên bạn sẽ có những giá trị tương tự mà tôi đã vẽ bằng màu tím.
+
+00:02:48.115 --> 00:02:51.467
+Cột thứ hai sẽ là bốn giá trị tương tự.
+
+00:02:51.467 --> 00:02:59.116
+Và cột thứ ba sẽ là chính là những giá trị màu cam cái mà chúng sẽ chuyển thành Nhưng tất
+
+00:02:59.116 --> 00:03:03.929
+nhiên điều này chỉ bằng với z11 dưới dạng một vectơ cột,
+
+00:03:03.929 --> 00:03:09.688
+tiếp đến là z12 được biểu thị dưới dạng vectơ cột, theo sau là z13,
+
+00:03:09.688 --> 00:03:13.384
+cũng được biểu thị dưới dạng một vectơ cột.
+
+00:03:13.384 --> 00:03:16.650
+Và đây là nếu bạn có ba ví dụ đào tạo.
+
+00:03:16.650 --> 00:03:20.947
+Nếu bạn có thêm ví dụ thì bạn sẽ có nhiều cột hơn.
+
+00:03:20.947 --> 00:03:24.643
+Và như vậy, đây là ma trận Z1 của chúng ta.
+
+00:03:24.643 --> 00:03:32.120
+Và tôi hy vọng điều này giúp bạn hiểu tại sao trước đây chúng ta có w1 nhân xi bằng z1i
+
+00:03:32.120 --> 00:03:36.848
+khi xem xét ví dụ huấn luyện duy nhất tại thời điểm đó.
+
+00:03:36.848 --> 00:03:44.325
+Khi bạn lấy các ví dụ đào tạo khác nhau và xếp chúng cạnh nhau trong các cột khác nhau,
+
+00:03:44.325 --> 00:03:50.771
+rồi kết quả tương ứng bạn nhận được là z cũng được xếp cạnh nhau ở các cột.
+
+00:03:50.771 --> 00:03:58.249
+Và tôi sẽ không vẽ ra, nhưng bạn có thể tự hiểu là nếu bạn làm điều này với truyền phát
+
+00:03:58.249 --> 00:04:04.523
+Python, nếu bạn thêm lại các giá trị này b này, thì các giá trị vẫn đúng.
+
+00:04:04.523 --> 00:04:08.906
+Và thực tế là, khi bạn kết thúc truyền phát Python,
+
+00:04:08.906 --> 00:04:13.719
+cuối cùng bạn sẽ thêm b[i] cho từng cột của ma trận này.
+
+00:04:13.719 --> 00:04:21.369
+Vì vậy, trên slide này, tôi chỉ chứng minh rằng z1 bằng w1x cộng với b1 là một vector hóa
+
+00:04:21.369 --> 00:04:27.643
+chính xác của bước đầu tiên trong bốn bước chúng ta có trong slide trước,
+
+00:04:27.643 --> 00:04:35.207
+nhưng hóa ra là cũng có một phân tích tương tự cho phép bạn trình bày các bước khác bằng
+
+00:04:35.207 --> 00:04:37.957
+cách sử dụng một logic tương tự,
+
+00:04:37.957 --> 00:04:44.661
+trong đó nếu bạn xếp các đầu vào cạnh nhau trong các cột thì sau phương trình,
+
+00:04:44.661 --> 00:04:51.365
+bạn nhận được các đầu ra tương ứng cũng được xếp cạnh nhau nhau trong các cột.
+
+00:04:51.365 --> 00:04:57.467
+Cuối cùng, hãy cùng tóm lại bài học mà chúng ta đã nói trong video này.
+
+00:04:57.467 --> 00:05:00.905
+Nếu đây là mạng nơ-ron nhân tạo của bạn,
+
+00:05:00.905 --> 00:05:08.469
+thì chúng ta đã nói rằng đây là những gì bạn cần làm nếu bạn thực hiện bước truyền xuôi,
+
+00:05:08.469 --> 00:05:13.625
+một ví dụ huấn luyện tại một thời điểm đi từ i bằng 1 đến m.
+
+00:05:13.625 --> 00:05:21.189
+Và sau đó chúng ta nói, hãy xếp các ví dụ đào tạo cạnh nhau trong các cột như vậy và với
+
+00:05:21.189 --> 00:05:27.721
+mỗi giá trị z1, a1, z2, a2 này, hãy xếp các cột tương ứng cạnh nhau như sau.
+
+00:05:27.721 --> 00:05:32.964
+Đây là một ví dụ cho a1 nhưng cũng đúng với z1, a1, z2 và a2.
+
+00:05:32.964 --> 00:05:40.355
+Sau đó, trên slide trước đó, chúng ta đã trình bày là dòng này cho phép bạn vector hóa
+
+00:05:40.355 --> 00:05:44.309
+điều này trên tất cả m các ví dụ cùng một lúc.
+
+00:05:44.309 --> 00:05:51.701
+Và với lý do tương tự, bạn có thể chỉ ra rằng tất cả các dòng khác là vector hóa chính
+
+00:05:51.701 --> 00:05:54.021
+xác của cả bốn dòng mã này.
+
+00:05:54.021 --> 00:06:01.499
+Và hãy nhớ là, bởi vì x cũng bằng a0 vì bạn hãy nhớ rằng vectơ đặc trưng đầu vào x bằng
+
+00:06:01.499 --> 00:06:03.390
+a0, do đó xi bằng a0i.
+
+00:06:03.390 --> 00:06:10.265
+Và thực sự thì có một phép đối xứng nhất định để những phương trình mà trong đó,
+
+00:06:10.265 --> 00:06:16.454
+phương trình đầu tiên này cũng có thể là viết z1 bằng w1 a0 cộng với b1.
+
+00:06:16.454 --> 00:06:24.103
+Và do đó, bạn thấy rằng cặp phương trình này và cặp phương trình này trông rất giống nhau
+
+00:06:24.103 --> 00:06:27.885
+nhưng chỉ là tất cả các chỉ số tăng lên một.
+
+00:06:27.885 --> 00:06:35.362
+Vì vậy, điều này cho thấy các lớp khác nhau của mạng nơ-ron nhân tạo thì gần như là làm
+
+00:06:35.362 --> 00:06:40.433
+điều giống nhau hoặc làm cùng một phép toán lặp đi lặp lại.
+
+00:06:40.433 --> 00:06:47.911
+Và ở đây chúng ta có mạng nơ-ron nhân tạo hai lớp và chúng ta sẽ học về một mạng nơ-ron
+
+00:06:47.911 --> 00:06:52.380
+nhân tạo sâu hơn nhiều trong các video của tuần tới.
+
+00:06:52.380 --> 00:06:59.686
+Bạn sẽ thấy rằng về cơ bản, kể cả các mạng nơ-ron sâu hơn cũng thực hiện hai bước này
+
+00:06:59.686 --> 00:07:03.038
+nhưng sẽ thực hiện chúng nhiều lần hơn.
+
+00:07:03.038 --> 00:07:10.257
+Và đó là cách bạn có thể vector hóa mạng nơ-ron nhân tạo qua nhiều ví dụ huấn luyện.
+
+00:07:10.257 --> 00:07:17.391
+Cho đến nay chúng ta đã sử dụng các hàm sigmoid trên khắp các mạng nơ-ron nhân tạo.
+
+00:07:17.391 --> 00:07:22.376
+Nhưng trên thực tế, đó không phải là sự lựa chọn tốt nhất.
+
+00:07:22.376 --> 00:07:29.768
+Trong video tiếp theo, hãy cùng tìm hiểu kỹ hơn nữa về cách bạn có thể sử dụng các hàm
+
+00:07:29.768 --> 00:07:37.503
+kích hoạt khác nhau, trong đó chức năng sigmoid chỉ là một lựa chọn có thể chấp nhận được.

@@ -1,0 +1,189 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:00.000 --> 00:00:04.400
+Welcome to the fourth week of this class. By now, you've seen forward propagation and
+
+00:00:04.400 --> 00:00:09.080
+back propagation in the context of a neural network with a single hidden layer as well
+
+00:00:09.080 --> 00:00:13.680
+as logistic regression. And you've learned about vectorization and when it's important
+
+00:00:13.680 --> 00:00:17.920
+to initialize the weights randomly. If you've done the past couple of weeks' homeworks,
+
+00:00:17.920 --> 00:00:22.360
+you've also implemented and seen some of these ideas work for yourself. So by now,
+
+00:00:22.360 --> 00:00:26.840
+you've actually seen most of the ideas you need to implement a deep neural network.
+
+00:00:26.840 --> 00:00:30.360
+What we're going to do in this week is take those ideas and put them together so
+
+00:00:30.360 --> 00:00:35.080
+that you'll be able to implement your own deep neural network. Because this week's
+
+00:00:35.080 --> 00:00:39.200
+programming exercise is longer and just has a bit more work, we're going to keep the
+
+00:00:39.200 --> 00:00:42.680
+videos for this week shorter as you can get through the videos a little bit more
+
+00:00:42.680 --> 00:00:47.200
+quickly and then have more time to do a significant programming exercise at the
+
+00:00:47.200 --> 00:00:51.480
+end, which I hope will leave you having built a deep neural network that you feel
+
+00:00:51.480 --> 00:00:56.920
+proud of. So what is a deep neural network? You've seen this picture for
+
+00:00:56.920 --> 00:01:02.640
+logistic regression and you've also seen neural networks with a single hidden
+
+00:01:02.640 --> 00:01:08.160
+layer. So here is an example of a neural network with two hidden layers and a
+
+00:01:08.160 --> 00:01:13.680
+neural network with five hidden layers. We say that logistic regression is a very
+
+00:01:14.200 --> 00:01:21.840
+shallow model, whereas this model here is a much deeper model. And shallow versus
+
+00:01:21.840 --> 00:01:26.560
+depth is a matter of degree. So neural network with a single hidden layer, this
+
+00:01:26.560 --> 00:01:31.960
+would be a two layer neural network. Remember, when we count layers in neural
+
+00:01:31.960 --> 00:01:36.600
+network, we don't count the input layer, we just count the hidden layers as well
+
+00:01:36.600 --> 00:01:42.800
+as the output layer. So this would be a two layer neural network is still quite
+
+00:01:42.800 --> 00:01:47.040
+shallow, but not as shallow as logistic regression. Technically logistic
+
+00:01:47.040 --> 00:01:51.720
+regression is a, you know, one layer neural network. But over the last several
+
+00:01:51.720 --> 00:01:56.440
+years, the AI and the machine learning community has realized that there are
+
+00:01:56.440 --> 00:02:01.440
+functions that very deep neural networks can learn that shallower models
+
+00:02:01.440 --> 00:02:06.320
+are often unable to. Although for any given problem, it might be hard to
+
+00:02:06.320 --> 00:02:10.360
+predict in advance exactly how deep a neural network you would want. So it
+
+00:02:10.360 --> 00:02:14.520
+would be reasonable to try logistic regression, try one and then two hidden
+
+00:02:14.520 --> 00:02:18.760
+layers and view the number of hidden layers as another hyper parameter that
+
+00:02:18.760 --> 00:02:24.960
+you could try a variety of values of and evaluate on hold out cross validation
+
+00:02:24.960 --> 00:02:29.720
+data or on your development set. Say more about that later as well. Let's now
+
+00:02:29.720 --> 00:02:34.640
+go through the notation we'll use to describe deep neural networks. Here is a
+
+00:02:34.640 --> 00:02:44.360
+one, two, three, four layer neural network with three hidden layers and the number of
+
+00:02:44.360 --> 00:02:50.080
+units in these hidden layers are I guess five, five, three and then there's one output unit.
+
+00:02:50.080 --> 00:02:55.240
+So the notation we're going to use is going to use capital L to denote the
+
+00:02:55.240 --> 00:02:59.920
+number of layers in the network. So in this case, L is equal to four and so
+
+00:02:59.920 --> 00:03:08.520
+that's the number of layers and we're going to use n superscript L to denote
+
+00:03:08.520 --> 00:03:17.740
+the number of nodes or the number of units in layer lowercase L. So if we
+
+00:03:17.740 --> 00:03:25.720
+index this, the input as layer zero, this is layer one, this is layer two, this is
+
+00:03:25.720 --> 00:03:34.240
+layer three and this is layer four, then we have that for example, n1, that would
+
+00:03:34.240 --> 00:03:38.240
+be this, the first hidden layer would be equal to five because we have five hidden
+
+00:03:38.240 --> 00:03:44.320
+units there. For this one we have that n2, the number of units in the second
+
+00:03:44.320 --> 00:03:54.280
+hidden layer is also equal to five, n3 is equal to three and n4 which is n
+
+00:03:54.800 --> 00:04:01.760
+capital L, this number of output units is equal to one because here capital L is
+
+00:04:01.760 --> 00:04:09.000
+equal to four and we're also going to have here that for the input layer, n0 is
+
+00:04:09.000 --> 00:04:14.720
+just equal to nx is equal to three. So that's the notation we'll use to
+
+00:04:14.720 --> 00:04:20.440
+describe the number of nodes we have in different layers. For each layer L, we're also
+
+00:04:20.520 --> 00:04:32.000
+going to use AL to denote the activations in layer L. So we'll see later that in
+
+00:04:32.000 --> 00:04:41.160
+forward propagation you end up computing AL as the activation G applied to ZL and
+
+00:04:41.160 --> 00:04:47.800
+perhaps the activation is indexed by the layer L as well. And then we'll use WL
+
+00:04:48.400 --> 00:04:58.840
+to denote the weights for computing the value ZL in layer L and similarly BL is
+
+00:04:58.840 --> 00:05:04.360
+used to compute ZL. Finally, just to wrap up on the notation, the input features
+
+00:05:04.400 --> 00:05:10.520
+are called X but X is also the activations of layer zero. So A0 is equal
+
+00:05:10.520 --> 00:05:17.720
+to X and the activation of the final layer, A capital L is equal to Y hat. So A
+
+00:05:17.800 --> 00:05:23.640
+super square bracket capital L is equal to the predicted output to prediction Y
+
+00:05:23.640 --> 00:05:27.560
+hat to the neural network. So you now know what a deep neural network looks
+
+00:05:27.560 --> 00:05:31.560
+like as well as the notation we'll use to describe and to compute with deep
+
+00:05:31.560 --> 00:05:35.440
+networks. I know we've introduced a lot of notation in this video but if you
+
+00:05:35.440 --> 00:05:39.480
+ever forget what some symbol means, we've also posted on the course website
+
+00:05:39.720 --> 00:05:43.600
+a notation sheet or notation guide that you can use to look up what these
+
+00:05:43.600 --> 00:05:47.880
+different symbols means. Next, I'd like to describe what forward propagation in
+
+00:05:47.880 --> 00:05:50.840
+this type of network looks like. Let's go on to the next video.

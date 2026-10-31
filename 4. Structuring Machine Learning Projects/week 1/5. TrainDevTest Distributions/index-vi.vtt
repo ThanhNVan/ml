@@ -1,0 +1,517 @@
+WEBVTT
+
+1
+00:00:00.050 --> 00:00:03.050
+Cách bạn thiết lập bộ phát triển đào tạo của bạn,
+
+2
+00:00:03.050 --> 00:00:04.195
+hoặc bộ phát triển và bộ kiểm tra,
+
+3
+00:00:04.195 --> 00:00:06.810
+có thể có một tác động rất lớn đến mức độ nhanh chóng của bạn hoặc
+
+4
+00:00:06.810 --> 00:00:09.985
+nhóm của bạn có thể đạt được tiến bộ trong việc xây dựng ứng dụng machine learning.
+
+5
+00:00:09.985 --> 00:00:12.895
+Cùng một nhóm, thậm chí cả các nhóm trong các công ty rất lớn,
+
+6
+00:00:12.895 --> 00:00:15.540
+thiết lập những bộ dữ liệu này theo những cách thực sự chậm lại,
+
+7
+00:00:15.540 --> 00:00:18.125
+thay vì tăng tốc độ, tiến độ của nhóm.
+
+8
+00:00:18.125 --> 00:00:20.130
+Chúng ta hãy xem cách bạn có thể thiết lập
+
+9
+00:00:20.130 --> 00:00:23.433
+các tập dữ liệu này để tối đa hóa hiệu quả của nhóm bạn.
+
+10
+00:00:23.433 --> 00:00:28.325
+Trong video này, tôi muốn tập trung vào cách bạn thiết lập bộ dev và thử nghiệm của bạn.
+
+11
+00:00:28.325 --> 00:00:33.020
+Vì vậy, bộ dev đó còn được gọi là bộ phát triển,
+
+12
+00:00:33.020 --> 00:00:36.940
+hoặc đôi khi được gọi là bộ xác nhận chéo giữ ra.
+
+13
+00:00:36.940 --> 00:00:42.265
+Và, quy trình làm việc trong machine learning là bạn thử rất nhiều ý tưởng,
+
+14
+00:00:42.265 --> 00:00:44.200
+đào tạo các mô hình khác nhau trên training set,
+
+15
+00:00:44.200 --> 00:00:47.950
+và sau đó sử dụng bộ dev để đánh giá các ý tưởng khác nhau và chọn một.
+
+16
+00:00:47.950 --> 00:00:51.280
+Và, tiếp tục đổi mới để cải thiện hiệu suất thiết lập dev cho đến khi, cuối cùng,
+
+17
+00:00:51.280 --> 00:00:56.240
+bạn có một mệnh đề mà bạn hài lòng với rằng sau đó bạn đánh giá trên bộ thử nghiệm của bạn.
+
+18
+00:00:56.240 --> 00:00:59.800
+Bây giờ, ví dụ,
+
+19
+00:00:59.800 --> 00:01:01.995
+bạn đang xây dựng một vụ cháy nổ mèo,
+
+20
+00:01:01.995 --> 00:01:05.500
+và bạn đang hoạt động ở những khu vực này: ở Mỹ,
+
+21
+00:01:05.500 --> 00:01:07.720
+Anh, các nước châu Âu khác, Nam Mỹ,
+
+22
+00:01:07.720 --> 00:01:10.490
+Ấn Độ, Trung Quốc, các nước châu Á khác, và Úc.
+
+23
+00:01:10.490 --> 00:01:14.529
+Vì vậy, làm thế nào để bạn thiết lập bộ dev của bạn và bộ thử nghiệm của bạn?
+
+24
+00:01:14.529 --> 00:01:19.285
+Vâng, một cách bạn có thể làm như vậy là chọn bốn khu vực này.
+
+25
+00:01:19.285 --> 00:01:22.555
+Tôi sẽ sử dụng bốn vùng này nhưng nó có thể là bốn vùng được lựa chọn ngẫu nhiên.
+
+26
+00:01:22.555 --> 00:01:25.705
+Và nói rằng, dữ liệu từ bốn khu vực này sẽ đi vào bộ dev.
+
+27
+00:01:25.705 --> 00:01:28.580
+Và, bốn vùng khác, tôi sẽ sử dụng bốn vùng này,
+
+28
+00:01:28.580 --> 00:01:30.530
+cũng có thể được chọn ngẫu nhiên bốn vùng
+
+29
+00:01:30.530 --> 00:01:33.350
+đó sẽ đi vào bộ thử nghiệm.
+
+30
+00:01:33.350 --> 00:01:36.940
+Hóa ra, đây là một ý tưởng rất tồi tệ bởi vì trong ví dụ này,
+
+31
+00:01:36.940 --> 00:01:40.780
+bộ dev và thử nghiệm của bạn đến từ các bản phân phối khác nhau.
+
+32
+00:01:40.780 --> 00:01:44.345
+Tôi sẽ, thay vào đó, khuyên bạn nên tìm một cách để làm cho
+
+33
+00:01:44.345 --> 00:01:49.555
+bộ dev và thử nghiệm của bạn đến từ cùng một bản phân phối. Vì vậy, đây là những gì tôi muốn nói.
+
+34
+00:01:49.555 --> 00:01:51.590
+Một hình ảnh cần ghi nhớ là, tôi nghĩ,
+
+35
+00:01:51.590 --> 00:01:54.530
+thiết lập bộ dev của bạn, cộng thêm, chỉ
+
+36
+00:01:54.530 --> 00:01:57.662
+số đánh giá số vai trò duy nhất
+
+37
+00:01:57.662 --> 00:01:59.840
+của bạn, giống như đặt một mục tiêu và nói với
+
+38
+00:01:59.840 --> 00:02:03.395
+nhóm của bạn nơi bạn nghĩ là con mắt của con bò mà bạn muốn nhắm vào.
+
+39
+00:02:03.395 --> 00:02:07.165
+Bởi vì, những gì xảy ra khi bạn đã thiết lập bộ dev đó và số liệu là,
+
+40
+00:02:07.165 --> 00:02:09.925
+nhóm có thể đổi mới rất nhanh, thử các ý tưởng khác nhau,
+
+41
+00:02:09.925 --> 00:02:13.100
+chạy thí nghiệm và rất nhanh chóng sử dụng bộ dev và
+
+42
+00:02:13.100 --> 00:02:16.997
+số liệu để đánh giá crossfire và cố gắng chọn cái tốt nhất.
+
+43
+00:02:16.997 --> 00:02:21.720
+Vì vậy, các đội machine learning thường rất giỏi bắn các mũi tên khác nhau vào
+
+44
+00:02:21.720 --> 00:02:26.732
+mục tiêu và đổi mới để có được gần gũi hơn và gần hơn để đánh bullseye.
+
+45
+00:02:26.732 --> 00:02:30.173
+Vì vậy, làm tốt trên số liệu của bạn trên bộ dev của bạn.
+
+46
+00:02:30.173 --> 00:02:32.040
+Và, vấn đề với cách chúng tôi đã thiết lập
+
+47
+00:02:32.040 --> 00:02:34.680
+bộ dev và thử nghiệm trong ví dụ ở bên trái là,
+
+48
+00:02:34.680 --> 00:02:39.450
+nhóm của bạn có thể dành nhiều tháng đổi mới để làm tốt trên bộ dev chỉ để nhận ra rằng,
+
+49
+00:02:39.450 --> 00:02:41.570
+khi bạn cuối cùng đi kiểm tra chúng trên bộ kiểm tra,
+
+50
+00:02:41.570 --> 00:02:45.900
+dữ liệu từ bốn quốc gia này hoặc bốn ở phía dưới,
+
+51
+00:02:45.900 --> 00:02:49.520
+có thể rất khác so với các khu vực trong bộ dev của bạn.
+
+52
+00:02:49.520 --> 00:02:51.765
+Vì vậy, bạn có thể có một bất ngờ khó chịu và nhận ra rằng,
+
+53
+00:02:51.765 --> 00:02:54.690
+tất cả các tháng làm việc bạn dành tối ưu hóa cho bộ dev,
+
+54
+00:02:54.690 --> 00:02:58.800
+không mang lại cho bạn hiệu suất tốt trên bộ thử nghiệm.
+
+55
+00:02:58.800 --> 00:03:03.180
+Vì vậy, có các bộ phát triển và thử nghiệm từ các bản phân phối khác nhau giống như thiết lập một mục tiêu, cho
+
+56
+00:03:03.180 --> 00:03:06.525
+nhóm
+
+57
+00:03:06.525 --> 00:03:08.865
+của bạn dành nhiều tháng cố gắng nhắm đến gần hơn và gần hơn với mắt bò, chỉ để nhận ra sau nhiều tháng làm việc
+
+58
+00:03:08.865 --> 00:03:10.550
+, bạn sẽ nói, “Ồ chờ, để kiểm tra nó,
+
+59
+00:03:10.550 --> 00:03:12.005
+tôi sẽ di chuyển mục tiêu qua đây.”
+
+60
+00:03:12.005 --> 00:03:14.160
+Và, nhóm có thể nói, “À,
+
+61
+00:03:14.160 --> 00:03:18.320
+tại sao anh lại bắt chúng tôi phải dành hàng tháng để tối ưu hóa cho một con mắt bò khác khi đột nhiên,
+
+62
+00:03:18.320 --> 00:03:21.950
+bạn có thể di chuyển con mắt bò đến một địa điểm khác ở một nơi khác?”
+
+63
+00:03:21.950 --> 00:03:23.010
+Vì vậy, để tránh điều này,
+
+64
+00:03:23.010 --> 00:03:24.510
+những gì tôi đề nghị thay vào đó là,
+
+65
+00:03:24.510 --> 00:03:29.985
+bạn lấy tất cả dữ liệu ngẫu nhiên xáo trộn này vào bộ dev và thử nghiệm.
+
+66
+00:03:29.985 --> 00:03:33.917
+Vì vậy, cả bộ dev và bộ test đều có dữ liệu từ tất cả tám khu vực
+
+67
+00:03:33.917 --> 00:03:38.205
+và bộ dev và bộ test thực sự đến từ cùng một phân phối,
+
+68
+00:03:38.205 --> 00:03:41.490
+đó là sự phân phối của tất cả dữ liệu của bạn trộn lẫn với nhau.
+
+69
+00:03:41.490 --> 00:03:43.766
+Đây là một ví dụ khác. Đây
+
+70
+00:03:43.766 --> 00:03:46.200
+thực sự là một câu chuyện có thật nhưng với một số chi tiết đã thay đổi.
+
+71
+00:03:46.200 --> 00:03:48.210
+Vì vậy, tôi biết một nhóm machine learning thực sự đã dành
+
+72
+00:03:48.210 --> 00:03:50.610
+vài tháng để tối ưu hóa một bộ dev
+
+73
+00:03:50.610 --> 00:03:55.400
+trong đó bao gồm các chấp thuận cho vay cho các mã zip thu nhập trung bình.
+
+74
+00:03:55.400 --> 00:03:57.465
+Vì vậy, vấn đề machine learning cụ thể là,
+
+75
+00:03:57.465 --> 00:04:00.805
+“Với một đầu vào X về một đơn xin vay,
+
+76
+00:04:00.805 --> 00:04:02.820
+bạn có thể dự đoán tại sao và đó là
+
+77
+00:04:02.820 --> 00:04:04.907
+, có hay không, họ sẽ trả nợ?”
+
+78
+00:04:04.907 --> 00:04:07.760
+Vì vậy, điều này giúp bạn quyết định có chấp thuận cho vay hay không.
+
+79
+00:04:07.760 --> 00:04:11.370
+Và như vậy, bộ dev đến từ các ứng dụng cho vay.
+
+80
+00:04:11.370 --> 00:04:13.565
+Họ đến từ mã zip thu nhập trung bình.
+
+81
+00:04:13.565 --> 00:04:16.870
+Mã Zip là cái mà chúng tôi gọi là mã bưu chính ở Hoa Kỳ.
+
+82
+00:04:16.870 --> 00:04:18.990
+Nhưng, sau khi làm việc này trong một vài tháng, nhóm sau đó,
+
+83
+00:04:18.990 --> 00:04:21.555
+đột nhiên quyết định kiểm tra điều này trên
+
+84
+00:04:21.555 --> 00:04:24.650
+dữ liệu từ mã zip thu nhập thấp hoặc mã bưu chính thu nhập thấp.
+
+85
+00:04:24.650 --> 00:04:27.595
+Và, tất nhiên, dữ liệu phân phối cho
+
+86
+00:04:27.595 --> 00:04:30.900
+thu nhập trung bình và mã zip thu nhập thấp là rất khác nhau.
+
+87
+00:04:30.900 --> 00:04:34.810
+Và, crossfire, mà họ dành rất nhiều thời gian để tối ưu hóa trong trường hợp cũ,
+
+88
+00:04:34.810 --> 00:04:39.165
+chỉ không làm việc tốt ở tất cả trong trường hợp thứ hai.
+
+89
+00:04:39.165 --> 00:04:42.750
+Và vì vậy, đội đặc biệt này đã lãng phí khoảng 3 tháng thời
+
+90
+00:04:42.750 --> 00:04:47.053
+gian và phải quay trở lại và thực sự làm lại rất nhiều công việc.
+
+91
+00:04:47.053 --> 00:04:48.540
+Và, những gì xảy ra ở đây là,
+
+92
+00:04:48.540 --> 00:04:52.035
+đội đã dành ba tháng để nhắm vào một mục tiêu,
+
+93
+00:04:52.035 --> 00:04:54.060
+và sau đó, sau ba tháng, người
+
+94
+00:04:54.060 --> 00:04:55.490
+quản lý hỏi, “Ồ,
+
+95
+00:04:55.490 --> 00:04:57.750
+anh làm thế nào để đánh vào mục tiêu kia?”
+
+96
+00:04:57.750 --> 00:04:59.340
+Đây là một địa điểm hoàn toàn khác.
+
+97
+00:04:59.340 --> 00:05:02.306
+Và, đó chỉ là một kinh nghiệm rất bực bội cho đội bóng.
+
+98
+00:05:02.306 --> 00:05:05.530
+Vì vậy, những gì tôi recommand để thiết lập một bộ dev và bộ test là,
+
+99
+00:05:05.530 --> 00:05:08.520
+chọn một bộ dev và bộ test để phản ánh dữ liệu bạn mong đợi để có được trong
+
+100
+00:05:08.520 --> 00:05:11.535
+tương lai và xem xét quan trọng để làm tốt trên.
+
+101
+00:05:11.535 --> 00:05:14.850
+Và, đặc biệt, bộ dev và bộ kiểm tra ở đây,
+
+102
+00:05:14.850 --> 00:05:20.338
+nên đến từ cùng một phân phối.
+
+103
+00:05:20.338 --> 00:05:23.660
+Vì vậy, bất cứ loại dữ liệu nào bạn mong đợi sẽ nhận được trong tương lai,
+
+104
+00:05:23.660 --> 00:05:25.415
+và một khi bạn làm tốt,
+
+105
+00:05:25.415 --> 00:05:27.745
+hãy thử lấy dữ liệu trông như thế.
+
+106
+00:05:27.745 --> 00:05:29.050
+Và, bất kể dữ liệu đó là gì,
+
+107
+00:05:29.050 --> 00:05:32.245
+hãy đặt nó vào cả bộ dev của bạn và bộ thử nghiệm của bạn.
+
+108
+00:05:32.245 --> 00:05:33.920
+Bởi vì theo cách đó, bạn đang đặt
+
+109
+00:05:33.920 --> 00:05:36.440
+mục tiêu vào nơi bạn thực sự muốn đạt và bạn đang có
+
+110
+00:05:36.440 --> 00:05:40.705
+đội cải tiến rất hiệu quả để đạt được cùng một mục tiêu,
+
+111
+00:05:40.705 --> 00:05:41.826
+hy vọng, cùng một mục tiêu tốt.
+
+112
+00:05:41.826 --> 00:05:45.965
+Vì chúng tôi chưa nói về cách thiết lập một bộ đào tạo,
+
+113
+00:05:45.965 --> 00:05:48.790
+chúng tôi sẽ nói về bộ đào tạo trong một video sau.
+
+114
+00:05:48.790 --> 00:05:51.335
+Tuy nhiên, điều quan trọng lấy đi từ video này là,
+
+115
+00:05:51.335 --> 00:05:53.690
+thiết lập bộ dev,
+
+116
+00:05:53.690 --> 00:05:56.300
+cũng như số liệu xác nhận,
+
+117
+00:05:56.300 --> 00:05:59.780
+thực sự xác định mục tiêu bạn muốn nhắm đến.
+
+118
+00:05:59.780 --> 00:06:04.145
+Và hy vọng, bằng cách thiết lập bộ dev và bộ test để cùng phân phối,
+
+119
+00:06:04.145 --> 00:06:08.659
+bạn đang thực sự nhắm vào bất cứ mục tiêu nào bạn hy vọng nhóm machine learning của bạn sẽ đạt được.
+
+120
+00:06:08.659 --> 00:06:10.870
+Cách bạn chọn bộ đào tạo của bạn
+
+121
+00:06:10.870 --> 00:06:14.510
+sẽ ảnh hưởng đến mức nào bạn thực sự có thể đạt được mục tiêu đó.
+
+122
+00:06:14.510 --> 00:06:18.400
+Nhưng, chúng ta có thể nói về điều đó một cách riêng biệt trong một video sau.
+
+123
+00:06:18.400 --> 00:06:20.830
+Vì vậy, tôi biết một số nhóm machine learning mà nghĩa đen có thể tiết kiệm được
+
+124
+00:06:20.830 --> 00:06:23.825
+hàng tháng làm việc họ có thể làm theo các hướng dẫn trong video này.
+
+125
+00:06:23.825 --> 00:06:26.235
+Vì vậy, tôi hy vọng những hướng dẫn này sẽ giúp bạn, quá.
+
+126
+00:06:26.235 --> 00:06:29.666
+Tiếp theo, nó chỉ ra, rằng kích thước của dev và bộ thử nghiệm của bạn,
+
+127
+00:06:29.666 --> 00:06:31.015
+làm thế nào để chọn kích thước của chúng,
+
+128
+00:06:31.015 --> 00:06:33.391
+cũng đang thay đổi khu vực deep learning.
+
+129
+00:06:33.391 --> 00:06:35.290
+Hãy nói về điều đó trong đoạn video tiếp theo.

@@ -1,0 +1,493 @@
+WEBVTT
+
+00:00:00.750 --> 00:00:05.450
+Chào mừng bạn đến với tuần thứ ba của khóa học
+này. Đến cuối tuần này, bạn
+
+00:00:05.450 --> 00:00:10.150
+đã hoàn thành khóa học đầu tiên của chuyên
+ngành này. Vì vậy hãy nhảy vào.
+
+00:00:10.150 --> 00:00:13.950
+Tuần trước, bạn đã học về linear regression,
+phương pháp dự đoán
+
+00:00:13.950 --> 00:00:17.750
+một con số. Tuần này, bạn đã học về cách
+classification, trong
+
+00:00:17.750 --> 00:00:21.550
+đó biến đầu ra y của bạn chỉ có thể chiếm một
+trong số ít biến
+
+00:00:21.550 --> 00:00:27.030
+các giá trị có thể, thay vì bất kỳ số nào
+trong một phạm vi số vô hạn.
+
+00:00:27.030 --> 00:00:29.970
+Hóa ra linear regression không phải là một
+
+00:00:29.970 --> 00:00:32.910
+thuật toán tốt cho các vấn đề classification.
+
+00:00:32.910 --> 00:00:36.470
+Chúng ta hãy xem tại sao. Và điều này sẽ dẫn
+chúng ta đến một
+
+00:00:36.470 --> 00:00:40.030
+thuật toán khác gọi là logistic regression,
+đây là một trong những
+
+00:00:40.030 --> 00:00:43.590
+thuật toán học tập phổ biến và được sử dụng
+rộng rãi nhất hiện nay.
+
+00:00:43.590 --> 00:00:47.683
+Dưới đây là một số ví dụ về các vấn đề
+classification. Hãy nhớ
+
+00:00:47.683 --> 00:00:51.777
+lại ví dụ về việc cố gắng tìm hiểu xem một
+email có phải là thư
+
+00:00:51.777 --> 00:00:55.870
+rác hay không. Vì vậy, câu trả lời bạn muốn
+đưa ra sẽ là không
+
+00:00:55.870 --> 00:01:00.410
+hoặc có. Một ví dụ khác là tìm hiểu xem một
+giao
+
+00:01:00.410 --> 00:01:04.950
+dịch tài chính trực tuyến có gian lận hay
+không.
+
+00:01:04.950 --> 00:01:08.323
+Chống gian lận tài chính trực tuyến là điều
+tôi đã từng
+
+00:01:08.323 --> 00:01:11.697
+làm. Và tôi phấn khởi lạ lùng vì tôi biết
+ngoài kia có
+
+00:01:11.697 --> 00:01:15.070
+những thế lực đang cố gắng ăn trộm tiền. Và
+công việc của nhóm tôi
+
+00:01:15.070 --> 00:01:19.937
+là để ngăn chặn họ. Vì vậy, vấn đề được đưa ra
+là một giao dịch tài
+
+00:01:19.937 --> 00:01:24.803
+chính, liệu thuật toán học tập của bạn có thể
+tìm ra giao dịch này
+
+00:01:24.803 --> 00:01:29.670
+có gian lận không, chẳng hạn như thẻ tín dụng
+này bị đánh cắp là gì.
+
+00:01:29.670 --> 00:01:34.043
+Một ví dụ khác mà chúng tôi đã đề cập trước
+đây là việc cố
+
+00:01:34.043 --> 00:01:38.417
+gắng classification khối u là ác tính hay
+không. Trong mỗi
+
+00:01:38.417 --> 00:01:42.790
+bài toán này, biến mà bạn muốn dự đoán chỉ có
+thể là một
+
+00:01:42.790 --> 00:01:46.843
+của hai giá trị có thể, không hoặc có. Loại
+vấn đề
+
+00:01:46.843 --> 00:01:50.897
+classification này, trong đó chỉ có hai kết
+quả đầu ra có thể
+
+00:01:50.897 --> 00:01:54.950
+được gọi là classification nhị phân, trong đó
+từ nhị phân đề cập đến
+
+00:01:54.950 --> 00:02:00.363
+chỉ có hai loại có thể có hoặc hai loại có thể
+có. Trong những
+
+00:02:00.363 --> 00:02:05.777
+vấn đề này, tôi sẽ sử dụng các thuật ngữ lớp
+và danh mục tương
+
+00:02:05.777 --> 00:02:11.190
+đối thay thế cho nhau. Về cơ bản chúng có
+nghĩa giống nhau
+
+00:02:11.190 --> 00:02:14.430
+thứ. Theo quy ước, chúng ta có thể đề cập đến
+
+00:02:14.430 --> 00:02:17.670
+hai lớp hoặc loại này theo một số cách phổ
+biến.
+
+00:02:18.550 --> 00:02:23.803
+Chúng ta thường chỉ định các lớp là không hoặc
+có, hoặc đôi khi
+
+00:02:23.803 --> 00:02:29.057
+tương đương là sai hoặc đúng hoặc rất thường
+sử dụng các số 0
+
+00:02:29.057 --> 00:02:34.310
+hoặc một. Tuân theo quy ước chung trong khoa
+machine learning tính
+
+00:02:34.310 --> 00:02:41.070
+với số 0 biểu thị sai và một biểu thị đúng.
+Tôi thường sử dụng các số 0 và 1 để thể
+
+00:02:41.070 --> 00:02:47.830
+hiện câu trả lời tại sao vì điều đó sẽ dễ dàng
+phù hợp nhất với các hình thức học tập.
+
+00:02:47.830 --> 00:02:52.630
+các thuật toán chúng tôi muốn thực hiện. Nhưng
+khi nói về nó,
+
+00:02:52.630 --> 00:02:57.430
+chúng ta thường nói không hoặc có, sai hoặc
+đúng. Một trong
+
+00:02:57.430 --> 00:03:02.230
+những thuật ngữ thường được sử dụng là gọi lớp
+sai hoặc lớp 0,
+
+00:03:02.230 --> 00:03:09.910
+lớp phủ định, và lớp đúng hay một lớp, lớp
+tích cực. Ví dụ: để classification
+
+00:03:09.910 --> 00:03:17.590
+thư rác, một email không phải là thư rác có
+thể được coi là ví dụ tiêu cực, bởi vì
+
+00:03:17.590 --> 00:03:23.030
+đầu ra cho câu hỏi là thư rác, đầu ra là không
+hoặc bằng không.
+
+00:03:23.030 --> 00:03:28.470
+Ngược lại, một email là thư rác có thể được
+coi là một ví dụ đào
+
+00:03:28.470 --> 00:03:33.910
+tạo tích cực, bởi vì câu trả lời cho trường
+hợp là thư rác là có,
+
+00:03:33.910 --> 00:03:38.230
+hoặc đúng hoặc một. Nói rõ hơn, tiêu cực và
+tích cực không nhất
+
+00:03:38.230 --> 00:03:42.550
+thiết có nghĩa là xấu so với tốt hay xấu so
+với tốt. Chỉ là những
+
+00:03:42.550 --> 00:03:46.870
+ví dụ tiêu cực và tích cực được sử dụng để
+truyền đạt các khái niệm về
+
+00:03:46.870 --> 00:03:51.110
+sự vắng mặt hoặc 0 hoặc sai so với sự hiện
+diện hoặc đúng hoặc một
+
+00:03:51.110 --> 00:03:55.350
+trong những điều bạn có thể đang tìm kiếm,
+chẳng hạn như sự vắng mặt
+
+00:03:55.350 --> 00:03:59.590
+hoặc sự hiện diện của tính chất spam hoặc
+thuộc tính spam của email,
+
+00:04:00.150 --> 00:04:06.470
+hoặc không có hoạt động gian lận, hoặc không
+có khối u ác tính.
+
+00:04:07.750 --> 00:04:12.390
+Giữa email không phải spam và email spam, cái
+nào bạn gọi là sai hay
+
+00:04:12.390 --> 00:04:17.030
+bằng 0 và cái nào bạn gọi là đúng hay cái nào
+thì hơi tùy tiện. Thường
+
+00:04:17.030 --> 00:04:21.670
+thì một trong hai lựa chọn đều có thể hiệu
+quả. Vì vậy kỹ sư khác có thể
+
+00:04:21.670 --> 00:04:25.483
+thực sự hoán đổi nó và đặt lớp tích cực là sự
+hiện diện
+
+00:04:25.483 --> 00:04:29.297
+của một email tốt hoặc lớp tích cực là sự hiện
+diện của
+
+00:04:29.297 --> 00:04:33.110
+một giao dịch tài chính thực sự hoặc một bệnh
+nhân khỏe mạnh.
+
+00:04:34.390 --> 00:04:39.563
+Vậy làm thế nào để bạn xây dựng một thuật toán
+classification?
+
+00:04:39.563 --> 00:04:44.737
+Dưới đây là ví dụ về training set để
+classification khối u là ác
+
+00:04:44.737 --> 00:04:49.910
+tính, loại dương tính loại một, loại có hoặc
+loại lành tính loại 0
+
+00:04:49.910 --> 00:04:54.363
+hoặc lớp phủ định. Tôi đã vẽ cả kích thước
+khối u trên trục
+
+00:04:54.363 --> 00:04:58.817
+hoành cũng như nhãn y trên trục tung. Nhân
+tiện, trong tuần
+
+00:04:58.817 --> 00:05:03.270
+đầu tiên, khi chúng ta lần đầu nói về việc
+classification,
+
+00:05:03.270 --> 00:05:07.723
+đây là cách trước đây chúng ta đã hình dung nó
+trên trục
+
+00:05:07.723 --> 00:05:12.177
+số, ngoại trừ việc bây giờ chúng ta gọi các
+lớp là 0 và một
+
+00:05:12.177 --> 00:05:16.630
+và vẽ chúng trên trục tung. Bây giờ, một điều
+bạn có thể thử
+
+00:05:16.630 --> 00:05:20.657
+training set này là áp dụng thuật toán mà bạn
+đã biết
+
+00:05:20.657 --> 00:05:24.683
+linear regression và cố gắng khớp một đường
+thẳng với dữ liệu.
+
+00:05:24.683 --> 00:05:28.710
+Nếu bạn làm như vậy, có thể đường thẳng sẽ
+trông như thế này phải không?
+
+00:05:28.710 --> 00:05:33.510
+Và đó là f của x. Linear regression dự đoán
+không chỉ các
+
+00:05:33.510 --> 00:05:38.310
+giá trị 0 và 1, mà còn dự đoán tất cả các số
+từ 0 đến 1
+
+00:05:38.310 --> 00:05:43.110
+hoặc thậm chí nhỏ hơn 0 hoặc lớn hơn 1. Nhưng
+ở đây chúng tôi
+
+00:05:43.110 --> 00:05:48.817
+muốn dự đoán danh mục. Một điều bạn có thể thử
+là chọn một
+
+00:05:48.817 --> 00:05:54.523
+ngưỡng chẳng hạn như 0,5. Vì vậy, nếu mô hình
+đưa ra giá
+
+00:05:54.523 --> 00:06:00.230
+trị dưới 0,5 thì bạn dự đoán y bằng 0 hoặc
+không ác tính.
+
+00:06:00.790 --> 00:06:08.950
+Và nếu mô hình đưa ra một số bằng hoặc lớn hơn
+0,5 thì dự đoán y bằng một hoặc ác
+
+00:06:08.950 --> 00:06:17.110
+tính. Lưu ý rằng giá trị ngưỡng 0,5 này giao
+với đường thẳng phù hợp nhất tại điểm này.
+
+00:06:17.110 --> 00:06:23.510
+điểm. Vì vậy, nếu bạn vẽ đường thẳng đứng này
+ở đây, mọi thứ ở bên trái sẽ có giá
+
+00:06:23.510 --> 00:06:29.910
+trị dự đoán là y bằng 0, và mọi thứ ở bên phải
+sẽ có giá trị dự đoán là y bằng 1.
+
+00:06:31.590 --> 00:06:34.270
+Bây giờ đối với tập dữ liệu cụ thể này, có vẻ
+như
+
+00:06:34.270 --> 00:06:36.950
+linear regression có thể làm được điều gì đó
+hợp lý.
+
+00:06:37.590 --> 00:06:42.283
+Nhưng bây giờ hãy xem điều gì sẽ xảy ra nếu
+tập dữ liệu của
+
+00:06:42.283 --> 00:06:46.977
+bạn có thêm một ví dụ huấn luyện. Lối này ở
+bên phải đây.
+
+00:06:46.977 --> 00:06:51.670
+Chúng ta cũng hãy mở rộng trục ngang. Lưu ý
+rằng ví dụ đào tạo này
+
+00:06:51.670 --> 00:06:55.297
+thực sự không nên thay đổi cách bạn
+classification các điểm dữ liệu.
+
+00:06:55.297 --> 00:06:58.923
+Đường phân chia theo chiều dọc mà chúng ta vừa
+vẽ này vẫn có ý nghĩa vì
+
+00:06:58.923 --> 00:07:02.550
+ranh giới trong đó hai sai sót nhỏ hơn mức này
+sẽ được classification là
+
+00:07:02.550 --> 00:07:06.123
+không và hai sai sót lớn hơn mức này nên được
+classification
+
+00:07:06.123 --> 00:07:09.697
+là một. Nhưng khi bạn đã thêm ví dụ đào tạo bổ
+sung này ở bên
+
+00:07:09.697 --> 00:07:13.270
+phải, dòng phù hợp nhất cho linear regression
+sẽ chuyển sang
+
+00:07:13.910 --> 00:07:21.630
+như thế này. Và nếu bạn tiếp tục sử dụng
+ngưỡng 0,5, bây giờ bạn nhận thấy rằng mọi
+
+00:07:21.630 --> 00:07:29.350
+thứ ở bên trái điểm này được dự đoán là không
+ác tính. Và mọi thứ ở bên phải điểm này là
+
+00:07:29.350 --> 00:07:34.123
+được dự đoán là một hoặc ác tính. Đây không
+phải là điều chúng tôi
+
+00:07:34.123 --> 00:07:38.897
+muốn. Bởi vì việc thêm ví dụ đó vào bên phải
+sẽ không thay đổi bất kỳ
+
+00:07:38.897 --> 00:07:43.670
+kết luận nào của chúng tôi về cách
+classification ác tính và lành tính.
+
+00:07:43.670 --> 00:07:47.617
+khối u. Nhưng nếu bạn cố gắng thực hiện điều
+này bằng
+
+00:07:47.617 --> 00:07:51.563
+linear regression, thêm một ví dụ này, có vẻ
+như nó không thay đổi
+
+00:07:51.563 --> 00:07:55.510
+bất cứ điều gì, thì cuối cùng chúng ta sẽ học
+được một hàm tệ hơn nhiều cho việc này
+
+00:07:55.510 --> 00:08:00.337
+vấn đề classification. Rõ ràng, khi khối u
+lớn, chúng tôi muốn thuật toán
+
+00:08:00.337 --> 00:08:05.163
+classification nó là ác tính. Vì vậy, những gì
+chúng ta vừa thấy là
+
+00:08:05.163 --> 00:08:09.990
+linear regression sẽ tạo ra đường phù hợp nhất
+khi chúng ta thêm một đường nữa
+
+00:08:09.990 --> 00:08:17.310
+ví dụ bên phải chuyển qua và do đó đường phân
+chia còn gọi là decision boundary dịch
+
+00:08:17.310 --> 00:08:24.630
+chuyển qua bên phải. Bạn tìm hiểu thêm về
+decision boundary trong video tiếp theo.
+
+00:08:25.430 --> 00:08:29.297
+Bạn cũng tìm hiểu về một thuật toán gọi là
+
+00:08:29.297 --> 00:08:33.163
+logistic regression, trong đó giá trị đầu ra
+của kết quả sẽ
+
+00:08:33.163 --> 00:08:37.030
+luôn nằm trong khoảng từ 0 đến 1. Và thuật
+toán sẽ tránh được những vấn đề này
+
+00:08:37.030 --> 00:08:40.897
+mà chúng ta đang thấy trên slide. Nhân tiện,
+có một điều khó
+
+00:08:40.897 --> 00:08:44.763
+hiểu về tên logistic regression là mặc dù nó
+có từ
+
+00:08:44.763 --> 00:08:48.630
+regression trong đó nhưng thực ra nó được sử
+dụng để classification.
+
+00:08:49.270 --> 00:08:54.670
+Đừng nhầm lẫn với tên được đặt vì lý do lịch
+sử, nó thực sự được sử dụng để
+
+00:08:54.670 --> 00:09:00.070
+giải quyết các vấn đề classification nhị phân
+với nhãn đầu ra y là 0 hoặc 1.
+
+00:09:01.510 --> 00:09:06.150
+Trong phòng thí nghiệm tùy chọn sắp tới, bạn
+cũng có thể xem điều gì sẽ
+
+00:09:06.150 --> 00:09:10.790
+xảy ra khi bạn cố gắng sử dụng
+linear regression để classification. Đôi
+
+00:09:10.790 --> 00:09:15.430
+khi bạn gặp may mắn và nó có thể thành công.
+Nhưng thường thì nó sẽ
+
+00:09:15.430 --> 00:09:19.483
+không hoạt động tốt, đó là lý do tại sao tôi
+không sử dụng
+
+00:09:19.483 --> 00:09:23.537
+linear regression để classification. Trong
+phòng thí nghiệm tùy chọn,
+
+00:09:23.537 --> 00:09:27.590
+bạn sẽ thấy một biểu đồ tương tác cố gắng
+classification giữa hai danh mục. Và
+
+00:09:27.590 --> 00:09:32.123
+bạn hy vọng nhận thấy điều này thường không
+hoạt động tốt như thế nào, điều này
+
+00:09:32.123 --> 00:09:36.657
+không sao cả, vì điều đó thúc đẩy nhu cầu về
+một mô hình khác để thực hiện việc
+
+00:09:36.657 --> 00:09:41.190
+classification. Vì vậy, vui lòng kiểm tra
+phòng thí nghiệm tùy chọn này. Và
+
+00:09:41.190 --> 00:09:43.750
+sau đó, chúng ta sẽ chuyển sang video tiếp
+theo để
+
+00:09:43.750 --> 00:09:46.310
+xem xét logistic regression cho việc
+classification.

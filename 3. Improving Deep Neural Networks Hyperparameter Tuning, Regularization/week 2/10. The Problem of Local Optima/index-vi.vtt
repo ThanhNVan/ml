@@ -1,0 +1,320 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:03.500
+Trong những ngày đầu của deep learning, mọi
+người thường lo lắng rất
+
+00:00:03.500 --> 00:00:07.000
+nhiều về việc thuật toán tối ưu hóa bị mắc kẹt
+trong tối ưu cục bộ kém.
+
+00:00:07.000 --> 00:00:10.000
+Nhưng khi lý thuyết deep learning ngày càng
+phát triển,
+
+00:00:10.000 --> 00:00:13.000
+sự hiểu biết của chúng ta về tối ưu cục bộ
+cũng thay đổi.
+
+00:00:13.000 --> 00:00:16.500
+Hãy để tôi chỉ cho bạn cách chúng tôi nghĩ về
+tối ưu cục bộ và
+
+00:00:16.500 --> 00:00:20.000
+các vấn đề liên quan đến vấn đề tối ưu hóa
+trong deep learning.
+
+00:00:21.000 --> 00:00:25.000
+Vì vậy, đây là hình ảnh mà mọi người thường
+nghĩ đến khi họ lo lắng về tối ưu cục bộ.
+
+00:00:25.000 --> 00:00:29.000
+Có thể bạn đang cố gắng tối ưu hóa một số bộ
+tham số, chúng tôi
+
+00:00:29.000 --> 00:00:33.000
+gọi chúng là w1 và w2, và chiều cao của bề mặt
+là cost function.
+
+00:00:33.000 --> 00:00:37.333
+Vì vậy, trong bức ảnh này, có vẻ như có rất
+nhiều điểm tối ưu cục bộ ở tất cả
+
+00:00:37.333 --> 00:00:41.667
+những nơi đó và rất dễ để gradient descent
+hoặc một trong các thuật toán khác
+
+00:00:41.667 --> 00:00:46.000
+bị mắc kẹt ở mức tối ưu cục bộ thay vì tìm
+đường đến mức tối ưu toàn cục.
+
+00:00:47.000 --> 00:00:51.500
+Hóa ra là nếu bạn vẽ một hình như thế này theo
+hai chiều, thì bạn có thể dễ
+
+00:00:51.500 --> 00:00:56.000
+dàng tạo ra những đồ thị như thế này với rất
+nhiều tối ưu cục bộ khác nhau.
+
+00:00:56.000 --> 00:00:59.000
+Và những biểu đồ có chiều rất thấp này được sử
+dụng để thu
+
+00:00:59.000 --> 00:01:02.000
+thập trực giác. Nhưng trực giác này thực ra
+không chính xác.
+
+00:01:02.000 --> 00:01:06.000
+Hóa ra nếu bạn huấn luyện một mạng lưới thần
+kinh, hầu hết các
+
+00:01:06.000 --> 00:01:10.000
+điểm có độ dốc bằng 0 không phải là điểm tối
+ưu cục bộ như thế này.
+
+00:01:10.000 --> 00:01:12.500
+Thay vào đó, hầu hết các điểm có độ dốc bằng 0
+
+00:01:12.500 --> 00:01:15.000
+trong cost function thực chất là điểm yên
+ngựa.
+
+00:01:15.000 --> 00:01:20.000
+Vì vậy, đó là điểm mà độ dốc bằng 0, một lần
+nữa, đây có
+
+00:01:20.000 --> 00:01:25.000
+thể là w1, w2, và chiều cao là giá trị của
+cost function j.
+
+00:01:25.000 --> 00:01:31.000
+Nhưng một cách không chính thức, một hàm của
+không gian có chiều rất cao, nếu
+
+00:01:31.000 --> 00:01:37.000
+gradient bằng 0 thì theo mỗi hướng, nó có thể
+là hàm ánh sáng lồi hoặc hàm ánh sáng lõm.
+
+00:01:37.000 --> 00:01:41.500
+Và nếu bạn đang ở trong một không gian 20.000
+chiều, thì để nó là một
+
+00:01:41.500 --> 00:01:46.000
+không gian tối ưu cục bộ, tất cả 20.000 hướng
+cần phải trông như thế này.
+
+00:01:46.000 --> 00:01:52.000
+Và do đó khả năng điều đó xảy ra có thể rất
+nhỏ, có thể là 2 trên âm 20.000.
+
+00:01:52.000 --> 00:01:56.000
+Thay vào đó, bạn có nhiều khả năng nhận được
+một số hướng trong đó
+
+00:01:56.000 --> 00:02:00.000
+đường cong uốn cong lên như vậy, cũng như một
+số hướng mà hàm
+
+00:02:00.000 --> 00:02:04.000
+đường cong uốn cong xuống thay vì tất cả chúng
+đều uốn cong lên trên.
+
+00:02:04.000 --> 00:02:08.500
+Vì vậy, đó là lý do tại sao trong không gian
+có nhiều chiều, bạn thực sự có
+
+00:02:08.500 --> 00:02:13.000
+nhiều khả năng gặp phải điểm yên như hình bên
+phải hơn là điểm tối ưu cục bộ.
+
+00:02:13.000 --> 00:02:17.000
+Ồ, và tại sao bề mặt này được gọi là điểm yên
+ngựa, nếu bạn có thể
+
+00:02:17.000 --> 00:02:21.000
+hình dung ra thì có lẽ đây là loại yên bạn đặt
+trên ngựa, phải không?
+
+00:02:21.000 --> 00:02:24.500
+Vì vậy, có lẽ nếu đây là một con ngựa, tôi
+đoán có
+
+00:02:24.500 --> 00:02:28.000
+đầu ngựa, có mắt ngựa, bạn biết đấy, tôi đoán
+vậy.
+
+00:02:28.000 --> 00:02:33.000
+Và đúng rồi, bức vẽ về con ngựa không đẹp lắm,
+nhưng bạn hiểu ý rồi đấy.
+
+00:02:33.000 --> 00:02:37.000
+Khi đó bạn, người cầm lái, sẽ ngồi trên yên
+xe.
+
+00:02:37.000 --> 00:02:42.000
+Vậy nên đó là lý do tại sao điểm này ở đây với
+
+00:02:42.000 --> 00:02:47.000
+đạo hàm bằng 0, điểm đó gọi là điểm yên ngựa.
+
+00:02:47.000 --> 00:02:50.000
+Tôi đoán đó thực sự là điểm trên yên xe mà bạn
+
+00:02:50.000 --> 00:02:53.000
+sẽ ngồi, và bạn biết đấy, nó có đạo hàm bằng
+0.
+
+00:02:53.000 --> 00:02:56.500
+Và một trong những bài học chúng ta học được
+trong lịch sử deep learning
+
+00:02:56.500 --> 00:03:00.000
+là rất nhiều trực giác của chúng ta về không
+gian có chiều thấp, giống như
+
+00:03:00.000 --> 00:03:03.500
+những gì bạn có thể vẽ bên trái, chúng thực sự
+không chuyển sang không
+
+00:03:03.500 --> 00:03:07.000
+gian có chiều rất cao mà các thuật toán học
+tập của chúng ta đang vận hành.
+
+00:03:07.000 --> 00:03:12.000
+Bởi vì nếu bạn có 20.000 tham số thì J sẽ
+thông qua hàm trên vectơ 20.000 chiều
+
+00:03:12.000 --> 00:03:17.000
+và bạn có nhiều khả năng nhìn thấy các điểm
+yên ngựa hơn là mức tối ưu cục bộ.
+
+00:03:18.000 --> 00:03:22.000
+Nếu tối ưu cục bộ không phải là vấn đề thì vấn
+đề là gì?
+
+00:03:22.000 --> 00:03:26.000
+Hóa ra tình trạng ổn định thực sự có thể làm
+chậm quá trình học tập.
+
+00:03:26.000 --> 00:03:31.000
+Và vùng cao nguyên là vùng có đạo hàm gần bằng
+0 trong một thời gian dài.
+
+00:03:31.000 --> 00:03:38.000
+Vì vậy, nếu bạn ở đây, thì gradient descent sẽ
+di chuyển xuống bề mặt.
+
+00:03:38.000 --> 00:03:43.000
+Và vì gradient bằng 0 hoặc gần bằng 0 nên bề
+mặt khá phẳng.
+
+00:03:43.000 --> 00:03:47.000
+Bạn biết đấy, thực sự có thể mất một thời gian
+rất
+
+00:03:47.000 --> 00:03:51.000
+dài để từ từ tìm đường đến điểm này trên cao
+nguyên.
+
+00:03:51.000 --> 00:03:54.500
+Và sau đó do sự nhiễu loạn ngẫu nhiên ở bên
+trái hoặc
+
+00:03:54.500 --> 00:03:58.000
+bên phải, có lẽ cuối cùng, tôi sẽ đổi màu bút
+cho rõ ràng.
+
+00:03:58.000 --> 00:04:00.000
+Thuật toán của bạn sau đó có thể tìm đường
+thoát khỏi trạng thái ổn định.
+
+00:04:00.000 --> 00:04:03.500
+Nhưng nó phải đi một con đường rất dài và chậm
+trước khi
+
+00:04:03.500 --> 00:04:07.000
+tìm được đường tới đây, và nó có thể rời khỏi
+cao nguyên này.
+
+00:04:08.000 --> 00:04:12.500
+Vì vậy, điều rút ra từ video này trước hết là
+bạn thực sự khó có thể gặp phải tình
+
+00:04:12.500 --> 00:04:17.000
+trạng tối ưu cục bộ xấu, miễn là bạn đang giao
+dịch với một neural network khá lớn.
+
+00:04:17.000 --> 00:04:20.000
+Vì vậy, bạn có rất nhiều tham số và
+cost function J
+
+00:04:20.000 --> 00:04:23.000
+được xác định trên một không gian có chiều
+tương đối cao.
+
+00:04:23.000 --> 00:04:25.500
+Nhưng thứ hai, sự ổn định đó là một vấn đề, và
+
+00:04:25.500 --> 00:04:28.000
+chúng thực sự có thể khiến việc học trở nên
+khá chậm.
+
+00:04:28.000 --> 00:04:31.500
+Và đây là nơi các thuật toán như động lượng
+hoặc RMS hỗ
+
+00:04:31.500 --> 00:04:35.000
+trợ hoặc thêm chúng thực sự có thể giúp bạn
+học thuật toán.
+
+00:04:36.000 --> 00:04:39.667
+Và đây là những tình huống mà hầu hết các
+thuật toán tối ưu hóa
+
+00:04:39.667 --> 00:04:43.333
+trượt băng, chẳng hạn như Adam, thực sự có thể
+tăng tốc độ mà bạn
+
+00:04:43.333 --> 00:04:47.000
+có thể di chuyển xuống vùng ổn định và sau đó
+rời khỏi vùng ổn định.
+
+00:04:47.000 --> 00:04:50.250
+Vì neural network đang giải quyết các vấn
+đề tối ưu hóa trên các
+
+00:04:50.250 --> 00:04:53.500
+không gian nhiều chiều như vậy, thành thật mà
+nói, tôi không nghĩ có
+
+00:04:53.500 --> 00:04:56.750
+ai có trực giác tốt về những không gian này
+thực sự trông như thế nào
+
+00:04:56.750 --> 00:05:00.000
+và sự hiểu biết của chúng ta về chúng vẫn đang
+tiếp tục phát triển.
+
+00:05:00.000 --> 00:05:03.000
+Nhưng tôi hy vọng điều này mang lại cho bạn
+trực giác tốt hơn
+
+00:05:03.000 --> 00:05:06.000
+về những thách thức mà thuật toán tối ưu hóa
+có thể gặp phải.
+
+00:05:06.000 --> 00:05:11.000
+Vậy là chúc mừng bạn đã đi đến hết nội dung
+tuần này.
+
+00:05:11.000 --> 00:05:15.000
+Mời các bạn xem bài kiểm tra tuần này cũng như
+bài tập của chương trình.
+
+00:05:15.000 --> 00:05:19.000
+Tôi hy vọng bạn thích thực hành một số ý tưởng
+trong bài tập của
+
+00:05:19.000 --> 00:05:23.000
+chương trình tuần này và tôi mong được gặp bạn
+vào đầu video tuần tới.

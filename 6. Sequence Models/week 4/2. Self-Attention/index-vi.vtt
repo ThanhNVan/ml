@@ -1,0 +1,549 @@
+WEBVTT
+
+00:00:03.410 --> 00:00:09.490
+Hãy chuyển sang nói về cơ chế self-attention
+của Transformer.
+
+00:00:09.490 --> 00:00:13.890
+Nếu bạn có thể nắm được ý chính đằng sau video
+này thì bạn sẽ hiểu được ý tưởng
+
+00:00:13.890 --> 00:00:18.290
+cốt lõi quan trọng nhất đằng sau nguyên nhân
+khiến mạng Transformer hoạt động.
+
+00:00:18.290 --> 00:00:19.810
+Hãy nhảy vào.
+
+00:00:19.810 --> 00:00:24.510
+Bạn đã thấy attention được sử dụng như thế nào
+với các neural network tuần tự như RNN.
+
+00:00:24.510 --> 00:00:28.810
+Để sử dụng attention với phong cách giống CNN
+hơn, bạn cần
+
+00:00:28.810 --> 00:00:33.110
+tính toán self-attention trong đó
+bạn tạo các biểu
+
+00:00:33.110 --> 00:00:37.410
+diễn dựa trên attention cho từng từ trong câu
+đầu vào của mình.
+
+00:00:37.410 --> 00:00:42.290
+Hãy sử dụng ví dụ đang chạy của chúng tôi,
+Jane Vazik-Lefic trên Sultembo.
+
+00:00:42.290 --> 00:00:47.850
+Mục tiêu của chúng tôi là mỗi từ sẽ tính toán
+
+00:00:47.850 --> 00:00:53.410
+được cách biểu diễn dựa trên attention như thế
+này.
+
+00:00:53.410 --> 00:00:58.370
+Vì vậy, chúng ta sẽ có năm từ trong số này vì
+câu của chúng ta có năm từ.
+
+00:00:58.370 --> 00:01:03.050
+Và khi tính toán chúng, chúng ta sẽ gọi năm
+
+00:01:03.050 --> 00:01:07.730
+cách biểu diễn của năm từ này là A1 đến A5.
+
+00:01:07.730 --> 00:01:11.263
+Và tôi biết bạn đang bắt đầu thấy một loạt các
+ký hiệu Q, K
+
+00:01:11.263 --> 00:01:14.797
+và V. Chúng tôi sẽ giải thích ý nghĩa của
+những ký hiệu này
+
+00:01:14.797 --> 00:01:18.330
+ở trang trình bày sau, vì vậy bây giờ đừng lo
+lắng về chúng.
+
+00:01:18.330 --> 00:01:25.330
+Ví dụ tôi sắp sử dụng là từ Lefric trong câu
+này.
+
+00:01:25.330 --> 00:01:29.703
+Chúng ta sẽ trình bày ở trang trình bày tiếp
+theo về cách cơ
+
+00:01:29.703 --> 00:01:34.077
+chế self-attention của mạng Transformer cho
+phép bạn tính toán
+
+00:01:34.077 --> 00:01:38.450
+A3 cho từ này và sau đó bạn thực hiện tương tự
+cho các từ khác.
+
+00:01:38.450 --> 00:01:40.330
+trong câu cũng vậy.
+
+00:01:40.330 --> 00:01:44.870
+Bây giờ bạn đã học trước đây về cách
+word embedding và do đó, một cách
+
+00:01:44.870 --> 00:01:49.410
+để thể hiện Lefric là chỉ cần tra cứu cách
+word embedding cho Lefric.
+
+00:01:49.410 --> 00:01:57.190
+Nhưng tùy thuộc vào bối cảnh, chúng ta đang
+nghĩ Lefric hay Châu Phi là một địa điểm
+
+00:01:57.190 --> 00:02:04.970
+có giá trị lịch sử hay là một điểm đến cho kỳ
+nghỉ hay là lục địa lớn thứ hai thế giới?
+
+00:02:04.970 --> 00:02:08.070
+Tùy thuộc vào cách bạn nghĩ về Lefric, bạn
+
+00:02:08.070 --> 00:02:11.170
+có thể chọn cách thể hiện nó theo cách khác.
+
+00:02:11.170 --> 00:02:14.130
+Và đó chính là điều mà biểu diễn A3 này sẽ
+làm.
+
+00:02:14.130 --> 00:02:19.810
+Nó sẽ xem xét các từ xung quanh để cố gắng tìm
+ra điều gì thực sự đang diễn ra
+
+00:02:19.810 --> 00:02:25.490
+trong cách chúng ta nói về Châu Phi trong câu
+này và tìm ra cách diễn đạt phù hợp nhất
+
+00:02:25.490 --> 00:02:26.850
+vì điều này.
+
+00:02:26.850 --> 00:02:30.903
+Về mặt tính toán thực tế, nó sẽ không quá khác
+biệt so với
+
+00:02:30.903 --> 00:02:34.957
+attention mà bạn đã thấy trước đây được áp
+dụng trong bối
+
+00:02:34.957 --> 00:02:39.010
+cảnh RNN, ngoại trừ việc chúng ta sẽ tính toán
+các biểu diễn này
+
+00:02:39.010 --> 00:02:42.250
+song song cho cả năm từ trong một câu.
+
+00:02:42.250 --> 00:02:48.730
+Vì vậy, khi chúng tôi tập trung vào RNN, đây
+là phương trình chúng tôi đã sử dụng.
+
+00:02:48.730 --> 00:02:55.590
+Với cơ chế self-attention, phương trình chú ý
+sẽ trông như thế này.
+
+00:02:55.590 --> 00:02:59.490
+Vì vậy, bạn có thể thấy các phương trình có
+một số điểm tương đồng.
+
+00:02:59.490 --> 00:03:06.850
+Số hạng bên trong ở đây cũng liên quan đến
+softmax, giống như số hạng này ở bên trái.
+
+00:03:06.850 --> 00:03:15.010
+Và bạn có thể coi các số mũ giống như các giá
+trị chú ý.
+
+00:03:15.010 --> 00:03:17.100
+Chính xác thì các thuật ngữ này được giải
+quyết
+
+00:03:17.100 --> 00:03:19.190
+như thế nào, bạn sẽ thấy trong slide tiếp
+theo.
+
+00:03:19.190 --> 00:03:22.630
+Vì vậy, một lần nữa, đừng lo lắng về các chi
+tiết.
+
+00:03:22.630 --> 00:03:29.480
+Nhưng điểm khác biệt chính là với mỗi từ,
+chẳng hạn như
+
+00:03:29.480 --> 00:03:36.330
+Lefric, bạn có ba giá trị được gọi là truy
+vấn, khóa và giá trị.
+
+00:03:36.330 --> 00:03:45.250
+Và những vectơ này là đầu vào quan trọng để
+tính toán giá trị chú ý cho mỗi từ.
+
+00:03:45.250 --> 00:03:52.970
+Bây giờ chúng ta hãy thực hiện từng bước cần
+thiết để tính toán A3.
+
+00:03:52.970 --> 00:03:57.670
+Ở bên này, chúng ta hãy thực hiện các phép
+tính bạn cần để
+
+00:03:57.670 --> 00:04:02.370
+đi từ từ Lefric đến cách thể hiện attention
+đến bản thân A3.
+
+00:04:02.370 --> 00:04:05.850
+Để tham khảo, tôi cũng đã in lên đây ở phía
+trên bên
+
+00:04:05.850 --> 00:04:09.330
+phải phương trình softmax giống như ở slide
+trước.
+
+00:04:09.330 --> 00:04:13.930
+Đầu tiên, chúng ta sẽ liên kết từng từ với ba
+
+00:04:13.930 --> 00:04:18.530
+giá trị được gọi là cặp truy vấn, khóa và giá
+trị.
+
+00:04:18.530 --> 00:04:24.920
+Vì vậy, nếu x3 là cách word embedding cho
+
+00:04:24.920 --> 00:04:31.310
+Lefric, thì cách tính q3 là một cách tính đã
+học
+
+00:04:31.310 --> 00:04:39.130
+ma trận mà tôi sẽ viết là wq nhân x3.
+
+00:04:39.130 --> 00:04:48.200
+Và tương tự như vậy đối với các cặp khóa và
+giá
+
+00:04:48.200 --> 00:04:57.270
+trị, vậy k3 là wk nhân x3 và v3 là wv nhân x3.
+
+00:04:57.270 --> 00:05:04.990
+Vì vậy, các ma trận wq, wk và wv này là các
+tham số của thuật toán học này.
+
+00:05:04.990 --> 00:05:10.970
+Và chúng cho phép bạn hiển thị các vectơ truy
+vấn, khóa và giá trị này cho mỗi từ.
+
+00:05:10.970 --> 00:05:14.650
+Vậy các vectơ truy vấn, khóa và giá trị này
+phải làm gì?
+
+00:05:14.650 --> 00:05:18.860
+Chúng được đặt tên theo sự tương đồng lỏng lẻo
+với các khái niệm và cơ
+
+00:05:18.860 --> 00:05:23.070
+sở dữ liệu nơi bạn có thể có các truy vấn cũng
+như các cặp giá trị khóa.
+
+00:05:23.070 --> 00:05:27.190
+Nếu bạn quen thuộc với các loại cơ sở dữ liệu
+đó, bạn có thể thấy sự tương tự.
+
+00:05:27.190 --> 00:05:31.950
+Nhưng nếu bạn không quen với khái niệm cơ sở
+dữ liệu đó thì đừng lo lắng về nó.
+
+00:05:31.950 --> 00:05:35.750
+Hãy để tôi đưa ra một trực giác đằng sau mục
+
+00:05:35.750 --> 00:05:39.550
+đích của các vectơ truy vấn, khóa và giá trị
+này.
+
+00:05:39.550 --> 00:05:45.610
+q3 là câu hỏi bạn có thể hỏi về Lefric.
+
+00:05:45.610 --> 00:05:52.810
+Vì vậy, q3 có thể đại diện cho một câu hỏi
+giống như điều gì đang xảy ra ở đó.
+
+00:05:52.810 --> 00:05:55.530
+Vậy Châu Phi, Lefric là một điểm đến.
+
+00:05:55.530 --> 00:06:01.710
+Vì vậy, bạn có thể muốn biết khi tính a3, điều
+gì đang xảy ra ở đó.
+
+00:06:01.710 --> 00:06:07.160
+Và điều chúng ta sắp làm là tính tích bên
+
+00:06:07.160 --> 00:06:12.610
+trong giữa q3 và k1 giữa truy vấn 3 và khóa 1.
+
+00:06:12.610 --> 00:06:16.460
+Và điều này sẽ cho chúng ta biết câu trả lời
+tốt như thế
+
+00:06:16.460 --> 00:06:20.310
+nào, ở đâu, cho câu hỏi chuyện gì đang xảy ra
+ở Châu Phi.
+
+00:06:20.310 --> 00:06:24.910
+Và sau đó chúng tôi tính tích bên trong giữa
+q3 và k2.
+
+00:06:24.910 --> 00:06:31.070
+Và điều này nhằm mục đích cho chúng ta biết
+chữ z tốt như thế nào và là câu trả
+
+00:06:31.070 --> 00:06:37.230
+lời cho câu hỏi chuyện gì đang xảy ra ở Châu
+Phi, v.v., cho các từ khác trong chuỗi.
+
+00:06:37.230 --> 00:06:43.650
+Và mục tiêu của thao tác này là lấy ra nhiều
+thông tin cần thiết
+
+00:06:43.650 --> 00:06:50.070
+nhất để giúp chúng ta tính toán biểu diễn a3
+hữu ích nhất ở đây.
+
+00:06:50.070 --> 00:06:57.340
+Vì vậy, một lần nữa, chỉ để xây dựng trực
+giác, nếu k1 thể hiện từ này là một
+
+00:06:57.340 --> 00:07:04.610
+người, bởi vì Jane là một người, và k2 đại
+diện cho từ thứ hai, zit là một hành động,
+
+00:07:04.610 --> 00:07:10.930
+thì bạn có thể thấy rằng q3 trong tích có k2
+có giá trị lớn nhất.
+
+00:07:10.930 --> 00:07:14.370
+Và đây có thể là một ví dụ trực quan gợi ý
+rằng chuyến thăm
+
+00:07:14.370 --> 00:07:17.810
+mang lại cho bạn bối cảnh phù hợp nhất với
+những gì đang diễn
+
+00:07:17.810 --> 00:07:21.250
+ra ở Châu Phi, mà bạn biết đấy, đó là một góc
+nhìn về một điểm đến
+
+00:07:21.250 --> 00:07:23.250
+cho một chuyến thăm.
+
+00:07:23.270 --> 00:07:27.970
+Vì vậy, những gì chúng ta sẽ làm là lấy năm
+giá
+
+00:07:27.970 --> 00:07:32.670
+trị này trong hàng này và tính softmax trên
+chúng.
+
+00:07:32.670 --> 00:07:36.870
+Vì vậy, đó thực sự là softmax ở đây.
+
+00:07:36.870 --> 00:07:42.930
+Và trong ví dụ mà chúng ta đang nói về q3 nhân
+k2 tương ứng với từ truy
+
+00:07:42.930 --> 00:07:48.990
+cập, có thể có giá trị lớn nhất, vì vậy tôi sẽ
+tô màu xanh lam đó ở đây.
+
+00:07:49.010 --> 00:07:54.730
+Và cuối cùng, chúng ta sẽ lấy các giá trị
+softmax này và nhân
+
+00:07:54.730 --> 00:08:00.450
+chúng với v1, là giá trị cho từ một, giá trị
+cho từ hai, v.v.
+
+00:08:00.450 --> 00:08:08.450
+Và vì vậy những giá trị này tương ứng với giá
+trị đó ở trên đó.
+
+00:08:08.450 --> 00:08:11.290
+Cuối cùng, chúng tôi tổng hợp tất cả.
+
+00:08:11.290 --> 00:08:16.130
+Vậy phép tính tổng này tương ứng với toán tử
+tính tổng này.
+
+00:08:16.130 --> 00:08:20.100
+Và do đó, việc cộng tất cả các giá trị này sẽ
+cho
+
+00:08:20.100 --> 00:08:24.070
+bạn kết quả là 3, nó bằng với giá trị này ở
+đây.
+
+00:08:24.070 --> 00:08:29.900
+Vì vậy, một cách khác để viết số ba thực sự là
+
+00:08:29.900 --> 00:08:35.730
+a this a ở đây của q3, dấu phẩy, k, v, nhưng
+
+00:08:35.730 --> 00:08:41.950
+đôi khi sẽ thuận tiện hơn nếu chỉ viết số ba
+như thế.
+
+00:08:42.030 --> 00:08:46.620
+Và ưu điểm chính của cách biểu diễn này là từ
+của
+
+00:08:46.620 --> 00:08:51.210
+kẻ lập dị không phải là một từ embedding cố
+định.
+
+00:08:51.210 --> 00:08:56.023
+Thay vào đó, nó cho phép cơ chế self-attention
+nhận ra rằng
+
+00:08:56.023 --> 00:09:00.837
+kẻ quái đản là đích đến của một lượt truy cập
+và do đó tính
+
+00:09:00.837 --> 00:09:05.650
+toán cách thể hiện phong phú hơn, hữu ích hơn
+cho từ này.
+
+00:09:05.650 --> 00:09:09.703
+Bây giờ tôi đang sử dụng từ thứ ba, quái đản
+làm ví dụ, nhưng bạn
+
+00:09:09.703 --> 00:09:13.757
+có thể sử dụng quy trình này cho tất cả năm từ
+trong chuỗi của
+
+00:09:13.757 --> 00:09:17.810
+mình để có được những cách thể hiện phong phú
+tương tự cho Jane,
+
+00:09:17.810 --> 00:09:22.990
+Zit, kẻ lập dị vào tháng Chín.
+
+00:09:22.990 --> 00:09:27.317
+Và nếu bạn đặt tất cả năm phép tính này lại
+với nhau, ký hiệu
+
+00:09:27.317 --> 00:09:31.643
+được sử dụng trong tài liệu sẽ trông như thế
+này, nơi bạn có
+
+00:09:31.643 --> 00:09:35.970
+thể tóm tắt tất cả những phép tính mà chúng ta
+vừa nói đến
+
+00:09:35.970 --> 00:09:41.420
+cho tất cả các từ trong chuỗi bằng cách viết
+chú ý đến
+
+00:09:41.420 --> 00:09:46.870
+k v, trong đó ma trận q k v có tất cả các giá
+trị này.
+
+00:09:46.870 --> 00:09:54.790
+Và đây chỉ là một biểu diễn được nén hoặc
+vector hóa của phương trình này ở trên đây.
+
+00:09:54.790 --> 00:09:59.000
+Số hạng ở mẫu số chỉ là thang tích tích chấm
+nên
+
+00:09:59.000 --> 00:10:03.210
+không nổ, bạn không thực sự cần lo lắng về
+điều đó.
+
+00:10:03.230 --> 00:10:09.450
+Và một tên khác cho loại attention này là
+attention của sản phẩm chấm theo tỷ lệ.
+
+00:10:09.450 --> 00:10:13.260
+Và đây là cái được trình bày trong bài viết về
+kiến trúc
+
+00:10:13.260 --> 00:10:17.070
+Transformer ban đầu, tất cả những gì bạn cần
+là attention.
+
+00:10:17.070 --> 00:10:21.830
+Đó chính là cơ chế self-attention của mạng
+Transformer.
+
+00:10:21.830 --> 00:10:26.000
+Tóm lại, được liên kết với từng từ, mỗi từ
+trong số năm
+
+00:10:26.000 --> 00:10:30.170
+từ, bạn sẽ nhận được một truy vấn, một khóa và
+một giá trị.
+
+00:10:30.170 --> 00:10:33.060
+Truy vấn cho phép bạn đặt câu hỏi về từ đó,
+
+00:10:33.060 --> 00:10:35.950
+chẳng hạn như chuyện gì đang xảy ra ở Châu
+Phi.
+
+00:10:35.950 --> 00:10:41.260
+Chìa khóa xem xét tất cả các từ khác và dựa
+vào sự tương tự với truy
+
+00:10:41.260 --> 00:10:46.570
+vấn, giúp bạn tìm ra từ nào đưa ra câu trả lời
+phù hợp nhất cho câu hỏi đó.
+
+00:10:46.570 --> 00:10:49.330
+Và trong trường hợp này, chuyến thăm là những
+gì
+
+00:10:49.330 --> 00:10:52.090
+đang xảy ra ở Châu Phi, ai đó đang đến thăm
+Châu Phi.
+
+00:10:52.090 --> 00:10:57.980
+Và cuối cùng, giá trị cho phép một phần trình
+bày thể hiện cách thức
+
+00:10:57.980 --> 00:11:03.870
+lượt truy cập sẽ được thể hiện trong A3, trong
+phần trình bày của Châu Phi.
+
+00:11:03.870 --> 00:11:07.970
+Và điều này cho phép bạn nghĩ ra cách thể hiện
+cho từ Châu
+
+00:11:07.970 --> 00:11:12.070
+Phi nói rằng đây là Châu Phi và ai đó đang đến
+thăm Châu Phi.
+
+00:11:12.070 --> 00:11:16.630
+Và đây là cách thể hiện từ có nhiều sắc thái
+hơn, phong phú hơn nhiều so
+
+00:11:16.630 --> 00:11:21.190
+với việc bạn chỉ cần đưa ra cùng một từ
+embedding cố định cho mỗi từ mà
+
+00:11:21.190 --> 00:11:25.750
+không thể điều chỉnh nó dựa trên những từ nào
+ở bên trái và bên phải của từ đó,
+
+00:11:25.750 --> 00:11:28.790
+mà không được tính đến và trong bối cảnh.
+
+00:11:29.670 --> 00:11:33.590
+Bây giờ, bạn đã tìm hiểu về cơ chế
+self-attention.
+
+00:11:33.590 --> 00:11:36.810
+Chúng ta sẽ đặt một vòng lặp lớn cho toàn bộ
+
+00:11:36.810 --> 00:11:40.030
+vấn đề này và đó sẽ là attention nhiều đầu.
+
+00:11:40.030 --> 00:11:42.430
+Chúng ta hãy đi sâu vào chi tiết về điều đó
+trong video tiếp theo.

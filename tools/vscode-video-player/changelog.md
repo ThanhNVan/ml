@@ -1,0 +1,285 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [0.3.0] - 2026-09-12
+
+### Added
+
+- A published page at <https://yutabee.github.io/vscode-unmute-video/> explaining
+  why VS Code plays MP4 without sound — the webview runs on a Chromium build
+  without the AAC decoder — and what this extension does about it. It is a single
+  static file under `site/`, deployed by a `Pages` workflow, and excluded from the
+  packaged `.vsix`.
+- When ffmpeg is not found, the status bar now names the install command for
+  the platform it is running on — Homebrew on macOS, winget on Windows, apt on
+  Debian/Ubuntu — and offers to copy it. The route to `unmuteVideo.ffmpegPath`
+  stays alongside it as a second button for anyone pointing at an existing
+  binary. Platforms with no known command keep the previous message and the
+  settings button on its own.
+
+### Changed
+
+- That same status now says to reload the window rather than reopen the file.
+  The ffmpeg lookup is memoized for the life of the extension host, so
+  installing ffmpeg and reopening the file left the video silent and read as
+  though the install had not worked.
+- `homepage` now points at that published page rather than the README anchor.
+- The README says up front that `.webm` needs nothing installed. The supported
+  formats table already carried it, but the first thing a reader met was the
+  ffmpeg-dependent MP4 path, so anyone without ffmpeg could conclude the
+  extension was no use to them. It also now names where these files tend to come
+  from, including Playwright test recordings, which are `.webm`.
+
+### Fixed
+
+- The Marketplace tags no longer advertise `mkv` and `avi`. The custom editor
+  opens `.mp4`, `.mov`, `.m4v` and `.webm` only, so anyone who searched for the
+  other two installed the extension and then found their file would not open in
+  it. The freed slots went to `playwright` and `screen recording`, both of which
+  the player does serve — Playwright records `.webm`, which needs no ffmpeg.
+
+### Security
+
+- Updated `js-yaml` to 4.3.2, resolving a high-severity advisory where
+  `maxTotalMergeKeys` did not bound CPU use for empty merge sources, and `qs`
+  to 6.16.0, resolving an array-limit bypass through bracket-key comma parsing
+  and a denial of service through an attacker-controlled `isBuffer`. Both reach
+  the project only through `@vscode/vsce`, which is used for packaging, so none
+  of the affected code ships inside the extension.
+
+### Packaging
+
+- The published `.vsix` no longer carries files only the repository needs. The
+  test helpers under `test-support/`, the GitHub social-preview images and the
+  ESLint config were all being packaged: `test/**` was excluded but its helper
+  directory was not, and `images/icon.svg` and `images/demo.gif` were excluded
+  while `images/social-preview.*` was missed. The download drops from 31 files
+  and 157 KB to 23 files and 54 KB, most of it the 127 KB social preview.
+
+## [0.2.6] - 2026-09-03
+
+Maintenance release. The player itself is unchanged. This publishes the current
+README to the extension listings and picks up dependency and CI updates.
+
+### Security
+
+- Updated `fast-uri` to 3.1.7, resolving six high-severity advisories covering
+  authority injection through an unvalidated port, host confusion through
+  IP-literal bracket handling and percent-encoded scheme normalization, and
+  server-side request forgery through hostname decoding and IPv6
+  normalization. It is a development-only dependency, reached through `ajv`,
+  so none of the affected code ships inside the extension.
+
+### Changed
+
+- The Marketplace and Open VSX listings now show the Sponsor section added to
+  the README. Listing pages render the README packaged into the published
+  `.vsix`, so a README change only becomes visible with a release.
+
+### Packaging
+
+- Dependabot now groups `github/codeql-action` updates into a single pull
+  request. `init` and `analyze` are pinned to the same commit, so splitting
+  them across two pull requests left the pair out of step and failed the
+  CodeQL job every week.
+- Dependabot no longer opens `@types/vscode` updates. The type package cannot
+  move ahead of `engines.vscode`, which declares the lowest supported VS Code
+  version, and packaging is refused when it does. Raising the supported floor
+  stays a deliberate manual decision.
+- Updated `github/codeql-action` to 4.37.9 and `softprops/action-gh-release`
+  to 3.0.3.
+- Updated development dependencies: `esbuild` 0.28.2, `eslint` 10.9.1,
+  `typescript-eslint` 8.68.0, `ovsx` 1.1.1, and `@types/node` 26.4.0.
+
+## [0.2.5] - 2026-08-11
+
+Maintenance release. The player itself is unchanged; this covers dependency
+security fixes and listing metadata.
+
+### Security
+
+- Updated `undici` to 7.29.0, resolving five advisories (one high, four
+  moderate) covering cross-user information disclosure via cache directives,
+  response desynchronization, cookie attribute injection, and CRLF injection.
+- Updated `brace-expansion` to 5.0.9, `fast-uri` to 3.1.5, `js-yaml` to 4.3.1,
+  and `linkify-it` to 5.0.2, resolving four further advisories.
+- All of the above reach the project only through `@vscode/vsce`, which is used
+  for packaging. None of the affected code ships inside the extension.
+
+### Changed
+
+- The Marketplace version badge now comes from `vsmarketplacebadges.dev`.
+  shields.io retired its `visual-studio-marketplace` badge family, so the
+  previous badge rendered as "retired badge" for every extension.
+- Added download-count badges for the Marketplace and Open VSX listings.
+- Added a Sponsor link, which surfaces a Sponsor button on the extension page
+  and on the repository.
+
+### Packaging
+
+- Dependabot no longer opens TypeScript major-version updates. `typescript-eslint`
+  declares a peer range of `typescript >=4.8.4 <6.1.0`, so moving to TypeScript 7
+  fails dependency resolution with a conflict that cannot be fixed from this
+  side. Minor and patch updates are unaffected.
+
+## [0.2.4] - 2026-08-01
+
+Maintenance release. No user-facing behaviour changes.
+
+### Changed
+
+- Internal refactor (no behaviour change): the previously flat extension-host
+  tree is split by responsibility into `editor/` (VS Code-coupled custom editor),
+  `server/` (loopback streaming), `media/` (VS Code-independent media handling),
+  and `shared/` (the host/webview contract). A pure move plus import rewrite;
+  `extension.ts` stays at the root so `package.json` `main` is unchanged.
+
+### Security
+
+- Updated `brace-expansion` to 5.0.7, picking up an upstream fix flagged by the
+  npm security advisory feed.
+
+### Packaging
+
+- Dependency and CI action updates: TypeScript tooling (`typescript-eslint`,
+  `eslint`, `@types/node`), publishing (`ovsx`), and GitHub Actions
+  (`actions/checkout`, `actions/setup-node`, `github/codeql-action`,
+  `softprops/action-gh-release`).
+- README gained a direct link to the Marketplace listing, and a social preview
+  image was added for link previews.
+
+## [0.2.3] - 2026-06-18
+
+### Changed
+
+- Marketplace listing: expanded `keywords` (now covering "sound", "no sound",
+  "aac", "mute", and common format terms), added WebM to the display name and
+  description, and led the description with the in-sync-audio value proposition.
+- README restructured as a listing page: a demo GIF and a benefit/feature list
+  now sit above the fold, with a supported-formats table; the codec deep-dive
+  moved down to a "How it works" section.
+
+### Packaging
+
+- Excluded scratch (`.playwright-mcp/`) and the README demo GIF from the
+  published `.vsix` (the GIF is served from the repo via a raw URL instead).
+
+## [0.2.2] - 2026-06-18
+
+### Added
+
+- The "ffmpeg not found" and "workspace not trusted" notices are now actionable:
+  a button opens the relevant Settings entry or the Workspace Trust editor.
+- The video stage shows a buffering spinner while playback stalls and an error
+  overlay when a video fails to play.
+
+### Changed
+
+- The player follows the active VS Code color theme, including High Contrast, and
+  the control bar wraps onto multiple rows in narrow editors instead of clipping.
+- Improved screen-reader support: the seek bar announces a live timestamp and
+  transient status messages are exposed to assistive technology.
+
+### Fixed
+
+- Fixed the play/pause button occasionally drawing two overlapping icons.
+- The buffering spinner no longer lingers over a paused or finished video, where
+  it could look like the player had frozen.
+
+## [0.2.1] - 2026-06-17
+
+### Fixed
+
+- Fixed `.mp4` / `.mov` playback stalling and audio dropping out: the extracted
+  audio is now normalized to the video timeline so it no longer carries a
+  constant offset, and drift is corrected by gently nudging playback speed
+  instead of re-seeking the audio on every frame — which had turned a steady
+  offset into a continuous re-seek and a buffering feedback loop.
+- Audio and video now wait for each other through buffering: when the audio
+  track underruns, the video holds instead of running ahead into silence, and
+  both resume together once the audio is ready again.
+- Audio resume now waits until the track is actually buffered before starting,
+  so it no longer stalls and re-drifts immediately after a seek or recovery.
+- Real audio playback failures (decode / format / network) are now surfaced as a
+  status message instead of being silently swallowed, so the cause of silence is
+  visible.
+
+## [0.2.0] - 2026-06-17
+
+### Added
+
+- Play `.webm` files using the video element's own audio track (no separate
+  ffmpeg extraction needed for natively-decodable formats).
+- Auto-detect a same-name `.srt` / `.vtt` sidecar next to the video and show it
+  as a toggleable subtitle track (`CC` button / `c` key). `.srt` is converted to
+  WebVTT on the fly.
+- Remember the last playback position per video and resume from it on reopen
+  (restarts from the beginning when you were within the final few seconds).
+- Persist volume, mute, and playback speed across videos and sessions.
+- A-B segment loop and whole-clip loop: mark an A point and a B point to loop a
+  region (`[` / `]` keys), or toggle looping the whole clip (`\` key).
+- Frame-by-frame stepping with `,` / `.`, and a new `unmuteVideo.seekStep`
+  setting to configure the J/L and arrow-key seek width (default 10s).
+
+## [0.1.2] - 2026-06-17
+
+### Changed
+
+- Internal refactor (no behaviour change): the webview is now bundled by esbuild
+  from `src/webview/main.ts`, and the 575-line player script is split into focused
+  modules (`playerController`, `seekbar`, `dom`, `status`, `util`). The shared
+  message protocol moved from a global ambient `.d.ts` to a type-only module, the
+  two ffmpeg-probe caches were unified into one memoizer, and the audio-extraction
+  lifecycle moved into `AudioExtractionController`.
+- Expanded the test suite (pure webview helpers, ffmpeg-cache probe behaviour, and
+  the audio-extraction lifecycle) to lock the refactor in place.
+
+## [0.1.1] - 2026-06-17
+
+### Fixed
+
+- Corrected the copyright holder in the bundled `LICENSE`.
+
+### Changed
+
+- Security and Code of Conduct reports now go through GitHub's private reporting
+  instead of an email address.
+
+## [0.1.0] - 2026-06-17
+
+### Added
+
+- Initial release.
+- Custom editor for `.mp4` / `.mov` / `.m4v`.
+- Loopback HTTP server with Range support for streaming large files.
+- ffmpeg-based audio extraction (MP3) synced to the muted video, working around
+  the missing AAC codec in the VS Code webview.
+- Player UI: play/pause, seek, 10s skip, volume/mute, playback speed,
+  picture-in-picture, fullscreen, keyboard shortcuts, copy path, and open in
+  external player.
+
+### Security
+
+- Audio extraction (which runs `ffmpeg`) only happens in trusted workspaces; the
+  video plays muted until the workspace is trusted.
+- The `unmuteVideo.ffmpegPath` setting is machine-scoped, so a workspace cannot
+  redirect the extension to an arbitrary executable.
+
+[Unreleased]: https://github.com/yutabee/vscode-unmute-video/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.6...v0.3.0
+[0.2.6]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.5...v0.2.6
+[0.2.5]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.4...v0.2.5
+[0.2.4]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.1...v0.2.2
+[0.2.1]: https://github.com/yutabee/vscode-unmute-video/compare/v0.2.0...v0.2.1
+[0.2.0]: https://github.com/yutabee/vscode-unmute-video/compare/v0.1.2...v0.2.0
+[0.1.2]: https://github.com/yutabee/vscode-unmute-video/compare/v0.1.1...v0.1.2
+[0.1.1]: https://github.com/yutabee/vscode-unmute-video/compare/v0.1.0...v0.1.1
+[0.1.0]: https://github.com/yutabee/vscode-unmute-video/releases/tag/v0.1.0

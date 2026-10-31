@@ -1,0 +1,421 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.150
+Chào mừng bạn đến với khóa học về Mạng convolution
+
+2
+00:00:03.150 --> 00:00:05.430
+Thị giác máy tính là một trong những lĩnh vực được
+
+3
+00:00:05.430 --> 00:00:08.055
+phát triển nhanh chóng nhờ deep learning.
+
+4
+00:00:08.055 --> 00:00:11.490
+Thị giác máy tính deep learning hiện đang giúp ô tô tự lái
+
+5
+00:00:11.490 --> 00:00:15.320
+tìm ra vị trí của những chiếc xe khác và người đi bộ xung quanh để tránh va chạm
+
+6
+00:00:15.320 --> 00:00:18.825
+Thị giác máy tính khiến nhận dạng khuôn mặt hoạt động tốt hơn bao giờ hết,
+
+7
+00:00:18.825 --> 00:00:21.660
+có lẽ chúng ta sẽ sớm có thể, hoặc có lẽ đã
+
+8
+00:00:21.660 --> 00:00:23.360
+có thể mở khóa điện thoại,
+
+9
+00:00:23.360 --> 00:00:25.925
+thậm chí mở khóa một cánh cửa chỉ bằng khuôn mặt của mình
+
+10
+00:00:25.925 --> 00:00:27.435
+Và nếu ta nhìn vào điện thoại di động của mình,
+
+11
+00:00:27.435 --> 00:00:29.680
+Tôi cá là mọi người có nhiều ứng dụng hiển thị hình ảnh về đồ ăn,
+
+12
+00:00:29.680 --> 00:00:32.790
+hoặc hình ảnh của một khách sạn, hoặc những hình ảnh vui nhộn về phong cảnh.
+
+13
+00:00:32.790 --> 00:00:34.980
+Và một số công ty xây dựng các ứng dụng đó đang
+
+14
+00:00:34.980 --> 00:00:37.890
+sử dụng deep learning để giúp các bạn thấy những hình ảnh
+
+15
+00:00:37.890 --> 00:00:40.475
+hấp dẫn nhất, đẹp nhất, hoặc phù hợp nhất.
+
+16
+00:00:40.475 --> 00:00:45.410
+Và tôi nghĩ deep learning thậm chí còn tạo điều kiện cho các loại hình nghệ thuật mới được tạo ra.
+
+17
+00:00:45.410 --> 00:00:48.420
+Vì vậy, có hai lý do khiến tôi rất hứng thú về
+
+18
+00:00:48.420 --> 00:00:51.690
+deep learning của thị giác máy tính và lý do tôi nghĩ các bạn cũng có thể thấy hứng thú đó là
+
+19
+00:00:51.690 --> 00:00:57.445
+Đầu tiên, những tiến bộ về công nghệ nhanh chóng trong thị giác máy tính đang cho phép các ứng dụng mới có thể xem,
+
+20
+00:00:57.445 --> 00:00:59.990
+mặc dù mới chỉ vài năm trước, chúng là điều không thể
+
+21
+00:00:59.990 --> 00:01:01.230
+Và bằng cách học những công cụ này,
+
+22
+00:01:01.230 --> 00:01:06.030
+có lẽ ta sẽ có thể phát minh ra một số sản phẩm và ứng dụng mới
+
+23
+00:01:06.030 --> 00:01:09.775
+Thứ hai, ngay cả khi ta không xây dựng hệ thống thị giác máy tính,
+
+24
+00:01:09.775 --> 00:01:13.740
+Tôi thấy rằng vì cộng đồng nghiên cứu thị giác máy tính đã
+
+25
+00:01:13.740 --> 00:01:15.930
+sáng tạo và rất sáng tạo trong việc nghĩ ta
+
+26
+00:01:15.930 --> 00:01:18.375
+các kiến trúc và thuật toán neural network mới,
+
+27
+00:01:18.375 --> 00:01:23.010
+thực sự là nguồn cảm hứng tạo ra rất nhiều sự lai chéo ý tưởng sang các lĩnh vực khác.
+
+28
+00:01:23.010 --> 00:01:25.290
+Ví dụ: khi tôi đang tạo ra nhận dạng giọng nói,
+
+29
+00:01:25.290 --> 00:01:27.840
+Đôi khi tôi lấy cảm hứng từ những ý tưởng
+
+30
+00:01:27.840 --> 00:01:31.270
+từ thị giác máy tính và mượn chúng để tạo nhận dạng giọng nói
+
+31
+00:01:31.270 --> 00:01:33.570
+Vì vậy, ngay cả khi ta không làm việc với thị giác máy tính,
+
+32
+00:01:33.570 --> 00:01:37.165
+Tôi hy vọng rằng các bạn sẽ thấy một số ý tưởng mà các bạn học được trong khóa học này hữu ích
+
+33
+00:01:37.165 --> 00:01:41.244
+cho một số thuật toán và kiến trúc của các bạn.
+
+34
+00:01:41.244 --> 00:01:43.290
+Hãy cùng bắt đầu nào.
+
+35
+00:01:43.290 --> 00:01:48.570
+Dưới đây là một số ví dụ về các vấn đề thị giác máy tính mà chúng ta sẽ nghiên cứu trong khóa học này.
+
+36
+00:01:48.570 --> 00:01:50.870
+Các bạn đã thấy các classification hình ảnh,
+
+37
+00:01:50.870 --> 00:01:52.650
+đôi khi còn được gọi là nhận dạng hình ảnh,
+
+38
+00:01:52.650 --> 00:01:56.845
+nơi các bạn có thể lấy đầu vào là hình ảnh 64 x 64 chẳng hạn và cố gắng nhìn xem liệu
+
+39
+00:01:56.845 --> 00:01:58.615
+đó có phải là một con mèo không?
+
+40
+00:01:58.615 --> 00:02:02.870
+Một ví dụ khác của vấn đề thị giác máy tính là object detection.
+
+41
+00:02:02.870 --> 00:02:04.695
+Vì vậy, nếu các bạn đang chế tạo một chiếc ô tô tự lái,
+
+42
+00:02:04.695 --> 00:02:08.180
+có thể ngoài việc nhận ra rằng có những chiếc xe khác trong hình ảnh này.
+
+43
+00:02:08.180 --> 00:02:12.640
+Thay vào đó, ta cần tìm ra vị trí của những chiếc xe khác trong hình này,
+
+44
+00:02:12.640 --> 00:02:14.810
+để xe của ta có thể tránh chúng.
+
+45
+00:02:14.810 --> 00:02:16.680
+Trong object detection, thông thường,
+
+46
+00:02:16.680 --> 00:02:20.835
+ngoài việc nhận ra rằng có những vật thể khác như ô tô và hình ảnh chẳng hạn
+
+47
+00:02:20.835 --> 00:02:23.760
+thì ta còn phải vẽ các hộp xung quanh chúng.
+
+48
+00:02:23.760 --> 00:02:29.100
+Chúng ta có một số cách khác để nhận biết vị trí của những vật thể này trong hình.
+
+49
+00:02:29.100 --> 00:02:30.990
+Và cũng lưu ý, trong ví dụ này,
+
+50
+00:02:30.990 --> 00:02:34.650
+rằng có thể có nhiều ô tô trong cùng một hình ảnh
+
+51
+00:02:34.650 --> 00:02:38.515
+hoặc ít nhất mỗi chiếc xe trong một khoảng cách nhất định đối với ô tô của ta
+
+52
+00:02:38.515 --> 00:02:42.560
+Đây là một ví dụ khác, nó là một ví dụ hay hơn: neural style transfer.
+
+53
+00:02:42.560 --> 00:02:44.089
+Giả sử ta có một hình ảnh
+
+54
+00:02:44.089 --> 00:02:49.305
+và ta muốn hình ảnh này được vẽ lại theo một phong cách khác.
+
+55
+00:02:49.305 --> 00:02:50.740
+Vậy, neural style transfer.
+
+56
+00:02:50.740 --> 00:02:52.290
+ta có một hình ảnh nội dung,
+
+57
+00:02:52.290 --> 00:02:54.245
+và ta có một hình ảnh phong cách.
+
+58
+00:02:54.245 --> 00:02:56.370
+Hình ảnh bên phải thực ra là tranh của Picasso.
+
+59
+00:02:56.370 --> 00:02:59.200
+Và ta có thể dùng một neural network để kết hợp chúng lại với nhau để
+
+60
+00:02:59.200 --> 00:03:02.621
+sơn lại hình ảnh nội dung (đó là hình ảnh bên trái),
+
+61
+00:03:02.621 --> 00:03:05.605
+nhưng theo phong cách của hình ảnh bên phải,
+
+62
+00:03:05.605 --> 00:03:08.730
+và ta nhận được kết quả là hình ảnh ở dưới cùng.
+
+63
+00:03:08.730 --> 00:03:12.395
+Vậy, các thuật toán như thế này đang cho phép con người tạo ra các loại tác phẩm nghệ thuật mới.
+
+64
+00:03:12.395 --> 00:03:15.980
+Và trong khóa học này, mọi người cũng sẽ học cách tự làm điều này.
+
+65
+00:03:15.980 --> 00:03:21.185
+Một trong những thách thức của các vấn đề về thị giác máy tính là đầu vào có thể rất lớn.
+
+66
+00:03:21.185 --> 00:03:23.040
+Ví dụ, trong các khóa học trước,
+
+67
+00:03:23.040 --> 00:03:25.185
+ta đã làm việc với 64 x 64 hình ảnh.
+
+68
+00:03:25.185 --> 00:03:29.030
+Và đó là 64 x 64 x 3 vì có ba kênh màu.
+
+69
+00:03:29.030 --> 00:03:32.490
+Và nếu ta nhân nó ra, kết quả là 12288.
+
+70
+00:03:32.490 --> 00:03:37.115
+Vì vậy, x - các đặc điểm đầu vào có 12288 chiều.
+
+71
+00:03:37.115 --> 00:03:38.640
+Và điều đó không quá tệ.
+
+72
+00:03:38.640 --> 00:03:42.105
+Nhưng 64 x 64 thực sự là một hình ảnh rất nhỏ.
+
+73
+00:03:42.105 --> 00:03:44.085
+Nếu ta làm việc với hình ảnh lớn hơn,
+
+74
+00:03:44.085 --> 00:03:48.615
+có thể đây là hình ảnh 1000 pixel x 1000 pixel,
+
+75
+00:03:48.615 --> 00:03:51.095
+và đó thực ra chỉ là một megapixel.
+
+76
+00:03:51.095 --> 00:03:57.530
+Nhưng kích thước của các đặc điểm đầu vào sẽ là 1000 x 1000 x 3,
+
+77
+00:03:57.530 --> 00:03:59.640
+bởi vì ta có ba kênh RGB (red-green-blue),
+
+78
+00:03:59.640 --> 00:04:02.382
+và đó là ba triệu.
+
+79
+00:04:02.382 --> 00:04:04.590
+Nếu các bạn đang xem ảnh này trên một màn hình nhỏ hơn,
+
+80
+00:04:04.590 --> 00:04:05.790
+có thể không thấy rõ hình ảnh này có độ phân giải thấp
+
+81
+00:04:05.790 --> 00:04:08.440
+nhưng đây thực sự là hình ảnh có độ phân giải thấp 64 x 64,
+
+82
+00:04:08.440 --> 00:04:11.477
+và đây là hình ảnh có độ phân giải cao hơn 1000 x 1000.
+
+83
+00:04:11.477 --> 00:04:14.190
+Nhưng nếu ta có ba triệu đặc điểm đầu vào,
+
+84
+00:04:14.190 --> 00:04:21.155
+thì điều này có nghĩa là X ở đây sẽ là 3 triệu chiều
+
+85
+00:04:21.155 --> 00:04:27.525
+Và do đó, nếu trong layer ẩn đầu tiên, ta có thể chỉ có 1000 unit ẩn,
+
+86
+00:04:27.525 --> 00:04:36.240
+đó là tổng số trọng số của ma trận W1,
+
+87
+00:04:36.240 --> 00:04:42.620
+nếu ta sử dụng mạng tiêu chuẩn hoặc được kết nối đầy đủ như ta dùng trong các khóa học một hoặc hai.
+
+88
+00:04:42.620 --> 00:04:50.365
+Ma trận này sẽ là ma trận 1000 x 3 triệu chiều.
+
+89
+00:04:50.365 --> 00:04:55.130
+Vì X bây giờ là R x 3 triệu
+
+90
+00:04:55.130 --> 00:04:57.793
+3m. Tôi đang sử dụng nó để biểu diễn 3 triệu.
+
+91
+00:04:57.793 --> 00:05:00.485
+Và điều này có nghĩa là ma trận này ở đây sẽ có
+
+92
+00:05:00.485 --> 00:05:05.140
+ba tỷ tham số, như vậy là rất, rất lớn.
+
+93
+00:05:05.140 --> 00:05:06.820
+Và với nhiều tham số như vậy,
+
+94
+00:05:06.820 --> 00:05:12.040
+rất khó để có đủ dữ liệu để tránh khỏi tình trạng neural network trang bị nhiễu
+
+95
+00:05:12.040 --> 00:05:16.100
+Ngoài ra, các yêu cầu tính toán và yêu cầu bộ nhớ để huấn luyện
+
+96
+00:05:16.100 --> 00:05:20.870
+một neural network với ba tỷ tham số thì hơi bất khả thi một chút
+
+97
+00:05:20.870 --> 00:05:22.732
+Nhưng đối với các ứng dụng thị giác máy tính,
+
+98
+00:05:22.732 --> 00:05:25.710
+ta không muốn bị giới hạn chỉ được sử dụng những hình ảnh nhỏ
+
+99
+00:05:25.710 --> 00:05:27.880
+Ta muốn sử dụng hình ảnh lớn.
+
+100
+00:05:27.880 --> 00:05:32.020
+Để làm điều đó, ta cần triển khai tốt hơn phép toán convolution,
+
+101
+00:05:32.020 --> 00:05:35.955
+là một trong những nền tảng cơ bản của neural network convolution
+
+102
+00:05:35.955 --> 00:05:37.135
+Cùng tìm hiểu xem nó là gì
+
+103
+00:05:37.135 --> 00:05:39.505
+và cách ta có thể triển khai nó, trong video tiếp theo nhé
+
+104
+00:05:39.505 --> 00:05:40.915
+Và chúng ta sẽ minh họa convolution
+
+105
+00:05:40.915 --> 00:05:43.410
+bằng cách sử dụng ví dụ về Phát hiện cạnh (edge detection)

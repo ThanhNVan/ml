@@ -1,0 +1,470 @@
+WEBVTT
+
+1
+00:00:00.390 --> 00:00:03.860
+Trong một video trước đây, tôi đã viết 
+một công thức cho cost function cho
+
+2
+00:00:03.860 --> 00:00:05.230
+logistic regression
+
+3
+00:00:05.230 --> 00:00:09.370
+Trong video này, tôi muốn 
+giải thích nhanh về lý do
+
+4
+00:00:09.370 --> 00:00:13.490
+mà chúng ta muốn sử dụng 
+cost function đó cho logistic regression.
+
+5
+00:00:13.490 --> 00:00:16.060
+Tóm lại, trong logistic regression,
+
+6
+00:00:16.060 --> 00:00:22.000
+chúng ta có dự đoán y mũ là hàm
+ sigmoid của w chuyển vị x + b,
+
+7
+00:00:22.000 --> 00:00:27.711
+trong đó sigmoid là 
+hàm quen thuộc này.
+
+8
+00:00:27.711 --> 00:00:37.250
+Và chúng ta đã nói rằng chúng ta 
+muốn diễn giải y mũ bằng p(y = 1 | x).
+
+9
+00:00:37.250 --> 00:00:40.170
+Vì vậy, chúng ta muốn thuật toán 
+của mình xuất ra mũ y có xác suất
+
+10
+00:00:40.170 --> 00:00:45.030
+là y = 1 với một tập hợp 
+các feature đầu vào x.
+
+11
+00:00:45.030 --> 00:00:50.090
+Và nói một cách khác 
+là nếu y bằng 1
+
+12
+00:00:50.090 --> 00:00:56.020
+thì xác suất của 
+y với x bằng y mũ.
+
+13
+00:00:56.020 --> 00:00:59.170
+Và ngược lại nếu y bằng 0 thì
+
+14
+00:01:00.310 --> 00:01:05.840
+xác suất mà y bằng 0
+ là 1- y mũ, đúng chứ?
+
+15
+00:01:05.840 --> 00:01:09.150
+Như vậy, nếu y mũ 
+là xác suất mà y = 1,
+
+16
+00:01:09.150 --> 00:01:13.620
+thì 1- y mũ là xác suất mà y = 0.
+
+17
+00:01:13.620 --> 00:01:18.057
+Tôi sẽ thực hiện hai phương trình cuối cùng này 
+và chỉ cần sao chép chúng vào slide tiếp theo.
+
+18
+00:01:18.057 --> 00:01:22.684
+Vì vậy, tôi sẽ lấy
+ hai phương trình này
+
+19
+00:01:22.684 --> 00:01:28.010
+mà xác định p (y | x) cho 
+hai trường hợp y = 0 hoặc y = 1.
+
+20
+00:01:28.010 --> 00:01:33.110
+Và sau đó lấy hai phương trình này và tổng hợp
+ chúng thành một phương trình duy nhất.
+
+21
+00:01:33.110 --> 00:01:37.543
+Và chỉ để chỉ ra y phải bằng 0 hoặc 1
+ vì trong phương trình chi phí nhị phân,
+
+22
+00:01:37.543 --> 00:01:41.110
+y = 0 hoặc 1 là hai 
+trường hợp khả thi duy nhất.
+
+23
+00:01:41.110 --> 00:01:44.653
+Khi một người lấy hai phương trình 
+này và tổng hợp chúng như sau.
+
+24
+00:01:44.653 --> 00:01:48.774
+Hãy để tôi viết nó ra để bạn hình dung, rồi tôi 
+sẽ giải thích lý do tại sao nó lại trông như thế.
+
+25
+00:01:48.774 --> 00:01:54.040
+(1 - y mũ) mũ (1 - y).
+
+26
+00:01:54.040 --> 00:01:58.920
+Và hóa ra chỉ một dòng này thôi 
+đã tóm tắt hai phương trình ở trên.
+
+27
+00:01:58.920 --> 00:02:00.500
+Hãy để tôi giải thích tại sao.
+
+28
+00:02:00.500 --> 00:02:04.643
+Trong trường hợp đầu tiên, 
+giả sử y = 1, đúng chứ?
+
+29
+00:02:04.643 --> 00:02:09.562
+Vậy nếu y = 1 thì 
+số hạng này là y mũ,
+
+30
+00:02:09.562 --> 00:02:13.970
+bởi vì đó là y mũ 1.
+
+31
+00:02:13.970 --> 00:02:21.120
+Số hạng này bằng (1 - y mũ) 
+mũ (1-1), vì vậy đó là mũ 0.
+
+32
+00:02:21.120 --> 00:02:26.320
+Nhưng, bất cứ thứ gì có số mũ bằng 0
+ thì đều bằng 1, vì vậy nên nó biến mất.
+
+33
+00:02:26.320 --> 00:02:33.030
+Và như vậy, phương trình này,
+ là p(y | x) = y mũ, khi y = 1.
+
+34
+00:02:33.030 --> 00:02:37.480
+Và đó chính xác là 
+cái chúng ta muốn.
+
+35
+00:02:37.480 --> 00:02:40.250
+Thế còn trường hợp 
+thứ hai, nếu y = 0 thì sao?
+
+36
+00:02:40.250 --> 00:02:47.057
+Nếu y = 0, thì phương trình
+ ở trên là p (y | x) = y mũ mũ 0,
+
+37
+00:02:47.057 --> 00:02:51.920
+nhưng bất cứ số nào mũ 0
+ thì đều bằng 1, vì vậy
+
+38
+00:02:51.920 --> 00:02:58.267
+chỉ bằng 1 nhân
+ (1- y mũ) mũ (1- y).
+
+39
+00:02:58.267 --> 00:03:02.770
+Vậy 1- y bằng 1- 0, 
+vì vậy đây chỉ bằng 1.
+
+40
+00:03:02.770 --> 00:03:07.610
+Và do đó, phương trình này 
+bằng 1 nhân (1- y mũ) = 1- y mũ.
+
+41
+00:03:10.700 --> 00:03:17.230
+Và ở đây chúng ta có 
+y mũ = 0, p (y| x) = 1- y mũ,
+
+42
+00:03:17.230 --> 00:03:21.570
+đó chính xác là những gì 
+chúng ta muốn ở trên.
+
+43
+00:03:21.570 --> 00:03:23.690
+Do vậy những điều chúng ta vừa
+ trình bày là phương trình này
+
+44
+00:03:25.330 --> 00:03:30.331
+là công thức đúng cho p(ylx).
+
+45
+00:03:30.331 --> 00:03:36.513
+Bây giờ, cuối cùng, bởi vì hàm log
+ là một hàm tăng đơn điệu chặt chẽ,
+
+46
+00:03:36.513 --> 00:03:43.223
+khi bạn tối đa hóa log p (y | x), thì 
+bạn cũng sẽ có kết quả tương tự khi
+
+47
+00:03:43.223 --> 00:03:48.672
+tối đa hóa p (y | x). Và nếu bạn
+ tính log của p (y | x), thì nó bằng với
+
+48
+00:03:48.672 --> 00:03:54.330
+log của y mũ mũ y, 
+(1 - y mũ) mũ (1- y).
+
+49
+00:03:54.330 --> 00:04:00.810
+Và nó được đơn giản hóa
+ thành y log y mũ
+
+50
+00:04:00.810 --> 00:04:07.430
++ (1- y) nhân log(1- y mũ), đúng chứ?
+
+51
+00:04:07.430 --> 00:04:10.830
+Và điều này bằng âm hàm loss
+
+52
+00:04:10.830 --> 00:04:14.310
+mà chúng ta phải tìm trước đây.
+
+53
+00:04:14.310 --> 00:04:17.470
+Và có một dấu âm là bởi vì thông thường 
+nếu bạn đang huấn luyện một thuật toán
+
+54
+00:04:17.470 --> 00:04:20.460
+học, bạn muốn làm cho xác suất lớn
+
+55
+00:04:20.460 --> 00:04:23.980
+trong khi đó, trong logistic regression,
+ chúng ta lại thể hiện điều này.
+
+56
+00:04:23.980 --> 00:04:25.820
+Chúng ta muốn giảm thiểu hàm loss.
+
+57
+00:04:25.820 --> 00:04:30.640
+Và giảm thiểu hàm loss tương đương
+ với tối đa hóa log của xác suất.
+
+58
+00:04:30.640 --> 00:04:33.925
+Và đây là ví dụ về hàm
+ loss trên một ví dụ đơn.
+
+59
+00:04:33.925 --> 00:04:35.435
+Thế còn về cost function,
+
+60
+00:04:35.435 --> 00:04:40.435
+cost function tổng trên toàn bộ
+ training set trên m ví dụ?
+
+61
+00:04:40.435 --> 00:04:41.385
+Hãy cùng xem điều đó thôi.
+
+62
+00:04:41.385 --> 00:04:45.710
+Và xác suất của tất cả các 
+nhãn trong training set.
+
+63
+00:04:45.710 --> 00:04:47.750
+Viết cái này hơi không
+ chính thức một chút.
+
+64
+00:04:47.750 --> 00:04:51.945
+Nếu giả sử rằng các ví dụ huấn luyện
+ mà tôi đã viết độc lập hoặc viết IID,
+
+65
+00:04:51.945 --> 00:04:54.198
+là phân phối đồng nhất độc lập,
+
+66
+00:04:54.198 --> 00:04:57.810
+thì xác suất của 
+ví dụ là tích xác suất.
+
+67
+00:04:57.810 --> 00:05:03.143
+Tích từ i = 1 đến m 
+p (y (i)) khi biết x (i).
+
+68
+00:05:03.143 --> 00:05:07.970
+Và vì vậy, nếu bạn muốn thực hiện
+ ước lượng hợp lý cực đại,
+
+69
+00:05:07.970 --> 00:05:12.476
+rồi muốn tối đa hóa, thì hãy
+ tìm các tham số tối đa hóa
+
+70
+00:05:12.476 --> 00:05:15.948
+cơ hội quan sát và 
+training set của bạn.
+
+71
+00:05:15.948 --> 00:05:20.200
+Nhưng tối đa hóa điều này cũng 
+giống như tối đa hóa log, vì vậy
+
+72
+00:05:20.200 --> 00:05:22.990
+chúng ta chỉ cần 
+đặt log ở cả hai bên.
+
+73
+00:05:22.990 --> 00:05:28.640
+Và log của xác suất của các nhãn
+ trong training set là bằng,
+
+74
+00:05:28.640 --> 00:05:30.990
+log của một tích, là tổng của log.
+
+75
+00:05:30.990 --> 00:05:39.000
+Và là tổng từ i = 1 đến m 
+của log p(y (i)) đã cho x (i).
+
+76
+00:05:39.000 --> 00:05:43.582
+Và chúng ta đã tìm ra 
+trong slide trước đó
+
+77
+00:05:43.582 --> 00:05:47.630
+rằng đây là âm hàm 
+loss của y mũ i, y i.
+
+78
+00:05:48.850 --> 00:05:55.220
+Và trong thống kê, có một nguyên tắc
+ gọi là nguyên tắc ước lượng hợp lý
+
+79
+00:05:55.220 --> 00:06:00.720
+cực đại, nghĩa là chọn các
+ tham số tối đa hóa điều này.
+
+80
+00:06:00.720 --> 00:06:04.220
+Hay nói cách khác, điều đó 
+tối đa hóa điều này.
+
+81
+00:06:04.220 --> 00:06:09.510
+Âm tổng từ i = 1 
+đến m L (y mũ, y) và
+
+82
+00:06:09.510 --> 00:06:11.840
+chỉ cần di chuyển dấu âm 
+ra ngoài phương trình này.
+
+83
+00:06:11.840 --> 00:06:15.749
+Vì vậy, điều này giải thích cho
+ chi phí chúng ta đã có cho
+
+84
+00:06:15.749 --> 00:06:21.235
+logistic regression là
+ J (w, b) bằng điều này.
+
+85
+00:06:21.235 --> 00:06:27.349
+Và bởi vì bây giờ chúng ta muốn 
+giảm thiểu chi phí thay vì tối đa hóa hợp lý,
+
+86
+00:06:27.349 --> 00:06:30.095
+chúng ta cần loại bỏ dấu âm.
+
+87
+00:06:30.095 --> 00:06:35.467
+Và cuối cùng để thuận tiện, để đảm bảo rằng 
+số lượng của chúng ta có quy mô tốt hơn,
+
+88
+00:06:35.467 --> 00:06:39.310
+chúng ta chỉ cần thêm một 
+hệ số tỷ lệ bổ sung 1/ m ở đó.
+
+89
+00:06:39.310 --> 00:06:43.960
+Nhưng tóm lại, bằng cách giảm thiểu
+ cost function J (w, b) này chúng ta thực sự
+
+90
+00:06:43.960 --> 00:06:48.430
+đang thực hiện ước lượng hợp lý 
+cực đại với mô hình logistic regression.
+
+91
+00:06:48.430 --> 00:06:53.120
+Với giả định rằng các ví dụ huấn
+ luyện của chúng tôi là IID, hoặc
+
+92
+00:06:53.120 --> 00:06:55.530
+phân phối đồng nhất độc lập.
+
+93
+00:06:55.530 --> 00:06:59.550
+Cảm ơn bạn đã xem video này,
+ mặc dù nó không bắt buộc.
+
+94
+00:06:59.550 --> 00:07:03.845
+Tôi mong điều này sẽ giúp bạn hiểu lý do tại sao
+ chúng ta sử dụng cost function chúng ta làm
+
+95
+00:07:03.845 --> 00:07:05.200
+logistic regression
+
+96
+00:07:05.200 --> 00:07:09.287
+Và với điều đó, tôi hy vọng bạn sẽ 
+tiếp tục làm các bài tập lập trình và
+
+97
+00:07:09.287 --> 00:07:11.277
+các câu hỏi nhanh trong tuần này.
+
+98
+00:07:11.277 --> 00:07:14.735
+Và chúc bạn may mắn với các
+ câu hỏi nhanh và bài tập lập trình.

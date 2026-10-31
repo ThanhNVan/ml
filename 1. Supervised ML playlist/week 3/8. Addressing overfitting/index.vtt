@@ -1,0 +1,333 @@
+WEBVTT
+
+NOTE whisper small.en
+
+00:00:02.060 --> 00:00:07.220
+Later in the specialization, we'll talk about debugging and diagnosing things that can go
+
+00:00:07.220 --> 00:00:09.500
+wrong with learning algorithms.
+
+00:00:09.500 --> 00:00:16.500
+You also learn about specific tools to recognize when overfitting and underfitting may be occurring.
+
+00:00:16.500 --> 00:00:20.380
+But for now, when you think overfitting has occurred, let's talk about what you can
+
+00:00:20.380 --> 00:00:22.540
+do to address it.
+
+00:00:22.540 --> 00:00:26.220
+Let's say you fit a model and it has high variance.
+
+00:00:26.220 --> 00:00:27.820
+It's overfit.
+
+00:00:27.820 --> 00:00:32.260
+This is an overfit house price prediction model.
+
+00:00:32.260 --> 00:00:37.080
+One way to address this problem is to collect more training data.
+
+00:00:37.080 --> 00:00:39.180
+So that's one option.
+
+00:00:39.180 --> 00:00:46.220
+If you're able to get more data that is more training examples on sizes and prices of houses,
+
+00:00:46.220 --> 00:00:52.060
+then with the larger training set, the learning algorithm will learn to fit a function that
+
+00:00:52.060 --> 00:00:54.140
+is less wiggly.
+
+00:00:54.140 --> 00:01:00.220
+So you can continue to fit a high order polynomial or some other function with a lot of features.
+
+00:01:00.220 --> 00:01:04.860
+And if you have enough training examples, it will still do okay.
+
+00:01:04.860 --> 00:01:10.780
+So to summarize, the number one tool you can use against overfitting is to get more training
+
+00:01:10.780 --> 00:01:12.240
+data.
+
+00:01:12.240 --> 00:01:15.180
+Now getting more data isn't always an option.
+
+00:01:15.180 --> 00:01:18.620
+Maybe only so many houses have been sold in this location.
+
+00:01:18.620 --> 00:01:21.740
+So maybe there just isn't more data to be had.
+
+00:01:21.740 --> 00:01:24.780
+But when the data is available, this can work really well.
+
+00:01:24.780 --> 00:01:31.580
+A second option for addressing overfitting is to see if you can use fewer features.
+
+00:01:31.580 --> 00:01:38.460
+In the previous video, our model's features included the size x as was the size squared
+
+00:01:38.460 --> 00:01:44.420
+and the six squared and xq and x4 and so on.
+
+00:01:44.420 --> 00:01:47.980
+These were a lot of polynomial features.
+
+00:01:47.980 --> 00:01:54.100
+So in that case, one way to reduce overfitting is to just not use so many of these polynomial
+
+00:01:54.100 --> 00:01:55.500
+features.
+
+00:01:55.500 --> 00:01:58.380
+But now let's look at a different example.
+
+00:01:58.380 --> 00:02:02.420
+Maybe you have a lot of different features of a house with which to try to predict its
+
+00:02:02.420 --> 00:02:07.740
+price ranging from the size number of bedrooms, number of floors, the age, average income
+
+00:02:07.740 --> 00:02:13.260
+of the neighborhood, and so on and so forth to the distance to the nearest coffee shop.
+
+00:02:13.260 --> 00:02:18.700
+It turns out that if you have a lot of features like these, but don't have enough training
+
+00:02:18.700 --> 00:02:24.220
+data, then your learning algorithm may also overfit to your training set.
+
+00:02:24.220 --> 00:02:29.180
+Now instead of using all 100 features, if we were to pick just a subset of the most
+
+00:02:29.180 --> 00:02:37.100
+useful ones, maybe size, bedrooms, and the age of the house, if you think those are
+
+00:02:37.100 --> 00:02:41.860
+the most relevant features, then using just that smaller subset of features, you may
+
+00:02:41.860 --> 00:02:46.620
+find that your model no longer overfits as badly.
+
+00:02:46.620 --> 00:02:52.780
+Choosing the most appropriate set of features to use is sometimes also called feature selection.
+
+00:02:52.780 --> 00:02:57.780
+One way you could do so is to use your intuition to choose what you think is the best set of
+
+00:02:57.780 --> 00:03:01.660
+features, what's most relevant for predicting the price.
+
+00:03:01.660 --> 00:03:08.340
+Now one disadvantage of feature selection is that by using only a subset of the features,
+
+00:03:08.340 --> 00:03:13.260
+the algorithm is throwing away some of the information that you have about the houses.
+
+00:03:13.260 --> 00:03:18.700
+For example, maybe all of these features or 100 of them are actually useful for predicting
+
+00:03:18.700 --> 00:03:20.340
+the price of a house.
+
+00:03:20.340 --> 00:03:24.660
+So maybe you don't want to throw away some of the information by throwing away some of
+
+00:03:24.660 --> 00:03:26.660
+the features.
+
+00:03:26.660 --> 00:03:32.340
+Later in course two, you also see some algorithms for automatically choosing the most appropriate
+
+00:03:32.340 --> 00:03:35.660
+set of features to use for prediction tasks.
+
+00:03:35.660 --> 00:03:39.740
+Now this takes us to the third option for reducing overfitting.
+
+00:03:39.740 --> 00:03:44.500
+This technique, which we'll look at in even greater depth in the next video, is called
+
+00:03:44.500 --> 00:03:47.200
+regularization.
+
+00:03:47.200 --> 00:03:54.460
+If you look at an overfit model, here's a model using polynomial features, x x squared,
+
+00:03:54.460 --> 00:03:56.060
+x cubed, and so on.
+
+00:03:56.060 --> 00:04:00.300
+You find that the parameters are often relatively large.
+
+00:04:00.300 --> 00:04:05.580
+Now if you were to eliminate some of these features, say if you were to eliminate the
+
+00:04:05.580 --> 00:04:13.120
+feature x four, that corresponds to setting this parameter to zero.
+
+00:04:13.120 --> 00:04:18.420
+So setting a parameter to zero is equivalent to eliminating a feature, which is what we
+
+00:04:18.420 --> 00:04:21.060
+saw on the previous slide.
+
+00:04:21.060 --> 00:04:26.740
+It turns out that regularization is a way to more gently reduce the impacts of some of
+
+00:04:26.740 --> 00:04:32.380
+the features without doing something as harsh as eliminating it outright.
+
+00:04:32.380 --> 00:04:37.340
+What regularization does is encourage the learning algorithm to shrink the values of
+
+00:04:37.340 --> 00:04:44.020
+the parameters without necessarily demanding that the parameter is set to exactly zero.
+
+00:04:44.020 --> 00:04:49.460
+And it turns out that even if you fit a higher order polynomial like this, so long as you
+
+00:04:49.460 --> 00:04:56.060
+can get the algorithm to use smaller parameter values, w1, w2, w3, w4, you end up with
+
+00:04:56.060 --> 00:05:00.860
+a curve that ends up fitting the training data much better.
+
+00:05:00.860 --> 00:05:06.340
+So what regularization does is it lets you keep all of your features, but it just prevents
+
+00:05:06.340 --> 00:05:12.300
+the features from having an overly large effect, which is what sometimes can cause
+
+00:05:12.300 --> 00:05:13.300
+overfitting.
+
+00:05:13.300 --> 00:05:21.140
+By the way, by convention, we normally just reduce the size of the wj parameters that
+
+00:05:21.140 --> 00:05:23.420
+is w1 through wn.
+
+00:05:23.420 --> 00:05:28.260
+It kind of doesn't make a huge difference whether you regularize the parameter b as
+
+00:05:28.260 --> 00:05:29.260
+well.
+
+00:05:29.260 --> 00:05:31.540
+You could do so if you want or not if you don't.
+
+00:05:31.540 --> 00:05:38.020
+I usually don't, and it's just fine to regularize w1, w2, all the way to wn, but
+
+00:05:38.020 --> 00:05:41.700
+not really encourage b to become smaller.
+
+00:05:41.700 --> 00:05:47.860
+In practice, it should make very little difference whether you also regularize b or not.
+
+00:05:47.860 --> 00:05:49.620
+So to recap.
+
+00:05:49.620 --> 00:05:54.460
+These are the three ways you saw in this video for addressing overfitting.
+
+00:05:54.460 --> 00:05:55.780
+1.
+
+00:05:55.780 --> 00:05:57.260
+Collect more data.
+
+00:05:57.260 --> 00:06:02.540
+If you can get more data, this can really help reduce overfitting.
+
+00:06:02.540 --> 00:06:07.860
+Sometimes that's not possible, in which case some of their options are 2.
+
+00:06:07.860 --> 00:06:12.180
+Try selecting and using only a subset of the features.
+
+00:06:12.180 --> 00:06:16.620
+You learn more about feature selection in course 2.
+
+00:06:16.980 --> 00:06:17.980
+3.
+
+00:06:17.980 --> 00:06:23.740
+Reduce the size of the parameters using regularization.
+
+00:06:23.740 --> 00:06:27.140
+This will be the subject of the next video as well.
+
+00:06:27.140 --> 00:06:29.900
+Just for myself, I use regularization all the time.
+
+00:06:29.900 --> 00:06:34.820
+So this is a very useful technique for training learning algorithms, including neural networks
+
+00:06:34.820 --> 00:06:38.900
+specifically which you see later in this specialization as well.
+
+00:06:38.900 --> 00:06:44.340
+I hope you also check out the optional lab on overfitting.
+
+00:06:44.340 --> 00:06:50.140
+In the lab, you will see different examples of overfitting and adjust those examples by
+
+00:06:50.140 --> 00:06:53.180
+clicking on options in the plots.
+
+00:06:53.180 --> 00:06:58.980
+You also be able to add your own data points by clicking on the plot and see how that changes
+
+00:06:58.980 --> 00:07:01.440
+the curve that is fit.
+
+00:07:01.440 --> 00:07:07.580
+You can also try examples for both regression and classification, and you will change the
+
+00:07:07.580 --> 00:07:13.900
+degree of the polynomial to be x, x squared, x cubed, and so on.
+
+00:07:13.900 --> 00:07:19.280
+The lab also lets you play with two different options for adjusting overfitting.
+
+00:07:19.280 --> 00:07:24.540
+You can add additional training data to reduce overfitting, and you can also select which
+
+00:07:24.540 --> 00:07:31.140
+features to include or to exclude as another way to try to reduce overfitting.
+
+00:07:31.140 --> 00:07:35.200
+So please take a look at the lab, which I hope will help you build your intuition
+
+00:07:35.200 --> 00:07:40.180
+about overfitting as well as some methods for adjusting it.
+
+00:07:40.180 --> 00:07:45.980
+In this video, you also saw the idea of regularization at a relatively high level.
+
+00:07:45.980 --> 00:07:52.420
+I realize that all of these details on regularization may not fully make sense to you yet, but in
+
+00:07:52.420 --> 00:07:58.140
+the next video, we'll start to formulate exactly how to apply regularization and exactly
+
+00:07:58.140 --> 00:08:00.140
+what regularization means.
+
+00:08:00.140 --> 00:08:04.980
+And then we'll start to figure out how to make this work with our learning algorithms
+
+00:08:04.980 --> 00:08:10.340
+to make linear regression and logistic regression, and in the future, other algorithms as well
+
+00:08:10.340 --> 00:08:12.220
+avoid overfitting.
+
+00:08:12.220 --> 00:08:14.060
+Let's take a look at that in the next video.

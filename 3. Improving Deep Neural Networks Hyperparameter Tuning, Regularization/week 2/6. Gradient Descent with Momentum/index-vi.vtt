@@ -1,0 +1,526 @@
+WEBVTT
+
+00:00:00.050 --> 00:00:04.870
+Có một thuật toán được gọi là Động lượng hoặc
+Gradient descent với Động
+
+00:00:04.870 --> 00:00:09.690
+lượng hầu như luôn hoạt động nhanh hơn thuật
+toán gradient descent tiêu chuẩn.
+
+00:00:09.690 --> 00:00:14.290
+Trong một câu, ý tưởng cơ bản là tính giá trị
+trung bình theo cấp số nhân
+
+00:00:14.290 --> 00:00:18.890
+của độ dốc của bạn và sau đó sử dụng độ dốc đó
+để cập nhật trọng số của bạn.
+
+00:00:18.890 --> 00:00:21.710
+Trong video này, chúng ta hãy giải nén một câu
+mô tả đó
+
+00:00:21.710 --> 00:00:24.530
+và xem bạn có thể thực sự triển khai điều này
+như thế nào.
+
+00:00:24.530 --> 00:00:27.590
+Trong hầu hết các ví dụ, giả sử bạn đang cố
+gắng
+
+00:00:27.590 --> 00:00:30.650
+tối ưu hóa cost function có đường viền như thế
+này.
+
+00:00:30.650 --> 00:00:34.550
+Vì vậy, dấu chấm màu đỏ biểu thị vị trí tối
+thiểu.
+
+00:00:34.550 --> 00:00:37.943
+Có thể bạn bắt đầu gradient descent ở đây và
+nếu bạn thực
+
+00:00:37.943 --> 00:00:41.337
+hiện một lần lặp lại quá trình
+gradient descent,
+
+00:00:41.337 --> 00:00:44.730
+gradient descent theo đợt hoặc theo đợt nhỏ,
+có thể cuối cùng bạn sẽ đến đó.
+
+00:00:44.730 --> 00:00:48.310
+Nhưng bây giờ bạn đang ở phía bên kia của hình
+elip này, và nếu bạn
+
+00:00:48.310 --> 00:00:51.890
+thực hiện một bước gradient descent khác, có
+thể bạn sẽ làm được điều đó.
+
+00:00:51.890 --> 00:00:55.730
+Và rồi một bước nữa, một bước nữa, v.v.
+
+00:00:55.730 --> 00:01:00.930
+Và bạn thấy rằng việc gradient descent sẽ mất
+rất nhiều bước, phải không?
+
+00:01:00.930 --> 00:01:07.370
+Chỉ cần dao động từ từ về mức tối thiểu.
+
+00:01:07.370 --> 00:01:11.030
+Và những dao động lên xuống này làm chậm quá
+trình
+
+00:01:11.030 --> 00:01:14.690
+gradient descent và ngăn bạn sử dụng
+learning rate lớn hơn nhiều.
+
+00:01:14.690 --> 00:01:18.250
+Đặc biệt, nếu bạn sử dụng learning rate lớn
+hơn nhiều, bạn
+
+00:01:18.250 --> 00:01:21.810
+có thể sẽ vượt quá giới hạn và cuối cùng sẽ
+phân kỳ như vậy.
+
+00:01:21.810 --> 00:01:25.860
+Và do đó, nhu cầu ngăn chặn các dao động trở
+nên quá
+
+00:01:25.860 --> 00:01:29.910
+lớn buộc bạn phải sử dụng learning rate không
+quá lớn.
+
+00:01:29.910 --> 00:01:34.500
+Một cách khác để xem vấn đề này là trên trục
+tung, bạn muốn việc
+
+00:01:34.500 --> 00:01:39.090
+học của mình chậm hơn một chút vì bạn không
+muốn những dao động đó.
+
+00:01:39.090 --> 00:01:46.190
+Nhưng trên trục hoành, bạn muốn học nhanh hơn,
+phải không?
+
+00:01:46.190 --> 00:01:49.120
+Bởi vì bạn muốn nó di chuyển mạnh mẽ từ trái
+sang
+
+00:01:49.120 --> 00:01:52.050
+phải về phía mức tối thiểu đó, về phía chấm đỏ
+đó.
+
+00:01:52.050 --> 00:01:55.460
+Vì vậy, đây là những gì bạn có thể làm nếu
+
+00:01:55.460 --> 00:01:58.870
+triển khai việc gradient descent bằng động
+lượng.
+
+00:01:58.870 --> 00:02:08.910
+Trên mỗi lần lặp, hay cụ thể hơn là trong lần
+lặp t, bạn sẽ tính toán thông thường
+
+00:02:08.910 --> 00:02:14.110
+đạo hàm, dW, dB, tôi sẽ bỏ qua dấu ngoặc vuông
+siêu,
+
+00:02:14.110 --> 00:02:19.310
+siêu vuông L, nhưng bạn tính dW, dB trên lô
+nhỏ hiện tại.
+
+00:02:19.310 --> 00:02:21.810
+Và nếu bạn đang sử dụng phương pháp
+gradient descent hàng loạt
+
+00:02:21.810 --> 00:02:24.310
+thì bạn biết đấy, lô nhỏ hiện tại sẽ chỉ là
+toàn bộ lô của bạn.
+
+00:02:24.310 --> 00:02:26.790
+Và điều này cũng có tác dụng đối với việc
+gradient descent hàng loạt.
+
+00:02:26.790 --> 00:02:29.210
+Vì vậy, nếu lô nhỏ hiện tại của bạn là toàn bộ
+
+00:02:29.210 --> 00:02:31.630
+training set của bạn thì điều này cũng hoạt
+động tốt.
+
+00:02:31.630 --> 00:02:46.030
+Và sau đó việc bạn làm là tính V, dW, bằng
+beta VdW cộng 1 trừ beta dW.
+
+00:02:46.030 --> 00:02:51.010
+Vì vậy, điều này tương tự như khi trước đây
+chúng ta
+
+00:02:51.010 --> 00:02:55.990
+tính V theta bằng beta V theta cộng 1 trừ beta
+theta t.
+
+00:02:55.990 --> 00:03:02.750
+Vì vậy, nó đang tính trung bình động của đạo
+hàm W mà bạn đang nhận được.
+
+00:03:02.750 --> 00:03:14.100
+Và sau đó bạn tính tương tự V, dB bằng cộng 1
+trừ beta nhân dB.
+
+00:03:14.100 --> 00:03:18.353
+Và sau đó bạn sẽ cập nhật trọng số của mình
+bằng cách sử dụng
+
+00:03:18.353 --> 00:03:22.607
+W, được cập nhật dưới dạng W trừ đi số lần
+learning rate, thay
+
+00:03:22.607 --> 00:03:26.860
+vì cập nhật nó bằng dW bằng đạo hàm, bạn sẽ
+cập nhật nó bằng V,
+
+00:03:26.860 --> 00:03:28.300
+dW.
+
+00:03:28.300 --> 00:03:35.700
+Và tương tự, B được cập nhật là B trừ alpha
+nhân V, dB.
+
+00:03:35.700 --> 00:03:41.300
+Vì vậy, điều này làm trơn tru các bước
+gradient descent.
+
+00:03:41.300 --> 00:03:44.860
+Ví dụ, giả sử rằng trong vài đạo hàm cuối cùng
+mà bạn
+
+00:03:44.860 --> 00:03:48.420
+tính được là cái này, cái này, cái này, cái
+này, cái này.
+
+00:03:48.420 --> 00:03:52.090
+Nếu bạn tính trung bình các gradient này, bạn
+sẽ thấy rằng các dao động theo
+
+00:03:52.090 --> 00:03:55.760
+hướng thẳng đứng sẽ có xu hướng lấy trung bình
+về một giá trị nào đó gần bằng 0.
+
+00:03:55.760 --> 00:03:59.470
+Vì vậy, theo hướng dọc, nơi bạn muốn làm mọi
+thứ chậm
+
+00:03:59.470 --> 00:04:03.180
+lại, điều này sẽ tính trung bình các số dương
+và âm.
+
+00:04:03.180 --> 00:04:05.580
+Vì vậy, mức trung bình sẽ gần bằng không.
+
+00:04:05.580 --> 00:04:11.100
+Trong khi theo hướng ngang, tất cả các đạo hàm
+đều hướng về bên phải theo hướng ngang.
+
+00:04:11.100 --> 00:04:14.420
+Vì vậy, mức trung bình theo chiều ngang vẫn sẽ
+khá lớn.
+
+00:04:14.420 --> 00:04:18.387
+Vì vậy, đó là lý do tại sao với thuật toán
+này, với một vài
+
+00:04:18.387 --> 00:04:22.353
+lần lặp lại, bạn sẽ thấy rằng việc
+gradient descent theo động
+
+00:04:22.353 --> 00:04:26.320
+lượng cuối cùng chỉ thực hiện các bước có dao
+động nhỏ hơn nhiều
+
+00:04:26.320 --> 00:04:30.050
+theo hướng thẳng đứng, nhưng hướng nhiều hơn
+về
+
+00:04:30.050 --> 00:04:33.780
+hướng ngang, chỉ di chuyển nhanh theo hướng
+ngang.
+
+00:04:33.780 --> 00:04:36.873
+Và do đó, điều này cho phép thuật toán của
+bạn, bạn biết
+
+00:04:36.873 --> 00:04:39.967
+đấy, đi theo một đường đi đơn giản hơn hoặc ít
+hơn để giảm
+
+00:04:39.967 --> 00:04:43.060
+thiểu các dao động trên đường đi của nó đến
+mức tối thiểu.
+
+00:04:43.060 --> 00:04:46.567
+Một trực giác về động lượng này, có tác dụng
+với một số người
+
+00:04:46.567 --> 00:04:50.073
+chứ không phải với tất cả mọi người, là nếu
+bạn đang cố gắng
+
+00:04:50.073 --> 00:04:53.580
+giảm thiểu, bạn biết đấy, hàm số hình cánh
+cung, đúng, đây, đây là
+
+00:04:53.580 --> 00:04:57.180
+thực sự là những đường nét của một cái nơ, ừm,
+tôi đoán là
+
+00:04:57.180 --> 00:05:00.780
+tôi vẽ không giỏi lắm, nhưng bạn đang cố gắng
+giảm thiểu loại
+
+00:05:00.780 --> 00:05:04.380
+hàm hình cánh cung này, thì những thuật ngữ
+phái sinh này, bạn
+
+00:05:04.380 --> 00:05:11.660
+có thể coi như là tạo ra gia tốc cho quả bóng
+đang lăn xuống dốc.
+
+00:05:11.660 --> 00:05:21.220
+Và những số hạng động lượng này bạn có thể coi
+là đại diện cho vận tốc.
+
+00:05:21.220 --> 00:05:25.080
+Và hãy tưởng tượng rằng bạn có một cái cung và
+bạn lấy một
+
+00:05:25.080 --> 00:05:28.940
+quả bóng và đạo hàm truyền gia tốc cho quả
+bóng nhỏ này.
+
+00:05:28.940 --> 00:05:32.540
+Đó là một quả bóng nhỏ đang lăn xuống ngọn đồi
+này phải không?
+
+00:05:32.540 --> 00:05:38.080
+Và do đó, nó lăn ngày càng nhanh hơn do gia
+tốc và beta, bởi vì con số
+
+00:05:38.080 --> 00:05:43.620
+này nhỏ hơn một một chút, điều này đóng vai
+trò ma sát và nó ngăn cản
+
+00:05:43.620 --> 00:05:47.500
+quả bóng của bạn, bạn biết đấy, tăng tốc không
+giới hạn.
+
+00:05:47.500 --> 00:05:52.153
+Nhưng thay vì đi xuống dốc, chỉ thực hiện từng
+bước một cách độc lập với
+
+00:05:52.153 --> 00:05:56.807
+tất cả các bước trước đó, giờ đây quả bóng nhỏ
+của bạn có thể lăn xuống
+
+00:05:56.807 --> 00:06:01.460
+dốc và lấy đà, nhưng bạn có thể tăng tốc xuống
+cung này và do đó lấy được đà.
+
+00:06:01.460 --> 00:06:05.220
+Tôi thấy rằng quả bóng này lăn xuống một cánh
+cung tương tự, nó có vẻ có tác dụng với
+
+00:06:05.220 --> 00:06:08.980
+một số người thích trực giác vật lý, nhưng nó
+không có tác dụng với tất cả mọi người.
+
+00:06:08.980 --> 00:06:11.940
+Vì vậy, nếu ví dụ về một quả bóng lăn xuống
+một chiếc
+
+00:06:11.940 --> 00:06:14.900
+cung không có tác dụng với bạn, thì đừng lo
+lắng về điều đó.
+
+00:06:14.900 --> 00:06:18.140
+Cuối cùng, hãy xem một số chi tiết về cách bạn
+triển khai điều này.
+
+00:06:18.140 --> 00:06:19.220
+Đây là thuật toán.
+
+00:06:19.220 --> 00:06:24.840
+Và vì vậy, bây giờ bạn có hai siêu tham số,
+learning rate tập alpha, cũng như
+
+00:06:24.840 --> 00:06:30.460
+tham số beta này, kiểm soát mức trung bình có
+trọng số theo cấp số nhân của bạn.
+
+00:06:30.460 --> 00:06:33.100
+Giá trị phổ biến nhất cho phiên bản beta là
+0,9.
+
+00:06:33.100 --> 00:06:35.620
+Chúng tôi đang tính trung bình nhiệt độ của 10
+ngày qua.
+
+00:06:35.620 --> 00:06:39.780
+Vì vậy, điều này giống như tính trung bình của
+10 lần lặp gradient cuối cùng.
+
+00:06:39.780 --> 00:06:43.060
+Và trong thực tế, beta bằng 0,9 hoạt động rất
+tốt.
+
+00:06:43.060 --> 00:06:46.540
+Vui lòng thử các giá trị khác nhau và thực
+hiện một số tìm
+
+00:06:46.540 --> 00:06:50.020
+kiếm siêu tham số, nhưng 0,9 dường như là một
+giá trị khá mạnh.
+
+00:06:50.020 --> 00:06:52.020
+Vâng, còn việc điều chỉnh sai lệch thì sao?
+
+00:06:52.020 --> 00:06:58.060
+Vậy bạn có muốn lấy VdW và Vdb chia cho 1 trừ
+beta cho T không?
+
+00:06:58.060 --> 00:07:02.240
+Trong thực tế, mọi người thường không làm điều
+này vì chỉ sau 10 lần lặp,
+
+00:07:02.240 --> 00:07:06.420
+đường trung bình động của bạn sẽ ấm lên và
+không còn ước tính sai lệch nữa.
+
+00:07:06.420 --> 00:07:10.600
+Vì vậy, trong thực tế, tôi thực sự không thấy
+mọi người bận tâm đến
+
+00:07:10.600 --> 00:07:14.780
+việc hiệu chỉnh sai lệch khi thực hiện động
+lượng hoặc gradient descent.
+
+00:07:14.780 --> 00:07:18.900
+Và tất nhiên, quá trình này khởi tạo với VdW
+bằng 0.
+
+00:07:18.900 --> 00:07:24.760
+Lưu ý rằng đây là ma trận các số 0 có cùng
+chiều với dW, tức
+
+00:07:24.760 --> 00:07:30.620
+là cùng chiều với W. Và Vdb cũng được khởi tạo
+thành vectơ 0.
+
+00:07:30.620 --> 00:07:35.300
+Vì vậy, cùng kích thước với dB, do đó có cùng
+kích thước với B.
+
+00:07:35.300 --> 00:07:41.940
+Cuối cùng, tôi vừa đề cập rằng nếu bạn đọc tài
+liệu về gradient descent theo động
+
+00:07:41.940 --> 00:07:48.580
+lượng, bạn thường thấy nó bị bỏ qua thuật ngữ
+này, với thuật ngữ 1 trừ beta bị bỏ qua.
+
+00:07:48.580 --> 00:07:57.020
+Vì vậy, bạn kết thúc với VdW bằng beta, VdW
+cộng dW.
+
+00:07:57.020 --> 00:08:02.180
+Và hiệu quả thực sự của việc sử dụng phiên bản
+màu tím này là VdW cuối cùng
+
+00:08:02.180 --> 00:08:07.340
+được chia tỷ lệ theo hệ số 1 trừ beta, hoặc
+thực sự là 1 trên 1 trừ beta.
+
+00:08:07.340 --> 00:08:11.760
+Và vì vậy, khi bạn thực hiện các cập nhật
+gradient descent này,
+
+00:08:11.760 --> 00:08:16.180
+alpha chỉ cần thay đổi theo giá trị tương ứng
+hoặc 1 trên 1 trừ beta.
+
+00:08:16.180 --> 00:08:18.740
+Trong thực tế, cả hai điều này sẽ hoạt động
+tốt.
+
+00:08:18.740 --> 00:08:23.700
+Nó chỉ ảnh hưởng đến giá trị tốt nhất của
+learning rate tập alpha là gì.
+
+00:08:23.700 --> 00:08:27.220
+Nhưng tôi thấy rằng công thức cụ thể này kém
+trực quan hơn
+
+00:08:27.220 --> 00:08:30.740
+một chút, bởi vì một tác động của việc này là
+nếu bạn điều
+
+00:08:30.740 --> 00:08:34.260
+chỉnh phiên bản beta siêu tham số thì điều này
+sẽ ảnh hưởng đến
+
+00:08:34.260 --> 00:08:37.740
+việc mở rộng quy mô của VdW và Vdb là tốt.
+
+00:08:37.740 --> 00:08:42.660
+Và vì vậy, có thể bạn cũng cần phải điều chỉnh
+lại learning rate tập alpha.
+
+00:08:42.660 --> 00:08:46.080
+Vì vậy, cá nhân tôi thích công thức mà tôi đã
+viết
+
+00:08:46.080 --> 00:08:49.500
+ở đây bên trái hơn là bỏ đi thuật ngữ beta 1
+trừ.
+
+00:08:49.500 --> 00:08:52.220
+Vì vậy, tôi có xu hướng sử dụng công thức ở
+bên
+
+00:08:52.220 --> 00:08:54.940
+trái, công thức được in, với số hạng beta trừ
+1.
+
+00:08:54.940 --> 00:09:00.180
+Nhưng cả hai phiên bản, có beta bằng 0,9 là
+lựa chọn phổ biến của siêu tham số.
+
+00:09:00.180 --> 00:09:02.480
+Chỉ là alpha, learning rate, sẽ cần được điều
+
+00:09:02.480 --> 00:09:04.780
+chỉnh khác nhau cho hai phiên bản khác nhau
+này.
+
+00:09:04.780 --> 00:09:07.460
+Vậy là xong việc gradient descent theo động
+lượng.
+
+00:09:07.460 --> 00:09:10.300
+Điều này hầu như sẽ luôn hoạt động tốt hơn
+thuật
+
+00:09:10.300 --> 00:09:13.140
+toán gradient descent đơn giản mà không có
+động lượng.
+
+00:09:13.140 --> 00:09:15.120
+Nhưng vẫn còn những điều khác chúng tôi có
+
+00:09:15.120 --> 00:09:17.100
+thể làm để tăng tốc thuật toán học tập của
+bạn.
+
+00:09:17.100 --> 00:09:19.980
+Hãy tiếp tục nói về những điều này trong vài
+video tiếp theo.

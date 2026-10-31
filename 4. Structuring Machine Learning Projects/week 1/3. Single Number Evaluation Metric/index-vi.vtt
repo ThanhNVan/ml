@@ -1,0 +1,429 @@
+WEBVTT
+
+1
+00:00:00.252 --> 00:00:03.417
+Cho dù bạn đang điều chỉnh các siêu tham số, hoặc thử các ý tưởng khác nhau cho các
+
+2
+00:00:03.417 --> 00:00:06.047
+thuật toán học tập, hoặc chỉ thử các tùy chọn khác nhau để
+
+3
+00:00:06.047 --> 00:00:07.764
+xây dựng hệ thống machine learning của bạn.
+
+4
+00:00:07.764 --> 00:00:12.016
+Bạn sẽ thấy rằng tiến độ của bạn sẽ nhanh hơn nhiều nếu bạn có một chỉ
+
+5
+00:00:12.016 --> 00:00:16.064
+số đánh giá số thực duy nhất cho phép bạn nhanh chóng biết nếu điều mới bạn
+
+6
+00:00:16.064 --> 00:00:20.260
+vừa thử làm việc tốt hơn hoặc tệ hơn ý tưởng cuối cùng của bạn.
+
+7
+00:00:20.260 --> 00:00:24.710
+Vì vậy, khi các nhóm đang bắt đầu vào một dự án machine learning, tôi thường khuyên
+
+8
+00:00:24.710 --> 00:00:29.570
+bạn nên thiết lập một chỉ số đánh giá số thực cho vấn đề của bạn.
+
+9
+00:00:29.570 --> 00:00:30.600
+Hãy nhìn vào một ví dụ.
+
+10
+00:00:32.400 --> 00:00:35.244
+Bạn đã nghe tôi nói trước khi ứng dụng machine learning là một
+
+11
+00:00:35.244 --> 00:00:36.165
+quá trình rất thực nghiệm.
+
+12
+00:00:36.165 --> 00:00:40.360
+Chúng ta thường có một ý tưởng, mã hóa nó, chạy thử nghiệm để xem nó đã làm thế nào, và
+
+13
+00:00:40.360 --> 00:00:44.100
+sau đó sử dụng kết quả của thí nghiệm để tinh chỉnh ý tưởng của bạn.
+
+14
+00:00:44.100 --> 00:00:48.590
+Và sau đó tiếp tục đi xung quanh vòng lặp này khi bạn tiếp tục cải thiện thuật toán của bạn.
+
+15
+00:00:48.590 --> 00:00:54.124
+Vì vậy, giả sử cho bộ classification của bạn, trước đây bạn đã xây dựng một số bộ classification A
+
+16
+00:00:54.124 --> 00:00:58.036
+và bằng cách thay đổi các siêu tham số và các bộ đào tạo hoặc một
+
+17
+00:00:58.036 --> 00:01:02.032
+số thứ khác, bây giờ bạn đã đào tạo một bộ classification mới, B.
+
+18
+00:01:02.032 --> 00:01:06.866
+Vì vậy, một cách hợp lý để đánh giá hiệu suất của các bộ classification của bạn là
+
+19
+00:01:06.866 --> 00:01:08.680
+nhìn vào nó độ chính xác và thu hồi.
+
+20
+00:01:08.680 --> 00:01:12.804
+Các chi tiết chính xác về độ chính xác và thu hồi không quan trọng quá nhiều đối với
+
+21
+00:01:12.804 --> 00:01:13.650
+ví dụ này.
+
+22
+00:01:13.650 --> 00:01:16.594
+Nhưng một thời gian ngắn, định nghĩa về độ chính xác là,
+
+23
+00:01:16.594 --> 00:01:20.207
+ví dụ mà người classification của bạn nhận ra là mèo,
+
+24
+00:01:23.068 --> 00:01:26.741
+Phần trăm thực sự là mèo?
+
+25
+00:01:32.341 --> 00:01:37.045
+Vì vậy, nếu classification A có độ chính xác 95%, điều này có nghĩa là khi classification A nói một
+
+26
+00:01:37.045 --> 00:01:41.830
+cái gì đó là một con mèo, có một 95% cơ hội nó thực sự là một con mèo.
+
+27
+00:01:41.830 --> 00:01:45.878
+Và nhớ lại là, trong tất cả những hình ảnh thực sự là mèo,
+
+28
+00:01:45.878 --> 00:01:50.731
+tỷ lệ phần trăm nào đã được công nhận chính xác bởi nhà classification của bạn?
+
+29
+00:01:50.731 --> 00:01:57.110
+Vì vậy, những gì tỷ lệ phần trăm của mèo thực tế, được công nhận một cách chính xác?
+
+30
+00:02:04.331 --> 00:02:08.986
+Vì vậy, nếu classification A là 90% thu hồi, điều này có nghĩa là của tất cả các hình ảnh trong, nói,
+
+31
+00:02:08.986 --> 00:02:11.010
+bộ dev của bạn mà thực sự là mèo,
+
+32
+00:02:11.010 --> 00:02:13.987
+classification A chính xác kéo ra 90% trong số họ.
+
+33
+00:02:13.987 --> 00:02:19.049
+Vì vậy, đừng lo lắng quá nhiều về các định nghĩa về độ chính xác và nhớ lại.
+
+34
+00:02:19.049 --> 00:02:23.933
+Nó chỉ ra rằng thường có một sự cân bằng giữa độ chính xác và
+
+35
+00:02:23.933 --> 00:02:26.845
+thu hồi, và bạn quan tâm đến cả hai.
+
+36
+00:02:26.845 --> 00:02:29.455
+Bạn muốn điều đó, khi người classification nói một cái gì đó là một con mèo,
+
+37
+00:02:29.455 --> 00:02:31.765
+có một khả năng cao nó thực sự là một con mèo.
+
+38
+00:02:31.765 --> 00:02:33.475
+Nhưng trong tất cả những hình ảnh đó là mèo,
+
+39
+00:02:33.475 --> 00:02:37.905
+bạn cũng muốn nó kéo một phần lớn chúng như mèo.
+
+40
+00:02:37.905 --> 00:02:40.865
+Vì vậy, nó có thể là hợp lý để cố gắng đánh giá
+
+41
+00:02:40.865 --> 00:02:44.685
+các đơn vị classification về độ chính xác của nó và thu hồi của nó.
+
+42
+00:02:44.685 --> 00:02:49.728
+Vấn đề với việc sử dụng thu hồi chính xác như số liệu đánh giá của bạn là nếu
+
+43
+00:02:49.728 --> 00:02:54.926
+classification A làm tốt hơn về thu hồi, mà nó làm ở đây, classification B làm
+
+44
+00:02:54.926 --> 00:02:59.840
+tốt hơn về độ chính xác, sau đó bạn không chắc chắn classification nào tốt hơn.
+
+45
+00:03:03.481 --> 00:03:06.976
+Và nếu bạn đang thử nhiều ý tưởng khác nhau, rất nhiều
+
+46
+00:03:06.976 --> 00:03:11.076
+siêu tham số khác nhau, bạn muốn thử nhanh không chỉ hai đơn vị classification,
+
+47
+00:03:11.076 --> 00:03:14.932
+mà có thể là một tá đơn vị classification và nhanh chóng chọn ra, trích dẫn, những thứ tốt nhất,
+
+48
+00:03:14.932 --> 00:03:17.010
+vì vậy bạn có thể tiếp tục lặp lại từ đó.
+
+49
+00:03:19.850 --> 00:03:23.570
+Và với hai chỉ số đánh giá, rất khó để biết
+
+50
+00:03:23.570 --> 00:03:27.380
+làm thế nào để nhanh chóng chọn một trong hai hoặc nhanh chóng chọn một trong mười.
+
+51
+00:03:29.170 --> 00:03:33.220
+Vì vậy, những gì tôi đề nghị là thay vì sử dụng hai số, độ chính xác và
+
+52
+00:03:33.220 --> 00:03:35.870
+thu hồi, để chọn một bộ classification,
+
+53
+00:03:35.870 --> 00:03:40.440
+bạn chỉ cần tìm một số liệu đánh giá mới kết hợp độ chính xác và thu hồi.
+
+54
+00:03:41.740 --> 00:03:45.205
+Trong các tài liệu machine learning, cách tiêu chuẩn để kết hợp độ chính xác và
+
+55
+00:03:45.205 --> 00:03:47.028
+thu hồi là một cái gì đó gọi là điểm F1.
+
+56
+00:03:47.028 --> 00:03:52.777
+Và các chi tiết của điểm F1 không quá quan trọng, nhưng không chính thức,
+
+57
+00:03:52.777 --> 00:03:58.541
+bạn có thể nghĩ về điều này như là trung bình của độ chính xác, P, và hồi tưởng, R.
+
+58
+00:03:58.541 --> 00:04:04.574
+Chính thức, điểm F1 được định nghĩa bởi công thức này,
+
+59
+00:04:04.574 --> 00:04:07.670
+nó là 2/ 1/P + 1/R
+
+60
+00:04:07.670 --> 00:04:12.240
+Và trong toán học, hàm này được gọi là trung
+
+61
+00:04:12.240 --> 00:04:16.860
+bình hài hòa của độ chính xác P và nhớ lại R.
+
+62
+00:04:16.860 --> 00:04:17.850
+Nhưng ít chính thức hơn,
+
+63
+00:04:17.850 --> 00:04:21.721
+bạn có thể nghĩ về điều này như một cách nào đó để trung bình độ chính xác và hồi tưởng.
+
+64
+00:04:22.840 --> 00:04:25.190
+Chỉ thay vì lấy trung bình số học,
+
+65
+00:04:25.190 --> 00:04:28.800
+bạn lấy trung bình điều hòa, được xác định bởi công thức này.
+
+66
+00:04:28.800 --> 00:04:33.410
+Và nó có một số lợi thế về kinh doanh chính xác và thu hồi.
+
+67
+00:04:33.410 --> 00:04:34.953
+Nhưng trong ví dụ này,
+
+68
+00:04:34.953 --> 00:04:39.853
+sau đó bạn có thể thấy ngay rằng đơn vị classification A có điểm F1 tốt hơn.
+
+69
+00:04:39.853 --> 00:04:43.825
+Và giả sử điểm F1 là một cách hợp lý để kết hợp độ chính xác và thu hồi,
+
+70
+00:04:43.825 --> 00:04:47.000
+sau đó bạn có thể nhanh chóng chọn classification A trên classification B.
+
+71
+00:04:48.100 --> 00:04:48.880
+Vì vậy, những gì tôi tìm thấy cho
+
+72
+00:04:48.880 --> 00:04:52.401
+rất nhiều nhóm machine learning là có một bộ dev được xác định rõ ràng,
+
+73
+00:04:52.401 --> 00:04:57.598
+đó là cách bạn đo độ chính xác và thu hồi, cộng với một số duy nhất
+
+74
+00:04:57.598 --> 00:05:03.430
+đánh giá số liệu, đôi khi tôi sẽ gọi nó là số hàng duy nhất.
+
+75
+00:05:04.580 --> 00:05:09.147
+Chỉ số đánh giá cho phép bạn nhanh chóng biết nếu classification A hoặc
+
+76
+00:05:09.147 --> 00:05:13.971
+classification B là tốt hơn, và do đó có một bộ dev cộng với
+
+77
+00:05:13.971 --> 00:05:18.301
+khoảng cách metric đánh giá số duy nhất để tăng tốc độ lặp.
+
+78
+00:05:21.551 --> 00:05:26.980
+Nó tăng tốc quá trình lặp đi lặp lại này của cải thiện thuật toán machine learning của bạn.
+
+79
+00:05:26.980 --> 00:05:28.010
+Hãy nhìn vào một ví dụ khác.
+
+80
+00:05:29.130 --> 00:05:35.390
+Giả sử bạn đang xây dựng một ứng dụng mèo cho những người yêu mèo ở bốn khu vực địa lý chính,
+
+81
+00:05:35.390 --> 00:05:40.490
+Mỹ, Trung Quốc, Ấn Độ và những nơi khác, phần còn lại của thế giới.
+
+82
+00:05:40.490 --> 00:05:43.940
+Và giả sử rằng hai đơn vị classification của bạn đạt được các lỗi khác nhau
+
+83
+00:05:45.370 --> 00:05:48.400
+trong dữ liệu từ bốn địa lý khác nhau này.
+
+84
+00:05:48.400 --> 00:05:54.280
+Vì vậy, thuật toán A đạt được 3% lỗi trên hình ảnh được gửi bởi người dùng Mỹ và như vậy.
+
+85
+00:05:56.100 --> 00:05:59.140
+Vì vậy, nó có thể là hợp lý để theo dõi các
+
+86
+00:05:59.140 --> 00:06:03.260
+nhà classification của bạn làm tốt như thế nào trong các thị trường khác nhau hoặc các địa lý khác nhau.
+
+87
+00:06:03.260 --> 00:06:06.770
+Nhưng bằng cách theo dõi bốn số, rất khó để nhìn vào những con số này và
+
+88
+00:06:06.770 --> 00:06:10.890
+nhanh chóng quyết định liệu thuật toán A hay thuật toán B có vượt trội hay không.
+
+89
+00:06:10.890 --> 00:06:13.370
+Và nếu bạn đang thử nghiệm rất nhiều đơn vị classification khác nhau,
+
+90
+00:06:13.370 --> 00:06:17.590
+thì thật khó để nhìn vào tất cả những con số này và nhanh chóng chọn một.
+
+91
+00:06:17.590 --> 00:06:22.390
+Vì vậy, những gì tôi đề nghị trong ví dụ này là, ngoài việc theo dõi
+
+92
+00:06:22.390 --> 00:06:26.450
+hiệu suất của bạn ở bốn địa lý khác nhau, để cũng tính toán mức trung bình.
+
+93
+00:06:26.450 --> 00:06:30.874
+Và giả sử rằng hiệu suất trung bình là một số
+
+94
+00:06:30.874 --> 00:06:33.799
+liệu đánh giá số thực đơn hợp lý, bằng cách tính trung bình,
+
+95
+00:06:33.799 --> 00:06:38.530
+bạn có thể nhanh chóng biết rằng nó trông giống như thuật toán C có lỗi trung bình thấp nhất.
+
+96
+00:06:38.530 --> 00:06:40.555
+Và sau đó bạn có thể tiếp tục với cái đó.
+
+97
+00:06:40.555 --> 00:06:44.490
+Bạn phải chọn một thuật toán để tiếp tục lặp đi lặp lại từ.
+
+98
+00:06:44.490 --> 00:06:47.573
+Vì vậy, tải công việc của bạn machine learning thường là, bạn có một ý tưởng,
+
+99
+00:06:47.573 --> 00:06:51.970
+bạn thực hiện nó thử nó ra, và bạn muốn biết liệu ý tưởng của bạn có giúp đỡ hay không.
+
+100
+00:06:51.970 --> 00:06:56.760
+Vì vậy, những gì đã được nhìn thấy trong video này là việc có một chỉ số đánh giá số duy nhất
+
+101
+00:06:56.760 --> 00:06:58.980
+có thể thực sự cải thiện hiệu quả của bạn hoặc
+
+102
+00:06:58.980 --> 00:07:02.340
+hiệu quả của nhóm của bạn trong việc đưa ra những quyết định đó.
+
+103
+00:07:02.340 --> 00:07:03.240
+Bây giờ chúng tôi vẫn chưa
+
+104
+00:07:03.240 --> 00:07:07.510
+hoàn thành với các cuộc thảo luận về cách thiết lập một cách hiệu quả các chỉ số đánh giá.
+
+105
+00:07:07.510 --> 00:07:08.430
+Trong video tiếp theo,
+
+106
+00:07:08.430 --> 00:07:13.880
+tôi sẽ chia sẻ với bạn làm thế nào để thiết lập tối ưu hóa, cũng như ma trận thỏa mãn.
+
+107
+00:07:13.880 --> 00:07:15.480
+Vì vậy, chúng ta hãy nhìn vào đoạn video tiếp theo.

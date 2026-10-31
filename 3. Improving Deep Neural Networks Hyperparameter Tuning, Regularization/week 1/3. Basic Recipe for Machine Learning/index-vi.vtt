@@ -1,0 +1,404 @@
+WEBVTT
+
+00:00:00.140 --> 00:00:03.247
+Trong video trước, bạn đã biết cách xem xét
+training error
+
+00:00:03.247 --> 00:00:06.353
+và dev error có thể giúp bạn chẩn đoán xem
+thuật toán của
+
+00:00:06.353 --> 00:00:09.460
+bạn có vấn đề về bias hay variance hay có thể
+là cả hai.
+
+00:00:09.460 --> 00:00:13.100
+Hóa ra là thông tin này cho phép bạn có hệ
+thống hơn nhiều, bằng cách sử dụng
+
+00:00:13.100 --> 00:00:16.740
+cái mà tôi gọi là công thức cơ bản cho
+machine learning, nó cho phép bạn tiến
+
+00:00:16.740 --> 00:00:20.380
+hành cải thiện hiệu suất thuật toán của mình
+một cách có hệ thống hơn nhiều.
+
+00:00:20.380 --> 00:00:22.040
+Chúng ta hãy xem xét.
+
+00:00:22.040 --> 00:00:25.340
+Khi đào tạo neural network, đây là công
+thức cơ bản tôi sẽ sử dụng.
+
+00:00:25.340 --> 00:00:28.020
+Sau khi đào tạo mô hình ban đầu, trước tiên
+tôi
+
+00:00:28.020 --> 00:00:30.700
+sẽ hỏi, thuật toán của bạn có bias cao không?
+
+00:00:30.700 --> 00:00:35.700
+Và vì vậy, để cố gắng đánh giá xem liệu có
+bias cao hay không, bạn
+
+00:00:35.700 --> 00:00:40.700
+nên xem xét training set hoặc hiệu suất của
+training data, phải không?
+
+00:00:40.700 --> 00:00:46.040
+Ừm, và vì vậy nếu nó có bias cao, thì nó thậm
+chí không phù hợp với training set,
+
+00:00:46.040 --> 00:00:51.380
+một số cách bạn có thể thử là thử một mạng lớn
+hơn, ừ, chẳng hạn như nhiều lớp hơn
+
+00:00:51.380 --> 00:00:54.713
+hoặc nhiều đơn vị ẩn hơn hoặc bạn có thể huấn
+luyện nó lâu hơn,
+
+00:00:54.713 --> 00:00:58.047
+bạn biết đấy, có thể chạy nó lâu hơn hoặc thử
+một số thuật toán
+
+00:00:58.047 --> 00:01:01.380
+tối ưu hóa nâng cao hơn mà chúng ta sẽ nói đến
+sau trong khóa học này.
+
+00:01:01.380 --> 00:01:04.813
+Hoặc, ừm, bạn cũng có thể thử, đây là một, có
+thể là một
+
+00:01:04.813 --> 00:01:08.247
+công việc, có thể không, nhưng sau này chúng
+ta sẽ thấy rằng
+
+00:01:08.247 --> 00:01:11.680
+có rất nhiều kiến trúc neural network khác
+nhau và có thể bạn
+
+00:01:11.680 --> 00:01:15.660
+có thể tìm thấy kiến trúc neural network phù
+hợp hơn cho vấn đề này.
+
+00:01:15.660 --> 00:01:18.760
+Đặt điều này trong ngoặc đơn, bởi vì một trong
+những điều mà bạn biết đấy,
+
+00:01:18.760 --> 00:01:21.860
+bạn chỉ cần cố gắng, có thể bạn sẽ làm được,
+có thể không, trong khi đó,
+
+00:01:21.860 --> 00:01:24.960
+ừm, việc có được một mạng lưới lớn hơn hầu như
+luôn hữu ích và đào tạo lâu
+
+00:01:24.960 --> 00:01:28.060
+hơn, à, không phải lúc nào cũng có ích, nó
+chắc chắn không bao giờ gây hại.
+
+00:01:28.060 --> 00:01:31.720
+Nhưng vì vậy khi đào tạo một thuật toán học
+tập, tôi sẽ thử những điều này
+
+00:01:31.720 --> 00:01:35.380
+cho đến khi ít nhất tôi có thể loại bỏ được
+các vấn đề sai lệch như thể
+
+00:01:35.380 --> 00:01:39.040
+quay lại sau khi tôi đã thử điều này cho đến
+khi, ừm, và tiếp tục làm như
+
+00:01:39.040 --> 00:01:42.700
+vậy cho đến khi tôi có thể khớp, ít nhất là
+khớp khá tốt với training set.
+
+00:01:42.700 --> 00:01:48.560
+Và thông thường nếu bạn có một mạng đủ lớn,
+bạn có thể, bạn thường có thể điều
+
+00:01:48.560 --> 00:01:54.420
+chỉnh tốt training data, ừ, miễn là có một vấn
+đề mà ai đó có thể làm được, phải không?
+
+00:01:54.420 --> 00:01:58.633
+Nếu một hình ảnh rất mờ, có thể không thể vừa
+với nó, nhưng nếu ít nhất một con người
+
+00:01:58.633 --> 00:02:02.847
+có thể làm tốt phần trên cùng, vì vậy nếu bạn
+cho rằng lỗi của Bayes không quá cao,
+
+00:02:02.847 --> 00:02:07.060
+thì bằng cách đào tạo lớn hơn thế, bạn có thể
+hy vọng làm tốt ít nhất trên training set,
+
+00:02:07.060 --> 00:02:09.980
+vì vậy ít nhất là phù hợp hoặc overfitting với
+training set.
+
+00:02:09.980 --> 00:02:13.520
+Khi bạn đã giảm bias xuống mức, ừm, có thể
+chấp nhận
+
+00:02:13.520 --> 00:02:17.060
+được, tôi sẽ hỏi, bạn có gặp vấn đề về
+variance không?
+
+00:02:17.060 --> 00:02:20.980
+Và để đánh giá điều đó, tôi sẽ xem xét hiệu
+suất thiết lập độ sâu.
+
+00:02:20.980 --> 00:02:24.740
+Bạn có thể khái quát hóa từ hiệu suất
+
+00:02:24.740 --> 00:02:28.500
+training set khá tốt đến hiệu suất tập độ sâu
+khá tốt không?
+
+00:02:28.500 --> 00:02:31.260
+Và nếu bạn có variance cao, thì cách tốt nhất
+để
+
+00:02:31.260 --> 00:02:34.020
+giải quyết vấn đề variance cao là lấy thêm dữ
+liệu.
+
+00:02:34.020 --> 00:02:38.233
+Nếu bạn có thể lấy nó, thì điều này, bạn biết
+đấy, chỉ có thể giúp ích, ừm, nhưng,
+
+00:02:38.233 --> 00:02:42.447
+nhưng đôi khi bạn không thể lấy thêm dữ liệu
+hoặc bạn có thể thử regularization, điều
+
+00:02:42.447 --> 00:02:46.660
+mà chúng ta sẽ nói đến trong video tiếp theo
+để cố gắng giảm tình trạng overfitting.
+
+00:02:46.660 --> 00:02:51.060
+Và sau đó, một lần nữa, điều này, ừ, đôi khi
+bạn chỉ cần thử nó, ừm, nhưng nếu
+
+00:02:51.060 --> 00:02:55.460
+bạn có thể tìm thấy một kiến trúc
+neural network thích hợp hơn, đôi khi điều đó
+
+00:02:55.460 --> 00:02:59.860
+cũng có thể làm giảm vấn đề variance của bạn,
+cũng như giảm vấn đề sai lệch của bạn.
+
+00:02:59.860 --> 00:03:01.860
+Nhưng làm thế nào để làm được điều đó, việc
+bạn làm
+
+00:03:01.860 --> 00:03:03.860
+điều đó một cách hoàn toàn có tính hệ thống sẽ
+khó hơn.
+
+00:03:03.860 --> 00:03:09.080
+Nhưng vì vậy tôi thử những điều này và tiếp
+tục quay lại cho đến khi hy
+
+00:03:09.080 --> 00:03:14.300
+vọng, ừm, bạn tìm thấy thứ gì đó có cả bias
+thấp và variance thấp, thế là xong.
+
+00:03:14.300 --> 00:03:16.460
+Vì vậy, một số điểm cần chú ý.
+
+00:03:16.460 --> 00:03:20.380
+Đầu tiên là tùy thuộc vào việc bạn có bias cao
+hay
+
+00:03:20.380 --> 00:03:24.300
+variance cao, tập hợp những thứ bạn nên thử có
+thể khá khác nhau.
+
+00:03:24.300 --> 00:03:27.447
+Vì vậy, tôi thường sử dụng tập hợp độ sâu đào
+tạo để cố gắng chẩn
+
+00:03:27.447 --> 00:03:30.593
+đoán xem bạn có vấn đề về bias hoặc variance
+hay không, sau đó sử
+
+00:03:30.593 --> 00:03:33.740
+dụng tập hợp đó để chọn tập hợp con thích hợp
+của những thứ cần thử.
+
+00:03:33.740 --> 00:03:37.020
+Vì vậy, ví dụ: nếu bạn thực sự gặp vấn đề về
+bias cao,
+
+00:03:37.020 --> 00:03:40.300
+việc thu thập thêm training data thực sự sẽ
+không giúp ích
+
+00:03:40.300 --> 00:03:43.580
+gì hoặc ít nhất đó không phải là điều hiệu quả
+nhất nên làm.
+
+00:03:43.580 --> 00:03:48.100
+Vì vậy, việc hiểu rõ mức độ của vấn đề sai
+lệch hoặc vấn đề variance hoặc cả
+
+00:03:48.100 --> 00:03:52.620
+hai có thể giúp bạn tập trung vào việc lựa
+chọn những điều hữu ích nhất để thử.
+
+00:03:52.620 --> 00:03:57.360
+Thứ hai, trong kỷ nguyên machine learning
+trước đây, đã từng có rất
+
+00:03:57.360 --> 00:04:02.100
+nhiều cuộc thảo luận về cái gọi là sự đánh đổi
+variance sai lệch.
+
+00:04:02.100 --> 00:04:06.960
+Và lý do cho điều đó là vì rất nhiều thứ bạn
+có thể thử, bạn có
+
+00:04:06.960 --> 00:04:11.820
+thể tăng bias và giảm variance hoặc giảm bias
+và tăng variance.
+
+00:04:11.820 --> 00:04:16.047
+Nhưng quay trở lại thời kỳ tiền deep learning,
+chúng ta
+
+00:04:16.047 --> 00:04:20.273
+không có nhiều công cụ, không có nhiều công cụ
+giúp giảm
+
+00:04:20.273 --> 00:04:24.500
+sai lệch hoặc giảm variance mà không ảnh hưởng
+đến công cụ khác.
+
+00:04:24.500 --> 00:04:28.460
+Nhưng trong kỷ nguyên dữ liệu lớn
+deep learning hiện đại, ừm, miễn là bạn có thể
+
+00:04:28.460 --> 00:04:32.420
+tiếp tục đào tạo một mạng lớn hơn và miễn là
+bạn có thể tiếp tục nhận được nhiều
+
+00:04:32.420 --> 00:04:36.380
+dữ liệu hơn, điều này không phải lúc nào cũng
+đúng với một trong hai điều này,
+
+00:04:36.380 --> 00:04:39.793
+nhưng nếu đúng như vậy thì việc có được một
+mạng lưới lớn hơn hầu như
+
+00:04:39.793 --> 00:04:43.207
+luôn chỉ làm giảm sự thiên vị của bạn mà không
+nhất thiết làm ảnh
+
+00:04:43.207 --> 00:04:46.620
+hưởng đến sự khác biệt của bạn, miễn là bạn
+điều chỉnh một cách thích hợp.
+
+00:04:46.620 --> 00:04:49.440
+Ừm, và việc nhận được nhiều dữ liệu hơn luôn
+làm giảm sự khác
+
+00:04:49.440 --> 00:04:52.260
+biệt của bạn và không ảnh hưởng nhiều đến
+thành kiến của bạn.
+
+00:04:52.260 --> 00:04:56.567
+Vì vậy, điều thực sự đã xảy ra là với hai bước
+này, khả năng đào tạo một
+
+00:04:56.567 --> 00:05:00.873
+mạng lớn hơn hoặc thu được nhiều dữ liệu hơn,
+giờ đây chúng tôi có các
+
+00:05:00.873 --> 00:05:05.180
+công cụ để giảm bias và chỉ cần giảm bias hoặc
+giảm variance và chỉ cần tăng
+
+00:05:05.180 --> 00:05:09.580
+giảm variance mà không thực sự làm tổn thương,
+uh, điều khác nhiều.
+
+00:05:09.580 --> 00:05:13.513
+Và tôi nghĩ đây là một trong những lý do chính
+khiến
+
+00:05:13.513 --> 00:05:17.447
+deep learning rất hữu ích cho
+supervised learning, đến nỗi có
+
+00:05:17.447 --> 00:05:21.380
+ít sự đánh đổi hơn khi bạn phải cân bằng cẩn
+thận bias và variance,
+
+00:05:21.380 --> 00:05:25.620
+nhưng đôi khi, ừ, bạn chỉ có nhiều lựa chọn
+hơn để giảm bias và
+
+00:05:25.620 --> 00:05:29.860
+tái hoặc giảm variance mà không nhất thiết
+phải tăng cái còn lại.
+
+00:05:29.860 --> 00:05:33.780
+Và trên thực tế, ừm, cuối cùng, bạn có một
+mạng lưới được regularization tốt.
+
+00:05:33.780 --> 00:05:36.820
+Chúng ta sẽ nói về việc regularization bắt đầu
+từ video tiếp theo.
+
+00:05:36.820 --> 00:05:40.060
+Đào tạo một mạng lưới lớn hơn hầu như không
+bao giờ có hại.
+
+00:05:40.060 --> 00:05:43.240
+Và nguyên nhân chính dẫn đến việc đào tạo một
+neural network
+
+00:05:43.240 --> 00:05:46.420
+quá lớn chỉ là thời gian tính toán, miễn là
+bạn đang điều chỉnh.
+
+00:05:46.420 --> 00:05:50.007
+Vì vậy, tôi hy vọng điều này giúp bạn hiểu
+được cấu trúc cơ bản về cách tổ
+
+00:05:50.007 --> 00:05:53.593
+chức vấn đề machine learning của bạn để chẩn
+đoán sai lệch và variance, sau
+
+00:05:53.593 --> 00:05:57.180
+đó cố gắng chọn thao tác phù hợp để bạn đạt
+được tiến bộ trong vấn đề của mình.
+
+00:05:57.180 --> 00:06:00.500
+Một trong những điều tôi đã đề cập nhiều lần
+trong video là
+
+00:06:00.500 --> 00:06:03.820
+regularization, ừm, là một kỹ thuật rất hữu
+ích để giảm variance.
+
+00:06:03.820 --> 00:06:07.220
+Có một chút sự đánh đổi về variance sai lệch
+khi bạn sử dụng feature regularization.
+
+00:06:07.220 --> 00:06:09.960
+Nó có thể làm tăng bias lên một chút, mặc dù
+
+00:06:09.960 --> 00:06:12.700
+thường không quá nhiều nếu bạn có mạng lưới đủ
+lớn.
+
+00:06:12.700 --> 00:06:17.080
+Ừm, nhưng chúng ta hãy đi sâu vào chi tiết hơn
+trong video tiếp theo để chúng
+
+00:06:17.080 --> 00:06:21.460
+ta có thể hiểu rõ hơn cách áp dụng
+regularization cho neural network của bạn.
