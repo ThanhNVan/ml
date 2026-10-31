@@ -358,6 +358,8 @@
       this.audio = null;
       this.subtitlesUrl = null;
       this.videoCarriesAudio = false;
+      this.videoFallbackPending = false;
+      this.fallbackAttempted = false;
       this.seekStep = 10;
       // User's intended mute state, independent of which element is currently
       // audible -- so muting before the audio track attaches is preserved.
@@ -443,8 +445,9 @@
       this.resumeTime = Number.isFinite(time) && time > 0 ? time : 0;
       this.lastSavedTime = this.resumeTime;
     }
-    attachVideo(url, nativeAudio) {
+    attachVideo(url, nativeAudio, compatibleFallback = false) {
       this.videoCarriesAudio = nativeAudio;
+      this.fallbackAttempted = compatibleFallback;
       els.video.src = url;
       els.video.preservesPitch = true;
       this.applyAudible();
@@ -729,7 +732,9 @@
       this.audio.addEventListener("canplay", () => this.onAudioReady());
       this.audio.addEventListener("playing", () => this.onAudioReady());
       this.audio.addEventListener("seeked", () => this.onAudioReady());
-      clearStatus();
+      if (!this.videoFallbackPending) {
+        clearStatus();
+      }
     }
     attachSubtitles(vtt, label, activate = false) {
       const showing = activate || els.player.classList.contains("is-subtitles-on");
@@ -862,6 +867,10 @@
     }
     attachVideoListeners() {
       els.video.addEventListener("loadedmetadata", () => {
+        if (this.videoFallbackPending) {
+          this.videoFallbackPending = false;
+          clearStatus();
+        }
         els.timeDur.textContent = formatTime(els.video.duration);
         this.refreshLoopUi();
         this.renderProgress();
@@ -949,6 +958,15 @@
         }
       });
       els.video.addEventListener("error", () => {
+        const code = els.video.error && els.video.error.code;
+        if ((code === 3 || code === 4) && !this.fallbackAttempted) {
+          this.fallbackAttempted = true;
+          this.videoFallbackPending = true;
+          this.postMessage({ type: "videoUnsupported" });
+          showStatus("Preparing this MP4 for playback...", "loading");
+          this.showBuffering();
+          return;
+        }
         let detail = "Unknown playback error";
         if (els.video.error) {
           switch (els.video.error.code) {
@@ -1020,7 +1038,12 @@
         }
         break;
       case "videoSrc":
-        controller.attachVideo(msg.url, !!msg.nativeAudio);
+        controller.attachVideo(msg.url, !!msg.nativeAudio, !!msg.compatibleFallback);
+        break;
+      case "videoFallbackError":
+        controller.videoFallbackPending = false;
+        showStatus(msg.message, "warning");
+        controller.showStageError(msg.message);
         break;
       case "subtitles":
         controller.attachSubtitles(msg.vtt, msg.label, !!msg.activate);

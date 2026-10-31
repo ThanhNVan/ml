@@ -86,6 +86,8 @@ The local player applies a narrow 11.334 kHz notch filter to the audio of every 
 
 The player also applies a subtle picture filter (brightness, contrast, and saturation) to every video. It affects playback only; captions and source MP4 files keep their original appearance and data.
 
+If VS Code cannot decode an MP4 video stream (including the AV1 videos in Course 1), the extension loads a persistent H.264 playback copy made with `ffmpeg`. Course 1's incompatible videos have these copies prepared ahead of time, so they are ready when opened. The copies live in the user cache (`%LOCALAPPDATA%\vscode-video-player\h264` on Windows), outside Git. Original MP4s and subtitle files are untouched.
+
 After editing the local extension, run `python tools/build_local_vsix.py` from this folder to rebuild the VSIX, then run the local install command above.
 
 ## Video storage with Git LFS

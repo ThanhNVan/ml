@@ -10,6 +10,8 @@ For this study set, extracted audio passes through a narrow 11.334 kHz notch fil
 
 The video element has a subtle brightness, contrast, and saturation filter during playback. It applies to every video opened in this player without changing the source file or the separate subtitle overlay.
 
+When the webview cannot decode an MP4 video codec, the player loads a persistent H.264 playback copy and retries. Copies live in the user cache (`%LOCALAPPDATA%\vscode-video-player\h264` on Windows), outside the course repository. Course 1's AV1 copies can be prepared in advance with `node tools/prebuild_compatible_videos.js "1. Supervised ML playlist"`. `ffmpeg` and a trusted workspace are required for this fallback.
+
 [![CI](https://github.com/yutabee/vscode-unmute-video/actions/workflows/ci.yml/badge.svg)](https://github.com/yutabee/vscode-unmute-video/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yutabee/vscode-unmute-video/blob/main/LICENSE.md)
 

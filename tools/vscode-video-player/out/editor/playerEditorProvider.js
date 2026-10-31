@@ -39,6 +39,8 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const crypto = __importStar(require("crypto"));
 const audioExtractionController_1 = require("./audioExtractionController");
+const compatibleVideo_1 = require("../media/video");
+const audioMedia_1 = require("../media/audio");
 const mediaFormat_1 = require("../media/mediaFormat");
 const config_1 = require("../shared/config");
 const ffmpegInstall_1 = require("../shared/ffmpegInstall");
@@ -83,6 +85,10 @@ class PlayerEditorProvider {
         // Register the video with the streaming server.
         const videoToken = this.server.register(fsPath);
         const videoUrl = this.server.urlFor(videoToken);
+        let fallbackToken;
+        let fallbackPath;
+        let fallbackStarted = false;
+        let disposed = false;
         let handledReady = false;
         let trustListener;
         // Outgoing messages are checked against the shared protocol type.
@@ -115,6 +121,40 @@ class PlayerEditorProvider {
                 return;
             }
             switch (message.type) {
+                case 'videoUnsupported': {
+                    if (fallbackStarted || disposed) {
+                        break;
+                    }
+                    fallbackStarted = true;
+                    if (!vscode.workspace.isTrusted) {
+                        post({ type: 'videoFallbackError', message: 'Trust this workspace to prepare a compatible video.' });
+                        break;
+                    }
+                    try {
+                        const config = vscode.workspace.getConfiguration('unmuteVideo');
+                        const workspaceRoots = (vscode.workspace.workspaceFolders ?? []).map((folder) => folder.uri.fsPath);
+                        const override = (0, audioMedia_1.resolveFfmpegOverride)(config.get('ffmpegPath'), workspaceRoots);
+                        const ffmpeg = await (0, audioMedia_1.findFfmpeg)(override);
+                        if (ffmpeg === null) {
+                            throw new Error('ffmpeg is required to prepare this MP4.');
+                        }
+                        const playable = await (0, compatibleVideo_1.compatibleVideo)(ffmpeg, fsPath);
+                        if (disposed) {
+                            break;
+                        }
+                        fallbackToken = this.server.register(playable);
+                        fallbackPath = playable;
+                        (0, compatibleVideo_1.retainVideo)(playable);
+                        post({ type: 'videoSrc', url: this.server.urlFor(fallbackToken), nativeAudio: false, compatibleFallback: true });
+                    }
+                    catch (error) {
+                        if (!disposed) {
+                            const detail = error instanceof Error ? error.message : String(error);
+                            post({ type: 'videoFallbackError', message: `Could not prepare a compatible video: ${detail}` });
+                        }
+                    }
+                    break;
+                }
                 case 'ready': {
                     if (handledReady) {
                         return;
@@ -231,12 +271,19 @@ class PlayerEditorProvider {
             }
         });
         webviewPanel.onDidDispose(() => {
+            disposed = true;
             audio?.dispose();
             messageListener.dispose();
             if (trustListener !== undefined) {
                 trustListener.dispose();
             }
             this.server.unregister(videoToken);
+            if (fallbackToken !== undefined) {
+                this.server.unregister(fallbackToken);
+            }
+            if (fallbackPath !== undefined) {
+                (0, compatibleVideo_1.releaseVideo)(fallbackPath);
+            }
         });
         webview.html = this.buildHtml(webview, mediaDir);
     }

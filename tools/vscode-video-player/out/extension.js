@@ -39,6 +39,7 @@ const vscode = __importStar(require("vscode"));
 const streamServer_1 = require("./server/streamServer");
 const playerEditorProvider_1 = require("./editor/playerEditorProvider");
 const audio_1 = require("./media/audio");
+const video_1 = require("./media/video");
 const mediaFormat_1 = require("./media/mediaFormat");
 /**
  * Extension entry point. Starts the loopback streaming server, registers the
@@ -47,6 +48,7 @@ const mediaFormat_1 = require("./media/mediaFormat");
 async function activate(context) {
     try {
         (0, audio_1.pruneAudioCache)();
+        (0, video_1.pruneVideoCache)();
     }
     catch {
         /* ignore */

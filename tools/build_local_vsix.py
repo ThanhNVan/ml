@@ -18,6 +18,7 @@ def main() -> None:
         raise FileExistsError(TEMP)
     try:
         with zipfile.ZipFile(VSIX, "r") as old, zipfile.ZipFile(TEMP, "w") as new:
+            packaged = set(old.namelist())
             for info in old.infolist():
                 if info.filename == "extension.vsixmanifest":
                     data = (SOURCE / ".vsixmanifest").read_bytes()
@@ -27,6 +28,11 @@ def main() -> None:
                 else:
                     data = old.read(info.filename)
                 new.writestr(info, data)
+            # Include newly added compiled modules that were not in the old VSIX.
+            for source_file in SOURCE.rglob("*.js"):
+                archive_name = "extension/" + source_file.relative_to(SOURCE).as_posix()
+                if archive_name not in packaged:
+                    new.write(source_file, archive_name)
         with zipfile.ZipFile(TEMP, "r") as package:
             if package.testzip() is not None:
                 raise RuntimeError("VSIX ZIP validation failed")
