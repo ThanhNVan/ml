@@ -82,6 +82,10 @@ The installer verifies the result and removes any older local or upstream editio
 
 Every video has matching English and Vietnamese sidecar captions. The player automatically loads the English `.vtt` with the **same base name**: `index.mp4` uses `index.vtt`, and `index (1).mp4` uses `index (1).vtt`. The Vietnamese files are named `index-vi.vtt` and `index (1)-vi.vtt`, respectively. Click **CC** to show or hide captions. To watch with Vietnamese captions, click **Sub** beside CC and choose the matching `-vi.vtt` file in the video's folder. **Aa** adjusts caption appearance.
 
+The local player applies a narrow 11.334 kHz notch filter to the audio of every course video during playback. This removes the high pitched whine without changing the source MP4 files or captions. Reload VS Code after installing the updated local extension.
+
+The player also applies a subtle picture filter (brightness, contrast, and saturation) to every video. It affects playback only; captions and source MP4 files keep their original appearance and data.
+
 After editing the local extension, run `python tools/build_local_vsix.py` from this folder to rebuild the VSIX, then run the local install command above.
 
 ## Video storage with Git LFS

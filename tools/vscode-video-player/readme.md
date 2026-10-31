@@ -6,6 +6,10 @@ This repository's patched VSIX loads a `.vtt` or `.srt` file with the same base 
 
 From the repository root, run `python tools/install_video_player.py` to install this local build in one command. Reload an already-open VS Code window to activate it.
 
+For this study set, extracted audio passes through a narrow 11.334 kHz notch filter. It applies to every MP4 opened in this player, leaving the video files unchanged. The extracted-audio cache key includes the filter, so previously opened lessons are regenerated with filtered sound.
+
+The video element has a subtle brightness, contrast, and saturation filter during playback. It applies to every video opened in this player without changing the source file or the separate subtitle overlay.
+
 [![CI](https://github.com/yutabee/vscode-unmute-video/actions/workflows/ci.yml/badge.svg)](https://github.com/yutabee/vscode-unmute-video/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yutabee/vscode-unmute-video/blob/main/LICENSE.md)
 

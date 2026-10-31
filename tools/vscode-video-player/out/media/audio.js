@@ -56,6 +56,10 @@ const FFMPEG_CANDIDATES = [
 ];
 const CACHE_DIR = path.join(os.tmpdir(), 'unmute-video-cache');
 const STDERR_TAIL_LIMIT = 16 * 1024;
+// A narrow notch removes the persistent 11.334 kHz whine found in course audio.
+// It is applied during extraction, so every MP4 uses the same filtered playback
+// without rewriting the source videos or adding large Git LFS objects.
+const AUDIO_FILTER = 'aresample=async=1:first_pts=0,bandreject=f=11334.5:width_type=h:width=30';
 const probeResults = new Map();
 const probeInFlight = new Map();
 const inFlightExtractions = new Map();
@@ -199,7 +203,7 @@ async function extractAudio(ffmpeg, input) {
     const stat = fs.statSync(input);
     const key = crypto
         .createHash('md5')
-        .update(`${input}\0${stat.size}\0${stat.mtimeMs}`)
+        .update(`${input}\0${stat.size}\0${stat.mtimeMs}\0${AUDIO_FILTER}`)
         .digest('hex')
         .slice(0, 16);
     const out = path.join(CACHE_DIR, `unmute-audio-${key}.mp3`);
@@ -235,7 +239,7 @@ async function extractAudioToCache(ffmpeg, input, key, out) {
             // (edit-list priming / encoder delay), and without this the
             // extracted mp3 is shifted a constant amount from the video clock --
             // the offset source that drove the drift-correction feedback loop.
-            '-af', 'aresample=async=1:first_pts=0',
+            '-af', AUDIO_FILTER,
             '-c:a', 'libmp3lame',
             '-b:a', '192k',
             '-f', 'mp3',

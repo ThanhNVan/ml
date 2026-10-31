@@ -65,6 +65,8 @@ html, body {
   object-fit: contain;
   background: #000;
   outline: none;
+  /* Gently improve the image without altering the MP4 or subtitle overlay. */
+  filter: brightness(1.02) contrast(1.06) saturate(1.06);
 }
 
 .stage:fullscreen {
