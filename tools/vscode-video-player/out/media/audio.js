@@ -48,6 +48,9 @@ const child_process_1 = require("child_process");
  * unit-tested directly against a real ffmpeg binary.
  */
 const FFMPEG_CANDIDATES = [
+    ...(process.platform === 'win32' && process.arch === 'x64'
+        ? [path.join(__dirname, '..', '..', 'bin', 'win32-x64', 'ffmpeg.exe')]
+        : []),
     '/opt/homebrew/bin/ffmpeg',
     '/usr/local/bin/ffmpeg',
     '/usr/bin/ffmpeg',
@@ -56,10 +59,7 @@ const FFMPEG_CANDIDATES = [
 ];
 const CACHE_DIR = path.join(os.tmpdir(), 'unmute-video-cache');
 const STDERR_TAIL_LIMIT = 16 * 1024;
-// A narrow notch removes the persistent 11.334 kHz whine found in course audio.
-// It is applied during extraction, so every MP4 uses the same filtered playback
-// without rewriting the source videos or adding large Git LFS objects.
-const AUDIO_FILTER = 'aresample=async=1:first_pts=0,bandreject=f=11334.5:width_type=h:width=30';
+const AUDIO_FILTER = 'aresample=async=1:first_pts=0';
 const probeResults = new Map();
 const probeInFlight = new Map();
 const inFlightExtractions = new Map();
@@ -199,7 +199,10 @@ function probeFfmpeg(bin) {
  * temporary file that is renamed into place only on success, so a killed
  * extraction can never leave a partial file that a later open would reuse.
  */
-async function extractAudio(ffmpeg, input) {
+async function extractAudio(ffmpeg, input, signal) {
+    if (signal?.aborted) {
+        throw new Error('Audio extraction cancelled.');
+    }
     const stat = fs.statSync(input);
     const key = crypto
         .createHash('md5')
@@ -211,17 +214,38 @@ async function extractAudio(ffmpeg, input) {
     if (fs.existsSync(out)) {
         return out;
     }
-    const inFlight = inFlightExtractions.get(key);
-    if (inFlight !== undefined) {
-        return inFlight;
+    let entry = inFlightExtractions.get(key);
+    if (entry?.controller.signal.aborted) {
+        try { await entry.promise; } catch { /* cancelled previous extraction */ }
+        return extractAudio(ffmpeg, input, signal);
     }
-    const promise = extractAudioToCache(ffmpeg, input, key, out).finally(() => {
-        inFlightExtractions.delete(key);
+    if (entry === undefined) {
+        const controller = new AbortController();
+        entry = { controller, consumers: 0, done: false };
+        entry.promise = extractAudioToCache(ffmpeg, input, key, out, controller.signal).finally(() => {
+            entry.done = true;
+            inFlightExtractions.delete(key);
+        });
+        inFlightExtractions.set(key, entry);
+    }
+    entry.consumers++;
+    return new Promise((resolve, reject) => {
+        let settled = false;
+        const onAbort = () => finish(new Error('Audio extraction cancelled.'));
+        const finish = (error, value) => {
+            if (settled) return;
+            settled = true;
+            signal?.removeEventListener('abort', onAbort);
+            entry.consumers--;
+            if (entry.consumers === 0 && !entry.done) entry.controller.abort();
+            error ? reject(error) : resolve(value);
+        };
+        signal?.addEventListener('abort', onAbort, { once: true });
+        if (signal?.aborted) onAbort();
+        entry.promise.then(value => finish(null, value), error => finish(error));
     });
-    inFlightExtractions.set(key, promise);
-    return promise;
 }
-async function extractAudioToCache(ffmpeg, input, key, out) {
+async function extractAudioToCache(ffmpeg, input, key, out, signal) {
     fs.mkdirSync(CACHE_DIR, { recursive: true, mode: 0o700 });
     if (fs.existsSync(out)) {
         return out;
@@ -244,7 +268,8 @@ async function extractAudioToCache(ffmpeg, input, key, out) {
             '-b:a', '192k',
             '-f', 'mp3',
             '-y', tmpOut,
-        ]);
+        ], signal);
+        if (signal.aborted) throw new Error('Audio extraction cancelled.');
         fs.chmodSync(tmpOut, 0o600);
         fs.renameSync(tmpOut, out);
     }
@@ -260,13 +285,17 @@ async function extractAudioToCache(ffmpeg, input, key, out) {
     }
     return out;
 }
-function runFfmpeg(ffmpeg, args) {
+function runFfmpeg(ffmpeg, args, signal) {
+    if (signal?.aborted) return Promise.reject(new Error('Audio extraction cancelled.'));
     return new Promise((resolve, reject) => {
         let stderrTail = '';
         let settled = false;
         let timedOut = false;
         // spawn with an arg array (no shell) avoids command injection from the file path.
         const child = (0, child_process_1.spawn)(ffmpeg, args, { stdio: ['ignore', 'ignore', 'pipe'] });
+        const onAbort = () => child.kill();
+        signal?.addEventListener('abort', onAbort, { once: true });
+        if (signal?.aborted) onAbort();
         const timer = setTimeout(() => {
             timedOut = true;
             child.kill();
@@ -278,6 +307,7 @@ function runFfmpeg(ffmpeg, args) {
             }
             settled = true;
             clearTimeout(timer);
+            signal?.removeEventListener('abort', onAbort);
             if (err) {
                 reject(err);
             }
@@ -294,15 +324,19 @@ function runFfmpeg(ffmpeg, args) {
         child.on('error', (err) => {
             finish(err);
         });
-        child.on('close', (code, signal) => {
+        child.on('close', (code, exitSignal) => {
             if (timedOut) {
+                return;
+            }
+            if (signal?.aborted) {
+                finish(new Error('Audio extraction cancelled.'));
                 return;
             }
             if (code === 0) {
                 finish();
             }
             else {
-                const suffix = signal ? `signal ${signal}` : `exit code ${code}`;
+                const suffix = exitSignal ? `signal ${exitSignal}` : `exit code ${code}`;
                 finish(makeFfmpegError(`ffmpeg failed with ${suffix}`, stderrTail));
             }
         });

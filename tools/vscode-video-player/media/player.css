@@ -44,6 +44,11 @@ html, body {
   padding: 12px;
 }
 
+.video-filter-defs {
+  position: absolute;
+  pointer-events: none;
+}
+
 /* ---------- Video stage ---------- */
 .stage {
   position: relative;
@@ -65,17 +70,7 @@ html, body {
   object-fit: contain;
   background: #000;
   outline: none;
-  /* Gently improve the image without altering the MP4 or subtitle overlay. */
-  filter: brightness(1.02) contrast(1.06) saturate(1.06);
-}
-
-.stage:fullscreen {
-  border-radius: 0;
-}
-
-.stage:fullscreen #video {
-  max-height: 100vh;
-  height: 100vh;
+  filter: url("#naturalSharpen") brightness(1.01) contrast(1.035) saturate(1.04);
 }
 
 /* Filename overlay */
@@ -426,10 +421,6 @@ html, body {
 
 .player.is-muted .ic-vol { display: none; }
 .player.is-muted .ic-muted { display: block; }
-
-.stage:fullscreen .ic-fs,
-.player.is-fullscreen .ic-fs { display: none; }
-.player.is-fullscreen .ic-fs-exit { display: block; }
 
 /* ---------- Volume ---------- */
 .vol {

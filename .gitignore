@@ -3,6 +3,13 @@
 !*.vtt
 *.lnk
 __pycache__/
+.venv-audio/
+voice-isolation-*/
+tools/.cc-*/
+tools/.cc-*.mp3
+tools/.cc-*.vtt
+tools/whisper-bin-*.zip
 *.log
 *.vsix
 !tools/vscode-video-player.vsix
+superpowers/

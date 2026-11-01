@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 		<Metadata>
-			<Identity Language="en-US" Id="vscode-video-player" Version="1.0.1" Publisher="local" />
+		<Identity Language="en-US" Id="vscode-video-player" Version="1.0.3" Publisher="local" />
 			<DisplayName>vscode-video-player</DisplayName>
 			<Description xml:space="preserve">Play MP4, MOV, M4V and WebM videos inside VS Code with sound. ffmpeg extracts the audio and keeps it in sync with the muted video, working around the missing AAC codec in the VS Code webview — audio that actually plays, and stays in sync.</Description>
 			<Tags>video player,sound,mp4,audio,aac,video,mp4 player,play video,no sound,no audio,mute,unmute,silent,mov,m4v,webm,playwright,screen recording,quicktime,h264,hevc,mpeg-4,movie,media,player,preview,viewer,ffmpeg,codec,watch video,__sponsor_extension</Tags>

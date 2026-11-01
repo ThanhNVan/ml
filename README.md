@@ -72,23 +72,15 @@ The full-course tests are generated from question data in `tools/`. Edit that da
 
 ## Local video player extension
 
-The `vscode-video-player` extension is in [`tools/vscode-video-player/`](tools/vscode-video-player/) and its installable package is [`tools/vscode-video-player.vsix`](tools/vscode-video-player.vsix). From the `ml/` folder, run **one command** to install it with the subtitle picker:
+From the `ml/` folder, install the local package in one command (requires Python and the VS Code `code` command):
 
 ```powershell
 python tools/install_video_player.py
 ```
 
-The installer verifies the result and removes any older local or upstream edition, so only `vscode-video-player` claims the default editor. The command needs Python and the VS Code `code` CLI. If VS Code was already open, reload its window once. Open a lesson's `.mp4` from the Explorer; MP4 sound requires `ffmpeg` on the local `PATH`.
+Reload VS Code if it was already open. To share the extension, send [`tools/vscode-video-player.vsix`](tools/vscode-video-player.vsix); the recipient installs it with `code --install-extension vscode-video-player.vsix`.
 
-Every video has matching English and Vietnamese sidecar captions. The player automatically loads the English `.vtt` with the **same base name**: `index.mp4` uses `index.vtt`, and `index (1).mp4` uses `index (1).vtt`. The Vietnamese files are named `index-vi.vtt` and `index (1)-vi.vtt`, respectively. Click **CC** to show or hide captions. To watch with Vietnamese captions, click **Sub** beside CC and choose the matching `-vi.vtt` file in the video's folder. **Aa** adjusts caption appearance.
-
-The local player applies a narrow 11.334 kHz notch filter to the audio of every course video during playback. This removes the high pitched whine without changing the source MP4 files or captions. Reload VS Code after installing the updated local extension.
-
-The player also applies a subtle picture filter (brightness, contrast, and saturation) to every video. It affects playback only; captions and source MP4 files keep their original appearance and data.
-
-If VS Code cannot decode an MP4 video stream (including the AV1 videos in Course 1), the extension loads a persistent H.264 playback copy made with `ffmpeg`. Course 1's incompatible videos have these copies prepared ahead of time, so they are ready when opened. The copies live in the user cache (`%LOCALAPPDATA%\vscode-video-player\h264` on Windows), outside Git. Original MP4s and subtitle files are untouched.
-
-After editing the local extension, run `python tools/build_local_vsix.py` from this folder to rebuild the VSIX, then run the local install command above.
+For the player workflow, captions, controls, requirements, and rebuild steps, see the [extension README](tools/vscode-video-player/readme.md).
 
 ## Video storage with Git LFS
 

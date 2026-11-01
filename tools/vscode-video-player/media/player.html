@@ -9,6 +9,13 @@
 </head>
 <body>
   <div class="player" id="player">
+    <svg class="video-filter-defs" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="naturalSharpen" color-interpolation-filters="sRGB">
+          <feConvolveMatrix order="3" kernelMatrix="0 -0.08 0 -0.08 1.32 -0.08 0 -0.08 0" preserveAlpha="true" />
+        </filter>
+      </defs>
+    </svg>
 
     <!-- Video stage -->
     <div class="stage" id="stage">
@@ -93,6 +100,7 @@
 
       <button class="btn btn-cc" id="subBtn" type="button" title="Subtitles (C)" aria-label="Subtitles" aria-pressed="false" hidden>CC</button>
       <button class="btn btn-cc" id="selectSubBtn" type="button" title="Choose subtitle file (.vtt or .srt)" aria-label="Choose subtitle file">Sub</button>
+      <button class="btn btn-cc" id="getCcBtn" type="button" title="Generate English captions from this video's audio" aria-label="Get English captions">Get CC</button>
 
       <button class="btn btn-cc" id="ccSetBtn" type="button" title="Caption settings" aria-label="Caption settings">Aa</button>
       <div id="ccPanel" class="cc-panel" hidden>
@@ -123,7 +131,7 @@
         <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M19 7h-8v6h8V7zm2-4H3a2 2 0 00-2 2v14a2 2 0 002 2h18a2 2 0 002-2V5a2 2 0 00-2-2zm0 16.01H3V4.98h18v14.03z" fill="currentColor"></path></svg>
       </button>
 
-      <button class="btn" id="fsBtn" type="button" title="Fullscreen (F)" aria-label="Fullscreen" aria-pressed="false">
+      <button class="btn" id="fsBtn" type="button" title="Toggle full screen view (F)" aria-label="Toggle full screen view">
         <svg class="ic ic-fs" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" fill="currentColor"></path></svg>
         <svg class="ic ic-fs-exit" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z" fill="currentColor"></path></svg>
       </button>

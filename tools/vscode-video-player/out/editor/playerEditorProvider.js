@@ -39,6 +39,7 @@ const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
 const crypto = __importStar(require("crypto"));
 const audioExtractionController_1 = require("./audioExtractionController");
+const ccController_1 = require("./ccController");
 const compatibleVideo_1 = require("../media/video");
 const audioMedia_1 = require("../media/audio");
 const mediaFormat_1 = require("../media/mediaFormat");
@@ -47,6 +48,8 @@ const ffmpegInstall_1 = require("../shared/ffmpegInstall");
 const preferences_1 = require("../shared/preferences");
 const resume_1 = require("../shared/resume");
 const subtitles_1 = require("../media/subtitles");
+const ccModel_1 = require("../media/ccModel");
+const transcription_1 = require("../media/transcription");
 const PREFS_KEY = 'unmuteVideo.preferences';
 /**
  * Custom editor that plays .mp4/.mov/.m4v files WITH sound inside VS Code.
@@ -97,6 +100,31 @@ class PlayerEditorProvider {
         };
         const currentPreferences = () => (0, preferences_1.clampPreferences)(this.context.globalState.get(PREFS_KEY));
         const audio = nativeAudio ? null : new audioExtractionController_1.AudioExtractionController(this.server, fsPath, post, currentPreferences, saved, seekStep);
+        const cc = new ccController_1.CcController(fsPath, post, {
+            isTrusted: () => vscode.workspace.isTrusted,
+            confirm: async (replacing) => {
+                const label = replacing ? 'Replace CC' : 'Generate CC';
+                const message = replacing
+                    ? 'Replace the existing English captions for this video?'
+                    : 'Generate English captions from this video’s audio?';
+                const choice = await vscode.window.showWarningMessage(message, {
+                    modal: true,
+                    detail: 'Speech recognition can take several minutes and may mishear words. The result is saved beside the video as a .vtt file for review.',
+                }, label);
+                return choice === label;
+            },
+            getMp3: async (signal) => {
+                const config = vscode.workspace.getConfiguration('unmuteVideo');
+                const roots = (vscode.workspace.workspaceFolders ?? []).map(folder => folder.uri.fsPath);
+                const override = (0, audioMedia_1.resolveFfmpegOverride)(config.get('ffmpegPath'), roots);
+                const ffmpeg = await (0, audioMedia_1.findFfmpeg)(override);
+                if (ffmpeg === null) throw new Error('ffmpeg is needed to extract MP3 audio. Install it or set its path in Settings.');
+                return (0, audioMedia_1.extractAudio)(ffmpeg, fsPath, signal);
+            },
+            getModel: (progress, signal) => (0, ccModel_1.ensureCcModel)(this.context.globalStorageUri.fsPath, progress, signal, undefined, undefined, this.context.extensionUri.fsPath),
+            transcribe: (mp3, model, signal) => (0, transcription_1.transcribeMp3)(mp3, model, (0, ccModel_1.ccRunnerPath)(this.context.extensionUri.fsPath), signal),
+            write: transcription_1.writeVttAtomic,
+        });
         const postSidecarSubtitles = () => {
             const subtitles = this.readSidecarSubtitles(fsPath);
             if (subtitles !== undefined) {
@@ -198,6 +226,14 @@ class PlayerEditorProvider {
                     // unknown name is logged rather than silently ignored so
                     // boundary drift (webview/host protocol mismatch) is observable.
                     switch (message.name) {
+                        case 'toggleFullscreen':
+                            void vscode.commands.executeCommand('workbench.action.toggleZenMode').then(undefined, () => {
+                                void vscode.window.showWarningMessage('vscode-video-player: could not switch VS Code to full screen.');
+                            });
+                            break;
+                        case 'getCc':
+                            void cc.start();
+                            break;
                         case 'selectSubtitles': {
                             const chosen = await vscode.window.showOpenDialog({
                                 title: `Choose subtitles for ${path.basename(fsPath)}`,
@@ -272,6 +308,7 @@ class PlayerEditorProvider {
         });
         webviewPanel.onDidDispose(() => {
             disposed = true;
+            cc.dispose();
             audio?.dispose();
             messageListener.dispose();
             if (trustListener !== undefined) {

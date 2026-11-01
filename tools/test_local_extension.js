@@ -22,6 +22,15 @@ const sidecar = path.join(dir, "lesson (1).vtt");
 const alternate = path.join(dir, "chosen.srt");
 const invalid = path.join(dir, "chosen.txt");
 
+const html = fs.readFileSync(path.join(__dirname, "vscode-video-player/media/player.html"), "utf8");
+const css = fs.readFileSync(path.join(__dirname, "vscode-video-player/media/player.css"), "utf8");
+const player = fs.readFileSync(path.join(__dirname, "vscode-video-player/media/player.js"), "utf8");
+assert.match(html, /id="getCcBtn"/);
+assert.doesNotMatch(html, /id="enhanceBtn"/);
+assert.doesNotMatch(css, /\.player:not\(\.picture-enhanced\)/);
+assert.match(player, /name: "getCc"/);
+assert.doesNotMatch(player, /enhanceBtn/);
+
 try {
   fs.writeFileSync(sidecar, "WEBVTT\n\n00:00:01.000 --> 00:00:02.000\nDefault\n");
   fs.writeFileSync(alternate, "1\n00:00:01,000 --> 00:00:02,000\nChosen\n");

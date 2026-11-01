@@ -5,6 +5,7 @@
     player: document.getElementById("player"),
     stage: document.getElementById("stage"),
     video: document.getElementById("video"),
+    getCcBtn: document.getElementById("getCcBtn"),
     track: document.getElementById("subTrack"),
     fileLabel: document.getElementById("fileLabel"),
     flash: document.getElementById("flash"),
@@ -1048,6 +1049,11 @@
       case "subtitles":
         controller.attachSubtitles(msg.vtt, msg.label, !!msg.activate);
         break;
+      case "ccProgress":
+        els.getCcBtn.disabled = !!msg.running;
+        if (msg.message) showStatus(msg.message, msg.warning ? "warning" : msg.running ? "loading" : "info");
+        else clearStatus();
+        break;
       case "audioSrc":
         controller.attachAudio(msg.url);
         break;
@@ -1099,6 +1105,9 @@
   els.selectSubBtn.addEventListener("click", function() {
     vscode.postMessage({ type: "action", name: "selectSubtitles" });
   });
+  els.getCcBtn.addEventListener("click", function() {
+    if (!els.getCcBtn.disabled) vscode.postMessage({ type: "action", name: "getCc" });
+  });
   var pipSupported = document.pictureInPictureEnabled && typeof els.video.requestPictureInPicture === "function";
   if (!pipSupported) {
     els.pipBtn.hidden = true;
@@ -1117,20 +1126,9 @@
   }
   els.pipBtn.addEventListener("click", togglePip);
   function toggleFullscreen() {
-    if (document.fullscreenElement) {
-      document.exitFullscreen().catch(function() {
-      });
-    } else if (els.stage.requestFullscreen) {
-      els.stage.requestFullscreen().catch(function() {
-      });
-    }
+    vscode.postMessage({ type: "action", name: "toggleFullscreen" });
   }
   els.fsBtn.addEventListener("click", toggleFullscreen);
-  document.addEventListener("fullscreenchange", function() {
-    const isFs = !!document.fullscreenElement;
-    els.player.classList.toggle("is-fullscreen", isFs);
-    els.fsBtn.setAttribute("aria-pressed", isFs ? "true" : "false");
-  });
   function postStatusAction(index) {
     const action = statusActionAt(index);
     if (action !== null) {

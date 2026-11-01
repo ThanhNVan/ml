@@ -2,7 +2,7 @@
   "name": "vscode-video-player",
   "displayName": "vscode-video-player",
   "description": "Play MP4, MOV, M4V and WebM videos inside VS Code with sound. ffmpeg extracts the audio and keeps it in sync with the muted video, working around the missing AAC codec in the VS Code webview \u2014 audio that actually plays, and stays in sync.",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "publisher": "local",
   "license": "MIT",
   "repository": {

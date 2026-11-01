@@ -55,6 +55,7 @@ class AudioExtractionController {
         this.disposed = false;
         this.started = false;
         this.ffmpegMissing = false;
+        this.abort = new AbortController();
     }
     /**
      * Begin extraction at most once, and never after dispose. `showPendingStatus`
@@ -82,7 +83,7 @@ class AudioExtractionController {
                 return;
             }
             try {
-                const mp3Path = await (0, audio_1.extractAudio)(ffmpeg, this.fsPath);
+                const mp3Path = await (0, audio_1.extractAudio)(ffmpeg, this.fsPath, this.abort.signal);
                 const token = this.server.register(mp3Path);
                 if (this.disposed) {
                     // Editor closed before extraction finished:
@@ -115,6 +116,7 @@ class AudioExtractionController {
     /** Stop guarding posts and release the audio token if one was registered. */
     dispose() {
         this.disposed = true;
+        this.abort.abort();
         if (this.audioToken !== undefined) {
             this.server.unregister(this.audioToken);
             this.audioToken = undefined;
