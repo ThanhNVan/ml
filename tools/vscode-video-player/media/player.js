@@ -15,6 +15,9 @@
     seekBuffered: document.getElementById("seekBuffered"),
     seekPlayed: document.getElementById("seekPlayed"),
     seekHandle: document.getElementById("seekHandle"),
+    seekPreview: document.getElementById("seekPreview"),
+    previewVideo: document.getElementById("previewVideo"),
+    previewTime: document.getElementById("previewTime"),
     markerA: document.getElementById("markerA"),
     markerB: document.getElementById("markerB"),
     playBtn: document.getElementById("playBtn"),
@@ -223,6 +226,54 @@
       els.seek.addEventListener("keydown", (evt) => {
         this.handleKey(evt);
       });
+      els.seek.addEventListener("mousemove", (evt) => this.hoverPreview(evt));
+      els.seek.addEventListener("mouseleave", () => this.hidePreview());
+      els.previewVideo.addEventListener("loadedmetadata", () => {
+        if (!els.seekPreview.hidden && this.pendingPreviewTime !== undefined) {
+          els.previewVideo.currentTime = this.pendingPreviewTime;
+          this.pendingPreviewTime = void 0;
+        }
+      });
+      const showPreviewFrame = () => {
+        if (!els.seekPreview.hidden && !els.previewVideo.seeking && els.previewVideo.readyState >= 2 && Math.abs(els.previewVideo.currentTime - this.previewTarget) < 0.05) {
+          els.previewVideo.style.visibility = "visible";
+        }
+      };
+      els.previewVideo.addEventListener("seeked", showPreviewFrame);
+      els.previewVideo.addEventListener("loadeddata", showPreviewFrame);
+    }
+    setPreviewSource(url) {
+      this.hidePreview();
+      els.previewVideo.src = url;
+    }
+    hoverPreview(evt) {
+      const duration = this.controller.duration;
+      if (!Number.isFinite(duration) || duration <= 0 || !els.previewVideo.src) return;
+      const rect = els.seek.getBoundingClientRect();
+      const time = ratioInRect(evt.clientX, rect.left, rect.width) * duration;
+      this.previewTarget = time;
+      const half = Math.min(90, rect.width / 2);
+      els.seekPreview.style.left = Math.max(half, Math.min(rect.width - half, evt.clientX - rect.left)) + "px";
+      els.previewTime.textContent = formatTime(time);
+      els.previewVideo.style.visibility = "hidden";
+      els.seekPreview.hidden = false;
+      if (this.previewTimer !== void 0) window.clearTimeout(this.previewTimer);
+      this.previewTimer = window.setTimeout(() => {
+        this.previewTimer = void 0;
+        if (els.seekPreview.hidden) return;
+        if (els.previewVideo.readyState >= 2 && Math.abs(els.previewVideo.currentTime - time) < 0.05) {
+          els.previewVideo.style.visibility = "visible";
+        } else if (els.previewVideo.readyState >= 1) els.previewVideo.currentTime = time;
+        else this.pendingPreviewTime = time;
+      }, 120);
+    }
+    hidePreview() {
+      if (this.previewTimer !== void 0) window.clearTimeout(this.previewTimer);
+      this.previewTimer = void 0;
+      this.pendingPreviewTime = void 0;
+      this.previewTarget = void 0;
+      els.seekPreview.hidden = true;
+      els.previewVideo.style.visibility = "hidden";
     }
     handleKey(evt) {
       const dur = isFinite(this.controller.duration) ? this.controller.duration : 0;
@@ -1040,6 +1091,7 @@
         break;
       case "videoSrc":
         controller.attachVideo(msg.url, !!msg.nativeAudio, !!msg.compatibleFallback);
+        seekbar.setPreviewSource(msg.url);
         break;
       case "videoFallbackError":
         controller.videoFallbackPending = false;

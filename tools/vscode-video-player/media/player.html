@@ -43,6 +43,10 @@
     <!-- Seek / progress bar -->
     <div class="seek" id="seek" role="slider" aria-label="Seek" tabindex="0"
          aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="0:00 of 0:00">
+      <div class="seek-preview" id="seekPreview" hidden aria-hidden="true">
+        <video id="previewVideo" muted playsinline preload="metadata"></video>
+        <span id="previewTime"></span>
+      </div>
       <div class="seek-track">
         <div class="seek-buffered" id="seekBuffered"></div>
         <div class="seek-played" id="seekPlayed"></div>
