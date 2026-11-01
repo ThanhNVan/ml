@@ -6,6 +6,7 @@
     stage: document.getElementById("stage"),
     video: document.getElementById("video"),
     getCcBtn: document.getElementById("getCcBtn"),
+    enhanceAudioBtn: document.getElementById("enhanceAudioBtn"),
     track: document.getElementById("subTrack"),
     fileLabel: document.getElementById("fileLabel"),
     flash: document.getElementById("flash"),
@@ -1121,6 +1122,15 @@
         );
         else clearStatus();
         break;
+      case "enhanceProgress":
+        els.enhanceAudioBtn.disabled = !!msg.running;
+        if (msg.message) showStatus(
+          msg.message,
+          msg.warning ? "warning" : msg.running ? "loading" : "info",
+          !msg.running && !msg.warning ? 5000 : 0
+        );
+        else clearStatus();
+        break;
       case "audioSrc":
         controller.attachAudio(msg.url);
         break;
@@ -1174,6 +1184,9 @@
   });
   els.getCcBtn.addEventListener("click", function() {
     if (!els.getCcBtn.disabled) vscode.postMessage({ type: "action", name: "getCc" });
+  });
+  els.enhanceAudioBtn.addEventListener("click", function() {
+    if (!els.enhanceAudioBtn.disabled) vscode.postMessage({ type: "action", name: "enhanceAudio" });
   });
   var pipSupported = document.pictureInPictureEnabled && typeof els.video.requestPictureInPicture === "function";
   if (!pipSupported) {

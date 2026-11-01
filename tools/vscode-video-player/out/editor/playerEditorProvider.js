@@ -40,6 +40,7 @@ const path = __importStar(require("path"));
 const crypto = __importStar(require("crypto"));
 const audioExtractionController_1 = require("./audioExtractionController");
 const ccController_1 = require("./ccController");
+const { AudioEnhancementController } = require("./audioEnhancementController");
 const compatibleVideo_1 = require("../media/video");
 const audioMedia_1 = require("../media/audio");
 const mediaFormat_1 = require("../media/mediaFormat");
@@ -124,6 +125,22 @@ class PlayerEditorProvider {
             getModel: (progress, signal) => (0, ccModel_1.ensureCcModel)(this.context.globalStorageUri.fsPath, progress, signal, undefined, undefined, this.context.extensionUri.fsPath),
             transcribe: (mp3, model, signal) => (0, transcription_1.transcribeMp3)(mp3, model, (0, ccModel_1.ccRunnerPath)(this.context.extensionUri.fsPath), signal),
             write: transcription_1.writeVttAtomic,
+        });
+        const enhancement = new AudioEnhancementController(fsPath, post, {
+            isTrusted: () => vscode.workspace.isTrusted,
+            confirm: async (name) => {
+                const choice = await vscode.window.showWarningMessage('Enhance audio using the English captions?', {
+                    modal: true,
+                    detail: `This lowers sound between captioned speech and applies light noise reduction. It creates ${name} beside the original video. Review the result because caption timing may be imperfect.`,
+                }, 'Enhance Audio');
+                return choice === 'Enhance Audio';
+            },
+            getFfmpeg: async () => {
+                const config = vscode.workspace.getConfiguration('unmuteVideo');
+                const roots = (vscode.workspace.workspaceFolders ?? []).map(folder => folder.uri.fsPath);
+                const override = (0, audioMedia_1.resolveFfmpegOverride)(config.get('ffmpegPath'), roots);
+                return (0, audioMedia_1.findFfmpeg)(override);
+            },
         });
         const postSidecarSubtitles = () => {
             const subtitles = this.readSidecarSubtitles(fsPath);
@@ -234,6 +251,9 @@ class PlayerEditorProvider {
                         case 'getCc':
                             void cc.start();
                             break;
+                        case 'enhanceAudio':
+                            void enhancement.start();
+                            break;
                         case 'selectSubtitles': {
                             const chosen = await vscode.window.showOpenDialog({
                                 title: `Choose subtitles for ${path.basename(fsPath)}`,
@@ -309,6 +329,7 @@ class PlayerEditorProvider {
         webviewPanel.onDidDispose(() => {
             disposed = true;
             cc.dispose();
+            enhancement.dispose();
             audio?.dispose();
             messageListener.dispose();
             if (trustListener !== undefined) {

@@ -1,6 +1,6 @@
 # vscode-video-player
 
-Play `.mp4`, `.mov`, `.m4v`, and `.webm` files inside VS Code with sound and sidecar subtitles. This local build adds a subtitle picker, English caption generation, automatic picture enhancement, and a playback copy for video codecs the VS Code webview cannot decode.
+Play `.mp4`, `.mov`, `.m4v`, and `.webm` files inside VS Code with sound and sidecar subtitles. This local build adds a subtitle picker, English caption generation, caption-guided audio enhancement, automatic picture enhancement, and a playback copy for video codecs the VS Code webview cannot decode.
 
 ## Install
 
@@ -43,6 +43,10 @@ flowchart TD
     N -- Yes --> O[Confirm generation or replacement]
     O --> P[Extract MP3, run local English speech model, save same-name VTT]
     P --> Q[Show generated captions and review the VTT]
+    Q --> S[Optional: press Enhance Audio and confirm]
+    S --> T[Use VTT speech times to lower sound in gaps; denoise audio]
+    T --> U[Save a separate enhanced video and matching VTT]
+    U --> R
     M --> R[Watch with CC, Aa, speed, seek, and display controls]
     Q --> R
 ```
@@ -71,6 +75,10 @@ The matching English file loads when the video opens. Press **CC** to show or hi
 Press **Get CC** while the video is open in a trusted workspace. A confirmation dialog explains that speech recognition may take several minutes and may mishear words. If a matching English `.vtt` already exists, the dialog asks whether to replace it. Canceling leaves the file unchanged.
 
 After confirmation, the extension extracts MP3 audio, runs its local English speech model, checks the timed result, and saves `<video-base-name>.vtt` beside the video. The generated captions appear immediately. Review and correct the VTT in VS Code, especially names and technical terms. **Get CC** creates English captions only; it does not translate them into Vietnamese. The video must be in a writable folder for the VTT to be saved.
+
+### Enhance audio using captions
+
+After generating or adding a matching English `<video-base-name>.vtt`, press **Enhance Audio** and confirm. The extension uses the caption times to keep speech at full level and lower sound between speech sections. It also applies light noise reduction with the bundled FFmpeg. It saves `<video-base-name>-enhanced.<video-extension>` and a matching `-enhanced.vtt` beside the original. Open the new video to hear the result. The original video and captions remain unchanged. If the enhanced files already exist, the extension stops without replacing them.
 
 ## Requirements and limits
 

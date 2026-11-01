@@ -26,9 +26,11 @@ const html = fs.readFileSync(path.join(__dirname, "vscode-video-player/media/pla
 const css = fs.readFileSync(path.join(__dirname, "vscode-video-player/media/player.css"), "utf8");
 const player = fs.readFileSync(path.join(__dirname, "vscode-video-player/media/player.js"), "utf8");
 assert.match(html, /id="getCcBtn"/);
+assert.match(html, /id="enhanceAudioBtn"/);
 assert.doesNotMatch(html, /id="enhanceBtn"/);
 assert.doesNotMatch(css, /\.player:not\(\.picture-enhanced\)/);
 assert.match(player, /name: "getCc"/);
+assert.match(player, /name: "enhanceAudio"/);
 assert.doesNotMatch(player, /enhanceBtn/);
 
 try {
