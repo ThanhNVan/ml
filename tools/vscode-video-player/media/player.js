@@ -237,10 +237,12 @@
       const showPreviewFrame = () => {
         if (!els.seekPreview.hidden && !els.previewVideo.seeking && els.previewVideo.readyState >= 2 && Math.abs(els.previewVideo.currentTime - this.previewTarget) < 0.05) {
           els.previewVideo.style.visibility = "visible";
+          els.seekPreview.classList.remove("is-loading");
         }
       };
       els.previewVideo.addEventListener("seeked", showPreviewFrame);
       els.previewVideo.addEventListener("loadeddata", showPreviewFrame);
+      els.previewVideo.addEventListener("error", () => els.seekPreview.classList.remove("is-loading"));
     }
     setPreviewSource(url) {
       this.hidePreview();
@@ -256,6 +258,7 @@
       els.seekPreview.style.left = Math.max(half, Math.min(rect.width - half, evt.clientX - rect.left)) + "px";
       els.previewTime.textContent = formatTime(time);
       els.previewVideo.style.visibility = "hidden";
+      els.seekPreview.classList.add("is-loading");
       els.seekPreview.hidden = false;
       if (this.previewTimer !== void 0) window.clearTimeout(this.previewTimer);
       this.previewTimer = window.setTimeout(() => {
@@ -263,6 +266,7 @@
         if (els.seekPreview.hidden) return;
         if (els.previewVideo.readyState >= 2 && Math.abs(els.previewVideo.currentTime - time) < 0.05) {
           els.previewVideo.style.visibility = "visible";
+          els.seekPreview.classList.remove("is-loading");
         } else if (els.previewVideo.readyState >= 1) els.previewVideo.currentTime = time;
         else this.pendingPreviewTime = time;
       }, 120);
@@ -273,6 +277,7 @@
       this.pendingPreviewTime = void 0;
       this.previewTarget = void 0;
       els.seekPreview.hidden = true;
+      els.seekPreview.classList.remove("is-loading");
       els.previewVideo.style.visibility = "hidden";
     }
     handleKey(evt) {

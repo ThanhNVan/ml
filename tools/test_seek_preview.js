@@ -15,7 +15,12 @@ let timer;
 const el = name => ({
   addEventListener(type, listener) { events[name + ":" + type] = listener; },
   style: {},
-  classList: { add() {}, remove() {} },
+  classList: {
+    values: new Set(),
+    add(value) { this.values.add(value); },
+    remove(value) { this.values.delete(value); },
+    contains(value) { return this.values.has(value); },
+  },
   setAttribute() {},
 });
 const seek = el("seek");
@@ -46,6 +51,7 @@ const bar = new Seekbar({ duration: 100, seekTo(time) { seeks.push(time); } });
 bar.setPreviewSource("http://127.0.0.1/video");
 events["seek:mousemove"]({ clientX: 110 });
 assert.equal(tooltip.hidden, false);
+assert.equal(tooltip.classList.contains("is-loading"), true, "show loading while the frame is pending");
 assert.equal(els.previewTime.textContent, "0:50");
 assert.equal(preview.currentTime, undefined, "hover seek is delayed");
 timer();
@@ -54,10 +60,16 @@ assert.deepEqual(seeks, [], "hover must not move playback");
 preview.readyState = 2;
 events["preview:seeked"]();
 assert.equal(preview.style.visibility, "visible");
+assert.equal(tooltip.classList.contains("is-loading"), false, "hide loading when the frame is ready");
 events["seek:mouseleave"]();
 assert.equal(tooltip.hidden, true);
+assert.equal(tooltip.classList.contains("is-loading"), false, "clear loading when the preview closes");
 preview.currentTime = 0;
 events["seek:mousemove"]({ clientX: 10 });
 timer();
 assert.equal(preview.style.visibility, "visible", "the first frame also previews without a seek event");
+events["seek:mousemove"]({ clientX: 150 });
+assert.equal(tooltip.classList.contains("is-loading"), true);
+events["preview:error"]();
+assert.equal(tooltip.classList.contains("is-loading"), false, "a failed preview must not spin forever");
 console.log("Seek hover previews a frame without moving playback: OK");
