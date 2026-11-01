@@ -340,6 +340,7 @@
 
   // src/webview/status.ts
   var actionSlots = [null, null];
+  var statusTimeout;
   function slotButtons() {
     return [els.statusAction, els.statusActionSecondary];
   }
@@ -351,7 +352,9 @@
       buttons[i].textContent = "";
     }
   }
-  function showStatus(text, variant) {
+  function showStatus(text, variant, autoHideMs = 0) {
+    window.clearTimeout(statusTimeout);
+    statusTimeout = void 0;
     els.status.hidden = false;
     els.status.setAttribute("aria-live", variant === "warning" ? "assertive" : "polite");
     hideActions();
@@ -366,8 +369,11 @@
       els.statusSpinner.hidden = true;
     }
     els.statusText.textContent = text;
+    if (autoHideMs) statusTimeout = window.setTimeout(clearStatus, autoHideMs);
   }
   function clearStatus() {
+    window.clearTimeout(statusTimeout);
+    statusTimeout = void 0;
     els.status.hidden = true;
     els.statusText.textContent = "";
     els.statusSpinner.hidden = true;
@@ -1108,7 +1114,11 @@
         break;
       case "ccProgress":
         els.getCcBtn.disabled = !!msg.running;
-        if (msg.message) showStatus(msg.message, msg.warning ? "warning" : msg.running ? "loading" : "info");
+        if (msg.message) showStatus(
+          msg.message,
+          msg.warning ? "warning" : msg.running ? "loading" : "info",
+          !msg.running && !msg.warning ? 5000 : 0
+        );
         else clearStatus();
         break;
       case "audioSrc":
