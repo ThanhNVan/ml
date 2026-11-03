@@ -100,7 +100,8 @@ class PlayerEditorProvider {
             void webview.postMessage(message);
         };
         const currentPreferences = () => (0, preferences_1.clampPreferences)(this.context.globalState.get(PREFS_KEY));
-        const audio = nativeAudio ? null : new audioExtractionController_1.AudioExtractionController(this.server, fsPath, post, currentPreferences, saved, seekStep);
+        let audio = nativeAudio ? null : new audioExtractionController_1.AudioExtractionController(this.server, fsPath, post, currentPreferences, saved, seekStep);
+        let replaceReady;
         const cc = new ccController_1.CcController(fsPath, post, {
             isTrusted: () => vscode.workspace.isTrusted,
             confirm: async (replacing) => {
@@ -131,15 +132,51 @@ class PlayerEditorProvider {
             confirm: async (name) => {
                 const choice = await vscode.window.showWarningMessage('Enhance audio using the English captions?', {
                     modal: true,
-                    detail: `This lowers sound between captioned speech and applies light noise reduction. It creates ${name} beside the original video. Review the result because caption timing may be imperfect.`,
-                }, 'Enhance Audio');
-                return choice === 'Enhance Audio';
+                    detail: `This lowers sound between captioned speech and applies light noise reduction. Create ${name} beside the original, or replace the current video file.`,
+                }, 'Create New Video', 'Replace Current Video');
+                return choice === 'Create New Video' ? 'copy' : choice === 'Replace Current Video' ? 'replace' : null;
             },
             getFfmpeg: async () => {
                 const config = vscode.workspace.getConfiguration('unmuteVideo');
                 const roots = (vscode.workspace.workspaceFolders ?? []).map(folder => folder.uri.fsPath);
                 const override = (0, audioMedia_1.resolveFfmpegOverride)(config.get('ffmpegPath'), roots);
                 return (0, audioMedia_1.findFfmpeg)(override);
+            },
+            prepareReplace: async () => {
+                await new Promise((resolve, reject) => {
+                    const timer = setTimeout(() => {
+                        replaceReady = undefined;
+                        reject(new Error('The player did not release the video stream.'));
+                    }, 5000);
+                    replaceReady = () => {
+                        clearTimeout(timer);
+                        replaceReady = undefined;
+                        resolve();
+                    };
+                    void webview.postMessage({ type: 'prepareAudioReplace' }).then(sent => {
+                        if (!sent) {
+                            clearTimeout(timer);
+                            replaceReady = undefined;
+                            reject(new Error('The player is no longer available.'));
+                        }
+                    }).catch(error => {
+                        clearTimeout(timer);
+                        replaceReady = undefined;
+                        reject(error);
+                    });
+                });
+                await this.server.closeStreamsForPath(fsPath);
+            },
+            finishReplace: (replaced) => {
+                if (disposed) return;
+                const playingUrl = fallbackToken === undefined ? videoUrl : this.server.urlFor(fallbackToken);
+                if (replaced && !nativeAudio) {
+                    post({ type: 'audioRefreshing' });
+                    audio?.dispose();
+                    audio = new audioExtractionController_1.AudioExtractionController(this.server, fsPath, post, currentPreferences, saved, seekStep);
+                }
+                post({ type: 'videoSrc', url: `${playingUrl}?refresh=${Date.now()}`, nativeAudio: fallbackToken === undefined && nativeAudio, compatibleFallback: fallbackToken !== undefined });
+                if (replaced && !nativeAudio) audio?.start(false);
             },
         });
         const postSidecarSubtitles = () => {
@@ -254,6 +291,9 @@ class PlayerEditorProvider {
                         case 'enhanceAudio':
                             void enhancement.start();
                             break;
+                        case 'audioReplaceReady':
+                            replaceReady?.();
+                            break;
                         case 'selectSubtitles': {
                             const chosen = await vscode.window.showOpenDialog({
                                 title: `Choose subtitles for ${path.basename(fsPath)}`,
@@ -328,6 +368,7 @@ class PlayerEditorProvider {
         });
         webviewPanel.onDidDispose(() => {
             disposed = true;
+            replaceReady?.();
             cc.dispose();
             enhancement.dispose();
             audio?.dispose();

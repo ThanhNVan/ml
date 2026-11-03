@@ -43,10 +43,13 @@ flowchart TD
     N -- Yes --> O[Confirm generation or replacement]
     O --> P[Extract MP3, run local English speech model, save same-name VTT]
     P --> Q[Show generated captions and review the VTT]
-    Q --> S[Optional: press Enhance Audio and confirm]
+    Q --> S[Optional: press Enhance Audio and choose an output]
     S --> T[Use VTT speech times to lower sound in gaps; denoise audio]
-    T --> U[Save a separate enhanced video and matching VTT]
-    U --> R
+    T --> U{Output choice}
+    U -- Create New Video --> V[Save a separate enhanced video and matching VTT]
+    U -- Replace Current Video --> W[Release the video stream and replace the current file]
+    V --> R
+    W --> R
     M --> R[Watch with CC, Aa, speed, seek, and display controls]
     Q --> R
 ```
@@ -78,7 +81,9 @@ After confirmation, the extension extracts MP3 audio, runs its local English spe
 
 ### Enhance audio using captions
 
-After generating or adding a matching English `<video-base-name>.vtt`, press **Enhance Audio** and confirm. The extension uses the caption times to keep speech at full level and lower sound between speech sections. It also applies light noise reduction with the bundled FFmpeg. It saves `<video-base-name>-enhanced.<video-extension>` and a matching `-enhanced.vtt` beside the original. Open the new video to hear the result. The original video and captions remain unchanged. If the enhanced files already exist, the extension stops without replacing them.
+After generating or adding a matching English `<video-base-name>.vtt`, press **Enhance Audio**. Choose **Create New Video** to save `<video-base-name>-enhanced.<video-extension>` and a matching `-enhanced.vtt` beside the original. Choose **Replace Current Video** to process the audio and replace the current video file after processing succeeds. The English VTT remains unchanged. The player releases and reloads the video stream when replacing it. If separate enhanced files already exist, **Create New Video** stops without replacing them; **Replace Current Video** remains available.
+
+Both choices use the caption times to keep speech at full level and lower sound between speech sections, then apply light noise reduction with FFmpeg. Review the result because inaccurate caption timing can lower wanted audio.
 
 ## Requirements and limits
 

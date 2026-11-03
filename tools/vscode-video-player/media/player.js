@@ -788,8 +788,8 @@
       if (!els.video.paused) {
         this.tryPlayAudio();
       }
-      this.audio.addEventListener("error", function() {
-        showStatus("Audio playback error", "warning");
+      this.audio.addEventListener("error", event => {
+        if (event.currentTarget === this.audio) showStatus("Audio playback error", "warning");
       });
       this.audio.addEventListener("waiting", () => this.holdForAudioBuffering());
       this.audio.addEventListener("stalled", () => this.holdForAudioBuffering());
@@ -1022,6 +1022,7 @@
         }
       });
       els.video.addEventListener("error", () => {
+        if (this.replacingVideo) return;
         const code = els.video.error && els.video.error.code;
         if ((code === 3 || code === 4) && !this.fallbackAttempted) {
           this.fallbackAttempted = true;
@@ -1102,8 +1103,20 @@
         }
         break;
       case "videoSrc":
+        controller.replacingVideo = false;
         controller.attachVideo(msg.url, !!msg.nativeAudio, !!msg.compatibleFallback);
         seekbar.setPreviewSource(msg.url);
+        break;
+      case "prepareAudioReplace":
+        controller.replacingVideo = true;
+        controller.setResumeTime(els.video.currentTime);
+        els.video.pause();
+        controller.audio?.pause();
+        els.video.removeAttribute("src");
+        els.previewVideo.removeAttribute("src");
+        els.video.load();
+        els.previewVideo.load();
+        vscode.postMessage({ type: "action", name: "audioReplaceReady" });
         break;
       case "videoFallbackError":
         controller.videoFallbackPending = false;
@@ -1133,6 +1146,16 @@
         break;
       case "audioSrc":
         controller.attachAudio(msg.url);
+        break;
+      case "audioRefreshing":
+        if (controller.audio) {
+          controller.audio.pause();
+          controller.audio.removeAttribute("src");
+          controller.audio.load();
+          controller.audio.remove();
+          controller.audio = null;
+        }
+        showStatus("Updating audio…", "loading");
         break;
       case "audioNone":
         showStatus("No audio track", "info");

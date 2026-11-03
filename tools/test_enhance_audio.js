@@ -5,7 +5,9 @@ const fs = require("node:fs");
 const os = require("node:os");
 const path = require("node:path");
 const { execFileSync } = require("node:child_process");
+const { PassThrough } = require("node:stream");
 const { AudioEnhancementController, speechIntervals } = require("./vscode-video-player/out/editor/audioEnhancementController");
+const { StreamServer } = require("./vscode-video-player/out/server/streamServer");
 
 async function main() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "enhance-audio-test-"));
@@ -18,11 +20,17 @@ async function main() {
     fs.writeFileSync(path.join(dir, "lesson.vtt"), vtt);
     execFileSync("ffmpeg", ["-nostdin", "-loglevel", "error", "-f", "lavfi", "-i", "color=c=black:s=160x90:r=10:d=3", "-f", "lavfi", "-i", "sine=frequency=440:duration=3", "-shortest", "-c:v", "mpeg4", "-c:a", "aac", video]);
     const original = fs.readFileSync(video);
+    const server = new StreamServer();
+    const response = new PassThrough({ highWaterMark: 1 });
+    server.streamFile(video, response, 0, original.length - 1);
+    assert.equal(server.activeStreams.get(video)?.size, 1);
+    await server.closeStreamsForPath(video);
+    assert.equal(server.activeStreams.has(video), false, "open player stream is released");
     const messages = [];
     let confirmed = false;
     const controller = new AudioEnhancementController(video, message => messages.push(message), {
       isTrusted: () => true,
-      confirm: async () => { confirmed = true; return true; },
+      confirm: async () => { confirmed = true; return "copy"; },
       getFfmpeg: async () => "ffmpeg",
     });
     await controller.start();
@@ -43,13 +51,47 @@ async function main() {
     await controller.start();
     assert.match(messages.at(-1).message, /already exist/);
     controller.dispose();
+    const replacedMessages = [];
+    const liveResponse = new PassThrough({ highWaterMark: 1 });
+    server.streamFile(video, liveResponse, 0, original.length - 1);
+    let prepared = false;
+    const replacement = new AudioEnhancementController(video, message => replacedMessages.push(message), {
+      isTrusted: () => true,
+      confirm: async () => "replace",
+      getFfmpeg: async () => "ffmpeg",
+      prepareReplace: async () => {
+        prepared = true;
+        await server.closeStreamsForPath(video);
+      },
+    });
+    await replacement.start();
+    assert.equal(prepared, true, "the open video stream is released before replacement");
+    assert.equal(replacedMessages.at(-1).warning, undefined, replacedMessages.at(-1).message);
+    assert.notDeepEqual(fs.readFileSync(video), original, "replace changes the current video");
+    assert.equal(fs.readFileSync(path.join(dir, "lesson.vtt"), "utf8"), vtt, "replace keeps captions");
+    assert.equal(fs.existsSync(target), true, "existing separate copy does not block replacement");
+    replacement.dispose();
+    const failedVideo = path.join(dir, "failed.mp4");
+    fs.copyFileSync(video, failedVideo);
+    fs.writeFileSync(path.join(dir, "failed.vtt"), vtt);
+    const beforeFailure = fs.readFileSync(failedVideo);
+    const failureMessages = [];
+    const failure = new AudioEnhancementController(failedVideo, message => failureMessages.push(message), {
+      isTrusted: () => true,
+      confirm: async () => "replace",
+      getFfmpeg: async () => path.join(dir, "missing-ffmpeg.exe"),
+    });
+    await failure.start();
+    assert.equal(failureMessages.at(-1).warning, true);
+    assert.deepEqual(fs.readFileSync(failedVideo), beforeFailure, "failed enhancement keeps the current video");
+    failure.dispose();
     const webm = path.join(dir, "clip.webm");
     execFileSync("ffmpeg", ["-nostdin", "-loglevel", "error", "-i", video, "-c:v", "libvpx-vp9", "-c:a", "libopus", webm]);
     fs.writeFileSync(path.join(dir, "clip.vtt"), vtt);
     const webmMessages = [];
     const webmController = new AudioEnhancementController(webm, message => webmMessages.push(message), {
       isTrusted: () => true,
-      confirm: async () => true,
+      confirm: async () => "copy",
       getFfmpeg: async () => "ffmpeg",
     });
     await webmController.start();

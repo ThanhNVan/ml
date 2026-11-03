@@ -92,13 +92,18 @@ class AudioEnhancementController {
         throw error;
       }
       const filter = audioFilter(vtt);
-      if (fs.existsSync(target) || fs.existsSync(targetCaption)) throw new Error("An enhanced video or its captions already exist.");
       this.post({ type: "enhanceProgress", message: "Waiting for confirmation…", running: true });
-      if (!await this.services.confirm(path.basename(target))) {
+      const choice = await this.services.confirm(path.basename(target));
+      if (!choice) {
         this.post({ type: "enhanceProgress", message: "", running: false });
         return;
       }
       if (this.abort.signal.aborted) return;
+      if (choice === "copy" && (fs.existsSync(target) || fs.existsSync(targetCaption))) {
+        throw new Error("An enhanced video or its captions already exist.");
+      }
+      if (choice !== "copy" && choice !== "replace") throw new Error("Unknown audio output choice.");
+      const source = await fsp.stat(this.videoPath);
       const ffmpeg = await this.services.getFfmpeg();
       if (!ffmpeg) throw new Error("FFmpeg is required to enhance audio.");
       const work = await fsp.mkdtemp(path.join(path.dirname(this.videoPath), ".enhance-audio-"));
@@ -109,14 +114,31 @@ class AudioEnhancementController {
         this.post({ type: "enhanceProgress", message: "Enhancing audio…", running: true });
         await runFfmpeg(ffmpeg, this.videoPath, output, filterFile, this.abort.signal);
         if (this.abort.signal.aborted) return;
-        await fsp.link(output, target);
-        try { await fsp.writeFile(targetCaption, vtt, { encoding: "utf8", flag: "wx" }); }
-        catch (error) {
-          await fsp.rm(target, { force: true });
-          if (error.code !== "EEXIST") await fsp.rm(targetCaption, { force: true });
-          throw error;
+        if (choice === "replace") {
+          let replaced = false;
+          try {
+            await this.services.prepareReplace?.();
+            if (this.abort.signal.aborted) return;
+            const current = await fsp.stat(this.videoPath);
+            if (current.size !== source.size || current.mtimeMs !== source.mtimeMs) {
+              throw new Error("The video changed during enhancement; nothing was replaced.");
+            }
+            await fsp.rename(output, this.videoPath);
+            replaced = true;
+          } finally {
+            this.services.finishReplace?.(replaced);
+          }
+          this.post({ type: "enhanceProgress", message: "Replaced the video with enhanced audio.", running: false });
+        } else {
+          await fsp.link(output, target);
+          try { await fsp.writeFile(targetCaption, vtt, { encoding: "utf8", flag: "wx" }); }
+          catch (error) {
+            await fsp.rm(target, { force: true });
+            if (error.code !== "EEXIST") await fsp.rm(targetCaption, { force: true });
+            throw error;
+          }
+          this.post({ type: "enhanceProgress", message: `Saved ${path.basename(target)}.`, running: false });
         }
-        this.post({ type: "enhanceProgress", message: `Saved ${path.basename(target)}.`, running: false });
       } finally {
         await fsp.rm(work, { recursive: true, force: true });
       }

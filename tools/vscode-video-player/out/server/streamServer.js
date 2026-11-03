@@ -60,6 +60,7 @@ class StreamServer {
          * really forgotten when the last holder unregisters it.
          */
         this.refCount = new Map();
+        this.activeStreams = new Map();
     }
     /**
      * Create the HTTP server and start listening on an OS-assigned free port,
@@ -129,6 +130,15 @@ class StreamServer {
     urlFor(token) {
         return `http://127.0.0.1:${this.port}/${token}`;
     }
+    async closeStreamsForPath(fsPath) {
+        const active = [...(this.activeStreams.get(fsPath) ?? [])];
+        await Promise.all(active.map(({ stream, res }) => new Promise(resolve => {
+            if (stream.closed) return resolve();
+            stream.once('close', resolve);
+            res.destroy();
+            stream.destroy();
+        })));
+    }
     /** Close the server and forget every registered path. */
     dispose() {
         if (this.server) {
@@ -138,6 +148,7 @@ class StreamServer {
         this.tokenToPath.clear();
         this.pathToToken.clear();
         this.refCount.clear();
+        this.activeStreams.clear();
     }
     /** Map a file extension to a Content-Type the webview understands. */
     contentTypeFor(fsPath) {
@@ -295,6 +306,13 @@ class StreamServer {
             return;
         }
         const stream = fs.createReadStream(fsPath, { start, end });
+        const active = this.activeStreams.get(fsPath) ?? new Set();
+        active.add({ stream, res });
+        this.activeStreams.set(fsPath, active);
+        stream.once('close', () => {
+            for (const entry of active) if (entry.stream === stream) active.delete(entry);
+            if (active.size === 0) this.activeStreams.delete(fsPath);
+        });
         let finished = false;
         stream.on('error', (err) => {
             if (finished) {
