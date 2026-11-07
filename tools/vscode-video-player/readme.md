@@ -102,3 +102,5 @@ python tools/install_video_player.py
 ```
 
 The build script expects local FFmpeg and the verified English model; see the script for its exact inputs. This repository's extension is based on [vscode-unmute-video](https://github.com/yutabee/vscode-unmute-video) and retains its MIT license; see [LICENSE.md](LICENSE.md) and [SECURITY.md](SECURITY.md).
+
+When the player has focus, the top-row number keys 1-9 seek to 10%-90% of the video; 0 returns to the start. These shortcuts do not run while typing or holding modifier keys.

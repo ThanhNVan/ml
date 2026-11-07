@@ -1255,6 +1255,13 @@
     if (isTypingTarget(evt.target)) {
       return;
     }
+    if (/^Digit[0-9]$/.test(evt.code) && !evt.ctrlKey && !evt.altKey && !evt.metaKey && !evt.shiftKey) {
+      if (Number.isFinite(controller.duration) && controller.duration > 0) {
+        controller.seekTo(controller.duration * Number(evt.code.slice(-1)) / 10);
+      }
+      evt.preventDefault();
+      return;
+    }
     let handled = true;
     switch (evt.key) {
       case " ":
